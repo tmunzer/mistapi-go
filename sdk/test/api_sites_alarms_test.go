@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAlarmsAPIService AckSiteAlarm", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var alarmId string
@@ -38,7 +39,7 @@ func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAlarmsAPIService AckSiteAllAlarms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -51,7 +52,7 @@ func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAlarmsAPIService AckSiteMultipleAlarms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -64,7 +65,7 @@ func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAlarmsAPIService CountSiteAlarms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -78,7 +79,7 @@ func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAlarmsAPIService SearchSiteAlarms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -92,7 +93,7 @@ func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAlarmsAPIService SubscribeSiteAlarms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -105,7 +106,7 @@ func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAlarmsAPIService UnackSiteAlarm", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var alarmId string
@@ -119,7 +120,7 @@ func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAlarmsAPIService UnackSiteAllArlarms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -132,7 +133,7 @@ func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAlarmsAPIService UnackSiteMultipleAlarms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -145,7 +146,7 @@ func Test_mistapigo_SitesAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAlarmsAPIService UnsubscribeSiteAlarms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 

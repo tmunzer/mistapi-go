@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsAssetsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsAssetsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAssetsAPIService CountOrgAssetsByDistanceField", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_OrgsAssetsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAssetsAPIService CreateOrgAsset", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -52,7 +53,7 @@ func Test_mistapigo_OrgsAssetsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAssetsAPIService DeleteOrgAsset", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var assetId string
@@ -66,7 +67,7 @@ func Test_mistapigo_OrgsAssetsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAssetsAPIService GetOrgAsset", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var assetId string
@@ -81,7 +82,7 @@ func Test_mistapigo_OrgsAssetsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAssetsAPIService ImportOrgAssets", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -94,7 +95,7 @@ func Test_mistapigo_OrgsAssetsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAssetsAPIService ListOrgAssets", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -108,7 +109,7 @@ func Test_mistapigo_OrgsAssetsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAssetsAPIService ListOrgAssetsStats", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -122,7 +123,7 @@ func Test_mistapigo_OrgsAssetsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAssetsAPIService SearchOrgAssets", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -136,7 +137,7 @@ func Test_mistapigo_OrgsAssetsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAssetsAPIService UpdateOrgAsset", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var assetId string

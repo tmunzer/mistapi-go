@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesZonesAPIService CountSiteZoneSessions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var zoneType string
@@ -39,7 +40,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesZonesAPIService CreateSiteZone", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -53,7 +54,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesZonesAPIService DeleteSiteZone", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var zoneId string
@@ -67,7 +68,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesZonesAPIService GetSiteZone", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var zoneId string
@@ -82,7 +83,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesZonesAPIService GetSiteZoneStats", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var zoneType string
@@ -98,7 +99,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesZonesAPIService ListSiteZones", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -112,7 +113,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesZonesAPIService ListSiteZonesStats", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -126,7 +127,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesZonesAPIService SearchSiteZoneSessions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var zoneType string
@@ -141,7 +142,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesZonesAPIService UpdateSiteZone", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var zoneId string

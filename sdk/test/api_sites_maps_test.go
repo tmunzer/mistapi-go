@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService AddSiteMapImage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -38,7 +39,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService BulkAssignSiteApsToMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -53,7 +54,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService CreateSiteMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -67,7 +68,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService DeleteSiteMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -81,7 +82,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService DeleteSiteMapImage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -95,7 +96,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService GetSiteMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -110,7 +111,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService ImportSiteMaps", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -124,7 +125,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService ImportSiteWayfindings", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -138,7 +139,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService ListSiteMaps", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -152,7 +153,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService ReplaceSiteMapImage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -166,7 +167,7 @@ func Test_mistapigo_SitesMapsAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAPIService UpdateSiteMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string

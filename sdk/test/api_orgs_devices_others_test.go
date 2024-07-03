@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsDevicesOthersAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsDevicesOthersAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDevicesOthersAPIService CountOrgOtherDeviceEvents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_OrgsDevicesOthersAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDevicesOthersAPIService DeleteOrgOtherDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -52,7 +53,7 @@ func Test_mistapigo_OrgsDevicesOthersAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDevicesOthersAPIService GetOrgOtherDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -67,7 +68,7 @@ func Test_mistapigo_OrgsDevicesOthersAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDevicesOthersAPIService GetOrgOtherDeviceStats", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -82,7 +83,7 @@ func Test_mistapigo_OrgsDevicesOthersAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDevicesOthersAPIService ListOrgOtherDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -96,7 +97,7 @@ func Test_mistapigo_OrgsDevicesOthersAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDevicesOthersAPIService RebootOrgOtherDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -110,7 +111,7 @@ func Test_mistapigo_OrgsDevicesOthersAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDevicesOthersAPIService SearchOrgOtherDeviceEvents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -124,7 +125,7 @@ func Test_mistapigo_OrgsDevicesOthersAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDevicesOthersAPIService UpdateOrgOtherDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -138,7 +139,7 @@ func Test_mistapigo_OrgsDevicesOthersAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDevicesOthersAPIService UpdateOrgOtherDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 

@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesWlansAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesWlansAPIService(t *testing.T) {
 
 	t.Run("Test SitesWlansAPIService CreateSiteWlan", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_SitesWlansAPIService(t *testing.T) {
 
 	t.Run("Test SitesWlansAPIService DeleteSiteWlan", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var wlanId string
@@ -52,7 +53,7 @@ func Test_mistapigo_SitesWlansAPIService(t *testing.T) {
 
 	t.Run("Test SitesWlansAPIService GetSiteWlan", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var wlanId string
@@ -67,7 +68,7 @@ func Test_mistapigo_SitesWlansAPIService(t *testing.T) {
 
 	t.Run("Test SitesWlansAPIService ListSiteWlanDerived", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -81,7 +82,7 @@ func Test_mistapigo_SitesWlansAPIService(t *testing.T) {
 
 	t.Run("Test SitesWlansAPIService ListSiteWlans", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -95,7 +96,7 @@ func Test_mistapigo_SitesWlansAPIService(t *testing.T) {
 
 	t.Run("Test SitesWlansAPIService UpdateSiteWlan", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var wlanId string
@@ -110,7 +111,7 @@ func Test_mistapigo_SitesWlansAPIService(t *testing.T) {
 
 	t.Run("Test SitesWlansAPIService UpdateSiteWlanPortalTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var wlanId string
@@ -125,7 +126,7 @@ func Test_mistapigo_SitesWlansAPIService(t *testing.T) {
 
 	t.Run("Test SitesWlansAPIService UploadSiteWlanPortalImage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var wlanId string

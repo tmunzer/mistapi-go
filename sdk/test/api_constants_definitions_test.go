@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_ConstantsDefinitionsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_ConstantsDefinitionsAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsDefinitionsAPIService ListAlarmDefinitions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsDefinitionsAPI.ListAlarmDefinitions(context.Background()).Execute()
 
@@ -36,7 +37,7 @@ func Test_mistapigo_ConstantsDefinitionsAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsDefinitionsAPIService ListApLedDefinition", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsDefinitionsAPI.ListApLedDefinition(context.Background()).Execute()
 
@@ -48,7 +49,7 @@ func Test_mistapigo_ConstantsDefinitionsAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsDefinitionsAPIService ListAppCategoryDefinitions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsDefinitionsAPI.ListAppCategoryDefinitions(context.Background()).Execute()
 
@@ -60,7 +61,7 @@ func Test_mistapigo_ConstantsDefinitionsAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsDefinitionsAPIService ListAppSubCategoryDefinitions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsDefinitionsAPI.ListAppSubCategoryDefinitions(context.Background()).Execute()
 

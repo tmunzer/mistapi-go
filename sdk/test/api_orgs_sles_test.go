@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsSLEsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsSLEsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSLEsAPIService GetOrgSitesSle", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_OrgsSLEsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSLEsAPIService GetOrgSle", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var metric string

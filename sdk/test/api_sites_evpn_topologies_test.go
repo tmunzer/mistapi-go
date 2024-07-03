@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesEVPNTopologiesAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesEVPNTopologiesAPIService(t *testing.T) {
 
 	t.Run("Test SitesEVPNTopologiesAPIService CreateSiteEvpnTopology", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_SitesEVPNTopologiesAPIService(t *testing.T) {
 
 	t.Run("Test SitesEVPNTopologiesAPIService DeleteSiteEvpnTopology", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var evpnTopologyId string
@@ -52,7 +53,7 @@ func Test_mistapigo_SitesEVPNTopologiesAPIService(t *testing.T) {
 
 	t.Run("Test SitesEVPNTopologiesAPIService GetSiteEvpnTopology", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var evpnTopologyId string
@@ -66,7 +67,7 @@ func Test_mistapigo_SitesEVPNTopologiesAPIService(t *testing.T) {
 
 	t.Run("Test SitesEVPNTopologiesAPIService ListSiteEvpnTopologies", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -80,7 +81,7 @@ func Test_mistapigo_SitesEVPNTopologiesAPIService(t *testing.T) {
 
 	t.Run("Test SitesEVPNTopologiesAPIService UpdateSiteEvpnTopology", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var evpnTopologyId string

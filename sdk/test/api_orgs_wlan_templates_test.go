@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsWLANTemplatesAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsWLANTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWLANTemplatesAPIService CloneOrgTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var templateId string
@@ -39,7 +40,7 @@ func Test_mistapigo_OrgsWLANTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWLANTemplatesAPIService CreateOrgTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -53,7 +54,7 @@ func Test_mistapigo_OrgsWLANTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWLANTemplatesAPIService DeleteOrgTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var templateId string
@@ -67,7 +68,7 @@ func Test_mistapigo_OrgsWLANTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWLANTemplatesAPIService GetOrgTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var templateId string
@@ -82,7 +83,7 @@ func Test_mistapigo_OrgsWLANTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWLANTemplatesAPIService ListOrgTemplates", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -96,7 +97,7 @@ func Test_mistapigo_OrgsWLANTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWLANTemplatesAPIService UpdateOrgTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var templateId string

@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_MSPsOrgsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_MSPsOrgsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsOrgsAPIService CreateMspOrg", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_MSPsOrgsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsOrgsAPIService DeleteMspOrg", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var orgId string
@@ -52,7 +53,7 @@ func Test_mistapigo_MSPsOrgsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsOrgsAPIService GetMspOrg", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var orgId string
@@ -67,7 +68,7 @@ func Test_mistapigo_MSPsOrgsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsOrgsAPIService ListMspOrgStats", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 
@@ -81,7 +82,7 @@ func Test_mistapigo_MSPsOrgsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsOrgsAPIService ListMspOrgs", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 
@@ -95,7 +96,7 @@ func Test_mistapigo_MSPsOrgsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsOrgsAPIService ManageMspOrgs", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 
@@ -108,7 +109,7 @@ func Test_mistapigo_MSPsOrgsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsOrgsAPIService SearchMspOrgs", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 
@@ -122,7 +123,7 @@ func Test_mistapigo_MSPsOrgsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsOrgsAPIService UpdateMspOrg", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var orgId string

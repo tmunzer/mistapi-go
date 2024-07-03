@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsInventoryAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsInventoryAPIService(t *testing.T) {
 
 	t.Run("Test OrgsInventoryAPIService AddOrgInventory", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_OrgsInventoryAPIService(t *testing.T) {
 
 	t.Run("Test OrgsInventoryAPIService GetOrgInventory", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -52,7 +53,7 @@ func Test_mistapigo_OrgsInventoryAPIService(t *testing.T) {
 
 	t.Run("Test OrgsInventoryAPIService ReevaluateOrgAutoAssignment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -65,7 +66,7 @@ func Test_mistapigo_OrgsInventoryAPIService(t *testing.T) {
 
 	t.Run("Test OrgsInventoryAPIService ReplaceOrgDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -79,7 +80,7 @@ func Test_mistapigo_OrgsInventoryAPIService(t *testing.T) {
 
 	t.Run("Test OrgsInventoryAPIService UpdateOrgInventoryAssignment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 

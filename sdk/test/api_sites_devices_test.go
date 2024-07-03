@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService AddSiteDeviceImage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -39,7 +40,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService CountSiteDeviceConfigHistory", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -53,7 +54,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService CountSiteDeviceEvents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -67,7 +68,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService CountSiteDeviceLastConfig", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -81,7 +82,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService CountSiteDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -95,7 +96,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService DeleteSiteDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -109,7 +110,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService DeleteSiteDeviceImage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -124,7 +125,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService ExportSiteDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -138,7 +139,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService GetSiteDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -153,7 +154,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService ImportSiteDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -167,7 +168,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService ListSiteDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -181,7 +182,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService RestartSiteMultipleDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -194,7 +195,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService SearchSiteDeviceConfigHistory", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -208,7 +209,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService SearchSiteDeviceEvents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -222,7 +223,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService SearchSiteDeviceLastConfigs", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -236,7 +237,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService SearchSiteDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -250,7 +251,7 @@ func Test_mistapigo_SitesDevicesAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesAPIService UpdateSiteDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string

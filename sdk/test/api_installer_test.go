@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_InstallerAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService AddInstallerDeviceImage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var imageName string
@@ -39,7 +40,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService ClaimInstallerDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -53,7 +54,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService CreateInstallerMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var siteName string
@@ -69,7 +70,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService CreateInstallerVirtualChassis", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var fpc0Mac string
@@ -84,7 +85,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService CreateOrUpdateInstallerSites", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var siteName string
@@ -98,7 +99,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService DeleteInstallerDeviceImage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var imageName string
@@ -113,7 +114,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService DeleteInstallerMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var siteName string
@@ -128,7 +129,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService GetInstallerDeviceVirtualChassis", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var fpc0Mac string
@@ -143,7 +144,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService ImportInstallerMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var siteName string
@@ -158,7 +159,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService ListInstallerAlarmTemplates", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -172,7 +173,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService ListInstallerDeviceProfiles", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -186,7 +187,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService ListInstallerListOfRenctlyClaimedDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -200,7 +201,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService ListInstallerMaps", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var siteName string
@@ -215,7 +216,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService ListInstallerRfTemplatesNames", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -229,7 +230,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService ListInstallerSiteGroups", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -243,7 +244,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService ListInstallerSites", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -257,7 +258,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService OptimizeInstallerRrm", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteName string
 
@@ -270,7 +271,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService ProvisionInstallerDevices", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -284,7 +285,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService StartInstallerLocateDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -298,7 +299,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService StopInstallerLocateDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -312,7 +313,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService UnassignInstallerRecentlyClaimedDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -326,7 +327,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService UpdateInstallerMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var siteName string
@@ -342,7 +343,7 @@ func Test_mistapigo_InstallerAPIService(t *testing.T) {
 
 	t.Run("Test InstallerAPIService UpdateInstallerVirtualChassisMember", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var fpc0Mac string

@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsMxTunnelsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsMxTunnelsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxTunnelsAPIService CreateOrgMxTunnel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_OrgsMxTunnelsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxTunnelsAPIService DeleteOrgMxTunnel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var mxtunnelId string
@@ -52,7 +53,7 @@ func Test_mistapigo_OrgsMxTunnelsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxTunnelsAPIService GetOrgMxTunnel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var mxtunnelId string
@@ -67,7 +68,7 @@ func Test_mistapigo_OrgsMxTunnelsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxTunnelsAPIService ListOrgMxTunnels", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -81,7 +82,7 @@ func Test_mistapigo_OrgsMxTunnelsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxTunnelsAPIService UpdateOrgMxTunnel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var mxtunnelId string

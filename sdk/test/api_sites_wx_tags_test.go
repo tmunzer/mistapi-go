@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesWxTagsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTagsAPIService CreateSiteWxTag", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_SitesWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTagsAPIService DeleteSiteWxTag", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var wxtagId string
@@ -52,7 +53,7 @@ func Test_mistapigo_SitesWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTagsAPIService GetSiteApplicationList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -66,7 +67,7 @@ func Test_mistapigo_SitesWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTagsAPIService GetSiteCurrentMatchingClientsOfAWxTag", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var wxtagId string
@@ -81,7 +82,7 @@ func Test_mistapigo_SitesWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTagsAPIService GetSiteWxTag", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var wxtagId string
@@ -96,7 +97,7 @@ func Test_mistapigo_SitesWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTagsAPIService ListSiteWxTags", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -110,7 +111,7 @@ func Test_mistapigo_SitesWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTagsAPIService UpdateSiteWxTag", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var wxtagId string

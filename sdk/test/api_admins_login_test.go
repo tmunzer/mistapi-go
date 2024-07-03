@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_AdminsLoginAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_AdminsLoginAPIService(t *testing.T) {
 
 	t.Run("Test AdminsLoginAPIService Login", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.AdminsLoginAPI.Login(context.Background()).Execute()
 
@@ -36,7 +37,7 @@ func Test_mistapigo_AdminsLoginAPIService(t *testing.T) {
 
 	t.Run("Test AdminsLoginAPIService TwoFactor", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.AdminsLoginAPI.TwoFactor(context.Background()).Execute()
 

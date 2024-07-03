@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesWebhooksAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesWebhooksAPIService(t *testing.T) {
 
 	t.Run("Test SitesWebhooksAPIService CountSiteWebhooksDeliveries", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var webhookId string
@@ -39,7 +40,7 @@ func Test_mistapigo_SitesWebhooksAPIService(t *testing.T) {
 
 	t.Run("Test SitesWebhooksAPIService CreateSiteWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -53,7 +54,7 @@ func Test_mistapigo_SitesWebhooksAPIService(t *testing.T) {
 
 	t.Run("Test SitesWebhooksAPIService DeleteSiteWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var webhookId string
@@ -67,7 +68,7 @@ func Test_mistapigo_SitesWebhooksAPIService(t *testing.T) {
 
 	t.Run("Test SitesWebhooksAPIService GetSiteWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var webhookId string
@@ -82,7 +83,7 @@ func Test_mistapigo_SitesWebhooksAPIService(t *testing.T) {
 
 	t.Run("Test SitesWebhooksAPIService ListSiteWebhooks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -96,7 +97,7 @@ func Test_mistapigo_SitesWebhooksAPIService(t *testing.T) {
 
 	t.Run("Test SitesWebhooksAPIService PingSiteWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var webhookId string
@@ -110,7 +111,7 @@ func Test_mistapigo_SitesWebhooksAPIService(t *testing.T) {
 
 	t.Run("Test SitesWebhooksAPIService SearchSiteWebhooksDeliveries", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var webhookId string
@@ -125,7 +126,7 @@ func Test_mistapigo_SitesWebhooksAPIService(t *testing.T) {
 
 	t.Run("Test SitesWebhooksAPIService UpdateSiteWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var webhookId string

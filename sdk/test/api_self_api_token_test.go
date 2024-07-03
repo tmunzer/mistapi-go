@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SelfAPITokenAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SelfAPITokenAPIService(t *testing.T) {
 
 	t.Run("Test SelfAPITokenAPIService CreateApiToken", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SelfAPITokenAPI.CreateApiToken(context.Background()).Execute()
 
@@ -36,7 +37,7 @@ func Test_mistapigo_SelfAPITokenAPIService(t *testing.T) {
 
 	t.Run("Test SelfAPITokenAPIService DeleteApiToken", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var apitokenId string
 
@@ -49,7 +50,7 @@ func Test_mistapigo_SelfAPITokenAPIService(t *testing.T) {
 
 	t.Run("Test SelfAPITokenAPIService GetApiToken", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var apitokenId string
 
@@ -63,7 +64,7 @@ func Test_mistapigo_SelfAPITokenAPIService(t *testing.T) {
 
 	t.Run("Test SelfAPITokenAPIService ListApiTokens", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SelfAPITokenAPI.ListApiTokens(context.Background()).Execute()
 
@@ -75,7 +76,7 @@ func Test_mistapigo_SelfAPITokenAPIService(t *testing.T) {
 
 	t.Run("Test SelfAPITokenAPIService UpdateApiToken", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var apitokenId string
 

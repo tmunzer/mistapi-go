@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsGuestsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsGuestsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsGuestsAPIService CountOrgGuestAuthorizations", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_OrgsGuestsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsGuestsAPIService DeleteOrgGuestAuthorization", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var guestMac string
@@ -52,7 +53,7 @@ func Test_mistapigo_OrgsGuestsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsGuestsAPIService GetOrgGuestAuthorization", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var guestMac string
@@ -67,7 +68,7 @@ func Test_mistapigo_OrgsGuestsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsGuestsAPIService ListOrgGuestAuthorizations", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -81,7 +82,7 @@ func Test_mistapigo_OrgsGuestsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsGuestsAPIService SearchOrgGuestAuthorization", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -95,7 +96,7 @@ func Test_mistapigo_OrgsGuestsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsGuestsAPIService UpdateOrgGuestAuthorization", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var guestMac string

@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsTicketsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsTicketsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsTicketsAPIService AddOrgTicketComment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var ticketId string
@@ -39,7 +40,7 @@ func Test_mistapigo_OrgsTicketsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsTicketsAPIService CountOrgTickets", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -53,7 +54,7 @@ func Test_mistapigo_OrgsTicketsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsTicketsAPIService CreateOrgTicket", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -67,7 +68,7 @@ func Test_mistapigo_OrgsTicketsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsTicketsAPIService GetOrgTicket", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var ticketId string
@@ -82,7 +83,7 @@ func Test_mistapigo_OrgsTicketsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsTicketsAPIService GetOrgTicketAttachment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var ticketId string
@@ -98,7 +99,7 @@ func Test_mistapigo_OrgsTicketsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsTicketsAPIService ListOrgTickets", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -112,7 +113,7 @@ func Test_mistapigo_OrgsTicketsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsTicketsAPIService UpdateOrgTicket", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var ticketId string
@@ -127,7 +128,7 @@ func Test_mistapigo_OrgsTicketsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsTicketsAPIService UploadrgTicketAttachment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var ticketId string

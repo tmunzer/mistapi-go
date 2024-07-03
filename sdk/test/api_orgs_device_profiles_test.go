@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsDeviceProfilesAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsDeviceProfilesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDeviceProfilesAPIService AssignOrgDeviceProfile", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceprofileId string
@@ -39,7 +40,7 @@ func Test_mistapigo_OrgsDeviceProfilesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDeviceProfilesAPIService CreateOrgDeviceProfiles", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -53,7 +54,7 @@ func Test_mistapigo_OrgsDeviceProfilesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDeviceProfilesAPIService DeleteOrgDeviceProfile", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceprofileId string
@@ -67,7 +68,7 @@ func Test_mistapigo_OrgsDeviceProfilesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDeviceProfilesAPIService GetOrgDeviceProfile", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceprofileId string
@@ -82,7 +83,7 @@ func Test_mistapigo_OrgsDeviceProfilesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDeviceProfilesAPIService ListOrgDeviceProfiles", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -96,7 +97,7 @@ func Test_mistapigo_OrgsDeviceProfilesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDeviceProfilesAPIService UnassignOrgDeviceProfiles", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceprofileId string
@@ -111,7 +112,7 @@ func Test_mistapigo_OrgsDeviceProfilesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsDeviceProfilesAPIService UpdateOrgDeviceProfile", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var deviceprofileId string

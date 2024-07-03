@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_UtilitiesWANAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_UtilitiesWANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWANAPIService ClearSiteSsrArpCache", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -39,7 +40,7 @@ func Test_mistapigo_UtilitiesWANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWANAPIService ClearSiteSsrBgpRoutes", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -54,7 +55,7 @@ func Test_mistapigo_UtilitiesWANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWANAPIService GetSiteSsrAndSrxRoutes", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -69,7 +70,7 @@ func Test_mistapigo_UtilitiesWANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWANAPIService GetSiteSsrAndSrxSessions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -84,7 +85,7 @@ func Test_mistapigo_UtilitiesWANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWANAPIService GetSiteSsrServicePath", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -99,7 +100,7 @@ func Test_mistapigo_UtilitiesWANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWANAPIService ReleaseSiteSsrDhcpLease", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -113,7 +114,7 @@ func Test_mistapigo_UtilitiesWANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWANAPIService ServicePingFromSsr", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -128,7 +129,7 @@ func Test_mistapigo_UtilitiesWANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWANAPIService TestSiteSsrDnsResolution", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string

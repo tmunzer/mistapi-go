@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesDevicesWiredVirtualChassisAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesDevicesWiredVirtualChassisAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesWiredVirtualChassisAPIService CreateSiteVirtualChassis", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -39,7 +40,7 @@ func Test_mistapigo_SitesDevicesWiredVirtualChassisAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesWiredVirtualChassisAPIService DeleteSiteVirtualChassis", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -53,7 +54,7 @@ func Test_mistapigo_SitesDevicesWiredVirtualChassisAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesWiredVirtualChassisAPIService GetSiteDeviceVirtualChassis", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -68,7 +69,7 @@ func Test_mistapigo_SitesDevicesWiredVirtualChassisAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesWiredVirtualChassisAPIService SetSiteVcPort", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -82,7 +83,7 @@ func Test_mistapigo_SitesDevicesWiredVirtualChassisAPIService(t *testing.T) {
 
 	t.Run("Test SitesDevicesWiredVirtualChassisAPIService UpdateSiteVirtualChassisMember", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string

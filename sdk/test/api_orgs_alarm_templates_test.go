@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsAlarmTemplatesAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsAlarmTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmTemplatesAPIService CreateOrgAlarmTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_OrgsAlarmTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmTemplatesAPIService DeleteOrgAlarmTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var alarmtemplateId string
@@ -52,7 +53,7 @@ func Test_mistapigo_OrgsAlarmTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmTemplatesAPIService GetOrgAlarmTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var alarmtemplateId string
@@ -67,7 +68,7 @@ func Test_mistapigo_OrgsAlarmTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmTemplatesAPIService ListOrgAlarmTemplates", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -81,7 +82,7 @@ func Test_mistapigo_OrgsAlarmTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmTemplatesAPIService ListOrgSuppressedAlarms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -95,7 +96,7 @@ func Test_mistapigo_OrgsAlarmTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmTemplatesAPIService SuppressOrgAlarm", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -108,7 +109,7 @@ func Test_mistapigo_OrgsAlarmTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmTemplatesAPIService UnsuppressOrgSuppressedAlarms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -121,7 +122,7 @@ func Test_mistapigo_OrgsAlarmTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmTemplatesAPIService UpdateOrgAlarmTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var alarmtemplateId string

@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_AdminsRecoverPasswordAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_AdminsRecoverPasswordAPIService(t *testing.T) {
 
 	t.Run("Test AdminsRecoverPasswordAPIService RecoverPassword", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.AdminsRecoverPasswordAPI.RecoverPassword(context.Background()).Execute()
 
@@ -35,7 +36,7 @@ func Test_mistapigo_AdminsRecoverPasswordAPIService(t *testing.T) {
 
 	t.Run("Test AdminsRecoverPasswordAPIService VerifyRecoverPasssword", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var token string
 

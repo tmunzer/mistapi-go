@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService ArpFromDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -39,7 +40,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService ClearSiteDeviceMacTable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -54,7 +55,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService CreateSiteDeviceShellSession", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -69,7 +70,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService GetSiteDeviceArpTable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -84,7 +85,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService GetSiteDeviceBgpSummary", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -99,7 +100,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService GetSiteDeviceConfigCmd", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -114,7 +115,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService GetSiteDeviceEvpnDatabase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -129,7 +130,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService GetSiteDeviceForwardingTable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -144,7 +145,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService GetSiteDeviceMacTable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -159,7 +160,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService GetSiteDeviceZtpPassword", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -174,7 +175,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService MonitorSiteDeviceTraffic", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -189,7 +190,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService PingFromDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -204,7 +205,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService ReadoptSiteOctermDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -218,7 +219,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService ReprovisionSiteOctermDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -232,7 +233,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService RestartSiteDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -246,7 +247,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService StartSiteLocateDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -260,7 +261,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService StopSiteLocateDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -274,7 +275,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService TracerouteFromDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -289,7 +290,7 @@ func Test_mistapigo_UtilitiesCommonAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesCommonAPIService UploadSiteDeviceSupportFile", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string

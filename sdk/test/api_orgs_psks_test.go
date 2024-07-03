@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsPsksAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsPsksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsPsksAPIService CreateOrgPsk", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_OrgsPsksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsPsksAPIService DeleteOrgPsk", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var pskId string
@@ -52,7 +53,7 @@ func Test_mistapigo_OrgsPsksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsPsksAPIService DeleteOrgPskList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -65,7 +66,7 @@ func Test_mistapigo_OrgsPsksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsPsksAPIService DeleteOrgPskOldPassphrase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var pskId string
@@ -80,7 +81,7 @@ func Test_mistapigo_OrgsPsksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsPsksAPIService GetOrgPsk", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var pskId string
@@ -95,7 +96,7 @@ func Test_mistapigo_OrgsPsksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsPsksAPIService ImportOrgPsks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -109,7 +110,7 @@ func Test_mistapigo_OrgsPsksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsPsksAPIService ListOrgPsks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -123,7 +124,7 @@ func Test_mistapigo_OrgsPsksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsPsksAPIService UpdateOrgMultiplePsks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -137,7 +138,7 @@ func Test_mistapigo_OrgsPsksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsPsksAPIService UpdateOrgPsk", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var pskId string

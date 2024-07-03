@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_MSPsSSOAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_MSPsSSOAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSOAPIService CreateMspSso", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_MSPsSSOAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSOAPIService DeleteMspSso", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var ssoId string
@@ -52,7 +53,7 @@ func Test_mistapigo_MSPsSSOAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSOAPIService DownloadMspSsoSamlMetadata", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var ssoId string
@@ -67,7 +68,7 @@ func Test_mistapigo_MSPsSSOAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSOAPIService GetMspSso", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var ssoId string
@@ -82,7 +83,7 @@ func Test_mistapigo_MSPsSSOAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSOAPIService GetMspSsoSamlMetadata", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var ssoId string
@@ -97,7 +98,7 @@ func Test_mistapigo_MSPsSSOAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSOAPIService ListMspSsoLatestFailures", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var ssoId string
@@ -112,7 +113,7 @@ func Test_mistapigo_MSPsSSOAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSOAPIService ListMspSsos", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 
@@ -126,7 +127,7 @@ func Test_mistapigo_MSPsSSOAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSOAPIService UpdateMspSso", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var ssoId string

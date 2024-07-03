@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SelfMFAAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SelfMFAAPIService(t *testing.T) {
 
 	t.Run("Test SelfMFAAPIService GenerateSecretFor2faVerification", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SelfMFAAPI.GenerateSecretFor2faVerification(context.Background()).Execute()
 
@@ -36,7 +37,7 @@ func Test_mistapigo_SelfMFAAPIService(t *testing.T) {
 
 	t.Run("Test SelfMFAAPIService VerifyTwoFactor", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.SelfMFAAPI.VerifyTwoFactor(context.Background()).Execute()
 

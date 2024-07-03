@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService CountSiteWirelessClientEvents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService CountSiteWirelessClientSessions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -52,7 +53,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService CountSiteWirelessClients", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -66,7 +67,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService GetSiteEventsForClient", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var clientMac string
@@ -81,7 +82,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService GetSiteWirelessClientStats", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var clientMac string
@@ -96,7 +97,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService GetSiteWirelessClientsStatsByMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -111,7 +112,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService ListSiteUnconnectedClientStats", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -126,7 +127,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService ListSiteWirelessClientsStats", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -140,7 +141,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService SearchSiteWirelessClientEvents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -154,7 +155,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService SearchSiteWirelessClientSessions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -168,7 +169,7 @@ func Test_mistapigo_SitesClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsWirelessAPIService SearchSiteWirelessClients", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 

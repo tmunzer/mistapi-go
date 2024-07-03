@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesRRMAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesRRMAPIService(t *testing.T) {
 
 	t.Run("Test SitesRRMAPIService GetSiteCurrentChannelPlanning", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_SitesRRMAPIService(t *testing.T) {
 
 	t.Run("Test SitesRRMAPIService GetSiteCurrentRrmConsiderations", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -54,7 +55,7 @@ func Test_mistapigo_SitesRRMAPIService(t *testing.T) {
 
 	t.Run("Test SitesRRMAPIService GetSiteCurrentRrmNeighbors", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var band string
@@ -69,7 +70,7 @@ func Test_mistapigo_SitesRRMAPIService(t *testing.T) {
 
 	t.Run("Test SitesRRMAPIService GetSiteRrmEvents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 

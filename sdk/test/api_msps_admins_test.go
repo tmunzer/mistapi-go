@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_MSPsAdminsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_MSPsAdminsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsAdminsAPIService GetMspAdmin", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var adminId string
@@ -39,7 +40,7 @@ func Test_mistapigo_MSPsAdminsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsAdminsAPIService InviteMspAdmin", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 
@@ -53,7 +54,7 @@ func Test_mistapigo_MSPsAdminsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsAdminsAPIService ListMspAdmins", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 
@@ -67,7 +68,7 @@ func Test_mistapigo_MSPsAdminsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsAdminsAPIService RevokeMspAdmin", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var adminId string
@@ -81,7 +82,7 @@ func Test_mistapigo_MSPsAdminsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsAdminsAPIService UninviteMspAdmin", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var inviteId string
@@ -95,7 +96,7 @@ func Test_mistapigo_MSPsAdminsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsAdminsAPIService UpdateMspAdmin", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var adminId string
@@ -110,7 +111,7 @@ func Test_mistapigo_MSPsAdminsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsAdminsAPIService UpdateMspAdminInvite", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var mspId string
 		var inviteId string

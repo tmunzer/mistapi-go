@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsSDKInvitesAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsSDKInvitesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSDKInvitesAPIService ActivateSdkInvite", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var secret string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_OrgsSDKInvitesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSDKInvitesAPIService CreateSdkInvite", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -52,7 +53,7 @@ func Test_mistapigo_OrgsSDKInvitesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSDKInvitesAPIService GetSdkInvite", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var sdkinviteId string
@@ -67,7 +68,7 @@ func Test_mistapigo_OrgsSDKInvitesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSDKInvitesAPIService GetSdkInviteQrCode", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var sdkinviteId string
@@ -82,7 +83,7 @@ func Test_mistapigo_OrgsSDKInvitesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSDKInvitesAPIService ListSdkInvites", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -96,7 +97,7 @@ func Test_mistapigo_OrgsSDKInvitesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSDKInvitesAPIService RevokeSdkInvite", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var sdkinviteId string
@@ -110,7 +111,7 @@ func Test_mistapigo_OrgsSDKInvitesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSDKInvitesAPIService SendSdkInviteEmail", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var sdkinviteId string
@@ -124,7 +125,7 @@ func Test_mistapigo_OrgsSDKInvitesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSDKInvitesAPIService SendSdkInviteSms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var sdkinviteId string
@@ -138,7 +139,7 @@ func Test_mistapigo_OrgsSDKInvitesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSDKInvitesAPIService UpdateSdkInvite", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var sdkinviteId string

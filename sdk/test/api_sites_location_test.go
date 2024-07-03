@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesLocationAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesLocationAPIService(t *testing.T) {
 
 	t.Run("Test SitesLocationAPIService ClearSiteMlOverwriteForDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -38,7 +39,7 @@ func Test_mistapigo_SitesLocationAPIService(t *testing.T) {
 
 	t.Run("Test SitesLocationAPIService ClearSiteMlOverwriteForMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -52,7 +53,7 @@ func Test_mistapigo_SitesLocationAPIService(t *testing.T) {
 
 	t.Run("Test SitesLocationAPIService GetSiteBeamCoverageOverview", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -66,7 +67,7 @@ func Test_mistapigo_SitesLocationAPIService(t *testing.T) {
 
 	t.Run("Test SitesLocationAPIService GetSiteDefaultPlfForModels", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -80,7 +81,7 @@ func Test_mistapigo_SitesLocationAPIService(t *testing.T) {
 
 	t.Run("Test SitesLocationAPIService GetSiteMachineLearningCurrentStat", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -94,7 +95,7 @@ func Test_mistapigo_SitesLocationAPIService(t *testing.T) {
 
 	t.Run("Test SitesLocationAPIService OverwriteSiteMlForDevice", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -109,7 +110,7 @@ func Test_mistapigo_SitesLocationAPIService(t *testing.T) {
 
 	t.Run("Test SitesLocationAPIService OverwriteSiteMlForMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string
@@ -124,7 +125,7 @@ func Test_mistapigo_SitesLocationAPIService(t *testing.T) {
 
 	t.Run("Test SitesLocationAPIService ResetSiteMlStatsByMap", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var mapId string

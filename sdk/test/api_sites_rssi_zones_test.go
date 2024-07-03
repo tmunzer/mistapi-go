@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesRSSIZonesAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_SitesRSSIZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesRSSIZonesAPIService CreateSiteRssiZone", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -38,7 +39,7 @@ func Test_mistapigo_SitesRSSIZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesRSSIZonesAPIService DeleteSiteRssiZone", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var rssizoneId string
@@ -52,7 +53,7 @@ func Test_mistapigo_SitesRSSIZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesRSSIZonesAPIService GetSiteRssiZone", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var rssizoneId string
@@ -67,7 +68,7 @@ func Test_mistapigo_SitesRSSIZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesRSSIZonesAPIService ListSiteRssiZones", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -81,7 +82,7 @@ func Test_mistapigo_SitesRSSIZonesAPIService(t *testing.T) {
 
 	t.Run("Test SitesRSSIZonesAPIService UpdateSiteRssiZone", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var rssizoneId string

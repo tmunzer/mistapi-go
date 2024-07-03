@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsLinkedApplicationsAPIService AddOrgOauthAppAccounts", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var appName string
@@ -38,7 +39,7 @@ func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsLinkedApplicationsAPIService DeleteOrgOauthAppAuthorization", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var appName string
@@ -53,7 +54,7 @@ func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsLinkedApplicationsAPIService GetOrgOauthAppLinkedStatus", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var appName string
@@ -68,7 +69,7 @@ func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsLinkedApplicationsAPIService LinkOrgToJuniperJuniperAccount", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -82,7 +83,7 @@ func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsLinkedApplicationsAPIService UnlinkOrgFromJuniperCustomerId", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -95,7 +96,7 @@ func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsLinkedApplicationsAPIService UpdateOrgOauthAppAccounts", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var appName string

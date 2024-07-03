@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService DeauthSiteWirelessClientsConnectedToARogue", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var rogueBssid string
@@ -38,7 +39,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService DisconnectSiteMultipleClients", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -51,7 +52,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService DisconnectSiteWirelessClient", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var clientMac string
@@ -65,7 +66,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService OptimizeSiteRrm", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -78,7 +79,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService ReauthOrgDot1xWirelessClient", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var clientMac string
@@ -92,7 +93,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService ReauthSiteDot1xWirelessClient", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var clientMac string
@@ -106,7 +107,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService ReprovisionSiteAllAps", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -119,7 +120,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService ResetSiteAllApsToUseRrm", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -132,7 +133,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService TestSiteWlanTelstraSetup", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.UtilitiesWiFiAPI.TestSiteWlanTelstraSetup(context.Background()).Execute()
 
@@ -143,7 +144,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService TestSiteWlanTwilioSetup", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.UtilitiesWiFiAPI.TestSiteWlanTwilioSetup(context.Background()).Execute()
 
@@ -154,7 +155,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService UnauthorizeSiteMultipleClients", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 
@@ -167,7 +168,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService UnauthorizeSiteWirelessClient", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 		var clientMac string
@@ -181,7 +182,7 @@ func Test_mistapigo_UtilitiesWiFiAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesWiFiAPIService ZeroizeSiteFipsAllAps", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var siteId string
 

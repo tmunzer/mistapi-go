@@ -11,10 +11,11 @@ package mistapigo
 
 import (
 	"context"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsCradlepointAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_mistapigo_OrgsCradlepointAPIService(t *testing.T) {
 
 	t.Run("Test OrgsCradlepointAPIService DeleteOrgCradlepointConnection", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -37,7 +38,7 @@ func Test_mistapigo_OrgsCradlepointAPIService(t *testing.T) {
 
 	t.Run("Test OrgsCradlepointAPIService SetupOrgCradlepointConnectionToMist", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -50,7 +51,7 @@ func Test_mistapigo_OrgsCradlepointAPIService(t *testing.T) {
 
 	t.Run("Test OrgsCradlepointAPIService SyncOrgCradlepointRouters", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -63,7 +64,7 @@ func Test_mistapigo_OrgsCradlepointAPIService(t *testing.T) {
 
 	t.Run("Test OrgsCradlepointAPIService UpdateOrgCradlepointConnectionToMist", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
