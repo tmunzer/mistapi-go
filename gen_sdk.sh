@@ -8,8 +8,8 @@ openapi-generator generate \
     -i ./mist.sdk.yml \
     -g go \
     -o ./mist-sdk-go \
-    --api-package mist-sdk-go \
-    --additional-properties=packageName=mistsdkgo \
+    --api-package mistapi-go \
+    --additional-properties=packageName=mistapigo \
     --additional-properties=disallowAdditionalPropertiesIfNotPresent=false \
     --additional-properties=enumClassPrefix=true \
     --additional-properties=generateInterfaces=true \
