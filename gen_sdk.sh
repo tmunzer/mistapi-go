@@ -1,13 +1,13 @@
-cd ./mist_openapi
-git pull
-cd ..
+# cd ./mist_openapi
+# git pull
+# cd ..
 
-python3 ./gen_sdk_pre.py
+# python3 ./gen_sdk_pre.py
 
 openapi-generator generate \
     -i ./mist.sdk.yml \
     -g go \
-    -o ./mist-sdk-go \
+    -o ./sdk \
     --api-package mistapi-go \
     --additional-properties=packageName=mistapigo \
     --additional-properties=disallowAdditionalPropertiesIfNotPresent=false \
@@ -18,4 +18,4 @@ openapi-generator generate \
     --git-user-id tmunzer
 
 
-cp ./fix_sdk/* ./mist-sdk-go/
+cp ./fix_sdk/* ./sdk/
