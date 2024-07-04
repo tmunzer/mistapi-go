@@ -13,11 +13,10 @@ package mistapigo
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
 )
 
-// CaptureSite - struct for CaptureSite
+// CaptureSite struct for CaptureSite
 type CaptureSite struct {
 	CaptureClient *CaptureClient
 	CaptureGateway *CaptureGateway
@@ -30,249 +29,131 @@ type CaptureSite struct {
 	CaptureWireless *CaptureWireless
 }
 
-// CaptureClientAsCaptureSite is a convenience function that returns CaptureClient wrapped in CaptureSite
-func CaptureClientAsCaptureSite(v *CaptureClient) CaptureSite {
-	return CaptureSite{
-		CaptureClient: v,
-	}
-}
-
-// CaptureGatewayAsCaptureSite is a convenience function that returns CaptureGateway wrapped in CaptureSite
-func CaptureGatewayAsCaptureSite(v *CaptureGateway) CaptureSite {
-	return CaptureSite{
-		CaptureGateway: v,
-	}
-}
-
-// CaptureNewAssocAsCaptureSite is a convenience function that returns CaptureNewAssoc wrapped in CaptureSite
-func CaptureNewAssocAsCaptureSite(v *CaptureNewAssoc) CaptureSite {
-	return CaptureSite{
-		CaptureNewAssoc: v,
-	}
-}
-
-// CaptureRadiotapAsCaptureSite is a convenience function that returns CaptureRadiotap wrapped in CaptureSite
-func CaptureRadiotapAsCaptureSite(v *CaptureRadiotap) CaptureSite {
-	return CaptureSite{
-		CaptureRadiotap: v,
-	}
-}
-
-// CaptureRadiotapwiredAsCaptureSite is a convenience function that returns CaptureRadiotapwired wrapped in CaptureSite
-func CaptureRadiotapwiredAsCaptureSite(v *CaptureRadiotapwired) CaptureSite {
-	return CaptureSite{
-		CaptureRadiotapwired: v,
-	}
-}
-
-// CaptureScanAsCaptureSite is a convenience function that returns CaptureScan wrapped in CaptureSite
-func CaptureScanAsCaptureSite(v *CaptureScan) CaptureSite {
-	return CaptureSite{
-		CaptureScan: v,
-	}
-}
-
-// CaptureSwitchAsCaptureSite is a convenience function that returns CaptureSwitch wrapped in CaptureSite
-func CaptureSwitchAsCaptureSite(v *CaptureSwitch) CaptureSite {
-	return CaptureSite{
-		CaptureSwitch: v,
-	}
-}
-
-// CaptureWiredAsCaptureSite is a convenience function that returns CaptureWired wrapped in CaptureSite
-func CaptureWiredAsCaptureSite(v *CaptureWired) CaptureSite {
-	return CaptureSite{
-		CaptureWired: v,
-	}
-}
-
-// CaptureWirelessAsCaptureSite is a convenience function that returns CaptureWireless wrapped in CaptureSite
-func CaptureWirelessAsCaptureSite(v *CaptureWireless) CaptureSite {
-	return CaptureSite{
-		CaptureWireless: v,
-	}
-}
-
-
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into any of the pointers in the struct
 func (dst *CaptureSite) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into CaptureClient
-	err = newStrictDecoder(data).Decode(&dst.CaptureClient)
+	// try to unmarshal JSON data into CaptureClient
+	err = json.Unmarshal(data, &dst.CaptureClient);
 	if err == nil {
 		jsonCaptureClient, _ := json.Marshal(dst.CaptureClient)
 		if string(jsonCaptureClient) == "{}" { // empty struct
 			dst.CaptureClient = nil
 		} else {
-			if err = validator.Validate(dst.CaptureClient); err != nil {
-				dst.CaptureClient = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.CaptureClient, return on the first match
 		}
 	} else {
 		dst.CaptureClient = nil
 	}
 
-	// try to unmarshal data into CaptureGateway
-	err = newStrictDecoder(data).Decode(&dst.CaptureGateway)
+	// try to unmarshal JSON data into CaptureGateway
+	err = json.Unmarshal(data, &dst.CaptureGateway);
 	if err == nil {
 		jsonCaptureGateway, _ := json.Marshal(dst.CaptureGateway)
 		if string(jsonCaptureGateway) == "{}" { // empty struct
 			dst.CaptureGateway = nil
 		} else {
-			if err = validator.Validate(dst.CaptureGateway); err != nil {
-				dst.CaptureGateway = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.CaptureGateway, return on the first match
 		}
 	} else {
 		dst.CaptureGateway = nil
 	}
 
-	// try to unmarshal data into CaptureNewAssoc
-	err = newStrictDecoder(data).Decode(&dst.CaptureNewAssoc)
+	// try to unmarshal JSON data into CaptureNewAssoc
+	err = json.Unmarshal(data, &dst.CaptureNewAssoc);
 	if err == nil {
 		jsonCaptureNewAssoc, _ := json.Marshal(dst.CaptureNewAssoc)
 		if string(jsonCaptureNewAssoc) == "{}" { // empty struct
 			dst.CaptureNewAssoc = nil
 		} else {
-			if err = validator.Validate(dst.CaptureNewAssoc); err != nil {
-				dst.CaptureNewAssoc = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.CaptureNewAssoc, return on the first match
 		}
 	} else {
 		dst.CaptureNewAssoc = nil
 	}
 
-	// try to unmarshal data into CaptureRadiotap
-	err = newStrictDecoder(data).Decode(&dst.CaptureRadiotap)
+	// try to unmarshal JSON data into CaptureRadiotap
+	err = json.Unmarshal(data, &dst.CaptureRadiotap);
 	if err == nil {
 		jsonCaptureRadiotap, _ := json.Marshal(dst.CaptureRadiotap)
 		if string(jsonCaptureRadiotap) == "{}" { // empty struct
 			dst.CaptureRadiotap = nil
 		} else {
-			if err = validator.Validate(dst.CaptureRadiotap); err != nil {
-				dst.CaptureRadiotap = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.CaptureRadiotap, return on the first match
 		}
 	} else {
 		dst.CaptureRadiotap = nil
 	}
 
-	// try to unmarshal data into CaptureRadiotapwired
-	err = newStrictDecoder(data).Decode(&dst.CaptureRadiotapwired)
+	// try to unmarshal JSON data into CaptureRadiotapwired
+	err = json.Unmarshal(data, &dst.CaptureRadiotapwired);
 	if err == nil {
 		jsonCaptureRadiotapwired, _ := json.Marshal(dst.CaptureRadiotapwired)
 		if string(jsonCaptureRadiotapwired) == "{}" { // empty struct
 			dst.CaptureRadiotapwired = nil
 		} else {
-			if err = validator.Validate(dst.CaptureRadiotapwired); err != nil {
-				dst.CaptureRadiotapwired = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.CaptureRadiotapwired, return on the first match
 		}
 	} else {
 		dst.CaptureRadiotapwired = nil
 	}
 
-	// try to unmarshal data into CaptureScan
-	err = newStrictDecoder(data).Decode(&dst.CaptureScan)
+	// try to unmarshal JSON data into CaptureScan
+	err = json.Unmarshal(data, &dst.CaptureScan);
 	if err == nil {
 		jsonCaptureScan, _ := json.Marshal(dst.CaptureScan)
 		if string(jsonCaptureScan) == "{}" { // empty struct
 			dst.CaptureScan = nil
 		} else {
-			if err = validator.Validate(dst.CaptureScan); err != nil {
-				dst.CaptureScan = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.CaptureScan, return on the first match
 		}
 	} else {
 		dst.CaptureScan = nil
 	}
 
-	// try to unmarshal data into CaptureSwitch
-	err = newStrictDecoder(data).Decode(&dst.CaptureSwitch)
+	// try to unmarshal JSON data into CaptureSwitch
+	err = json.Unmarshal(data, &dst.CaptureSwitch);
 	if err == nil {
 		jsonCaptureSwitch, _ := json.Marshal(dst.CaptureSwitch)
 		if string(jsonCaptureSwitch) == "{}" { // empty struct
 			dst.CaptureSwitch = nil
 		} else {
-			if err = validator.Validate(dst.CaptureSwitch); err != nil {
-				dst.CaptureSwitch = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.CaptureSwitch, return on the first match
 		}
 	} else {
 		dst.CaptureSwitch = nil
 	}
 
-	// try to unmarshal data into CaptureWired
-	err = newStrictDecoder(data).Decode(&dst.CaptureWired)
+	// try to unmarshal JSON data into CaptureWired
+	err = json.Unmarshal(data, &dst.CaptureWired);
 	if err == nil {
 		jsonCaptureWired, _ := json.Marshal(dst.CaptureWired)
 		if string(jsonCaptureWired) == "{}" { // empty struct
 			dst.CaptureWired = nil
 		} else {
-			if err = validator.Validate(dst.CaptureWired); err != nil {
-				dst.CaptureWired = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.CaptureWired, return on the first match
 		}
 	} else {
 		dst.CaptureWired = nil
 	}
 
-	// try to unmarshal data into CaptureWireless
-	err = newStrictDecoder(data).Decode(&dst.CaptureWireless)
+	// try to unmarshal JSON data into CaptureWireless
+	err = json.Unmarshal(data, &dst.CaptureWireless);
 	if err == nil {
 		jsonCaptureWireless, _ := json.Marshal(dst.CaptureWireless)
 		if string(jsonCaptureWireless) == "{}" { // empty struct
 			dst.CaptureWireless = nil
 		} else {
-			if err = validator.Validate(dst.CaptureWireless); err != nil {
-				dst.CaptureWireless = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.CaptureWireless, return on the first match
 		}
 	} else {
 		dst.CaptureWireless = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.CaptureClient = nil
-		dst.CaptureGateway = nil
-		dst.CaptureNewAssoc = nil
-		dst.CaptureRadiotap = nil
-		dst.CaptureRadiotapwired = nil
-		dst.CaptureScan = nil
-		dst.CaptureSwitch = nil
-		dst.CaptureWired = nil
-		dst.CaptureWireless = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(CaptureSite)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(CaptureSite)")
-	}
+	return fmt.Errorf("data failed to match schemas in anyOf(CaptureSite)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src CaptureSite) MarshalJSON() ([]byte, error) {
+func (src *CaptureSite) MarshalJSON() ([]byte, error) {
 	if src.CaptureClient != nil {
 		return json.Marshal(&src.CaptureClient)
 	}
@@ -309,52 +190,7 @@ func (src CaptureSite) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.CaptureWireless)
 	}
 
-	return nil, nil // no data in oneOf schemas
-}
-
-// Get the actual instance
-func (obj *CaptureSite) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.CaptureClient != nil {
-		return obj.CaptureClient
-	}
-
-	if obj.CaptureGateway != nil {
-		return obj.CaptureGateway
-	}
-
-	if obj.CaptureNewAssoc != nil {
-		return obj.CaptureNewAssoc
-	}
-
-	if obj.CaptureRadiotap != nil {
-		return obj.CaptureRadiotap
-	}
-
-	if obj.CaptureRadiotapwired != nil {
-		return obj.CaptureRadiotapwired
-	}
-
-	if obj.CaptureScan != nil {
-		return obj.CaptureScan
-	}
-
-	if obj.CaptureSwitch != nil {
-		return obj.CaptureSwitch
-	}
-
-	if obj.CaptureWired != nil {
-		return obj.CaptureWired
-	}
-
-	if obj.CaptureWireless != nil {
-		return obj.CaptureWireless
-	}
-
-	// all schemas are nil
-	return nil
+	return nil, nil // no data in anyOf schemas
 }
 
 type NullableCaptureSite struct {

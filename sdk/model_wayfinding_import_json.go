@@ -13,84 +13,49 @@ package mistapigo
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
 )
 
-// WayfindingImportJson - struct for WayfindingImportJson
+// WayfindingImportJson struct for WayfindingImportJson
 type WayfindingImportJson struct {
 	MapJibestream *MapJibestream
 	MapMicello *MapMicello
 }
 
-// MapJibestreamAsWayfindingImportJson is a convenience function that returns MapJibestream wrapped in WayfindingImportJson
-func MapJibestreamAsWayfindingImportJson(v *MapJibestream) WayfindingImportJson {
-	return WayfindingImportJson{
-		MapJibestream: v,
-	}
-}
-
-// MapMicelloAsWayfindingImportJson is a convenience function that returns MapMicello wrapped in WayfindingImportJson
-func MapMicelloAsWayfindingImportJson(v *MapMicello) WayfindingImportJson {
-	return WayfindingImportJson{
-		MapMicello: v,
-	}
-}
-
-
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into any of the pointers in the struct
 func (dst *WayfindingImportJson) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into MapJibestream
-	err = newStrictDecoder(data).Decode(&dst.MapJibestream)
+	// try to unmarshal JSON data into MapJibestream
+	err = json.Unmarshal(data, &dst.MapJibestream);
 	if err == nil {
 		jsonMapJibestream, _ := json.Marshal(dst.MapJibestream)
 		if string(jsonMapJibestream) == "{}" { // empty struct
 			dst.MapJibestream = nil
 		} else {
-			if err = validator.Validate(dst.MapJibestream); err != nil {
-				dst.MapJibestream = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.MapJibestream, return on the first match
 		}
 	} else {
 		dst.MapJibestream = nil
 	}
 
-	// try to unmarshal data into MapMicello
-	err = newStrictDecoder(data).Decode(&dst.MapMicello)
+	// try to unmarshal JSON data into MapMicello
+	err = json.Unmarshal(data, &dst.MapMicello);
 	if err == nil {
 		jsonMapMicello, _ := json.Marshal(dst.MapMicello)
 		if string(jsonMapMicello) == "{}" { // empty struct
 			dst.MapMicello = nil
 		} else {
-			if err = validator.Validate(dst.MapMicello); err != nil {
-				dst.MapMicello = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.MapMicello, return on the first match
 		}
 	} else {
 		dst.MapMicello = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.MapJibestream = nil
-		dst.MapMicello = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(WayfindingImportJson)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(WayfindingImportJson)")
-	}
+	return fmt.Errorf("data failed to match schemas in anyOf(WayfindingImportJson)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src WayfindingImportJson) MarshalJSON() ([]byte, error) {
+func (src *WayfindingImportJson) MarshalJSON() ([]byte, error) {
 	if src.MapJibestream != nil {
 		return json.Marshal(&src.MapJibestream)
 	}
@@ -99,24 +64,7 @@ func (src WayfindingImportJson) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.MapMicello)
 	}
 
-	return nil, nil // no data in oneOf schemas
-}
-
-// Get the actual instance
-func (obj *WayfindingImportJson) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.MapJibestream != nil {
-		return obj.MapJibestream
-	}
-
-	if obj.MapMicello != nil {
-		return obj.MapMicello
-	}
-
-	// all schemas are nil
-	return nil
+	return nil, nil // no data in anyOf schemas
 }
 
 type NullableWayfindingImportJson struct {

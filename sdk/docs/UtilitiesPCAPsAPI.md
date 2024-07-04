@@ -320,7 +320,7 @@ Name | Type | Description  | Notes
 
 ## StartOrgPacketCapture
 
-> ResponsePcapStart StartOrgPacketCapture(ctx, orgId).CaptureOrg(captureOrg).Execute()
+> ResponsePcapStart StartOrgPacketCapture(ctx, orgId).Body(body).Execute()
 
 startOrgPacketCapture
 
@@ -340,11 +340,11 @@ import (
 
 func main() {
 	orgId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	captureOrg := openapiclient.capture_org{CaptureMxedge: openapiclient.NewCaptureMxedge(openapiclient.capture_mxedge_type(""))} // CaptureOrg | Request Body (optional)
+	body := CaptureMxedge({"duration":600,"format":"stream","max_pkt_len":1500,"mxedges":{"00000000-0000-0000-1000-001122334455":{"interfaces":{"port1":{"tcpdump_expression":"udp port 67 or udp port 68"}}}},"num_packets":100,"tcpdump_expression":"vlan 999","type":"mxedge"}) // CaptureMxedge | Request Body (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UtilitiesPCAPsAPI.StartOrgPacketCapture(context.Background(), orgId).CaptureOrg(captureOrg).Execute()
+	resp, r, err := apiClient.UtilitiesPCAPsAPI.StartOrgPacketCapture(context.Background(), orgId).Body(body).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UtilitiesPCAPsAPI.StartOrgPacketCapture``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -370,7 +370,7 @@ Other parameters are passed through a pointer to a apiStartOrgPacketCaptureReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **captureOrg** | [**CaptureOrg**](CaptureOrg.md) | Request Body | 
+ **body** | **CaptureMxedge** | Request Body | 
 
 ### Return type
 
@@ -412,7 +412,7 @@ import (
 
 func main() {
 	siteId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	captureSite := openapiclient.capture_site{CaptureClient: openapiclient.NewCaptureClient(openapiclient.capture_client_type(""))} // CaptureSite | Request Body (optional)
+	captureSite := *openapiclient.NewCaptureSite(openapiclient.capture_wireless_type("")) // CaptureSite | Request Body (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -327,7 +327,6 @@ docs/CaptureMxedgeMxedgesInterfaces.md
 docs/CaptureMxedgeType.md
 docs/CaptureNewAssoc.md
 docs/CaptureNewAssocType.md
-docs/CaptureOrg.md
 docs/CaptureRadiotap.md
 docs/CaptureRadiotapBand.md
 docs/CaptureRadiotapFormat.md
@@ -1867,7 +1866,6 @@ model_capture_mxedge_mxedges_interfaces.go
 model_capture_mxedge_type.go
 model_capture_new_assoc.go
 model_capture_new_assoc_type.go
-model_capture_org.go
 model_capture_radiotap.go
 model_capture_radiotap_band.go
 model_capture_radiotap_format.go

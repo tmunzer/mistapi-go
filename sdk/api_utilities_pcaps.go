@@ -1093,12 +1093,12 @@ type ApiStartOrgPacketCaptureRequest struct {
 	ctx context.Context
 	ApiService UtilitiesPCAPsAPI
 	orgId string
-	captureOrg *CaptureOrg
+	body *CaptureMxedge
 }
 
 // Request Body
-func (r ApiStartOrgPacketCaptureRequest) CaptureOrg(captureOrg CaptureOrg) ApiStartOrgPacketCaptureRequest {
-	r.captureOrg = &captureOrg
+func (r ApiStartOrgPacketCaptureRequest) Body(body CaptureMxedge) ApiStartOrgPacketCaptureRequest {
+	r.body = &body
 	return r
 }
 
@@ -1202,7 +1202,7 @@ func (a *UtilitiesPCAPsAPIService) StartOrgPacketCaptureExecute(r ApiStartOrgPac
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.captureOrg
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

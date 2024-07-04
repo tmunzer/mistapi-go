@@ -556,7 +556,7 @@ import (
 func main() {
 	siteId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
 	mapId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	wayfindingImportJson := openapiclient.wayfinding_import_json{MapJibestream: openapiclient.NewMapJibestream("199d6770-0f6f-407a-9bd5-fc33c7840194", "/9Nog3yDzcYj0bY91XJZQLCt+m9DXaIVhx+Ghk3ddd", int32(123), "https://api.jibestream.com", "b069b358-4c97-5319-1f8c-7c5ca64d6ab1", int32(223), float32(4), openapiclient.map_jibestream_vendor_name(""), int32(123))} // WayfindingImportJson | Request Body (optional)
+	wayfindingImportJson := *openapiclient.NewWayfindingImportJson("199d6770-0f6f-407a-9bd5-fc33c7840194", "/9Nog3yDzcYj0bY91XJZQLCt+m9DXaIVhx+Ghk3ddd", int32(123), "https://api.jibestream.com", "6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9", int32(223), float32(4), openapiclient.map_micello_vendor_name(""), int32(123), "AccountKey_example", int32(5)) // WayfindingImportJson | Request Body (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

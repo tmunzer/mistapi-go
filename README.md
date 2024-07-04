@@ -1142,7 +1142,6 @@ Class | Method | HTTP request | Description
  - [CaptureMxedgeType](docs/CaptureMxedgeType.md)
  - [CaptureNewAssoc](docs/CaptureNewAssoc.md)
  - [CaptureNewAssocType](docs/CaptureNewAssocType.md)
- - [CaptureOrg](docs/CaptureOrg.md)
  - [CaptureRadiotap](docs/CaptureRadiotap.md)
  - [CaptureRadiotapBand](docs/CaptureRadiotapBand.md)
  - [CaptureRadiotapFormat](docs/CaptureRadiotapFormat.md)

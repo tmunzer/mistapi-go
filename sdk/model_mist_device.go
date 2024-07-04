@@ -13,110 +13,63 @@ package mistapigo
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
 )
 
-// MistDevice - struct for MistDevice
+// MistDevice struct for MistDevice
 type MistDevice struct {
 	Ap *Ap
 	Gateway *Gateway
 	ModelSwitch *ModelSwitch
 }
 
-// ApAsMistDevice is a convenience function that returns Ap wrapped in MistDevice
-func ApAsMistDevice(v *Ap) MistDevice {
-	return MistDevice{
-		Ap: v,
-	}
-}
-
-// GatewayAsMistDevice is a convenience function that returns Gateway wrapped in MistDevice
-func GatewayAsMistDevice(v *Gateway) MistDevice {
-	return MistDevice{
-		Gateway: v,
-	}
-}
-
-// ModelSwitchAsMistDevice is a convenience function that returns ModelSwitch wrapped in MistDevice
-func ModelSwitchAsMistDevice(v *ModelSwitch) MistDevice {
-	return MistDevice{
-		ModelSwitch: v,
-	}
-}
-
-
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into any of the pointers in the struct
 func (dst *MistDevice) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into Ap
-	err = newStrictDecoder(data).Decode(&dst.Ap)
+	// try to unmarshal JSON data into Ap
+	err = json.Unmarshal(data, &dst.Ap);
 	if err == nil {
 		jsonAp, _ := json.Marshal(dst.Ap)
 		if string(jsonAp) == "{}" { // empty struct
 			dst.Ap = nil
 		} else {
-			if err = validator.Validate(dst.Ap); err != nil {
-				dst.Ap = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.Ap, return on the first match
 		}
 	} else {
 		dst.Ap = nil
 	}
 
-	// try to unmarshal data into Gateway
-	err = newStrictDecoder(data).Decode(&dst.Gateway)
+	// try to unmarshal JSON data into Gateway
+	err = json.Unmarshal(data, &dst.Gateway);
 	if err == nil {
 		jsonGateway, _ := json.Marshal(dst.Gateway)
 		if string(jsonGateway) == "{}" { // empty struct
 			dst.Gateway = nil
 		} else {
-			if err = validator.Validate(dst.Gateway); err != nil {
-				dst.Gateway = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.Gateway, return on the first match
 		}
 	} else {
 		dst.Gateway = nil
 	}
 
-	// try to unmarshal data into ModelSwitch
-	err = newStrictDecoder(data).Decode(&dst.ModelSwitch)
+	// try to unmarshal JSON data into ModelSwitch
+	err = json.Unmarshal(data, &dst.ModelSwitch);
 	if err == nil {
 		jsonModelSwitch, _ := json.Marshal(dst.ModelSwitch)
 		if string(jsonModelSwitch) == "{}" { // empty struct
 			dst.ModelSwitch = nil
 		} else {
-			if err = validator.Validate(dst.ModelSwitch); err != nil {
-				dst.ModelSwitch = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.ModelSwitch, return on the first match
 		}
 	} else {
 		dst.ModelSwitch = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.Ap = nil
-		dst.Gateway = nil
-		dst.ModelSwitch = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(MistDevice)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(MistDevice)")
-	}
+	return fmt.Errorf("data failed to match schemas in anyOf(MistDevice)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src MistDevice) MarshalJSON() ([]byte, error) {
+func (src *MistDevice) MarshalJSON() ([]byte, error) {
 	if src.Ap != nil {
 		return json.Marshal(&src.Ap)
 	}
@@ -129,28 +82,7 @@ func (src MistDevice) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ModelSwitch)
 	}
 
-	return nil, nil // no data in oneOf schemas
-}
-
-// Get the actual instance
-func (obj *MistDevice) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.Ap != nil {
-		return obj.Ap
-	}
-
-	if obj.Gateway != nil {
-		return obj.Gateway
-	}
-
-	if obj.ModelSwitch != nil {
-		return obj.ModelSwitch
-	}
-
-	// all schemas are nil
-	return nil
+	return nil, nil // no data in anyOf schemas
 }
 
 type NullableMistDevice struct {

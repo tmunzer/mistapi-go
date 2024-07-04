@@ -36,7 +36,7 @@ import (
 func main() {
 	orgId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
 	appName := openapiclient.oauth_app_name("") // OauthAppName | OAuth application name
-	accountOauthAdd := openapiclient.account_oauth_add{AccountJamfConfig: openapiclient.NewAccountJamfConfig("ClientId_example", "ClientSecret_example", "junipertest.jamfcloud.com", "CompliantGroup1")} // AccountOauthAdd |  (optional)
+	accountOauthAdd := *openapiclient.NewAccountOauthAdd("ClientId_example", "ClientSecret_example", "InstanceUrl_example", "CompliantGroup1") // AccountOauthAdd |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

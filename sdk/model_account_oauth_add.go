@@ -13,84 +13,49 @@ package mistapigo
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
 )
 
-// AccountOauthAdd - struct for AccountOauthAdd
+// AccountOauthAdd struct for AccountOauthAdd
 type AccountOauthAdd struct {
 	AccountJamfConfig *AccountJamfConfig
 	AccountVmwareConfig *AccountVmwareConfig
 }
 
-// AccountJamfConfigAsAccountOauthAdd is a convenience function that returns AccountJamfConfig wrapped in AccountOauthAdd
-func AccountJamfConfigAsAccountOauthAdd(v *AccountJamfConfig) AccountOauthAdd {
-	return AccountOauthAdd{
-		AccountJamfConfig: v,
-	}
-}
-
-// AccountVmwareConfigAsAccountOauthAdd is a convenience function that returns AccountVmwareConfig wrapped in AccountOauthAdd
-func AccountVmwareConfigAsAccountOauthAdd(v *AccountVmwareConfig) AccountOauthAdd {
-	return AccountOauthAdd{
-		AccountVmwareConfig: v,
-	}
-}
-
-
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into any of the pointers in the struct
 func (dst *AccountOauthAdd) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into AccountJamfConfig
-	err = newStrictDecoder(data).Decode(&dst.AccountJamfConfig)
+	// try to unmarshal JSON data into AccountJamfConfig
+	err = json.Unmarshal(data, &dst.AccountJamfConfig);
 	if err == nil {
 		jsonAccountJamfConfig, _ := json.Marshal(dst.AccountJamfConfig)
 		if string(jsonAccountJamfConfig) == "{}" { // empty struct
 			dst.AccountJamfConfig = nil
 		} else {
-			if err = validator.Validate(dst.AccountJamfConfig); err != nil {
-				dst.AccountJamfConfig = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.AccountJamfConfig, return on the first match
 		}
 	} else {
 		dst.AccountJamfConfig = nil
 	}
 
-	// try to unmarshal data into AccountVmwareConfig
-	err = newStrictDecoder(data).Decode(&dst.AccountVmwareConfig)
+	// try to unmarshal JSON data into AccountVmwareConfig
+	err = json.Unmarshal(data, &dst.AccountVmwareConfig);
 	if err == nil {
 		jsonAccountVmwareConfig, _ := json.Marshal(dst.AccountVmwareConfig)
 		if string(jsonAccountVmwareConfig) == "{}" { // empty struct
 			dst.AccountVmwareConfig = nil
 		} else {
-			if err = validator.Validate(dst.AccountVmwareConfig); err != nil {
-				dst.AccountVmwareConfig = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.AccountVmwareConfig, return on the first match
 		}
 	} else {
 		dst.AccountVmwareConfig = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.AccountJamfConfig = nil
-		dst.AccountVmwareConfig = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(AccountOauthAdd)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(AccountOauthAdd)")
-	}
+	return fmt.Errorf("data failed to match schemas in anyOf(AccountOauthAdd)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src AccountOauthAdd) MarshalJSON() ([]byte, error) {
+func (src *AccountOauthAdd) MarshalJSON() ([]byte, error) {
 	if src.AccountJamfConfig != nil {
 		return json.Marshal(&src.AccountJamfConfig)
 	}
@@ -99,24 +64,7 @@ func (src AccountOauthAdd) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.AccountVmwareConfig)
 	}
 
-	return nil, nil // no data in oneOf schemas
-}
-
-// Get the actual instance
-func (obj *AccountOauthAdd) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.AccountJamfConfig != nil {
-		return obj.AccountJamfConfig
-	}
-
-	if obj.AccountVmwareConfig != nil {
-		return obj.AccountVmwareConfig
-	}
-
-	// all schemas are nil
-	return nil
+	return nil, nil // no data in anyOf schemas
 }
 
 type NullableAccountOauthAdd struct {

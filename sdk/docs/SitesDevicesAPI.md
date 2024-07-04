@@ -1371,7 +1371,7 @@ import (
 func main() {
 	siteId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
 	deviceId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	mistDevice := openapiclient.mist_device{Ap: openapiclient.NewAp()} // MistDevice | Request Body (optional)
+	mistDevice := *openapiclient.NewMistDevice() // MistDevice | Request Body (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

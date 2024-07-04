@@ -13,84 +13,49 @@ package mistapigo
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
 )
 
-// ClientStats - struct for ClientStats
+// ClientStats struct for ClientStats
 type ClientStats struct {
 	StatsWiredClient *StatsWiredClient
 	ArrayOfClientWirelessStats *[]ClientWirelessStats
 }
 
-// StatsWiredClientAsClientStats is a convenience function that returns StatsWiredClient wrapped in ClientStats
-func StatsWiredClientAsClientStats(v *StatsWiredClient) ClientStats {
-	return ClientStats{
-		StatsWiredClient: v,
-	}
-}
-
-// []ClientWirelessStatsAsClientStats is a convenience function that returns []ClientWirelessStats wrapped in ClientStats
-func ArrayOfClientWirelessStatsAsClientStats(v *[]ClientWirelessStats) ClientStats {
-	return ClientStats{
-		ArrayOfClientWirelessStats: v,
-	}
-}
-
-
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into any of the pointers in the struct
 func (dst *ClientStats) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into StatsWiredClient
-	err = newStrictDecoder(data).Decode(&dst.StatsWiredClient)
+	// try to unmarshal JSON data into StatsWiredClient
+	err = json.Unmarshal(data, &dst.StatsWiredClient);
 	if err == nil {
 		jsonStatsWiredClient, _ := json.Marshal(dst.StatsWiredClient)
 		if string(jsonStatsWiredClient) == "{}" { // empty struct
 			dst.StatsWiredClient = nil
 		} else {
-			if err = validator.Validate(dst.StatsWiredClient); err != nil {
-				dst.StatsWiredClient = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.StatsWiredClient, return on the first match
 		}
 	} else {
 		dst.StatsWiredClient = nil
 	}
 
-	// try to unmarshal data into ArrayOfClientWirelessStats
-	err = newStrictDecoder(data).Decode(&dst.ArrayOfClientWirelessStats)
+	// try to unmarshal JSON data into ArrayOfClientWirelessStats
+	err = json.Unmarshal(data, &dst.ArrayOfClientWirelessStats);
 	if err == nil {
 		jsonArrayOfClientWirelessStats, _ := json.Marshal(dst.ArrayOfClientWirelessStats)
 		if string(jsonArrayOfClientWirelessStats) == "{}" { // empty struct
 			dst.ArrayOfClientWirelessStats = nil
 		} else {
-			if err = validator.Validate(dst.ArrayOfClientWirelessStats); err != nil {
-				dst.ArrayOfClientWirelessStats = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.ArrayOfClientWirelessStats, return on the first match
 		}
 	} else {
 		dst.ArrayOfClientWirelessStats = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.StatsWiredClient = nil
-		dst.ArrayOfClientWirelessStats = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(ClientStats)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(ClientStats)")
-	}
+	return fmt.Errorf("data failed to match schemas in anyOf(ClientStats)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src ClientStats) MarshalJSON() ([]byte, error) {
+func (src *ClientStats) MarshalJSON() ([]byte, error) {
 	if src.StatsWiredClient != nil {
 		return json.Marshal(&src.StatsWiredClient)
 	}
@@ -99,24 +64,7 @@ func (src ClientStats) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ArrayOfClientWirelessStats)
 	}
 
-	return nil, nil // no data in oneOf schemas
-}
-
-// Get the actual instance
-func (obj *ClientStats) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.StatsWiredClient != nil {
-		return obj.StatsWiredClient
-	}
-
-	if obj.ArrayOfClientWirelessStats != nil {
-		return obj.ArrayOfClientWirelessStats
-	}
-
-	// all schemas are nil
-	return nil
+	return nil, nil // no data in anyOf schemas
 }
 
 type NullableClientStats struct {
