@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
@@ -85,8 +85,8 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 		var orgId string
 		var mxedgeId string
-		var name MxedgeServiceName
-		var action MxedgeServiceAction
+		var name openapiclient.MxedgeServiceName
+		var action openapiclient.MxedgeServiceAction
 
 		httpRes, err := apiClient.OrgsMxEdgesAPI.ControlOrgMxEdgeServices(context.Background(), orgId, mxedgeId, name, action).Execute()
 

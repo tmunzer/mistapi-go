@@ -1,9 +1,9 @@
 /*
 Mist API
 
-> Version: **2406.1.16** > > Date: **July 4, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
+> Version: **2406.1.7** > > Date: **June 27, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
 
-API version: 2406.1.16
+API version: 2406.1.7
 Contact: tmunzer@juniper.net
 */
 
@@ -16,12 +16,11 @@ import (
 	"fmt"
 )
 
-// Dot11Bandwidth channel width for the band * `80` is only applicable for band_5 and band_6 * `160` is only for band_6
+// Dot11Bandwidth channel width for the band, 20 / 40 / 80 / 160 `80` is only applicable for band_5 and band_6 `160` is only for band_6
 type Dot11Bandwidth int32
 
 // List of dot11_bandwidth
 const (
-	DOT11BANDWIDTH__null Dot11Bandwidth = null
 	DOT11BANDWIDTH__20 Dot11Bandwidth = 20
 	DOT11BANDWIDTH__40 Dot11Bandwidth = 40
 	DOT11BANDWIDTH__80 Dot11Bandwidth = 80
@@ -30,7 +29,6 @@ const (
 
 // All allowed values of Dot11Bandwidth enum
 var AllowedDot11BandwidthEnumValues = []Dot11Bandwidth{
-	null,
 	20,
 	40,
 	80,

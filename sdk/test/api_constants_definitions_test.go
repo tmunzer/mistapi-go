@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_ConstantsDefinitionsAPIService(t *testing.T) {

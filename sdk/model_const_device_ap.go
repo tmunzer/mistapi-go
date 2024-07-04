@@ -1,9 +1,9 @@
 /*
 Mist API
 
-> Version: **2406.1.16** > > Date: **July 4, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
+> Version: **2406.1.3** > > Date: **June 26, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
 
-API version: 2406.1.16
+API version: 2406.1.3
 Contact: tmunzer@juniper.net
 */
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &ConstDeviceAp{}
 type ConstDeviceAp struct {
 	ApType *string `json:"ap_type,omitempty"`
 	Band24 *ConstDeviceApBand24 `json:"band24,omitempty"`
+	Band24Usages []string `json:"band24_usages,omitempty"`
 	Band5 *ConstDeviceApBand5 `json:"band5,omitempty"`
 	Band6 *ConstDeviceApBand6 `json:"band6,omitempty"`
-	Band24Usages *RadioBand24Usage `json:"band_24_usages,omitempty"`
 	CeDfsOk *bool `json:"ce_dfs_ok,omitempty"`
 	CiscoPace *bool `json:"cisco_pace,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -149,6 +149,38 @@ func (o *ConstDeviceAp) SetBand24(v ConstDeviceApBand24) {
 	o.Band24 = &v
 }
 
+// GetBand24Usages returns the Band24Usages field value if set, zero value otherwise.
+func (o *ConstDeviceAp) GetBand24Usages() []string {
+	if o == nil || IsNil(o.Band24Usages) {
+		var ret []string
+		return ret
+	}
+	return o.Band24Usages
+}
+
+// GetBand24UsagesOk returns a tuple with the Band24Usages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConstDeviceAp) GetBand24UsagesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Band24Usages) {
+		return nil, false
+	}
+	return o.Band24Usages, true
+}
+
+// HasBand24Usages returns a boolean if a field has been set.
+func (o *ConstDeviceAp) HasBand24Usages() bool {
+	if o != nil && !IsNil(o.Band24Usages) {
+		return true
+	}
+
+	return false
+}
+
+// SetBand24Usages gets a reference to the given []string and assigns it to the Band24Usages field.
+func (o *ConstDeviceAp) SetBand24Usages(v []string) {
+	o.Band24Usages = v
+}
+
 // GetBand5 returns the Band5 field value if set, zero value otherwise.
 func (o *ConstDeviceAp) GetBand5() ConstDeviceApBand5 {
 	if o == nil || IsNil(o.Band5) {
@@ -211,38 +243,6 @@ func (o *ConstDeviceAp) HasBand6() bool {
 // SetBand6 gets a reference to the given ConstDeviceApBand6 and assigns it to the Band6 field.
 func (o *ConstDeviceAp) SetBand6(v ConstDeviceApBand6) {
 	o.Band6 = &v
-}
-
-// GetBand24Usages returns the Band24Usages field value if set, zero value otherwise.
-func (o *ConstDeviceAp) GetBand24Usages() RadioBand24Usage {
-	if o == nil || IsNil(o.Band24Usages) {
-		var ret RadioBand24Usage
-		return ret
-	}
-	return *o.Band24Usages
-}
-
-// GetBand24UsagesOk returns a tuple with the Band24Usages field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ConstDeviceAp) GetBand24UsagesOk() (*RadioBand24Usage, bool) {
-	if o == nil || IsNil(o.Band24Usages) {
-		return nil, false
-	}
-	return o.Band24Usages, true
-}
-
-// HasBand24Usages returns a boolean if a field has been set.
-func (o *ConstDeviceAp) HasBand24Usages() bool {
-	if o != nil && !IsNil(o.Band24Usages) {
-		return true
-	}
-
-	return false
-}
-
-// SetBand24Usages gets a reference to the given RadioBand24Usage and assigns it to the Band24Usages field.
-func (o *ConstDeviceAp) SetBand24Usages(v RadioBand24Usage) {
-	o.Band24Usages = &v
 }
 
 // GetCeDfsOk returns the CeDfsOk field value if set, zero value otherwise.
@@ -421,15 +421,6 @@ func (o *ConstDeviceAp) GetExtioOk() (*map[string]ConstDeviceApExtios, bool) {
 		return nil, false
 	}
 	return o.Extio, true
-}
-
-// HasExtio returns a boolean if a field has been set.
-func (o *ConstDeviceAp) HasExtio() bool {
-	if o != nil && !IsNil(o.Extio) {
-		return true
-	}
-
-	return false
 }
 
 // SetExtio gets a reference to the given map[string]ConstDeviceApExtios and assigns it to the Extio field.
@@ -1223,15 +1214,6 @@ func (o *ConstDeviceAp) GetVbleOk() (*ConstDeviceApVble, bool) {
 	return o.Vble, true
 }
 
-// HasVble returns a boolean if a field has been set.
-func (o *ConstDeviceAp) HasVble() bool {
-	if o != nil && !IsNil(o.Vble) {
-		return true
-	}
-
-	return false
-}
-
 // SetVble gets a reference to the given ConstDeviceApVble and assigns it to the Vble field.
 func (o *ConstDeviceAp) SetVble(v ConstDeviceApVble) {
 	o.Vble = &v
@@ -1253,14 +1235,14 @@ func (o ConstDeviceAp) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Band24) {
 		toSerialize["band24"] = o.Band24
 	}
+	if !IsNil(o.Band24Usages) {
+		toSerialize["band24_usages"] = o.Band24Usages
+	}
 	if !IsNil(o.Band5) {
 		toSerialize["band5"] = o.Band5
 	}
 	if !IsNil(o.Band6) {
 		toSerialize["band6"] = o.Band6
-	}
-	if !IsNil(o.Band24Usages) {
-		toSerialize["band_24_usages"] = o.Band24Usages
 	}
 	if !IsNil(o.CeDfsOk) {
 		toSerialize["ce_dfs_ok"] = o.CeDfsOk
@@ -1379,9 +1361,9 @@ func (o *ConstDeviceAp) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "ap_type")
 		delete(additionalProperties, "band24")
+		delete(additionalProperties, "band24_usages")
 		delete(additionalProperties, "band5")
 		delete(additionalProperties, "band6")
-		delete(additionalProperties, "band_24_usages")
 		delete(additionalProperties, "ce_dfs_ok")
 		delete(additionalProperties, "cisco_pace")
 		delete(additionalProperties, "description")

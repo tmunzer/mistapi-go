@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
@@ -27,7 +27,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var zoneType ZoneType
+		var zoneType openapiclient.ZoneType
 
 		resp, httpRes, err := apiClient.SitesZonesAPI.CountSiteZoneSessions(context.Background(), siteId, zoneType).Execute()
 
@@ -85,7 +85,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var zoneType ZoneType
+		var zoneType openapiclient.ZoneType
 		var zoneId string
 
 		resp, httpRes, err := apiClient.SitesZonesAPI.GetSiteZoneStats(context.Background(), siteId, zoneType, zoneId).Execute()
@@ -129,7 +129,7 @@ func Test_mistapigo_SitesZonesAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var zoneType ZoneType
+		var zoneType openapiclient.ZoneType
 
 		resp, httpRes, err := apiClient.SitesZonesAPI.SearchSiteZoneSessions(context.Background(), siteId, zoneType).Execute()
 

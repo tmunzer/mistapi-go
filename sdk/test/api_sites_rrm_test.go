@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_SitesRRMAPIService(t *testing.T) {
@@ -42,7 +42,7 @@ func Test_mistapigo_SitesRRMAPIService(t *testing.T) {
 
 		var siteId string
 		var deviceId string
-		var band Dot11Band
+		var band openapiclient.Dot11Band
 
 		resp, httpRes, err := apiClient.SitesRRMAPI.GetSiteCurrentRrmConsiderations(context.Background(), siteId, deviceId, band).Execute()
 
@@ -57,7 +57,7 @@ func Test_mistapigo_SitesRRMAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var band Dot11Band
+		var band openapiclient.Dot11Band
 
 		resp, httpRes, err := apiClient.SitesRRMAPI.GetSiteCurrentRrmNeighbors(context.Background(), siteId, band).Execute()
 

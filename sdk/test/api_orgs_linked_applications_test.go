@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/tmunzer/mistapi-go"
+	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
 func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
@@ -27,7 +27,7 @@ func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var orgId string
-		var appName OauthAppName
+		var appName openapiclient.OauthAppName
 
 		httpRes, err := apiClient.OrgsLinkedApplicationsAPI.AddOrgOauthAppAccounts(context.Background(), orgId, appName).Execute()
 
@@ -41,7 +41,7 @@ func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var orgId string
-		var appName OauthAppName
+		var appName openapiclient.OauthAppName
 		var accountId string
 
 		httpRes, err := apiClient.OrgsLinkedApplicationsAPI.DeleteOrgOauthAppAuthorization(context.Background(), orgId, appName, accountId).Execute()
@@ -56,7 +56,7 @@ func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var orgId string
-		var appName OauthAppName
+		var appName openapiclient.OauthAppName
 
 		resp, httpRes, err := apiClient.OrgsLinkedApplicationsAPI.GetOrgOauthAppLinkedStatus(context.Background(), orgId, appName).Execute()
 
@@ -98,7 +98,7 @@ func Test_mistapigo_OrgsLinkedApplicationsAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var orgId string
-		var appName OauthAppName
+		var appName openapiclient.OauthAppName
 
 		httpRes, err := apiClient.OrgsLinkedApplicationsAPI.UpdateOrgOauthAppAccounts(context.Background(), orgId, appName).Execute()
 
