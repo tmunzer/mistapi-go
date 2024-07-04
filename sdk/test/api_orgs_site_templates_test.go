@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsSiteTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSiteTemplatesAPIService CreateOrgSiteTemplates", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsSiteTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSiteTemplatesAPIService DeleteOrgSiteTemplate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var sitetemplateId string
@@ -53,7 +52,7 @@ func Test_mistapigo_OrgsSiteTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSiteTemplatesAPIService GetOrgSiteTemplate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var sitetemplateId string
@@ -68,7 +67,7 @@ func Test_mistapigo_OrgsSiteTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSiteTemplatesAPIService ListOrgSiteTemplates", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -82,7 +81,7 @@ func Test_mistapigo_OrgsSiteTemplatesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsSiteTemplatesAPIService UpdateOrgSiteTemplate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var sitetemplateId string

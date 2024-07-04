@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,10 +24,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleClassifierDetails", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SleSummaryScope
 		var scopeId string
 		var metric string
 		var classifier string
@@ -43,10 +42,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleHistogram", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleHistogramScopeParameters
 		var scopeId string
 		var metric string
 
@@ -60,10 +59,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleImpactSummary", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleImpactSummaryScopeParameters
 		var scopeId string
 		var metric string
 
@@ -77,10 +76,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleImpactedApplications", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleScope
 		var scopeId string
 		var metric string
 
@@ -94,10 +93,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleImpactedAps", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleImpactedApsScopeParameters
 		var scopeId string
 		var metric string
 
@@ -111,10 +110,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleImpactedChassis", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleImpactedChassisScopeParameters
 		var scopeId string
 		var metric string
 
@@ -128,10 +127,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleImpactedGateways", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleImpactedGatewaysScopeParameters
 		var scopeId string
 		var metric string
 
@@ -145,10 +144,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleImpactedInterfaces", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleImpactedInterfacesScopeParameters
 		var scopeId string
 		var metric string
 
@@ -162,10 +161,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleImpactedSwitches", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleImpactedSwitchesScopeParameters
 		var scopeId string
 		var metric string
 
@@ -179,10 +178,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleImpactedWiredClients", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleImpactedClientsScopeParameters
 		var scopeId string
 		var metric string
 
@@ -196,10 +195,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleImpactedWirelessClients", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleImpactedUsersScopeParameter
 		var scopeId string
 		var metric string
 
@@ -213,10 +212,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleMetricClassifiers", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleMetricClassifiersScopeParameters
 		var scopeId string
 		var metric string
 
@@ -230,10 +229,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleSummary", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleMetricSummaryScopeParameters
 		var scopeId string
 		var metric string
 
@@ -247,10 +246,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSleThreshold", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleThresholdScopeParameter
 		var scopeId string
 		var metric string
 
@@ -264,10 +263,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService GetSiteSlesMetrics", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleMetricsScopeParameters
 		var scopeId string
 
 		resp, httpRes, err := apiClient.SitesSLEsAPI.GetSiteSlesMetrics(context.Background(), siteId, scope, scopeId).Execute()
@@ -280,10 +279,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService ReplaceSiteSleThreshold", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleThresholdScopeParameter
 		var scopeId string
 		var metric string
 
@@ -297,10 +296,10 @@ func Test_mistapigo_SitesSLEsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSLEsAPIService UpdateSiteSleThreshold", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
-		var scope string
+		var scope openapiclient.SiteSleThresholdScopeParameter
 		var scopeId string
 		var metric string
 

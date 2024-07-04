@@ -1,9 +1,9 @@
 /*
 Mist API
 
-> Version: **2406.1.14** > > Date: **July 3, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
+> Version: **2406.1.16** > > Date: **July 4, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
 
-API version: 2406.1.14
+API version: 2406.1.16
 Contact: tmunzer@juniper.net
 */
 
@@ -33,7 +33,7 @@ type OrgsLinkedApplicationsAPI interface {
 	@param appName OAuth application name
 	@return ApiAddOrgOauthAppAccountsRequest
 	*/
-	AddOrgOauthAppAccounts(ctx context.Context, orgId string, appName string) ApiAddOrgOauthAppAccountsRequest
+	AddOrgOauthAppAccounts(ctx context.Context, orgId string, appName OauthAppName) ApiAddOrgOauthAppAccountsRequest
 
 	// AddOrgOauthAppAccountsExecute executes the request
 	AddOrgOauthAppAccountsExecute(r ApiAddOrgOauthAppAccountsRequest) (*http.Response, error)
@@ -45,11 +45,11 @@ type OrgsLinkedApplicationsAPI interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgId
-	@param appName
+	@param appName OAuth application name
 	@param accountId
 	@return ApiDeleteOrgOauthAppAuthorizationRequest
 	*/
-	DeleteOrgOauthAppAuthorization(ctx context.Context, orgId string, appName string, accountId string) ApiDeleteOrgOauthAppAuthorizationRequest
+	DeleteOrgOauthAppAuthorization(ctx context.Context, orgId string, appName OauthAppName, accountId string) ApiDeleteOrgOauthAppAuthorizationRequest
 
 	// DeleteOrgOauthAppAuthorizationExecute executes the request
 	DeleteOrgOauthAppAuthorizationExecute(r ApiDeleteOrgOauthAppAuthorizationRequest) (*http.Response, error)
@@ -64,7 +64,7 @@ type OrgsLinkedApplicationsAPI interface {
 	@param appName OAuth application name
 	@return ApiGetOrgOauthAppLinkedStatusRequest
 	*/
-	GetOrgOauthAppLinkedStatus(ctx context.Context, orgId string, appName string) ApiGetOrgOauthAppLinkedStatusRequest
+	GetOrgOauthAppLinkedStatus(ctx context.Context, orgId string, appName OauthAppName) ApiGetOrgOauthAppLinkedStatusRequest
 
 	// GetOrgOauthAppLinkedStatusExecute executes the request
 	//  @return ResponseOauthAppLink
@@ -112,7 +112,7 @@ Request Payload, These Field And Values Will Be Specific To Each Of The Third Pa
 	@param appName OAuth application name
 	@return ApiUpdateOrgOauthAppAccountsRequest
 	*/
-	UpdateOrgOauthAppAccounts(ctx context.Context, orgId string, appName string) ApiUpdateOrgOauthAppAccountsRequest
+	UpdateOrgOauthAppAccounts(ctx context.Context, orgId string, appName OauthAppName) ApiUpdateOrgOauthAppAccountsRequest
 
 	// UpdateOrgOauthAppAccountsExecute executes the request
 	UpdateOrgOauthAppAccountsExecute(r ApiUpdateOrgOauthAppAccountsRequest) (*http.Response, error)
@@ -125,7 +125,7 @@ type ApiAddOrgOauthAppAccountsRequest struct {
 	ctx context.Context
 	ApiService OrgsLinkedApplicationsAPI
 	orgId string
-	appName string
+	appName OauthAppName
 	accountOauthAdd *AccountOauthAdd
 }
 
@@ -148,7 +148,7 @@ Add Jamf, VMware Authorization With Mist Portal
  @param appName OAuth application name
  @return ApiAddOrgOauthAppAccountsRequest
 */
-func (a *OrgsLinkedApplicationsAPIService) AddOrgOauthAppAccounts(ctx context.Context, orgId string, appName string) ApiAddOrgOauthAppAccountsRequest {
+func (a *OrgsLinkedApplicationsAPIService) AddOrgOauthAppAccounts(ctx context.Context, orgId string, appName OauthAppName) ApiAddOrgOauthAppAccountsRequest {
 	return ApiAddOrgOauthAppAccountsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -286,7 +286,7 @@ type ApiDeleteOrgOauthAppAuthorizationRequest struct {
 	ctx context.Context
 	ApiService OrgsLinkedApplicationsAPI
 	orgId string
-	appName string
+	appName OauthAppName
 	accountId string
 }
 
@@ -301,11 +301,11 @@ Delete Org Level OAuth Application Authorization With Mist Portal
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId
- @param appName
+ @param appName OAuth application name
  @param accountId
  @return ApiDeleteOrgOauthAppAuthorizationRequest
 */
-func (a *OrgsLinkedApplicationsAPIService) DeleteOrgOauthAppAuthorization(ctx context.Context, orgId string, appName string, accountId string) ApiDeleteOrgOauthAppAuthorizationRequest {
+func (a *OrgsLinkedApplicationsAPIService) DeleteOrgOauthAppAuthorization(ctx context.Context, orgId string, appName OauthAppName, accountId string) ApiDeleteOrgOauthAppAuthorizationRequest {
 	return ApiDeleteOrgOauthAppAuthorizationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -443,7 +443,7 @@ type ApiGetOrgOauthAppLinkedStatusRequest struct {
 	ctx context.Context
 	ApiService OrgsLinkedApplicationsAPI
 	orgId string
-	appName string
+	appName OauthAppName
 	forward *string
 }
 
@@ -467,7 +467,7 @@ Get Org Level OAuth Application Linked Status
  @param appName OAuth application name
  @return ApiGetOrgOauthAppLinkedStatusRequest
 */
-func (a *OrgsLinkedApplicationsAPIService) GetOrgOauthAppLinkedStatus(ctx context.Context, orgId string, appName string) ApiGetOrgOauthAppLinkedStatusRequest {
+func (a *OrgsLinkedApplicationsAPIService) GetOrgOauthAppLinkedStatus(ctx context.Context, orgId string, appName OauthAppName) ApiGetOrgOauthAppLinkedStatusRequest {
 	return ApiGetOrgOauthAppLinkedStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -977,7 +977,7 @@ type ApiUpdateOrgOauthAppAccountsRequest struct {
 	ctx context.Context
 	ApiService OrgsLinkedApplicationsAPI
 	orgId string
-	appName string
+	appName OauthAppName
 	accountOauthConfig *AccountOauthConfig
 }
 
@@ -1002,7 +1002,7 @@ Request Payload, These Field And Values Will Be Specific To Each Of The Third Pa
  @param appName OAuth application name
  @return ApiUpdateOrgOauthAppAccountsRequest
 */
-func (a *OrgsLinkedApplicationsAPIService) UpdateOrgOauthAppAccounts(ctx context.Context, orgId string, appName string) ApiUpdateOrgOauthAppAccountsRequest {
+func (a *OrgsLinkedApplicationsAPIService) UpdateOrgOauthAppAccounts(ctx context.Context, orgId string, appName OauthAppName) ApiUpdateOrgOauthAppAccountsRequest {
 	return ApiUpdateOrgOauthAppAccountsRequest{
 		ApiService: a,
 		ctx: ctx,

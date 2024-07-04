@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_AdminsAPIService(t *testing.T) {
 
 	t.Run("Test AdminsAPIService GetAdminRegistrationInfo", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.AdminsAPI.GetAdminRegistrationInfo(context.Background()).Execute()
 
@@ -37,7 +36,7 @@ func Test_mistapigo_AdminsAPIService(t *testing.T) {
 
 	t.Run("Test AdminsAPIService RegisterNewAdmin", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		httpRes, err := apiClient.AdminsAPI.RegisterNewAdmin(context.Background()).Execute()
 
@@ -48,7 +47,7 @@ func Test_mistapigo_AdminsAPIService(t *testing.T) {
 
 	t.Run("Test AdminsAPIService VerifyAdminInvite", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var token string
 
@@ -61,7 +60,7 @@ func Test_mistapigo_AdminsAPIService(t *testing.T) {
 
 	t.Run("Test AdminsAPIService VerifyRegistration", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var token string
 

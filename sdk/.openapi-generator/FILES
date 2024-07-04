@@ -1012,7 +1012,6 @@ docs/ResponseConfigHistorySearchItemWlan.md
 docs/ResponseCountMarvisActions.md
 docs/ResponseCountMarvisActionsResult.md
 docs/ResponseDetailString.md
-docs/ResponseDevice.md
 docs/ResponseDeviceBiosUpgrade.md
 docs/ResponseDeviceConfigCli.md
 docs/ResponseDeviceConfigCmd.md
@@ -2460,7 +2459,6 @@ model_response_config_history_search_item_wlan.go
 model_response_count_marvis_actions.go
 model_response_count_marvis_actions_result.go
 model_response_detail_string.go
-model_response_device.go
 model_response_device_bios_upgrade.go
 model_response_device_config_cli.go
 model_response_device_config_cmd.go

@@ -1,9 +1,9 @@
 /*
 Mist API
 
-> Version: **2406.1.14** > > Date: **July 3, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
+> Version: **2406.1.16** > > Date: **July 4, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
 
-API version: 2406.1.14
+API version: 2406.1.16
 Contact: tmunzer@juniper.net
 */
 
@@ -33,7 +33,7 @@ type SitesZonesAPI interface {
 	@param zoneType
 	@return ApiCountSiteZoneSessionsRequest
 	*/
-	CountSiteZoneSessions(ctx context.Context, siteId string, zoneType string) ApiCountSiteZoneSessionsRequest
+	CountSiteZoneSessions(ctx context.Context, siteId string, zoneType ZoneType) ApiCountSiteZoneSessionsRequest
 
 	// CountSiteZoneSessionsExecute executes the request
 	//  @return RepsonseCount
@@ -96,7 +96,7 @@ type SitesZonesAPI interface {
 	@param zoneId
 	@return ApiGetSiteZoneStatsRequest
 	*/
-	GetSiteZoneStats(ctx context.Context, siteId string, zoneType string, zoneId string) ApiGetSiteZoneStatsRequest
+	GetSiteZoneStats(ctx context.Context, siteId string, zoneType ZoneType, zoneId string) ApiGetSiteZoneStatsRequest
 
 	// GetSiteZoneStatsExecute executes the request
 	//  @return ZoneStatsDetails
@@ -142,7 +142,7 @@ type SitesZonesAPI interface {
 	@param zoneType
 	@return ApiSearchSiteZoneSessionsRequest
 	*/
-	SearchSiteZoneSessions(ctx context.Context, siteId string, zoneType string) ApiSearchSiteZoneSessionsRequest
+	SearchSiteZoneSessions(ctx context.Context, siteId string, zoneType ZoneType) ApiSearchSiteZoneSessionsRequest
 
 	// SearchSiteZoneSessionsExecute executes the request
 	//  @return ResponseZoneSearch
@@ -172,7 +172,7 @@ type ApiCountSiteZoneSessionsRequest struct {
 	ctx context.Context
 	ApiService SitesZonesAPI
 	siteId string
-	zoneType string
+	zoneType ZoneType
 	distinct *SiteZoneCountDistinct
 	userType *RfClientType
 	user *string
@@ -256,7 +256,7 @@ Count Site Zone Sessions
  @param zoneType
  @return ApiCountSiteZoneSessionsRequest
 */
-func (a *SitesZonesAPIService) CountSiteZoneSessions(ctx context.Context, siteId string, zoneType string) ApiCountSiteZoneSessionsRequest {
+func (a *SitesZonesAPIService) CountSiteZoneSessions(ctx context.Context, siteId string, zoneType ZoneType) ApiCountSiteZoneSessionsRequest {
 	return ApiCountSiteZoneSessionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -978,7 +978,7 @@ type ApiGetSiteZoneStatsRequest struct {
 	ctx context.Context
 	ApiService SitesZonesAPI
 	siteId string
-	zoneType string
+	zoneType ZoneType
 	zoneId string
 }
 
@@ -997,7 +997,7 @@ Get Detail Zone Stats
  @param zoneId
  @return ApiGetSiteZoneStatsRequest
 */
-func (a *SitesZonesAPIService) GetSiteZoneStats(ctx context.Context, siteId string, zoneType string, zoneId string) ApiGetSiteZoneStatsRequest {
+func (a *SitesZonesAPIService) GetSiteZoneStats(ctx context.Context, siteId string, zoneType ZoneType, zoneId string) ApiGetSiteZoneStatsRequest {
 	return ApiGetSiteZoneStatsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1532,7 +1532,7 @@ type ApiSearchSiteZoneSessionsRequest struct {
 	ctx context.Context
 	ApiService SitesZonesAPI
 	siteId string
-	zoneType string
+	zoneType ZoneType
 	userType *RfClientType
 	user *string
 	scopeId *string
@@ -1610,7 +1610,7 @@ Search Zone Sessions
  @param zoneType
  @return ApiSearchSiteZoneSessionsRequest
 */
-func (a *SitesZonesAPIService) SearchSiteZoneSessions(ctx context.Context, siteId string, zoneType string) ApiSearchSiteZoneSessionsRequest {
+func (a *SitesZonesAPIService) SearchSiteZoneSessions(ctx context.Context, siteId string, zoneType ZoneType) ApiSearchSiteZoneSessionsRequest {
 	return ApiSearchSiteZoneSessionsRequest{
 		ApiService: a,
 		ctx: ctx,

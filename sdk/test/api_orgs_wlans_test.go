@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsWlansAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWlansAPIService CreateOrgWlan", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsWlansAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWlansAPIService DeleteOrgWlan", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var wlanId string
@@ -53,7 +52,7 @@ func Test_mistapigo_OrgsWlansAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWlansAPIService DeleteOrgWlanPortalImage", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var wlanId string
@@ -67,7 +66,7 @@ func Test_mistapigo_OrgsWlansAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWlansAPIService GetOrgWLAN", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var wlanId string
@@ -82,7 +81,7 @@ func Test_mistapigo_OrgsWlansAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWlansAPIService ListOrgWlans", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -96,7 +95,7 @@ func Test_mistapigo_OrgsWlansAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWlansAPIService UpdateOrgWlan", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var wlanId string
@@ -111,7 +110,7 @@ func Test_mistapigo_OrgsWlansAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWlansAPIService UpdateOrgWlanPortalTemplate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var wlanId string
@@ -126,7 +125,7 @@ func Test_mistapigo_OrgsWlansAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWlansAPIService UploadOrgWlanPortalImage", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var wlanId string

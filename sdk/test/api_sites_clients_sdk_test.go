@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_SitesClientsSDKAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsSDKAPIService GetSiteSdkStats", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var sdkclientId string
@@ -40,7 +39,7 @@ func Test_mistapigo_SitesClientsSDKAPIService(t *testing.T) {
 
 	t.Run("Test SitesClientsSDKAPIService GetSiteSdkStatsByMap", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var mapId string

@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsClientsWanAPIService(t *testing.T) {
 
 	t.Run("Test OrgsClientsWanAPIService CountOrgWanClientEvents", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsClientsWanAPIService(t *testing.T) {
 
 	t.Run("Test OrgsClientsWanAPIService CountOrgWanClients", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -53,7 +52,7 @@ func Test_mistapigo_OrgsClientsWanAPIService(t *testing.T) {
 
 	t.Run("Test OrgsClientsWanAPIService SearchOrgWanClientEvents", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -67,7 +66,7 @@ func Test_mistapigo_OrgsClientsWanAPIService(t *testing.T) {
 
 	t.Run("Test OrgsClientsWanAPIService SearchOrgWanClients", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 

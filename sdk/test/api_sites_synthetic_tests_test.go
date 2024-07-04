@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_SitesSyntheticTestsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSyntheticTestsAPIService GetSiteDeviceSyntheticTest", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -39,7 +38,7 @@ func Test_mistapigo_SitesSyntheticTestsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSyntheticTestsAPIService GetSiteSyntheticTestStatus", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -53,7 +52,7 @@ func Test_mistapigo_SitesSyntheticTestsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSyntheticTestsAPIService SearchSiteSyntheticTest", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -67,7 +66,7 @@ func Test_mistapigo_SitesSyntheticTestsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSyntheticTestsAPIService StartSiteSwitchRadiusSyntheticTest", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -82,7 +81,7 @@ func Test_mistapigo_SitesSyntheticTestsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSyntheticTestsAPIService TriggerSiteDeviceSyntheticTest", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -96,7 +95,7 @@ func Test_mistapigo_SitesSyntheticTestsAPIService(t *testing.T) {
 
 	t.Run("Test SitesSyntheticTestsAPIService TriggerSiteSyntheticTest", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 

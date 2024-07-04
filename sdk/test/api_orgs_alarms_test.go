@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmsAPIService AckOrgAlarm", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var alarmId string
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmsAPIService AckOrgAllAlarms", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -52,7 +51,7 @@ func Test_mistapigo_OrgsAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmsAPIService AckOrgMultipleAlarms", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -65,7 +64,7 @@ func Test_mistapigo_OrgsAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmsAPIService CountOrgAlarms", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -79,7 +78,7 @@ func Test_mistapigo_OrgsAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmsAPIService SearchOrgAlarms", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -93,7 +92,7 @@ func Test_mistapigo_OrgsAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmsAPIService UnackOrgAllArlarms", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -106,7 +105,7 @@ func Test_mistapigo_OrgsAlarmsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsAlarmsAPIService UnackOrgMultipleAlarms", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 

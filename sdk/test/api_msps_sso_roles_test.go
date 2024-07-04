@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_MSPsSSORolesAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSORolesAPIService CreateMspSsoRole", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var mspId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_MSPsSSORolesAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSORolesAPIService DeleteMspSsoRole", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var mspId string
 		var ssoroleId string
@@ -53,7 +52,7 @@ func Test_mistapigo_MSPsSSORolesAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSORolesAPIService ListMspSsoRoles", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var mspId string
 
@@ -67,7 +66,7 @@ func Test_mistapigo_MSPsSSORolesAPIService(t *testing.T) {
 
 	t.Run("Test MSPsSSORolesAPIService UpdateMspSsoRole", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var mspId string
 		var ssoroleId string

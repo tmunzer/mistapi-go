@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_SitesBeaconsAPIService(t *testing.T) {
 
 	t.Run("Test SitesBeaconsAPIService CreateSiteBeacon", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_SitesBeaconsAPIService(t *testing.T) {
 
 	t.Run("Test SitesBeaconsAPIService DeleteSiteBeacons", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var beaconId string
@@ -53,7 +52,7 @@ func Test_mistapigo_SitesBeaconsAPIService(t *testing.T) {
 
 	t.Run("Test SitesBeaconsAPIService GetSiteBeacon", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var beaconId string
@@ -68,7 +67,7 @@ func Test_mistapigo_SitesBeaconsAPIService(t *testing.T) {
 
 	t.Run("Test SitesBeaconsAPIService ListSiteBeacons", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -82,7 +81,7 @@ func Test_mistapigo_SitesBeaconsAPIService(t *testing.T) {
 
 	t.Run("Test SitesBeaconsAPIService ListSiteBeaconsStats", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -96,7 +95,7 @@ func Test_mistapigo_SitesBeaconsAPIService(t *testing.T) {
 
 	t.Run("Test SitesBeaconsAPIService UpdateSiteBeacons", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var beaconId string

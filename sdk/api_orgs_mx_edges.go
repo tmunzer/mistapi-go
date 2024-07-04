@@ -1,9 +1,9 @@
 /*
 Mist API
 
-> Version: **2406.1.14** > > Date: **July 3, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
+> Version: **2406.1.16** > > Date: **July 4, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
 
-API version: 2406.1.14
+API version: 2406.1.16
 Contact: tmunzer@juniper.net
 */
 
@@ -96,7 +96,7 @@ type OrgsMxEdgesAPI interface {
 	@param action restart or start or stop
 	@return ApiControlOrgMxEdgeServicesRequest
 	*/
-	ControlOrgMxEdgeServices(ctx context.Context, orgId string, mxedgeId string, name string, action string) ApiControlOrgMxEdgeServicesRequest
+	ControlOrgMxEdgeServices(ctx context.Context, orgId string, mxedgeId string, name MxedgeServiceName, action MxedgeServiceAction) ApiControlOrgMxEdgeServicesRequest
 
 	// ControlOrgMxEdgeServicesExecute executes the request
 	ControlOrgMxEdgeServicesExecute(r ApiControlOrgMxEdgeServicesRequest) (*http.Response, error)
@@ -1083,8 +1083,8 @@ type ApiControlOrgMxEdgeServicesRequest struct {
 	ApiService OrgsMxEdgesAPI
 	orgId string
 	mxedgeId string
-	name string
-	action string
+	name MxedgeServiceName
+	action MxedgeServiceAction
 }
 
 func (r ApiControlOrgMxEdgeServicesRequest) Execute() (*http.Response, error) {
@@ -1103,7 +1103,7 @@ Control Services on a Mist Edge
  @param action restart or start or stop
  @return ApiControlOrgMxEdgeServicesRequest
 */
-func (a *OrgsMxEdgesAPIService) ControlOrgMxEdgeServices(ctx context.Context, orgId string, mxedgeId string, name string, action string) ApiControlOrgMxEdgeServicesRequest {
+func (a *OrgsMxEdgesAPIService) ControlOrgMxEdgeServices(ctx context.Context, orgId string, mxedgeId string, name MxedgeServiceName, action MxedgeServiceAction) ApiControlOrgMxEdgeServicesRequest {
 	return ApiControlOrgMxEdgeServicesRequest{
 		ApiService: a,
 		ctx: ctx,

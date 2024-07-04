@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_UtilitiesLANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesLANAPIService CableTestFromSwitch", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -40,7 +39,7 @@ func Test_mistapigo_UtilitiesLANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesLANAPIService ClearAllLearnedMacsFromPortOnSwitch", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -54,7 +53,7 @@ func Test_mistapigo_UtilitiesLANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesLANAPIService ClearBpduErrosFromPortsOnSwitch", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -68,7 +67,7 @@ func Test_mistapigo_UtilitiesLANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesLANAPIService CreateSiteDeviceSnapshot", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -83,7 +82,7 @@ func Test_mistapigo_UtilitiesLANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesLANAPIService PollSiteSwitchStats", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -97,7 +96,7 @@ func Test_mistapigo_UtilitiesLANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesLANAPIService PortsBounceFromSwitch", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -111,7 +110,7 @@ func Test_mistapigo_UtilitiesLANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesLANAPIService UpgradeDeviceBios", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -126,7 +125,7 @@ func Test_mistapigo_UtilitiesLANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesLANAPIService UpgradeDeviceFPGA", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -141,7 +140,7 @@ func Test_mistapigo_UtilitiesLANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesLANAPIService UpgradeSiteDevicesBios", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -154,7 +153,7 @@ func Test_mistapigo_UtilitiesLANAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesLANAPIService UpgradeSiteDevicesFpga", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 

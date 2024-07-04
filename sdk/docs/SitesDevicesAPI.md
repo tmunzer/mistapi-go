@@ -675,7 +675,7 @@ Name | Type | Description  | Notes
 
 ## GetSiteDevice
 
-> ResponseDevice GetSiteDevice(ctx, siteId, deviceId).Execute()
+> MistDevice GetSiteDevice(ctx, siteId, deviceId).Execute()
 
 getSiteDevice
 
@@ -704,7 +704,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SitesDevicesAPI.GetSiteDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetSiteDevice`: ResponseDevice
+	// response from `GetSiteDevice`: MistDevice
 	fmt.Fprintf(os.Stdout, "Response from `SitesDevicesAPI.GetSiteDevice`: %v\n", resp)
 }
 ```
@@ -730,7 +730,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDevice**](ResponseDevice.md)
+[**MistDevice**](MistDevice.md)
 
 ### Authorization
 
@@ -1350,7 +1350,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSiteDevice
 
-> ResponseDevice UpdateSiteDevice(ctx, siteId, deviceId).MistDevice(mistDevice).Execute()
+> MistDevice UpdateSiteDevice(ctx, siteId, deviceId).MistDevice(mistDevice).Execute()
 
 updateSiteDevice
 
@@ -1380,7 +1380,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SitesDevicesAPI.UpdateSiteDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateSiteDevice`: ResponseDevice
+	// response from `UpdateSiteDevice`: MistDevice
 	fmt.Fprintf(os.Stdout, "Response from `SitesDevicesAPI.UpdateSiteDevice`: %v\n", resp)
 }
 ```
@@ -1407,7 +1407,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDevice**](ResponseDevice.md)
+[**MistDevice**](MistDevice.md)
 
 ### Authorization
 

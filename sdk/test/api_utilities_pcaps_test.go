@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_UtilitiesPCAPsAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesPCAPsAPIService GetOrgCapturingStatus", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_UtilitiesPCAPsAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesPCAPsAPIService GetSiteCapturingStatus", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -53,7 +52,7 @@ func Test_mistapigo_UtilitiesPCAPsAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesPCAPsAPIService ListOrgPacketCaptures", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -67,7 +66,7 @@ func Test_mistapigo_UtilitiesPCAPsAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesPCAPsAPIService ListSitePacketCaptures", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -81,7 +80,7 @@ func Test_mistapigo_UtilitiesPCAPsAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesPCAPsAPIService StartOrgPacketCapture", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -95,7 +94,7 @@ func Test_mistapigo_UtilitiesPCAPsAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesPCAPsAPIService StartSitePacketCapture", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -109,7 +108,7 @@ func Test_mistapigo_UtilitiesPCAPsAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesPCAPsAPIService StopOrgPacketCapture", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -122,7 +121,7 @@ func Test_mistapigo_UtilitiesPCAPsAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesPCAPsAPIService StopSitePacketCapture", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -135,7 +134,7 @@ func Test_mistapigo_UtilitiesPCAPsAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesPCAPsAPIService UpdateSitePacketCapture", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var pcapId string

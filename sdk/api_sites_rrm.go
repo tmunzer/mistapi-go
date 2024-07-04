@@ -1,9 +1,9 @@
 /*
 Mist API
 
-> Version: **2406.1.14** > > Date: **July 3, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
+> Version: **2406.1.16** > > Date: **July 4, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
 
-API version: 2406.1.14
+API version: 2406.1.16
 Contact: tmunzer@juniper.net
 */
 
@@ -49,7 +49,7 @@ type SitesRRMAPI interface {
 	@param band 802.11 Band
 	@return ApiGetSiteCurrentRrmConsiderationsRequest
 	*/
-	GetSiteCurrentRrmConsiderations(ctx context.Context, siteId string, deviceId string, band string) ApiGetSiteCurrentRrmConsiderationsRequest
+	GetSiteCurrentRrmConsiderations(ctx context.Context, siteId string, deviceId string, band Dot11Band) ApiGetSiteCurrentRrmConsiderationsRequest
 
 	// GetSiteCurrentRrmConsiderationsExecute executes the request
 	//  @return ResponseRrmConsideration
@@ -65,7 +65,7 @@ type SitesRRMAPI interface {
 	@param band 802.11 Band
 	@return ApiGetSiteCurrentRrmNeighborsRequest
 	*/
-	GetSiteCurrentRrmNeighbors(ctx context.Context, siteId string, band string) ApiGetSiteCurrentRrmNeighborsRequest
+	GetSiteCurrentRrmNeighbors(ctx context.Context, siteId string, band Dot11Band) ApiGetSiteCurrentRrmNeighborsRequest
 
 	// GetSiteCurrentRrmNeighborsExecute executes the request
 	//  @return ResponseRrmNeighbors
@@ -266,7 +266,7 @@ type ApiGetSiteCurrentRrmConsiderationsRequest struct {
 	ApiService SitesRRMAPI
 	siteId string
 	deviceId string
-	band string
+	band Dot11Band
 }
 
 func (r ApiGetSiteCurrentRrmConsiderationsRequest) Execute() (*ResponseRrmConsideration, *http.Response, error) {
@@ -284,7 +284,7 @@ Get Current RRM Considerations for an AP on a Specific Band
  @param band 802.11 Band
  @return ApiGetSiteCurrentRrmConsiderationsRequest
 */
-func (a *SitesRRMAPIService) GetSiteCurrentRrmConsiderations(ctx context.Context, siteId string, deviceId string, band string) ApiGetSiteCurrentRrmConsiderationsRequest {
+func (a *SitesRRMAPIService) GetSiteCurrentRrmConsiderations(ctx context.Context, siteId string, deviceId string, band Dot11Band) ApiGetSiteCurrentRrmConsiderationsRequest {
 	return ApiGetSiteCurrentRrmConsiderationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -444,7 +444,7 @@ type ApiGetSiteCurrentRrmNeighborsRequest struct {
 	ctx context.Context
 	ApiService SitesRRMAPI
 	siteId string
-	band string
+	band Dot11Band
 	page *int32
 	limit *int32
 }
@@ -473,7 +473,7 @@ Get Current RRM observed neighbors
  @param band 802.11 Band
  @return ApiGetSiteCurrentRrmNeighborsRequest
 */
-func (a *SitesRRMAPIService) GetSiteCurrentRrmNeighbors(ctx context.Context, siteId string, band string) ApiGetSiteCurrentRrmNeighborsRequest {
+func (a *SitesRRMAPIService) GetSiteCurrentRrmNeighbors(ctx context.Context, siteId string, band Dot11Band) ApiGetSiteCurrentRrmNeighborsRequest {
 	return ApiGetSiteCurrentRrmNeighborsRequest{
 		ApiService: a,
 		ctx: ctx,

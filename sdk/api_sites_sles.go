@@ -1,9 +1,9 @@
 /*
 Mist API
 
-> Version: **2406.1.14** > > Date: **July 3, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
+> Version: **2406.1.16** > > Date: **July 4, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
 
-API version: 2406.1.14
+API version: 2406.1.16
 Contact: tmunzer@juniper.net
 */
 
@@ -36,7 +36,7 @@ type SitesSLEsAPI interface {
 	@param classifier
 	@return ApiGetSiteSleClassifierDetailsRequest
 	*/
-	GetSiteSleClassifierDetails(ctx context.Context, siteId string, scope string, scopeId string, metric string, classifier string) ApiGetSiteSleClassifierDetailsRequest
+	GetSiteSleClassifierDetails(ctx context.Context, siteId string, scope SleSummaryScope, scopeId string, metric string, classifier string) ApiGetSiteSleClassifierDetailsRequest
 
 	// GetSiteSleClassifierDetailsExecute executes the request
 	//  @return SleClassifierSummary
@@ -54,7 +54,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleHistogramRequest
 	*/
-	GetSiteSleHistogram(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleHistogramRequest
+	GetSiteSleHistogram(ctx context.Context, siteId string, scope SiteSleHistogramScopeParameters, scopeId string, metric string) ApiGetSiteSleHistogramRequest
 
 	// GetSiteSleHistogramExecute executes the request
 	//  @return SleHistogram
@@ -76,7 +76,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleImpactSummaryRequest
 	*/
-	GetSiteSleImpactSummary(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactSummaryRequest
+	GetSiteSleImpactSummary(ctx context.Context, siteId string, scope SiteSleImpactSummaryScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactSummaryRequest
 
 	// GetSiteSleImpactSummaryExecute executes the request
 	//  @return SleImpactSummary
@@ -94,7 +94,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleImpactedApplicationsRequest
 	*/
-	GetSiteSleImpactedApplications(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedApplicationsRequest
+	GetSiteSleImpactedApplications(ctx context.Context, siteId string, scope SiteSleScope, scopeId string, metric string) ApiGetSiteSleImpactedApplicationsRequest
 
 	// GetSiteSleImpactedApplicationsExecute executes the request
 	//  @return SleImpactedApplications
@@ -112,7 +112,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleImpactedApsRequest
 	*/
-	GetSiteSleImpactedAps(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedApsRequest
+	GetSiteSleImpactedAps(ctx context.Context, siteId string, scope SiteSleImpactedApsScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedApsRequest
 
 	// GetSiteSleImpactedApsExecute executes the request
 	//  @return SleImpactedAps
@@ -130,7 +130,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleImpactedChassisRequest
 	*/
-	GetSiteSleImpactedChassis(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedChassisRequest
+	GetSiteSleImpactedChassis(ctx context.Context, siteId string, scope SiteSleImpactedChassisScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedChassisRequest
 
 	// GetSiteSleImpactedChassisExecute executes the request
 	//  @return SleImpactedChassis
@@ -148,7 +148,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleImpactedGatewaysRequest
 	*/
-	GetSiteSleImpactedGateways(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedGatewaysRequest
+	GetSiteSleImpactedGateways(ctx context.Context, siteId string, scope SiteSleImpactedGatewaysScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedGatewaysRequest
 
 	// GetSiteSleImpactedGatewaysExecute executes the request
 	//  @return SleImpactedGateways
@@ -166,7 +166,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleImpactedInterfacesRequest
 	*/
-	GetSiteSleImpactedInterfaces(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedInterfacesRequest
+	GetSiteSleImpactedInterfaces(ctx context.Context, siteId string, scope SiteSleImpactedInterfacesScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedInterfacesRequest
 
 	// GetSiteSleImpactedInterfacesExecute executes the request
 	//  @return SleImpactedInterfaces
@@ -184,7 +184,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleImpactedSwitchesRequest
 	*/
-	GetSiteSleImpactedSwitches(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedSwitchesRequest
+	GetSiteSleImpactedSwitches(ctx context.Context, siteId string, scope SiteSleImpactedSwitchesScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedSwitchesRequest
 
 	// GetSiteSleImpactedSwitchesExecute executes the request
 	//  @return SleImpactedSwitches
@@ -202,7 +202,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleImpactedWiredClientsRequest
 	*/
-	GetSiteSleImpactedWiredClients(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedWiredClientsRequest
+	GetSiteSleImpactedWiredClients(ctx context.Context, siteId string, scope SiteSleImpactedClientsScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedWiredClientsRequest
 
 	// GetSiteSleImpactedWiredClientsExecute executes the request
 	//  @return SleImpactedClients
@@ -220,7 +220,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleImpactedWirelessClientsRequest
 	*/
-	GetSiteSleImpactedWirelessClients(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedWirelessClientsRequest
+	GetSiteSleImpactedWirelessClients(ctx context.Context, siteId string, scope SiteSleImpactedUsersScopeParameter, scopeId string, metric string) ApiGetSiteSleImpactedWirelessClientsRequest
 
 	// GetSiteSleImpactedWirelessClientsExecute executes the request
 	//  @return SleImpactedUsers
@@ -238,7 +238,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleMetricClassifiersRequest
 	*/
-	GetSiteSleMetricClassifiers(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleMetricClassifiersRequest
+	GetSiteSleMetricClassifiers(ctx context.Context, siteId string, scope SiteSleMetricClassifiersScopeParameters, scopeId string, metric string) ApiGetSiteSleMetricClassifiersRequest
 
 	// GetSiteSleMetricClassifiersExecute executes the request
 	//  @return []string
@@ -256,7 +256,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleSummaryRequest
 	*/
-	GetSiteSleSummary(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleSummaryRequest
+	GetSiteSleSummary(ctx context.Context, siteId string, scope SiteSleMetricSummaryScopeParameters, scopeId string, metric string) ApiGetSiteSleSummaryRequest
 
 	// GetSiteSleSummaryExecute executes the request
 	//  @return SleSummary
@@ -274,7 +274,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiGetSiteSleThresholdRequest
 	*/
-	GetSiteSleThreshold(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleThresholdRequest
+	GetSiteSleThreshold(ctx context.Context, siteId string, scope SiteSleThresholdScopeParameter, scopeId string, metric string) ApiGetSiteSleThresholdRequest
 
 	// GetSiteSleThresholdExecute executes the request
 	//  @return SleThreshold
@@ -291,7 +291,7 @@ type SitesSLEsAPI interface {
 	@param scopeId * site_id if `scope`==`site` * device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway` * mac if `scope`==`client`
 	@return ApiGetSiteSlesMetricsRequest
 	*/
-	GetSiteSlesMetrics(ctx context.Context, siteId string, scope string, scopeId string) ApiGetSiteSlesMetricsRequest
+	GetSiteSlesMetrics(ctx context.Context, siteId string, scope SiteSleMetricsScopeParameters, scopeId string) ApiGetSiteSlesMetricsRequest
 
 	// GetSiteSlesMetricsExecute executes the request
 	//  @return SiteSleMetrics
@@ -309,7 +309,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiReplaceSiteSleThresholdRequest
 	*/
-	ReplaceSiteSleThreshold(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiReplaceSiteSleThresholdRequest
+	ReplaceSiteSleThreshold(ctx context.Context, siteId string, scope SiteSleThresholdScopeParameter, scopeId string, metric string) ApiReplaceSiteSleThresholdRequest
 
 	// ReplaceSiteSleThresholdExecute executes the request
 	//  @return SleThreshold
@@ -327,7 +327,7 @@ type SitesSLEsAPI interface {
 	@param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
 	@return ApiUpdateSiteSleThresholdRequest
 	*/
-	UpdateSiteSleThreshold(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiUpdateSiteSleThresholdRequest
+	UpdateSiteSleThreshold(ctx context.Context, siteId string, scope SiteSleThresholdScopeParameter, scopeId string, metric string) ApiUpdateSiteSleThresholdRequest
 
 	// UpdateSiteSleThresholdExecute executes the request
 	//  @return SleThreshold
@@ -341,7 +341,7 @@ type ApiGetSiteSleClassifierDetailsRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SleSummaryScope
 	scopeId string
 	metric string
 	classifier string
@@ -385,7 +385,7 @@ Get SLE classifier details
  @param classifier
  @return ApiGetSiteSleClassifierDetailsRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleClassifierDetails(ctx context.Context, siteId string, scope string, scopeId string, metric string, classifier string) ApiGetSiteSleClassifierDetailsRequest {
+func (a *SitesSLEsAPIService) GetSiteSleClassifierDetails(ctx context.Context, siteId string, scope SleSummaryScope, scopeId string, metric string, classifier string) ApiGetSiteSleClassifierDetailsRequest {
 	return ApiGetSiteSleClassifierDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -561,7 +561,7 @@ type ApiGetSiteSleHistogramRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleHistogramScopeParameters
 	scopeId string
 	metric string
 	start *int32
@@ -603,7 +603,7 @@ Get the histogram for the SLE metric
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleHistogramRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleHistogram(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleHistogramRequest {
+func (a *SitesSLEsAPIService) GetSiteSleHistogram(ctx context.Context, siteId string, scope SiteSleHistogramScopeParameters, scopeId string, metric string) ApiGetSiteSleHistogramRequest {
 	return ApiGetSiteSleHistogramRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -777,7 +777,7 @@ type ApiGetSiteSleImpactSummaryRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleImpactSummaryScopeParameters
 	scopeId string
 	metric string
 	start *int32
@@ -835,7 +835,7 @@ Get impact summary counts optionally filtered by classifier and failure type
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleImpactSummaryRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleImpactSummary(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactSummaryRequest {
+func (a *SitesSLEsAPIService) GetSiteSleImpactSummary(ctx context.Context, siteId string, scope SiteSleImpactSummaryScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactSummaryRequest {
 	return ApiGetSiteSleImpactSummaryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1015,7 +1015,7 @@ type ApiGetSiteSleImpactedApplicationsRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleScope
 	scopeId string
 	metric string
 	start *int32
@@ -1063,7 +1063,7 @@ For WAN SLEs. Get list of impacted interfaces optionally filtered by classifier 
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleImpactedApplicationsRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleImpactedApplications(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedApplicationsRequest {
+func (a *SitesSLEsAPIService) GetSiteSleImpactedApplications(ctx context.Context, siteId string, scope SiteSleScope, scopeId string, metric string) ApiGetSiteSleImpactedApplicationsRequest {
 	return ApiGetSiteSleImpactedApplicationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1240,7 +1240,7 @@ type ApiGetSiteSleImpactedApsRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleImpactedApsScopeParameters
 	scopeId string
 	metric string
 	start *int32
@@ -1288,7 +1288,7 @@ For Wireless SLEs. Get list of impacted APs optionally filtered by classifier an
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleImpactedApsRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleImpactedAps(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedApsRequest {
+func (a *SitesSLEsAPIService) GetSiteSleImpactedAps(ctx context.Context, siteId string, scope SiteSleImpactedApsScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedApsRequest {
 	return ApiGetSiteSleImpactedApsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1465,7 +1465,7 @@ type ApiGetSiteSleImpactedChassisRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleImpactedChassisScopeParameters
 	scopeId string
 	metric string
 	start *int32
@@ -1513,7 +1513,7 @@ For Wired and WAN SLEs. Get list of impacted interfaces optionally filtered by c
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleImpactedChassisRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleImpactedChassis(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedChassisRequest {
+func (a *SitesSLEsAPIService) GetSiteSleImpactedChassis(ctx context.Context, siteId string, scope SiteSleImpactedChassisScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedChassisRequest {
 	return ApiGetSiteSleImpactedChassisRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1690,7 +1690,7 @@ type ApiGetSiteSleImpactedGatewaysRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleImpactedGatewaysScopeParameters
 	scopeId string
 	metric string
 	start *int32
@@ -1738,7 +1738,7 @@ For WAN SLEs. Get list of impacted interfaces optionally filtered by classifier 
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleImpactedGatewaysRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleImpactedGateways(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedGatewaysRequest {
+func (a *SitesSLEsAPIService) GetSiteSleImpactedGateways(ctx context.Context, siteId string, scope SiteSleImpactedGatewaysScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedGatewaysRequest {
 	return ApiGetSiteSleImpactedGatewaysRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1915,7 +1915,7 @@ type ApiGetSiteSleImpactedInterfacesRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleImpactedInterfacesScopeParameters
 	scopeId string
 	metric string
 	start *int32
@@ -1963,7 +1963,7 @@ For Wired and WAN SLEs. Get list of impacted interfaces optionally filtered by c
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleImpactedInterfacesRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleImpactedInterfaces(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedInterfacesRequest {
+func (a *SitesSLEsAPIService) GetSiteSleImpactedInterfaces(ctx context.Context, siteId string, scope SiteSleImpactedInterfacesScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedInterfacesRequest {
 	return ApiGetSiteSleImpactedInterfacesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2140,7 +2140,7 @@ type ApiGetSiteSleImpactedSwitchesRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleImpactedSwitchesScopeParameters
 	scopeId string
 	metric string
 	start *int32
@@ -2188,7 +2188,7 @@ For Wired SLEs. Get list of impacted switches optionally filtered by classifier 
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleImpactedSwitchesRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleImpactedSwitches(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedSwitchesRequest {
+func (a *SitesSLEsAPIService) GetSiteSleImpactedSwitches(ctx context.Context, siteId string, scope SiteSleImpactedSwitchesScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedSwitchesRequest {
 	return ApiGetSiteSleImpactedSwitchesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2365,7 +2365,7 @@ type ApiGetSiteSleImpactedWiredClientsRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleImpactedClientsScopeParameters
 	scopeId string
 	metric string
 	start *int32
@@ -2413,7 +2413,7 @@ For Wired SLEs. Get list of impacted interfaces optionally filtered by classifie
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleImpactedWiredClientsRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleImpactedWiredClients(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedWiredClientsRequest {
+func (a *SitesSLEsAPIService) GetSiteSleImpactedWiredClients(ctx context.Context, siteId string, scope SiteSleImpactedClientsScopeParameters, scopeId string, metric string) ApiGetSiteSleImpactedWiredClientsRequest {
 	return ApiGetSiteSleImpactedWiredClientsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2590,7 +2590,7 @@ type ApiGetSiteSleImpactedWirelessClientsRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleImpactedUsersScopeParameter
 	scopeId string
 	metric string
 	start *int32
@@ -2638,7 +2638,7 @@ For Wireless SLEs. Get list of impacted wireless users optionally filtered by cl
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleImpactedWirelessClientsRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleImpactedWirelessClients(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleImpactedWirelessClientsRequest {
+func (a *SitesSLEsAPIService) GetSiteSleImpactedWirelessClients(ctx context.Context, siteId string, scope SiteSleImpactedUsersScopeParameter, scopeId string, metric string) ApiGetSiteSleImpactedWirelessClientsRequest {
 	return ApiGetSiteSleImpactedWirelessClientsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2815,7 +2815,7 @@ type ApiGetSiteSleMetricClassifiersRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleMetricClassifiersScopeParameters
 	scopeId string
 	metric string
 }
@@ -2836,7 +2836,7 @@ Get the list of classifiers for a specific metric
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleMetricClassifiersRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleMetricClassifiers(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleMetricClassifiersRequest {
+func (a *SitesSLEsAPIService) GetSiteSleMetricClassifiers(ctx context.Context, siteId string, scope SiteSleMetricClassifiersScopeParameters, scopeId string, metric string) ApiGetSiteSleMetricClassifiersRequest {
 	return ApiGetSiteSleMetricClassifiersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2998,7 +2998,7 @@ type ApiGetSiteSleSummaryRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleMetricSummaryScopeParameters
 	scopeId string
 	metric string
 	start *int32
@@ -3040,7 +3040,7 @@ Get the summary for the SLE metric
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleSummaryRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleSummary(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleSummaryRequest {
+func (a *SitesSLEsAPIService) GetSiteSleSummary(ctx context.Context, siteId string, scope SiteSleMetricSummaryScopeParameters, scopeId string, metric string) ApiGetSiteSleSummaryRequest {
 	return ApiGetSiteSleSummaryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3214,7 +3214,7 @@ type ApiGetSiteSleThresholdRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleThresholdScopeParameter
 	scopeId string
 	metric string
 }
@@ -3235,7 +3235,7 @@ Get the SLE threshold
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiGetSiteSleThresholdRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSleThreshold(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiGetSiteSleThresholdRequest {
+func (a *SitesSLEsAPIService) GetSiteSleThreshold(ctx context.Context, siteId string, scope SiteSleThresholdScopeParameter, scopeId string, metric string) ApiGetSiteSleThresholdRequest {
 	return ApiGetSiteSleThresholdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3397,7 +3397,7 @@ type ApiGetSiteSlesMetricsRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleMetricsScopeParameters
 	scopeId string
 }
 
@@ -3416,7 +3416,7 @@ Get the list of metrics for the given scope
  @param scopeId * site_id if `scope`==`site` * device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway` * mac if `scope`==`client`
  @return ApiGetSiteSlesMetricsRequest
 */
-func (a *SitesSLEsAPIService) GetSiteSlesMetrics(ctx context.Context, siteId string, scope string, scopeId string) ApiGetSiteSlesMetricsRequest {
+func (a *SitesSLEsAPIService) GetSiteSlesMetrics(ctx context.Context, siteId string, scope SiteSleMetricsScopeParameters, scopeId string) ApiGetSiteSlesMetricsRequest {
 	return ApiGetSiteSlesMetricsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3576,7 +3576,7 @@ type ApiReplaceSiteSleThresholdRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleThresholdScopeParameter
 	scopeId string
 	metric string
 	sleThreshold *SleThreshold
@@ -3603,7 +3603,7 @@ Replace the SLE threshold
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiReplaceSiteSleThresholdRequest
 */
-func (a *SitesSLEsAPIService) ReplaceSiteSleThreshold(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiReplaceSiteSleThresholdRequest {
+func (a *SitesSLEsAPIService) ReplaceSiteSleThreshold(ctx context.Context, siteId string, scope SiteSleThresholdScopeParameter, scopeId string, metric string) ApiReplaceSiteSleThresholdRequest {
 	return ApiReplaceSiteSleThresholdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3767,7 +3767,7 @@ type ApiUpdateSiteSleThresholdRequest struct {
 	ctx context.Context
 	ApiService SitesSLEsAPI
 	siteId string
-	scope string
+	scope SiteSleThresholdScopeParameter
 	scopeId string
 	metric string
 	sleThreshold *SleThreshold
@@ -3794,7 +3794,7 @@ Update the SLE threshold
  @param metric values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics
  @return ApiUpdateSiteSleThresholdRequest
 */
-func (a *SitesSLEsAPIService) UpdateSiteSleThreshold(ctx context.Context, siteId string, scope string, scopeId string, metric string) ApiUpdateSiteSleThresholdRequest {
+func (a *SitesSLEsAPIService) UpdateSiteSleThreshold(ctx context.Context, siteId string, scope SiteSleThresholdScopeParameter, scopeId string, metric string) ApiUpdateSiteSleThresholdRequest {
 	return ApiUpdateSiteSleThresholdRequest{
 		ApiService: a,
 		ctx: ctx,

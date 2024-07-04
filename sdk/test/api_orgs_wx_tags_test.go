@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWxTagsAPIService CreateOrgWxTag", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWxTagsAPIService DeleteOrgWxTag", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var wxtagId string
@@ -53,7 +52,7 @@ func Test_mistapigo_OrgsWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWxTagsAPIService GetOrgApplicationList", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -67,7 +66,7 @@ func Test_mistapigo_OrgsWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWxTagsAPIService GetOrgCurrentMatchingClientsOfAWxTag", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var wxtagId string
@@ -82,7 +81,7 @@ func Test_mistapigo_OrgsWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWxTagsAPIService GetOrgWxTag", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var wxtagId string
@@ -97,7 +96,7 @@ func Test_mistapigo_OrgsWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWxTagsAPIService ListOrgWxTags", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -111,7 +110,7 @@ func Test_mistapigo_OrgsWxTagsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsWxTagsAPIService UpdateOrgWxTag", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var wxtagId string

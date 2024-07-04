@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService AddOrgMxEdgeImage", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string
@@ -40,7 +39,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService AssignOrgMxEdgeToSite", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -54,7 +53,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService BounceOrgMxEdgeDataPorts", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string
@@ -68,7 +67,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService ClaimOrgMxEdge", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -82,12 +81,12 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService ControlOrgMxEdgeServices", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string
-		var name string
-		var action string
+		var name openapiclient.MxedgeServiceName
+		var action openapiclient.MxedgeServiceAction
 
 		httpRes, err := apiClient.OrgsMxEdgesAPI.ControlOrgMxEdgeServices(context.Background(), orgId, mxedgeId, name, action).Execute()
 
@@ -98,7 +97,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService CountOrgMxEdges", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -112,7 +111,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService CountOrgSiteMxEdgeEvents", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -126,7 +125,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService CreateOrgMxEdge", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -140,7 +139,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService DeleteOrgMxEdge", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string
@@ -154,7 +153,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService DeleteOrgMxEdgeImage", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string
@@ -169,7 +168,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService GetOrgMxEdge", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string
@@ -184,7 +183,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService GetOrgMxEdgeStats", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string
@@ -199,7 +198,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService GetOrgMxEdgeUpgradeInfo", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -213,7 +212,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService ListOrgMxEdges", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -227,7 +226,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService ListOrgMxEdgesStats", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -241,7 +240,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService RestartOrgMxEdge", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string
@@ -255,7 +254,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService SearchOrgMistEdgeEvents", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -269,7 +268,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService SearchOrgMxEdges", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -283,7 +282,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService UnassignOrgMxEdgeFromSite", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -297,7 +296,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService UnregisterOrgMxEdge", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string
@@ -311,7 +310,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService UpdateOrgMxEdge", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string
@@ -326,7 +325,7 @@ func Test_mistapigo_OrgsMxEdgesAPIService(t *testing.T) {
 
 	t.Run("Test OrgsMxEdgesAPIService UploadOrgMxEdgeSupportFiles", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var mxedgeId string

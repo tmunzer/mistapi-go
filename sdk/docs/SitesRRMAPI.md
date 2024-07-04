@@ -104,7 +104,7 @@ import (
 func main() {
 	siteId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
 	deviceId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	band := "band_example" // string | 802.11 Band
+	band := openapiclient.dot11_band("") // Dot11Band | 802.11 Band
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -126,7 +126,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **siteId** | **string** |  | 
 **deviceId** | **string** |  | 
-**band** | **string** | 802.11 Band | 
+**band** | [**Dot11Band**](.md) | 802.11 Band | 
 
 ### Other Parameters
 
@@ -179,7 +179,7 @@ import (
 
 func main() {
 	siteId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	band := "band_example" // string | 802.11 Band
+	band := openapiclient.dot11_band("") // Dot11Band | 802.11 Band
 	page := int32(56) // int32 |  (optional) (default to 1)
 	limit := int32(56) // int32 |  (optional) (default to 100)
 
@@ -202,7 +202,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **siteId** | **string** |  | 
-**band** | **string** | 802.11 Band | 
+**band** | [**Dot11Band**](.md) | 802.11 Band | 
 
 ### Other Parameters
 

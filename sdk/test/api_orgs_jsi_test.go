@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsJSIAPIService(t *testing.T) {
 
 	t.Run("Test OrgsJSIAPIService AdoptOrgJsiDevice", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsJSIAPIService(t *testing.T) {
 
 	t.Run("Test OrgsJSIAPIService CreateOrgJsiDeviceShellSession", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -54,7 +53,7 @@ func Test_mistapigo_OrgsJSIAPIService(t *testing.T) {
 
 	t.Run("Test OrgsJSIAPIService ListOrgJsiDevices", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -68,7 +67,7 @@ func Test_mistapigo_OrgsJSIAPIService(t *testing.T) {
 
 	t.Run("Test OrgsJSIAPIService ListOrgJsiPastPurchases", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 

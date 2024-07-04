@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test OrgsClientsWirelessAPIService CountOrgWirelessClients", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test OrgsClientsWirelessAPIService CountOrgWirelessClientsSessions", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -53,7 +52,7 @@ func Test_mistapigo_OrgsClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test OrgsClientsWirelessAPIService SearchOrgWirelessClientEvents", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -67,7 +66,7 @@ func Test_mistapigo_OrgsClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test OrgsClientsWirelessAPIService SearchOrgWirelessClientSessions", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -81,7 +80,7 @@ func Test_mistapigo_OrgsClientsWirelessAPIService(t *testing.T) {
 
 	t.Run("Test OrgsClientsWirelessAPIService SearchOrgWirelessClients", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 

@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService CountSiteAssets", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService CreateSiteAsset", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -53,7 +52,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService DeleteSiteAsset", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var assetId string
@@ -67,7 +66,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService GetSiteAsset", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var assetId string
@@ -82,7 +81,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService GetSiteAssetStats", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -96,7 +95,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService GetSiteAssetsOfInterest", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -110,7 +109,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService GetSiteDiscoveredAssetByMap", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var mapId string
@@ -125,7 +124,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService ImportSiteAssets", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -138,7 +137,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService ListSiteAssets", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -152,7 +151,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService ListSiteAssetsStats", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -166,7 +165,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService ListSiteDiscoveredAssets", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -180,7 +179,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService SearchSiteAssets", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -194,7 +193,7 @@ func Test_mistapigo_SitesAssetsAPIService(t *testing.T) {
 
 	t.Run("Test SitesAssetsAPIService UpdateSiteAsset", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var assetId string

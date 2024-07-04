@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_SitesMapsAutoPlacementAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAutoPlacementAPIService ClearSiteApAutoplacement", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var mapId string
@@ -39,7 +38,7 @@ func Test_mistapigo_SitesMapsAutoPlacementAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAutoPlacementAPIService ConfirmSiteApLocalizationData", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var mapId string
@@ -53,7 +52,7 @@ func Test_mistapigo_SitesMapsAutoPlacementAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAutoPlacementAPIService DeleteSiteApAutoplacement", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var mapId string
@@ -67,7 +66,7 @@ func Test_mistapigo_SitesMapsAutoPlacementAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAutoPlacementAPIService GetSiteApAutoPlacement", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var mapId string
@@ -82,7 +81,7 @@ func Test_mistapigo_SitesMapsAutoPlacementAPIService(t *testing.T) {
 
 	t.Run("Test SitesMapsAutoPlacementAPIService RunSiteApAutoplacement", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var mapId string

@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_ConstantsMiscAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsMiscAPIService GetGatewayDefaultConfig", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsMiscAPI.GetGatewayDefaultConfig(context.Background()).Execute()
 
@@ -37,7 +36,7 @@ func Test_mistapigo_ConstantsMiscAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsMiscAPIService GetLicenseTypes", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsMiscAPI.GetLicenseTypes(context.Background()).Execute()
 
@@ -49,7 +48,7 @@ func Test_mistapigo_ConstantsMiscAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsMiscAPIService ListApChannels", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsMiscAPI.ListApChannels(context.Background()).Execute()
 
@@ -61,7 +60,7 @@ func Test_mistapigo_ConstantsMiscAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsMiscAPIService ListApplications", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsMiscAPI.ListApplications(context.Background()).Execute()
 
@@ -73,7 +72,7 @@ func Test_mistapigo_ConstantsMiscAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsMiscAPIService ListCountryCodes", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsMiscAPI.ListCountryCodes(context.Background()).Execute()
 
@@ -85,7 +84,7 @@ func Test_mistapigo_ConstantsMiscAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsMiscAPIService ListGatewayApplications", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsMiscAPI.ListGatewayApplications(context.Background()).Execute()
 
@@ -97,7 +96,7 @@ func Test_mistapigo_ConstantsMiscAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsMiscAPIService ListInsightMetrics", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsMiscAPI.ListInsightMetrics(context.Background()).Execute()
 
@@ -109,7 +108,7 @@ func Test_mistapigo_ConstantsMiscAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsMiscAPIService ListSiteLanguages", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsMiscAPI.ListSiteLanguages(context.Background()).Execute()
 
@@ -121,7 +120,7 @@ func Test_mistapigo_ConstantsMiscAPIService(t *testing.T) {
 
 	t.Run("Test ConstantsMiscAPIService ListTrafficTypes", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConstantsMiscAPI.ListTrafficTypes(context.Background()).Execute()
 

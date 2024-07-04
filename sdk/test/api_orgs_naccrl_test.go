@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsNACCRLAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACCRLAPIService DeleteOrgNacCrl", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var naccrlId string
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsNACCRLAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACCRLAPIService GetOrgNacCrl", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -53,7 +52,7 @@ func Test_mistapigo_OrgsNACCRLAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACCRLAPIService ImportOrgNacCrl", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 

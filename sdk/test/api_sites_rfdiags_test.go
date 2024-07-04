@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_SitesRfdiagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesRfdiagsAPIService DeleteSiteRfdiagRecording", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var rfdiagId string
@@ -39,7 +38,7 @@ func Test_mistapigo_SitesRfdiagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesRfdiagsAPIService DownloadSiteRfdiagRecording", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var rfdiagId string
@@ -54,7 +53,7 @@ func Test_mistapigo_SitesRfdiagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesRfdiagsAPIService GetSiteRfdiagRecording", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var rfdiagId string
@@ -69,7 +68,7 @@ func Test_mistapigo_SitesRfdiagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesRfdiagsAPIService GetSiteSiteRfdiagRecording", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -83,7 +82,7 @@ func Test_mistapigo_SitesRfdiagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesRfdiagsAPIService StartSiteRecording", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -97,7 +96,7 @@ func Test_mistapigo_SitesRfdiagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesRfdiagsAPIService StopSiteRfdiagRecording", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var rfdiagId string
@@ -111,7 +110,7 @@ func Test_mistapigo_SitesRfdiagsAPIService(t *testing.T) {
 
 	t.Run("Test SitesRfdiagsAPIService UpdateSiteRfdiagRecording", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var rfdiagId string

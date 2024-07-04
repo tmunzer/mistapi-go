@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsNetworksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNetworksAPIService CreateOrgNetwork", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsNetworksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNetworksAPIService DeleteOrgNetwork", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var networkId string
@@ -53,7 +52,7 @@ func Test_mistapigo_OrgsNetworksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNetworksAPIService GetOrgNetwork", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var networkId string
@@ -68,7 +67,7 @@ func Test_mistapigo_OrgsNetworksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNetworksAPIService ListOrgNetworks", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -82,7 +81,7 @@ func Test_mistapigo_OrgsNetworksAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNetworksAPIService UpdateOrgNetwork", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var networkId string

@@ -345,8 +345,8 @@ import (
 func main() {
 	orgId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
 	mxedgeId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	name := "name_example" // string | 
-	action := "action_example" // string | restart or start or stop
+	name := openapiclient.mxedge_service_name("") // MxedgeServiceName | 
+	action := openapiclient.mxedge_service_action("") // MxedgeServiceAction | restart or start or stop
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -366,8 +366,8 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **orgId** | **string** |  | 
 **mxedgeId** | **string** |  | 
-**name** | **string** |  | 
-**action** | **string** | restart or start or stop | 
+**name** | [**MxedgeServiceName**](.md) |  | 
+**action** | [**MxedgeServiceAction**](.md) | restart or start or stop | 
 
 ### Other Parameters
 

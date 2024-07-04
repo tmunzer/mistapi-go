@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService CancelOrgSsrUpgrade", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var upgradeId string
@@ -39,7 +38,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService CancelSiteDeviceUpgrade", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var upgradeId string
@@ -53,7 +52,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService GetOrgDeviceUpgrade", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var upgradeId string
@@ -68,7 +67,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService GetOrgMxEdgeUpgrade", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var upgradeId string
@@ -83,7 +82,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService GetSiteDeviceUpgrade", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var upgradeId string
@@ -98,7 +97,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService GetSiteSsrUpgrade", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var upgradeId string
@@ -113,7 +112,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService ListOrgAvailableSsrVersions", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -127,7 +126,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService ListOrgDeviceUpgrades", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -141,7 +140,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService ListOrgMxEdgeUpgrades", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -155,7 +154,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService ListOrgSsrUpgrades", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -169,7 +168,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService ListSiteAvailableDeviceVersions", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -183,7 +182,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService ListSiteDeviceUpgrades", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -197,7 +196,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService UpgradeDevice", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string
@@ -212,7 +211,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService UpgradeOrgDevices", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -226,7 +225,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService UpgradeOrgJsiDevice", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var deviceMac string
@@ -240,7 +239,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService UpgradeOrgMxEdges", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -253,7 +252,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService UpgradeOrgSsrs", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -267,7 +266,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService UpgradeSiteDevices", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -281,7 +280,7 @@ func Test_mistapigo_UtilitiesUpgradeAPIService(t *testing.T) {
 
 	t.Run("Test UtilitiesUpgradeAPIService UpgradeSsr", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var deviceId string

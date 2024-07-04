@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsNACPortalsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACPortalsAPIService CreateOrgNacPortal", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsNACPortalsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACPortalsAPIService DeleteOrgNacPortal", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var nacportalId string
@@ -53,7 +52,7 @@ func Test_mistapigo_OrgsNACPortalsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACPortalsAPIService DownloadOrgNacPortalSsoSamlMetadata", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var nacportalId string
@@ -68,7 +67,7 @@ func Test_mistapigo_OrgsNACPortalsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACPortalsAPIService GetOrgNacPortal", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var nacportalId string
@@ -83,7 +82,7 @@ func Test_mistapigo_OrgsNACPortalsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACPortalsAPIService GetOrgNacPortalSsoSamlMetadata", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var nacportalId string
@@ -98,7 +97,7 @@ func Test_mistapigo_OrgsNACPortalsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACPortalsAPIService ListOrgNacPortalSsoLatestFailures", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var nacportalId string
@@ -113,7 +112,7 @@ func Test_mistapigo_OrgsNACPortalsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACPortalsAPIService ListOrgNacPortals", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -127,7 +126,7 @@ func Test_mistapigo_OrgsNACPortalsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsNACPortalsAPIService UpdateOrgNacPortal", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var nacportalId string

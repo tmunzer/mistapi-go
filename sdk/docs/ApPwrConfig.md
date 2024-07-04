@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Base** | Pointer to **float32** | additional power to request during negotiating with PSE over PoE, in mW | [optional] [default to 0]
+**Base** | Pointer to **int32** | additional power to request during negotiating with PSE over PoE, in mW | [optional] [default to 0]
 **PreferUsbOverWifi** | Pointer to **bool** | whether to enable power out to peripheral, meanwhile will reduce power to wifi (only for AP45 at power mode) | [optional] [default to false]
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBase
 
-`func (o *ApPwrConfig) GetBase() float32`
+`func (o *ApPwrConfig) GetBase() int32`
 
 GetBase returns the Base field if non-nil, zero value otherwise.
 
 ### GetBaseOk
 
-`func (o *ApPwrConfig) GetBaseOk() (*float32, bool)`
+`func (o *ApPwrConfig) GetBaseOk() (*int32, bool)`
 
 GetBaseOk returns a tuple with the Base field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBase
 
-`func (o *ApPwrConfig) SetBase(v float32)`
+`func (o *ApPwrConfig) SetBase(v int32)`
 
 SetBase sets Base field to given value.
 

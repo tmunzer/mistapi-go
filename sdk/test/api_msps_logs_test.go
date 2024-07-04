@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_MSPsLogsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsLogsAPIService CountMspLogs", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var mspId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_MSPsLogsAPIService(t *testing.T) {
 
 	t.Run("Test MSPsLogsAPIService ListMspLogs", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var mspId string
 

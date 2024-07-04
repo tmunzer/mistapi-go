@@ -38,7 +38,7 @@ import (
 
 func main() {
 	siteId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	zoneType := "zoneType_example" // string | 
+	zoneType := openapiclient.zone_type("") // ZoneType | 
 	distinct := openapiclient.site_zone_count_distinct("") // SiteZoneCountDistinct |  (optional) (default to "scope_id")
 	userType := openapiclient.rf_client_type("") // RfClientType | user type (optional)
 	user := "user_example" // string | client MAC / Asset MAC / SDK UUID (optional)
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **siteId** | **string** |  | 
-**zoneType** | **string** |  | 
+**zoneType** | [**ZoneType**](.md) |  | 
 
 ### Other Parameters
 
@@ -347,7 +347,7 @@ import (
 
 func main() {
 	siteId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	zoneType := "zoneType_example" // string | 
+	zoneType := openapiclient.zone_type("") // ZoneType | 
 	zoneId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **siteId** | **string** |  | 
-**zoneType** | **string** |  | 
+**zoneType** | [**ZoneType**](.md) |  | 
 **zoneId** | **string** |  | 
 
 ### Other Parameters
@@ -569,7 +569,7 @@ import (
 
 func main() {
 	siteId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	zoneType := "zoneType_example" // string | 
+	zoneType := openapiclient.zone_type("") // ZoneType | 
 	userType := openapiclient.rf_client_type("") // RfClientType | user type, client (default) / sdkclient / asset (optional)
 	user := "user_example" // string | client MAC / Asset MAC / SDK UUID (optional)
 	scopeId := "scopeId_example" // string | if `scope`==`map`/`zone`/`rssizone`, the scope id (optional)
@@ -599,7 +599,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **siteId** | **string** |  | 
-**zoneType** | **string** |  | 
+**zoneType** | [**ZoneType**](.md) |  | 
 
 ### Other Parameters
 

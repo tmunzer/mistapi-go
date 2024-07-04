@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_SitesWxTunnelsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTunnelsAPIService CreateSiteWxTunnel", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_SitesWxTunnelsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTunnelsAPIService DeleteSiteWxTunnel", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var wxtunnelId string
@@ -53,7 +52,7 @@ func Test_mistapigo_SitesWxTunnelsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTunnelsAPIService GetSiteWxTunnel", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var wxtunnelId string
@@ -68,7 +67,7 @@ func Test_mistapigo_SitesWxTunnelsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTunnelsAPIService ListSiteWxTunnels", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -82,7 +81,7 @@ func Test_mistapigo_SitesWxTunnelsAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxTunnelsAPIService UpdateSiteWxTunnel", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var wxtunnelId string

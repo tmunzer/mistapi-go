@@ -1,9 +1,9 @@
 /*
 Mist API
 
-> Version: **2406.1.14** > > Date: **July 3, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
+> Version: **2406.1.16** > > Date: **July 4, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
 
-API version: 2406.1.14
+API version: 2406.1.16
 Contact: tmunzer@juniper.net
 */
 
@@ -159,8 +159,8 @@ type SitesDevicesAPI interface {
 	GetSiteDevice(ctx context.Context, siteId string, deviceId string) ApiGetSiteDeviceRequest
 
 	// GetSiteDeviceExecute executes the request
-	//  @return ResponseDevice
-	GetSiteDeviceExecute(r ApiGetSiteDeviceRequest) (*ResponseDevice, *http.Response, error)
+	//  @return MistDevice
+	GetSiteDeviceExecute(r ApiGetSiteDeviceRequest) (*MistDevice, *http.Response, error)
 
 	/*
 	ImportSiteDevices importSiteDevices
@@ -285,8 +285,8 @@ mac,name,map_id,x,y,height,orientation,labels,band_24.power,band_24.bandwidth,ba
 	UpdateSiteDevice(ctx context.Context, siteId string, deviceId string) ApiUpdateSiteDeviceRequest
 
 	// UpdateSiteDeviceExecute executes the request
-	//  @return ResponseDevice
-	UpdateSiteDeviceExecute(r ApiUpdateSiteDeviceRequest) (*ResponseDevice, *http.Response, error)
+	//  @return MistDevice
+	UpdateSiteDeviceExecute(r ApiUpdateSiteDeviceRequest) (*MistDevice, *http.Response, error)
 }
 
 // SitesDevicesAPIService SitesDevicesAPI service
@@ -2086,7 +2086,7 @@ type ApiGetSiteDeviceRequest struct {
 	deviceId string
 }
 
-func (r ApiGetSiteDeviceRequest) Execute() (*ResponseDevice, *http.Response, error) {
+func (r ApiGetSiteDeviceRequest) Execute() (*MistDevice, *http.Response, error) {
 	return r.ApiService.GetSiteDeviceExecute(r)
 }
 
@@ -2110,13 +2110,13 @@ func (a *SitesDevicesAPIService) GetSiteDevice(ctx context.Context, siteId strin
 }
 
 // Execute executes the request
-//  @return ResponseDevice
-func (a *SitesDevicesAPIService) GetSiteDeviceExecute(r ApiGetSiteDeviceRequest) (*ResponseDevice, *http.Response, error) {
+//  @return MistDevice
+func (a *SitesDevicesAPIService) GetSiteDeviceExecute(r ApiGetSiteDeviceRequest) (*MistDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDevice
+		localVarReturnValue  *MistDevice
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SitesDevicesAPIService.GetSiteDevice")
@@ -4063,7 +4063,7 @@ func (r ApiUpdateSiteDeviceRequest) MistDevice(mistDevice MistDevice) ApiUpdateS
 	return r
 }
 
-func (r ApiUpdateSiteDeviceRequest) Execute() (*ResponseDevice, *http.Response, error) {
+func (r ApiUpdateSiteDeviceRequest) Execute() (*MistDevice, *http.Response, error) {
 	return r.ApiService.UpdateSiteDeviceExecute(r)
 }
 
@@ -4087,13 +4087,13 @@ func (a *SitesDevicesAPIService) UpdateSiteDevice(ctx context.Context, siteId st
 }
 
 // Execute executes the request
-//  @return ResponseDevice
-func (a *SitesDevicesAPIService) UpdateSiteDeviceExecute(r ApiUpdateSiteDeviceRequest) (*ResponseDevice, *http.Response, error) {
+//  @return MistDevice
+func (a *SitesDevicesAPIService) UpdateSiteDeviceExecute(r ApiUpdateSiteDeviceRequest) (*MistDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDevice
+		localVarReturnValue  *MistDevice
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SitesDevicesAPIService.UpdateSiteDevice")

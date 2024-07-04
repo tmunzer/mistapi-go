@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_SitesWxRulesAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxRulesAPIService CreateSiteWxRule", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_SitesWxRulesAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxRulesAPIService DeleteSiteWxRule", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var wxruleId string
@@ -53,7 +52,7 @@ func Test_mistapigo_SitesWxRulesAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxRulesAPIService GetSiteWxRule", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var wxruleId string
@@ -68,7 +67,7 @@ func Test_mistapigo_SitesWxRulesAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxRulesAPIService GetSiteWxRulesDerived", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -82,7 +81,7 @@ func Test_mistapigo_SitesWxRulesAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxRulesAPIService GetSiteWxRulesUsage", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -96,7 +95,7 @@ func Test_mistapigo_SitesWxRulesAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxRulesAPIService ListSiteWxRules", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 
@@ -110,7 +109,7 @@ func Test_mistapigo_SitesWxRulesAPIService(t *testing.T) {
 
 	t.Run("Test SitesWxRulesAPIService UpdateSiteWxRule", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var siteId string
 		var wxruleId string

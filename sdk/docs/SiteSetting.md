@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AclPolicies** | Pointer to [**[]AclPolicy**](AclPolicy.md) |  | [optional] 
 **AclTags** | Pointer to [**map[string]AclTag**](AclTag.md) | ACL Tags to identify traffic source or destination. Key name is the tag name | [optional] 
-**AdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] [default to []]
+**AdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] 
 **Analytic** | Pointer to [**SiteSettingAnalytic**](SiteSettingAnalytic.md) |  | [optional] 
 **ApMatching** | Pointer to [**SiteSettingApMatching**](SiteSettingApMatching.md) |  | [optional] 
 **ApPortConfig** | Pointer to [**SiteSettingApPortConfig**](SiteSettingApPortConfig.md) |  | [optional] 
@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **Flags** | Pointer to **map[string]string** | name/val pair objects for location engine to use | [optional] 
 **ForSite** | Pointer to **bool** |  | [optional] [readonly] 
 **Gateway** | Pointer to [**GatewayTemplate**](GatewayTemplate.md) |  | [optional] 
-**GatewayAdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] [default to []]
+**GatewayAdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] 
 **GatewayMgmt** | Pointer to [**SiteSettingGatewayMgmt**](SiteSettingGatewayMgmt.md) |  | [optional] 
 **GatewayUpdownThreshold** | Pointer to **NullableInt32** | enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and &#x60;device_updown_threshold&#x60; is ignored. | [optional] 
 **Id** | Pointer to **string** |  | [optional] [readonly] 

@@ -11,10 +11,9 @@ package mistapigo
 
 import (
 	"context"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 	openapiclient "github.com/tmunzer/mistapi-go/sdk"
 )
 
@@ -25,7 +24,7 @@ func Test_mistapigo_OrgsUserMACsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsUserMACsAPIService CreateOrgUserMacs", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -39,7 +38,7 @@ func Test_mistapigo_OrgsUserMACsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsUserMACsAPIService DeleteOrgUserMac", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var usermacId string
@@ -53,7 +52,7 @@ func Test_mistapigo_OrgsUserMACsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsUserMACsAPIService GetOrgUserMac", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 		var usermacId string
@@ -68,7 +67,7 @@ func Test_mistapigo_OrgsUserMACsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsUserMACsAPIService ImportOrgUserMacs", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -81,7 +80,7 @@ func Test_mistapigo_OrgsUserMACsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsUserMACsAPIService ListOrgUserMacs", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
@@ -95,7 +94,7 @@ func Test_mistapigo_OrgsUserMACsAPIService(t *testing.T) {
 
 	t.Run("Test OrgsUserMACsAPIService SearchOrgUserMacs", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var orgId string
 
