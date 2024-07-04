@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **UplinkPortConfig** | Pointer to [**ApUplinkPortConfig**](ApUplinkPortConfig.md) |  | [optional] 
 **UsbConfig** | Pointer to [**ApUsb**](ApUsb.md) |  | [optional] 
 **Vars** | Pointer to **map[string]string** | a dictionary of name-&gt;value, the vars can then be used in Wlans. This can overwrite those from Site Vars | [optional] 
-**AdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] 
+**AdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] [default to []]
 **BgpConfig** | Pointer to [**map[string]BgpConfig**](BgpConfig.md) |  | [optional] 
 **DhcpdConfig** | Pointer to [**DhcpdConfigs**](DhcpdConfigs.md) |  | [optional] 
 **DnsOverride** | Pointer to **bool** |  | [optional] [default to false]

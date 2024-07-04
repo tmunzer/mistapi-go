@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AclPolicies** | Pointer to [**[]AclPolicy**](AclPolicy.md) |  | [optional] 
 **AclTags** | Pointer to [**map[string]AclTag**](AclTag.md) | ACL Tags to identify traffic source or destination. Key name is the tag name | [optional] 
-**AdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] 
+**AdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] [default to []]
 **CreatedTime** | Pointer to **float32** |  | [optional] [readonly] 
 **DeviceprofileId** | Pointer to **string** |  | [optional] [readonly] 
 **DhcpConfig** | Pointer to [**DhcpdConfigs**](DhcpdConfigs.md) |  | [optional] 
