@@ -2063,7 +2063,7 @@ Class | Method | HTTP request | Description
  - [SnmpConfigTrapGroup](docs/SnmpConfigTrapGroup.md)
  - [SnmpConfigTrapVerion](docs/SnmpConfigTrapVerion.md)
  - [SnmpConfigV2cConfig](docs/SnmpConfigV2cConfig.md)
- - [SnmpConfigViews](docs/SnmpConfigViews.md)
+ - [SnmpConfigView](docs/SnmpConfigView.md)
  - [SnmpUsm](docs/SnmpUsm.md)
  - [SnmpUsmEngineType](docs/SnmpUsmEngineType.md)
  - [SnmpUsmpUser](docs/SnmpUsmpUser.md)

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **TrapGroups** | Pointer to [**[]SnmpConfigTrapGroup**](SnmpConfigTrapGroup.md) |  | [optional] 
 **V2cConfig** | Pointer to [**[]SnmpConfigV2cConfig**](SnmpConfigV2cConfig.md) |  | [optional] 
 **V3Config** | Pointer to [**Snmpv3Config**](Snmpv3Config.md) |  | [optional] 
-**Views** | Pointer to [**SnmpConfigViews**](SnmpConfigViews.md) |  | [optional] 
+**Views** | Pointer to [**[]SnmpConfigView**](SnmpConfigView.md) |  | [optional] 
 
 ## Methods
 
@@ -313,20 +313,20 @@ HasV3Config returns a boolean if a field has been set.
 
 ### GetViews
 
-`func (o *SnmpConfig) GetViews() SnmpConfigViews`
+`func (o *SnmpConfig) GetViews() []SnmpConfigView`
 
 GetViews returns the Views field if non-nil, zero value otherwise.
 
 ### GetViewsOk
 
-`func (o *SnmpConfig) GetViewsOk() (*SnmpConfigViews, bool)`
+`func (o *SnmpConfig) GetViewsOk() (*[]SnmpConfigView, bool)`
 
 GetViewsOk returns a tuple with the Views field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetViews
 
-`func (o *SnmpConfig) SetViews(v SnmpConfigViews)`
+`func (o *SnmpConfig) SetViews(v []SnmpConfigView)`
 
 SetViews sets Views field to given value.
 

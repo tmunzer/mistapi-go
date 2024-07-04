@@ -1406,7 +1406,7 @@ docs/SnmpConfigEngineId.md
 docs/SnmpConfigTrapGroup.md
 docs/SnmpConfigTrapVerion.md
 docs/SnmpConfigV2cConfig.md
-docs/SnmpConfigViews.md
+docs/SnmpConfigView.md
 docs/SnmpUsm.md
 docs/SnmpUsmEngineType.md
 docs/SnmpUsmpUser.md
@@ -2788,7 +2788,7 @@ model_snmp_config_engine_id.go
 model_snmp_config_trap_group.go
 model_snmp_config_trap_verion.go
 model_snmp_config_v2c_config.go
-model_snmp_config_views.go
+model_snmp_config_view.go
 model_snmp_usm.go
 model_snmp_usm_engine_type.go
 model_snmp_usmp_user.go

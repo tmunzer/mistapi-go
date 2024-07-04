@@ -31,7 +31,7 @@ type SnmpConfig struct {
 	TrapGroups []SnmpConfigTrapGroup `json:"trap_groups,omitempty"`
 	V2cConfig []SnmpConfigV2cConfig `json:"v2c_config,omitempty"`
 	V3Config *Snmpv3Config `json:"v3_config,omitempty"`
-	Views *SnmpConfigViews `json:"views,omitempty"`
+	Views []SnmpConfigView `json:"views,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -415,17 +415,17 @@ func (o *SnmpConfig) SetV3Config(v Snmpv3Config) {
 }
 
 // GetViews returns the Views field value if set, zero value otherwise.
-func (o *SnmpConfig) GetViews() SnmpConfigViews {
+func (o *SnmpConfig) GetViews() []SnmpConfigView {
 	if o == nil || IsNil(o.Views) {
-		var ret SnmpConfigViews
+		var ret []SnmpConfigView
 		return ret
 	}
-	return *o.Views
+	return o.Views
 }
 
 // GetViewsOk returns a tuple with the Views field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SnmpConfig) GetViewsOk() (*SnmpConfigViews, bool) {
+func (o *SnmpConfig) GetViewsOk() ([]SnmpConfigView, bool) {
 	if o == nil || IsNil(o.Views) {
 		return nil, false
 	}
@@ -441,9 +441,9 @@ func (o *SnmpConfig) HasViews() bool {
 	return false
 }
 
-// SetViews gets a reference to the given SnmpConfigViews and assigns it to the Views field.
-func (o *SnmpConfig) SetViews(v SnmpConfigViews) {
-	o.Views = &v
+// SetViews gets a reference to the given []SnmpConfigView and assigns it to the Views field.
+func (o *SnmpConfig) SetViews(v []SnmpConfigView) {
+	o.Views = v
 }
 
 func (o SnmpConfig) MarshalJSON() ([]byte, error) {
