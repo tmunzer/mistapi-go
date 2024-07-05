@@ -68,7 +68,7 @@ Name | Type | Description | Notes
 **RouterId** | Pointer to **string** | used for OSPF / BGP / EVPN | [optional] 
 **SnmpConfig** | Pointer to [**SnmpConfig**](SnmpConfig.md) |  | [optional] 
 **StpConfig** | Pointer to [**SwitchStpConfig**](SwitchStpConfig.md) |  | [optional] 
-**SwitchMgmt** | Pointer to [**SwitchSwitchMgmt**](SwitchSwitchMgmt.md) |  | [optional] 
+**SwitchMgmt** | Pointer to [**SwitchMgmt**](SwitchMgmt.md) |  | [optional] 
 **UseRouterIdAsSourceIp** | Pointer to **bool** | whether to use it for snmp / syslog / tacplus / radius | [optional] [default to false]
 **VirtualChassis** | Pointer to [**SwitchVirtualChassis**](SwitchVirtualChassis.md) |  | [optional] 
 **VrfConfig** | Pointer to [**VrfConfig**](VrfConfig.md) |  | [optional] 
@@ -1698,20 +1698,20 @@ HasStpConfig returns a boolean if a field has been set.
 
 ### GetSwitchMgmt
 
-`func (o *ConfigDevice) GetSwitchMgmt() SwitchSwitchMgmt`
+`func (o *ConfigDevice) GetSwitchMgmt() SwitchMgmt`
 
 GetSwitchMgmt returns the SwitchMgmt field if non-nil, zero value otherwise.
 
 ### GetSwitchMgmtOk
 
-`func (o *ConfigDevice) GetSwitchMgmtOk() (*SwitchSwitchMgmt, bool)`
+`func (o *ConfigDevice) GetSwitchMgmtOk() (*SwitchMgmt, bool)`
 
 GetSwitchMgmtOk returns a tuple with the SwitchMgmt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSwitchMgmt
 
-`func (o *ConfigDevice) SetSwitchMgmt(v SwitchSwitchMgmt)`
+`func (o *ConfigDevice) SetSwitchMgmt(v SwitchMgmt)`
 
 SetSwitchMgmt sets SwitchMgmt field to given value.
 

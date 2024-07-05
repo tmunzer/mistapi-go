@@ -79,6 +79,7 @@ Name | Type | Description | Notes
 **VrfConfig** | Pointer to [**VrfConfig**](VrfConfig.md) |  | [optional] 
 **VrfInstances** | Pointer to [**map[string]VrfInstance**](VrfInstance.md) | Property key is the network name | [optional] 
 **VrrpGroups** | Pointer to [**map[string]VrrpGroup**](VrrpGroup.md) | Property key is the vrrp group | [optional] 
+**VsInstance** | Pointer to [**VsInstance**](VsInstance.md) |  | [optional] 
 **WanVna** | Pointer to [**SiteSettingWanVna**](SiteSettingWanVna.md) |  | [optional] 
 **WatchedStationUrl** | Pointer to **string** |  | [optional] [readonly] 
 **WhitelistUrl** | Pointer to **string** |  | [optional] [readonly] 
@@ -2010,6 +2011,31 @@ SetVrrpGroups sets VrrpGroups field to given value.
 `func (o *SiteSetting) HasVrrpGroups() bool`
 
 HasVrrpGroups returns a boolean if a field has been set.
+
+### GetVsInstance
+
+`func (o *SiteSetting) GetVsInstance() VsInstance`
+
+GetVsInstance returns the VsInstance field if non-nil, zero value otherwise.
+
+### GetVsInstanceOk
+
+`func (o *SiteSetting) GetVsInstanceOk() (*VsInstance, bool)`
+
+GetVsInstanceOk returns a tuple with the VsInstance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVsInstance
+
+`func (o *SiteSetting) SetVsInstance(v VsInstance)`
+
+SetVsInstance sets VsInstance field to given value.
+
+### HasVsInstance
+
+`func (o *SiteSetting) HasVsInstance() bool`
+
+HasVsInstance returns a boolean if a field has been set.
 
 ### GetWanVna
 

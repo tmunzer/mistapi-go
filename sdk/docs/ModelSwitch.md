@@ -43,7 +43,7 @@ Name | Type | Description | Notes
 **SiteId** | Pointer to **string** |  | [optional] [readonly] 
 **SnmpConfig** | Pointer to [**SnmpConfig**](SnmpConfig.md) |  | [optional] 
 **StpConfig** | Pointer to [**SwitchStpConfig**](SwitchStpConfig.md) |  | [optional] 
-**SwitchMgmt** | Pointer to [**SwitchSwitchMgmt**](SwitchSwitchMgmt.md) |  | [optional] 
+**SwitchMgmt** | Pointer to [**SwitchMgmt**](SwitchMgmt.md) |  | [optional] 
 **UseRouterIdAsSourceIp** | Pointer to **bool** | whether to use it for snmp / syslog / tacplus / radius | [optional] [default to false]
 **Vars** | Pointer to **map[string]string** | a dictionary of name-&gt;value, the vars can then be used in Wlans. This can overwrite those from Site Vars | [optional] 
 **VirtualChassis** | Pointer to [**SwitchVirtualChassis**](SwitchVirtualChassis.md) |  | [optional] 
@@ -1077,20 +1077,20 @@ HasStpConfig returns a boolean if a field has been set.
 
 ### GetSwitchMgmt
 
-`func (o *ModelSwitch) GetSwitchMgmt() SwitchSwitchMgmt`
+`func (o *ModelSwitch) GetSwitchMgmt() SwitchMgmt`
 
 GetSwitchMgmt returns the SwitchMgmt field if non-nil, zero value otherwise.
 
 ### GetSwitchMgmtOk
 
-`func (o *ModelSwitch) GetSwitchMgmtOk() (*SwitchSwitchMgmt, bool)`
+`func (o *ModelSwitch) GetSwitchMgmtOk() (*SwitchMgmt, bool)`
 
 GetSwitchMgmtOk returns a tuple with the SwitchMgmt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSwitchMgmt
 
-`func (o *ModelSwitch) SetSwitchMgmt(v SwitchSwitchMgmt)`
+`func (o *ModelSwitch) SetSwitchMgmt(v SwitchMgmt)`
 
 SetSwitchMgmt sets SwitchMgmt field to given value.
 

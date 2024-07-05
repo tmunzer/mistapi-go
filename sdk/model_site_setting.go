@@ -119,6 +119,7 @@ type SiteSetting struct {
 	VrfInstances *map[string]VrfInstance `json:"vrf_instances,omitempty"`
 	// Property key is the vrrp group
 	VrrpGroups *map[string]VrrpGroup `json:"vrrp_groups,omitempty"`
+	VsInstance *VsInstance `json:"vs_instance,omitempty"`
 	WanVna *SiteSettingWanVna `json:"wan_vna,omitempty"`
 	WatchedStationUrl *string `json:"watched_station_url,omitempty"`
 	WhitelistUrl *string `json:"whitelist_url,omitempty"`
@@ -2602,6 +2603,38 @@ func (o *SiteSetting) SetVrrpGroups(v map[string]VrrpGroup) {
 	o.VrrpGroups = &v
 }
 
+// GetVsInstance returns the VsInstance field value if set, zero value otherwise.
+func (o *SiteSetting) GetVsInstance() VsInstance {
+	if o == nil || IsNil(o.VsInstance) {
+		var ret VsInstance
+		return ret
+	}
+	return *o.VsInstance
+}
+
+// GetVsInstanceOk returns a tuple with the VsInstance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SiteSetting) GetVsInstanceOk() (*VsInstance, bool) {
+	if o == nil || IsNil(o.VsInstance) {
+		return nil, false
+	}
+	return o.VsInstance, true
+}
+
+// HasVsInstance returns a boolean if a field has been set.
+func (o *SiteSetting) HasVsInstance() bool {
+	if o != nil && !IsNil(o.VsInstance) {
+		return true
+	}
+
+	return false
+}
+
+// SetVsInstance gets a reference to the given VsInstance and assigns it to the VsInstance field.
+func (o *SiteSetting) SetVsInstance(v VsInstance) {
+	o.VsInstance = &v
+}
+
 // GetWanVna returns the WanVna field value if set, zero value otherwise.
 func (o *SiteSetting) GetWanVna() SiteSettingWanVna {
 	if o == nil || IsNil(o.WanVna) {
@@ -3061,6 +3094,9 @@ func (o SiteSetting) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VrrpGroups) {
 		toSerialize["vrrp_groups"] = o.VrrpGroups
 	}
+	if !IsNil(o.VsInstance) {
+		toSerialize["vs_instance"] = o.VsInstance
+	}
 	if !IsNil(o.WanVna) {
 		toSerialize["wan_vna"] = o.WanVna
 	}
@@ -3179,6 +3215,7 @@ func (o *SiteSetting) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vrf_config")
 		delete(additionalProperties, "vrf_instances")
 		delete(additionalProperties, "vrrp_groups")
+		delete(additionalProperties, "vs_instance")
 		delete(additionalProperties, "wan_vna")
 		delete(additionalProperties, "watched_station_url")
 		delete(additionalProperties, "whitelist_url")

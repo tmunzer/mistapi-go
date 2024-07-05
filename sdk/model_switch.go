@@ -72,7 +72,7 @@ type ModelSwitch struct {
 	SiteId *string `json:"site_id,omitempty"`
 	SnmpConfig *SnmpConfig `json:"snmp_config,omitempty"`
 	StpConfig *SwitchStpConfig `json:"stp_config,omitempty"`
-	SwitchMgmt *SwitchSwitchMgmt `json:"switch_mgmt,omitempty"`
+	SwitchMgmt *SwitchMgmt `json:"switch_mgmt,omitempty"`
 	// whether to use it for snmp / syslog / tacplus / radius
 	UseRouterIdAsSourceIp *bool `json:"use_router_id_as_source_ip,omitempty"`
 	// a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
@@ -1399,9 +1399,9 @@ func (o *ModelSwitch) SetStpConfig(v SwitchStpConfig) {
 }
 
 // GetSwitchMgmt returns the SwitchMgmt field value if set, zero value otherwise.
-func (o *ModelSwitch) GetSwitchMgmt() SwitchSwitchMgmt {
+func (o *ModelSwitch) GetSwitchMgmt() SwitchMgmt {
 	if o == nil || IsNil(o.SwitchMgmt) {
-		var ret SwitchSwitchMgmt
+		var ret SwitchMgmt
 		return ret
 	}
 	return *o.SwitchMgmt
@@ -1409,7 +1409,7 @@ func (o *ModelSwitch) GetSwitchMgmt() SwitchSwitchMgmt {
 
 // GetSwitchMgmtOk returns a tuple with the SwitchMgmt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetSwitchMgmtOk() (*SwitchSwitchMgmt, bool) {
+func (o *ModelSwitch) GetSwitchMgmtOk() (*SwitchMgmt, bool) {
 	if o == nil || IsNil(o.SwitchMgmt) {
 		return nil, false
 	}
@@ -1425,8 +1425,8 @@ func (o *ModelSwitch) HasSwitchMgmt() bool {
 	return false
 }
 
-// SetSwitchMgmt gets a reference to the given SwitchSwitchMgmt and assigns it to the SwitchMgmt field.
-func (o *ModelSwitch) SetSwitchMgmt(v SwitchSwitchMgmt) {
+// SetSwitchMgmt gets a reference to the given SwitchMgmt and assigns it to the SwitchMgmt field.
+func (o *ModelSwitch) SetSwitchMgmt(v SwitchMgmt) {
 	o.SwitchMgmt = &v
 }
 

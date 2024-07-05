@@ -1268,7 +1268,6 @@ docs/SiteSettingTuntermMulticastConfig.md
 docs/SiteSettingTuntermMulticastConfigMdns.md
 docs/SiteSettingTuntermMulticastConfigSsdp.md
 docs/SiteSettingVna.md
-docs/SiteSettingVsInstance.md
 docs/SiteSettingWanVna.md
 docs/SiteSettingWiredVna.md
 docs/SiteSkyAtpEventsCountDistinct.md
@@ -1492,7 +1491,6 @@ docs/SwitchStatsNumClientsTotal.md
 docs/SwitchStatsNumClientsTotalProperties.md
 docs/SwitchStpConfig.md
 docs/SwitchStpConfigType.md
-docs/SwitchSwitchMgmt.md
 docs/SwitchVirtualChassis.md
 docs/SwitchVirtualChassisMember.md
 docs/SwitchVirtualChassisMemberVcRole.md
@@ -1631,6 +1629,7 @@ docs/VrrpConfigGroup.md
 docs/VrrpGroup.md
 docs/VrrpGroupAuthType.md
 docs/VrrpGroupNetwork.md
+docs/VsInstance.md
 docs/WanTunnelProtocol.md
 docs/WanTunnelStats.md
 docs/WanTunnelStatsPriority.md
@@ -2708,7 +2707,6 @@ model_site_setting_tunterm_multicast_config.go
 model_site_setting_tunterm_multicast_config_mdns.go
 model_site_setting_tunterm_multicast_config_ssdp.go
 model_site_setting_vna.go
-model_site_setting_vs_instance.go
 model_site_setting_wan_vna.go
 model_site_setting_wired_vna.go
 model_site_sky_atp_events_count_distinct.go
@@ -2873,7 +2871,6 @@ model_switch_stats_num_clients_total.go
 model_switch_stats_num_clients_total_properties.go
 model_switch_stp_config.go
 model_switch_stp_config_type.go
-model_switch_switch_mgmt.go
 model_switch_virtual_chassis.go
 model_switch_virtual_chassis_member.go
 model_switch_virtual_chassis_member_vc_role.go
@@ -3004,6 +3001,7 @@ model_vrrp_config_group.go
 model_vrrp_group.go
 model_vrrp_group_auth_type.go
 model_vrrp_group_network.go
+model_vs_instance.go
 model_wan_tunnel_protocol.go
 model_wan_tunnel_stats.go
 model_wan_tunnel_stats_priority.go
