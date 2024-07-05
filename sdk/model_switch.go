@@ -46,6 +46,8 @@ type ModelSwitch struct {
 	IpConfig *JunosIpConfig `json:"ip_config,omitempty"`
 	// for an adopted switch, we don’t overwrite their existing configs automatically
 	Managed *bool `json:"managed,omitempty"`
+	// map where the device belongs to
+	MapId *string `json:"map_id,omitempty"`
 	MistNac *SwitchMistNac `json:"mist_nac,omitempty"`
 	ModifiedTime *float32 `json:"modified_time,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -63,6 +65,7 @@ type ModelSwitch struct {
 	PortConfig *map[string]JunosPortConfig `json:"port_config,omitempty"`
 	// Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output.
 	PortMirroring *map[string]SwitchPortMirroring `json:"port_mirroring,omitempty"`
+	PortMirrorings *map[string]SwitchPortMirroring `json:"port_mirrorings,omitempty"`
 	PortUsages *map[string]SwitchPortUsage `json:"port_usages,omitempty"`
 	RadiusConfig *RadiusConfig `json:"radius_config,omitempty"`
 	RemoteSyslog *RemoteSyslog `json:"remote_syslog,omitempty"`
@@ -82,6 +85,10 @@ type ModelSwitch struct {
 	// Property key is the network name
 	VrfInstances *map[string]VrfInstance `json:"vrf_instances,omitempty"`
 	VrrpConfig *VrrpConfig `json:"vrrp_config,omitempty"`
+	// x in pixel
+	X *float32 `json:"x,omitempty"`
+	// y in pixel
+	Y *float32 `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -758,6 +765,38 @@ func (o *ModelSwitch) SetManaged(v bool) {
 	o.Managed = &v
 }
 
+// GetMapId returns the MapId field value if set, zero value otherwise.
+func (o *ModelSwitch) GetMapId() string {
+	if o == nil || IsNil(o.MapId) {
+		var ret string
+		return ret
+	}
+	return *o.MapId
+}
+
+// GetMapIdOk returns a tuple with the MapId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelSwitch) GetMapIdOk() (*string, bool) {
+	if o == nil || IsNil(o.MapId) {
+		return nil, false
+	}
+	return o.MapId, true
+}
+
+// HasMapId returns a boolean if a field has been set.
+func (o *ModelSwitch) HasMapId() bool {
+	if o != nil && !IsNil(o.MapId) {
+		return true
+	}
+
+	return false
+}
+
+// SetMapId gets a reference to the given string and assigns it to the MapId field.
+func (o *ModelSwitch) SetMapId(v string) {
+	o.MapId = &v
+}
+
 // GetMistNac returns the MistNac field value if set, zero value otherwise.
 func (o *ModelSwitch) GetMistNac() SwitchMistNac {
 	if o == nil || IsNil(o.MistNac) {
@@ -1140,6 +1179,38 @@ func (o *ModelSwitch) HasPortMirroring() bool {
 // SetPortMirroring gets a reference to the given map[string]SwitchPortMirroring and assigns it to the PortMirroring field.
 func (o *ModelSwitch) SetPortMirroring(v map[string]SwitchPortMirroring) {
 	o.PortMirroring = &v
+}
+
+// GetPortMirrorings returns the PortMirrorings field value if set, zero value otherwise.
+func (o *ModelSwitch) GetPortMirrorings() map[string]SwitchPortMirroring {
+	if o == nil || IsNil(o.PortMirrorings) {
+		var ret map[string]SwitchPortMirroring
+		return ret
+	}
+	return *o.PortMirrorings
+}
+
+// GetPortMirroringsOk returns a tuple with the PortMirrorings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelSwitch) GetPortMirroringsOk() (*map[string]SwitchPortMirroring, bool) {
+	if o == nil || IsNil(o.PortMirrorings) {
+		return nil, false
+	}
+	return o.PortMirrorings, true
+}
+
+// HasPortMirrorings returns a boolean if a field has been set.
+func (o *ModelSwitch) HasPortMirrorings() bool {
+	if o != nil && !IsNil(o.PortMirrorings) {
+		return true
+	}
+
+	return false
+}
+
+// SetPortMirrorings gets a reference to the given map[string]SwitchPortMirroring and assigns it to the PortMirrorings field.
+func (o *ModelSwitch) SetPortMirrorings(v map[string]SwitchPortMirroring) {
+	o.PortMirrorings = &v
 }
 
 // GetPortUsages returns the PortUsages field value if set, zero value otherwise.
@@ -1622,6 +1693,70 @@ func (o *ModelSwitch) SetVrrpConfig(v VrrpConfig) {
 	o.VrrpConfig = &v
 }
 
+// GetX returns the X field value if set, zero value otherwise.
+func (o *ModelSwitch) GetX() float32 {
+	if o == nil || IsNil(o.X) {
+		var ret float32
+		return ret
+	}
+	return *o.X
+}
+
+// GetXOk returns a tuple with the X field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelSwitch) GetXOk() (*float32, bool) {
+	if o == nil || IsNil(o.X) {
+		return nil, false
+	}
+	return o.X, true
+}
+
+// HasX returns a boolean if a field has been set.
+func (o *ModelSwitch) HasX() bool {
+	if o != nil && !IsNil(o.X) {
+		return true
+	}
+
+	return false
+}
+
+// SetX gets a reference to the given float32 and assigns it to the X field.
+func (o *ModelSwitch) SetX(v float32) {
+	o.X = &v
+}
+
+// GetY returns the Y field value if set, zero value otherwise.
+func (o *ModelSwitch) GetY() float32 {
+	if o == nil || IsNil(o.Y) {
+		var ret float32
+		return ret
+	}
+	return *o.Y
+}
+
+// GetYOk returns a tuple with the Y field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelSwitch) GetYOk() (*float32, bool) {
+	if o == nil || IsNil(o.Y) {
+		return nil, false
+	}
+	return o.Y, true
+}
+
+// HasY returns a boolean if a field has been set.
+func (o *ModelSwitch) HasY() bool {
+	if o != nil && !IsNil(o.Y) {
+		return true
+	}
+
+	return false
+}
+
+// SetY gets a reference to the given float32 and assigns it to the Y field.
+func (o *ModelSwitch) SetY(v float32) {
+	o.Y = &v
+}
+
 func (o ModelSwitch) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1689,6 +1824,9 @@ func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Managed) {
 		toSerialize["managed"] = o.Managed
 	}
+	if !IsNil(o.MapId) {
+		toSerialize["map_id"] = o.MapId
+	}
 	if !IsNil(o.MistNac) {
 		toSerialize["mist_nac"] = o.MistNac
 	}
@@ -1724,6 +1862,9 @@ func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PortMirroring) {
 		toSerialize["port_mirroring"] = o.PortMirroring
+	}
+	if !IsNil(o.PortMirrorings) {
+		toSerialize["port_mirrorings"] = o.PortMirrorings
 	}
 	if !IsNil(o.PortUsages) {
 		toSerialize["port_usages"] = o.PortUsages
@@ -1770,6 +1911,12 @@ func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VrrpConfig) {
 		toSerialize["vrrp_config"] = o.VrrpConfig
 	}
+	if !IsNil(o.X) {
+		toSerialize["x"] = o.X
+	}
+	if !IsNil(o.Y) {
+		toSerialize["y"] = o.Y
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1811,6 +1958,7 @@ func (o *ModelSwitch) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "image3_url")
 		delete(additionalProperties, "ip_config")
 		delete(additionalProperties, "managed")
+		delete(additionalProperties, "map_id")
 		delete(additionalProperties, "mist_nac")
 		delete(additionalProperties, "modified_time")
 		delete(additionalProperties, "name")
@@ -1823,6 +1971,7 @@ func (o *ModelSwitch) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "other_ip_configs")
 		delete(additionalProperties, "port_config")
 		delete(additionalProperties, "port_mirroring")
+		delete(additionalProperties, "port_mirrorings")
 		delete(additionalProperties, "port_usages")
 		delete(additionalProperties, "radius_config")
 		delete(additionalProperties, "remote_syslog")
@@ -1838,6 +1987,8 @@ func (o *ModelSwitch) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vrf_config")
 		delete(additionalProperties, "vrf_instances")
 		delete(additionalProperties, "vrrp_config")
+		delete(additionalProperties, "x")
+		delete(additionalProperties, "y")
 		o.AdditionalProperties = additionalProperties
 	}
 

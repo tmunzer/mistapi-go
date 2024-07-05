@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **Image3Url** | Pointer to **NullableString** |  | [optional] 
 **IpConfig** | Pointer to [**JunosIpConfig**](JunosIpConfig.md) |  | [optional] 
 **Managed** | Pointer to **bool** | for an adopted switch, we don’t overwrite their existing configs automatically | [optional] [default to false]
+**MapId** | Pointer to **string** | map where the device belongs to | [optional] 
 **MistNac** | Pointer to [**SwitchMistNac**](SwitchMistNac.md) |  | [optional] 
 **ModifiedTime** | Pointer to **float32** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
@@ -35,6 +36,7 @@ Name | Type | Description | Notes
 **OtherIpConfigs** | Pointer to [**map[string]JunosOtherIpConfigs**](JunosOtherIpConfigs.md) | Property key is the network name | [optional] 
 **PortConfig** | Pointer to [**map[string]JunosPortConfig**](JunosPortConfig.md) | Property key is the port name or range (e.g. \&quot;ge-0/0/0-10\&quot;) | [optional] 
 **PortMirroring** | Pointer to [**map[string]SwitchPortMirroring**](SwitchPortMirroring.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
+**PortMirrorings** | Pointer to [**map[string]SwitchPortMirroring**](SwitchPortMirroring.md) |  | [optional] 
 **PortUsages** | Pointer to [**map[string]SwitchPortUsage**](SwitchPortUsage.md) |  | [optional] 
 **RadiusConfig** | Pointer to [**RadiusConfig**](RadiusConfig.md) |  | [optional] 
 **RemoteSyslog** | Pointer to [**RemoteSyslog**](RemoteSyslog.md) |  | [optional] 
@@ -50,6 +52,8 @@ Name | Type | Description | Notes
 **VrfConfig** | Pointer to [**VrfConfig**](VrfConfig.md) |  | [optional] 
 **VrfInstances** | Pointer to [**map[string]VrfInstance**](VrfInstance.md) | Property key is the network name | [optional] 
 **VrrpConfig** | Pointer to [**VrrpConfig**](VrrpConfig.md) |  | [optional] 
+**X** | Pointer to **float32** | x in pixel | [optional] 
+**Y** | Pointer to **float32** | y in pixel | [optional] 
 
 ## Methods
 
@@ -575,6 +579,31 @@ SetManaged sets Managed field to given value.
 
 HasManaged returns a boolean if a field has been set.
 
+### GetMapId
+
+`func (o *ModelSwitch) GetMapId() string`
+
+GetMapId returns the MapId field if non-nil, zero value otherwise.
+
+### GetMapIdOk
+
+`func (o *ModelSwitch) GetMapIdOk() (*string, bool)`
+
+GetMapIdOk returns a tuple with the MapId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMapId
+
+`func (o *ModelSwitch) SetMapId(v string)`
+
+SetMapId sets MapId field to given value.
+
+### HasMapId
+
+`func (o *ModelSwitch) HasMapId() bool`
+
+HasMapId returns a boolean if a field has been set.
+
 ### GetMistNac
 
 `func (o *ModelSwitch) GetMistNac() SwitchMistNac`
@@ -874,6 +903,31 @@ SetPortMirroring sets PortMirroring field to given value.
 `func (o *ModelSwitch) HasPortMirroring() bool`
 
 HasPortMirroring returns a boolean if a field has been set.
+
+### GetPortMirrorings
+
+`func (o *ModelSwitch) GetPortMirrorings() map[string]SwitchPortMirroring`
+
+GetPortMirrorings returns the PortMirrorings field if non-nil, zero value otherwise.
+
+### GetPortMirroringsOk
+
+`func (o *ModelSwitch) GetPortMirroringsOk() (*map[string]SwitchPortMirroring, bool)`
+
+GetPortMirroringsOk returns a tuple with the PortMirrorings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPortMirrorings
+
+`func (o *ModelSwitch) SetPortMirrorings(v map[string]SwitchPortMirroring)`
+
+SetPortMirrorings sets PortMirrorings field to given value.
+
+### HasPortMirrorings
+
+`func (o *ModelSwitch) HasPortMirrorings() bool`
+
+HasPortMirrorings returns a boolean if a field has been set.
 
 ### GetPortUsages
 
@@ -1249,6 +1303,56 @@ SetVrrpConfig sets VrrpConfig field to given value.
 `func (o *ModelSwitch) HasVrrpConfig() bool`
 
 HasVrrpConfig returns a boolean if a field has been set.
+
+### GetX
+
+`func (o *ModelSwitch) GetX() float32`
+
+GetX returns the X field if non-nil, zero value otherwise.
+
+### GetXOk
+
+`func (o *ModelSwitch) GetXOk() (*float32, bool)`
+
+GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetX
+
+`func (o *ModelSwitch) SetX(v float32)`
+
+SetX sets X field to given value.
+
+### HasX
+
+`func (o *ModelSwitch) HasX() bool`
+
+HasX returns a boolean if a field has been set.
+
+### GetY
+
+`func (o *ModelSwitch) GetY() float32`
+
+GetY returns the Y field if non-nil, zero value otherwise.
+
+### GetYOk
+
+`func (o *ModelSwitch) GetYOk() (*float32, bool)`
+
+GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetY
+
+`func (o *ModelSwitch) SetY(v float32)`
+
+SetY sets Y field to given value.
+
+### HasY
+
+`func (o *ModelSwitch) HasY() bool`
+
+HasY returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Image3Url** | Pointer to **string** |  | [optional] 
 **IpConfig** | Pointer to [**map[string]GatewayTemplateIpConfig**](GatewayTemplateIpConfig.md) | Property key is the network name | [optional] 
 **Managed** | Pointer to **bool** |  | [optional] 
+**MapId** | Pointer to **string** | map where the device belongs to | [optional] 
 **ModifiedTime** | Pointer to **float32** |  | [optional] [readonly] 
 **MspId** | Pointer to **string** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
@@ -27,6 +28,8 @@ Name | Type | Description | Notes
 **PortMirroring** | Pointer to [**GatewayPortMirroring**](GatewayPortMirroring.md) |  | [optional] 
 **SiteId** | Pointer to **string** |  | [optional] [readonly] 
 **Vars** | Pointer to **map[string]string** | a dictionary of name-&gt;value, the vars can then be used in Wlans. This can overwrite those from Site Vars | [optional] 
+**X** | Pointer to **float32** | x in pixel | [optional] 
+**Y** | Pointer to **float32** | y in pixel | [optional] 
 
 ## Methods
 
@@ -347,6 +350,31 @@ SetManaged sets Managed field to given value.
 
 HasManaged returns a boolean if a field has been set.
 
+### GetMapId
+
+`func (o *Gateway) GetMapId() string`
+
+GetMapId returns the MapId field if non-nil, zero value otherwise.
+
+### GetMapIdOk
+
+`func (o *Gateway) GetMapIdOk() (*string, bool)`
+
+GetMapIdOk returns a tuple with the MapId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMapId
+
+`func (o *Gateway) SetMapId(v string)`
+
+SetMapId sets MapId field to given value.
+
+### HasMapId
+
+`func (o *Gateway) HasMapId() bool`
+
+HasMapId returns a boolean if a field has been set.
+
 ### GetModifiedTime
 
 `func (o *Gateway) GetModifiedTime() float32`
@@ -621,6 +649,56 @@ SetVars sets Vars field to given value.
 `func (o *Gateway) HasVars() bool`
 
 HasVars returns a boolean if a field has been set.
+
+### GetX
+
+`func (o *Gateway) GetX() float32`
+
+GetX returns the X field if non-nil, zero value otherwise.
+
+### GetXOk
+
+`func (o *Gateway) GetXOk() (*float32, bool)`
+
+GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetX
+
+`func (o *Gateway) SetX(v float32)`
+
+SetX sets X field to given value.
+
+### HasX
+
+`func (o *Gateway) HasX() bool`
+
+HasX returns a boolean if a field has been set.
+
+### GetY
+
+`func (o *Gateway) GetY() float32`
+
+GetY returns the Y field if non-nil, zero value otherwise.
+
+### GetYOk
+
+`func (o *Gateway) GetYOk() (*float32, bool)`
+
+GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetY
+
+`func (o *Gateway) SetY(v float32)`
+
+SetY sets Y field to given value.
+
+### HasY
+
+`func (o *Gateway) HasY() bool`
+
+HasY returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

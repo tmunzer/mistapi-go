@@ -34,6 +34,8 @@ type Gateway struct {
 	// Property key is the network name
 	IpConfig *map[string]GatewayTemplateIpConfig `json:"ip_config,omitempty"`
 	Managed *bool `json:"managed,omitempty"`
+	// map where the device belongs to
+	MapId *string `json:"map_id,omitempty"`
 	ModifiedTime *float32 `json:"modified_time,omitempty"`
 	MspId *string `json:"msp_id,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -48,6 +50,10 @@ type Gateway struct {
 	SiteId *string `json:"site_id,omitempty"`
 	// a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
 	Vars *map[string]string `json:"vars,omitempty"`
+	// x in pixel
+	X *float32 `json:"x,omitempty"`
+	// y in pixel
+	Y *float32 `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -454,6 +460,38 @@ func (o *Gateway) SetManaged(v bool) {
 	o.Managed = &v
 }
 
+// GetMapId returns the MapId field value if set, zero value otherwise.
+func (o *Gateway) GetMapId() string {
+	if o == nil || IsNil(o.MapId) {
+		var ret string
+		return ret
+	}
+	return *o.MapId
+}
+
+// GetMapIdOk returns a tuple with the MapId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Gateway) GetMapIdOk() (*string, bool) {
+	if o == nil || IsNil(o.MapId) {
+		return nil, false
+	}
+	return o.MapId, true
+}
+
+// HasMapId returns a boolean if a field has been set.
+func (o *Gateway) HasMapId() bool {
+	if o != nil && !IsNil(o.MapId) {
+		return true
+	}
+
+	return false
+}
+
+// SetMapId gets a reference to the given string and assigns it to the MapId field.
+func (o *Gateway) SetMapId(v string) {
+	o.MapId = &v
+}
+
 // GetModifiedTime returns the ModifiedTime field value if set, zero value otherwise.
 func (o *Gateway) GetModifiedTime() float32 {
 	if o == nil || IsNil(o.ModifiedTime) {
@@ -806,6 +844,70 @@ func (o *Gateway) SetVars(v map[string]string) {
 	o.Vars = &v
 }
 
+// GetX returns the X field value if set, zero value otherwise.
+func (o *Gateway) GetX() float32 {
+	if o == nil || IsNil(o.X) {
+		var ret float32
+		return ret
+	}
+	return *o.X
+}
+
+// GetXOk returns a tuple with the X field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Gateway) GetXOk() (*float32, bool) {
+	if o == nil || IsNil(o.X) {
+		return nil, false
+	}
+	return o.X, true
+}
+
+// HasX returns a boolean if a field has been set.
+func (o *Gateway) HasX() bool {
+	if o != nil && !IsNil(o.X) {
+		return true
+	}
+
+	return false
+}
+
+// SetX gets a reference to the given float32 and assigns it to the X field.
+func (o *Gateway) SetX(v float32) {
+	o.X = &v
+}
+
+// GetY returns the Y field value if set, zero value otherwise.
+func (o *Gateway) GetY() float32 {
+	if o == nil || IsNil(o.Y) {
+		var ret float32
+		return ret
+	}
+	return *o.Y
+}
+
+// GetYOk returns a tuple with the Y field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Gateway) GetYOk() (*float32, bool) {
+	if o == nil || IsNil(o.Y) {
+		return nil, false
+	}
+	return o.Y, true
+}
+
+// HasY returns a boolean if a field has been set.
+func (o *Gateway) HasY() bool {
+	if o != nil && !IsNil(o.Y) {
+		return true
+	}
+
+	return false
+}
+
+// SetY gets a reference to the given float32 and assigns it to the Y field.
+func (o *Gateway) SetY(v float32) {
+	o.Y = &v
+}
+
 func (o Gateway) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -852,6 +954,9 @@ func (o Gateway) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Managed) {
 		toSerialize["managed"] = o.Managed
 	}
+	if !IsNil(o.MapId) {
+		toSerialize["map_id"] = o.MapId
+	}
 	if !IsNil(o.ModifiedTime) {
 		toSerialize["modified_time"] = o.ModifiedTime
 	}
@@ -884,6 +989,12 @@ func (o Gateway) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Vars) {
 		toSerialize["vars"] = o.Vars
+	}
+	if !IsNil(o.X) {
+		toSerialize["x"] = o.X
+	}
+	if !IsNil(o.Y) {
+		toSerialize["y"] = o.Y
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -919,6 +1030,7 @@ func (o *Gateway) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "image3_url")
 		delete(additionalProperties, "ip_config")
 		delete(additionalProperties, "managed")
+		delete(additionalProperties, "map_id")
 		delete(additionalProperties, "modified_time")
 		delete(additionalProperties, "msp_id")
 		delete(additionalProperties, "name")
@@ -930,6 +1042,8 @@ func (o *Gateway) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "port_mirroring")
 		delete(additionalProperties, "site_id")
 		delete(additionalProperties, "vars")
+		delete(additionalProperties, "x")
+		delete(additionalProperties, "y")
 		o.AdditionalProperties = additionalProperties
 	}
 
