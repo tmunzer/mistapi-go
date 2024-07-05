@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the ModelSwitch type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ModelSwitch{}
+// checks if the DeviceSwitch type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceSwitch{}
 
-// ModelSwitch Switch Configuration. You can configure `port_usages` and `networks` settings at the device level, but most of the time it's better use the Site Setting to achieve better consistency and be able to re-use the same settings across switches entries defined here will \"replace\" those defined in Site Setting/Network Template
-type ModelSwitch struct {
+// DeviceSwitch Switch Configuration. You can configure `port_usages` and `networks` settings at the device level, but most of the time it's better use the Site Setting to achieve better consistency and be able to re-use the same settings across switches entries defined here will \"replace\" those defined in Site Setting/Network Template
+type DeviceSwitch struct {
 	AclPolicies []AclPolicy `json:"acl_policies,omitempty"`
 	// ACL Tags to identify traffic source or destination. Key name is the tag name
 	AclTags *map[string]AclTag `json:"acl_tags,omitempty"`
@@ -85,20 +85,20 @@ type ModelSwitch struct {
 	VrfInstances *map[string]VrfInstance `json:"vrf_instances,omitempty"`
 	VrrpConfig *VrrpConfig `json:"vrrp_config,omitempty"`
 	// x in pixel
-	X *float32 `json:"x,omitempty"`
+	X *float64 `json:"x,omitempty"`
 	// y in pixel
-	Y *float32 `json:"y,omitempty"`
+	Y *float64 `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ModelSwitch ModelSwitch
+type _DeviceSwitch DeviceSwitch
 
-// NewModelSwitch instantiates a new ModelSwitch object
+// NewDeviceSwitch instantiates a new DeviceSwitch object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewModelSwitch() *ModelSwitch {
-	this := ModelSwitch{}
+func NewDeviceSwitch() *DeviceSwitch {
+	this := DeviceSwitch{}
 	var disableAutoConfig bool = false
 	this.DisableAutoConfig = &disableAutoConfig
 	var managed bool = false
@@ -108,11 +108,11 @@ func NewModelSwitch() *ModelSwitch {
 	return &this
 }
 
-// NewModelSwitchWithDefaults instantiates a new ModelSwitch object
+// NewDeviceSwitchWithDefaults instantiates a new DeviceSwitch object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewModelSwitchWithDefaults() *ModelSwitch {
-	this := ModelSwitch{}
+func NewDeviceSwitchWithDefaults() *DeviceSwitch {
+	this := DeviceSwitch{}
 	var disableAutoConfig bool = false
 	this.DisableAutoConfig = &disableAutoConfig
 	var managed bool = false
@@ -123,7 +123,7 @@ func NewModelSwitchWithDefaults() *ModelSwitch {
 }
 
 // GetAclPolicies returns the AclPolicies field value if set, zero value otherwise.
-func (o *ModelSwitch) GetAclPolicies() []AclPolicy {
+func (o *DeviceSwitch) GetAclPolicies() []AclPolicy {
 	if o == nil || IsNil(o.AclPolicies) {
 		var ret []AclPolicy
 		return ret
@@ -133,7 +133,7 @@ func (o *ModelSwitch) GetAclPolicies() []AclPolicy {
 
 // GetAclPoliciesOk returns a tuple with the AclPolicies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetAclPoliciesOk() ([]AclPolicy, bool) {
+func (o *DeviceSwitch) GetAclPoliciesOk() ([]AclPolicy, bool) {
 	if o == nil || IsNil(o.AclPolicies) {
 		return nil, false
 	}
@@ -141,7 +141,7 @@ func (o *ModelSwitch) GetAclPoliciesOk() ([]AclPolicy, bool) {
 }
 
 // HasAclPolicies returns a boolean if a field has been set.
-func (o *ModelSwitch) HasAclPolicies() bool {
+func (o *DeviceSwitch) HasAclPolicies() bool {
 	if o != nil && !IsNil(o.AclPolicies) {
 		return true
 	}
@@ -150,12 +150,12 @@ func (o *ModelSwitch) HasAclPolicies() bool {
 }
 
 // SetAclPolicies gets a reference to the given []AclPolicy and assigns it to the AclPolicies field.
-func (o *ModelSwitch) SetAclPolicies(v []AclPolicy) {
+func (o *DeviceSwitch) SetAclPolicies(v []AclPolicy) {
 	o.AclPolicies = v
 }
 
 // GetAclTags returns the AclTags field value if set, zero value otherwise.
-func (o *ModelSwitch) GetAclTags() map[string]AclTag {
+func (o *DeviceSwitch) GetAclTags() map[string]AclTag {
 	if o == nil || IsNil(o.AclTags) {
 		var ret map[string]AclTag
 		return ret
@@ -165,7 +165,7 @@ func (o *ModelSwitch) GetAclTags() map[string]AclTag {
 
 // GetAclTagsOk returns a tuple with the AclTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetAclTagsOk() (*map[string]AclTag, bool) {
+func (o *DeviceSwitch) GetAclTagsOk() (*map[string]AclTag, bool) {
 	if o == nil || IsNil(o.AclTags) {
 		return nil, false
 	}
@@ -173,7 +173,7 @@ func (o *ModelSwitch) GetAclTagsOk() (*map[string]AclTag, bool) {
 }
 
 // HasAclTags returns a boolean if a field has been set.
-func (o *ModelSwitch) HasAclTags() bool {
+func (o *DeviceSwitch) HasAclTags() bool {
 	if o != nil && !IsNil(o.AclTags) {
 		return true
 	}
@@ -182,12 +182,12 @@ func (o *ModelSwitch) HasAclTags() bool {
 }
 
 // SetAclTags gets a reference to the given map[string]AclTag and assigns it to the AclTags field.
-func (o *ModelSwitch) SetAclTags(v map[string]AclTag) {
+func (o *DeviceSwitch) SetAclTags(v map[string]AclTag) {
 	o.AclTags = &v
 }
 
 // GetAdditionalConfigCmds returns the AdditionalConfigCmds field value if set, zero value otherwise.
-func (o *ModelSwitch) GetAdditionalConfigCmds() []string {
+func (o *DeviceSwitch) GetAdditionalConfigCmds() []string {
 	if o == nil || IsNil(o.AdditionalConfigCmds) {
 		var ret []string
 		return ret
@@ -197,7 +197,7 @@ func (o *ModelSwitch) GetAdditionalConfigCmds() []string {
 
 // GetAdditionalConfigCmdsOk returns a tuple with the AdditionalConfigCmds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetAdditionalConfigCmdsOk() ([]string, bool) {
+func (o *DeviceSwitch) GetAdditionalConfigCmdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.AdditionalConfigCmds) {
 		return nil, false
 	}
@@ -205,7 +205,7 @@ func (o *ModelSwitch) GetAdditionalConfigCmdsOk() ([]string, bool) {
 }
 
 // HasAdditionalConfigCmds returns a boolean if a field has been set.
-func (o *ModelSwitch) HasAdditionalConfigCmds() bool {
+func (o *DeviceSwitch) HasAdditionalConfigCmds() bool {
 	if o != nil && !IsNil(o.AdditionalConfigCmds) {
 		return true
 	}
@@ -214,12 +214,12 @@ func (o *ModelSwitch) HasAdditionalConfigCmds() bool {
 }
 
 // SetAdditionalConfigCmds gets a reference to the given []string and assigns it to the AdditionalConfigCmds field.
-func (o *ModelSwitch) SetAdditionalConfigCmds(v []string) {
+func (o *DeviceSwitch) SetAdditionalConfigCmds(v []string) {
 	o.AdditionalConfigCmds = v
 }
 
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise.
-func (o *ModelSwitch) GetCreatedTime() float32 {
+func (o *DeviceSwitch) GetCreatedTime() float32 {
 	if o == nil || IsNil(o.CreatedTime) {
 		var ret float32
 		return ret
@@ -229,7 +229,7 @@ func (o *ModelSwitch) GetCreatedTime() float32 {
 
 // GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetCreatedTimeOk() (*float32, bool) {
+func (o *DeviceSwitch) GetCreatedTimeOk() (*float32, bool) {
 	if o == nil || IsNil(o.CreatedTime) {
 		return nil, false
 	}
@@ -237,7 +237,7 @@ func (o *ModelSwitch) GetCreatedTimeOk() (*float32, bool) {
 }
 
 // HasCreatedTime returns a boolean if a field has been set.
-func (o *ModelSwitch) HasCreatedTime() bool {
+func (o *DeviceSwitch) HasCreatedTime() bool {
 	if o != nil && !IsNil(o.CreatedTime) {
 		return true
 	}
@@ -246,12 +246,12 @@ func (o *ModelSwitch) HasCreatedTime() bool {
 }
 
 // SetCreatedTime gets a reference to the given float32 and assigns it to the CreatedTime field.
-func (o *ModelSwitch) SetCreatedTime(v float32) {
+func (o *DeviceSwitch) SetCreatedTime(v float32) {
 	o.CreatedTime = &v
 }
 
 // GetDeviceprofileId returns the DeviceprofileId field value if set, zero value otherwise.
-func (o *ModelSwitch) GetDeviceprofileId() string {
+func (o *DeviceSwitch) GetDeviceprofileId() string {
 	if o == nil || IsNil(o.DeviceprofileId) {
 		var ret string
 		return ret
@@ -261,7 +261,7 @@ func (o *ModelSwitch) GetDeviceprofileId() string {
 
 // GetDeviceprofileIdOk returns a tuple with the DeviceprofileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetDeviceprofileIdOk() (*string, bool) {
+func (o *DeviceSwitch) GetDeviceprofileIdOk() (*string, bool) {
 	if o == nil || IsNil(o.DeviceprofileId) {
 		return nil, false
 	}
@@ -269,7 +269,7 @@ func (o *ModelSwitch) GetDeviceprofileIdOk() (*string, bool) {
 }
 
 // HasDeviceprofileId returns a boolean if a field has been set.
-func (o *ModelSwitch) HasDeviceprofileId() bool {
+func (o *DeviceSwitch) HasDeviceprofileId() bool {
 	if o != nil && !IsNil(o.DeviceprofileId) {
 		return true
 	}
@@ -278,12 +278,12 @@ func (o *ModelSwitch) HasDeviceprofileId() bool {
 }
 
 // SetDeviceprofileId gets a reference to the given string and assigns it to the DeviceprofileId field.
-func (o *ModelSwitch) SetDeviceprofileId(v string) {
+func (o *DeviceSwitch) SetDeviceprofileId(v string) {
 	o.DeviceprofileId = &v
 }
 
 // GetDhcpSnooping returns the DhcpSnooping field value if set, zero value otherwise.
-func (o *ModelSwitch) GetDhcpSnooping() DhcpSnooping {
+func (o *DeviceSwitch) GetDhcpSnooping() DhcpSnooping {
 	if o == nil || IsNil(o.DhcpSnooping) {
 		var ret DhcpSnooping
 		return ret
@@ -293,7 +293,7 @@ func (o *ModelSwitch) GetDhcpSnooping() DhcpSnooping {
 
 // GetDhcpSnoopingOk returns a tuple with the DhcpSnooping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetDhcpSnoopingOk() (*DhcpSnooping, bool) {
+func (o *DeviceSwitch) GetDhcpSnoopingOk() (*DhcpSnooping, bool) {
 	if o == nil || IsNil(o.DhcpSnooping) {
 		return nil, false
 	}
@@ -301,7 +301,7 @@ func (o *ModelSwitch) GetDhcpSnoopingOk() (*DhcpSnooping, bool) {
 }
 
 // HasDhcpSnooping returns a boolean if a field has been set.
-func (o *ModelSwitch) HasDhcpSnooping() bool {
+func (o *DeviceSwitch) HasDhcpSnooping() bool {
 	if o != nil && !IsNil(o.DhcpSnooping) {
 		return true
 	}
@@ -310,12 +310,12 @@ func (o *ModelSwitch) HasDhcpSnooping() bool {
 }
 
 // SetDhcpSnooping gets a reference to the given DhcpSnooping and assigns it to the DhcpSnooping field.
-func (o *ModelSwitch) SetDhcpSnooping(v DhcpSnooping) {
+func (o *DeviceSwitch) SetDhcpSnooping(v DhcpSnooping) {
 	o.DhcpSnooping = &v
 }
 
 // GetDhcpdConfig returns the DhcpdConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetDhcpdConfig() DhcpdConfigs {
+func (o *DeviceSwitch) GetDhcpdConfig() DhcpdConfigs {
 	if o == nil || IsNil(o.DhcpdConfig) {
 		var ret DhcpdConfigs
 		return ret
@@ -325,7 +325,7 @@ func (o *ModelSwitch) GetDhcpdConfig() DhcpdConfigs {
 
 // GetDhcpdConfigOk returns a tuple with the DhcpdConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetDhcpdConfigOk() (*DhcpdConfigs, bool) {
+func (o *DeviceSwitch) GetDhcpdConfigOk() (*DhcpdConfigs, bool) {
 	if o == nil || IsNil(o.DhcpdConfig) {
 		return nil, false
 	}
@@ -333,7 +333,7 @@ func (o *ModelSwitch) GetDhcpdConfigOk() (*DhcpdConfigs, bool) {
 }
 
 // HasDhcpdConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasDhcpdConfig() bool {
+func (o *DeviceSwitch) HasDhcpdConfig() bool {
 	if o != nil && !IsNil(o.DhcpdConfig) {
 		return true
 	}
@@ -342,12 +342,12 @@ func (o *ModelSwitch) HasDhcpdConfig() bool {
 }
 
 // SetDhcpdConfig gets a reference to the given DhcpdConfigs and assigns it to the DhcpdConfig field.
-func (o *ModelSwitch) SetDhcpdConfig(v DhcpdConfigs) {
+func (o *DeviceSwitch) SetDhcpdConfig(v DhcpdConfigs) {
 	o.DhcpdConfig = &v
 }
 
 // GetDisableAutoConfig returns the DisableAutoConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetDisableAutoConfig() bool {
+func (o *DeviceSwitch) GetDisableAutoConfig() bool {
 	if o == nil || IsNil(o.DisableAutoConfig) {
 		var ret bool
 		return ret
@@ -357,7 +357,7 @@ func (o *ModelSwitch) GetDisableAutoConfig() bool {
 
 // GetDisableAutoConfigOk returns a tuple with the DisableAutoConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetDisableAutoConfigOk() (*bool, bool) {
+func (o *DeviceSwitch) GetDisableAutoConfigOk() (*bool, bool) {
 	if o == nil || IsNil(o.DisableAutoConfig) {
 		return nil, false
 	}
@@ -365,7 +365,7 @@ func (o *ModelSwitch) GetDisableAutoConfigOk() (*bool, bool) {
 }
 
 // HasDisableAutoConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasDisableAutoConfig() bool {
+func (o *DeviceSwitch) HasDisableAutoConfig() bool {
 	if o != nil && !IsNil(o.DisableAutoConfig) {
 		return true
 	}
@@ -374,12 +374,12 @@ func (o *ModelSwitch) HasDisableAutoConfig() bool {
 }
 
 // SetDisableAutoConfig gets a reference to the given bool and assigns it to the DisableAutoConfig field.
-func (o *ModelSwitch) SetDisableAutoConfig(v bool) {
+func (o *DeviceSwitch) SetDisableAutoConfig(v bool) {
 	o.DisableAutoConfig = &v
 }
 
 // GetDnsServers returns the DnsServers field value if set, zero value otherwise.
-func (o *ModelSwitch) GetDnsServers() []string {
+func (o *DeviceSwitch) GetDnsServers() []string {
 	if o == nil || IsNil(o.DnsServers) {
 		var ret []string
 		return ret
@@ -389,7 +389,7 @@ func (o *ModelSwitch) GetDnsServers() []string {
 
 // GetDnsServersOk returns a tuple with the DnsServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetDnsServersOk() ([]string, bool) {
+func (o *DeviceSwitch) GetDnsServersOk() ([]string, bool) {
 	if o == nil || IsNil(o.DnsServers) {
 		return nil, false
 	}
@@ -397,7 +397,7 @@ func (o *ModelSwitch) GetDnsServersOk() ([]string, bool) {
 }
 
 // HasDnsServers returns a boolean if a field has been set.
-func (o *ModelSwitch) HasDnsServers() bool {
+func (o *DeviceSwitch) HasDnsServers() bool {
 	if o != nil && !IsNil(o.DnsServers) {
 		return true
 	}
@@ -406,12 +406,12 @@ func (o *ModelSwitch) HasDnsServers() bool {
 }
 
 // SetDnsServers gets a reference to the given []string and assigns it to the DnsServers field.
-func (o *ModelSwitch) SetDnsServers(v []string) {
+func (o *DeviceSwitch) SetDnsServers(v []string) {
 	o.DnsServers = v
 }
 
 // GetDnsSuffix returns the DnsSuffix field value if set, zero value otherwise.
-func (o *ModelSwitch) GetDnsSuffix() []string {
+func (o *DeviceSwitch) GetDnsSuffix() []string {
 	if o == nil || IsNil(o.DnsSuffix) {
 		var ret []string
 		return ret
@@ -421,7 +421,7 @@ func (o *ModelSwitch) GetDnsSuffix() []string {
 
 // GetDnsSuffixOk returns a tuple with the DnsSuffix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetDnsSuffixOk() ([]string, bool) {
+func (o *DeviceSwitch) GetDnsSuffixOk() ([]string, bool) {
 	if o == nil || IsNil(o.DnsSuffix) {
 		return nil, false
 	}
@@ -429,7 +429,7 @@ func (o *ModelSwitch) GetDnsSuffixOk() ([]string, bool) {
 }
 
 // HasDnsSuffix returns a boolean if a field has been set.
-func (o *ModelSwitch) HasDnsSuffix() bool {
+func (o *DeviceSwitch) HasDnsSuffix() bool {
 	if o != nil && !IsNil(o.DnsSuffix) {
 		return true
 	}
@@ -438,12 +438,12 @@ func (o *ModelSwitch) HasDnsSuffix() bool {
 }
 
 // SetDnsSuffix gets a reference to the given []string and assigns it to the DnsSuffix field.
-func (o *ModelSwitch) SetDnsSuffix(v []string) {
+func (o *DeviceSwitch) SetDnsSuffix(v []string) {
 	o.DnsSuffix = v
 }
 
 // GetEvpnConfig returns the EvpnConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetEvpnConfig() EvpnConfig {
+func (o *DeviceSwitch) GetEvpnConfig() EvpnConfig {
 	if o == nil || IsNil(o.EvpnConfig) {
 		var ret EvpnConfig
 		return ret
@@ -453,7 +453,7 @@ func (o *ModelSwitch) GetEvpnConfig() EvpnConfig {
 
 // GetEvpnConfigOk returns a tuple with the EvpnConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetEvpnConfigOk() (*EvpnConfig, bool) {
+func (o *DeviceSwitch) GetEvpnConfigOk() (*EvpnConfig, bool) {
 	if o == nil || IsNil(o.EvpnConfig) {
 		return nil, false
 	}
@@ -461,7 +461,7 @@ func (o *ModelSwitch) GetEvpnConfigOk() (*EvpnConfig, bool) {
 }
 
 // HasEvpnConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasEvpnConfig() bool {
+func (o *DeviceSwitch) HasEvpnConfig() bool {
 	if o != nil && !IsNil(o.EvpnConfig) {
 		return true
 	}
@@ -470,12 +470,12 @@ func (o *ModelSwitch) HasEvpnConfig() bool {
 }
 
 // SetEvpnConfig gets a reference to the given EvpnConfig and assigns it to the EvpnConfig field.
-func (o *ModelSwitch) SetEvpnConfig(v EvpnConfig) {
+func (o *DeviceSwitch) SetEvpnConfig(v EvpnConfig) {
 	o.EvpnConfig = &v
 }
 
 // GetExtraRoutes returns the ExtraRoutes field value if set, zero value otherwise.
-func (o *ModelSwitch) GetExtraRoutes() map[string]ExtraRouteProperties {
+func (o *DeviceSwitch) GetExtraRoutes() map[string]ExtraRouteProperties {
 	if o == nil || IsNil(o.ExtraRoutes) {
 		var ret map[string]ExtraRouteProperties
 		return ret
@@ -485,7 +485,7 @@ func (o *ModelSwitch) GetExtraRoutes() map[string]ExtraRouteProperties {
 
 // GetExtraRoutesOk returns a tuple with the ExtraRoutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetExtraRoutesOk() (*map[string]ExtraRouteProperties, bool) {
+func (o *DeviceSwitch) GetExtraRoutesOk() (*map[string]ExtraRouteProperties, bool) {
 	if o == nil || IsNil(o.ExtraRoutes) {
 		return nil, false
 	}
@@ -493,7 +493,7 @@ func (o *ModelSwitch) GetExtraRoutesOk() (*map[string]ExtraRouteProperties, bool
 }
 
 // HasExtraRoutes returns a boolean if a field has been set.
-func (o *ModelSwitch) HasExtraRoutes() bool {
+func (o *DeviceSwitch) HasExtraRoutes() bool {
 	if o != nil && !IsNil(o.ExtraRoutes) {
 		return true
 	}
@@ -502,12 +502,12 @@ func (o *ModelSwitch) HasExtraRoutes() bool {
 }
 
 // SetExtraRoutes gets a reference to the given map[string]ExtraRouteProperties and assigns it to the ExtraRoutes field.
-func (o *ModelSwitch) SetExtraRoutes(v map[string]ExtraRouteProperties) {
+func (o *DeviceSwitch) SetExtraRoutes(v map[string]ExtraRouteProperties) {
 	o.ExtraRoutes = &v
 }
 
 // GetExtraRoutes6 returns the ExtraRoutes6 field value if set, zero value otherwise.
-func (o *ModelSwitch) GetExtraRoutes6() map[string]ExtraRoute6Properties {
+func (o *DeviceSwitch) GetExtraRoutes6() map[string]ExtraRoute6Properties {
 	if o == nil || IsNil(o.ExtraRoutes6) {
 		var ret map[string]ExtraRoute6Properties
 		return ret
@@ -517,7 +517,7 @@ func (o *ModelSwitch) GetExtraRoutes6() map[string]ExtraRoute6Properties {
 
 // GetExtraRoutes6Ok returns a tuple with the ExtraRoutes6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetExtraRoutes6Ok() (*map[string]ExtraRoute6Properties, bool) {
+func (o *DeviceSwitch) GetExtraRoutes6Ok() (*map[string]ExtraRoute6Properties, bool) {
 	if o == nil || IsNil(o.ExtraRoutes6) {
 		return nil, false
 	}
@@ -525,7 +525,7 @@ func (o *ModelSwitch) GetExtraRoutes6Ok() (*map[string]ExtraRoute6Properties, bo
 }
 
 // HasExtraRoutes6 returns a boolean if a field has been set.
-func (o *ModelSwitch) HasExtraRoutes6() bool {
+func (o *DeviceSwitch) HasExtraRoutes6() bool {
 	if o != nil && !IsNil(o.ExtraRoutes6) {
 		return true
 	}
@@ -534,12 +534,12 @@ func (o *ModelSwitch) HasExtraRoutes6() bool {
 }
 
 // SetExtraRoutes6 gets a reference to the given map[string]ExtraRoute6Properties and assigns it to the ExtraRoutes6 field.
-func (o *ModelSwitch) SetExtraRoutes6(v map[string]ExtraRoute6Properties) {
+func (o *DeviceSwitch) SetExtraRoutes6(v map[string]ExtraRoute6Properties) {
 	o.ExtraRoutes6 = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ModelSwitch) GetId() string {
+func (o *DeviceSwitch) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -549,7 +549,7 @@ func (o *ModelSwitch) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetIdOk() (*string, bool) {
+func (o *DeviceSwitch) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -557,7 +557,7 @@ func (o *ModelSwitch) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *ModelSwitch) HasId() bool {
+func (o *DeviceSwitch) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -566,12 +566,12 @@ func (o *ModelSwitch) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ModelSwitch) SetId(v string) {
+func (o *DeviceSwitch) SetId(v string) {
 	o.Id = &v
 }
 
 // GetImage1Url returns the Image1Url field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ModelSwitch) GetImage1Url() string {
+func (o *DeviceSwitch) GetImage1Url() string {
 	if o == nil || IsNil(o.Image1Url.Get()) {
 		var ret string
 		return ret
@@ -582,7 +582,7 @@ func (o *ModelSwitch) GetImage1Url() string {
 // GetImage1UrlOk returns a tuple with the Image1Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ModelSwitch) GetImage1UrlOk() (*string, bool) {
+func (o *DeviceSwitch) GetImage1UrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -590,7 +590,7 @@ func (o *ModelSwitch) GetImage1UrlOk() (*string, bool) {
 }
 
 // HasImage1Url returns a boolean if a field has been set.
-func (o *ModelSwitch) HasImage1Url() bool {
+func (o *DeviceSwitch) HasImage1Url() bool {
 	if o != nil && o.Image1Url.IsSet() {
 		return true
 	}
@@ -599,21 +599,21 @@ func (o *ModelSwitch) HasImage1Url() bool {
 }
 
 // SetImage1Url gets a reference to the given NullableString and assigns it to the Image1Url field.
-func (o *ModelSwitch) SetImage1Url(v string) {
+func (o *DeviceSwitch) SetImage1Url(v string) {
 	o.Image1Url.Set(&v)
 }
 // SetImage1UrlNil sets the value for Image1Url to be an explicit nil
-func (o *ModelSwitch) SetImage1UrlNil() {
+func (o *DeviceSwitch) SetImage1UrlNil() {
 	o.Image1Url.Set(nil)
 }
 
 // UnsetImage1Url ensures that no value is present for Image1Url, not even an explicit nil
-func (o *ModelSwitch) UnsetImage1Url() {
+func (o *DeviceSwitch) UnsetImage1Url() {
 	o.Image1Url.Unset()
 }
 
 // GetImage2Url returns the Image2Url field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ModelSwitch) GetImage2Url() string {
+func (o *DeviceSwitch) GetImage2Url() string {
 	if o == nil || IsNil(o.Image2Url.Get()) {
 		var ret string
 		return ret
@@ -624,7 +624,7 @@ func (o *ModelSwitch) GetImage2Url() string {
 // GetImage2UrlOk returns a tuple with the Image2Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ModelSwitch) GetImage2UrlOk() (*string, bool) {
+func (o *DeviceSwitch) GetImage2UrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -632,7 +632,7 @@ func (o *ModelSwitch) GetImage2UrlOk() (*string, bool) {
 }
 
 // HasImage2Url returns a boolean if a field has been set.
-func (o *ModelSwitch) HasImage2Url() bool {
+func (o *DeviceSwitch) HasImage2Url() bool {
 	if o != nil && o.Image2Url.IsSet() {
 		return true
 	}
@@ -641,21 +641,21 @@ func (o *ModelSwitch) HasImage2Url() bool {
 }
 
 // SetImage2Url gets a reference to the given NullableString and assigns it to the Image2Url field.
-func (o *ModelSwitch) SetImage2Url(v string) {
+func (o *DeviceSwitch) SetImage2Url(v string) {
 	o.Image2Url.Set(&v)
 }
 // SetImage2UrlNil sets the value for Image2Url to be an explicit nil
-func (o *ModelSwitch) SetImage2UrlNil() {
+func (o *DeviceSwitch) SetImage2UrlNil() {
 	o.Image2Url.Set(nil)
 }
 
 // UnsetImage2Url ensures that no value is present for Image2Url, not even an explicit nil
-func (o *ModelSwitch) UnsetImage2Url() {
+func (o *DeviceSwitch) UnsetImage2Url() {
 	o.Image2Url.Unset()
 }
 
 // GetImage3Url returns the Image3Url field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ModelSwitch) GetImage3Url() string {
+func (o *DeviceSwitch) GetImage3Url() string {
 	if o == nil || IsNil(o.Image3Url.Get()) {
 		var ret string
 		return ret
@@ -666,7 +666,7 @@ func (o *ModelSwitch) GetImage3Url() string {
 // GetImage3UrlOk returns a tuple with the Image3Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ModelSwitch) GetImage3UrlOk() (*string, bool) {
+func (o *DeviceSwitch) GetImage3UrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -674,7 +674,7 @@ func (o *ModelSwitch) GetImage3UrlOk() (*string, bool) {
 }
 
 // HasImage3Url returns a boolean if a field has been set.
-func (o *ModelSwitch) HasImage3Url() bool {
+func (o *DeviceSwitch) HasImage3Url() bool {
 	if o != nil && o.Image3Url.IsSet() {
 		return true
 	}
@@ -683,21 +683,21 @@ func (o *ModelSwitch) HasImage3Url() bool {
 }
 
 // SetImage3Url gets a reference to the given NullableString and assigns it to the Image3Url field.
-func (o *ModelSwitch) SetImage3Url(v string) {
+func (o *DeviceSwitch) SetImage3Url(v string) {
 	o.Image3Url.Set(&v)
 }
 // SetImage3UrlNil sets the value for Image3Url to be an explicit nil
-func (o *ModelSwitch) SetImage3UrlNil() {
+func (o *DeviceSwitch) SetImage3UrlNil() {
 	o.Image3Url.Set(nil)
 }
 
 // UnsetImage3Url ensures that no value is present for Image3Url, not even an explicit nil
-func (o *ModelSwitch) UnsetImage3Url() {
+func (o *DeviceSwitch) UnsetImage3Url() {
 	o.Image3Url.Unset()
 }
 
 // GetIpConfig returns the IpConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetIpConfig() JunosIpConfig {
+func (o *DeviceSwitch) GetIpConfig() JunosIpConfig {
 	if o == nil || IsNil(o.IpConfig) {
 		var ret JunosIpConfig
 		return ret
@@ -707,7 +707,7 @@ func (o *ModelSwitch) GetIpConfig() JunosIpConfig {
 
 // GetIpConfigOk returns a tuple with the IpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetIpConfigOk() (*JunosIpConfig, bool) {
+func (o *DeviceSwitch) GetIpConfigOk() (*JunosIpConfig, bool) {
 	if o == nil || IsNil(o.IpConfig) {
 		return nil, false
 	}
@@ -715,7 +715,7 @@ func (o *ModelSwitch) GetIpConfigOk() (*JunosIpConfig, bool) {
 }
 
 // HasIpConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasIpConfig() bool {
+func (o *DeviceSwitch) HasIpConfig() bool {
 	if o != nil && !IsNil(o.IpConfig) {
 		return true
 	}
@@ -724,12 +724,12 @@ func (o *ModelSwitch) HasIpConfig() bool {
 }
 
 // SetIpConfig gets a reference to the given JunosIpConfig and assigns it to the IpConfig field.
-func (o *ModelSwitch) SetIpConfig(v JunosIpConfig) {
+func (o *DeviceSwitch) SetIpConfig(v JunosIpConfig) {
 	o.IpConfig = &v
 }
 
 // GetManaged returns the Managed field value if set, zero value otherwise.
-func (o *ModelSwitch) GetManaged() bool {
+func (o *DeviceSwitch) GetManaged() bool {
 	if o == nil || IsNil(o.Managed) {
 		var ret bool
 		return ret
@@ -739,7 +739,7 @@ func (o *ModelSwitch) GetManaged() bool {
 
 // GetManagedOk returns a tuple with the Managed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetManagedOk() (*bool, bool) {
+func (o *DeviceSwitch) GetManagedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Managed) {
 		return nil, false
 	}
@@ -747,7 +747,7 @@ func (o *ModelSwitch) GetManagedOk() (*bool, bool) {
 }
 
 // HasManaged returns a boolean if a field has been set.
-func (o *ModelSwitch) HasManaged() bool {
+func (o *DeviceSwitch) HasManaged() bool {
 	if o != nil && !IsNil(o.Managed) {
 		return true
 	}
@@ -756,12 +756,12 @@ func (o *ModelSwitch) HasManaged() bool {
 }
 
 // SetManaged gets a reference to the given bool and assigns it to the Managed field.
-func (o *ModelSwitch) SetManaged(v bool) {
+func (o *DeviceSwitch) SetManaged(v bool) {
 	o.Managed = &v
 }
 
 // GetMapId returns the MapId field value if set, zero value otherwise.
-func (o *ModelSwitch) GetMapId() string {
+func (o *DeviceSwitch) GetMapId() string {
 	if o == nil || IsNil(o.MapId) {
 		var ret string
 		return ret
@@ -771,7 +771,7 @@ func (o *ModelSwitch) GetMapId() string {
 
 // GetMapIdOk returns a tuple with the MapId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetMapIdOk() (*string, bool) {
+func (o *DeviceSwitch) GetMapIdOk() (*string, bool) {
 	if o == nil || IsNil(o.MapId) {
 		return nil, false
 	}
@@ -779,7 +779,7 @@ func (o *ModelSwitch) GetMapIdOk() (*string, bool) {
 }
 
 // HasMapId returns a boolean if a field has been set.
-func (o *ModelSwitch) HasMapId() bool {
+func (o *DeviceSwitch) HasMapId() bool {
 	if o != nil && !IsNil(o.MapId) {
 		return true
 	}
@@ -788,12 +788,12 @@ func (o *ModelSwitch) HasMapId() bool {
 }
 
 // SetMapId gets a reference to the given string and assigns it to the MapId field.
-func (o *ModelSwitch) SetMapId(v string) {
+func (o *DeviceSwitch) SetMapId(v string) {
 	o.MapId = &v
 }
 
 // GetMistNac returns the MistNac field value if set, zero value otherwise.
-func (o *ModelSwitch) GetMistNac() SwitchMistNac {
+func (o *DeviceSwitch) GetMistNac() SwitchMistNac {
 	if o == nil || IsNil(o.MistNac) {
 		var ret SwitchMistNac
 		return ret
@@ -803,7 +803,7 @@ func (o *ModelSwitch) GetMistNac() SwitchMistNac {
 
 // GetMistNacOk returns a tuple with the MistNac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetMistNacOk() (*SwitchMistNac, bool) {
+func (o *DeviceSwitch) GetMistNacOk() (*SwitchMistNac, bool) {
 	if o == nil || IsNil(o.MistNac) {
 		return nil, false
 	}
@@ -811,7 +811,7 @@ func (o *ModelSwitch) GetMistNacOk() (*SwitchMistNac, bool) {
 }
 
 // HasMistNac returns a boolean if a field has been set.
-func (o *ModelSwitch) HasMistNac() bool {
+func (o *DeviceSwitch) HasMistNac() bool {
 	if o != nil && !IsNil(o.MistNac) {
 		return true
 	}
@@ -820,12 +820,12 @@ func (o *ModelSwitch) HasMistNac() bool {
 }
 
 // SetMistNac gets a reference to the given SwitchMistNac and assigns it to the MistNac field.
-func (o *ModelSwitch) SetMistNac(v SwitchMistNac) {
+func (o *DeviceSwitch) SetMistNac(v SwitchMistNac) {
 	o.MistNac = &v
 }
 
 // GetModifiedTime returns the ModifiedTime field value if set, zero value otherwise.
-func (o *ModelSwitch) GetModifiedTime() float32 {
+func (o *DeviceSwitch) GetModifiedTime() float32 {
 	if o == nil || IsNil(o.ModifiedTime) {
 		var ret float32
 		return ret
@@ -835,7 +835,7 @@ func (o *ModelSwitch) GetModifiedTime() float32 {
 
 // GetModifiedTimeOk returns a tuple with the ModifiedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetModifiedTimeOk() (*float32, bool) {
+func (o *DeviceSwitch) GetModifiedTimeOk() (*float32, bool) {
 	if o == nil || IsNil(o.ModifiedTime) {
 		return nil, false
 	}
@@ -843,7 +843,7 @@ func (o *ModelSwitch) GetModifiedTimeOk() (*float32, bool) {
 }
 
 // HasModifiedTime returns a boolean if a field has been set.
-func (o *ModelSwitch) HasModifiedTime() bool {
+func (o *DeviceSwitch) HasModifiedTime() bool {
 	if o != nil && !IsNil(o.ModifiedTime) {
 		return true
 	}
@@ -852,12 +852,12 @@ func (o *ModelSwitch) HasModifiedTime() bool {
 }
 
 // SetModifiedTime gets a reference to the given float32 and assigns it to the ModifiedTime field.
-func (o *ModelSwitch) SetModifiedTime(v float32) {
+func (o *DeviceSwitch) SetModifiedTime(v float32) {
 	o.ModifiedTime = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ModelSwitch) GetName() string {
+func (o *DeviceSwitch) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -867,7 +867,7 @@ func (o *ModelSwitch) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetNameOk() (*string, bool) {
+func (o *DeviceSwitch) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -875,7 +875,7 @@ func (o *ModelSwitch) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *ModelSwitch) HasName() bool {
+func (o *DeviceSwitch) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -884,12 +884,12 @@ func (o *ModelSwitch) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ModelSwitch) SetName(v string) {
+func (o *DeviceSwitch) SetName(v string) {
 	o.Name = &v
 }
 
 // GetNetworks returns the Networks field value if set, zero value otherwise.
-func (o *ModelSwitch) GetNetworks() map[string]SwitchNetwork {
+func (o *DeviceSwitch) GetNetworks() map[string]SwitchNetwork {
 	if o == nil || IsNil(o.Networks) {
 		var ret map[string]SwitchNetwork
 		return ret
@@ -899,7 +899,7 @@ func (o *ModelSwitch) GetNetworks() map[string]SwitchNetwork {
 
 // GetNetworksOk returns a tuple with the Networks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetNetworksOk() (*map[string]SwitchNetwork, bool) {
+func (o *DeviceSwitch) GetNetworksOk() (*map[string]SwitchNetwork, bool) {
 	if o == nil || IsNil(o.Networks) {
 		return nil, false
 	}
@@ -907,7 +907,7 @@ func (o *ModelSwitch) GetNetworksOk() (*map[string]SwitchNetwork, bool) {
 }
 
 // HasNetworks returns a boolean if a field has been set.
-func (o *ModelSwitch) HasNetworks() bool {
+func (o *DeviceSwitch) HasNetworks() bool {
 	if o != nil && !IsNil(o.Networks) {
 		return true
 	}
@@ -916,12 +916,12 @@ func (o *ModelSwitch) HasNetworks() bool {
 }
 
 // SetNetworks gets a reference to the given map[string]SwitchNetwork and assigns it to the Networks field.
-func (o *ModelSwitch) SetNetworks(v map[string]SwitchNetwork) {
+func (o *DeviceSwitch) SetNetworks(v map[string]SwitchNetwork) {
 	o.Networks = &v
 }
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
-func (o *ModelSwitch) GetNotes() string {
+func (o *DeviceSwitch) GetNotes() string {
 	if o == nil || IsNil(o.Notes) {
 		var ret string
 		return ret
@@ -931,7 +931,7 @@ func (o *ModelSwitch) GetNotes() string {
 
 // GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetNotesOk() (*string, bool) {
+func (o *DeviceSwitch) GetNotesOk() (*string, bool) {
 	if o == nil || IsNil(o.Notes) {
 		return nil, false
 	}
@@ -939,7 +939,7 @@ func (o *ModelSwitch) GetNotesOk() (*string, bool) {
 }
 
 // HasNotes returns a boolean if a field has been set.
-func (o *ModelSwitch) HasNotes() bool {
+func (o *DeviceSwitch) HasNotes() bool {
 	if o != nil && !IsNil(o.Notes) {
 		return true
 	}
@@ -948,12 +948,12 @@ func (o *ModelSwitch) HasNotes() bool {
 }
 
 // SetNotes gets a reference to the given string and assigns it to the Notes field.
-func (o *ModelSwitch) SetNotes(v string) {
+func (o *DeviceSwitch) SetNotes(v string) {
 	o.Notes = &v
 }
 
 // GetNtpServers returns the NtpServers field value if set, zero value otherwise.
-func (o *ModelSwitch) GetNtpServers() []string {
+func (o *DeviceSwitch) GetNtpServers() []string {
 	if o == nil || IsNil(o.NtpServers) {
 		var ret []string
 		return ret
@@ -963,7 +963,7 @@ func (o *ModelSwitch) GetNtpServers() []string {
 
 // GetNtpServersOk returns a tuple with the NtpServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetNtpServersOk() ([]string, bool) {
+func (o *DeviceSwitch) GetNtpServersOk() ([]string, bool) {
 	if o == nil || IsNil(o.NtpServers) {
 		return nil, false
 	}
@@ -971,7 +971,7 @@ func (o *ModelSwitch) GetNtpServersOk() ([]string, bool) {
 }
 
 // HasNtpServers returns a boolean if a field has been set.
-func (o *ModelSwitch) HasNtpServers() bool {
+func (o *DeviceSwitch) HasNtpServers() bool {
 	if o != nil && !IsNil(o.NtpServers) {
 		return true
 	}
@@ -980,12 +980,12 @@ func (o *ModelSwitch) HasNtpServers() bool {
 }
 
 // SetNtpServers gets a reference to the given []string and assigns it to the NtpServers field.
-func (o *ModelSwitch) SetNtpServers(v []string) {
+func (o *DeviceSwitch) SetNtpServers(v []string) {
 	o.NtpServers = v
 }
 
 // GetOobIpConfig returns the OobIpConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetOobIpConfig() SwitchOobIpConfig {
+func (o *DeviceSwitch) GetOobIpConfig() SwitchOobIpConfig {
 	if o == nil || IsNil(o.OobIpConfig) {
 		var ret SwitchOobIpConfig
 		return ret
@@ -995,7 +995,7 @@ func (o *ModelSwitch) GetOobIpConfig() SwitchOobIpConfig {
 
 // GetOobIpConfigOk returns a tuple with the OobIpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetOobIpConfigOk() (*SwitchOobIpConfig, bool) {
+func (o *DeviceSwitch) GetOobIpConfigOk() (*SwitchOobIpConfig, bool) {
 	if o == nil || IsNil(o.OobIpConfig) {
 		return nil, false
 	}
@@ -1003,7 +1003,7 @@ func (o *ModelSwitch) GetOobIpConfigOk() (*SwitchOobIpConfig, bool) {
 }
 
 // HasOobIpConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasOobIpConfig() bool {
+func (o *DeviceSwitch) HasOobIpConfig() bool {
 	if o != nil && !IsNil(o.OobIpConfig) {
 		return true
 	}
@@ -1012,12 +1012,12 @@ func (o *ModelSwitch) HasOobIpConfig() bool {
 }
 
 // SetOobIpConfig gets a reference to the given SwitchOobIpConfig and assigns it to the OobIpConfig field.
-func (o *ModelSwitch) SetOobIpConfig(v SwitchOobIpConfig) {
+func (o *DeviceSwitch) SetOobIpConfig(v SwitchOobIpConfig) {
 	o.OobIpConfig = &v
 }
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
-func (o *ModelSwitch) GetOrgId() string {
+func (o *DeviceSwitch) GetOrgId() string {
 	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
@@ -1027,7 +1027,7 @@ func (o *ModelSwitch) GetOrgId() string {
 
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetOrgIdOk() (*string, bool) {
+func (o *DeviceSwitch) GetOrgIdOk() (*string, bool) {
 	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
@@ -1035,7 +1035,7 @@ func (o *ModelSwitch) GetOrgIdOk() (*string, bool) {
 }
 
 // HasOrgId returns a boolean if a field has been set.
-func (o *ModelSwitch) HasOrgId() bool {
+func (o *DeviceSwitch) HasOrgId() bool {
 	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
@@ -1044,12 +1044,12 @@ func (o *ModelSwitch) HasOrgId() bool {
 }
 
 // SetOrgId gets a reference to the given string and assigns it to the OrgId field.
-func (o *ModelSwitch) SetOrgId(v string) {
+func (o *DeviceSwitch) SetOrgId(v string) {
 	o.OrgId = &v
 }
 
 // GetOspfConfig returns the OspfConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetOspfConfig() OspfConfig {
+func (o *DeviceSwitch) GetOspfConfig() OspfConfig {
 	if o == nil || IsNil(o.OspfConfig) {
 		var ret OspfConfig
 		return ret
@@ -1059,7 +1059,7 @@ func (o *ModelSwitch) GetOspfConfig() OspfConfig {
 
 // GetOspfConfigOk returns a tuple with the OspfConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetOspfConfigOk() (*OspfConfig, bool) {
+func (o *DeviceSwitch) GetOspfConfigOk() (*OspfConfig, bool) {
 	if o == nil || IsNil(o.OspfConfig) {
 		return nil, false
 	}
@@ -1067,7 +1067,7 @@ func (o *ModelSwitch) GetOspfConfigOk() (*OspfConfig, bool) {
 }
 
 // HasOspfConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasOspfConfig() bool {
+func (o *DeviceSwitch) HasOspfConfig() bool {
 	if o != nil && !IsNil(o.OspfConfig) {
 		return true
 	}
@@ -1076,12 +1076,12 @@ func (o *ModelSwitch) HasOspfConfig() bool {
 }
 
 // SetOspfConfig gets a reference to the given OspfConfig and assigns it to the OspfConfig field.
-func (o *ModelSwitch) SetOspfConfig(v OspfConfig) {
+func (o *DeviceSwitch) SetOspfConfig(v OspfConfig) {
 	o.OspfConfig = &v
 }
 
 // GetOtherIpConfigs returns the OtherIpConfigs field value if set, zero value otherwise.
-func (o *ModelSwitch) GetOtherIpConfigs() map[string]JunosOtherIpConfig {
+func (o *DeviceSwitch) GetOtherIpConfigs() map[string]JunosOtherIpConfig {
 	if o == nil || IsNil(o.OtherIpConfigs) {
 		var ret map[string]JunosOtherIpConfig
 		return ret
@@ -1091,7 +1091,7 @@ func (o *ModelSwitch) GetOtherIpConfigs() map[string]JunosOtherIpConfig {
 
 // GetOtherIpConfigsOk returns a tuple with the OtherIpConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfig, bool) {
+func (o *DeviceSwitch) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfig, bool) {
 	if o == nil || IsNil(o.OtherIpConfigs) {
 		return nil, false
 	}
@@ -1099,7 +1099,7 @@ func (o *ModelSwitch) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfig, boo
 }
 
 // HasOtherIpConfigs returns a boolean if a field has been set.
-func (o *ModelSwitch) HasOtherIpConfigs() bool {
+func (o *DeviceSwitch) HasOtherIpConfigs() bool {
 	if o != nil && !IsNil(o.OtherIpConfigs) {
 		return true
 	}
@@ -1108,12 +1108,12 @@ func (o *ModelSwitch) HasOtherIpConfigs() bool {
 }
 
 // SetOtherIpConfigs gets a reference to the given map[string]JunosOtherIpConfig and assigns it to the OtherIpConfigs field.
-func (o *ModelSwitch) SetOtherIpConfigs(v map[string]JunosOtherIpConfig) {
+func (o *DeviceSwitch) SetOtherIpConfigs(v map[string]JunosOtherIpConfig) {
 	o.OtherIpConfigs = &v
 }
 
 // GetPortConfig returns the PortConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetPortConfig() map[string]JunosPortConfig {
+func (o *DeviceSwitch) GetPortConfig() map[string]JunosPortConfig {
 	if o == nil || IsNil(o.PortConfig) {
 		var ret map[string]JunosPortConfig
 		return ret
@@ -1123,7 +1123,7 @@ func (o *ModelSwitch) GetPortConfig() map[string]JunosPortConfig {
 
 // GetPortConfigOk returns a tuple with the PortConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetPortConfigOk() (*map[string]JunosPortConfig, bool) {
+func (o *DeviceSwitch) GetPortConfigOk() (*map[string]JunosPortConfig, bool) {
 	if o == nil || IsNil(o.PortConfig) {
 		return nil, false
 	}
@@ -1131,7 +1131,7 @@ func (o *ModelSwitch) GetPortConfigOk() (*map[string]JunosPortConfig, bool) {
 }
 
 // HasPortConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasPortConfig() bool {
+func (o *DeviceSwitch) HasPortConfig() bool {
 	if o != nil && !IsNil(o.PortConfig) {
 		return true
 	}
@@ -1140,12 +1140,12 @@ func (o *ModelSwitch) HasPortConfig() bool {
 }
 
 // SetPortConfig gets a reference to the given map[string]JunosPortConfig and assigns it to the PortConfig field.
-func (o *ModelSwitch) SetPortConfig(v map[string]JunosPortConfig) {
+func (o *DeviceSwitch) SetPortConfig(v map[string]JunosPortConfig) {
 	o.PortConfig = &v
 }
 
 // GetPortMirroring returns the PortMirroring field value if set, zero value otherwise.
-func (o *ModelSwitch) GetPortMirroring() map[string]SwitchPortMirroringProperty {
+func (o *DeviceSwitch) GetPortMirroring() map[string]SwitchPortMirroringProperty {
 	if o == nil || IsNil(o.PortMirroring) {
 		var ret map[string]SwitchPortMirroringProperty
 		return ret
@@ -1155,7 +1155,7 @@ func (o *ModelSwitch) GetPortMirroring() map[string]SwitchPortMirroringProperty 
 
 // GetPortMirroringOk returns a tuple with the PortMirroring field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetPortMirroringOk() (*map[string]SwitchPortMirroringProperty, bool) {
+func (o *DeviceSwitch) GetPortMirroringOk() (*map[string]SwitchPortMirroringProperty, bool) {
 	if o == nil || IsNil(o.PortMirroring) {
 		return nil, false
 	}
@@ -1163,7 +1163,7 @@ func (o *ModelSwitch) GetPortMirroringOk() (*map[string]SwitchPortMirroringPrope
 }
 
 // HasPortMirroring returns a boolean if a field has been set.
-func (o *ModelSwitch) HasPortMirroring() bool {
+func (o *DeviceSwitch) HasPortMirroring() bool {
 	if o != nil && !IsNil(o.PortMirroring) {
 		return true
 	}
@@ -1172,12 +1172,12 @@ func (o *ModelSwitch) HasPortMirroring() bool {
 }
 
 // SetPortMirroring gets a reference to the given map[string]SwitchPortMirroringProperty and assigns it to the PortMirroring field.
-func (o *ModelSwitch) SetPortMirroring(v map[string]SwitchPortMirroringProperty) {
+func (o *DeviceSwitch) SetPortMirroring(v map[string]SwitchPortMirroringProperty) {
 	o.PortMirroring = &v
 }
 
 // GetPortUsages returns the PortUsages field value if set, zero value otherwise.
-func (o *ModelSwitch) GetPortUsages() map[string]SwitchPortUsage {
+func (o *DeviceSwitch) GetPortUsages() map[string]SwitchPortUsage {
 	if o == nil || IsNil(o.PortUsages) {
 		var ret map[string]SwitchPortUsage
 		return ret
@@ -1187,7 +1187,7 @@ func (o *ModelSwitch) GetPortUsages() map[string]SwitchPortUsage {
 
 // GetPortUsagesOk returns a tuple with the PortUsages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetPortUsagesOk() (*map[string]SwitchPortUsage, bool) {
+func (o *DeviceSwitch) GetPortUsagesOk() (*map[string]SwitchPortUsage, bool) {
 	if o == nil || IsNil(o.PortUsages) {
 		return nil, false
 	}
@@ -1195,7 +1195,7 @@ func (o *ModelSwitch) GetPortUsagesOk() (*map[string]SwitchPortUsage, bool) {
 }
 
 // HasPortUsages returns a boolean if a field has been set.
-func (o *ModelSwitch) HasPortUsages() bool {
+func (o *DeviceSwitch) HasPortUsages() bool {
 	if o != nil && !IsNil(o.PortUsages) {
 		return true
 	}
@@ -1204,12 +1204,12 @@ func (o *ModelSwitch) HasPortUsages() bool {
 }
 
 // SetPortUsages gets a reference to the given map[string]SwitchPortUsage and assigns it to the PortUsages field.
-func (o *ModelSwitch) SetPortUsages(v map[string]SwitchPortUsage) {
+func (o *DeviceSwitch) SetPortUsages(v map[string]SwitchPortUsage) {
 	o.PortUsages = &v
 }
 
 // GetRadiusConfig returns the RadiusConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetRadiusConfig() RadiusConfig {
+func (o *DeviceSwitch) GetRadiusConfig() RadiusConfig {
 	if o == nil || IsNil(o.RadiusConfig) {
 		var ret RadiusConfig
 		return ret
@@ -1219,7 +1219,7 @@ func (o *ModelSwitch) GetRadiusConfig() RadiusConfig {
 
 // GetRadiusConfigOk returns a tuple with the RadiusConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetRadiusConfigOk() (*RadiusConfig, bool) {
+func (o *DeviceSwitch) GetRadiusConfigOk() (*RadiusConfig, bool) {
 	if o == nil || IsNil(o.RadiusConfig) {
 		return nil, false
 	}
@@ -1227,7 +1227,7 @@ func (o *ModelSwitch) GetRadiusConfigOk() (*RadiusConfig, bool) {
 }
 
 // HasRadiusConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasRadiusConfig() bool {
+func (o *DeviceSwitch) HasRadiusConfig() bool {
 	if o != nil && !IsNil(o.RadiusConfig) {
 		return true
 	}
@@ -1236,12 +1236,12 @@ func (o *ModelSwitch) HasRadiusConfig() bool {
 }
 
 // SetRadiusConfig gets a reference to the given RadiusConfig and assigns it to the RadiusConfig field.
-func (o *ModelSwitch) SetRadiusConfig(v RadiusConfig) {
+func (o *DeviceSwitch) SetRadiusConfig(v RadiusConfig) {
 	o.RadiusConfig = &v
 }
 
 // GetRemoteSyslog returns the RemoteSyslog field value if set, zero value otherwise.
-func (o *ModelSwitch) GetRemoteSyslog() RemoteSyslog {
+func (o *DeviceSwitch) GetRemoteSyslog() RemoteSyslog {
 	if o == nil || IsNil(o.RemoteSyslog) {
 		var ret RemoteSyslog
 		return ret
@@ -1251,7 +1251,7 @@ func (o *ModelSwitch) GetRemoteSyslog() RemoteSyslog {
 
 // GetRemoteSyslogOk returns a tuple with the RemoteSyslog field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetRemoteSyslogOk() (*RemoteSyslog, bool) {
+func (o *DeviceSwitch) GetRemoteSyslogOk() (*RemoteSyslog, bool) {
 	if o == nil || IsNil(o.RemoteSyslog) {
 		return nil, false
 	}
@@ -1259,7 +1259,7 @@ func (o *ModelSwitch) GetRemoteSyslogOk() (*RemoteSyslog, bool) {
 }
 
 // HasRemoteSyslog returns a boolean if a field has been set.
-func (o *ModelSwitch) HasRemoteSyslog() bool {
+func (o *DeviceSwitch) HasRemoteSyslog() bool {
 	if o != nil && !IsNil(o.RemoteSyslog) {
 		return true
 	}
@@ -1268,12 +1268,12 @@ func (o *ModelSwitch) HasRemoteSyslog() bool {
 }
 
 // SetRemoteSyslog gets a reference to the given RemoteSyslog and assigns it to the RemoteSyslog field.
-func (o *ModelSwitch) SetRemoteSyslog(v RemoteSyslog) {
+func (o *DeviceSwitch) SetRemoteSyslog(v RemoteSyslog) {
 	o.RemoteSyslog = &v
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
-func (o *ModelSwitch) GetRole() string {
+func (o *DeviceSwitch) GetRole() string {
 	if o == nil || IsNil(o.Role) {
 		var ret string
 		return ret
@@ -1283,7 +1283,7 @@ func (o *ModelSwitch) GetRole() string {
 
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetRoleOk() (*string, bool) {
+func (o *DeviceSwitch) GetRoleOk() (*string, bool) {
 	if o == nil || IsNil(o.Role) {
 		return nil, false
 	}
@@ -1291,7 +1291,7 @@ func (o *ModelSwitch) GetRoleOk() (*string, bool) {
 }
 
 // HasRole returns a boolean if a field has been set.
-func (o *ModelSwitch) HasRole() bool {
+func (o *DeviceSwitch) HasRole() bool {
 	if o != nil && !IsNil(o.Role) {
 		return true
 	}
@@ -1300,12 +1300,12 @@ func (o *ModelSwitch) HasRole() bool {
 }
 
 // SetRole gets a reference to the given string and assigns it to the Role field.
-func (o *ModelSwitch) SetRole(v string) {
+func (o *DeviceSwitch) SetRole(v string) {
 	o.Role = &v
 }
 
 // GetRouterId returns the RouterId field value if set, zero value otherwise.
-func (o *ModelSwitch) GetRouterId() string {
+func (o *DeviceSwitch) GetRouterId() string {
 	if o == nil || IsNil(o.RouterId) {
 		var ret string
 		return ret
@@ -1315,7 +1315,7 @@ func (o *ModelSwitch) GetRouterId() string {
 
 // GetRouterIdOk returns a tuple with the RouterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetRouterIdOk() (*string, bool) {
+func (o *DeviceSwitch) GetRouterIdOk() (*string, bool) {
 	if o == nil || IsNil(o.RouterId) {
 		return nil, false
 	}
@@ -1323,7 +1323,7 @@ func (o *ModelSwitch) GetRouterIdOk() (*string, bool) {
 }
 
 // HasRouterId returns a boolean if a field has been set.
-func (o *ModelSwitch) HasRouterId() bool {
+func (o *DeviceSwitch) HasRouterId() bool {
 	if o != nil && !IsNil(o.RouterId) {
 		return true
 	}
@@ -1332,12 +1332,12 @@ func (o *ModelSwitch) HasRouterId() bool {
 }
 
 // SetRouterId gets a reference to the given string and assigns it to the RouterId field.
-func (o *ModelSwitch) SetRouterId(v string) {
+func (o *DeviceSwitch) SetRouterId(v string) {
 	o.RouterId = &v
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *ModelSwitch) GetSiteId() string {
+func (o *DeviceSwitch) GetSiteId() string {
 	if o == nil || IsNil(o.SiteId) {
 		var ret string
 		return ret
@@ -1347,7 +1347,7 @@ func (o *ModelSwitch) GetSiteId() string {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetSiteIdOk() (*string, bool) {
+func (o *DeviceSwitch) GetSiteIdOk() (*string, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -1355,7 +1355,7 @@ func (o *ModelSwitch) GetSiteIdOk() (*string, bool) {
 }
 
 // HasSiteId returns a boolean if a field has been set.
-func (o *ModelSwitch) HasSiteId() bool {
+func (o *DeviceSwitch) HasSiteId() bool {
 	if o != nil && !IsNil(o.SiteId) {
 		return true
 	}
@@ -1364,12 +1364,12 @@ func (o *ModelSwitch) HasSiteId() bool {
 }
 
 // SetSiteId gets a reference to the given string and assigns it to the SiteId field.
-func (o *ModelSwitch) SetSiteId(v string) {
+func (o *DeviceSwitch) SetSiteId(v string) {
 	o.SiteId = &v
 }
 
 // GetSnmpConfig returns the SnmpConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetSnmpConfig() SnmpConfig {
+func (o *DeviceSwitch) GetSnmpConfig() SnmpConfig {
 	if o == nil || IsNil(o.SnmpConfig) {
 		var ret SnmpConfig
 		return ret
@@ -1379,7 +1379,7 @@ func (o *ModelSwitch) GetSnmpConfig() SnmpConfig {
 
 // GetSnmpConfigOk returns a tuple with the SnmpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetSnmpConfigOk() (*SnmpConfig, bool) {
+func (o *DeviceSwitch) GetSnmpConfigOk() (*SnmpConfig, bool) {
 	if o == nil || IsNil(o.SnmpConfig) {
 		return nil, false
 	}
@@ -1387,7 +1387,7 @@ func (o *ModelSwitch) GetSnmpConfigOk() (*SnmpConfig, bool) {
 }
 
 // HasSnmpConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasSnmpConfig() bool {
+func (o *DeviceSwitch) HasSnmpConfig() bool {
 	if o != nil && !IsNil(o.SnmpConfig) {
 		return true
 	}
@@ -1396,12 +1396,12 @@ func (o *ModelSwitch) HasSnmpConfig() bool {
 }
 
 // SetSnmpConfig gets a reference to the given SnmpConfig and assigns it to the SnmpConfig field.
-func (o *ModelSwitch) SetSnmpConfig(v SnmpConfig) {
+func (o *DeviceSwitch) SetSnmpConfig(v SnmpConfig) {
 	o.SnmpConfig = &v
 }
 
 // GetStpConfig returns the StpConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetStpConfig() SwitchStpConfig {
+func (o *DeviceSwitch) GetStpConfig() SwitchStpConfig {
 	if o == nil || IsNil(o.StpConfig) {
 		var ret SwitchStpConfig
 		return ret
@@ -1411,7 +1411,7 @@ func (o *ModelSwitch) GetStpConfig() SwitchStpConfig {
 
 // GetStpConfigOk returns a tuple with the StpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetStpConfigOk() (*SwitchStpConfig, bool) {
+func (o *DeviceSwitch) GetStpConfigOk() (*SwitchStpConfig, bool) {
 	if o == nil || IsNil(o.StpConfig) {
 		return nil, false
 	}
@@ -1419,7 +1419,7 @@ func (o *ModelSwitch) GetStpConfigOk() (*SwitchStpConfig, bool) {
 }
 
 // HasStpConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasStpConfig() bool {
+func (o *DeviceSwitch) HasStpConfig() bool {
 	if o != nil && !IsNil(o.StpConfig) {
 		return true
 	}
@@ -1428,12 +1428,12 @@ func (o *ModelSwitch) HasStpConfig() bool {
 }
 
 // SetStpConfig gets a reference to the given SwitchStpConfig and assigns it to the StpConfig field.
-func (o *ModelSwitch) SetStpConfig(v SwitchStpConfig) {
+func (o *DeviceSwitch) SetStpConfig(v SwitchStpConfig) {
 	o.StpConfig = &v
 }
 
 // GetSwitchMgmt returns the SwitchMgmt field value if set, zero value otherwise.
-func (o *ModelSwitch) GetSwitchMgmt() SwitchMgmt {
+func (o *DeviceSwitch) GetSwitchMgmt() SwitchMgmt {
 	if o == nil || IsNil(o.SwitchMgmt) {
 		var ret SwitchMgmt
 		return ret
@@ -1443,7 +1443,7 @@ func (o *ModelSwitch) GetSwitchMgmt() SwitchMgmt {
 
 // GetSwitchMgmtOk returns a tuple with the SwitchMgmt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetSwitchMgmtOk() (*SwitchMgmt, bool) {
+func (o *DeviceSwitch) GetSwitchMgmtOk() (*SwitchMgmt, bool) {
 	if o == nil || IsNil(o.SwitchMgmt) {
 		return nil, false
 	}
@@ -1451,7 +1451,7 @@ func (o *ModelSwitch) GetSwitchMgmtOk() (*SwitchMgmt, bool) {
 }
 
 // HasSwitchMgmt returns a boolean if a field has been set.
-func (o *ModelSwitch) HasSwitchMgmt() bool {
+func (o *DeviceSwitch) HasSwitchMgmt() bool {
 	if o != nil && !IsNil(o.SwitchMgmt) {
 		return true
 	}
@@ -1460,12 +1460,12 @@ func (o *ModelSwitch) HasSwitchMgmt() bool {
 }
 
 // SetSwitchMgmt gets a reference to the given SwitchMgmt and assigns it to the SwitchMgmt field.
-func (o *ModelSwitch) SetSwitchMgmt(v SwitchMgmt) {
+func (o *DeviceSwitch) SetSwitchMgmt(v SwitchMgmt) {
 	o.SwitchMgmt = &v
 }
 
 // GetUseRouterIdAsSourceIp returns the UseRouterIdAsSourceIp field value if set, zero value otherwise.
-func (o *ModelSwitch) GetUseRouterIdAsSourceIp() bool {
+func (o *DeviceSwitch) GetUseRouterIdAsSourceIp() bool {
 	if o == nil || IsNil(o.UseRouterIdAsSourceIp) {
 		var ret bool
 		return ret
@@ -1475,7 +1475,7 @@ func (o *ModelSwitch) GetUseRouterIdAsSourceIp() bool {
 
 // GetUseRouterIdAsSourceIpOk returns a tuple with the UseRouterIdAsSourceIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetUseRouterIdAsSourceIpOk() (*bool, bool) {
+func (o *DeviceSwitch) GetUseRouterIdAsSourceIpOk() (*bool, bool) {
 	if o == nil || IsNil(o.UseRouterIdAsSourceIp) {
 		return nil, false
 	}
@@ -1483,7 +1483,7 @@ func (o *ModelSwitch) GetUseRouterIdAsSourceIpOk() (*bool, bool) {
 }
 
 // HasUseRouterIdAsSourceIp returns a boolean if a field has been set.
-func (o *ModelSwitch) HasUseRouterIdAsSourceIp() bool {
+func (o *DeviceSwitch) HasUseRouterIdAsSourceIp() bool {
 	if o != nil && !IsNil(o.UseRouterIdAsSourceIp) {
 		return true
 	}
@@ -1492,12 +1492,12 @@ func (o *ModelSwitch) HasUseRouterIdAsSourceIp() bool {
 }
 
 // SetUseRouterIdAsSourceIp gets a reference to the given bool and assigns it to the UseRouterIdAsSourceIp field.
-func (o *ModelSwitch) SetUseRouterIdAsSourceIp(v bool) {
+func (o *DeviceSwitch) SetUseRouterIdAsSourceIp(v bool) {
 	o.UseRouterIdAsSourceIp = &v
 }
 
 // GetVars returns the Vars field value if set, zero value otherwise.
-func (o *ModelSwitch) GetVars() map[string]string {
+func (o *DeviceSwitch) GetVars() map[string]string {
 	if o == nil || IsNil(o.Vars) {
 		var ret map[string]string
 		return ret
@@ -1507,7 +1507,7 @@ func (o *ModelSwitch) GetVars() map[string]string {
 
 // GetVarsOk returns a tuple with the Vars field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetVarsOk() (*map[string]string, bool) {
+func (o *DeviceSwitch) GetVarsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Vars) {
 		return nil, false
 	}
@@ -1515,7 +1515,7 @@ func (o *ModelSwitch) GetVarsOk() (*map[string]string, bool) {
 }
 
 // HasVars returns a boolean if a field has been set.
-func (o *ModelSwitch) HasVars() bool {
+func (o *DeviceSwitch) HasVars() bool {
 	if o != nil && !IsNil(o.Vars) {
 		return true
 	}
@@ -1524,12 +1524,12 @@ func (o *ModelSwitch) HasVars() bool {
 }
 
 // SetVars gets a reference to the given map[string]string and assigns it to the Vars field.
-func (o *ModelSwitch) SetVars(v map[string]string) {
+func (o *DeviceSwitch) SetVars(v map[string]string) {
 	o.Vars = &v
 }
 
 // GetVirtualChassis returns the VirtualChassis field value if set, zero value otherwise.
-func (o *ModelSwitch) GetVirtualChassis() SwitchVirtualChassis {
+func (o *DeviceSwitch) GetVirtualChassis() SwitchVirtualChassis {
 	if o == nil || IsNil(o.VirtualChassis) {
 		var ret SwitchVirtualChassis
 		return ret
@@ -1539,7 +1539,7 @@ func (o *ModelSwitch) GetVirtualChassis() SwitchVirtualChassis {
 
 // GetVirtualChassisOk returns a tuple with the VirtualChassis field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetVirtualChassisOk() (*SwitchVirtualChassis, bool) {
+func (o *DeviceSwitch) GetVirtualChassisOk() (*SwitchVirtualChassis, bool) {
 	if o == nil || IsNil(o.VirtualChassis) {
 		return nil, false
 	}
@@ -1547,7 +1547,7 @@ func (o *ModelSwitch) GetVirtualChassisOk() (*SwitchVirtualChassis, bool) {
 }
 
 // HasVirtualChassis returns a boolean if a field has been set.
-func (o *ModelSwitch) HasVirtualChassis() bool {
+func (o *DeviceSwitch) HasVirtualChassis() bool {
 	if o != nil && !IsNil(o.VirtualChassis) {
 		return true
 	}
@@ -1556,12 +1556,12 @@ func (o *ModelSwitch) HasVirtualChassis() bool {
 }
 
 // SetVirtualChassis gets a reference to the given SwitchVirtualChassis and assigns it to the VirtualChassis field.
-func (o *ModelSwitch) SetVirtualChassis(v SwitchVirtualChassis) {
+func (o *DeviceSwitch) SetVirtualChassis(v SwitchVirtualChassis) {
 	o.VirtualChassis = &v
 }
 
 // GetVrfConfig returns the VrfConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetVrfConfig() VrfConfig {
+func (o *DeviceSwitch) GetVrfConfig() VrfConfig {
 	if o == nil || IsNil(o.VrfConfig) {
 		var ret VrfConfig
 		return ret
@@ -1571,7 +1571,7 @@ func (o *ModelSwitch) GetVrfConfig() VrfConfig {
 
 // GetVrfConfigOk returns a tuple with the VrfConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetVrfConfigOk() (*VrfConfig, bool) {
+func (o *DeviceSwitch) GetVrfConfigOk() (*VrfConfig, bool) {
 	if o == nil || IsNil(o.VrfConfig) {
 		return nil, false
 	}
@@ -1579,7 +1579,7 @@ func (o *ModelSwitch) GetVrfConfigOk() (*VrfConfig, bool) {
 }
 
 // HasVrfConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasVrfConfig() bool {
+func (o *DeviceSwitch) HasVrfConfig() bool {
 	if o != nil && !IsNil(o.VrfConfig) {
 		return true
 	}
@@ -1588,12 +1588,12 @@ func (o *ModelSwitch) HasVrfConfig() bool {
 }
 
 // SetVrfConfig gets a reference to the given VrfConfig and assigns it to the VrfConfig field.
-func (o *ModelSwitch) SetVrfConfig(v VrfConfig) {
+func (o *DeviceSwitch) SetVrfConfig(v VrfConfig) {
 	o.VrfConfig = &v
 }
 
 // GetVrfInstances returns the VrfInstances field value if set, zero value otherwise.
-func (o *ModelSwitch) GetVrfInstances() map[string]VrfInstance {
+func (o *DeviceSwitch) GetVrfInstances() map[string]VrfInstance {
 	if o == nil || IsNil(o.VrfInstances) {
 		var ret map[string]VrfInstance
 		return ret
@@ -1603,7 +1603,7 @@ func (o *ModelSwitch) GetVrfInstances() map[string]VrfInstance {
 
 // GetVrfInstancesOk returns a tuple with the VrfInstances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetVrfInstancesOk() (*map[string]VrfInstance, bool) {
+func (o *DeviceSwitch) GetVrfInstancesOk() (*map[string]VrfInstance, bool) {
 	if o == nil || IsNil(o.VrfInstances) {
 		return nil, false
 	}
@@ -1611,7 +1611,7 @@ func (o *ModelSwitch) GetVrfInstancesOk() (*map[string]VrfInstance, bool) {
 }
 
 // HasVrfInstances returns a boolean if a field has been set.
-func (o *ModelSwitch) HasVrfInstances() bool {
+func (o *DeviceSwitch) HasVrfInstances() bool {
 	if o != nil && !IsNil(o.VrfInstances) {
 		return true
 	}
@@ -1620,12 +1620,12 @@ func (o *ModelSwitch) HasVrfInstances() bool {
 }
 
 // SetVrfInstances gets a reference to the given map[string]VrfInstance and assigns it to the VrfInstances field.
-func (o *ModelSwitch) SetVrfInstances(v map[string]VrfInstance) {
+func (o *DeviceSwitch) SetVrfInstances(v map[string]VrfInstance) {
 	o.VrfInstances = &v
 }
 
 // GetVrrpConfig returns the VrrpConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetVrrpConfig() VrrpConfig {
+func (o *DeviceSwitch) GetVrrpConfig() VrrpConfig {
 	if o == nil || IsNil(o.VrrpConfig) {
 		var ret VrrpConfig
 		return ret
@@ -1635,7 +1635,7 @@ func (o *ModelSwitch) GetVrrpConfig() VrrpConfig {
 
 // GetVrrpConfigOk returns a tuple with the VrrpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetVrrpConfigOk() (*VrrpConfig, bool) {
+func (o *DeviceSwitch) GetVrrpConfigOk() (*VrrpConfig, bool) {
 	if o == nil || IsNil(o.VrrpConfig) {
 		return nil, false
 	}
@@ -1643,7 +1643,7 @@ func (o *ModelSwitch) GetVrrpConfigOk() (*VrrpConfig, bool) {
 }
 
 // HasVrrpConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasVrrpConfig() bool {
+func (o *DeviceSwitch) HasVrrpConfig() bool {
 	if o != nil && !IsNil(o.VrrpConfig) {
 		return true
 	}
@@ -1652,14 +1652,14 @@ func (o *ModelSwitch) HasVrrpConfig() bool {
 }
 
 // SetVrrpConfig gets a reference to the given VrrpConfig and assigns it to the VrrpConfig field.
-func (o *ModelSwitch) SetVrrpConfig(v VrrpConfig) {
+func (o *DeviceSwitch) SetVrrpConfig(v VrrpConfig) {
 	o.VrrpConfig = &v
 }
 
 // GetX returns the X field value if set, zero value otherwise.
-func (o *ModelSwitch) GetX() float32 {
+func (o *DeviceSwitch) GetX() float64 {
 	if o == nil || IsNil(o.X) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.X
@@ -1667,7 +1667,7 @@ func (o *ModelSwitch) GetX() float32 {
 
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetXOk() (*float32, bool) {
+func (o *DeviceSwitch) GetXOk() (*float64, bool) {
 	if o == nil || IsNil(o.X) {
 		return nil, false
 	}
@@ -1675,7 +1675,7 @@ func (o *ModelSwitch) GetXOk() (*float32, bool) {
 }
 
 // HasX returns a boolean if a field has been set.
-func (o *ModelSwitch) HasX() bool {
+func (o *DeviceSwitch) HasX() bool {
 	if o != nil && !IsNil(o.X) {
 		return true
 	}
@@ -1683,15 +1683,15 @@ func (o *ModelSwitch) HasX() bool {
 	return false
 }
 
-// SetX gets a reference to the given float32 and assigns it to the X field.
-func (o *ModelSwitch) SetX(v float32) {
+// SetX gets a reference to the given float64 and assigns it to the X field.
+func (o *DeviceSwitch) SetX(v float64) {
 	o.X = &v
 }
 
 // GetY returns the Y field value if set, zero value otherwise.
-func (o *ModelSwitch) GetY() float32 {
+func (o *DeviceSwitch) GetY() float64 {
 	if o == nil || IsNil(o.Y) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Y
@@ -1699,7 +1699,7 @@ func (o *ModelSwitch) GetY() float32 {
 
 // GetYOk returns a tuple with the Y field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetYOk() (*float32, bool) {
+func (o *DeviceSwitch) GetYOk() (*float64, bool) {
 	if o == nil || IsNil(o.Y) {
 		return nil, false
 	}
@@ -1707,7 +1707,7 @@ func (o *ModelSwitch) GetYOk() (*float32, bool) {
 }
 
 // HasY returns a boolean if a field has been set.
-func (o *ModelSwitch) HasY() bool {
+func (o *DeviceSwitch) HasY() bool {
 	if o != nil && !IsNil(o.Y) {
 		return true
 	}
@@ -1715,12 +1715,12 @@ func (o *ModelSwitch) HasY() bool {
 	return false
 }
 
-// SetY gets a reference to the given float32 and assigns it to the Y field.
-func (o *ModelSwitch) SetY(v float32) {
+// SetY gets a reference to the given float64 and assigns it to the Y field.
+func (o *DeviceSwitch) SetY(v float64) {
 	o.Y = &v
 }
 
-func (o ModelSwitch) MarshalJSON() ([]byte, error) {
+func (o DeviceSwitch) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -1728,7 +1728,7 @@ func (o ModelSwitch) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
+func (o DeviceSwitch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AclPolicies) {
 		toSerialize["acl_policies"] = o.AclPolicies
@@ -1885,16 +1885,16 @@ func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ModelSwitch) UnmarshalJSON(data []byte) (err error) {
-	varModelSwitch := _ModelSwitch{}
+func (o *DeviceSwitch) UnmarshalJSON(data []byte) (err error) {
+	varDeviceSwitch := _DeviceSwitch{}
 
-	err = json.Unmarshal(data, &varModelSwitch)
+	err = json.Unmarshal(data, &varDeviceSwitch)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ModelSwitch(varModelSwitch)
+	*o = DeviceSwitch(varDeviceSwitch)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -1954,38 +1954,38 @@ func (o *ModelSwitch) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableModelSwitch struct {
-	value *ModelSwitch
+type NullableDeviceSwitch struct {
+	value *DeviceSwitch
 	isSet bool
 }
 
-func (v NullableModelSwitch) Get() *ModelSwitch {
+func (v NullableDeviceSwitch) Get() *DeviceSwitch {
 	return v.value
 }
 
-func (v *NullableModelSwitch) Set(val *ModelSwitch) {
+func (v *NullableDeviceSwitch) Set(val *DeviceSwitch) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableModelSwitch) IsSet() bool {
+func (v NullableDeviceSwitch) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableModelSwitch) Unset() {
+func (v *NullableDeviceSwitch) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableModelSwitch(val *ModelSwitch) *NullableModelSwitch {
-	return &NullableModelSwitch{value: val, isSet: true}
+func NewNullableDeviceSwitch(val *DeviceSwitch) *NullableDeviceSwitch {
+	return &NullableDeviceSwitch{value: val, isSet: true}
 }
 
-func (v NullableModelSwitch) MarshalJSON() ([]byte, error) {
+func (v NullableDeviceSwitch) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableModelSwitch) UnmarshalJSON(src []byte) error {
+func (v *NullableDeviceSwitch) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

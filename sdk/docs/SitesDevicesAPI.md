@@ -676,7 +676,7 @@ Name | Type | Description  | Notes
 
 ## ImportSiteDevices
 
-> []ConfigDevice ImportSiteDevices(ctx, siteId).Ap(ap).Execute()
+> []ConfigDevice ImportSiteDevices(ctx, siteId).DeviceAp(deviceAp).Execute()
 
 importSiteDevices
 
@@ -696,11 +696,11 @@ import (
 
 func main() {
 	siteId := "000000ab-00ab-00ab-00ab-0000000000ab" // string | 
-	ap := []openapiclient.Ap{*openapiclient.NewAp()} // []Ap |  (optional)
+	deviceAp := []openapiclient.DeviceAp{*openapiclient.NewDeviceAp()} // []DeviceAp |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SitesDevicesAPI.ImportSiteDevices(context.Background(), siteId).Ap(ap).Execute()
+	resp, r, err := apiClient.SitesDevicesAPI.ImportSiteDevices(context.Background(), siteId).DeviceAp(deviceAp).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SitesDevicesAPI.ImportSiteDevices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -726,7 +726,7 @@ Other parameters are passed through a pointer to a apiImportSiteDevicesRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **ap** | [**[]Ap**](Ap.md) |  | 
+ **deviceAp** | [**[]DeviceAp**](DeviceAp.md) |  | 
 
 ### Return type
 

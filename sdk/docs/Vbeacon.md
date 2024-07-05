@@ -20,8 +20,8 @@ Name | Type | Description | Notes
 **Url** | Pointer to **string** | URL to show, optional | [optional] 
 **Uuid** | Pointer to **string** | bluetooth tag UUID | [optional] 
 **WayfindingNodename** | Pointer to **string** | the name to be used in wayfinding_path or wayfinding_grid blob | [optional] 
-**X** | Pointer to **float32** | x in pixel | [optional] 
-**Y** | Pointer to **float32** | y in pixel | [optional] 
+**X** | Pointer to **float64** | x in pixel | [optional] 
+**Y** | Pointer to **float64** | y in pixel | [optional] 
 
 ## Methods
 
@@ -444,20 +444,20 @@ HasWayfindingNodename returns a boolean if a field has been set.
 
 ### GetX
 
-`func (o *Vbeacon) GetX() float32`
+`func (o *Vbeacon) GetX() float64`
 
 GetX returns the X field if non-nil, zero value otherwise.
 
 ### GetXOk
 
-`func (o *Vbeacon) GetXOk() (*float32, bool)`
+`func (o *Vbeacon) GetXOk() (*float64, bool)`
 
 GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetX
 
-`func (o *Vbeacon) SetX(v float32)`
+`func (o *Vbeacon) SetX(v float64)`
 
 SetX sets X field to given value.
 
@@ -469,20 +469,20 @@ HasX returns a boolean if a field has been set.
 
 ### GetY
 
-`func (o *Vbeacon) GetY() float32`
+`func (o *Vbeacon) GetY() float64`
 
 GetY returns the Y field if non-nil, zero value otherwise.
 
 ### GetYOk
 
-`func (o *Vbeacon) GetYOk() (*float32, bool)`
+`func (o *Vbeacon) GetYOk() (*float64, bool)`
 
 GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetY
 
-`func (o *Vbeacon) SetY(v float32)`
+`func (o *Vbeacon) SetY(v float64)`
 
 SetY sets Y field to given value.
 

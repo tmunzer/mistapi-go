@@ -21,8 +21,8 @@ Name | Type | Description | Notes
 **Rssi** | Pointer to **int32** |  | [optional] 
 **Rssizones** | Pointer to [**[]AssetRssiZone**](AssetRssiZone.md) | only send this for individual asset stat | [optional] 
 **Temperatur** | Pointer to **float32** |  | [optional] 
-**X** | Pointer to **float32** | x in pixel | [optional] 
-**Y** | Pointer to **float32** | y in pixel | [optional] 
+**X** | Pointer to **float64** | x in pixel | [optional] 
+**Y** | Pointer to **float64** | y in pixel | [optional] 
 **Zones** | Pointer to [**[]AssetZone**](AssetZone.md) | only send this for individual asset stat | [optional] 
 
 ## Methods
@@ -466,20 +466,20 @@ HasTemperatur returns a boolean if a field has been set.
 
 ### GetX
 
-`func (o *StatsAsset) GetX() float32`
+`func (o *StatsAsset) GetX() float64`
 
 GetX returns the X field if non-nil, zero value otherwise.
 
 ### GetXOk
 
-`func (o *StatsAsset) GetXOk() (*float32, bool)`
+`func (o *StatsAsset) GetXOk() (*float64, bool)`
 
 GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetX
 
-`func (o *StatsAsset) SetX(v float32)`
+`func (o *StatsAsset) SetX(v float64)`
 
 SetX sets X field to given value.
 
@@ -491,20 +491,20 @@ HasX returns a boolean if a field has been set.
 
 ### GetY
 
-`func (o *StatsAsset) GetY() float32`
+`func (o *StatsAsset) GetY() float64`
 
 GetY returns the Y field if non-nil, zero value otherwise.
 
 ### GetYOk
 
-`func (o *StatsAsset) GetYOk() (*float32, bool)`
+`func (o *StatsAsset) GetYOk() (*float64, bool)`
 
 GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetY
 
-`func (o *StatsAsset) SetY(v float32)`
+`func (o *StatsAsset) SetY(v float64)`
 
 SetY sets Y field to given value.
 

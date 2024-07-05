@@ -2079,11 +2079,11 @@ type ApiImportSiteDevicesRequest struct {
 	ctx context.Context
 	ApiService SitesDevicesAPI
 	siteId string
-	ap *[]Ap
+	deviceAp *[]DeviceAp
 }
 
-func (r ApiImportSiteDevicesRequest) Ap(ap []Ap) ApiImportSiteDevicesRequest {
-	r.ap = &ap
+func (r ApiImportSiteDevicesRequest) DeviceAp(deviceAp []DeviceAp) ApiImportSiteDevicesRequest {
+	r.deviceAp = &deviceAp
 	return r
 }
 
@@ -2154,7 +2154,7 @@ func (a *SitesDevicesAPIService) ImportSiteDevicesExecute(r ApiImportSiteDevices
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.ap
+	localVarPostBody = r.deviceAp
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -22,9 +22,9 @@ var _ MappedNullable = &ZoneVertex{}
 // ZoneVertex struct for ZoneVertex
 type ZoneVertex struct {
 	// x in pixel
-	X float32 `json:"x"`
+	X float64 `json:"x"`
 	// y in pixel
-	Y float32 `json:"y"`
+	Y float64 `json:"y"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +34,7 @@ type _ZoneVertex ZoneVertex
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewZoneVertex(x float32, y float32) *ZoneVertex {
+func NewZoneVertex(x float64, y float64) *ZoneVertex {
 	this := ZoneVertex{}
 	this.X = x
 	this.Y = y
@@ -50,9 +50,9 @@ func NewZoneVertexWithDefaults() *ZoneVertex {
 }
 
 // GetX returns the X field value
-func (o *ZoneVertex) GetX() float32 {
+func (o *ZoneVertex) GetX() float64 {
 	if o == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 
@@ -61,7 +61,7 @@ func (o *ZoneVertex) GetX() float32 {
 
 // GetXOk returns a tuple with the X field value
 // and a boolean to check if the value has been set.
-func (o *ZoneVertex) GetXOk() (*float32, bool) {
+func (o *ZoneVertex) GetXOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,14 +69,14 @@ func (o *ZoneVertex) GetXOk() (*float32, bool) {
 }
 
 // SetX sets field value
-func (o *ZoneVertex) SetX(v float32) {
+func (o *ZoneVertex) SetX(v float64) {
 	o.X = v
 }
 
 // GetY returns the Y field value
-func (o *ZoneVertex) GetY() float32 {
+func (o *ZoneVertex) GetY() float64 {
 	if o == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 
@@ -85,7 +85,7 @@ func (o *ZoneVertex) GetY() float32 {
 
 // GetYOk returns a tuple with the Y field value
 // and a boolean to check if the value has been set.
-func (o *ZoneVertex) GetYOk() (*float32, bool) {
+func (o *ZoneVertex) GetYOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *ZoneVertex) GetYOk() (*float32, bool) {
 }
 
 // SetY sets field value
-func (o *ZoneVertex) SetY(v float32) {
+func (o *ZoneVertex) SetY(v float64) {
 	o.Y = v
 }
 

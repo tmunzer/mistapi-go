@@ -18,51 +18,51 @@ import (
 
 // MistDevice struct for MistDevice
 type MistDevice struct {
-	Ap *Ap
-	Gateway *Gateway
-	ModelSwitch *ModelSwitch
+	DeviceAp *DeviceAp
+	DeviceGateway *DeviceGateway
+	DeviceSwitch *DeviceSwitch
 }
 
 // Unmarshal JSON data into any of the pointers in the struct
 func (dst *MistDevice) UnmarshalJSON(data []byte) error {
 	var err error
-	// try to unmarshal JSON data into Ap
-	err = json.Unmarshal(data, &dst.Ap);
+	// try to unmarshal JSON data into DeviceAp
+	err = json.Unmarshal(data, &dst.DeviceAp);
 	if err == nil {
-		jsonAp, _ := json.Marshal(dst.Ap)
-		if string(jsonAp) == "{}" { // empty struct
-			dst.Ap = nil
+		jsonDeviceAp, _ := json.Marshal(dst.DeviceAp)
+		if string(jsonDeviceAp) == "{}" { // empty struct
+			dst.DeviceAp = nil
 		} else {
-			return nil // data stored in dst.Ap, return on the first match
+			return nil // data stored in dst.DeviceAp, return on the first match
 		}
 	} else {
-		dst.Ap = nil
+		dst.DeviceAp = nil
 	}
 
-	// try to unmarshal JSON data into Gateway
-	err = json.Unmarshal(data, &dst.Gateway);
+	// try to unmarshal JSON data into DeviceGateway
+	err = json.Unmarshal(data, &dst.DeviceGateway);
 	if err == nil {
-		jsonGateway, _ := json.Marshal(dst.Gateway)
-		if string(jsonGateway) == "{}" { // empty struct
-			dst.Gateway = nil
+		jsonDeviceGateway, _ := json.Marshal(dst.DeviceGateway)
+		if string(jsonDeviceGateway) == "{}" { // empty struct
+			dst.DeviceGateway = nil
 		} else {
-			return nil // data stored in dst.Gateway, return on the first match
+			return nil // data stored in dst.DeviceGateway, return on the first match
 		}
 	} else {
-		dst.Gateway = nil
+		dst.DeviceGateway = nil
 	}
 
-	// try to unmarshal JSON data into ModelSwitch
-	err = json.Unmarshal(data, &dst.ModelSwitch);
+	// try to unmarshal JSON data into DeviceSwitch
+	err = json.Unmarshal(data, &dst.DeviceSwitch);
 	if err == nil {
-		jsonModelSwitch, _ := json.Marshal(dst.ModelSwitch)
-		if string(jsonModelSwitch) == "{}" { // empty struct
-			dst.ModelSwitch = nil
+		jsonDeviceSwitch, _ := json.Marshal(dst.DeviceSwitch)
+		if string(jsonDeviceSwitch) == "{}" { // empty struct
+			dst.DeviceSwitch = nil
 		} else {
-			return nil // data stored in dst.ModelSwitch, return on the first match
+			return nil // data stored in dst.DeviceSwitch, return on the first match
 		}
 	} else {
-		dst.ModelSwitch = nil
+		dst.DeviceSwitch = nil
 	}
 
 	return fmt.Errorf("data failed to match schemas in anyOf(MistDevice)")
@@ -70,16 +70,16 @@ func (dst *MistDevice) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src *MistDevice) MarshalJSON() ([]byte, error) {
-	if src.Ap != nil {
-		return json.Marshal(&src.Ap)
+	if src.DeviceAp != nil {
+		return json.Marshal(&src.DeviceAp)
 	}
 
-	if src.Gateway != nil {
-		return json.Marshal(&src.Gateway)
+	if src.DeviceGateway != nil {
+		return json.Marshal(&src.DeviceGateway)
 	}
 
-	if src.ModelSwitch != nil {
-		return json.Marshal(&src.ModelSwitch)
+	if src.DeviceSwitch != nil {
+		return json.Marshal(&src.DeviceSwitch)
 	}
 
 	return nil, nil // no data in anyOf schemas

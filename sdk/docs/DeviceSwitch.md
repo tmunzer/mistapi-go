@@ -1,4 +1,4 @@
-# ModelSwitch
+# DeviceSwitch
 
 ## Properties
 
@@ -51,1280 +51,1280 @@ Name | Type | Description | Notes
 **VrfConfig** | Pointer to [**VrfConfig**](VrfConfig.md) |  | [optional] 
 **VrfInstances** | Pointer to [**map[string]VrfInstance**](VrfInstance.md) | Property key is the network name | [optional] 
 **VrrpConfig** | Pointer to [**VrrpConfig**](VrrpConfig.md) |  | [optional] 
-**X** | Pointer to **float32** | x in pixel | [optional] 
-**Y** | Pointer to **float32** | y in pixel | [optional] 
+**X** | Pointer to **float64** | x in pixel | [optional] 
+**Y** | Pointer to **float64** | y in pixel | [optional] 
 
 ## Methods
 
-### NewModelSwitch
+### NewDeviceSwitch
 
-`func NewModelSwitch() *ModelSwitch`
+`func NewDeviceSwitch() *DeviceSwitch`
 
-NewModelSwitch instantiates a new ModelSwitch object
+NewDeviceSwitch instantiates a new DeviceSwitch object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewModelSwitchWithDefaults
+### NewDeviceSwitchWithDefaults
 
-`func NewModelSwitchWithDefaults() *ModelSwitch`
+`func NewDeviceSwitchWithDefaults() *DeviceSwitch`
 
-NewModelSwitchWithDefaults instantiates a new ModelSwitch object
+NewDeviceSwitchWithDefaults instantiates a new DeviceSwitch object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAclPolicies
 
-`func (o *ModelSwitch) GetAclPolicies() []AclPolicy`
+`func (o *DeviceSwitch) GetAclPolicies() []AclPolicy`
 
 GetAclPolicies returns the AclPolicies field if non-nil, zero value otherwise.
 
 ### GetAclPoliciesOk
 
-`func (o *ModelSwitch) GetAclPoliciesOk() (*[]AclPolicy, bool)`
+`func (o *DeviceSwitch) GetAclPoliciesOk() (*[]AclPolicy, bool)`
 
 GetAclPoliciesOk returns a tuple with the AclPolicies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAclPolicies
 
-`func (o *ModelSwitch) SetAclPolicies(v []AclPolicy)`
+`func (o *DeviceSwitch) SetAclPolicies(v []AclPolicy)`
 
 SetAclPolicies sets AclPolicies field to given value.
 
 ### HasAclPolicies
 
-`func (o *ModelSwitch) HasAclPolicies() bool`
+`func (o *DeviceSwitch) HasAclPolicies() bool`
 
 HasAclPolicies returns a boolean if a field has been set.
 
 ### GetAclTags
 
-`func (o *ModelSwitch) GetAclTags() map[string]AclTag`
+`func (o *DeviceSwitch) GetAclTags() map[string]AclTag`
 
 GetAclTags returns the AclTags field if non-nil, zero value otherwise.
 
 ### GetAclTagsOk
 
-`func (o *ModelSwitch) GetAclTagsOk() (*map[string]AclTag, bool)`
+`func (o *DeviceSwitch) GetAclTagsOk() (*map[string]AclTag, bool)`
 
 GetAclTagsOk returns a tuple with the AclTags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAclTags
 
-`func (o *ModelSwitch) SetAclTags(v map[string]AclTag)`
+`func (o *DeviceSwitch) SetAclTags(v map[string]AclTag)`
 
 SetAclTags sets AclTags field to given value.
 
 ### HasAclTags
 
-`func (o *ModelSwitch) HasAclTags() bool`
+`func (o *DeviceSwitch) HasAclTags() bool`
 
 HasAclTags returns a boolean if a field has been set.
 
 ### GetAdditionalConfigCmds
 
-`func (o *ModelSwitch) GetAdditionalConfigCmds() []string`
+`func (o *DeviceSwitch) GetAdditionalConfigCmds() []string`
 
 GetAdditionalConfigCmds returns the AdditionalConfigCmds field if non-nil, zero value otherwise.
 
 ### GetAdditionalConfigCmdsOk
 
-`func (o *ModelSwitch) GetAdditionalConfigCmdsOk() (*[]string, bool)`
+`func (o *DeviceSwitch) GetAdditionalConfigCmdsOk() (*[]string, bool)`
 
 GetAdditionalConfigCmdsOk returns a tuple with the AdditionalConfigCmds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdditionalConfigCmds
 
-`func (o *ModelSwitch) SetAdditionalConfigCmds(v []string)`
+`func (o *DeviceSwitch) SetAdditionalConfigCmds(v []string)`
 
 SetAdditionalConfigCmds sets AdditionalConfigCmds field to given value.
 
 ### HasAdditionalConfigCmds
 
-`func (o *ModelSwitch) HasAdditionalConfigCmds() bool`
+`func (o *DeviceSwitch) HasAdditionalConfigCmds() bool`
 
 HasAdditionalConfigCmds returns a boolean if a field has been set.
 
 ### GetCreatedTime
 
-`func (o *ModelSwitch) GetCreatedTime() float32`
+`func (o *DeviceSwitch) GetCreatedTime() float32`
 
 GetCreatedTime returns the CreatedTime field if non-nil, zero value otherwise.
 
 ### GetCreatedTimeOk
 
-`func (o *ModelSwitch) GetCreatedTimeOk() (*float32, bool)`
+`func (o *DeviceSwitch) GetCreatedTimeOk() (*float32, bool)`
 
 GetCreatedTimeOk returns a tuple with the CreatedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedTime
 
-`func (o *ModelSwitch) SetCreatedTime(v float32)`
+`func (o *DeviceSwitch) SetCreatedTime(v float32)`
 
 SetCreatedTime sets CreatedTime field to given value.
 
 ### HasCreatedTime
 
-`func (o *ModelSwitch) HasCreatedTime() bool`
+`func (o *DeviceSwitch) HasCreatedTime() bool`
 
 HasCreatedTime returns a boolean if a field has been set.
 
 ### GetDeviceprofileId
 
-`func (o *ModelSwitch) GetDeviceprofileId() string`
+`func (o *DeviceSwitch) GetDeviceprofileId() string`
 
 GetDeviceprofileId returns the DeviceprofileId field if non-nil, zero value otherwise.
 
 ### GetDeviceprofileIdOk
 
-`func (o *ModelSwitch) GetDeviceprofileIdOk() (*string, bool)`
+`func (o *DeviceSwitch) GetDeviceprofileIdOk() (*string, bool)`
 
 GetDeviceprofileIdOk returns a tuple with the DeviceprofileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeviceprofileId
 
-`func (o *ModelSwitch) SetDeviceprofileId(v string)`
+`func (o *DeviceSwitch) SetDeviceprofileId(v string)`
 
 SetDeviceprofileId sets DeviceprofileId field to given value.
 
 ### HasDeviceprofileId
 
-`func (o *ModelSwitch) HasDeviceprofileId() bool`
+`func (o *DeviceSwitch) HasDeviceprofileId() bool`
 
 HasDeviceprofileId returns a boolean if a field has been set.
 
 ### GetDhcpSnooping
 
-`func (o *ModelSwitch) GetDhcpSnooping() DhcpSnooping`
+`func (o *DeviceSwitch) GetDhcpSnooping() DhcpSnooping`
 
 GetDhcpSnooping returns the DhcpSnooping field if non-nil, zero value otherwise.
 
 ### GetDhcpSnoopingOk
 
-`func (o *ModelSwitch) GetDhcpSnoopingOk() (*DhcpSnooping, bool)`
+`func (o *DeviceSwitch) GetDhcpSnoopingOk() (*DhcpSnooping, bool)`
 
 GetDhcpSnoopingOk returns a tuple with the DhcpSnooping field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDhcpSnooping
 
-`func (o *ModelSwitch) SetDhcpSnooping(v DhcpSnooping)`
+`func (o *DeviceSwitch) SetDhcpSnooping(v DhcpSnooping)`
 
 SetDhcpSnooping sets DhcpSnooping field to given value.
 
 ### HasDhcpSnooping
 
-`func (o *ModelSwitch) HasDhcpSnooping() bool`
+`func (o *DeviceSwitch) HasDhcpSnooping() bool`
 
 HasDhcpSnooping returns a boolean if a field has been set.
 
 ### GetDhcpdConfig
 
-`func (o *ModelSwitch) GetDhcpdConfig() DhcpdConfigs`
+`func (o *DeviceSwitch) GetDhcpdConfig() DhcpdConfigs`
 
 GetDhcpdConfig returns the DhcpdConfig field if non-nil, zero value otherwise.
 
 ### GetDhcpdConfigOk
 
-`func (o *ModelSwitch) GetDhcpdConfigOk() (*DhcpdConfigs, bool)`
+`func (o *DeviceSwitch) GetDhcpdConfigOk() (*DhcpdConfigs, bool)`
 
 GetDhcpdConfigOk returns a tuple with the DhcpdConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDhcpdConfig
 
-`func (o *ModelSwitch) SetDhcpdConfig(v DhcpdConfigs)`
+`func (o *DeviceSwitch) SetDhcpdConfig(v DhcpdConfigs)`
 
 SetDhcpdConfig sets DhcpdConfig field to given value.
 
 ### HasDhcpdConfig
 
-`func (o *ModelSwitch) HasDhcpdConfig() bool`
+`func (o *DeviceSwitch) HasDhcpdConfig() bool`
 
 HasDhcpdConfig returns a boolean if a field has been set.
 
 ### GetDisableAutoConfig
 
-`func (o *ModelSwitch) GetDisableAutoConfig() bool`
+`func (o *DeviceSwitch) GetDisableAutoConfig() bool`
 
 GetDisableAutoConfig returns the DisableAutoConfig field if non-nil, zero value otherwise.
 
 ### GetDisableAutoConfigOk
 
-`func (o *ModelSwitch) GetDisableAutoConfigOk() (*bool, bool)`
+`func (o *DeviceSwitch) GetDisableAutoConfigOk() (*bool, bool)`
 
 GetDisableAutoConfigOk returns a tuple with the DisableAutoConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDisableAutoConfig
 
-`func (o *ModelSwitch) SetDisableAutoConfig(v bool)`
+`func (o *DeviceSwitch) SetDisableAutoConfig(v bool)`
 
 SetDisableAutoConfig sets DisableAutoConfig field to given value.
 
 ### HasDisableAutoConfig
 
-`func (o *ModelSwitch) HasDisableAutoConfig() bool`
+`func (o *DeviceSwitch) HasDisableAutoConfig() bool`
 
 HasDisableAutoConfig returns a boolean if a field has been set.
 
 ### GetDnsServers
 
-`func (o *ModelSwitch) GetDnsServers() []string`
+`func (o *DeviceSwitch) GetDnsServers() []string`
 
 GetDnsServers returns the DnsServers field if non-nil, zero value otherwise.
 
 ### GetDnsServersOk
 
-`func (o *ModelSwitch) GetDnsServersOk() (*[]string, bool)`
+`func (o *DeviceSwitch) GetDnsServersOk() (*[]string, bool)`
 
 GetDnsServersOk returns a tuple with the DnsServers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsServers
 
-`func (o *ModelSwitch) SetDnsServers(v []string)`
+`func (o *DeviceSwitch) SetDnsServers(v []string)`
 
 SetDnsServers sets DnsServers field to given value.
 
 ### HasDnsServers
 
-`func (o *ModelSwitch) HasDnsServers() bool`
+`func (o *DeviceSwitch) HasDnsServers() bool`
 
 HasDnsServers returns a boolean if a field has been set.
 
 ### GetDnsSuffix
 
-`func (o *ModelSwitch) GetDnsSuffix() []string`
+`func (o *DeviceSwitch) GetDnsSuffix() []string`
 
 GetDnsSuffix returns the DnsSuffix field if non-nil, zero value otherwise.
 
 ### GetDnsSuffixOk
 
-`func (o *ModelSwitch) GetDnsSuffixOk() (*[]string, bool)`
+`func (o *DeviceSwitch) GetDnsSuffixOk() (*[]string, bool)`
 
 GetDnsSuffixOk returns a tuple with the DnsSuffix field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSuffix
 
-`func (o *ModelSwitch) SetDnsSuffix(v []string)`
+`func (o *DeviceSwitch) SetDnsSuffix(v []string)`
 
 SetDnsSuffix sets DnsSuffix field to given value.
 
 ### HasDnsSuffix
 
-`func (o *ModelSwitch) HasDnsSuffix() bool`
+`func (o *DeviceSwitch) HasDnsSuffix() bool`
 
 HasDnsSuffix returns a boolean if a field has been set.
 
 ### GetEvpnConfig
 
-`func (o *ModelSwitch) GetEvpnConfig() EvpnConfig`
+`func (o *DeviceSwitch) GetEvpnConfig() EvpnConfig`
 
 GetEvpnConfig returns the EvpnConfig field if non-nil, zero value otherwise.
 
 ### GetEvpnConfigOk
 
-`func (o *ModelSwitch) GetEvpnConfigOk() (*EvpnConfig, bool)`
+`func (o *DeviceSwitch) GetEvpnConfigOk() (*EvpnConfig, bool)`
 
 GetEvpnConfigOk returns a tuple with the EvpnConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEvpnConfig
 
-`func (o *ModelSwitch) SetEvpnConfig(v EvpnConfig)`
+`func (o *DeviceSwitch) SetEvpnConfig(v EvpnConfig)`
 
 SetEvpnConfig sets EvpnConfig field to given value.
 
 ### HasEvpnConfig
 
-`func (o *ModelSwitch) HasEvpnConfig() bool`
+`func (o *DeviceSwitch) HasEvpnConfig() bool`
 
 HasEvpnConfig returns a boolean if a field has been set.
 
 ### GetExtraRoutes
 
-`func (o *ModelSwitch) GetExtraRoutes() map[string]ExtraRouteProperties`
+`func (o *DeviceSwitch) GetExtraRoutes() map[string]ExtraRouteProperties`
 
 GetExtraRoutes returns the ExtraRoutes field if non-nil, zero value otherwise.
 
 ### GetExtraRoutesOk
 
-`func (o *ModelSwitch) GetExtraRoutesOk() (*map[string]ExtraRouteProperties, bool)`
+`func (o *DeviceSwitch) GetExtraRoutesOk() (*map[string]ExtraRouteProperties, bool)`
 
 GetExtraRoutesOk returns a tuple with the ExtraRoutes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtraRoutes
 
-`func (o *ModelSwitch) SetExtraRoutes(v map[string]ExtraRouteProperties)`
+`func (o *DeviceSwitch) SetExtraRoutes(v map[string]ExtraRouteProperties)`
 
 SetExtraRoutes sets ExtraRoutes field to given value.
 
 ### HasExtraRoutes
 
-`func (o *ModelSwitch) HasExtraRoutes() bool`
+`func (o *DeviceSwitch) HasExtraRoutes() bool`
 
 HasExtraRoutes returns a boolean if a field has been set.
 
 ### GetExtraRoutes6
 
-`func (o *ModelSwitch) GetExtraRoutes6() map[string]ExtraRoute6Properties`
+`func (o *DeviceSwitch) GetExtraRoutes6() map[string]ExtraRoute6Properties`
 
 GetExtraRoutes6 returns the ExtraRoutes6 field if non-nil, zero value otherwise.
 
 ### GetExtraRoutes6Ok
 
-`func (o *ModelSwitch) GetExtraRoutes6Ok() (*map[string]ExtraRoute6Properties, bool)`
+`func (o *DeviceSwitch) GetExtraRoutes6Ok() (*map[string]ExtraRoute6Properties, bool)`
 
 GetExtraRoutes6Ok returns a tuple with the ExtraRoutes6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtraRoutes6
 
-`func (o *ModelSwitch) SetExtraRoutes6(v map[string]ExtraRoute6Properties)`
+`func (o *DeviceSwitch) SetExtraRoutes6(v map[string]ExtraRoute6Properties)`
 
 SetExtraRoutes6 sets ExtraRoutes6 field to given value.
 
 ### HasExtraRoutes6
 
-`func (o *ModelSwitch) HasExtraRoutes6() bool`
+`func (o *DeviceSwitch) HasExtraRoutes6() bool`
 
 HasExtraRoutes6 returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *ModelSwitch) GetId() string`
+`func (o *DeviceSwitch) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ModelSwitch) GetIdOk() (*string, bool)`
+`func (o *DeviceSwitch) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ModelSwitch) SetId(v string)`
+`func (o *DeviceSwitch) SetId(v string)`
 
 SetId sets Id field to given value.
 
 ### HasId
 
-`func (o *ModelSwitch) HasId() bool`
+`func (o *DeviceSwitch) HasId() bool`
 
 HasId returns a boolean if a field has been set.
 
 ### GetImage1Url
 
-`func (o *ModelSwitch) GetImage1Url() string`
+`func (o *DeviceSwitch) GetImage1Url() string`
 
 GetImage1Url returns the Image1Url field if non-nil, zero value otherwise.
 
 ### GetImage1UrlOk
 
-`func (o *ModelSwitch) GetImage1UrlOk() (*string, bool)`
+`func (o *DeviceSwitch) GetImage1UrlOk() (*string, bool)`
 
 GetImage1UrlOk returns a tuple with the Image1Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetImage1Url
 
-`func (o *ModelSwitch) SetImage1Url(v string)`
+`func (o *DeviceSwitch) SetImage1Url(v string)`
 
 SetImage1Url sets Image1Url field to given value.
 
 ### HasImage1Url
 
-`func (o *ModelSwitch) HasImage1Url() bool`
+`func (o *DeviceSwitch) HasImage1Url() bool`
 
 HasImage1Url returns a boolean if a field has been set.
 
 ### SetImage1UrlNil
 
-`func (o *ModelSwitch) SetImage1UrlNil(b bool)`
+`func (o *DeviceSwitch) SetImage1UrlNil(b bool)`
 
  SetImage1UrlNil sets the value for Image1Url to be an explicit nil
 
 ### UnsetImage1Url
-`func (o *ModelSwitch) UnsetImage1Url()`
+`func (o *DeviceSwitch) UnsetImage1Url()`
 
 UnsetImage1Url ensures that no value is present for Image1Url, not even an explicit nil
 ### GetImage2Url
 
-`func (o *ModelSwitch) GetImage2Url() string`
+`func (o *DeviceSwitch) GetImage2Url() string`
 
 GetImage2Url returns the Image2Url field if non-nil, zero value otherwise.
 
 ### GetImage2UrlOk
 
-`func (o *ModelSwitch) GetImage2UrlOk() (*string, bool)`
+`func (o *DeviceSwitch) GetImage2UrlOk() (*string, bool)`
 
 GetImage2UrlOk returns a tuple with the Image2Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetImage2Url
 
-`func (o *ModelSwitch) SetImage2Url(v string)`
+`func (o *DeviceSwitch) SetImage2Url(v string)`
 
 SetImage2Url sets Image2Url field to given value.
 
 ### HasImage2Url
 
-`func (o *ModelSwitch) HasImage2Url() bool`
+`func (o *DeviceSwitch) HasImage2Url() bool`
 
 HasImage2Url returns a boolean if a field has been set.
 
 ### SetImage2UrlNil
 
-`func (o *ModelSwitch) SetImage2UrlNil(b bool)`
+`func (o *DeviceSwitch) SetImage2UrlNil(b bool)`
 
  SetImage2UrlNil sets the value for Image2Url to be an explicit nil
 
 ### UnsetImage2Url
-`func (o *ModelSwitch) UnsetImage2Url()`
+`func (o *DeviceSwitch) UnsetImage2Url()`
 
 UnsetImage2Url ensures that no value is present for Image2Url, not even an explicit nil
 ### GetImage3Url
 
-`func (o *ModelSwitch) GetImage3Url() string`
+`func (o *DeviceSwitch) GetImage3Url() string`
 
 GetImage3Url returns the Image3Url field if non-nil, zero value otherwise.
 
 ### GetImage3UrlOk
 
-`func (o *ModelSwitch) GetImage3UrlOk() (*string, bool)`
+`func (o *DeviceSwitch) GetImage3UrlOk() (*string, bool)`
 
 GetImage3UrlOk returns a tuple with the Image3Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetImage3Url
 
-`func (o *ModelSwitch) SetImage3Url(v string)`
+`func (o *DeviceSwitch) SetImage3Url(v string)`
 
 SetImage3Url sets Image3Url field to given value.
 
 ### HasImage3Url
 
-`func (o *ModelSwitch) HasImage3Url() bool`
+`func (o *DeviceSwitch) HasImage3Url() bool`
 
 HasImage3Url returns a boolean if a field has been set.
 
 ### SetImage3UrlNil
 
-`func (o *ModelSwitch) SetImage3UrlNil(b bool)`
+`func (o *DeviceSwitch) SetImage3UrlNil(b bool)`
 
  SetImage3UrlNil sets the value for Image3Url to be an explicit nil
 
 ### UnsetImage3Url
-`func (o *ModelSwitch) UnsetImage3Url()`
+`func (o *DeviceSwitch) UnsetImage3Url()`
 
 UnsetImage3Url ensures that no value is present for Image3Url, not even an explicit nil
 ### GetIpConfig
 
-`func (o *ModelSwitch) GetIpConfig() JunosIpConfig`
+`func (o *DeviceSwitch) GetIpConfig() JunosIpConfig`
 
 GetIpConfig returns the IpConfig field if non-nil, zero value otherwise.
 
 ### GetIpConfigOk
 
-`func (o *ModelSwitch) GetIpConfigOk() (*JunosIpConfig, bool)`
+`func (o *DeviceSwitch) GetIpConfigOk() (*JunosIpConfig, bool)`
 
 GetIpConfigOk returns a tuple with the IpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpConfig
 
-`func (o *ModelSwitch) SetIpConfig(v JunosIpConfig)`
+`func (o *DeviceSwitch) SetIpConfig(v JunosIpConfig)`
 
 SetIpConfig sets IpConfig field to given value.
 
 ### HasIpConfig
 
-`func (o *ModelSwitch) HasIpConfig() bool`
+`func (o *DeviceSwitch) HasIpConfig() bool`
 
 HasIpConfig returns a boolean if a field has been set.
 
 ### GetManaged
 
-`func (o *ModelSwitch) GetManaged() bool`
+`func (o *DeviceSwitch) GetManaged() bool`
 
 GetManaged returns the Managed field if non-nil, zero value otherwise.
 
 ### GetManagedOk
 
-`func (o *ModelSwitch) GetManagedOk() (*bool, bool)`
+`func (o *DeviceSwitch) GetManagedOk() (*bool, bool)`
 
 GetManagedOk returns a tuple with the Managed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetManaged
 
-`func (o *ModelSwitch) SetManaged(v bool)`
+`func (o *DeviceSwitch) SetManaged(v bool)`
 
 SetManaged sets Managed field to given value.
 
 ### HasManaged
 
-`func (o *ModelSwitch) HasManaged() bool`
+`func (o *DeviceSwitch) HasManaged() bool`
 
 HasManaged returns a boolean if a field has been set.
 
 ### GetMapId
 
-`func (o *ModelSwitch) GetMapId() string`
+`func (o *DeviceSwitch) GetMapId() string`
 
 GetMapId returns the MapId field if non-nil, zero value otherwise.
 
 ### GetMapIdOk
 
-`func (o *ModelSwitch) GetMapIdOk() (*string, bool)`
+`func (o *DeviceSwitch) GetMapIdOk() (*string, bool)`
 
 GetMapIdOk returns a tuple with the MapId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMapId
 
-`func (o *ModelSwitch) SetMapId(v string)`
+`func (o *DeviceSwitch) SetMapId(v string)`
 
 SetMapId sets MapId field to given value.
 
 ### HasMapId
 
-`func (o *ModelSwitch) HasMapId() bool`
+`func (o *DeviceSwitch) HasMapId() bool`
 
 HasMapId returns a boolean if a field has been set.
 
 ### GetMistNac
 
-`func (o *ModelSwitch) GetMistNac() SwitchMistNac`
+`func (o *DeviceSwitch) GetMistNac() SwitchMistNac`
 
 GetMistNac returns the MistNac field if non-nil, zero value otherwise.
 
 ### GetMistNacOk
 
-`func (o *ModelSwitch) GetMistNacOk() (*SwitchMistNac, bool)`
+`func (o *DeviceSwitch) GetMistNacOk() (*SwitchMistNac, bool)`
 
 GetMistNacOk returns a tuple with the MistNac field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMistNac
 
-`func (o *ModelSwitch) SetMistNac(v SwitchMistNac)`
+`func (o *DeviceSwitch) SetMistNac(v SwitchMistNac)`
 
 SetMistNac sets MistNac field to given value.
 
 ### HasMistNac
 
-`func (o *ModelSwitch) HasMistNac() bool`
+`func (o *DeviceSwitch) HasMistNac() bool`
 
 HasMistNac returns a boolean if a field has been set.
 
 ### GetModifiedTime
 
-`func (o *ModelSwitch) GetModifiedTime() float32`
+`func (o *DeviceSwitch) GetModifiedTime() float32`
 
 GetModifiedTime returns the ModifiedTime field if non-nil, zero value otherwise.
 
 ### GetModifiedTimeOk
 
-`func (o *ModelSwitch) GetModifiedTimeOk() (*float32, bool)`
+`func (o *DeviceSwitch) GetModifiedTimeOk() (*float32, bool)`
 
 GetModifiedTimeOk returns a tuple with the ModifiedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModifiedTime
 
-`func (o *ModelSwitch) SetModifiedTime(v float32)`
+`func (o *DeviceSwitch) SetModifiedTime(v float32)`
 
 SetModifiedTime sets ModifiedTime field to given value.
 
 ### HasModifiedTime
 
-`func (o *ModelSwitch) HasModifiedTime() bool`
+`func (o *DeviceSwitch) HasModifiedTime() bool`
 
 HasModifiedTime returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *ModelSwitch) GetName() string`
+`func (o *DeviceSwitch) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *ModelSwitch) GetNameOk() (*string, bool)`
+`func (o *DeviceSwitch) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *ModelSwitch) SetName(v string)`
+`func (o *DeviceSwitch) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *ModelSwitch) HasName() bool`
+`func (o *DeviceSwitch) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetNetworks
 
-`func (o *ModelSwitch) GetNetworks() map[string]SwitchNetwork`
+`func (o *DeviceSwitch) GetNetworks() map[string]SwitchNetwork`
 
 GetNetworks returns the Networks field if non-nil, zero value otherwise.
 
 ### GetNetworksOk
 
-`func (o *ModelSwitch) GetNetworksOk() (*map[string]SwitchNetwork, bool)`
+`func (o *DeviceSwitch) GetNetworksOk() (*map[string]SwitchNetwork, bool)`
 
 GetNetworksOk returns a tuple with the Networks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworks
 
-`func (o *ModelSwitch) SetNetworks(v map[string]SwitchNetwork)`
+`func (o *DeviceSwitch) SetNetworks(v map[string]SwitchNetwork)`
 
 SetNetworks sets Networks field to given value.
 
 ### HasNetworks
 
-`func (o *ModelSwitch) HasNetworks() bool`
+`func (o *DeviceSwitch) HasNetworks() bool`
 
 HasNetworks returns a boolean if a field has been set.
 
 ### GetNotes
 
-`func (o *ModelSwitch) GetNotes() string`
+`func (o *DeviceSwitch) GetNotes() string`
 
 GetNotes returns the Notes field if non-nil, zero value otherwise.
 
 ### GetNotesOk
 
-`func (o *ModelSwitch) GetNotesOk() (*string, bool)`
+`func (o *DeviceSwitch) GetNotesOk() (*string, bool)`
 
 GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNotes
 
-`func (o *ModelSwitch) SetNotes(v string)`
+`func (o *DeviceSwitch) SetNotes(v string)`
 
 SetNotes sets Notes field to given value.
 
 ### HasNotes
 
-`func (o *ModelSwitch) HasNotes() bool`
+`func (o *DeviceSwitch) HasNotes() bool`
 
 HasNotes returns a boolean if a field has been set.
 
 ### GetNtpServers
 
-`func (o *ModelSwitch) GetNtpServers() []string`
+`func (o *DeviceSwitch) GetNtpServers() []string`
 
 GetNtpServers returns the NtpServers field if non-nil, zero value otherwise.
 
 ### GetNtpServersOk
 
-`func (o *ModelSwitch) GetNtpServersOk() (*[]string, bool)`
+`func (o *DeviceSwitch) GetNtpServersOk() (*[]string, bool)`
 
 GetNtpServersOk returns a tuple with the NtpServers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNtpServers
 
-`func (o *ModelSwitch) SetNtpServers(v []string)`
+`func (o *DeviceSwitch) SetNtpServers(v []string)`
 
 SetNtpServers sets NtpServers field to given value.
 
 ### HasNtpServers
 
-`func (o *ModelSwitch) HasNtpServers() bool`
+`func (o *DeviceSwitch) HasNtpServers() bool`
 
 HasNtpServers returns a boolean if a field has been set.
 
 ### GetOobIpConfig
 
-`func (o *ModelSwitch) GetOobIpConfig() SwitchOobIpConfig`
+`func (o *DeviceSwitch) GetOobIpConfig() SwitchOobIpConfig`
 
 GetOobIpConfig returns the OobIpConfig field if non-nil, zero value otherwise.
 
 ### GetOobIpConfigOk
 
-`func (o *ModelSwitch) GetOobIpConfigOk() (*SwitchOobIpConfig, bool)`
+`func (o *DeviceSwitch) GetOobIpConfigOk() (*SwitchOobIpConfig, bool)`
 
 GetOobIpConfigOk returns a tuple with the OobIpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOobIpConfig
 
-`func (o *ModelSwitch) SetOobIpConfig(v SwitchOobIpConfig)`
+`func (o *DeviceSwitch) SetOobIpConfig(v SwitchOobIpConfig)`
 
 SetOobIpConfig sets OobIpConfig field to given value.
 
 ### HasOobIpConfig
 
-`func (o *ModelSwitch) HasOobIpConfig() bool`
+`func (o *DeviceSwitch) HasOobIpConfig() bool`
 
 HasOobIpConfig returns a boolean if a field has been set.
 
 ### GetOrgId
 
-`func (o *ModelSwitch) GetOrgId() string`
+`func (o *DeviceSwitch) GetOrgId() string`
 
 GetOrgId returns the OrgId field if non-nil, zero value otherwise.
 
 ### GetOrgIdOk
 
-`func (o *ModelSwitch) GetOrgIdOk() (*string, bool)`
+`func (o *DeviceSwitch) GetOrgIdOk() (*string, bool)`
 
 GetOrgIdOk returns a tuple with the OrgId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrgId
 
-`func (o *ModelSwitch) SetOrgId(v string)`
+`func (o *DeviceSwitch) SetOrgId(v string)`
 
 SetOrgId sets OrgId field to given value.
 
 ### HasOrgId
 
-`func (o *ModelSwitch) HasOrgId() bool`
+`func (o *DeviceSwitch) HasOrgId() bool`
 
 HasOrgId returns a boolean if a field has been set.
 
 ### GetOspfConfig
 
-`func (o *ModelSwitch) GetOspfConfig() OspfConfig`
+`func (o *DeviceSwitch) GetOspfConfig() OspfConfig`
 
 GetOspfConfig returns the OspfConfig field if non-nil, zero value otherwise.
 
 ### GetOspfConfigOk
 
-`func (o *ModelSwitch) GetOspfConfigOk() (*OspfConfig, bool)`
+`func (o *DeviceSwitch) GetOspfConfigOk() (*OspfConfig, bool)`
 
 GetOspfConfigOk returns a tuple with the OspfConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOspfConfig
 
-`func (o *ModelSwitch) SetOspfConfig(v OspfConfig)`
+`func (o *DeviceSwitch) SetOspfConfig(v OspfConfig)`
 
 SetOspfConfig sets OspfConfig field to given value.
 
 ### HasOspfConfig
 
-`func (o *ModelSwitch) HasOspfConfig() bool`
+`func (o *DeviceSwitch) HasOspfConfig() bool`
 
 HasOspfConfig returns a boolean if a field has been set.
 
 ### GetOtherIpConfigs
 
-`func (o *ModelSwitch) GetOtherIpConfigs() map[string]JunosOtherIpConfig`
+`func (o *DeviceSwitch) GetOtherIpConfigs() map[string]JunosOtherIpConfig`
 
 GetOtherIpConfigs returns the OtherIpConfigs field if non-nil, zero value otherwise.
 
 ### GetOtherIpConfigsOk
 
-`func (o *ModelSwitch) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfig, bool)`
+`func (o *DeviceSwitch) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfig, bool)`
 
 GetOtherIpConfigsOk returns a tuple with the OtherIpConfigs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOtherIpConfigs
 
-`func (o *ModelSwitch) SetOtherIpConfigs(v map[string]JunosOtherIpConfig)`
+`func (o *DeviceSwitch) SetOtherIpConfigs(v map[string]JunosOtherIpConfig)`
 
 SetOtherIpConfigs sets OtherIpConfigs field to given value.
 
 ### HasOtherIpConfigs
 
-`func (o *ModelSwitch) HasOtherIpConfigs() bool`
+`func (o *DeviceSwitch) HasOtherIpConfigs() bool`
 
 HasOtherIpConfigs returns a boolean if a field has been set.
 
 ### GetPortConfig
 
-`func (o *ModelSwitch) GetPortConfig() map[string]JunosPortConfig`
+`func (o *DeviceSwitch) GetPortConfig() map[string]JunosPortConfig`
 
 GetPortConfig returns the PortConfig field if non-nil, zero value otherwise.
 
 ### GetPortConfigOk
 
-`func (o *ModelSwitch) GetPortConfigOk() (*map[string]JunosPortConfig, bool)`
+`func (o *DeviceSwitch) GetPortConfigOk() (*map[string]JunosPortConfig, bool)`
 
 GetPortConfigOk returns a tuple with the PortConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortConfig
 
-`func (o *ModelSwitch) SetPortConfig(v map[string]JunosPortConfig)`
+`func (o *DeviceSwitch) SetPortConfig(v map[string]JunosPortConfig)`
 
 SetPortConfig sets PortConfig field to given value.
 
 ### HasPortConfig
 
-`func (o *ModelSwitch) HasPortConfig() bool`
+`func (o *DeviceSwitch) HasPortConfig() bool`
 
 HasPortConfig returns a boolean if a field has been set.
 
 ### GetPortMirroring
 
-`func (o *ModelSwitch) GetPortMirroring() map[string]SwitchPortMirroringProperty`
+`func (o *DeviceSwitch) GetPortMirroring() map[string]SwitchPortMirroringProperty`
 
 GetPortMirroring returns the PortMirroring field if non-nil, zero value otherwise.
 
 ### GetPortMirroringOk
 
-`func (o *ModelSwitch) GetPortMirroringOk() (*map[string]SwitchPortMirroringProperty, bool)`
+`func (o *DeviceSwitch) GetPortMirroringOk() (*map[string]SwitchPortMirroringProperty, bool)`
 
 GetPortMirroringOk returns a tuple with the PortMirroring field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortMirroring
 
-`func (o *ModelSwitch) SetPortMirroring(v map[string]SwitchPortMirroringProperty)`
+`func (o *DeviceSwitch) SetPortMirroring(v map[string]SwitchPortMirroringProperty)`
 
 SetPortMirroring sets PortMirroring field to given value.
 
 ### HasPortMirroring
 
-`func (o *ModelSwitch) HasPortMirroring() bool`
+`func (o *DeviceSwitch) HasPortMirroring() bool`
 
 HasPortMirroring returns a boolean if a field has been set.
 
 ### GetPortUsages
 
-`func (o *ModelSwitch) GetPortUsages() map[string]SwitchPortUsage`
+`func (o *DeviceSwitch) GetPortUsages() map[string]SwitchPortUsage`
 
 GetPortUsages returns the PortUsages field if non-nil, zero value otherwise.
 
 ### GetPortUsagesOk
 
-`func (o *ModelSwitch) GetPortUsagesOk() (*map[string]SwitchPortUsage, bool)`
+`func (o *DeviceSwitch) GetPortUsagesOk() (*map[string]SwitchPortUsage, bool)`
 
 GetPortUsagesOk returns a tuple with the PortUsages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortUsages
 
-`func (o *ModelSwitch) SetPortUsages(v map[string]SwitchPortUsage)`
+`func (o *DeviceSwitch) SetPortUsages(v map[string]SwitchPortUsage)`
 
 SetPortUsages sets PortUsages field to given value.
 
 ### HasPortUsages
 
-`func (o *ModelSwitch) HasPortUsages() bool`
+`func (o *DeviceSwitch) HasPortUsages() bool`
 
 HasPortUsages returns a boolean if a field has been set.
 
 ### GetRadiusConfig
 
-`func (o *ModelSwitch) GetRadiusConfig() RadiusConfig`
+`func (o *DeviceSwitch) GetRadiusConfig() RadiusConfig`
 
 GetRadiusConfig returns the RadiusConfig field if non-nil, zero value otherwise.
 
 ### GetRadiusConfigOk
 
-`func (o *ModelSwitch) GetRadiusConfigOk() (*RadiusConfig, bool)`
+`func (o *DeviceSwitch) GetRadiusConfigOk() (*RadiusConfig, bool)`
 
 GetRadiusConfigOk returns a tuple with the RadiusConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRadiusConfig
 
-`func (o *ModelSwitch) SetRadiusConfig(v RadiusConfig)`
+`func (o *DeviceSwitch) SetRadiusConfig(v RadiusConfig)`
 
 SetRadiusConfig sets RadiusConfig field to given value.
 
 ### HasRadiusConfig
 
-`func (o *ModelSwitch) HasRadiusConfig() bool`
+`func (o *DeviceSwitch) HasRadiusConfig() bool`
 
 HasRadiusConfig returns a boolean if a field has been set.
 
 ### GetRemoteSyslog
 
-`func (o *ModelSwitch) GetRemoteSyslog() RemoteSyslog`
+`func (o *DeviceSwitch) GetRemoteSyslog() RemoteSyslog`
 
 GetRemoteSyslog returns the RemoteSyslog field if non-nil, zero value otherwise.
 
 ### GetRemoteSyslogOk
 
-`func (o *ModelSwitch) GetRemoteSyslogOk() (*RemoteSyslog, bool)`
+`func (o *DeviceSwitch) GetRemoteSyslogOk() (*RemoteSyslog, bool)`
 
 GetRemoteSyslogOk returns a tuple with the RemoteSyslog field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRemoteSyslog
 
-`func (o *ModelSwitch) SetRemoteSyslog(v RemoteSyslog)`
+`func (o *DeviceSwitch) SetRemoteSyslog(v RemoteSyslog)`
 
 SetRemoteSyslog sets RemoteSyslog field to given value.
 
 ### HasRemoteSyslog
 
-`func (o *ModelSwitch) HasRemoteSyslog() bool`
+`func (o *DeviceSwitch) HasRemoteSyslog() bool`
 
 HasRemoteSyslog returns a boolean if a field has been set.
 
 ### GetRole
 
-`func (o *ModelSwitch) GetRole() string`
+`func (o *DeviceSwitch) GetRole() string`
 
 GetRole returns the Role field if non-nil, zero value otherwise.
 
 ### GetRoleOk
 
-`func (o *ModelSwitch) GetRoleOk() (*string, bool)`
+`func (o *DeviceSwitch) GetRoleOk() (*string, bool)`
 
 GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRole
 
-`func (o *ModelSwitch) SetRole(v string)`
+`func (o *DeviceSwitch) SetRole(v string)`
 
 SetRole sets Role field to given value.
 
 ### HasRole
 
-`func (o *ModelSwitch) HasRole() bool`
+`func (o *DeviceSwitch) HasRole() bool`
 
 HasRole returns a boolean if a field has been set.
 
 ### GetRouterId
 
-`func (o *ModelSwitch) GetRouterId() string`
+`func (o *DeviceSwitch) GetRouterId() string`
 
 GetRouterId returns the RouterId field if non-nil, zero value otherwise.
 
 ### GetRouterIdOk
 
-`func (o *ModelSwitch) GetRouterIdOk() (*string, bool)`
+`func (o *DeviceSwitch) GetRouterIdOk() (*string, bool)`
 
 GetRouterIdOk returns a tuple with the RouterId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRouterId
 
-`func (o *ModelSwitch) SetRouterId(v string)`
+`func (o *DeviceSwitch) SetRouterId(v string)`
 
 SetRouterId sets RouterId field to given value.
 
 ### HasRouterId
 
-`func (o *ModelSwitch) HasRouterId() bool`
+`func (o *DeviceSwitch) HasRouterId() bool`
 
 HasRouterId returns a boolean if a field has been set.
 
 ### GetSiteId
 
-`func (o *ModelSwitch) GetSiteId() string`
+`func (o *DeviceSwitch) GetSiteId() string`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *ModelSwitch) GetSiteIdOk() (*string, bool)`
+`func (o *DeviceSwitch) GetSiteIdOk() (*string, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *ModelSwitch) SetSiteId(v string)`
+`func (o *DeviceSwitch) SetSiteId(v string)`
 
 SetSiteId sets SiteId field to given value.
 
 ### HasSiteId
 
-`func (o *ModelSwitch) HasSiteId() bool`
+`func (o *DeviceSwitch) HasSiteId() bool`
 
 HasSiteId returns a boolean if a field has been set.
 
 ### GetSnmpConfig
 
-`func (o *ModelSwitch) GetSnmpConfig() SnmpConfig`
+`func (o *DeviceSwitch) GetSnmpConfig() SnmpConfig`
 
 GetSnmpConfig returns the SnmpConfig field if non-nil, zero value otherwise.
 
 ### GetSnmpConfigOk
 
-`func (o *ModelSwitch) GetSnmpConfigOk() (*SnmpConfig, bool)`
+`func (o *DeviceSwitch) GetSnmpConfigOk() (*SnmpConfig, bool)`
 
 GetSnmpConfigOk returns a tuple with the SnmpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSnmpConfig
 
-`func (o *ModelSwitch) SetSnmpConfig(v SnmpConfig)`
+`func (o *DeviceSwitch) SetSnmpConfig(v SnmpConfig)`
 
 SetSnmpConfig sets SnmpConfig field to given value.
 
 ### HasSnmpConfig
 
-`func (o *ModelSwitch) HasSnmpConfig() bool`
+`func (o *DeviceSwitch) HasSnmpConfig() bool`
 
 HasSnmpConfig returns a boolean if a field has been set.
 
 ### GetStpConfig
 
-`func (o *ModelSwitch) GetStpConfig() SwitchStpConfig`
+`func (o *DeviceSwitch) GetStpConfig() SwitchStpConfig`
 
 GetStpConfig returns the StpConfig field if non-nil, zero value otherwise.
 
 ### GetStpConfigOk
 
-`func (o *ModelSwitch) GetStpConfigOk() (*SwitchStpConfig, bool)`
+`func (o *DeviceSwitch) GetStpConfigOk() (*SwitchStpConfig, bool)`
 
 GetStpConfigOk returns a tuple with the StpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStpConfig
 
-`func (o *ModelSwitch) SetStpConfig(v SwitchStpConfig)`
+`func (o *DeviceSwitch) SetStpConfig(v SwitchStpConfig)`
 
 SetStpConfig sets StpConfig field to given value.
 
 ### HasStpConfig
 
-`func (o *ModelSwitch) HasStpConfig() bool`
+`func (o *DeviceSwitch) HasStpConfig() bool`
 
 HasStpConfig returns a boolean if a field has been set.
 
 ### GetSwitchMgmt
 
-`func (o *ModelSwitch) GetSwitchMgmt() SwitchMgmt`
+`func (o *DeviceSwitch) GetSwitchMgmt() SwitchMgmt`
 
 GetSwitchMgmt returns the SwitchMgmt field if non-nil, zero value otherwise.
 
 ### GetSwitchMgmtOk
 
-`func (o *ModelSwitch) GetSwitchMgmtOk() (*SwitchMgmt, bool)`
+`func (o *DeviceSwitch) GetSwitchMgmtOk() (*SwitchMgmt, bool)`
 
 GetSwitchMgmtOk returns a tuple with the SwitchMgmt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSwitchMgmt
 
-`func (o *ModelSwitch) SetSwitchMgmt(v SwitchMgmt)`
+`func (o *DeviceSwitch) SetSwitchMgmt(v SwitchMgmt)`
 
 SetSwitchMgmt sets SwitchMgmt field to given value.
 
 ### HasSwitchMgmt
 
-`func (o *ModelSwitch) HasSwitchMgmt() bool`
+`func (o *DeviceSwitch) HasSwitchMgmt() bool`
 
 HasSwitchMgmt returns a boolean if a field has been set.
 
 ### GetUseRouterIdAsSourceIp
 
-`func (o *ModelSwitch) GetUseRouterIdAsSourceIp() bool`
+`func (o *DeviceSwitch) GetUseRouterIdAsSourceIp() bool`
 
 GetUseRouterIdAsSourceIp returns the UseRouterIdAsSourceIp field if non-nil, zero value otherwise.
 
 ### GetUseRouterIdAsSourceIpOk
 
-`func (o *ModelSwitch) GetUseRouterIdAsSourceIpOk() (*bool, bool)`
+`func (o *DeviceSwitch) GetUseRouterIdAsSourceIpOk() (*bool, bool)`
 
 GetUseRouterIdAsSourceIpOk returns a tuple with the UseRouterIdAsSourceIp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUseRouterIdAsSourceIp
 
-`func (o *ModelSwitch) SetUseRouterIdAsSourceIp(v bool)`
+`func (o *DeviceSwitch) SetUseRouterIdAsSourceIp(v bool)`
 
 SetUseRouterIdAsSourceIp sets UseRouterIdAsSourceIp field to given value.
 
 ### HasUseRouterIdAsSourceIp
 
-`func (o *ModelSwitch) HasUseRouterIdAsSourceIp() bool`
+`func (o *DeviceSwitch) HasUseRouterIdAsSourceIp() bool`
 
 HasUseRouterIdAsSourceIp returns a boolean if a field has been set.
 
 ### GetVars
 
-`func (o *ModelSwitch) GetVars() map[string]string`
+`func (o *DeviceSwitch) GetVars() map[string]string`
 
 GetVars returns the Vars field if non-nil, zero value otherwise.
 
 ### GetVarsOk
 
-`func (o *ModelSwitch) GetVarsOk() (*map[string]string, bool)`
+`func (o *DeviceSwitch) GetVarsOk() (*map[string]string, bool)`
 
 GetVarsOk returns a tuple with the Vars field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVars
 
-`func (o *ModelSwitch) SetVars(v map[string]string)`
+`func (o *DeviceSwitch) SetVars(v map[string]string)`
 
 SetVars sets Vars field to given value.
 
 ### HasVars
 
-`func (o *ModelSwitch) HasVars() bool`
+`func (o *DeviceSwitch) HasVars() bool`
 
 HasVars returns a boolean if a field has been set.
 
 ### GetVirtualChassis
 
-`func (o *ModelSwitch) GetVirtualChassis() SwitchVirtualChassis`
+`func (o *DeviceSwitch) GetVirtualChassis() SwitchVirtualChassis`
 
 GetVirtualChassis returns the VirtualChassis field if non-nil, zero value otherwise.
 
 ### GetVirtualChassisOk
 
-`func (o *ModelSwitch) GetVirtualChassisOk() (*SwitchVirtualChassis, bool)`
+`func (o *DeviceSwitch) GetVirtualChassisOk() (*SwitchVirtualChassis, bool)`
 
 GetVirtualChassisOk returns a tuple with the VirtualChassis field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualChassis
 
-`func (o *ModelSwitch) SetVirtualChassis(v SwitchVirtualChassis)`
+`func (o *DeviceSwitch) SetVirtualChassis(v SwitchVirtualChassis)`
 
 SetVirtualChassis sets VirtualChassis field to given value.
 
 ### HasVirtualChassis
 
-`func (o *ModelSwitch) HasVirtualChassis() bool`
+`func (o *DeviceSwitch) HasVirtualChassis() bool`
 
 HasVirtualChassis returns a boolean if a field has been set.
 
 ### GetVrfConfig
 
-`func (o *ModelSwitch) GetVrfConfig() VrfConfig`
+`func (o *DeviceSwitch) GetVrfConfig() VrfConfig`
 
 GetVrfConfig returns the VrfConfig field if non-nil, zero value otherwise.
 
 ### GetVrfConfigOk
 
-`func (o *ModelSwitch) GetVrfConfigOk() (*VrfConfig, bool)`
+`func (o *DeviceSwitch) GetVrfConfigOk() (*VrfConfig, bool)`
 
 GetVrfConfigOk returns a tuple with the VrfConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVrfConfig
 
-`func (o *ModelSwitch) SetVrfConfig(v VrfConfig)`
+`func (o *DeviceSwitch) SetVrfConfig(v VrfConfig)`
 
 SetVrfConfig sets VrfConfig field to given value.
 
 ### HasVrfConfig
 
-`func (o *ModelSwitch) HasVrfConfig() bool`
+`func (o *DeviceSwitch) HasVrfConfig() bool`
 
 HasVrfConfig returns a boolean if a field has been set.
 
 ### GetVrfInstances
 
-`func (o *ModelSwitch) GetVrfInstances() map[string]VrfInstance`
+`func (o *DeviceSwitch) GetVrfInstances() map[string]VrfInstance`
 
 GetVrfInstances returns the VrfInstances field if non-nil, zero value otherwise.
 
 ### GetVrfInstancesOk
 
-`func (o *ModelSwitch) GetVrfInstancesOk() (*map[string]VrfInstance, bool)`
+`func (o *DeviceSwitch) GetVrfInstancesOk() (*map[string]VrfInstance, bool)`
 
 GetVrfInstancesOk returns a tuple with the VrfInstances field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVrfInstances
 
-`func (o *ModelSwitch) SetVrfInstances(v map[string]VrfInstance)`
+`func (o *DeviceSwitch) SetVrfInstances(v map[string]VrfInstance)`
 
 SetVrfInstances sets VrfInstances field to given value.
 
 ### HasVrfInstances
 
-`func (o *ModelSwitch) HasVrfInstances() bool`
+`func (o *DeviceSwitch) HasVrfInstances() bool`
 
 HasVrfInstances returns a boolean if a field has been set.
 
 ### GetVrrpConfig
 
-`func (o *ModelSwitch) GetVrrpConfig() VrrpConfig`
+`func (o *DeviceSwitch) GetVrrpConfig() VrrpConfig`
 
 GetVrrpConfig returns the VrrpConfig field if non-nil, zero value otherwise.
 
 ### GetVrrpConfigOk
 
-`func (o *ModelSwitch) GetVrrpConfigOk() (*VrrpConfig, bool)`
+`func (o *DeviceSwitch) GetVrrpConfigOk() (*VrrpConfig, bool)`
 
 GetVrrpConfigOk returns a tuple with the VrrpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVrrpConfig
 
-`func (o *ModelSwitch) SetVrrpConfig(v VrrpConfig)`
+`func (o *DeviceSwitch) SetVrrpConfig(v VrrpConfig)`
 
 SetVrrpConfig sets VrrpConfig field to given value.
 
 ### HasVrrpConfig
 
-`func (o *ModelSwitch) HasVrrpConfig() bool`
+`func (o *DeviceSwitch) HasVrrpConfig() bool`
 
 HasVrrpConfig returns a boolean if a field has been set.
 
 ### GetX
 
-`func (o *ModelSwitch) GetX() float32`
+`func (o *DeviceSwitch) GetX() float64`
 
 GetX returns the X field if non-nil, zero value otherwise.
 
 ### GetXOk
 
-`func (o *ModelSwitch) GetXOk() (*float32, bool)`
+`func (o *DeviceSwitch) GetXOk() (*float64, bool)`
 
 GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetX
 
-`func (o *ModelSwitch) SetX(v float32)`
+`func (o *DeviceSwitch) SetX(v float64)`
 
 SetX sets X field to given value.
 
 ### HasX
 
-`func (o *ModelSwitch) HasX() bool`
+`func (o *DeviceSwitch) HasX() bool`
 
 HasX returns a boolean if a field has been set.
 
 ### GetY
 
-`func (o *ModelSwitch) GetY() float32`
+`func (o *DeviceSwitch) GetY() float64`
 
 GetY returns the Y field if non-nil, zero value otherwise.
 
 ### GetYOk
 
-`func (o *ModelSwitch) GetYOk() (*float32, bool)`
+`func (o *DeviceSwitch) GetYOk() (*float64, bool)`
 
 GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetY
 
-`func (o *ModelSwitch) SetY(v float32)`
+`func (o *DeviceSwitch) SetY(v float64)`
 
 SetY sets Y field to given value.
 
 ### HasY
 
-`func (o *ModelSwitch) HasY() bool`
+`func (o *DeviceSwitch) HasY() bool`
 
 HasY returns a boolean if a field has been set.
 

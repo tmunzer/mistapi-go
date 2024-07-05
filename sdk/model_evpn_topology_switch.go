@@ -20,7 +20,7 @@ var _ MappedNullable = &EvpnTopologySwitch{}
 
 // EvpnTopologySwitch struct for EvpnTopologySwitch
 type EvpnTopologySwitch struct {
-	Config *ModelSwitch `json:"config,omitempty"`
+	Config *DeviceSwitch `json:"config,omitempty"`
 	DeviceprofileId *string `json:"deviceprofile_id,omitempty"`
 	Downlinks []string `json:"downlinks,omitempty"`
 	Esilaglinks []string `json:"esilaglinks,omitempty"`
@@ -65,9 +65,9 @@ func NewEvpnTopologySwitchWithDefaults() *EvpnTopologySwitch {
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
-func (o *EvpnTopologySwitch) GetConfig() ModelSwitch {
+func (o *EvpnTopologySwitch) GetConfig() DeviceSwitch {
 	if o == nil || IsNil(o.Config) {
-		var ret ModelSwitch
+		var ret DeviceSwitch
 		return ret
 	}
 	return *o.Config
@@ -75,7 +75,7 @@ func (o *EvpnTopologySwitch) GetConfig() ModelSwitch {
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EvpnTopologySwitch) GetConfigOk() (*ModelSwitch, bool) {
+func (o *EvpnTopologySwitch) GetConfigOk() (*DeviceSwitch, bool) {
 	if o == nil || IsNil(o.Config) {
 		return nil, false
 	}
@@ -91,8 +91,8 @@ func (o *EvpnTopologySwitch) HasConfig() bool {
 	return false
 }
 
-// SetConfig gets a reference to the given ModelSwitch and assigns it to the Config field.
-func (o *EvpnTopologySwitch) SetConfig(v ModelSwitch) {
+// SetConfig gets a reference to the given DeviceSwitch and assigns it to the Config field.
+func (o *EvpnTopologySwitch) SetConfig(v DeviceSwitch) {
 	o.Config = &v
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | Pointer to [**ModelSwitch**](ModelSwitch.md) |  | [optional] 
+**Config** | Pointer to [**DeviceSwitch**](DeviceSwitch.md) |  | [optional] 
 **DeviceprofileId** | Pointer to **string** |  | [optional] [readonly] 
 **Downlinks** | Pointer to **[]string** |  | [optional] [readonly] 
 **Esilaglinks** | Pointer to **[]string** |  | [optional] 
@@ -41,20 +41,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetConfig
 
-`func (o *EvpnTopologySwitch) GetConfig() ModelSwitch`
+`func (o *EvpnTopologySwitch) GetConfig() DeviceSwitch`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *EvpnTopologySwitch) GetConfigOk() (*ModelSwitch, bool)`
+`func (o *EvpnTopologySwitch) GetConfigOk() (*DeviceSwitch, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *EvpnTopologySwitch) SetConfig(v ModelSwitch)`
+`func (o *EvpnTopologySwitch) SetConfig(v DeviceSwitch)`
 
 SetConfig sets Config field to given value.
 

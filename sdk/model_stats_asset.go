@@ -45,9 +45,9 @@ type StatsAsset struct {
 	Rssizones []AssetRssiZone `json:"rssizones,omitempty"`
 	Temperatur *float32 `json:"temperatur,omitempty"`
 	// x in pixel
-	X *float32 `json:"x,omitempty"`
+	X *float64 `json:"x,omitempty"`
 	// y in pixel
-	Y *float32 `json:"y,omitempty"`
+	Y *float64 `json:"y,omitempty"`
 	// only send this for individual asset stat
 	Zones []AssetZone `json:"zones,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -610,9 +610,9 @@ func (o *StatsAsset) SetTemperatur(v float32) {
 }
 
 // GetX returns the X field value if set, zero value otherwise.
-func (o *StatsAsset) GetX() float32 {
+func (o *StatsAsset) GetX() float64 {
 	if o == nil || IsNil(o.X) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.X
@@ -620,7 +620,7 @@ func (o *StatsAsset) GetX() float32 {
 
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatsAsset) GetXOk() (*float32, bool) {
+func (o *StatsAsset) GetXOk() (*float64, bool) {
 	if o == nil || IsNil(o.X) {
 		return nil, false
 	}
@@ -636,15 +636,15 @@ func (o *StatsAsset) HasX() bool {
 	return false
 }
 
-// SetX gets a reference to the given float32 and assigns it to the X field.
-func (o *StatsAsset) SetX(v float32) {
+// SetX gets a reference to the given float64 and assigns it to the X field.
+func (o *StatsAsset) SetX(v float64) {
 	o.X = &v
 }
 
 // GetY returns the Y field value if set, zero value otherwise.
-func (o *StatsAsset) GetY() float32 {
+func (o *StatsAsset) GetY() float64 {
 	if o == nil || IsNil(o.Y) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Y
@@ -652,7 +652,7 @@ func (o *StatsAsset) GetY() float32 {
 
 // GetYOk returns a tuple with the Y field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatsAsset) GetYOk() (*float32, bool) {
+func (o *StatsAsset) GetYOk() (*float64, bool) {
 	if o == nil || IsNil(o.Y) {
 		return nil, false
 	}
@@ -668,8 +668,8 @@ func (o *StatsAsset) HasY() bool {
 	return false
 }
 
-// SetY gets a reference to the given float32 and assigns it to the Y field.
-func (o *StatsAsset) SetY(v float32) {
+// SetY gets a reference to the given float64 and assigns it to the Y field.
+func (o *StatsAsset) SetY(v float64) {
 	o.Y = &v
 }
 

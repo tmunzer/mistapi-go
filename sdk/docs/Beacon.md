@@ -21,8 +21,8 @@ Name | Type | Description | Notes
 **Power** | Pointer to **int32** | in dBm | [optional] [default to -12]
 **SiteId** | Pointer to **string** |  | [optional] [readonly] 
 **Type** | Pointer to [**BeaconType**](BeaconType.md) |  | [optional] [default to BEACONTYPE_EDDYSTONE_UID]
-**X** | Pointer to **float32** | x in pixel | [optional] 
-**Y** | Pointer to **float32** | y in pixel | [optional] 
+**X** | Pointer to **float64** | x in pixel | [optional] 
+**Y** | Pointer to **float64** | y in pixel | [optional] 
 
 ## Methods
 
@@ -470,20 +470,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetX
 
-`func (o *Beacon) GetX() float32`
+`func (o *Beacon) GetX() float64`
 
 GetX returns the X field if non-nil, zero value otherwise.
 
 ### GetXOk
 
-`func (o *Beacon) GetXOk() (*float32, bool)`
+`func (o *Beacon) GetXOk() (*float64, bool)`
 
 GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetX
 
-`func (o *Beacon) SetX(v float32)`
+`func (o *Beacon) SetX(v float64)`
 
 SetX sets X field to given value.
 
@@ -495,20 +495,20 @@ HasX returns a boolean if a field has been set.
 
 ### GetY
 
-`func (o *Beacon) GetY() float32`
+`func (o *Beacon) GetY() float64`
 
 GetY returns the Y field if non-nil, zero value otherwise.
 
 ### GetYOk
 
-`func (o *Beacon) GetYOk() (*float32, bool)`
+`func (o *Beacon) GetYOk() (*float64, bool)`
 
 GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetY
 
-`func (o *Beacon) SetY(v float32)`
+`func (o *Beacon) SetY(v float64)`
 
 SetY sets Y field to given value.
 

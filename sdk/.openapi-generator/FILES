@@ -214,7 +214,6 @@ docs/AlarmTemplateRule.md
 docs/Alarms.md
 docs/AllowDeny.md
 docs/Anomaly.md
-docs/Ap.md
 docs/ApAeroscout.md
 docs/ApCentrak.md
 docs/ApClientBridge.md
@@ -431,12 +430,15 @@ docs/CpuStat.md
 docs/DayOfWeek.md
 docs/DaysNumber.md
 docs/Delivery.md
+docs/DeviceAp.md
+docs/DeviceGateway.md
 docs/DeviceIdString.md
 docs/DeviceOther.md
 docs/DeviceOtherStats.md
 docs/DeviceOtherStatsVendorSpecific.md
 docs/DeviceOtherStatsVendorSpecificPort.md
 docs/DeviceStatus.md
+docs/DeviceSwitch.md
 docs/DeviceType.md
 docs/DeviceTypeWithAll.md
 docs/DeviceUpgrade.md
@@ -504,7 +506,6 @@ docs/ExtraRoute6PropertiesNextQualifiedProperties.md
 docs/ExtraRouteProperties.md
 docs/ExtraRoutePropertiesNextQualifiedProperties.md
 docs/FastRoamResult.md
-docs/Gateway.md
 docs/GatewayClusterForm.md
 docs/GatewayClusterFormNode.md
 docs/GatewayClusterSwap.md
@@ -655,7 +656,6 @@ docs/MfaSecretType.md
 docs/MistDevice.md
 docs/MlOverwriteAdditionalProperties.md
 docs/ModelMap.md
-docs/ModelSwitch.md
 docs/ModuleStat.md
 docs/ModuleStatErrorsItems.md
 docs/ModuleStatFansItems.md
@@ -1751,7 +1751,6 @@ model_alarm_template_rule.go
 model_alarms.go
 model_allow_deny.go
 model_anomaly.go
-model_ap.go
 model_ap_aeroscout.go
 model_ap_centrak.go
 model_ap_client_bridge.go
@@ -1964,12 +1963,15 @@ model_cpu_stat.go
 model_day_of_week.go
 model_days_number.go
 model_delivery.go
+model_device_ap.go
+model_device_gateway.go
 model_device_id_string.go
 model_device_other.go
 model_device_other_stats.go
 model_device_other_stats_vendor_specific.go
 model_device_other_stats_vendor_specific_port.go
 model_device_status.go
+model_device_switch.go
 model_device_type.go
 model_device_type_with_all.go
 model_device_upgrade.go
@@ -2037,7 +2039,6 @@ model_extra_route6_properties_next_qualified_properties.go
 model_extra_route_properties.go
 model_extra_route_properties_next_qualified_properties.go
 model_fast_roam_result.go
-model_gateway.go
 model_gateway_cluster_form.go
 model_gateway_cluster_form_node.go
 model_gateway_cluster_swap.go
@@ -2831,7 +2832,6 @@ model_stats_wired_client.go
 model_suppressed_alarm.go
 model_suppressed_alarm_applies.go
 model_suppressed_alarm_scope.go
-model_switch.go
 model_switch_matching.go
 model_switch_matching_rule.go
 model_switch_metric_scope.go

@@ -41,8 +41,8 @@ Name | Type | Description | Notes
 **UplinkPortConfig** | Pointer to [**ApUplinkPortConfig**](ApUplinkPortConfig.md) |  | [optional] 
 **UsbConfig** | Pointer to [**ApUsb**](ApUsb.md) |  | [optional] 
 **Vars** | Pointer to **map[string]string** | a dictionary of name-&gt;value, the vars can then be used in Wlans. This can overwrite those from Site Vars | [optional] 
-**X** | Pointer to **float32** | x in pixel | [optional] 
-**Y** | Pointer to **float32** | y in pixel | [optional] 
+**X** | Pointer to **float64** | x in pixel | [optional] 
+**Y** | Pointer to **float64** | y in pixel | [optional] 
 **AclPolicies** | Pointer to [**[]AclPolicy**](AclPolicy.md) |  | [optional] 
 **AclTags** | Pointer to [**map[string]AclTag**](AclTag.md) | ACL Tags to identify traffic source or destination. Key name is the tag name | [optional] 
 **AdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] 
@@ -1022,20 +1022,20 @@ HasVars returns a boolean if a field has been set.
 
 ### GetX
 
-`func (o *ConfigDevice) GetX() float32`
+`func (o *ConfigDevice) GetX() float64`
 
 GetX returns the X field if non-nil, zero value otherwise.
 
 ### GetXOk
 
-`func (o *ConfigDevice) GetXOk() (*float32, bool)`
+`func (o *ConfigDevice) GetXOk() (*float64, bool)`
 
 GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetX
 
-`func (o *ConfigDevice) SetX(v float32)`
+`func (o *ConfigDevice) SetX(v float64)`
 
 SetX sets X field to given value.
 
@@ -1047,20 +1047,20 @@ HasX returns a boolean if a field has been set.
 
 ### GetY
 
-`func (o *ConfigDevice) GetY() float32`
+`func (o *ConfigDevice) GetY() float64`
 
 GetY returns the Y field if non-nil, zero value otherwise.
 
 ### GetYOk
 
-`func (o *ConfigDevice) GetYOk() (*float32, bool)`
+`func (o *ConfigDevice) GetYOk() (*float64, bool)`
 
 GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetY
 
-`func (o *ConfigDevice) SetY(v float32)`
+`func (o *ConfigDevice) SetY(v float64)`
 
 SetY sets Y field to given value.
 

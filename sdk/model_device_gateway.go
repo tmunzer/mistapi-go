@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the Gateway type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Gateway{}
+// checks if the DeviceGateway type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceGateway{}
 
-// Gateway device gateway
-type Gateway struct {
+// DeviceGateway device gateway
+type DeviceGateway struct {
 	// additional CLI commands to append to the generated Junos config  **Note**: no check is done
 	AdditionalConfigCmds []string `json:"additional_config_cmds,omitempty"`
 	CreatedTime *float32 `json:"created_time,omitempty"`
@@ -51,33 +51,33 @@ type Gateway struct {
 	// a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
 	Vars *map[string]string `json:"vars,omitempty"`
 	// x in pixel
-	X *float32 `json:"x,omitempty"`
+	X *float64 `json:"x,omitempty"`
 	// y in pixel
-	Y *float32 `json:"y,omitempty"`
+	Y *float64 `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _Gateway Gateway
+type _DeviceGateway DeviceGateway
 
-// NewGateway instantiates a new Gateway object
+// NewDeviceGateway instantiates a new DeviceGateway object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGateway() *Gateway {
-	this := Gateway{}
+func NewDeviceGateway() *DeviceGateway {
+	this := DeviceGateway{}
 	return &this
 }
 
-// NewGatewayWithDefaults instantiates a new Gateway object
+// NewDeviceGatewayWithDefaults instantiates a new DeviceGateway object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGatewayWithDefaults() *Gateway {
-	this := Gateway{}
+func NewDeviceGatewayWithDefaults() *DeviceGateway {
+	this := DeviceGateway{}
 	return &this
 }
 
 // GetAdditionalConfigCmds returns the AdditionalConfigCmds field value if set, zero value otherwise.
-func (o *Gateway) GetAdditionalConfigCmds() []string {
+func (o *DeviceGateway) GetAdditionalConfigCmds() []string {
 	if o == nil || IsNil(o.AdditionalConfigCmds) {
 		var ret []string
 		return ret
@@ -87,7 +87,7 @@ func (o *Gateway) GetAdditionalConfigCmds() []string {
 
 // GetAdditionalConfigCmdsOk returns a tuple with the AdditionalConfigCmds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetAdditionalConfigCmdsOk() ([]string, bool) {
+func (o *DeviceGateway) GetAdditionalConfigCmdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.AdditionalConfigCmds) {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *Gateway) GetAdditionalConfigCmdsOk() ([]string, bool) {
 }
 
 // HasAdditionalConfigCmds returns a boolean if a field has been set.
-func (o *Gateway) HasAdditionalConfigCmds() bool {
+func (o *DeviceGateway) HasAdditionalConfigCmds() bool {
 	if o != nil && !IsNil(o.AdditionalConfigCmds) {
 		return true
 	}
@@ -104,12 +104,12 @@ func (o *Gateway) HasAdditionalConfigCmds() bool {
 }
 
 // SetAdditionalConfigCmds gets a reference to the given []string and assigns it to the AdditionalConfigCmds field.
-func (o *Gateway) SetAdditionalConfigCmds(v []string) {
+func (o *DeviceGateway) SetAdditionalConfigCmds(v []string) {
 	o.AdditionalConfigCmds = v
 }
 
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise.
-func (o *Gateway) GetCreatedTime() float32 {
+func (o *DeviceGateway) GetCreatedTime() float32 {
 	if o == nil || IsNil(o.CreatedTime) {
 		var ret float32
 		return ret
@@ -119,7 +119,7 @@ func (o *Gateway) GetCreatedTime() float32 {
 
 // GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetCreatedTimeOk() (*float32, bool) {
+func (o *DeviceGateway) GetCreatedTimeOk() (*float32, bool) {
 	if o == nil || IsNil(o.CreatedTime) {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *Gateway) GetCreatedTimeOk() (*float32, bool) {
 }
 
 // HasCreatedTime returns a boolean if a field has been set.
-func (o *Gateway) HasCreatedTime() bool {
+func (o *DeviceGateway) HasCreatedTime() bool {
 	if o != nil && !IsNil(o.CreatedTime) {
 		return true
 	}
@@ -136,12 +136,12 @@ func (o *Gateway) HasCreatedTime() bool {
 }
 
 // SetCreatedTime gets a reference to the given float32 and assigns it to the CreatedTime field.
-func (o *Gateway) SetCreatedTime(v float32) {
+func (o *DeviceGateway) SetCreatedTime(v float32) {
 	o.CreatedTime = &v
 }
 
 // GetDeviceprofileId returns the DeviceprofileId field value if set, zero value otherwise.
-func (o *Gateway) GetDeviceprofileId() string {
+func (o *DeviceGateway) GetDeviceprofileId() string {
 	if o == nil || IsNil(o.DeviceprofileId) {
 		var ret string
 		return ret
@@ -151,7 +151,7 @@ func (o *Gateway) GetDeviceprofileId() string {
 
 // GetDeviceprofileIdOk returns a tuple with the DeviceprofileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetDeviceprofileIdOk() (*string, bool) {
+func (o *DeviceGateway) GetDeviceprofileIdOk() (*string, bool) {
 	if o == nil || IsNil(o.DeviceprofileId) {
 		return nil, false
 	}
@@ -159,7 +159,7 @@ func (o *Gateway) GetDeviceprofileIdOk() (*string, bool) {
 }
 
 // HasDeviceprofileId returns a boolean if a field has been set.
-func (o *Gateway) HasDeviceprofileId() bool {
+func (o *DeviceGateway) HasDeviceprofileId() bool {
 	if o != nil && !IsNil(o.DeviceprofileId) {
 		return true
 	}
@@ -168,12 +168,12 @@ func (o *Gateway) HasDeviceprofileId() bool {
 }
 
 // SetDeviceprofileId gets a reference to the given string and assigns it to the DeviceprofileId field.
-func (o *Gateway) SetDeviceprofileId(v string) {
+func (o *DeviceGateway) SetDeviceprofileId(v string) {
 	o.DeviceprofileId = &v
 }
 
 // GetDhcpdConfig returns the DhcpdConfig field value if set, zero value otherwise.
-func (o *Gateway) GetDhcpdConfig() DhcpdConfigs {
+func (o *DeviceGateway) GetDhcpdConfig() DhcpdConfigs {
 	if o == nil || IsNil(o.DhcpdConfig) {
 		var ret DhcpdConfigs
 		return ret
@@ -183,7 +183,7 @@ func (o *Gateway) GetDhcpdConfig() DhcpdConfigs {
 
 // GetDhcpdConfigOk returns a tuple with the DhcpdConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetDhcpdConfigOk() (*DhcpdConfigs, bool) {
+func (o *DeviceGateway) GetDhcpdConfigOk() (*DhcpdConfigs, bool) {
 	if o == nil || IsNil(o.DhcpdConfig) {
 		return nil, false
 	}
@@ -191,7 +191,7 @@ func (o *Gateway) GetDhcpdConfigOk() (*DhcpdConfigs, bool) {
 }
 
 // HasDhcpdConfig returns a boolean if a field has been set.
-func (o *Gateway) HasDhcpdConfig() bool {
+func (o *DeviceGateway) HasDhcpdConfig() bool {
 	if o != nil && !IsNil(o.DhcpdConfig) {
 		return true
 	}
@@ -200,12 +200,12 @@ func (o *Gateway) HasDhcpdConfig() bool {
 }
 
 // SetDhcpdConfig gets a reference to the given DhcpdConfigs and assigns it to the DhcpdConfig field.
-func (o *Gateway) SetDhcpdConfig(v DhcpdConfigs) {
+func (o *DeviceGateway) SetDhcpdConfig(v DhcpdConfigs) {
 	o.DhcpdConfig = &v
 }
 
 // GetExtraRoutes returns the ExtraRoutes field value if set, zero value otherwise.
-func (o *Gateway) GetExtraRoutes() map[string]GatewayExtraRoute {
+func (o *DeviceGateway) GetExtraRoutes() map[string]GatewayExtraRoute {
 	if o == nil || IsNil(o.ExtraRoutes) {
 		var ret map[string]GatewayExtraRoute
 		return ret
@@ -215,7 +215,7 @@ func (o *Gateway) GetExtraRoutes() map[string]GatewayExtraRoute {
 
 // GetExtraRoutesOk returns a tuple with the ExtraRoutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetExtraRoutesOk() (*map[string]GatewayExtraRoute, bool) {
+func (o *DeviceGateway) GetExtraRoutesOk() (*map[string]GatewayExtraRoute, bool) {
 	if o == nil || IsNil(o.ExtraRoutes) {
 		return nil, false
 	}
@@ -223,7 +223,7 @@ func (o *Gateway) GetExtraRoutesOk() (*map[string]GatewayExtraRoute, bool) {
 }
 
 // HasExtraRoutes returns a boolean if a field has been set.
-func (o *Gateway) HasExtraRoutes() bool {
+func (o *DeviceGateway) HasExtraRoutes() bool {
 	if o != nil && !IsNil(o.ExtraRoutes) {
 		return true
 	}
@@ -232,12 +232,12 @@ func (o *Gateway) HasExtraRoutes() bool {
 }
 
 // SetExtraRoutes gets a reference to the given map[string]GatewayExtraRoute and assigns it to the ExtraRoutes field.
-func (o *Gateway) SetExtraRoutes(v map[string]GatewayExtraRoute) {
+func (o *DeviceGateway) SetExtraRoutes(v map[string]GatewayExtraRoute) {
 	o.ExtraRoutes = &v
 }
 
 // GetForSite returns the ForSite field value if set, zero value otherwise.
-func (o *Gateway) GetForSite() bool {
+func (o *DeviceGateway) GetForSite() bool {
 	if o == nil || IsNil(o.ForSite) {
 		var ret bool
 		return ret
@@ -247,7 +247,7 @@ func (o *Gateway) GetForSite() bool {
 
 // GetForSiteOk returns a tuple with the ForSite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetForSiteOk() (*bool, bool) {
+func (o *DeviceGateway) GetForSiteOk() (*bool, bool) {
 	if o == nil || IsNil(o.ForSite) {
 		return nil, false
 	}
@@ -255,7 +255,7 @@ func (o *Gateway) GetForSiteOk() (*bool, bool) {
 }
 
 // HasForSite returns a boolean if a field has been set.
-func (o *Gateway) HasForSite() bool {
+func (o *DeviceGateway) HasForSite() bool {
 	if o != nil && !IsNil(o.ForSite) {
 		return true
 	}
@@ -264,12 +264,12 @@ func (o *Gateway) HasForSite() bool {
 }
 
 // SetForSite gets a reference to the given bool and assigns it to the ForSite field.
-func (o *Gateway) SetForSite(v bool) {
+func (o *DeviceGateway) SetForSite(v bool) {
 	o.ForSite = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Gateway) GetId() string {
+func (o *DeviceGateway) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -279,7 +279,7 @@ func (o *Gateway) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetIdOk() (*string, bool) {
+func (o *DeviceGateway) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -287,7 +287,7 @@ func (o *Gateway) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *Gateway) HasId() bool {
+func (o *DeviceGateway) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -296,12 +296,12 @@ func (o *Gateway) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Gateway) SetId(v string) {
+func (o *DeviceGateway) SetId(v string) {
 	o.Id = &v
 }
 
 // GetImage1Url returns the Image1Url field value if set, zero value otherwise.
-func (o *Gateway) GetImage1Url() string {
+func (o *DeviceGateway) GetImage1Url() string {
 	if o == nil || IsNil(o.Image1Url) {
 		var ret string
 		return ret
@@ -311,7 +311,7 @@ func (o *Gateway) GetImage1Url() string {
 
 // GetImage1UrlOk returns a tuple with the Image1Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetImage1UrlOk() (*string, bool) {
+func (o *DeviceGateway) GetImage1UrlOk() (*string, bool) {
 	if o == nil || IsNil(o.Image1Url) {
 		return nil, false
 	}
@@ -319,7 +319,7 @@ func (o *Gateway) GetImage1UrlOk() (*string, bool) {
 }
 
 // HasImage1Url returns a boolean if a field has been set.
-func (o *Gateway) HasImage1Url() bool {
+func (o *DeviceGateway) HasImage1Url() bool {
 	if o != nil && !IsNil(o.Image1Url) {
 		return true
 	}
@@ -328,12 +328,12 @@ func (o *Gateway) HasImage1Url() bool {
 }
 
 // SetImage1Url gets a reference to the given string and assigns it to the Image1Url field.
-func (o *Gateway) SetImage1Url(v string) {
+func (o *DeviceGateway) SetImage1Url(v string) {
 	o.Image1Url = &v
 }
 
 // GetImage2Url returns the Image2Url field value if set, zero value otherwise.
-func (o *Gateway) GetImage2Url() string {
+func (o *DeviceGateway) GetImage2Url() string {
 	if o == nil || IsNil(o.Image2Url) {
 		var ret string
 		return ret
@@ -343,7 +343,7 @@ func (o *Gateway) GetImage2Url() string {
 
 // GetImage2UrlOk returns a tuple with the Image2Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetImage2UrlOk() (*string, bool) {
+func (o *DeviceGateway) GetImage2UrlOk() (*string, bool) {
 	if o == nil || IsNil(o.Image2Url) {
 		return nil, false
 	}
@@ -351,7 +351,7 @@ func (o *Gateway) GetImage2UrlOk() (*string, bool) {
 }
 
 // HasImage2Url returns a boolean if a field has been set.
-func (o *Gateway) HasImage2Url() bool {
+func (o *DeviceGateway) HasImage2Url() bool {
 	if o != nil && !IsNil(o.Image2Url) {
 		return true
 	}
@@ -360,12 +360,12 @@ func (o *Gateway) HasImage2Url() bool {
 }
 
 // SetImage2Url gets a reference to the given string and assigns it to the Image2Url field.
-func (o *Gateway) SetImage2Url(v string) {
+func (o *DeviceGateway) SetImage2Url(v string) {
 	o.Image2Url = &v
 }
 
 // GetImage3Url returns the Image3Url field value if set, zero value otherwise.
-func (o *Gateway) GetImage3Url() string {
+func (o *DeviceGateway) GetImage3Url() string {
 	if o == nil || IsNil(o.Image3Url) {
 		var ret string
 		return ret
@@ -375,7 +375,7 @@ func (o *Gateway) GetImage3Url() string {
 
 // GetImage3UrlOk returns a tuple with the Image3Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetImage3UrlOk() (*string, bool) {
+func (o *DeviceGateway) GetImage3UrlOk() (*string, bool) {
 	if o == nil || IsNil(o.Image3Url) {
 		return nil, false
 	}
@@ -383,7 +383,7 @@ func (o *Gateway) GetImage3UrlOk() (*string, bool) {
 }
 
 // HasImage3Url returns a boolean if a field has been set.
-func (o *Gateway) HasImage3Url() bool {
+func (o *DeviceGateway) HasImage3Url() bool {
 	if o != nil && !IsNil(o.Image3Url) {
 		return true
 	}
@@ -392,12 +392,12 @@ func (o *Gateway) HasImage3Url() bool {
 }
 
 // SetImage3Url gets a reference to the given string and assigns it to the Image3Url field.
-func (o *Gateway) SetImage3Url(v string) {
+func (o *DeviceGateway) SetImage3Url(v string) {
 	o.Image3Url = &v
 }
 
 // GetIpConfig returns the IpConfig field value if set, zero value otherwise.
-func (o *Gateway) GetIpConfig() map[string]GatewayTemplateIpConfig {
+func (o *DeviceGateway) GetIpConfig() map[string]GatewayTemplateIpConfig {
 	if o == nil || IsNil(o.IpConfig) {
 		var ret map[string]GatewayTemplateIpConfig
 		return ret
@@ -407,7 +407,7 @@ func (o *Gateway) GetIpConfig() map[string]GatewayTemplateIpConfig {
 
 // GetIpConfigOk returns a tuple with the IpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetIpConfigOk() (*map[string]GatewayTemplateIpConfig, bool) {
+func (o *DeviceGateway) GetIpConfigOk() (*map[string]GatewayTemplateIpConfig, bool) {
 	if o == nil || IsNil(o.IpConfig) {
 		return nil, false
 	}
@@ -415,7 +415,7 @@ func (o *Gateway) GetIpConfigOk() (*map[string]GatewayTemplateIpConfig, bool) {
 }
 
 // HasIpConfig returns a boolean if a field has been set.
-func (o *Gateway) HasIpConfig() bool {
+func (o *DeviceGateway) HasIpConfig() bool {
 	if o != nil && !IsNil(o.IpConfig) {
 		return true
 	}
@@ -424,12 +424,12 @@ func (o *Gateway) HasIpConfig() bool {
 }
 
 // SetIpConfig gets a reference to the given map[string]GatewayTemplateIpConfig and assigns it to the IpConfig field.
-func (o *Gateway) SetIpConfig(v map[string]GatewayTemplateIpConfig) {
+func (o *DeviceGateway) SetIpConfig(v map[string]GatewayTemplateIpConfig) {
 	o.IpConfig = &v
 }
 
 // GetManaged returns the Managed field value if set, zero value otherwise.
-func (o *Gateway) GetManaged() bool {
+func (o *DeviceGateway) GetManaged() bool {
 	if o == nil || IsNil(o.Managed) {
 		var ret bool
 		return ret
@@ -439,7 +439,7 @@ func (o *Gateway) GetManaged() bool {
 
 // GetManagedOk returns a tuple with the Managed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetManagedOk() (*bool, bool) {
+func (o *DeviceGateway) GetManagedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Managed) {
 		return nil, false
 	}
@@ -447,7 +447,7 @@ func (o *Gateway) GetManagedOk() (*bool, bool) {
 }
 
 // HasManaged returns a boolean if a field has been set.
-func (o *Gateway) HasManaged() bool {
+func (o *DeviceGateway) HasManaged() bool {
 	if o != nil && !IsNil(o.Managed) {
 		return true
 	}
@@ -456,12 +456,12 @@ func (o *Gateway) HasManaged() bool {
 }
 
 // SetManaged gets a reference to the given bool and assigns it to the Managed field.
-func (o *Gateway) SetManaged(v bool) {
+func (o *DeviceGateway) SetManaged(v bool) {
 	o.Managed = &v
 }
 
 // GetMapId returns the MapId field value if set, zero value otherwise.
-func (o *Gateway) GetMapId() string {
+func (o *DeviceGateway) GetMapId() string {
 	if o == nil || IsNil(o.MapId) {
 		var ret string
 		return ret
@@ -471,7 +471,7 @@ func (o *Gateway) GetMapId() string {
 
 // GetMapIdOk returns a tuple with the MapId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetMapIdOk() (*string, bool) {
+func (o *DeviceGateway) GetMapIdOk() (*string, bool) {
 	if o == nil || IsNil(o.MapId) {
 		return nil, false
 	}
@@ -479,7 +479,7 @@ func (o *Gateway) GetMapIdOk() (*string, bool) {
 }
 
 // HasMapId returns a boolean if a field has been set.
-func (o *Gateway) HasMapId() bool {
+func (o *DeviceGateway) HasMapId() bool {
 	if o != nil && !IsNil(o.MapId) {
 		return true
 	}
@@ -488,12 +488,12 @@ func (o *Gateway) HasMapId() bool {
 }
 
 // SetMapId gets a reference to the given string and assigns it to the MapId field.
-func (o *Gateway) SetMapId(v string) {
+func (o *DeviceGateway) SetMapId(v string) {
 	o.MapId = &v
 }
 
 // GetModifiedTime returns the ModifiedTime field value if set, zero value otherwise.
-func (o *Gateway) GetModifiedTime() float32 {
+func (o *DeviceGateway) GetModifiedTime() float32 {
 	if o == nil || IsNil(o.ModifiedTime) {
 		var ret float32
 		return ret
@@ -503,7 +503,7 @@ func (o *Gateway) GetModifiedTime() float32 {
 
 // GetModifiedTimeOk returns a tuple with the ModifiedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetModifiedTimeOk() (*float32, bool) {
+func (o *DeviceGateway) GetModifiedTimeOk() (*float32, bool) {
 	if o == nil || IsNil(o.ModifiedTime) {
 		return nil, false
 	}
@@ -511,7 +511,7 @@ func (o *Gateway) GetModifiedTimeOk() (*float32, bool) {
 }
 
 // HasModifiedTime returns a boolean if a field has been set.
-func (o *Gateway) HasModifiedTime() bool {
+func (o *DeviceGateway) HasModifiedTime() bool {
 	if o != nil && !IsNil(o.ModifiedTime) {
 		return true
 	}
@@ -520,12 +520,12 @@ func (o *Gateway) HasModifiedTime() bool {
 }
 
 // SetModifiedTime gets a reference to the given float32 and assigns it to the ModifiedTime field.
-func (o *Gateway) SetModifiedTime(v float32) {
+func (o *DeviceGateway) SetModifiedTime(v float32) {
 	o.ModifiedTime = &v
 }
 
 // GetMspId returns the MspId field value if set, zero value otherwise.
-func (o *Gateway) GetMspId() string {
+func (o *DeviceGateway) GetMspId() string {
 	if o == nil || IsNil(o.MspId) {
 		var ret string
 		return ret
@@ -535,7 +535,7 @@ func (o *Gateway) GetMspId() string {
 
 // GetMspIdOk returns a tuple with the MspId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetMspIdOk() (*string, bool) {
+func (o *DeviceGateway) GetMspIdOk() (*string, bool) {
 	if o == nil || IsNil(o.MspId) {
 		return nil, false
 	}
@@ -543,7 +543,7 @@ func (o *Gateway) GetMspIdOk() (*string, bool) {
 }
 
 // HasMspId returns a boolean if a field has been set.
-func (o *Gateway) HasMspId() bool {
+func (o *DeviceGateway) HasMspId() bool {
 	if o != nil && !IsNil(o.MspId) {
 		return true
 	}
@@ -552,12 +552,12 @@ func (o *Gateway) HasMspId() bool {
 }
 
 // SetMspId gets a reference to the given string and assigns it to the MspId field.
-func (o *Gateway) SetMspId(v string) {
+func (o *DeviceGateway) SetMspId(v string) {
 	o.MspId = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Gateway) GetName() string {
+func (o *DeviceGateway) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -567,7 +567,7 @@ func (o *Gateway) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetNameOk() (*string, bool) {
+func (o *DeviceGateway) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -575,7 +575,7 @@ func (o *Gateway) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *Gateway) HasName() bool {
+func (o *DeviceGateway) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -584,12 +584,12 @@ func (o *Gateway) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Gateway) SetName(v string) {
+func (o *DeviceGateway) SetName(v string) {
 	o.Name = &v
 }
 
 // GetNetworks returns the Networks field value if set, zero value otherwise.
-func (o *Gateway) GetNetworks() map[string]GatewayNetwork {
+func (o *DeviceGateway) GetNetworks() map[string]GatewayNetwork {
 	if o == nil || IsNil(o.Networks) {
 		var ret map[string]GatewayNetwork
 		return ret
@@ -599,7 +599,7 @@ func (o *Gateway) GetNetworks() map[string]GatewayNetwork {
 
 // GetNetworksOk returns a tuple with the Networks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetNetworksOk() (*map[string]GatewayNetwork, bool) {
+func (o *DeviceGateway) GetNetworksOk() (*map[string]GatewayNetwork, bool) {
 	if o == nil || IsNil(o.Networks) {
 		return nil, false
 	}
@@ -607,7 +607,7 @@ func (o *Gateway) GetNetworksOk() (*map[string]GatewayNetwork, bool) {
 }
 
 // HasNetworks returns a boolean if a field has been set.
-func (o *Gateway) HasNetworks() bool {
+func (o *DeviceGateway) HasNetworks() bool {
 	if o != nil && !IsNil(o.Networks) {
 		return true
 	}
@@ -616,12 +616,12 @@ func (o *Gateway) HasNetworks() bool {
 }
 
 // SetNetworks gets a reference to the given map[string]GatewayNetwork and assigns it to the Networks field.
-func (o *Gateway) SetNetworks(v map[string]GatewayNetwork) {
+func (o *DeviceGateway) SetNetworks(v map[string]GatewayNetwork) {
 	o.Networks = &v
 }
 
 // GetNtpServers returns the NtpServers field value if set, zero value otherwise.
-func (o *Gateway) GetNtpServers() []string {
+func (o *DeviceGateway) GetNtpServers() []string {
 	if o == nil || IsNil(o.NtpServers) {
 		var ret []string
 		return ret
@@ -631,7 +631,7 @@ func (o *Gateway) GetNtpServers() []string {
 
 // GetNtpServersOk returns a tuple with the NtpServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetNtpServersOk() ([]string, bool) {
+func (o *DeviceGateway) GetNtpServersOk() ([]string, bool) {
 	if o == nil || IsNil(o.NtpServers) {
 		return nil, false
 	}
@@ -639,7 +639,7 @@ func (o *Gateway) GetNtpServersOk() ([]string, bool) {
 }
 
 // HasNtpServers returns a boolean if a field has been set.
-func (o *Gateway) HasNtpServers() bool {
+func (o *DeviceGateway) HasNtpServers() bool {
 	if o != nil && !IsNil(o.NtpServers) {
 		return true
 	}
@@ -648,12 +648,12 @@ func (o *Gateway) HasNtpServers() bool {
 }
 
 // SetNtpServers gets a reference to the given []string and assigns it to the NtpServers field.
-func (o *Gateway) SetNtpServers(v []string) {
+func (o *DeviceGateway) SetNtpServers(v []string) {
 	o.NtpServers = v
 }
 
 // GetOobIpConfig returns the OobIpConfig field value if set, zero value otherwise.
-func (o *Gateway) GetOobIpConfig() GatewayOobIpConfig {
+func (o *DeviceGateway) GetOobIpConfig() GatewayOobIpConfig {
 	if o == nil || IsNil(o.OobIpConfig) {
 		var ret GatewayOobIpConfig
 		return ret
@@ -663,7 +663,7 @@ func (o *Gateway) GetOobIpConfig() GatewayOobIpConfig {
 
 // GetOobIpConfigOk returns a tuple with the OobIpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetOobIpConfigOk() (*GatewayOobIpConfig, bool) {
+func (o *DeviceGateway) GetOobIpConfigOk() (*GatewayOobIpConfig, bool) {
 	if o == nil || IsNil(o.OobIpConfig) {
 		return nil, false
 	}
@@ -671,7 +671,7 @@ func (o *Gateway) GetOobIpConfigOk() (*GatewayOobIpConfig, bool) {
 }
 
 // HasOobIpConfig returns a boolean if a field has been set.
-func (o *Gateway) HasOobIpConfig() bool {
+func (o *DeviceGateway) HasOobIpConfig() bool {
 	if o != nil && !IsNil(o.OobIpConfig) {
 		return true
 	}
@@ -680,12 +680,12 @@ func (o *Gateway) HasOobIpConfig() bool {
 }
 
 // SetOobIpConfig gets a reference to the given GatewayOobIpConfig and assigns it to the OobIpConfig field.
-func (o *Gateway) SetOobIpConfig(v GatewayOobIpConfig) {
+func (o *DeviceGateway) SetOobIpConfig(v GatewayOobIpConfig) {
 	o.OobIpConfig = &v
 }
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
-func (o *Gateway) GetOrgId() string {
+func (o *DeviceGateway) GetOrgId() string {
 	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
@@ -695,7 +695,7 @@ func (o *Gateway) GetOrgId() string {
 
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetOrgIdOk() (*string, bool) {
+func (o *DeviceGateway) GetOrgIdOk() (*string, bool) {
 	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
@@ -703,7 +703,7 @@ func (o *Gateway) GetOrgIdOk() (*string, bool) {
 }
 
 // HasOrgId returns a boolean if a field has been set.
-func (o *Gateway) HasOrgId() bool {
+func (o *DeviceGateway) HasOrgId() bool {
 	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
@@ -712,12 +712,12 @@ func (o *Gateway) HasOrgId() bool {
 }
 
 // SetOrgId gets a reference to the given string and assigns it to the OrgId field.
-func (o *Gateway) SetOrgId(v string) {
+func (o *DeviceGateway) SetOrgId(v string) {
 	o.OrgId = &v
 }
 
 // GetPortConfig returns the PortConfig field value if set, zero value otherwise.
-func (o *Gateway) GetPortConfig() map[string]GatewayPortConfig {
+func (o *DeviceGateway) GetPortConfig() map[string]GatewayPortConfig {
 	if o == nil || IsNil(o.PortConfig) {
 		var ret map[string]GatewayPortConfig
 		return ret
@@ -727,7 +727,7 @@ func (o *Gateway) GetPortConfig() map[string]GatewayPortConfig {
 
 // GetPortConfigOk returns a tuple with the PortConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetPortConfigOk() (*map[string]GatewayPortConfig, bool) {
+func (o *DeviceGateway) GetPortConfigOk() (*map[string]GatewayPortConfig, bool) {
 	if o == nil || IsNil(o.PortConfig) {
 		return nil, false
 	}
@@ -735,7 +735,7 @@ func (o *Gateway) GetPortConfigOk() (*map[string]GatewayPortConfig, bool) {
 }
 
 // HasPortConfig returns a boolean if a field has been set.
-func (o *Gateway) HasPortConfig() bool {
+func (o *DeviceGateway) HasPortConfig() bool {
 	if o != nil && !IsNil(o.PortConfig) {
 		return true
 	}
@@ -744,12 +744,12 @@ func (o *Gateway) HasPortConfig() bool {
 }
 
 // SetPortConfig gets a reference to the given map[string]GatewayPortConfig and assigns it to the PortConfig field.
-func (o *Gateway) SetPortConfig(v map[string]GatewayPortConfig) {
+func (o *DeviceGateway) SetPortConfig(v map[string]GatewayPortConfig) {
 	o.PortConfig = &v
 }
 
 // GetPortMirroring returns the PortMirroring field value if set, zero value otherwise.
-func (o *Gateway) GetPortMirroring() GatewayPortMirroring {
+func (o *DeviceGateway) GetPortMirroring() GatewayPortMirroring {
 	if o == nil || IsNil(o.PortMirroring) {
 		var ret GatewayPortMirroring
 		return ret
@@ -759,7 +759,7 @@ func (o *Gateway) GetPortMirroring() GatewayPortMirroring {
 
 // GetPortMirroringOk returns a tuple with the PortMirroring field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetPortMirroringOk() (*GatewayPortMirroring, bool) {
+func (o *DeviceGateway) GetPortMirroringOk() (*GatewayPortMirroring, bool) {
 	if o == nil || IsNil(o.PortMirroring) {
 		return nil, false
 	}
@@ -767,7 +767,7 @@ func (o *Gateway) GetPortMirroringOk() (*GatewayPortMirroring, bool) {
 }
 
 // HasPortMirroring returns a boolean if a field has been set.
-func (o *Gateway) HasPortMirroring() bool {
+func (o *DeviceGateway) HasPortMirroring() bool {
 	if o != nil && !IsNil(o.PortMirroring) {
 		return true
 	}
@@ -776,12 +776,12 @@ func (o *Gateway) HasPortMirroring() bool {
 }
 
 // SetPortMirroring gets a reference to the given GatewayPortMirroring and assigns it to the PortMirroring field.
-func (o *Gateway) SetPortMirroring(v GatewayPortMirroring) {
+func (o *DeviceGateway) SetPortMirroring(v GatewayPortMirroring) {
 	o.PortMirroring = &v
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *Gateway) GetSiteId() string {
+func (o *DeviceGateway) GetSiteId() string {
 	if o == nil || IsNil(o.SiteId) {
 		var ret string
 		return ret
@@ -791,7 +791,7 @@ func (o *Gateway) GetSiteId() string {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetSiteIdOk() (*string, bool) {
+func (o *DeviceGateway) GetSiteIdOk() (*string, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -799,7 +799,7 @@ func (o *Gateway) GetSiteIdOk() (*string, bool) {
 }
 
 // HasSiteId returns a boolean if a field has been set.
-func (o *Gateway) HasSiteId() bool {
+func (o *DeviceGateway) HasSiteId() bool {
 	if o != nil && !IsNil(o.SiteId) {
 		return true
 	}
@@ -808,12 +808,12 @@ func (o *Gateway) HasSiteId() bool {
 }
 
 // SetSiteId gets a reference to the given string and assigns it to the SiteId field.
-func (o *Gateway) SetSiteId(v string) {
+func (o *DeviceGateway) SetSiteId(v string) {
 	o.SiteId = &v
 }
 
 // GetVars returns the Vars field value if set, zero value otherwise.
-func (o *Gateway) GetVars() map[string]string {
+func (o *DeviceGateway) GetVars() map[string]string {
 	if o == nil || IsNil(o.Vars) {
 		var ret map[string]string
 		return ret
@@ -823,7 +823,7 @@ func (o *Gateway) GetVars() map[string]string {
 
 // GetVarsOk returns a tuple with the Vars field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetVarsOk() (*map[string]string, bool) {
+func (o *DeviceGateway) GetVarsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Vars) {
 		return nil, false
 	}
@@ -831,7 +831,7 @@ func (o *Gateway) GetVarsOk() (*map[string]string, bool) {
 }
 
 // HasVars returns a boolean if a field has been set.
-func (o *Gateway) HasVars() bool {
+func (o *DeviceGateway) HasVars() bool {
 	if o != nil && !IsNil(o.Vars) {
 		return true
 	}
@@ -840,14 +840,14 @@ func (o *Gateway) HasVars() bool {
 }
 
 // SetVars gets a reference to the given map[string]string and assigns it to the Vars field.
-func (o *Gateway) SetVars(v map[string]string) {
+func (o *DeviceGateway) SetVars(v map[string]string) {
 	o.Vars = &v
 }
 
 // GetX returns the X field value if set, zero value otherwise.
-func (o *Gateway) GetX() float32 {
+func (o *DeviceGateway) GetX() float64 {
 	if o == nil || IsNil(o.X) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.X
@@ -855,7 +855,7 @@ func (o *Gateway) GetX() float32 {
 
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetXOk() (*float32, bool) {
+func (o *DeviceGateway) GetXOk() (*float64, bool) {
 	if o == nil || IsNil(o.X) {
 		return nil, false
 	}
@@ -863,7 +863,7 @@ func (o *Gateway) GetXOk() (*float32, bool) {
 }
 
 // HasX returns a boolean if a field has been set.
-func (o *Gateway) HasX() bool {
+func (o *DeviceGateway) HasX() bool {
 	if o != nil && !IsNil(o.X) {
 		return true
 	}
@@ -871,15 +871,15 @@ func (o *Gateway) HasX() bool {
 	return false
 }
 
-// SetX gets a reference to the given float32 and assigns it to the X field.
-func (o *Gateway) SetX(v float32) {
+// SetX gets a reference to the given float64 and assigns it to the X field.
+func (o *DeviceGateway) SetX(v float64) {
 	o.X = &v
 }
 
 // GetY returns the Y field value if set, zero value otherwise.
-func (o *Gateway) GetY() float32 {
+func (o *DeviceGateway) GetY() float64 {
 	if o == nil || IsNil(o.Y) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Y
@@ -887,7 +887,7 @@ func (o *Gateway) GetY() float32 {
 
 // GetYOk returns a tuple with the Y field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetYOk() (*float32, bool) {
+func (o *DeviceGateway) GetYOk() (*float64, bool) {
 	if o == nil || IsNil(o.Y) {
 		return nil, false
 	}
@@ -895,7 +895,7 @@ func (o *Gateway) GetYOk() (*float32, bool) {
 }
 
 // HasY returns a boolean if a field has been set.
-func (o *Gateway) HasY() bool {
+func (o *DeviceGateway) HasY() bool {
 	if o != nil && !IsNil(o.Y) {
 		return true
 	}
@@ -903,12 +903,12 @@ func (o *Gateway) HasY() bool {
 	return false
 }
 
-// SetY gets a reference to the given float32 and assigns it to the Y field.
-func (o *Gateway) SetY(v float32) {
+// SetY gets a reference to the given float64 and assigns it to the Y field.
+func (o *DeviceGateway) SetY(v float64) {
 	o.Y = &v
 }
 
-func (o Gateway) MarshalJSON() ([]byte, error) {
+func (o DeviceGateway) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -916,7 +916,7 @@ func (o Gateway) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Gateway) ToMap() (map[string]interface{}, error) {
+func (o DeviceGateway) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AdditionalConfigCmds) {
 		toSerialize["additional_config_cmds"] = o.AdditionalConfigCmds
@@ -1004,16 +1004,16 @@ func (o Gateway) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *Gateway) UnmarshalJSON(data []byte) (err error) {
-	varGateway := _Gateway{}
+func (o *DeviceGateway) UnmarshalJSON(data []byte) (err error) {
+	varDeviceGateway := _DeviceGateway{}
 
-	err = json.Unmarshal(data, &varGateway)
+	err = json.Unmarshal(data, &varDeviceGateway)
 
 	if err != nil {
 		return err
 	}
 
-	*o = Gateway(varGateway)
+	*o = DeviceGateway(varDeviceGateway)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -1050,38 +1050,38 @@ func (o *Gateway) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableGateway struct {
-	value *Gateway
+type NullableDeviceGateway struct {
+	value *DeviceGateway
 	isSet bool
 }
 
-func (v NullableGateway) Get() *Gateway {
+func (v NullableDeviceGateway) Get() *DeviceGateway {
 	return v.value
 }
 
-func (v *NullableGateway) Set(val *Gateway) {
+func (v *NullableDeviceGateway) Set(val *DeviceGateway) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGateway) IsSet() bool {
+func (v NullableDeviceGateway) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGateway) Unset() {
+func (v *NullableDeviceGateway) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGateway(val *Gateway) *NullableGateway {
-	return &NullableGateway{value: val, isSet: true}
+func NewNullableDeviceGateway(val *DeviceGateway) *NullableDeviceGateway {
+	return &NullableDeviceGateway{value: val, isSet: true}
 }
 
-func (v NullableGateway) MarshalJSON() ([]byte, error) {
+func (v NullableDeviceGateway) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGateway) UnmarshalJSON(src []byte) error {
+func (v *NullableDeviceGateway) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

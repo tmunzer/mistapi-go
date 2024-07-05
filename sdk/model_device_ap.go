@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the Ap type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Ap{}
+// checks if the DeviceAp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeviceAp{}
 
-// Ap AP
-type Ap struct {
+// DeviceAp AP
+type DeviceAp struct {
 	Aeroscout *ApAeroscout `json:"aeroscout,omitempty"`
 	BleConfig *BleConfig `json:"ble_config,omitempty"`
 	Centrak *ApCentrak `json:"centrak,omitempty"`
@@ -70,20 +70,20 @@ type Ap struct {
 	// a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
 	Vars *map[string]string `json:"vars,omitempty"`
 	// x in pixel
-	X *float32 `json:"x,omitempty"`
+	X *float64 `json:"x,omitempty"`
 	// y in pixel
-	Y *float32 `json:"y,omitempty"`
+	Y *float64 `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _Ap Ap
+type _DeviceAp DeviceAp
 
-// NewAp instantiates a new Ap object
+// NewDeviceAp instantiates a new DeviceAp object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAp() *Ap {
-	this := Ap{}
+func NewDeviceAp() *DeviceAp {
+	this := DeviceAp{}
 	var disableEth1 bool = false
 	this.DisableEth1 = &disableEth1
 	var disableEth2 bool = false
@@ -97,11 +97,11 @@ func NewAp() *Ap {
 	return &this
 }
 
-// NewApWithDefaults instantiates a new Ap object
+// NewDeviceApWithDefaults instantiates a new DeviceAp object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewApWithDefaults() *Ap {
-	this := Ap{}
+func NewDeviceApWithDefaults() *DeviceAp {
+	this := DeviceAp{}
 	var disableEth1 bool = false
 	this.DisableEth1 = &disableEth1
 	var disableEth2 bool = false
@@ -116,7 +116,7 @@ func NewApWithDefaults() *Ap {
 }
 
 // GetAeroscout returns the Aeroscout field value if set, zero value otherwise.
-func (o *Ap) GetAeroscout() ApAeroscout {
+func (o *DeviceAp) GetAeroscout() ApAeroscout {
 	if o == nil || IsNil(o.Aeroscout) {
 		var ret ApAeroscout
 		return ret
@@ -126,7 +126,7 @@ func (o *Ap) GetAeroscout() ApAeroscout {
 
 // GetAeroscoutOk returns a tuple with the Aeroscout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetAeroscoutOk() (*ApAeroscout, bool) {
+func (o *DeviceAp) GetAeroscoutOk() (*ApAeroscout, bool) {
 	if o == nil || IsNil(o.Aeroscout) {
 		return nil, false
 	}
@@ -134,7 +134,7 @@ func (o *Ap) GetAeroscoutOk() (*ApAeroscout, bool) {
 }
 
 // HasAeroscout returns a boolean if a field has been set.
-func (o *Ap) HasAeroscout() bool {
+func (o *DeviceAp) HasAeroscout() bool {
 	if o != nil && !IsNil(o.Aeroscout) {
 		return true
 	}
@@ -143,12 +143,12 @@ func (o *Ap) HasAeroscout() bool {
 }
 
 // SetAeroscout gets a reference to the given ApAeroscout and assigns it to the Aeroscout field.
-func (o *Ap) SetAeroscout(v ApAeroscout) {
+func (o *DeviceAp) SetAeroscout(v ApAeroscout) {
 	o.Aeroscout = &v
 }
 
 // GetBleConfig returns the BleConfig field value if set, zero value otherwise.
-func (o *Ap) GetBleConfig() BleConfig {
+func (o *DeviceAp) GetBleConfig() BleConfig {
 	if o == nil || IsNil(o.BleConfig) {
 		var ret BleConfig
 		return ret
@@ -158,7 +158,7 @@ func (o *Ap) GetBleConfig() BleConfig {
 
 // GetBleConfigOk returns a tuple with the BleConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetBleConfigOk() (*BleConfig, bool) {
+func (o *DeviceAp) GetBleConfigOk() (*BleConfig, bool) {
 	if o == nil || IsNil(o.BleConfig) {
 		return nil, false
 	}
@@ -166,7 +166,7 @@ func (o *Ap) GetBleConfigOk() (*BleConfig, bool) {
 }
 
 // HasBleConfig returns a boolean if a field has been set.
-func (o *Ap) HasBleConfig() bool {
+func (o *DeviceAp) HasBleConfig() bool {
 	if o != nil && !IsNil(o.BleConfig) {
 		return true
 	}
@@ -175,12 +175,12 @@ func (o *Ap) HasBleConfig() bool {
 }
 
 // SetBleConfig gets a reference to the given BleConfig and assigns it to the BleConfig field.
-func (o *Ap) SetBleConfig(v BleConfig) {
+func (o *DeviceAp) SetBleConfig(v BleConfig) {
 	o.BleConfig = &v
 }
 
 // GetCentrak returns the Centrak field value if set, zero value otherwise.
-func (o *Ap) GetCentrak() ApCentrak {
+func (o *DeviceAp) GetCentrak() ApCentrak {
 	if o == nil || IsNil(o.Centrak) {
 		var ret ApCentrak
 		return ret
@@ -190,7 +190,7 @@ func (o *Ap) GetCentrak() ApCentrak {
 
 // GetCentrakOk returns a tuple with the Centrak field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetCentrakOk() (*ApCentrak, bool) {
+func (o *DeviceAp) GetCentrakOk() (*ApCentrak, bool) {
 	if o == nil || IsNil(o.Centrak) {
 		return nil, false
 	}
@@ -198,7 +198,7 @@ func (o *Ap) GetCentrakOk() (*ApCentrak, bool) {
 }
 
 // HasCentrak returns a boolean if a field has been set.
-func (o *Ap) HasCentrak() bool {
+func (o *DeviceAp) HasCentrak() bool {
 	if o != nil && !IsNil(o.Centrak) {
 		return true
 	}
@@ -207,12 +207,12 @@ func (o *Ap) HasCentrak() bool {
 }
 
 // SetCentrak gets a reference to the given ApCentrak and assigns it to the Centrak field.
-func (o *Ap) SetCentrak(v ApCentrak) {
+func (o *DeviceAp) SetCentrak(v ApCentrak) {
 	o.Centrak = &v
 }
 
 // GetClientBridge returns the ClientBridge field value if set, zero value otherwise.
-func (o *Ap) GetClientBridge() ApClientBridge {
+func (o *DeviceAp) GetClientBridge() ApClientBridge {
 	if o == nil || IsNil(o.ClientBridge) {
 		var ret ApClientBridge
 		return ret
@@ -222,7 +222,7 @@ func (o *Ap) GetClientBridge() ApClientBridge {
 
 // GetClientBridgeOk returns a tuple with the ClientBridge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetClientBridgeOk() (*ApClientBridge, bool) {
+func (o *DeviceAp) GetClientBridgeOk() (*ApClientBridge, bool) {
 	if o == nil || IsNil(o.ClientBridge) {
 		return nil, false
 	}
@@ -230,7 +230,7 @@ func (o *Ap) GetClientBridgeOk() (*ApClientBridge, bool) {
 }
 
 // HasClientBridge returns a boolean if a field has been set.
-func (o *Ap) HasClientBridge() bool {
+func (o *DeviceAp) HasClientBridge() bool {
 	if o != nil && !IsNil(o.ClientBridge) {
 		return true
 	}
@@ -239,12 +239,12 @@ func (o *Ap) HasClientBridge() bool {
 }
 
 // SetClientBridge gets a reference to the given ApClientBridge and assigns it to the ClientBridge field.
-func (o *Ap) SetClientBridge(v ApClientBridge) {
+func (o *DeviceAp) SetClientBridge(v ApClientBridge) {
 	o.ClientBridge = &v
 }
 
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise.
-func (o *Ap) GetCreatedTime() float32 {
+func (o *DeviceAp) GetCreatedTime() float32 {
 	if o == nil || IsNil(o.CreatedTime) {
 		var ret float32
 		return ret
@@ -254,7 +254,7 @@ func (o *Ap) GetCreatedTime() float32 {
 
 // GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetCreatedTimeOk() (*float32, bool) {
+func (o *DeviceAp) GetCreatedTimeOk() (*float32, bool) {
 	if o == nil || IsNil(o.CreatedTime) {
 		return nil, false
 	}
@@ -262,7 +262,7 @@ func (o *Ap) GetCreatedTimeOk() (*float32, bool) {
 }
 
 // HasCreatedTime returns a boolean if a field has been set.
-func (o *Ap) HasCreatedTime() bool {
+func (o *DeviceAp) HasCreatedTime() bool {
 	if o != nil && !IsNil(o.CreatedTime) {
 		return true
 	}
@@ -271,12 +271,12 @@ func (o *Ap) HasCreatedTime() bool {
 }
 
 // SetCreatedTime gets a reference to the given float32 and assigns it to the CreatedTime field.
-func (o *Ap) SetCreatedTime(v float32) {
+func (o *DeviceAp) SetCreatedTime(v float32) {
 	o.CreatedTime = &v
 }
 
 // GetDeviceprofileId returns the DeviceprofileId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Ap) GetDeviceprofileId() string {
+func (o *DeviceAp) GetDeviceprofileId() string {
 	if o == nil || IsNil(o.DeviceprofileId.Get()) {
 		var ret string
 		return ret
@@ -287,7 +287,7 @@ func (o *Ap) GetDeviceprofileId() string {
 // GetDeviceprofileIdOk returns a tuple with the DeviceprofileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Ap) GetDeviceprofileIdOk() (*string, bool) {
+func (o *DeviceAp) GetDeviceprofileIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -295,7 +295,7 @@ func (o *Ap) GetDeviceprofileIdOk() (*string, bool) {
 }
 
 // HasDeviceprofileId returns a boolean if a field has been set.
-func (o *Ap) HasDeviceprofileId() bool {
+func (o *DeviceAp) HasDeviceprofileId() bool {
 	if o != nil && o.DeviceprofileId.IsSet() {
 		return true
 	}
@@ -304,21 +304,21 @@ func (o *Ap) HasDeviceprofileId() bool {
 }
 
 // SetDeviceprofileId gets a reference to the given NullableString and assigns it to the DeviceprofileId field.
-func (o *Ap) SetDeviceprofileId(v string) {
+func (o *DeviceAp) SetDeviceprofileId(v string) {
 	o.DeviceprofileId.Set(&v)
 }
 // SetDeviceprofileIdNil sets the value for DeviceprofileId to be an explicit nil
-func (o *Ap) SetDeviceprofileIdNil() {
+func (o *DeviceAp) SetDeviceprofileIdNil() {
 	o.DeviceprofileId.Set(nil)
 }
 
 // UnsetDeviceprofileId ensures that no value is present for DeviceprofileId, not even an explicit nil
-func (o *Ap) UnsetDeviceprofileId() {
+func (o *DeviceAp) UnsetDeviceprofileId() {
 	o.DeviceprofileId.Unset()
 }
 
 // GetDisableEth1 returns the DisableEth1 field value if set, zero value otherwise.
-func (o *Ap) GetDisableEth1() bool {
+func (o *DeviceAp) GetDisableEth1() bool {
 	if o == nil || IsNil(o.DisableEth1) {
 		var ret bool
 		return ret
@@ -328,7 +328,7 @@ func (o *Ap) GetDisableEth1() bool {
 
 // GetDisableEth1Ok returns a tuple with the DisableEth1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetDisableEth1Ok() (*bool, bool) {
+func (o *DeviceAp) GetDisableEth1Ok() (*bool, bool) {
 	if o == nil || IsNil(o.DisableEth1) {
 		return nil, false
 	}
@@ -336,7 +336,7 @@ func (o *Ap) GetDisableEth1Ok() (*bool, bool) {
 }
 
 // HasDisableEth1 returns a boolean if a field has been set.
-func (o *Ap) HasDisableEth1() bool {
+func (o *DeviceAp) HasDisableEth1() bool {
 	if o != nil && !IsNil(o.DisableEth1) {
 		return true
 	}
@@ -345,12 +345,12 @@ func (o *Ap) HasDisableEth1() bool {
 }
 
 // SetDisableEth1 gets a reference to the given bool and assigns it to the DisableEth1 field.
-func (o *Ap) SetDisableEth1(v bool) {
+func (o *DeviceAp) SetDisableEth1(v bool) {
 	o.DisableEth1 = &v
 }
 
 // GetDisableEth2 returns the DisableEth2 field value if set, zero value otherwise.
-func (o *Ap) GetDisableEth2() bool {
+func (o *DeviceAp) GetDisableEth2() bool {
 	if o == nil || IsNil(o.DisableEth2) {
 		var ret bool
 		return ret
@@ -360,7 +360,7 @@ func (o *Ap) GetDisableEth2() bool {
 
 // GetDisableEth2Ok returns a tuple with the DisableEth2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetDisableEth2Ok() (*bool, bool) {
+func (o *DeviceAp) GetDisableEth2Ok() (*bool, bool) {
 	if o == nil || IsNil(o.DisableEth2) {
 		return nil, false
 	}
@@ -368,7 +368,7 @@ func (o *Ap) GetDisableEth2Ok() (*bool, bool) {
 }
 
 // HasDisableEth2 returns a boolean if a field has been set.
-func (o *Ap) HasDisableEth2() bool {
+func (o *DeviceAp) HasDisableEth2() bool {
 	if o != nil && !IsNil(o.DisableEth2) {
 		return true
 	}
@@ -377,12 +377,12 @@ func (o *Ap) HasDisableEth2() bool {
 }
 
 // SetDisableEth2 gets a reference to the given bool and assigns it to the DisableEth2 field.
-func (o *Ap) SetDisableEth2(v bool) {
+func (o *DeviceAp) SetDisableEth2(v bool) {
 	o.DisableEth2 = &v
 }
 
 // GetDisableEth3 returns the DisableEth3 field value if set, zero value otherwise.
-func (o *Ap) GetDisableEth3() bool {
+func (o *DeviceAp) GetDisableEth3() bool {
 	if o == nil || IsNil(o.DisableEth3) {
 		var ret bool
 		return ret
@@ -392,7 +392,7 @@ func (o *Ap) GetDisableEth3() bool {
 
 // GetDisableEth3Ok returns a tuple with the DisableEth3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetDisableEth3Ok() (*bool, bool) {
+func (o *DeviceAp) GetDisableEth3Ok() (*bool, bool) {
 	if o == nil || IsNil(o.DisableEth3) {
 		return nil, false
 	}
@@ -400,7 +400,7 @@ func (o *Ap) GetDisableEth3Ok() (*bool, bool) {
 }
 
 // HasDisableEth3 returns a boolean if a field has been set.
-func (o *Ap) HasDisableEth3() bool {
+func (o *DeviceAp) HasDisableEth3() bool {
 	if o != nil && !IsNil(o.DisableEth3) {
 		return true
 	}
@@ -409,12 +409,12 @@ func (o *Ap) HasDisableEth3() bool {
 }
 
 // SetDisableEth3 gets a reference to the given bool and assigns it to the DisableEth3 field.
-func (o *Ap) SetDisableEth3(v bool) {
+func (o *DeviceAp) SetDisableEth3(v bool) {
 	o.DisableEth3 = &v
 }
 
 // GetDisableModule returns the DisableModule field value if set, zero value otherwise.
-func (o *Ap) GetDisableModule() bool {
+func (o *DeviceAp) GetDisableModule() bool {
 	if o == nil || IsNil(o.DisableModule) {
 		var ret bool
 		return ret
@@ -424,7 +424,7 @@ func (o *Ap) GetDisableModule() bool {
 
 // GetDisableModuleOk returns a tuple with the DisableModule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetDisableModuleOk() (*bool, bool) {
+func (o *DeviceAp) GetDisableModuleOk() (*bool, bool) {
 	if o == nil || IsNil(o.DisableModule) {
 		return nil, false
 	}
@@ -432,7 +432,7 @@ func (o *Ap) GetDisableModuleOk() (*bool, bool) {
 }
 
 // HasDisableModule returns a boolean if a field has been set.
-func (o *Ap) HasDisableModule() bool {
+func (o *DeviceAp) HasDisableModule() bool {
 	if o != nil && !IsNil(o.DisableModule) {
 		return true
 	}
@@ -441,12 +441,12 @@ func (o *Ap) HasDisableModule() bool {
 }
 
 // SetDisableModule gets a reference to the given bool and assigns it to the DisableModule field.
-func (o *Ap) SetDisableModule(v bool) {
+func (o *DeviceAp) SetDisableModule(v bool) {
 	o.DisableModule = &v
 }
 
 // GetEslConfig returns the EslConfig field value if set, zero value otherwise.
-func (o *Ap) GetEslConfig() ApEslConfig {
+func (o *DeviceAp) GetEslConfig() ApEslConfig {
 	if o == nil || IsNil(o.EslConfig) {
 		var ret ApEslConfig
 		return ret
@@ -456,7 +456,7 @@ func (o *Ap) GetEslConfig() ApEslConfig {
 
 // GetEslConfigOk returns a tuple with the EslConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetEslConfigOk() (*ApEslConfig, bool) {
+func (o *DeviceAp) GetEslConfigOk() (*ApEslConfig, bool) {
 	if o == nil || IsNil(o.EslConfig) {
 		return nil, false
 	}
@@ -464,7 +464,7 @@ func (o *Ap) GetEslConfigOk() (*ApEslConfig, bool) {
 }
 
 // HasEslConfig returns a boolean if a field has been set.
-func (o *Ap) HasEslConfig() bool {
+func (o *DeviceAp) HasEslConfig() bool {
 	if o != nil && !IsNil(o.EslConfig) {
 		return true
 	}
@@ -473,12 +473,12 @@ func (o *Ap) HasEslConfig() bool {
 }
 
 // SetEslConfig gets a reference to the given ApEslConfig and assigns it to the EslConfig field.
-func (o *Ap) SetEslConfig(v ApEslConfig) {
+func (o *DeviceAp) SetEslConfig(v ApEslConfig) {
 	o.EslConfig = &v
 }
 
 // GetForSite returns the ForSite field value if set, zero value otherwise.
-func (o *Ap) GetForSite() bool {
+func (o *DeviceAp) GetForSite() bool {
 	if o == nil || IsNil(o.ForSite) {
 		var ret bool
 		return ret
@@ -488,7 +488,7 @@ func (o *Ap) GetForSite() bool {
 
 // GetForSiteOk returns a tuple with the ForSite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetForSiteOk() (*bool, bool) {
+func (o *DeviceAp) GetForSiteOk() (*bool, bool) {
 	if o == nil || IsNil(o.ForSite) {
 		return nil, false
 	}
@@ -496,7 +496,7 @@ func (o *Ap) GetForSiteOk() (*bool, bool) {
 }
 
 // HasForSite returns a boolean if a field has been set.
-func (o *Ap) HasForSite() bool {
+func (o *DeviceAp) HasForSite() bool {
 	if o != nil && !IsNil(o.ForSite) {
 		return true
 	}
@@ -505,12 +505,12 @@ func (o *Ap) HasForSite() bool {
 }
 
 // SetForSite gets a reference to the given bool and assigns it to the ForSite field.
-func (o *Ap) SetForSite(v bool) {
+func (o *DeviceAp) SetForSite(v bool) {
 	o.ForSite = &v
 }
 
 // GetHeight returns the Height field value if set, zero value otherwise.
-func (o *Ap) GetHeight() float32 {
+func (o *DeviceAp) GetHeight() float32 {
 	if o == nil || IsNil(o.Height) {
 		var ret float32
 		return ret
@@ -520,7 +520,7 @@ func (o *Ap) GetHeight() float32 {
 
 // GetHeightOk returns a tuple with the Height field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetHeightOk() (*float32, bool) {
+func (o *DeviceAp) GetHeightOk() (*float32, bool) {
 	if o == nil || IsNil(o.Height) {
 		return nil, false
 	}
@@ -528,7 +528,7 @@ func (o *Ap) GetHeightOk() (*float32, bool) {
 }
 
 // HasHeight returns a boolean if a field has been set.
-func (o *Ap) HasHeight() bool {
+func (o *DeviceAp) HasHeight() bool {
 	if o != nil && !IsNil(o.Height) {
 		return true
 	}
@@ -537,12 +537,12 @@ func (o *Ap) HasHeight() bool {
 }
 
 // SetHeight gets a reference to the given float32 and assigns it to the Height field.
-func (o *Ap) SetHeight(v float32) {
+func (o *DeviceAp) SetHeight(v float32) {
 	o.Height = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Ap) GetId() string {
+func (o *DeviceAp) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -552,7 +552,7 @@ func (o *Ap) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetIdOk() (*string, bool) {
+func (o *DeviceAp) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -560,7 +560,7 @@ func (o *Ap) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *Ap) HasId() bool {
+func (o *DeviceAp) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -569,12 +569,12 @@ func (o *Ap) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Ap) SetId(v string) {
+func (o *DeviceAp) SetId(v string) {
 	o.Id = &v
 }
 
 // GetImage1Url returns the Image1Url field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Ap) GetImage1Url() string {
+func (o *DeviceAp) GetImage1Url() string {
 	if o == nil || IsNil(o.Image1Url.Get()) {
 		var ret string
 		return ret
@@ -585,7 +585,7 @@ func (o *Ap) GetImage1Url() string {
 // GetImage1UrlOk returns a tuple with the Image1Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Ap) GetImage1UrlOk() (*string, bool) {
+func (o *DeviceAp) GetImage1UrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -593,7 +593,7 @@ func (o *Ap) GetImage1UrlOk() (*string, bool) {
 }
 
 // HasImage1Url returns a boolean if a field has been set.
-func (o *Ap) HasImage1Url() bool {
+func (o *DeviceAp) HasImage1Url() bool {
 	if o != nil && o.Image1Url.IsSet() {
 		return true
 	}
@@ -602,21 +602,21 @@ func (o *Ap) HasImage1Url() bool {
 }
 
 // SetImage1Url gets a reference to the given NullableString and assigns it to the Image1Url field.
-func (o *Ap) SetImage1Url(v string) {
+func (o *DeviceAp) SetImage1Url(v string) {
 	o.Image1Url.Set(&v)
 }
 // SetImage1UrlNil sets the value for Image1Url to be an explicit nil
-func (o *Ap) SetImage1UrlNil() {
+func (o *DeviceAp) SetImage1UrlNil() {
 	o.Image1Url.Set(nil)
 }
 
 // UnsetImage1Url ensures that no value is present for Image1Url, not even an explicit nil
-func (o *Ap) UnsetImage1Url() {
+func (o *DeviceAp) UnsetImage1Url() {
 	o.Image1Url.Unset()
 }
 
 // GetImage2Url returns the Image2Url field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Ap) GetImage2Url() string {
+func (o *DeviceAp) GetImage2Url() string {
 	if o == nil || IsNil(o.Image2Url.Get()) {
 		var ret string
 		return ret
@@ -627,7 +627,7 @@ func (o *Ap) GetImage2Url() string {
 // GetImage2UrlOk returns a tuple with the Image2Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Ap) GetImage2UrlOk() (*string, bool) {
+func (o *DeviceAp) GetImage2UrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -635,7 +635,7 @@ func (o *Ap) GetImage2UrlOk() (*string, bool) {
 }
 
 // HasImage2Url returns a boolean if a field has been set.
-func (o *Ap) HasImage2Url() bool {
+func (o *DeviceAp) HasImage2Url() bool {
 	if o != nil && o.Image2Url.IsSet() {
 		return true
 	}
@@ -644,21 +644,21 @@ func (o *Ap) HasImage2Url() bool {
 }
 
 // SetImage2Url gets a reference to the given NullableString and assigns it to the Image2Url field.
-func (o *Ap) SetImage2Url(v string) {
+func (o *DeviceAp) SetImage2Url(v string) {
 	o.Image2Url.Set(&v)
 }
 // SetImage2UrlNil sets the value for Image2Url to be an explicit nil
-func (o *Ap) SetImage2UrlNil() {
+func (o *DeviceAp) SetImage2UrlNil() {
 	o.Image2Url.Set(nil)
 }
 
 // UnsetImage2Url ensures that no value is present for Image2Url, not even an explicit nil
-func (o *Ap) UnsetImage2Url() {
+func (o *DeviceAp) UnsetImage2Url() {
 	o.Image2Url.Unset()
 }
 
 // GetImage3Url returns the Image3Url field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Ap) GetImage3Url() string {
+func (o *DeviceAp) GetImage3Url() string {
 	if o == nil || IsNil(o.Image3Url.Get()) {
 		var ret string
 		return ret
@@ -669,7 +669,7 @@ func (o *Ap) GetImage3Url() string {
 // GetImage3UrlOk returns a tuple with the Image3Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Ap) GetImage3UrlOk() (*string, bool) {
+func (o *DeviceAp) GetImage3UrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -677,7 +677,7 @@ func (o *Ap) GetImage3UrlOk() (*string, bool) {
 }
 
 // HasImage3Url returns a boolean if a field has been set.
-func (o *Ap) HasImage3Url() bool {
+func (o *DeviceAp) HasImage3Url() bool {
 	if o != nil && o.Image3Url.IsSet() {
 		return true
 	}
@@ -686,21 +686,21 @@ func (o *Ap) HasImage3Url() bool {
 }
 
 // SetImage3Url gets a reference to the given NullableString and assigns it to the Image3Url field.
-func (o *Ap) SetImage3Url(v string) {
+func (o *DeviceAp) SetImage3Url(v string) {
 	o.Image3Url.Set(&v)
 }
 // SetImage3UrlNil sets the value for Image3Url to be an explicit nil
-func (o *Ap) SetImage3UrlNil() {
+func (o *DeviceAp) SetImage3UrlNil() {
 	o.Image3Url.Set(nil)
 }
 
 // UnsetImage3Url ensures that no value is present for Image3Url, not even an explicit nil
-func (o *Ap) UnsetImage3Url() {
+func (o *DeviceAp) UnsetImage3Url() {
 	o.Image3Url.Unset()
 }
 
 // GetIotConfig returns the IotConfig field value if set, zero value otherwise.
-func (o *Ap) GetIotConfig() ApIot {
+func (o *DeviceAp) GetIotConfig() ApIot {
 	if o == nil || IsNil(o.IotConfig) {
 		var ret ApIot
 		return ret
@@ -710,7 +710,7 @@ func (o *Ap) GetIotConfig() ApIot {
 
 // GetIotConfigOk returns a tuple with the IotConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetIotConfigOk() (*ApIot, bool) {
+func (o *DeviceAp) GetIotConfigOk() (*ApIot, bool) {
 	if o == nil || IsNil(o.IotConfig) {
 		return nil, false
 	}
@@ -718,7 +718,7 @@ func (o *Ap) GetIotConfigOk() (*ApIot, bool) {
 }
 
 // HasIotConfig returns a boolean if a field has been set.
-func (o *Ap) HasIotConfig() bool {
+func (o *DeviceAp) HasIotConfig() bool {
 	if o != nil && !IsNil(o.IotConfig) {
 		return true
 	}
@@ -727,12 +727,12 @@ func (o *Ap) HasIotConfig() bool {
 }
 
 // SetIotConfig gets a reference to the given ApIot and assigns it to the IotConfig field.
-func (o *Ap) SetIotConfig(v ApIot) {
+func (o *DeviceAp) SetIotConfig(v ApIot) {
 	o.IotConfig = &v
 }
 
 // GetIpConfig returns the IpConfig field value if set, zero value otherwise.
-func (o *Ap) GetIpConfig() ApIpConfig {
+func (o *DeviceAp) GetIpConfig() ApIpConfig {
 	if o == nil || IsNil(o.IpConfig) {
 		var ret ApIpConfig
 		return ret
@@ -742,7 +742,7 @@ func (o *Ap) GetIpConfig() ApIpConfig {
 
 // GetIpConfigOk returns a tuple with the IpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetIpConfigOk() (*ApIpConfig, bool) {
+func (o *DeviceAp) GetIpConfigOk() (*ApIpConfig, bool) {
 	if o == nil || IsNil(o.IpConfig) {
 		return nil, false
 	}
@@ -750,7 +750,7 @@ func (o *Ap) GetIpConfigOk() (*ApIpConfig, bool) {
 }
 
 // HasIpConfig returns a boolean if a field has been set.
-func (o *Ap) HasIpConfig() bool {
+func (o *DeviceAp) HasIpConfig() bool {
 	if o != nil && !IsNil(o.IpConfig) {
 		return true
 	}
@@ -759,12 +759,12 @@ func (o *Ap) HasIpConfig() bool {
 }
 
 // SetIpConfig gets a reference to the given ApIpConfig and assigns it to the IpConfig field.
-func (o *Ap) SetIpConfig(v ApIpConfig) {
+func (o *DeviceAp) SetIpConfig(v ApIpConfig) {
 	o.IpConfig = &v
 }
 
 // GetLed returns the Led field value if set, zero value otherwise.
-func (o *Ap) GetLed() ApLed {
+func (o *DeviceAp) GetLed() ApLed {
 	if o == nil || IsNil(o.Led) {
 		var ret ApLed
 		return ret
@@ -774,7 +774,7 @@ func (o *Ap) GetLed() ApLed {
 
 // GetLedOk returns a tuple with the Led field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetLedOk() (*ApLed, bool) {
+func (o *DeviceAp) GetLedOk() (*ApLed, bool) {
 	if o == nil || IsNil(o.Led) {
 		return nil, false
 	}
@@ -782,7 +782,7 @@ func (o *Ap) GetLedOk() (*ApLed, bool) {
 }
 
 // HasLed returns a boolean if a field has been set.
-func (o *Ap) HasLed() bool {
+func (o *DeviceAp) HasLed() bool {
 	if o != nil && !IsNil(o.Led) {
 		return true
 	}
@@ -791,12 +791,12 @@ func (o *Ap) HasLed() bool {
 }
 
 // SetLed gets a reference to the given ApLed and assigns it to the Led field.
-func (o *Ap) SetLed(v ApLed) {
+func (o *DeviceAp) SetLed(v ApLed) {
 	o.Led = &v
 }
 
 // GetLocked returns the Locked field value if set, zero value otherwise.
-func (o *Ap) GetLocked() bool {
+func (o *DeviceAp) GetLocked() bool {
 	if o == nil || IsNil(o.Locked) {
 		var ret bool
 		return ret
@@ -806,7 +806,7 @@ func (o *Ap) GetLocked() bool {
 
 // GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetLockedOk() (*bool, bool) {
+func (o *DeviceAp) GetLockedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Locked) {
 		return nil, false
 	}
@@ -814,7 +814,7 @@ func (o *Ap) GetLockedOk() (*bool, bool) {
 }
 
 // HasLocked returns a boolean if a field has been set.
-func (o *Ap) HasLocked() bool {
+func (o *DeviceAp) HasLocked() bool {
 	if o != nil && !IsNil(o.Locked) {
 		return true
 	}
@@ -823,12 +823,12 @@ func (o *Ap) HasLocked() bool {
 }
 
 // SetLocked gets a reference to the given bool and assigns it to the Locked field.
-func (o *Ap) SetLocked(v bool) {
+func (o *DeviceAp) SetLocked(v bool) {
 	o.Locked = &v
 }
 
 // GetMapId returns the MapId field value if set, zero value otherwise.
-func (o *Ap) GetMapId() string {
+func (o *DeviceAp) GetMapId() string {
 	if o == nil || IsNil(o.MapId) {
 		var ret string
 		return ret
@@ -838,7 +838,7 @@ func (o *Ap) GetMapId() string {
 
 // GetMapIdOk returns a tuple with the MapId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetMapIdOk() (*string, bool) {
+func (o *DeviceAp) GetMapIdOk() (*string, bool) {
 	if o == nil || IsNil(o.MapId) {
 		return nil, false
 	}
@@ -846,7 +846,7 @@ func (o *Ap) GetMapIdOk() (*string, bool) {
 }
 
 // HasMapId returns a boolean if a field has been set.
-func (o *Ap) HasMapId() bool {
+func (o *DeviceAp) HasMapId() bool {
 	if o != nil && !IsNil(o.MapId) {
 		return true
 	}
@@ -855,12 +855,12 @@ func (o *Ap) HasMapId() bool {
 }
 
 // SetMapId gets a reference to the given string and assigns it to the MapId field.
-func (o *Ap) SetMapId(v string) {
+func (o *DeviceAp) SetMapId(v string) {
 	o.MapId = &v
 }
 
 // GetMesh returns the Mesh field value if set, zero value otherwise.
-func (o *Ap) GetMesh() ApMesh {
+func (o *DeviceAp) GetMesh() ApMesh {
 	if o == nil || IsNil(o.Mesh) {
 		var ret ApMesh
 		return ret
@@ -870,7 +870,7 @@ func (o *Ap) GetMesh() ApMesh {
 
 // GetMeshOk returns a tuple with the Mesh field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetMeshOk() (*ApMesh, bool) {
+func (o *DeviceAp) GetMeshOk() (*ApMesh, bool) {
 	if o == nil || IsNil(o.Mesh) {
 		return nil, false
 	}
@@ -878,7 +878,7 @@ func (o *Ap) GetMeshOk() (*ApMesh, bool) {
 }
 
 // HasMesh returns a boolean if a field has been set.
-func (o *Ap) HasMesh() bool {
+func (o *DeviceAp) HasMesh() bool {
 	if o != nil && !IsNil(o.Mesh) {
 		return true
 	}
@@ -887,12 +887,12 @@ func (o *Ap) HasMesh() bool {
 }
 
 // SetMesh gets a reference to the given ApMesh and assigns it to the Mesh field.
-func (o *Ap) SetMesh(v ApMesh) {
+func (o *DeviceAp) SetMesh(v ApMesh) {
 	o.Mesh = &v
 }
 
 // GetModifiedTime returns the ModifiedTime field value if set, zero value otherwise.
-func (o *Ap) GetModifiedTime() float32 {
+func (o *DeviceAp) GetModifiedTime() float32 {
 	if o == nil || IsNil(o.ModifiedTime) {
 		var ret float32
 		return ret
@@ -902,7 +902,7 @@ func (o *Ap) GetModifiedTime() float32 {
 
 // GetModifiedTimeOk returns a tuple with the ModifiedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetModifiedTimeOk() (*float32, bool) {
+func (o *DeviceAp) GetModifiedTimeOk() (*float32, bool) {
 	if o == nil || IsNil(o.ModifiedTime) {
 		return nil, false
 	}
@@ -910,7 +910,7 @@ func (o *Ap) GetModifiedTimeOk() (*float32, bool) {
 }
 
 // HasModifiedTime returns a boolean if a field has been set.
-func (o *Ap) HasModifiedTime() bool {
+func (o *DeviceAp) HasModifiedTime() bool {
 	if o != nil && !IsNil(o.ModifiedTime) {
 		return true
 	}
@@ -919,12 +919,12 @@ func (o *Ap) HasModifiedTime() bool {
 }
 
 // SetModifiedTime gets a reference to the given float32 and assigns it to the ModifiedTime field.
-func (o *Ap) SetModifiedTime(v float32) {
+func (o *DeviceAp) SetModifiedTime(v float32) {
 	o.ModifiedTime = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Ap) GetName() string {
+func (o *DeviceAp) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -934,7 +934,7 @@ func (o *Ap) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetNameOk() (*string, bool) {
+func (o *DeviceAp) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -942,7 +942,7 @@ func (o *Ap) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *Ap) HasName() bool {
+func (o *DeviceAp) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -951,12 +951,12 @@ func (o *Ap) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Ap) SetName(v string) {
+func (o *DeviceAp) SetName(v string) {
 	o.Name = &v
 }
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
-func (o *Ap) GetNotes() string {
+func (o *DeviceAp) GetNotes() string {
 	if o == nil || IsNil(o.Notes) {
 		var ret string
 		return ret
@@ -966,7 +966,7 @@ func (o *Ap) GetNotes() string {
 
 // GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetNotesOk() (*string, bool) {
+func (o *DeviceAp) GetNotesOk() (*string, bool) {
 	if o == nil || IsNil(o.Notes) {
 		return nil, false
 	}
@@ -974,7 +974,7 @@ func (o *Ap) GetNotesOk() (*string, bool) {
 }
 
 // HasNotes returns a boolean if a field has been set.
-func (o *Ap) HasNotes() bool {
+func (o *DeviceAp) HasNotes() bool {
 	if o != nil && !IsNil(o.Notes) {
 		return true
 	}
@@ -983,12 +983,12 @@ func (o *Ap) HasNotes() bool {
 }
 
 // SetNotes gets a reference to the given string and assigns it to the Notes field.
-func (o *Ap) SetNotes(v string) {
+func (o *DeviceAp) SetNotes(v string) {
 	o.Notes = &v
 }
 
 // GetNtpServers returns the NtpServers field value if set, zero value otherwise.
-func (o *Ap) GetNtpServers() []string {
+func (o *DeviceAp) GetNtpServers() []string {
 	if o == nil || IsNil(o.NtpServers) {
 		var ret []string
 		return ret
@@ -998,7 +998,7 @@ func (o *Ap) GetNtpServers() []string {
 
 // GetNtpServersOk returns a tuple with the NtpServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetNtpServersOk() ([]string, bool) {
+func (o *DeviceAp) GetNtpServersOk() ([]string, bool) {
 	if o == nil || IsNil(o.NtpServers) {
 		return nil, false
 	}
@@ -1006,7 +1006,7 @@ func (o *Ap) GetNtpServersOk() ([]string, bool) {
 }
 
 // HasNtpServers returns a boolean if a field has been set.
-func (o *Ap) HasNtpServers() bool {
+func (o *DeviceAp) HasNtpServers() bool {
 	if o != nil && !IsNil(o.NtpServers) {
 		return true
 	}
@@ -1015,12 +1015,12 @@ func (o *Ap) HasNtpServers() bool {
 }
 
 // SetNtpServers gets a reference to the given []string and assigns it to the NtpServers field.
-func (o *Ap) SetNtpServers(v []string) {
+func (o *DeviceAp) SetNtpServers(v []string) {
 	o.NtpServers = v
 }
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
-func (o *Ap) GetOrgId() string {
+func (o *DeviceAp) GetOrgId() string {
 	if o == nil || IsNil(o.OrgId) {
 		var ret string
 		return ret
@@ -1030,7 +1030,7 @@ func (o *Ap) GetOrgId() string {
 
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetOrgIdOk() (*string, bool) {
+func (o *DeviceAp) GetOrgIdOk() (*string, bool) {
 	if o == nil || IsNil(o.OrgId) {
 		return nil, false
 	}
@@ -1038,7 +1038,7 @@ func (o *Ap) GetOrgIdOk() (*string, bool) {
 }
 
 // HasOrgId returns a boolean if a field has been set.
-func (o *Ap) HasOrgId() bool {
+func (o *DeviceAp) HasOrgId() bool {
 	if o != nil && !IsNil(o.OrgId) {
 		return true
 	}
@@ -1047,12 +1047,12 @@ func (o *Ap) HasOrgId() bool {
 }
 
 // SetOrgId gets a reference to the given string and assigns it to the OrgId field.
-func (o *Ap) SetOrgId(v string) {
+func (o *DeviceAp) SetOrgId(v string) {
 	o.OrgId = &v
 }
 
 // GetOrientation returns the Orientation field value if set, zero value otherwise.
-func (o *Ap) GetOrientation() int32 {
+func (o *DeviceAp) GetOrientation() int32 {
 	if o == nil || IsNil(o.Orientation) {
 		var ret int32
 		return ret
@@ -1062,7 +1062,7 @@ func (o *Ap) GetOrientation() int32 {
 
 // GetOrientationOk returns a tuple with the Orientation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetOrientationOk() (*int32, bool) {
+func (o *DeviceAp) GetOrientationOk() (*int32, bool) {
 	if o == nil || IsNil(o.Orientation) {
 		return nil, false
 	}
@@ -1070,7 +1070,7 @@ func (o *Ap) GetOrientationOk() (*int32, bool) {
 }
 
 // HasOrientation returns a boolean if a field has been set.
-func (o *Ap) HasOrientation() bool {
+func (o *DeviceAp) HasOrientation() bool {
 	if o != nil && !IsNil(o.Orientation) {
 		return true
 	}
@@ -1079,12 +1079,12 @@ func (o *Ap) HasOrientation() bool {
 }
 
 // SetOrientation gets a reference to the given int32 and assigns it to the Orientation field.
-func (o *Ap) SetOrientation(v int32) {
+func (o *DeviceAp) SetOrientation(v int32) {
 	o.Orientation = &v
 }
 
 // GetPoePassthrough returns the PoePassthrough field value if set, zero value otherwise.
-func (o *Ap) GetPoePassthrough() bool {
+func (o *DeviceAp) GetPoePassthrough() bool {
 	if o == nil || IsNil(o.PoePassthrough) {
 		var ret bool
 		return ret
@@ -1094,7 +1094,7 @@ func (o *Ap) GetPoePassthrough() bool {
 
 // GetPoePassthroughOk returns a tuple with the PoePassthrough field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetPoePassthroughOk() (*bool, bool) {
+func (o *DeviceAp) GetPoePassthroughOk() (*bool, bool) {
 	if o == nil || IsNil(o.PoePassthrough) {
 		return nil, false
 	}
@@ -1102,7 +1102,7 @@ func (o *Ap) GetPoePassthroughOk() (*bool, bool) {
 }
 
 // HasPoePassthrough returns a boolean if a field has been set.
-func (o *Ap) HasPoePassthrough() bool {
+func (o *DeviceAp) HasPoePassthrough() bool {
 	if o != nil && !IsNil(o.PoePassthrough) {
 		return true
 	}
@@ -1111,12 +1111,12 @@ func (o *Ap) HasPoePassthrough() bool {
 }
 
 // SetPoePassthrough gets a reference to the given bool and assigns it to the PoePassthrough field.
-func (o *Ap) SetPoePassthrough(v bool) {
+func (o *DeviceAp) SetPoePassthrough(v bool) {
 	o.PoePassthrough = &v
 }
 
 // GetPortConfig returns the PortConfig field value if set, zero value otherwise.
-func (o *Ap) GetPortConfig() map[string]ApPortConfig {
+func (o *DeviceAp) GetPortConfig() map[string]ApPortConfig {
 	if o == nil || IsNil(o.PortConfig) {
 		var ret map[string]ApPortConfig
 		return ret
@@ -1126,7 +1126,7 @@ func (o *Ap) GetPortConfig() map[string]ApPortConfig {
 
 // GetPortConfigOk returns a tuple with the PortConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetPortConfigOk() (*map[string]ApPortConfig, bool) {
+func (o *DeviceAp) GetPortConfigOk() (*map[string]ApPortConfig, bool) {
 	if o == nil || IsNil(o.PortConfig) {
 		return nil, false
 	}
@@ -1134,7 +1134,7 @@ func (o *Ap) GetPortConfigOk() (*map[string]ApPortConfig, bool) {
 }
 
 // HasPortConfig returns a boolean if a field has been set.
-func (o *Ap) HasPortConfig() bool {
+func (o *DeviceAp) HasPortConfig() bool {
 	if o != nil && !IsNil(o.PortConfig) {
 		return true
 	}
@@ -1143,12 +1143,12 @@ func (o *Ap) HasPortConfig() bool {
 }
 
 // SetPortConfig gets a reference to the given map[string]ApPortConfig and assigns it to the PortConfig field.
-func (o *Ap) SetPortConfig(v map[string]ApPortConfig) {
+func (o *DeviceAp) SetPortConfig(v map[string]ApPortConfig) {
 	o.PortConfig = &v
 }
 
 // GetPwrConfig returns the PwrConfig field value if set, zero value otherwise.
-func (o *Ap) GetPwrConfig() ApPwrConfig {
+func (o *DeviceAp) GetPwrConfig() ApPwrConfig {
 	if o == nil || IsNil(o.PwrConfig) {
 		var ret ApPwrConfig
 		return ret
@@ -1158,7 +1158,7 @@ func (o *Ap) GetPwrConfig() ApPwrConfig {
 
 // GetPwrConfigOk returns a tuple with the PwrConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetPwrConfigOk() (*ApPwrConfig, bool) {
+func (o *DeviceAp) GetPwrConfigOk() (*ApPwrConfig, bool) {
 	if o == nil || IsNil(o.PwrConfig) {
 		return nil, false
 	}
@@ -1166,7 +1166,7 @@ func (o *Ap) GetPwrConfigOk() (*ApPwrConfig, bool) {
 }
 
 // HasPwrConfig returns a boolean if a field has been set.
-func (o *Ap) HasPwrConfig() bool {
+func (o *DeviceAp) HasPwrConfig() bool {
 	if o != nil && !IsNil(o.PwrConfig) {
 		return true
 	}
@@ -1175,12 +1175,12 @@ func (o *Ap) HasPwrConfig() bool {
 }
 
 // SetPwrConfig gets a reference to the given ApPwrConfig and assigns it to the PwrConfig field.
-func (o *Ap) SetPwrConfig(v ApPwrConfig) {
+func (o *DeviceAp) SetPwrConfig(v ApPwrConfig) {
 	o.PwrConfig = &v
 }
 
 // GetRadioConfig returns the RadioConfig field value if set, zero value otherwise.
-func (o *Ap) GetRadioConfig() ApRadio {
+func (o *DeviceAp) GetRadioConfig() ApRadio {
 	if o == nil || IsNil(o.RadioConfig) {
 		var ret ApRadio
 		return ret
@@ -1190,7 +1190,7 @@ func (o *Ap) GetRadioConfig() ApRadio {
 
 // GetRadioConfigOk returns a tuple with the RadioConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetRadioConfigOk() (*ApRadio, bool) {
+func (o *DeviceAp) GetRadioConfigOk() (*ApRadio, bool) {
 	if o == nil || IsNil(o.RadioConfig) {
 		return nil, false
 	}
@@ -1198,7 +1198,7 @@ func (o *Ap) GetRadioConfigOk() (*ApRadio, bool) {
 }
 
 // HasRadioConfig returns a boolean if a field has been set.
-func (o *Ap) HasRadioConfig() bool {
+func (o *DeviceAp) HasRadioConfig() bool {
 	if o != nil && !IsNil(o.RadioConfig) {
 		return true
 	}
@@ -1207,12 +1207,12 @@ func (o *Ap) HasRadioConfig() bool {
 }
 
 // SetRadioConfig gets a reference to the given ApRadio and assigns it to the RadioConfig field.
-func (o *Ap) SetRadioConfig(v ApRadio) {
+func (o *DeviceAp) SetRadioConfig(v ApRadio) {
 	o.RadioConfig = &v
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *Ap) GetSiteId() string {
+func (o *DeviceAp) GetSiteId() string {
 	if o == nil || IsNil(o.SiteId) {
 		var ret string
 		return ret
@@ -1222,7 +1222,7 @@ func (o *Ap) GetSiteId() string {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetSiteIdOk() (*string, bool) {
+func (o *DeviceAp) GetSiteIdOk() (*string, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -1230,7 +1230,7 @@ func (o *Ap) GetSiteIdOk() (*string, bool) {
 }
 
 // HasSiteId returns a boolean if a field has been set.
-func (o *Ap) HasSiteId() bool {
+func (o *DeviceAp) HasSiteId() bool {
 	if o != nil && !IsNil(o.SiteId) {
 		return true
 	}
@@ -1239,12 +1239,12 @@ func (o *Ap) HasSiteId() bool {
 }
 
 // SetSiteId gets a reference to the given string and assigns it to the SiteId field.
-func (o *Ap) SetSiteId(v string) {
+func (o *DeviceAp) SetSiteId(v string) {
 	o.SiteId = &v
 }
 
 // GetUplinkPortConfig returns the UplinkPortConfig field value if set, zero value otherwise.
-func (o *Ap) GetUplinkPortConfig() ApUplinkPortConfig {
+func (o *DeviceAp) GetUplinkPortConfig() ApUplinkPortConfig {
 	if o == nil || IsNil(o.UplinkPortConfig) {
 		var ret ApUplinkPortConfig
 		return ret
@@ -1254,7 +1254,7 @@ func (o *Ap) GetUplinkPortConfig() ApUplinkPortConfig {
 
 // GetUplinkPortConfigOk returns a tuple with the UplinkPortConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetUplinkPortConfigOk() (*ApUplinkPortConfig, bool) {
+func (o *DeviceAp) GetUplinkPortConfigOk() (*ApUplinkPortConfig, bool) {
 	if o == nil || IsNil(o.UplinkPortConfig) {
 		return nil, false
 	}
@@ -1262,7 +1262,7 @@ func (o *Ap) GetUplinkPortConfigOk() (*ApUplinkPortConfig, bool) {
 }
 
 // HasUplinkPortConfig returns a boolean if a field has been set.
-func (o *Ap) HasUplinkPortConfig() bool {
+func (o *DeviceAp) HasUplinkPortConfig() bool {
 	if o != nil && !IsNil(o.UplinkPortConfig) {
 		return true
 	}
@@ -1271,12 +1271,12 @@ func (o *Ap) HasUplinkPortConfig() bool {
 }
 
 // SetUplinkPortConfig gets a reference to the given ApUplinkPortConfig and assigns it to the UplinkPortConfig field.
-func (o *Ap) SetUplinkPortConfig(v ApUplinkPortConfig) {
+func (o *DeviceAp) SetUplinkPortConfig(v ApUplinkPortConfig) {
 	o.UplinkPortConfig = &v
 }
 
 // GetUsbConfig returns the UsbConfig field value if set, zero value otherwise.
-func (o *Ap) GetUsbConfig() ApUsb {
+func (o *DeviceAp) GetUsbConfig() ApUsb {
 	if o == nil || IsNil(o.UsbConfig) {
 		var ret ApUsb
 		return ret
@@ -1286,7 +1286,7 @@ func (o *Ap) GetUsbConfig() ApUsb {
 
 // GetUsbConfigOk returns a tuple with the UsbConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetUsbConfigOk() (*ApUsb, bool) {
+func (o *DeviceAp) GetUsbConfigOk() (*ApUsb, bool) {
 	if o == nil || IsNil(o.UsbConfig) {
 		return nil, false
 	}
@@ -1294,7 +1294,7 @@ func (o *Ap) GetUsbConfigOk() (*ApUsb, bool) {
 }
 
 // HasUsbConfig returns a boolean if a field has been set.
-func (o *Ap) HasUsbConfig() bool {
+func (o *DeviceAp) HasUsbConfig() bool {
 	if o != nil && !IsNil(o.UsbConfig) {
 		return true
 	}
@@ -1303,12 +1303,12 @@ func (o *Ap) HasUsbConfig() bool {
 }
 
 // SetUsbConfig gets a reference to the given ApUsb and assigns it to the UsbConfig field.
-func (o *Ap) SetUsbConfig(v ApUsb) {
+func (o *DeviceAp) SetUsbConfig(v ApUsb) {
 	o.UsbConfig = &v
 }
 
 // GetVars returns the Vars field value if set, zero value otherwise.
-func (o *Ap) GetVars() map[string]string {
+func (o *DeviceAp) GetVars() map[string]string {
 	if o == nil || IsNil(o.Vars) {
 		var ret map[string]string
 		return ret
@@ -1318,7 +1318,7 @@ func (o *Ap) GetVars() map[string]string {
 
 // GetVarsOk returns a tuple with the Vars field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetVarsOk() (*map[string]string, bool) {
+func (o *DeviceAp) GetVarsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Vars) {
 		return nil, false
 	}
@@ -1326,7 +1326,7 @@ func (o *Ap) GetVarsOk() (*map[string]string, bool) {
 }
 
 // HasVars returns a boolean if a field has been set.
-func (o *Ap) HasVars() bool {
+func (o *DeviceAp) HasVars() bool {
 	if o != nil && !IsNil(o.Vars) {
 		return true
 	}
@@ -1335,14 +1335,14 @@ func (o *Ap) HasVars() bool {
 }
 
 // SetVars gets a reference to the given map[string]string and assigns it to the Vars field.
-func (o *Ap) SetVars(v map[string]string) {
+func (o *DeviceAp) SetVars(v map[string]string) {
 	o.Vars = &v
 }
 
 // GetX returns the X field value if set, zero value otherwise.
-func (o *Ap) GetX() float32 {
+func (o *DeviceAp) GetX() float64 {
 	if o == nil || IsNil(o.X) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.X
@@ -1350,7 +1350,7 @@ func (o *Ap) GetX() float32 {
 
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetXOk() (*float32, bool) {
+func (o *DeviceAp) GetXOk() (*float64, bool) {
 	if o == nil || IsNil(o.X) {
 		return nil, false
 	}
@@ -1358,7 +1358,7 @@ func (o *Ap) GetXOk() (*float32, bool) {
 }
 
 // HasX returns a boolean if a field has been set.
-func (o *Ap) HasX() bool {
+func (o *DeviceAp) HasX() bool {
 	if o != nil && !IsNil(o.X) {
 		return true
 	}
@@ -1366,15 +1366,15 @@ func (o *Ap) HasX() bool {
 	return false
 }
 
-// SetX gets a reference to the given float32 and assigns it to the X field.
-func (o *Ap) SetX(v float32) {
+// SetX gets a reference to the given float64 and assigns it to the X field.
+func (o *DeviceAp) SetX(v float64) {
 	o.X = &v
 }
 
 // GetY returns the Y field value if set, zero value otherwise.
-func (o *Ap) GetY() float32 {
+func (o *DeviceAp) GetY() float64 {
 	if o == nil || IsNil(o.Y) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Y
@@ -1382,7 +1382,7 @@ func (o *Ap) GetY() float32 {
 
 // GetYOk returns a tuple with the Y field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ap) GetYOk() (*float32, bool) {
+func (o *DeviceAp) GetYOk() (*float64, bool) {
 	if o == nil || IsNil(o.Y) {
 		return nil, false
 	}
@@ -1390,7 +1390,7 @@ func (o *Ap) GetYOk() (*float32, bool) {
 }
 
 // HasY returns a boolean if a field has been set.
-func (o *Ap) HasY() bool {
+func (o *DeviceAp) HasY() bool {
 	if o != nil && !IsNil(o.Y) {
 		return true
 	}
@@ -1398,12 +1398,12 @@ func (o *Ap) HasY() bool {
 	return false
 }
 
-// SetY gets a reference to the given float32 and assigns it to the Y field.
-func (o *Ap) SetY(v float32) {
+// SetY gets a reference to the given float64 and assigns it to the Y field.
+func (o *DeviceAp) SetY(v float64) {
 	o.Y = &v
 }
 
-func (o Ap) MarshalJSON() ([]byte, error) {
+func (o DeviceAp) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -1411,7 +1411,7 @@ func (o Ap) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Ap) ToMap() (map[string]interface{}, error) {
+func (o DeviceAp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Aeroscout) {
 		toSerialize["aeroscout"] = o.Aeroscout
@@ -1538,16 +1538,16 @@ func (o Ap) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *Ap) UnmarshalJSON(data []byte) (err error) {
-	varAp := _Ap{}
+func (o *DeviceAp) UnmarshalJSON(data []byte) (err error) {
+	varDeviceAp := _DeviceAp{}
 
-	err = json.Unmarshal(data, &varAp)
+	err = json.Unmarshal(data, &varDeviceAp)
 
 	if err != nil {
 		return err
 	}
 
-	*o = Ap(varAp)
+	*o = DeviceAp(varDeviceAp)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -1597,38 +1597,38 @@ func (o *Ap) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableAp struct {
-	value *Ap
+type NullableDeviceAp struct {
+	value *DeviceAp
 	isSet bool
 }
 
-func (v NullableAp) Get() *Ap {
+func (v NullableDeviceAp) Get() *DeviceAp {
 	return v.value
 }
 
-func (v *NullableAp) Set(val *Ap) {
+func (v *NullableDeviceAp) Set(val *DeviceAp) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAp) IsSet() bool {
+func (v NullableDeviceAp) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAp) Unset() {
+func (v *NullableDeviceAp) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAp(val *Ap) *NullableAp {
-	return &NullableAp{value: val, isSet: true}
+func NewNullableDeviceAp(val *DeviceAp) *NullableDeviceAp {
+	return &NullableDeviceAp{value: val, isSet: true}
 }
 
-func (v NullableAp) MarshalJSON() ([]byte, error) {
+func (v NullableDeviceAp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAp) UnmarshalJSON(src []byte) error {
+func (v *NullableDeviceAp) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

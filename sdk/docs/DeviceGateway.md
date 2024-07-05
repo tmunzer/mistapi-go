@@ -1,4 +1,4 @@
-# Gateway
+# DeviceGateway
 
 ## Properties
 
@@ -28,675 +28,675 @@ Name | Type | Description | Notes
 **PortMirroring** | Pointer to [**GatewayPortMirroring**](GatewayPortMirroring.md) |  | [optional] 
 **SiteId** | Pointer to **string** |  | [optional] [readonly] 
 **Vars** | Pointer to **map[string]string** | a dictionary of name-&gt;value, the vars can then be used in Wlans. This can overwrite those from Site Vars | [optional] 
-**X** | Pointer to **float32** | x in pixel | [optional] 
-**Y** | Pointer to **float32** | y in pixel | [optional] 
+**X** | Pointer to **float64** | x in pixel | [optional] 
+**Y** | Pointer to **float64** | y in pixel | [optional] 
 
 ## Methods
 
-### NewGateway
+### NewDeviceGateway
 
-`func NewGateway() *Gateway`
+`func NewDeviceGateway() *DeviceGateway`
 
-NewGateway instantiates a new Gateway object
+NewDeviceGateway instantiates a new DeviceGateway object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewGatewayWithDefaults
+### NewDeviceGatewayWithDefaults
 
-`func NewGatewayWithDefaults() *Gateway`
+`func NewDeviceGatewayWithDefaults() *DeviceGateway`
 
-NewGatewayWithDefaults instantiates a new Gateway object
+NewDeviceGatewayWithDefaults instantiates a new DeviceGateway object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAdditionalConfigCmds
 
-`func (o *Gateway) GetAdditionalConfigCmds() []string`
+`func (o *DeviceGateway) GetAdditionalConfigCmds() []string`
 
 GetAdditionalConfigCmds returns the AdditionalConfigCmds field if non-nil, zero value otherwise.
 
 ### GetAdditionalConfigCmdsOk
 
-`func (o *Gateway) GetAdditionalConfigCmdsOk() (*[]string, bool)`
+`func (o *DeviceGateway) GetAdditionalConfigCmdsOk() (*[]string, bool)`
 
 GetAdditionalConfigCmdsOk returns a tuple with the AdditionalConfigCmds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdditionalConfigCmds
 
-`func (o *Gateway) SetAdditionalConfigCmds(v []string)`
+`func (o *DeviceGateway) SetAdditionalConfigCmds(v []string)`
 
 SetAdditionalConfigCmds sets AdditionalConfigCmds field to given value.
 
 ### HasAdditionalConfigCmds
 
-`func (o *Gateway) HasAdditionalConfigCmds() bool`
+`func (o *DeviceGateway) HasAdditionalConfigCmds() bool`
 
 HasAdditionalConfigCmds returns a boolean if a field has been set.
 
 ### GetCreatedTime
 
-`func (o *Gateway) GetCreatedTime() float32`
+`func (o *DeviceGateway) GetCreatedTime() float32`
 
 GetCreatedTime returns the CreatedTime field if non-nil, zero value otherwise.
 
 ### GetCreatedTimeOk
 
-`func (o *Gateway) GetCreatedTimeOk() (*float32, bool)`
+`func (o *DeviceGateway) GetCreatedTimeOk() (*float32, bool)`
 
 GetCreatedTimeOk returns a tuple with the CreatedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedTime
 
-`func (o *Gateway) SetCreatedTime(v float32)`
+`func (o *DeviceGateway) SetCreatedTime(v float32)`
 
 SetCreatedTime sets CreatedTime field to given value.
 
 ### HasCreatedTime
 
-`func (o *Gateway) HasCreatedTime() bool`
+`func (o *DeviceGateway) HasCreatedTime() bool`
 
 HasCreatedTime returns a boolean if a field has been set.
 
 ### GetDeviceprofileId
 
-`func (o *Gateway) GetDeviceprofileId() string`
+`func (o *DeviceGateway) GetDeviceprofileId() string`
 
 GetDeviceprofileId returns the DeviceprofileId field if non-nil, zero value otherwise.
 
 ### GetDeviceprofileIdOk
 
-`func (o *Gateway) GetDeviceprofileIdOk() (*string, bool)`
+`func (o *DeviceGateway) GetDeviceprofileIdOk() (*string, bool)`
 
 GetDeviceprofileIdOk returns a tuple with the DeviceprofileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeviceprofileId
 
-`func (o *Gateway) SetDeviceprofileId(v string)`
+`func (o *DeviceGateway) SetDeviceprofileId(v string)`
 
 SetDeviceprofileId sets DeviceprofileId field to given value.
 
 ### HasDeviceprofileId
 
-`func (o *Gateway) HasDeviceprofileId() bool`
+`func (o *DeviceGateway) HasDeviceprofileId() bool`
 
 HasDeviceprofileId returns a boolean if a field has been set.
 
 ### GetDhcpdConfig
 
-`func (o *Gateway) GetDhcpdConfig() DhcpdConfigs`
+`func (o *DeviceGateway) GetDhcpdConfig() DhcpdConfigs`
 
 GetDhcpdConfig returns the DhcpdConfig field if non-nil, zero value otherwise.
 
 ### GetDhcpdConfigOk
 
-`func (o *Gateway) GetDhcpdConfigOk() (*DhcpdConfigs, bool)`
+`func (o *DeviceGateway) GetDhcpdConfigOk() (*DhcpdConfigs, bool)`
 
 GetDhcpdConfigOk returns a tuple with the DhcpdConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDhcpdConfig
 
-`func (o *Gateway) SetDhcpdConfig(v DhcpdConfigs)`
+`func (o *DeviceGateway) SetDhcpdConfig(v DhcpdConfigs)`
 
 SetDhcpdConfig sets DhcpdConfig field to given value.
 
 ### HasDhcpdConfig
 
-`func (o *Gateway) HasDhcpdConfig() bool`
+`func (o *DeviceGateway) HasDhcpdConfig() bool`
 
 HasDhcpdConfig returns a boolean if a field has been set.
 
 ### GetExtraRoutes
 
-`func (o *Gateway) GetExtraRoutes() map[string]GatewayExtraRoute`
+`func (o *DeviceGateway) GetExtraRoutes() map[string]GatewayExtraRoute`
 
 GetExtraRoutes returns the ExtraRoutes field if non-nil, zero value otherwise.
 
 ### GetExtraRoutesOk
 
-`func (o *Gateway) GetExtraRoutesOk() (*map[string]GatewayExtraRoute, bool)`
+`func (o *DeviceGateway) GetExtraRoutesOk() (*map[string]GatewayExtraRoute, bool)`
 
 GetExtraRoutesOk returns a tuple with the ExtraRoutes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtraRoutes
 
-`func (o *Gateway) SetExtraRoutes(v map[string]GatewayExtraRoute)`
+`func (o *DeviceGateway) SetExtraRoutes(v map[string]GatewayExtraRoute)`
 
 SetExtraRoutes sets ExtraRoutes field to given value.
 
 ### HasExtraRoutes
 
-`func (o *Gateway) HasExtraRoutes() bool`
+`func (o *DeviceGateway) HasExtraRoutes() bool`
 
 HasExtraRoutes returns a boolean if a field has been set.
 
 ### GetForSite
 
-`func (o *Gateway) GetForSite() bool`
+`func (o *DeviceGateway) GetForSite() bool`
 
 GetForSite returns the ForSite field if non-nil, zero value otherwise.
 
 ### GetForSiteOk
 
-`func (o *Gateway) GetForSiteOk() (*bool, bool)`
+`func (o *DeviceGateway) GetForSiteOk() (*bool, bool)`
 
 GetForSiteOk returns a tuple with the ForSite field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetForSite
 
-`func (o *Gateway) SetForSite(v bool)`
+`func (o *DeviceGateway) SetForSite(v bool)`
 
 SetForSite sets ForSite field to given value.
 
 ### HasForSite
 
-`func (o *Gateway) HasForSite() bool`
+`func (o *DeviceGateway) HasForSite() bool`
 
 HasForSite returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *Gateway) GetId() string`
+`func (o *DeviceGateway) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Gateway) GetIdOk() (*string, bool)`
+`func (o *DeviceGateway) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Gateway) SetId(v string)`
+`func (o *DeviceGateway) SetId(v string)`
 
 SetId sets Id field to given value.
 
 ### HasId
 
-`func (o *Gateway) HasId() bool`
+`func (o *DeviceGateway) HasId() bool`
 
 HasId returns a boolean if a field has been set.
 
 ### GetImage1Url
 
-`func (o *Gateway) GetImage1Url() string`
+`func (o *DeviceGateway) GetImage1Url() string`
 
 GetImage1Url returns the Image1Url field if non-nil, zero value otherwise.
 
 ### GetImage1UrlOk
 
-`func (o *Gateway) GetImage1UrlOk() (*string, bool)`
+`func (o *DeviceGateway) GetImage1UrlOk() (*string, bool)`
 
 GetImage1UrlOk returns a tuple with the Image1Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetImage1Url
 
-`func (o *Gateway) SetImage1Url(v string)`
+`func (o *DeviceGateway) SetImage1Url(v string)`
 
 SetImage1Url sets Image1Url field to given value.
 
 ### HasImage1Url
 
-`func (o *Gateway) HasImage1Url() bool`
+`func (o *DeviceGateway) HasImage1Url() bool`
 
 HasImage1Url returns a boolean if a field has been set.
 
 ### GetImage2Url
 
-`func (o *Gateway) GetImage2Url() string`
+`func (o *DeviceGateway) GetImage2Url() string`
 
 GetImage2Url returns the Image2Url field if non-nil, zero value otherwise.
 
 ### GetImage2UrlOk
 
-`func (o *Gateway) GetImage2UrlOk() (*string, bool)`
+`func (o *DeviceGateway) GetImage2UrlOk() (*string, bool)`
 
 GetImage2UrlOk returns a tuple with the Image2Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetImage2Url
 
-`func (o *Gateway) SetImage2Url(v string)`
+`func (o *DeviceGateway) SetImage2Url(v string)`
 
 SetImage2Url sets Image2Url field to given value.
 
 ### HasImage2Url
 
-`func (o *Gateway) HasImage2Url() bool`
+`func (o *DeviceGateway) HasImage2Url() bool`
 
 HasImage2Url returns a boolean if a field has been set.
 
 ### GetImage3Url
 
-`func (o *Gateway) GetImage3Url() string`
+`func (o *DeviceGateway) GetImage3Url() string`
 
 GetImage3Url returns the Image3Url field if non-nil, zero value otherwise.
 
 ### GetImage3UrlOk
 
-`func (o *Gateway) GetImage3UrlOk() (*string, bool)`
+`func (o *DeviceGateway) GetImage3UrlOk() (*string, bool)`
 
 GetImage3UrlOk returns a tuple with the Image3Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetImage3Url
 
-`func (o *Gateway) SetImage3Url(v string)`
+`func (o *DeviceGateway) SetImage3Url(v string)`
 
 SetImage3Url sets Image3Url field to given value.
 
 ### HasImage3Url
 
-`func (o *Gateway) HasImage3Url() bool`
+`func (o *DeviceGateway) HasImage3Url() bool`
 
 HasImage3Url returns a boolean if a field has been set.
 
 ### GetIpConfig
 
-`func (o *Gateway) GetIpConfig() map[string]GatewayTemplateIpConfig`
+`func (o *DeviceGateway) GetIpConfig() map[string]GatewayTemplateIpConfig`
 
 GetIpConfig returns the IpConfig field if non-nil, zero value otherwise.
 
 ### GetIpConfigOk
 
-`func (o *Gateway) GetIpConfigOk() (*map[string]GatewayTemplateIpConfig, bool)`
+`func (o *DeviceGateway) GetIpConfigOk() (*map[string]GatewayTemplateIpConfig, bool)`
 
 GetIpConfigOk returns a tuple with the IpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpConfig
 
-`func (o *Gateway) SetIpConfig(v map[string]GatewayTemplateIpConfig)`
+`func (o *DeviceGateway) SetIpConfig(v map[string]GatewayTemplateIpConfig)`
 
 SetIpConfig sets IpConfig field to given value.
 
 ### HasIpConfig
 
-`func (o *Gateway) HasIpConfig() bool`
+`func (o *DeviceGateway) HasIpConfig() bool`
 
 HasIpConfig returns a boolean if a field has been set.
 
 ### GetManaged
 
-`func (o *Gateway) GetManaged() bool`
+`func (o *DeviceGateway) GetManaged() bool`
 
 GetManaged returns the Managed field if non-nil, zero value otherwise.
 
 ### GetManagedOk
 
-`func (o *Gateway) GetManagedOk() (*bool, bool)`
+`func (o *DeviceGateway) GetManagedOk() (*bool, bool)`
 
 GetManagedOk returns a tuple with the Managed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetManaged
 
-`func (o *Gateway) SetManaged(v bool)`
+`func (o *DeviceGateway) SetManaged(v bool)`
 
 SetManaged sets Managed field to given value.
 
 ### HasManaged
 
-`func (o *Gateway) HasManaged() bool`
+`func (o *DeviceGateway) HasManaged() bool`
 
 HasManaged returns a boolean if a field has been set.
 
 ### GetMapId
 
-`func (o *Gateway) GetMapId() string`
+`func (o *DeviceGateway) GetMapId() string`
 
 GetMapId returns the MapId field if non-nil, zero value otherwise.
 
 ### GetMapIdOk
 
-`func (o *Gateway) GetMapIdOk() (*string, bool)`
+`func (o *DeviceGateway) GetMapIdOk() (*string, bool)`
 
 GetMapIdOk returns a tuple with the MapId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMapId
 
-`func (o *Gateway) SetMapId(v string)`
+`func (o *DeviceGateway) SetMapId(v string)`
 
 SetMapId sets MapId field to given value.
 
 ### HasMapId
 
-`func (o *Gateway) HasMapId() bool`
+`func (o *DeviceGateway) HasMapId() bool`
 
 HasMapId returns a boolean if a field has been set.
 
 ### GetModifiedTime
 
-`func (o *Gateway) GetModifiedTime() float32`
+`func (o *DeviceGateway) GetModifiedTime() float32`
 
 GetModifiedTime returns the ModifiedTime field if non-nil, zero value otherwise.
 
 ### GetModifiedTimeOk
 
-`func (o *Gateway) GetModifiedTimeOk() (*float32, bool)`
+`func (o *DeviceGateway) GetModifiedTimeOk() (*float32, bool)`
 
 GetModifiedTimeOk returns a tuple with the ModifiedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModifiedTime
 
-`func (o *Gateway) SetModifiedTime(v float32)`
+`func (o *DeviceGateway) SetModifiedTime(v float32)`
 
 SetModifiedTime sets ModifiedTime field to given value.
 
 ### HasModifiedTime
 
-`func (o *Gateway) HasModifiedTime() bool`
+`func (o *DeviceGateway) HasModifiedTime() bool`
 
 HasModifiedTime returns a boolean if a field has been set.
 
 ### GetMspId
 
-`func (o *Gateway) GetMspId() string`
+`func (o *DeviceGateway) GetMspId() string`
 
 GetMspId returns the MspId field if non-nil, zero value otherwise.
 
 ### GetMspIdOk
 
-`func (o *Gateway) GetMspIdOk() (*string, bool)`
+`func (o *DeviceGateway) GetMspIdOk() (*string, bool)`
 
 GetMspIdOk returns a tuple with the MspId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMspId
 
-`func (o *Gateway) SetMspId(v string)`
+`func (o *DeviceGateway) SetMspId(v string)`
 
 SetMspId sets MspId field to given value.
 
 ### HasMspId
 
-`func (o *Gateway) HasMspId() bool`
+`func (o *DeviceGateway) HasMspId() bool`
 
 HasMspId returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *Gateway) GetName() string`
+`func (o *DeviceGateway) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *Gateway) GetNameOk() (*string, bool)`
+`func (o *DeviceGateway) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *Gateway) SetName(v string)`
+`func (o *DeviceGateway) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *Gateway) HasName() bool`
+`func (o *DeviceGateway) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetNetworks
 
-`func (o *Gateway) GetNetworks() map[string]GatewayNetwork`
+`func (o *DeviceGateway) GetNetworks() map[string]GatewayNetwork`
 
 GetNetworks returns the Networks field if non-nil, zero value otherwise.
 
 ### GetNetworksOk
 
-`func (o *Gateway) GetNetworksOk() (*map[string]GatewayNetwork, bool)`
+`func (o *DeviceGateway) GetNetworksOk() (*map[string]GatewayNetwork, bool)`
 
 GetNetworksOk returns a tuple with the Networks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworks
 
-`func (o *Gateway) SetNetworks(v map[string]GatewayNetwork)`
+`func (o *DeviceGateway) SetNetworks(v map[string]GatewayNetwork)`
 
 SetNetworks sets Networks field to given value.
 
 ### HasNetworks
 
-`func (o *Gateway) HasNetworks() bool`
+`func (o *DeviceGateway) HasNetworks() bool`
 
 HasNetworks returns a boolean if a field has been set.
 
 ### GetNtpServers
 
-`func (o *Gateway) GetNtpServers() []string`
+`func (o *DeviceGateway) GetNtpServers() []string`
 
 GetNtpServers returns the NtpServers field if non-nil, zero value otherwise.
 
 ### GetNtpServersOk
 
-`func (o *Gateway) GetNtpServersOk() (*[]string, bool)`
+`func (o *DeviceGateway) GetNtpServersOk() (*[]string, bool)`
 
 GetNtpServersOk returns a tuple with the NtpServers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNtpServers
 
-`func (o *Gateway) SetNtpServers(v []string)`
+`func (o *DeviceGateway) SetNtpServers(v []string)`
 
 SetNtpServers sets NtpServers field to given value.
 
 ### HasNtpServers
 
-`func (o *Gateway) HasNtpServers() bool`
+`func (o *DeviceGateway) HasNtpServers() bool`
 
 HasNtpServers returns a boolean if a field has been set.
 
 ### GetOobIpConfig
 
-`func (o *Gateway) GetOobIpConfig() GatewayOobIpConfig`
+`func (o *DeviceGateway) GetOobIpConfig() GatewayOobIpConfig`
 
 GetOobIpConfig returns the OobIpConfig field if non-nil, zero value otherwise.
 
 ### GetOobIpConfigOk
 
-`func (o *Gateway) GetOobIpConfigOk() (*GatewayOobIpConfig, bool)`
+`func (o *DeviceGateway) GetOobIpConfigOk() (*GatewayOobIpConfig, bool)`
 
 GetOobIpConfigOk returns a tuple with the OobIpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOobIpConfig
 
-`func (o *Gateway) SetOobIpConfig(v GatewayOobIpConfig)`
+`func (o *DeviceGateway) SetOobIpConfig(v GatewayOobIpConfig)`
 
 SetOobIpConfig sets OobIpConfig field to given value.
 
 ### HasOobIpConfig
 
-`func (o *Gateway) HasOobIpConfig() bool`
+`func (o *DeviceGateway) HasOobIpConfig() bool`
 
 HasOobIpConfig returns a boolean if a field has been set.
 
 ### GetOrgId
 
-`func (o *Gateway) GetOrgId() string`
+`func (o *DeviceGateway) GetOrgId() string`
 
 GetOrgId returns the OrgId field if non-nil, zero value otherwise.
 
 ### GetOrgIdOk
 
-`func (o *Gateway) GetOrgIdOk() (*string, bool)`
+`func (o *DeviceGateway) GetOrgIdOk() (*string, bool)`
 
 GetOrgIdOk returns a tuple with the OrgId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrgId
 
-`func (o *Gateway) SetOrgId(v string)`
+`func (o *DeviceGateway) SetOrgId(v string)`
 
 SetOrgId sets OrgId field to given value.
 
 ### HasOrgId
 
-`func (o *Gateway) HasOrgId() bool`
+`func (o *DeviceGateway) HasOrgId() bool`
 
 HasOrgId returns a boolean if a field has been set.
 
 ### GetPortConfig
 
-`func (o *Gateway) GetPortConfig() map[string]GatewayPortConfig`
+`func (o *DeviceGateway) GetPortConfig() map[string]GatewayPortConfig`
 
 GetPortConfig returns the PortConfig field if non-nil, zero value otherwise.
 
 ### GetPortConfigOk
 
-`func (o *Gateway) GetPortConfigOk() (*map[string]GatewayPortConfig, bool)`
+`func (o *DeviceGateway) GetPortConfigOk() (*map[string]GatewayPortConfig, bool)`
 
 GetPortConfigOk returns a tuple with the PortConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortConfig
 
-`func (o *Gateway) SetPortConfig(v map[string]GatewayPortConfig)`
+`func (o *DeviceGateway) SetPortConfig(v map[string]GatewayPortConfig)`
 
 SetPortConfig sets PortConfig field to given value.
 
 ### HasPortConfig
 
-`func (o *Gateway) HasPortConfig() bool`
+`func (o *DeviceGateway) HasPortConfig() bool`
 
 HasPortConfig returns a boolean if a field has been set.
 
 ### GetPortMirroring
 
-`func (o *Gateway) GetPortMirroring() GatewayPortMirroring`
+`func (o *DeviceGateway) GetPortMirroring() GatewayPortMirroring`
 
 GetPortMirroring returns the PortMirroring field if non-nil, zero value otherwise.
 
 ### GetPortMirroringOk
 
-`func (o *Gateway) GetPortMirroringOk() (*GatewayPortMirroring, bool)`
+`func (o *DeviceGateway) GetPortMirroringOk() (*GatewayPortMirroring, bool)`
 
 GetPortMirroringOk returns a tuple with the PortMirroring field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortMirroring
 
-`func (o *Gateway) SetPortMirroring(v GatewayPortMirroring)`
+`func (o *DeviceGateway) SetPortMirroring(v GatewayPortMirroring)`
 
 SetPortMirroring sets PortMirroring field to given value.
 
 ### HasPortMirroring
 
-`func (o *Gateway) HasPortMirroring() bool`
+`func (o *DeviceGateway) HasPortMirroring() bool`
 
 HasPortMirroring returns a boolean if a field has been set.
 
 ### GetSiteId
 
-`func (o *Gateway) GetSiteId() string`
+`func (o *DeviceGateway) GetSiteId() string`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *Gateway) GetSiteIdOk() (*string, bool)`
+`func (o *DeviceGateway) GetSiteIdOk() (*string, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *Gateway) SetSiteId(v string)`
+`func (o *DeviceGateway) SetSiteId(v string)`
 
 SetSiteId sets SiteId field to given value.
 
 ### HasSiteId
 
-`func (o *Gateway) HasSiteId() bool`
+`func (o *DeviceGateway) HasSiteId() bool`
 
 HasSiteId returns a boolean if a field has been set.
 
 ### GetVars
 
-`func (o *Gateway) GetVars() map[string]string`
+`func (o *DeviceGateway) GetVars() map[string]string`
 
 GetVars returns the Vars field if non-nil, zero value otherwise.
 
 ### GetVarsOk
 
-`func (o *Gateway) GetVarsOk() (*map[string]string, bool)`
+`func (o *DeviceGateway) GetVarsOk() (*map[string]string, bool)`
 
 GetVarsOk returns a tuple with the Vars field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVars
 
-`func (o *Gateway) SetVars(v map[string]string)`
+`func (o *DeviceGateway) SetVars(v map[string]string)`
 
 SetVars sets Vars field to given value.
 
 ### HasVars
 
-`func (o *Gateway) HasVars() bool`
+`func (o *DeviceGateway) HasVars() bool`
 
 HasVars returns a boolean if a field has been set.
 
 ### GetX
 
-`func (o *Gateway) GetX() float32`
+`func (o *DeviceGateway) GetX() float64`
 
 GetX returns the X field if non-nil, zero value otherwise.
 
 ### GetXOk
 
-`func (o *Gateway) GetXOk() (*float32, bool)`
+`func (o *DeviceGateway) GetXOk() (*float64, bool)`
 
 GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetX
 
-`func (o *Gateway) SetX(v float32)`
+`func (o *DeviceGateway) SetX(v float64)`
 
 SetX sets X field to given value.
 
 ### HasX
 
-`func (o *Gateway) HasX() bool`
+`func (o *DeviceGateway) HasX() bool`
 
 HasX returns a boolean if a field has been set.
 
 ### GetY
 
-`func (o *Gateway) GetY() float32`
+`func (o *DeviceGateway) GetY() float64`
 
 GetY returns the Y field if non-nil, zero value otherwise.
 
 ### GetYOk
 
-`func (o *Gateway) GetYOk() (*float32, bool)`
+`func (o *DeviceGateway) GetYOk() (*float64, bool)`
 
 GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetY
 
-`func (o *Gateway) SetY(v float32)`
+`func (o *DeviceGateway) SetY(v float64)`
 
 SetY sets Y field to given value.
 
 ### HasY
 
-`func (o *Gateway) HasY() bool`
+`func (o *DeviceGateway) HasY() bool`
 
 HasY returns a boolean if a field has been set.
 
