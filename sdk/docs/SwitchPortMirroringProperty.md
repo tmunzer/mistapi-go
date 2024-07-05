@@ -1,4 +1,4 @@
-# SwitchPortMirroring
+# SwitchPortMirroringProperty
 
 ## Properties
 
@@ -12,145 +12,145 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSwitchPortMirroring
+### NewSwitchPortMirroringProperty
 
-`func NewSwitchPortMirroring() *SwitchPortMirroring`
+`func NewSwitchPortMirroringProperty() *SwitchPortMirroringProperty`
 
-NewSwitchPortMirroring instantiates a new SwitchPortMirroring object
+NewSwitchPortMirroringProperty instantiates a new SwitchPortMirroringProperty object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSwitchPortMirroringWithDefaults
+### NewSwitchPortMirroringPropertyWithDefaults
 
-`func NewSwitchPortMirroringWithDefaults() *SwitchPortMirroring`
+`func NewSwitchPortMirroringPropertyWithDefaults() *SwitchPortMirroringProperty`
 
-NewSwitchPortMirroringWithDefaults instantiates a new SwitchPortMirroring object
+NewSwitchPortMirroringPropertyWithDefaults instantiates a new SwitchPortMirroringProperty object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetInputNetworksIngress
 
-`func (o *SwitchPortMirroring) GetInputNetworksIngress() []string`
+`func (o *SwitchPortMirroringProperty) GetInputNetworksIngress() []string`
 
 GetInputNetworksIngress returns the InputNetworksIngress field if non-nil, zero value otherwise.
 
 ### GetInputNetworksIngressOk
 
-`func (o *SwitchPortMirroring) GetInputNetworksIngressOk() (*[]string, bool)`
+`func (o *SwitchPortMirroringProperty) GetInputNetworksIngressOk() (*[]string, bool)`
 
 GetInputNetworksIngressOk returns a tuple with the InputNetworksIngress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInputNetworksIngress
 
-`func (o *SwitchPortMirroring) SetInputNetworksIngress(v []string)`
+`func (o *SwitchPortMirroringProperty) SetInputNetworksIngress(v []string)`
 
 SetInputNetworksIngress sets InputNetworksIngress field to given value.
 
 ### HasInputNetworksIngress
 
-`func (o *SwitchPortMirroring) HasInputNetworksIngress() bool`
+`func (o *SwitchPortMirroringProperty) HasInputNetworksIngress() bool`
 
 HasInputNetworksIngress returns a boolean if a field has been set.
 
 ### GetInputPortIdsEgress
 
-`func (o *SwitchPortMirroring) GetInputPortIdsEgress() []string`
+`func (o *SwitchPortMirroringProperty) GetInputPortIdsEgress() []string`
 
 GetInputPortIdsEgress returns the InputPortIdsEgress field if non-nil, zero value otherwise.
 
 ### GetInputPortIdsEgressOk
 
-`func (o *SwitchPortMirroring) GetInputPortIdsEgressOk() (*[]string, bool)`
+`func (o *SwitchPortMirroringProperty) GetInputPortIdsEgressOk() (*[]string, bool)`
 
 GetInputPortIdsEgressOk returns a tuple with the InputPortIdsEgress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInputPortIdsEgress
 
-`func (o *SwitchPortMirroring) SetInputPortIdsEgress(v []string)`
+`func (o *SwitchPortMirroringProperty) SetInputPortIdsEgress(v []string)`
 
 SetInputPortIdsEgress sets InputPortIdsEgress field to given value.
 
 ### HasInputPortIdsEgress
 
-`func (o *SwitchPortMirroring) HasInputPortIdsEgress() bool`
+`func (o *SwitchPortMirroringProperty) HasInputPortIdsEgress() bool`
 
 HasInputPortIdsEgress returns a boolean if a field has been set.
 
 ### GetInputPortIdsIngress
 
-`func (o *SwitchPortMirroring) GetInputPortIdsIngress() []string`
+`func (o *SwitchPortMirroringProperty) GetInputPortIdsIngress() []string`
 
 GetInputPortIdsIngress returns the InputPortIdsIngress field if non-nil, zero value otherwise.
 
 ### GetInputPortIdsIngressOk
 
-`func (o *SwitchPortMirroring) GetInputPortIdsIngressOk() (*[]string, bool)`
+`func (o *SwitchPortMirroringProperty) GetInputPortIdsIngressOk() (*[]string, bool)`
 
 GetInputPortIdsIngressOk returns a tuple with the InputPortIdsIngress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInputPortIdsIngress
 
-`func (o *SwitchPortMirroring) SetInputPortIdsIngress(v []string)`
+`func (o *SwitchPortMirroringProperty) SetInputPortIdsIngress(v []string)`
 
 SetInputPortIdsIngress sets InputPortIdsIngress field to given value.
 
 ### HasInputPortIdsIngress
 
-`func (o *SwitchPortMirroring) HasInputPortIdsIngress() bool`
+`func (o *SwitchPortMirroringProperty) HasInputPortIdsIngress() bool`
 
 HasInputPortIdsIngress returns a boolean if a field has been set.
 
 ### GetOutputNetwork
 
-`func (o *SwitchPortMirroring) GetOutputNetwork() string`
+`func (o *SwitchPortMirroringProperty) GetOutputNetwork() string`
 
 GetOutputNetwork returns the OutputNetwork field if non-nil, zero value otherwise.
 
 ### GetOutputNetworkOk
 
-`func (o *SwitchPortMirroring) GetOutputNetworkOk() (*string, bool)`
+`func (o *SwitchPortMirroringProperty) GetOutputNetworkOk() (*string, bool)`
 
 GetOutputNetworkOk returns a tuple with the OutputNetwork field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOutputNetwork
 
-`func (o *SwitchPortMirroring) SetOutputNetwork(v string)`
+`func (o *SwitchPortMirroringProperty) SetOutputNetwork(v string)`
 
 SetOutputNetwork sets OutputNetwork field to given value.
 
 ### HasOutputNetwork
 
-`func (o *SwitchPortMirroring) HasOutputNetwork() bool`
+`func (o *SwitchPortMirroringProperty) HasOutputNetwork() bool`
 
 HasOutputNetwork returns a boolean if a field has been set.
 
 ### GetOutputPortId
 
-`func (o *SwitchPortMirroring) GetOutputPortId() string`
+`func (o *SwitchPortMirroringProperty) GetOutputPortId() string`
 
 GetOutputPortId returns the OutputPortId field if non-nil, zero value otherwise.
 
 ### GetOutputPortIdOk
 
-`func (o *SwitchPortMirroring) GetOutputPortIdOk() (*string, bool)`
+`func (o *SwitchPortMirroringProperty) GetOutputPortIdOk() (*string, bool)`
 
 GetOutputPortIdOk returns a tuple with the OutputPortId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOutputPortId
 
-`func (o *SwitchPortMirroring) SetOutputPortId(v string)`
+`func (o *SwitchPortMirroringProperty) SetOutputPortId(v string)`
 
 SetOutputPortId sets OutputPortId field to given value.
 
 ### HasOutputPortId
 
-`func (o *SwitchPortMirroring) HasOutputPortId() bool`
+`func (o *SwitchPortMirroringProperty) HasOutputPortId() bool`
 
 HasOutputPortId returns a boolean if a field has been set.
 

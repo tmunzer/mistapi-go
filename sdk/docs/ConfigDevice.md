@@ -61,7 +61,6 @@ Name | Type | Description | Notes
 **OspfConfig** | Pointer to [**OspfConfig**](OspfConfig.md) |  | [optional] 
 **OtherIpConfigs** | Pointer to [**map[string]JunosOtherIpConfigs**](JunosOtherIpConfigs.md) | Property key is the network name | [optional] 
 **PortMirroring** | Pointer to [**GatewayPortMirroring**](GatewayPortMirroring.md) |  | [optional] 
-**PortMirrorings** | Pointer to [**map[string]SwitchPortMirroring**](SwitchPortMirroring.md) |  | [optional] 
 **PortUsages** | Pointer to [**map[string]SwitchPortUsage**](SwitchPortUsage.md) |  | [optional] 
 **RadiusConfig** | Pointer to [**RadiusConfig**](RadiusConfig.md) |  | [optional] 
 **RemoteSyslog** | Pointer to [**RemoteSyslog**](RemoteSyslog.md) |  | [optional] 
@@ -1521,31 +1520,6 @@ SetPortMirroring sets PortMirroring field to given value.
 `func (o *ConfigDevice) HasPortMirroring() bool`
 
 HasPortMirroring returns a boolean if a field has been set.
-
-### GetPortMirrorings
-
-`func (o *ConfigDevice) GetPortMirrorings() map[string]SwitchPortMirroring`
-
-GetPortMirrorings returns the PortMirrorings field if non-nil, zero value otherwise.
-
-### GetPortMirroringsOk
-
-`func (o *ConfigDevice) GetPortMirroringsOk() (*map[string]SwitchPortMirroring, bool)`
-
-GetPortMirroringsOk returns a tuple with the PortMirrorings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPortMirrorings
-
-`func (o *ConfigDevice) SetPortMirrorings(v map[string]SwitchPortMirroring)`
-
-SetPortMirrorings sets PortMirrorings field to given value.
-
-### HasPortMirrorings
-
-`func (o *ConfigDevice) HasPortMirrorings() bool`
-
-HasPortMirrorings returns a boolean if a field has been set.
 
 ### GetPortUsages
 

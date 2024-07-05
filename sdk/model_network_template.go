@@ -46,7 +46,7 @@ type NetworkTemplate struct {
 	NtpServers []string `json:"ntp_servers,omitempty"`
 	OrgId *string `json:"org_id,omitempty"`
 	// Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output.
-	PortMirrorings *map[string]SwitchPortMirroring `json:"port_mirrorings,omitempty"`
+	PortMirroring *map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
 	PortUsages *map[string]SwitchPortUsage `json:"port_usages,omitempty"`
 	RadiusConfig *RadiusConfig `json:"radius_config,omitempty"`
 	RemoteSyslog *RemoteSyslog `json:"remote_syslog,omitempty"`
@@ -622,36 +622,36 @@ func (o *NetworkTemplate) SetOrgId(v string) {
 	o.OrgId = &v
 }
 
-// GetPortMirrorings returns the PortMirrorings field value if set, zero value otherwise.
-func (o *NetworkTemplate) GetPortMirrorings() map[string]SwitchPortMirroring {
-	if o == nil || IsNil(o.PortMirrorings) {
-		var ret map[string]SwitchPortMirroring
+// GetPortMirroring returns the PortMirroring field value if set, zero value otherwise.
+func (o *NetworkTemplate) GetPortMirroring() map[string]SwitchPortMirroringProperty {
+	if o == nil || IsNil(o.PortMirroring) {
+		var ret map[string]SwitchPortMirroringProperty
 		return ret
 	}
-	return *o.PortMirrorings
+	return *o.PortMirroring
 }
 
-// GetPortMirroringsOk returns a tuple with the PortMirrorings field value if set, nil otherwise
+// GetPortMirroringOk returns a tuple with the PortMirroring field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkTemplate) GetPortMirroringsOk() (*map[string]SwitchPortMirroring, bool) {
-	if o == nil || IsNil(o.PortMirrorings) {
+func (o *NetworkTemplate) GetPortMirroringOk() (*map[string]SwitchPortMirroringProperty, bool) {
+	if o == nil || IsNil(o.PortMirroring) {
 		return nil, false
 	}
-	return o.PortMirrorings, true
+	return o.PortMirroring, true
 }
 
-// HasPortMirrorings returns a boolean if a field has been set.
-func (o *NetworkTemplate) HasPortMirrorings() bool {
-	if o != nil && !IsNil(o.PortMirrorings) {
+// HasPortMirroring returns a boolean if a field has been set.
+func (o *NetworkTemplate) HasPortMirroring() bool {
+	if o != nil && !IsNil(o.PortMirroring) {
 		return true
 	}
 
 	return false
 }
 
-// SetPortMirrorings gets a reference to the given map[string]SwitchPortMirroring and assigns it to the PortMirrorings field.
-func (o *NetworkTemplate) SetPortMirrorings(v map[string]SwitchPortMirroring) {
-	o.PortMirrorings = &v
+// SetPortMirroring gets a reference to the given map[string]SwitchPortMirroringProperty and assigns it to the PortMirroring field.
+func (o *NetworkTemplate) SetPortMirroring(v map[string]SwitchPortMirroringProperty) {
+	o.PortMirroring = &v
 }
 
 // GetPortUsages returns the PortUsages field value if set, zero value otherwise.
@@ -971,8 +971,8 @@ func (o NetworkTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrgId) {
 		toSerialize["org_id"] = o.OrgId
 	}
-	if !IsNil(o.PortMirrorings) {
-		toSerialize["port_mirrorings"] = o.PortMirrorings
+	if !IsNil(o.PortMirroring) {
+		toSerialize["port_mirroring"] = o.PortMirroring
 	}
 	if !IsNil(o.PortUsages) {
 		toSerialize["port_usages"] = o.PortUsages
@@ -1037,7 +1037,7 @@ func (o *NetworkTemplate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networks")
 		delete(additionalProperties, "ntp_servers")
 		delete(additionalProperties, "org_id")
-		delete(additionalProperties, "port_mirrorings")
+		delete(additionalProperties, "port_mirroring")
 		delete(additionalProperties, "port_usages")
 		delete(additionalProperties, "radius_config")
 		delete(additionalProperties, "remote_syslog")

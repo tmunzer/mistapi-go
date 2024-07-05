@@ -64,8 +64,7 @@ type ModelSwitch struct {
 	// Property key is the port name or range (e.g. \"ge-0/0/0-10\")
 	PortConfig *map[string]JunosPortConfig `json:"port_config,omitempty"`
 	// Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output.
-	PortMirroring *map[string]SwitchPortMirroring `json:"port_mirroring,omitempty"`
-	PortMirrorings *map[string]SwitchPortMirroring `json:"port_mirrorings,omitempty"`
+	PortMirroring *map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
 	PortUsages *map[string]SwitchPortUsage `json:"port_usages,omitempty"`
 	RadiusConfig *RadiusConfig `json:"radius_config,omitempty"`
 	RemoteSyslog *RemoteSyslog `json:"remote_syslog,omitempty"`
@@ -1150,9 +1149,9 @@ func (o *ModelSwitch) SetPortConfig(v map[string]JunosPortConfig) {
 }
 
 // GetPortMirroring returns the PortMirroring field value if set, zero value otherwise.
-func (o *ModelSwitch) GetPortMirroring() map[string]SwitchPortMirroring {
+func (o *ModelSwitch) GetPortMirroring() map[string]SwitchPortMirroringProperty {
 	if o == nil || IsNil(o.PortMirroring) {
-		var ret map[string]SwitchPortMirroring
+		var ret map[string]SwitchPortMirroringProperty
 		return ret
 	}
 	return *o.PortMirroring
@@ -1160,7 +1159,7 @@ func (o *ModelSwitch) GetPortMirroring() map[string]SwitchPortMirroring {
 
 // GetPortMirroringOk returns a tuple with the PortMirroring field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetPortMirroringOk() (*map[string]SwitchPortMirroring, bool) {
+func (o *ModelSwitch) GetPortMirroringOk() (*map[string]SwitchPortMirroringProperty, bool) {
 	if o == nil || IsNil(o.PortMirroring) {
 		return nil, false
 	}
@@ -1176,41 +1175,9 @@ func (o *ModelSwitch) HasPortMirroring() bool {
 	return false
 }
 
-// SetPortMirroring gets a reference to the given map[string]SwitchPortMirroring and assigns it to the PortMirroring field.
-func (o *ModelSwitch) SetPortMirroring(v map[string]SwitchPortMirroring) {
+// SetPortMirroring gets a reference to the given map[string]SwitchPortMirroringProperty and assigns it to the PortMirroring field.
+func (o *ModelSwitch) SetPortMirroring(v map[string]SwitchPortMirroringProperty) {
 	o.PortMirroring = &v
-}
-
-// GetPortMirrorings returns the PortMirrorings field value if set, zero value otherwise.
-func (o *ModelSwitch) GetPortMirrorings() map[string]SwitchPortMirroring {
-	if o == nil || IsNil(o.PortMirrorings) {
-		var ret map[string]SwitchPortMirroring
-		return ret
-	}
-	return *o.PortMirrorings
-}
-
-// GetPortMirroringsOk returns a tuple with the PortMirrorings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetPortMirroringsOk() (*map[string]SwitchPortMirroring, bool) {
-	if o == nil || IsNil(o.PortMirrorings) {
-		return nil, false
-	}
-	return o.PortMirrorings, true
-}
-
-// HasPortMirrorings returns a boolean if a field has been set.
-func (o *ModelSwitch) HasPortMirrorings() bool {
-	if o != nil && !IsNil(o.PortMirrorings) {
-		return true
-	}
-
-	return false
-}
-
-// SetPortMirrorings gets a reference to the given map[string]SwitchPortMirroring and assigns it to the PortMirrorings field.
-func (o *ModelSwitch) SetPortMirrorings(v map[string]SwitchPortMirroring) {
-	o.PortMirrorings = &v
 }
 
 // GetPortUsages returns the PortUsages field value if set, zero value otherwise.
@@ -1863,9 +1830,6 @@ func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PortMirroring) {
 		toSerialize["port_mirroring"] = o.PortMirroring
 	}
-	if !IsNil(o.PortMirrorings) {
-		toSerialize["port_mirrorings"] = o.PortMirrorings
-	}
 	if !IsNil(o.PortUsages) {
 		toSerialize["port_usages"] = o.PortUsages
 	}
@@ -1971,7 +1935,6 @@ func (o *ModelSwitch) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "other_ip_configs")
 		delete(additionalProperties, "port_config")
 		delete(additionalProperties, "port_mirroring")
-		delete(additionalProperties, "port_mirrorings")
 		delete(additionalProperties, "port_usages")
 		delete(additionalProperties, "radius_config")
 		delete(additionalProperties, "remote_syslog")

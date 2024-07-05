@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **Networks** | Pointer to [**map[string]SwitchNetwork**](SwitchNetwork.md) | Property key is network name | [optional] 
 **NtpServers** | Pointer to **[]string** | list of NTP servers specific to this device. By default, those in Site Settings will be used | [optional] 
 **OrgId** | Pointer to **string** |  | [optional] [readonly] 
-**PortMirrorings** | Pointer to [**map[string]SwitchPortMirroring**](SwitchPortMirroring.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
+**PortMirroring** | Pointer to [**map[string]SwitchPortMirroringProperty**](SwitchPortMirroringProperty.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
 **PortUsages** | Pointer to [**map[string]SwitchPortUsage**](SwitchPortUsage.md) |  | [optional] 
 **RadiusConfig** | Pointer to [**RadiusConfig**](RadiusConfig.md) |  | [optional] 
 **RemoteSyslog** | Pointer to [**RemoteSyslog**](RemoteSyslog.md) |  | [optional] 
@@ -475,30 +475,30 @@ SetOrgId sets OrgId field to given value.
 
 HasOrgId returns a boolean if a field has been set.
 
-### GetPortMirrorings
+### GetPortMirroring
 
-`func (o *NetworkTemplate) GetPortMirrorings() map[string]SwitchPortMirroring`
+`func (o *NetworkTemplate) GetPortMirroring() map[string]SwitchPortMirroringProperty`
 
-GetPortMirrorings returns the PortMirrorings field if non-nil, zero value otherwise.
+GetPortMirroring returns the PortMirroring field if non-nil, zero value otherwise.
 
-### GetPortMirroringsOk
+### GetPortMirroringOk
 
-`func (o *NetworkTemplate) GetPortMirroringsOk() (*map[string]SwitchPortMirroring, bool)`
+`func (o *NetworkTemplate) GetPortMirroringOk() (*map[string]SwitchPortMirroringProperty, bool)`
 
-GetPortMirroringsOk returns a tuple with the PortMirrorings field if it's non-nil, zero value otherwise
+GetPortMirroringOk returns a tuple with the PortMirroring field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPortMirrorings
+### SetPortMirroring
 
-`func (o *NetworkTemplate) SetPortMirrorings(v map[string]SwitchPortMirroring)`
+`func (o *NetworkTemplate) SetPortMirroring(v map[string]SwitchPortMirroringProperty)`
 
-SetPortMirrorings sets PortMirrorings field to given value.
+SetPortMirroring sets PortMirroring field to given value.
 
-### HasPortMirrorings
+### HasPortMirroring
 
-`func (o *NetworkTemplate) HasPortMirrorings() bool`
+`func (o *NetworkTemplate) HasPortMirroring() bool`
 
-HasPortMirrorings returns a boolean if a field has been set.
+HasPortMirroring returns a boolean if a field has been set.
 
 ### GetPortUsages
 

@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the SwitchPortMirroring type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &SwitchPortMirroring{}
+// checks if the SwitchPortMirroringProperty type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SwitchPortMirroringProperty{}
 
-// SwitchPortMirroring struct for SwitchPortMirroring
-type SwitchPortMirroring struct {
+// SwitchPortMirroringProperty struct for SwitchPortMirroringProperty
+type SwitchPortMirroringProperty struct {
 	// at least one of the `ingress_port_ids`, `egress_port_ids` or `ingress_networks ` should be specified
 	InputNetworksIngress []string `json:"input_networks_ingress,omitempty"`
 	// at least one of the `ingress_port_ids`, `egress_port_ids` or `ingress_networks ` should be specified
@@ -32,27 +32,27 @@ type SwitchPortMirroring struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SwitchPortMirroring SwitchPortMirroring
+type _SwitchPortMirroringProperty SwitchPortMirroringProperty
 
-// NewSwitchPortMirroring instantiates a new SwitchPortMirroring object
+// NewSwitchPortMirroringProperty instantiates a new SwitchPortMirroringProperty object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSwitchPortMirroring() *SwitchPortMirroring {
-	this := SwitchPortMirroring{}
+func NewSwitchPortMirroringProperty() *SwitchPortMirroringProperty {
+	this := SwitchPortMirroringProperty{}
 	return &this
 }
 
-// NewSwitchPortMirroringWithDefaults instantiates a new SwitchPortMirroring object
+// NewSwitchPortMirroringPropertyWithDefaults instantiates a new SwitchPortMirroringProperty object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSwitchPortMirroringWithDefaults() *SwitchPortMirroring {
-	this := SwitchPortMirroring{}
+func NewSwitchPortMirroringPropertyWithDefaults() *SwitchPortMirroringProperty {
+	this := SwitchPortMirroringProperty{}
 	return &this
 }
 
 // GetInputNetworksIngress returns the InputNetworksIngress field value if set, zero value otherwise.
-func (o *SwitchPortMirroring) GetInputNetworksIngress() []string {
+func (o *SwitchPortMirroringProperty) GetInputNetworksIngress() []string {
 	if o == nil || IsNil(o.InputNetworksIngress) {
 		var ret []string
 		return ret
@@ -62,7 +62,7 @@ func (o *SwitchPortMirroring) GetInputNetworksIngress() []string {
 
 // GetInputNetworksIngressOk returns a tuple with the InputNetworksIngress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SwitchPortMirroring) GetInputNetworksIngressOk() ([]string, bool) {
+func (o *SwitchPortMirroringProperty) GetInputNetworksIngressOk() ([]string, bool) {
 	if o == nil || IsNil(o.InputNetworksIngress) {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *SwitchPortMirroring) GetInputNetworksIngressOk() ([]string, bool) {
 }
 
 // HasInputNetworksIngress returns a boolean if a field has been set.
-func (o *SwitchPortMirroring) HasInputNetworksIngress() bool {
+func (o *SwitchPortMirroringProperty) HasInputNetworksIngress() bool {
 	if o != nil && !IsNil(o.InputNetworksIngress) {
 		return true
 	}
@@ -79,12 +79,12 @@ func (o *SwitchPortMirroring) HasInputNetworksIngress() bool {
 }
 
 // SetInputNetworksIngress gets a reference to the given []string and assigns it to the InputNetworksIngress field.
-func (o *SwitchPortMirroring) SetInputNetworksIngress(v []string) {
+func (o *SwitchPortMirroringProperty) SetInputNetworksIngress(v []string) {
 	o.InputNetworksIngress = v
 }
 
 // GetInputPortIdsEgress returns the InputPortIdsEgress field value if set, zero value otherwise.
-func (o *SwitchPortMirroring) GetInputPortIdsEgress() []string {
+func (o *SwitchPortMirroringProperty) GetInputPortIdsEgress() []string {
 	if o == nil || IsNil(o.InputPortIdsEgress) {
 		var ret []string
 		return ret
@@ -94,7 +94,7 @@ func (o *SwitchPortMirroring) GetInputPortIdsEgress() []string {
 
 // GetInputPortIdsEgressOk returns a tuple with the InputPortIdsEgress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SwitchPortMirroring) GetInputPortIdsEgressOk() ([]string, bool) {
+func (o *SwitchPortMirroringProperty) GetInputPortIdsEgressOk() ([]string, bool) {
 	if o == nil || IsNil(o.InputPortIdsEgress) {
 		return nil, false
 	}
@@ -102,7 +102,7 @@ func (o *SwitchPortMirroring) GetInputPortIdsEgressOk() ([]string, bool) {
 }
 
 // HasInputPortIdsEgress returns a boolean if a field has been set.
-func (o *SwitchPortMirroring) HasInputPortIdsEgress() bool {
+func (o *SwitchPortMirroringProperty) HasInputPortIdsEgress() bool {
 	if o != nil && !IsNil(o.InputPortIdsEgress) {
 		return true
 	}
@@ -111,12 +111,12 @@ func (o *SwitchPortMirroring) HasInputPortIdsEgress() bool {
 }
 
 // SetInputPortIdsEgress gets a reference to the given []string and assigns it to the InputPortIdsEgress field.
-func (o *SwitchPortMirroring) SetInputPortIdsEgress(v []string) {
+func (o *SwitchPortMirroringProperty) SetInputPortIdsEgress(v []string) {
 	o.InputPortIdsEgress = v
 }
 
 // GetInputPortIdsIngress returns the InputPortIdsIngress field value if set, zero value otherwise.
-func (o *SwitchPortMirroring) GetInputPortIdsIngress() []string {
+func (o *SwitchPortMirroringProperty) GetInputPortIdsIngress() []string {
 	if o == nil || IsNil(o.InputPortIdsIngress) {
 		var ret []string
 		return ret
@@ -126,7 +126,7 @@ func (o *SwitchPortMirroring) GetInputPortIdsIngress() []string {
 
 // GetInputPortIdsIngressOk returns a tuple with the InputPortIdsIngress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SwitchPortMirroring) GetInputPortIdsIngressOk() ([]string, bool) {
+func (o *SwitchPortMirroringProperty) GetInputPortIdsIngressOk() ([]string, bool) {
 	if o == nil || IsNil(o.InputPortIdsIngress) {
 		return nil, false
 	}
@@ -134,7 +134,7 @@ func (o *SwitchPortMirroring) GetInputPortIdsIngressOk() ([]string, bool) {
 }
 
 // HasInputPortIdsIngress returns a boolean if a field has been set.
-func (o *SwitchPortMirroring) HasInputPortIdsIngress() bool {
+func (o *SwitchPortMirroringProperty) HasInputPortIdsIngress() bool {
 	if o != nil && !IsNil(o.InputPortIdsIngress) {
 		return true
 	}
@@ -143,12 +143,12 @@ func (o *SwitchPortMirroring) HasInputPortIdsIngress() bool {
 }
 
 // SetInputPortIdsIngress gets a reference to the given []string and assigns it to the InputPortIdsIngress field.
-func (o *SwitchPortMirroring) SetInputPortIdsIngress(v []string) {
+func (o *SwitchPortMirroringProperty) SetInputPortIdsIngress(v []string) {
 	o.InputPortIdsIngress = v
 }
 
 // GetOutputNetwork returns the OutputNetwork field value if set, zero value otherwise.
-func (o *SwitchPortMirroring) GetOutputNetwork() string {
+func (o *SwitchPortMirroringProperty) GetOutputNetwork() string {
 	if o == nil || IsNil(o.OutputNetwork) {
 		var ret string
 		return ret
@@ -158,7 +158,7 @@ func (o *SwitchPortMirroring) GetOutputNetwork() string {
 
 // GetOutputNetworkOk returns a tuple with the OutputNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SwitchPortMirroring) GetOutputNetworkOk() (*string, bool) {
+func (o *SwitchPortMirroringProperty) GetOutputNetworkOk() (*string, bool) {
 	if o == nil || IsNil(o.OutputNetwork) {
 		return nil, false
 	}
@@ -166,7 +166,7 @@ func (o *SwitchPortMirroring) GetOutputNetworkOk() (*string, bool) {
 }
 
 // HasOutputNetwork returns a boolean if a field has been set.
-func (o *SwitchPortMirroring) HasOutputNetwork() bool {
+func (o *SwitchPortMirroringProperty) HasOutputNetwork() bool {
 	if o != nil && !IsNil(o.OutputNetwork) {
 		return true
 	}
@@ -175,12 +175,12 @@ func (o *SwitchPortMirroring) HasOutputNetwork() bool {
 }
 
 // SetOutputNetwork gets a reference to the given string and assigns it to the OutputNetwork field.
-func (o *SwitchPortMirroring) SetOutputNetwork(v string) {
+func (o *SwitchPortMirroringProperty) SetOutputNetwork(v string) {
 	o.OutputNetwork = &v
 }
 
 // GetOutputPortId returns the OutputPortId field value if set, zero value otherwise.
-func (o *SwitchPortMirroring) GetOutputPortId() string {
+func (o *SwitchPortMirroringProperty) GetOutputPortId() string {
 	if o == nil || IsNil(o.OutputPortId) {
 		var ret string
 		return ret
@@ -190,7 +190,7 @@ func (o *SwitchPortMirroring) GetOutputPortId() string {
 
 // GetOutputPortIdOk returns a tuple with the OutputPortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SwitchPortMirroring) GetOutputPortIdOk() (*string, bool) {
+func (o *SwitchPortMirroringProperty) GetOutputPortIdOk() (*string, bool) {
 	if o == nil || IsNil(o.OutputPortId) {
 		return nil, false
 	}
@@ -198,7 +198,7 @@ func (o *SwitchPortMirroring) GetOutputPortIdOk() (*string, bool) {
 }
 
 // HasOutputPortId returns a boolean if a field has been set.
-func (o *SwitchPortMirroring) HasOutputPortId() bool {
+func (o *SwitchPortMirroringProperty) HasOutputPortId() bool {
 	if o != nil && !IsNil(o.OutputPortId) {
 		return true
 	}
@@ -207,11 +207,11 @@ func (o *SwitchPortMirroring) HasOutputPortId() bool {
 }
 
 // SetOutputPortId gets a reference to the given string and assigns it to the OutputPortId field.
-func (o *SwitchPortMirroring) SetOutputPortId(v string) {
+func (o *SwitchPortMirroringProperty) SetOutputPortId(v string) {
 	o.OutputPortId = &v
 }
 
-func (o SwitchPortMirroring) MarshalJSON() ([]byte, error) {
+func (o SwitchPortMirroringProperty) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -219,7 +219,7 @@ func (o SwitchPortMirroring) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o SwitchPortMirroring) ToMap() (map[string]interface{}, error) {
+func (o SwitchPortMirroringProperty) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.InputNetworksIngress) {
 		toSerialize["input_networks_ingress"] = o.InputNetworksIngress
@@ -244,16 +244,16 @@ func (o SwitchPortMirroring) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *SwitchPortMirroring) UnmarshalJSON(data []byte) (err error) {
-	varSwitchPortMirroring := _SwitchPortMirroring{}
+func (o *SwitchPortMirroringProperty) UnmarshalJSON(data []byte) (err error) {
+	varSwitchPortMirroringProperty := _SwitchPortMirroringProperty{}
 
-	err = json.Unmarshal(data, &varSwitchPortMirroring)
+	err = json.Unmarshal(data, &varSwitchPortMirroringProperty)
 
 	if err != nil {
 		return err
 	}
 
-	*o = SwitchPortMirroring(varSwitchPortMirroring)
+	*o = SwitchPortMirroringProperty(varSwitchPortMirroringProperty)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -269,38 +269,38 @@ func (o *SwitchPortMirroring) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableSwitchPortMirroring struct {
-	value *SwitchPortMirroring
+type NullableSwitchPortMirroringProperty struct {
+	value *SwitchPortMirroringProperty
 	isSet bool
 }
 
-func (v NullableSwitchPortMirroring) Get() *SwitchPortMirroring {
+func (v NullableSwitchPortMirroringProperty) Get() *SwitchPortMirroringProperty {
 	return v.value
 }
 
-func (v *NullableSwitchPortMirroring) Set(val *SwitchPortMirroring) {
+func (v *NullableSwitchPortMirroringProperty) Set(val *SwitchPortMirroringProperty) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSwitchPortMirroring) IsSet() bool {
+func (v NullableSwitchPortMirroringProperty) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSwitchPortMirroring) Unset() {
+func (v *NullableSwitchPortMirroringProperty) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSwitchPortMirroring(val *SwitchPortMirroring) *NullableSwitchPortMirroring {
-	return &NullableSwitchPortMirroring{value: val, isSet: true}
+func NewNullableSwitchPortMirroringProperty(val *SwitchPortMirroringProperty) *NullableSwitchPortMirroringProperty {
+	return &NullableSwitchPortMirroringProperty{value: val, isSet: true}
 }
 
-func (v NullableSwitchPortMirroring) MarshalJSON() ([]byte, error) {
+func (v NullableSwitchPortMirroringProperty) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSwitchPortMirroring) UnmarshalJSON(src []byte) error {
+func (v *NullableSwitchPortMirroringProperty) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

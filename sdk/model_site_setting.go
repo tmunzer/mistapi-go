@@ -81,7 +81,7 @@ type SiteSetting struct {
 	// whether to store the config on AP
 	PersistConfigOnDevice *bool `json:"persist_config_on_device,omitempty"`
 	// Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output.
-	PortMirrorings *map[string]SwitchPortMirroring `json:"port_mirrorings,omitempty"`
+	PortMirrorings *map[string]SwitchPortMirroringProperty `json:"port_mirrorings,omitempty"`
 	PortUsages *map[string]SwitchPortUsage `json:"port_usages,omitempty"`
 	Proxy *Proxy `json:"proxy,omitempty"`
 	RadioConfig *ApRadio `json:"radio_config,omitempty"`
@@ -1602,9 +1602,9 @@ func (o *SiteSetting) SetPersistConfigOnDevice(v bool) {
 }
 
 // GetPortMirrorings returns the PortMirrorings field value if set, zero value otherwise.
-func (o *SiteSetting) GetPortMirrorings() map[string]SwitchPortMirroring {
+func (o *SiteSetting) GetPortMirrorings() map[string]SwitchPortMirroringProperty {
 	if o == nil || IsNil(o.PortMirrorings) {
-		var ret map[string]SwitchPortMirroring
+		var ret map[string]SwitchPortMirroringProperty
 		return ret
 	}
 	return *o.PortMirrorings
@@ -1612,7 +1612,7 @@ func (o *SiteSetting) GetPortMirrorings() map[string]SwitchPortMirroring {
 
 // GetPortMirroringsOk returns a tuple with the PortMirrorings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SiteSetting) GetPortMirroringsOk() (*map[string]SwitchPortMirroring, bool) {
+func (o *SiteSetting) GetPortMirroringsOk() (*map[string]SwitchPortMirroringProperty, bool) {
 	if o == nil || IsNil(o.PortMirrorings) {
 		return nil, false
 	}
@@ -1628,8 +1628,8 @@ func (o *SiteSetting) HasPortMirrorings() bool {
 	return false
 }
 
-// SetPortMirrorings gets a reference to the given map[string]SwitchPortMirroring and assigns it to the PortMirrorings field.
-func (o *SiteSetting) SetPortMirrorings(v map[string]SwitchPortMirroring) {
+// SetPortMirrorings gets a reference to the given map[string]SwitchPortMirroringProperty and assigns it to the PortMirrorings field.
+func (o *SiteSetting) SetPortMirrorings(v map[string]SwitchPortMirroringProperty) {
 	o.PortMirrorings = &v
 }
 

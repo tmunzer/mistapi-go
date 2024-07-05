@@ -35,8 +35,7 @@ Name | Type | Description | Notes
 **OspfConfig** | Pointer to [**OspfConfig**](OspfConfig.md) |  | [optional] 
 **OtherIpConfigs** | Pointer to [**map[string]JunosOtherIpConfigs**](JunosOtherIpConfigs.md) | Property key is the network name | [optional] 
 **PortConfig** | Pointer to [**map[string]JunosPortConfig**](JunosPortConfig.md) | Property key is the port name or range (e.g. \&quot;ge-0/0/0-10\&quot;) | [optional] 
-**PortMirroring** | Pointer to [**map[string]SwitchPortMirroring**](SwitchPortMirroring.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
-**PortMirrorings** | Pointer to [**map[string]SwitchPortMirroring**](SwitchPortMirroring.md) |  | [optional] 
+**PortMirroring** | Pointer to [**map[string]SwitchPortMirroringProperty**](SwitchPortMirroringProperty.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
 **PortUsages** | Pointer to [**map[string]SwitchPortUsage**](SwitchPortUsage.md) |  | [optional] 
 **RadiusConfig** | Pointer to [**RadiusConfig**](RadiusConfig.md) |  | [optional] 
 **RemoteSyslog** | Pointer to [**RemoteSyslog**](RemoteSyslog.md) |  | [optional] 
@@ -881,20 +880,20 @@ HasPortConfig returns a boolean if a field has been set.
 
 ### GetPortMirroring
 
-`func (o *ModelSwitch) GetPortMirroring() map[string]SwitchPortMirroring`
+`func (o *ModelSwitch) GetPortMirroring() map[string]SwitchPortMirroringProperty`
 
 GetPortMirroring returns the PortMirroring field if non-nil, zero value otherwise.
 
 ### GetPortMirroringOk
 
-`func (o *ModelSwitch) GetPortMirroringOk() (*map[string]SwitchPortMirroring, bool)`
+`func (o *ModelSwitch) GetPortMirroringOk() (*map[string]SwitchPortMirroringProperty, bool)`
 
 GetPortMirroringOk returns a tuple with the PortMirroring field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortMirroring
 
-`func (o *ModelSwitch) SetPortMirroring(v map[string]SwitchPortMirroring)`
+`func (o *ModelSwitch) SetPortMirroring(v map[string]SwitchPortMirroringProperty)`
 
 SetPortMirroring sets PortMirroring field to given value.
 
@@ -903,31 +902,6 @@ SetPortMirroring sets PortMirroring field to given value.
 `func (o *ModelSwitch) HasPortMirroring() bool`
 
 HasPortMirroring returns a boolean if a field has been set.
-
-### GetPortMirrorings
-
-`func (o *ModelSwitch) GetPortMirrorings() map[string]SwitchPortMirroring`
-
-GetPortMirrorings returns the PortMirrorings field if non-nil, zero value otherwise.
-
-### GetPortMirroringsOk
-
-`func (o *ModelSwitch) GetPortMirroringsOk() (*map[string]SwitchPortMirroring, bool)`
-
-GetPortMirroringsOk returns a tuple with the PortMirrorings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPortMirrorings
-
-`func (o *ModelSwitch) SetPortMirrorings(v map[string]SwitchPortMirroring)`
-
-SetPortMirrorings sets PortMirrorings field to given value.
-
-### HasPortMirrorings
-
-`func (o *ModelSwitch) HasPortMirrorings() bool`
-
-HasPortMirrorings returns a boolean if a field has been set.
 
 ### GetPortUsages
 

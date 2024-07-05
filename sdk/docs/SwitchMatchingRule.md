@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **MatchRole** | Pointer to **string** | role to match | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **PortConfig** | Pointer to [**map[string]JunosPortConfig**](JunosPortConfig.md) | Propery key is the interface name or interface range | [optional] 
-**PortMirroring** | Pointer to [**map[string]SwitchPortMirroring**](SwitchPortMirroring.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
+**PortMirroring** | Pointer to [**map[string]SwitchPortMirroringProperty**](SwitchPortMirroringProperty.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
 **SwitchMgmt** | Pointer to [**ConfigSwitch**](ConfigSwitch.md) |  | [optional] 
 
 ## Methods
@@ -132,20 +132,20 @@ HasPortConfig returns a boolean if a field has been set.
 
 ### GetPortMirroring
 
-`func (o *SwitchMatchingRule) GetPortMirroring() map[string]SwitchPortMirroring`
+`func (o *SwitchMatchingRule) GetPortMirroring() map[string]SwitchPortMirroringProperty`
 
 GetPortMirroring returns the PortMirroring field if non-nil, zero value otherwise.
 
 ### GetPortMirroringOk
 
-`func (o *SwitchMatchingRule) GetPortMirroringOk() (*map[string]SwitchPortMirroring, bool)`
+`func (o *SwitchMatchingRule) GetPortMirroringOk() (*map[string]SwitchPortMirroringProperty, bool)`
 
 GetPortMirroringOk returns a tuple with the PortMirroring field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortMirroring
 
-`func (o *SwitchMatchingRule) SetPortMirroring(v map[string]SwitchPortMirroring)`
+`func (o *SwitchMatchingRule) SetPortMirroring(v map[string]SwitchPortMirroringProperty)`
 
 SetPortMirroring sets PortMirroring field to given value.
 

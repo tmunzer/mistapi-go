@@ -1463,7 +1463,7 @@ docs/SwitchMetricsComplianceMajorVersion.md
 docs/SwitchMgmt.md
 docs/SwitchMistNac.md
 docs/SwitchNetwork.md
-docs/SwitchPortMirroring.md
+docs/SwitchPortMirroringProperty.md
 docs/SwitchPortStats.md
 docs/SwitchPortStatsAuthState.md
 docs/SwitchPortStatsPoeMode.md
@@ -2843,7 +2843,7 @@ model_switch_metrics_compliance_major_version.go
 model_switch_mgmt.go
 model_switch_mist_nac.go
 model_switch_network.go
-model_switch_port_mirroring.go
+model_switch_port_mirroring_property.go
 model_switch_port_stats.go
 model_switch_port_stats_auth_state.go
 model_switch_port_stats_poe_mode.go

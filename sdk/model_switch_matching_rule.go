@@ -28,7 +28,7 @@ type SwitchMatchingRule struct {
 	// Propery key is the interface name or interface range
 	PortConfig *map[string]JunosPortConfig `json:"port_config,omitempty"`
 	// Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output.
-	PortMirroring *map[string]SwitchPortMirroring `json:"port_mirroring,omitempty"`
+	PortMirroring *map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
 	SwitchMgmt *ConfigSwitch `json:"switch_mgmt,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -181,9 +181,9 @@ func (o *SwitchMatchingRule) SetPortConfig(v map[string]JunosPortConfig) {
 }
 
 // GetPortMirroring returns the PortMirroring field value if set, zero value otherwise.
-func (o *SwitchMatchingRule) GetPortMirroring() map[string]SwitchPortMirroring {
+func (o *SwitchMatchingRule) GetPortMirroring() map[string]SwitchPortMirroringProperty {
 	if o == nil || IsNil(o.PortMirroring) {
-		var ret map[string]SwitchPortMirroring
+		var ret map[string]SwitchPortMirroringProperty
 		return ret
 	}
 	return *o.PortMirroring
@@ -191,7 +191,7 @@ func (o *SwitchMatchingRule) GetPortMirroring() map[string]SwitchPortMirroring {
 
 // GetPortMirroringOk returns a tuple with the PortMirroring field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SwitchMatchingRule) GetPortMirroringOk() (*map[string]SwitchPortMirroring, bool) {
+func (o *SwitchMatchingRule) GetPortMirroringOk() (*map[string]SwitchPortMirroringProperty, bool) {
 	if o == nil || IsNil(o.PortMirroring) {
 		return nil, false
 	}
@@ -207,8 +207,8 @@ func (o *SwitchMatchingRule) HasPortMirroring() bool {
 	return false
 }
 
-// SetPortMirroring gets a reference to the given map[string]SwitchPortMirroring and assigns it to the PortMirroring field.
-func (o *SwitchMatchingRule) SetPortMirroring(v map[string]SwitchPortMirroring) {
+// SetPortMirroring gets a reference to the given map[string]SwitchPortMirroringProperty and assigns it to the PortMirroring field.
+func (o *SwitchMatchingRule) SetPortMirroring(v map[string]SwitchPortMirroringProperty) {
 	o.PortMirroring = &v
 }
 

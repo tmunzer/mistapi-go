@@ -48,7 +48,7 @@ Name | Type | Description | Notes
 **OspfAreas** | Pointer to [**map[string]OspfAreas**](OspfAreas.md) | OSPF Areas can be configured both in Site Level (Switch/Gateway Template) or Device (Switch/Gateway) Level | [optional] 
 **PaloaltoNetworks** | Pointer to [**SiteSettingPaloaltoNetworks**](SiteSettingPaloaltoNetworks.md) |  | [optional] 
 **PersistConfigOnDevice** | Pointer to **bool** | whether to store the config on AP | [optional] [default to false]
-**PortMirrorings** | Pointer to [**map[string]SwitchPortMirroring**](SwitchPortMirroring.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
+**PortMirrorings** | Pointer to [**map[string]SwitchPortMirroringProperty**](SwitchPortMirroringProperty.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
 **PortUsages** | Pointer to [**map[string]SwitchPortUsage**](SwitchPortUsage.md) |  | [optional] 
 **Proxy** | Pointer to [**Proxy**](Proxy.md) |  | [optional] 
 **RadioConfig** | Pointer to [**ApRadio**](ApRadio.md) |  | [optional] 
@@ -1229,20 +1229,20 @@ HasPersistConfigOnDevice returns a boolean if a field has been set.
 
 ### GetPortMirrorings
 
-`func (o *SiteSetting) GetPortMirrorings() map[string]SwitchPortMirroring`
+`func (o *SiteSetting) GetPortMirrorings() map[string]SwitchPortMirroringProperty`
 
 GetPortMirrorings returns the PortMirrorings field if non-nil, zero value otherwise.
 
 ### GetPortMirroringsOk
 
-`func (o *SiteSetting) GetPortMirroringsOk() (*map[string]SwitchPortMirroring, bool)`
+`func (o *SiteSetting) GetPortMirroringsOk() (*map[string]SwitchPortMirroringProperty, bool)`
 
 GetPortMirroringsOk returns a tuple with the PortMirrorings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortMirrorings
 
-`func (o *SiteSetting) SetPortMirrorings(v map[string]SwitchPortMirroring)`
+`func (o *SiteSetting) SetPortMirrorings(v map[string]SwitchPortMirroringProperty)`
 
 SetPortMirrorings sets PortMirrorings field to given value.
 
