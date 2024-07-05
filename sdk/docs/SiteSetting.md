@@ -36,7 +36,7 @@ Name | Type | Description | Notes
 **GatewayUpdownThreshold** | Pointer to **NullableInt32** | enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and &#x60;device_updown_threshold&#x60; is ignored. | [optional] 
 **Id** | Pointer to **string** |  | [optional] [readonly] 
 **Led** | Pointer to [**ApLed**](ApLed.md) |  | [optional] 
-**MistNac** | Pointer to [**NetworkTemplateMistNac**](NetworkTemplateMistNac.md) |  | [optional] 
+**MistNac** | Pointer to [**SwitchMistNac**](SwitchMistNac.md) |  | [optional] 
 **ModifiedTime** | Pointer to **float32** |  | [optional] [readonly] 
 **Mxedge** | Pointer to [**SiteSettingMxedge**](SiteSettingMxedge.md) |  | [optional] 
 **MxedgeMgmt** | Pointer to [**MxedgeMgmt**](MxedgeMgmt.md) |  | [optional] 
@@ -928,20 +928,20 @@ HasLed returns a boolean if a field has been set.
 
 ### GetMistNac
 
-`func (o *SiteSetting) GetMistNac() NetworkTemplateMistNac`
+`func (o *SiteSetting) GetMistNac() SwitchMistNac`
 
 GetMistNac returns the MistNac field if non-nil, zero value otherwise.
 
 ### GetMistNacOk
 
-`func (o *SiteSetting) GetMistNacOk() (*NetworkTemplateMistNac, bool)`
+`func (o *SiteSetting) GetMistNacOk() (*SwitchMistNac, bool)`
 
 GetMistNacOk returns a tuple with the MistNac field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMistNac
 
-`func (o *SiteSetting) SetMistNac(v NetworkTemplateMistNac)`
+`func (o *SiteSetting) SetMistNac(v SwitchMistNac)`
 
 SetMistNac sets MistNac field to given value.
 

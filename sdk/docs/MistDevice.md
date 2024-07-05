@@ -55,6 +55,7 @@ Name | Type | Description | Notes
 **ExtraRoutes** | Pointer to [**map[string]GatewayExtraRoute**](GatewayExtraRoute.md) |  | [optional] 
 **ExtraRoutes6** | Pointer to [**map[string]ExtraRoute6Properties**](ExtraRoute6Properties.md) | Property key is the destination CIDR (e.g. \&quot;2a02:1234:420a:10c9::/64\&quot;) | [optional] 
 **Managed** | Pointer to **bool** |  | [optional] 
+**MistNac** | Pointer to [**SwitchMistNac**](SwitchMistNac.md) |  | [optional] 
 **Networks** | Pointer to [**map[string]GatewayNetwork**](GatewayNetwork.md) | Property key is the network name or a CIDR | [optional] 
 **OobIpConfig** | Pointer to [**JunosOobIpConfigs**](JunosOobIpConfigs.md) |  | [optional] 
 **OspfConfig** | Pointer to [**OspfConfig**](OspfConfig.md) |  | [optional] 
@@ -62,13 +63,16 @@ Name | Type | Description | Notes
 **PortMirroring** | Pointer to [**GatewayPortMirroring**](GatewayPortMirroring.md) |  | [optional] 
 **PortUsages** | Pointer to [**map[string]SwitchPortUsage**](SwitchPortUsage.md) |  | [optional] 
 **RadiusConfig** | Pointer to [**RadiusConfig**](RadiusConfig.md) |  | [optional] 
+**RemoteSyslog** | Pointer to [**RemoteSyslog**](RemoteSyslog.md) |  | [optional] 
 **Role** | Pointer to [**SwitchRole**](SwitchRole.md) |  | [optional] [default to SWITCHROLE_ACCESS]
 **RouterId** | Pointer to **string** | used for OSPF / BGP / EVPN | [optional] 
+**SnmpConfig** | Pointer to [**SnmpConfig**](SnmpConfig.md) |  | [optional] 
 **StpConfig** | Pointer to [**SwitchStpConfig**](SwitchStpConfig.md) |  | [optional] 
 **SwitchMgmt** | Pointer to [**SwitchSwitchMgmt**](SwitchSwitchMgmt.md) |  | [optional] 
 **UseRouterIdAsSourceIp** | Pointer to **bool** | whether to use it for snmp / syslog / tacplus / radius | [optional] [default to false]
 **VirtualChassis** | Pointer to [**SwitchVirtualChassis**](SwitchVirtualChassis.md) |  | [optional] 
 **VrfConfig** | Pointer to [**VrfConfig**](VrfConfig.md) |  | [optional] 
+**VrfInstances** | Pointer to [**map[string]VrfInstance**](VrfInstance.md) | Property key is the network name | [optional] 
 **VrrpConfig** | Pointer to [**VrrpConfig**](VrrpConfig.md) |  | [optional] 
 **DhcpdConfig** | Pointer to [**DhcpdConfigs**](DhcpdConfigs.md) |  | [optional] 
 **MspId** | Pointer to **string** |  | [optional] [readonly] 
@@ -1367,6 +1371,31 @@ SetManaged sets Managed field to given value.
 
 HasManaged returns a boolean if a field has been set.
 
+### GetMistNac
+
+`func (o *MistDevice) GetMistNac() SwitchMistNac`
+
+GetMistNac returns the MistNac field if non-nil, zero value otherwise.
+
+### GetMistNacOk
+
+`func (o *MistDevice) GetMistNacOk() (*SwitchMistNac, bool)`
+
+GetMistNacOk returns a tuple with the MistNac field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMistNac
+
+`func (o *MistDevice) SetMistNac(v SwitchMistNac)`
+
+SetMistNac sets MistNac field to given value.
+
+### HasMistNac
+
+`func (o *MistDevice) HasMistNac() bool`
+
+HasMistNac returns a boolean if a field has been set.
+
 ### GetNetworks
 
 `func (o *MistDevice) GetNetworks() map[string]GatewayNetwork`
@@ -1542,6 +1571,31 @@ SetRadiusConfig sets RadiusConfig field to given value.
 
 HasRadiusConfig returns a boolean if a field has been set.
 
+### GetRemoteSyslog
+
+`func (o *MistDevice) GetRemoteSyslog() RemoteSyslog`
+
+GetRemoteSyslog returns the RemoteSyslog field if non-nil, zero value otherwise.
+
+### GetRemoteSyslogOk
+
+`func (o *MistDevice) GetRemoteSyslogOk() (*RemoteSyslog, bool)`
+
+GetRemoteSyslogOk returns a tuple with the RemoteSyslog field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoteSyslog
+
+`func (o *MistDevice) SetRemoteSyslog(v RemoteSyslog)`
+
+SetRemoteSyslog sets RemoteSyslog field to given value.
+
+### HasRemoteSyslog
+
+`func (o *MistDevice) HasRemoteSyslog() bool`
+
+HasRemoteSyslog returns a boolean if a field has been set.
+
 ### GetRole
 
 `func (o *MistDevice) GetRole() SwitchRole`
@@ -1591,6 +1645,31 @@ SetRouterId sets RouterId field to given value.
 `func (o *MistDevice) HasRouterId() bool`
 
 HasRouterId returns a boolean if a field has been set.
+
+### GetSnmpConfig
+
+`func (o *MistDevice) GetSnmpConfig() SnmpConfig`
+
+GetSnmpConfig returns the SnmpConfig field if non-nil, zero value otherwise.
+
+### GetSnmpConfigOk
+
+`func (o *MistDevice) GetSnmpConfigOk() (*SnmpConfig, bool)`
+
+GetSnmpConfigOk returns a tuple with the SnmpConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpConfig
+
+`func (o *MistDevice) SetSnmpConfig(v SnmpConfig)`
+
+SetSnmpConfig sets SnmpConfig field to given value.
+
+### HasSnmpConfig
+
+`func (o *MistDevice) HasSnmpConfig() bool`
+
+HasSnmpConfig returns a boolean if a field has been set.
 
 ### GetStpConfig
 
@@ -1716,6 +1795,31 @@ SetVrfConfig sets VrfConfig field to given value.
 `func (o *MistDevice) HasVrfConfig() bool`
 
 HasVrfConfig returns a boolean if a field has been set.
+
+### GetVrfInstances
+
+`func (o *MistDevice) GetVrfInstances() map[string]VrfInstance`
+
+GetVrfInstances returns the VrfInstances field if non-nil, zero value otherwise.
+
+### GetVrfInstancesOk
+
+`func (o *MistDevice) GetVrfInstancesOk() (*map[string]VrfInstance, bool)`
+
+GetVrfInstancesOk returns a tuple with the VrfInstances field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVrfInstances
+
+`func (o *MistDevice) SetVrfInstances(v map[string]VrfInstance)`
+
+SetVrfInstances sets VrfInstances field to given value.
+
+### HasVrfInstances
+
+`func (o *MistDevice) HasVrfInstances() bool`
+
+HasVrfInstances returns a boolean if a field has been set.
 
 ### GetVrrpConfig
 

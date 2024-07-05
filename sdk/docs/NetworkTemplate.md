@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **ExtraRoutes6** | Pointer to [**map[string]ExtraRoute6Properties**](ExtraRoute6Properties.md) | Property key is the destination CIDR (e.g. \&quot;2a02:1234:420a:10c9::/64\&quot;) | [optional] 
 **Id** | Pointer to **string** |  | [optional] [readonly] 
 **ImportOrgNetworks** | Pointer to **[]string** | Org Networks that we&#39;d like to import | [optional] 
-**MistNac** | Pointer to [**NetworkTemplateMistNac**](NetworkTemplateMistNac.md) |  | [optional] 
+**MistNac** | Pointer to [**SwitchMistNac**](SwitchMistNac.md) |  | [optional] 
 **ModifiedTime** | Pointer to **float32** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
 **Networks** | Pointer to [**map[string]SwitchNetwork**](SwitchNetwork.md) | Property key is network name | [optional] 
@@ -327,20 +327,20 @@ HasImportOrgNetworks returns a boolean if a field has been set.
 
 ### GetMistNac
 
-`func (o *NetworkTemplate) GetMistNac() NetworkTemplateMistNac`
+`func (o *NetworkTemplate) GetMistNac() SwitchMistNac`
 
 GetMistNac returns the MistNac field if non-nil, zero value otherwise.
 
 ### GetMistNacOk
 
-`func (o *NetworkTemplate) GetMistNacOk() (*NetworkTemplateMistNac, bool)`
+`func (o *NetworkTemplate) GetMistNacOk() (*SwitchMistNac, bool)`
 
 GetMistNacOk returns a tuple with the MistNac field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMistNac
 
-`func (o *NetworkTemplate) SetMistNac(v NetworkTemplateMistNac)`
+`func (o *NetworkTemplate) SetMistNac(v SwitchMistNac)`
 
 SetMistNac sets MistNac field to given value.
 

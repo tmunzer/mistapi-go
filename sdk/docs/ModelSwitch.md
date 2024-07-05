@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **Image3Url** | Pointer to **NullableString** |  | [optional] 
 **IpConfig** | Pointer to [**JunosIpConfig**](JunosIpConfig.md) |  | [optional] 
 **Managed** | Pointer to **bool** | for an adopted switch, we don’t overwrite their existing configs automatically | [optional] [default to false]
+**MistNac** | Pointer to [**SwitchMistNac**](SwitchMistNac.md) |  | [optional] 
 **ModifiedTime** | Pointer to **float32** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
 **Networks** | Pointer to [**map[string]SwitchNetwork**](SwitchNetwork.md) | Property key is network name | [optional] 
@@ -36,15 +37,18 @@ Name | Type | Description | Notes
 **PortMirroring** | Pointer to [**map[string]SwitchPortMirroring**](SwitchPortMirroring.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
 **PortUsages** | Pointer to [**map[string]SwitchPortUsage**](SwitchPortUsage.md) |  | [optional] 
 **RadiusConfig** | Pointer to [**RadiusConfig**](RadiusConfig.md) |  | [optional] 
+**RemoteSyslog** | Pointer to [**RemoteSyslog**](RemoteSyslog.md) |  | [optional] 
 **Role** | Pointer to [**SwitchRole**](SwitchRole.md) |  | [optional] [default to SWITCHROLE_ACCESS]
 **RouterId** | Pointer to **string** | used for OSPF / BGP / EVPN | [optional] 
 **SiteId** | Pointer to **string** |  | [optional] [readonly] 
+**SnmpConfig** | Pointer to [**SnmpConfig**](SnmpConfig.md) |  | [optional] 
 **StpConfig** | Pointer to [**SwitchStpConfig**](SwitchStpConfig.md) |  | [optional] 
 **SwitchMgmt** | Pointer to [**SwitchSwitchMgmt**](SwitchSwitchMgmt.md) |  | [optional] 
 **UseRouterIdAsSourceIp** | Pointer to **bool** | whether to use it for snmp / syslog / tacplus / radius | [optional] [default to false]
 **Vars** | Pointer to **map[string]string** | a dictionary of name-&gt;value, the vars can then be used in Wlans. This can overwrite those from Site Vars | [optional] 
 **VirtualChassis** | Pointer to [**SwitchVirtualChassis**](SwitchVirtualChassis.md) |  | [optional] 
 **VrfConfig** | Pointer to [**VrfConfig**](VrfConfig.md) |  | [optional] 
+**VrfInstances** | Pointer to [**map[string]VrfInstance**](VrfInstance.md) | Property key is the network name | [optional] 
 **VrrpConfig** | Pointer to [**VrrpConfig**](VrrpConfig.md) |  | [optional] 
 
 ## Methods
@@ -571,6 +575,31 @@ SetManaged sets Managed field to given value.
 
 HasManaged returns a boolean if a field has been set.
 
+### GetMistNac
+
+`func (o *ModelSwitch) GetMistNac() SwitchMistNac`
+
+GetMistNac returns the MistNac field if non-nil, zero value otherwise.
+
+### GetMistNacOk
+
+`func (o *ModelSwitch) GetMistNacOk() (*SwitchMistNac, bool)`
+
+GetMistNacOk returns a tuple with the MistNac field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMistNac
+
+`func (o *ModelSwitch) SetMistNac(v SwitchMistNac)`
+
+SetMistNac sets MistNac field to given value.
+
+### HasMistNac
+
+`func (o *ModelSwitch) HasMistNac() bool`
+
+HasMistNac returns a boolean if a field has been set.
+
 ### GetModifiedTime
 
 `func (o *ModelSwitch) GetModifiedTime() float32`
@@ -896,6 +925,31 @@ SetRadiusConfig sets RadiusConfig field to given value.
 
 HasRadiusConfig returns a boolean if a field has been set.
 
+### GetRemoteSyslog
+
+`func (o *ModelSwitch) GetRemoteSyslog() RemoteSyslog`
+
+GetRemoteSyslog returns the RemoteSyslog field if non-nil, zero value otherwise.
+
+### GetRemoteSyslogOk
+
+`func (o *ModelSwitch) GetRemoteSyslogOk() (*RemoteSyslog, bool)`
+
+GetRemoteSyslogOk returns a tuple with the RemoteSyslog field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoteSyslog
+
+`func (o *ModelSwitch) SetRemoteSyslog(v RemoteSyslog)`
+
+SetRemoteSyslog sets RemoteSyslog field to given value.
+
+### HasRemoteSyslog
+
+`func (o *ModelSwitch) HasRemoteSyslog() bool`
+
+HasRemoteSyslog returns a boolean if a field has been set.
+
 ### GetRole
 
 `func (o *ModelSwitch) GetRole() SwitchRole`
@@ -970,6 +1024,31 @@ SetSiteId sets SiteId field to given value.
 `func (o *ModelSwitch) HasSiteId() bool`
 
 HasSiteId returns a boolean if a field has been set.
+
+### GetSnmpConfig
+
+`func (o *ModelSwitch) GetSnmpConfig() SnmpConfig`
+
+GetSnmpConfig returns the SnmpConfig field if non-nil, zero value otherwise.
+
+### GetSnmpConfigOk
+
+`func (o *ModelSwitch) GetSnmpConfigOk() (*SnmpConfig, bool)`
+
+GetSnmpConfigOk returns a tuple with the SnmpConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpConfig
+
+`func (o *ModelSwitch) SetSnmpConfig(v SnmpConfig)`
+
+SetSnmpConfig sets SnmpConfig field to given value.
+
+### HasSnmpConfig
+
+`func (o *ModelSwitch) HasSnmpConfig() bool`
+
+HasSnmpConfig returns a boolean if a field has been set.
 
 ### GetStpConfig
 
@@ -1120,6 +1199,31 @@ SetVrfConfig sets VrfConfig field to given value.
 `func (o *ModelSwitch) HasVrfConfig() bool`
 
 HasVrfConfig returns a boolean if a field has been set.
+
+### GetVrfInstances
+
+`func (o *ModelSwitch) GetVrfInstances() map[string]VrfInstance`
+
+GetVrfInstances returns the VrfInstances field if non-nil, zero value otherwise.
+
+### GetVrfInstancesOk
+
+`func (o *ModelSwitch) GetVrfInstancesOk() (*map[string]VrfInstance, bool)`
+
+GetVrfInstancesOk returns a tuple with the VrfInstances field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVrfInstances
+
+`func (o *ModelSwitch) SetVrfInstances(v map[string]VrfInstance)`
+
+SetVrfInstances sets VrfInstances field to given value.
+
+### HasVrfInstances
+
+`func (o *ModelSwitch) HasVrfInstances() bool`
+
+HasVrfInstances returns a boolean if a field has been set.
 
 ### GetVrrpConfig
 

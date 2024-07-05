@@ -1,9 +1,9 @@
 /*
 Mist API
 
-> Version: **2406.1.16** > > Date: **July 4, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
+> Version: **2406.1.17** > > Date: **July 5, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
 
-API version: 2406.1.16
+API version: 2406.1.17
 Contact: tmunzer@juniper.net
 */
 
@@ -46,6 +46,7 @@ type ModelSwitch struct {
 	IpConfig *JunosIpConfig `json:"ip_config,omitempty"`
 	// for an adopted switch, we don’t overwrite their existing configs automatically
 	Managed *bool `json:"managed,omitempty"`
+	MistNac *SwitchMistNac `json:"mist_nac,omitempty"`
 	ModifiedTime *float32 `json:"modified_time,omitempty"`
 	Name *string `json:"name,omitempty"`
 	// Property key is network name
@@ -64,10 +65,12 @@ type ModelSwitch struct {
 	PortMirroring *map[string]SwitchPortMirroring `json:"port_mirroring,omitempty"`
 	PortUsages *map[string]SwitchPortUsage `json:"port_usages,omitempty"`
 	RadiusConfig *RadiusConfig `json:"radius_config,omitempty"`
+	RemoteSyslog *RemoteSyslog `json:"remote_syslog,omitempty"`
 	Role *SwitchRole `json:"role,omitempty"`
 	// used for OSPF / BGP / EVPN
 	RouterId *string `json:"router_id,omitempty"`
 	SiteId *string `json:"site_id,omitempty"`
+	SnmpConfig *SnmpConfig `json:"snmp_config,omitempty"`
 	StpConfig *SwitchStpConfig `json:"stp_config,omitempty"`
 	SwitchMgmt *SwitchSwitchMgmt `json:"switch_mgmt,omitempty"`
 	// whether to use it for snmp / syslog / tacplus / radius
@@ -76,6 +79,8 @@ type ModelSwitch struct {
 	Vars *map[string]string `json:"vars,omitempty"`
 	VirtualChassis *SwitchVirtualChassis `json:"virtual_chassis,omitempty"`
 	VrfConfig *VrfConfig `json:"vrf_config,omitempty"`
+	// Property key is the network name
+	VrfInstances *map[string]VrfInstance `json:"vrf_instances,omitempty"`
 	VrrpConfig *VrrpConfig `json:"vrrp_config,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -753,6 +758,38 @@ func (o *ModelSwitch) SetManaged(v bool) {
 	o.Managed = &v
 }
 
+// GetMistNac returns the MistNac field value if set, zero value otherwise.
+func (o *ModelSwitch) GetMistNac() SwitchMistNac {
+	if o == nil || IsNil(o.MistNac) {
+		var ret SwitchMistNac
+		return ret
+	}
+	return *o.MistNac
+}
+
+// GetMistNacOk returns a tuple with the MistNac field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelSwitch) GetMistNacOk() (*SwitchMistNac, bool) {
+	if o == nil || IsNil(o.MistNac) {
+		return nil, false
+	}
+	return o.MistNac, true
+}
+
+// HasMistNac returns a boolean if a field has been set.
+func (o *ModelSwitch) HasMistNac() bool {
+	if o != nil && !IsNil(o.MistNac) {
+		return true
+	}
+
+	return false
+}
+
+// SetMistNac gets a reference to the given SwitchMistNac and assigns it to the MistNac field.
+func (o *ModelSwitch) SetMistNac(v SwitchMistNac) {
+	o.MistNac = &v
+}
+
 // GetModifiedTime returns the ModifiedTime field value if set, zero value otherwise.
 func (o *ModelSwitch) GetModifiedTime() float32 {
 	if o == nil || IsNil(o.ModifiedTime) {
@@ -1169,6 +1206,38 @@ func (o *ModelSwitch) SetRadiusConfig(v RadiusConfig) {
 	o.RadiusConfig = &v
 }
 
+// GetRemoteSyslog returns the RemoteSyslog field value if set, zero value otherwise.
+func (o *ModelSwitch) GetRemoteSyslog() RemoteSyslog {
+	if o == nil || IsNil(o.RemoteSyslog) {
+		var ret RemoteSyslog
+		return ret
+	}
+	return *o.RemoteSyslog
+}
+
+// GetRemoteSyslogOk returns a tuple with the RemoteSyslog field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelSwitch) GetRemoteSyslogOk() (*RemoteSyslog, bool) {
+	if o == nil || IsNil(o.RemoteSyslog) {
+		return nil, false
+	}
+	return o.RemoteSyslog, true
+}
+
+// HasRemoteSyslog returns a boolean if a field has been set.
+func (o *ModelSwitch) HasRemoteSyslog() bool {
+	if o != nil && !IsNil(o.RemoteSyslog) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSyslog gets a reference to the given RemoteSyslog and assigns it to the RemoteSyslog field.
+func (o *ModelSwitch) SetRemoteSyslog(v RemoteSyslog) {
+	o.RemoteSyslog = &v
+}
+
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *ModelSwitch) GetRole() SwitchRole {
 	if o == nil || IsNil(o.Role) {
@@ -1263,6 +1332,38 @@ func (o *ModelSwitch) HasSiteId() bool {
 // SetSiteId gets a reference to the given string and assigns it to the SiteId field.
 func (o *ModelSwitch) SetSiteId(v string) {
 	o.SiteId = &v
+}
+
+// GetSnmpConfig returns the SnmpConfig field value if set, zero value otherwise.
+func (o *ModelSwitch) GetSnmpConfig() SnmpConfig {
+	if o == nil || IsNil(o.SnmpConfig) {
+		var ret SnmpConfig
+		return ret
+	}
+	return *o.SnmpConfig
+}
+
+// GetSnmpConfigOk returns a tuple with the SnmpConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelSwitch) GetSnmpConfigOk() (*SnmpConfig, bool) {
+	if o == nil || IsNil(o.SnmpConfig) {
+		return nil, false
+	}
+	return o.SnmpConfig, true
+}
+
+// HasSnmpConfig returns a boolean if a field has been set.
+func (o *ModelSwitch) HasSnmpConfig() bool {
+	if o != nil && !IsNil(o.SnmpConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpConfig gets a reference to the given SnmpConfig and assigns it to the SnmpConfig field.
+func (o *ModelSwitch) SetSnmpConfig(v SnmpConfig) {
+	o.SnmpConfig = &v
 }
 
 // GetStpConfig returns the StpConfig field value if set, zero value otherwise.
@@ -1457,6 +1558,38 @@ func (o *ModelSwitch) SetVrfConfig(v VrfConfig) {
 	o.VrfConfig = &v
 }
 
+// GetVrfInstances returns the VrfInstances field value if set, zero value otherwise.
+func (o *ModelSwitch) GetVrfInstances() map[string]VrfInstance {
+	if o == nil || IsNil(o.VrfInstances) {
+		var ret map[string]VrfInstance
+		return ret
+	}
+	return *o.VrfInstances
+}
+
+// GetVrfInstancesOk returns a tuple with the VrfInstances field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelSwitch) GetVrfInstancesOk() (*map[string]VrfInstance, bool) {
+	if o == nil || IsNil(o.VrfInstances) {
+		return nil, false
+	}
+	return o.VrfInstances, true
+}
+
+// HasVrfInstances returns a boolean if a field has been set.
+func (o *ModelSwitch) HasVrfInstances() bool {
+	if o != nil && !IsNil(o.VrfInstances) {
+		return true
+	}
+
+	return false
+}
+
+// SetVrfInstances gets a reference to the given map[string]VrfInstance and assigns it to the VrfInstances field.
+func (o *ModelSwitch) SetVrfInstances(v map[string]VrfInstance) {
+	o.VrfInstances = &v
+}
+
 // GetVrrpConfig returns the VrrpConfig field value if set, zero value otherwise.
 func (o *ModelSwitch) GetVrrpConfig() VrrpConfig {
 	if o == nil || IsNil(o.VrrpConfig) {
@@ -1556,6 +1689,9 @@ func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Managed) {
 		toSerialize["managed"] = o.Managed
 	}
+	if !IsNil(o.MistNac) {
+		toSerialize["mist_nac"] = o.MistNac
+	}
 	if !IsNil(o.ModifiedTime) {
 		toSerialize["modified_time"] = o.ModifiedTime
 	}
@@ -1595,6 +1731,9 @@ func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RadiusConfig) {
 		toSerialize["radius_config"] = o.RadiusConfig
 	}
+	if !IsNil(o.RemoteSyslog) {
+		toSerialize["remote_syslog"] = o.RemoteSyslog
+	}
 	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role
 	}
@@ -1603,6 +1742,9 @@ func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SiteId) {
 		toSerialize["site_id"] = o.SiteId
+	}
+	if !IsNil(o.SnmpConfig) {
+		toSerialize["snmp_config"] = o.SnmpConfig
 	}
 	if !IsNil(o.StpConfig) {
 		toSerialize["stp_config"] = o.StpConfig
@@ -1621,6 +1763,9 @@ func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.VrfConfig) {
 		toSerialize["vrf_config"] = o.VrfConfig
+	}
+	if !IsNil(o.VrfInstances) {
+		toSerialize["vrf_instances"] = o.VrfInstances
 	}
 	if !IsNil(o.VrrpConfig) {
 		toSerialize["vrrp_config"] = o.VrrpConfig
@@ -1666,6 +1811,7 @@ func (o *ModelSwitch) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "image3_url")
 		delete(additionalProperties, "ip_config")
 		delete(additionalProperties, "managed")
+		delete(additionalProperties, "mist_nac")
 		delete(additionalProperties, "modified_time")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "networks")
@@ -1679,15 +1825,18 @@ func (o *ModelSwitch) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "port_mirroring")
 		delete(additionalProperties, "port_usages")
 		delete(additionalProperties, "radius_config")
+		delete(additionalProperties, "remote_syslog")
 		delete(additionalProperties, "role")
 		delete(additionalProperties, "router_id")
 		delete(additionalProperties, "site_id")
+		delete(additionalProperties, "snmp_config")
 		delete(additionalProperties, "stp_config")
 		delete(additionalProperties, "switch_mgmt")
 		delete(additionalProperties, "use_router_id_as_source_ip")
 		delete(additionalProperties, "vars")
 		delete(additionalProperties, "virtual_chassis")
 		delete(additionalProperties, "vrf_config")
+		delete(additionalProperties, "vrf_instances")
 		delete(additionalProperties, "vrrp_config")
 		o.AdditionalProperties = additionalProperties
 	}

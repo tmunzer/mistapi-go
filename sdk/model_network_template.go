@@ -1,9 +1,9 @@
 /*
 Mist API
 
-> Version: **2406.1.16** > > Date: **July 4, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
+> Version: **2406.1.17** > > Date: **July 5, 2024**  ---  ### Additional Documentation * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html) * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html) * [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)  ---  ### Helpful Resources * [API Sandbox and Exercises](https://api-class.mist.com/) * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace) * [API Demo Apps](https://apps.mist-lab.fr/) * [Juniper Blog](https://blogs.juniper.net/)  --- 
 
-API version: 2406.1.16
+API version: 2406.1.17
 Contact: tmunzer@juniper.net
 */
 
@@ -37,7 +37,7 @@ type NetworkTemplate struct {
 	Id *string `json:"id,omitempty"`
 	// Org Networks that we'd like to import
 	ImportOrgNetworks []string `json:"import_org_networks,omitempty"`
-	MistNac *NetworkTemplateMistNac `json:"mist_nac,omitempty"`
+	MistNac *SwitchMistNac `json:"mist_nac,omitempty"`
 	ModifiedTime *float32 `json:"modified_time,omitempty"`
 	Name *string `json:"name,omitempty"`
 	// Property key is network name
@@ -431,9 +431,9 @@ func (o *NetworkTemplate) SetImportOrgNetworks(v []string) {
 }
 
 // GetMistNac returns the MistNac field value if set, zero value otherwise.
-func (o *NetworkTemplate) GetMistNac() NetworkTemplateMistNac {
+func (o *NetworkTemplate) GetMistNac() SwitchMistNac {
 	if o == nil || IsNil(o.MistNac) {
-		var ret NetworkTemplateMistNac
+		var ret SwitchMistNac
 		return ret
 	}
 	return *o.MistNac
@@ -441,7 +441,7 @@ func (o *NetworkTemplate) GetMistNac() NetworkTemplateMistNac {
 
 // GetMistNacOk returns a tuple with the MistNac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkTemplate) GetMistNacOk() (*NetworkTemplateMistNac, bool) {
+func (o *NetworkTemplate) GetMistNacOk() (*SwitchMistNac, bool) {
 	if o == nil || IsNil(o.MistNac) {
 		return nil, false
 	}
@@ -457,8 +457,8 @@ func (o *NetworkTemplate) HasMistNac() bool {
 	return false
 }
 
-// SetMistNac gets a reference to the given NetworkTemplateMistNac and assigns it to the MistNac field.
-func (o *NetworkTemplate) SetMistNac(v NetworkTemplateMistNac) {
+// SetMistNac gets a reference to the given SwitchMistNac and assigns it to the MistNac field.
+func (o *NetworkTemplate) SetMistNac(v SwitchMistNac) {
 	o.MistNac = &v
 }
 

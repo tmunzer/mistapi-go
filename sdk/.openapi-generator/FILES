@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -761,7 +762,6 @@ docs/NetworkInternetAccess.md
 docs/NetworkSourceNat.md
 docs/NetworkStaticNatProperty.md
 docs/NetworkTemplate.md
-docs/NetworkTemplateMistNac.md
 docs/NetworkTenant.md
 docs/NetworkVpnAccessConfig.md
 docs/NoteString.md
@@ -1462,6 +1462,7 @@ docs/SwitchMetricType.md
 docs/SwitchMetricsActivePortsSummaryDetails.md
 docs/SwitchMetricsComplianceMajorVersion.md
 docs/SwitchMgmt.md
+docs/SwitchMistNac.md
 docs/SwitchNetwork.md
 docs/SwitchPortMirroring.md
 docs/SwitchPortStats.md
@@ -2281,7 +2282,6 @@ model_network_internet_access.go
 model_network_source_nat.go
 model_network_static_nat_property.go
 model_network_template.go
-model_network_template_mist_nac.go
 model_network_tenant.go
 model_network_vpn_access_config.go
 model_note_string.go
@@ -2843,6 +2843,7 @@ model_switch_metric_type.go
 model_switch_metrics_active_ports_summary_details.go
 model_switch_metrics_compliance_major_version.go
 model_switch_mgmt.go
+model_switch_mist_nac.go
 model_switch_network.go
 model_switch_port_mirroring.go
 model_switch_port_stats.go
