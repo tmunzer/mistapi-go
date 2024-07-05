@@ -44,7 +44,7 @@ Name | Type | Description | Notes
 **IpConfigs** | Pointer to [**map[string]GatewayTemplateIpConfig**](GatewayTemplateIpConfig.md) | Property key is the network name | [optional] 
 **Networks** | Pointer to [**[]Network**](Network.md) |  | [optional] 
 **NtpOverride** | Pointer to **bool** |  | [optional] [default to false]
-**OobIpConfig** | Pointer to [**JunosOobIpConfigs**](JunosOobIpConfigs.md) |  | [optional] 
+**OobIpConfig** | Pointer to [**GatewayOobIpConfig**](GatewayOobIpConfig.md) |  | [optional] 
 **PathPreferences** | Pointer to [**map[string]GatewayTemplatePathPreferences**](GatewayTemplatePathPreferences.md) | Property key is the path name | [optional] 
 **RouterId** | Pointer to **string** | auto assigned if not set | [optional] 
 **RoutingPolicies** | Pointer to [**map[string]RoutingPolicy**](RoutingPolicy.md) | Property key is the routing policy name | [optional] 
@@ -1068,20 +1068,20 @@ HasNtpOverride returns a boolean if a field has been set.
 
 ### GetOobIpConfig
 
-`func (o *Deviceprofile) GetOobIpConfig() JunosOobIpConfigs`
+`func (o *Deviceprofile) GetOobIpConfig() GatewayOobIpConfig`
 
 GetOobIpConfig returns the OobIpConfig field if non-nil, zero value otherwise.
 
 ### GetOobIpConfigOk
 
-`func (o *Deviceprofile) GetOobIpConfigOk() (*JunosOobIpConfigs, bool)`
+`func (o *Deviceprofile) GetOobIpConfigOk() (*GatewayOobIpConfig, bool)`
 
 GetOobIpConfigOk returns a tuple with the OobIpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOobIpConfig
 
-`func (o *Deviceprofile) SetOobIpConfig(v JunosOobIpConfigs)`
+`func (o *Deviceprofile) SetOobIpConfig(v GatewayOobIpConfig)`
 
 SetOobIpConfig sets OobIpConfig field to given value.
 

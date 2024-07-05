@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Mac** | Pointer to **string** | fpc0, same as the mac of device_id | [optional] 
+**MemberId** | Pointer to **int32** |  | [optional] 
 **VcRole** | Pointer to [**SwitchVirtualChassisMemberVcRole**](SwitchVirtualChassisMemberVcRole.md) |  | [optional] 
 
 ## Methods
@@ -50,6 +51,31 @@ SetMac sets Mac field to given value.
 `func (o *SwitchVirtualChassisMember) HasMac() bool`
 
 HasMac returns a boolean if a field has been set.
+
+### GetMemberId
+
+`func (o *SwitchVirtualChassisMember) GetMemberId() int32`
+
+GetMemberId returns the MemberId field if non-nil, zero value otherwise.
+
+### GetMemberIdOk
+
+`func (o *SwitchVirtualChassisMember) GetMemberIdOk() (*int32, bool)`
+
+GetMemberIdOk returns a tuple with the MemberId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMemberId
+
+`func (o *SwitchVirtualChassisMember) SetMemberId(v int32)`
+
+SetMemberId sets MemberId field to given value.
+
+### HasMemberId
+
+`func (o *SwitchVirtualChassisMember) HasMemberId() bool`
+
+HasMemberId returns a boolean if a field has been set.
 
 ### GetVcRole
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Areas** | Pointer to [**map[string]OspfConfigAreasAdditionalProperties**](OspfConfigAreasAdditionalProperties.md) | OSPF areas to run on this device and the corresponding per-area-specific configs. Property key is the area | [optional] 
+**Areas** | Pointer to [**map[string]OspfConfigArea**](OspfConfigArea.md) | OSPF areas to run on this device and the corresponding per-area-specific configs. Property key is the area | [optional] 
 **Enabled** | Pointer to **bool** | whether to rung OSPF on this device | [optional] 
 **ReferenceBandwidth** | Pointer to **string** | Bandwidth for calculating metric defaults (9600..4000000000000) | [optional] [default to "100M"]
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAreas
 
-`func (o *OspfConfig) GetAreas() map[string]OspfConfigAreasAdditionalProperties`
+`func (o *OspfConfig) GetAreas() map[string]OspfConfigArea`
 
 GetAreas returns the Areas field if non-nil, zero value otherwise.
 
 ### GetAreasOk
 
-`func (o *OspfConfig) GetAreasOk() (*map[string]OspfConfigAreasAdditionalProperties, bool)`
+`func (o *OspfConfig) GetAreasOk() (*map[string]OspfConfigArea, bool)`
 
 GetAreasOk returns a tuple with the Areas field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAreas
 
-`func (o *OspfConfig) SetAreas(v map[string]OspfConfigAreasAdditionalProperties)`
+`func (o *OspfConfig) SetAreas(v map[string]OspfConfigArea)`
 
 SetAreas sets Areas field to given value.
 

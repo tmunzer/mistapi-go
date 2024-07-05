@@ -30,16 +30,16 @@ Name | Type | Description | Notes
 **Networks** | Pointer to [**map[string]SwitchNetwork**](SwitchNetwork.md) | Property key is network name | [optional] 
 **Notes** | Pointer to **string** |  | [optional] 
 **NtpServers** | Pointer to **[]string** | list of NTP servers specific to this device. By default, those in Site Settings will be used | [optional] 
-**OobIpConfig** | Pointer to [**JunosOobIpConfigs**](JunosOobIpConfigs.md) |  | [optional] 
+**OobIpConfig** | Pointer to [**SwitchOobIpConfig**](SwitchOobIpConfig.md) |  | [optional] 
 **OrgId** | Pointer to **string** |  | [optional] [readonly] 
 **OspfConfig** | Pointer to [**OspfConfig**](OspfConfig.md) |  | [optional] 
-**OtherIpConfigs** | Pointer to [**map[string]JunosOtherIpConfigs**](JunosOtherIpConfigs.md) | Property key is the network name | [optional] 
+**OtherIpConfigs** | Pointer to [**map[string]JunosOtherIpConfig**](JunosOtherIpConfig.md) | Property key is the network name | [optional] 
 **PortConfig** | Pointer to [**map[string]JunosPortConfig**](JunosPortConfig.md) | Property key is the port name or range (e.g. \&quot;ge-0/0/0-10\&quot;) | [optional] 
 **PortMirroring** | Pointer to [**map[string]SwitchPortMirroringProperty**](SwitchPortMirroringProperty.md) | Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. | [optional] 
 **PortUsages** | Pointer to [**map[string]SwitchPortUsage**](SwitchPortUsage.md) |  | [optional] 
 **RadiusConfig** | Pointer to [**RadiusConfig**](RadiusConfig.md) |  | [optional] 
 **RemoteSyslog** | Pointer to [**RemoteSyslog**](RemoteSyslog.md) |  | [optional] 
-**Role** | Pointer to [**SwitchRole**](SwitchRole.md) |  | [optional] [default to SWITCHROLE_ACCESS]
+**Role** | Pointer to **string** |  | [optional] 
 **RouterId** | Pointer to **string** | used for OSPF / BGP / EVPN | [optional] 
 **SiteId** | Pointer to **string** |  | [optional] [readonly] 
 **SnmpConfig** | Pointer to [**SnmpConfig**](SnmpConfig.md) |  | [optional] 
@@ -755,20 +755,20 @@ HasNtpServers returns a boolean if a field has been set.
 
 ### GetOobIpConfig
 
-`func (o *ModelSwitch) GetOobIpConfig() JunosOobIpConfigs`
+`func (o *ModelSwitch) GetOobIpConfig() SwitchOobIpConfig`
 
 GetOobIpConfig returns the OobIpConfig field if non-nil, zero value otherwise.
 
 ### GetOobIpConfigOk
 
-`func (o *ModelSwitch) GetOobIpConfigOk() (*JunosOobIpConfigs, bool)`
+`func (o *ModelSwitch) GetOobIpConfigOk() (*SwitchOobIpConfig, bool)`
 
 GetOobIpConfigOk returns a tuple with the OobIpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOobIpConfig
 
-`func (o *ModelSwitch) SetOobIpConfig(v JunosOobIpConfigs)`
+`func (o *ModelSwitch) SetOobIpConfig(v SwitchOobIpConfig)`
 
 SetOobIpConfig sets OobIpConfig field to given value.
 
@@ -830,20 +830,20 @@ HasOspfConfig returns a boolean if a field has been set.
 
 ### GetOtherIpConfigs
 
-`func (o *ModelSwitch) GetOtherIpConfigs() map[string]JunosOtherIpConfigs`
+`func (o *ModelSwitch) GetOtherIpConfigs() map[string]JunosOtherIpConfig`
 
 GetOtherIpConfigs returns the OtherIpConfigs field if non-nil, zero value otherwise.
 
 ### GetOtherIpConfigsOk
 
-`func (o *ModelSwitch) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfigs, bool)`
+`func (o *ModelSwitch) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfig, bool)`
 
 GetOtherIpConfigsOk returns a tuple with the OtherIpConfigs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOtherIpConfigs
 
-`func (o *ModelSwitch) SetOtherIpConfigs(v map[string]JunosOtherIpConfigs)`
+`func (o *ModelSwitch) SetOtherIpConfigs(v map[string]JunosOtherIpConfig)`
 
 SetOtherIpConfigs sets OtherIpConfigs field to given value.
 
@@ -980,20 +980,20 @@ HasRemoteSyslog returns a boolean if a field has been set.
 
 ### GetRole
 
-`func (o *ModelSwitch) GetRole() SwitchRole`
+`func (o *ModelSwitch) GetRole() string`
 
 GetRole returns the Role field if non-nil, zero value otherwise.
 
 ### GetRoleOk
 
-`func (o *ModelSwitch) GetRoleOk() (*SwitchRole, bool)`
+`func (o *ModelSwitch) GetRoleOk() (*string, bool)`
 
 GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRole
 
-`func (o *ModelSwitch) SetRole(v SwitchRole)`
+`func (o *ModelSwitch) SetRole(v string)`
 
 SetRole sets Role field to given value.
 

@@ -44,7 +44,7 @@ type GatewayTemplate struct {
 	NtpOverride *bool `json:"ntpOverride,omitempty"`
 	// list of NTP servers specific to this device. By default, those in Site Settings will be used
 	NtpServers []string `json:"ntp_servers,omitempty"`
-	OobIpConfig *JunosOobIpConfigs `json:"oob_ip_config,omitempty"`
+	OobIpConfig *GatewayOobIpConfig `json:"oob_ip_config,omitempty"`
 	OrgId *string `json:"org_id,omitempty"`
 	// Property key is the path name
 	PathPreferences *map[string]GatewayTemplatePathPreferences `json:"path_preferences,omitempty"`
@@ -631,9 +631,9 @@ func (o *GatewayTemplate) SetNtpServers(v []string) {
 }
 
 // GetOobIpConfig returns the OobIpConfig field value if set, zero value otherwise.
-func (o *GatewayTemplate) GetOobIpConfig() JunosOobIpConfigs {
+func (o *GatewayTemplate) GetOobIpConfig() GatewayOobIpConfig {
 	if o == nil || IsNil(o.OobIpConfig) {
-		var ret JunosOobIpConfigs
+		var ret GatewayOobIpConfig
 		return ret
 	}
 	return *o.OobIpConfig
@@ -641,7 +641,7 @@ func (o *GatewayTemplate) GetOobIpConfig() JunosOobIpConfigs {
 
 // GetOobIpConfigOk returns a tuple with the OobIpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GatewayTemplate) GetOobIpConfigOk() (*JunosOobIpConfigs, bool) {
+func (o *GatewayTemplate) GetOobIpConfigOk() (*GatewayOobIpConfig, bool) {
 	if o == nil || IsNil(o.OobIpConfig) {
 		return nil, false
 	}
@@ -657,8 +657,8 @@ func (o *GatewayTemplate) HasOobIpConfig() bool {
 	return false
 }
 
-// SetOobIpConfig gets a reference to the given JunosOobIpConfigs and assigns it to the OobIpConfig field.
-func (o *GatewayTemplate) SetOobIpConfig(v JunosOobIpConfigs) {
+// SetOobIpConfig gets a reference to the given GatewayOobIpConfig and assigns it to the OobIpConfig field.
+func (o *GatewayTemplate) SetOobIpConfig(v GatewayOobIpConfig) {
 	o.OobIpConfig = &v
 }
 

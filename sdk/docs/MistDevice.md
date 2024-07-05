@@ -57,14 +57,14 @@ Name | Type | Description | Notes
 **Managed** | Pointer to **bool** |  | [optional] 
 **MistNac** | Pointer to [**SwitchMistNac**](SwitchMistNac.md) |  | [optional] 
 **Networks** | Pointer to [**map[string]GatewayNetwork**](GatewayNetwork.md) | Property key is the network name or a CIDR | [optional] 
-**OobIpConfig** | Pointer to [**JunosOobIpConfigs**](JunosOobIpConfigs.md) |  | [optional] 
+**OobIpConfig** | Pointer to [**GatewayOobIpConfig**](GatewayOobIpConfig.md) |  | [optional] 
 **OspfConfig** | Pointer to [**OspfConfig**](OspfConfig.md) |  | [optional] 
-**OtherIpConfigs** | Pointer to [**map[string]JunosOtherIpConfigs**](JunosOtherIpConfigs.md) | Property key is the network name | [optional] 
+**OtherIpConfigs** | Pointer to [**map[string]JunosOtherIpConfig**](JunosOtherIpConfig.md) | Property key is the network name | [optional] 
 **PortMirroring** | Pointer to [**GatewayPortMirroring**](GatewayPortMirroring.md) |  | [optional] 
 **PortUsages** | Pointer to [**map[string]SwitchPortUsage**](SwitchPortUsage.md) |  | [optional] 
 **RadiusConfig** | Pointer to [**RadiusConfig**](RadiusConfig.md) |  | [optional] 
 **RemoteSyslog** | Pointer to [**RemoteSyslog**](RemoteSyslog.md) |  | [optional] 
-**Role** | Pointer to [**SwitchRole**](SwitchRole.md) |  | [optional] [default to SWITCHROLE_ACCESS]
+**Role** | Pointer to **string** |  | [optional] 
 **RouterId** | Pointer to **string** | used for OSPF / BGP / EVPN | [optional] 
 **SnmpConfig** | Pointer to [**SnmpConfig**](SnmpConfig.md) |  | [optional] 
 **StpConfig** | Pointer to [**SwitchStpConfig**](SwitchStpConfig.md) |  | [optional] 
@@ -1422,20 +1422,20 @@ HasNetworks returns a boolean if a field has been set.
 
 ### GetOobIpConfig
 
-`func (o *MistDevice) GetOobIpConfig() JunosOobIpConfigs`
+`func (o *MistDevice) GetOobIpConfig() GatewayOobIpConfig`
 
 GetOobIpConfig returns the OobIpConfig field if non-nil, zero value otherwise.
 
 ### GetOobIpConfigOk
 
-`func (o *MistDevice) GetOobIpConfigOk() (*JunosOobIpConfigs, bool)`
+`func (o *MistDevice) GetOobIpConfigOk() (*GatewayOobIpConfig, bool)`
 
 GetOobIpConfigOk returns a tuple with the OobIpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOobIpConfig
 
-`func (o *MistDevice) SetOobIpConfig(v JunosOobIpConfigs)`
+`func (o *MistDevice) SetOobIpConfig(v GatewayOobIpConfig)`
 
 SetOobIpConfig sets OobIpConfig field to given value.
 
@@ -1472,20 +1472,20 @@ HasOspfConfig returns a boolean if a field has been set.
 
 ### GetOtherIpConfigs
 
-`func (o *MistDevice) GetOtherIpConfigs() map[string]JunosOtherIpConfigs`
+`func (o *MistDevice) GetOtherIpConfigs() map[string]JunosOtherIpConfig`
 
 GetOtherIpConfigs returns the OtherIpConfigs field if non-nil, zero value otherwise.
 
 ### GetOtherIpConfigsOk
 
-`func (o *MistDevice) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfigs, bool)`
+`func (o *MistDevice) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfig, bool)`
 
 GetOtherIpConfigsOk returns a tuple with the OtherIpConfigs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOtherIpConfigs
 
-`func (o *MistDevice) SetOtherIpConfigs(v map[string]JunosOtherIpConfigs)`
+`func (o *MistDevice) SetOtherIpConfigs(v map[string]JunosOtherIpConfig)`
 
 SetOtherIpConfigs sets OtherIpConfigs field to given value.
 
@@ -1597,20 +1597,20 @@ HasRemoteSyslog returns a boolean if a field has been set.
 
 ### GetRole
 
-`func (o *MistDevice) GetRole() SwitchRole`
+`func (o *MistDevice) GetRole() string`
 
 GetRole returns the Role field if non-nil, zero value otherwise.
 
 ### GetRoleOk
 
-`func (o *MistDevice) GetRoleOk() (*SwitchRole, bool)`
+`func (o *MistDevice) GetRoleOk() (*string, bool)`
 
 GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRole
 
-`func (o *MistDevice) SetRole(v SwitchRole)`
+`func (o *MistDevice) SetRole(v string)`
 
 SetRole sets Role field to given value.
 

@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **Netmask** | Pointer to **string** | used only if &#x60;subnet&#x60; is not specified in &#x60;networks&#x60; | [optional] 
 **Network** | Pointer to **string** | the network where this mgmt IP reside, this will be used as default network for outbound-ssh, dns, ntp, dns, tacplus, radius, syslog, snmp | [optional] 
 **Type** | Pointer to [**IpConfigType**](IpConfigType.md) |  | [optional] [default to IPCONFIGTYPE_DYNAMIC]
-**UseMgmtVrf** | Pointer to **bool** | for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP) | [optional] [default to false]
 
 ## Methods
 
@@ -206,31 +205,6 @@ SetType sets Type field to given value.
 `func (o *JunosIpConfig) HasType() bool`
 
 HasType returns a boolean if a field has been set.
-
-### GetUseMgmtVrf
-
-`func (o *JunosIpConfig) GetUseMgmtVrf() bool`
-
-GetUseMgmtVrf returns the UseMgmtVrf field if non-nil, zero value otherwise.
-
-### GetUseMgmtVrfOk
-
-`func (o *JunosIpConfig) GetUseMgmtVrfOk() (*bool, bool)`
-
-GetUseMgmtVrfOk returns a tuple with the UseMgmtVrf field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUseMgmtVrf
-
-`func (o *JunosIpConfig) SetUseMgmtVrf(v bool)`
-
-SetUseMgmtVrf sets UseMgmtVrf field to given value.
-
-### HasUseMgmtVrf
-
-`func (o *JunosIpConfig) HasUseMgmtVrf() bool`
-
-HasUseMgmtVrf returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

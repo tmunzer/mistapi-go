@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Networks** | Pointer to [**map[string]GatewayNetwork**](GatewayNetwork.md) | Property key is the network name or a CIDR | [optional] 
 **NtpServers** | Pointer to **[]string** |  | [optional] 
-**OobIpConfig** | Pointer to [**JunosOobIpConfigs**](JunosOobIpConfigs.md) |  | [optional] 
+**OobIpConfig** | Pointer to [**GatewayOobIpConfig**](GatewayOobIpConfig.md) |  | [optional] 
 **OrgId** | Pointer to **string** |  | [optional] [readonly] 
 **PortConfig** | Pointer to [**map[string]GatewayPortConfig**](GatewayPortConfig.md) | Property key is the port name or range (e.g. \&quot;ge-0/0/0-10\&quot;) | [optional] 
 **PortMirroring** | Pointer to [**GatewayPortMirroring**](GatewayPortMirroring.md) |  | [optional] 
@@ -502,20 +502,20 @@ HasNtpServers returns a boolean if a field has been set.
 
 ### GetOobIpConfig
 
-`func (o *Gateway) GetOobIpConfig() JunosOobIpConfigs`
+`func (o *Gateway) GetOobIpConfig() GatewayOobIpConfig`
 
 GetOobIpConfig returns the OobIpConfig field if non-nil, zero value otherwise.
 
 ### GetOobIpConfigOk
 
-`func (o *Gateway) GetOobIpConfigOk() (*JunosOobIpConfigs, bool)`
+`func (o *Gateway) GetOobIpConfigOk() (*GatewayOobIpConfig, bool)`
 
 GetOobIpConfigOk returns a tuple with the OobIpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOobIpConfig
 
-`func (o *Gateway) SetOobIpConfig(v JunosOobIpConfigs)`
+`func (o *Gateway) SetOobIpConfig(v GatewayOobIpConfig)`
 
 SetOobIpConfig sets OobIpConfig field to given value.
 

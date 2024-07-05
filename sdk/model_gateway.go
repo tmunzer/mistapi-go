@@ -42,7 +42,7 @@ type Gateway struct {
 	// Property key is the network name or a CIDR
 	Networks *map[string]GatewayNetwork `json:"networks,omitempty"`
 	NtpServers []string `json:"ntp_servers,omitempty"`
-	OobIpConfig *JunosOobIpConfigs `json:"oob_ip_config,omitempty"`
+	OobIpConfig *GatewayOobIpConfig `json:"oob_ip_config,omitempty"`
 	OrgId *string `json:"org_id,omitempty"`
 	// Property key is the port name or range (e.g. \"ge-0/0/0-10\")
 	PortConfig *map[string]GatewayPortConfig `json:"port_config,omitempty"`
@@ -653,9 +653,9 @@ func (o *Gateway) SetNtpServers(v []string) {
 }
 
 // GetOobIpConfig returns the OobIpConfig field value if set, zero value otherwise.
-func (o *Gateway) GetOobIpConfig() JunosOobIpConfigs {
+func (o *Gateway) GetOobIpConfig() GatewayOobIpConfig {
 	if o == nil || IsNil(o.OobIpConfig) {
-		var ret JunosOobIpConfigs
+		var ret GatewayOobIpConfig
 		return ret
 	}
 	return *o.OobIpConfig
@@ -663,7 +663,7 @@ func (o *Gateway) GetOobIpConfig() JunosOobIpConfigs {
 
 // GetOobIpConfigOk returns a tuple with the OobIpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Gateway) GetOobIpConfigOk() (*JunosOobIpConfigs, bool) {
+func (o *Gateway) GetOobIpConfigOk() (*GatewayOobIpConfig, bool) {
 	if o == nil || IsNil(o.OobIpConfig) {
 		return nil, false
 	}
@@ -679,8 +679,8 @@ func (o *Gateway) HasOobIpConfig() bool {
 	return false
 }
 
-// SetOobIpConfig gets a reference to the given JunosOobIpConfigs and assigns it to the OobIpConfig field.
-func (o *Gateway) SetOobIpConfig(v JunosOobIpConfigs) {
+// SetOobIpConfig gets a reference to the given GatewayOobIpConfig and assigns it to the OobIpConfig field.
+func (o *Gateway) SetOobIpConfig(v GatewayOobIpConfig) {
 	o.OobIpConfig = &v
 }
 

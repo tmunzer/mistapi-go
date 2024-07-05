@@ -29,8 +29,6 @@ type JunosIpConfig struct {
 	// the network where this mgmt IP reside, this will be used as default network for outbound-ssh, dns, ntp, dns, tacplus, radius, syslog, snmp
 	Network *string `json:"network,omitempty"`
 	Type *IpConfigType `json:"type,omitempty"`
-	// for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP)
-	UseMgmtVrf *bool `json:"use_mgmt_vrf,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,8 +42,6 @@ func NewJunosIpConfig() *JunosIpConfig {
 	this := JunosIpConfig{}
 	var type_ IpConfigType = IPCONFIGTYPE_DYNAMIC
 	this.Type = &type_
-	var useMgmtVrf bool = false
-	this.UseMgmtVrf = &useMgmtVrf
 	return &this
 }
 
@@ -56,8 +52,6 @@ func NewJunosIpConfigWithDefaults() *JunosIpConfig {
 	this := JunosIpConfig{}
 	var type_ IpConfigType = IPCONFIGTYPE_DYNAMIC
 	this.Type = &type_
-	var useMgmtVrf bool = false
-	this.UseMgmtVrf = &useMgmtVrf
 	return &this
 }
 
@@ -285,38 +279,6 @@ func (o *JunosIpConfig) SetType(v IpConfigType) {
 	o.Type = &v
 }
 
-// GetUseMgmtVrf returns the UseMgmtVrf field value if set, zero value otherwise.
-func (o *JunosIpConfig) GetUseMgmtVrf() bool {
-	if o == nil || IsNil(o.UseMgmtVrf) {
-		var ret bool
-		return ret
-	}
-	return *o.UseMgmtVrf
-}
-
-// GetUseMgmtVrfOk returns a tuple with the UseMgmtVrf field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *JunosIpConfig) GetUseMgmtVrfOk() (*bool, bool) {
-	if o == nil || IsNil(o.UseMgmtVrf) {
-		return nil, false
-	}
-	return o.UseMgmtVrf, true
-}
-
-// HasUseMgmtVrf returns a boolean if a field has been set.
-func (o *JunosIpConfig) HasUseMgmtVrf() bool {
-	if o != nil && !IsNil(o.UseMgmtVrf) {
-		return true
-	}
-
-	return false
-}
-
-// SetUseMgmtVrf gets a reference to the given bool and assigns it to the UseMgmtVrf field.
-func (o *JunosIpConfig) SetUseMgmtVrf(v bool) {
-	o.UseMgmtVrf = &v
-}
-
 func (o JunosIpConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -348,9 +310,6 @@ func (o JunosIpConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !IsNil(o.UseMgmtVrf) {
-		toSerialize["use_mgmt_vrf"] = o.UseMgmtVrf
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -380,7 +339,6 @@ func (o *JunosIpConfig) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "netmask")
 		delete(additionalProperties, "network")
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "use_mgmt_vrf")
 		o.AdditionalProperties = additionalProperties
 	}
 

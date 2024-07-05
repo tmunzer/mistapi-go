@@ -517,6 +517,8 @@ docs/GatewayMatching.md
 docs/GatewayMatchingRule.md
 docs/GatewayMetrics.md
 docs/GatewayNetwork.md
+docs/GatewayOobIpConfig.md
+docs/GatewayOobIpConfigNode1.md
 docs/GatewayPathStrategy.md
 docs/GatewayPathType.md
 docs/GatewayPortConfig.md
@@ -592,10 +594,7 @@ docs/JseInventoryItem.md
 docs/JseInventoryItemType.md
 docs/JuniperAccount.md
 docs/JunosIpConfig.md
-docs/JunosOobIpConfig.md
-docs/JunosOobIpConfigNode1.md
-docs/JunosOobIpConfigs.md
-docs/JunosOtherIpConfigs.md
+docs/JunosOtherIpConfig.md
 docs/JunosPortConfig.md
 docs/JunosPortConfigDuplex.md
 docs/JunosPortConfigSpeed.md
@@ -923,7 +922,7 @@ docs/OspfAreasNetworkAuthType.md
 docs/OspfAreasNetworkInterfaceType.md
 docs/OspfAreasType.md
 docs/OspfConfig.md
-docs/OspfConfigAreasAdditionalProperties.md
+docs/OspfConfigArea.md
 docs/OtherDeviceUpdate.md
 docs/OtherDeviceUpdateMulti.md
 docs/OtherDeviceUpdateOperation.md
@@ -1463,6 +1462,7 @@ docs/SwitchMetricsComplianceMajorVersion.md
 docs/SwitchMgmt.md
 docs/SwitchMistNac.md
 docs/SwitchNetwork.md
+docs/SwitchOobIpConfig.md
 docs/SwitchPortMirroringProperty.md
 docs/SwitchPortStats.md
 docs/SwitchPortStatsAuthState.md
@@ -1479,7 +1479,6 @@ docs/SwitchPortUsageDynamicRuleSrc.md
 docs/SwitchPortUsageMacAuthProtocol.md
 docs/SwitchPortUsageMode.md
 docs/SwitchPortUsageStormControl.md
-docs/SwitchRole.md
 docs/SwitchSearch.md
 docs/SwitchStats.md
 docs/SwitchStatsApRedundancy.md
@@ -2051,6 +2050,8 @@ model_gateway_matching.go
 model_gateway_matching_rule.go
 model_gateway_metrics.go
 model_gateway_network.go
+model_gateway_oob_ip_config.go
+model_gateway_oob_ip_config_node1.go
 model_gateway_path_strategy.go
 model_gateway_path_type.go
 model_gateway_port_config.go
@@ -2125,10 +2126,7 @@ model_jse_inventory_item.go
 model_jse_inventory_item_type.go
 model_juniper_account.go
 model_junos_ip_config.go
-model_junos_oob_ip_config.go
-model_junos_oob_ip_config_node_1.go
-model_junos_oob_ip_configs.go
-model_junos_other_ip_configs.go
+model_junos_other_ip_config.go
 model_junos_port_config.go
 model_junos_port_config_duplex.go
 model_junos_port_config_speed.go
@@ -2368,7 +2366,7 @@ model_ospf_areas_network_auth_type.go
 model_ospf_areas_network_interface_type.go
 model_ospf_areas_type.go
 model_ospf_config.go
-model_ospf_config_areas_additional_properties.go
+model_ospf_config_area.go
 model_other_device_update.go
 model_other_device_update_multi.go
 model_other_device_update_operation.go
@@ -2843,6 +2841,7 @@ model_switch_metrics_compliance_major_version.go
 model_switch_mgmt.go
 model_switch_mist_nac.go
 model_switch_network.go
+model_switch_oob_ip_config.go
 model_switch_port_mirroring_property.go
 model_switch_port_stats.go
 model_switch_port_stats_auth_state.go
@@ -2859,7 +2858,6 @@ model_switch_port_usage_dynamic_rule_src.go
 model_switch_port_usage_mac_auth_protocol.go
 model_switch_port_usage_mode.go
 model_switch_port_usage_storm_control.go
-model_switch_role.go
 model_switch_search.go
 model_switch_stats.go
 model_switch_stats_ap_redundancy.go

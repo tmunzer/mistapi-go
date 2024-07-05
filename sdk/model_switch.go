@@ -56,11 +56,11 @@ type ModelSwitch struct {
 	Notes *string `json:"notes,omitempty"`
 	// list of NTP servers specific to this device. By default, those in Site Settings will be used
 	NtpServers []string `json:"ntp_servers,omitempty"`
-	OobIpConfig *JunosOobIpConfigs `json:"oob_ip_config,omitempty"`
+	OobIpConfig *SwitchOobIpConfig `json:"oob_ip_config,omitempty"`
 	OrgId *string `json:"org_id,omitempty"`
 	OspfConfig *OspfConfig `json:"ospf_config,omitempty"`
 	// Property key is the network name
-	OtherIpConfigs *map[string]JunosOtherIpConfigs `json:"other_ip_configs,omitempty"`
+	OtherIpConfigs *map[string]JunosOtherIpConfig `json:"other_ip_configs,omitempty"`
 	// Property key is the port name or range (e.g. \"ge-0/0/0-10\")
 	PortConfig *map[string]JunosPortConfig `json:"port_config,omitempty"`
 	// Property key is the port mirroring instance name port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output.
@@ -68,7 +68,7 @@ type ModelSwitch struct {
 	PortUsages *map[string]SwitchPortUsage `json:"port_usages,omitempty"`
 	RadiusConfig *RadiusConfig `json:"radius_config,omitempty"`
 	RemoteSyslog *RemoteSyslog `json:"remote_syslog,omitempty"`
-	Role *SwitchRole `json:"role,omitempty"`
+	Role *string `json:"role,omitempty"`
 	// used for OSPF / BGP / EVPN
 	RouterId *string `json:"router_id,omitempty"`
 	SiteId *string `json:"site_id,omitempty"`
@@ -103,8 +103,6 @@ func NewModelSwitch() *ModelSwitch {
 	this.DisableAutoConfig = &disableAutoConfig
 	var managed bool = false
 	this.Managed = &managed
-	var role SwitchRole = SWITCHROLE_ACCESS
-	this.Role = &role
 	var useRouterIdAsSourceIp bool = false
 	this.UseRouterIdAsSourceIp = &useRouterIdAsSourceIp
 	return &this
@@ -119,8 +117,6 @@ func NewModelSwitchWithDefaults() *ModelSwitch {
 	this.DisableAutoConfig = &disableAutoConfig
 	var managed bool = false
 	this.Managed = &managed
-	var role SwitchRole = SWITCHROLE_ACCESS
-	this.Role = &role
 	var useRouterIdAsSourceIp bool = false
 	this.UseRouterIdAsSourceIp = &useRouterIdAsSourceIp
 	return &this
@@ -989,9 +985,9 @@ func (o *ModelSwitch) SetNtpServers(v []string) {
 }
 
 // GetOobIpConfig returns the OobIpConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetOobIpConfig() JunosOobIpConfigs {
+func (o *ModelSwitch) GetOobIpConfig() SwitchOobIpConfig {
 	if o == nil || IsNil(o.OobIpConfig) {
-		var ret JunosOobIpConfigs
+		var ret SwitchOobIpConfig
 		return ret
 	}
 	return *o.OobIpConfig
@@ -999,7 +995,7 @@ func (o *ModelSwitch) GetOobIpConfig() JunosOobIpConfigs {
 
 // GetOobIpConfigOk returns a tuple with the OobIpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetOobIpConfigOk() (*JunosOobIpConfigs, bool) {
+func (o *ModelSwitch) GetOobIpConfigOk() (*SwitchOobIpConfig, bool) {
 	if o == nil || IsNil(o.OobIpConfig) {
 		return nil, false
 	}
@@ -1015,8 +1011,8 @@ func (o *ModelSwitch) HasOobIpConfig() bool {
 	return false
 }
 
-// SetOobIpConfig gets a reference to the given JunosOobIpConfigs and assigns it to the OobIpConfig field.
-func (o *ModelSwitch) SetOobIpConfig(v JunosOobIpConfigs) {
+// SetOobIpConfig gets a reference to the given SwitchOobIpConfig and assigns it to the OobIpConfig field.
+func (o *ModelSwitch) SetOobIpConfig(v SwitchOobIpConfig) {
 	o.OobIpConfig = &v
 }
 
@@ -1085,9 +1081,9 @@ func (o *ModelSwitch) SetOspfConfig(v OspfConfig) {
 }
 
 // GetOtherIpConfigs returns the OtherIpConfigs field value if set, zero value otherwise.
-func (o *ModelSwitch) GetOtherIpConfigs() map[string]JunosOtherIpConfigs {
+func (o *ModelSwitch) GetOtherIpConfigs() map[string]JunosOtherIpConfig {
 	if o == nil || IsNil(o.OtherIpConfigs) {
-		var ret map[string]JunosOtherIpConfigs
+		var ret map[string]JunosOtherIpConfig
 		return ret
 	}
 	return *o.OtherIpConfigs
@@ -1095,7 +1091,7 @@ func (o *ModelSwitch) GetOtherIpConfigs() map[string]JunosOtherIpConfigs {
 
 // GetOtherIpConfigsOk returns a tuple with the OtherIpConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfigs, bool) {
+func (o *ModelSwitch) GetOtherIpConfigsOk() (*map[string]JunosOtherIpConfig, bool) {
 	if o == nil || IsNil(o.OtherIpConfigs) {
 		return nil, false
 	}
@@ -1111,8 +1107,8 @@ func (o *ModelSwitch) HasOtherIpConfigs() bool {
 	return false
 }
 
-// SetOtherIpConfigs gets a reference to the given map[string]JunosOtherIpConfigs and assigns it to the OtherIpConfigs field.
-func (o *ModelSwitch) SetOtherIpConfigs(v map[string]JunosOtherIpConfigs) {
+// SetOtherIpConfigs gets a reference to the given map[string]JunosOtherIpConfig and assigns it to the OtherIpConfigs field.
+func (o *ModelSwitch) SetOtherIpConfigs(v map[string]JunosOtherIpConfig) {
 	o.OtherIpConfigs = &v
 }
 
@@ -1277,9 +1273,9 @@ func (o *ModelSwitch) SetRemoteSyslog(v RemoteSyslog) {
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
-func (o *ModelSwitch) GetRole() SwitchRole {
+func (o *ModelSwitch) GetRole() string {
 	if o == nil || IsNil(o.Role) {
-		var ret SwitchRole
+		var ret string
 		return ret
 	}
 	return *o.Role
@@ -1287,7 +1283,7 @@ func (o *ModelSwitch) GetRole() SwitchRole {
 
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetRoleOk() (*SwitchRole, bool) {
+func (o *ModelSwitch) GetRoleOk() (*string, bool) {
 	if o == nil || IsNil(o.Role) {
 		return nil, false
 	}
@@ -1303,8 +1299,8 @@ func (o *ModelSwitch) HasRole() bool {
 	return false
 }
 
-// SetRole gets a reference to the given SwitchRole and assigns it to the Role field.
-func (o *ModelSwitch) SetRole(v SwitchRole) {
+// SetRole gets a reference to the given string and assigns it to the Role field.
+func (o *ModelSwitch) SetRole(v string) {
 	o.Role = &v
 }
 

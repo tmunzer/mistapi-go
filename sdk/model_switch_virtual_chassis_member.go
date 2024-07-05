@@ -22,6 +22,7 @@ var _ MappedNullable = &SwitchVirtualChassisMember{}
 type SwitchVirtualChassisMember struct {
 	// fpc0, same as the mac of device_id
 	Mac *string `json:"mac,omitempty"`
+	MemberId *int32 `json:"member_id,omitempty"`
 	VcRole *SwitchVirtualChassisMemberVcRole `json:"vc_role,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -77,6 +78,38 @@ func (o *SwitchVirtualChassisMember) SetMac(v string) {
 	o.Mac = &v
 }
 
+// GetMemberId returns the MemberId field value if set, zero value otherwise.
+func (o *SwitchVirtualChassisMember) GetMemberId() int32 {
+	if o == nil || IsNil(o.MemberId) {
+		var ret int32
+		return ret
+	}
+	return *o.MemberId
+}
+
+// GetMemberIdOk returns a tuple with the MemberId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SwitchVirtualChassisMember) GetMemberIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.MemberId) {
+		return nil, false
+	}
+	return o.MemberId, true
+}
+
+// HasMemberId returns a boolean if a field has been set.
+func (o *SwitchVirtualChassisMember) HasMemberId() bool {
+	if o != nil && !IsNil(o.MemberId) {
+		return true
+	}
+
+	return false
+}
+
+// SetMemberId gets a reference to the given int32 and assigns it to the MemberId field.
+func (o *SwitchVirtualChassisMember) SetMemberId(v int32) {
+	o.MemberId = &v
+}
+
 // GetVcRole returns the VcRole field value if set, zero value otherwise.
 func (o *SwitchVirtualChassisMember) GetVcRole() SwitchVirtualChassisMemberVcRole {
 	if o == nil || IsNil(o.VcRole) {
@@ -122,6 +155,9 @@ func (o SwitchVirtualChassisMember) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Mac) {
 		toSerialize["mac"] = o.Mac
 	}
+	if !IsNil(o.MemberId) {
+		toSerialize["member_id"] = o.MemberId
+	}
 	if !IsNil(o.VcRole) {
 		toSerialize["vc_role"] = o.VcRole
 	}
@@ -148,6 +184,7 @@ func (o *SwitchVirtualChassisMember) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "mac")
+		delete(additionalProperties, "member_id")
 		delete(additionalProperties, "vc_role")
 		o.AdditionalProperties = additionalProperties
 	}

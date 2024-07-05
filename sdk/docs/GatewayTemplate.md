@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **Networks** | Pointer to [**[]Network**](Network.md) |  | [optional] 
 **NtpOverride** | Pointer to **bool** |  | [optional] [default to false]
 **NtpServers** | Pointer to **[]string** | list of NTP servers specific to this device. By default, those in Site Settings will be used | [optional] 
-**OobIpConfig** | Pointer to [**JunosOobIpConfigs**](JunosOobIpConfigs.md) |  | [optional] 
+**OobIpConfig** | Pointer to [**GatewayOobIpConfig**](GatewayOobIpConfig.md) |  | [optional] 
 **OrgId** | Pointer to **string** |  | [optional] [readonly] 
 **PathPreferences** | Pointer to [**map[string]GatewayTemplatePathPreferences**](GatewayTemplatePathPreferences.md) | Property key is the path name | [optional] 
 **PortConfig** | Pointer to [**map[string]GatewayPortConfig**](GatewayPortConfig.md) | Property key is the port(s) name or range (e.g. \&quot;ge-0/0/0-10\&quot;) | [optional] 
@@ -473,20 +473,20 @@ HasNtpServers returns a boolean if a field has been set.
 
 ### GetOobIpConfig
 
-`func (o *GatewayTemplate) GetOobIpConfig() JunosOobIpConfigs`
+`func (o *GatewayTemplate) GetOobIpConfig() GatewayOobIpConfig`
 
 GetOobIpConfig returns the OobIpConfig field if non-nil, zero value otherwise.
 
 ### GetOobIpConfigOk
 
-`func (o *GatewayTemplate) GetOobIpConfigOk() (*JunosOobIpConfigs, bool)`
+`func (o *GatewayTemplate) GetOobIpConfigOk() (*GatewayOobIpConfig, bool)`
 
 GetOobIpConfigOk returns a tuple with the OobIpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOobIpConfig
 
-`func (o *GatewayTemplate) SetOobIpConfig(v JunosOobIpConfigs)`
+`func (o *GatewayTemplate) SetOobIpConfig(v GatewayOobIpConfig)`
 
 SetOobIpConfig sets OobIpConfig field to given value.
 

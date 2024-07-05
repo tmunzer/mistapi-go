@@ -21,7 +21,7 @@ var _ MappedNullable = &OspfConfig{}
 // OspfConfig Junos OSPF config
 type OspfConfig struct {
 	// OSPF areas to run on this device and the corresponding per-area-specific configs. Property key is the area
-	Areas *map[string]OspfConfigAreasAdditionalProperties `json:"areas,omitempty"`
+	Areas *map[string]OspfConfigArea `json:"areas,omitempty"`
 	// whether to rung OSPF on this device
 	Enabled *bool `json:"enabled,omitempty"`
 	// Bandwidth for calculating metric defaults (9600..4000000000000)
@@ -53,9 +53,9 @@ func NewOspfConfigWithDefaults() *OspfConfig {
 }
 
 // GetAreas returns the Areas field value if set, zero value otherwise.
-func (o *OspfConfig) GetAreas() map[string]OspfConfigAreasAdditionalProperties {
+func (o *OspfConfig) GetAreas() map[string]OspfConfigArea {
 	if o == nil || IsNil(o.Areas) {
-		var ret map[string]OspfConfigAreasAdditionalProperties
+		var ret map[string]OspfConfigArea
 		return ret
 	}
 	return *o.Areas
@@ -63,7 +63,7 @@ func (o *OspfConfig) GetAreas() map[string]OspfConfigAreasAdditionalProperties {
 
 // GetAreasOk returns a tuple with the Areas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OspfConfig) GetAreasOk() (*map[string]OspfConfigAreasAdditionalProperties, bool) {
+func (o *OspfConfig) GetAreasOk() (*map[string]OspfConfigArea, bool) {
 	if o == nil || IsNil(o.Areas) {
 		return nil, false
 	}
@@ -79,8 +79,8 @@ func (o *OspfConfig) HasAreas() bool {
 	return false
 }
 
-// SetAreas gets a reference to the given map[string]OspfConfigAreasAdditionalProperties and assigns it to the Areas field.
-func (o *OspfConfig) SetAreas(v map[string]OspfConfigAreasAdditionalProperties) {
+// SetAreas gets a reference to the given map[string]OspfConfigArea and assigns it to the Areas field.
+func (o *OspfConfig) SetAreas(v map[string]OspfConfigArea) {
 	o.Areas = &v
 }
 
