@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **AdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] 
 **CreatedTime** | Pointer to **float32** |  | [optional] [readonly] 
 **DeviceprofileId** | Pointer to **string** |  | [optional] [readonly] 
-**DhcpConfig** | Pointer to [**DhcpdConfigs**](DhcpdConfigs.md) |  | [optional] 
 **DhcpSnooping** | Pointer to [**DhcpSnooping**](DhcpSnooping.md) |  | [optional] 
+**DhcpdConfig** | Pointer to [**DhcpdConfigs**](DhcpdConfigs.md) |  | [optional] 
 **DisableAutoConfig** | Pointer to **bool** | for a claimed switch, we control the configs by default. This option (disables the behavior) | [optional] [default to false]
 **DnsServers** | Pointer to **[]string** | Global dns settings. To keep compatibility, dns settings in &#x60;ip_config&#x60; and &#x60;oob_ip_config&#x60; will overwrite this setting | [optional] 
 **DnsSuffix** | Pointer to **[]string** | Global dns settings. To keep compatibility, dns settings in &#x60;ip_config&#x60; and &#x60;oob_ip_config&#x60; will overwrite this setting | [optional] 
@@ -198,31 +198,6 @@ SetDeviceprofileId sets DeviceprofileId field to given value.
 
 HasDeviceprofileId returns a boolean if a field has been set.
 
-### GetDhcpConfig
-
-`func (o *ModelSwitch) GetDhcpConfig() DhcpdConfigs`
-
-GetDhcpConfig returns the DhcpConfig field if non-nil, zero value otherwise.
-
-### GetDhcpConfigOk
-
-`func (o *ModelSwitch) GetDhcpConfigOk() (*DhcpdConfigs, bool)`
-
-GetDhcpConfigOk returns a tuple with the DhcpConfig field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDhcpConfig
-
-`func (o *ModelSwitch) SetDhcpConfig(v DhcpdConfigs)`
-
-SetDhcpConfig sets DhcpConfig field to given value.
-
-### HasDhcpConfig
-
-`func (o *ModelSwitch) HasDhcpConfig() bool`
-
-HasDhcpConfig returns a boolean if a field has been set.
-
 ### GetDhcpSnooping
 
 `func (o *ModelSwitch) GetDhcpSnooping() DhcpSnooping`
@@ -247,6 +222,31 @@ SetDhcpSnooping sets DhcpSnooping field to given value.
 `func (o *ModelSwitch) HasDhcpSnooping() bool`
 
 HasDhcpSnooping returns a boolean if a field has been set.
+
+### GetDhcpdConfig
+
+`func (o *ModelSwitch) GetDhcpdConfig() DhcpdConfigs`
+
+GetDhcpdConfig returns the DhcpdConfig field if non-nil, zero value otherwise.
+
+### GetDhcpdConfigOk
+
+`func (o *ModelSwitch) GetDhcpdConfigOk() (*DhcpdConfigs, bool)`
+
+GetDhcpdConfigOk returns a tuple with the DhcpdConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDhcpdConfig
+
+`func (o *ModelSwitch) SetDhcpdConfig(v DhcpdConfigs)`
+
+SetDhcpdConfig sets DhcpdConfig field to given value.
+
+### HasDhcpdConfig
+
+`func (o *ModelSwitch) HasDhcpdConfig() bool`
+
+HasDhcpdConfig returns a boolean if a field has been set.
 
 ### GetDisableAutoConfig
 

@@ -46,8 +46,8 @@ Name | Type | Description | Notes
 **AclPolicies** | Pointer to [**[]AclPolicy**](AclPolicy.md) |  | [optional] 
 **AclTags** | Pointer to [**map[string]AclTag**](AclTag.md) | ACL Tags to identify traffic source or destination. Key name is the tag name | [optional] 
 **AdditionalConfigCmds** | Pointer to **[]string** | additional CLI commands to append to the generated Junos config  **Note**: no check is done | [optional] 
-**DhcpConfig** | Pointer to [**DhcpdConfigs**](DhcpdConfigs.md) |  | [optional] 
 **DhcpSnooping** | Pointer to [**DhcpSnooping**](DhcpSnooping.md) |  | [optional] 
+**DhcpdConfig** | Pointer to [**DhcpdConfigs**](DhcpdConfigs.md) |  | [optional] 
 **DisableAutoConfig** | Pointer to **bool** | for a claimed switch, we control the configs by default. This option (disables the behavior) | [optional] [default to false]
 **DnsServers** | Pointer to **[]string** | Global dns settings. To keep compatibility, dns settings in &#x60;ip_config&#x60; and &#x60;oob_ip_config&#x60; will overwrite this setting | [optional] 
 **DnsSuffix** | Pointer to **[]string** | Global dns settings. To keep compatibility, dns settings in &#x60;ip_config&#x60; and &#x60;oob_ip_config&#x60; will overwrite this setting | [optional] 
@@ -74,7 +74,6 @@ Name | Type | Description | Notes
 **VrfConfig** | Pointer to [**VrfConfig**](VrfConfig.md) |  | [optional] 
 **VrfInstances** | Pointer to [**map[string]VrfInstance**](VrfInstance.md) | Property key is the network name | [optional] 
 **VrrpConfig** | Pointer to [**VrrpConfig**](VrrpConfig.md) |  | [optional] 
-**DhcpdConfig** | Pointer to [**DhcpdConfigs**](DhcpdConfigs.md) |  | [optional] 
 **MspId** | Pointer to **string** |  | [optional] [readonly] 
 
 ## Methods
@@ -1146,31 +1145,6 @@ SetAdditionalConfigCmds sets AdditionalConfigCmds field to given value.
 
 HasAdditionalConfigCmds returns a boolean if a field has been set.
 
-### GetDhcpConfig
-
-`func (o *ConfigDevice) GetDhcpConfig() DhcpdConfigs`
-
-GetDhcpConfig returns the DhcpConfig field if non-nil, zero value otherwise.
-
-### GetDhcpConfigOk
-
-`func (o *ConfigDevice) GetDhcpConfigOk() (*DhcpdConfigs, bool)`
-
-GetDhcpConfigOk returns a tuple with the DhcpConfig field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDhcpConfig
-
-`func (o *ConfigDevice) SetDhcpConfig(v DhcpdConfigs)`
-
-SetDhcpConfig sets DhcpConfig field to given value.
-
-### HasDhcpConfig
-
-`func (o *ConfigDevice) HasDhcpConfig() bool`
-
-HasDhcpConfig returns a boolean if a field has been set.
-
 ### GetDhcpSnooping
 
 `func (o *ConfigDevice) GetDhcpSnooping() DhcpSnooping`
@@ -1195,6 +1169,31 @@ SetDhcpSnooping sets DhcpSnooping field to given value.
 `func (o *ConfigDevice) HasDhcpSnooping() bool`
 
 HasDhcpSnooping returns a boolean if a field has been set.
+
+### GetDhcpdConfig
+
+`func (o *ConfigDevice) GetDhcpdConfig() DhcpdConfigs`
+
+GetDhcpdConfig returns the DhcpdConfig field if non-nil, zero value otherwise.
+
+### GetDhcpdConfigOk
+
+`func (o *ConfigDevice) GetDhcpdConfigOk() (*DhcpdConfigs, bool)`
+
+GetDhcpdConfigOk returns a tuple with the DhcpdConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDhcpdConfig
+
+`func (o *ConfigDevice) SetDhcpdConfig(v DhcpdConfigs)`
+
+SetDhcpdConfig sets DhcpdConfig field to given value.
+
+### HasDhcpdConfig
+
+`func (o *ConfigDevice) HasDhcpdConfig() bool`
+
+HasDhcpdConfig returns a boolean if a field has been set.
 
 ### GetDisableAutoConfig
 
@@ -1845,31 +1844,6 @@ SetVrrpConfig sets VrrpConfig field to given value.
 `func (o *ConfigDevice) HasVrrpConfig() bool`
 
 HasVrrpConfig returns a boolean if a field has been set.
-
-### GetDhcpdConfig
-
-`func (o *ConfigDevice) GetDhcpdConfig() DhcpdConfigs`
-
-GetDhcpdConfig returns the DhcpdConfig field if non-nil, zero value otherwise.
-
-### GetDhcpdConfigOk
-
-`func (o *ConfigDevice) GetDhcpdConfigOk() (*DhcpdConfigs, bool)`
-
-GetDhcpdConfigOk returns a tuple with the DhcpdConfig field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDhcpdConfig
-
-`func (o *ConfigDevice) SetDhcpdConfig(v DhcpdConfigs)`
-
-SetDhcpdConfig sets DhcpdConfig field to given value.
-
-### HasDhcpdConfig
-
-`func (o *ConfigDevice) HasDhcpdConfig() bool`
-
-HasDhcpdConfig returns a boolean if a field has been set.
 
 ### GetMspId
 

@@ -27,8 +27,8 @@ type ModelSwitch struct {
 	AdditionalConfigCmds []string `json:"additional_config_cmds,omitempty"`
 	CreatedTime *float32 `json:"created_time,omitempty"`
 	DeviceprofileId *string `json:"deviceprofile_id,omitempty"`
-	DhcpConfig *DhcpdConfigs `json:"dhcp_config,omitempty"`
 	DhcpSnooping *DhcpSnooping `json:"dhcp_snooping,omitempty"`
+	DhcpdConfig *DhcpdConfigs `json:"dhcpd_config,omitempty"`
 	// for a claimed switch, we control the configs by default. This option (disables the behavior)
 	DisableAutoConfig *bool `json:"disable_auto_config,omitempty"`
 	// Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
@@ -286,38 +286,6 @@ func (o *ModelSwitch) SetDeviceprofileId(v string) {
 	o.DeviceprofileId = &v
 }
 
-// GetDhcpConfig returns the DhcpConfig field value if set, zero value otherwise.
-func (o *ModelSwitch) GetDhcpConfig() DhcpdConfigs {
-	if o == nil || IsNil(o.DhcpConfig) {
-		var ret DhcpdConfigs
-		return ret
-	}
-	return *o.DhcpConfig
-}
-
-// GetDhcpConfigOk returns a tuple with the DhcpConfig field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ModelSwitch) GetDhcpConfigOk() (*DhcpdConfigs, bool) {
-	if o == nil || IsNil(o.DhcpConfig) {
-		return nil, false
-	}
-	return o.DhcpConfig, true
-}
-
-// HasDhcpConfig returns a boolean if a field has been set.
-func (o *ModelSwitch) HasDhcpConfig() bool {
-	if o != nil && !IsNil(o.DhcpConfig) {
-		return true
-	}
-
-	return false
-}
-
-// SetDhcpConfig gets a reference to the given DhcpdConfigs and assigns it to the DhcpConfig field.
-func (o *ModelSwitch) SetDhcpConfig(v DhcpdConfigs) {
-	o.DhcpConfig = &v
-}
-
 // GetDhcpSnooping returns the DhcpSnooping field value if set, zero value otherwise.
 func (o *ModelSwitch) GetDhcpSnooping() DhcpSnooping {
 	if o == nil || IsNil(o.DhcpSnooping) {
@@ -348,6 +316,38 @@ func (o *ModelSwitch) HasDhcpSnooping() bool {
 // SetDhcpSnooping gets a reference to the given DhcpSnooping and assigns it to the DhcpSnooping field.
 func (o *ModelSwitch) SetDhcpSnooping(v DhcpSnooping) {
 	o.DhcpSnooping = &v
+}
+
+// GetDhcpdConfig returns the DhcpdConfig field value if set, zero value otherwise.
+func (o *ModelSwitch) GetDhcpdConfig() DhcpdConfigs {
+	if o == nil || IsNil(o.DhcpdConfig) {
+		var ret DhcpdConfigs
+		return ret
+	}
+	return *o.DhcpdConfig
+}
+
+// GetDhcpdConfigOk returns a tuple with the DhcpdConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelSwitch) GetDhcpdConfigOk() (*DhcpdConfigs, bool) {
+	if o == nil || IsNil(o.DhcpdConfig) {
+		return nil, false
+	}
+	return o.DhcpdConfig, true
+}
+
+// HasDhcpdConfig returns a boolean if a field has been set.
+func (o *ModelSwitch) HasDhcpdConfig() bool {
+	if o != nil && !IsNil(o.DhcpdConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetDhcpdConfig gets a reference to the given DhcpdConfigs and assigns it to the DhcpdConfig field.
+func (o *ModelSwitch) SetDhcpdConfig(v DhcpdConfigs) {
+	o.DhcpdConfig = &v
 }
 
 // GetDisableAutoConfig returns the DisableAutoConfig field value if set, zero value otherwise.
@@ -1749,11 +1749,11 @@ func (o ModelSwitch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DeviceprofileId) {
 		toSerialize["deviceprofile_id"] = o.DeviceprofileId
 	}
-	if !IsNil(o.DhcpConfig) {
-		toSerialize["dhcp_config"] = o.DhcpConfig
-	}
 	if !IsNil(o.DhcpSnooping) {
 		toSerialize["dhcp_snooping"] = o.DhcpSnooping
+	}
+	if !IsNil(o.DhcpdConfig) {
+		toSerialize["dhcpd_config"] = o.DhcpdConfig
 	}
 	if !IsNil(o.DisableAutoConfig) {
 		toSerialize["disable_auto_config"] = o.DisableAutoConfig
@@ -1908,8 +1908,8 @@ func (o *ModelSwitch) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "additional_config_cmds")
 		delete(additionalProperties, "created_time")
 		delete(additionalProperties, "deviceprofile_id")
-		delete(additionalProperties, "dhcp_config")
 		delete(additionalProperties, "dhcp_snooping")
+		delete(additionalProperties, "dhcpd_config")
 		delete(additionalProperties, "disable_auto_config")
 		delete(additionalProperties, "dns_servers")
 		delete(additionalProperties, "dns_suffix")
