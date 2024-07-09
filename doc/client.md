@@ -14,30 +14,30 @@ The following parameters are configurable for the API Client:
 The API client can be initialized as follows:
 
 ```go
-client := mistapi.NewClient(
-    mistapi.CreateConfiguration(
-        mistapi.WithHttpConfiguration(
-            mistapi.CreateHttpConfiguration(
-                mistapi.WithTimeout(0),
+client := mistapigo.NewClient(
+    mistapigo.CreateConfiguration(
+        mistapigo.WithHttpConfiguration(
+            mistapigo.CreateHttpConfiguration(
+                mistapigo.WithTimeout(0),
             ),
         ),
-        mistapi.WithEnvironment(mistapi.MIST_GLOBAL_01),
-        mistapi.WithApiTokenCredentials(
-            mistapi.NewApiTokenCredentials("Authorization"),
+        mistapigo.WithEnvironment(mistapigo.MIST_GLOBAL_01),
+        mistapigo.WithApiTokenCredentials(
+            mistapigo.NewApiTokenCredentials("Authorization"),
         ),
-        mistapi.WithBasicAuthCredentials(
-            mistapi.NewBasicAuthCredentials(
+        mistapigo.WithBasicAuthCredentials(
+            mistapigo.NewBasicAuthCredentials(
                 "Username",
                 "Password",
             ),
         ),
-        mistapi.WithLoggerConfiguration(
-            mistapi.WithLevel("info"),
-            mistapi.WithRequestConfiguration(
-                mistapi.WithRequestBody(true),
+        mistapigo.WithLoggerConfiguration(
+            mistapigo.WithLevel("info"),
+            mistapigo.WithRequestConfiguration(
+                mistapigo.WithRequestBody(true),
             ),
-            mistapi.WithResponseConfiguration(
-                mistapi.WithResponseHeaders(true),
+            mistapigo.WithResponseConfiguration(
+                mistapigo.WithResponseHeaders(true),
             ),
         ),
     ),

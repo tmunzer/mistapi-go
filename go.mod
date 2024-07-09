@@ -1,4 +1,4 @@
-module github.com/tmunzer/mistapi
+module github.com/tmunzer/mistapi-go
 
 go 1.18
 

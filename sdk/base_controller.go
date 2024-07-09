@@ -1,7 +1,7 @@
-package mistapi
+package mistapigo
 
 import (
-    "github.com/apimatic/go-core-runtime/https"
+	"github.com/apimatic/go-core-runtime/https"
 )
 
 // callBuilderFactory is an interface that defines a method to get a CallBuilderFactory.

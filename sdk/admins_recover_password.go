@@ -1,4 +1,4 @@
-package mistapi
+package mistapigo
 
 import (
 	"context"
@@ -6,8 +6,8 @@ import (
 	"net/http"
 
 	"github.com/apimatic/go-core-runtime/https"
-	"github.com/tmunzer/mistapi/sdk/errors"
-	"github.com/tmunzer/mistapi/sdk/models"
+	"github.com/tmunzer/mistapigo/sdk/errors"
+	"github.com/tmunzer/mistapigo/sdk/models"
 )
 
 // AdminsRecoverPassword represents a controller struct.

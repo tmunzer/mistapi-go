@@ -1,4 +1,4 @@
-package mistapi
+package mistapigo
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 
 	"github.com/apimatic/go-core-runtime/https"
 	"github.com/google/uuid"
-	"github.com/tmunzer/mistapi/sdk/errors"
+	"github.com/tmunzer/mistapigo/sdk/errors"
 )
 
 // OrgsSubscriptions represents a controller struct.

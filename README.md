@@ -41,16 +41,16 @@ Resolve all the SDK dependencies, using the `go get` command.
 
 ## Installation
 
-The following section explains how to use the mistapi library in a new project.
+The following section explains how to use the mistapigo library in a new project.
 
 ### 1. Add SDK as a Dependency to the Application
 
 - Add the following lines to your application's `go.mod` file:
 
 ```go
-replace mistapi => ".\\mist-api-go_generic_lib" // local path to the SDK
+replace mistapigo => ".\\mist-api-go_generic_lib" // local path to the SDK
 
-require mistapi v0.0.0
+require mistapigo v0.0.0
 ```
 
 - Resolve the dependencies in the updated `go.mod` file, using the `go get` command.
@@ -72,30 +72,30 @@ The following parameters are configurable for the API Client:
 The API client can be initialized as follows:
 
 ```go
-client := mistapi.NewClient(
-    mistapi.CreateConfiguration(
-        mistapi.WithHttpConfiguration(
-            mistapi.CreateHttpConfiguration(
-                mistapi.WithTimeout(0),
+client := mistapigo.NewClient(
+    mistapigo.CreateConfiguration(
+        mistapigo.WithHttpConfiguration(
+            mistapigo.CreateHttpConfiguration(
+                mistapigo.WithTimeout(0),
             ),
         ),
-        mistapi.WithEnvironment(mistapi.MIST_GLOBAL_01),
-        mistapi.WithApiTokenCredentials(
-            mistapi.NewApiTokenCredentials("Authorization"),
+        mistapigo.WithEnvironment(mistapigo.MIST_GLOBAL_01),
+        mistapigo.WithApiTokenCredentials(
+            mistapigo.NewApiTokenCredentials("Authorization"),
         ),
-        mistapi.WithBasicAuthCredentials(
-            mistapi.NewBasicAuthCredentials(
+        mistapigo.WithBasicAuthCredentials(
+            mistapigo.NewBasicAuthCredentials(
                 "Username",
                 "Password",
             ),
         ),
-        mistapi.WithLoggerConfiguration(
-            mistapi.WithLevel("info"),
-            mistapi.WithRequestConfiguration(
-                mistapi.WithRequestBody(true),
+        mistapigo.WithLoggerConfiguration(
+            mistapigo.WithLevel("info"),
+            mistapigo.WithRequestConfiguration(
+                mistapigo.WithRequestBody(true),
             ),
-            mistapi.WithResponseConfiguration(
-                mistapi.WithResponseHeaders(true),
+            mistapigo.WithResponseConfiguration(
+                mistapigo.WithResponseHeaders(true),
             ),
         ),
     ),
