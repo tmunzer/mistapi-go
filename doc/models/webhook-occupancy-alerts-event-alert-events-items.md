@@ -1,0 +1,35 @@
+
+# Webhook Occupancy Alerts Event Alert Events Items
+
+## Structure
+
+`WebhookOccupancyAlertsEventAlertEventsItems`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `CurrentOccupancy` | `int` | Required | - |
+| `MapId` | `uuid.UUID` | Required | - |
+| `OccupancyLimit` | `int` | Required | - |
+| `OrgId` | `uuid.UUID` | Required | - |
+| `Timestamp` | `float64` | Required | - |
+| `Type` | [`models.WebhookOccupancyAlertTypeEnum`](../../doc/models/webhook-occupancy-alert-type-enum.md) | Required | event type (COMPLIANCE-VIOLATION / COMPLIANCE-OK) |
+| `ZoneId` | `uuid.UUID` | Required | - |
+| `ZoneName` | `string` | Required | - |
+
+## Example (as JSON)
+
+```json
+{
+  "current_occupancy": 78,
+  "map_id": "00002676-0000-0000-0000-000000000000",
+  "occupancy_limit": 186,
+  "org_id": "52b50564-8821-4c3e-97be-5061c7760002",
+  "timestamp": 133.96,
+  "type": "COMPLIANCE-VIOLATION",
+  "zone_id": "00002142-0000-0000-0000-000000000000",
+  "zone_name": "zone_name8"
+}
+```
+

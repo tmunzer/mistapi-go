@@ -1,0 +1,60 @@
+
+# Response Pcap Search
+
+## Structure
+
+`ResponsePcapSearch`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `End` | `int` | Required | - |
+| `Limit` | `int` | Required | - |
+| `Next` | `string` | Required | - |
+| `Results` | [`[]models.ResponsePcapSearchItem`](../../doc/models/response-pcap-search-item.md) | Required | **Constraints**: *Unique Items Required* |
+| `Start` | `int` | Required | - |
+| `Total` | `*int` | Optional | - |
+
+## Example (as JSON)
+
+```json
+{
+  "end": 178,
+  "limit": 248,
+  "next": "next0",
+  "results": [
+    {
+      "duration": 600.0,
+      "format": "stream",
+      "max_num_packets": 1024,
+      "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+      "pcap_aps": {
+        "5c5b35000010": {
+          "band": "6",
+          "bandwidth": "20",
+          "channel": 133,
+          "tcpdump_expression": null
+        }
+      },
+      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
+      "termination_reason": "default",
+      "timestamp": 2.64,
+      "type": "type4",
+      "url": "url0",
+      "ap_macs": [
+        "ap_macs9",
+        "ap_macs8"
+      ],
+      "aps": [
+        "aps7",
+        "aps8"
+      ],
+      "id": "000023ba-0000-0000-0000-000000000000"
+    }
+  ],
+  "start": 136,
+  "total": 86
+}
+```
+

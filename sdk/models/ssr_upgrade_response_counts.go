@@ -1,0 +1,88 @@
+package models
+
+import (
+    "encoding/json"
+    "errors"
+    "strings"
+)
+
+// SsrUpgradeResponseCounts represents a SsrUpgradeResponseCounts struct.
+type SsrUpgradeResponseCounts struct {
+    Failed               int            `json:"failed"`
+    Queued               int            `json:"queued"`
+    Success              int            `json:"success"`
+    Upgrading            int            `json:"upgrading"`
+    AdditionalProperties map[string]any `json:"_"`
+}
+
+// MarshalJSON implements the json.Marshaler interface for SsrUpgradeResponseCounts.
+// It customizes the JSON marshaling process for SsrUpgradeResponseCounts objects.
+func (s SsrUpgradeResponseCounts) MarshalJSON() (
+    []byte,
+    error) {
+    return json.Marshal(s.toMap())
+}
+
+// toMap converts the SsrUpgradeResponseCounts object to a map representation for JSON marshaling.
+func (s SsrUpgradeResponseCounts) toMap() map[string]any {
+    structMap := make(map[string]any)
+    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    structMap["failed"] = s.Failed
+    structMap["queued"] = s.Queued
+    structMap["success"] = s.Success
+    structMap["upgrading"] = s.Upgrading
+    return structMap
+}
+
+// UnmarshalJSON implements the json.Unmarshaler interface for SsrUpgradeResponseCounts.
+// It customizes the JSON unmarshaling process for SsrUpgradeResponseCounts objects.
+func (s *SsrUpgradeResponseCounts) UnmarshalJSON(input []byte) error {
+    var temp ssrUpgradeResponseCounts
+    err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "failed", "queued", "success", "upgrading")
+    if err != nil {
+    	return err
+    }
+    
+    s.AdditionalProperties = additionalProperties
+    s.Failed = *temp.Failed
+    s.Queued = *temp.Queued
+    s.Success = *temp.Success
+    s.Upgrading = *temp.Upgrading
+    return nil
+}
+
+// ssrUpgradeResponseCounts is a temporary struct used for validating the fields of SsrUpgradeResponseCounts.
+type ssrUpgradeResponseCounts  struct {
+    Failed    *int `json:"failed"`
+    Queued    *int `json:"queued"`
+    Success   *int `json:"success"`
+    Upgrading *int `json:"upgrading"`
+}
+
+func (s *ssrUpgradeResponseCounts) validate() error {
+    var errs []string
+    if s.Failed == nil {
+        errs = append(errs, "required field `failed` is missing for type `Ssr_Upgrade_Response_Counts`")
+    }
+    if s.Queued == nil {
+        errs = append(errs, "required field `queued` is missing for type `Ssr_Upgrade_Response_Counts`")
+    }
+    if s.Success == nil {
+        errs = append(errs, "required field `success` is missing for type `Ssr_Upgrade_Response_Counts`")
+    }
+    if s.Upgrading == nil {
+        errs = append(errs, "required field `upgrading` is missing for type `Ssr_Upgrade_Response_Counts`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join(errs, "\n"))
+}

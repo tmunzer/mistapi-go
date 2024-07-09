@@ -1,0 +1,23 @@
+
+# Snmp Vacm Security to Group Content Item
+
+## Structure
+
+`SnmpVacmSecurityToGroupContentItem`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `Group` | `*string` | Optional | refer to group_name under access |
+| `SecurityName` | `*string` | Optional | - |
+
+## Example (as JSON)
+
+```json
+{
+  "group": "group8",
+  "security_name": "security_name0"
+}
+```
+

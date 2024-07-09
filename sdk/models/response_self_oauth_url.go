@@ -1,0 +1,74 @@
+package models
+
+import (
+    "encoding/json"
+    "errors"
+    "strings"
+)
+
+// ResponseSelfOauthUrl represents a ResponseSelfOauthUrl struct.
+type ResponseSelfOauthUrl struct {
+    AuthorizationUrl     string         `json:"authorization_url"`
+    Linked               bool           `json:"linked"`
+    AdditionalProperties map[string]any `json:"_"`
+}
+
+// MarshalJSON implements the json.Marshaler interface for ResponseSelfOauthUrl.
+// It customizes the JSON marshaling process for ResponseSelfOauthUrl objects.
+func (r ResponseSelfOauthUrl) MarshalJSON() (
+    []byte,
+    error) {
+    return json.Marshal(r.toMap())
+}
+
+// toMap converts the ResponseSelfOauthUrl object to a map representation for JSON marshaling.
+func (r ResponseSelfOauthUrl) toMap() map[string]any {
+    structMap := make(map[string]any)
+    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    structMap["authorization_url"] = r.AuthorizationUrl
+    structMap["linked"] = r.Linked
+    return structMap
+}
+
+// UnmarshalJSON implements the json.Unmarshaler interface for ResponseSelfOauthUrl.
+// It customizes the JSON unmarshaling process for ResponseSelfOauthUrl objects.
+func (r *ResponseSelfOauthUrl) UnmarshalJSON(input []byte) error {
+    var temp responseSelfOauthUrl
+    err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "authorization_url", "linked")
+    if err != nil {
+    	return err
+    }
+    
+    r.AdditionalProperties = additionalProperties
+    r.AuthorizationUrl = *temp.AuthorizationUrl
+    r.Linked = *temp.Linked
+    return nil
+}
+
+// responseSelfOauthUrl is a temporary struct used for validating the fields of ResponseSelfOauthUrl.
+type responseSelfOauthUrl  struct {
+    AuthorizationUrl *string `json:"authorization_url"`
+    Linked           *bool   `json:"linked"`
+}
+
+func (r *responseSelfOauthUrl) validate() error {
+    var errs []string
+    if r.AuthorizationUrl == nil {
+        errs = append(errs, "required field `authorization_url` is missing for type `Response_Self_Oauth_Url`")
+    }
+    if r.Linked == nil {
+        errs = append(errs, "required field `linked` is missing for type `Response_Self_Oauth_Url`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join(errs, "\n"))
+}

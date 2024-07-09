@@ -1,0 +1,677 @@
+# Orgs Tickets
+
+```go
+orgsTickets := client.OrgsTickets()
+```
+
+## Class Name
+
+`OrgsTickets`
+
+## Methods
+
+* [Add Org Ticket Comment](../../doc/controllers/orgs-tickets.md#add-org-ticket-comment)
+* [Count Org Tickets](../../doc/controllers/orgs-tickets.md#count-org-tickets)
+* [Create Org Ticket](../../doc/controllers/orgs-tickets.md#create-org-ticket)
+* [Get Org Ticket](../../doc/controllers/orgs-tickets.md#get-org-ticket)
+* [Get Org Ticket Attachment](../../doc/controllers/orgs-tickets.md#get-org-ticket-attachment)
+* [List Org Tickets](../../doc/controllers/orgs-tickets.md#list-org-tickets)
+* [Update Org Ticket](../../doc/controllers/orgs-tickets.md#update-org-ticket)
+* [Uploadrg Ticket Attachment](../../doc/controllers/orgs-tickets.md#uploadrg-ticket-attachment)
+
+
+# Add Org Ticket Comment
+
+Add Comment to support ticket
+
+```go
+AddOrgTicketComment(
+    ctx context.Context,
+    orgId uuid.UUID,
+    ticketId uuid.UUID,
+    comment *string,
+    file *models.FileWrapper) (
+    models.ApiResponse[models.Ticket],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `ticketId` | `uuid.UUID` | Template, Required | - |
+| `comment` | `*string` | Form, Optional | - |
+| `file` | `*models.FileWrapper` | Form, Optional | - |
+
+## Response Type
+
+[`models.Ticket`](../../doc/models/ticket.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+comment := "this is urgent"
+
+
+
+apiResponse, err := orgsTickets.AddOrgTicketComment(ctx, orgId, ticketId, &comment, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "comments": [
+    {
+      "attachments": [
+        {
+          "content_type": "string",
+          "content_url": "string",
+          "size": 0
+        }
+      ],
+      "author": "string",
+      "comment": "string",
+      "created_at": 0
+    }
+  ],
+  "created_at": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "requester": "string",
+  "status": "open",
+  "subject": "string",
+  "type": "string",
+  "updated_at": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# Count Org Tickets
+
+Count Org Tickets
+
+```go
+CountOrgTickets(
+    ctx context.Context,
+    orgId uuid.UUID,
+    distinct *models.OrgTicketsCountDistinctEnum) (
+    models.ApiResponse[models.RepsonseCount],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `distinct` | [`*models.OrgTicketsCountDistinctEnum`](../../doc/models/org-tickets-count-distinct-enum.md) | Query, Optional | - |
+
+## Response Type
+
+[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+distinct := models.OrgTicketsCountDistinctEnum("status")
+
+apiResponse, err := orgsTickets.CountOrgTickets(ctx, orgId, &distinct)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "distinct": "string",
+  "end": 0,
+  "limit": 0,
+  "results": [
+    {
+      "count": 0,
+      "property": "string"
+    }
+  ],
+  "start": 0,
+  "total": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# Create Org Ticket
+
+Create a support ticket
+
+```go
+CreateOrgTicket(
+    ctx context.Context,
+    orgId uuid.UUID,
+    body *models.Ticket) (
+    models.ApiResponse[models.Ticket],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.Ticket`](../../doc/models/ticket.md) | Body, Optional | Request Body |
+
+## Response Type
+
+[`models.Ticket`](../../doc/models/ticket.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.Ticket{
+    Subject:        "string",
+    Type:           "question",
+}
+
+apiResponse, err := orgsTickets.CreateOrgTicket(ctx, orgId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "comments": [
+    {
+      "attachments": [
+        {
+          "content_type": "string",
+          "content_url": "string",
+          "size": 0
+        }
+      ],
+      "author": "string",
+      "comment": "string",
+      "created_at": 0
+    }
+  ],
+  "created_at": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "requester": "string",
+  "status": "open",
+  "subject": "string",
+  "type": "string",
+  "updated_at": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# Get Org Ticket
+
+Get support ticket details
+
+```go
+GetOrgTicket(
+    ctx context.Context,
+    orgId uuid.UUID,
+    ticketId uuid.UUID,
+    start *int,
+    end *int,
+    duration *string) (
+    models.ApiResponse[models.Ticket],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `ticketId` | `uuid.UUID` | Template, Required | - |
+| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+
+## Response Type
+
+[`models.Ticket`](../../doc/models/ticket.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+
+
+duration := "10m"
+
+apiResponse, err := orgsTickets.GetOrgTicket(ctx, orgId, ticketId, nil, nil, &duration)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "comments": [
+    {
+      "attachments": [
+        {
+          "content_type": "string",
+          "content_url": "string",
+          "size": 0
+        }
+      ],
+      "author": "string",
+      "comment": "string",
+      "created_at": 0
+    }
+  ],
+  "created_at": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "requester": "string",
+  "status": "open",
+  "subject": "string",
+  "type": "string",
+  "updated_at": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# Get Org Ticket Attachment
+
+Get Org ticket Attachment
+
+```go
+GetOrgTicketAttachment(
+    ctx context.Context,
+    orgId uuid.UUID,
+    ticketId uuid.UUID,
+    attachmentId uuid.UUID,
+    start *int,
+    end *int,
+    duration *string) (
+    models.ApiResponse[models.TicketAttachment],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `ticketId` | `uuid.UUID` | Template, Required | - |
+| `attachmentId` | `uuid.UUID` | Template, Required | - |
+| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+
+## Response Type
+
+[`models.TicketAttachment`](../../doc/models/ticket-attachment.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+attachmentId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+
+
+duration := "10m"
+
+apiResponse, err := orgsTickets.GetOrgTicketAttachment(ctx, orgId, ticketId, attachmentId, nil, nil, &duration)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "content_url": "https://my-attachments.s3.amazonaws.com/test/attachments/crash.log?AWSAccessKeyId=AKIAIOSFODNN7EXAMPLE&x-amz-security-token=eHl6&Signature=YWJj&Expires=1692936685"
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# List Org Tickets
+
+Get List of Tickets of an Org
+
+```go
+ListOrgTickets(
+    ctx context.Context,
+    orgId uuid.UUID,
+    start *int,
+    end *int,
+    duration *string) (
+    models.ApiResponse[[]models.Ticket],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+
+## Response Type
+
+[`[]models.Ticket`](../../doc/models/ticket.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+
+
+duration := "10m"
+
+apiResponse, err := orgsTickets.ListOrgTickets(ctx, orgId, nil, nil, &duration)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "comments": [
+      {
+        "attachments": [
+          {
+            "content_type": "string",
+            "content_url": "string",
+            "size": 0
+          }
+        ],
+        "author": "string",
+        "comment": "string",
+        "created_at": 0
+      }
+    ],
+    "created_at": 0,
+    "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+    "requester": "string",
+    "status": "open",
+    "subject": "string",
+    "type": "string",
+    "updated_at": 0
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# Update Org Ticket
+
+Update support ticket
+
+```go
+UpdateOrgTicket(
+    ctx context.Context,
+    orgId uuid.UUID,
+    ticketId uuid.UUID,
+    body *models.Ticket) (
+    models.ApiResponse[models.Ticket],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `ticketId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.Ticket`](../../doc/models/ticket.md) | Body, Optional | Request Body |
+
+## Response Type
+
+[`models.Ticket`](../../doc/models/ticket.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.Ticket{
+    Subject:        "string",
+    Type:           "question",
+}
+
+apiResponse, err := orgsTickets.UpdateOrgTicket(ctx, orgId, ticketId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "comments": [
+    {
+      "attachments": [
+        {
+          "content_type": "string",
+          "content_url": "string",
+          "size": 0
+        }
+      ],
+      "author": "string",
+      "comment": "string",
+      "created_at": 0
+    }
+  ],
+  "created_at": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "requester": "string",
+  "status": "open",
+  "subject": "string",
+  "type": "string",
+  "updated_at": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# Uploadrg Ticket Attachment
+
+Get Org ticket Attachment
+
+```go
+UploadrgTicketAttachment(
+    ctx context.Context,
+    orgId uuid.UUID,
+    ticketId uuid.UUID,
+    file *models.FileWrapper) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `ticketId` | `uuid.UUID` | Template, Required | - |
+| `file` | `*models.FileWrapper` | Form, Optional | ekahau or ibwave file |
+
+## Response Type
+
+``
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+resp, err := orgsTickets.UploadrgTicketAttachment(ctx, orgId, ticketId, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+

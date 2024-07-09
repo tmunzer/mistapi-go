@@ -1,0 +1,35 @@
+
+# Utils Show Forwarding Table
+
+## Structure
+
+`UtilsShowForwardingTable`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA |
+| `Prefix` | `*string` | Optional | IP Prefix |
+| `ServiceIp` | `*string` | Optional | only supported with SSR |
+| `ServiceName` | `*string` | Optional | only supported with SSR |
+| `ServicePort` | `*int` | Optional | only supported with SSR |
+| `ServiceProtocol` | `*string` | Optional | only supported with SSR |
+| `ServiceTenant` | `*string` | Optional | only supported with SSR |
+| `Vrf` | `*string` | Optional | VRF Name |
+
+## Example (as JSON)
+
+```json
+{
+  "prefix": "3.1.1.0/24",
+  "service_ip": "3.1.1.10",
+  "service_name": "internet-wan_and_lte",
+  "service_port": 32768,
+  "service_protocol": "udp",
+  "service_tenant": "branch1-wifi-mgt",
+  "vrf": "guest",
+  "node": "node0"
+}
+```
+

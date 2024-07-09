@@ -1,0 +1,95 @@
+package models
+
+import (
+    "encoding/json"
+    "errors"
+    "strings"
+)
+
+// ResponseEventsRrm represents a ResponseEventsRrm struct.
+type ResponseEventsRrm struct {
+    End                  int            `json:"end"`
+    Limit                int            `json:"limit"`
+    // the link to query next set of results. value is null if no next page exists.
+    Next                 *string        `json:"next,omitempty"`
+    Results              []RrmEvent     `json:"results"`
+    Start                int            `json:"start"`
+    AdditionalProperties map[string]any `json:"_"`
+}
+
+// MarshalJSON implements the json.Marshaler interface for ResponseEventsRrm.
+// It customizes the JSON marshaling process for ResponseEventsRrm objects.
+func (r ResponseEventsRrm) MarshalJSON() (
+    []byte,
+    error) {
+    return json.Marshal(r.toMap())
+}
+
+// toMap converts the ResponseEventsRrm object to a map representation for JSON marshaling.
+func (r ResponseEventsRrm) toMap() map[string]any {
+    structMap := make(map[string]any)
+    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    structMap["end"] = r.End
+    structMap["limit"] = r.Limit
+    if r.Next != nil {
+        structMap["next"] = r.Next
+    }
+    structMap["results"] = r.Results
+    structMap["start"] = r.Start
+    return structMap
+}
+
+// UnmarshalJSON implements the json.Unmarshaler interface for ResponseEventsRrm.
+// It customizes the JSON unmarshaling process for ResponseEventsRrm objects.
+func (r *ResponseEventsRrm) UnmarshalJSON(input []byte) error {
+    var temp responseEventsRrm
+    err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "limit", "next", "results", "start")
+    if err != nil {
+    	return err
+    }
+    
+    r.AdditionalProperties = additionalProperties
+    r.End = *temp.End
+    r.Limit = *temp.Limit
+    r.Next = temp.Next
+    r.Results = *temp.Results
+    r.Start = *temp.Start
+    return nil
+}
+
+// responseEventsRrm is a temporary struct used for validating the fields of ResponseEventsRrm.
+type responseEventsRrm  struct {
+    End     *int        `json:"end"`
+    Limit   *int        `json:"limit"`
+    Next    *string     `json:"next,omitempty"`
+    Results *[]RrmEvent `json:"results"`
+    Start   *int        `json:"start"`
+}
+
+func (r *responseEventsRrm) validate() error {
+    var errs []string
+    if r.End == nil {
+        errs = append(errs, "required field `end` is missing for type `Response_Events_Rrm`")
+    }
+    if r.Limit == nil {
+        errs = append(errs, "required field `limit` is missing for type `Response_Events_Rrm`")
+    }
+    if r.Results == nil {
+        errs = append(errs, "required field `results` is missing for type `Response_Events_Rrm`")
+    }
+    if r.Start == nil {
+        errs = append(errs, "required field `start` is missing for type `Response_Events_Rrm`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join(errs, "\n"))
+}

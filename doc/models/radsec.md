@@ -1,0 +1,42 @@
+
+# Radsec
+
+Radsec settings
+
+## Structure
+
+`Radsec`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `CoaEnabled` | `*bool` | Optional | **Default**: `false` |
+| `Enabled` | `*bool` | Optional | - |
+| `IdleTimeout` | `*int` | Optional | - |
+| `MxclusterIds` | `[]uuid.UUID` | Optional | To use Org mxedges when this WLAN does not use mxtunnel, specify their mxcluster_ids.<br>Org mxedge(s) identified by mxcluster_ids |
+| `ProxyHosts` | `[]string` | Optional | default is site.mxedge.radsec.proxy_hosts which must be a superset of all wlans[*].radsec.proxy_hosts<br>when radsec.proxy_hosts are not used, tunnel peers (org or site mxedges) are used irrespective of use_site_mxedge |
+| `ServerName` | `*string` | Optional | name of the server to verify (against the cacerts in Org Setting). Only if not Mist Edge. |
+| `Servers` | [`[]models.RadsecServer`](../../doc/models/radsec-server.md) | Optional | List of Radsec Servers. Only if not Mist Edge.<br>**Constraints**: *Unique Items Required* |
+| `UseMxedge` | `*bool` | Optional | use mxedge(s) as radsecproxy |
+| `UseSiteMxedge` | `*bool` | Optional | To use Site mxedges when this WLAN does not use mxtunnel<br>**Default**: `false` |
+
+## Example (as JSON)
+
+```json
+{
+  "coa_enabled": false,
+  "idle_timeout": 60,
+  "server_name": "radsec.abc.com",
+  "use_site_mxedge": false,
+  "enabled": false,
+  "mxcluster_ids": [
+    "00000537-0000-0000-0000-000000000000"
+  ],
+  "proxy_hosts": [
+    "proxy_hosts4",
+    "proxy_hosts3"
+  ]
+}
+```
+

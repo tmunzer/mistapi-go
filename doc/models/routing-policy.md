@@ -1,0 +1,106 @@
+
+# Routing Policy
+
+## Structure
+
+`RoutingPolicy`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `Terms` | [`[]models.RoutingPolicyTerm`](../../doc/models/routing-policy-term.md) | Optional | zero or more criteria/filter can be specified to match the term, all criteria have to be met<br>**Constraints**: *Unique Items Required* |
+
+## Example (as JSON)
+
+```json
+{
+  "terms": [
+    {
+      "action": {
+        "accept": false,
+        "add_community": [
+          "add_community9"
+        ],
+        "add_target_vrfs": [
+          "add_target_vrfs9",
+          "add_target_vrfs8"
+        ],
+        "community": [
+          "community8",
+          "community9",
+          "community0"
+        ],
+        "exclude_as_path": [
+          "exclude_as_path4"
+        ]
+      },
+      "matching": {
+        "as_path": [
+          "as_path2"
+        ],
+        "community": [
+          "community4"
+        ],
+        "network": [
+          "network7",
+          "network8",
+          "network9"
+        ],
+        "prefix": [
+          "prefix5",
+          "prefix6",
+          "prefix7"
+        ],
+        "protocol": [
+          "protocol5",
+          "protocol6"
+        ]
+      }
+    },
+    {
+      "action": {
+        "accept": false,
+        "add_community": [
+          "add_community9"
+        ],
+        "add_target_vrfs": [
+          "add_target_vrfs9",
+          "add_target_vrfs8"
+        ],
+        "community": [
+          "community8",
+          "community9",
+          "community0"
+        ],
+        "exclude_as_path": [
+          "exclude_as_path4"
+        ]
+      },
+      "matching": {
+        "as_path": [
+          "as_path2"
+        ],
+        "community": [
+          "community4"
+        ],
+        "network": [
+          "network7",
+          "network8",
+          "network9"
+        ],
+        "prefix": [
+          "prefix5",
+          "prefix6",
+          "prefix7"
+        ],
+        "protocol": [
+          "protocol5",
+          "protocol6"
+        ]
+      }
+    }
+  ]
+}
+```
+

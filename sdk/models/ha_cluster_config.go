@@ -1,0 +1,73 @@
+package models
+
+import (
+    "encoding/json"
+    "github.com/google/uuid"
+)
+
+// HaClusterConfig represents a HaClusterConfig struct.
+type HaClusterConfig struct {
+    // if the device is claimed
+    DisableAutoConfig    *bool                 `json:"disable_auto_config,omitempty"`
+    // if the device is adopted
+    Managed              *bool                 `json:"managed,omitempty"`
+    Nodes                []HaClusterConfigNode `json:"nodes,omitempty"`
+    SiteId               *uuid.UUID            `json:"site_id,omitempty"`
+    AdditionalProperties map[string]any        `json:"_"`
+}
+
+// MarshalJSON implements the json.Marshaler interface for HaClusterConfig.
+// It customizes the JSON marshaling process for HaClusterConfig objects.
+func (h HaClusterConfig) MarshalJSON() (
+    []byte,
+    error) {
+    return json.Marshal(h.toMap())
+}
+
+// toMap converts the HaClusterConfig object to a map representation for JSON marshaling.
+func (h HaClusterConfig) toMap() map[string]any {
+    structMap := make(map[string]any)
+    MapAdditionalProperties(structMap, h.AdditionalProperties)
+    if h.DisableAutoConfig != nil {
+        structMap["disable_auto_config"] = h.DisableAutoConfig
+    }
+    if h.Managed != nil {
+        structMap["managed"] = h.Managed
+    }
+    if h.Nodes != nil {
+        structMap["nodes"] = h.Nodes
+    }
+    if h.SiteId != nil {
+        structMap["site_id"] = h.SiteId
+    }
+    return structMap
+}
+
+// UnmarshalJSON implements the json.Unmarshaler interface for HaClusterConfig.
+// It customizes the JSON unmarshaling process for HaClusterConfig objects.
+func (h *HaClusterConfig) UnmarshalJSON(input []byte) error {
+    var temp haClusterConfig
+    err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "disable_auto_config", "managed", "nodes", "site_id")
+    if err != nil {
+    	return err
+    }
+    
+    h.AdditionalProperties = additionalProperties
+    h.DisableAutoConfig = temp.DisableAutoConfig
+    h.Managed = temp.Managed
+    h.Nodes = temp.Nodes
+    h.SiteId = temp.SiteId
+    return nil
+}
+
+// haClusterConfig is a temporary struct used for validating the fields of HaClusterConfig.
+type haClusterConfig  struct {
+    DisableAutoConfig *bool                 `json:"disable_auto_config,omitempty"`
+    Managed           *bool                 `json:"managed,omitempty"`
+    Nodes             []HaClusterConfigNode `json:"nodes,omitempty"`
+    SiteId            *uuid.UUID            `json:"site_id,omitempty"`
+}

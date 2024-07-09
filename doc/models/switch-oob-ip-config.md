@@ -1,0 +1,36 @@
+
+# Switch Oob Ip Config
+
+- If HA configuration: key parameter will be nodeX (eg: node1)
+- If there are 2 routing engines, re1 mgmt IP has to be set separately (if desired): key parameter = `re1`
+
+## Structure
+
+`SwitchOobIpConfig`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `Gateway` | `*string` | Optional | - |
+| `Ip` | `*string` | Optional | - |
+| `Netmask` | `*string` | Optional | used only if `subnet` is not specified in `networks` |
+| `Network` | `*string` | Optional | optional, the network to be used for mgmt |
+| `Type` | [`*models.IpConfigTypeEnum`](../../doc/models/ip-config-type-enum.md) | Optional | **Default**: `"dynamic"` |
+| `UseMgmtVrf` | `*bool` | Optional | f supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
+| `UseMgmtVrfForHostOut` | `*bool` | Optional | for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired,<br>**Default**: `false` |
+
+## Example (as JSON)
+
+```json
+{
+  "type": "dynamic",
+  "use_mgmt_vrf": false,
+  "use_mgmt_vrf_for_host_out": false,
+  "gateway": "gateway6",
+  "ip": "ip0",
+  "netmask": "netmask6",
+  "network": "network8"
+}
+```
+
