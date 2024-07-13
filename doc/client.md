@@ -10,34 +10,38 @@ The following parameters are configurable for the API Client:
 | `loggerConfiguration` | [`LoggerConfiguration`](logger-configuration.md) | Represents the logger configurations for API calls |
 | `apiTokenCredentials` | [`ApiTokenCredentials`](auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
 | `basicAuthCredentials` | [`BasicAuthCredentials`](auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
+| `csrfTokenCredentials` | [`CsrfTokenCredentials`](auth/custom-header-signature-1.md) | The Credentials Setter for Custom Header Signature |
 
 The API client can be initialized as follows:
 
 ```go
-client := mistapigo.NewClient(
-    mistapigo.CreateConfiguration(
-        mistapigo.WithHttpConfiguration(
-            mistapigo.CreateHttpConfiguration(
-                mistapigo.WithTimeout(0),
+client := mistapi.NewClient(
+    mistapi.CreateConfiguration(
+        mistapi.WithHttpConfiguration(
+            mistapi.CreateHttpConfiguration(
+                mistapi.WithTimeout(0),
             ),
         ),
-        mistapigo.WithEnvironment(mistapigo.MIST_GLOBAL_01),
-        mistapigo.WithApiTokenCredentials(
-            mistapigo.NewApiTokenCredentials("Authorization"),
+        mistapi.WithEnvironment(mistapi.MIST_GLOBAL_01),
+        mistapi.WithApiTokenCredentials(
+            mistapi.NewApiTokenCredentials("Authorization"),
         ),
-        mistapigo.WithBasicAuthCredentials(
-            mistapigo.NewBasicAuthCredentials(
+        mistapi.WithBasicAuthCredentials(
+            mistapi.NewBasicAuthCredentials(
                 "Username",
                 "Password",
             ),
         ),
-        mistapigo.WithLoggerConfiguration(
-            mistapigo.WithLevel("info"),
-            mistapigo.WithRequestConfiguration(
-                mistapigo.WithRequestBody(true),
+        mistapi.WithCsrfTokenCredentials(
+            mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
+        ),
+        mistapi.WithLoggerConfiguration(
+            mistapi.WithLevel("info"),
+            mistapi.WithRequestConfiguration(
+                mistapi.WithRequestBody(true),
             ),
-            mistapigo.WithResponseConfiguration(
-                mistapigo.WithResponseHeaders(true),
+            mistapi.WithResponseConfiguration(
+                mistapi.WithResponseHeaders(true),
             ),
         ),
     ),

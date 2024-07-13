@@ -9,7 +9,6 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `*string` | Optional | - |
 | `Info` | [`*models.ApStatsAutoPlacementInfo`](../../doc/models/ap-stats-auto-placement-info.md) | Optional | Additional information about auto placements AP data |
 | `RecommendedAnchor` | `*bool` | Optional | Flag to represent if AP is recommended as an anchor by auto placement service |
 | `Status` | `*string` | Optional | Basic Placement Status |
@@ -24,7 +23,6 @@
 
 ```json
 {
-  "_id": "5c5b35000010",
   "status": "localized",
   "status_detail": "localized",
   "x": 53.5,
@@ -40,7 +38,8 @@
       "x": 93.54
     }
   },
-  "recommended_anchor": false
+  "recommended_anchor": false,
+  "use_auto_placement": false
 }
 ```
 

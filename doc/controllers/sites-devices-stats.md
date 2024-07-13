@@ -547,7 +547,7 @@ GetSiteDeviceStats(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID) (
-    models.ApiResponse[models.StatsDevice2],
+    models.ApiResponse[models.GetSiteDeviceStatsResponse],
     error)
 ```
 
@@ -560,7 +560,7 @@ GetSiteDeviceStats(
 
 ## Response Type
 
-[`models.StatsDevice2`](../../doc/models/containers/stats-device-2.md)
+[`models.GetSiteDeviceStatsResponse`](../../doc/models/containers/get-site-device-stats-response.md)
 
 ## Example Usage
 
@@ -586,6 +586,207 @@ if err != nil {
     }
 
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "auto_upgrade_stat": {
+    "lastcheck": 1720594762
+  },
+  "ble_stat": {
+    "beacon_enabled": true,
+    "beacon_rate": 4,
+    "eddystone_uid_enabled": false,
+    "eddystone_uid_freq_msec": 1000,
+    "eddystone_uid_instance": "5c5b35d0077b",
+    "eddystone_uid_namespace": "9777c1a06ef611e68bbf",
+    "eddystone_url_enabled": false,
+    "eddystone_url_freq_msec": 1000,
+    "eddystone_url_url": "",
+    "ibeacon_enabled": false,
+    "ibeacon_freq_msec": 1000,
+    "ibeacon_major": 894,
+    "ibeacon_minor": 9328,
+    "ibeacon_uuid": "af010e2b-f829-4975-b49e-2e896ed1d627",
+    "major": 894,
+    "minors": [
+      9328,
+      9329,
+      9330,
+      9331,
+      9332,
+      9333,
+      9334,
+      9335,
+      -1
+    ],
+    "power": 8,
+    "rx_bytes": 158500843,
+    "rx_pkts": 3549163,
+    "tx_bytes": 509640,
+    "tx_pkts": 85411,
+    "tx_resets": 0,
+    "uuid": "af010e2b-f829-4975-b49e-2e896ed1d627"
+  },
+  "config_reverted": false,
+  "cpu_system": 21921854,
+  "cpu_user": 7496631,
+  "cpu_util": 5,
+  "created_time": 1718228350,
+  "env_stat": {
+    "accel_x": -0.092,
+    "accel_y": 0.004,
+    "accel_z": -1.02,
+    "ambient_temp": 43,
+    "attitude": 0,
+    "cpu_temp": 53,
+    "humidity": 9,
+    "magne_x": 0,
+    "magne_y": 0,
+    "magne_z": 0,
+    "pressure": 968,
+    "vcore_voltage": 0
+  },
+  "ext_ip": "66.129.234.28",
+  "hw_rev": "C02",
+  "id": "00000000-0000-0000-1000-5c5b35d0077b",
+  "inactive_wired_vlans": [],
+  "ip": "192.168.95.3",
+  "ip_stat": {
+    "dhcp_server": "192.168.95.1",
+    "dns": [
+      "8.8.8.8"
+    ],
+    "gateway": "192.168.95.1",
+    "ip": "192.168.95.3",
+    "ip6": "fe80:0:0:0:5e5b:35ff:fed0:77b",
+    "ips": {
+      "vlan1": "192.168.95.3/24,fe80:0:0:0:5e5b:35ff:fed0:77b/64"
+    },
+    "netmask": "255.255.255.0",
+    "netmask6": "/64"
+  },
+  "last_seen": 1720595866,
+  "last_trouble": {
+    "code": "07",
+    "timestamp": 1720039666
+  },
+  "lldp_stat": {
+    "chassis_id": "d0:07:ca:f5:21:00",
+    "lldp_med_supported": false,
+    "mgmt_addr": "100.123.105.1",
+    "mgmt_addrs": [
+      "100.123.105.1"
+    ],
+    "port_desc": "ge-0/0/4",
+    "port_id": "ge-0/0/4",
+    "power_allocated": 0,
+    "power_draw": 0,
+    "power_request_count": 0,
+    "power_requested": 0,
+    "system_desc": "Juniper Networks, Inc. ex4300-48t internet router, kernel JUNOS 20.4R3-S7.2, Build date: 2023-04-21 19:47:18 UTC Copyright (c) 1996-2023 Juniper Networks, Inc.",
+    "system_name": "Phoenix-Switch"
+  },
+  "mac": "5c5b35d0077b",
+  "mem_total_kb": 505468,
+  "mem_used_kb": 202096,
+  "model": "AP43",
+  "modified_time": 1718530662,
+  "mount": "faceup",
+  "name": "Phoenix",
+  "notes": "",
+  "num_clients": 1,
+  "org_id": "af010e2b-f829-4975-b49e-2e896ed1d627",
+  "port_stat": {
+    "eth0": {
+      "full_duplex": true,
+      "rx_bytes": 1284143195,
+      "rx_errors": 0,
+      "rx_peak_bps": 17585,
+      "rx_pkts": 5199816,
+      "speed": 1000,
+      "tx_bytes": 1283744961,
+      "tx_peak_bps": 26484,
+      "tx_pkts": 3990463,
+      "up": true
+    },
+    "eth1": {
+      "full_duplex": false,
+      "rx_bytes": 0,
+      "rx_errors": 0,
+      "rx_peak_bps": 0,
+      "rx_pkts": 0,
+      "speed": 0,
+      "tx_bytes": 0,
+      "tx_peak_bps": 0,
+      "tx_pkts": 0,
+      "up": false
+    }
+  },
+  "power_budget": 8400,
+  "power_constrained": false,
+  "power_src": "DC Input",
+  "radio_config": {},
+  "radio_stat": {
+    "band_24": {
+      "bandwidth": 20,
+      "channel": 11,
+      "mac": "5c5b35dea810",
+      "noise_floor": -80,
+      "num_clients": 0,
+      "power": 17,
+      "rx_bytes": 12948211,
+      "rx_pkts": 65292,
+      "tx_bytes": 19071943,
+      "tx_pkts": 76926,
+      "usage": "24",
+      "util_all": 24,
+      "util_non_wifi": 2,
+      "util_rx_in_bss": 0,
+      "util_rx_other_bss": 17,
+      "util_tx": 4,
+      "util_undecodable_wifi": 0,
+      "util_unknown_wifi": 1
+    },
+    "band_5": {
+      "bandwidth": 40,
+      "channel": 36,
+      "mac": "5c5b35dea7f0",
+      "noise_floor": -90,
+      "num_clients": 1,
+      "power": 17,
+      "rx_bytes": 578362619,
+      "rx_pkts": 2687577,
+      "tx_bytes": 1199571353,
+      "tx_pkts": 2479302,
+      "usage": "5",
+      "util_all": 13,
+      "util_non_wifi": 0,
+      "util_rx_in_bss": 0,
+      "util_rx_other_bss": 10,
+      "util_tx": 1,
+      "util_undecodable_wifi": 0,
+      "util_unknown_wifi": 1
+    }
+  },
+  "rx_bps": 9276,
+  "rx_bytes": 591310830,
+  "rx_pkts": 2752869,
+  "serial": "A0703200709E6",
+  "site_id": "46fc665e-9706-4296-8fe2-78f42f2e67e4",
+  "status": "connected",
+  "switch_redundancy": {
+    "num_redundant_aps": 1
+  },
+  "tx_bps": 8067,
+  "tx_bytes": 1218643296,
+  "tx_pkts": 2556228,
+  "type": "ap",
+  "uptime": 1593120,
+  "version": "0.14.29313"
 }
 ```
 
@@ -975,264 +1176,200 @@ if err != nil {
 ```json
 [
   {
-    "ble_config": {
-      "beacon_rate": 3,
-      "beacon_rate_model": "custom",
-      "beam_disabled": [
-        1,
-        3,
-        6
-      ],
-      "power": 10,
-      "power_mode": "custom"
+    "auto_upgrade_stat": {
+      "lastcheck": 1720594762
     },
     "ble_stat": {
-      "beacon_rate": 3,
+      "beacon_enabled": true,
+      "beacon_rate": 4,
       "eddystone_uid_enabled": false,
-      "eddystone_uid_freq_msec": 200,
-      "eddystone_uid_instance": "5c5b35000001",
-      "eddystone_uid_namespace": "2818e3868dec25629ede",
-      "eddystone_url_enabled": true,
-      "eddystone_url_freq_msec": 100,
-      "eddystone_url_url": "https://www.abc.com",
-      "ibeacon_enabled": true,
-      "ibeacon_major": 13,
-      "ibeacon_minor": 138,
-      "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
-      "major": 12345,
+      "eddystone_uid_freq_msec": 1000,
+      "eddystone_uid_instance": "5c5b35d0077b",
+      "eddystone_uid_namespace": "9777c1a06ef611e68bbf",
+      "eddystone_url_enabled": false,
+      "eddystone_url_freq_msec": 1000,
+      "eddystone_url_url": "",
+      "ibeacon_enabled": false,
+      "ibeacon_freq_msec": 1000,
+      "ibeacon_major": 894,
+      "ibeacon_minor": 9328,
+      "ibeacon_uuid": "af010e2b-f829-4975-b49e-2e896ed1d627",
+      "major": 894,
       "minors": [
-        201,
-        202,
-        203,
-        204,
-        205,
-        206,
-        207,
-        208
+        9328,
+        9329,
+        9330,
+        9331,
+        9332,
+        9333,
+        9334,
+        9335,
+        -1
       ],
-      "power": 10,
-      "rx_bytes": 135,
-      "rx_pkts": 135,
-      "tx_bytes": 5231513353,
-      "tx_pkts": 135135135,
+      "power": 8,
+      "rx_bytes": 158500843,
+      "rx_pkts": 3549163,
+      "tx_bytes": 509640,
+      "tx_pkts": 85411,
       "tx_resets": 0,
-      "uuid": "ada72f8f-1643-e5c6-94db-f2a5636f1a64"
+      "uuid": "af010e2b-f829-4975-b49e-2e896ed1d627"
     },
-    "cert_expiry": 1534534392,
-    "ext_ip": "73.92.124.103",
-    "fwupdate": {
-      "progress": 10,
-      "status": "inprogress",
-      "status_id": 5,
-      "timestamp": 1428949501
+    "config_reverted": false,
+    "cpu_system": 21921854,
+    "cpu_user": 7496631,
+    "cpu_util": 5,
+    "created_time": 1718228350,
+    "env_stat": {
+      "accel_x": -0.092,
+      "accel_y": 0.004,
+      "accel_z": -1.02,
+      "ambient_temp": 43,
+      "attitude": 0,
+      "cpu_temp": 53,
+      "humidity": 9,
+      "magne_x": 0,
+      "magne_y": 0,
+      "magne_z": 0,
+      "pressure": 968,
+      "vcore_voltage": 0
     },
-    "iot_stat": {
-      "DI2": {
-        "value": 0
-      }
-    },
-    "ip": "10.2.9.159",
-    "ip_config": {
-      "dns": [
-        "8.8.8.8",
-        "4.4.4.4"
-      ],
-      "dns_suffix": [
-        ".mist.local",
-        ".mist.com"
-      ],
-      "gateway": "10.2.1.254",
-      "ip": "10.2.1.1",
-      "netmask": "255.255.255.0",
-      "type": "static"
-    },
+    "ext_ip": "66.129.234.28",
+    "hw_rev": "C02",
+    "id": "00000000-0000-0000-1000-5c5b35d0077b",
+    "inactive_wired_vlans": [],
+    "ip": "192.168.95.3",
     "ip_stat": {
+      "dhcp_server": "192.168.95.1",
       "dns": [
-        "8.8.8.8",
-        "4.4.4.4"
+        "8.8.8.8"
       ],
-      "dns_suffix": [
-        ".mist.local",
-        ".mist.com"
-      ],
-      "gateway": "10.2.1.254",
-      "gateway6": "2607:f8b0:4005:808::1",
-      "ip": "10.2.1.1",
-      "ip6": "2607:f8b0:4005:808::2004",
+      "gateway": "192.168.95.1",
+      "ip": "192.168.95.3",
+      "ip6": "fe80:0:0:0:5e5b:35ff:fed0:77b",
       "ips": {
-        "vlan1": "10.2.1.1/24,2607:f8b0:4005:808::1/32",
-        "vlan193": "10.73.1.31/16",
-        "vlan3157": "10.72.11.14/24"
+        "vlan1": "192.168.95.3/24,fe80:0:0:0:5e5b:35ff:fed0:77b/64"
       },
       "netmask": "255.255.255.0",
-      "netmask6": "/32"
+      "netmask6": "/64"
     },
-    "l2tp_stat": {
-      "7dae216d-7c98-a51b-e068-dd7d477b7216": {
-        "sessions": [
-          {
-            "local_sid": 31,
-            "remote_id": "vpn1",
-            "remote_sid": 13,
-            "state": "established"
-          }
-        ],
-        "state": "established_with_sessions",
-        "uptime": 135,
-        "wxtunnel_id": "7dae216d-7c98-a51b-e068-dd7d477b7216"
-      }
-    },
-    "last_seen": 1470417522,
+    "last_seen": 1720595866,
     "last_trouble": {
-      "code": "03",
-      "timestamp": 1428949501
-    },
-    "led": {
-      "brightness": 255,
-      "enabled": true
+      "code": "07",
+      "timestamp": 1720039666
     },
     "lldp_stat": {
-      "chassis_id": "63:68:61:73:73:69",
+      "chassis_id": "d0:07:ca:f5:21:00",
       "lldp_med_supported": false,
-      "mgmt_addr": "10.1.5.2",
-      "port_desc": "2/26",
-      "power_allocated": 15500,
-      "power_draw": 15000,
-      "power_request_count": 3,
-      "power_requested": 25500,
-      "system_desc": "HP J9729A 2920-48G-POE+ Switch",
-      "system_name": "TC2-OWL-Stack-01"
+      "mgmt_addr": "100.123.105.1",
+      "mgmt_addrs": [
+        "100.123.105.1"
+      ],
+      "port_desc": "ge-0/0/4",
+      "port_id": "ge-0/0/4",
+      "power_allocated": 0,
+      "power_draw": 0,
+      "power_request_count": 0,
+      "power_requested": 0,
+      "system_desc": "Juniper Networks, Inc. ex4300-48t internet router, kernel JUNOS 20.4R3-S7.2, Build date: 2023-04-21 19:47:18 UTC Copyright (c) 1996-2023 Juniper Networks, Inc.",
+      "system_name": "Phoenix-Switch"
     },
-    "locating": false,
-    "mac": "5c5b35000010",
-    "map_id": "63eda950-c6da-11e4-a628-60f81dd250cc",
-    "mesh_downlinks": {
-      "00000000-0000-0000-1000-5c5b356be59f": {
-        "band": "24",
-        "channel": 7,
-        "idle_time": 3,
-        "last_seen": 1470417522,
-        "proto": "a",
-        "rssi": -65,
-        "rx_bps": 12,
-        "rx_bytes": 217416,
-        "rx_packets": 2337,
-        "rx_rate": 65,
-        "rx_retries": 5,
-        "snr": 31,
-        "tx_bps": 6,
-        "tx_bytes": 175132,
-        "tx_packets": 1566,
-        "tx_rate": 65,
-        "tx_retries": 500
-      }
-    },
-    "mesh_uplink": {
-      "band": "24",
-      "channel": 7,
-      "idle_time": 3,
-      "last_seen": 1470417522,
-      "proto": "a",
-      "rssi": -65,
-      "rx_bps": 12,
-      "rx_bytes": 217416,
-      "rx_packets": 2337,
-      "rx_rate": 65,
-      "rx_retries": 5,
-      "snr": 31,
-      "tx_bps": 6,
-      "tx_bytes": 175132,
-      "tx_packets": 1566,
-      "tx_rate": 65,
-      "tx_retries": 500,
-      "uplink_ap_id": "00000000-0000-0000-1000-5c5b35000010"
-    },
-    "model": "AP200",
-    "name": "conference room",
-    "num_clients": 10,
+    "mac": "5c5b35d0077b",
+    "mem_total_kb": 505468,
+    "mem_used_kb": 202096,
+    "model": "AP43",
+    "modified_time": 1718530662,
+    "mount": "faceup",
+    "name": "Phoenix",
+    "notes": "",
+    "num_clients": 1,
+    "org_id": "af010e2b-f829-4975-b49e-2e896ed1d627",
     "port_stat": {
       "eth0": {
         "full_duplex": true,
-        "rx_bytes": 2056,
+        "rx_bytes": 1284143195,
         "rx_errors": 0,
-        "rx_pkts": 670,
+        "rx_peak_bps": 17585,
+        "rx_pkts": 5199816,
         "speed": 1000,
-        "tx_bytes": 2056,
-        "tx_pkts": 670,
+        "tx_bytes": 1283744961,
+        "tx_peak_bps": 26484,
+        "tx_pkts": 3990463,
         "up": true
       },
       "eth1": {
-        "up": false
-      },
-      "module": {
+        "full_duplex": false,
+        "rx_bytes": 0,
+        "rx_errors": 0,
+        "rx_peak_bps": 0,
+        "rx_pkts": 0,
+        "speed": 0,
+        "tx_bytes": 0,
+        "tx_peak_bps": 0,
+        "tx_pkts": 0,
         "up": false
       }
     },
-    "power_budget": -12000,
-    "power_src": "PoE 802.3af",
-    "radio_config": {
-      "band_24": {
-        "bandwidth": 20,
-        "channel": 0,
-        "dynamic_chaining_enabled": false,
-        "power": 0,
-        "rx_chain": 4,
-        "tx_chain": 4
-      },
-      "band_5": {
-        "bandwidth": 40,
-        "channel": 0,
-        "dynamic_chaining_enabled": false,
-        "power": 0,
-        "rx_chain": 4,
-        "tx_chain": 1
-      },
-      "scanning_enabled": true
-    },
+    "power_budget": 8400,
+    "power_constrained": false,
+    "power_src": "DC Input",
+    "radio_config": {},
     "radio_stat": {
       "band_24": {
         "bandwidth": 20,
-        "channel": 6,
-        "mac": "5c5b350004a0",
-        "num_clients": 6,
-        "power": 19,
-        "rx_bytes": 8504737800,
-        "rx_pkts": 57731964,
-        "tx_bytes": 211166512114,
-        "tx_pkts": 812058566
+        "channel": 11,
+        "mac": "5c5b35dea810",
+        "noise_floor": -80,
+        "num_clients": 0,
+        "power": 17,
+        "rx_bytes": 12948211,
+        "rx_pkts": 65292,
+        "tx_bytes": 19071943,
+        "tx_pkts": 76926,
+        "usage": "24",
+        "util_all": 24,
+        "util_non_wifi": 2,
+        "util_rx_in_bss": 0,
+        "util_rx_other_bss": 17,
+        "util_tx": 4,
+        "util_undecodable_wifi": 0,
+        "util_unknown_wifi": 1
       },
       "band_5": {
-        "bandwidth": 80,
-        "channel": 44,
-        "mac": "5c5b350004b0",
-        "num_clients": 4,
-        "power": 15,
-        "rx_bytes": 10366616,
-        "rx_pkts": 38603,
-        "tx_bytes": 50877568,
-        "tx_pkts": 145496
+        "bandwidth": 40,
+        "channel": 36,
+        "mac": "5c5b35dea7f0",
+        "noise_floor": -90,
+        "num_clients": 1,
+        "power": 17,
+        "rx_bytes": 578362619,
+        "rx_pkts": 2687577,
+        "tx_bytes": 1199571353,
+        "tx_pkts": 2479302,
+        "usage": "5",
+        "util_all": 13,
+        "util_non_wifi": 0,
+        "util_rx_in_bss": 0,
+        "util_rx_other_bss": 10,
+        "util_tx": 1,
+        "util_undecodable_wifi": 0,
+        "util_unknown_wifi": 1
       }
     },
-    "rx_bps": 60003,
-    "rx_bytes": 8515104416,
-    "rx_pkts": 57770567,
-    "serial": "FXLH2015170017",
+    "rx_bps": 9276,
+    "rx_bytes": 591310830,
+    "rx_pkts": 2752869,
+    "serial": "A0703200709E6",
+    "site_id": "46fc665e-9706-4296-8fe2-78f42f2e67e4",
     "status": "connected",
-    "tx_bps": 634301,
-    "tx_bytes": 211217389682,
-    "tx_pkts": 812204062,
-    "type": "ap",
-    "uptime": 13500,
-    "usb_stat": {
-      "channel": 3,
-      "connected": true,
-      "last_activity": 1586873254,
-      "type": "imagotag",
-      "up": true
+    "switch_redundancy": {
+      "num_redundant_aps": 1
     },
-    "version": "1.0.0",
-    "x": 53.5,
-    "y": 173.1
+    "tx_bps": 8067,
+    "tx_bytes": 1218643296,
+    "tx_pkts": 2556228,
+    "type": "ap",
+    "uptime": 1593120,
+    "version": "0.14.29313"
   }
 ]
 ```

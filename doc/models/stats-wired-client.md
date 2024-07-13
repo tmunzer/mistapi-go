@@ -9,8 +9,6 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
-| `Ttl` | `*float64` | Optional | TTL of the validity of the stat |
 | `AuthState` | `*string` | Optional | client authorization status<br>**Constraints**: *Minimum Length*: `1` |
 | `DeviceId` | `*string` | Optional | Device ID the client is connected to<br>**Constraints**: *Minimum Length*: `1` |
 | `EthPort` | `*string` | Optional | port on AP where the wired client is connected<br>**Constraints**: *Minimum Length*: `1` |
@@ -30,11 +28,11 @@
 {
   "mac": "mac2",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "_id": "_id2",
-  "_ttl": 236.08,
   "auth_state": "auth_state8",
   "device_id": "device_id4",
-  "eth_port": "eth_port6"
+  "eth_port": "eth_port6",
+  "last_seen": 232.78,
+  "rx_bytes": 198.66
 }
 ```
 

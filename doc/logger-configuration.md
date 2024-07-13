@@ -19,7 +19,7 @@ Represents the logging configurations for API calls.
 
 In order to provide custom logger, any implementation of the `LoggerInterface` can be used so that you can override the `Log` behavior and provide its instance directly in the SDK client initialization.
 
-The following example uses [`Logrus`](https://pkg.go.dev/github.com/sirupsen/logrus) implementation of `LoggerInterface` for mistapigoClient initialization.
+The following example uses [`Logrus`](https://pkg.go.dev/github.com/sirupsen/logrus) implementation of `LoggerInterface` for MistAPIClient initialization.
 
 ```go
 import (

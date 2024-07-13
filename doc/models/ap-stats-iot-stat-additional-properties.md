@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Value` | `*int` | Optional | - |
+| `Value` | `models.Optional[int]` | Optional | - |
 
 ## Example (as JSON)
 

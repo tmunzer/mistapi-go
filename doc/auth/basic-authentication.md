@@ -23,10 +23,10 @@ Documentation for accessing and setting credentials for basicAuth.
 You must provide credentials in the client as shown in the following code snippet.
 
 ```go
-client := mistapigo.NewClient(
-    mistapigo.CreateConfiguration(
-        mistapigo.WithBasicAuthCredentials(
-            mistapigo.NewBasicAuthCredentials(
+client := mistapi.NewClient(
+    mistapi.CreateConfiguration(
+        mistapi.WithBasicAuthCredentials(
+            mistapi.NewBasicAuthCredentials(
                 "Username",
                 "Password",
             ),

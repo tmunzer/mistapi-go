@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2406.1.22**
+> Version: **2406.1.27**
 > 
-> Date: **July 9, 2024**
+> Date: **July 12, 2024**
 
 ---
 
@@ -41,16 +41,16 @@ Resolve all the SDK dependencies, using the `go get` command.
 
 ## Installation
 
-The following section explains how to use the mistapigo library in a new project.
+The following section explains how to use the mistapi library in a new project.
 
 ### 1. Add SDK as a Dependency to the Application
 
 - Add the following lines to your application's `go.mod` file:
 
 ```go
-replace mistapigo => ".\\mist-api-go_generic_lib" // local path to the SDK
+replace mistapi => ".\\mist-api-go_generic_lib" // local path to the SDK
 
-require mistapigo v0.0.0
+require mistapi v0.0.0
 ```
 
 - Resolve the dependencies in the updated `go.mod` file, using the `go get` command.
@@ -68,34 +68,38 @@ The following parameters are configurable for the API Client:
 | `loggerConfiguration` | [`LoggerConfiguration`](doc/logger-configuration.md) | Represents the logger configurations for API calls |
 | `apiTokenCredentials` | [`ApiTokenCredentials`](doc/auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
 | `basicAuthCredentials` | [`BasicAuthCredentials`](doc/auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
+| `csrfTokenCredentials` | [`CsrfTokenCredentials`](doc/auth/custom-header-signature-1.md) | The Credentials Setter for Custom Header Signature |
 
 The API client can be initialized as follows:
 
 ```go
-client := mistapigo.NewClient(
-    mistapigo.CreateConfiguration(
-        mistapigo.WithHttpConfiguration(
-            mistapigo.CreateHttpConfiguration(
-                mistapigo.WithTimeout(0),
+client := mistapi.NewClient(
+    mistapi.CreateConfiguration(
+        mistapi.WithHttpConfiguration(
+            mistapi.CreateHttpConfiguration(
+                mistapi.WithTimeout(0),
             ),
         ),
-        mistapigo.WithEnvironment(mistapigo.MIST_GLOBAL_01),
-        mistapigo.WithApiTokenCredentials(
-            mistapigo.NewApiTokenCredentials("Authorization"),
+        mistapi.WithEnvironment(mistapi.MIST_GLOBAL_01),
+        mistapi.WithApiTokenCredentials(
+            mistapi.NewApiTokenCredentials("Authorization"),
         ),
-        mistapigo.WithBasicAuthCredentials(
-            mistapigo.NewBasicAuthCredentials(
+        mistapi.WithBasicAuthCredentials(
+            mistapi.NewBasicAuthCredentials(
                 "Username",
                 "Password",
             ),
         ),
-        mistapigo.WithLoggerConfiguration(
-            mistapigo.WithLevel("info"),
-            mistapigo.WithRequestConfiguration(
-                mistapigo.WithRequestBody(true),
+        mistapi.WithCsrfTokenCredentials(
+            mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
+        ),
+        mistapi.WithLoggerConfiguration(
+            mistapi.WithLevel("info"),
+            mistapi.WithRequestConfiguration(
+                mistapi.WithRequestBody(true),
             ),
-            mistapigo.WithResponseConfiguration(
-                mistapigo.WithResponseHeaders(true),
+            mistapi.WithResponseConfiguration(
+                mistapi.WithResponseHeaders(true),
             ),
         ),
     ),
@@ -116,7 +120,9 @@ The SDK can be configured to use a different environment for making API calls. A
 | Mist Global 04 | - |
 | Mist EMEA 01 | - |
 | Mist EMEA 02 | - |
+| Mist EMEA 03 | - |
 | Mist APAC 01 | - |
+| AWS Staging | - |
 
 ## Authorization
 
@@ -124,6 +130,7 @@ This API uses the following authentication schemes.
 
 * [`apiToken (Custom Header Signature)`](doc/auth/custom-header-signature.md)
 * [`basicAuth (Basic Authentication)`](doc/auth/basic-authentication.md)
+* [`csrfToken (Custom Header Signature)`](doc/auth/custom-header-signature-1.md)
 
 ## List of APIs
 

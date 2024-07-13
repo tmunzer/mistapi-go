@@ -513,11 +513,11 @@ SearchOrgPskPortalLogs(
     limit *int,
     page *int,
     pskName *string,
-    pskId *uuid.UUID,
-    pskportalId *uuid.UUID,
+    pskId *string,
+    pskportalId *string,
     id *uuid.UUID,
     adminName *string,
-    adminId *uuid.UUID,
+    adminId *string,
     nameId *uuid.UUID) (
     models.ApiResponse[models.ResponsePskPortalLogsSearch],
     error)
@@ -534,11 +534,11 @@ SearchOrgPskPortalLogs(
 | `limit` | `*int` | Query, Optional | - |
 | `page` | `*int` | Query, Optional | - |
 | `pskName` | `*string` | Query, Optional | - |
-| `pskId` | `*uuid.UUID` | Query, Optional | - |
-| `pskportalId` | `*uuid.UUID` | Query, Optional | - |
+| `pskId` | `*string` | Query, Optional | - |
+| `pskportalId` | `*string` | Query, Optional | - |
 | `id` | `*uuid.UUID` | Query, Optional | audit_id |
 | `adminName` | `*string` | Query, Optional | - |
-| `adminId` | `*uuid.UUID` | Query, Optional | - |
+| `adminId` | `*string` | Query, Optional | - |
 | `nameId` | `*uuid.UUID` | Query, Optional | name_id used in SSO |
 
 ## Response Type

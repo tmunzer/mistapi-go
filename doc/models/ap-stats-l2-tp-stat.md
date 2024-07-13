@@ -9,10 +9,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Sessions` | [`[]models.ApStatsL2TpStatSession`](../../doc/models/ap-stats-l2-tp-stat-session.md) | Optional | list of sessions<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Sessions` | [`[]models.ApStatsL2TpStatSession`](../../doc/models/ap-stats-l2-tp-stat-session.md) | Optional | list of sessions |
 | `State` | [`*models.L2TpStateEnum`](../../doc/models/l2-tp-state-enum.md) | Optional | - |
-| `Uptime` | `*int` | Optional | uptime |
-| `WxtunnelId` | `*uuid.UUID` | Optional | WxlanTunnel ID |
+| `Uptime` | `models.Optional[int]` | Optional | uptime |
+| `WxtunnelId` | `models.Optional[uuid.UUID]` | Optional | WxlanTunnel ID |
 
 ## Example (as JSON)
 

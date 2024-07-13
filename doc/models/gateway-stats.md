@@ -12,26 +12,51 @@ Gateway statistics
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApRedundancy` | [`*models.ApRedundancy`](../../doc/models/ap-redundancy.md) | Optional | - |
-| `ClusterStat` | [`map[string]models.GatewayStatsClusterStat`](../../doc/models/gateway-stats-cluster-stat.md) | Optional | - |
+| `ArpTableStats` | [`*models.ArpTableStats`](../../doc/models/arp-table-stats.md) | Optional | - |
+| `CertExpiry` | `*int64` | Optional | - |
+| `ClusterConfig` | [`*models.ClusterConfigStats`](../../doc/models/cluster-config-stats.md) | Optional | - |
+| `ClusterStat` | [`*models.GatewayStatsCluster`](../../doc/models/gateway-stats-cluster.md) | Optional | - |
+| `ConductorName` | `*string` | Optional | - |
+| `ConfigStatus` | `*string` | Optional | - |
 | `Cpu2Stat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
-| `Dhcpd2Stat` | [`map[string]models.GatewayStatsDhcpdStatLan`](../../doc/models/gateway-stats-dhcpd-stat-lan.md) | Optional | Property key is the network name |
-| `DhcpdStat` | [`map[string]models.GatewayStatsDhcpdStatLan`](../../doc/models/gateway-stats-dhcpd-stat-lan.md) | Optional | Property key is the network name |
+| `CreatedTime` | `*int` | Optional | - |
+| `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `Dhcpd2Stat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
+| `DhcpdStat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
+| `EvpntopoId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `ExtIp` | `models.Optional[string]` | Optional | IP address |
+| `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
+| `HasPcap` | `models.Optional[bool]` | Optional | - |
 | `Hostname` | `*string` | Optional | hostname reported by the device |
-| `Ip` | `*string` | Optional | IP address |
+| `Id` | `*uuid.UUID` | Optional | serial |
+| `If2Stat` | [`map[string]models.IfStatProperty`](../../doc/models/if-stat-property.md) | Optional | Property key is the interface name |
+| `IfStat` | [`map[string]models.IfStatProperty`](../../doc/models/if-stat-property.md) | Optional | Property key is the interface name |
+| `Ip` | `models.Optional[string]` | Optional | IP address |
 | `Ip2Stat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
+| `IsHa` | `models.Optional[bool]` | Optional | - |
 | `LastSeen` | `*float64` | Optional | last seen timestamp |
 | `Mac` | `string` | Required | device mac |
+| `MapId` | `models.Optional[uuid.UUID]` | Optional | serial |
 | `Memory2Stat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
 | `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
 | `Model` | `*string` | Optional | device model |
-| `Module2Stat` | [`[]models.ModuleStat`](../../doc/models/module-stat.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `ModuleStat` | [`[]models.ModuleStat`](../../doc/models/module-stat.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `ModifiedTime` | `*int` | Optional | - |
+| `Module2Stat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Name` | `*string` | Optional | device name if configured |
+| `NodeName` | `*string` | Optional | - |
+| `OrgId` | `*uuid.UUID` | Optional | serial |
+| `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
+| `RouterName` | `*string` | Optional | device name if configured |
 | `Serial` | `*string` | Optional | serial |
-| `Spu2Stat` | [`*models.GatewayStatsSpuStat`](../../doc/models/gateway-stats-spu-stat.md) | Optional | - |
-| `SpuStat` | [`*models.GatewayStatsSpuStat`](../../doc/models/gateway-stats-spu-stat.md) | Optional | - |
+| `Service2Stat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
+| `ServiceStat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
+| `ServiceStatus` | [`*models.GatewayStatsServiceStatus`](../../doc/models/gateway-stats-service-status.md) | Optional | - |
+| `SiteId` | `*uuid.UUID` | Optional | serial |
+| `Spu2Stat` | [`[]models.GatewayStatsSpuItem`](../../doc/models/gateway-stats-spu-item.md) | Optional | - |
+| `SpuStat` | [`[]models.GatewayStatsSpuItem`](../../doc/models/gateway-stats-spu-item.md) | Optional | - |
 | `Status` | `*string` | Optional | - |
 | `Type` | `*string` | Optional | - |
 | `Uptime` | `*float64` | Optional | - |
@@ -41,12 +66,15 @@ Gateway statistics
 
 ```json
 {
+  "ext_ip": "66.129.234.224",
   "hostname": "sj1",
   "ip": "10.2.11.137",
   "last_seen": 1553203563,
   "mac": "dc38e1dbf3cd",
   "model": "SRX320",
   "name": "sj1",
+  "node_name": "node0",
+  "router_name": "sj1",
   "serial": "TC3714190003",
   "status": "connected",
   "type": "gateway",
@@ -62,40 +90,38 @@ Gateway statistics
     "num_aps": 246,
     "num_aps_with_switch_redundancy": 10
   },
+  "arp_table_stats": {
+    "arp_table_count": 136,
+    "max_entries_supported": 8
+  },
+  "cert_expiry": 90,
+  "cluster_config": {
+    "configuration": "configuration0",
+    "control_link_info": {
+      "name": "name0",
+      "status": "status2"
+    },
+    "ethernet_connection": [
+      {
+        "name": "name2",
+        "status": "status6"
+      }
+    ],
+    "fabric_link_info": {
+      "DataPlaneNotifiedStatus": "DataPlaneNotifiedStatus8",
+      "Interface": [
+        "Interface0",
+        "Interface1",
+        "Interface2"
+      ],
+      "InternalStatus": "InternalStatus2",
+      "State": "State4",
+      "Status": "Status0"
+    },
+    "last_status_change_reason": "last_status_change_reason8"
+  },
   "cluster_stat": {
-    "key0": {
-      "status": "status6"
-    },
-    "key1": {
-      "status": "status6"
-    },
-    "key2": {
-      "status": "status6"
-    }
-  },
-  "cpu2_stat": {
-    "idle": 10.78,
-    "interrupt": 124.54,
-    "load_avg": [
-      14.61
-    ],
-    "system": 151.1,
-    "user": 113.22
-  },
-  "cpu_stat": {
-    "idle": 102.08,
-    "interrupt": 215.84,
-    "load_avg": [
-      105.91
-    ],
-    "system": 13.6,
-    "user": 204.52
-  },
-  "dhcpd2_stat": {
-    "key0": {
-      "num_ips": 180,
-      "num_leased": 236
-    }
+    "state": "state2"
   }
 }
 ```

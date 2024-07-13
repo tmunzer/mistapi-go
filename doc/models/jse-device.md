@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ExtIp` | `*string` | Optional | when available |
-| `LastSeen` | `*int` | Optional | - |
+| `LastSeen` | `*float64` | Optional | - |
 | `Mac` | `*string` | Optional | - |
 | `Model` | `*string` | Optional | - |
 | `Serial` | `*string` | Optional | - |
@@ -20,7 +20,7 @@
 ```json
 {
   "ext_ip": "ext_ip8",
-  "last_seen": 142,
+  "last_seen": 34.7,
   "mac": "mac4",
   "model": "model8",
   "serial": "serial0"

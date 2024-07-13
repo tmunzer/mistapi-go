@@ -455,9 +455,6 @@ if err != nil {
     "_checkpoint_prep": 0,
     "_checkpoint_preparer": 0,
     "_checkpoint_scan": 0,
-    "_id": "string",
-    "_timestamp": 0,
-    "_ttl": 0,
     "ap_mac": "string",
     "beam": 0,
     "by": "string",
@@ -845,8 +842,8 @@ SearchSiteAssets(
     ctx context.Context,
     siteId uuid.UUID,
     mac *string,
-    mapId *uuid.UUID,
-    ibeaconUuid *uuid.UUID,
+    mapId *string,
+    ibeaconUuid *string,
     ibeaconMajor *int,
     ibeaconMinor *int,
     eddystoneUidNamespace *string,
@@ -872,8 +869,8 @@ SearchSiteAssets(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | - |
-| `mapId` | `*uuid.UUID` | Query, Optional | - |
-| `ibeaconUuid` | `*uuid.UUID` | Query, Optional | - |
+| `mapId` | `*string` | Query, Optional | - |
+| `ibeaconUuid` | `*string` | Query, Optional | - |
 | `ibeaconMajor` | `*int` | Query, Optional | - |
 | `ibeaconMinor` | `*int` | Query, Optional | - |
 | `eddystoneUidNamespace` | `*string` | Query, Optional | - |

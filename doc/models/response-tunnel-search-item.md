@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Ap` | `*string` | Optional | - |
 | `ForSite` | `*bool` | Optional | - |
-| `LastSeen` | `*int` | Optional | - |
+| `LastSeen` | `*float64` | Optional | - |
 | `MxclusterId` | `*uuid.UUID` | Optional | - |
 | `MxedgeId` | `*uuid.UUID` | Optional | - |
 | `MxtunnelId` | `*uuid.UUID` | Optional | - |
@@ -53,7 +53,7 @@
   "wan_name": "wan",
   "ap": "ap2",
   "for_site": false,
-  "last_seen": 194,
+  "last_seen": 240.02,
   "mxcluster_id": "000012b8-0000-0000-0000-000000000000",
   "mxedge_id": "000011ec-0000-0000-0000-000000000000"
 }

@@ -13,7 +13,7 @@ MxTunnels statistics
 |  --- | --- | --- | --- |
 | `Ap` | `*string` | Optional | - |
 | `ForSite` | `*bool` | Optional | - |
-| `LastSeen` | `*int` | Optional | - |
+| `LastSeen` | `*float64` | Optional | - |
 | `MxclusterId` | `*uuid.UUID` | Optional | - |
 | `MxedgeId` | `*uuid.UUID` | Optional | - |
 | `MxtunnelId` | `*uuid.UUID` | Optional | - |
@@ -36,7 +36,7 @@ MxTunnels statistics
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "ap": "ap4",
   "for_site": false,
-  "last_seen": 122,
+  "last_seen": 85.7,
   "mxcluster_id": "00002490-0000-0000-0000-000000000000",
   "mxedge_id": "000023c4-0000-0000-0000-000000000000"
 }

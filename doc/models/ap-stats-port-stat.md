@@ -9,14 +9,14 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `FullDuplex` | `*bool` | Optional | - |
-| `RxBytes` | `*float64` | Optional | - |
-| `RxErrors` | `*float64` | Optional | - |
-| `RxPkts` | `*float64` | Optional | - |
-| `Speed` | `*int` | Optional | - |
-| `TxBytes` | `*float64` | Optional | - |
-| `TxPkts` | `*float64` | Optional | - |
-| `Up` | `*bool` | Optional | - |
+| `FullDuplex` | `models.Optional[bool]` | Optional | - |
+| `RxBytes` | `models.Optional[float64]` | Optional | - |
+| `RxErrors` | `models.Optional[float64]` | Optional | - |
+| `RxPkts` | `models.Optional[float64]` | Optional | - |
+| `Speed` | `models.Optional[int]` | Optional | - |
+| `TxBytes` | `models.Optional[float64]` | Optional | - |
+| `TxPkts` | `models.Optional[float64]` | Optional | - |
+| `Up` | `models.Optional[bool]` | Optional | - |
 
 ## Example (as JSON)
 

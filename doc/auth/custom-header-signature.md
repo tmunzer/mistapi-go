@@ -22,10 +22,10 @@ Documentation for accessing and setting credentials for apiToken.
 You must provide credentials in the client as shown in the following code snippet.
 
 ```go
-client := mistapigo.NewClient(
-    mistapigo.CreateConfiguration(
-        mistapigo.WithApiTokenCredentials(
-            mistapigo.NewApiTokenCredentials("Authorization"),
+client := mistapi.NewClient(
+    mistapi.CreateConfiguration(
+        mistapi.WithApiTokenCredentials(
+            mistapi.NewApiTokenCredentials("Authorization"),
         ),
     ),
 )

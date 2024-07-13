@@ -12,6 +12,7 @@ sitesDevicesWANCluster := client.SitesDevicesWANCluster()
 
 * [Create Site Device Ha Cluster](../../doc/controllers/sites-devices-wan-cluster.md#create-site-device-ha-cluster)
 * [Delete Site Device Ha Cluster](../../doc/controllers/sites-devices-wan-cluster.md#delete-site-device-ha-cluster)
+* [Get Site Device Ha Cluster Node](../../doc/controllers/sites-devices-wan-cluster.md#get-site-device-ha-cluster-node)
 * [Swap Site Device Ha Cluster Node](../../doc/controllers/sites-devices-wan-cluster.md#swap-site-device-ha-cluster-node)
 
 
@@ -188,8 +189,8 @@ CreateSiteDeviceHaCluster(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
-    body *models.GatewayClusterForm) (
-    http.Response,
+    body *models.GatewayCluster) (
+    models.ApiResponse[models.GatewayCluster],
     error)
 ```
 
@@ -199,11 +200,11 @@ CreateSiteDeviceHaCluster(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.GatewayClusterForm`](../../doc/models/gateway-cluster-form.md) | Body, Optional | - |
+| `body` | [`*models.GatewayCluster`](../../doc/models/gateway-cluster.md) | Body, Optional | - |
 
 ## Response Type
 
-``
+[`models.GatewayCluster`](../../doc/models/gateway-cluster.md)
 
 ## Example Usage
 
@@ -214,22 +215,39 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-body := models.GatewayClusterForm{
-    Nodes: []models.GatewayClusterFormNode{
-        models.GatewayClusterFormNode{
+body := models.GatewayCluster{
+    Nodes: []models.GatewayClusterNode{
+        models.GatewayClusterNode{
             Mac: "aff827549235",
         },
-        models.GatewayClusterFormNode{
+        models.GatewayClusterNode{
             Mac: "8396cd006c8c",
         },
     },
 }
 
-resp, err := sitesDevicesWANCluster.CreateSiteDeviceHaCluster(ctx, siteId, deviceId, &body)
+apiResponse, err := sitesDevicesWANCluster.CreateSiteDeviceHaCluster(ctx, siteId, deviceId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
-    fmt.Println(resp.StatusCode)
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "nodes": [
+    {
+      "mac": "aff827549235"
+    },
+    {
+      "mac": "8396cd006c8c"
+    }
+  ]
 }
 ```
 
@@ -296,6 +314,77 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 
 
+# Get Site Device Ha Cluster Node
+
+**This endpoint is deprecated.**
+
+Get HA Cluster
+
+```go
+GetSiteDeviceHaClusterNode(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    models.ApiResponse[models.GatewayCluster],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+[`models.GatewayCluster`](../../doc/models/gateway-cluster.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := sitesDevicesWANCluster.GetSiteDeviceHaClusterNode(ctx, siteId, deviceId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "nodes": [
+    {
+      "mac": "aff827549235"
+    },
+    {
+      "mac": "8396cd006c8c"
+    }
+  ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
 # Swap Site Device Ha Cluster Node
 
 **This endpoint is deprecated.**
@@ -308,7 +397,7 @@ SwapSiteDeviceHaClusterNode(
     siteId uuid.UUID,
     deviceId uuid.UUID,
     body *models.GatewayClusterSwap) (
-    http.Response,
+    models.ApiResponse[models.GatewayCluster],
     error)
 ```
 
@@ -322,7 +411,7 @@ SwapSiteDeviceHaClusterNode(
 
 ## Response Type
 
-``
+[`models.GatewayCluster`](../../doc/models/gateway-cluster.md)
 
 ## Example Usage
 
@@ -337,11 +426,28 @@ body := models.GatewayClusterSwap{
     Op:  models.GatewayClusterSwapOpEnum("swap"),
 }
 
-resp, err := sitesDevicesWANCluster.SwapSiteDeviceHaClusterNode(ctx, siteId, deviceId, &body)
+apiResponse, err := sitesDevicesWANCluster.SwapSiteDeviceHaClusterNode(ctx, siteId, deviceId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
-    fmt.Println(resp.StatusCode)
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "nodes": [
+    {
+      "mac": "aff827549235"
+    },
+    {
+      "mac": "8396cd006c8c"
+    }
+  ]
 }
 ```
 

@@ -9,11 +9,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Idle` | `*float64` | Optional | Percentage of CPU time that is idle |
-| `Interrupt` | `*float64` | Optional | Percentage of CPU time being used by interrupts |
+| `Idle` | `models.Optional[float64]` | Optional | Percentage of CPU time that is idle |
+| `Interrupt` | `models.Optional[float64]` | Optional | Percentage of CPU time being used by interrupts |
 | `LoadAvg` | `[]float64` | Optional | Load averages for the last 1, 5, and 15 minutes |
-| `System` | `*float64` | Optional | Percentage of CPU time being used by system processes |
-| `User` | `*float64` | Optional | Percentage of CPU time being used by user processe |
+| `System` | `models.Optional[float64]` | Optional | Percentage of CPU time being used by system processes |
+| `User` | `models.Optional[float64]` | Optional | Percentage of CPU time being used by user processe |
 
 ## Example (as JSON)
 

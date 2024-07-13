@@ -9,11 +9,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Channel` | `*int` | Optional | - |
-| `Connected` | `*bool` | Optional | - |
-| `LastActivity` | `*int` | Optional | - |
-| `Type` | `*string` | Optional | - |
-| `Up` | `*bool` | Optional | - |
+| `Channel` | `models.Optional[int]` | Optional | - |
+| `Connected` | `models.Optional[bool]` | Optional | - |
+| `LastActivity` | `models.Optional[int]` | Optional | - |
+| `Type` | `models.Optional[string]` | Optional | - |
+| `Up` | `models.Optional[bool]` | Optional | - |
 
 ## Example (as JSON)
 

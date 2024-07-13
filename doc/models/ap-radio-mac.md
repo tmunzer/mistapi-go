@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Mac` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `RadioMacs` | `[]interface{}` | Required | - |
+| `RadioMacs` | `[]string` | Required | - |
 
 ## Example (as JSON)
 
@@ -18,14 +18,8 @@
 {
   "mac": "mac8",
   "radio_macs": [
-    {
-      "key1": "val1",
-      "key2": "val2"
-    },
-    {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "radio_macs1",
+    "radio_macs2"
   ]
 }
 ```

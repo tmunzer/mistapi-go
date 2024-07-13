@@ -11,11 +11,11 @@
 |  --- | --- | --- | --- |
 | `Action` | [`models.NacRuleActionEnum`](../../doc/models/nac-rule-action-enum.md) | Required | - |
 | `ApplyTags` | `[]string` | Optional | all optional, this goes into Access-Accept |
-| `CreatedTime` | `*int` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | - |
 | `Enabled` | `*bool` | Optional | enabled or not<br>**Default**: `true` |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `Matching` | [`*models.NacRuleMatching`](../../doc/models/nac-rule-matching.md) | Optional | - |
-| `ModifiedTime` | `*int` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `string` | Required | - |
 | `NotMatching` | [`*models.NacRuleMatching`](../../doc/models/nac-rule-matching.md) | Optional | - |
 | `Order` | `*int` | Optional | the order of the rule, lower value implies higher priority<br>**Constraints**: `>= 0` |
@@ -33,7 +33,7 @@
   "name": "name2",
   "order": 1,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "created_time": 238,
+  "created_time": 179.02,
   "id": "000025c8-0000-0000-0000-000000000000",
   "matching": {
     "auth_type": "eap-ttls",

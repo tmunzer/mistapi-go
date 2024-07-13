@@ -71,6 +71,76 @@ if err != nil {
 }
 ```
 
+## Example Response *(as JSON)*
+
+```json
+{
+  "created_time": 0,
+  "for_site": true,
+  "id": "468f6eca-6276-4993-bfeb-53cbbbba6f68",
+  "modified_time": 0,
+  "name": "string",
+  "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
+  "radsec": {
+    "acct_servers": [
+      {
+        "host": "string",
+        "port": 1813,
+        "secret": "string"
+      }
+    ],
+    "auth_servers": [
+      {
+        "host": "string",
+        "port": 1812,
+        "secret": "string"
+      }
+    ],
+    "enabled": true,
+    "server_selection": "ordered"
+  },
+  "radsec_tls": {
+    "keypair": "string"
+  },
+  "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
+  "tunterm_ap_subnets": [
+    "string"
+  ],
+  "tunterm_dhcpd_config": {
+    "enabled": false,
+    "property1": {
+      "enabled": false,
+      "servers": [
+        "string"
+      ],
+      "type": "relay"
+    },
+    "property2": {
+      "enabled": false,
+      "servers": [
+        "string"
+      ],
+      "type": "relay"
+    },
+    "servers": [
+      "string"
+    ],
+    "type": "relay"
+  },
+  "tunterm_extra_routes": {
+    "property1": {
+      "via": "string"
+    },
+    "property2": {
+      "via": "string"
+    }
+  },
+  "tunterm_hosts": [
+    "string"
+  ]
+}
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -177,6 +247,76 @@ if err != nil {
 }
 ```
 
+## Example Response *(as JSON)*
+
+```json
+{
+  "created_time": 0,
+  "for_site": true,
+  "id": "468f6eca-6276-4993-bfeb-53cbbbba6f68",
+  "modified_time": 0,
+  "name": "string",
+  "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
+  "radsec": {
+    "acct_servers": [
+      {
+        "host": "string",
+        "port": 1813,
+        "secret": "string"
+      }
+    ],
+    "auth_servers": [
+      {
+        "host": "string",
+        "port": 1812,
+        "secret": "string"
+      }
+    ],
+    "enabled": true,
+    "server_selection": "ordered"
+  },
+  "radsec_tls": {
+    "keypair": "string"
+  },
+  "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
+  "tunterm_ap_subnets": [
+    "string"
+  ],
+  "tunterm_dhcpd_config": {
+    "enabled": false,
+    "property1": {
+      "enabled": false,
+      "servers": [
+        "string"
+      ],
+      "type": "relay"
+    },
+    "property2": {
+      "enabled": false,
+      "servers": [
+        "string"
+      ],
+      "type": "relay"
+    },
+    "servers": [
+      "string"
+    ],
+    "type": "relay"
+  },
+  "tunterm_extra_routes": {
+    "property1": {
+      "via": "string"
+    },
+    "property2": {
+      "via": "string"
+    }
+  },
+  "tunterm_hosts": [
+    "string"
+  ]
+}
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -233,6 +373,78 @@ if err != nil {
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
 }
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "created_time": 0,
+    "for_site": true,
+    "id": "467f6eca-6276-4993-bfeb-53cbbbba6f78",
+    "modified_time": 0,
+    "name": "string",
+    "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
+    "radsec": {
+      "acct_servers": [
+        {
+          "host": "string",
+          "port": 1813,
+          "secret": "string"
+        }
+      ],
+      "auth_servers": [
+        {
+          "host": "string",
+          "port": 1812,
+          "secret": "string"
+        }
+      ],
+      "enabled": true,
+      "server_selection": "ordered"
+    },
+    "radsec_tls": {
+      "keypair": "string"
+    },
+    "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
+    "tunterm_ap_subnets": [
+      "string"
+    ],
+    "tunterm_dhcpd_config": {
+      "enabled": false,
+      "property1": {
+        "enabled": false,
+        "servers": [
+          "string"
+        ],
+        "type": "relay"
+      },
+      "property2": {
+        "enabled": false,
+        "servers": [
+          "string"
+        ],
+        "type": "relay"
+      },
+      "servers": [
+        "string"
+      ],
+      "type": "relay"
+    },
+    "tunterm_extra_routes": {
+      "property1": {
+        "via": "string"
+      },
+      "property2": {
+        "via": "string"
+      }
+    },
+    "tunterm_hosts": [
+      "string"
+    ]
+  }
+]
 ```
 
 ## Errors
@@ -301,6 +513,76 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "created_time": 0,
+  "for_site": true,
+  "id": "468f6eca-6276-4993-bfeb-53cbbbba6f68",
+  "modified_time": 0,
+  "name": "string",
+  "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
+  "radsec": {
+    "acct_servers": [
+      {
+        "host": "string",
+        "port": 1813,
+        "secret": "string"
+      }
+    ],
+    "auth_servers": [
+      {
+        "host": "string",
+        "port": 1812,
+        "secret": "string"
+      }
+    ],
+    "enabled": true,
+    "server_selection": "ordered"
+  },
+  "radsec_tls": {
+    "keypair": "string"
+  },
+  "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
+  "tunterm_ap_subnets": [
+    "string"
+  ],
+  "tunterm_dhcpd_config": {
+    "enabled": false,
+    "property1": {
+      "enabled": false,
+      "servers": [
+        "string"
+      ],
+      "type": "relay"
+    },
+    "property2": {
+      "enabled": false,
+      "servers": [
+        "string"
+      ],
+      "type": "relay"
+    },
+    "servers": [
+      "string"
+    ],
+    "type": "relay"
+  },
+  "tunterm_extra_routes": {
+    "property1": {
+      "via": "string"
+    },
+    "property2": {
+      "via": "string"
+    }
+  },
+  "tunterm_hosts": [
+    "string"
+  ]
 }
 ```
 

@@ -16,7 +16,6 @@ orgsDevices := client.OrgsDevices()
 * [Get Org Juniper Devices Command](../../doc/controllers/orgs-devices.md#get-org-juniper-devices-command)
 * [List Org Aps Macs](../../doc/controllers/orgs-devices.md#list-org-aps-macs)
 * [List Org Devices](../../doc/controllers/orgs-devices.md#list-org-devices)
-* [List Org Devices Stats](../../doc/controllers/orgs-devices.md#list-org-devices-stats)
 * [Search Org Device Events](../../doc/controllers/orgs-devices.md#search-org-device-events)
 * [Search Org Device Last Configs](../../doc/controllers/orgs-devices.md#search-org-device-last-configs)
 * [Search Org Devices](../../doc/controllers/orgs-devices.md#search-org-devices)
@@ -563,115 +562,6 @@ if err != nil {
       "name": "string"
     }
   ]
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-
-
-# List Org Devices Stats
-
-Get List of Org Devices stats
-This API renders some high-level device stats, pagination is assumed and returned in response header (as the response is an array)
-
-```go
-ListOrgDevicesStats(
-    ctx context.Context,
-    orgId uuid.UUID,
-    mType *models.DeviceTypeWithAllEnum,
-    status *models.DeviceStatusEnum,
-    siteId *uuid.UUID,
-    mac *string,
-    evpntopoId *uuid.UUID,
-    evpnUnused *string,
-    fields *string,
-    page *int,
-    limit *int,
-    start *int,
-    end *int,
-    duration *string) (
-    models.ApiResponse[[]models.ListOrgDevicesStatsResponse],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | - |
-| `status` | [`*models.DeviceStatusEnum`](../../doc/models/device-status-enum.md) | Query, Optional | - |
-| `siteId` | `*uuid.UUID` | Query, Optional | - |
-| `mac` | `*string` | Query, Optional | - |
-| `evpntopoId` | `*uuid.UUID` | Query, Optional | EVPN Topology ID |
-| `evpnUnused` | `*string` | Query, Optional | if `evpn_unused`==`true`, find EVPN eligible switches which don’t belong to any EVPN Topology yet |
-| `fields` | `*string` | Query, Optional | list of additional fields requests, comma separeted, or `fields=*` for all of them |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-
-## Response Type
-
-[`[]models.ListOrgDevicesStatsResponse`](../../doc/models/containers/list-org-devices-stats-response.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-mType := models.DeviceTypeWithAllEnum("ap")
-
-status := models.DeviceStatusEnum("all")
-
-
-
-
-
-
-
-
-
-fields := "field1,field2"
-
-page := 1
-
-limit := 100
-
-
-
-
-
-duration := "10m"
-
-apiResponse, err := orgsDevices.ListOrgDevicesStats(ctx, orgId, &mType, &status, nil, nil, nil, nil, &fields, &page, &limit, nil, nil, &duration)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    responseBody := apiResponse.Data
-    for _, item := range responseBody {
-        if i, ok := item.AsApStats(); ok {
-            fmt.Println("Value narrowed down to models.ApStats: ", *i)
-        } else if i, ok := item.AsSwitchStats(); ok {
-            fmt.Println("Value narrowed down to models.SwitchStats: ", *i)
-        } else if i, ok := item.AsGatewayStats(); ok {
-            fmt.Println("Value narrowed down to models.GatewayStats: ", *i)
-        }
-    }
-
-    fmt.Println(apiResponse.Response.StatusCode)
 }
 ```
 

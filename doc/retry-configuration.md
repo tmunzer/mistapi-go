@@ -19,13 +19,13 @@ The retryConfiguration can be initialized as follows:
 
 ```go
 retryConfiguration := CreateRetryConfiguration(
-    mistapigo.WithMaxRetryAttempts(0),
-    mistapigo.WithRetryOnTimeout(true),
-    mistapigo.WithRetryInterval(1),
-    mistapigo.WithMaximumRetryWaitTime(0),
-    mistapigo.WithBackoffFactor(2),
-    mistapigo.WithHttpStatusCodesToRetry([]int64{408, 413, 429, 500, 502, 503, 504, 521, 522, 524, 408, 413, 429, 500, 502, 503, 504, 521, 522, 524}),
-    mistapigo.WithHttpMethodsToRetry([]string{"GET", "PUT", "GET", "PUT"}),
+    mistapi.WithMaxRetryAttempts(0),
+    mistapi.WithRetryOnTimeout(true),
+    mistapi.WithRetryInterval(1),
+    mistapi.WithMaximumRetryWaitTime(0),
+    mistapi.WithBackoffFactor(2),
+    mistapi.WithHttpStatusCodesToRetry([]int64{408, 413, 429, 500, 502, 503, 504, 521, 522, 524, 408, 413, 429, 500, 502, 503, 504, 521, 522, 524}),
+    mistapi.WithHttpMethodsToRetry([]string{"GET", "PUT", "GET", "PUT"}),
 )
 ```
 

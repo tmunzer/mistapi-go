@@ -17,13 +17,13 @@ Junos IP Config
 | `Ip` | `*string` | Optional | - |
 | `Netmask` | `*string` | Optional | used only if `subnet` is not specified in `networks` |
 | `Network` | `*string` | Optional | the network where this mgmt IP reside, this will be used as default network for outbound-ssh, dns, ntp, dns, tacplus, radius, syslog, snmp |
-| `Type` | [`*models.IpConfigTypeEnum`](../../doc/models/ip-config-type-enum.md) | Optional | **Default**: `"dynamic"` |
+| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | **Default**: `"dhcp"` |
 
 ## Example (as JSON)
 
 ```json
 {
-  "type": "dynamic",
+  "type": "static",
   "dns": [
     "dns7"
   ],

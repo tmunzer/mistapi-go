@@ -12,24 +12,45 @@ Switch statistics
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApRedundancy` | [`*models.SwitchStatsApRedundancy`](../../doc/models/switch-stats-ap-redundancy.md) | Optional | - |
-| `Clients` | [`[]models.SwitchStatsClient`](../../doc/models/switch-stats-client.md) | Optional | - |
+| `ArpTableStats` | [`*models.ArpTableStats`](../../doc/models/arp-table-stats.md) | Optional | - |
+| `CertExpiry` | `*int64` | Optional | - |
+| `Clients` | [`[]models.SwitchStatsClientItem`](../../doc/models/switch-stats-client-item.md) | Optional | - |
+| `ClientsStats` | [`*models.SwitchStatsClientsStats`](../../doc/models/switch-stats-clients-stats.md) | Optional | - |
+| `ConfigStatus` | `*string` | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
+| `CreatedTime` | `*int` | Optional | - |
+| `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `DhcpdStat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
+| `EvpntopoId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `FwVersionsOutofsync` | `*bool` | Optional | - |
+| `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
 | `HasPcap` | `*bool` | Optional | whether the switch supports packet capture |
 | `Hostname` | `*string` | Optional | hostname reported by the device |
-| `IfStat` | [`map[string]models.SwitchStatsIfStat`](../../doc/models/switch-stats-if-stat.md) | Optional | Property key is the interface name |
+| `HwRev` | `*string` | Optional | device hardware revision number |
+| `Id` | `*uuid.UUID` | Optional | - |
+| `IfStat` | [`map[string]models.IfStatProperty`](../../doc/models/if-stat-property.md) | Optional | Property key is the interface name |
 | `Ip` | `*string` | Optional | - |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
-| `LastSeen` | `*int` | Optional | - |
+| `LastSeen` | `*float64` | Optional | - |
 | `LastTrouble` | [`*models.LastTrouble`](../../doc/models/last-trouble.md) | Optional | last trouble code of switch |
-| `Mac` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
+| `Mac` | `*string` | Optional | - |
+| `MacTableStats` | [`*models.MacTableStats`](../../doc/models/mac-table-stats.md) | Optional | - |
+| `MapId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
 | `Model` | `*string` | Optional | - |
-| `ModuleStat` | [`[]models.ModuleStat`](../../doc/models/module-stat.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `ModifiedTime` | `*int` | Optional | - |
+| `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Name` | `*string` | Optional | device name if configured |
-| `NumClients` | [`*models.SwitchStatsNumClients`](../../doc/models/switch-stats-num-clients.md) | Optional | - |
+| `OrgId` | `*uuid.UUID` | Optional | - |
+| `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
 | `Serial` | `*string` | Optional | - |
+| `ServiceStat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
+| `SiteId` | `*uuid.UUID` | Optional | - |
 | `Status` | `*string` | Optional | - |
 | `Type` | `*string` | Optional | - |
 | `Uptime` | `*float64` | Optional | - |
+| `VcMac` | `models.Optional[string]` | Optional | - |
+| `VcSetupInfo` | [`*models.SwitchStatsVcSetupInfo`](../../doc/models/switch-stats-vc-setup-info.md) | Optional | - |
 | `Version` | `*string` | Optional | - |
 
 ## Example (as JSON)
@@ -57,6 +78,11 @@ Switch statistics
     "num_aps": 246,
     "num_aps_with_switch_redundancy": 10
   },
+  "arp_table_stats": {
+    "arp_table_count": 136,
+    "max_entries_supported": 8
+  },
+  "cert_expiry": 18,
   "clients": [
     {
       "device_mac": "device_mac2",
@@ -77,14 +103,15 @@ Switch statistics
       "port_id": "port_id8"
     }
   ],
-  "cpu_stat": {
-    "idle": 102.08,
-    "interrupt": 215.84,
-    "load_avg": [
-      105.91
-    ],
-    "system": 13.6,
-    "user": 204.52
+  "clients_stats": {
+    "total": {
+      "num_aps": [
+        23,
+        22,
+        21
+      ],
+      "num_wired_clients": 222
+    }
   }
 }
 ```

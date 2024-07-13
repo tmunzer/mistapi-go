@@ -10,77 +10,108 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AutoPlacement` | [`*models.ApStatsAutoPlacement`](../../doc/models/ap-stats-auto-placement.md) | Optional | - |
-| `BleConfig` | [`*models.ApStatsBleConfig`](../../doc/models/ap-stats-ble-config.md) | Optional | - |
-| `BleStat` | [`*models.ApStatsBleStat`](../../doc/models/ap-stats-ble-stat.md) | Optional | - |
-| `CertExpiry` | `*float64` | Optional | - |
+| `AutoUpgradeStat` | [`*models.ApStatsAutoUpgrade`](../../doc/models/ap-stats-auto-upgrade.md) | Optional | - |
+| `BleStat` | [`*models.ApStatsBle`](../../doc/models/ap-stats-ble.md) | Optional | - |
+| `CertExpiry` | `models.Optional[int64]` | Optional | - |
+| `ConfigReverted` | `models.Optional[bool]` | Optional | - |
+| `CpuSystem` | `models.Optional[int64]` | Optional | - |
+| `CpuUtil` | `models.Optional[int]` | Optional | - |
+| `CreatedTime` | `models.Optional[int64]` | Optional | - |
+| `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `EnvStat` | [`*models.ApStatsEnvStat`](../../doc/models/ap-stats-env-stat.md) | Optional | device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage |
-| `EslStat` | [`*models.ApStatsEslStat`](../../doc/models/ap-stats-esl-stat.md) | Optional | - |
-| `ExtIp` | `*string` | Optional | - |
-| `Fwupdate` | [`*models.ApStatsFwupdate`](../../doc/models/ap-stats-fwupdate.md) | Optional | - |
+| `EslStat` | [`models.Optional[models.ApStatsEslStat]`](../../doc/models/ap-stats-esl-stat.md) | Optional | - |
+| `EvpntopoId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `ExtIp` | `models.Optional[string]` | Optional | IP address |
+| `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
+| `HwRev` | `models.Optional[string]` | Optional | device hardware revision number |
+| `Id` | `*uuid.UUID` | Optional | serial |
+| `InactiveWiredVlans` | `[]int` | Optional | - |
 | `IotStat` | [`map[string]models.ApStatsIotStatAdditionalProperties`](../../doc/models/ap-stats-iot-stat-additional-properties.md) | Optional | - |
-| `Ip` | `*string` | Optional | IP address |
+| `Ip` | `models.Optional[string]` | Optional | IP address |
 | `IpConfig` | [`*models.ApIpConfig`](../../doc/models/ap-ip-config.md) | Optional | IP AP settings |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
 | `L2tpStat` | [`map[string]models.ApStatsL2TpStat`](../../doc/models/ap-stats-l2-tp-stat.md) | Optional | l2tp tunnel status (key is the wxtunnel_id) |
-| `LastSeen` | `*float64` | Optional | last seen timestamp |
+| `LastSeen` | `models.Optional[float64]` | Optional | last seen timestamp |
 | `LastTrouble` | [`*models.LastTrouble`](../../doc/models/last-trouble.md) | Optional | last trouble code of switch |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `LldpStat` | [`*models.ApStatsLldpStat`](../../doc/models/ap-stats-lldp-stat.md) | Optional | LLDP Stat (neighbor information, power negotiations) |
-| `Locating` | `*bool` | Optional | - |
-| `Locked` | `*bool` | Optional | whether this AP is considered locked (placement / orientation has been vetted) |
-| `Mac` | [`*models.MemoryStat1`](../../doc/models/memory-stat-1.md) | Optional | device mac |
-| `MapId` | `*uuid.UUID` | Optional | - |
+| `Locating` | `models.Optional[bool]` | Optional | - |
+| `Locked` | `models.Optional[bool]` | Optional | whether this AP is considered locked (placement / orientation has been vetted) |
+| `Mac` | `models.Optional[string]` | Optional | device mac |
+| `MapId` | `models.Optional[uuid.UUID]` | Optional | serial |
+| `MemUsedKb` | `models.Optional[int64]` | Optional | - |
 | `MeshDownlinks` | [`map[string]models.ApStatMeshDownlink`](../../doc/models/ap-stat-mesh-downlink.md) | Optional | Property key is the mesh downlink id (e.g `00000000-0000-0000-1000-5c5b35000010`) |
 | `MeshUplink` | [`*models.ApStatMeshUplink`](../../doc/models/ap-stat-mesh-uplink.md) | Optional | - |
-| `Model` | `*string` | Optional | device model |
-| `Mount` | `*string` | Optional | - |
-| `Name` | `*string` | Optional | device name if configured |
-| `NumClients` | [`*models.SwitchStatsNumClients1`](../../doc/models/switch-stats-num-clients-1.md) | Optional | how many wireless clients are currently connected |
-| `PortStat` | [`map[string]models.ApStatsPortStat`](../../doc/models/ap-stats-port-stat.md) | Optional | Property key is the port name (e.g. `eth0`) |
-| `PowerBudget` | `*float64` | Optional | in mW, surplus if positive or deficit if negative |
-| `PowerConstrained` | `*bool` | Optional | whether insufficient power |
-| `PowerOpmode` | `*string` | Optional | constrained mode |
-| `PowerSrc` | `*string` | Optional | DC Input / PoE 802.3at / PoE 802.3af / LLDP / ? (unknown) |
+| `Model` | `models.Optional[string]` | Optional | device model |
+| `ModifiedTime` | `models.Optional[int64]` | Optional | - |
+| `Mount` | `models.Optional[string]` | Optional | - |
+| `Name` | `models.Optional[string]` | Optional | device name if configured |
+| `Notes` | `models.Optional[string]` | Optional | - |
+| `NumClients` | `models.Optional[int]` | Optional | how many wireless clients are currently connected |
+| `OrgId` | `models.Optional[uuid.UUID]` | Optional | serial |
+| `PortStat` | [`models.Optional[map[string]models.ApStatsPortStat]`](../../doc/models/ap-stats-port-stat.md) | Optional | Property key is the port name (e.g. `eth0`) |
+| `PowerBudget` | `models.Optional[int]` | Optional | in mW, surplus if positive or deficit if negative |
+| `PowerConstrained` | `models.Optional[bool]` | Optional | whether insufficient power |
+| `PowerOpmode` | `models.Optional[string]` | Optional | constrained mode |
+| `PowerSrc` | `models.Optional[string]` | Optional | DC Input / PoE 802.3at / PoE 802.3af / LLDP / ? (unknown) |
 | `RadioConfig` | [`*models.ApStatsRadioConfig`](../../doc/models/ap-stats-radio-config.md) | Optional | - |
 | `RadioStat` | [`*models.ApStatsRadioStat`](../../doc/models/ap-stats-radio-stat.md) | Optional | - |
-| `RxBps` | `*float64` | Optional | - |
-| `RxBytes` | `*int64` | Optional | - |
-| `RxPkts` | `*int` | Optional | - |
-| `Serial` | `*string` | Optional | serial |
-| `Status` | [`*models.ApStatsStatusEnum`](../../doc/models/ap-stats-status-enum.md) | Optional | - |
+| `RxBps` | `models.Optional[float64]` | Optional | - |
+| `RxBytes` | `models.Optional[int64]` | Optional | - |
+| `RxPkts` | `models.Optional[int]` | Optional | - |
+| `Serial` | `models.Optional[string]` | Optional | serial |
+| `SiteId` | `*uuid.UUID` | Optional | serial |
+| `Status` | `models.Optional[string]` | Optional | - |
 | `SwitchRedundancy` | [`*models.ApStatsSwitchRedundancy`](../../doc/models/ap-stats-switch-redundancy.md) | Optional | - |
-| `TxBps` | `*float64` | Optional | - |
-| `TxBytes` | `*float64` | Optional | - |
-| `TxPkts` | `*float64` | Optional | - |
-| `Type` | `*string` | Optional | device type, ap / ble |
-| `Uptime` | `*float64` | Optional | how long, in seconds, has the device been up (or rebooted) |
+| `TxBps` | `models.Optional[float64]` | Optional | - |
+| `TxBytes` | `models.Optional[float64]` | Optional | - |
+| `TxPkts` | `models.Optional[float64]` | Optional | - |
+| `Type` | `models.Optional[string]` | Optional | device type, ap / ble /switch / gateway |
+| `Uptime` | `models.Optional[float64]` | Optional | how long, in seconds, has the device been up (or rebooted) |
 | `UsbStat` | [`*models.ApStatsUsbStat`](../../doc/models/ap-stats-usb-stat.md) | Optional | - |
-| `Version` | `*string` | Optional | - |
-| `X` | `*float64` | Optional | - |
-| `Y` | `*float64` | Optional | - |
+| `Version` | `models.Optional[string]` | Optional | - |
+| `X` | `models.Optional[float64]` | Optional | - |
+| `Y` | `models.Optional[float64]` | Optional | - |
 | `ApRedundancy` | [`*models.SwitchStatsApRedundancy1`](../../doc/models/switch-stats-ap-redundancy-1.md) | Optional | - |
-| `Clients` | [`[]models.SwitchStatsClient`](../../doc/models/switch-stats-client.md) | Optional | - |
+| `ArpTableStats` | [`*models.ArpTableStats`](../../doc/models/arp-table-stats.md) | Optional | - |
+| `Clients` | [`[]models.SwitchStatsClientItem`](../../doc/models/switch-stats-client-item.md) | Optional | - |
+| `ClientsStats` | [`*models.SwitchStatsClientsStats`](../../doc/models/switch-stats-clients-stats.md) | Optional | - |
+| `ConfigStatus` | `*string` | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
+| `DhcpdStat` | [`*models.DhcpdStat`](../../doc/models/dhcpd-stat.md) | Optional | Property key is the network name |
+| `FwVersionsOutofsync` | `*bool` | Optional | - |
 | `HasPcap` | `*bool` | Optional | whether the switch supports packet capture |
 | `Hostname` | `*string` | Optional | hostname reported by the device |
-| `IfStat` | [`map[string]models.SwitchStatsIfStat`](../../doc/models/switch-stats-if-stat.md) | Optional | Property key is the interface name |
-| `ModuleStat` | [`[]models.ModuleStat`](../../doc/models/module-stat.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `ClusterStat` | [`map[string]models.GatewayStatsClusterStat`](../../doc/models/gateway-stats-cluster-stat.md) | Optional | - |
-| `Cpu2Stat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
-| `Dhcpd2Stat` | [`map[string]models.GatewayStatsDhcpdStatLan`](../../doc/models/gateway-stats-dhcpd-stat-lan.md) | Optional | Property key is the network name |
-| `DhcpdStat` | [`map[string]models.GatewayStatsDhcpdStatLan`](../../doc/models/gateway-stats-dhcpd-stat-lan.md) | Optional | Property key is the network name |
-| `Ip2Stat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
-| `Memory2Stat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
+| `IfStat` | [`*models.IfStat`](../../doc/models/if-stat.md) | Optional | Property key is the interface name |
+| `MacTableStats` | [`*models.MacTableStats`](../../doc/models/mac-table-stats.md) | Optional | - |
 | `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
-| `Module2Stat` | [`[]models.ModuleStat`](../../doc/models/module-stat.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Spu2Stat` | [`*models.GatewayStatsSpuStat`](../../doc/models/gateway-stats-spu-stat.md) | Optional | - |
-| `SpuStat` | [`*models.GatewayStatsSpuStat`](../../doc/models/gateway-stats-spu-stat.md) | Optional | - |
+| `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
+| `ServiceStat` | [`*models.ServiceStat`](../../doc/models/service-stat.md) | Optional | - |
+| `VcMac` | `models.Optional[string]` | Optional | - |
+| `VcSetupInfo` | [`*models.SwitchStatsVcSetupInfo`](../../doc/models/switch-stats-vc-setup-info.md) | Optional | - |
+| `ClusterConfig` | [`*models.ClusterConfigStats`](../../doc/models/cluster-config-stats.md) | Optional | - |
+| `ClusterStat` | [`*models.GatewayStatsCluster`](../../doc/models/gateway-stats-cluster.md) | Optional | - |
+| `ConductorName` | `*string` | Optional | - |
+| `Cpu2Stat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
+| `Dhcpd2Stat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
+| `If2Stat` | [`map[string]models.IfStatProperty`](../../doc/models/if-stat-property.md) | Optional | Property key is the interface name |
+| `Ip2Stat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
+| `IsHa` | `models.Optional[bool]` | Optional | - |
+| `Memory2Stat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
+| `Module2Stat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `NodeName` | `*string` | Optional | - |
+| `RouterName` | `*string` | Optional | device name if configured |
+| `Service2Stat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
+| `ServiceStatus` | [`*models.GatewayStatsServiceStatus`](../../doc/models/gateway-stats-service-status.md) | Optional | - |
+| `Spu2Stat` | [`[]models.GatewayStatsSpuItem`](../../doc/models/gateway-stats-spu-item.md) | Optional | - |
+| `SpuStat` | [`[]models.GatewayStatsSpuItem`](../../doc/models/gateway-stats-spu-item.md) | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "cert_expiry": 1534534392.0,
+  "cert_expiry": 1534534392,
   "ext_ip": "73.92.124.103",
   "iot_stat": {
     "DI2": {
@@ -91,6 +122,7 @@
   "last_seen": 1470417522,
   "locating": false,
   "locked": true,
+  "mac": "5c5b35000010",
   "map_id": "63eda950-c6da-11e4-a628-60f81dd250cc",
   "model": "AP200",
   "mount": "faceup",
@@ -114,8 +146,9 @@
   "y": 173.1,
   "has_pcap": false,
   "hostname": "sj-sw1",
+  "node_name": "node0",
+  "router_name": "sj1",
   "auto_placement": {
-    "_id": "_id8",
     "info": {
       "cluster_number": 112,
       "orientation_stats": 90,
@@ -127,33 +160,20 @@
     },
     "recommended_anchor": false,
     "status": "status4",
-    "status_detail": "status_detail0"
+    "status_detail": "status_detail0",
+    "use_auto_placement": false
   },
-  "ble_config": {
-    "beacon_rate": 110,
-    "beacon_rate_model": "beacon_rate_model2",
-    "beam_disabled": [
-      113,
-      114,
-      115
-    ],
-    "power": 212,
-    "power_mode": "power_mode6"
+  "auto_upgrade_stat": {
+    "lastcheck": 28
   },
   "ble_stat": {
+    "beacon_enabled": false,
     "beacon_rate": 78,
     "eddystone_uid_enabled": false,
     "eddystone_uid_freq_msec": 132,
-    "eddystone_uid_instance": "eddystone_uid_instance6",
-    "eddystone_uid_namespace": "eddystone_uid_namespace8"
+    "eddystone_uid_instance": "eddystone_uid_instance6"
   },
-  "env_stat": {
-    "accel_x": 122.78,
-    "accel_y": 222.08,
-    "accel_z": 112.82,
-    "ambient_temp": 66,
-    "attitude": 104
-  }
+  "config_reverted": false
 }
 ```
 

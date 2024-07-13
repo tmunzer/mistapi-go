@@ -12,7 +12,7 @@
 | `Band` | `*string` | Optional | - |
 | `Channel` | `*int` | Optional | - |
 | `IdleTime` | `*int` | Optional | - |
-| `LastSeen` | `*int` | Optional | - |
+| `LastSeen` | `*float64` | Optional | - |
 | `Proto` | `*string` | Optional | - |
 | `Rssi` | `*int` | Optional | - |
 | `RxBps` | `*int` | Optional | - |
@@ -35,7 +35,7 @@
   "band": "5",
   "channel": 36,
   "idle_time": 3,
-  "last_seen": 1470417522,
+  "last_seen": 1470417522.0,
   "proto": "n",
   "rssi": -65,
   "rx_bps": 12,

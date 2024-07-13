@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NumRedundantAps` | `*int` | Optional | - |
+| `NumRedundantAps` | `models.Optional[int]` | Optional | - |
 
 ## Example (as JSON)
 

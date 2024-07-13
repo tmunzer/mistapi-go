@@ -325,7 +325,7 @@ ListOrgUserMacs(
     blacklisted *bool,
     forGuestWifi *bool,
     crossSite *bool,
-    siteId *uuid.UUID,
+    siteId *string,
     page *int,
     limit *int) (
     models.ApiResponse[[]models.UserMac],
@@ -340,7 +340,7 @@ ListOrgUserMacs(
 | `blacklisted` | `*bool` | Query, Optional | - |
 | `forGuestWifi` | `*bool` | Query, Optional | - |
 | `crossSite` | `*bool` | Query, Optional | - |
-| `siteId` | `*uuid.UUID` | Query, Optional | - |
+| `siteId` | `*string` | Query, Optional | - |
 | `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
 

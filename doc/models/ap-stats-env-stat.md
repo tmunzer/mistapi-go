@@ -11,28 +11,35 @@ device environment, including CPU temperature, Ambient temperature, Humidity, At
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AccelX` | `*float64` | Optional | - |
-| `AccelY` | `*float64` | Optional | - |
-| `AccelZ` | `*float64` | Optional | - |
-| `AmbientTemp` | `*int` | Optional | - |
-| `Attitude` | `*int` | Optional | - |
-| `CpuTemp` | `*int` | Optional | - |
-| `Humidity` | `*int` | Optional | - |
-| `MagneX` | `*float64` | Optional | - |
-| `MagneY` | `*float64` | Optional | - |
-| `MagneZ` | `*float64` | Optional | - |
-| `Pressure` | `*int` | Optional | - |
-| `VcoreVoltage` | `*float64` | Optional | - |
+| `AccelX` | `models.Optional[float64]` | Optional | - |
+| `AccelY` | `models.Optional[float64]` | Optional | - |
+| `AccelZ` | `models.Optional[float64]` | Optional | - |
+| `AmbientTemp` | `models.Optional[int]` | Optional | - |
+| `Attitude` | `models.Optional[int]` | Optional | - |
+| `CpuTemp` | `models.Optional[int]` | Optional | - |
+| `Humidity` | `models.Optional[int]` | Optional | - |
+| `MagneX` | `models.Optional[float64]` | Optional | - |
+| `MagneY` | `models.Optional[float64]` | Optional | - |
+| `MagneZ` | `models.Optional[float64]` | Optional | - |
+| `Pressure` | `models.Optional[float64]` | Optional | - |
+| `VcoreVoltage` | `models.Optional[int]` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "accel_x": 184.92,
-  "accel_y": 28.22,
-  "accel_z": 174.96,
-  "ambient_temp": 252,
-  "attitude": 174
+  "accel_x": 0.0,
+  "accel_y": 0.032,
+  "accel_z": -1.088,
+  "ambient_temp": 43,
+  "attitude": 0,
+  "cpu_temp": 61,
+  "humidity": 9,
+  "magne_x": 0,
+  "magne_y": 0,
+  "magne_z": 0,
+  "pressure": 968,
+  "vcore_voltage": 0
 }
 ```
 

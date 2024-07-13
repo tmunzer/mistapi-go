@@ -940,7 +940,7 @@ SearchSiteWirelessClientSessions(
     clientOs *string,
     ssid *string,
     wlanId *string,
-    pskId *uuid.UUID,
+    pskId *string,
     pskName *string,
     limit *int,
     start *int,
@@ -964,7 +964,7 @@ SearchSiteWirelessClientSessions(
 | `clientOs` | `*string` | Query, Optional | E.g. “Mojave”, “Windows 10”, “Linux” |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `wlanId` | `*string` | Query, Optional | wlan_id |
-| `pskId` | `*uuid.UUID` | Query, Optional | PSK ID |
+| `pskId` | `*string` | Query, Optional | PSK ID |
 | `pskName` | `*string` | Query, Optional | PSK Name |
 | `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -1000,7 +1000,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-pskId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
 
 
 

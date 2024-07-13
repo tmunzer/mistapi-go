@@ -521,12 +521,12 @@ Search for Org Assets
 SearchOrgAssets(
     ctx context.Context,
     orgId uuid.UUID,
-    siteId *uuid.UUID,
+    siteId *string,
     mac *string,
     deviceName *string,
     name *string,
-    mapId *uuid.UUID,
-    ibeaconUuid *uuid.UUID,
+    mapId *string,
+    ibeaconUuid *string,
     ibeaconMajor *string,
     ibeaconMinor *string,
     eddystoneUidNamespace *string,
@@ -548,12 +548,12 @@ SearchOrgAssets(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `siteId` | `*uuid.UUID` | Query, Optional | - |
+| `siteId` | `*string` | Query, Optional | - |
 | `mac` | `*string` | Query, Optional | - |
 | `deviceName` | `*string` | Query, Optional | - |
 | `name` | `*string` | Query, Optional | - |
-| `mapId` | `*uuid.UUID` | Query, Optional | - |
-| `ibeaconUuid` | `*uuid.UUID` | Query, Optional | - |
+| `mapId` | `*string` | Query, Optional | - |
+| `ibeaconUuid` | `*string` | Query, Optional | - |
 | `ibeaconMajor` | `*string` | Query, Optional | - |
 | `ibeaconMinor` | `*string` | Query, Optional | - |
 | `eddystoneUidNamespace` | `*string` | Query, Optional | - |

@@ -15,7 +15,7 @@ Applications used for the Gateway configurations
 | `AppCategories` | `[]string` | Optional | when `type`==`app_categories`<br>list of application categories are available through /api/v1/const/app_categories |
 | `AppSubcategories` | `[]string` | Optional | when `type`==`app_categories`<br>list of application categories are available through /api/v1/const/app_subcategories |
 | `Apps` | `[]string` | Optional | when `type`==`apps`<br>list of applications are available through:<br><br>- /api/v1/const/applications,<br>- /api/v1/const/gateway_applications<br>- /insight/top_app_by-bytes?wired=true |
-| `CreatedTime` | `*int` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | - |
 | `Description` | `*string` | Optional | - |
 | `Dscp` | `*int` | Optional | when `traffic_type`==`custom` |
 | `FailoverPolicy` | [`*models.ServiceFailoverPolicyEnum`](../../doc/models/service-failover-policy-enum.md) | Optional | **Default**: `"revertable"` |
@@ -24,7 +24,7 @@ Applications used for the Gateway configurations
 | `MaxJitter` | `*int` | Optional | when `traffic_type`==`custom`, for uplink selection |
 | `MaxLatency` | `*int` | Optional | when `traffic_type`==`custom`, for uplink selection |
 | `MaxLoss` | `*int` | Optional | when `traffic_type`==`custom`, for uplink selection |
-| `ModifiedTime` | `*int` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SleEnabled` | `*bool` | Optional | whether to enable measure SLE<br>**Default**: `false` |
@@ -61,7 +61,7 @@ Applications used for the Gateway configurations
     "addresses9",
     "addresses0"
   ],
-  "created_time": 242
+  "created_time": 40.82
 }
 ```
 
