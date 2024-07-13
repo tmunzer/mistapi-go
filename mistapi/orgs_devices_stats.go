@@ -1,25 +1,27 @@
 package mistapi
 
 import (
-    "context"
-    "fmt"
-    "github.com/apimatic/go-core-runtime/https"
-    "github.com/apimatic/go-core-runtime/utilities"
-    "github.com/google/uuid"
-    "mistapi/errors"
-    "mistapi/models"
+	"context"
+	"fmt"
+
+	"github.com/tmunzer/mistapi-go/mistapi/errors"
+	"github.com/tmunzer/mistapi-go/mistapi/models"
+
+	"github.com/apimatic/go-core-runtime/https"
+	"github.com/apimatic/go-core-runtime/utilities"
+	"github.com/google/uuid"
 )
 
 // OrgsDevicesStats represents a controller struct.
 type OrgsDevicesStats struct {
-    baseController
+	baseController
 }
 
 // NewOrgsDevicesStats creates a new instance of OrgsDevicesStats.
 // It takes a baseController as a parameter and returns a pointer to the OrgsDevicesStats.
 func NewOrgsDevicesStats(baseController baseController) *OrgsDevicesStats {
-    orgsDevicesStats := OrgsDevicesStats{baseController: baseController}
-    return &orgsDevicesStats
+	orgsDevicesStats := OrgsDevicesStats{baseController: baseController}
+	return &orgsDevicesStats
 }
 
 // CountOrgBgpStats takes context, orgId as parameters and
@@ -27,42 +29,41 @@ func NewOrgsDevicesStats(baseController baseController) *OrgsDevicesStats {
 // an error if there was an issue with the request or response.
 // Count Org BGP Stats
 func (o *OrgsDevicesStats) CountOrgBgpStats(
-    ctx context.Context,
-    orgId uuid.UUID) (
-    models.ApiResponse[models.RepsonseCount],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/stats/bgp_peers/count", orgId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID) (
+	models.ApiResponse[models.RepsonseCount],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		fmt.Sprintf("/api/v1/orgs/%v/stats/bgp_peers/count", orgId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-    })
-    
-    var result models.RepsonseCount
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.RepsonseCount
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // SearchOrgBgpStats takes context, orgId as parameters and
@@ -70,42 +71,41 @@ func (o *OrgsDevicesStats) CountOrgBgpStats(
 // an error if there was an issue with the request or response.
 // Search Org BGP Stats
 func (o *OrgsDevicesStats) SearchOrgBgpStats(
-    ctx context.Context,
-    orgId uuid.UUID) (
-    models.ApiResponse[models.ResponseSearchBgps],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/stats/bgp_peers/search", orgId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID) (
+	models.ApiResponse[models.ResponseSearchBgps],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		fmt.Sprintf("/api/v1/orgs/%v/stats/bgp_peers/search", orgId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-    })
-    
-    var result models.ResponseSearchBgps
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.ResponseSearchBgps](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.ResponseSearchBgps
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseSearchBgps](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // ListOrgDevicesStats takes context, orgId, mType, status, siteId, mac, evpntopoId, evpnUnused, fields, page, limit, start, end, duration as parameters and
@@ -114,90 +114,89 @@ func (o *OrgsDevicesStats) SearchOrgBgpStats(
 // Get List of Org Devices stats
 // This API renders some high-level device stats, pagination is assumed and returned in response header (as the response is an array)
 func (o *OrgsDevicesStats) ListOrgDevicesStats(
-    ctx context.Context,
-    orgId uuid.UUID,
-    mType *models.DeviceTypeWithAllEnum,
-    status *models.DeviceStatusEnum,
-    siteId *string,
-    mac *string,
-    evpntopoId *string,
-    evpnUnused *string,
-    fields *string,
-    page *int,
-    limit *int,
-    start *int,
-    end *int,
-    duration *string) (
-    models.ApiResponse[[]models.ListOrgDevicesStatsResponse],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/stats/devices", orgId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	mType *models.DeviceTypeWithAllEnum,
+	status *models.DeviceStatusEnum,
+	siteId *string,
+	mac *string,
+	evpntopoId *string,
+	evpnUnused *string,
+	fields *string,
+	page *int,
+	limit *int,
+	start *int,
+	end *int,
+	duration *string) (
+	models.ApiResponse[[]models.ListOrgDevicesStatsResponse],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		fmt.Sprintf("/api/v1/orgs/%v/stats/devices", orgId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+	})
+	if mType != nil {
+		req.QueryParam("type", *mType)
+	}
+	if status != nil {
+		req.QueryParam("status", *status)
+	}
+	if siteId != nil {
+		req.QueryParam("site_id", *siteId)
+	}
+	if mac != nil {
+		req.QueryParam("mac", *mac)
+	}
+	if evpntopoId != nil {
+		req.QueryParam("evpntopo_id", *evpntopoId)
+	}
+	if evpnUnused != nil {
+		req.QueryParam("evpn_unused", *evpnUnused)
+	}
+	if fields != nil {
+		req.QueryParam("fields", *fields)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-    })
-    if mType != nil {
-        req.QueryParam("type", *mType)
-    }
-    if status != nil {
-        req.QueryParam("status", *status)
-    }
-    if siteId != nil {
-        req.QueryParam("site_id", *siteId)
-    }
-    if mac != nil {
-        req.QueryParam("mac", *mac)
-    }
-    if evpntopoId != nil {
-        req.QueryParam("evpntopo_id", *evpntopoId)
-    }
-    if evpnUnused != nil {
-        req.QueryParam("evpn_unused", *evpnUnused)
-    }
-    if fields != nil {
-        req.QueryParam("fields", *fields)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
-    if start != nil {
-        req.QueryParam("start", *start)
-    }
-    if end != nil {
-        req.QueryParam("end", *end)
-    }
-    if duration != nil {
-        req.QueryParam("duration", *duration)
-    }
-    
-    var result []models.ListOrgDevicesStatsResponse
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[[]models.ListOrgDevicesStatsResponse](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result []models.ListOrgDevicesStatsResponse
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[[]models.ListOrgDevicesStatsResponse](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // SearchOrgSwOrGwPorts takes context, orgId, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, stpState, stpRole, authState, limit, start, end, duration as parameters and
@@ -205,174 +204,173 @@ func (o *OrgsDevicesStats) ListOrgDevicesStats(
 // an error if there was an issue with the request or response.
 // Search Switch / Gateway Ports
 func (o *OrgsDevicesStats) SearchOrgSwOrGwPorts(
-    ctx context.Context,
-    orgId uuid.UUID,
-    fullDuplex *bool,
-    mac *string,
-    neighborMac *string,
-    neighborPortDesc *string,
-    neighborSystemName *string,
-    poeDisabled *bool,
-    poeMode *string,
-    poeOn *bool,
-    portId *string,
-    portMac *string,
-    powerDraw *float64,
-    txPkts *int,
-    rxPkts *int,
-    rxBytes *int,
-    txBps *int,
-    rxBps *int,
-    txErrors *int,
-    rxErrors *int,
-    txMcastPkts *int,
-    txBcastPkts *int,
-    rxMcastPkts *int,
-    rxBcastPkts *int,
-    speed *int,
-    macLimit *int,
-    macCount *int,
-    up *bool,
-    stpState *models.SearchOrgSwOrGwPortsStpStateEnum,
-    stpRole *models.SearchOrgSwOrGwPortsStpRoleEnum,
-    authState *models.SearchOrgSwOrGwPortsAuthStateEnum,
-    limit *int,
-    start *int,
-    end *int,
-    duration *string) (
-    models.ApiResponse[models.ResponsePortStatsSearch],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/stats/ports/search", orgId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	fullDuplex *bool,
+	mac *string,
+	neighborMac *string,
+	neighborPortDesc *string,
+	neighborSystemName *string,
+	poeDisabled *bool,
+	poeMode *string,
+	poeOn *bool,
+	portId *string,
+	portMac *string,
+	powerDraw *float64,
+	txPkts *int,
+	rxPkts *int,
+	rxBytes *int,
+	txBps *int,
+	rxBps *int,
+	txErrors *int,
+	rxErrors *int,
+	txMcastPkts *int,
+	txBcastPkts *int,
+	rxMcastPkts *int,
+	rxBcastPkts *int,
+	speed *int,
+	macLimit *int,
+	macCount *int,
+	up *bool,
+	stpState *models.SearchOrgSwOrGwPortsStpStateEnum,
+	stpRole *models.SearchOrgSwOrGwPortsStpRoleEnum,
+	authState *models.SearchOrgSwOrGwPortsAuthStateEnum,
+	limit *int,
+	start *int,
+	end *int,
+	duration *string) (
+	models.ApiResponse[models.ResponsePortStatsSearch],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		fmt.Sprintf("/api/v1/orgs/%v/stats/ports/search", orgId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+	})
+	if fullDuplex != nil {
+		req.QueryParam("full_duplex", *fullDuplex)
+	}
+	if mac != nil {
+		req.QueryParam("mac", *mac)
+	}
+	if neighborMac != nil {
+		req.QueryParam("neighbor_mac", *neighborMac)
+	}
+	if neighborPortDesc != nil {
+		req.QueryParam("neighbor_port_desc", *neighborPortDesc)
+	}
+	if neighborSystemName != nil {
+		req.QueryParam("neighbor_system_name", *neighborSystemName)
+	}
+	if poeDisabled != nil {
+		req.QueryParam("poe_disabled", *poeDisabled)
+	}
+	if poeMode != nil {
+		req.QueryParam("poe_mode", *poeMode)
+	}
+	if poeOn != nil {
+		req.QueryParam("poe_on", *poeOn)
+	}
+	if portId != nil {
+		req.QueryParam("port_id", *portId)
+	}
+	if portMac != nil {
+		req.QueryParam("port_mac", *portMac)
+	}
+	if powerDraw != nil {
+		req.QueryParam("power_draw", *powerDraw)
+	}
+	if txPkts != nil {
+		req.QueryParam("tx_pkts", *txPkts)
+	}
+	if rxPkts != nil {
+		req.QueryParam("rx_pkts", *rxPkts)
+	}
+	if rxBytes != nil {
+		req.QueryParam("rx_bytes", *rxBytes)
+	}
+	if txBps != nil {
+		req.QueryParam("tx_bps", *txBps)
+	}
+	if rxBps != nil {
+		req.QueryParam("rx_bps", *rxBps)
+	}
+	if txErrors != nil {
+		req.QueryParam("tx_errors", *txErrors)
+	}
+	if rxErrors != nil {
+		req.QueryParam("rx_errors", *rxErrors)
+	}
+	if txMcastPkts != nil {
+		req.QueryParam("tx_mcast_pkts", *txMcastPkts)
+	}
+	if txBcastPkts != nil {
+		req.QueryParam("tx_bcast_pkts", *txBcastPkts)
+	}
+	if rxMcastPkts != nil {
+		req.QueryParam("rx_mcast_pkts", *rxMcastPkts)
+	}
+	if rxBcastPkts != nil {
+		req.QueryParam("rx_bcast_pkts", *rxBcastPkts)
+	}
+	if speed != nil {
+		req.QueryParam("speed", *speed)
+	}
+	if macLimit != nil {
+		req.QueryParam("mac_limit", *macLimit)
+	}
+	if macCount != nil {
+		req.QueryParam("mac_count", *macCount)
+	}
+	if up != nil {
+		req.QueryParam("up", *up)
+	}
+	if stpState != nil {
+		req.QueryParam("stp_state", *stpState)
+	}
+	if stpRole != nil {
+		req.QueryParam("stp_role", *stpRole)
+	}
+	if authState != nil {
+		req.QueryParam("auth_state", *authState)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-    })
-    if fullDuplex != nil {
-        req.QueryParam("full_duplex", *fullDuplex)
-    }
-    if mac != nil {
-        req.QueryParam("mac", *mac)
-    }
-    if neighborMac != nil {
-        req.QueryParam("neighbor_mac", *neighborMac)
-    }
-    if neighborPortDesc != nil {
-        req.QueryParam("neighbor_port_desc", *neighborPortDesc)
-    }
-    if neighborSystemName != nil {
-        req.QueryParam("neighbor_system_name", *neighborSystemName)
-    }
-    if poeDisabled != nil {
-        req.QueryParam("poe_disabled", *poeDisabled)
-    }
-    if poeMode != nil {
-        req.QueryParam("poe_mode", *poeMode)
-    }
-    if poeOn != nil {
-        req.QueryParam("poe_on", *poeOn)
-    }
-    if portId != nil {
-        req.QueryParam("port_id", *portId)
-    }
-    if portMac != nil {
-        req.QueryParam("port_mac", *portMac)
-    }
-    if powerDraw != nil {
-        req.QueryParam("power_draw", *powerDraw)
-    }
-    if txPkts != nil {
-        req.QueryParam("tx_pkts", *txPkts)
-    }
-    if rxPkts != nil {
-        req.QueryParam("rx_pkts", *rxPkts)
-    }
-    if rxBytes != nil {
-        req.QueryParam("rx_bytes", *rxBytes)
-    }
-    if txBps != nil {
-        req.QueryParam("tx_bps", *txBps)
-    }
-    if rxBps != nil {
-        req.QueryParam("rx_bps", *rxBps)
-    }
-    if txErrors != nil {
-        req.QueryParam("tx_errors", *txErrors)
-    }
-    if rxErrors != nil {
-        req.QueryParam("rx_errors", *rxErrors)
-    }
-    if txMcastPkts != nil {
-        req.QueryParam("tx_mcast_pkts", *txMcastPkts)
-    }
-    if txBcastPkts != nil {
-        req.QueryParam("tx_bcast_pkts", *txBcastPkts)
-    }
-    if rxMcastPkts != nil {
-        req.QueryParam("rx_mcast_pkts", *rxMcastPkts)
-    }
-    if rxBcastPkts != nil {
-        req.QueryParam("rx_bcast_pkts", *rxBcastPkts)
-    }
-    if speed != nil {
-        req.QueryParam("speed", *speed)
-    }
-    if macLimit != nil {
-        req.QueryParam("mac_limit", *macLimit)
-    }
-    if macCount != nil {
-        req.QueryParam("mac_count", *macCount)
-    }
-    if up != nil {
-        req.QueryParam("up", *up)
-    }
-    if stpState != nil {
-        req.QueryParam("stp_state", *stpState)
-    }
-    if stpRole != nil {
-        req.QueryParam("stp_role", *stpRole)
-    }
-    if authState != nil {
-        req.QueryParam("auth_state", *authState)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
-    if start != nil {
-        req.QueryParam("start", *start)
-    }
-    if end != nil {
-        req.QueryParam("end", *end)
-    }
-    if duration != nil {
-        req.QueryParam("duration", *duration)
-    }
-    
-    var result models.ResponsePortStatsSearch
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.ResponsePortStatsSearch](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.ResponsePortStatsSearch
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponsePortStatsSearch](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // CountOrgSwitchPorts takes context, orgId, distinct, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, stpState, stpRole, authState, up, page, limit, start, end, duration as parameters and
@@ -380,164 +378,163 @@ func (o *OrgsDevicesStats) SearchOrgSwOrGwPorts(
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Switch/Gateway Ports
 func (o *OrgsDevicesStats) CountOrgSwitchPorts(
-    ctx context.Context,
-    orgId uuid.UUID,
-    distinct *models.OrgSwitchPortCountDistinctEnum,
-    fullDuplex *bool,
-    mac *string,
-    neighborMac *string,
-    neighborPortDesc *string,
-    neighborSystemName *string,
-    poeDisabled *bool,
-    poeMode *string,
-    poeOn *bool,
-    portId *string,
-    portMac *string,
-    powerDraw *float64,
-    txPkts *int,
-    rxPkts *int,
-    rxBytes *int,
-    txBps *int,
-    rxBps *int,
-    txMcastPkts *int,
-    txBcastPkts *int,
-    rxMcastPkts *int,
-    rxBcastPkts *int,
-    speed *int,
-    stpState *models.CountOrgSwitchPortsStpStateEnum,
-    stpRole *models.CountOrgSwitchPortsStpRoleEnum,
-    authState *models.CountOrgSwitchPortsAuthStateEnum,
-    up *bool,
-    page *int,
-    limit *int,
-    start *int,
-    end *int,
-    duration *string) (
-    models.ApiResponse[models.RepsonseCount],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/stats/switch_ports/count", orgId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	distinct *models.OrgSwitchPortCountDistinctEnum,
+	fullDuplex *bool,
+	mac *string,
+	neighborMac *string,
+	neighborPortDesc *string,
+	neighborSystemName *string,
+	poeDisabled *bool,
+	poeMode *string,
+	poeOn *bool,
+	portId *string,
+	portMac *string,
+	powerDraw *float64,
+	txPkts *int,
+	rxPkts *int,
+	rxBytes *int,
+	txBps *int,
+	rxBps *int,
+	txMcastPkts *int,
+	txBcastPkts *int,
+	rxMcastPkts *int,
+	rxBcastPkts *int,
+	speed *int,
+	stpState *models.CountOrgSwitchPortsStpStateEnum,
+	stpRole *models.CountOrgSwitchPortsStpRoleEnum,
+	authState *models.CountOrgSwitchPortsAuthStateEnum,
+	up *bool,
+	page *int,
+	limit *int,
+	start *int,
+	end *int,
+	duration *string) (
+	models.ApiResponse[models.RepsonseCount],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		fmt.Sprintf("/api/v1/orgs/%v/stats/switch_ports/count", orgId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+	})
+	if distinct != nil {
+		req.QueryParam("distinct", *distinct)
+	}
+	if fullDuplex != nil {
+		req.QueryParam("full_duplex", *fullDuplex)
+	}
+	if mac != nil {
+		req.QueryParam("mac", *mac)
+	}
+	if neighborMac != nil {
+		req.QueryParam("neighbor_mac", *neighborMac)
+	}
+	if neighborPortDesc != nil {
+		req.QueryParam("neighbor_port_desc", *neighborPortDesc)
+	}
+	if neighborSystemName != nil {
+		req.QueryParam("neighbor_system_name", *neighborSystemName)
+	}
+	if poeDisabled != nil {
+		req.QueryParam("poe_disabled", *poeDisabled)
+	}
+	if poeMode != nil {
+		req.QueryParam("poe_mode", *poeMode)
+	}
+	if poeOn != nil {
+		req.QueryParam("poe_on", *poeOn)
+	}
+	if portId != nil {
+		req.QueryParam("port_id", *portId)
+	}
+	if portMac != nil {
+		req.QueryParam("port_mac", *portMac)
+	}
+	if powerDraw != nil {
+		req.QueryParam("power_draw", *powerDraw)
+	}
+	if txPkts != nil {
+		req.QueryParam("tx_pkts", *txPkts)
+	}
+	if rxPkts != nil {
+		req.QueryParam("rx_pkts", *rxPkts)
+	}
+	if rxBytes != nil {
+		req.QueryParam("rx_bytes", *rxBytes)
+	}
+	if txBps != nil {
+		req.QueryParam("tx_bps", *txBps)
+	}
+	if rxBps != nil {
+		req.QueryParam("rx_bps", *rxBps)
+	}
+	if txMcastPkts != nil {
+		req.QueryParam("tx_mcast_pkts", *txMcastPkts)
+	}
+	if txBcastPkts != nil {
+		req.QueryParam("tx_bcast_pkts", *txBcastPkts)
+	}
+	if rxMcastPkts != nil {
+		req.QueryParam("rx_mcast_pkts", *rxMcastPkts)
+	}
+	if rxBcastPkts != nil {
+		req.QueryParam("rx_bcast_pkts", *rxBcastPkts)
+	}
+	if speed != nil {
+		req.QueryParam("speed", *speed)
+	}
+	if stpState != nil {
+		req.QueryParam("stp_state", *stpState)
+	}
+	if stpRole != nil {
+		req.QueryParam("stp_role", *stpRole)
+	}
+	if authState != nil {
+		req.QueryParam("auth_state", *authState)
+	}
+	if up != nil {
+		req.QueryParam("up", *up)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-    })
-    if distinct != nil {
-        req.QueryParam("distinct", *distinct)
-    }
-    if fullDuplex != nil {
-        req.QueryParam("full_duplex", *fullDuplex)
-    }
-    if mac != nil {
-        req.QueryParam("mac", *mac)
-    }
-    if neighborMac != nil {
-        req.QueryParam("neighbor_mac", *neighborMac)
-    }
-    if neighborPortDesc != nil {
-        req.QueryParam("neighbor_port_desc", *neighborPortDesc)
-    }
-    if neighborSystemName != nil {
-        req.QueryParam("neighbor_system_name", *neighborSystemName)
-    }
-    if poeDisabled != nil {
-        req.QueryParam("poe_disabled", *poeDisabled)
-    }
-    if poeMode != nil {
-        req.QueryParam("poe_mode", *poeMode)
-    }
-    if poeOn != nil {
-        req.QueryParam("poe_on", *poeOn)
-    }
-    if portId != nil {
-        req.QueryParam("port_id", *portId)
-    }
-    if portMac != nil {
-        req.QueryParam("port_mac", *portMac)
-    }
-    if powerDraw != nil {
-        req.QueryParam("power_draw", *powerDraw)
-    }
-    if txPkts != nil {
-        req.QueryParam("tx_pkts", *txPkts)
-    }
-    if rxPkts != nil {
-        req.QueryParam("rx_pkts", *rxPkts)
-    }
-    if rxBytes != nil {
-        req.QueryParam("rx_bytes", *rxBytes)
-    }
-    if txBps != nil {
-        req.QueryParam("tx_bps", *txBps)
-    }
-    if rxBps != nil {
-        req.QueryParam("rx_bps", *rxBps)
-    }
-    if txMcastPkts != nil {
-        req.QueryParam("tx_mcast_pkts", *txMcastPkts)
-    }
-    if txBcastPkts != nil {
-        req.QueryParam("tx_bcast_pkts", *txBcastPkts)
-    }
-    if rxMcastPkts != nil {
-        req.QueryParam("rx_mcast_pkts", *rxMcastPkts)
-    }
-    if rxBcastPkts != nil {
-        req.QueryParam("rx_bcast_pkts", *rxBcastPkts)
-    }
-    if speed != nil {
-        req.QueryParam("speed", *speed)
-    }
-    if stpState != nil {
-        req.QueryParam("stp_state", *stpState)
-    }
-    if stpRole != nil {
-        req.QueryParam("stp_role", *stpRole)
-    }
-    if authState != nil {
-        req.QueryParam("auth_state", *authState)
-    }
-    if up != nil {
-        req.QueryParam("up", *up)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
-    if start != nil {
-        req.QueryParam("start", *start)
-    }
-    if end != nil {
-        req.QueryParam("end", *end)
-    }
-    if duration != nil {
-        req.QueryParam("duration", *duration)
-    }
-    
-    var result models.RepsonseCount
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.RepsonseCount
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+	return models.NewApiResponse(result, resp), err
 }
