@@ -746,6 +746,22 @@ const (
     DayOfWeekEnum_SUN DayOfWeekEnum = "sun"
 )
 
+// DeviceTypeApEnum is a string enum.
+// Device Type
+type DeviceTypeApEnum string
+
+const (
+    DeviceTypeApEnum_AP DeviceTypeApEnum = "ap"
+)
+
+// DeviceTypeGatewayEnum is a string enum.
+// Device Type
+type DeviceTypeGatewayEnum string
+
+const (
+    DeviceTypeGatewayEnum_GATEWAY DeviceTypeGatewayEnum = "gateway"
+)
+
 // DeviceTypeSwitchEnum is a string enum.
 // Device Type
 type DeviceTypeSwitchEnum string
@@ -3749,22 +3765,6 @@ type CaptureWirelessFormatEnum string
 const (
     CaptureWirelessFormatEnum_PCAP   CaptureWirelessFormatEnum = "pcap"
     CaptureWirelessFormatEnum_STREAM CaptureWirelessFormatEnum = "stream"
-)
-
-// DeviceTypeApEnum is a string enum.
-// Device Type
-type DeviceTypeApEnum string
-
-const (
-    DeviceTypeApEnum_AP DeviceTypeApEnum = "ap"
-)
-
-// DeviceTypeGatewayEnum is a string enum.
-// Device Type
-type DeviceTypeGatewayEnum string
-
-const (
-    DeviceTypeGatewayEnum_GATEWAY DeviceTypeGatewayEnum = "gateway"
 )
 
 // EventFastroamTypeEnum is a string enum.

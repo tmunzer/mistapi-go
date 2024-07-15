@@ -9,9 +9,9 @@ import (
 // UpdateOrgDeviceProfileResponse represents a UpdateOrgDeviceProfileResponse struct.
 // This is a container for any-of cases.
 type UpdateOrgDeviceProfileResponse struct {
-    value             any
-    isDeviceprofileAp bool
-    isGatewayTemplate bool
+    value                  any
+    isDeviceprofileAp      bool
+    isDeviceprofileGateway bool
 }
 
 // String converts the UpdateOrgDeviceProfileResponse object to a string representation.
@@ -38,7 +38,7 @@ func (u *UpdateOrgDeviceProfileResponse) toMap() any {
     switch obj := u.value.(type) {
     case *DeviceprofileAp:
         return obj.toMap()
-    case *GatewayTemplate:
+    case *DeviceprofileGateway:
         return obj.toMap()
     }
     return nil
@@ -49,7 +49,7 @@ func (u *UpdateOrgDeviceProfileResponse) toMap() any {
 func (u *UpdateOrgDeviceProfileResponse) UnmarshalJSON(input []byte) error {
     result, err := UnmarshallAnyOf(input,
         NewTypeHolder(&DeviceprofileAp{}, false, &u.isDeviceprofileAp),
-        NewTypeHolder(&GatewayTemplate{}, false, &u.isGatewayTemplate),
+        NewTypeHolder(&DeviceprofileGateway{}, false, &u.isDeviceprofileGateway),
     )
     
     u.value = result
@@ -65,13 +65,13 @@ func (u *UpdateOrgDeviceProfileResponse) AsDeviceprofileAp() (
     return u.value.(*DeviceprofileAp), true
 }
 
-func (u *UpdateOrgDeviceProfileResponse) AsGatewayTemplate() (
-    *GatewayTemplate,
+func (u *UpdateOrgDeviceProfileResponse) AsDeviceprofileGateway() (
+    *DeviceprofileGateway,
     bool) {
-    if !u.isGatewayTemplate {
+    if !u.isDeviceprofileGateway {
         return nil, false
     }
-    return u.value.(*GatewayTemplate), true
+    return u.value.(*DeviceprofileGateway), true
 }
 
 // internalUpdateOrgDeviceProfileResponse represents a updateOrgDeviceProfileResponse struct.
@@ -85,7 +85,7 @@ func (u *internalUpdateOrgDeviceProfileResponse) FromDeviceprofileAp(val Devicep
     return UpdateOrgDeviceProfileResponse{value: &val}
 }
 
-// The internalUpdateOrgDeviceProfileResponse instance, wrapping the provided GatewayTemplate value.
-func (u *internalUpdateOrgDeviceProfileResponse) FromGatewayTemplate(val GatewayTemplate) UpdateOrgDeviceProfileResponse {
+// The internalUpdateOrgDeviceProfileResponse instance, wrapping the provided DeviceprofileGateway value.
+func (u *internalUpdateOrgDeviceProfileResponse) FromDeviceprofileGateway(val DeviceprofileGateway) UpdateOrgDeviceProfileResponse {
     return UpdateOrgDeviceProfileResponse{value: &val}
 }

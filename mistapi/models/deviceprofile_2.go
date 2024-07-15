@@ -8,9 +8,9 @@ import (
 
 // Deviceprofile2 represents a Deviceprofile2 struct.
 type Deviceprofile2 struct {
-    value             any
-    isDeviceprofileAp bool
-    isGatewayTemplate bool
+    value                  any
+    isDeviceprofileAp      bool
+    isDeviceprofileGateway bool
 }
 
 // String converts the Deviceprofile2 object to a string representation.
@@ -37,7 +37,7 @@ func (d *Deviceprofile2) toMap() any {
     switch obj := d.value.(type) {
     case *DeviceprofileAp:
         return obj.toMap()
-    case *GatewayTemplate:
+    case *DeviceprofileGateway:
         return obj.toMap()
     }
     return nil
@@ -48,7 +48,7 @@ func (d *Deviceprofile2) toMap() any {
 func (d *Deviceprofile2) UnmarshalJSON(input []byte) error {
     result, err := UnmarshallAnyOf(input,
         NewTypeHolder(&DeviceprofileAp{}, false, &d.isDeviceprofileAp),
-        NewTypeHolder(&GatewayTemplate{}, false, &d.isGatewayTemplate),
+        NewTypeHolder(&DeviceprofileGateway{}, false, &d.isDeviceprofileGateway),
     )
     
     d.value = result
@@ -64,13 +64,13 @@ func (d *Deviceprofile2) AsDeviceprofileAp() (
     return d.value.(*DeviceprofileAp), true
 }
 
-func (d *Deviceprofile2) AsGatewayTemplate() (
-    *GatewayTemplate,
+func (d *Deviceprofile2) AsDeviceprofileGateway() (
+    *DeviceprofileGateway,
     bool) {
-    if !d.isGatewayTemplate {
+    if !d.isDeviceprofileGateway {
         return nil, false
     }
-    return d.value.(*GatewayTemplate), true
+    return d.value.(*DeviceprofileGateway), true
 }
 
 // internalDeviceprofile2 represents a deviceprofile2 struct.
@@ -83,7 +83,7 @@ func (d *internalDeviceprofile2) FromDeviceprofileAp(val DeviceprofileAp) Device
     return Deviceprofile2{value: &val}
 }
 
-// The internalDeviceprofile2 instance, wrapping the provided GatewayTemplate value.
-func (d *internalDeviceprofile2) FromGatewayTemplate(val GatewayTemplate) Deviceprofile2 {
+// The internalDeviceprofile2 instance, wrapping the provided DeviceprofileGateway value.
+func (d *internalDeviceprofile2) FromDeviceprofileGateway(val DeviceprofileGateway) Deviceprofile2 {
     return Deviceprofile2{value: &val}
 }

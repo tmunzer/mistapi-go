@@ -10,5 +10,5 @@
 | Type | Factory Method |
 |  --- | --- |
 | [`models.DeviceprofileAp`](../../../doc/models/deviceprofile-ap.md) | models.UpdateOrgDeviceProfileResponseContainer.FromDeviceprofileAp(models.DeviceprofileAp deviceprofileAp) |
-| [`models.GatewayTemplate`](../../../doc/models/gateway-template.md) | models.UpdateOrgDeviceProfileResponseContainer.FromGatewayTemplate(models.GatewayTemplate gatewayTemplate) |
+| [`models.DeviceprofileGateway`](../../../doc/models/deviceprofile-gateway.md) | models.UpdateOrgDeviceProfileResponseContainer.FromDeviceprofileGateway(models.DeviceprofileGateway deviceprofileGateway) |
 

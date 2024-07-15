@@ -137,7 +137,7 @@ body := models.DeviceprofileContainer.FromDeviceprofileAp(models.DeviceprofileAp
     NtpServers:       []string{
         "10.10.10.10",
     },
-    Type:             models.ToPointer(models.DeviceTypeEnum("ap")),
+    Type:             models.ToPointer(models.DeviceTypeApEnum("ap")),
     UsbConfig:        models.ToPointer(models.ApUsb{
         Cacert:     models.NewOptional(models.ToPointer("string")),
         Channel:    models.ToPointer(3),
@@ -158,8 +158,8 @@ if err != nil {
     responseBody := apiResponse.Data
     if r, ok := responseBody.AsDeviceprofileAp(); ok {
         fmt.Println("Value narrowed down to models.DeviceprofileAp: ", *r)
-    } else if r, ok := responseBody.AsGatewayTemplate(); ok {
-        fmt.Println("Value narrowed down to models.GatewayTemplate: ", *r)
+    } else if r, ok := responseBody.AsDeviceprofileGateway(); ok {
+        fmt.Println("Value narrowed down to models.DeviceprofileGateway: ", *r)
     }
 
     fmt.Println(apiResponse.Response.StatusCode)
@@ -431,8 +431,8 @@ if err != nil {
     responseBody := apiResponse.Data
     if r, ok := responseBody.AsDeviceprofileAp(); ok {
         fmt.Println("Value narrowed down to models.DeviceprofileAp: ", *r)
-    } else if r, ok := responseBody.AsGatewayTemplate(); ok {
-        fmt.Println("Value narrowed down to models.GatewayTemplate: ", *r)
+    } else if r, ok := responseBody.AsDeviceprofileGateway(); ok {
+        fmt.Println("Value narrowed down to models.DeviceprofileGateway: ", *r)
     }
 
     fmt.Println(apiResponse.Response.StatusCode)
@@ -661,8 +661,8 @@ if err != nil {
     for _, item := range responseBody {
         if i, ok := item.AsDeviceprofileAp(); ok {
             fmt.Println("Value narrowed down to models.DeviceprofileAp: ", *i)
-        } else if i, ok := item.AsGatewayTemplate(); ok {
-            fmt.Println("Value narrowed down to models.GatewayTemplate: ", *i)
+        } else if i, ok := item.AsDeviceprofileGateway(); ok {
+            fmt.Println("Value narrowed down to models.DeviceprofileGateway: ", *i)
         }
     }
 
@@ -789,7 +789,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-body := models.DeviceprofileContainer.FromGatewayTemplate(models.GatewayTemplate{
+body := models.DeviceprofileContainer.FromDeviceprofileGateway(models.DeviceprofileGateway{
     Name:                  "string",
 })
 
@@ -801,8 +801,8 @@ if err != nil {
     responseBody := apiResponse.Data
     if r, ok := responseBody.AsDeviceprofileAp(); ok {
         fmt.Println("Value narrowed down to models.DeviceprofileAp: ", *r)
-    } else if r, ok := responseBody.AsGatewayTemplate(); ok {
-        fmt.Println("Value narrowed down to models.GatewayTemplate: ", *r)
+    } else if r, ok := responseBody.AsDeviceprofileGateway(); ok {
+        fmt.Println("Value narrowed down to models.DeviceprofileGateway: ", *r)
     }
 
     fmt.Println(apiResponse.Response.StatusCode)

@@ -9,9 +9,9 @@ import (
 // CreateOrgDeviceProfilesResponse represents a CreateOrgDeviceProfilesResponse struct.
 // This is a container for any-of cases.
 type CreateOrgDeviceProfilesResponse struct {
-    value             any
-    isDeviceprofileAp bool
-    isGatewayTemplate bool
+    value                  any
+    isDeviceprofileAp      bool
+    isDeviceprofileGateway bool
 }
 
 // String converts the CreateOrgDeviceProfilesResponse object to a string representation.
@@ -38,7 +38,7 @@ func (c *CreateOrgDeviceProfilesResponse) toMap() any {
     switch obj := c.value.(type) {
     case *DeviceprofileAp:
         return obj.toMap()
-    case *GatewayTemplate:
+    case *DeviceprofileGateway:
         return obj.toMap()
     }
     return nil
@@ -49,7 +49,7 @@ func (c *CreateOrgDeviceProfilesResponse) toMap() any {
 func (c *CreateOrgDeviceProfilesResponse) UnmarshalJSON(input []byte) error {
     result, err := UnmarshallAnyOf(input,
         NewTypeHolder(&DeviceprofileAp{}, false, &c.isDeviceprofileAp),
-        NewTypeHolder(&GatewayTemplate{}, false, &c.isGatewayTemplate),
+        NewTypeHolder(&DeviceprofileGateway{}, false, &c.isDeviceprofileGateway),
     )
     
     c.value = result
@@ -65,13 +65,13 @@ func (c *CreateOrgDeviceProfilesResponse) AsDeviceprofileAp() (
     return c.value.(*DeviceprofileAp), true
 }
 
-func (c *CreateOrgDeviceProfilesResponse) AsGatewayTemplate() (
-    *GatewayTemplate,
+func (c *CreateOrgDeviceProfilesResponse) AsDeviceprofileGateway() (
+    *DeviceprofileGateway,
     bool) {
-    if !c.isGatewayTemplate {
+    if !c.isDeviceprofileGateway {
         return nil, false
     }
-    return c.value.(*GatewayTemplate), true
+    return c.value.(*DeviceprofileGateway), true
 }
 
 // internalCreateOrgDeviceProfilesResponse represents a createOrgDeviceProfilesResponse struct.
@@ -85,7 +85,7 @@ func (c *internalCreateOrgDeviceProfilesResponse) FromDeviceprofileAp(val Device
     return CreateOrgDeviceProfilesResponse{value: &val}
 }
 
-// The internalCreateOrgDeviceProfilesResponse instance, wrapping the provided GatewayTemplate value.
-func (c *internalCreateOrgDeviceProfilesResponse) FromGatewayTemplate(val GatewayTemplate) CreateOrgDeviceProfilesResponse {
+// The internalCreateOrgDeviceProfilesResponse instance, wrapping the provided DeviceprofileGateway value.
+func (c *internalCreateOrgDeviceProfilesResponse) FromDeviceprofileGateway(val DeviceprofileGateway) CreateOrgDeviceProfilesResponse {
     return CreateOrgDeviceProfilesResponse{value: &val}
 }

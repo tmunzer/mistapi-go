@@ -9,9 +9,9 @@ import (
 // ListSiteDeviceProfilesDerivedResponse represents a ListSiteDeviceProfilesDerivedResponse struct.
 // This is Array of a container for any-of cases.
 type ListSiteDeviceProfilesDerivedResponse struct {
-    value             any
-    isDeviceprofileAp bool
-    isGatewayTemplate bool
+    value                  any
+    isDeviceprofileAp      bool
+    isDeviceprofileGateway bool
 }
 
 // String converts the ListSiteDeviceProfilesDerivedResponse object to a string representation.
@@ -38,7 +38,7 @@ func (l *ListSiteDeviceProfilesDerivedResponse) toMap() any {
     switch obj := l.value.(type) {
     case *DeviceprofileAp:
         return obj.toMap()
-    case *GatewayTemplate:
+    case *DeviceprofileGateway:
         return obj.toMap()
     }
     return nil
@@ -49,7 +49,7 @@ func (l *ListSiteDeviceProfilesDerivedResponse) toMap() any {
 func (l *ListSiteDeviceProfilesDerivedResponse) UnmarshalJSON(input []byte) error {
     result, err := UnmarshallAnyOf(input,
         NewTypeHolder(&DeviceprofileAp{}, false, &l.isDeviceprofileAp),
-        NewTypeHolder(&GatewayTemplate{}, false, &l.isGatewayTemplate),
+        NewTypeHolder(&DeviceprofileGateway{}, false, &l.isDeviceprofileGateway),
     )
     
     l.value = result
@@ -65,13 +65,13 @@ func (l *ListSiteDeviceProfilesDerivedResponse) AsDeviceprofileAp() (
     return l.value.(*DeviceprofileAp), true
 }
 
-func (l *ListSiteDeviceProfilesDerivedResponse) AsGatewayTemplate() (
-    *GatewayTemplate,
+func (l *ListSiteDeviceProfilesDerivedResponse) AsDeviceprofileGateway() (
+    *DeviceprofileGateway,
     bool) {
-    if !l.isGatewayTemplate {
+    if !l.isDeviceprofileGateway {
         return nil, false
     }
-    return l.value.(*GatewayTemplate), true
+    return l.value.(*DeviceprofileGateway), true
 }
 
 // internalListSiteDeviceProfilesDerivedResponse represents a listSiteDeviceProfilesDerivedResponse struct.
@@ -85,7 +85,7 @@ func (l *internalListSiteDeviceProfilesDerivedResponse) FromDeviceprofileAp(val 
     return ListSiteDeviceProfilesDerivedResponse{value: &val}
 }
 
-// The internalListSiteDeviceProfilesDerivedResponse instance, wrapping the provided GatewayTemplate value.
-func (l *internalListSiteDeviceProfilesDerivedResponse) FromGatewayTemplate(val GatewayTemplate) ListSiteDeviceProfilesDerivedResponse {
+// The internalListSiteDeviceProfilesDerivedResponse instance, wrapping the provided DeviceprofileGateway value.
+func (l *internalListSiteDeviceProfilesDerivedResponse) FromDeviceprofileGateway(val DeviceprofileGateway) ListSiteDeviceProfilesDerivedResponse {
     return ListSiteDeviceProfilesDerivedResponse{value: &val}
 }

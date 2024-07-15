@@ -47,7 +47,8 @@ type DeviceprofileAp struct {
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     // for people who want to fully control the vlans (advanced)
     SwitchConfig         *ApSwitch               `json:"switch_config,omitempty"`      // Deprecated
-    Type                 *DeviceTypeEnum         `json:"type,omitempty"`
+    // Device Type
+    Type                 *DeviceTypeApEnum       `json:"type,omitempty"`
     UplinkPortConfig     *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
     // USB AP settings
     // Note: if native imagotag is enabled, BLE will be disabled automatically
@@ -232,7 +233,7 @@ type deviceprofileAp  struct {
     RadioConfig      *ApRadio                `json:"radio_config,omitempty"`
     SiteId           *uuid.UUID              `json:"site_id,omitempty"`
     SwitchConfig     *ApSwitch               `json:"switch_config,omitempty"`
-    Type             *DeviceTypeEnum         `json:"type,omitempty"`
+    Type             *DeviceTypeApEnum       `json:"type,omitempty"`
     UplinkPortConfig *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
     UsbConfig        *ApUsb                  `json:"usb_config,omitempty"`
     Vars             map[string]string       `json:"vars,omitempty"`

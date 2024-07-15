@@ -33,7 +33,7 @@
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SwitchConfig` | [`*models.ApSwitch`](../../doc/models/ap-switch.md) | Optional | for people who want to fully control the vlans (advanced) |
-| `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | **Default**: `"ap"` |
+| `Type` | [`*models.DeviceTypeApEnum`](../../doc/models/device-type-ap-enum.md) | Optional | Device Type |
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | - |
 | `UsbConfig` | [`*models.ApUsb`](../../doc/models/ap-usb.md) | Optional | USB AP settings<br>Note: if native imagotag is enabled, BLE will be disabled automatically<br>Note: legacy, new config moved to ESL Config. |
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
@@ -69,7 +69,6 @@
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "poe_passthrough": false,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "type": "ap",
   "vars": {
     "RADIUS_IP1": "172.31.2.5",
     "RADIUS_SECRET": "11s64632d"

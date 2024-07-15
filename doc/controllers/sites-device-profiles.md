@@ -51,8 +51,8 @@ if err != nil {
     for _, item := range responseBody {
         if i, ok := item.AsDeviceprofileAp(); ok {
             fmt.Println("Value narrowed down to models.DeviceprofileAp: ", *i)
-        } else if i, ok := item.AsGatewayTemplate(); ok {
-            fmt.Println("Value narrowed down to models.GatewayTemplate: ", *i)
+        } else if i, ok := item.AsDeviceprofileGateway(); ok {
+            fmt.Println("Value narrowed down to models.DeviceprofileGateway: ", *i)
         }
     }
 

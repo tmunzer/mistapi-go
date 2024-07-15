@@ -9,9 +9,9 @@ import (
 // ListOrgDeviceProfilesResponse represents a ListOrgDeviceProfilesResponse struct.
 // This is Array of a container for any-of cases.
 type ListOrgDeviceProfilesResponse struct {
-    value             any
-    isDeviceprofileAp bool
-    isGatewayTemplate bool
+    value                  any
+    isDeviceprofileAp      bool
+    isDeviceprofileGateway bool
 }
 
 // String converts the ListOrgDeviceProfilesResponse object to a string representation.
@@ -38,7 +38,7 @@ func (l *ListOrgDeviceProfilesResponse) toMap() any {
     switch obj := l.value.(type) {
     case *DeviceprofileAp:
         return obj.toMap()
-    case *GatewayTemplate:
+    case *DeviceprofileGateway:
         return obj.toMap()
     }
     return nil
@@ -49,7 +49,7 @@ func (l *ListOrgDeviceProfilesResponse) toMap() any {
 func (l *ListOrgDeviceProfilesResponse) UnmarshalJSON(input []byte) error {
     result, err := UnmarshallAnyOf(input,
         NewTypeHolder(&DeviceprofileAp{}, false, &l.isDeviceprofileAp),
-        NewTypeHolder(&GatewayTemplate{}, false, &l.isGatewayTemplate),
+        NewTypeHolder(&DeviceprofileGateway{}, false, &l.isDeviceprofileGateway),
     )
     
     l.value = result
@@ -65,13 +65,13 @@ func (l *ListOrgDeviceProfilesResponse) AsDeviceprofileAp() (
     return l.value.(*DeviceprofileAp), true
 }
 
-func (l *ListOrgDeviceProfilesResponse) AsGatewayTemplate() (
-    *GatewayTemplate,
+func (l *ListOrgDeviceProfilesResponse) AsDeviceprofileGateway() (
+    *DeviceprofileGateway,
     bool) {
-    if !l.isGatewayTemplate {
+    if !l.isDeviceprofileGateway {
         return nil, false
     }
-    return l.value.(*GatewayTemplate), true
+    return l.value.(*DeviceprofileGateway), true
 }
 
 // internalListOrgDeviceProfilesResponse represents a listOrgDeviceProfilesResponse struct.
@@ -85,7 +85,7 @@ func (l *internalListOrgDeviceProfilesResponse) FromDeviceprofileAp(val Devicepr
     return ListOrgDeviceProfilesResponse{value: &val}
 }
 
-// The internalListOrgDeviceProfilesResponse instance, wrapping the provided GatewayTemplate value.
-func (l *internalListOrgDeviceProfilesResponse) FromGatewayTemplate(val GatewayTemplate) ListOrgDeviceProfilesResponse {
+// The internalListOrgDeviceProfilesResponse instance, wrapping the provided DeviceprofileGateway value.
+func (l *internalListOrgDeviceProfilesResponse) FromDeviceprofileGateway(val DeviceprofileGateway) ListOrgDeviceProfilesResponse {
     return ListOrgDeviceProfilesResponse{value: &val}
 }
