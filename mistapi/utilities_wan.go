@@ -1,28 +1,26 @@
 package mistapi
 
 import (
-	"context"
-	"fmt"
-	"net/http"
-
-	"github.com/tmunzer/mistapi-go/mistapi/errors"
-	"github.com/tmunzer/mistapi-go/mistapi/models"
-
-	"github.com/apimatic/go-core-runtime/https"
-	"github.com/apimatic/go-core-runtime/utilities"
-	"github.com/google/uuid"
+    "context"
+    "fmt"
+    "github.com/apimatic/go-core-runtime/https"
+    "github.com/apimatic/go-core-runtime/utilities"
+    "github.com/google/uuid"
+    "github.com/tmunzer/mistapi-go/mistapi/errors"
+    "github.com/tmunzer/mistapi-go/mistapi/models"
+    "net/http"
 )
 
 // UtilitiesWAN represents a controller struct.
 type UtilitiesWAN struct {
-	baseController
+    baseController
 }
 
 // NewUtilitiesWAN creates a new instance of UtilitiesWAN.
 // It takes a baseController as a parameter and returns a pointer to the UtilitiesWAN.
 func NewUtilitiesWAN(baseController baseController) *UtilitiesWAN {
-	utilitiesWAN := UtilitiesWAN{baseController: baseController}
-	return &utilitiesWAN
+    utilitiesWAN := UtilitiesWAN{baseController: baseController}
+    return &utilitiesWAN
 }
 
 // ClearSiteSsrArpCache takes context, siteId, deviceId, body as parameters and
@@ -32,47 +30,48 @@ func NewUtilitiesWAN(baseController baseController) *UtilitiesWAN {
 // Clear the entire ARP cache or a subset if arguments are provided.
 // *Note*: port_id is optional if neither vlan nor ip is specified
 func (u *UtilitiesWAN) ClearSiteSsrArpCache(
-	ctx context.Context,
-	siteId uuid.UUID,
-	deviceId uuid.UUID,
-	body *models.UtilsClearArp) (
-	models.ApiResponse[models.WebsocketSession],
-	error) {
-	req := u.prepareRequest(
-		ctx,
-		"POST",
-		fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_arp", siteId, deviceId),
-	)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
-	req.AppendErrors(map[string]https.ErrorBuilder[error]{
-		"400": {Message: "port_id must be specified with vlan or ip\nBoth vlan and ip cannot be specified"},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-	})
-	req.Header("Content-Type", "application/json")
-	if body != nil {
-		req.Json(body)
-	}
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsClearArp) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_arp", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
 
-	var result models.WebsocketSession
-	decoder, resp, err := req.CallAsJson()
-	if err != nil {
-		return models.NewApiResponse(result, resp), err
-	}
-
-	result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
-	return models.NewApiResponse(result, resp), err
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "port_id must be specified with vlan or ip\nBoth vlan and ip cannot be specified"},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // ClearSiteSsrBgpRoutes takes context, siteId, deviceId, body as parameters and
@@ -80,47 +79,48 @@ func (u *UtilitiesWAN) ClearSiteSsrArpCache(
 // an error if there was an issue with the request or response.
 // Clear routes associated with one or all BGP neighbors
 func (u *UtilitiesWAN) ClearSiteSsrBgpRoutes(
-	ctx context.Context,
-	siteId uuid.UUID,
-	deviceId uuid.UUID,
-	body *models.UtilsClearBgp) (
-	models.ApiResponse[models.WebsocketSession],
-	error) {
-	req := u.prepareRequest(
-		ctx,
-		"POST",
-		fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_bgp", siteId, deviceId),
-	)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
-	req.AppendErrors(map[string]https.ErrorBuilder[error]{
-		"400": {Message: "parameter neighbor absent"},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-	})
-	req.Header("Content-Type", "application/json")
-	if body != nil {
-		req.Json(body)
-	}
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsClearBgp) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_bgp", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
 
-	var result models.WebsocketSession
-	decoder, resp, err := req.CallAsJson()
-	if err != nil {
-		return models.NewApiResponse(result, resp), err
-	}
-
-	result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
-	return models.NewApiResponse(result, resp), err
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "parameter neighbor absent"},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // ReleaseSiteSsrDhcpLease takes context, siteId, deviceId, body as parameters and
@@ -128,44 +128,45 @@ func (u *UtilitiesWAN) ClearSiteSsrBgpRoutes(
 // an error if there was an issue with the request or response.
 // Releases an active DHCP lease.
 func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
-	ctx context.Context,
-	siteId uuid.UUID,
-	deviceId uuid.UUID,
-	body *models.UtilsReleaseDhcp) (
-	*http.Response,
-	error) {
-	req := u.prepareRequest(
-		ctx,
-		"POST",
-		fmt.Sprintf("/api/v1/sites/%v/devices/%v/release_dhcp", siteId, deviceId),
-	)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
-	req.AppendErrors(map[string]https.ErrorBuilder[error]{
-		"400": {Message: "Parameter `port ` absent"},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-	})
-	req.Header("Content-Type", "application/json")
-	if body != nil {
-		req.Json(body)
-	}
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsReleaseDhcp) (
+    *http.Response,
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/release_dhcp", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
 
-	context, err := req.Call()
-	if err != nil {
-		return context.Response, err
-	}
-	return context.Response, err
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Parameter `port ` absent"},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    context, err := req.Call()
+    if err != nil {
+        return context.Response, err
+    }
+    return context.Response, err
 }
 
 // TestSiteSsrDnsResolution takes context, siteId, deviceId as parameters and
@@ -173,7 +174,7 @@ func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
 // an error if there was an issue with the request or response.
 // DNS resolutions are performed on the Device.
 // The output will be available through websocket. As there can be multiple command issued against the same SSR at the same time and the output all goes through the same websocket stream, `session` is used for demux.
-//
+// 
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -188,42 +189,43 @@ func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
 // test-device | xxx.yyy.net            | Y        | 2022-03-28T03:56:49Z | 2022-03-28T03:57:49Z
 // ```
 func (u *UtilitiesWAN) TestSiteSsrDnsResolution(
-	ctx context.Context,
-	siteId uuid.UUID,
-	deviceId uuid.UUID) (
-	models.ApiResponse[models.WebsocketSession],
-	error) {
-	req := u.prepareRequest(
-		ctx,
-		"POST",
-		fmt.Sprintf("/api/v1/sites/%v/devices/%v/resolve_dns", siteId, deviceId),
-	)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
-	req.AppendErrors(map[string]https.ErrorBuilder[error]{
-		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-	})
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/resolve_dns", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
 
-	var result models.WebsocketSession
-	decoder, resp, err := req.CallAsJson()
-	if err != nil {
-		return models.NewApiResponse(result, resp), err
-	}
-
-	result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
-	return models.NewApiResponse(result, resp), err
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+    })
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // ServicePingFromSsr takes context, siteId, deviceId, body as parameters and
@@ -250,53 +252,54 @@ func (u *UtilitiesWAN) TestSiteSsrDnsResolution(
 // }
 // ```
 func (u *UtilitiesWAN) ServicePingFromSsr(
-	ctx context.Context,
-	siteId uuid.UUID,
-	deviceId uuid.UUID,
-	body *models.UtilsServicePing) (
-	models.ApiResponse[models.WebsocketSession],
-	error) {
-	req := u.prepareRequest(
-		ctx,
-		"POST",
-		fmt.Sprintf("/api/v1/sites/%v/devices/%v/service_ping", siteId, deviceId),
-	)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
-	req.AppendErrors(map[string]https.ErrorBuilder[error]{
-		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-	})
-	req.Header("Content-Type", "application/json")
-	if body != nil {
-		req.Json(body)
-	}
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsServicePing) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/service_ping", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
 
-	var result models.WebsocketSession
-	decoder, resp, err := req.CallAsJson()
-	if err != nil {
-		return models.NewApiResponse(result, resp), err
-	}
-
-	result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
-	return models.NewApiResponse(result, resp), err
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // GetSiteSsrAndSrxRoutes takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
-// Get routes from SSR, SRX and Switch.
+// Get routes from SSR, SRX and Switch. 
 // The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
@@ -325,47 +328,48 @@ func (u *UtilitiesWAN) ServicePingFromSsr(
 // ...
 // ```
 func (u *UtilitiesWAN) GetSiteSsrAndSrxRoutes(
-	ctx context.Context,
-	siteId uuid.UUID,
-	deviceId uuid.UUID,
-	body *models.UtilsShowRoute) (
-	models.ApiResponse[models.WebsocketSession],
-	error) {
-	req := u.prepareRequest(
-		ctx,
-		"POST",
-		fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_route", siteId, deviceId),
-	)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
-	req.AppendErrors(map[string]https.ErrorBuilder[error]{
-		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-	})
-	req.Header("Content-Type", "application/json")
-	if body != nil {
-		req.Json(body)
-	}
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowRoute) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_route", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
 
-	var result models.WebsocketSession
-	decoder, resp, err := req.CallAsJson()
-	if err != nil {
-		return models.NewApiResponse(result, resp), err
-	}
-
-	result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
-	return models.NewApiResponse(result, resp), err
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // GetSiteSsrServicePath takes context, siteId, deviceId, body as parameters and
@@ -393,47 +397,48 @@ func (u *UtilitiesWAN) GetSiteSsrAndSrxRoutes(
 // App1       learned-routed    Routed                -           -         -          -      -     -        -          -
 // ```
 func (u *UtilitiesWAN) GetSiteSsrServicePath(
-	ctx context.Context,
-	siteId uuid.UUID,
-	deviceId uuid.UUID,
-	body *models.UtilsShowServicePath) (
-	models.ApiResponse[models.WebsocketSession],
-	error) {
-	req := u.prepareRequest(
-		ctx,
-		"POST",
-		fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_service_path", siteId, deviceId),
-	)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
-	req.AppendErrors(map[string]https.ErrorBuilder[error]{
-		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-	})
-	req.Header("Content-Type", "application/json")
-	if body != nil {
-		req.Json(body)
-	}
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowServicePath) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_service_path", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
 
-	var result models.WebsocketSession
-	decoder, resp, err := req.CallAsJson()
-	if err != nil {
-		return models.NewApiResponse(result, resp), err
-	}
-
-	result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
-	return models.NewApiResponse(result, resp), err
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // GetSiteSsrAndSrxSessions takes context, siteId, deviceId, body as parameters and
@@ -461,45 +466,46 @@ func (u *UtilitiesWAN) GetSiteSsrServicePath(
 // 0859a4ae-bcff-4aa6-b812-79a5236a6c13   fwd   Internet      lanSubnet   lan           0   tcp     192.168.0.41         60843   17.249.171.246          443   96.230.191.130       51941   false                     2   0 days  0:00:10
 // ```
 func (u *UtilitiesWAN) GetSiteSsrAndSrxSessions(
-	ctx context.Context,
-	siteId uuid.UUID,
-	deviceId uuid.UUID,
-	body *models.UtilsShowSession) (
-	models.ApiResponse[models.WebsocketSession],
-	error) {
-	req := u.prepareRequest(
-		ctx,
-		"POST",
-		fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_session", siteId, deviceId),
-	)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
-	req.AppendErrors(map[string]https.ErrorBuilder[error]{
-		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-	})
-	req.Header("Content-Type", "application/json")
-	if body != nil {
-		req.Json(body)
-	}
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowSession) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_session", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
 
-	var result models.WebsocketSession
-	decoder, resp, err := req.CallAsJson()
-	if err != nil {
-		return models.NewApiResponse(result, resp), err
-	}
-
-	result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
-	return models.NewApiResponse(result, resp), err
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
 }

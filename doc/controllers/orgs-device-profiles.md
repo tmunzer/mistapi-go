@@ -15,7 +15,7 @@ orgsDeviceProfiles := client.OrgsDeviceProfiles()
 * [Delete Org Device Profile](../../doc/controllers/orgs-device-profiles.md#delete-org-device-profile)
 * [Get Org Device Profile](../../doc/controllers/orgs-device-profiles.md#get-org-device-profile)
 * [List Org Device Profiles](../../doc/controllers/orgs-device-profiles.md#list-org-device-profiles)
-* [Unassign Org Device Profiles](../../doc/controllers/orgs-device-profiles.md#unassign-org-device-profiles)
+* [Unassign Org Device Profile](../../doc/controllers/orgs-device-profiles.md#unassign-org-device-profile)
 * [Update Org Device Profile](../../doc/controllers/orgs-device-profiles.md#update-org-device-profile)
 
 
@@ -681,12 +681,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 
 
-# Unassign Org Device Profiles
+# Unassign Org Device Profile
 
 Unassign Org Device Profile from Devices
 
 ```go
-UnassignOrgDeviceProfiles(
+UnassignOrgDeviceProfile(
     ctx context.Context,
     orgId uuid.UUID,
     deviceprofileId uuid.UUID,
@@ -723,7 +723,7 @@ body := models.MacAddresses{
     },
 }
 
-apiResponse, err := orgsDeviceProfiles.UnassignOrgDeviceProfiles(ctx, orgId, deviceprofileId, &body)
+apiResponse, err := orgsDeviceProfiles.UnassignOrgDeviceProfile(ctx, orgId, deviceprofileId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
