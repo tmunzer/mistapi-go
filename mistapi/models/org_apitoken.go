@@ -9,19 +9,19 @@ import (
 // Org API Token
 type OrgApitoken struct {
     // email of the token creator / null if creator is deleted
-    CreatedBy            Optional[string] `json:"created_by"`
-    CreatedTime          *int             `json:"created_time,omitempty"`
-    Id                   *uuid.UUID       `json:"id,omitempty"`
-    Key                  *string          `json:"key,omitempty"`
-    LastUsed             Optional[int]    `json:"last_used"`
+    CreatedBy            Optional[string]  `json:"created_by"`
+    CreatedTime          *float64          `json:"created_time,omitempty"`
+    Id                   *uuid.UUID        `json:"id,omitempty"`
+    Key                  *string           `json:"key,omitempty"`
+    LastUsed             Optional[float64] `json:"last_used"`
     // name of the token
-    Name                 Optional[string] `json:"name"`
-    OrgId                *uuid.UUID       `json:"org_id,omitempty"`
+    Name                 Optional[string]  `json:"name"`
+    OrgId                *uuid.UUID        `json:"org_id,omitempty"`
     // list of privileges the token has on the orgs/sites
-    Privileges           []PrivilegeOrg   `json:"privileges,omitempty"`
+    Privileges           []PrivilegeOrg    `json:"privileges,omitempty"`
     // to restrict where the API can be called from
-    SrcIps               []string         `json:"src_ips,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    SrcIps               []string          `json:"src_ips,omitempty"`
+    AdditionalProperties map[string]any    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgApitoken.
@@ -106,13 +106,13 @@ func (o *OrgApitoken) UnmarshalJSON(input []byte) error {
 
 // orgApitoken is a temporary struct used for validating the fields of OrgApitoken.
 type orgApitoken  struct {
-    CreatedBy   Optional[string] `json:"created_by"`
-    CreatedTime *int             `json:"created_time,omitempty"`
-    Id          *uuid.UUID       `json:"id,omitempty"`
-    Key         *string          `json:"key,omitempty"`
-    LastUsed    Optional[int]    `json:"last_used"`
-    Name        Optional[string] `json:"name"`
-    OrgId       *uuid.UUID       `json:"org_id,omitempty"`
-    Privileges  []PrivilegeOrg   `json:"privileges,omitempty"`
-    SrcIps      []string         `json:"src_ips,omitempty"`
+    CreatedBy   Optional[string]  `json:"created_by"`
+    CreatedTime *float64          `json:"created_time,omitempty"`
+    Id          *uuid.UUID        `json:"id,omitempty"`
+    Key         *string           `json:"key,omitempty"`
+    LastUsed    Optional[float64] `json:"last_used"`
+    Name        Optional[string]  `json:"name"`
+    OrgId       *uuid.UUID        `json:"org_id,omitempty"`
+    Privileges  []PrivilegeOrg    `json:"privileges,omitempty"`
+    SrcIps      []string          `json:"src_ips,omitempty"`
 }

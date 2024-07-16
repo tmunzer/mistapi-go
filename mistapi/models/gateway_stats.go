@@ -19,7 +19,7 @@ type GatewayStats struct {
     ConfigStatus         *string                        `json:"config_status,omitempty"`
     Cpu2Stat             *CpuStat                       `json:"cpu2_stat,omitempty"`
     CpuStat              *CpuStat                       `json:"cpu_stat,omitempty"`
-    CreatedTime          *int                           `json:"created_time,omitempty"`
+    CreatedTime          *float64                       `json:"created_time,omitempty"`
     DeviceprofileId      Optional[uuid.UUID]            `json:"deviceprofile_id"`
     // Property key is the network name
     Dhcpd2Stat           map[string]DhcpdStatLan        `json:"dhcpd2_stat,omitempty"`
@@ -55,7 +55,7 @@ type GatewayStats struct {
     MemoryStat           *MemoryStat                    `json:"memory_stat,omitempty"`
     // device model
     Model                *string                        `json:"model,omitempty"`
-    ModifiedTime         *int                           `json:"modified_time,omitempty"`
+    ModifiedTime         *float64                       `json:"modified_time,omitempty"`
     Module2Stat          []ModuleStatItem               `json:"module2_stat,omitempty"`
     ModuleStat           []ModuleStatItem               `json:"module_stat,omitempty"`
     // device name if configured
@@ -355,7 +355,7 @@ type gatewayStats  struct {
     ConfigStatus      *string                        `json:"config_status,omitempty"`
     Cpu2Stat          *CpuStat                       `json:"cpu2_stat,omitempty"`
     CpuStat           *CpuStat                       `json:"cpu_stat,omitempty"`
-    CreatedTime       *int                           `json:"created_time,omitempty"`
+    CreatedTime       *float64                       `json:"created_time,omitempty"`
     DeviceprofileId   Optional[uuid.UUID]            `json:"deviceprofile_id"`
     Dhcpd2Stat        map[string]DhcpdStatLan        `json:"dhcpd2_stat,omitempty"`
     DhcpdStat         map[string]DhcpdStatLan        `json:"dhcpd_stat,omitempty"`
@@ -377,7 +377,7 @@ type gatewayStats  struct {
     Memory2Stat       *MemoryStat                    `json:"memory2_stat,omitempty"`
     MemoryStat        *MemoryStat                    `json:"memory_stat,omitempty"`
     Model             *string                        `json:"model,omitempty"`
-    ModifiedTime      *int                           `json:"modified_time,omitempty"`
+    ModifiedTime      *float64                       `json:"modified_time,omitempty"`
     Module2Stat       []ModuleStatItem               `json:"module2_stat,omitempty"`
     ModuleStat        []ModuleStatItem               `json:"module_stat,omitempty"`
     Name              *string                        `json:"name,omitempty"`

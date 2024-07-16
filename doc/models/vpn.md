@@ -9,9 +9,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*int` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | - |
-| `ModifiedTime` | `*int` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Paths` | [`map[string]models.VpnPath`](../../doc/models/vpn-path.md) | Required | - |
@@ -34,9 +34,9 @@
       "pod": 146
     }
   },
-  "created_time": 160,
+  "created_time": 55.36,
   "id": "0000213a-0000-0000-0000-000000000000",
-  "modified_time": 56
+  "modified_time": 23.6
 }
 ```
 

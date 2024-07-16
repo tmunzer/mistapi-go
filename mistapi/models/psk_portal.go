@@ -14,7 +14,7 @@ type PskPortal struct {
     BgImageUrl                   *string                   `json:"bg_image_url,omitempty"`
     // used to cleanup exited psk when portal delete or ssid changed
     CleanupPsk                   *bool                     `json:"cleanup_psk,omitempty"`
-    CreatedTime                  *int                      `json:"created_time,omitempty"`
+    CreatedTime                  *float64                  `json:"created_time,omitempty"`
     // unit min
     ExpireTime                   *int                      `json:"expire_time,omitempty"`
     // Number of days before psk is expired. Used as to when to start sending reminder notification when the psk is about to expire
@@ -24,7 +24,7 @@ type PskPortal struct {
     Id                           *string                   `json:"id,omitempty"`
     // `max_usage`==`0` means unlimited
     MaxUsage                     *int                      `json:"max_usage,omitempty"`
-    ModifiedTime                 *int                      `json:"modified_time,omitempty"`
+    ModifiedTime                 *float64                  `json:"modified_time,omitempty"`
     Name                         string                    `json:"name"`
     // optional, will include the link in the notification email the customer can either provide their own url or use the one generate from mist, or do a url shorterner against either
     NotificationRenewUrl         *string                   `json:"notification_renew_url,omitempty"`
@@ -182,13 +182,13 @@ type pskPortal  struct {
     Auth                         *PskPortalAuthEnum        `json:"auth,omitempty"`
     BgImageUrl                   *string                   `json:"bg_image_url,omitempty"`
     CleanupPsk                   *bool                     `json:"cleanup_psk,omitempty"`
-    CreatedTime                  *int                      `json:"created_time,omitempty"`
+    CreatedTime                  *float64                  `json:"created_time,omitempty"`
     ExpireTime                   *int                      `json:"expire_time,omitempty"`
     ExpiryNotificationTime       *int                      `json:"expiry_notification_time,omitempty"`
     HidePsksCreatedByOtherAdmins *bool                     `json:"hide_psks_created_by_other_admins,omitempty"`
     Id                           *string                   `json:"id,omitempty"`
     MaxUsage                     *int                      `json:"max_usage,omitempty"`
-    ModifiedTime                 *int                      `json:"modified_time,omitempty"`
+    ModifiedTime                 *float64                  `json:"modified_time,omitempty"`
     Name                         *string                   `json:"name"`
     NotificationRenewUrl         *string                   `json:"notification_renew_url,omitempty"`
     NotifyExpiry                 *bool                     `json:"notify_expiry,omitempty"`

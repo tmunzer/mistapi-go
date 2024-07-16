@@ -45,7 +45,6 @@ Org Settings
 | `PcapBucketVerified` | `*bool` | Optional | - |
 | `Security` | [`*models.OrgSettingSecurity`](../../doc/models/org-setting-security.md) | Optional | - |
 | `SimpleAlert` | [`*models.SimpleAlert`](../../doc/models/simple-alert.md) | Optional | Set of heuristic rules will be enabled when marvis subscription is not available.<br>It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures |
-| `SiteId` | `*uuid.UUID` | Optional | - |
 | `SwitchMgmt` | [`*models.OrgSettingSwitchMgmt`](../../doc/models/org-setting-switch-mgmt.md) | Optional | - |
 | `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored. |
 | `Synthetictest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
@@ -67,7 +66,6 @@ Org Settings
   "gateway_updown_threshold": 10,
   "mxedge_fips_enabled": false,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "switch_updown_threshold": 0,
   "ui_idle_timeout": 10,
   "ap_updown_threshold": 56,

@@ -7,12 +7,12 @@ import (
 
 // DeviceOther represents a DeviceOther struct.
 type DeviceOther struct {
-    CreatedTime          *int           `json:"created_time,omitempty"`
+    CreatedTime          *float64       `json:"created_time,omitempty"`
     DeviceMac            *string        `json:"device_mac,omitempty"`
     Id                   *string        `json:"id,omitempty"`
     Mac                  *string        `json:"mac,omitempty"`
     Model                *string        `json:"model,omitempty"`
-    ModifiedTime         *int           `json:"modified_time,omitempty"`
+    ModifiedTime         *float64       `json:"modified_time,omitempty"`
     Name                 *string        `json:"name,omitempty"`
     OrgId                *uuid.UUID     `json:"org_id,omitempty"`
     Serial               *string        `json:"serial,omitempty"`
@@ -99,12 +99,12 @@ func (d *DeviceOther) UnmarshalJSON(input []byte) error {
 
 // deviceOther is a temporary struct used for validating the fields of DeviceOther.
 type deviceOther  struct {
-    CreatedTime  *int       `json:"created_time,omitempty"`
+    CreatedTime  *float64   `json:"created_time,omitempty"`
     DeviceMac    *string    `json:"device_mac,omitempty"`
     Id           *string    `json:"id,omitempty"`
     Mac          *string    `json:"mac,omitempty"`
     Model        *string    `json:"model,omitempty"`
-    ModifiedTime *int       `json:"modified_time,omitempty"`
+    ModifiedTime *float64   `json:"modified_time,omitempty"`
     Name         *string    `json:"name,omitempty"`
     OrgId        *uuid.UUID `json:"org_id,omitempty"`
     Serial       *string    `json:"serial,omitempty"`

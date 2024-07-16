@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Adopted` | `*bool` | Optional | only if `type`==`switch` or `type`==`gateway`<br>whether the switch/gateway is adopted |
 | `Connected` | `*bool` | Optional | whether the device is connected |
-| `CreatedTime` | `*int` | Optional | inventory created time, in epoch |
+| `CreatedTime` | `*float64` | Optional | inventory created time, in epoch |
 | `DeviceprofileId` | `models.Optional[string]` | Optional | deviceprofile id if assigned, null if not assigned |
 | `Hostname` | `*string` | Optional | hostname reported by the device |
 | `HwRev` | `*string` | Optional | device hardware revision number |
@@ -20,7 +20,7 @@
 | `Mac` | `*string` | Optional | device MAC address |
 | `Magic` | `*string` | Optional | device claim code |
 | `Model` | `*string` | Optional | device model |
-| `ModifiedTime` | `*int` | Optional | inventory last modified time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | inventory last modified time, in epoch |
 | `Name` | `*string` | Optional | device name if configured |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Serial` | `*string` | Optional | device serial |
@@ -38,7 +38,7 @@
   "type": "ap",
   "adopted": false,
   "connected": false,
-  "created_time": 16,
+  "created_time": 179.36,
   "deviceprofile_id": "deviceprofile_id6",
   "hostname": "hostname8"
 }

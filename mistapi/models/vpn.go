@@ -9,9 +9,9 @@ import (
 
 // Vpn represents a Vpn struct.
 type Vpn struct {
-    CreatedTime          *int               `json:"created_time,omitempty"`
+    CreatedTime          *float64           `json:"created_time,omitempty"`
     Id                   *uuid.UUID         `json:"id,omitempty"`
-    ModifiedTime         *int               `json:"modified_time,omitempty"`
+    ModifiedTime         *float64           `json:"modified_time,omitempty"`
     Name                 string             `json:"name"`
     OrgId                *uuid.UUID         `json:"org_id,omitempty"`
     Paths                map[string]VpnPath `json:"paths"`
@@ -76,9 +76,9 @@ func (v *Vpn) UnmarshalJSON(input []byte) error {
 
 // vpn is a temporary struct used for validating the fields of Vpn.
 type vpn  struct {
-    CreatedTime  *int                `json:"created_time,omitempty"`
+    CreatedTime  *float64            `json:"created_time,omitempty"`
     Id           *uuid.UUID          `json:"id,omitempty"`
-    ModifiedTime *int                `json:"modified_time,omitempty"`
+    ModifiedTime *float64            `json:"modified_time,omitempty"`
     Name         *string             `json:"name"`
     OrgId        *uuid.UUID          `json:"org_id,omitempty"`
     Paths        *map[string]VpnPath `json:"paths"`

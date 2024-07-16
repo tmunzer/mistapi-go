@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CpuStat` | [`*models.MxedgeStatsCpuStat`](../../doc/models/mxedge-stats-cpu-stat.md) | Optional | CPU/core stats list |
-| `CreatedTime` | `*int` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | - |
 | `FipsEnabled` | `*bool` | Optional | alue indicating fips configuration on the device |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | - |
@@ -20,7 +20,7 @@
 | `Mac` | `*string` | Optional | - |
 | `MemoryStat` | [`*models.MxedgeStatsMemoryStat`](../../doc/models/mxedge-stats-memory-stat.md) | Optional | Memory usage |
 | `Model` | `*string` | Optional | - |
-| `ModifiedTime` | `*int` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | - |
 | `MxagentRegistered` | `*bool` | Optional | - |
 | `MxclusterId` | `*uuid.UUID` | Optional | - |
 | `Name` | `*string` | Optional | The name of the tunnel |
@@ -45,7 +45,7 @@
 
 ```json
 {
-  "created_time": 1632684398,
+  "created_time": 1632684398.0,
   "for_site": false,
   "id": "00000000-0000-0000-1000-020000a80cb4",
   "lag_stat": {

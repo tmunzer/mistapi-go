@@ -8,7 +8,7 @@ import (
 // UserApitoken represents a UserApitoken struct.
 // User API Token
 type UserApitoken struct {
-    CreatedTime          *int           `json:"created_time,omitempty"`
+    CreatedTime          *float64       `json:"created_time,omitempty"`
     Id                   *uuid.UUID     `json:"id,omitempty"`
     Key                  *string        `json:"key,omitempty"`
     LastUsed             Optional[int]  `json:"last_used"`
@@ -75,7 +75,7 @@ func (u *UserApitoken) UnmarshalJSON(input []byte) error {
 
 // userApitoken is a temporary struct used for validating the fields of UserApitoken.
 type userApitoken  struct {
-    CreatedTime *int          `json:"created_time,omitempty"`
+    CreatedTime *float64      `json:"created_time,omitempty"`
     Id          *uuid.UUID    `json:"id,omitempty"`
     Key         *string       `json:"key,omitempty"`
     LastUsed    Optional[int] `json:"last_used"`

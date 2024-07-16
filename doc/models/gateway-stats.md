@@ -20,7 +20,7 @@ Gateway statistics
 | `ConfigStatus` | `*string` | Optional | - |
 | `Cpu2Stat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
-| `CreatedTime` | `*int` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | - |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `Dhcpd2Stat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
 | `DhcpdStat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
@@ -42,7 +42,7 @@ Gateway statistics
 | `Memory2Stat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
 | `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
 | `Model` | `*string` | Optional | device model |
-| `ModifiedTime` | `*int` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | - |
 | `Module2Stat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Name` | `*string` | Optional | device name if configured |

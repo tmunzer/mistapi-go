@@ -8,11 +8,11 @@ import (
 // Msp represents a Msp struct.
 type Msp struct {
     AllowMist            *bool          `json:"allow_mist,omitempty"`
-    CreatedTime          *int           `json:"created_time,omitempty"`
+    CreatedTime          *float64       `json:"created_time,omitempty"`
     Id                   *uuid.UUID     `json:"id,omitempty"`
     // For advanced tier (uMSPs) only
     LogoUrl              *string        `json:"logo_url,omitempty"`
-    ModifiedTime         *int           `json:"modified_time,omitempty"`
+    ModifiedTime         *float64       `json:"modified_time,omitempty"`
     Name                 *string        `json:"name,omitempty"`
     Tier                 *MspTierEnum   `json:"tier,omitempty"`
     // For advanced tier (uMSPs) only
@@ -87,10 +87,10 @@ func (m *Msp) UnmarshalJSON(input []byte) error {
 // msp is a temporary struct used for validating the fields of Msp.
 type msp  struct {
     AllowMist    *bool        `json:"allow_mist,omitempty"`
-    CreatedTime  *int         `json:"created_time,omitempty"`
+    CreatedTime  *float64     `json:"created_time,omitempty"`
     Id           *uuid.UUID   `json:"id,omitempty"`
     LogoUrl      *string      `json:"logo_url,omitempty"`
-    ModifiedTime *int         `json:"modified_time,omitempty"`
+    ModifiedTime *float64     `json:"modified_time,omitempty"`
     Name         *string      `json:"name,omitempty"`
     Tier         *MspTierEnum `json:"tier,omitempty"`
     Url          *string      `json:"url,omitempty"`

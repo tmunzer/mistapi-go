@@ -8,9 +8,9 @@ import (
 // IdpProfile represents a IdpProfile struct.
 type IdpProfile struct {
     BaseProfile          *IdpProfileBaseProfileEnum `json:"base_profile,omitempty"`
-    CreatedTime          *int                       `json:"created_time,omitempty"`
+    CreatedTime          *float64                   `json:"created_time,omitempty"`
     Id                   *uuid.UUID                 `json:"id,omitempty"`
-    ModifiedTime         *int                       `json:"modified_time,omitempty"`
+    ModifiedTime         *float64                   `json:"modified_time,omitempty"`
     Name                 *string                    `json:"name,omitempty"`
     Overwrites           []IdpProfileOverwrite      `json:"overwrites,omitempty"`
     AdditionalProperties map[string]any             `json:"_"`
@@ -75,9 +75,9 @@ func (i *IdpProfile) UnmarshalJSON(input []byte) error {
 // idpProfile is a temporary struct used for validating the fields of IdpProfile.
 type idpProfile  struct {
     BaseProfile  *IdpProfileBaseProfileEnum `json:"base_profile,omitempty"`
-    CreatedTime  *int                       `json:"created_time,omitempty"`
+    CreatedTime  *float64                   `json:"created_time,omitempty"`
     Id           *uuid.UUID                 `json:"id,omitempty"`
-    ModifiedTime *int                       `json:"modified_time,omitempty"`
+    ModifiedTime *float64                   `json:"modified_time,omitempty"`
     Name         *string                    `json:"name,omitempty"`
     Overwrites   []IdpProfileOverwrite      `json:"overwrites,omitempty"`
 }

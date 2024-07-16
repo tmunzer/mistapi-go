@@ -13,10 +13,10 @@ Zone statistics
 |  --- | --- | --- | --- |
 | `AssetsWaits` | [`*models.ZoneStatsAssetsWaits`](../../doc/models/zone-stats-assets-waits.md) | Optional | ble asset wait time right now |
 | `ClientsWaits` | [`*models.ZoneStatsClientsWaits`](../../doc/models/zone-stats-clients-waits.md) | Optional | client wait time right now |
-| `CreatedTime` | `*int` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | - |
 | `Id` | `uuid.UUID` | Required | id of the zone |
 | `MapId` | `uuid.UUID` | Required | map_id of the zone |
-| `ModifiedTime` | `*int` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `string` | Required | name of the zone |
 | `NumAssets` | `*int` | Optional | number of assets |
 | `NumClients` | `*int` | Optional | number of wifi clients (unconnected + connected) |
@@ -32,10 +32,10 @@ Zone statistics
 
 ```json
 {
-  "created_time": 1616625211,
+  "created_time": 1616625211.0,
   "id": "123470c7-5d9d-424a-8475-8b344c621234",
   "map_id": "123449d4-d12f-4feb-b40f-5be0e2ae1234",
-  "modified_time": 1616625211,
+  "modified_time": 1616625211.0,
   "name": "Zone A",
   "num_assets": 0,
   "num_clients": 80,

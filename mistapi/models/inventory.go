@@ -13,7 +13,7 @@ type Inventory struct {
     // whether the device is connected
     Connected            *bool            `json:"connected,omitempty"`
     // inventory created time, in epoch
-    CreatedTime          *int             `json:"created_time,omitempty"`
+    CreatedTime          *float64         `json:"created_time,omitempty"`
     // deviceprofile id if assigned, null if not assigned
     DeviceprofileId      Optional[string] `json:"deviceprofile_id"`
     // hostname reported by the device
@@ -30,7 +30,7 @@ type Inventory struct {
     // device model
     Model                *string          `json:"model,omitempty"`
     // inventory last modified time, in epoch
-    ModifiedTime         *int             `json:"modified_time,omitempty"`
+    ModifiedTime         *float64         `json:"modified_time,omitempty"`
     // device name if configured
     Name                 *string          `json:"name,omitempty"`
     OrgId                *uuid.UUID       `json:"org_id,omitempty"`
@@ -161,7 +161,7 @@ func (i *Inventory) UnmarshalJSON(input []byte) error {
 type inventory  struct {
     Adopted         *bool            `json:"adopted,omitempty"`
     Connected       *bool            `json:"connected,omitempty"`
-    CreatedTime     *int             `json:"created_time,omitempty"`
+    CreatedTime     *float64         `json:"created_time,omitempty"`
     DeviceprofileId Optional[string] `json:"deviceprofile_id"`
     Hostname        *string          `json:"hostname,omitempty"`
     HwRev           *string          `json:"hw_rev,omitempty"`
@@ -170,7 +170,7 @@ type inventory  struct {
     Mac             *string          `json:"mac,omitempty"`
     Magic           *string          `json:"magic,omitempty"`
     Model           *string          `json:"model,omitempty"`
-    ModifiedTime    *int             `json:"modified_time,omitempty"`
+    ModifiedTime    *float64         `json:"modified_time,omitempty"`
     Name            *string          `json:"name,omitempty"`
     OrgId           *uuid.UUID       `json:"org_id,omitempty"`
     Serial          *string          `json:"serial,omitempty"`

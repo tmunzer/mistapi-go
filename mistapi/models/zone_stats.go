@@ -14,12 +14,12 @@ type ZoneStats struct {
     AssetsWaits          *ZoneStatsAssetsWaits     `json:"assets_waits,omitempty"`
     // client wait time right now
     ClientsWaits         *ZoneStatsClientsWaits    `json:"clients_waits,omitempty"`
-    CreatedTime          *int                      `json:"created_time,omitempty"`
+    CreatedTime          *float64                  `json:"created_time,omitempty"`
     // id of the zone
     Id                   uuid.UUID                 `json:"id"`
     // map_id of the zone
     MapId                uuid.UUID                 `json:"map_id"`
-    ModifiedTime         *int                      `json:"modified_time,omitempty"`
+    ModifiedTime         *float64                  `json:"modified_time,omitempty"`
     // name of the zone
     Name                 string                    `json:"name"`
     // number of assets
@@ -137,10 +137,10 @@ func (z *ZoneStats) UnmarshalJSON(input []byte) error {
 type zoneStats  struct {
     AssetsWaits     *ZoneStatsAssetsWaits     `json:"assets_waits,omitempty"`
     ClientsWaits    *ZoneStatsClientsWaits    `json:"clients_waits,omitempty"`
-    CreatedTime     *int                      `json:"created_time,omitempty"`
+    CreatedTime     *float64                  `json:"created_time,omitempty"`
     Id              *uuid.UUID                `json:"id"`
     MapId           *uuid.UUID                `json:"map_id"`
-    ModifiedTime    *int                      `json:"modified_time,omitempty"`
+    ModifiedTime    *float64                  `json:"modified_time,omitempty"`
     Name            *string                   `json:"name"`
     NumAssets       *int                      `json:"num_assets,omitempty"`
     NumClients      *int                      `json:"num_clients,omitempty"`

@@ -17,7 +17,7 @@ type ApStats struct {
     ConfigReverted       Optional[bool]                                `json:"config_reverted"`
     CpuSystem            Optional[int64]                               `json:"cpu_system"`
     CpuUtil              Optional[int]                                 `json:"cpu_util"`
-    CreatedTime          Optional[int64]                               `json:"created_time"`
+    CreatedTime          *float64                                      `json:"created_time,omitempty"`
     DeviceprofileId      Optional[uuid.UUID]                           `json:"deviceprofile_id"`
     // device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
     EnvStat              *ApStatsEnvStat                               `json:"env_stat,omitempty"`
@@ -55,7 +55,7 @@ type ApStats struct {
     MeshUplink           *ApStatMeshUplink                             `json:"mesh_uplink,omitempty"`
     // device model
     Model                *string                                       `json:"model"`
-    ModifiedTime         Optional[int64]                               `json:"modified_time"`
+    ModifiedTime         *float64                                      `json:"modified_time,omitempty"`
     Mount                Optional[string]                              `json:"mount"`
     Name                 Optional[string]                              `json:"name"`
     Notes                Optional[string]                              `json:"notes"`
@@ -145,12 +145,8 @@ func (a ApStats) toMap() map[string]any {
             structMap["cpu_util"] = nil
         }
     }
-    if a.CreatedTime.IsValueSet() {
-        if a.CreatedTime.Value() != nil {
-            structMap["created_time"] = a.CreatedTime.Value()
-        } else {
-            structMap["created_time"] = nil
-        }
+    if a.CreatedTime != nil {
+        structMap["created_time"] = a.CreatedTime
     }
     if a.DeviceprofileId.IsValueSet() {
         if a.DeviceprofileId.Value() != nil {
@@ -278,12 +274,8 @@ func (a ApStats) toMap() map[string]any {
     } else {
         structMap["model"] = nil
     }
-    if a.ModifiedTime.IsValueSet() {
-        if a.ModifiedTime.Value() != nil {
-            structMap["modified_time"] = a.ModifiedTime.Value()
-        } else {
-            structMap["modified_time"] = nil
-        }
+    if a.ModifiedTime != nil {
+        structMap["modified_time"] = a.ModifiedTime
     }
     if a.Mount.IsValueSet() {
         if a.Mount.Value() != nil {
@@ -557,7 +549,7 @@ type apStats  struct {
     ConfigReverted     Optional[bool]                                `json:"config_reverted"`
     CpuSystem          Optional[int64]                               `json:"cpu_system"`
     CpuUtil            Optional[int]                                 `json:"cpu_util"`
-    CreatedTime        Optional[int64]                               `json:"created_time"`
+    CreatedTime        *float64                                      `json:"created_time,omitempty"`
     DeviceprofileId    Optional[uuid.UUID]                           `json:"deviceprofile_id"`
     EnvStat            *ApStatsEnvStat                               `json:"env_stat,omitempty"`
     EslStat            Optional[ApStatsEslStat]                      `json:"esl_stat"`
@@ -584,7 +576,7 @@ type apStats  struct {
     MeshDownlinks      map[string]ApStatMeshDownlink                 `json:"mesh_downlinks,omitempty"`
     MeshUplink         *ApStatMeshUplink                             `json:"mesh_uplink,omitempty"`
     Model              *string                                       `json:"model"`
-    ModifiedTime       Optional[int64]                               `json:"modified_time"`
+    ModifiedTime       *float64                                      `json:"modified_time,omitempty"`
     Mount              Optional[string]                              `json:"mount"`
     Name               Optional[string]                              `json:"name"`
     Notes              Optional[string]                              `json:"notes"`

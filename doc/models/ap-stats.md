@@ -18,7 +18,7 @@ AP statistics
 | `ConfigReverted` | `models.Optional[bool]` | Optional | - |
 | `CpuSystem` | `models.Optional[int64]` | Optional | - |
 | `CpuUtil` | `models.Optional[int]` | Optional | - |
-| `CreatedTime` | `models.Optional[int64]` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | - |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `EnvStat` | [`*models.ApStatsEnvStat`](../../doc/models/ap-stats-env-stat.md) | Optional | device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage |
 | `EslStat` | [`models.Optional[models.ApStatsEslStat]`](../../doc/models/ap-stats-esl-stat.md) | Optional | - |
@@ -45,7 +45,7 @@ AP statistics
 | `MeshDownlinks` | [`map[string]models.ApStatMeshDownlink`](../../doc/models/ap-stat-mesh-downlink.md) | Optional | Property key is the mesh downlink id (e.g `00000000-0000-0000-1000-5c5b35000010`) |
 | `MeshUplink` | [`*models.ApStatMeshUplink`](../../doc/models/ap-stat-mesh-uplink.md) | Optional | - |
 | `Model` | `*string` | Required | device model |
-| `ModifiedTime` | `models.Optional[int64]` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | - |
 | `Mount` | `models.Optional[string]` | Optional | - |
 | `Name` | `models.Optional[string]` | Optional | - |
 | `Notes` | `models.Optional[string]` | Optional | - |

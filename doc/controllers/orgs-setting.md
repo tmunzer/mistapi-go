@@ -418,7 +418,6 @@ body := models.OrgSetting{
     GatewayUpdownThreshold:      models.NewOptional(models.ToPointer(10)),
     MxedgeFipsEnabled:           models.ToPointer(false),
     OrgId:                       models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    SiteId:                      models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     SwitchUpdownThreshold:       models.NewOptional(models.ToPointer(0)),
     UiIdleTimeout:               models.ToPointer(10),
 }

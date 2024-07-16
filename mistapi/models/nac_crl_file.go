@@ -7,11 +7,11 @@ import (
 // NacCrlFile represents a NacCrlFile struct.
 type NacCrlFile struct {
     // Time at which the file was first uploaded, in epoch
-    CreatedTime          *int           `json:"created_time,omitempty"`
+    CreatedTime          *float64       `json:"created_time,omitempty"`
     // ID for file upload, used to identify file even for deletion
     Id                   *string        `json:"id,omitempty"`
     // Time at which the file was last updated, in epoch
-    ModifiedTime         *int           `json:"modified_time,omitempty"`
+    ModifiedTime         *float64       `json:"modified_time,omitempty"`
     // Name for the .crl file issuer if set
     Name                 *string        `json:"name,omitempty"`
     // Download URL for the .crl file
@@ -73,9 +73,9 @@ func (n *NacCrlFile) UnmarshalJSON(input []byte) error {
 
 // nacCrlFile is a temporary struct used for validating the fields of NacCrlFile.
 type nacCrlFile  struct {
-    CreatedTime  *int    `json:"created_time,omitempty"`
-    Id           *string `json:"id,omitempty"`
-    ModifiedTime *int    `json:"modified_time,omitempty"`
-    Name         *string `json:"name,omitempty"`
-    Url          *string `json:"url,omitempty"`
+    CreatedTime  *float64 `json:"created_time,omitempty"`
+    Id           *string  `json:"id,omitempty"`
+    ModifiedTime *float64 `json:"modified_time,omitempty"`
+    Name         *string  `json:"name,omitempty"`
+    Url          *string  `json:"url,omitempty"`
 }

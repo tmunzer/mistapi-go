@@ -12,10 +12,10 @@ Org API Token
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CreatedBy` | `models.Optional[string]` | Optional | email of the token creator / null if creator is deleted |
-| `CreatedTime` | `*int` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `Key` | `*string` | Optional | - |
-| `LastUsed` | `models.Optional[int]` | Optional | - |
+| `LastUsed` | `models.Optional[float64]` | Optional | - |
 | `Name` | `models.Optional[string]` | Optional | name of the token |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Privileges` | [`[]models.PrivilegeOrg`](../../doc/models/privilege-org.md) | Optional | list of privileges the token has on the orgs/sites<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
@@ -26,10 +26,10 @@ Org API Token
 ```json
 {
   "created_by": "user@mycorp.com",
-  "created_time": 1626875902,
+  "created_time": 1626875902.0,
   "id": "497f6eca-6276-4993-bfeb-53ecbbba6f08",
   "key": "1qkb...QQCL",
-  "last_used": 1690115110,
+  "last_used": 1690115110.0,
   "name": "org_token_xyz",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "privileges": [

@@ -9,7 +9,7 @@ import (
 type MxedgeStats struct {
     // CPU/core stats list
     CpuStat              *MxedgeStatsCpuStat               `json:"cpu_stat,omitempty"`
-    CreatedTime          *int                              `json:"created_time,omitempty"`
+    CreatedTime          *float64                          `json:"created_time,omitempty"`
     // alue indicating fips configuration on the device
     FipsEnabled          *bool                             `json:"fips_enabled,omitempty"`
     ForSite              *bool                             `json:"for_site,omitempty"`
@@ -23,7 +23,7 @@ type MxedgeStats struct {
     // Memory usage
     MemoryStat           *MxedgeStatsMemoryStat            `json:"memory_stat,omitempty"`
     Model                *string                           `json:"model,omitempty"`
-    ModifiedTime         *int                              `json:"modified_time,omitempty"`
+    ModifiedTime         *float64                          `json:"modified_time,omitempty"`
     MxagentRegistered    *bool                             `json:"mxagent_registered,omitempty"`
     MxclusterId          *uuid.UUID                        `json:"mxcluster_id,omitempty"`
     // The name of the tunnel
@@ -213,7 +213,7 @@ func (m *MxedgeStats) UnmarshalJSON(input []byte) error {
 // mxedgeStats is a temporary struct used for validating the fields of MxedgeStats.
 type mxedgeStats  struct {
     CpuStat            *MxedgeStatsCpuStat               `json:"cpu_stat,omitempty"`
-    CreatedTime        *int                              `json:"created_time,omitempty"`
+    CreatedTime        *float64                          `json:"created_time,omitempty"`
     FipsEnabled        *bool                             `json:"fips_enabled,omitempty"`
     ForSite            *bool                             `json:"for_site,omitempty"`
     Id                 *uuid.UUID                        `json:"id,omitempty"`
@@ -223,7 +223,7 @@ type mxedgeStats  struct {
     Mac                *string                           `json:"mac,omitempty"`
     MemoryStat         *MxedgeStatsMemoryStat            `json:"memory_stat,omitempty"`
     Model              *string                           `json:"model,omitempty"`
-    ModifiedTime       *int                              `json:"modified_time,omitempty"`
+    ModifiedTime       *float64                          `json:"modified_time,omitempty"`
     MxagentRegistered  *bool                             `json:"mxagent_registered,omitempty"`
     MxclusterId        *uuid.UUID                        `json:"mxcluster_id,omitempty"`
     Name               *string                           `json:"name,omitempty"`

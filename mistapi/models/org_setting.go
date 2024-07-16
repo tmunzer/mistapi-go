@@ -55,7 +55,6 @@ type OrgSetting struct {
     // Set of heuristic rules will be enabled when marvis subscription is not available.
     // It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
     SimpleAlert                 *SimpleAlert                           `json:"simple_alert,omitempty"`
-    SiteId                      *uuid.UUID                             `json:"site_id,omitempty"`
     SwitchMgmt                  *OrgSettingSwitchMgmt                  `json:"switch_mgmt,omitempty"`
     // enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.
     SwitchUpdownThreshold       Optional[int]                          `json:"switch_updown_threshold"`
@@ -193,9 +192,6 @@ func (o OrgSetting) toMap() map[string]any {
     if o.SimpleAlert != nil {
         structMap["simple_alert"] = o.SimpleAlert.toMap()
     }
-    if o.SiteId != nil {
-        structMap["site_id"] = o.SiteId
-    }
     if o.SwitchMgmt != nil {
         structMap["switch_mgmt"] = o.SwitchMgmt.toMap()
     }
@@ -238,7 +234,7 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "juniper", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "site_id", "switch_mgmt", "switch_updown_threshold", "synthetictest", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "juniper", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetictest", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
     if err != nil {
     	return err
     }
@@ -278,7 +274,6 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
     o.PcapBucketVerified = temp.PcapBucketVerified
     o.Security = temp.Security
     o.SimpleAlert = temp.SimpleAlert
-    o.SiteId = temp.SiteId
     o.SwitchMgmt = temp.SwitchMgmt
     o.SwitchUpdownThreshold = temp.SwitchUpdownThreshold
     o.Synthetictest = temp.Synthetictest
@@ -327,7 +322,6 @@ type orgSetting  struct {
     PcapBucketVerified          *bool                                  `json:"pcap_bucket_verified,omitempty"`
     Security                    *OrgSettingSecurity                    `json:"security,omitempty"`
     SimpleAlert                 *SimpleAlert                           `json:"simple_alert,omitempty"`
-    SiteId                      *uuid.UUID                             `json:"site_id,omitempty"`
     SwitchMgmt                  *OrgSettingSwitchMgmt                  `json:"switch_mgmt,omitempty"`
     SwitchUpdownThreshold       Optional[int]                          `json:"switch_updown_threshold"`
     Synthetictest               *SynthetictestConfig                   `json:"synthetictest,omitempty"`

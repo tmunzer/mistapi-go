@@ -15,7 +15,7 @@ type SwitchStats struct {
     ClientsStats         *SwitchStatsClientsStats       `json:"clients_stats,omitempty"`
     ConfigStatus         *string                        `json:"config_status,omitempty"`
     CpuStat              *CpuStat                       `json:"cpu_stat,omitempty"`
-    CreatedTime          *int                           `json:"created_time,omitempty"`
+    CreatedTime          *float64                       `json:"created_time,omitempty"`
     DeviceprofileId      Optional[uuid.UUID]            `json:"deviceprofile_id"`
     // Property key is the network name
     DhcpdStat            map[string]DhcpdStatLan        `json:"dhcpd_stat,omitempty"`
@@ -42,7 +42,7 @@ type SwitchStats struct {
     // memory usage stat (for virtual chassis, memory usage of master RE)
     MemoryStat           *MemoryStat                    `json:"memory_stat,omitempty"`
     Model                *string                        `json:"model,omitempty"`
-    ModifiedTime         *int                           `json:"modified_time,omitempty"`
+    ModifiedTime         *float64                       `json:"modified_time,omitempty"`
     ModuleStat           []ModuleStatItem               `json:"module_stat,omitempty"`
     // device name if configured
     Name                 *string                        `json:"name,omitempty"`
@@ -281,7 +281,7 @@ type switchStats  struct {
     ClientsStats        *SwitchStatsClientsStats       `json:"clients_stats,omitempty"`
     ConfigStatus        *string                        `json:"config_status,omitempty"`
     CpuStat             *CpuStat                       `json:"cpu_stat,omitempty"`
-    CreatedTime         *int                           `json:"created_time,omitempty"`
+    CreatedTime         *float64                       `json:"created_time,omitempty"`
     DeviceprofileId     Optional[uuid.UUID]            `json:"deviceprofile_id"`
     DhcpdStat           map[string]DhcpdStatLan        `json:"dhcpd_stat,omitempty"`
     EvpntopoId          Optional[uuid.UUID]            `json:"evpntopo_id"`
@@ -301,7 +301,7 @@ type switchStats  struct {
     MapId               Optional[uuid.UUID]            `json:"map_id"`
     MemoryStat          *MemoryStat                    `json:"memory_stat,omitempty"`
     Model               *string                        `json:"model,omitempty"`
-    ModifiedTime        *int                           `json:"modified_time,omitempty"`
+    ModifiedTime        *float64                       `json:"modified_time,omitempty"`
     ModuleStat          []ModuleStatItem               `json:"module_stat,omitempty"`
     Name                *string                        `json:"name,omitempty"`
     OrgId               *uuid.UUID                     `json:"org_id,omitempty"`
