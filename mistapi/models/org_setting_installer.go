@@ -10,7 +10,7 @@ type OrgSettingInstaller struct {
     AllowAllDevices      *bool          `json:"allow_all_devices,omitempty"`
     AllowAllSites        *bool          `json:"allow_all_sites,omitempty"`
     ExtraSiteIds         []uuid.UUID    `json:"extra_site_ids,omitempty"`
-    GracePeriod          *float64       `json:"grace_period,omitempty"`
+    GracePeriod          *int           `json:"grace_period,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }
 
@@ -67,5 +67,5 @@ type orgSettingInstaller  struct {
     AllowAllDevices *bool       `json:"allow_all_devices,omitempty"`
     AllowAllSites   *bool       `json:"allow_all_sites,omitempty"`
     ExtraSiteIds    []uuid.UUID `json:"extra_site_ids,omitempty"`
-    GracePeriod     *float64    `json:"grace_period,omitempty"`
+    GracePeriod     *int        `json:"grace_period,omitempty"`
 }

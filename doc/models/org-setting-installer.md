@@ -12,7 +12,7 @@
 | `AllowAllDevices` | `*bool` | Optional | - |
 | `AllowAllSites` | `*bool` | Optional | - |
 | `ExtraSiteIds` | `[]uuid.UUID` | Optional | - |
-| `GracePeriod` | `*float64` | Optional | - |
+| `GracePeriod` | `*int` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +23,7 @@
   "extra_site_ids": [
     "00001c5e-0000-0000-0000-000000000000"
   ],
-  "grace_period": 49.68
+  "grace_period": 104
 }
 ```
 
