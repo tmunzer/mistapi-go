@@ -11,6 +11,7 @@ type IdpProfileOverwrite struct {
     // - close: notify client/server to close connection
     Action               *IdpProfileActionEnum `json:"action,omitempty"`
     Matching             *IdpProfileMatching   `json:"matching,omitempty"`
+    Name                 *string               `json:"name,omitempty"`
     AdditionalProperties map[string]any        `json:"_"`
 }
 
@@ -32,6 +33,9 @@ func (i IdpProfileOverwrite) toMap() map[string]any {
     if i.Matching != nil {
         structMap["matching"] = i.Matching.toMap()
     }
+    if i.Name != nil {
+        structMap["name"] = i.Name
+    }
     return structMap
 }
 
@@ -43,7 +47,7 @@ func (i *IdpProfileOverwrite) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "matching")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "matching", "name")
     if err != nil {
     	return err
     }
@@ -51,6 +55,7 @@ func (i *IdpProfileOverwrite) UnmarshalJSON(input []byte) error {
     i.AdditionalProperties = additionalProperties
     i.Action = temp.Action
     i.Matching = temp.Matching
+    i.Name = temp.Name
     return nil
 }
 
@@ -58,4 +63,5 @@ func (i *IdpProfileOverwrite) UnmarshalJSON(input []byte) error {
 type idpProfileOverwrite  struct {
     Action   *IdpProfileActionEnum `json:"action,omitempty"`
     Matching *IdpProfileMatching   `json:"matching,omitempty"`
+    Name     *string               `json:"name,omitempty"`
 }
