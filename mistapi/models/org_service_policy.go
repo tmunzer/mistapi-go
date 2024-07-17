@@ -12,7 +12,6 @@ type OrgServicePolicy struct {
     Appqoe               *ServicePolicyAppqoe   `json:"appqoe,omitempty"`
     CreatedTime          *float64               `json:"created_time,omitempty"`
     Ewf                  []ServicePolicyEwfRule `json:"ewf,omitempty"`
-    // used to link servicepolicy defined at org level and overwrite some attributes
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Idp                  *IdpConfig             `json:"idp,omitempty"`
     // access within the same VRF

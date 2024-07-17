@@ -13,7 +13,7 @@
 | `Appqoe` | [`*models.ServicePolicyAppqoe`](../../doc/models/service-policy-appqoe.md) | Optional | For SRX Only |
 | `CreatedTime` | `*float64` | Optional | - |
 | `Ewf` | [`[]models.ServicePolicyEwfRule`](../../doc/models/service-policy-ewf-rule.md) | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | used to link servicepolicy defined at org level and overwrite some attributes |
+| `Id` | `*uuid.UUID` | Optional | - |
 | `Idp` | [`*models.IdpConfig`](../../doc/models/idp-config.md) | Optional | - |
 | `LocalRouting` | `*bool` | Optional | access within the same VRF<br>**Default**: `false` |
 | `ModifiedTime` | `*float64` | Optional | - |

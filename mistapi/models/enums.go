@@ -1153,6 +1153,7 @@ const (
 type IdpProfileBaseProfileEnum string
 
 const (
+    IdpProfileBaseProfileEnum_CRITICAL IdpProfileBaseProfileEnum = "critical"
     IdpProfileBaseProfileEnum_STRICT   IdpProfileBaseProfileEnum = "strict"
     IdpProfileBaseProfileEnum_STANDARD IdpProfileBaseProfileEnum = "standard"
 )

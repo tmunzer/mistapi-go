@@ -12,6 +12,7 @@ type IdpProfile struct {
     Id                   *uuid.UUID                 `json:"id,omitempty"`
     ModifiedTime         *float64                   `json:"modified_time,omitempty"`
     Name                 *string                    `json:"name,omitempty"`
+    OrgId                *uuid.UUID                 `json:"org_id,omitempty"`
     Overwrites           []IdpProfileOverwrite      `json:"overwrites,omitempty"`
     AdditionalProperties map[string]any             `json:"_"`
 }
@@ -43,6 +44,9 @@ func (i IdpProfile) toMap() map[string]any {
     if i.Name != nil {
         structMap["name"] = i.Name
     }
+    if i.OrgId != nil {
+        structMap["org_id"] = i.OrgId
+    }
     if i.Overwrites != nil {
         structMap["overwrites"] = i.Overwrites
     }
@@ -57,7 +61,7 @@ func (i *IdpProfile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "base_profile", "created_time", "id", "modified_time", "name", "overwrites")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "base_profile", "created_time", "id", "modified_time", "name", "org_id", "overwrites")
     if err != nil {
     	return err
     }
@@ -68,6 +72,7 @@ func (i *IdpProfile) UnmarshalJSON(input []byte) error {
     i.Id = temp.Id
     i.ModifiedTime = temp.ModifiedTime
     i.Name = temp.Name
+    i.OrgId = temp.OrgId
     i.Overwrites = temp.Overwrites
     return nil
 }
@@ -79,5 +84,6 @@ type idpProfile  struct {
     Id           *uuid.UUID                 `json:"id,omitempty"`
     ModifiedTime *float64                   `json:"modified_time,omitempty"`
     Name         *string                    `json:"name,omitempty"`
+    OrgId        *uuid.UUID                 `json:"org_id,omitempty"`
     Overwrites   []IdpProfileOverwrite      `json:"overwrites,omitempty"`
 }
