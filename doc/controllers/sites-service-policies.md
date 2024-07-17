@@ -18,7 +18,7 @@ ListSiteServicePoliciesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
-    models.ApiResponse[[]models.ServicePolicy],
+    models.ApiResponse[[]models.OrgServicePolicy],
     error)
 ```
 
@@ -31,7 +31,7 @@ ListSiteServicePoliciesDerived(
 
 ## Response Type
 
-[`[]models.ServicePolicy`](../../doc/models/service-policy.md)
+[`[]models.OrgServicePolicy`](../../doc/models/org-service-policy.md)
 
 ## Example Usage
 

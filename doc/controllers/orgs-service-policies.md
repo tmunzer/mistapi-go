@@ -25,8 +25,8 @@ Create Org Serrvice Policy
 CreateOrgServicePolicy(
     ctx context.Context,
     orgId uuid.UUID,
-    body *models.ServicePolicy) (
-    models.ApiResponse[models.ServicePolicy],
+    body *models.OrgServicePolicy) (
+    models.ApiResponse[models.OrgServicePolicy],
     error)
 ```
 
@@ -35,11 +35,11 @@ CreateOrgServicePolicy(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.ServicePolicy`](../../doc/models/service-policy.md) | Body, Optional | - |
+| `body` | [`*models.OrgServicePolicy`](../../doc/models/org-service-policy.md) | Body, Optional | - |
 
 ## Response Type
 
-[`models.ServicePolicy`](../../doc/models/service-policy.md)
+[`models.OrgServicePolicy`](../../doc/models/org-service-policy.md)
 
 ## Example Usage
 
@@ -48,7 +48,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-body := models.ServicePolicy{
+body := models.OrgServicePolicy{
     Action:          models.ToPointer(models.AllowDenyEnum("allow")),
     Name:            models.ToPointer("string"),
     Services:        []string{
@@ -141,7 +141,7 @@ GetOrgServicePolicy(
     ctx context.Context,
     orgId uuid.UUID,
     servicepolicyId uuid.UUID) (
-    models.ApiResponse[models.ServicePolicy],
+    models.ApiResponse[models.OrgServicePolicy],
     error)
 ```
 
@@ -154,7 +154,7 @@ GetOrgServicePolicy(
 
 ## Response Type
 
-[`models.ServicePolicy`](../../doc/models/service-policy.md)
+[`models.OrgServicePolicy`](../../doc/models/org-service-policy.md)
 
 ## Example Usage
 
@@ -196,7 +196,7 @@ ListOrgServicePolicies(
     orgId uuid.UUID,
     page *int,
     limit *int) (
-    models.ApiResponse[[]models.ServicePolicy],
+    models.ApiResponse[[]models.OrgServicePolicy],
     error)
 ```
 
@@ -210,7 +210,7 @@ ListOrgServicePolicies(
 
 ## Response Type
 
-[`[]models.ServicePolicy`](../../doc/models/service-policy.md)
+[`[]models.OrgServicePolicy`](../../doc/models/org-service-policy.md)
 
 ## Example Usage
 
@@ -274,8 +274,8 @@ UpdateOrgServicePolicy(
     ctx context.Context,
     orgId uuid.UUID,
     servicepolicyId uuid.UUID,
-    body *models.ServicePolicy) (
-    models.ApiResponse[models.ServicePolicy],
+    body *models.OrgServicePolicy) (
+    models.ApiResponse[models.OrgServicePolicy],
     error)
 ```
 
@@ -285,11 +285,11 @@ UpdateOrgServicePolicy(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `servicepolicyId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.ServicePolicy`](../../doc/models/service-policy.md) | Body, Optional | - |
+| `body` | [`*models.OrgServicePolicy`](../../doc/models/org-service-policy.md) | Body, Optional | - |
 
 ## Response Type
 
-[`models.ServicePolicy`](../../doc/models/service-policy.md)
+[`models.OrgServicePolicy`](../../doc/models/org-service-policy.md)
 
 ## Example Usage
 
@@ -300,7 +300,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 servicepolicyId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-body := models.ServicePolicy{
+body := models.OrgServicePolicy{
     Action:          models.ToPointer(models.AllowDenyEnum("allow")),
     Name:            models.ToPointer("string"),
     Services:        []string{

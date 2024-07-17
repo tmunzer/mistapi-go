@@ -1,9 +1,9 @@
 
-# Service Policy
+# Org Service Policy
 
 ## Structure
 
-`ServicePolicy`
+`OrgServicePolicy`
 
 ## Fields
 
@@ -11,12 +11,15 @@
 |  --- | --- | --- | --- |
 | `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | **Default**: `"allow"` |
 | `Appqoe` | [`*models.ServicePolicyAppqoe`](../../doc/models/service-policy-appqoe.md) | Optional | For SRX Only |
+| `CreatedTime` | `*float64` | Optional | - |
 | `Ewf` | [`[]models.ServicePolicyEwfRule`](../../doc/models/service-policy-ewf-rule.md) | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | used to link servicepolicy defined at org level and overwrite some attributes |
 | `Idp` | [`*models.IdpConfig`](../../doc/models/idp-config.md) | Optional | - |
 | `LocalRouting` | `*bool` | Optional | access within the same VRF<br>**Default**: `false` |
+| `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `*string` | Optional | - |
+| `OrgId` | `*uuid.UUID` | Optional | - |
 | `PathPreferences` | `*string` | Optional | by default, we derive all paths available and use them<br>optionally, you can customize by using `path_preference` |
-| `ServicepolicyId` | `*uuid.UUID` | Optional | used to link servicepolicy defined at org level and overwrite some attributes |
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 
@@ -26,9 +29,11 @@
 {
   "action": "allow",
   "local_routing": false,
+  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "appqoe": {
     "enabled": false
   },
+  "created_time": 18.54,
   "ewf": [
     {
       "alert_only": false,
@@ -49,12 +54,7 @@
       "profile": "strict"
     }
   ],
-  "idp": {
-    "alert_only": false,
-    "enabled": false,
-    "idpprofile_id": "00000e94-0000-0000-0000-000000000000",
-    "profile": "profile8"
-  }
+  "id": "00000e28-0000-0000-0000-000000000000"
 }
 ```
 

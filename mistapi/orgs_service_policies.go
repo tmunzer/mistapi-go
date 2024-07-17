@@ -24,7 +24,7 @@ func NewOrgsServicePolicies(baseController baseController) *OrgsServicePolicies 
 }
 
 // ListOrgServicePolicies takes context, orgId, page, limit as parameters and
-// returns an models.ApiResponse with []models.ServicePolicy data and
+// returns an models.ApiResponse with []models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
 // Get List of Org Service Policies
 func (o *OrgsServicePolicies) ListOrgServicePolicies(
@@ -32,7 +32,7 @@ func (o *OrgsServicePolicies) ListOrgServicePolicies(
     orgId uuid.UUID,
     page *int,
     limit *int) (
-    models.ApiResponse[[]models.ServicePolicy],
+    models.ApiResponse[[]models.OrgServicePolicy],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -64,25 +64,25 @@ func (o *OrgsServicePolicies) ListOrgServicePolicies(
         req.QueryParam("limit", *limit)
     }
     
-    var result []models.ServicePolicy
+    var result []models.OrgServicePolicy
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ServicePolicy](decoder)
+    result, err = utilities.DecodeResults[[]models.OrgServicePolicy](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // CreateOrgServicePolicy takes context, orgId, body as parameters and
-// returns an models.ApiResponse with models.ServicePolicy data and
+// returns an models.ApiResponse with models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
 // Create Org Serrvice Policy
 func (o *OrgsServicePolicies) CreateOrgServicePolicy(
     ctx context.Context,
     orgId uuid.UUID,
-    body *models.ServicePolicy) (
-    models.ApiResponse[models.ServicePolicy],
+    body *models.OrgServicePolicy) (
+    models.ApiResponse[models.OrgServicePolicy],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -112,13 +112,13 @@ func (o *OrgsServicePolicies) CreateOrgServicePolicy(
         req.Json(body)
     }
     
-    var result models.ServicePolicy
+    var result models.OrgServicePolicy
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.ServicePolicy](decoder)
+    result, err = utilities.DecodeResults[models.OrgServicePolicy](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -164,14 +164,14 @@ func (o *OrgsServicePolicies) DeleteOrgServicePolicy(
 }
 
 // GetOrgServicePolicy takes context, orgId, servicepolicyId as parameters and
-// returns an models.ApiResponse with models.ServicePolicy data and
+// returns an models.ApiResponse with models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
 // Get Org Service Policy Details
 func (o *OrgsServicePolicies) GetOrgServicePolicy(
     ctx context.Context,
     orgId uuid.UUID,
     servicepolicyId uuid.UUID) (
-    models.ApiResponse[models.ServicePolicy],
+    models.ApiResponse[models.OrgServicePolicy],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -197,26 +197,26 @@ func (o *OrgsServicePolicies) GetOrgServicePolicy(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
-    var result models.ServicePolicy
+    var result models.OrgServicePolicy
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.ServicePolicy](decoder)
+    result, err = utilities.DecodeResults[models.OrgServicePolicy](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // UpdateOrgServicePolicy takes context, orgId, servicepolicyId, body as parameters and
-// returns an models.ApiResponse with models.ServicePolicy data and
+// returns an models.ApiResponse with models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
 // Update Org Serrvice Policy
 func (o *OrgsServicePolicies) UpdateOrgServicePolicy(
     ctx context.Context,
     orgId uuid.UUID,
     servicepolicyId uuid.UUID,
-    body *models.ServicePolicy) (
-    models.ApiResponse[models.ServicePolicy],
+    body *models.OrgServicePolicy) (
+    models.ApiResponse[models.OrgServicePolicy],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -246,12 +246,12 @@ func (o *OrgsServicePolicies) UpdateOrgServicePolicy(
         req.Json(body)
     }
     
-    var result models.ServicePolicy
+    var result models.OrgServicePolicy
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.ServicePolicy](decoder)
+    result, err = utilities.DecodeResults[models.OrgServicePolicy](decoder)
     return models.NewApiResponse(result, resp), err
 }
