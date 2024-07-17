@@ -6,9 +6,10 @@ import (
 
 // SynthetictestConfig represents a SynthetictestConfig struct.
 type SynthetictestConfig struct {
-    Disabled             *bool                     `json:"disabled,omitempty"`
-    Vlans                []SynthetictestProperties `json:"vlans,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    Disabled             *bool                            `json:"disabled,omitempty"`
+    Vlans                []SynthetictestProperties        `json:"vlans,omitempty"`
+    WanSpeedtest         *SynthetictestConfigWanSpeedtest `json:"wan_speedtest,omitempty"`
+    AdditionalProperties map[string]any                   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestConfig.
@@ -29,6 +30,9 @@ func (s SynthetictestConfig) toMap() map[string]any {
     if s.Vlans != nil {
         structMap["vlans"] = s.Vlans
     }
+    if s.WanSpeedtest != nil {
+        structMap["wan_speedtest"] = s.WanSpeedtest.toMap()
+    }
     return structMap
 }
 
@@ -40,7 +44,7 @@ func (s *SynthetictestConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disabled", "vlans")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "disabled", "vlans", "wan_speedtest")
     if err != nil {
     	return err
     }
@@ -48,11 +52,13 @@ func (s *SynthetictestConfig) UnmarshalJSON(input []byte) error {
     s.AdditionalProperties = additionalProperties
     s.Disabled = temp.Disabled
     s.Vlans = temp.Vlans
+    s.WanSpeedtest = temp.WanSpeedtest
     return nil
 }
 
 // synthetictestConfig is a temporary struct used for validating the fields of SynthetictestConfig.
 type synthetictestConfig  struct {
-    Disabled *bool                     `json:"disabled,omitempty"`
-    Vlans    []SynthetictestProperties `json:"vlans,omitempty"`
+    Disabled     *bool                            `json:"disabled,omitempty"`
+    Vlans        []SynthetictestProperties        `json:"vlans,omitempty"`
+    WanSpeedtest *SynthetictestConfigWanSpeedtest `json:"wan_speedtest,omitempty"`
 }

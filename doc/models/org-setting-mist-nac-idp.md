@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ExcludeRealms` | `[]string` | Optional | when the IDP of mxedge_proxy type, exclude the following realms from proxying in addition to other valid home realms in this org |
-| `Id` | `*string` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | - |
 | `UserRealms` | `[]string` | Optional | which realm should trigger this IDP.<br>we extract user realm from<br><br>1. Username-AVP (`mist.com` from john@mist.com)<br>2. Cert CN |
 
 ## Example (as JSON)

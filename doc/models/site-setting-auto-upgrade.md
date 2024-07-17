@@ -27,7 +27,7 @@ Auto Upgrade Settings
     "AP61": "0.1.7215"
   },
   "enabled": false,
-  "time_of_day": "12:00\"",
+  "time_of_day": "12:00",
   "version": "beta",
   "day_of_week": "sat"
 }

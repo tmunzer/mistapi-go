@@ -6,8 +6,8 @@ import (
 
 // OrgSettingMistNac represents a OrgSettingMistNac struct.
 type OrgSettingMistNac struct {
-    // the CA certs we use to verify client certs
-    Cacerts              *string                         `json:"cacerts,omitempty"`
+    // list of PEM-encoded ca certs
+    Cacerts              []string                        `json:"cacerts,omitempty"`
     // use this IDP when no explicit realm present in the incoming username/CN OR when no IDP is explicitly mapped to the incoming realm.
     DefaultIdpId         *string                         `json:"default_idp_id,omitempty"`
     // eap ssl security level
@@ -94,7 +94,7 @@ func (o *OrgSettingMistNac) UnmarshalJSON(input []byte) error {
 
 // orgSettingMistNac is a temporary struct used for validating the fields of OrgSettingMistNac.
 type orgSettingMistNac  struct {
-    Cacerts             *string                         `json:"cacerts,omitempty"`
+    Cacerts             []string                        `json:"cacerts,omitempty"`
     DefaultIdpId        *string                         `json:"default_idp_id,omitempty"`
     EapSslSecurityLevel *int                            `json:"eap_ssl_security_level,omitempty"`
     EuOnly              *bool                           `json:"eu_only,omitempty"`

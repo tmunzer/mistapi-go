@@ -11,6 +11,7 @@
 |  --- | --- | --- | --- |
 | `Disabled` | `*bool` | Optional | **Default**: `false` |
 | `Vlans` | [`[]models.SynthetictestProperties`](../../doc/models/synthetictest-properties.md) | Optional | - |
+| `WanSpeedtest` | [`*models.SynthetictestConfigWanSpeedtest`](../../doc/models/synthetictest-config-wan-speedtest.md) | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,7 +49,11 @@
         187
       ]
     }
-  ]
+  ],
+  "wan_speedtest": {
+    "enabled": false,
+    "time_od_fay": "time_od_fay2"
+  }
 }
 ```
 

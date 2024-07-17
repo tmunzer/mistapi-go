@@ -645,9 +645,6 @@ body := models.Mxedge{
     TuntermSwitchConfig:       models.ToPointer(models.MxedgeTuntermSwitchConfigs{
         Enabled: models.ToPointer(true),
     }),
-    Versions:                  models.ToPointer(models.MxedgeVersions{
-        Mxagent:  models.ToPointer("2.4.194"),
-    }),
 }
 
 apiResponse, err := orgsMxEdges.CreateOrgMxEdge(ctx, orgId, &body)

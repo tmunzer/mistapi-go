@@ -47,7 +47,7 @@ Org Settings
 | `SimpleAlert` | [`*models.SimpleAlert`](../../doc/models/simple-alert.md) | Optional | Set of heuristic rules will be enabled when marvis subscription is not available.<br>It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures |
 | `SwitchMgmt` | [`*models.OrgSettingSwitchMgmt`](../../doc/models/org-setting-switch-mgmt.md) | Optional | - |
 | `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored. |
-| `Synthetictest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
+| `SyntheticTest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
 | `Tags` | `[]string` | Optional | list of tags |
 | `UiIdleTimeout` | `*int` | Optional | automatically logout the user when UI session is inactive. `0` means disabled<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 480` |
 | `VpnOptions` | [`*models.OrgSettingVpnOptions`](../../doc/models/org-setting-vpn-options.md) | Optional | - |

@@ -2,13 +2,14 @@ package models
 
 import (
     "encoding/json"
+    "github.com/google/uuid"
 )
 
 // OrgSettingMistNacIdp represents a OrgSettingMistNacIdp struct.
 type OrgSettingMistNacIdp struct {
     // when the IDP of mxedge_proxy type, exclude the following realms from proxying in addition to other valid home realms in this org
     ExcludeRealms        []string       `json:"exclude_realms,omitempty"`
-    Id                   *string        `json:"id,omitempty"`
+    Id                   *uuid.UUID     `json:"id,omitempty"`
     // which realm should trigger this IDP.
     // we extract user realm from
     // 1. Username-AVP (`mist.com` from john@mist.com)
@@ -63,7 +64,7 @@ func (o *OrgSettingMistNacIdp) UnmarshalJSON(input []byte) error {
 
 // orgSettingMistNacIdp is a temporary struct used for validating the fields of OrgSettingMistNacIdp.
 type orgSettingMistNacIdp  struct {
-    ExcludeRealms []string `json:"exclude_realms,omitempty"`
-    Id            *string  `json:"id,omitempty"`
-    UserRealms    []string `json:"user_realms,omitempty"`
+    ExcludeRealms []string   `json:"exclude_realms,omitempty"`
+    Id            *uuid.UUID `json:"id,omitempty"`
+    UserRealms    []string   `json:"user_realms,omitempty"`
 }

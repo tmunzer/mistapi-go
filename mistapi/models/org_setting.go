@@ -58,7 +58,7 @@ type OrgSetting struct {
     SwitchMgmt                  *OrgSettingSwitchMgmt                  `json:"switch_mgmt,omitempty"`
     // enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.
     SwitchUpdownThreshold       Optional[int]                          `json:"switch_updown_threshold"`
-    Synthetictest               *SynthetictestConfig                   `json:"synthetictest,omitempty"`
+    SyntheticTest               *SynthetictestConfig                   `json:"synthetic_test,omitempty"`
     // list of tags
     Tags                        []string                               `json:"tags,omitempty"`
     // automatically logout the user when UI session is inactive. `0` means disabled
@@ -202,8 +202,8 @@ func (o OrgSetting) toMap() map[string]any {
             structMap["switch_updown_threshold"] = nil
         }
     }
-    if o.Synthetictest != nil {
-        structMap["synthetictest"] = o.Synthetictest.toMap()
+    if o.SyntheticTest != nil {
+        structMap["synthetic_test"] = o.SyntheticTest.toMap()
     }
     if o.Tags != nil {
         structMap["tags"] = o.Tags
@@ -234,7 +234,7 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "juniper", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetictest", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "juniper", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
     if err != nil {
     	return err
     }
@@ -276,7 +276,7 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
     o.SimpleAlert = temp.SimpleAlert
     o.SwitchMgmt = temp.SwitchMgmt
     o.SwitchUpdownThreshold = temp.SwitchUpdownThreshold
-    o.Synthetictest = temp.Synthetictest
+    o.SyntheticTest = temp.SyntheticTest
     o.Tags = temp.Tags
     o.UiIdleTimeout = temp.UiIdleTimeout
     o.VpnOptions = temp.VpnOptions
@@ -324,7 +324,7 @@ type orgSetting  struct {
     SimpleAlert                 *SimpleAlert                           `json:"simple_alert,omitempty"`
     SwitchMgmt                  *OrgSettingSwitchMgmt                  `json:"switch_mgmt,omitempty"`
     SwitchUpdownThreshold       Optional[int]                          `json:"switch_updown_threshold"`
-    Synthetictest               *SynthetictestConfig                   `json:"synthetictest,omitempty"`
+    SyntheticTest               *SynthetictestConfig                   `json:"synthetic_test,omitempty"`
     Tags                        []string                               `json:"tags,omitempty"`
     UiIdleTimeout               *int                                   `json:"ui_idle_timeout,omitempty"`
     VpnOptions                  *OrgSettingVpnOptions                  `json:"vpn_options,omitempty"`

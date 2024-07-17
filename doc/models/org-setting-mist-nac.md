@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Cacerts` | `*string` | Optional | the CA certs we use to verify client certs |
+| `Cacerts` | `[]string` | Optional | list of PEM-encoded ca certs |
 | `DefaultIdpId` | `*string` | Optional | use this IDP when no explicit realm present in the incoming username/CN OR when no IDP is explicitly mapped to the incoming realm. |
 | `EapSslSecurityLevel` | `*int` | Optional | eap ssl security level<br>see https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_security_level.html#DEFAULT-CALLBACK-BEHAVIOUR<br>**Default**: `2`<br>**Constraints**: `>= 1`, `<= 4` |
 | `EuOnly` | `*bool` | Optional | By default NAC POD failover considers all NAC pods available around the globe, i.e. EU, US, or APAC based, failover happens based on geo IP of the originating site.<br>For strict GDPR compliancy NAC POD failover would only happen between the PODs located within the EU environment, and no authentication would take place outside of EU. This is an org setting that is applicable to WLANs, switch templates, mxedge clusters that have mist_nac enabled<br>**Default**: `false` |
@@ -22,11 +22,15 @@
 
 ```json
 {
-  "cacerts": "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----",
   "eap_ssl_security_level": 2,
   "eu_only": false,
   "use_ip_version": "v4",
   "use_ssl_port": false,
+  "cacerts": [
+    "cacerts0",
+    "cacerts1",
+    "cacerts2"
+  ],
   "default_idp_id": "default_idp_id4",
   "idps": [
     {
@@ -35,7 +39,7 @@
         "exclude_realms4",
         "exclude_realms5"
       ],
-      "id": "id8",
+      "id": "00000f3a-0000-0000-0000-000000000000",
       "user_realms": [
         "user_realms0",
         "user_realms1",
@@ -48,7 +52,7 @@
         "exclude_realms4",
         "exclude_realms5"
       ],
-      "id": "id8",
+      "id": "00000f3a-0000-0000-0000-000000000000",
       "user_realms": [
         "user_realms0",
         "user_realms1",
