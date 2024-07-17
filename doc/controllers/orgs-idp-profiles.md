@@ -350,7 +350,7 @@ UpdateOrgIdpProfile(
     orgId uuid.UUID,
     idpprofileId uuid.UUID,
     body *models.IdpProfile) (
-    http.Response,
+    models.ApiResponse[models.IdpProfile],
     error)
 ```
 
@@ -364,7 +364,7 @@ UpdateOrgIdpProfile(
 
 ## Response Type
 
-``
+[`models.IdpProfile`](../../doc/models/idp-profile.md)
 
 ## Example Usage
 
@@ -396,11 +396,41 @@ body := models.IdpProfile{
     },
 }
 
-resp, err := orgsIDPProfiles.UpdateOrgIdpProfile(ctx, orgId, idpprofileId, &body)
+apiResponse, err := orgsIDPProfiles.UpdateOrgIdpProfile(ctx, orgId, idpprofileId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
-    fmt.Println(resp.StatusCode)
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "base_profile": "strict",
+  "created_time": 0,
+  "id": "874ca978-d736-4d4b-bc90-a49a29eec133",
+  "modified_time": 0,
+  "name": "relaxed",
+  "overwrites": [
+    {
+      "action": "alert",
+      "matching": {
+        "attack_name": [
+          "HTTP:INVALID:HDR-FIELD"
+        ],
+        "dst_subnet": [
+          "63.1.2.0/24"
+        ],
+        "severity": [
+          "major"
+        ]
+      }
+    }
+  ]
 }
 ```
 

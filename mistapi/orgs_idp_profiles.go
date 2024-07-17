@@ -208,7 +208,7 @@ func (o *OrgsIDPProfiles) GetOrgIdpProfile(
 }
 
 // UpdateOrgIdpProfile takes context, orgId, idpprofileId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an models.ApiResponse with models.IdpProfile data and
 // an error if there was an issue with the request or response.
 // Update Org IDP Profile
 func (o *OrgsIDPProfiles) UpdateOrgIdpProfile(
@@ -216,7 +216,7 @@ func (o *OrgsIDPProfiles) UpdateOrgIdpProfile(
     orgId uuid.UUID,
     idpprofileId uuid.UUID,
     body *models.IdpProfile) (
-    *http.Response,
+    models.ApiResponse[models.IdpProfile],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -246,9 +246,12 @@ func (o *OrgsIDPProfiles) UpdateOrgIdpProfile(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    var result models.IdpProfile
+    decoder, resp, err := req.CallAsJson()
     if err != nil {
-        return context.Response, err
+        return models.NewApiResponse(result, resp), err
     }
-    return context.Response, err
+    
+    result, err = utilities.DecodeResults[models.IdpProfile](decoder)
+    return models.NewApiResponse(result, resp), err
 }
