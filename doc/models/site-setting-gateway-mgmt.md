@@ -15,7 +15,7 @@ Gateway Site settings
 | `AppProbing` | [`*models.AppProbing`](../../doc/models/app-probing.md) | Optional | - |
 | `AppUsage` | `*bool` | Optional | consumes uplink bandwidth, requires WA license |
 | `AutoSignatureUpdate` | [`*models.SiteSettingGatewayMgmtAutoSignatureUpdate`](../../doc/models/site-setting-gateway-mgmt-auto-signature-update.md) | Optional | - |
-| `ConfigRevertTimer` | `*float64` | Optional | he rollback timer for commit confirmed<br>**Default**: `10`<br>**Constraints**: `>= 1`, `<= 30` |
+| `ConfigRevertTimer` | `*int` | Optional | he rollback timer for commit confirmed<br>**Default**: `10`<br>**Constraints**: `>= 1`, `<= 30` |
 | `ProbeHosts` | `[]string` | Optional | - |
 | `RootPassword` | `*string` | Optional | for SRX only |
 | `SecurityLogSourceAddress` | `*string` | Optional | - |
@@ -28,7 +28,7 @@ Gateway Site settings
   "admin_sshkeys": [
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA...Wxa6p6UW0ZbcP john@host"
   ],
-  "config_revert_timer": 10.0,
+  "config_revert_timer": 10,
   "probe_hosts": [
     "8.8.8.8"
   ],

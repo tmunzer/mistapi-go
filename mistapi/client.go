@@ -1449,6 +1449,11 @@ func (c *client) GetCallBuilder() https.CallBuilderFactory {
 func getBaseUri(
     server Server,
     configuration Configuration) string {
+    if configuration.Environment() == Environment(AWS_STAGING) {
+        if server == Server(APIHOST) {
+            return "https://api.mistsys.com"
+        }
+    }
     if configuration.Environment() == Environment(MIST_GLOBAL_01) {
         if server == Server(APIHOST) {
             return "https://api.mist.com"
@@ -1487,11 +1492,6 @@ func getBaseUri(
     if configuration.Environment() == Environment(MIST_APAC_01) {
         if server == Server(APIHOST) {
             return "https://api.ac5.mist.com"
-        }
-    }
-    if configuration.Environment() == Environment(AWS_STAGING) {
-        if server == Server(APIHOST) {
-            return "https://api.mistsys.com"
         }
     }
     return "TODO: Select a valid server."

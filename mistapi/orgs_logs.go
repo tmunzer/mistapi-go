@@ -22,11 +22,11 @@ func NewOrgsLogs(baseController baseController) *OrgsLogs {
     return &orgsLogs
 }
 
-// ListOrgLogs takes context, orgId, siteId, adminName, message, sort, start, end, limit, page, duration as parameters and
+// ListOrgAuditLogs takes context, orgId, siteId, adminName, message, sort, start, end, limit, page, duration as parameters and
 // returns an models.ApiResponse with models.ResponseLogSearch data and
 // an error if there was an issue with the request or response.
 // Get List of change logs for the current Org
-func (o *OrgsLogs) ListOrgLogs(
+func (o *OrgsLogs) ListOrgAuditLogs(
     ctx context.Context,
     orgId uuid.UUID,
     siteId *string,
@@ -97,11 +97,11 @@ func (o *OrgsLogs) ListOrgLogs(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgLogs takes context, orgId, distinct, adminId, adminName, siteId, message, page, limit, start, end, duration as parameters and
+// CountOrgAuditLogs takes context, orgId, distinct, adminId, adminName, siteId, message, page, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Audit Logs
-func (o *OrgsLogs) CountOrgLogs(
+func (o *OrgsLogs) CountOrgAuditLogs(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgLogsCountDistinctEnum,

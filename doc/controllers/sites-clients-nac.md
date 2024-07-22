@@ -12,8 +12,8 @@ sitesClientsNAC := client.SitesClientsNAC()
 
 * [Count Site Nac Client Events](../../doc/controllers/sites-clients-nac.md#count-site-nac-client-events)
 * [Count Site Nac Clients](../../doc/controllers/sites-clients-nac.md#count-site-nac-clients)
+* [Search Site Nac Client Events](../../doc/controllers/sites-clients-nac.md#search-site-nac-client-events)
 * [Search Site Nac Clients](../../doc/controllers/sites-clients-nac.md#search-site-nac-clients)
-* [Searcsearc Site Nac Client Eventsac Client Events](../../doc/controllers/sites-clients-nac.md#searcsearc-site-nac-client-eventsac-client-events)
 
 
 # Count Site Nac Client Events
@@ -260,6 +260,203 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 
 
+# Search Site Nac Client Events
+
+Search NAC Client Events
+
+```go
+SearchSiteNacClientEvents(
+    ctx context.Context,
+    siteId uuid.UUID,
+    mType *string,
+    nacruleId *uuid.UUID,
+    nacruleMatched *bool,
+    dryrunNacruleId *string,
+    dryrunNacruleMatched *bool,
+    authType *string,
+    vlan *int,
+    vlanSource *string,
+    nasVendor *string,
+    bssid *string,
+    idpId *uuid.UUID,
+    idpRole *string,
+    idpUsername *string,
+    respAttrs []string,
+    ssid *string,
+    username *string,
+    usermacLabels []string,
+    ap *string,
+    randomMac *bool,
+    mac *string,
+    lookupTimeTaken *float64,
+    timestamp *float64,
+    start *int,
+    end *int,
+    duration *string,
+    limit *int) (
+    models.ApiResponse[models.ResponseEventsNacClientSearch],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions]($e/Constants%20Events/listNacEventsDefinitions) |
+| `nacruleId` | `*uuid.UUID` | Query, Optional | NAC Policy Rule ID, if matched |
+| `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
+| `dryrunNacruleId` | `*string` | Query, Optional | NAC Policy Dry Run Rule ID, if present and matched |
+| `dryrunNacruleMatched` | `*bool` | Query, Optional | True - if dryrun rule present and matched with priority, False - if not matched or not present |
+| `authType` | `*string` | Query, Optional | authentication type, e.g. “eap-tls”, “eap-ttls”, “eap-teap”, “mab”, “device-auth” |
+| `vlan` | `*int` | Query, Optional | Vlan ID |
+| `vlanSource` | `*string` | Query, Optional | Vlan source, e.g. "nactag", "usermac" |
+| `nasVendor` | `*string` | Query, Optional | vendor of NAS device |
+| `bssid` | `*string` | Query, Optional | SSID |
+| `idpId` | `*uuid.UUID` | Query, Optional | SSO ID, if present and used |
+| `idpRole` | `*string` | Query, Optional | IDP returned roles/groups for the user |
+| `idpUsername` | `*string` | Query, Optional | Username presented to the Identity Provider |
+| `respAttrs` | `[]string` | Query, Optional | Radius attributes returned by NAC to NAS Devive |
+| `ssid` | `*string` | Query, Optional | SSID |
+| `username` | `*string` | Query, Optional | Username presented by the client |
+| `usermacLabels` | `[]string` | Query, Optional | labels derived from usermac entry |
+| `ap` | `*string` | Query, Optional | AP MAC |
+| `randomMac` | `*bool` | Query, Optional | AP random macMAC |
+| `mac` | `*string` | Query, Optional | MAC address |
+| `lookupTimeTaken` | `*float64` | Query, Optional | Lookup(IDP etc.,) time taken in seconds |
+| `timestamp` | `*float64` | Query, Optional | time, in epoch |
+| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+
+## Response Type
+
+[`models.ResponseEventsNacClientSearch`](../../doc/models/response-events-nac-client-search.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+duration := "10m"
+
+limit := 100
+
+apiResponse, err := sitesClientsNAC.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "end": 1513176951,
+  "limit": 10,
+  "results": [
+    {
+      "ap": "5c5b35513227",
+      "auth_type": "eap-ttls",
+      "bssid": "5c5b355fafcc",
+      "dryrun_nacrule_id": "32f27e7d-ff26-4a9b-b3d1-ff9bcb264012",
+      "dryrun_nacrule_matched": true,
+      "idp_id": "912ef72e-2239-4996-b81e-469e87a27cd6",
+      "idp_role": [
+        "itsuperusers",
+        "vip"
+      ],
+      "mac": "ac3eb179e535",
+      "nacrule_id": "32f27e7d-ff26-4a9b-b3d1-ff9bcb264c62",
+      "nacrule_matched": true,
+      "nas_vendor": "juniper-mist",
+      "org_id": "27547ac2-d114-4e04-beb1-f3f1e6e81ec6",
+      "random_mac": false,
+      "resp_attrs": [
+        "Tunnel-Type=VLAN",
+        "Tunnel-Medium-Type=IEEE-802",
+        "Tunnel-Private-Group-Id=750",
+        "User-Name=anonymous"
+      ],
+      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
+      "ssid": "mist_nac",
+      "timestamp": 1691512031.358188,
+      "type": "NAC_CLIENT_PERMIT",
+      "username": "user@deaflyz.net",
+      "vlan": "750"
+    }
+  ],
+  "start": 1512572151,
+  "total": 1
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
 # Search Site Nac Clients
 
 Search Site NAC Clients
@@ -442,203 +639,6 @@ if err != nil {
   ],
   "start": 1513276353,
   "total": 2
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-
-
-# Searcsearc Site Nac Client Eventsac Client Events
-
-Search NAC Client Events
-
-```go
-SearcsearcSiteNacClientEventsacClientEvents(
-    ctx context.Context,
-    siteId uuid.UUID,
-    mType *string,
-    nacruleId *uuid.UUID,
-    nacruleMatched *bool,
-    dryrunNacruleId *string,
-    dryrunNacruleMatched *bool,
-    authType *string,
-    vlan *int,
-    vlanSource *string,
-    nasVendor *string,
-    bssid *string,
-    idpId *uuid.UUID,
-    idpRole *string,
-    idpUsername *string,
-    respAttrs []string,
-    ssid *string,
-    username *string,
-    usermacLabels []string,
-    ap *string,
-    randomMac *bool,
-    mac *string,
-    lookupTimeTaken *float64,
-    timestamp *float64,
-    start *int,
-    end *int,
-    duration *string,
-    limit *int) (
-    models.ApiResponse[models.ResponseEventsNacClientSearch],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions]($e/Constants%20Events/listNacEventsDefinitions) |
-| `nacruleId` | `*uuid.UUID` | Query, Optional | NAC Policy Rule ID, if matched |
-| `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
-| `dryrunNacruleId` | `*string` | Query, Optional | NAC Policy Dry Run Rule ID, if present and matched |
-| `dryrunNacruleMatched` | `*bool` | Query, Optional | True - if dryrun rule present and matched with priority, False - if not matched or not present |
-| `authType` | `*string` | Query, Optional | authentication type, e.g. “eap-tls”, “eap-ttls”, “eap-teap”, “mab”, “device-auth” |
-| `vlan` | `*int` | Query, Optional | Vlan ID |
-| `vlanSource` | `*string` | Query, Optional | Vlan source, e.g. "nactag", "usermac" |
-| `nasVendor` | `*string` | Query, Optional | vendor of NAS device |
-| `bssid` | `*string` | Query, Optional | SSID |
-| `idpId` | `*uuid.UUID` | Query, Optional | SSO ID, if present and used |
-| `idpRole` | `*string` | Query, Optional | IDP returned roles/groups for the user |
-| `idpUsername` | `*string` | Query, Optional | Username presented to the Identity Provider |
-| `respAttrs` | `[]string` | Query, Optional | Radius attributes returned by NAC to NAS Devive |
-| `ssid` | `*string` | Query, Optional | SSID |
-| `username` | `*string` | Query, Optional | Username presented by the client |
-| `usermacLabels` | `[]string` | Query, Optional | labels derived from usermac entry |
-| `ap` | `*string` | Query, Optional | AP MAC |
-| `randomMac` | `*bool` | Query, Optional | AP random macMAC |
-| `mac` | `*string` | Query, Optional | MAC address |
-| `lookupTimeTaken` | `*float64` | Query, Optional | Lookup(IDP etc.,) time taken in seconds |
-| `timestamp` | `*float64` | Query, Optional | time, in epoch |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-
-## Response Type
-
-[`models.ResponseEventsNacClientSearch`](../../doc/models/response-events-nac-client-search.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-duration := "10m"
-
-limit := 100
-
-apiResponse, err := sitesClientsNAC.SearcsearcSiteNacClientEventsacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "end": 1513176951,
-  "limit": 10,
-  "results": [
-    {
-      "ap": "5c5b35513227",
-      "auth_type": "eap-ttls",
-      "bssid": "5c5b355fafcc",
-      "dryrun_nacrule_id": "32f27e7d-ff26-4a9b-b3d1-ff9bcb264012",
-      "dryrun_nacrule_matched": true,
-      "idp_id": "912ef72e-2239-4996-b81e-469e87a27cd6",
-      "idp_role": [
-        "itsuperusers",
-        "vip"
-      ],
-      "mac": "ac3eb179e535",
-      "nacrule_id": "32f27e7d-ff26-4a9b-b3d1-ff9bcb264c62",
-      "nacrule_matched": true,
-      "nas_vendor": "juniper-mist",
-      "org_id": "27547ac2-d114-4e04-beb1-f3f1e6e81ec6",
-      "random_mac": false,
-      "resp_attrs": [
-        "Tunnel-Type=VLAN",
-        "Tunnel-Medium-Type=IEEE-802",
-        "Tunnel-Private-Group-Id=750",
-        "User-Name=anonymous"
-      ],
-      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "ssid": "mist_nac",
-      "timestamp": 1691512031.358188,
-      "type": "NAC_CLIENT_PERMIT",
-      "username": "user@deaflyz.net",
-      "vlan": "750"
-    }
-  ],
-  "start": 1512572151,
-  "total": 1
 }
 ```
 

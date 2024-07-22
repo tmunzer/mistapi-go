@@ -10,16 +10,16 @@ orgsLogs := client.OrgsLogs()
 
 ## Methods
 
-* [Count Org Logs](../../doc/controllers/orgs-logs.md#count-org-logs)
-* [List Org Logs](../../doc/controllers/orgs-logs.md#list-org-logs)
+* [Count Org Audit Logs](../../doc/controllers/orgs-logs.md#count-org-audit-logs)
+* [List Org Audit Logs](../../doc/controllers/orgs-logs.md#list-org-audit-logs)
 
 
-# Count Org Logs
+# Count Org Audit Logs
 
 Count by Distinct Attributes of Audit Logs
 
 ```go
-CountOrgLogs(
+CountOrgAuditLogs(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgLogsCountDistinctEnum,
@@ -83,7 +83,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsLogs.CountOrgLogs(ctx, orgId, &distinct, nil, nil, nil, nil, &page, &limit, nil, nil, &duration)
+apiResponse, err := orgsLogs.CountOrgAuditLogs(ctx, orgId, &distinct, nil, nil, nil, nil, &page, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -122,12 +122,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 
 
-# List Org Logs
+# List Org Audit Logs
 
 Get List of change logs for the current Org
 
 ```go
-ListOrgLogs(
+ListOrgAuditLogs(
     ctx context.Context,
     orgId uuid.UUID,
     siteId *string,
@@ -187,7 +187,7 @@ page := 1
 
 duration := "10m"
 
-apiResponse, err := orgsLogs.ListOrgLogs(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, &page, &duration)
+apiResponse, err := orgsLogs.ListOrgAuditLogs(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, &page, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -14,7 +14,7 @@ type SiteSettingGatewayMgmt struct {
     AppUsage                   *bool                                      `json:"app_usage,omitempty"`
     AutoSignatureUpdate        *SiteSettingGatewayMgmtAutoSignatureUpdate `json:"auto_signature_update,omitempty"`
     // he rollback timer for commit confirmed
-    ConfigRevertTimer          *float64                                   `json:"config_revert_timer,omitempty"`
+    ConfigRevertTimer          *int                                       `json:"config_revert_timer,omitempty"`
     ProbeHosts                 []string                                   `json:"probe_hosts,omitempty"`
     // for SRX only
     RootPassword               *string                                    `json:"root_password,omitempty"`
@@ -97,7 +97,7 @@ type siteSettingGatewayMgmt  struct {
     AppProbing                 *AppProbing                                `json:"app_probing,omitempty"`
     AppUsage                   *bool                                      `json:"app_usage,omitempty"`
     AutoSignatureUpdate        *SiteSettingGatewayMgmtAutoSignatureUpdate `json:"auto_signature_update,omitempty"`
-    ConfigRevertTimer          *float64                                   `json:"config_revert_timer,omitempty"`
+    ConfigRevertTimer          *int                                       `json:"config_revert_timer,omitempty"`
     ProbeHosts                 []string                                   `json:"probe_hosts,omitempty"`
     RootPassword               *string                                    `json:"root_password,omitempty"`
     SecurityLogSourceAddress   *string                                    `json:"security_log_source_address,omitempty"`

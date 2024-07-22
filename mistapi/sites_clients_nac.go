@@ -216,11 +216,11 @@ func (s *SitesClientsNAC) CountSiteNacClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearcsearcSiteNacClientEventsacClientEvents takes context, siteId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, vlanSource, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, usermacLabels, ap, randomMac, mac, lookupTimeTaken, timestamp, start, end, duration, limit as parameters and
+// SearchSiteNacClientEvents takes context, siteId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, vlanSource, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, usermacLabels, ap, randomMac, mac, lookupTimeTaken, timestamp, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseEventsNacClientSearch data and
 // an error if there was an issue with the request or response.
 // Search NAC Client Events
-func (s *SitesClientsNAC) SearcsearcSiteNacClientEventsacClientEvents(
+func (s *SitesClientsNAC) SearchSiteNacClientEvents(
     ctx context.Context,
     siteId uuid.UUID,
     mType *string,

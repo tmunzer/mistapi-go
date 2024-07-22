@@ -1256,7 +1256,7 @@ body := models.SiteSetting{
             Enable:    models.ToPointer(true),
             TimeOfDay: models.ToPointer("string"),
         }),
-        ConfigRevertTimer:          models.ToPointer(float64(10)),
+        ConfigRevertTimer:          models.ToPointer(10),
         ProbeHosts:                 []string{
             "string",
         },

@@ -22,11 +22,11 @@ func NewMSPsLogs(baseController baseController) *MSPsLogs {
     return &mSPsLogs
 }
 
-// ListMspLogs takes context, mspId, siteId, adminName, message, sort, start, end, limit, page, duration as parameters and
+// ListMspAuditLogs takes context, mspId, siteId, adminName, message, sort, start, end, limit, page, duration as parameters and
 // returns an models.ApiResponse with models.ResponseLogSearch data and
 // an error if there was an issue with the request or response.
 // Get list of change logs for the current MSP
-func (m *MSPsLogs) ListMspLogs(
+func (m *MSPsLogs) ListMspAuditLogs(
     ctx context.Context,
     mspId uuid.UUID,
     siteId *string,
@@ -97,11 +97,11 @@ func (m *MSPsLogs) ListMspLogs(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountMspLogs takes context, mspId, distinct as parameters and
+// CountMspAuditLogs takes context, mspId, distinct as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Audit Logs
-func (m *MSPsLogs) CountMspLogs(
+func (m *MSPsLogs) CountMspAuditLogs(
     ctx context.Context,
     mspId uuid.UUID,
     distinct *models.MspLogsCountDistinctEnum) (

@@ -10,16 +10,16 @@ mSPsLogs := client.MSPsLogs()
 
 ## Methods
 
-* [Count Msp Logs](../../doc/controllers/ms-ps-logs.md#count-msp-logs)
-* [List Msp Logs](../../doc/controllers/ms-ps-logs.md#list-msp-logs)
+* [Count Msp Audit Logs](../../doc/controllers/ms-ps-logs.md#count-msp-audit-logs)
+* [List Msp Audit Logs](../../doc/controllers/ms-ps-logs.md#list-msp-audit-logs)
 
 
-# Count Msp Logs
+# Count Msp Audit Logs
 
 Count by Distinct Attributes of Audit Logs
 
 ```go
-CountMspLogs(
+CountMspAuditLogs(
     ctx context.Context,
     mspId uuid.UUID,
     distinct *models.MspLogsCountDistinctEnum) (
@@ -47,7 +47,7 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.MspLogsCountDistinctEnum("admin_name")
 
-apiResponse, err := mSPsLogs.CountMspLogs(ctx, mspId, &distinct)
+apiResponse, err := mSPsLogs.CountMspAuditLogs(ctx, mspId, &distinct)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -86,12 +86,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 
 
-# List Msp Logs
+# List Msp Audit Logs
 
 Get list of change logs for the current MSP
 
 ```go
-ListMspLogs(
+ListMspAuditLogs(
     ctx context.Context,
     mspId uuid.UUID,
     siteId *string,
@@ -151,7 +151,7 @@ page := 1
 
 duration := "10m"
 
-apiResponse, err := mSPsLogs.ListMspLogs(ctx, mspId, nil, nil, nil, nil, nil, nil, &limit, &page, &duration)
+apiResponse, err := mSPsLogs.ListMspAuditLogs(ctx, mspId, nil, nil, nil, nil, nil, nil, &limit, &page, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
