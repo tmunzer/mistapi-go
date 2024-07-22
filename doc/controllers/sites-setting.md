@@ -1151,385 +1151,40 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SiteSetting{
-    AdditionalConfigCmds:            []string{
-        "set snmp community public",
-    },
-    Analytic:                        models.ToPointer(models.SiteSettingAnalytic{
-        Enabled: models.ToPointer(false),
-    }),
-    ApMatching:                      models.ToPointer(models.SiteSettingApMatching{
-        Enabled: models.ToPointer(true),
-        Rules:   []models.SiteSettingApMatchingRule{
-            models.SiteSettingApMatchingRule{
-            },
-        },
-    }),
-    ApPortConfig:                    models.ToPointer(models.SiteSettingApPortConfig{
-        ModelSpecific: map[string]models.ApPortConfig{
-            "AP32": models.ApPortConfig{
-            },
-        },
-    }),
-    AutoUpgrade:                     models.ToPointer(models.SiteSettingAutoUpgrade{
-        CustomVersions: map[string]string{
-            "AP21": "stable",
-            "AP41": "0.1.5135",
-            "AP61": "0.1.7215",
-        },
-        DayOfWeek:      models.ToPointer(models.DayOfWeekEnum("sun")),
-        Enabled:        models.ToPointer(false),
-        TimeOfDay:      models.ToPointer("12:00"),
-        Version:        models.ToPointer(models.SiteAutoUpgradeVersionEnum("beta")),
-    }),
+    BlacklistUrl:                    models.ToPointer("https://papi.s3.amazonaws.com/blacklist/xxx..."),
     ConfigAutoRevert:                models.ToPointer(false),
     DeviceUpdownThreshold:           models.ToPointer(0),
-    DnsServers:                      []string{
-        "string",
-    },
-    DnsSuffix:                       []string{
-        "string",
-    },
-    Engagement:                      models.ToPointer(models.SiteEngagement{
-        DwellTagNames: models.ToPointer(models.SiteEngagementDwellTagNames{
-            Bounce:    models.ToPointer("Bounce"),
-            Engaged:   models.ToPointer("Engaged"),
-            Passerby:  models.ToPointer("Passer By"),
-            Stationed: models.ToPointer("Stationed"),
-        }),
-        DwellTags:     models.ToPointer(models.SiteEngagementDwellTags{
-            Engaged:   models.NewOptional(models.ToPointer("300-14400")),
-            Stationed: models.NewOptional(models.ToPointer("14400-43200")),
-        }),
-        Hours:         models.ToPointer(models.Hours{
-            Fri: models.ToPointer("09:00-17:00"),
-            Mon: models.ToPointer("09:00-17:00"),
-            Sat: models.ToPointer("09:00-12:00"),
-            Sun: models.ToPointer("09:00-12:00"),
-            Thu: models.ToPointer("09:00-17:00"),
-            Tue: models.ToPointer("09:00-17:00"),
-            Wed: models.ToPointer("09:00-17:00"),
-        }),
-        MaxDwell:      models.ToPointer(43200),
-        MinDwell:      models.ToPointer(0),
-    }),
-    EvpnOptions:                     models.ToPointer(models.EvpnOptions{
-        AutoLoopbackSubnet:  models.ToPointer("100.101.0.0/16"),
-        AutoRouterIdSubnet:  models.ToPointer("100.100.0.0/24"),
-        CoreAsBorder:        models.ToPointer(false),
-        Overlay:             models.ToPointer(models.EvpnOptionsOverlay{
-            As: models.ToPointer(65000),
-        }),
-        PerVlanVgaV4Mac:     models.ToPointer(false),
-        RoutedAt:            models.ToPointer(models.EvpnOptionsRoutedAtEnum("edge")),
-        Underlay:            models.ToPointer(models.EvpnOptionsUnderlay{
-            AsBase:         models.ToPointer(65001),
-            RoutedIdPrefix: models.ToPointer("/24"),
-            Subnet:         models.ToPointer("10.255.240.0/20"),
-        }),
-    }),
-    GatewayAdditionalConfigCmds:     []string{
-        "set snmp community public",
-    },
-    GatewayMgmt:                     models.ToPointer(models.SiteSettingGatewayMgmt{
-        AdminSshkeys:               []string{
-            "string",
-        },
-        AppProbing:                 models.ToPointer(models.AppProbing{
-            Apps:       []string{
-                "string",
-            },
-            CustomApps: []models.AppProbingCustomApp{
-                models.AppProbingCustomApp{
-                    AppType:  models.ToPointer("string"),
-                    Hostname: []string{
-                        "string",
-                    },
-                    Name:     models.ToPointer("string"),
-                    Protocol: models.ToPointer(models.AppProbingCustomAppProtocolEnum("http")),
-                },
-            },
-            Enabled:    models.ToPointer(true),
-        }),
-        AppUsage:                   models.ToPointer(true),
-        AutoSignatureUpdate:        models.ToPointer(models.SiteSettingGatewayMgmtAutoSignatureUpdate{
-            DayOfWeek: models.ToPointer(models.DayOfWeekEnum("any")),
-            Enable:    models.ToPointer(true),
-            TimeOfDay: models.ToPointer("string"),
-        }),
-        ConfigRevertTimer:          models.ToPointer(10),
-        ProbeHosts:                 []string{
-            "string",
-        },
-        RootPassword:               models.ToPointer("string"),
-        SecurityLogSourceAddress:   models.ToPointer("192.168.1.1"),
-        SecurityLogSourceInterface: models.ToPointer("string"),
-    }),
-    Led:                             models.ToPointer(models.ApLed{
-        Brightness: models.ToPointer(255),
-        Enabled:    models.ToPointer(true),
-    }),
-    MxedgeMgmt:                      models.ToPointer(models.MxedgeMgmt{
-        MistPassword: models.ToPointer("MIST_PASSWORD"),
-        RootPassword: models.ToPointer("ROOT_PASSWORD"),
-    }),
-    Networks:                        map[string]models.SwitchNetwork{
-        "property1": models.SwitchNetwork{
-            Subnet:          models.ToPointer("string"),
-            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(0),
-        },
-        "property2": models.SwitchNetwork{
-            Subnet:          models.ToPointer("string"),
-            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(0),
+    ExtraRoutes6:                    map[string]models.ExtraRoute6Properties{
+        "2a02:1234:420a:10c9::/64": models.ExtraRoute6Properties{
+            Via:           models.ToPointer("2a02:1234:200a::100"),
         },
     },
-    NtpServers:                      []string{
-        "string",
-    },
-    Occupancy:                       models.ToPointer(models.SiteOccupancyAnalytics{
-        AssetsEnabled:             models.ToPointer(false),
-        ClientsEnabled:            models.ToPointer(true),
-        MinDuration:               models.ToPointer(3000),
-        SdkclientsEnabled:         models.ToPointer(false),
-        UnconnectedClientsEnabled: models.ToPointer(false),
-    }),
-    OspfAreas:                       map[string]models.OspfAreas{
-        "property1": models.OspfAreas{
-            IncludeLoopback: models.ToPointer(false),
-            Networks:        map[string]models.OspfAreasNetwork{
-                "corp": models.OspfAreasNetwork{
-                    AuthKeys:               map[string]string{
-                        "1": "auth-key-1",
-                    },
-                    AuthType:               models.ToPointer(models.OspfAreasNetworkAuthTypeEnum("md5")),
-                    BfdMinimumInterval:     models.ToPointer(500),
-                    DeadInterval:           models.ToPointer(40),
-                    HelloInterval:          models.ToPointer(10),
-                    InterfaceType:          models.ToPointer(models.OspfAreasNetworkInterfaceTypeEnum("nbma")),
-                    Metric:                 models.NewOptional(models.ToPointer(10000)),
-                },
-                "guest": models.OspfAreasNetwork{
-                    Passive:                models.ToPointer(true),
-                },
-            },
-            Type:            models.ToPointer(models.OspfAreasTypeEnum("default")),
-        },
-        "property2": models.OspfAreas{
-            IncludeLoopback: models.ToPointer(false),
-            Networks:        map[string]models.OspfAreasNetwork{
-                "corp": models.OspfAreasNetwork{
-                    AuthKeys:               map[string]string{
-                        "1": "auth-key-1",
-                    },
-                    AuthType:               models.ToPointer(models.OspfAreasNetworkAuthTypeEnum("md5")),
-                    BfdMinimumInterval:     models.ToPointer(500),
-                    DeadInterval:           models.ToPointer(40),
-                    HelloInterval:          models.ToPointer(10),
-                    InterfaceType:          models.ToPointer(models.OspfAreasNetworkInterfaceTypeEnum("nbma")),
-                    Metric:                 models.NewOptional(models.ToPointer(10000)),
-                },
-                "guest": models.OspfAreasNetwork{
-                    Passive:                models.ToPointer(true),
-                },
-            },
-            Type:            models.ToPointer(models.OspfAreasTypeEnum("default")),
-        },
-    },
+    GatewayUpdownThreshold:          models.NewOptional(models.ToPointer(10)),
+    OrgId:                           models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     PersistConfigOnDevice:           models.ToPointer(false),
-    PortMirroring:                   map[string]models.SwitchPortMirroringProperty{
-        "property1": models.SwitchPortMirroringProperty{
-            OutputNetwork:        models.ToPointer("analyze"),
-            OutputPortId:         models.ToPointer("ge-0/0/5"),
-        },
-        "property2": models.SwitchPortMirroringProperty{
-            OutputNetwork:        models.ToPointer("analyze"),
-            OutputPortId:         models.ToPointer("ge-0/0/5"),
-        },
-    },
-    PortUsages:                      map[string]models.SwitchPortUsage{
-        "dynamic": models.SwitchPortUsage{
-            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("dynamic")),
-            ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum("link_down")),
-            Rules:                                    []models.SwitchPortUsageDynamicRule{
-                models.SwitchPortUsageDynamicRule{
-                    Equals:     models.ToPointer("string"),
-                    EqualsAny:  []string{
-                        "string",
-                    },
-                    Expression: models.ToPointer("string"),
-                    Src:        models.SwitchPortUsageDynamicRuleSrcEnum("lldp_chassis_id"),
-                    Usage:      models.ToPointer("string"),
-                },
-            },
-        },
-        "property1": models.SwitchPortUsage{
-            AllNetworks:                              models.ToPointer(false),
-            AllowDhcpd:                               models.ToPointer(true),
-            BypassAuthWhenServerDown:                 models.ToPointer(true),
-            Description:                              models.ToPointer("string"),
-            DisableAutoneg:                           models.ToPointer(false),
-            Disabled:                                 models.ToPointer(false),
-            Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum("auto")),
-            EnableMacAuth:                            models.ToPointer(true),
-            EnableQos:                                models.ToPointer(true),
-            GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
-            MacAuthOnly:                              models.ToPointer(true),
-            MacLimit:                                 models.ToPointer(0),
-            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("access")),
-            Mtu:                                      models.ToPointer(0),
-            Networks:                                 []string{
-                "string",
-            },
-            PersistMac:                               models.ToPointer(false),
-            PoeDisabled:                              models.ToPointer(false),
-            PortAuth:                                 models.ToPointer("string"),
-            PortNetwork:                              models.ToPointer("string"),
-            RejectedNetwork:                          models.NewOptional(models.ToPointer("rejected_network4")),
-            Speed:                                    models.ToPointer("string"),
-            StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
-                NoBroadcast:           models.ToPointer(false),
-                NoMulticast:           models.ToPointer(false),
-                NoRegisteredMulticast: models.ToPointer(false),
-                NoUnknownUnicast:      models.ToPointer(false),
-                Percentage:            models.ToPointer(80),
-            }),
-            StpEdge:                                  models.ToPointer(true),
-            VoipNetwork:                              models.ToPointer("string"),
-        },
-        "property2": models.SwitchPortUsage{
-            AllNetworks:                              models.ToPointer(false),
-            AllowDhcpd:                               models.ToPointer(true),
-            BypassAuthWhenServerDown:                 models.ToPointer(true),
-            Description:                              models.ToPointer("string"),
-            DisableAutoneg:                           models.ToPointer(false),
-            Disabled:                                 models.ToPointer(false),
-            Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum("auto")),
-            EnableMacAuth:                            models.ToPointer(true),
-            EnableQos:                                models.ToPointer(true),
-            GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
-            MacAuthOnly:                              models.ToPointer(true),
-            MacLimit:                                 models.ToPointer(0),
-            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("access")),
-            Mtu:                                      models.ToPointer(0),
-            Networks:                                 []string{
-                "string",
-            },
-            PersistMac:                               models.ToPointer(false),
-            PoeDisabled:                              models.ToPointer(false),
-            PortAuth:                                 models.ToPointer("string"),
-            PortNetwork:                              models.ToPointer("string"),
-            RejectedNetwork:                          models.NewOptional(models.ToPointer("rejected_network4")),
-            Speed:                                    models.ToPointer("string"),
-            StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
-                NoBroadcast:           models.ToPointer(false),
-                NoMulticast:           models.ToPointer(false),
-                NoRegisteredMulticast: models.ToPointer(false),
-                NoUnknownUnicast:      models.ToPointer(false),
-                Percentage:            models.ToPointer(80),
-            }),
-            StpEdge:                                  models.ToPointer(true),
-            VoipNetwork:                              models.ToPointer("string"),
-        },
-    },
-    Proxy:                           models.ToPointer(models.Proxy{
-        Url: models.ToPointer("http://proxy.internal:8080/*"),
-    }),
-    Rogue:                           models.ToPointer(models.SiteRogue{
-        Enabled:           models.ToPointer(false),
-        HoneypotEnabled:   models.ToPointer(false),
-        MinDuration:       models.ToPointer(10),
-        MinRssi:           models.ToPointer(-80),
-        WhitelistedBssids: []string{
-            "NeighborSSID",
-        },
-        WhitelistedSsids:  []string{
-            "cc:8e:6f:d4:bf:16",
-            "cc-8e-6f-d4-bf-16",
-            "cc-73-*",
-            "cc:82:*",
-        },
-    }),
-    SimpleAlert:                     models.ToPointer(models.SimpleAlert{
-        ArpFailure:  models.ToPointer(models.SimpleAlertArpFailure{
-            ClientCount:   models.ToPointer(10),
-            Duration:      models.ToPointer(20),
-            IncidentCount: models.ToPointer(10),
-        }),
-        DhcpFailure: models.ToPointer(models.SimpleAlertDhcpFailure{
-            ClientCount:   models.ToPointer(10),
-            Duration:      models.ToPointer(10),
-            IncidentCount: models.ToPointer(20),
-        }),
-        DnsFailure:  models.ToPointer(models.SimpleAlertDnsFailure{
-            ClientCount:   models.ToPointer(20),
-            Duration:      models.ToPointer(10),
-            IncidentCount: models.ToPointer(30),
-        }),
-    }),
-    Skyatp:                          models.ToPointer(models.SiteSettingSkyatp{
-        Enabled:          models.ToPointer(true),
-        SendIpMacMapping: models.ToPointer(true),
-    }),
-    SrxApp:                          models.ToPointer(models.SiteSettingSrxApp{
-        Enabled: models.ToPointer(false),
-    }),
-    SshKeys:                         []string{
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA...Wxa6p6UW0ZbcP john@host",
-    },
-    Ssr:                             models.ToPointer(models.SiteSettingSsr{
-        ConductorHosts: []string{
-            "\"1.1.1.1\", \"2.2.2.2\"",
-        },
-        DisableStats:   models.ToPointer(true),
-    }),
-    StatusPortal:                    models.ToPointer(models.SiteSettingStatusPortal{
-        Enabled:   models.ToPointer(false),
-        Hostnames: []string{
-            "my.misty.com",
-        },
-    }),
+    ReportGatt:                      models.ToPointer(false),
+    SiteId:                          models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+    SwitchUpdownThreshold:           models.NewOptional(models.ToPointer(0)),
+    TrackAnonymousDevices:           models.ToPointer(false),
+    TuntermMonitoringDisabled:       models.ToPointer(false),
     Vars:                            map[string]string{
         "RADIUS_IP1": "172.31.2.5",
         "RADIUS_SECRET": "11s64632d",
     },
-    Vna:                             models.ToPointer(models.SiteSettingVna{
-        Enabled: models.ToPointer(false),
-    }),
-    WanVna:                          models.ToPointer(models.SiteSettingWanVna{
-        Enabled: models.ToPointer(false),
-    }),
-    Wids:                            models.ToPointer(models.SiteWids{
-        RepeatedAuthFailures: models.ToPointer(models.SiteWidsRepeatedAuthFailures{
-            Duration:  models.ToPointer(60),
-            Threshold: models.ToPointer(0),
-        }),
-    }),
-    Wifi:                            models.ToPointer(models.SiteWifi{
-        CiscoEnabled:                      models.ToPointer(true),
-        Disable11k:                        models.ToPointer(false),
-        DisableRadiosWhenPowerConstrained: models.ToPointer(false),
-        EnableArpSpoofCheck:               models.ToPointer(false),
-        EnableSharedRadioScanning:         models.ToPointer(true),
-        Enabled:                           models.ToPointer(true),
-        LocateConnected:                   models.ToPointer(true),
-        LocateUnconnected:                 models.ToPointer(false),
-        MeshAllowDfs:                      models.ToPointer(false),
-        MeshEnableCrm:                     models.ToPointer(false),
-        MeshEnabled:                       models.ToPointer(false),
-        MeshPsk:                           models.NewOptional(models.ToPointer("string")),
-        MeshSsid:                          models.NewOptional(models.ToPointer("string")),
-        ProxyArp:                          models.NewOptional(models.ToPointer(models.SiteWifiProxyArpEnum("default"))),
-    }),
-    WiredVna:                        models.ToPointer(models.SiteSettingWiredVna{
-        Enabled: models.ToPointer(false),
-    }),
-    ZoneOccupancyAlert:              models.ToPointer(models.SiteZoneOccupancyAlert{
-        EmailNotifiers: []string{
-            "foo@juniper.net",
-            "bar@juniper.net",
+    VrfInstances:                    map[string]models.VrfInstance{
+        "guest": models.VrfInstance{
+            ExtraRoutes: map[string]models.VrfExtraRoute{
+                "0.0.0.0/0": models.VrfExtraRoute{
+                    Via: models.ToPointer("192.168.31.1"),
+                },
+            },
+            Networks:    []string{
+                "guest",
+            },
         },
-        Enabled:        models.ToPointer(false),
-        Threshold:      models.ToPointer(5),
-    }),
+    },
+    WatchedStationUrl:               models.ToPointer("https://papi.s3.amazonaws.com/watched_station/xxx..."),
+    WhitelistUrl:                    models.ToPointer("https://papi.s3.amazonaws.com/whitelist/xxx..."),
 }
 
 apiResponse, err := sitesSetting.UpdateSiteSettings(ctx, siteId, &body)

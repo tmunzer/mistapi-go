@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `AdditionalVlanIds` | `[]int` | Optional | additional VLAN IDs, only valid in mesh base mode |
 | `EnableVlan` | `*bool` | Optional | - |
-| `PortVlanId` | [`*models.ApSwitchSettingPortVlanId`](../../doc/models/containers/ap-switch-setting-port-vlan-id.md) | Optional | This is a container for one-of cases. |
+| `PortVlanId` | `*int` | Optional | native VLAN id, optional<br>**Constraints**: `>= 1`, `<= 4094` |
 | `VlanIds` | `[]int` | Optional | list of VLAN ids this |
 
 ## Example (as JSON)
@@ -24,7 +24,7 @@
     29
   ],
   "enable_vlan": false,
-  "port_vlan_id": 168,
+  "port_vlan_id": 246,
   "vlan_ids": [
     254,
     255

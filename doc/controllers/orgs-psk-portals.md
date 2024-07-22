@@ -148,23 +148,14 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskPortal{
     Auth:                         models.ToPointer(models.PskPortalAuthEnum("sso")),
+    CleanupPsk:                   models.ToPointer(false),
+    HidePsksCreatedByOtherAdmins: models.ToPointer(false),
     MaxUsage:                     models.ToPointer(0),
-    Name:                         "string",
-    RequiredFields:               []string{
-        "string",
-    },
-    Role:                         models.ToPointer("string"),
-    Ssid:                         "string",
-    Sso:                          models.ToPointer(models.PskPortalSso{
-        IdpCert:              models.ToPointer("string"),
-        IdpSignAlgo:          models.ToPointer("string"),
-        IdpSsoUrl:            models.ToPointer("string"),
-        Issuer:               models.ToPointer("string"),
-        NameidFormat:         models.ToPointer("string"),
-    }),
-    TemplateUrl:                  models.ToPointer("string"),
-    Type:                         models.ToPointer(models.PskPortalTypeEnum("byod")),
-    VlanId:                       models.ToPointer(models.PskPortalVlanIdContainer.FromNumber(0)),
+    Name:                         "name6",
+    NotificationRenewUrl:         models.ToPointer("https://custom-sso/url"),
+    NotifyOnCreateOrEdit:         models.ToPointer(false),
+    OrgId:                        models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+    Ssid:                         "ssid6",
 }
 
 apiResponse, err := orgsPskPortals.CreateOrgPskPortal(ctx, orgId, &body)
@@ -657,23 +648,14 @@ pskportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskPortal{
     Auth:                         models.ToPointer(models.PskPortalAuthEnum("sso")),
+    CleanupPsk:                   models.ToPointer(false),
+    HidePsksCreatedByOtherAdmins: models.ToPointer(false),
     MaxUsage:                     models.ToPointer(0),
-    Name:                         "string",
-    RequiredFields:               []string{
-        "string",
-    },
-    Role:                         models.ToPointer("string"),
-    Ssid:                         "string",
-    Sso:                          models.ToPointer(models.PskPortalSso{
-        IdpCert:              models.ToPointer("string"),
-        IdpSignAlgo:          models.ToPointer("string"),
-        IdpSsoUrl:            models.ToPointer("string"),
-        Issuer:               models.ToPointer("string"),
-        NameidFormat:         models.ToPointer("string"),
-    }),
-    TemplateUrl:                  models.ToPointer("string"),
-    Type:                         models.ToPointer(models.PskPortalTypeEnum("byod")),
-    VlanId:                       models.ToPointer(models.PskPortalVlanIdContainer.FromNumber(0)),
+    Name:                         "name6",
+    NotificationRenewUrl:         models.ToPointer("https://custom-sso/url"),
+    NotifyOnCreateOrEdit:         models.ToPointer(false),
+    OrgId:                        models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+    Ssid:                         "ssid6",
 }
 
 apiResponse, err := orgsPskPortals.UpdateOrgPskPortal(ctx, orgId, pskportalId, &body)

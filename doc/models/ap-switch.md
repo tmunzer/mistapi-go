@@ -29,7 +29,7 @@ for people who want to fully control the vlans (advanced)
       143
     ],
     "enable_vlan": false,
-    "port_vlan_id": 28,
+    "port_vlan_id": 106,
     "vlan_ids": [
       114,
       115,
@@ -41,7 +41,7 @@ for people who want to fully control the vlans (advanced)
       175
     ],
     "enable_vlan": false,
-    "port_vlan_id": 60,
+    "port_vlan_id": 138,
     "vlan_ids": [
       146,
       147,
@@ -53,7 +53,7 @@ for people who want to fully control the vlans (advanced)
       147
     ],
     "enable_vlan": false,
-    "port_vlan_id": 32,
+    "port_vlan_id": 110,
     "vlan_ids": [
       118,
       119,
@@ -67,7 +67,7 @@ for people who want to fully control the vlans (advanced)
       11
     ],
     "enable_vlan": false,
-    "port_vlan_id": 150,
+    "port_vlan_id": 228,
     "vlan_ids": [
       236,
       237

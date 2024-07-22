@@ -22,21 +22,21 @@ dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `DefaultPsk` | `*string` | Optional | default PSK to use if cloud WLC is not available, 8-63 characters<br>**Constraints**: *Minimum Length*: `8`, *Maximum Length*: `63` |
-| `DefaultVlanId` | `models.Optional[int]` | Optional | - |
+| `DefaultVlanId` | [`*models.WlanDynamicPskDefaultVlanId`](../../doc/models/containers/wlan-dynamic-psk-default-vlan-id.md) | Optional | This is a container for one-of cases. |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `ForceLookup` | `*bool` | Optional | when 11r is enabled, we'll try to use the cached PMK, this can be disabled<br>`false` means auto<br>**Default**: `false` |
 | `Source` | [`*models.DynamicPskSourceEnum`](../../doc/models/dynamic-psk-source-enum.md) | Optional | **Default**: `"radius"` |
-| `VlanIds` | `[]int` | Optional | **Constraints**: `>= 1`, `<= 4094` |
+| `VlanIds` | [`[]models.WlanDynamicPskVlanIds`](../../doc/models/containers/wlan-dynamic-psk-vlan-ids.md) | Optional | This is Array of a container for one-of cases. |
 
 ## Example (as JSON)
 
 ```json
 {
   "default_psk": "foryoureyesonly",
-  "default_vlan_id": 999,
   "enabled": false,
   "force_lookup": false,
-  "source": "cloud_psks"
+  "source": "cloud_psks",
+  "default_vlan_id": "String5"
 }
 ```
 

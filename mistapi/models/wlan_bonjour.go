@@ -10,7 +10,7 @@ import (
 // bonjour gateway wlan settings
 type WlanBonjour struct {
     // additional VLAN IDs (on the LAN side or from other WLANs) should we be forwarding bonjour queries/responses
-    AdditionalVlanIds    []int                                   `json:"additional_vlan_ids"`
+    AdditionalVlanIds    []WlanBonjourAdditionalVlanIds          `json:"additional_vlan_ids"`
     // whether to enable bonjour for this WLAN. Once enabled, limit_bcast is assumed true, allow_mdns is assumed false
     Enabled              *bool                                   `json:"enabled,omitempty"`
     // what services are allowed. 
@@ -65,7 +65,7 @@ func (w *WlanBonjour) UnmarshalJSON(input []byte) error {
 
 // wlanBonjour is a temporary struct used for validating the fields of WlanBonjour.
 type wlanBonjour  struct {
-    AdditionalVlanIds *[]int                                   `json:"additional_vlan_ids"`
+    AdditionalVlanIds *[]WlanBonjourAdditionalVlanIds          `json:"additional_vlan_ids"`
     Enabled           *bool                                    `json:"enabled,omitempty"`
     Services          *map[string]WlanBonjourServiceProperties `json:"services"`
 }

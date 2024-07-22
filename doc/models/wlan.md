@@ -103,7 +103,7 @@ WLAN
 | `UseEapolV1` | `*bool` | Optional | if `auth.type`==’eap’ or ‘psk’, should only be set for legacy client, such as pre-2004, 802.11b devices<br>**Default**: `false` |
 | `VlanEnabled` | `*bool` | Optional | if vlan tagging is enabled<br>**Default**: `false` |
 | `VlanId` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 4094` |
-| `VlanIds` | `[]int` | Optional | vlan_ids to use when there’s no match from RA<br>**Constraints**: `>= 1`, `<= 4094` |
+| `VlanIds` | [`[]models.WlanVlanIds`](../../doc/models/containers/wlan-vlan-ids.md) | Optional | This is Array of a container for one-of cases. |
 | `VlanPooling` | `*bool` | Optional | vlan pooling allows AP to place client on different VLAN using a deterministic algorithm<br>**Default**: `false` |
 | `WlanLimitDown` | `models.Optional[int]` | Optional | kbps |
 | `WlanLimitDownEnabled` | `*bool` | Optional | if downlink limiting for whole wlan is enabled<br>**Default**: `false` |

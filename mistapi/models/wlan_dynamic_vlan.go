@@ -12,7 +12,7 @@ type WlanDynamicVlan struct {
     // whether to enable dynamic vlan
     Enabled              *bool                                  `json:"enabled,omitempty"`
     // vlan_ids to be locally bridged
-    LocalVlanIds         []int                                  `json:"local_vlan_ids,omitempty"`
+    LocalVlanIds         []WlanDynamicVlanLocalVlanIds          `json:"local_vlan_ids,omitempty"`
     // standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco)
     Type                 *WlanDynamicVlanTypeEnum               `json:"type,omitempty"`
     // map between vlan_id (as string) to airespace interface names (comma-separated) or null for stndard mapping
@@ -82,7 +82,7 @@ func (w *WlanDynamicVlan) UnmarshalJSON(input []byte) error {
 type wlanDynamicVlan  struct {
     DefaultVlanId Optional[WlanDynamicVlanDefaultVlanId] `json:"default_vlan_id"`
     Enabled       *bool                                  `json:"enabled,omitempty"`
-    LocalVlanIds  []int                                  `json:"local_vlan_ids,omitempty"`
+    LocalVlanIds  []WlanDynamicVlanLocalVlanIds          `json:"local_vlan_ids,omitempty"`
     Type          *WlanDynamicVlanTypeEnum               `json:"type,omitempty"`
     Vlans         map[string]string                      `json:"vlans,omitempty"`
 }

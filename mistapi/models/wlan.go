@@ -184,7 +184,7 @@ type Wlan struct {
     VlanEnabled                        *bool                          `json:"vlan_enabled,omitempty"`
     VlanId                             Optional[int]                  `json:"vlan_id"`
     // vlan_ids to use when there’s no match from RA
-    VlanIds                            []int                          `json:"vlan_ids,omitempty"`
+    VlanIds                            []WlanVlanIds                  `json:"vlan_ids,omitempty"`
     // vlan pooling allows AP to place client on different VLAN using a deterministic algorithm
     VlanPooling                        *bool                          `json:"vlan_pooling,omitempty"`
     // kbps
@@ -802,7 +802,7 @@ type wlan  struct {
     UseEapolV1                         *bool                          `json:"use_eapol_v1,omitempty"`
     VlanEnabled                        *bool                          `json:"vlan_enabled,omitempty"`
     VlanId                             Optional[int]                  `json:"vlan_id"`
-    VlanIds                            []int                          `json:"vlan_ids,omitempty"`
+    VlanIds                            []WlanVlanIds                  `json:"vlan_ids,omitempty"`
     VlanPooling                        *bool                          `json:"vlan_pooling,omitempty"`
     WlanLimitDown                      Optional[int]                  `json:"wlan_limit_down"`
     WlanLimitDownEnabled               *bool                          `json:"wlan_limit_down_enabled,omitempty"`
