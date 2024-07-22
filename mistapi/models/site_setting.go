@@ -127,6 +127,7 @@ type SiteSetting struct {
     TuntermMonitoring               []TuntermMonitoringItem                `json:"tunterm_monitoring,omitempty"`
     TuntermMonitoringDisabled       *bool                                  `json:"tunterm_monitoring_disabled,omitempty"`
     TuntermMulticastConfig          *SiteSettingTuntermMulticastConfig     `json:"tunterm_multicast_config,omitempty"`
+    UplinkPortConfig                *ApUplinkPortConfig                    `json:"uplink_port_config,omitempty"`
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                            map[string]string                      `json:"vars,omitempty"`
     Vna                             *SiteSettingVna                        `json:"vna,omitempty"`
@@ -383,6 +384,9 @@ func (s SiteSetting) toMap() map[string]any {
     if s.TuntermMulticastConfig != nil {
         structMap["tunterm_multicast_config"] = s.TuntermMulticastConfig.toMap()
     }
+    if s.UplinkPortConfig != nil {
+        structMap["uplink_port_config"] = s.UplinkPortConfig.toMap()
+    }
     if s.Vars != nil {
         structMap["vars"] = s.Vars
     }
@@ -433,7 +437,7 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
     if err != nil {
     	return err
     }
@@ -509,6 +513,7 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
     s.TuntermMonitoring = temp.TuntermMonitoring
     s.TuntermMonitoringDisabled = temp.TuntermMonitoringDisabled
     s.TuntermMulticastConfig = temp.TuntermMulticastConfig
+    s.UplinkPortConfig = temp.UplinkPortConfig
     s.Vars = temp.Vars
     s.Vna = temp.Vna
     s.VrfConfig = temp.VrfConfig
@@ -597,6 +602,7 @@ type siteSetting  struct {
     TuntermMonitoring               []TuntermMonitoringItem                `json:"tunterm_monitoring,omitempty"`
     TuntermMonitoringDisabled       *bool                                  `json:"tunterm_monitoring_disabled,omitempty"`
     TuntermMulticastConfig          *SiteSettingTuntermMulticastConfig     `json:"tunterm_multicast_config,omitempty"`
+    UplinkPortConfig                *ApUplinkPortConfig                    `json:"uplink_port_config,omitempty"`
     Vars                            map[string]string                      `json:"vars,omitempty"`
     Vna                             *SiteSettingVna                        `json:"vna,omitempty"`
     VrfConfig                       *VrfConfig                             `json:"vrf_config,omitempty"`
