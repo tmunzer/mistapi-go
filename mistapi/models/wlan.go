@@ -182,7 +182,7 @@ type Wlan struct {
     UseEapolV1                         *bool                          `json:"use_eapol_v1,omitempty"`
     // if vlan tagging is enabled
     VlanEnabled                        *bool                          `json:"vlan_enabled,omitempty"`
-    VlanId                             Optional[int]                  `json:"vlan_id"`
+    VlanId                             *WlanVlanId                    `json:"vlan_id,omitempty"`
     // vlan_ids to use when there’s no match from RA
     VlanIds                            []WlanVlanIds                  `json:"vlan_ids,omitempty"`
     // vlan pooling allows AP to place client on different VLAN using a deterministic algorithm
@@ -533,12 +533,8 @@ func (w Wlan) toMap() map[string]any {
     if w.VlanEnabled != nil {
         structMap["vlan_enabled"] = w.VlanEnabled
     }
-    if w.VlanId.IsValueSet() {
-        if w.VlanId.Value() != nil {
-            structMap["vlan_id"] = w.VlanId.Value()
-        } else {
-            structMap["vlan_id"] = nil
-        }
+    if w.VlanId != nil {
+        structMap["vlan_id"] = w.VlanId.toMap()
     }
     if w.VlanIds != nil {
         structMap["vlan_ids"] = w.VlanIds
@@ -801,7 +797,7 @@ type wlan  struct {
     Thumbnail                          Optional[string]               `json:"thumbnail"`
     UseEapolV1                         *bool                          `json:"use_eapol_v1,omitempty"`
     VlanEnabled                        *bool                          `json:"vlan_enabled,omitempty"`
-    VlanId                             Optional[int]                  `json:"vlan_id"`
+    VlanId                             *WlanVlanId                    `json:"vlan_id,omitempty"`
     VlanIds                            []WlanVlanIds                  `json:"vlan_ids,omitempty"`
     VlanPooling                        *bool                          `json:"vlan_pooling,omitempty"`
     WlanLimitDown                      Optional[int]                  `json:"wlan_limit_down"`

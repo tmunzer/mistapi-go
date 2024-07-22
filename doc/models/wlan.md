@@ -102,7 +102,7 @@ WLAN
 | `Thumbnail` | `models.Optional[string]` | Optional | Url of portal background image thumbnail |
 | `UseEapolV1` | `*bool` | Optional | if `auth.type`==’eap’ or ‘psk’, should only be set for legacy client, such as pre-2004, 802.11b devices<br>**Default**: `false` |
 | `VlanEnabled` | `*bool` | Optional | if vlan tagging is enabled<br>**Default**: `false` |
-| `VlanId` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 4094` |
+| `VlanId` | [`*models.WlanVlanId`](../../doc/models/containers/wlan-vlan-id.md) | Optional | This is a container for one-of cases. |
 | `VlanIds` | [`[]models.WlanVlanIds`](../../doc/models/containers/wlan-vlan-ids.md) | Optional | This is Array of a container for one-of cases. |
 | `VlanPooling` | `*bool` | Optional | vlan pooling allows AP to place client on different VLAN using a deterministic algorithm<br>**Default**: `false` |
 | `WlanLimitDown` | `models.Optional[int]` | Optional | kbps |
