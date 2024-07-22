@@ -7,7 +7,7 @@ import (
 // NetworkSourceNat represents a NetworkSourceNat struct.
 // if `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub
 type NetworkSourceNat struct {
-    ExteralIp            *string        `json:"exteral_ip,omitempty"`
+    ExternalIp           *string        `json:"external_ip,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }
 
@@ -23,8 +23,8 @@ func (n NetworkSourceNat) MarshalJSON() (
 func (n NetworkSourceNat) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, n.AdditionalProperties)
-    if n.ExteralIp != nil {
-        structMap["exteral_ip"] = n.ExteralIp
+    if n.ExternalIp != nil {
+        structMap["external_ip"] = n.ExternalIp
     }
     return structMap
 }
@@ -37,17 +37,17 @@ func (n *NetworkSourceNat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "exteral_ip")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "external_ip")
     if err != nil {
     	return err
     }
     
     n.AdditionalProperties = additionalProperties
-    n.ExteralIp = temp.ExteralIp
+    n.ExternalIp = temp.ExternalIp
     return nil
 }
 
 // networkSourceNat is a temporary struct used for validating the fields of NetworkSourceNat.
 type networkSourceNat  struct {
-    ExteralIp *string `json:"exteral_ip,omitempty"`
+    ExternalIp *string `json:"external_ip,omitempty"`
 }

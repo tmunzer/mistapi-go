@@ -113,7 +113,7 @@ body := models.Network{
             NatPool:                   models.ToPointer("172.16.0.0/26"),
             Routed:                    models.ToPointer(true),
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
-                ExteralIp: models.ToPointer("172.16.0.8/30"),
+                ExternalIp: models.ToPointer("172.16.0.8/30"),
             }),
             StaticNat:                 map[string]models.NetworkStaticNatProperty{
                 "property1": models.NetworkStaticNatProperty{
@@ -142,7 +142,7 @@ body := models.Network{
             NatPool:                   models.ToPointer("172.16.0.0/26"),
             Routed:                    models.ToPointer(true),
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
-                ExteralIp: models.ToPointer("172.16.0.8/30"),
+                ExternalIp: models.ToPointer("172.16.0.8/30"),
             }),
             StaticNat:                 map[string]models.NetworkStaticNatProperty{
                 "property1": models.NetworkStaticNatProperty{
@@ -253,7 +253,7 @@ if err != nil {
       "nat_pool": "172.16.0.0/26",
       "routed": true,
       "source_nat": {
-        "exteral_ip": "172.16.0.8/30"
+        "external_ip": "172.16.0.8/30"
       },
       "static_nat": {
         "property1": {
@@ -284,7 +284,7 @@ if err != nil {
       "nat_pool": "172.16.0.0/26",
       "routed": true,
       "source_nat": {
-        "exteral_ip": "172.16.0.8/30"
+        "external_ip": "172.16.0.8/30"
       },
       "static_nat": {
         "property1": {
@@ -492,7 +492,7 @@ if err != nil {
       "nat_pool": "172.16.0.0/26",
       "routed": true,
       "source_nat": {
-        "exteral_ip": "172.16.0.8/30"
+        "external_ip": "172.16.0.8/30"
       },
       "static_nat": {
         "property1": {
@@ -523,7 +523,7 @@ if err != nil {
       "nat_pool": "172.16.0.0/26",
       "routed": true,
       "source_nat": {
-        "exteral_ip": "172.16.0.8/30"
+        "external_ip": "172.16.0.8/30"
       },
       "static_nat": {
         "property1": {
@@ -684,7 +684,7 @@ if err != nil {
         "nat_pool": "172.16.0.0/26",
         "routed": true,
         "source_nat": {
-          "exteral_ip": "172.16.0.8/30"
+          "external_ip": "172.16.0.8/30"
         },
         "static_nat": {
           "property1": {
@@ -715,7 +715,7 @@ if err != nil {
         "nat_pool": "172.16.0.0/26",
         "routed": true,
         "source_nat": {
-          "exteral_ip": "172.16.0.8/30"
+          "external_ip": "172.16.0.8/30"
         },
         "static_nat": {
           "property1": {
@@ -845,7 +845,7 @@ body := models.Network{
             NatPool:                   models.ToPointer("172.16.0.0/26"),
             Routed:                    models.ToPointer(true),
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
-                ExteralIp: models.ToPointer("172.16.0.8/30"),
+                ExternalIp: models.ToPointer("172.16.0.8/30"),
             }),
             StaticNat:                 map[string]models.NetworkStaticNatProperty{
                 "property1": models.NetworkStaticNatProperty{
@@ -874,7 +874,7 @@ body := models.Network{
             NatPool:                   models.ToPointer("172.16.0.0/26"),
             Routed:                    models.ToPointer(true),
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
-                ExteralIp: models.ToPointer("172.16.0.8/30"),
+                ExternalIp: models.ToPointer("172.16.0.8/30"),
             }),
             StaticNat:                 map[string]models.NetworkStaticNatProperty{
                 "property1": models.NetworkStaticNatProperty{
@@ -985,7 +985,7 @@ if err != nil {
       "nat_pool": "172.16.0.0/26",
       "routed": true,
       "source_nat": {
-        "exteral_ip": "172.16.0.8/30"
+        "external_ip": "172.16.0.8/30"
       },
       "static_nat": {
         "property1": {
@@ -1016,7 +1016,7 @@ if err != nil {
       "nat_pool": "172.16.0.0/26",
       "routed": true,
       "source_nat": {
-        "exteral_ip": "172.16.0.8/30"
+        "external_ip": "172.16.0.8/30"
       },
       "static_nat": {
         "property1": {
