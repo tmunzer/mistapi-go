@@ -213,7 +213,7 @@ body := models.Secpolicy{
                 },
             })),
             DynamicVlan:                        models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
-                DefaultVlanId: models.NewOptional(models.ToPointer(999)),
+                DefaultVlanId: models.NewOptional(models.ToPointer(models.WlanDynamicVlanDefaultVlanIdContainer.FromNumber(999))),
                 Enabled:       models.ToPointer(false),
                 LocalVlanIds:  []int{
                     1,

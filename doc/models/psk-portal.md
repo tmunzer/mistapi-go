@@ -32,7 +32,7 @@
 | `TemplateUrl` | `*string` | Optional | UI customization |
 | `ThumbnailUrl` | `*string` | Optional | - |
 | `Type` | [`*models.PskPortalTypeEnum`](../../doc/models/psk-portal-type-enum.md) | Optional | for personal psk portal |
-| `VlanId` | `*int` | Optional | - |
+| `VlanId` | [`*models.PskPortalVlanId`](../../doc/models/containers/psk-portal-vlan-id.md) | Optional | This is a container for one-of cases. |
 
 ## Example (as JSON)
 

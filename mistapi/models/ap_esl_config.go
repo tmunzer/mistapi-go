@@ -20,7 +20,7 @@ type ApEslConfig struct {
     Type                 *ApEslTypeEnum `json:"type,omitempty"`
     // Only if `type`==`imagotag` or `type`==`native`
     VerifyCert           *bool          `json:"verify_cert,omitempty"`
-    // Only if `type`==`solum` or `type`==`hansho`
+    // Only if `type`==`solum` or `type`==`hanshow`
     VlanId               *int           `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }

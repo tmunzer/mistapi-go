@@ -10,14 +10,14 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Url` | `*string` | Optional | - |
-| `VlanId` | `*int` | Optional | **Default**: `1` |
+| `VlanId` | [`*models.SiteSettingCriticalUrlMonitoringMonitorVlanId`](../../doc/models/containers/site-setting-critical-url-monitoring-monitor-vlan-id.md) | Optional | This is a container for one-of cases. |
 
 ## Example (as JSON)
 
 ```json
 {
   "url": "http://50.1.3.5:8080",
-  "vlan_id": 1
+  "vlan_id": "String1"
 }
 ```
 

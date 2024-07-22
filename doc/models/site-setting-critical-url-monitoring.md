@@ -22,15 +22,15 @@ you can define some URLs that's critical to site operaitons the latency will be 
   "monitors": [
     {
       "url": "url0",
-      "vlan_id": 2
+      "vlan_id": "String5"
     },
     {
       "url": "url0",
-      "vlan_id": 2
+      "vlan_id": "String5"
     },
     {
       "url": "url0",
-      "vlan_id": 2
+      "vlan_id": "String5"
     }
   ]
 }

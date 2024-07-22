@@ -16,7 +16,7 @@
 | `Port` | `*int` | Optional | Only if `type`==`imagotag` or `type`==`native` |
 | `Type` | [`*models.ApEslTypeEnum`](../../doc/models/ap-esl-type-enum.md) | Optional | note: ble_config will be ingored if esl_config is enabled and with native mode. |
 | `VerifyCert` | `*bool` | Optional | Only if `type`==`imagotag` or `type`==`native` |
-| `VlanId` | `*int` | Optional | Only if `type`==`solum` or `type`==`hansho`<br>**Default**: `1` |
+| `VlanId` | `*int` | Optional | Only if `type`==`solum` or `type`==`hanshow`<br>**Default**: `1` |
 
 ## Example (as JSON)
 

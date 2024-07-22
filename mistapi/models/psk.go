@@ -44,7 +44,7 @@ type Psk struct {
     Ssid                   string         `json:"ssid"`
     Usage                  *PskUsageEnum  `json:"usage,omitempty"`
     // VLAN for this PSK key
-    VlanId                 *int           `json:"vlan_id,omitempty"`
+    VlanId                 *PskVlanId     `json:"vlan_id,omitempty"`
     AdditionalProperties   map[string]any `json:"_"`
 }
 
@@ -122,7 +122,7 @@ func (p Psk) toMap() map[string]any {
         structMap["usage"] = p.Usage
     }
     if p.VlanId != nil {
-        structMap["vlan_id"] = p.VlanId
+        structMap["vlan_id"] = p.VlanId.toMap()
     }
     return structMap
 }
@@ -193,7 +193,7 @@ type psk  struct {
     SiteId                 *uuid.UUID    `json:"site_id,omitempty"`
     Ssid                   *string       `json:"ssid"`
     Usage                  *PskUsageEnum `json:"usage,omitempty"`
-    VlanId                 *int          `json:"vlan_id,omitempty"`
+    VlanId                 *PskVlanId    `json:"vlan_id,omitempty"`
 }
 
 func (p *psk) validate() error {

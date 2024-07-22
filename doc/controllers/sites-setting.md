@@ -1275,11 +1275,11 @@ body := models.SiteSetting{
     Networks:                        map[string]models.SwitchNetwork{
         "property1": models.SwitchNetwork{
             Subnet:          models.ToPointer("string"),
-            VlanId:          0,
+            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(0),
         },
         "property2": models.SwitchNetwork{
             Subnet:          models.ToPointer("string"),
-            VlanId:          0,
+            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(0),
         },
     },
     NtpServers:                      []string{

@@ -9,21 +9,21 @@ import (
 // SynthetictestDevice represents a SynthetictestDevice struct.
 type SynthetictestDevice struct {
     // if `type`==`dns`
-    Hostname             *string               `json:"hostname,omitempty"`
+    Hostname             *string                    `json:"hostname,omitempty"`
     // if `type`==`arp`
-    Ip                   *string               `json:"ip,omitempty"`
+    Ip                   *string                    `json:"ip,omitempty"`
     // if `type`==`radius`
-    Password             *string               `json:"password,omitempty"`
+    Password             *string                    `json:"password,omitempty"`
     // if `type`==`ssr`
-    PortId               *string               `json:"port_id,omitempty"`
-    Type                 SynthetictestTypeEnum `json:"type"`
+    PortId               *string                    `json:"port_id,omitempty"`
+    Type                 SynthetictestTypeEnum      `json:"type"`
     // if `type`==`curl`
-    Url                  *string               `json:"url,omitempty"`
+    Url                  *string                    `json:"url,omitempty"`
     // if `type`==`radius`
-    Username             *string               `json:"username,omitempty"`
+    Username             *string                    `json:"username,omitempty"`
     // required for AP
-    VlanId               *int                  `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    VlanId               *SynthetictestDeviceVlanId `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]any             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestDevice.
@@ -58,7 +58,7 @@ func (s SynthetictestDevice) toMap() map[string]any {
         structMap["username"] = s.Username
     }
     if s.VlanId != nil {
-        structMap["vlan_id"] = s.VlanId
+        structMap["vlan_id"] = s.VlanId.toMap()
     }
     return structMap
 }
@@ -94,14 +94,14 @@ func (s *SynthetictestDevice) UnmarshalJSON(input []byte) error {
 
 // synthetictestDevice is a temporary struct used for validating the fields of SynthetictestDevice.
 type synthetictestDevice  struct {
-    Hostname *string                `json:"hostname,omitempty"`
-    Ip       *string                `json:"ip,omitempty"`
-    Password *string                `json:"password,omitempty"`
-    PortId   *string                `json:"port_id,omitempty"`
-    Type     *SynthetictestTypeEnum `json:"type"`
-    Url      *string                `json:"url,omitempty"`
-    Username *string                `json:"username,omitempty"`
-    VlanId   *int                   `json:"vlan_id,omitempty"`
+    Hostname *string                    `json:"hostname,omitempty"`
+    Ip       *string                    `json:"ip,omitempty"`
+    Password *string                    `json:"password,omitempty"`
+    PortId   *string                    `json:"port_id,omitempty"`
+    Type     *SynthetictestTypeEnum     `json:"type"`
+    Url      *string                    `json:"url,omitempty"`
+    Username *string                    `json:"username,omitempty"`
+    VlanId   *SynthetictestDeviceVlanId `json:"vlan_id,omitempty"`
 }
 
 func (s *synthetictestDevice) validate() error {

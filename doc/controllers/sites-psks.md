@@ -58,7 +58,7 @@ body := models.Psk{
     Passphrase:             "stringst",
     Ssid:                   "string",
     Usage:                  models.ToPointer(models.PskUsageEnum("multi")),
-    VlanId:                 models.ToPointer(1),
+    VlanId:                 models.ToPointer(models.PskVlanIdContainer.FromNumber(1)),
 }
 
 apiResponse, err := sitesPsks.CreateSitePsk(ctx, siteId, &body)
@@ -493,7 +493,7 @@ body := models.Psk{
     Passphrase:             "stringst",
     Ssid:                   "string",
     Usage:                  models.ToPointer(models.PskUsageEnum("multi")),
-    VlanId:                 models.ToPointer(1),
+    VlanId:                 models.ToPointer(models.PskVlanIdContainer.FromNumber(1)),
 }
 
 apiResponse, err := sitesPsks.UpdateSitePsk(ctx, siteId, pskId, &body)

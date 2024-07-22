@@ -43,7 +43,7 @@ type WxlanTag struct {
     // if `type`!=`vlan_id` and `type`!=`specs`, list of values to match
     Values               []string               `json:"values,omitempty"`
     // if `type`==`vlan_id`
-    VlanId               *int                   `json:"vlan_id,omitempty"`
+    VlanId               *WxlanTagVlanId        `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]any         `json:"_"`
 }
 
@@ -115,7 +115,7 @@ func (w WxlanTag) toMap() map[string]any {
         structMap["values"] = w.Values
     }
     if w.VlanId != nil {
-        structMap["vlan_id"] = w.VlanId
+        structMap["vlan_id"] = w.VlanId.toMap()
     }
     return structMap
 }
@@ -178,7 +178,7 @@ type wxlanTag  struct {
     Subnet       *string                `json:"subnet,omitempty"`
     Type         *WxlanTagTypeEnum      `json:"type"`
     Values       []string               `json:"values,omitempty"`
-    VlanId       *int                   `json:"vlan_id,omitempty"`
+    VlanId       *WxlanTagVlanId        `json:"vlan_id,omitempty"`
 }
 
 func (w *wxlanTag) validate() error {

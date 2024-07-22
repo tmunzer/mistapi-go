@@ -530,7 +530,7 @@ body := []models.Psk{
         Passphrase:             "stringst",
         Ssid:                   "string",
         Usage:                  models.ToPointer(models.PskUsageEnum("multi")),
-        VlanId:                 models.ToPointer(0),
+        VlanId:                 models.ToPointer(models.PskVlanIdContainer.FromNumber(0)),
     },
 }
 

@@ -47,7 +47,7 @@ WxLAN Tag
 | `Subnet` | `*string` | Optional | - |
 | `Type` | [`models.WxlanTagTypeEnum`](../../doc/models/wxlan-tag-type-enum.md) | Required | - |
 | `Values` | `[]string` | Optional | if `type`!=`vlan_id` and `type`!=`specs`, list of values to match |
-| `VlanId` | `*int` | Optional | if `type`==`vlan_id` |
+| `VlanId` | [`*models.WxlanTagVlanId`](../../doc/models/containers/wxlan-tag-vlan-id.md) | Optional | This is a container for one-of cases. |
 
 ## Example (as JSON)
 

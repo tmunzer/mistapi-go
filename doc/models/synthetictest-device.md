@@ -16,7 +16,7 @@
 | `Type` | [`models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Required | - |
 | `Url` | `*string` | Optional | if `type`==`curl` |
 | `Username` | `*string` | Optional | if `type`==`radius` |
-| `VlanId` | `*int` | Optional | required for AP |
+| `VlanId` | [`*models.SynthetictestDeviceVlanId`](../../doc/models/containers/synthetictest-device-vlan-id.md) | Optional | This is a container for one-of cases. |
 
 ## Example (as JSON)
 

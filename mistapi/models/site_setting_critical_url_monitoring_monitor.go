@@ -6,9 +6,9 @@ import (
 
 // SiteSettingCriticalUrlMonitoringMonitor represents a SiteSettingCriticalUrlMonitoringMonitor struct.
 type SiteSettingCriticalUrlMonitoringMonitor struct {
-    Url                  *string        `json:"url,omitempty"`
-    VlanId               *int           `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Url                  *string                                        `json:"url,omitempty"`
+    VlanId               *SiteSettingCriticalUrlMonitoringMonitorVlanId `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]any                                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingCriticalUrlMonitoringMonitor.
@@ -27,7 +27,7 @@ func (s SiteSettingCriticalUrlMonitoringMonitor) toMap() map[string]any {
         structMap["url"] = s.Url
     }
     if s.VlanId != nil {
-        structMap["vlan_id"] = s.VlanId
+        structMap["vlan_id"] = s.VlanId.toMap()
     }
     return structMap
 }
@@ -53,6 +53,6 @@ func (s *SiteSettingCriticalUrlMonitoringMonitor) UnmarshalJSON(input []byte) er
 
 // siteSettingCriticalUrlMonitoringMonitor is a temporary struct used for validating the fields of SiteSettingCriticalUrlMonitoringMonitor.
 type siteSettingCriticalUrlMonitoringMonitor  struct {
-    Url    *string `json:"url,omitempty"`
-    VlanId *int    `json:"vlan_id,omitempty"`
+    Url    *string                                        `json:"url,omitempty"`
+    VlanId *SiteSettingCriticalUrlMonitoringMonitorVlanId `json:"vlan_id,omitempty"`
 }

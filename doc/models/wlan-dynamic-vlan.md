@@ -11,7 +11,7 @@ for 802.1x
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DefaultVlanId` | `models.Optional[int]` | Optional | vlan_id to use when there’s no match from RADIUS<br>**Default**: `999`<br>**Constraints**: `>= 1`, `<= 4094` |
+| `DefaultVlanId` | [`models.Optional[models.WlanDynamicVlanDefaultVlanId]`](../../doc/models/containers/wlan-dynamic-vlan-default-vlan-id.md) | Optional | This is a container for one-of cases. |
 | `Enabled` | `*bool` | Optional | whether to enable dynamic vlan<br>**Default**: `false` |
 | `LocalVlanIds` | `[]int` | Optional | vlan_ids to be locally bridged<br>**Constraints**: `>= 1`, `<= 4094` |
 | `Type` | [`*models.WlanDynamicVlanTypeEnum`](../../doc/models/wlan-dynamic-vlan-type-enum.md) | Optional | standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco)<br>**Default**: `"standard"` |

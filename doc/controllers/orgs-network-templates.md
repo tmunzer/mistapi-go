@@ -78,11 +78,11 @@ body := models.NetworkTemplate{
     Networks:             map[string]models.SwitchNetwork{
         "property1": models.SwitchNetwork{
             Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          10,
+            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(10),
         },
         "property2": models.SwitchNetwork{
             Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          10,
+            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(10),
         },
     },
     NtpServers:           []string{
@@ -1001,11 +1001,11 @@ body := models.NetworkTemplate{
     Networks:             map[string]models.SwitchNetwork{
         "property1": models.SwitchNetwork{
             Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          10,
+            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(10),
         },
         "property2": models.SwitchNetwork{
             Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          10,
+            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(10),
         },
     },
     NtpServers:           []string{

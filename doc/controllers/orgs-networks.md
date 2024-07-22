@@ -96,7 +96,7 @@ body := models.Network{
             },
         },
     },
-    VlanId:               models.ToPointer(0),
+    VlanId:               models.ToPointer(models.NetworkVlanIdContainer.FromNumber(0)),
     VpnAccess:            map[string]models.NetworkVpnAccessConfig{
         "property1": models.NetworkVpnAccessConfig{
             AllowPing:                 models.ToPointer(true),
@@ -828,7 +828,7 @@ body := models.Network{
             },
         },
     },
-    VlanId:               models.ToPointer(0),
+    VlanId:               models.ToPointer(models.NetworkVlanIdContainer.FromNumber(0)),
     VpnAccess:            map[string]models.NetworkVpnAccessConfig{
         "property1": models.NetworkVpnAccessConfig{
             AllowPing:                 models.ToPointer(true),

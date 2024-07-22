@@ -32,7 +32,7 @@ PSK
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `string` | Required | SSID this PSK should be applicable to |
 | `Usage` | [`*models.PskUsageEnum`](../../doc/models/psk-usage-enum.md) | Optional | **Default**: `"multi"` |
-| `VlanId` | `*int` | Optional | VLAN for this PSK key |
+| `VlanId` | [`*models.PskVlanId`](../../doc/models/containers/psk-vlan-id.md) | Optional | This is a container for one-of cases. |
 
 ## Example (as JSON)
 

@@ -164,7 +164,7 @@ body := models.PskPortal{
     }),
     TemplateUrl:                  models.ToPointer("string"),
     Type:                         models.ToPointer(models.PskPortalTypeEnum("byod")),
-    VlanId:                       models.ToPointer(0),
+    VlanId:                       models.ToPointer(models.PskPortalVlanIdContainer.FromNumber(0)),
 }
 
 apiResponse, err := orgsPskPortals.CreateOrgPskPortal(ctx, orgId, &body)
@@ -673,7 +673,7 @@ body := models.PskPortal{
     }),
     TemplateUrl:                  models.ToPointer("string"),
     Type:                         models.ToPointer(models.PskPortalTypeEnum("byod")),
-    VlanId:                       models.ToPointer(0),
+    VlanId:                       models.ToPointer(models.PskPortalVlanIdContainer.FromNumber(0)),
 }
 
 apiResponse, err := orgsPskPortals.UpdateOrgPskPortal(ctx, orgId, pskportalId, &body)

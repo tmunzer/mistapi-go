@@ -29,7 +29,7 @@ type Network struct {
     Subnet               *string                           `json:"subnet,omitempty"`
     Subnet6              *string                           `json:"subnet6,omitempty"`
     Tenants              map[string]NetworkTenant          `json:"tenants,omitempty"`
-    VlanId               *int                              `json:"vlan_id,omitempty"`
+    VlanId               *NetworkVlanId                    `json:"vlan_id,omitempty"`
     // Property key is the VPN name. Whether this network can be accessed from vpn
     VpnAccess            map[string]NetworkVpnAccessConfig `json:"vpn_access,omitempty"`
     AdditionalProperties map[string]any                    `json:"_"`
@@ -91,7 +91,7 @@ func (n Network) toMap() map[string]any {
         structMap["tenants"] = n.Tenants
     }
     if n.VlanId != nil {
-        structMap["vlan_id"] = n.VlanId
+        structMap["vlan_id"] = n.VlanId.toMap()
     }
     if n.VpnAccess != nil {
         structMap["vpn_access"] = n.VpnAccess
@@ -154,7 +154,7 @@ type network  struct {
     Subnet               *string                           `json:"subnet,omitempty"`
     Subnet6              *string                           `json:"subnet6,omitempty"`
     Tenants              map[string]NetworkTenant          `json:"tenants,omitempty"`
-    VlanId               *int                              `json:"vlan_id,omitempty"`
+    VlanId               *NetworkVlanId                    `json:"vlan_id,omitempty"`
     VpnAccess            map[string]NetworkVpnAccessConfig `json:"vpn_access,omitempty"`
 }
 

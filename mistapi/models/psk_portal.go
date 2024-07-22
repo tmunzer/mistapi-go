@@ -45,7 +45,7 @@ type PskPortal struct {
     ThumbnailUrl                 *string                   `json:"thumbnail_url,omitempty"`
     // for personal psk portal
     Type                         *PskPortalTypeEnum        `json:"type,omitempty"`
-    VlanId                       *int                      `json:"vlan_id,omitempty"`
+    VlanId                       *PskPortalVlanId          `json:"vlan_id,omitempty"`
     AdditionalProperties         map[string]any            `json:"_"`
 }
 
@@ -127,7 +127,7 @@ func (p PskPortal) toMap() map[string]any {
         structMap["type"] = p.Type
     }
     if p.VlanId != nil {
-        structMap["vlan_id"] = p.VlanId
+        structMap["vlan_id"] = p.VlanId.toMap()
     }
     return structMap
 }
@@ -202,7 +202,7 @@ type pskPortal  struct {
     TemplateUrl                  *string                   `json:"template_url,omitempty"`
     ThumbnailUrl                 *string                   `json:"thumbnail_url,omitempty"`
     Type                         *PskPortalTypeEnum        `json:"type,omitempty"`
-    VlanId                       *int                      `json:"vlan_id,omitempty"`
+    VlanId                       *PskPortalVlanId          `json:"vlan_id,omitempty"`
 }
 
 func (p *pskPortal) validate() error {

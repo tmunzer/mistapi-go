@@ -26,7 +26,7 @@ Networks are usually subnets that have cross-site significance. `networks`in Org
 | `Subnet` | `*string` | Optional | - |
 | `Subnet6` | `*string` | Optional | - |
 | `Tenants` | [`map[string]models.NetworkTenant`](../../doc/models/network-tenant.md) | Optional | - |
-| `VlanId` | `*int` | Optional | - |
+| `VlanId` | [`*models.NetworkVlanId`](../../doc/models/containers/network-vlan-id.md) | Optional | This is a container for one-of cases. |
 | `VpnAccess` | [`map[string]models.NetworkVpnAccessConfig`](../../doc/models/network-vpn-access-config.md) | Optional | Property key is the VPN name. Whether this network can be accessed from vpn |
 
 ## Example (as JSON)
