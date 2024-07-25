@@ -103,6 +103,7 @@ body := models.Wlan{
     PortalDeniedHostnames:              []string{
         "msg.snapchat.com",
     },
+    PortalImage:                        models.NewOptional(models.ToPointer("https://url/to/image.png")),
     RoamMode:                           models.ToPointer(models.WlanRoamModeEnum("none")),
     SiteId:                             models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     SleExcluded:                        models.ToPointer(false),
@@ -449,6 +450,7 @@ body := models.Wlan{
     PortalDeniedHostnames:              []string{
         "msg.snapchat.com",
     },
+    PortalImage:                        models.NewOptional(models.ToPointer("https://url/to/image.png")),
     RoamMode:                           models.ToPointer(models.WlanRoamModeEnum("none")),
     SiteId:                             models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     SleExcluded:                        models.ToPointer(false),

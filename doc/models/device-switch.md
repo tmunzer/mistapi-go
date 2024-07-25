@@ -23,8 +23,8 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `DnsSuffix` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `EvpnConfig` | [`*models.EvpnConfig`](../../doc/models/evpn-config.md) | Optional | EVPN Junos settings |
-| `ExtraRoutes` | [`map[string]models.ExtraRouteProperties`](../../doc/models/extra-route-properties.md) | Optional | - |
-| `ExtraRoutes6` | [`map[string]models.ExtraRoute6Properties`](../../doc/models/extra-route-6-properties.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
+| `ExtraRoutes` | [`map[string]models.ExtraRoute`](../../doc/models/extra-route.md) | Optional | - |
+| `ExtraRoutes6` | [`map[string]models.ExtraRoute6`](../../doc/models/extra-route-6.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `Image1Url` | `models.Optional[string]` | Optional | - |
 | `Image2Url` | `models.Optional[string]` | Optional | - |

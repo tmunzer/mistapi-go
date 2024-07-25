@@ -97,9 +97,10 @@ type ConfigDevice struct {
     DnsSuffix             []string                           `json:"dns_suffix,omitempty"`
     // EVPN Junos settings
     EvpnConfig            *EvpnConfig                        `json:"evpn_config,omitempty"`
+    // Property key is the destination CIDR (e.g. "10.0.0.0/8")
     ExtraRoutes           *ExtraRoutes                       `json:"extra_routes,omitempty"`
     // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
-    ExtraRoutes6          map[string]ExtraRoute6Properties   `json:"extra_routes6,omitempty"`
+    ExtraRoutes6          *ExtraRoutes6                      `json:"extra_routes6,omitempty"`
     // for an adopted switch, we don’t overwrite their existing configs automatically
     Managed               *bool                              `json:"managed,omitempty"`
     // enable mist_nac to use radsec
@@ -340,7 +341,7 @@ func (c ConfigDevice) toMap() map[string]any {
         structMap["extra_routes"] = c.ExtraRoutes.toMap()
     }
     if c.ExtraRoutes6 != nil {
-        structMap["extra_routes6"] = c.ExtraRoutes6
+        structMap["extra_routes6"] = c.ExtraRoutes6.toMap()
     }
     if c.Managed != nil {
         structMap["managed"] = c.Managed
@@ -587,7 +588,7 @@ type configDevice  struct {
     DnsSuffix             []string                           `json:"dns_suffix,omitempty"`
     EvpnConfig            *EvpnConfig                        `json:"evpn_config,omitempty"`
     ExtraRoutes           *ExtraRoutes                       `json:"extra_routes,omitempty"`
-    ExtraRoutes6          map[string]ExtraRoute6Properties   `json:"extra_routes6,omitempty"`
+    ExtraRoutes6          *ExtraRoutes6                      `json:"extra_routes6,omitempty"`
     Managed               *bool                              `json:"managed,omitempty"`
     MistNac               *SwitchMistNac                     `json:"mist_nac,omitempty"`
     Networks              map[string]SwitchNetwork           `json:"networks,omitempty"`

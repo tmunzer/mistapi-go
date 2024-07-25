@@ -8,7 +8,9 @@ import (
 // - If HA configuration: key parameter will be nodeX (eg: node1)
 // - If there are 2 routing engines, re1 mgmt IP has to be set separately (if desired): key parameter = `re1`
 type SwitchOobIpConfig1 struct {
+    // if `type`==`static`
     Gateway              *string                  `json:"gateway,omitempty"`
+    // if `type`==`static`
     Ip                   *string                  `json:"ip,omitempty"`
     // used only if `subnet` is not specified in `networks`
     Netmask              *string                  `json:"netmask,omitempty"`
@@ -21,6 +23,7 @@ type SwitchOobIpConfig1 struct {
     UseMgmtVrfForHostOut *bool                    `json:"use_mgmt_vrf_for_host_out,omitempty"`
     // for HA Cluster, node1 can have different IP Config
     Node1                *GatewayOobIpConfigNode1 `json:"node1,omitempty"`
+    VlanId               *string                  `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]any           `json:"_"`
 }
 
@@ -60,6 +63,9 @@ func (s SwitchOobIpConfig1) toMap() map[string]any {
     if s.Node1 != nil {
         structMap["node1"] = s.Node1.toMap()
     }
+    if s.VlanId != nil {
+        structMap["vlan_id"] = s.VlanId
+    }
     return structMap
 }
 
@@ -71,7 +77,7 @@ func (s *SwitchOobIpConfig1) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "ip", "netmask", "network", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "node1")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "ip", "netmask", "network", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "node1", "vlan_id")
     if err != nil {
     	return err
     }
@@ -85,6 +91,7 @@ func (s *SwitchOobIpConfig1) UnmarshalJSON(input []byte) error {
     s.UseMgmtVrf = temp.UseMgmtVrf
     s.UseMgmtVrfForHostOut = temp.UseMgmtVrfForHostOut
     s.Node1 = temp.Node1
+    s.VlanId = temp.VlanId
     return nil
 }
 
@@ -98,4 +105,5 @@ type switchOobIpConfig1  struct {
     UseMgmtVrf           *bool                    `json:"use_mgmt_vrf,omitempty"`
     UseMgmtVrfForHostOut *bool                    `json:"use_mgmt_vrf_for_host_out,omitempty"`
     Node1                *GatewayOobIpConfigNode1 `json:"node1,omitempty"`
+    VlanId               *string                  `json:"vlan_id,omitempty"`
 }

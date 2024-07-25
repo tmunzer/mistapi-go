@@ -168,6 +168,7 @@ WLAN
   "portal_denied_hostnames": [
     "msg.snapchat.com"
   ],
+  "portal_image": "https://url/to/image.png",
   "roam_mode": "none",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "sle_excluded": false,

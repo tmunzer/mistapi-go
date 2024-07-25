@@ -4,7 +4,6 @@ import (
     "context"
     "fmt"
     "github.com/apimatic/go-core-runtime/https"
-    "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
     "github.com/tmunzer/mistapi-go/mistapi/models"
@@ -108,59 +107,4 @@ func (s *SitesDevicesWired) UpdateSiteLocalSwitchPortConfig(
         return context.Response, err
     }
     return context.Response, err
-}
-
-// GetSiteSwitchesMetrics takes context, siteId, mType, scope, switchMac as parameters and
-// returns an models.ApiResponse with models.ResponseSwitchMetrics data and
-// an error if there was an issue with the request or response.
-// Get version compliance metrics for managed or monitored switches
-func (s *SitesDevicesWired) GetSiteSwitchesMetrics(
-    ctx context.Context,
-    siteId uuid.UUID,
-    mType *models.SwitchMetricTypeEnum,
-    scope *models.SwitchMetricScopeEnum,
-    switchMac *string) (
-    models.ApiResponse[models.ResponseSwitchMetrics],
-    error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/switches/metrics", siteId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
-
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
-    })
-    if mType != nil {
-        req.QueryParam("type", *mType)
-    }
-    if scope != nil {
-        req.QueryParam("scope", *scope)
-    }
-    if switchMac != nil {
-        req.QueryParam("switch_mac", *switchMac)
-    }
-    
-    var result models.ResponseSwitchMetrics
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.ResponseSwitchMetrics](decoder)
-    return models.NewApiResponse(result, resp), err
 }

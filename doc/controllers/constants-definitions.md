@@ -18,11 +18,11 @@ constantsDefinitions := client.ConstantsDefinitions()
 
 # List Alarm Definitions
 
-Get List of brief definitions of all the supported alarm types. The
-example field contains an example payload as you would recieve in the
-alarm webhook output.
+Get List of brief definitions of all the supported alarm types.
 
-HA cluster node names will be specified in the `node` field, if applicable.
+The example field contains an example payload as you would recieve in the alarm webhook output.
+
+HA cluster node names will be specified in the `node` field, if applicable.'
 
 ```go
 ListAlarmDefinitions(

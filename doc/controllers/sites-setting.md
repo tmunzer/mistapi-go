@@ -1154,8 +1154,8 @@ body := models.SiteSetting{
     BlacklistUrl:                    models.ToPointer("https://papi.s3.amazonaws.com/blacklist/xxx..."),
     ConfigAutoRevert:                models.ToPointer(false),
     DeviceUpdownThreshold:           models.ToPointer(0),
-    ExtraRoutes6:                    map[string]models.ExtraRoute6Properties{
-        "2a02:1234:420a:10c9::/64": models.ExtraRoute6Properties{
+    ExtraRoutes6:                    map[string]models.ExtraRoute6{
+        "2a02:1234:420a:10c9::/64": models.ExtraRoute6{
             Via:           models.ToPointer("2a02:1234:200a::100"),
         },
     },

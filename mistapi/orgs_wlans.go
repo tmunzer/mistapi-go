@@ -324,7 +324,6 @@ func (o *OrgsWlans) UploadOrgWlanPortalImage(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
-    req.Header("Content-Type", "multipart/form_data")
     formFields := []https.FormParam{}
     fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
     formFields = append(formFields, fileParam)

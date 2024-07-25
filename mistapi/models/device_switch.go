@@ -27,9 +27,9 @@ type DeviceSwitch struct {
     DnsSuffix             []string                               `json:"dns_suffix,omitempty"`
     // EVPN Junos settings
     EvpnConfig            *EvpnConfig                            `json:"evpn_config,omitempty"`
-    ExtraRoutes           map[string]ExtraRouteProperties        `json:"extra_routes,omitempty"`
+    ExtraRoutes           map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
     // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
-    ExtraRoutes6          map[string]ExtraRoute6Properties       `json:"extra_routes6,omitempty"`
+    ExtraRoutes6          map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`
     Id                    *uuid.UUID                             `json:"id,omitempty"`
     Image1Url             Optional[string]                       `json:"image1_url"`
     Image2Url             Optional[string]                       `json:"image2_url"`
@@ -368,8 +368,8 @@ type deviceSwitch  struct {
     DnsServers            []string                               `json:"dns_servers,omitempty"`
     DnsSuffix             []string                               `json:"dns_suffix,omitempty"`
     EvpnConfig            *EvpnConfig                            `json:"evpn_config,omitempty"`
-    ExtraRoutes           map[string]ExtraRouteProperties        `json:"extra_routes,omitempty"`
-    ExtraRoutes6          map[string]ExtraRoute6Properties       `json:"extra_routes6,omitempty"`
+    ExtraRoutes           map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
+    ExtraRoutes6          map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`
     Id                    *uuid.UUID                             `json:"id,omitempty"`
     Image1Url             Optional[string]                       `json:"image1_url"`
     Image2Url             Optional[string]                       `json:"image2_url"`

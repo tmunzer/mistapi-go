@@ -1,6 +1,8 @@
 
 # Extra Routes
 
+Property key is the destination CIDR (e.g. "10.0.0.0/8")
+
 ## Structure
 
 `ExtraRoutes`
@@ -15,9 +17,6 @@
 
 ```json
 {
-  "0.0.0.0/0": {
-    "via": "192.168.1.10"
-  },
   "via": "via6"
 }
 ```

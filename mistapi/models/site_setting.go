@@ -48,9 +48,9 @@ type SiteSetting struct {
     Engagement                      *SiteEngagement                        `json:"engagement,omitempty"`
     // EVPN Options
     EvpnOptions                     *EvpnOptions                           `json:"evpn_options,omitempty"`
-    ExtraRoutes                     map[string]ExtraRouteProperties        `json:"extra_routes,omitempty"`
+    ExtraRoutes                     map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
     // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
-    ExtraRoutes6                    map[string]ExtraRoute6Properties       `json:"extra_routes6,omitempty"`
+    ExtraRoutes6                    map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`
     // name/val pair objects for location engine to use
     Flags                           map[string]string                      `json:"flags,omitempty"`
     ForSite                         *bool                                  `json:"for_site,omitempty"`
@@ -554,8 +554,8 @@ type siteSetting  struct {
     DnsSuffix                       []string                               `json:"dns_suffix,omitempty"`
     Engagement                      *SiteEngagement                        `json:"engagement,omitempty"`
     EvpnOptions                     *EvpnOptions                           `json:"evpn_options,omitempty"`
-    ExtraRoutes                     map[string]ExtraRouteProperties        `json:"extra_routes,omitempty"`
-    ExtraRoutes6                    map[string]ExtraRoute6Properties       `json:"extra_routes6,omitempty"`
+    ExtraRoutes                     map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
+    ExtraRoutes6                    map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`
     Flags                           map[string]string                      `json:"flags,omitempty"`
     ForSite                         *bool                                  `json:"for_site,omitempty"`
     Gateway                         *GatewayTemplate                       `json:"gateway,omitempty"`

@@ -98,12 +98,6 @@ type WlanPortal struct {
     PassphraseExpire            Optional[float64]              `json:"passphrase_expire"`
     // passphrase
     Password                    Optional[string]               `json:"password"`
-    // api secret (auto-generated) that can be used to sign guest authorization requests
-    PortalApiSecret             *string                        `json:"portal_api_secret,omitempty"`
-    // Url of portal background image
-    PortalImage                 *string                        `json:"portal_image,omitempty"`
-    // for SAML, this is used as the ACS URL
-    PortalSsoUrl                *string                        `json:"portal_sso_url,omitempty"`
     // whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`
     PredefinedSponsorsEnabled   *bool                          `json:"predefined_sponsors_enabled,omitempty"`
     Privacy                     *bool                          `json:"privacy,omitempty"`
@@ -378,15 +372,6 @@ func (w WlanPortal) toMap() map[string]any {
             structMap["password"] = nil
         }
     }
-    if w.PortalApiSecret != nil {
-        structMap["portal_api_secret"] = w.PortalApiSecret
-    }
-    if w.PortalImage != nil {
-        structMap["portal_image"] = w.PortalImage
-    }
-    if w.PortalSsoUrl != nil {
-        structMap["portal_sso_url"] = w.PortalSsoUrl
-    }
     if w.PredefinedSponsorsEnabled != nil {
         structMap["predefined_sponsors_enabled"] = w.PredefinedSponsorsEnabled
     }
@@ -505,7 +490,7 @@ func (w *WlanPortal) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "amazon_client_id", "amazon_client_secret", "amazon_email_domains", "amazon_enabled", "amazon_expire", "auth", "azure_client_id", "azure_client_secret", "azure_enabled", "azure_expire", "azure_tenant_id", "broadnet_password", "broadnet_sid", "broadnet_user_id", "bypass_when_cloud_down", "clickatell_api_key", "cross_site", "email_enabled", "enabled", "expire", "external_portal_url", "facebook_client_id", "facebook_client_secret", "facebook_email_domains", "facebook_enabled", "facebook_expire", "forward", "forward_url", "google_client_id", "google_client_secret", "google_email_domains", "google_enabled", "google_expire", "gupshup_password", "gupshup_userid", "microsoft_client_id", "microsoft_client_secret", "microsoft_email_domains", "microsoft_enabled", "microsoft_expire", "passphrase_enabled", "passphrase_expire", "password", "portal_api_secret", "portal_image", "portal_sso_url", "predefined_sponsors_enabled", "privacy", "puzzel_password", "puzzel_service_id", "puzzel_username", "smsMessageFormat", "sms_enabled", "sms_expire", "sms_provider", "sponsor_auto_approve", "sponsor_email_domains", "sponsor_enabled", "sponsor_expire", "sponsor_link_validity_duration", "sponsor_notify_all", "sponsor_status_notify", "sponsors", "sso_default_role", "sso_forced_role", "sso_idp_cert", "sso_idp_sign_algo", "sso_idp_sso_url", "sso_issuer", "sso_nameid_format", "telstra_client_id", "telstra_client_secret", "twilio_auth_token", "twilio_phone_number", "twilio_sid")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "amazon_client_id", "amazon_client_secret", "amazon_email_domains", "amazon_enabled", "amazon_expire", "auth", "azure_client_id", "azure_client_secret", "azure_enabled", "azure_expire", "azure_tenant_id", "broadnet_password", "broadnet_sid", "broadnet_user_id", "bypass_when_cloud_down", "clickatell_api_key", "cross_site", "email_enabled", "enabled", "expire", "external_portal_url", "facebook_client_id", "facebook_client_secret", "facebook_email_domains", "facebook_enabled", "facebook_expire", "forward", "forward_url", "google_client_id", "google_client_secret", "google_email_domains", "google_enabled", "google_expire", "gupshup_password", "gupshup_userid", "microsoft_client_id", "microsoft_client_secret", "microsoft_email_domains", "microsoft_enabled", "microsoft_expire", "passphrase_enabled", "passphrase_expire", "password", "predefined_sponsors_enabled", "privacy", "puzzel_password", "puzzel_service_id", "puzzel_username", "smsMessageFormat", "sms_enabled", "sms_expire", "sms_provider", "sponsor_auto_approve", "sponsor_email_domains", "sponsor_enabled", "sponsor_expire", "sponsor_link_validity_duration", "sponsor_notify_all", "sponsor_status_notify", "sponsors", "sso_default_role", "sso_forced_role", "sso_idp_cert", "sso_idp_sign_algo", "sso_idp_sso_url", "sso_issuer", "sso_nameid_format", "telstra_client_id", "telstra_client_secret", "twilio_auth_token", "twilio_phone_number", "twilio_sid")
     if err != nil {
     	return err
     }
@@ -554,9 +539,6 @@ func (w *WlanPortal) UnmarshalJSON(input []byte) error {
     w.PassphraseEnabled = temp.PassphraseEnabled
     w.PassphraseExpire = temp.PassphraseExpire
     w.Password = temp.Password
-    w.PortalApiSecret = temp.PortalApiSecret
-    w.PortalImage = temp.PortalImage
-    w.PortalSsoUrl = temp.PortalSsoUrl
     w.PredefinedSponsorsEnabled = temp.PredefinedSponsorsEnabled
     w.Privacy = temp.Privacy
     w.PuzzelPassword = temp.PuzzelPassword
@@ -634,9 +616,6 @@ type wlanPortal  struct {
     PassphraseEnabled           *bool                          `json:"passphrase_enabled,omitempty"`
     PassphraseExpire            Optional[float64]              `json:"passphrase_expire"`
     Password                    Optional[string]               `json:"password"`
-    PortalApiSecret             *string                        `json:"portal_api_secret,omitempty"`
-    PortalImage                 *string                        `json:"portal_image,omitempty"`
-    PortalSsoUrl                *string                        `json:"portal_sso_url,omitempty"`
     PredefinedSponsorsEnabled   *bool                          `json:"predefined_sponsors_enabled,omitempty"`
     Privacy                     *bool                          `json:"privacy,omitempty"`
     PuzzelPassword              *string                        `json:"puzzel_password,omitempty"`

@@ -9,6 +9,7 @@
 
 | Name |
 |  --- |
+| `critical` |
 | `strict` |
 | `standard` |
 

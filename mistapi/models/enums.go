@@ -1863,6 +1863,7 @@ const (
 type ServicePolicyEwfRuleProfileEnum string
 
 const (
+    ServicePolicyEwfRuleProfileEnum_CRITICAL ServicePolicyEwfRuleProfileEnum = "critical"
     ServicePolicyEwfRuleProfileEnum_STRICT   ServicePolicyEwfRuleProfileEnum = "strict"
     ServicePolicyEwfRuleProfileEnum_STANDARD ServicePolicyEwfRuleProfileEnum = "standard"
 )
@@ -3788,14 +3789,6 @@ const (
     EvpnOptionsRoutedAtEnum_EDGE         EvpnOptionsRoutedAtEnum = "edge"
     EvpnOptionsRoutedAtEnum_CORE         EvpnOptionsRoutedAtEnum = "core"
     EvpnOptionsRoutedAtEnum_DISTRIBUTION EvpnOptionsRoutedAtEnum = "distribution"
-)
-
-// GatewayClusterSwapOpEnum is a string enum.
-type GatewayClusterSwapOpEnum string
-
-const (
-    GatewayClusterSwapOpEnum_SWAP         GatewayClusterSwapOpEnum = "swap"
-    GatewayClusterSwapOpEnum_REPLACENODE1 GatewayClusterSwapOpEnum = "replace_node1"
 )
 
 // GatewayPortUsage1Enum is a string enum.

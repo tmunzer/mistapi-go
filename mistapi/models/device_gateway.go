@@ -19,7 +19,10 @@ type DeviceGateway struct {
     DnsServers            []string                           `json:"dns_servers,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsSuffix             []string                           `json:"dns_suffix,omitempty"`
+    // Property key is the destination CIDR (e.g. "10.0.0.0/8")
     ExtraRoutes           map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
+    // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
+    ExtraRoutes6          map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
     ForSite               *bool                              `json:"for_site,omitempty"`
     Id                    *uuid.UUID                         `json:"id,omitempty"`
     // Property key is the profile name
@@ -107,6 +110,9 @@ func (d DeviceGateway) toMap() map[string]any {
     }
     if d.ExtraRoutes != nil {
         structMap["extra_routes"] = d.ExtraRoutes
+    }
+    if d.ExtraRoutes6 != nil {
+        structMap["extra_routes6"] = d.ExtraRoutes6
     }
     if d.ForSite != nil {
         structMap["for_site"] = d.ForSite
@@ -230,7 +236,7 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "x", "y")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "x", "y")
     if err != nil {
     	return err
     }
@@ -244,6 +250,7 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
     d.DnsServers = temp.DnsServers
     d.DnsSuffix = temp.DnsSuffix
     d.ExtraRoutes = temp.ExtraRoutes
+    d.ExtraRoutes6 = temp.ExtraRoutes6
     d.ForSite = temp.ForSite
     d.Id = temp.Id
     d.IdpProfiles = temp.IdpProfiles
@@ -290,6 +297,7 @@ type deviceGateway  struct {
     DnsServers            []string                           `json:"dns_servers,omitempty"`
     DnsSuffix             []string                           `json:"dns_suffix,omitempty"`
     ExtraRoutes           map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
+    ExtraRoutes6          map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
     ForSite               *bool                              `json:"for_site,omitempty"`
     Id                    *uuid.UUID                         `json:"id,omitempty"`
     IdpProfiles           map[string]IdpProfile              `json:"idp_profiles,omitempty"`

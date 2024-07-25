@@ -64,7 +64,6 @@ func (o *OrgsMaps) ImportOrgMaps(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
-    req.Header("Content-Type", "multipart/form_data")
     formFields := []https.FormParam{}
     if autoDeviceprofileAssignment != nil {
         auto_deviceprofile_assignmentParam := https.FormParam{Key: "auto_deviceprofile_assignment", Value: *autoDeviceprofileAssignment, Headers: http.Header{}}
@@ -136,7 +135,6 @@ func (o *OrgsMaps) ImportOrgMapToSite(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
-    req.Header("Content-Type", "multipart/form_data")
     formFields := []https.FormParam{}
     if autoDeviceprofileAssignment != nil {
         auto_deviceprofile_assignmentParam := https.FormParam{Key: "auto_deviceprofile_assignment", Value: *autoDeviceprofileAssignment, Headers: http.Header{}}

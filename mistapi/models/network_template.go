@@ -20,9 +20,9 @@ type NetworkTemplate struct {
     DnsServers           []string                               `json:"dns_servers,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsSuffix            []string                               `json:"dns_suffix,omitempty"`
-    ExtraRoutes          map[string]ExtraRouteProperties        `json:"extra_routes,omitempty"`
+    ExtraRoutes          map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
     // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
-    ExtraRoutes6         map[string]ExtraRoute6Properties       `json:"extra_routes6,omitempty"`
+    ExtraRoutes6         map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`
     Id                   *uuid.UUID                             `json:"id,omitempty"`
     // Org Networks that we'd like to import
     ImportOrgNetworks    []string                               `json:"import_org_networks,omitempty"`
@@ -197,8 +197,8 @@ type networkTemplate  struct {
     DhcpSnooping         *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
     DnsServers           []string                               `json:"dns_servers,omitempty"`
     DnsSuffix            []string                               `json:"dns_suffix,omitempty"`
-    ExtraRoutes          map[string]ExtraRouteProperties        `json:"extra_routes,omitempty"`
-    ExtraRoutes6         map[string]ExtraRoute6Properties       `json:"extra_routes6,omitempty"`
+    ExtraRoutes          map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
+    ExtraRoutes6         map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`
     Id                   *uuid.UUID                             `json:"id,omitempty"`
     ImportOrgNetworks    []string                               `json:"import_org_networks,omitempty"`
     MistNac              *SwitchMistNac                         `json:"mist_nac,omitempty"`

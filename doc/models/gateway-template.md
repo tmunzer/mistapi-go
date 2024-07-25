@@ -18,7 +18,8 @@ Gateway Template is applied to a site for gateway(s) in a site.
 | `DnsOverride` | `*bool` | Optional | **Default**: `false` |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `DnsSuffix` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
-| `ExtraRoutes` | [`map[string]models.GatewayExtraRoute`](../../doc/models/gateway-extra-route.md) | Optional | - |
+| `ExtraRoutes` | [`map[string]models.GatewayExtraRoute`](../../doc/models/gateway-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "10.0.0.0/8") |
+| `ExtraRoutes6` | [`map[string]models.GatewayExtraRoute`](../../doc/models/gateway-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `GatewayMatching` | [`*models.GatewayMatching`](../../doc/models/gateway-matching.md) | Optional | Gateway matching |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `IdpProfiles` | [`map[string]models.IdpProfile`](../../doc/models/idp-profile.md) | Optional | Property key is the profile name |
@@ -44,9 +45,9 @@ Gateway Template is applied to a site for gateway(s) in a site.
 ```json
 {
   "dnsOverride": false,
-  "extra_routes": {
-    "0.0.0.0/0": {
-      "via": "192.168.1.10"
+  "extra_routes6": {
+    "2a02:1234:420a:10c9::/64": {
+      "via": "2a02:1234:200a::100"
     }
   },
   "name": "gw_template",

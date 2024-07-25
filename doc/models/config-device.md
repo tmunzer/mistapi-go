@@ -61,8 +61,8 @@
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `DnsSuffix` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `EvpnConfig` | [`*models.EvpnConfig`](../../doc/models/evpn-config.md) | Optional | EVPN Junos settings |
-| `ExtraRoutes` | [`*models.ExtraRoutes`](../../doc/models/extra-routes.md) | Optional | - |
-| `ExtraRoutes6` | [`map[string]models.ExtraRoute6Properties`](../../doc/models/extra-route-6-properties.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
+| `ExtraRoutes` | [`*models.ExtraRoutes`](../../doc/models/extra-routes.md) | Optional | Property key is the destination CIDR (e.g. "10.0.0.0/8") |
+| `ExtraRoutes6` | [`*models.ExtraRoutes6`](../../doc/models/extra-routes-6.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `Managed` | `*bool` | Optional | for an adopted switch, we don’t overwrite their existing configs automatically<br>**Default**: `false` |
 | `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | enable mist_nac to use radsec |
 | `Networks` | [`map[string]models.SwitchNetwork`](../../doc/models/switch-network.md) | Optional | Property key is network name |
@@ -117,11 +117,6 @@
   "x": 53.5,
   "y": 173.1,
   "disable_auto_config": false,
-  "extra_routes": {
-    "0.0.0.0/0": {
-      "via": "192.168.1.10"
-    }
-  },
   "extra_routes6": {
     "2a02:1234:420a:10c9::/64": {
       "via": "2a02:1234:200a::100"

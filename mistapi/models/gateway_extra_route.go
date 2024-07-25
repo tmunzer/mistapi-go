@@ -5,7 +5,6 @@ import (
 )
 
 // GatewayExtraRoute represents a GatewayExtraRoute struct.
-// Property key is the destination CIDR (e.g. "10.0.0.0/8")
 type GatewayExtraRoute struct {
     Via                  *string        `json:"via,omitempty"`
     AdditionalProperties map[string]any `json:"_"`

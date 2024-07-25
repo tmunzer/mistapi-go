@@ -66,7 +66,10 @@ type Deviceprofile struct {
     DnsServers            []string                           `json:"dns_servers,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsSuffix             []string                           `json:"dns_suffix,omitempty"`
+    // Property key is the destination CIDR (e.g. "10.0.0.0/8")
     ExtraRoutes           map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
+    // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
+    ExtraRoutes6          map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
     // Gateway matching
     GatewayMatching       *GatewayMatching                   `json:"gateway_matching,omitempty"`
     // Property key is the profile name
@@ -211,6 +214,9 @@ func (d Deviceprofile) toMap() map[string]any {
     if d.ExtraRoutes != nil {
         structMap["extra_routes"] = d.ExtraRoutes
     }
+    if d.ExtraRoutes6 != nil {
+        structMap["extra_routes6"] = d.ExtraRoutes6
+    }
     if d.GatewayMatching != nil {
         structMap["gateway_matching"] = d.GatewayMatching.toMap()
     }
@@ -258,7 +264,7 @@ func (d *Deviceprofile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "additional_config_cmds", "bgp_config", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "gateway_matching", "idp_profiles", "ip_configs", "networks", "ntpOverride", "oob_ip_config", "path_preferences", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "additional_config_cmds", "bgp_config", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "idp_profiles", "ip_configs", "networks", "ntpOverride", "oob_ip_config", "path_preferences", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options")
     if err != nil {
     	return err
     }
@@ -299,6 +305,7 @@ func (d *Deviceprofile) UnmarshalJSON(input []byte) error {
     d.DnsServers = temp.DnsServers
     d.DnsSuffix = temp.DnsSuffix
     d.ExtraRoutes = temp.ExtraRoutes
+    d.ExtraRoutes6 = temp.ExtraRoutes6
     d.GatewayMatching = temp.GatewayMatching
     d.IdpProfiles = temp.IdpProfiles
     d.IpConfigs = temp.IpConfigs
@@ -351,6 +358,7 @@ type deviceprofile  struct {
     DnsServers            []string                           `json:"dns_servers,omitempty"`
     DnsSuffix             []string                           `json:"dns_suffix,omitempty"`
     ExtraRoutes           map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
+    ExtraRoutes6          map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
     GatewayMatching       *GatewayMatching                   `json:"gateway_matching,omitempty"`
     IdpProfiles           map[string]IdpProfile              `json:"idp_profiles,omitempty"`
     IpConfigs             map[string]GatewayIpConfigProperty `json:"ip_configs,omitempty"`

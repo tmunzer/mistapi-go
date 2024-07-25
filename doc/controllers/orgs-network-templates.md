@@ -982,11 +982,11 @@ body := models.NetworkTemplate{
     DnsSuffix:            []string{
         "string",
     },
-    ExtraRoutes:          map[string]models.ExtraRouteProperties{
-        "property1": models.ExtraRouteProperties{
+    ExtraRoutes:          map[string]models.ExtraRoute{
+        "property1": models.ExtraRoute{
             Via:           models.ToPointer("string"),
         },
-        "property2": models.ExtraRouteProperties{
+        "property2": models.ExtraRoute{
             Via:           models.ToPointer("string"),
         },
     },

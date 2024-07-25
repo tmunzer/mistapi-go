@@ -23,10 +23,9 @@ func NewConstantsDefinitions(baseController baseController) *ConstantsDefinition
 // ListAlarmDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstAlarmDefinition data and
 // an error if there was an issue with the request or response.
-// Get List of brief definitions of all the supported alarm types. The
-// example field contains an example payload as you would recieve in the
-// alarm webhook output.
-// HA cluster node names will be specified in the `node` field, if applicable.
+// Get List of brief definitions of all the supported alarm types.
+// The example field contains an example payload as you would recieve in the alarm webhook output.
+// HA cluster node names will be specified in the `node` field, if applicable.'
 func (c *ConstantsDefinitions) ListAlarmDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstAlarmDefinition],
     error) {

@@ -33,8 +33,8 @@ Site Settings
 | `DnsSuffix` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `Engagement` | [`*models.SiteEngagement`](../../doc/models/site-engagement.md) | Optional | **Note**: if hours does not exist, it’s treated as everyday of the week, 00:00-23:59. Currently we don’t allow multiple ranges for the same day<br><br>**Note**: default values for `dwell_tags`: passerby (1,300) bounce (301, 14400) engaged (14401, 28800) stationed (28801, 42000)<br><br>**Note**: default values for `dwell_tag_names`: passerby = “Passerby”, bounce = “Visitor”, engaged = “Associates”, stationed = “Assets” |
 | `EvpnOptions` | [`*models.EvpnOptions`](../../doc/models/evpn-options.md) | Optional | EVPN Options |
-| `ExtraRoutes` | [`map[string]models.ExtraRouteProperties`](../../doc/models/extra-route-properties.md) | Optional | - |
-| `ExtraRoutes6` | [`map[string]models.ExtraRoute6Properties`](../../doc/models/extra-route-6-properties.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
+| `ExtraRoutes` | [`map[string]models.ExtraRoute`](../../doc/models/extra-route.md) | Optional | - |
+| `ExtraRoutes6` | [`map[string]models.ExtraRoute6`](../../doc/models/extra-route-6.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `Flags` | `map[string]string` | Optional | name/val pair objects for location engine to use |
 | `ForSite` | `*bool` | Optional | - |
 | `Gateway` | [`*models.GatewayTemplate`](../../doc/models/gateway-template.md) | Optional | Gateway Template is applied to a site for gateway(s) in a site. |

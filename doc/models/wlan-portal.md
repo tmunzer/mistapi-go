@@ -54,9 +54,6 @@ portal wlan settings
 | `PassphraseEnabled` | `*bool` | Optional | whether password is enabled<br>**Default**: `false` |
 | `PassphraseExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using passphrase auth (in minutes), if not provided, uses `expire` |
 | `Password` | `models.Optional[string]` | Optional | passphrase |
-| `PortalApiSecret` | `*string` | Optional | api secret (auto-generated) that can be used to sign guest authorization requests |
-| `PortalImage` | `*string` | Optional | Url of portal background image |
-| `PortalSsoUrl` | `*string` | Optional | for SAML, this is used as the ACS URL |
 | `PredefinedSponsorsEnabled` | `*bool` | Optional | whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`<br>**Default**: `true` |
 | `Privacy` | `*bool` | Optional | **Default**: `true` |
 | `PuzzelPassword` | `*string` | Optional | when `sms_provider`==`puzzel` |
@@ -117,7 +114,6 @@ portal wlan settings
   "microsoft_enabled": false,
   "passphrase_enabled": false,
   "password": "let me in",
-  "portal_image": "https://url/to/image.png",
   "predefined_sponsors_enabled": true,
   "privacy": true,
   "sms_enabled": false,

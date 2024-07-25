@@ -13,7 +13,6 @@ orgsDevicesOthers := client.OrgsDevicesOthers()
 * [Count Org Other Device Events](../../doc/controllers/orgs-devices-others.md#count-org-other-device-events)
 * [Delete Org Other Device](../../doc/controllers/orgs-devices-others.md#delete-org-other-device)
 * [Get Org Other Device](../../doc/controllers/orgs-devices-others.md#get-org-other-device)
-* [Get Org Other Device Stats](../../doc/controllers/orgs-devices-others.md#get-org-other-device-stats)
 * [List Org Other Devices](../../doc/controllers/orgs-devices-others.md#list-org-other-devices)
 * [Reboot Org Other Device](../../doc/controllers/orgs-devices-others.md#reboot-org-other-device)
 * [Search Org Other Device Events](../../doc/controllers/orgs-devices-others.md#search-org-other-device-events)
@@ -223,93 +222,6 @@ if err != nil {
   "serial": "FXLH2015150025",
   "site_id": "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
   "vendor": "cradlepoint"
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-
-
-# Get Org Other Device Stats
-
-Get Otherdevice Stats
-
-```go
-GetOrgOtherDeviceStats(
-    ctx context.Context,
-    orgId uuid.UUID,
-    deviceMac string) (
-    models.ApiResponse[models.DeviceOtherStats],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orgId` | `uuid.UUID` | Template, Required | - |
-| `deviceMac` | `string` | Template, Required | - |
-
-## Response Type
-
-[`models.DeviceOtherStats`](../../doc/models/device-other-stats.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceMac := "0000000000ab"
-
-apiResponse, err := orgsDevicesOthers.GetOrgOtherDeviceStats(ctx, orgId, deviceMac)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "config_status": "synced",
-  "last_config": 1675392788,
-  "last_seen": 1675843629,
-  "mac": "5c5b35000018",
-  "status": "online",
-  "uptime": 20296,
-  "vendor": "cradlepoint",
-  "vendor_specific": {
-    "ports": {
-      "mdm-4d0e073b": {
-        "bytes_in": 33004879,
-        "bytes_out": 41103393,
-        "health_category": "",
-        "health_score": 0,
-        "id": "101027967",
-        "mode": "wan",
-        "model": "Internal 5GB (SIM1)",
-        "state": "READY",
-        "type": "5G",
-        "uptime": 252371.34149021498
-      }
-    },
-    "router_id": null,
-    "target_version": "7.23.40"
-  },
-  "version": "7.22.70"
 }
 ```
 

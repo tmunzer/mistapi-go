@@ -21,7 +21,10 @@ type GatewayTemplate struct {
     DnsServers            []string                           `json:"dns_servers,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsSuffix             []string                           `json:"dns_suffix,omitempty"`
+    // Property key is the destination CIDR (e.g. "10.0.0.0/8")
     ExtraRoutes           map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
+    // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
+    ExtraRoutes6          map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
     // Gateway matching
     GatewayMatching       *GatewayMatching                   `json:"gateway_matching,omitempty"`
     Id                    *uuid.UUID                         `json:"id,omitempty"`
@@ -89,6 +92,9 @@ func (g GatewayTemplate) toMap() map[string]any {
     }
     if g.ExtraRoutes != nil {
         structMap["extra_routes"] = g.ExtraRoutes
+    }
+    if g.ExtraRoutes6 != nil {
+        structMap["extra_routes6"] = g.ExtraRoutes6
     }
     if g.GatewayMatching != nil {
         structMap["gateway_matching"] = g.GatewayMatching.toMap()
@@ -160,7 +166,7 @@ func (g *GatewayTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type")
     if err != nil {
     	return err
     }
@@ -174,6 +180,7 @@ func (g *GatewayTemplate) UnmarshalJSON(input []byte) error {
     g.DnsServers = temp.DnsServers
     g.DnsSuffix = temp.DnsSuffix
     g.ExtraRoutes = temp.ExtraRoutes
+    g.ExtraRoutes6 = temp.ExtraRoutes6
     g.GatewayMatching = temp.GatewayMatching
     g.Id = temp.Id
     g.IdpProfiles = temp.IdpProfiles
@@ -206,6 +213,7 @@ type gatewayTemplate  struct {
     DnsServers            []string                           `json:"dns_servers,omitempty"`
     DnsSuffix             []string                           `json:"dns_suffix,omitempty"`
     ExtraRoutes           map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
+    ExtraRoutes6          map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
     GatewayMatching       *GatewayMatching                   `json:"gateway_matching,omitempty"`
     Id                    *uuid.UUID                         `json:"id,omitempty"`
     IdpProfiles           map[string]IdpProfile              `json:"idp_profiles,omitempty"`
