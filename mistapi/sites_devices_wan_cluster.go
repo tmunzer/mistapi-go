@@ -64,6 +64,50 @@ func (s *SitesDevicesWANCluster) DeleteSiteDeviceHaCluster(
     return context.Response, err
 }
 
+// GetSiteDeviceHaClusterNode takes context, siteId, deviceId as parameters and
+// returns an models.ApiResponse with models.GatewayCluster data and
+// an error if there was an issue with the request or response.
+// Delete HA Cluster
+func (s *SitesDevicesWANCluster) GetSiteDeviceHaClusterNode(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    models.ApiResponse[models.GatewayCluster],
+    error) {
+    req := s.prepareRequest(
+      ctx,
+      "GET",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/ha", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+    })
+    
+    var result models.GatewayCluster
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.GatewayCluster](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
 // CreateSiteDeviceHaCluster takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.GatewayCluster data and
 // an error if there was an issue with the request or response.
