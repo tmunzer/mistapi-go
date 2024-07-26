@@ -7,19 +7,20 @@ import (
 // GatewayPathPreferencesPath represents a GatewayPathPreferencesPath struct.
 type GatewayPathPreferencesPath struct {
     Cost                 *int                 `json:"cost,omitempty"`
-    // For SSR Only. `true`` if this specific path is undesired
+    // For SSR Only. `true`, if this specific path is undesired
     Disabled             *bool                `json:"disabled,omitempty"`
-    // if `type`==`local`, if a different gateway is desired
+    // only if `type`==`local`, if a different gateway is desired
     GatewayIp            *string              `json:"gateway_ip,omitempty"`
-    // when `type`==`vpn`, if this vpn path can be used for internet
+    // only if `type`==`vpn`, if this vpn path can be used for internet
     InternetAccess       *bool                `json:"internet_access,omitempty"`
+    // required when * `type`==`vpn`: the name of the VPN Path to use * `type`==`wan`: the name of the WAN interface to use
     Name                 *string              `json:"name,omitempty"`
-    // if `type`==`local`
+    // required when `type`==`local`
     Networks             []string             `json:"networks,omitempty"`
     // if `type`==`local`, if destination IP is to be replaced
     TargetIps            []string             `json:"target_ips,omitempty"`
     Type                 *GatewayPathTypeEnum `json:"type,omitempty"`
-    // Spoke's outgoing wan
+    // required when`type`==`tunnel`, optional if `type`==`vpn` wan
     WanName              *string              `json:"wan_name,omitempty"`
     AdditionalProperties map[string]any       `json:"_"`
 }

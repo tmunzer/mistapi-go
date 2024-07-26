@@ -21,7 +21,7 @@ type OrgServicePolicy struct {
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // by default, we derive all paths available and use them
     // optionally, you can customize by using `path_preference`
-    PathPreferences      *string                `json:"path_preferences,omitempty"`
+    PathPreference       *string                `json:"path_preference,omitempty"`
     Services             []string               `json:"services,omitempty"`
     Tenants              []string               `json:"tenants,omitempty"`
     AdditionalProperties map[string]any         `json:"_"`
@@ -69,8 +69,8 @@ func (o OrgServicePolicy) toMap() map[string]any {
     if o.OrgId != nil {
         structMap["org_id"] = o.OrgId
     }
-    if o.PathPreferences != nil {
-        structMap["path_preferences"] = o.PathPreferences
+    if o.PathPreference != nil {
+        structMap["path_preference"] = o.PathPreference
     }
     if o.Services != nil {
         structMap["services"] = o.Services
@@ -89,7 +89,7 @@ func (o *OrgServicePolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "appqoe", "created_time", "ewf", "id", "idp", "local_routing", "modified_time", "name", "org_id", "path_preferences", "services", "tenants")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "appqoe", "created_time", "ewf", "id", "idp", "local_routing", "modified_time", "name", "org_id", "path_preference", "services", "tenants")
     if err != nil {
     	return err
     }
@@ -105,7 +105,7 @@ func (o *OrgServicePolicy) UnmarshalJSON(input []byte) error {
     o.ModifiedTime = temp.ModifiedTime
     o.Name = temp.Name
     o.OrgId = temp.OrgId
-    o.PathPreferences = temp.PathPreferences
+    o.PathPreference = temp.PathPreference
     o.Services = temp.Services
     o.Tenants = temp.Tenants
     return nil
@@ -113,17 +113,17 @@ func (o *OrgServicePolicy) UnmarshalJSON(input []byte) error {
 
 // orgServicePolicy is a temporary struct used for validating the fields of OrgServicePolicy.
 type orgServicePolicy  struct {
-    Action          *AllowDenyEnum         `json:"action,omitempty"`
-    Appqoe          *ServicePolicyAppqoe   `json:"appqoe,omitempty"`
-    CreatedTime     *float64               `json:"created_time,omitempty"`
-    Ewf             []ServicePolicyEwfRule `json:"ewf,omitempty"`
-    Id              *uuid.UUID             `json:"id,omitempty"`
-    Idp             *IdpConfig             `json:"idp,omitempty"`
-    LocalRouting    *bool                  `json:"local_routing,omitempty"`
-    ModifiedTime    *float64               `json:"modified_time,omitempty"`
-    Name            *string                `json:"name,omitempty"`
-    OrgId           *uuid.UUID             `json:"org_id,omitempty"`
-    PathPreferences *string                `json:"path_preferences,omitempty"`
-    Services        []string               `json:"services,omitempty"`
-    Tenants         []string               `json:"tenants,omitempty"`
+    Action         *AllowDenyEnum         `json:"action,omitempty"`
+    Appqoe         *ServicePolicyAppqoe   `json:"appqoe,omitempty"`
+    CreatedTime    *float64               `json:"created_time,omitempty"`
+    Ewf            []ServicePolicyEwfRule `json:"ewf,omitempty"`
+    Id             *uuid.UUID             `json:"id,omitempty"`
+    Idp            *IdpConfig             `json:"idp,omitempty"`
+    LocalRouting   *bool                  `json:"local_routing,omitempty"`
+    ModifiedTime   *float64               `json:"modified_time,omitempty"`
+    Name           *string                `json:"name,omitempty"`
+    OrgId          *uuid.UUID             `json:"org_id,omitempty"`
+    PathPreference *string                `json:"path_preference,omitempty"`
+    Services       []string               `json:"services,omitempty"`
+    Tenants        []string               `json:"tenants,omitempty"`
 }

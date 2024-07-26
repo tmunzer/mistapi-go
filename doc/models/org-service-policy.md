@@ -19,7 +19,7 @@
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `PathPreferences` | `*string` | Optional | by default, we derive all paths available and use them<br>optionally, you can customize by using `path_preference` |
+| `PathPreference` | `*string` | Optional | by default, we derive all paths available and use them<br>optionally, you can customize by using `path_preference` |
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 
