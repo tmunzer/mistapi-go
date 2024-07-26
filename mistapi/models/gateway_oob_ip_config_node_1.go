@@ -12,8 +12,6 @@ type GatewayOobIpConfigNode1 struct {
     Ip                   *string        `json:"ip,omitempty"`
     // used only if `subnet` is not specified in `networks`
     Netmask              *string        `json:"netmask,omitempty"`
-    // optional, the network to be used for mgmt
-    Network              *string        `json:"network,omitempty"`
     Type                 *IpTypeEnum    `json:"type,omitempty"`
     // if supported on the platform. If enabled, DNS will be using this routing-instance, too
     UseMgmtVrf           *bool          `json:"use_mgmt_vrf,omitempty"`
@@ -44,9 +42,6 @@ func (g GatewayOobIpConfigNode1) toMap() map[string]any {
     if g.Netmask != nil {
         structMap["netmask"] = g.Netmask
     }
-    if g.Network != nil {
-        structMap["network"] = g.Network
-    }
     if g.Type != nil {
         structMap["type"] = g.Type
     }
@@ -70,7 +65,7 @@ func (g *GatewayOobIpConfigNode1) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "ip", "netmask", "network", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "vlan_id")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "ip", "netmask", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "vlan_id")
     if err != nil {
     	return err
     }
@@ -79,7 +74,6 @@ func (g *GatewayOobIpConfigNode1) UnmarshalJSON(input []byte) error {
     g.Gateway = temp.Gateway
     g.Ip = temp.Ip
     g.Netmask = temp.Netmask
-    g.Network = temp.Network
     g.Type = temp.Type
     g.UseMgmtVrf = temp.UseMgmtVrf
     g.UseMgmtVrfForHostOut = temp.UseMgmtVrfForHostOut
@@ -92,7 +86,6 @@ type gatewayOobIpConfigNode1  struct {
     Gateway              *string     `json:"gateway,omitempty"`
     Ip                   *string     `json:"ip,omitempty"`
     Netmask              *string     `json:"netmask,omitempty"`
-    Network              *string     `json:"network,omitempty"`
     Type                 *IpTypeEnum `json:"type,omitempty"`
     UseMgmtVrf           *bool       `json:"use_mgmt_vrf,omitempty"`
     UseMgmtVrfForHostOut *bool       `json:"use_mgmt_vrf_for_host_out,omitempty"`

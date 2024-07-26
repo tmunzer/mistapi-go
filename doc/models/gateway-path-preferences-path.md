@@ -12,7 +12,7 @@
 | `Cost` | `*int` | Optional | - |
 | `Disabled` | `*bool` | Optional | For SSR Only. `true`` if this specific path is undesired |
 | `GatewayIp` | `*string` | Optional | if `type`==`local`, if a different gateway is desired |
-| `InternetAccess` | `*bool` | Optional | when `type`==`vpn`, if this vpn path can be used for internet<br>**Default**: `false` |
+| `InternetAccess` | `*bool` | Optional | when `type`==`vpn`, if this vpn path can be used for internet |
 | `Name` | `*string` | Optional | - |
 | `Networks` | `[]string` | Optional | if `type`==`local` |
 | `TargetIps` | `[]string` | Optional | if `type`==`local`, if destination IP is to be replaced |
@@ -23,11 +23,11 @@
 
 ```json
 {
-  "internet_access": false,
   "wan_name": "wan0",
   "cost": 128,
   "disabled": false,
   "gateway_ip": "gateway_ip2",
+  "internet_access": false,
   "name": "name6"
 }
 ```

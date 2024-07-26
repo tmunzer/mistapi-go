@@ -34,8 +34,8 @@ out-of-band (vme/em0/fxp0) IP config
     "gateway": "gateway2",
     "ip": "ip6",
     "netmask": "netmask2",
-    "network": "network8",
-    "type": "static"
+    "type": "static",
+    "use_mgmt_vrf": false
   }
 }
 ```
