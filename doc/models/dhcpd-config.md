@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | if set to `true`, disable the DHCP server<br>**Default**: `false` |
+| `Enabled` | `*bool` | Optional | if set to `true`, enable the DHCP server<br>**Default**: `false` |
 
 ## Example (as JSON)
 

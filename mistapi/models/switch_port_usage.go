@@ -26,10 +26,11 @@ type SwitchPortUsage struct {
     Disabled                                 *bool                                       `json:"disabled,omitempty"`
     // Only if `mode`!=`dynamic` link connection mode
     Duplex                                   *SwitchPortUsageDuplexEnum                  `json:"duplex,omitempty"`
-    // Only if `mode`!=`dynamic` if dynamic vlan is used, specify the possible networks/vlans RADIUS can return
+    // Only if `mode`!=`dynamic` and `port_auth`==`dot1x`, if dynamic vlan is used, specify the possible networks/vlans RADIUS can return
     DynamicVlanNetworks                      []string                                    `json:"dynamic_vlan_networks,omitempty"`
     // Only if `mode`!=`dynamic` and `port_auth`==`dot1x` whether to enable MAC Auth
     EnableMacAuth                            *bool                                       `json:"enable_mac_auth,omitempty"`
+    // Only if `mode`!=`dynamic`
     EnableQos                                *bool                                       `json:"enable_qos,omitempty"`
     // Only if `mode`!=`dynamic` and `port_auth`==`dot1x` which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed)
     GuestNetwork                             Optional[string]                            `json:"guest_network"`
@@ -38,7 +39,7 @@ type SwitchPortUsage struct {
     InterSwitchLink                          *bool                                       `json:"inter_switch_link,omitempty"`
     // Only if `mode`!=`dynamic` and `enable_mac_auth`==`true`
     MacAuthOnly                              *bool                                       `json:"mac_auth_only,omitempty"`
-    // if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled.
+    // Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled.
     MacAuthProtocol                          *SwitchPortUsageMacAuthProtocolEnum         `json:"mac_auth_protocol,omitempty"`
     // Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
     MacLimit                                 *int                                        `json:"mac_limit,omitempty"`
@@ -48,12 +49,12 @@ type SwitchPortUsage struct {
     Mtu                                      *int                                        `json:"mtu,omitempty"`
     // Only if `mode`==`trunk`, the list of network/vlans
     Networks                                 []string                                    `json:"networks,omitempty"`
-    // Only if `mode`!=`dynamic` and `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses
+    // Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses
     PersistMac                               *bool                                       `json:"persist_mac,omitempty"`
     // Only if `mode`!=`dynamic` whether PoE capabilities are disabled for a port
     PoeDisabled                              *bool                                       `json:"poe_disabled,omitempty"`
     // Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x
-    PortAuth                                 *string                                     `json:"port_auth,omitempty"`
+    PortAuth                                 Optional[SwitchPortUsageDot1XEnum]          `json:"port_auth"`
     // Only if `mode`!=`dynamic` native network/vlan for untagged traffic
     PortNetwork                              *string                                     `json:"port_network,omitempty"`
     // Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range
@@ -159,8 +160,12 @@ func (s SwitchPortUsage) toMap() map[string]any {
     if s.PoeDisabled != nil {
         structMap["poe_disabled"] = s.PoeDisabled
     }
-    if s.PortAuth != nil {
-        structMap["port_auth"] = s.PortAuth
+    if s.PortAuth.IsValueSet() {
+        if s.PortAuth.Value() != nil {
+            structMap["port_auth"] = s.PortAuth.Value()
+        } else {
+            structMap["port_auth"] = nil
+        }
     }
     if s.PortNetwork != nil {
         structMap["port_network"] = s.PortNetwork
@@ -269,7 +274,7 @@ type switchPortUsage  struct {
     Networks                                 []string                                    `json:"networks,omitempty"`
     PersistMac                               *bool                                       `json:"persist_mac,omitempty"`
     PoeDisabled                              *bool                                       `json:"poe_disabled,omitempty"`
-    PortAuth                                 *string                                     `json:"port_auth,omitempty"`
+    PortAuth                                 Optional[SwitchPortUsageDot1XEnum]          `json:"port_auth"`
     PortNetwork                              *string                                     `json:"port_network,omitempty"`
     ReauthInterval                           *int                                        `json:"reauth_interval,omitempty"`
     RejectedNetwork                          Optional[string]                            `json:"rejected_network"`

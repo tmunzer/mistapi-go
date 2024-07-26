@@ -1963,6 +1963,7 @@ const (
 type SnmpVacmAccessItemTypeEnum string
 
 const (
+    SnmpVacmAccessItemTypeEnum_CONTEXTPREFIX        SnmpVacmAccessItemTypeEnum = "context_prefix"
     SnmpVacmAccessItemTypeEnum_DEFAULTCONTEXTPREFIX SnmpVacmAccessItemTypeEnum = "default_context_prefix"
 )
 
@@ -2134,6 +2135,14 @@ const (
     SwitchPortStatsTypeEnum_NAC        SwitchPortStatsTypeEnum = "nac"
 )
 
+// SwitchPortUsageDot1XEnum is a string enum.
+// Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x
+type SwitchPortUsageDot1XEnum string
+
+const (
+    SwitchPortUsageDot1XEnum_DOT1X SwitchPortUsageDot1XEnum = "dot1x"
+)
+
 // SwitchPortUsageDuplexEnum is a string enum.
 // Only if `mode`!=`dynamic` link connection mode
 type SwitchPortUsageDuplexEnum string
@@ -2171,7 +2180,7 @@ const (
 )
 
 // SwitchPortUsageMacAuthProtocolEnum is a string enum.
-// if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled.
+// Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled.
 type SwitchPortUsageMacAuthProtocolEnum string
 
 const (

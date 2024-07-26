@@ -16,7 +16,7 @@ Authentication Server
 | `KeywrapFormat` | [`*models.RadiusKeywrapFormatEnum`](../../doc/models/radius-keywrap-format-enum.md) | Optional | - |
 | `KeywrapKek` | `*string` | Optional | - |
 | `KeywrapMack` | `*string` | Optional | - |
-| `Port` | `*int` | Optional | Auth port of RADIUS server<br>**Default**: `1812` |
+| `Port` | `*int` | Optional | Auth port of RADIUS server<br>**Default**: `1812`<br>**Constraints**: `>= 1`, `<= 65535` |
 | `Secret` | `string` | Required | secret of RADIUS server |
 
 ## Example (as JSON)

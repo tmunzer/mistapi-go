@@ -13,8 +13,6 @@ type GatewayOobIpConfig struct {
     Ip                   *string                  `json:"ip,omitempty"`
     // if `type`==`static`
     Netmask              *string                  `json:"netmask,omitempty"`
-    // optional, the network to be used for mgmt
-    Network              *string                  `json:"network,omitempty"`
     // for HA Cluster, node1 can have different IP Config
     Node1                *GatewayOobIpConfigNode1 `json:"node1,omitempty"`
     Type                 *IpTypeEnum              `json:"type,omitempty"`
@@ -47,9 +45,6 @@ func (g GatewayOobIpConfig) toMap() map[string]any {
     if g.Netmask != nil {
         structMap["netmask"] = g.Netmask
     }
-    if g.Network != nil {
-        structMap["network"] = g.Network
-    }
     if g.Node1 != nil {
         structMap["node1"] = g.Node1.toMap()
     }
@@ -76,7 +71,7 @@ func (g *GatewayOobIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "ip", "netmask", "network", "node1", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "vlan_id")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "ip", "netmask", "node1", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "vlan_id")
     if err != nil {
     	return err
     }
@@ -85,7 +80,6 @@ func (g *GatewayOobIpConfig) UnmarshalJSON(input []byte) error {
     g.Gateway = temp.Gateway
     g.Ip = temp.Ip
     g.Netmask = temp.Netmask
-    g.Network = temp.Network
     g.Node1 = temp.Node1
     g.Type = temp.Type
     g.UseMgmtVrf = temp.UseMgmtVrf
@@ -99,7 +93,6 @@ type gatewayOobIpConfig  struct {
     Gateway              *string                  `json:"gateway,omitempty"`
     Ip                   *string                  `json:"ip,omitempty"`
     Netmask              *string                  `json:"netmask,omitempty"`
-    Network              *string                  `json:"network,omitempty"`
     Node1                *GatewayOobIpConfigNode1 `json:"node1,omitempty"`
     Type                 *IpTypeEnum              `json:"type,omitempty"`
     UseMgmtVrf           *bool                    `json:"use_mgmt_vrf,omitempty"`

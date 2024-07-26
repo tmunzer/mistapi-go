@@ -6,7 +6,7 @@ import (
 
 // DhcpdConfig1 represents a DhcpdConfig1 struct.
 type DhcpdConfig1 struct {
-    // if set to `true`, disable the DHCP server
+    // if set to `true`, enable the DHCP server
     Enabled              *bool                              `json:"enabled,omitempty"`
     // if `type`==`local` - optional, if not defined, system one will be used
     DnsServers           []string                           `json:"dns_servers,omitempty"`

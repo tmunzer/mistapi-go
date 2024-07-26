@@ -14,7 +14,6 @@ out-of-band (vme/em0/fxp0) IP config
 | `Gateway` | `*string` | Optional | if `type`==`static` |
 | `Ip` | `*string` | Optional | if `type`==`static` |
 | `Netmask` | `*string` | Optional | if `type`==`static` |
-| `Network` | `*string` | Optional | optional, the network to be used for mgmt |
 | `Node1` | [`*models.GatewayOobIpConfigNode1`](../../doc/models/gateway-oob-ip-config-node-1.md) | Optional | for HA Cluster, node1 can have different IP Config |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | **Default**: `"dhcp"` |
 | `UseMgmtVrf` | `*bool` | Optional | if supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
@@ -31,7 +30,6 @@ out-of-band (vme/em0/fxp0) IP config
   "gateway": "gateway4",
   "ip": "ip8",
   "netmask": "netmask4",
-  "network": "network0",
   "node1": {
     "gateway": "gateway2",
     "ip": "ip6",

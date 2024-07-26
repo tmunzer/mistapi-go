@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | if set to `true`, disable the DHCP server<br>**Default**: `false` |
+| `Enabled` | `*bool` | Optional | if set to `true`, enable the DHCP server<br>**Default**: `false` |
 | `DnsServers` | `[]string` | Optional | if `type`==`local` - optional, if not defined, system one will be used |
 | `DnsSuffix` | `[]string` | Optional | if `type`==`local` - optional, if not defined, system one will be used |
 | `FixedBindings` | [`map[string]models.DhcpdConfigFixedBinding`](../../doc/models/dhcpd-config-fixed-binding.md) | Optional | Property key is the MAC Address |

@@ -17,7 +17,7 @@ Junos Radius config
 | `AuthServersRetries` | `*int` | Optional | radius auth session retries<br>**Default**: `3` |
 | `AuthServersTimeout` | `*int` | Optional | radius auth session timeout<br>**Default**: `5` |
 | `CoaEnabled` | `*bool` | Optional | **Default**: `false` |
-| `CoaPort` | `*int` | Optional | **Default**: `3799` |
+| `CoaPort` | `*int` | Optional | **Default**: `3799`<br>**Constraints**: `>= 1`, `<= 65535` |
 | `Network` | `*string` | Optional | use `network`or `source_ip`<br>which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip |
 | `SourceIp` | `*string` | Optional | use `network`or `source_ip` |
 

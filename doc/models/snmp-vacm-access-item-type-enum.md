@@ -9,5 +9,6 @@
 
 | Name |
 |  --- |
+| `context_prefix` |
 | `default_context_prefix` |
 
