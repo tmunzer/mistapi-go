@@ -55,8 +55,8 @@ body := models.NetworkTemplate{
         },
     },
     OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    VrfInstances:         map[string]models.VrfInstance{
-        "guest": models.VrfInstance{
+    VrfInstances:         map[string]models.SwitchVrfInstance{
+        "guest": models.SwitchVrfInstance{
             ExtraRoutes: map[string]models.VrfExtraRoute{
                 "0.0.0.0/0": models.VrfExtraRoute{
                     Via: models.ToPointer("192.168.31.1"),
@@ -602,8 +602,8 @@ body := models.NetworkTemplate{
         },
     },
     OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    VrfInstances:         map[string]models.VrfInstance{
-        "guest": models.VrfInstance{
+    VrfInstances:         map[string]models.SwitchVrfInstance{
+        "guest": models.SwitchVrfInstance{
             ExtraRoutes: map[string]models.VrfExtraRoute{
                 "0.0.0.0/0": models.VrfExtraRoute{
                     Via: models.ToPointer("192.168.31.1"),

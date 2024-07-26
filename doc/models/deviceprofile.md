@@ -57,6 +57,8 @@
 | `ServicePolicies` | [`[]models.ServicePolicy`](../../doc/models/service-policy.md) | Optional | - |
 | `TunnelConfigs` | [`map[string]models.TunnelConfigs`](../../doc/models/tunnel-configs.md) | Optional | Property key is the tunnel name |
 | `TunnelProviderOptions` | [`*models.TunnelProviderOptions`](../../doc/models/tunnel-provider-options.md) | Optional | - |
+| `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
+| `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
 
 ## Example (as JSON)
 
@@ -82,6 +84,14 @@
   },
   "ntpOverride": false,
   "router_id": "10.2.1.10",
+  "vrf_instances": {
+    "CORP_VRF": {
+      "networks": [
+        "CORP_NET",
+        "MGMT_NET"
+      ]
+    }
+  },
   "aeroscout": {
     "enabled": false,
     "host": "host6",

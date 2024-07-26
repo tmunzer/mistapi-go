@@ -481,8 +481,8 @@ body := models.SiteSetting{
         "RADIUS_IP1": "172.31.2.5",
         "RADIUS_SECRET": "11s64632d",
     },
-    VrfInstances:                    map[string]models.VrfInstance{
-        "guest": models.VrfInstance{
+    VrfInstances:                    map[string]models.SwitchVrfInstance{
+        "guest": models.SwitchVrfInstance{
             ExtraRoutes: map[string]models.VrfExtraRoute{
                 "0.0.0.0/0": models.VrfExtraRoute{
                     Via: models.ToPointer("192.168.31.1"),

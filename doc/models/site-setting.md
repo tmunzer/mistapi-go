@@ -85,7 +85,7 @@ Site Settings
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `Vna` | [`*models.SiteSettingVna`](../../doc/models/site-setting-vna.md) | Optional | - |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
-| `VrfInstances` | [`map[string]models.VrfInstance`](../../doc/models/vrf-instance.md) | Optional | Property key is the network name |
+| `VrfInstances` | [`map[string]models.SwitchVrfInstance`](../../doc/models/switch-vrf-instance.md) | Optional | Property key is the network name |
 | `VrrpGroups` | [`map[string]models.VrrpGroup`](../../doc/models/vrrp-group.md) | Optional | Property key is the vrrp group |
 | `VsInstance` | [`*models.VsInstance`](../../doc/models/vs-instance.md) | Optional | - |
 | `WanVna` | [`*models.SiteSettingWanVna`](../../doc/models/site-setting-wan-vna.md) | Optional | - |

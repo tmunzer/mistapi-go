@@ -133,7 +133,7 @@ type SiteSetting struct {
     Vna                             *SiteSettingVna                        `json:"vna,omitempty"`
     VrfConfig                       *VrfConfig                             `json:"vrf_config,omitempty"`
     // Property key is the network name
-    VrfInstances                    map[string]VrfInstance                 `json:"vrf_instances,omitempty"`
+    VrfInstances                    map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     // Property key is the vrrp group
     VrrpGroups                      map[string]VrrpGroup                   `json:"vrrp_groups,omitempty"`
     VsInstance                      *VsInstance                            `json:"vs_instance,omitempty"`
@@ -606,7 +606,7 @@ type siteSetting  struct {
     Vars                            map[string]string                      `json:"vars,omitempty"`
     Vna                             *SiteSettingVna                        `json:"vna,omitempty"`
     VrfConfig                       *VrfConfig                             `json:"vrf_config,omitempty"`
-    VrfInstances                    map[string]VrfInstance                 `json:"vrf_instances,omitempty"`
+    VrfInstances                    map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     VrrpGroups                      map[string]VrrpGroup                   `json:"vrrp_groups,omitempty"`
     VsInstance                      *VsInstance                            `json:"vs_instance,omitempty"`
     WanVna                          *SiteSettingWanVna                     `json:"wan_vna,omitempty"`

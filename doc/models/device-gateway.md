@@ -51,6 +51,8 @@ device gateway
 | `TunnelProviderOptions` | [`*models.TunnelProviderOptions`](../../doc/models/tunnel-provider-options.md) | Optional | - |
 | `Type` | [`*models.DeviceTypeGatewayEnum`](../../doc/models/device-type-gateway-enum.md) | Optional | Device Type |
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
+| `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
+| `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
 | `X` | `*float64` | Optional | x in pixel |
 | `Y` | `*float64` | Optional | y in pixel |
 
@@ -70,6 +72,14 @@ device gateway
   "vars": {
     "RADIUS_IP1": "172.31.2.5",
     "RADIUS_SECRET": "11s64632d"
+  },
+  "vrf_instances": {
+    "CORP_VRF": {
+      "networks": [
+        "CORP_NET",
+        "MGMT_NET"
+      ]
+    }
   },
   "x": 53.5,
   "y": 173.1,

@@ -133,7 +133,7 @@ type ConfigDevice struct {
     VirtualChassis        *SwitchVirtualChassis              `json:"virtual_chassis,omitempty"`
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
     // Property key is the network name
-    VrfInstances          map[string]VrfInstance             `json:"vrf_instances,omitempty"`
+    VrfInstances          *SwitchVrfInstances                `json:"vrf_instances,omitempty"`
     // Junos VRRP config
     VrrpConfig            *VrrpConfig                        `json:"vrrp_config,omitempty"`
     BgpConfig             map[string]BgpConfig               `json:"bgp_config,omitempty"`
@@ -398,7 +398,7 @@ func (c ConfigDevice) toMap() map[string]any {
         structMap["vrf_config"] = c.VrfConfig.toMap()
     }
     if c.VrfInstances != nil {
-        structMap["vrf_instances"] = c.VrfInstances
+        structMap["vrf_instances"] = c.VrfInstances.toMap()
     }
     if c.VrrpConfig != nil {
         structMap["vrrp_config"] = c.VrrpConfig.toMap()
@@ -607,7 +607,7 @@ type configDevice  struct {
     UseRouterIdAsSourceIp *bool                              `json:"use_router_id_as_source_ip,omitempty"`
     VirtualChassis        *SwitchVirtualChassis              `json:"virtual_chassis,omitempty"`
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
-    VrfInstances          map[string]VrfInstance             `json:"vrf_instances,omitempty"`
+    VrfInstances          *SwitchVrfInstances                `json:"vrf_instances,omitempty"`
     VrrpConfig            *VrrpConfig                        `json:"vrrp_config,omitempty"`
     BgpConfig             map[string]BgpConfig               `json:"bgp_config,omitempty"`
     IdpProfiles           map[string]IdpProfile              `json:"idp_profiles,omitempty"`

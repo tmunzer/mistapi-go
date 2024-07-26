@@ -39,6 +39,8 @@ Gateway Template is applied to a site for gateway(s) in a site.
 | `TunnelConfigs` | [`map[string]models.TunnelConfigs`](../../doc/models/tunnel-configs.md) | Optional | Property key is the tunnel name |
 | `TunnelProviderOptions` | [`*models.TunnelProviderOptions`](../../doc/models/tunnel-provider-options.md) | Optional | - |
 | `Type` | [`*models.GatewayTemplateTypeEnum`](../../doc/models/gateway-template-type-enum.md) | Optional | **Default**: `"standalone"` |
+| `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
+| `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
 
 ## Example (as JSON)
 
@@ -55,6 +57,14 @@ Gateway Template is applied to a site for gateway(s) in a site.
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "router_id": "10.2.1.10",
   "type": "standalone",
+  "vrf_instances": {
+    "CORP_VRF": {
+      "networks": [
+        "CORP_NET",
+        "MGMT_NET"
+      ]
+    }
+  },
   "additional_config_cmds": [
     "additional_config_cmds0"
   ],

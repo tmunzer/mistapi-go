@@ -55,6 +55,9 @@ type DeviceprofileGateway struct {
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     // Device Type
     Type                  *DeviceTypeGatewayEnum             `json:"type,omitempty"`
+    VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
+    // Property key is the network name
+    VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
     AdditionalProperties  map[string]any                     `json:"_"`
 }
 
@@ -152,6 +155,12 @@ func (d DeviceprofileGateway) toMap() map[string]any {
     if d.Type != nil {
         structMap["type"] = d.Type
     }
+    if d.VrfConfig != nil {
+        structMap["vrf_config"] = d.VrfConfig.toMap()
+    }
+    if d.VrfInstances != nil {
+        structMap["vrf_instances"] = d.VrfInstances
+    }
     return structMap
 }
 
@@ -167,7 +176,7 @@ func (d *DeviceprofileGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type", "vrf_config", "vrf_instances")
     if err != nil {
     	return err
     }
@@ -201,6 +210,8 @@ func (d *DeviceprofileGateway) UnmarshalJSON(input []byte) error {
     d.TunnelConfigs = temp.TunnelConfigs
     d.TunnelProviderOptions = temp.TunnelProviderOptions
     d.Type = temp.Type
+    d.VrfConfig = temp.VrfConfig
+    d.VrfInstances = temp.VrfInstances
     return nil
 }
 
@@ -234,6 +245,8 @@ type deviceprofileGateway  struct {
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     Type                  *DeviceTypeGatewayEnum             `json:"type,omitempty"`
+    VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
+    VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
 }
 
 func (d *deviceprofileGateway) validate() error {

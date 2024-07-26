@@ -89,7 +89,7 @@ type DeviceSwitch struct {
     VirtualChassis        *SwitchVirtualChassis                  `json:"virtual_chassis,omitempty"`
     VrfConfig             *VrfConfig                             `json:"vrf_config,omitempty"`
     // Property key is the network name
-    VrfInstances          map[string]VrfInstance                 `json:"vrf_instances,omitempty"`
+    VrfInstances          map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     // Junos VRRP config
     VrrpConfig            *VrrpConfig                            `json:"vrrp_config,omitempty"`
     // x in pixel
@@ -406,7 +406,7 @@ type deviceSwitch  struct {
     Vars                  map[string]string                      `json:"vars,omitempty"`
     VirtualChassis        *SwitchVirtualChassis                  `json:"virtual_chassis,omitempty"`
     VrfConfig             *VrfConfig                             `json:"vrf_config,omitempty"`
-    VrfInstances          map[string]VrfInstance                 `json:"vrf_instances,omitempty"`
+    VrfInstances          map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     VrrpConfig            *VrrpConfig                            `json:"vrrp_config,omitempty"`
     X                     *float64                               `json:"x,omitempty"`
     Y                     *float64                               `json:"y,omitempty"`

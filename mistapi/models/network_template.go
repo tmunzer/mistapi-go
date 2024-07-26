@@ -48,7 +48,7 @@ type NetworkTemplate struct {
     SwitchMgmt           *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
     VrfConfig            *VrfConfig                             `json:"vrf_config,omitempty"`
     // Property key is the network name
-    VrfInstances         map[string]VrfInstance                 `json:"vrf_instances,omitempty"`
+    VrfInstances         map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     AdditionalProperties map[string]any                         `json:"_"`
 }
 
@@ -215,5 +215,5 @@ type networkTemplate  struct {
     SwitchMatching       *SwitchMatching                        `json:"switch_matching,omitempty"`
     SwitchMgmt           *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
     VrfConfig            *VrfConfig                             `json:"vrf_config,omitempty"`
-    VrfInstances         map[string]VrfInstance                 `json:"vrf_instances,omitempty"`
+    VrfInstances         map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
 }

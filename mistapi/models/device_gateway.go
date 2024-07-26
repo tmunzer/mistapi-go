@@ -68,6 +68,9 @@ type DeviceGateway struct {
     Type                  *DeviceTypeGatewayEnum             `json:"type,omitempty"`
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                  map[string]string                  `json:"vars,omitempty"`
+    VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
+    // Property key is the network name
+    VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
     // x in pixel
     X                     *float64                           `json:"x,omitempty"`
     // y in pixel
@@ -219,6 +222,12 @@ func (d DeviceGateway) toMap() map[string]any {
     if d.Vars != nil {
         structMap["vars"] = d.Vars
     }
+    if d.VrfConfig != nil {
+        structMap["vrf_config"] = d.VrfConfig.toMap()
+    }
+    if d.VrfInstances != nil {
+        structMap["vrf_instances"] = d.VrfInstances
+    }
     if d.X != nil {
         structMap["x"] = d.X
     }
@@ -236,7 +245,7 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "x", "y")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "vrf_config", "vrf_instances", "x", "y")
     if err != nil {
     	return err
     }
@@ -282,6 +291,8 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
     d.TunnelProviderOptions = temp.TunnelProviderOptions
     d.Type = temp.Type
     d.Vars = temp.Vars
+    d.VrfConfig = temp.VrfConfig
+    d.VrfInstances = temp.VrfInstances
     d.X = temp.X
     d.Y = temp.Y
     return nil
@@ -329,6 +340,8 @@ type deviceGateway  struct {
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     Type                  *DeviceTypeGatewayEnum             `json:"type,omitempty"`
     Vars                  map[string]string                  `json:"vars,omitempty"`
+    VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
+    VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
     X                     *float64                           `json:"x,omitempty"`
     Y                     *float64                           `json:"y,omitempty"`
 }

@@ -1,9 +1,9 @@
 
-# Vrf Instance
+# Switch Vrf Instance
 
 ## Structure
 
-`VrfInstance`
+`SwitchVrfInstance`
 
 ## Fields
 

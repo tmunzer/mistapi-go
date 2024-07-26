@@ -36,7 +36,7 @@ Network Template
 | `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | Switch template |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | - |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
-| `VrfInstances` | [`map[string]models.VrfInstance`](../../doc/models/vrf-instance.md) | Optional | Property key is the network name |
+| `VrfInstances` | [`map[string]models.SwitchVrfInstance`](../../doc/models/switch-vrf-instance.md) | Optional | Property key is the network name |
 
 ## Example (as JSON)
 

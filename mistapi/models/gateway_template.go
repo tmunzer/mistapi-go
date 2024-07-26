@@ -54,6 +54,9 @@ type GatewayTemplate struct {
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     Type                  *GatewayTemplateTypeEnum           `json:"type,omitempty"`
+    VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
+    // Property key is the network name
+    VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
     AdditionalProperties  map[string]any                     `json:"_"`
 }
 
@@ -151,6 +154,12 @@ func (g GatewayTemplate) toMap() map[string]any {
     if g.Type != nil {
         structMap["type"] = g.Type
     }
+    if g.VrfConfig != nil {
+        structMap["vrf_config"] = g.VrfConfig.toMap()
+    }
+    if g.VrfInstances != nil {
+        structMap["vrf_instances"] = g.VrfInstances
+    }
     return structMap
 }
 
@@ -166,7 +175,7 @@ func (g *GatewayTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type", "vrf_config", "vrf_instances")
     if err != nil {
     	return err
     }
@@ -200,6 +209,8 @@ func (g *GatewayTemplate) UnmarshalJSON(input []byte) error {
     g.TunnelConfigs = temp.TunnelConfigs
     g.TunnelProviderOptions = temp.TunnelProviderOptions
     g.Type = temp.Type
+    g.VrfConfig = temp.VrfConfig
+    g.VrfInstances = temp.VrfInstances
     return nil
 }
 
@@ -233,6 +244,8 @@ type gatewayTemplate  struct {
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     Type                  *GatewayTemplateTypeEnum           `json:"type,omitempty"`
+    VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
+    VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
 }
 
 func (g *gatewayTemplate) validate() error {

@@ -90,6 +90,9 @@ type Deviceprofile struct {
     // Property key is the tunnel name
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
+    VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
+    // Property key is the network name
+    VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
     AdditionalProperties  map[string]any                     `json:"_"`
 }
 
@@ -253,6 +256,12 @@ func (d Deviceprofile) toMap() map[string]any {
     if d.TunnelProviderOptions != nil {
         structMap["tunnel_provider_options"] = d.TunnelProviderOptions.toMap()
     }
+    if d.VrfConfig != nil {
+        structMap["vrf_config"] = d.VrfConfig.toMap()
+    }
+    if d.VrfInstances != nil {
+        structMap["vrf_instances"] = d.VrfInstances
+    }
     return structMap
 }
 
@@ -264,7 +273,7 @@ func (d *Deviceprofile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "additional_config_cmds", "bgp_config", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "idp_profiles", "ip_configs", "networks", "ntpOverride", "oob_ip_config", "path_preferences", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "additional_config_cmds", "bgp_config", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "idp_profiles", "ip_configs", "networks", "ntpOverride", "oob_ip_config", "path_preferences", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "vrf_config", "vrf_instances")
     if err != nil {
     	return err
     }
@@ -318,6 +327,8 @@ func (d *Deviceprofile) UnmarshalJSON(input []byte) error {
     d.ServicePolicies = temp.ServicePolicies
     d.TunnelConfigs = temp.TunnelConfigs
     d.TunnelProviderOptions = temp.TunnelProviderOptions
+    d.VrfConfig = temp.VrfConfig
+    d.VrfInstances = temp.VrfInstances
     return nil
 }
 
@@ -371,4 +382,6 @@ type deviceprofile  struct {
     ServicePolicies       []ServicePolicy                    `json:"service_policies,omitempty"`
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
+    VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
+    VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
 }
