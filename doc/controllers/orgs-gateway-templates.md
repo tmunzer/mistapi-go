@@ -163,6 +163,7 @@ body := models.GatewayTemplate{
                 Enabled:      models.ToPointer(false),
             }),
             Name:            models.ToPointer("ITParis-Internal"),
+            PathPreference:  models.ToPointer("core"),
             Services:        []string{
                 "internal_dns",
                 "drive",
@@ -177,6 +178,7 @@ body := models.GatewayTemplate{
                 Enabled:      models.ToPointer(false),
             }),
             Name:            models.ToPointer("ITParis-internet"),
+            PathPreference:  models.ToPointer("untrust"),
             Services:        []string{
                 "internet_any",
             },
@@ -192,6 +194,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("mgmt-to-core"),
+            PathPreference:  models.ToPointer("core"),
             Services:        []string{
                 "internal_dns",
                 "internal_ntp",
@@ -208,6 +211,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("mgmt-to-mxe-tt-in"),
+            PathPreference:  models.ToPointer("mxe-in"),
             Services:        []string{
                 "internal_any",
             },
@@ -223,6 +227,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("mgmt-to-untrust"),
+            PathPreference:  models.ToPointer("untrust"),
             Services:        []string{
                 "mxedge-updates",
                 "radsec",
@@ -242,6 +247,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("mxe-data-0-to-untrust"),
+            PathPreference:  models.ToPointer("untrust"),
             Services:        []string{
                 "internet_any",
             },
@@ -257,6 +263,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("core-to-mgt"),
+            PathPreference:  models.ToPointer("mgmt"),
             Services:        []string{
                 "mgmt",
             },
@@ -275,6 +282,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("core-to-edge-in"),
+            PathPreference:  models.ToPointer("mxe-in"),
             Services:        []string{
                 "internal_any",
             },
@@ -291,6 +299,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("core-to-iot"),
+            PathPreference:  models.ToPointer("iot"),
             Services:        []string{
                 "iot",
             },
@@ -306,6 +315,7 @@ body := models.GatewayTemplate{
                 Enabled:      models.ToPointer(false),
             }),
             Name:            models.ToPointer("tanker-to-cctv"),
+            PathPreference:  models.ToPointer("iot"),
             Services:        []string{
                 "rtsp",
             },
@@ -319,6 +329,7 @@ body := models.GatewayTemplate{
                 Enabled:      models.ToPointer(false),
             }),
             Name:            models.ToPointer("core-to-untrust"),
+            PathPreference:  models.ToPointer("untrust"),
             Services:        []string{
                 "internet_any",
             },
@@ -336,6 +347,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("iot-upgrade-cctv"),
+            PathPreference:  models.ToPointer("untrust"),
             Services:        []string{
                 "motioneye",
                 "nodejs",
@@ -684,6 +696,7 @@ body := models.GatewayTemplate{
                 Enabled:      models.ToPointer(false),
             }),
             Name:            models.ToPointer("ITParis-Internal"),
+            PathPreference:  models.ToPointer("core"),
             Services:        []string{
                 "internal_dns",
                 "drive",
@@ -698,6 +711,7 @@ body := models.GatewayTemplate{
                 Enabled:      models.ToPointer(false),
             }),
             Name:            models.ToPointer("ITParis-internet"),
+            PathPreference:  models.ToPointer("untrust"),
             Services:        []string{
                 "internet_any",
             },
@@ -713,6 +727,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("mgmt-to-core"),
+            PathPreference:  models.ToPointer("core"),
             Services:        []string{
                 "internal_dns",
                 "internal_ntp",
@@ -729,6 +744,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("mgmt-to-mxe-tt-in"),
+            PathPreference:  models.ToPointer("mxe-in"),
             Services:        []string{
                 "internal_any",
             },
@@ -744,6 +760,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("mgmt-to-untrust"),
+            PathPreference:  models.ToPointer("untrust"),
             Services:        []string{
                 "mxedge-updates",
                 "radsec",
@@ -763,6 +780,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("mxe-data-0-to-untrust"),
+            PathPreference:  models.ToPointer("untrust"),
             Services:        []string{
                 "internet_any",
             },
@@ -778,6 +796,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("core-to-mgt"),
+            PathPreference:  models.ToPointer("mgmt"),
             Services:        []string{
                 "mgmt",
             },
@@ -796,6 +815,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("core-to-edge-in"),
+            PathPreference:  models.ToPointer("mxe-in"),
             Services:        []string{
                 "internal_any",
             },
@@ -812,6 +832,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("core-to-iot"),
+            PathPreference:  models.ToPointer("iot"),
             Services:        []string{
                 "iot",
             },
@@ -827,6 +848,7 @@ body := models.GatewayTemplate{
                 Enabled:      models.ToPointer(false),
             }),
             Name:            models.ToPointer("tanker-to-cctv"),
+            PathPreference:  models.ToPointer("iot"),
             Services:        []string{
                 "rtsp",
             },
@@ -840,6 +862,7 @@ body := models.GatewayTemplate{
                 Enabled:      models.ToPointer(false),
             }),
             Name:            models.ToPointer("core-to-untrust"),
+            PathPreference:  models.ToPointer("untrust"),
             Services:        []string{
                 "internet_any",
             },
@@ -857,6 +880,7 @@ body := models.GatewayTemplate{
                 Profile:      models.ToPointer("standard"),
             }),
             Name:            models.ToPointer("iot-upgrade-cctv"),
+            PathPreference:  models.ToPointer("untrust"),
             Services:        []string{
                 "motioneye",
                 "nodejs",

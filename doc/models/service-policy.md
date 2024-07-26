@@ -15,7 +15,7 @@
 | `Idp` | [`*models.IdpConfig`](../../doc/models/idp-config.md) | Optional | - |
 | `LocalRouting` | `*bool` | Optional | access within the same VRF<br>**Default**: `false` |
 | `Name` | `*string` | Optional | - |
-| `PathPreferences` | `*string` | Optional | by default, we derive all paths available and use them<br>optionally, you can customize by using `path_preference` |
+| `PathPreference` | `*string` | Optional | by default, we derive all paths available and use them<br>optionally, you can customize by using `path_preference` |
 | `ServicepolicyId` | `*uuid.UUID` | Optional | used to link servicepolicy defined at org level and overwrite some attributes |
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |

@@ -17,7 +17,7 @@ type ServicePolicy struct {
     Name                 *string                `json:"name,omitempty"`
     // by default, we derive all paths available and use them
     // optionally, you can customize by using `path_preference`
-    PathPreferences      *string                `json:"path_preferences,omitempty"`
+    PathPreference       *string                `json:"path_preference,omitempty"`
     // used to link servicepolicy defined at org level and overwrite some attributes
     ServicepolicyId      *uuid.UUID             `json:"servicepolicy_id,omitempty"`
     Services             []string               `json:"services,omitempty"`
@@ -55,8 +55,8 @@ func (s ServicePolicy) toMap() map[string]any {
     if s.Name != nil {
         structMap["name"] = s.Name
     }
-    if s.PathPreferences != nil {
-        structMap["path_preferences"] = s.PathPreferences
+    if s.PathPreference != nil {
+        structMap["path_preference"] = s.PathPreference
     }
     if s.ServicepolicyId != nil {
         structMap["servicepolicy_id"] = s.ServicepolicyId
@@ -78,7 +78,7 @@ func (s *ServicePolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "appqoe", "ewf", "idp", "local_routing", "name", "path_preferences", "servicepolicy_id", "services", "tenants")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "appqoe", "ewf", "idp", "local_routing", "name", "path_preference", "servicepolicy_id", "services", "tenants")
     if err != nil {
     	return err
     }
@@ -90,7 +90,7 @@ func (s *ServicePolicy) UnmarshalJSON(input []byte) error {
     s.Idp = temp.Idp
     s.LocalRouting = temp.LocalRouting
     s.Name = temp.Name
-    s.PathPreferences = temp.PathPreferences
+    s.PathPreference = temp.PathPreference
     s.ServicepolicyId = temp.ServicepolicyId
     s.Services = temp.Services
     s.Tenants = temp.Tenants
@@ -105,7 +105,7 @@ type servicePolicy  struct {
     Idp             *IdpConfig             `json:"idp,omitempty"`
     LocalRouting    *bool                  `json:"local_routing,omitempty"`
     Name            *string                `json:"name,omitempty"`
-    PathPreferences *string                `json:"path_preferences,omitempty"`
+    PathPreference  *string                `json:"path_preference,omitempty"`
     ServicepolicyId *uuid.UUID             `json:"servicepolicy_id,omitempty"`
     Services        []string               `json:"services,omitempty"`
     Tenants         []string               `json:"tenants,omitempty"`
