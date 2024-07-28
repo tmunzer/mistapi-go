@@ -22,17 +22,17 @@ type Service struct {
     CreatedTime                   *float64                   `json:"created_time,omitempty"`
     Description                   *string                    `json:"description,omitempty"`
     // for SSR only, when `traffic_type`==`custom`. 0-63 or variable
-    Dscp                          *string                    `json:"dscp,omitempty"`
+    Dscp                          *ServiceDscp               `json:"dscp,omitempty"`
     FailoverPolicy                *ServiceFailoverPolicyEnum `json:"failover_policy,omitempty"`
     // if `type`==`custom`, web filtering
     Hostnames                     []string                   `json:"hostnames,omitempty"`
     Id                            *uuid.UUID                 `json:"id,omitempty"`
     // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-4294967295 or variable
-    MaxJitter                     *string                    `json:"max_jitter,omitempty"`
+    MaxJitter                     *ServiceMaxJitter          `json:"max_jitter,omitempty"`
     // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-4294967295 or variable
-    MaxLatency                    *string                    `json:"max_latency,omitempty"`
+    MaxLatency                    *ServiceMaxLatency         `json:"max_latency,omitempty"`
     // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable
-    MaxLoss                       *string                    `json:"max_loss,omitempty"`
+    MaxLoss                       *ServiceMaxLoss            `json:"max_loss,omitempty"`
     ModifiedTime                  *float64                   `json:"modified_time,omitempty"`
     Name                          *string                    `json:"name,omitempty"`
     OrgId                         *uuid.UUID                 `json:"org_id,omitempty"`
@@ -84,7 +84,7 @@ func (s Service) toMap() map[string]any {
         structMap["description"] = s.Description
     }
     if s.Dscp != nil {
-        structMap["dscp"] = s.Dscp
+        structMap["dscp"] = s.Dscp.toMap()
     }
     if s.FailoverPolicy != nil {
         structMap["failover_policy"] = s.FailoverPolicy
@@ -96,13 +96,13 @@ func (s Service) toMap() map[string]any {
         structMap["id"] = s.Id
     }
     if s.MaxJitter != nil {
-        structMap["max_jitter"] = s.MaxJitter
+        structMap["max_jitter"] = s.MaxJitter.toMap()
     }
     if s.MaxLatency != nil {
-        structMap["max_latency"] = s.MaxLatency
+        structMap["max_latency"] = s.MaxLatency.toMap()
     }
     if s.MaxLoss != nil {
-        structMap["max_loss"] = s.MaxLoss
+        structMap["max_loss"] = s.MaxLoss.toMap()
     }
     if s.ModifiedTime != nil {
         structMap["modified_time"] = s.ModifiedTime
@@ -185,13 +185,13 @@ type service  struct {
     Apps                          []string                   `json:"apps,omitempty"`
     CreatedTime                   *float64                   `json:"created_time,omitempty"`
     Description                   *string                    `json:"description,omitempty"`
-    Dscp                          *string                    `json:"dscp,omitempty"`
+    Dscp                          *ServiceDscp               `json:"dscp,omitempty"`
     FailoverPolicy                *ServiceFailoverPolicyEnum `json:"failover_policy,omitempty"`
     Hostnames                     []string                   `json:"hostnames,omitempty"`
     Id                            *uuid.UUID                 `json:"id,omitempty"`
-    MaxJitter                     *string                    `json:"max_jitter,omitempty"`
-    MaxLatency                    *string                    `json:"max_latency,omitempty"`
-    MaxLoss                       *string                    `json:"max_loss,omitempty"`
+    MaxJitter                     *ServiceMaxJitter          `json:"max_jitter,omitempty"`
+    MaxLatency                    *ServiceMaxLatency         `json:"max_latency,omitempty"`
+    MaxLoss                       *ServiceMaxLoss            `json:"max_loss,omitempty"`
     ModifiedTime                  *float64                   `json:"modified_time,omitempty"`
     Name                          *string                    `json:"name,omitempty"`
     OrgId                         *uuid.UUID                 `json:"org_id,omitempty"`

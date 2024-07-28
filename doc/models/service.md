@@ -17,13 +17,13 @@ Applications used for the Gateway configurations
 | `Apps` | `[]string` | Optional | when `type`==`apps`, list of applications are available through:<br><br>* /api/v1/const/applications<br>* /api/v1/const/gateway_applications<br>* /insight/top_app_by-bytes?wired=true |
 | `CreatedTime` | `*float64` | Optional | - |
 | `Description` | `*string` | Optional | - |
-| `Dscp` | `*string` | Optional | for SSR only, when `traffic_type`==`custom`. 0-63 or variable |
+| `Dscp` | [`*models.ServiceDscp`](../../doc/models/containers/service-dscp.md) | Optional | This is a container for one-of cases. |
 | `FailoverPolicy` | [`*models.ServiceFailoverPolicyEnum`](../../doc/models/service-failover-policy-enum.md) | Optional | **Default**: `"revertable"` |
 | `Hostnames` | `[]string` | Optional | if `type`==`custom`, web filtering |
 | `Id` | `*uuid.UUID` | Optional | - |
-| `MaxJitter` | `*string` | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-4294967295 or variable |
-| `MaxLatency` | `*string` | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-4294967295 or variable |
-| `MaxLoss` | `*string` | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable |
+| `MaxJitter` | [`*models.ServiceMaxJitter`](../../doc/models/containers/service-max-jitter.md) | Optional | This is a container for one-of cases. |
+| `MaxLatency` | [`*models.ServiceMaxLatency`](../../doc/models/containers/service-max-latency.md) | Optional | This is a container for one-of cases. |
+| `MaxLoss` | [`*models.ServiceMaxLoss`](../../doc/models/containers/service-max-loss.md) | Optional | This is a container for one-of cases. |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |

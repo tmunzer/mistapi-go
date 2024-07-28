@@ -82,15 +82,15 @@ if err != nil {
     "string"
   ],
   "created_time": 0,
-  "dscp": "0",
+  "dscp": 0,
   "failover_policy": "revertable",
   "hostnames": [
     "string"
   ],
   "id": "497f6eca-6276-5004-bfeb-53cbbbba6f16",
-  "max_jitter": "0",
-  "max_latency": "0",
-  "max_loss": "0",
+  "max_jitter": 0,
+  "max_latency": 0,
+  "max_loss": 0,
   "modified_time": 0,
   "name": "string",
   "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
@@ -228,15 +228,15 @@ if err != nil {
     "string"
   ],
   "created_time": 0,
-  "dscp": "0",
+  "dscp": 0,
   "failover_policy": "revertable",
   "hostnames": [
     "string"
   ],
   "id": "497f6eca-6276-5004-bfeb-53cbbbba6f16",
-  "max_jitter": "0",
-  "max_latency": "0",
-  "max_loss": "0",
+  "max_jitter": 0,
+  "max_latency": 0,
+  "max_loss": 0,
   "modified_time": 0,
   "name": "string",
   "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
@@ -323,13 +323,13 @@ if err != nil {
     "apps": [
       "string"
     ],
-    "dscp": "8",
+    "dscp": 8,
     "hostnames": [
       "string"
     ],
-    "max_jitter": "0",
-    "max_latency": "0",
-    "max_loss": "0",
+    "max_jitter": 0,
+    "max_latency": 0,
+    "max_loss": 0,
     "name": "string",
     "specs": [
       {
@@ -400,14 +400,14 @@ body := models.Service{
     Apps:                          []string{
         "string",
     },
-    Dscp:                          models.ToPointer("0"),
+    Dscp:                          models.ToPointer(models.ServiceDscpContainer.FromNumber(0)),
     FailoverPolicy:                models.ToPointer(models.ServiceFailoverPolicyEnum("revertable")),
     Hostnames:                     []string{
         "string",
     },
-    MaxJitter:                     models.ToPointer("0"),
-    MaxLatency:                    models.ToPointer("0"),
-    MaxLoss:                       models.ToPointer("0"),
+    MaxJitter:                     models.ToPointer(models.ServiceMaxJitterContainer.FromNumber(0)),
+    MaxLatency:                    models.ToPointer(models.ServiceMaxLatencyContainer.FromNumber(0)),
+    MaxLoss:                       models.ToPointer(models.ServiceMaxLossContainer.FromNumber(0)),
     Name:                          models.ToPointer("string"),
     SleEnabled:                    models.ToPointer(false),
     Specs:                         []models.ServiceSpec{
@@ -445,15 +445,15 @@ if err != nil {
     "string"
   ],
   "created_time": 0,
-  "dscp": "0",
+  "dscp": 0,
   "failover_policy": "revertable",
   "hostnames": [
     "string"
   ],
   "id": "497f6eca-6276-5004-bfeb-53cbbbba6f16",
-  "max_jitter": "0",
-  "max_latency": "0",
-  "max_loss": "0",
+  "max_jitter": 0,
+  "max_latency": 0,
+  "max_loss": 0,
   "modified_time": 0,
   "name": "string",
   "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",

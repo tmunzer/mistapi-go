@@ -197,13 +197,13 @@ if err != nil {
     "apps": [
       "string"
     ],
-    "dscp": "8",
+    "dscp": 8,
     "hostnames": [
       "string"
     ],
-    "max_jitter": "0",
-    "max_latency": "0",
-    "max_loss": "0",
+    "max_jitter": 0,
+    "max_latency": 0,
+    "max_loss": 0,
     "name": "string",
     "specs": [
       {
