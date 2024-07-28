@@ -1,6 +1,8 @@
 
 # Gateway Template Tunnel Ike Dh Group Enum
 
+possible values:
+
 * 1
 * 2 (1024-bit)
 * 5

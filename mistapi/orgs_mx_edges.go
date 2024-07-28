@@ -55,7 +55,7 @@ func (o *OrgsMxEdges) ListOrgMxEdges(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if forSites != nil {
@@ -108,7 +108,7 @@ func (o *OrgsMxEdges) CreateOrgMxEdge(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -156,7 +156,7 @@ func (o *OrgsMxEdges) AssignOrgMxEdgeToSite(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -204,7 +204,7 @@ func (o *OrgsMxEdges) ClaimOrgMxEdge(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -265,7 +265,7 @@ func (o *OrgsMxEdges) CountOrgMxEdges(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if distinct != nil {
@@ -359,7 +359,7 @@ func (o *OrgsMxEdges) CountOrgSiteMxEdgeEvents(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if distinct != nil {
@@ -437,7 +437,7 @@ func (o *OrgsMxEdges) SearchOrgMistEdgeEvents(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if mxedgeId != nil {
@@ -517,7 +517,7 @@ func (o *OrgsMxEdges) SearchOrgMxEdges(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if mxedgeId != nil {
@@ -600,7 +600,7 @@ func (o *OrgsMxEdges) UnassignOrgMxEdgeFromSite(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -648,7 +648,7 @@ func (o *OrgsMxEdges) GetOrgMxEdgeUpgradeInfo(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if channel != nil {
@@ -695,7 +695,7 @@ func (o *OrgsMxEdges) DeleteOrgMxEdge(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -736,7 +736,7 @@ func (o *OrgsMxEdges) GetOrgMxEdge(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -781,7 +781,7 @@ func (o *OrgsMxEdges) UpdateOrgMxEdge(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -830,7 +830,7 @@ func (o *OrgsMxEdges) DeleteOrgMxEdgeImage(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -873,7 +873,7 @@ func (o *OrgsMxEdges) AddOrgMxEdgeImage(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -918,7 +918,7 @@ func (o *OrgsMxEdges) RestartOrgMxEdge(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -960,7 +960,7 @@ func (o *OrgsMxEdges) BounceOrgMxEdgeDataPorts(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -1007,7 +1007,7 @@ func (o *OrgsMxEdges) ControlOrgMxEdgeServices(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -1048,7 +1048,7 @@ func (o *OrgsMxEdges) UploadOrgMxEdgeSupportFiles(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -1089,7 +1089,7 @@ func (o *OrgsMxEdges) UnregisterOrgMxEdge(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     

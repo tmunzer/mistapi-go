@@ -1,9 +1,11 @@
 
 # Idp Profile Action Enum
 
-- alert (default)
-- drop: siliently dropping packets
-- close: notify client/server to close connection
+Possible values:
+
+* alert (default)
+* drop: siliently dropping packets
+* close: notify client/server to close connection
 
 ## Enumeration
 

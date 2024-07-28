@@ -15,7 +15,7 @@
 | `GbpTag` | `*int` | Optional | if `type`==`gbp_tag` |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `Match` | [`*models.NacTagMatchEnum`](../../doc/models/nac-tag-match-enum.md) | Optional | if `type`==`match`<br>**Constraints**: *Minimum Length*: `1` |
-| `MatchAll` | `*bool` | Optional | This field is applicable only when `type`==`match`<br><br>* `false`: means it is sufficient to match any of the values (i.e., match-any behavior)<br>* `true`: means all values should be matched (i.e., match-all behavior)<br><br>Currently it makes sense to set this field to `true` only if the `match`==`idp_role` or `match`==`usermac_label`<br>**Default**: `false` |
+| `MatchAll` | `*bool` | Optional | This field is applicable only when `type`==`match`<br><br>* `false`: means it is sufficient to match any of the values (i.e., match-any behavior)<br>* `true`: means all values should be matched (i.e., match-all behavior)<br><br>Currently it makes sense to set this field to `true` only if the `match`==`idp_role` or `match`==`usermac_label`'<br>**Default**: `false` |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `OrgId` | `*uuid.UUID` | Optional | - |

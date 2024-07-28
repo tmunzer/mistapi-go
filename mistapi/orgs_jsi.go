@@ -56,7 +56,7 @@ func (o *OrgsJSI) ListOrgJsiDevices(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if limit != nil {
@@ -114,7 +114,7 @@ func (o *OrgsJSI) AdoptOrgJsiDevice(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -158,7 +158,7 @@ func (o *OrgsJSI) CreateOrgJsiDeviceShellSession(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -205,7 +205,7 @@ func (o *OrgsJSI) ListOrgJsiPastPurchases(
         "400": {Message: "Bad Request - no Juniper Account Linked", Unmarshaller: errors.NewResponseDetailString},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if limit != nil {

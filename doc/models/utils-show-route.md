@@ -15,7 +15,7 @@
 | `Node` | [`*models.HaClusterNode`](../../doc/models/ha-cluster-node.md) | Optional | - |
 | `Prefix` | `*string` | Optional | route prefix |
 | `Protocol` | [`*models.UtilsShowRouteProtocolEnum`](../../doc/models/utils-show-route-protocol-enum.md) | Optional | **Default**: `"bgp"` |
-| `Route` | `*string` | Optional | if specified, dump bot received and advertised, if not specified, both will be shown<br><br>* for SSR, show bgp neighbors 10.250.18.202 received-routes/advertised-routes<br>* for SRX and Switches, show route receive_protocol/advertise_protocol bgp 192.168.255.12 |
+| `Route` | `*string` | Optional | if specified, dump bot received and advertised, if not specified, both will be shown<br><br>* for SSR, show bgp neighbors 10.250.18.202 received-routes/advertised-routes<br>* for SRX and Switches, show route receive_protocol/advertise_protocol bgp 192.168.255.12' |
 | `Vrf` | `*string` | Optional | VRF name |
 
 ## Example (as JSON)

@@ -38,8 +38,8 @@ type DhcpdConfigProperty struct {
     // DHCP Server (local) or DHCP Relay (relay)
     Type6                *DhcpdConfigTypeEnum               `json:"type6,omitempty"`
     // Property key is <enterprise number>:<sub option code>, with
-    // * enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)
-    // * sub option code: 1-255, sub-option code
+    //   * enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)
+    //   * sub option code: 1-255, sub-option code'
     VendorEncapulated    map[string]DhcpdConfigVendorOption `json:"vendor_encapulated,omitempty"`
     AdditionalProperties map[string]any                     `json:"_"`
 }

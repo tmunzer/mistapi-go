@@ -10,16 +10,16 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AutoProvision` | [`*models.TunnelConfigsAutoProvision`](../../doc/models/tunnel-configs-auto-provision.md) | Optional | - |
-| `IkeLifetime` | `*int` | Optional | Only if:<br><br>* `provider`== `custom-ipsec` |
-| `IkeMode` | [`*models.GatewayTemplateTunnelIkeModeEnum`](../../doc/models/gateway-template-tunnel-ike-mode-enum.md) | Optional | Only if:<br><br>* `provider`== `custom-ipsec`<br>**Default**: `"main"` |
+| `IkeLifetime` | `*int` | Optional | Only if `provider`== `custom-ipsec` |
+| `IkeMode` | [`*models.GatewayTemplateTunnelIkeModeEnum`](../../doc/models/gateway-template-tunnel-ike-mode-enum.md) | Optional | Only if `provider`== `custom-ipsec`<br>**Default**: `"main"` |
 | `IkeProposals` | [`[]models.GatewayTemplateTunnelIkeProposal`](../../doc/models/gateway-template-tunnel-ike-proposal.md) | Optional | if `provider`== `custom-ipsec` |
 | `IpsecLifetime` | `*int` | Optional | if `provider`== `custom-ipsec` |
-| `IpsecProposals` | [`[]models.GatewayTemplateTunnelIpsecProposal`](../../doc/models/gateway-template-tunnel-ipsec-proposal.md) | Optional | Only if:<br><br>* `provider`== `custom-ipsec` |
+| `IpsecProposals` | [`[]models.GatewayTemplateTunnelIpsecProposal`](../../doc/models/gateway-template-tunnel-ipsec-proposal.md) | Optional | Only if  `provider`== `custom-ipsec` |
 | `LocalId` | `*string` | Optional | Only if:<br><br>* `provider`== `zscaler-ipsec`<br>* `provider`==`jse-ipsec`<br>* `provider`== `custom-ipsec` |
 | `Mode` | [`*models.GatewayTemplateTunnelModeEnum`](../../doc/models/gateway-template-tunnel-mode-enum.md) | Optional | **Default**: `"active-standby"` |
 | `Primary` | [`*models.GatewayTemplateTunnelNode`](../../doc/models/gateway-template-tunnel-node.md) | Optional | - |
-| `Probe` | [`*models.GatewayTemplateTunnelProbe`](../../doc/models/gateway-template-tunnel-probe.md) | Optional | Only if:<br><br>* `provider`== `custom-ipsec` |
-| `Protocol` | [`*models.GatewayTemplateTunnelProtocolEnum`](../../doc/models/gateway-template-tunnel-protocol-enum.md) | Optional | Only if:<br><br>* `provider`== `custom-ipsec` |
+| `Probe` | [`*models.GatewayTemplateTunnelProbe`](../../doc/models/gateway-template-tunnel-probe.md) | Optional | Only if `provider`== `custom-ipsec` |
+| `Protocol` | [`*models.GatewayTemplateTunnelProtocolEnum`](../../doc/models/gateway-template-tunnel-protocol-enum.md) | Optional | Only if `provider`== `custom-ipsec` |
 | `Provider` | [`*models.TunnelProviderOptionsNameEnum`](../../doc/models/tunnel-provider-options-name-enum.md) | Optional | - |
 | `Psk` | `*string` | Optional | Only if:<br><br>* `provider`== `zscaler-ipsec`<br>* `provider`==`jse-ipsec`<br>* `provider`== `custom-ipsec` |
 | `Secondary` | [`*models.GatewayTemplateTunnelNode`](../../doc/models/gateway-template-tunnel-node.md) | Optional | - |

@@ -15,7 +15,7 @@ type WlanDatarates struct {
     MinRssi              *int                          `json:"min_rssi,omitempty"`
     // * `no-legacy`: no 11b
     // * `compatible`: all, like before, default setting that Broadcom/Atheros used
-    // * `legacy-only`: disable 802.11n and 802.11ac 
+    // * `legacy-only`: disable 802.11n and 802.11ac
     // * `high-density`: no 11b, no low rates
     // * `custom`: user defined
     Template             Optional[string]              `json:"template"`

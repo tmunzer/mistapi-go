@@ -50,7 +50,7 @@ func (o *OrgsWlans) ListOrgWlans(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if page != nil {
@@ -96,7 +96,7 @@ func (o *OrgsWlans) CreateOrgWlan(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -144,7 +144,7 @@ func (o *OrgsWlans) DeleteOrgWlan(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -185,7 +185,7 @@ func (o *OrgsWlans) GetOrgWLAN(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -230,7 +230,7 @@ func (o *OrgsWlans) UpdateOrgWlan(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -278,7 +278,7 @@ func (o *OrgsWlans) DeleteOrgWlanPortalImage(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -321,7 +321,7 @@ func (o *OrgsWlans) UploadOrgWlanPortalImage(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     formFields := []https.FormParam{}
@@ -384,7 +384,7 @@ func (o *OrgsWlans) UpdateOrgWlanPortalTemplate(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")

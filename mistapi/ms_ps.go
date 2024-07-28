@@ -48,7 +48,7 @@ func (m *MSPs) CreateMsp(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -90,7 +90,7 @@ func (m *MSPs) DeleteMsp(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -126,7 +126,7 @@ func (m *MSPs) GetMspDetails(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -166,7 +166,7 @@ func (m *MSPs) UpdateMsp(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -215,7 +215,7 @@ func (m *MSPs) SearchMspOrgGroup(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.QueryParam("type", mType)

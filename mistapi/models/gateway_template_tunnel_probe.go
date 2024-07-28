@@ -5,8 +5,7 @@ import (
 )
 
 // GatewayTemplateTunnelProbe represents a GatewayTemplateTunnelProbe struct.
-// Only if:
-// * `provider`== `custom-ipsec`
+// Only if `provider`== `custom-ipsec`
 type GatewayTemplateTunnelProbe struct {
     // how often to trigger the probe
     Interval             *int                          `json:"interval,omitempty"`

@@ -11,29 +11,29 @@ Applications used for the Gateway configurations
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Addresses` | `[]string` | Optional | if `type`==`custom`, ip subnets |
-| `AppCategories` | `[]string` | Optional | when `type`==`app_categories`<br>list of application categories are available through /api/v1/const/app_categories |
-| `AppSubcategories` | `[]string` | Optional | when `type`==`app_categories`<br>list of application categories are available through /api/v1/const/app_subcategories |
-| `Apps` | `[]string` | Optional | when `type`==`apps`<br>list of applications are available through:<br><br>- /api/v1/const/applications,<br>- /api/v1/const/gateway_applications<br>- /insight/top_app_by-bytes?wired=true |
+| `Addresses` | `[]string` | Optional | if `type`==`custom`, ip subnets (e.g. 10.0.0.0/8) |
+| `AppCategories` | `[]string` | Optional | when `type`==`app_categories`, list of application categories are available through /api/v1/const/app_categories |
+| `AppSubcategories` | `[]string` | Optional | when `type`==`app_categories`, list of application categories are available through /api/v1/const/app_subcategories |
+| `Apps` | `[]string` | Optional | when `type`==`apps`, list of applications are available through:<br><br>* /api/v1/const/applications<br>* /api/v1/const/gateway_applications<br>* /insight/top_app_by-bytes?wired=true |
 | `CreatedTime` | `*float64` | Optional | - |
 | `Description` | `*string` | Optional | - |
-| `Dscp` | `*int` | Optional | when `traffic_type`==`custom` |
+| `Dscp` | `*string` | Optional | for SSR only, when `traffic_type`==`custom`. 0-63 or variable |
 | `FailoverPolicy` | [`*models.ServiceFailoverPolicyEnum`](../../doc/models/service-failover-policy-enum.md) | Optional | **Default**: `"revertable"` |
 | `Hostnames` | `[]string` | Optional | if `type`==`custom`, web filtering |
 | `Id` | `*uuid.UUID` | Optional | - |
-| `MaxJitter` | `*int` | Optional | when `traffic_type`==`custom`, for uplink selection |
-| `MaxLatency` | `*int` | Optional | when `traffic_type`==`custom`, for uplink selection |
-| `MaxLoss` | `*int` | Optional | when `traffic_type`==`custom`, for uplink selection |
+| `MaxJitter` | `*string` | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-4294967295 or variable |
+| `MaxLatency` | `*string` | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-4294967295 or variable |
+| `MaxLoss` | `*string` | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SleEnabled` | `*bool` | Optional | whether to enable measure SLE<br>**Default**: `false` |
-| `Specs` | [`[]models.ServiceSpec`](../../doc/models/service-spec.md) | Optional | - |
+| `Specs` | [`[]models.ServiceSpec`](../../doc/models/service-spec.md) | Optional | when `type`==`custom`, optional, if it doesn't exist, http and https is assumed |
 | `SsrRelaxedTcpStateEnforcement` | `*bool` | Optional | **Default**: `false` |
 | `TrafficClass` | [`*models.ServiceTrafficClassEnum`](../../doc/models/service-traffic-class-enum.md) | Optional | when `traffic_type`==`custom`<br>**Default**: `"best_effort"` |
-| `TrafficType` | `*string` | Optional | values from `/api/v1/consts/traffic_types`<br><br>* when `type`==`apps`, we'll choose traffic_type automatically<br>* when `type`==`addresses` or `type`==`hostnames`, you can provide your own settings (optional)<br>**Default**: `"data_best_effort"` |
+| `TrafficType` | `*string` | Optional | values from `/api/v1/consts/traffic_types`<br><br>* when `type`==`apps`, we''ll choose traffic_type automatically<br>* when `type`==`addresses` or `type`==`hostnames`, you can provide your own settings (optional)<br>**Default**: `"data_best_effort"` |
 | `Type` | [`*models.ServiceTypeEnum`](../../doc/models/service-type-enum.md) | Optional | **Default**: `"custom"` |
-| `Urls` | `[]string` | Optional | when `type`==`urls no need for spec as URL can encode the ports being used` |
+| `Urls` | `[]string` | Optional | when `type`==`urls`, no need for spec as URL can encode the ports being used |
 
 ## Example (as JSON)
 

@@ -58,7 +58,7 @@ func (s *SitesSLEs) GetSiteSleClassifierDetails(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -113,7 +113,7 @@ func (s *SitesSLEs) GetSiteSleMetricClassifiers(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -162,7 +162,7 @@ func (s *SitesSLEs) GetSiteSleHistogram(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -226,7 +226,7 @@ func (s *SitesSLEs) GetSiteSleImpactSummary(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -291,7 +291,7 @@ func (s *SitesSLEs) GetSiteSleImpactedApplications(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -353,7 +353,7 @@ func (s *SitesSLEs) GetSiteSleImpactedAps(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -415,7 +415,7 @@ func (s *SitesSLEs) GetSiteSleImpactedChassis(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -477,7 +477,7 @@ func (s *SitesSLEs) GetSiteSleImpactedWiredClients(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -539,7 +539,7 @@ func (s *SitesSLEs) GetSiteSleImpactedGateways(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -601,7 +601,7 @@ func (s *SitesSLEs) GetSiteSleImpactedInterfaces(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -663,7 +663,7 @@ func (s *SitesSLEs) GetSiteSleImpactedSwitches(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -725,7 +725,7 @@ func (s *SitesSLEs) GetSiteSleImpactedWirelessClients(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -786,7 +786,7 @@ func (s *SitesSLEs) GetSiteSleSummary(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     if start != nil {
@@ -841,7 +841,7 @@ func (s *SitesSLEs) GetSiteSleThreshold(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     
@@ -888,7 +888,7 @@ func (s *SitesSLEs) ReplaceSiteSleThreshold(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -939,7 +939,7 @@ func (s *SitesSLEs) UpdateSiteSleThreshold(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     req.Header("Content-Type", "application/json")
@@ -988,7 +988,7 @@ func (s *SitesSLEs) GetSiteSlesMetrics(
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’t exist", Unmarshaller: errors.NewResponseHttp404},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
     })
     

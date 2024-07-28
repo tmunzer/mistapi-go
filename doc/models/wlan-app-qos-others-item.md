@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Dscp` | `*int` | Optional | - |
+| `Dscp` | `*int` | Optional | **Constraints**: `>= 0`, `<= 63` |
 | `DstSubnet` | `*string` | Optional | - |
 | `PortRanges` | `*string` | Optional | - |
 | `Protocol` | `*string` | Optional | - |

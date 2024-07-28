@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `ApId` | `uuid.UUID` | Required | - |
 | `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | - |
-| `Bandwidth` | [`models.Dot11BandwidthEnum`](../../doc/models/dot-11-bandwidth-enum.md) | Required | channel width for the band * `80` is only applicable for band_5 and band_6 * `160` is only for band_6 |
+| `Bandwidth` | [`models.Dot11BandwidthEnum`](../../doc/models/dot-11-bandwidth-enum.md) | Required | channel width for the band<br><br>* `80` is only applicable for band_5 and band_6<br>* `160` is only for band_6 |
 | `Channel` | `int` | Required | channel for the band from rrm |
 | `Event` | [`models.RrmEventTypeEnum`](../../doc/models/rrm-event-type-enum.md) | Required | schedule-site_rrm / triggered-site_rrm / interference-ap-co-channel / rrm-radar |
 | `Power` | `int` | Required | tx power of the radio |

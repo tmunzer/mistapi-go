@@ -16,10 +16,9 @@ type EvpnTopologySwitch struct {
     EvpnId               *int                        `json:"evpn_id,omitempty"`
     Mac                  *string                     `json:"mac,omitempty"`
     Model                *string                     `json:"model,omitempty"`
-    // optionally, for distribution / access / esilag-access, they can be placed into different pods.
-    // e.g. 
-    // * for CLOS, to group dist / access switches into pods
-    // * for ERB/CRB, to group dist / esilag-access into pods
+    // optionally, for distribution / access / esilag-access, they can be placed into different pods. e.g. 
+    //   * for CLOS, to group dist / access switches into pods
+    //   * for ERB/CRB, to group dist / esilag-access into pods
     Pod                  *int                        `json:"pod,omitempty"`
     // by default, core switches are assumed to be connecting all pods. 
     // if you want to limit the pods, you can specify pods.

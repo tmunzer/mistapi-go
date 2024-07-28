@@ -19,7 +19,7 @@ LLDP Stat (neighbor information, power negotiations)
 | `PortId` | `models.Optional[string]` | Optional | - |
 | `PowerAllocated` | `models.Optional[float64]` | Optional | in mW, provided/allocated by PSE |
 | `PowerDraw` | `models.Optional[float64]` | Optional | in mW, total power needed by PD |
-| `PowerRequestCount` | `models.Optional[int]` | Optional | number of negotiations, if it keeps increasing, we don’t have a stable power |
+| `PowerRequestCount` | `models.Optional[int]` | Optional | number of negotiations, if it keeps increasing, we don’ t have a stable power |
 | `PowerRequested` | `models.Optional[float64]` | Optional | in mW, the current power requested by PD |
 | `SystemDesc` | `models.Optional[string]` | Optional | description provided by switch |
 | `SystemName` | `models.Optional[string]` | Optional | name of the switch |

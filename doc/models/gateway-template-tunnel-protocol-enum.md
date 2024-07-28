@@ -1,9 +1,7 @@
 
 # Gateway Template Tunnel Protocol Enum
 
-Only if:
-
-* `provider`== `custom-ipsec`
+Only if `provider`== `custom-ipsec`
 
 ## Enumeration
 

@@ -32,7 +32,7 @@ Portal Template
 | `CompanyLabel` | `*string` | Optional | label of company field<br>**Default**: `"Company"` |
 | `CreatedTime` | `*float64` | Optional | - |
 | `Email` | `*bool` | Optional | whether email field is required<br>**Default**: `false` |
-| `EmailAccessDomainError` | `*string` | Optional | error message when a user has valid social login but doesn’t match specified email domains.<br>**Default**: `"Access is restricted by email domain"` |
+| `EmailAccessDomainError` | `*string` | Optional | error message when a user has valid social login but doesn’ t match specified email domains.<br>**Default**: `"Access is restricted by email domain"` |
 | `EmailCancel` | `*string` | Optional | **Default**: `"Cancel"` |
 | `EmailCodeError` | `*string` | Optional | **Default**: `"Please provide valid alternate email"` |
 | `EmailError` | `*string` | Optional | error message when email not provided<br>**Default**: `"Please provide valid email"` |

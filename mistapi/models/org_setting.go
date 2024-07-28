@@ -23,9 +23,9 @@ type OrgSetting struct {
     CreatedTime                 *float64                               `json:"created_time,omitempty"`
     // common device cert, optional
     DeviceCert                  *OrgSettingDeviceCert                  `json:"device_cert,omitempty"`
-    // enable threshold-based device down delivery via 
-    // 1) device-updowns webhooks topic, 
-    // 2) Mist Alert Framework; e.g. send AP/SW/GW down event only if AP/SW/GW Up is not seen within the threshold in minutes; 0 - 240, default is 0 (trigger immediate)
+    // enable threshold-based device down delivery via
+    //   * device-updowns webhooks topic, 
+    //   * Mist Alert Framework; e.g. send AP/SW/GW down event only if AP/SW/GW Up is not seen within the threshold in minutes; 0 - 240, default is 0 (trigger immediate)
     DeviceUpdownThreshold       *int                                   `json:"device_updown_threshold,omitempty"`
     // whether to disallow Mist to analyze pcap files (this is required for marvis pcap)
     DisablePcap                 *bool                                  `json:"disable_pcap,omitempty"`

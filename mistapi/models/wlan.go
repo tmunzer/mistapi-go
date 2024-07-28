@@ -44,9 +44,9 @@ type Wlan struct {
     AuthServersNasId                   Optional[string]               `json:"auth_servers_nas_id"`
     // optional, NAS-IP-ADDRESS to use
     AuthServersNasIp                   Optional[string]               `json:"auth_servers_nas_ip"`
-    // radius auth session retries. Following fast timers are set if “fast_dot1x_timers” knob is enabled. ‘retries’ are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.
+    // radius auth session retries. Following fast timers are set if “fast_dot1x_timers” knob is enabled. ‘retries’  are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.
     AuthServersRetries                 *int                           `json:"auth_servers_retries,omitempty"`
-    // radius auth session timeout. Following fast timers are set if “fast_dot1x_timers” knob is enabled. ‘quite-period’ and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.
+    // radius auth session timeout. Following fast timers are set if “fast_dot1x_timers” knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.
     AuthServersTimeout                 *int                           `json:"auth_servers_timeout,omitempty"`
     // `band` is deprecated and kept for backward compability. Use bands instead
     Band                               *string                        `json:"band,omitempty"`                                   // Deprecated
@@ -88,16 +88,15 @@ type Wlan struct {
     // for radius_group-based DNS server (rewrite DNS request depending on the Group RADIUS server returns)
     DnsServerRewrite                   Optional[WlanDnsServerRewrite] `json:"dns_server_rewrite"`
     Dtim                               *int                           `json:"dtim,omitempty"`
-    // for dynamic PSK where we get per_user PSK from Radius
-    // dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
-    // - PSK will come from RADIUS server
-    // - AP sends client MAC as username ans password (i.e. `enable_mac_auth` is assumed)
-    // - AP sends BSSID:SSID as Caller-Station-ID
-    // - `auth_servers` is required
-    // - PSK will come from cloud WLC if source is cloud_psks
-    // - default_psk will be used if cloud WLC is not available
-    // - `multi_psk_only` and `psk` is ignored
-    // - `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap)
+    // for dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
+    //   * PSK will come from RADIUS server
+    //   * AP sends client MAC as username ans password (i.e. `enable_mac_auth` is assumed)
+    //   * AP sends BSSID:SSID as Caller-Station-ID
+    //   * `auth_servers` is required
+    //   * PSK will come from cloud WLC if source is cloud_psks
+    //   * default_psk will be used if cloud WLC is not available
+    //   * `multi_psk_only` and `psk` is ignored
+    //   * `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap)
     DynamicPsk                         Optional[WlanDynamicPsk]       `json:"dynamic_psk"`
     // for 802.1x
     DynamicVlan                        Optional[WlanDynamicVlan]      `json:"dynamic_vlan"`
@@ -109,7 +108,7 @@ type Wlan struct {
     EnableWirelessBridgingDhcpTracking *bool                          `json:"enable_wireless_bridging_dhcp_tracking,omitempty"`
     // if this wlan is enabled
     Enabled                            *bool                          `json:"enabled,omitempty"`
-    // if set to true, sets default fast-timers with values calculated from ‘auth_servers_timeout’ and ‘auth_server_retries’.
+    // if set to true, sets default fast-timers with values calculated from ‘auth_servers_timeout’ and ‘auth_server_retries’ .
     FastDot1xTimers                    *bool                          `json:"fast_dot1x_timers,omitempty"`
     ForSite                            *bool                          `json:"for_site,omitempty"`
     // whether to hide SSID in beacon

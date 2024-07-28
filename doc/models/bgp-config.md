@@ -12,7 +12,7 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AuthKey` | `*string` | Optional | - |
-| `BfdMinimumInterval` | `models.Optional[int]` | Optional | when bfd_multiplier is configured alone<br>default:<br><br>* 1000 if `type`==`external``<br>* 350 `type`==`internal`<br>**Default**: `350`<br>**Constraints**: `>= 1`, `<= 255000` |
+| `BfdMinimumInterval` | `models.Optional[int]` | Optional | when bfd_multiplier is configured alone. Default:<br><br>* 1000 if `type`==`external`<br>* 350 `type`==`internal`<br>**Default**: `350`<br>**Constraints**: `>= 1`, `<= 255000` |
 | `BfdMultiplier` | `models.Optional[int]` | Optional | when bfd_minimum_interval_is_configured alone<br>**Default**: `3`<br>**Constraints**: `>= 1`, `<= 255` |
 | `Communities` | [`[]models.BgpConfigCommunity`](../../doc/models/bgp-config-community.md) | Optional | - |
 | `DisableBfd` | `*bool` | Optional | BFD provides faster path failure detection and is enabled by default<br>**Default**: `false` |

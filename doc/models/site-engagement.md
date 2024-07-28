@@ -17,7 +17,7 @@
 |  --- | --- | --- | --- |
 | `DwellTagNames` | [`*models.SiteEngagementDwellTagNames`](../../doc/models/site-engagement-dwell-tag-names.md) | Optional | - |
 | `DwellTags` | [`*models.SiteEngagementDwellTags`](../../doc/models/site-engagement-dwell-tags.md) | Optional | add tags to visits within the duration (in seconds), available tags (passerby, bounce, engaged, stationed) |
-| `Hours` | [`*models.Hours`](../../doc/models/hours.md) | Optional | hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun).<br><br>**Note**: If the dow is not defined then it’s treated as 00:00-23:59. |
+| `Hours` | [`*models.Hours`](../../doc/models/hours.md) | Optional | hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun).<br><br>**Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59. |
 | `MaxDwell` | `*int` | Optional | max time, default is 43200(12h), max is 68400 (18h)<br>**Default**: `43200`<br>**Constraints**: `>= 1`, `<= 68400` |
 | `MinDwell` | `*int` | Optional | min time<br>**Constraints**: `>= 0` |
 

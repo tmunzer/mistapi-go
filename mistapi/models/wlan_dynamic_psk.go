@@ -5,16 +5,15 @@ import (
 )
 
 // WlanDynamicPsk represents a WlanDynamicPsk struct.
-// for dynamic PSK where we get per_user PSK from Radius
-// dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
-// - PSK will come from RADIUS server
-// - AP sends client MAC as username ans password (i.e. `enable_mac_auth` is assumed)
-// - AP sends BSSID:SSID as Caller-Station-ID
-// - `auth_servers` is required
-// - PSK will come from cloud WLC if source is cloud_psks
-// - default_psk will be used if cloud WLC is not available
-// - `multi_psk_only` and `psk` is ignored
-// - `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap)
+// for dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
+//   * PSK will come from RADIUS server
+//   * AP sends client MAC as username ans password (i.e. `enable_mac_auth` is assumed)
+//   * AP sends BSSID:SSID as Caller-Station-ID
+//   * `auth_servers` is required
+//   * PSK will come from cloud WLC if source is cloud_psks
+//   * default_psk will be used if cloud WLC is not available
+//   * `multi_psk_only` and `psk` is ignored
+//   * `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap)
 type WlanDynamicPsk struct {
     // default PSK to use if cloud WLC is not available, 8-63 characters
     DefaultPsk           *string                      `json:"default_psk,omitempty"`

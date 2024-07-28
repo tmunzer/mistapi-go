@@ -861,7 +861,9 @@ const (
 )
 
 // Dot11BandwidthEnum is a int enum.
-// channel width for the band * `80` is only applicable for band_5 and band_6 * `160` is only for band_6
+// channel width for the band 
+//   * `80` is only applicable for band_5 and band_6 
+//   * `160` is only for band_6
 type Dot11BandwidthEnum int
 
 const (
@@ -1046,16 +1048,17 @@ const (
 )
 
 // GatewayTemplateTunnelIkeDhGroupEnum is a string enum.
-// * 1 
-// * 2 (1024-bit) 
-// * 5
-// * 14 (default, 2048-bit)
-// * 15 (3072-bit) 
-// * 16 (4096-bit)
-// * 19 (256-bit ECP)
-// * 20 (384-bit ECP)
-// * 21 (521-bit ECP) 
-// * 24 (2048-bit ECP)
+// possible values: 
+//   * 1
+//   * 2 (1024-bit)
+//   * 5
+//   * 14 (default, 2048-bit)
+//   * 15 (3072-bit)
+//   * 16 (4096-bit)
+//   * 19 (256-bit ECP)
+//   * 20 (384-bit ECP)
+//   * 21 (521-bit ECP)
+//   * 24 (2048-bit ECP)
 type GatewayTemplateTunnelIkeDhGroupEnum string
 
 const (
@@ -1072,8 +1075,7 @@ const (
 )
 
 // GatewayTemplateTunnelIkeModeEnum is a string enum.
-// Only if:
-// * `provider`== `custom-ipsec`
+// Only if `provider`== `custom-ipsec`
 type GatewayTemplateTunnelIkeModeEnum string
 
 const (
@@ -1090,8 +1092,7 @@ const (
 )
 
 // GatewayTemplateTunnelProtocolEnum is a string enum.
-// Only if:
-// * `provider`== `custom-ipsec`
+// Only if `provider`== `custom-ipsec`
 type GatewayTemplateTunnelProtocolEnum string
 
 const (
@@ -1101,8 +1102,8 @@ const (
 
 // GatewayTemplateTunnelVersionEnum is a string enum.
 // Only if:
-// * `provider`== `custom-gre` 
-// * `provider`== `custom-ipsec`
+//   * `provider`== `custom-gre`
+//   * `provider`== `custom-ipsec`
 type GatewayTemplateTunnelVersionEnum string
 
 const (
@@ -1138,9 +1139,10 @@ const (
 )
 
 // IdpProfileActionEnum is a string enum.
-// - alert (default) 
-// - drop: siliently dropping packets
-// - close: notify client/server to close connection
+// Possible values:
+//   * alert (default) 
+//   * drop: siliently dropping packets
+//   * close: notify client/server to close connection
 type IdpProfileActionEnum string
 
 const (
@@ -1320,10 +1322,10 @@ const (
 )
 
 // MxclusterTuntermHostsSelectionEnum is a string enum.
-// Ordering of tunterm_hosts for mxedge within the same mxcluster. 
-// * When `shuffle`, the ordering of tunterm_hosts is randomized by the device’s MAC. 
-// * When `shuffle-by-site`, we shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels). 
-// * When `ordered`, the order is decided by tunterm_hosts_order
+// Ordering of tunterm_hosts for mxedge within the same mxcluster.
+//   * When `shuffle`, the ordering of tunterm_hosts is randomized by the device\u2019\s MAC.
+//   * When `shuffle-by-site`, we shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels).
+//   * When `ordered`, the order is decided by tunterm_hosts_order
 type MxclusterTuntermHostsSelectionEnum string
 
 const (
@@ -2062,7 +2064,7 @@ const (
 
 // SsrUpgradeStrategyEnum is a string enum.
 // * `big_bang`: upgrade all at once
-// * `serial`: one at a time
+// * `serial`: one at a time'
 type SsrUpgradeStrategyEnum string
 
 const (
@@ -2229,10 +2231,10 @@ const (
 )
 
 // TicketStatusEnum is a string enum.
-// Status open: ticket is open, Mist is working on it 
-// * pending: ticket is open and Requester attention is needed (e.g. Mist is asking for some more information) 
-// * solved: ticket is marked as solved / considered by Mist (requester can update it, causing it to re-open; or rate it) 
-// * closed: ticket is archived and cannot be changed
+// Status open: ticket is open, Mist is working on it
+//   * pending: ticket is open and Requester attention is needed (e.g. Mist is asking for some more information)
+//   * solved: ticket is marked as solved / considered by Mist (requester can update it, causing it to re-open; or rate it)
+//   * closed: ticket is archived and cannot be changed
 type TicketStatusEnum string
 
 const (
@@ -2262,19 +2264,17 @@ const (
 )
 
 // TunnelConfigsDhGroupEnum is a string enum.
-// Only if:
-// * `provider`== `custom-ipsec`
-// Values:
-// * 1 
-// * 2 (1024-bit) 
-// * 5
-// * 14 (default, 2048-bit) 
-// * 15 (3072-bit) 
-// * 16 (4096-bit)
-// * 19 (256-bit ECP)
-// * 20 (384-bit ECP)
-// * 21 (521-bit ECP) 
-// * 24 (2048-bit ECP)
+// Only if `provider`== `custom-ipsec`. Possible values:
+//   * 1 
+//   * 2 (1024-bit)
+//   * 5
+//   * 14 (default, 2048-bit)
+//   * 15 (3072-bit)
+//   * 16 (4096-bit)
+//   * 19 (256-bit ECP)
+//   * 20 (384-bit ECP)
+//   * 21 (521-bit ECP)
+//   * 24 (2048-bit ECP)
 type TunnelConfigsDhGroupEnum string
 
 const (
@@ -2602,6 +2602,7 @@ const (
 )
 
 // WxlanTagMatchEnum is a string enum.
+// required if `type`==`match`
 type WxlanTagMatchEnum string
 
 const (
@@ -2612,15 +2613,18 @@ const (
     WxlanTagMatchEnum_HOSTNAME       WxlanTagMatchEnum = "hostname"
     WxlanTagMatchEnum_IPRANGESUBNET  WxlanTagMatchEnum = "ip_range_subnet"
     WxlanTagMatchEnum_PORT           WxlanTagMatchEnum = "port"
-    WxlanTagMatchEnum_RADIUSATTR     WxlanTagMatchEnum = "radius_attr"
-    WxlanTagMatchEnum_RADIUSGROUP    WxlanTagMatchEnum = "radius_group"
-    WxlanTagMatchEnum_RADIUSUSERNAME WxlanTagMatchEnum = "radius_username"
-    WxlanTagMatchEnum_WLANID         WxlanTagMatchEnum = "wlan_id"
     WxlanTagMatchEnum_PSKNAME        WxlanTagMatchEnum = "psk_name"
     WxlanTagMatchEnum_PSKROLE        WxlanTagMatchEnum = "psk_role"
+    WxlanTagMatchEnum_RADIUSATTR     WxlanTagMatchEnum = "radius_attr"
+    WxlanTagMatchEnum_RADIUSCLASS    WxlanTagMatchEnum = "radius_class"
+    WxlanTagMatchEnum_RADIUSGROUP    WxlanTagMatchEnum = "radius_group"
+    WxlanTagMatchEnum_RADIUSUSERNAME WxlanTagMatchEnum = "radius_username"
+    WxlanTagMatchEnum_SDKCLIENTUUID  WxlanTagMatchEnum = "sdkclient_uuid"
+    WxlanTagMatchEnum_WLANID         WxlanTagMatchEnum = "wlan_id"
 )
 
 // WxlanTagOperationEnum is a string enum.
+// required if `type`==`match`, type of tag (inclusive/exclusive)
 type WxlanTagOperationEnum string
 
 const (

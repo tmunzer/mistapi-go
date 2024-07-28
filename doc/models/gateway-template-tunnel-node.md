@@ -12,7 +12,7 @@
 | `Hosts` | `[]string` | Optional | - |
 | `InternalIps` | `[]string` | Optional | Only if:<br><br>* `provider`== `zscaler-gre`<br>* `provider`== `custom-gre` |
 | `ProbeIps` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `RemoteIds` | `[]string` | Optional | Only if:<br><br>* `provider`== `custom-ipsec` |
+| `RemoteIds` | `[]string` | Optional | Only if `provider`== `custom-ipsec` |
 | `WanNames` | `[]string` | Optional | - |
 
 ## Example (as JSON)

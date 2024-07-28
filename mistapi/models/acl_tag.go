@@ -17,15 +17,16 @@ type AclTag struct {
     // - `type`==`static_gbp` if from matching mac
     Macs                 []string       `json:"macs,omitempty"`
     // if:
-    // - `type`==`mac` (optional. default is `any`)
-    // - `type`==`subnet` (optional. default is `any`)
-    // - `type`==`network`
-    // - `type`==`resource` (optional. default is `any`)
-    // - `type`==`static_gbp` if from matching network (vlan)
+    //   * `type`==`mac` (optional. default is `any`)
+    //   * `type`==`subnet` (optional. default is `any`)
+    //   * `type`==`network`
+    //   * `type`==`resource` (optional. default is `any`)
+    //   * `type`==`static_gbp` if from matching network (vlan)'
     Network              *string        `json:"network,omitempty"`
-    // required if 
-    // - `type`==`radius_group` 
-    // - `type`==`static_gbp` if from matching radius_group
+    // required if:
+    //   * `type`==`radius_group`
+    //   * `type`==`static_gbp`
+    // if from matching radius_group
     RadiusGroup          *string        `json:"radius_group,omitempty"`
     // if `type`==`resource`
     // empty means unrestricted, i.e. any

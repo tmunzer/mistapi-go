@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Dscp` | `*int` | Optional | - |
+| `Dscp` | `*int` | Optional | **Constraints**: `>= 0`, `<= 63` |
 | `DstSubnet` | `*string` | Optional | subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load) |
 | `SrcSubnet` | `*string` | Optional | subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load) |
 

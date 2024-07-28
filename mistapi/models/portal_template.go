@@ -46,7 +46,7 @@ type PortalTemplate struct {
     CreatedTime              *float64       `json:"created_time,omitempty"`
     // whether email field is required
     Email                    *bool          `json:"email,omitempty"`
-    // error message when a user has valid social login but doesn’t match specified email domains.
+    // error message when a user has valid social login but doesn’ t match specified email domains.
     EmailAccessDomainError   *string        `json:"emailAccessDomainError,omitempty"`
     EmailCancel              *string        `json:"emailCancel,omitempty"`
     EmailCodeError           *string        `json:"emailCodeError,omitempty"`

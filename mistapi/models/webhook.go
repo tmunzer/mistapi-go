@@ -33,8 +33,8 @@ type Webhook struct {
     // required when `oauth2_grant_type`==`password`
     Oauth2Username       *string                     `json:"oauth2_username,omitempty"`
     OrgId                *uuid.UUID                  `json:"org_id,omitempty"`
-    // only if `type`=`http-post`
-    // when `secret` is provided, two HTTP headers will be added:
+    // only if `type`=`http-post` 
+    // when `secret` is provided, two  HTTP headers will be added: 
     //   * X-Mist-Signature-v2: HMAC_SHA256(secret, body)
     //   * X-Mist-Signature: HMAC_SHA1(secret, body)
     Secret               Optional[string]            `json:"secret"`

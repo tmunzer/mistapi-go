@@ -8,50 +8,47 @@ import (
 // Service represents a Service struct.
 // Applications used for the Gateway configurations
 type Service struct {
-    // if `type`==`custom`, ip subnets
+    // if `type`==`custom`, ip subnets (e.g. 10.0.0.0/8)
     Addresses                     []string                   `json:"addresses,omitempty"`
-    // when `type`==`app_categories`
-    // list of application categories are available through /api/v1/const/app_categories
+    // when `type`==`app_categories`, list of application categories are available through /api/v1/const/app_categories
     AppCategories                 []string                   `json:"app_categories,omitempty"`
-    // when `type`==`app_categories`
-    // list of application categories are available through /api/v1/const/app_subcategories
+    // when `type`==`app_categories`, list of application categories are available through /api/v1/const/app_subcategories
     AppSubcategories              []string                   `json:"app_subcategories,omitempty"`
-    // when `type`==`apps`
-    // list of applications are available through:
-    //   - /api/v1/const/applications,
-    //   - /api/v1/const/gateway_applications
-    //   - /insight/top_app_by-bytes?wired=true
+    // when `type`==`apps`, list of applications are available through:
+    //   * /api/v1/const/applications
+    //   * /api/v1/const/gateway_applications
+    //   * /insight/top_app_by-bytes?wired=true
     Apps                          []string                   `json:"apps,omitempty"`
     CreatedTime                   *float64                   `json:"created_time,omitempty"`
     Description                   *string                    `json:"description,omitempty"`
-    // when `traffic_type`==`custom`
-    Dscp                          *int                       `json:"dscp,omitempty"`
+    // for SSR only, when `traffic_type`==`custom`. 0-63 or variable
+    Dscp                          *string                    `json:"dscp,omitempty"`
     FailoverPolicy                *ServiceFailoverPolicyEnum `json:"failover_policy,omitempty"`
     // if `type`==`custom`, web filtering
     Hostnames                     []string                   `json:"hostnames,omitempty"`
     Id                            *uuid.UUID                 `json:"id,omitempty"`
-    // when `traffic_type`==`custom`, for uplink selection
-    MaxJitter                     *int                       `json:"max_jitter,omitempty"`
-    // when `traffic_type`==`custom`, for uplink selection
-    MaxLatency                    *int                       `json:"max_latency,omitempty"`
-    // when `traffic_type`==`custom`, for uplink selection
-    MaxLoss                       *int                       `json:"max_loss,omitempty"`
+    // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-4294967295 or variable
+    MaxJitter                     *string                    `json:"max_jitter,omitempty"`
+    // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-4294967295 or variable
+    MaxLatency                    *string                    `json:"max_latency,omitempty"`
+    // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable
+    MaxLoss                       *string                    `json:"max_loss,omitempty"`
     ModifiedTime                  *float64                   `json:"modified_time,omitempty"`
     Name                          *string                    `json:"name,omitempty"`
     OrgId                         *uuid.UUID                 `json:"org_id,omitempty"`
     // whether to enable measure SLE
     SleEnabled                    *bool                      `json:"sle_enabled,omitempty"`
+    // when `type`==`custom`, optional, if it doesn't exist, http and https is assumed
     Specs                         []ServiceSpec              `json:"specs,omitempty"`
     SsrRelaxedTcpStateEnforcement *bool                      `json:"ssr_relaxed_tcp_state_enforcement,omitempty"`
     // when `traffic_type`==`custom`
     TrafficClass                  *ServiceTrafficClassEnum   `json:"traffic_class,omitempty"`
     // values from `/api/v1/consts/traffic_types`
-    // * when `type`==`apps`, we'll choose traffic_type automatically
-    // * when `type`==`addresses` or `type`==`hostnames`, you can provide your own settings (optional)
+    //   * when `type`==`apps`, we''ll choose traffic_type automatically
+    //   * when `type`==`addresses` or `type`==`hostnames`, you can provide your own settings (optional)
     TrafficType                   *string                    `json:"traffic_type,omitempty"`
     Type                          *ServiceTypeEnum           `json:"type,omitempty"`
-    // when `type`==`urls
-    // no need for spec as URL can encode the ports being used`
+    // when `type`==`urls`, no need for spec as URL can encode the ports being used
     Urls                          []string                   `json:"urls,omitempty"`
     AdditionalProperties          map[string]any             `json:"_"`
 }
@@ -188,13 +185,13 @@ type service  struct {
     Apps                          []string                   `json:"apps,omitempty"`
     CreatedTime                   *float64                   `json:"created_time,omitempty"`
     Description                   *string                    `json:"description,omitempty"`
-    Dscp                          *int                       `json:"dscp,omitempty"`
+    Dscp                          *string                    `json:"dscp,omitempty"`
     FailoverPolicy                *ServiceFailoverPolicyEnum `json:"failover_policy,omitempty"`
     Hostnames                     []string                   `json:"hostnames,omitempty"`
     Id                            *uuid.UUID                 `json:"id,omitempty"`
-    MaxJitter                     *int                       `json:"max_jitter,omitempty"`
-    MaxLatency                    *int                       `json:"max_latency,omitempty"`
-    MaxLoss                       *int                       `json:"max_loss,omitempty"`
+    MaxJitter                     *string                    `json:"max_jitter,omitempty"`
+    MaxLatency                    *string                    `json:"max_latency,omitempty"`
+    MaxLoss                       *string                    `json:"max_loss,omitempty"`
     ModifiedTime                  *float64                   `json:"modified_time,omitempty"`
     Name                          *string                    `json:"name,omitempty"`
     OrgId                         *uuid.UUID                 `json:"org_id,omitempty"`

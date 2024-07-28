@@ -6,9 +6,10 @@ import (
 
 // IdpProfileOverwrite represents a IdpProfileOverwrite struct.
 type IdpProfileOverwrite struct {
-    // - alert (default) 
-    // - drop: siliently dropping packets
-    // - close: notify client/server to close connection
+    // Possible values:
+    //   * alert (default) 
+    //   * drop: siliently dropping packets
+    //   * close: notify client/server to close connection
     Action               *IdpProfileActionEnum `json:"action,omitempty"`
     Matching             *IdpProfileMatching   `json:"matching,omitempty"`
     Name                 *string               `json:"name,omitempty"`

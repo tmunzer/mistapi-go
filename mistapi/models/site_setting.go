@@ -122,7 +122,7 @@ type SiteSetting struct {
     // enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.
     SwitchUpdownThreshold           Optional[int]                          `json:"switch_updown_threshold"`
     SyntheticTest                   *SynthetictestConfig                   `json:"synthetic_test,omitempty"`
-    // whether to track anonymous BLE assets (requires ‘track_asset’ enabled)
+    // whether to track anonymous BLE assets (requires ‘track_asset’  enabled)
     TrackAnonymousDevices           *bool                                  `json:"track_anonymous_devices,omitempty"`
     TuntermMonitoring               []TuntermMonitoringItem                `json:"tunterm_monitoring,omitempty"`
     TuntermMonitoringDisabled       *bool                                  `json:"tunterm_monitoring_disabled,omitempty"`

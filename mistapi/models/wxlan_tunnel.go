@@ -19,9 +19,9 @@ type WxlanTunnel struct {
     // in seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries.
     HelloInterval        *int                 `json:"hello_interval,omitempty"`
     HelloRetries         *int                 `json:"hello_retries,omitempty"`
-    // optional, overwrite the hostname in SCCRQ control message, default is “” or null, %H and %M can be used, which will be replace with corresponding values:
-    // * %H: name of the ap if provided (and will be stripped so it can be used for hostname) and fallbacks to MAC
-    // * %M: MAC (e.g. 5c5b350e0060)
+    // optional, overwrite the hostname in SCCRQ control message, default is \u201C\u201D or null, %H and %M can be used, which will be replace with corresponding values:
+    //   * %H: name of the ap if provided (and will be stripped so it can be used for hostname) and fallbacks to MAC
+    //   * %M: MAC (e.g. 5c5b350e0060)
     Hostname             *string              `json:"hostname,omitempty"`
     Id                   *uuid.UUID           `json:"id,omitempty"`
     // IPSec-related configurations; requires DMVPN be enabled

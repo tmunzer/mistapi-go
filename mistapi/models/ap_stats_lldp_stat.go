@@ -20,7 +20,7 @@ type ApStatsLldpStat struct {
     PowerAllocated       Optional[float64] `json:"power_allocated"`
     // in mW, total power needed by PD
     PowerDraw            Optional[float64] `json:"power_draw"`
-    // number of negotiations, if it keeps increasing, we don’t have a stable power
+    // number of negotiations, if it keeps increasing, we don’ t have a stable power
     PowerRequestCount    Optional[int]     `json:"power_request_count"`
     // in mW, the current power requested by PD
     PowerRequested       Optional[float64] `json:"power_requested"`

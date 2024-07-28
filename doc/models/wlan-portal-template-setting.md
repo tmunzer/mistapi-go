@@ -31,7 +31,7 @@ portal template wlan settings
 | `CompanyError` | `*string` | Optional | error message when company not provided |
 | `CompanyLabel` | `*string` | Optional | label of company field |
 | `Email` | `*bool` | Optional | whether email field is required<br>**Default**: `false` |
-| `EmailAccessDomainError` | `*string` | Optional | error message when a user has valid social login but doesn’t match specified email domains. |
+| `EmailAccessDomainError` | `*string` | Optional | error message when a user has valid social login but doesn’ t match specified email domains. |
 | `EmailCancel` | `*string` | Optional | Label for cancel confirmation code submission using email auth |
 | `EmailCodeCancel` | `*string` | Optional | - |
 | `EmailCodeError` | `*string` | Optional | “Please provide valid alternate email” |
@@ -104,7 +104,7 @@ portal template wlan settings
 | `SponsorCancel` | `*string` | Optional | “Cancel” |
 | `SponsorEmail` | `*string` | Optional | label for Sponsor Email |
 | `SponsorEmailError` | `*string` | Optional | “Please provide valid sponsor email” |
-| `SponsorEmailTemplate` | `*string` | Optional | html template to replace/override default sponsor email template<br><br>Sponsor Email Template supports following template variables:<br><br>* `approve_url`: Renders URL to approve the request; optionally &minutes=N query param can be appended to change the Authorization period of the guest, where N is a valid integer denoting number of minutes a guest remains authorized<br>* `deny_url`: Renders URL to reject the request<br>* `guest_email`: Renders Email ID of the guest<br>* `guest_name`: Renders Name of the guest<br>* `field1`: Renders value of the Custom Field 1<br>* `field2`: Renders value of the Custom Field 2<br>* `sponsor_link_validity_duration`: Renders validity time of the request (i.e. Approve/Deny URL)<br>* `auth_expire_minutes`: Renders Wlan-level configured Guest Authorization Expiration time period (in minutes), If not configured then default (1 day in minutes) |
+| `SponsorEmailTemplate` | `*string` | Optional | html template to replace/override default sponsor email template<br>Sponsor Email Template supports following template variables:<br><br>* `approve_url`: Renders URL to approve the request; optionally &minutes=N query param can be appended to change the Authorization period of the guest, where N is a valid integer denoting number of minutes a guest remains authorized<br>* `deny_url`: Renders URL to reject the request<br>* `guest_email`: Renders Email ID of the guest<br>* `guest_name`: Renders Name of the guest<br>* `field1`: Renders value of the Custom Field 1<br>* `field2`: Renders value of the Custom Field 2<br>* `sponsor_link_validity_duration`: Renders validity time of the request (i.e. Approve/Deny URL)<br>* `auth_expire_minutes`: Renders Wlan-level configured Guest Authorization Expiration time period (in minutes), If not configured then default (1 day in minutes) |
 | `SponsorInfoApproved` | `*string` | Optional | “Your request was approved by” |
 | `SponsorInfoDenied` | `*string` | Optional | “Your request was denied by” |
 | `SponsorInfoPending` | `*string` | Optional | “Your notification has been sent to” |

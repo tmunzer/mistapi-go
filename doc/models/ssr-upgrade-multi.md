@@ -13,7 +13,7 @@
 | `DeviceIds` | `[]uuid.UUID` | Required | list of 128T device IDs to upgrade |
 | `RebootAt` | `*int` | Optional | reboot start time in epoch seconds, default is start_time, -1 disables reboot |
 | `StartTime` | `*int` | Optional | 128T firmware download start time in epoch seconds, default is now, -1 disables download |
-| `Strategy` | [`*models.SsrUpgradeStrategyEnum`](../../doc/models/ssr-upgrade-strategy-enum.md) | Optional | * `big_bang`: upgrade all at once<br>* `serial`: one at a time<br>**Default**: `"big_bang"` |
+| `Strategy` | [`*models.SsrUpgradeStrategyEnum`](../../doc/models/ssr-upgrade-strategy-enum.md) | Optional | * `big_bang`: upgrade all at once<br>* `serial`: one at a time'<br>**Default**: `"big_bang"` |
 | `Version` | `*string` | Optional | 128T firmware version to upgrade (e.g. 5.3.0-93)<br>**Constraints**: *Minimum Length*: `1` |
 
 ## Example (as JSON)

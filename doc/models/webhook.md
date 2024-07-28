@@ -24,7 +24,7 @@
 | `Oauth2TokenUrl` | `*string` | Optional | required when `type`==`oauth2` |
 | `Oauth2Username` | `*string` | Optional | required when `oauth2_grant_type`==`password` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Secret` | `models.Optional[string]` | Optional | only if `type`=`http-post`<br>when `secret` is provided, two HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
+| `Secret` | `models.Optional[string]` | Optional | only if `type`=`http-post`<br><br>when `secret` is provided, two  HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SplunkToken` | `models.Optional[string]` | Optional | required if `type`=`splunk`<br>If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.' |
 | `Topics` | [`[]models.WebhookTopicEnum`](../../doc/models/webhook-topic-enum.md) | Optional | N.B. For org webhooks, only device_events/alarms/audits/client-join/client-sessions/nac-sessions/nac_events topics are supported. |

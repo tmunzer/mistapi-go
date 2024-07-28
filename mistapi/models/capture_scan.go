@@ -15,7 +15,9 @@ type CaptureScan struct {
     Aps                  map[string]CaptureScanAps     `json:"aps,omitempty"`
     // Only Single value allowed, default value gets applied when user provides wrong values
     Band                 Optional[CaptureScanBandEnum] `json:"band"`
-    // channel width for the band * `80` is only applicable for band_5 and band_6 * `160` is only for band_6
+    // channel width for the band 
+    //   * `80` is only applicable for band_5 and band_6 
+    //   * `160` is only for band_6
     Bandwidth            *Dot11BandwidthEnum           `json:"bandwidth,omitempty"`
     // specify the channel value where scan PCAP has to be started, default value gets applied when user provides wrong values
     Channel              *int                          `json:"channel,omitempty"`

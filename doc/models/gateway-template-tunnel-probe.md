@@ -1,9 +1,7 @@
 
 # Gateway Template Tunnel Probe
 
-Only if:
-
-* `provider`== `custom-ipsec`
+Only if `provider`== `custom-ipsec`
 
 ## Structure
 

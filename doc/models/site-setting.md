@@ -77,7 +77,7 @@ Site Settings
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | - |
 | `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored. |
 | `SyntheticTest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
-| `TrackAnonymousDevices` | `*bool` | Optional | whether to track anonymous BLE assets (requires ‘track_asset’ enabled)<br>**Default**: `false` |
+| `TrackAnonymousDevices` | `*bool` | Optional | whether to track anonymous BLE assets (requires ‘track_asset’  enabled)<br>**Default**: `false` |
 | `TuntermMonitoring` | [`[]models.TuntermMonitoringItem`](../../doc/models/tunterm-monitoring-item.md) | Optional | - |
 | `TuntermMonitoringDisabled` | `*bool` | Optional | **Default**: `false` |
 | `TuntermMulticastConfig` | [`*models.SiteSettingTuntermMulticastConfig`](../../doc/models/site-setting-tunterm-multicast-config.md) | Optional | - |

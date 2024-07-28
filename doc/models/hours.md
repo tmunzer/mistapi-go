@@ -3,7 +3,7 @@
 
 hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun).
 
-**Note**: If the dow is not defined then it’s treated as 00:00-23:59.
+**Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59.
 
 ## Structure
 

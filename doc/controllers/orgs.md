@@ -65,24 +65,6 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-{
-  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "allow_mist": true,
-  "created_time": 0,
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "modified_time": 0,
-  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "name": "string",
-  "orggroup_ids": [
-    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
-  ],
-  "session_expiry": 0
-}
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -90,7 +72,7 @@ if err != nil {
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 
 
@@ -122,14 +104,15 @@ CreateOrg(
 ctx := context.Background()
 
 body := models.Org{
-    AlarmtemplateId: models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
     AllowMist:       models.ToPointer(true),
-    MspId:           models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-    Name:            "string",
-    OrggroupIds:     []uuid.UUID{
-        uuid.MustParse("6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9"),
-    },
-    SessionExpiry:   models.ToPointer(0),
+    CreatedTime:     models.ToPointer(float64(1652905706)),
+    Id:              models.ToPointer(uuid.MustParse("2818e386-8dec-2562-9ede-5b8a0fbbdc71")),
+    ModifiedTime:    models.ToPointer(float64(1652905706)),
+    MspId:           models.ToPointer(uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909")),
+    MspLogoUrl:      models.ToPointer("https://example.com/logo/b9d42c2e-88ee-41f8-b798-f009ce7fe909.jpeg"),
+    MspName:         models.ToPointer("MSP"),
+    Name:            "Org",
+    SessionExpiry:   models.ToPointer(1440),
 }
 
 apiResponse, err := orgs.CreateOrg(ctx, &body)
@@ -142,24 +125,6 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-{
-  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "allow_mist": true,
-  "created_time": 0,
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "modified_time": 0,
-  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "name": "string",
-  "orggroup_ids": [
-    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
-  ],
-  "session_expiry": 0
-}
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -167,7 +132,7 @@ if err != nil {
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 
 
@@ -215,7 +180,7 @@ if err != nil {
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 
 
@@ -258,24 +223,6 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-{
-  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "allow_mist": true,
-  "created_time": 0,
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "modified_time": 0,
-  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "name": "string",
-  "orggroup_ids": [
-    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
-  ],
-  "session_expiry": 0
-}
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -283,7 +230,7 @@ if err != nil {
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 
 
@@ -359,7 +306,7 @@ if err != nil {
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 
 
@@ -413,24 +360,6 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-{
-  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "allow_mist": true,
-  "created_time": 0,
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "modified_time": 0,
-  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "name": "string",
-  "orggroup_ids": [
-    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
-  ],
-  "session_expiry": 0
-}
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -438,6 +367,6 @@ if err != nil {
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 

@@ -21,7 +21,7 @@
 | `Phone` | `*string` | Optional | phone number (numbers only, including country code) |
 | `Phone2` | `*string` | Optional | secondary phone number (numbers only, including country code) |
 | `Privileges` | [`[]models.PrivilegeSelf`](../../doc/models/privilege-self.md) | Optional | list of privileges the admin has<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `SessionExpiry` | `*int64` | Optional | - |
+| `SessionExpiry` | `*int64` | Optional | **Constraints**: `>= 10`, `<= 20160` |
 | `Tags` | `[]string` | Optional | - |
 | `TwoFactorVerified` | `*bool` | Optional | two factor status |
 | `ViaSso` | `*bool` | Optional | an admin alogin via_sso is more restircted. (password and email cannot be changed) |

@@ -7,42 +7,37 @@ import (
 // TunnelConfigs represents a TunnelConfigs struct.
 type TunnelConfigs struct {
     AutoProvision        *TunnelConfigsAutoProvision          `json:"auto_provision,omitempty"`
-    // Only if:
-    // * `provider`== `custom-ipsec`
+    // Only if `provider`== `custom-ipsec`
     IkeLifetime          *int                                 `json:"ike_lifetime,omitempty"`
-    // Only if:
-    // * `provider`== `custom-ipsec`
+    // Only if `provider`== `custom-ipsec`
     IkeMode              *GatewayTemplateTunnelIkeModeEnum    `json:"ike_mode,omitempty"`
     // if `provider`== `custom-ipsec`
     IkeProposals         []GatewayTemplateTunnelIkeProposal   `json:"ike_proposals,omitempty"`
     // if `provider`== `custom-ipsec`
     IpsecLifetime        *int                                 `json:"ipsec_lifetime,omitempty"`
-    // Only if:
-    // * `provider`== `custom-ipsec`
+    // Only if  `provider`== `custom-ipsec`
     IpsecProposals       []GatewayTemplateTunnelIpsecProposal `json:"ipsec_proposals,omitempty"`
     // Only if:
-    // * `provider`== `zscaler-ipsec`
-    // * `provider`==`jse-ipsec`
-    // * `provider`== `custom-ipsec`
+    //   * `provider`== `zscaler-ipsec`
+    //   * `provider`==`jse-ipsec`
+    //   * `provider`== `custom-ipsec`
     LocalId              *string                              `json:"local_id,omitempty"`
     Mode                 *GatewayTemplateTunnelModeEnum       `json:"mode,omitempty"`
     Primary              *GatewayTemplateTunnelNode           `json:"primary,omitempty"`
-    // Only if:
-    // * `provider`== `custom-ipsec`
+    // Only if `provider`== `custom-ipsec`
     Probe                *GatewayTemplateTunnelProbe          `json:"probe,omitempty"`
-    // Only if:
-    // * `provider`== `custom-ipsec`
+    // Only if `provider`== `custom-ipsec`
     Protocol             *GatewayTemplateTunnelProtocolEnum   `json:"protocol,omitempty"`
     Provider             *TunnelProviderOptionsNameEnum       `json:"provider,omitempty"`
     // Only if:
-    // * `provider`== `zscaler-ipsec`
-    // * `provider`==`jse-ipsec`
-    // * `provider`== `custom-ipsec`
+    //   * `provider`== `zscaler-ipsec`
+    //   * `provider`==`jse-ipsec`
+    //   * `provider`== `custom-ipsec`
     Psk                  *string                              `json:"psk,omitempty"`
     Secondary            *GatewayTemplateTunnelNode           `json:"secondary,omitempty"`
     // Only if:
-    // * `provider`== `custom-gre` 
-    // * `provider`== `custom-ipsec`
+    //   * `provider`== `custom-gre`
+    //   * `provider`== `custom-ipsec`
     Version              *GatewayTemplateTunnelVersionEnum    `json:"version,omitempty"`
     AdditionalProperties map[string]any                       `json:"_"`
 }

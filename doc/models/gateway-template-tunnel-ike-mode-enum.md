@@ -1,9 +1,7 @@
 
 # Gateway Template Tunnel Ike Mode Enum
 
-Only if:
-
-* `provider`== `custom-ipsec`
+Only if `provider`== `custom-ipsec`
 
 ## Enumeration
 

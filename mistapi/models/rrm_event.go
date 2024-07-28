@@ -11,7 +11,9 @@ import (
 type RrmEvent struct {
     ApId                 uuid.UUID                `json:"ap_id"`
     Band                 Dot11BandEnum            `json:"band"`
-    // channel width for the band * `80` is only applicable for band_5 and band_6 * `160` is only for band_6
+    // channel width for the band 
+    //   * `80` is only applicable for band_5 and band_6 
+    //   * `160` is only for band_6
     Bandwidth            Dot11BandwidthEnum       `json:"bandwidth"`
     // channel for the band from rrm
     Channel              int                      `json:"channel"`

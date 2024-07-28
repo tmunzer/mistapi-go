@@ -23,7 +23,7 @@ Org Settings
 | `Cradlepoint` | [`*models.AccountCradlepointConfig`](../../doc/models/account-cradlepoint-config.md) | Optional | - |
 | `CreatedTime` | `*float64` | Optional | - |
 | `DeviceCert` | [`*models.OrgSettingDeviceCert`](../../doc/models/org-setting-device-cert.md) | Optional | common device cert, optional |
-| `DeviceUpdownThreshold` | `*int` | Optional | enable threshold-based device down delivery via<br><br>1) device-updowns webhooks topic,<br>2) Mist Alert Framework; e.g. send AP/SW/GW down event only if AP/SW/GW Up is not seen within the threshold in minutes; 0 - 240, default is 0 (trigger immediate)<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 30` |
+| `DeviceUpdownThreshold` | `*int` | Optional | enable threshold-based device down delivery via<br><br>* device-updowns webhooks topic,<br>* Mist Alert Framework; e.g. send AP/SW/GW down event only if AP/SW/GW Up is not seen within the threshold in minutes; 0 - 240, default is 0 (trigger immediate)<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 30` |
 | `DisablePcap` | `*bool` | Optional | whether to disallow Mist to analyze pcap files (this is required for marvis pcap)<br>**Default**: `false` |
 | `DisableRemoteShell` | `*bool` | Optional | whether to disable remote shell access for an entire org<br>**Default**: `false` |
 | `ForSite` | `*bool` | Optional | - |

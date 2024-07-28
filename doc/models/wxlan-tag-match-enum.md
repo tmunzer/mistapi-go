@@ -1,6 +1,8 @@
 
 # Wxlan Tag Match Enum
 
+required if `type`==`match`
+
 ## Enumeration
 
 `WxlanTagMatchEnum`
@@ -16,10 +18,12 @@
 | `hostname` |
 | `ip_range_subnet` |
 | `port` |
-| `radius_attr` |
-| `radius_group` |
-| `radius_username` |
-| `wlan_id` |
 | `psk_name` |
 | `psk_role` |
+| `radius_attr` |
+| `radius_class` |
+| `radius_group` |
+| `radius_username` |
+| `sdkclient_uuid` |
+| `wlan_id` |
 

@@ -11,7 +11,7 @@ radio stat
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Bandwidth` | [`*models.Dot11BandwidthEnum`](../../doc/models/dot-11-bandwidth-enum.md) | Optional | channel width for the band * `80` is only applicable for band_5 and band_6 * `160` is only for band_6 |
+| `Bandwidth` | [`*models.Dot11BandwidthEnum`](../../doc/models/dot-11-bandwidth-enum.md) | Optional | channel width for the band<br><br>* `80` is only applicable for band_5 and band_6<br>* `160` is only for band_6 |
 | `Channel` | `models.Optional[int]` | Optional | current channel the radio is running on |
 | `DynamicChainingEnalbed` | `models.Optional[bool]` | Optional | Use dynamic chaining for downlink |
 | `Mac` | `models.Optional[string]` | Optional | radio (base) mac, it can have 16 bssids (e.g. 5c5b350001a0-5c5b350001af) |

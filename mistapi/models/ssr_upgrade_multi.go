@@ -18,7 +18,7 @@ type SsrUpgradeMulti struct {
     // 128T firmware download start time in epoch seconds, default is now, -1 disables download
     StartTime            *int                    `json:"start_time,omitempty"`
     // * `big_bang`: upgrade all at once
-    // * `serial`: one at a time
+    // * `serial`: one at a time'
     Strategy             *SsrUpgradeStrategyEnum `json:"strategy,omitempty"`
     // 128T firmware version to upgrade (e.g. 5.3.0-93)
     Version              *string                 `json:"version,omitempty"`

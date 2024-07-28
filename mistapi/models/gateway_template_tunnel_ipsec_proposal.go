@@ -7,19 +7,17 @@ import (
 // GatewayTemplateTunnelIpsecProposal represents a GatewayTemplateTunnelIpsecProposal struct.
 type GatewayTemplateTunnelIpsecProposal struct {
     AuthAlgo             *TunnelConfigsAuthAlgoEnum         `json:"auth_algo,omitempty"`
-    // Only if:
-    // * `provider`== `custom-ipsec`
-    // Values:
-    // * 1 
-    // * 2 (1024-bit) 
-    // * 5
-    // * 14 (default, 2048-bit) 
-    // * 15 (3072-bit) 
-    // * 16 (4096-bit)
-    // * 19 (256-bit ECP)
-    // * 20 (384-bit ECP)
-    // * 21 (521-bit ECP) 
-    // * 24 (2048-bit ECP)
+    // Only if `provider`== `custom-ipsec`. Possible values:
+    //   * 1 
+    //   * 2 (1024-bit)
+    //   * 5
+    //   * 14 (default, 2048-bit)
+    //   * 15 (3072-bit)
+    //   * 16 (4096-bit)
+    //   * 19 (256-bit ECP)
+    //   * 20 (384-bit ECP)
+    //   * 21 (521-bit ECP)
+    //   * 24 (2048-bit ECP)
     DhGroup              *TunnelConfigsDhGroupEnum          `json:"dh_group,omitempty"`
     EncAlgo              Optional[TunnelConfigsEncAlgoEnum] `json:"enc_algo"`
     AdditionalProperties map[string]any                     `json:"_"`

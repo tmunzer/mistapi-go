@@ -49,7 +49,7 @@ type WlanPortalTemplateSetting struct {
     CompanyLabel             *string        `json:"companyLabel,omitempty"`
     // whether email field is required
     Email                    *bool          `json:"email,omitempty"`
-    // error message when a user has valid social login but doesn’t match specified email domains.
+    // error message when a user has valid social login but doesn’ t match specified email domains.
     EmailAccessDomainError   *string        `json:"emailAccessDomainError,omitempty"`
     // Label for cancel confirmation code submission using email auth
     EmailCancel              *string        `json:"emailCancel,omitempty"`
@@ -194,16 +194,16 @@ type WlanPortalTemplateSetting struct {
     SponsorEmail             *string        `json:"sponsorEmail,omitempty"`
     // “Please provide valid sponsor email”
     SponsorEmailError        *string        `json:"sponsorEmailError,omitempty"`
-    // html template to replace/override default sponsor email template
-    // Sponsor Email Template supports following template variables: 
-    //  * `approve_url`: Renders URL to approve the request; optionally &minutes=N query param can be appended to change the Authorization period of the guest, where N is a valid integer denoting number of minutes a guest remains authorized
-    //  * `deny_url`: Renders URL to reject the request
-    //  * `guest_email`: Renders Email ID of the guest
-    //  * `guest_name`: Renders Name of the guest
-    //  * `field1`: Renders value of the Custom Field 1
-    //  * `field2`: Renders value of the Custom Field 2
-    //  * `sponsor_link_validity_duration`: Renders validity time of the request (i.e. Approve/Deny URL)
-    //  * `auth_expire_minutes`: Renders Wlan-level configured Guest Authorization Expiration time period (in minutes), If not configured then default (1 day in minutes)
+    // html template to replace/override default sponsor email template 
+    // Sponsor Email Template supports following template variables:
+    //   * `approve_url`: Renders URL to approve the request; optionally &minutes=N query param can be appended to change the Authorization period of the guest, where N is a valid integer denoting number of minutes a guest remains authorized
+    //   * `deny_url`: Renders URL to reject the request
+    //   * `guest_email`: Renders Email ID of the guest
+    //   * `guest_name`: Renders Name of the guest
+    //   * `field1`: Renders value of the Custom Field 1
+    //   * `field2`: Renders value of the Custom Field 2
+    //   * `sponsor_link_validity_duration`: Renders validity time of the request (i.e. Approve/Deny URL)
+    //   * `auth_expire_minutes`: Renders Wlan-level configured Guest Authorization Expiration time period (in minutes), If not configured then default (1 day in minutes)
     SponsorEmailTemplate     *string        `json:"sponsorEmailTemplate,omitempty"`
     // “Your request was approved by”
     SponsorInfoApproved      *string        `json:"sponsorInfoApproved,omitempty"`
