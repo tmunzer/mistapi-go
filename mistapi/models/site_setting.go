@@ -34,7 +34,7 @@ type SiteSetting struct {
     // you can define some URLs that's critical to site operaitons the latency will be captured and considered for site health
     CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring      `json:"critical_url_monitoring,omitempty"`
     // sending AP_DISCONNECTED event in device-updowns only if AP_CONNECTED is not seen within the threshold, in minutes
-    DeviceUpdownThreshold           *int                                   `json:"device_updown_threshold,omitempty"`
+    DeviceUpdownThreshold           Optional[int]                          `json:"device_updown_threshold"`
     DhcpSnooping                    *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
     // if some system-default port usages are not desired - namely, ap / iot / uplink
     DisabledSystemDefinedPortUsages []string                               `json:"disabled_system_defined_port_usages,omitempty"`
@@ -136,7 +136,8 @@ type SiteSetting struct {
     VrfInstances                    map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     // Property key is the vrrp group
     VrrpGroups                      map[string]VrrpGroup                   `json:"vrrp_groups,omitempty"`
-    VsInstance                      *VsInstance                            `json:"vs_instance,omitempty"`
+    // optional, for EX9200 only to seggregate virtual-switches. Property key is the instance name
+    VsInstance                      map[string]VsInstanceProperty          `json:"vs_instance,omitempty"`
     WanVna                          *SiteSettingWanVna                     `json:"wan_vna,omitempty"`
     WatchedStationUrl               *string                                `json:"watched_station_url,omitempty"`
     WhitelistUrl                    *string                                `json:"whitelist_url,omitempty"`
@@ -211,8 +212,12 @@ func (s SiteSetting) toMap() map[string]any {
     if s.CriticalUrlMonitoring != nil {
         structMap["critical_url_monitoring"] = s.CriticalUrlMonitoring.toMap()
     }
-    if s.DeviceUpdownThreshold != nil {
-        structMap["device_updown_threshold"] = s.DeviceUpdownThreshold
+    if s.DeviceUpdownThreshold.IsValueSet() {
+        if s.DeviceUpdownThreshold.Value() != nil {
+            structMap["device_updown_threshold"] = s.DeviceUpdownThreshold.Value()
+        } else {
+            structMap["device_updown_threshold"] = nil
+        }
     }
     if s.DhcpSnooping != nil {
         structMap["dhcp_snooping"] = s.DhcpSnooping.toMap()
@@ -403,7 +408,7 @@ func (s SiteSetting) toMap() map[string]any {
         structMap["vrrp_groups"] = s.VrrpGroups
     }
     if s.VsInstance != nil {
-        structMap["vs_instance"] = s.VsInstance.toMap()
+        structMap["vs_instance"] = s.VsInstance
     }
     if s.WanVna != nil {
         structMap["wan_vna"] = s.WanVna.toMap()
@@ -547,7 +552,7 @@ type siteSetting  struct {
     ConfigPushPolicy                *SiteSettingConfigPushPolicy           `json:"config_push_policy,omitempty"`
     CreatedTime                     *float64                               `json:"created_time,omitempty"`
     CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring      `json:"critical_url_monitoring,omitempty"`
-    DeviceUpdownThreshold           *int                                   `json:"device_updown_threshold,omitempty"`
+    DeviceUpdownThreshold           Optional[int]                          `json:"device_updown_threshold"`
     DhcpSnooping                    *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
     DisabledSystemDefinedPortUsages []string                               `json:"disabled_system_defined_port_usages,omitempty"`
     DnsServers                      []string                               `json:"dns_servers,omitempty"`
@@ -608,7 +613,7 @@ type siteSetting  struct {
     VrfConfig                       *VrfConfig                             `json:"vrf_config,omitempty"`
     VrfInstances                    map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     VrrpGroups                      map[string]VrrpGroup                   `json:"vrrp_groups,omitempty"`
-    VsInstance                      *VsInstance                            `json:"vs_instance,omitempty"`
+    VsInstance                      map[string]VsInstanceProperty          `json:"vs_instance,omitempty"`
     WanVna                          *SiteSettingWanVna                     `json:"wan_vna,omitempty"`
     WatchedStationUrl               *string                                `json:"watched_station_url,omitempty"`
     WhitelistUrl                    *string                                `json:"whitelist_url,omitempty"`

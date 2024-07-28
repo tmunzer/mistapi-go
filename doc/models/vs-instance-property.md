@@ -1,9 +1,9 @@
 
-# Vs Instance
+# Vs Instance Property
 
 ## Structure
 
-`VsInstance`
+`VsInstanceProperty`
 
 ## Fields
 
@@ -16,7 +16,7 @@
 ```json
 {
   "networks": [
-    "networks4"
+    "networks6"
   ]
 }
 ```

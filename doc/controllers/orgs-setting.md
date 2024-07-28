@@ -411,8 +411,9 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgSetting{
+    ApUpdownThreshold:           models.NewOptional(models.ToPointer(0)),
     BlacklistUrl:                models.ToPointer("https://papi.s3.amazonaws.com/blacklist/xxx..."),
-    DeviceUpdownThreshold:       models.ToPointer(0),
+    DeviceUpdownThreshold:       models.NewOptional(models.ToPointer(0)),
     DisablePcap:                 models.ToPointer(false),
     DisableRemoteShell:          models.ToPointer(false),
     GatewayUpdownThreshold:      models.NewOptional(models.ToPointer(10)),

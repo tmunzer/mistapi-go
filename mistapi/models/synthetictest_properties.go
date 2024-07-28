@@ -6,11 +6,11 @@ import (
 
 // SynthetictestProperties represents a SynthetictestProperties struct.
 type SynthetictestProperties struct {
-    CustomTestUrls       []string       `json:"custom_test_urls,omitempty"`
+    CustomTestUrls       []string                         `json:"custom_test_urls,omitempty"`
     // for some vlans where we don't want this to run
-    Disabled             *bool          `json:"disabled,omitempty"`
-    VlanIds              []int          `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Disabled             *bool                            `json:"disabled,omitempty"`
+    VlanIds              []SynthetictestPropertiesVlanIds `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]any                   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestProperties.
@@ -59,7 +59,7 @@ func (s *SynthetictestProperties) UnmarshalJSON(input []byte) error {
 
 // synthetictestProperties is a temporary struct used for validating the fields of SynthetictestProperties.
 type synthetictestProperties  struct {
-    CustomTestUrls []string `json:"custom_test_urls,omitempty"`
-    Disabled       *bool    `json:"disabled,omitempty"`
-    VlanIds        []int    `json:"vlan_ids,omitempty"`
+    CustomTestUrls []string                         `json:"custom_test_urls,omitempty"`
+    Disabled       *bool                            `json:"disabled,omitempty"`
+    VlanIds        []SynthetictestPropertiesVlanIds `json:"vlan_ids,omitempty"`
 }

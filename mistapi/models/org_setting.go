@@ -26,7 +26,7 @@ type OrgSetting struct {
     // enable threshold-based device down delivery via
     //   * device-updowns webhooks topic, 
     //   * Mist Alert Framework; e.g. send AP/SW/GW down event only if AP/SW/GW Up is not seen within the threshold in minutes; 0 - 240, default is 0 (trigger immediate)
-    DeviceUpdownThreshold       *int                                   `json:"device_updown_threshold,omitempty"`
+    DeviceUpdownThreshold       Optional[int]                          `json:"device_updown_threshold"`
     // whether to disallow Mist to analyze pcap files (this is required for marvis pcap)
     DisablePcap                 *bool                                  `json:"disable_pcap,omitempty"`
     // whether to disable remote shell access for an entire org
@@ -122,8 +122,12 @@ func (o OrgSetting) toMap() map[string]any {
     if o.DeviceCert != nil {
         structMap["device_cert"] = o.DeviceCert.toMap()
     }
-    if o.DeviceUpdownThreshold != nil {
-        structMap["device_updown_threshold"] = o.DeviceUpdownThreshold
+    if o.DeviceUpdownThreshold.IsValueSet() {
+        if o.DeviceUpdownThreshold.Value() != nil {
+            structMap["device_updown_threshold"] = o.DeviceUpdownThreshold.Value()
+        } else {
+            structMap["device_updown_threshold"] = nil
+        }
     }
     if o.DisablePcap != nil {
         structMap["disable_pcap"] = o.DisablePcap
@@ -300,7 +304,7 @@ type orgSetting  struct {
     Cradlepoint                 *AccountCradlepointConfig              `json:"cradlepoint,omitempty"`
     CreatedTime                 *float64                               `json:"created_time,omitempty"`
     DeviceCert                  *OrgSettingDeviceCert                  `json:"device_cert,omitempty"`
-    DeviceUpdownThreshold       *int                                   `json:"device_updown_threshold,omitempty"`
+    DeviceUpdownThreshold       Optional[int]                          `json:"device_updown_threshold"`
     DisablePcap                 *bool                                  `json:"disable_pcap,omitempty"`
     DisableRemoteShell          *bool                                  `json:"disable_remote_shell,omitempty"`
     ForSite                     *bool                                  `json:"for_site,omitempty"`

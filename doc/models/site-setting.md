@@ -17,7 +17,7 @@ Site Settings
 | `Analytic` | [`*models.SiteSettingAnalytic`](../../doc/models/site-setting-analytic.md) | Optional | - |
 | `ApMatching` | [`*models.SiteSettingApMatching`](../../doc/models/site-setting-ap-matching.md) | Optional | - |
 | `ApPortConfig` | [`*models.SiteSettingApPortConfig`](../../doc/models/site-setting-ap-port-config.md) | Optional | - |
-| `ApUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored. |
+| `ApUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `AutoPlacement` | [`*models.SiteSettingAutoPlacement`](../../doc/models/site-setting-auto-placement.md) | Optional | if we're able to determine its x/y/orientation, this will be populated |
 | `AutoUpgrade` | [`*models.SiteSettingAutoUpgrade`](../../doc/models/site-setting-auto-upgrade.md) | Optional | Auto Upgrade Settings |
 | `BlacklistUrl` | `*string` | Optional | - |
@@ -26,7 +26,7 @@ Site Settings
 | `ConfigPushPolicy` | [`*models.SiteSettingConfigPushPolicy`](../../doc/models/site-setting-config-push-policy.md) | Optional | mist also uses some heuristic rules to prevent destructive configs from being pushed |
 | `CreatedTime` | `*float64` | Optional | - |
 | `CriticalUrlMonitoring` | [`*models.SiteSettingCriticalUrlMonitoring`](../../doc/models/site-setting-critical-url-monitoring.md) | Optional | you can define some URLs that's critical to site operaitons the latency will be captured and considered for site health |
-| `DeviceUpdownThreshold` | `*int` | Optional | sending AP_DISCONNECTED event in device-updowns only if AP_CONNECTED is not seen within the threshold, in minutes<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 30` |
+| `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | sending AP_DISCONNECTED event in device-updowns only if AP_CONNECTED is not seen within the threshold, in minutes<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DisabledSystemDefinedPortUsages` | `[]string` | Optional | if some system-default port usages are not desired - namely, ap / iot / uplink |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
@@ -40,7 +40,7 @@ Site Settings
 | `Gateway` | [`*models.GatewayTemplate`](../../doc/models/gateway-template.md) | Optional | Gateway Template is applied to a site for gateway(s) in a site. |
 | `GatewayAdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
 | `GatewayMgmt` | [`*models.SiteSettingGatewayMgmt`](../../doc/models/site-setting-gateway-mgmt.md) | Optional | Gateway Site settings |
-| `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored. |
+| `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | enable mist_nac to use radsec |
@@ -75,7 +75,7 @@ Site Settings
 | `Switch` | [`*models.NetworkTemplate`](../../doc/models/network-template.md) | Optional | Network Template |
 | `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | Switch template |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | - |
-| `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored. |
+| `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `SyntheticTest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
 | `TrackAnonymousDevices` | `*bool` | Optional | whether to track anonymous BLE assets (requires ‘track_asset’  enabled)<br>**Default**: `false` |
 | `TuntermMonitoring` | [`[]models.TuntermMonitoringItem`](../../doc/models/tunterm-monitoring-item.md) | Optional | - |
@@ -87,7 +87,7 @@ Site Settings
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.SwitchVrfInstance`](../../doc/models/switch-vrf-instance.md) | Optional | Property key is the network name |
 | `VrrpGroups` | [`map[string]models.VrrpGroup`](../../doc/models/vrrp-group.md) | Optional | Property key is the vrrp group |
-| `VsInstance` | [`*models.VsInstance`](../../doc/models/vs-instance.md) | Optional | - |
+| `VsInstance` | [`map[string]models.VsInstanceProperty`](../../doc/models/vs-instance-property.md) | Optional | optional, for EX9200 only to seggregate virtual-switches. Property key is the instance name |
 | `WanVna` | [`*models.SiteSettingWanVna`](../../doc/models/site-setting-wan-vna.md) | Optional | - |
 | `WatchedStationUrl` | `*string` | Optional | - |
 | `WhitelistUrl` | `*string` | Optional | - |
@@ -100,6 +100,7 @@ Site Settings
 
 ```json
 {
+  "ap_updown_threshold": 0,
   "blacklist_url": "https://papi.s3.amazonaws.com/blacklist/xxx...",
   "config_auto_revert": false,
   "device_updown_threshold": 0,
@@ -108,7 +109,7 @@ Site Settings
       "via": "2a02:1234:200a::100"
     }
   },
-  "gateway_updown_threshold": 10,
+  "gateway_updown_threshold": 0,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "persist_config_on_device": false,
   "report_gatt": false,

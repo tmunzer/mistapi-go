@@ -461,15 +461,16 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SiteSetting{
+    ApUpdownThreshold:               models.NewOptional(models.ToPointer(0)),
     BlacklistUrl:                    models.ToPointer("https://papi.s3.amazonaws.com/blacklist/xxx..."),
     ConfigAutoRevert:                models.ToPointer(false),
-    DeviceUpdownThreshold:           models.ToPointer(0),
+    DeviceUpdownThreshold:           models.NewOptional(models.ToPointer(0)),
     ExtraRoutes6:                    map[string]models.ExtraRoute6{
         "2a02:1234:420a:10c9::/64": models.ExtraRoute6{
             Via:           models.ToPointer("2a02:1234:200a::100"),
         },
     },
-    GatewayUpdownThreshold:          models.NewOptional(models.ToPointer(10)),
+    GatewayUpdownThreshold:          models.NewOptional(models.ToPointer(0)),
     OrgId:                           models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     PersistConfigOnDevice:           models.ToPointer(false),
     ReportGatt:                      models.ToPointer(false),

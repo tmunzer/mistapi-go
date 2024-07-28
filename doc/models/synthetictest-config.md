@@ -25,8 +25,8 @@
       ],
       "disabled": false,
       "vlan_ids": [
-        186,
-        187
+        "String7",
+        "String8"
       ]
     },
     {
@@ -35,8 +35,8 @@
       ],
       "disabled": false,
       "vlan_ids": [
-        186,
-        187
+        "String7",
+        "String8"
       ]
     },
     {
@@ -45,8 +45,8 @@
       ],
       "disabled": false,
       "vlan_ids": [
-        186,
-        187
+        "String7",
+        "String8"
       ]
     }
   ],
