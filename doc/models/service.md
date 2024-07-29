@@ -31,7 +31,7 @@ Applications used for the Gateway configurations
 | `Specs` | [`[]models.ServiceSpec`](../../doc/models/service-spec.md) | Optional | when `type`==`custom`, optional, if it doesn't exist, http and https is assumed |
 | `SsrRelaxedTcpStateEnforcement` | `*bool` | Optional | **Default**: `false` |
 | `TrafficClass` | [`*models.ServiceTrafficClassEnum`](../../doc/models/service-traffic-class-enum.md) | Optional | when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`<br>**Default**: `"best_effort"` |
-| `TrafficType` | `*string` | Optional | values from `/api/v1/consts/traffic_types`<br><br>* when `type`==`apps`, we''ll choose traffic_type automatically<br>* when `type`==`addresses` or `type`==`hostnames`, you can provide your own settings (optional)<br>**Default**: `"data_best_effort"` |
+| `TrafficType` | `*string` | Optional | values from `/api/v1/consts/traffic_types`<br>**Default**: `"data_best_effort"` |
 | `Type` | [`*models.ServiceTypeEnum`](../../doc/models/service-type-enum.md) | Optional | enum: `app_categories`, `apps`, `custom`, `urls`<br>**Default**: `"custom"` |
 | `Urls` | `[]string` | Optional | when `type`==`urls`, no need for spec as URL can encode the ports being used |
 

@@ -10,90 +10,13 @@ constantsDefinitions := client.ConstantsDefinitions()
 
 ## Methods
 
-* [List Alarm Definitions](../../doc/controllers/constants-definitions.md#list-alarm-definitions)
 * [List Ap Led Definition](../../doc/controllers/constants-definitions.md#list-ap-led-definition)
 * [List App Category Definitions](../../doc/controllers/constants-definitions.md#list-app-category-definitions)
 * [List App Sub Category Definitions](../../doc/controllers/constants-definitions.md#list-app-sub-category-definitions)
-
-
-# List Alarm Definitions
-
-Get List of brief definitions of all the supported alarm types.
-
-The example field contains an example payload as you would recieve in the alarm webhook output.
-
-HA cluster node names will be specified in the `node` field, if applicable.'
-
-```go
-ListAlarmDefinitions(
-    ctx context.Context) (
-    models.ApiResponse[[]models.ConstAlarmDefinition],
-    error)
-```
-
-## Response Type
-
-[`[]models.ConstAlarmDefinition`](../../doc/models/const-alarm-definition.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-apiResponse, err := constantsDefinitions.ListAlarmDefinitions(ctx)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-[
-  {
-    "display": "Device offline",
-    "example": {
-      "aps": [
-        "d420b02000fa"
-      ],
-      "count": 1,
-      "group": "infrastructure",
-      "hostnames": [
-        "Vendor_AP2"
-      ],
-      "id": "e70c308f-7007-4866-9ecd-0d01842979ea",
-      "last_seen": 1629753888,
-      "org_id": "09dac91f-6e73-4100-89f7-698e0fafbb1b",
-      "severity": "warn",
-      "site_id": "dcfb31a1-d615-4361-8c95-b9dde05aa704",
-      "timestamp": 1629753888,
-      "type": "device_down"
-    },
-    "fields": [
-      "aps",
-      "hostnames"
-    ],
-    "group": "infrastructure",
-    "key": "device_down",
-    "marvis_suggestion_category": "string",
-    "severity": "warn"
-  }
-]
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+* [List Applications](../../doc/controllers/constants-definitions.md#list-applications)
+* [List Country Codes](../../doc/controllers/constants-definitions.md#list-country-codes)
+* [List Gateway Applications](../../doc/controllers/constants-definitions.md#list-gateway-applications)
+* [List Traffic Types](../../doc/controllers/constants-definitions.md#list-traffic-types)
 
 
 # List Ap Led Definition
@@ -265,6 +188,231 @@ if err != nil {
     "display": "Office Documents",
     "key": "Office_Documents",
     "traffic_type": "data_interactive"
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# List Applications
+
+Get List of a list of applications that Juniper-Mist APs recognize
+
+```go
+ListApplications(
+    ctx context.Context) (
+    models.ApiResponse[[]models.ConstApplicationDefinition],
+    error)
+```
+
+## Response Type
+
+[`[]models.ConstApplicationDefinition`](../../doc/models/const-application-definition.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := constantsDefinitions.ListApplications(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "app_id": true,
+    "app_image_url": "",
+    "app_probe": true,
+    "category": "FileSharing",
+    "group": "File Sharing",
+    "key": "dropbox",
+    "name": "Dropbox",
+    "signature_based": true,
+    "ssr_app_id": true
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# List Country Codes
+
+Get List of List of available Country Codes
+
+```go
+ListCountryCodes(
+    ctx context.Context) (
+    models.ApiResponse[[]models.ConstCountry],
+    error)
+```
+
+## Response Type
+
+[`[]models.ConstCountry`](../../doc/models/const-country.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := constantsDefinitions.ListCountryCodes(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "alpha2": "FR",
+    "certified": true,
+    "name": "France",
+    "numeric": 250
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# List Gateway Applications
+
+Get the full list of applications that we recognize
+
+```go
+ListGatewayApplications(
+    ctx context.Context) (
+    models.ApiResponse[[]models.ConstGatewayApplicationsDefinition],
+    error)
+```
+
+## Response Type
+
+[`[]models.ConstGatewayApplicationsDefinition`](../../doc/models/const-gateway-applications-definition.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := constantsDefinitions.ListGatewayApplications(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "app_id": true,
+    "key": "4shared",
+    "name": "4shared",
+    "ssr_app_id": true
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+
+
+# List Traffic Types
+
+Get List of identified traffic
+
+```go
+ListTrafficTypes(
+    ctx context.Context) (
+    models.ApiResponse[[]models.ConstTrafficType],
+    error)
+```
+
+## Response Type
+
+[`[]models.ConstTrafficType`](../../doc/models/const-traffic-type.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := constantsDefinitions.ListTrafficTypes(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "display": "VoIP Video",
+    "dscp": 32,
+    "failover_policy": "non_revertible",
+    "max_jitter": 250,
+    "max_latency": 1500,
+    "max_loss": 35,
+    "name": "voip_video",
+    "traffic_class": "medium"
   }
 ]
 ```

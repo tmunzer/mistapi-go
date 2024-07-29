@@ -45,8 +45,6 @@ type Service struct {
     // when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`
     TrafficClass                  *ServiceTrafficClassEnum   `json:"traffic_class,omitempty"`
     // values from `/api/v1/consts/traffic_types`
-    //   * when `type`==`apps`, we''ll choose traffic_type automatically
-    //   * when `type`==`addresses` or `type`==`hostnames`, you can provide your own settings (optional)
     TrafficType                   *string                    `json:"traffic_type,omitempty"`
     // enum: `app_categories`, `apps`, `custom`, `urls`
     Type                          *ServiceTypeEnum           `json:"type,omitempty"`

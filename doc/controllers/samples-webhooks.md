@@ -1,38 +1,38 @@
-# Samples-Webhook
+# Samples Webhooks
 
 ```go
-samplesWebhook := client.SamplesWebhook()
+samplesWebhooks := client.SamplesWebhooks()
 ```
 
 ## Class Name
 
-`SamplesWebhook`
+`SamplesWebhooks`
 
 ## Methods
 
-* [Alarms](../../doc/controllers/samples-webhook.md#alarms)
-* [Asset Raw](../../doc/controllers/samples-webhook.md#asset-raw)
-* [Audits](../../doc/controllers/samples-webhook.md#audits)
-* [Client Info](../../doc/controllers/samples-webhook.md#client-info)
-* [Client Join](../../doc/controllers/samples-webhook.md#client-join)
-* [Client Latency](../../doc/controllers/samples-webhook.md#client-latency)
-* [Client Sessions](../../doc/controllers/samples-webhook.md#client-sessions)
-* [Device Events](../../doc/controllers/samples-webhook.md#device-events)
-* [Device up Down](../../doc/controllers/samples-webhook.md#device-up-down)
-* [Discovered-Raw-Rssi](../../doc/controllers/samples-webhook.md#discovered-raw-rssi)
-* [Location](../../doc/controllers/samples-webhook.md#location)
-* [Location Asset](../../doc/controllers/samples-webhook.md#location-asset)
-* [Location Centrak](../../doc/controllers/samples-webhook.md#location-centrak)
-* [Location Client](../../doc/controllers/samples-webhook.md#location-client)
-* [Location Sdk](../../doc/controllers/samples-webhook.md#location-sdk)
-* [Location Unclient](../../doc/controllers/samples-webhook.md#location-unclient)
-* [Nac Accounting](../../doc/controllers/samples-webhook.md#nac-accounting)
-* [Nac Events](../../doc/controllers/samples-webhook.md#nac-events)
-* [Occupancy Alerts](../../doc/controllers/samples-webhook.md#occupancy-alerts)
-* [Ping](../../doc/controllers/samples-webhook.md#ping)
-* [Sdkclient Scan Data](../../doc/controllers/samples-webhook.md#sdkclient-scan-data)
-* [Site Sle](../../doc/controllers/samples-webhook.md#site-sle)
-* [Zone](../../doc/controllers/samples-webhook.md#zone)
+* [Alarms](../../doc/controllers/samples-webhooks.md#alarms)
+* [Asset Raw](../../doc/controllers/samples-webhooks.md#asset-raw)
+* [Audits](../../doc/controllers/samples-webhooks.md#audits)
+* [Client Info](../../doc/controllers/samples-webhooks.md#client-info)
+* [Client Join](../../doc/controllers/samples-webhooks.md#client-join)
+* [Client Latency](../../doc/controllers/samples-webhooks.md#client-latency)
+* [Client Sessions](../../doc/controllers/samples-webhooks.md#client-sessions)
+* [Device Events](../../doc/controllers/samples-webhooks.md#device-events)
+* [Device up Down](../../doc/controllers/samples-webhooks.md#device-up-down)
+* [Discovered-Raw-Rssi](../../doc/controllers/samples-webhooks.md#discovered-raw-rssi)
+* [Location](../../doc/controllers/samples-webhooks.md#location)
+* [Location Asset](../../doc/controllers/samples-webhooks.md#location-asset)
+* [Location Centrak](../../doc/controllers/samples-webhooks.md#location-centrak)
+* [Location Client](../../doc/controllers/samples-webhooks.md#location-client)
+* [Location Sdk](../../doc/controllers/samples-webhooks.md#location-sdk)
+* [Location Unclient](../../doc/controllers/samples-webhooks.md#location-unclient)
+* [Nac Accounting](../../doc/controllers/samples-webhooks.md#nac-accounting)
+* [Nac Events](../../doc/controllers/samples-webhooks.md#nac-events)
+* [Occupancy Alerts](../../doc/controllers/samples-webhooks.md#occupancy-alerts)
+* [Ping](../../doc/controllers/samples-webhooks.md#ping)
+* [Sdkclient Scan Data](../../doc/controllers/samples-webhooks.md#sdkclient-scan-data)
+* [Site Sle](../../doc/controllers/samples-webhooks.md#site-sle)
+* [Zone](../../doc/controllers/samples-webhooks.md#zone)
 
 
 # Alarms
@@ -91,7 +91,7 @@ body := models.WebhookAlarms{
     Topic:  "alarms",
 }
 
-resp, err := samplesWebhook.Alarms(ctx, &body)
+resp, err := samplesWebhooks.Alarms(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -152,7 +152,7 @@ body := models.WebhookAssetRaw{
     Topic:  "asset-raw",
 }
 
-resp, err := samplesWebhook.AssetRaw(ctx, &body)
+resp, err := samplesWebhooks.AssetRaw(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -206,7 +206,7 @@ body := models.WebhookAudits{
     Topic:  "audits",
 }
 
-resp, err := samplesWebhook.Audits(ctx, &body)
+resp, err := samplesWebhooks.Audits(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -256,7 +256,7 @@ body := models.WebhookClientInfo{
     Topic:  models.ToPointer(models.WebhookClientInfoTopicEnum("client-info")),
 }
 
-resp, err := samplesWebhook.ClientInfo(ctx, &body)
+resp, err := samplesWebhooks.ClientInfo(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -317,7 +317,7 @@ body := models.WebhookClientJoin{
     Topic:  "client-join",
 }
 
-resp, err := samplesWebhook.ClientJoin(ctx, &body)
+resp, err := samplesWebhooks.ClientJoin(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -375,7 +375,7 @@ body := models.WebhookClientLatency{
     Topic:  models.ToPointer("client-latency"),
 }
 
-resp, err := samplesWebhook.ClientLatency(ctx, &body)
+resp, err := samplesWebhooks.ClientLatency(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -445,7 +445,7 @@ body := models.WebhookClientSessions{
     Topic:  "client-sessions",
 }
 
-resp, err := samplesWebhook.ClientSessions(ctx, &body)
+resp, err := samplesWebhooks.ClientSessions(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -511,7 +511,7 @@ body := models.WebhookDeviceEvents{
     Topic:  "device_events",
 }
 
-resp, err := samplesWebhook.DeviceEvents(ctx, &body)
+resp, err := samplesWebhooks.DeviceEvents(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -565,7 +565,7 @@ body := models.WebhookDeviceUpdowns{
     Topic:  "device-updowns",
 }
 
-resp, err := samplesWebhook.DeviceUpDown(ctx, &body)
+resp, err := samplesWebhooks.DeviceUpDown(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -634,7 +634,7 @@ body := models.WebhookDiscoveredRawRssi{
     Topic:  "string",
 }
 
-resp, err := samplesWebhook.DiscoveredRawRssi(ctx, &body)
+resp, err := samplesWebhooks.DiscoveredRawRssi(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -698,7 +698,7 @@ body := models.WebhookLocation{
     Topic:  "location",
 }
 
-resp, err := samplesWebhook.Location(ctx, &body)
+resp, err := samplesWebhooks.Location(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -760,7 +760,7 @@ body := models.WebhookLocationAsset{
     Topic:  "location_asset",
 }
 
-resp, err := samplesWebhook.LocationAsset(ctx, &body)
+resp, err := samplesWebhooks.LocationAsset(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -817,7 +817,7 @@ body := models.WebhookLocationCentrak{
     Topic:  "location_centrak",
 }
 
-resp, err := samplesWebhook.LocationCentrak(ctx, &body)
+resp, err := samplesWebhooks.LocationCentrak(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -877,7 +877,7 @@ body := models.WebhookLocationClient{
     Topic:  "location_client",
 }
 
-resp, err := samplesWebhook.LocationClient(ctx, &body)
+resp, err := samplesWebhooks.LocationClient(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -931,7 +931,7 @@ body := models.WebhookLocationSdk{
     Topic:  "location_sdk",
 }
 
-resp, err := samplesWebhook.LocationSdk(ctx, &body)
+resp, err := samplesWebhooks.LocationSdk(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -991,7 +991,7 @@ body := models.WebhookLocationUnclient{
     Topic:  "location_unclient",
 }
 
-resp, err := samplesWebhook.LocationUnclient(ctx, &body)
+resp, err := samplesWebhooks.LocationUnclient(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1052,7 +1052,7 @@ body := models.WebhookNacAccounting{
     Topic:  models.ToPointer("nac-accounting"),
 }
 
-resp, err := samplesWebhook.NacAccounting(ctx, &body)
+resp, err := samplesWebhooks.NacAccounting(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1124,7 +1124,7 @@ body := models.WebhookNacEvents{
     Topic:  models.ToPointer("string"),
 }
 
-resp, err := samplesWebhook.NacEvents(ctx, &body)
+resp, err := samplesWebhooks.NacEvents(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1185,7 +1185,7 @@ body := models.WebhookOccupancyAlerts{
     Topic:  "occupancy-alerts",
 }
 
-resp, err := samplesWebhook.OccupancyAlerts(ctx, &body)
+resp, err := samplesWebhooks.OccupancyAlerts(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1235,7 +1235,7 @@ body := models.WebhookPing{
     Topic:  "ping",
 }
 
-resp, err := samplesWebhook.Ping(ctx, &body)
+resp, err := samplesWebhooks.Ping(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1309,7 +1309,7 @@ body := models.WebhookSdkclientScanData{
     Topic:  "sdkclient_scan_data",
 }
 
-resp, err := samplesWebhook.SdkclientScanData(ctx, &body)
+resp, err := samplesWebhooks.SdkclientScanData(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1363,7 +1363,7 @@ body := models.WebhookSiteSle{
     Topic:  models.ToPointer("site_sle"),
 }
 
-resp, err := samplesWebhook.SiteSle(ctx, &body)
+resp, err := samplesWebhooks.SiteSle(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1419,7 +1419,7 @@ body := models.WebhookZone{
     Topic:  "zone",
 }
 
-resp, err := samplesWebhook.Zone(ctx, &body)
+resp, err := samplesWebhooks.Zone(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

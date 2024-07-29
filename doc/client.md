@@ -150,7 +150,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | constantsEvents | Gets ConstantsEvents |
 | constantsMisc | Gets ConstantsMisc |
 | constantsModels | Gets ConstantsModels |
-| samplesWebhook | Gets SamplesWebhook |
+| samplesWebhooks | Gets SamplesWebhooks |
 | selfAPIToken | Gets SelfAPIToken |
 | selfAccount | Gets SelfAccount |
 | selfAlarms | Gets SelfAlarms |
