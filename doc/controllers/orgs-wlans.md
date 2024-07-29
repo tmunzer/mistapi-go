@@ -551,13 +551,13 @@ body := models.Wlan{
     DisableV2RoamNotify:                models.ToPointer(false),
     DisableWmm:                         models.ToPointer(false),
     DynamicVlan:                        models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
-        DefaultVlanId: models.ToPointer(models.WlanDynamicVlanDefaultVlanIdContainer.FromNumber(999)),
-        Enabled:       models.ToPointer(false),
-        LocalVlanIds:  []models.WlanDynamicVlanLocalVlanIds{
+        DefaultVlanId:  models.ToPointer(models.WlanDynamicVlanDefaultVlanIdContainer.FromNumber(999)),
+        Enabled:        models.ToPointer(false),
+        LocalVlanIds:   []models.WlanDynamicVlanLocalVlanIds{
             models.WlanDynamicVlanLocalVlanIdsContainer.FromNumber(1),
         },
-        Type:          models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
-        Vlans:         map[string]string{
+        Type:           models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
+        Vlans:          map[string]string{
             "131": "default",
             "322": "fast,video",
         },

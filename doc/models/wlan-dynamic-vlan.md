@@ -12,6 +12,7 @@ for 802.1x
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `DefaultVlanId` | [`*models.WlanDynamicVlanDefaultVlanId`](../../doc/models/containers/wlan-dynamic-vlan-default-vlan-id.md) | Optional | This is a container for one-of cases. |
+| `DefaultVlanIds` | [`[]models.WlanDynamicVlanDefaultVlanIds`](../../doc/models/containers/wlan-dynamic-vlan-default-vlan-ids.md) | Optional | This is Array of a container for one-of cases. |
 | `Enabled` | `*bool` | Optional | whether to enable dynamic vlan<br>**Default**: `false` |
 | `LocalVlanIds` | [`[]models.WlanDynamicVlanLocalVlanIds`](../../doc/models/containers/wlan-dynamic-vlan-local-vlan-ids.md) | Optional | This is Array of a container for one-of cases. |
 | `Type` | [`*models.WlanDynamicVlanTypeEnum`](../../doc/models/wlan-dynamic-vlan-type-enum.md) | Optional | standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco). enum: `airespace-interface-name`, `standard`<br>**Default**: `"standard"` |
@@ -28,6 +29,11 @@ for 802.1x
     "322": "fast,video"
   },
   "default_vlan_id": "String3",
+  "default_vlan_ids": [
+    "String9",
+    "String0",
+    "String1"
+  ],
   "local_vlan_ids": [
     "String2"
   ]
