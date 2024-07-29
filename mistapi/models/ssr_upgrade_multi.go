@@ -9,7 +9,7 @@ import (
 
 // SsrUpgradeMulti represents a SsrUpgradeMulti struct.
 type SsrUpgradeMulti struct {
-    // upgrade channel to follow
+    // upgrade channel to follow. enum: `alpha`, `beta`, `stable`
     Channel              *SsrUpgradeChannelEnum  `json:"channel,omitempty"`
     // list of 128T device IDs to upgrade
     DeviceIds            []uuid.UUID             `json:"device_ids"`
@@ -17,8 +17,9 @@ type SsrUpgradeMulti struct {
     RebootAt             *int                    `json:"reboot_at,omitempty"`
     // 128T firmware download start time in epoch seconds, default is now, -1 disables download
     StartTime            *int                    `json:"start_time,omitempty"`
-    // * `big_bang`: upgrade all at once
-    // * `serial`: one at a time'
+    // enum:
+    //   * `big_bang`: upgrade all at once
+    //   * `serial`: one at a time
     Strategy             *SsrUpgradeStrategyEnum `json:"strategy,omitempty"`
     // 128T firmware version to upgrade (e.g. 5.3.0-93)
     Version              *string                 `json:"version,omitempty"`

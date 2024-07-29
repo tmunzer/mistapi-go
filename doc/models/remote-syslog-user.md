@@ -21,8 +21,8 @@
   "user": "*",
   "contents": [
     {
-      "facility": "pfe",
-      "severity": "warning"
+      "facility": "ntp",
+      "severity": "error"
     }
   ]
 }

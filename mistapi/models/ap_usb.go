@@ -11,8 +11,7 @@ import (
 type ApUsb struct {
     // only if `type`==`imagotag`
     Cacert               Optional[string] `json:"cacert"`
-    // only if `type`==`imagotag`
-    // channel selection, not needed by default, required for manual channel override only
+    // only if `type`==`imagotag`, channel selection, not needed by default, required for manual channel override only
     Channel              *int             `json:"channel,omitempty"`
     // whether to enable any usb config
     Enabled              *bool            `json:"enabled,omitempty"`
@@ -20,7 +19,7 @@ type ApUsb struct {
     Host                 *string          `json:"host,omitempty"`
     // only if `type`==`imagotag`
     Port                 *int             `json:"port,omitempty"`
-    // usb config type
+    // usb config type. enum: `hanshow`, `imagotag`, `solum`
     Type                 *ApUsbTypeEnum   `json:"type,omitempty"`
     // only if `type`==`imagotag`, whether to turn on SSL verification
     VerifyCert           *bool            `json:"verify_cert,omitempty"`

@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DayOfWeek` | [`*models.DayOfWeekEnum`](../../doc/models/day-of-week-enum.md) | Optional | - |
+| `DayOfWeek` | [`*models.DayOfWeekEnum`](../../doc/models/day-of-week-enum.md) | Optional | enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed` |
 | `Enable` | `*bool` | Optional | **Default**: `true` |
 | `TimeOfDay` | `*string` | Optional | optional, Mist will decide the timing |
 
@@ -18,7 +18,7 @@
 ```json
 {
   "enable": true,
-  "day_of_week": "tue",
+  "day_of_week": "mon",
   "time_of_day": "time_of_day2"
 }
 ```

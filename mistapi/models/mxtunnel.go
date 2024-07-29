@@ -26,6 +26,7 @@ type Mxtunnel struct {
     MxclusterIds         []uuid.UUID           `json:"mxcluster_ids,omitempty"`
     Name                 Optional[string]      `json:"name"`
     OrgId                *uuid.UUID            `json:"org_id,omitempty"`
+    // enum: `ip`, `udp`
     Protocol             *MxtunnelProtocolEnum `json:"protocol,omitempty"`
     SiteId               *uuid.UUID            `json:"site_id,omitempty"`
     // list of vlan_ids that will be used

@@ -1,6 +1,8 @@
 
 # Dynamic Psk Source Enum
 
+enum: `cloud_psks`, `radius`
+
 ## Enumeration
 
 `DynamicPskSourceEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `radius` |
 | `cloud_psks` |
+| `radius` |
 
 ## Example
 

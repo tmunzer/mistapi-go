@@ -13,8 +13,8 @@
 | `ApName` | `*string` | Optional | (will be deprecated soon; please use device_name instead) ap name |
 | `AuditId` | `*uuid.UUID` | Optional | (optional) audit id |
 | `DeviceName` | `string` | Required | device name |
-| `DeviceType` | [`models.WebhookDeviceEventsEventDeviceTypeEnum`](../../doc/models/webhook-device-events-event-device-type-enum.md) | Required | - |
-| `EvType` | [`models.WebhookDeviceEventsEventEvTypeEnum`](../../doc/models/webhook-device-events-event-ev-type-enum.md) | Required | (optional) event advisory (notice/warn) |
+| `DeviceType` | [`models.WebhookDeviceEventsEventDeviceTypeEnum`](../../doc/models/webhook-device-events-event-device-type-enum.md) | Required | enum: `ap`, `gateway`, `switch` |
+| `EvType` | [`models.WebhookDeviceEventsEventEvTypeEnum`](../../doc/models/webhook-device-events-event-ev-type-enum.md) | Required | (optional) event advisory. enum: `notice`, `warn` |
 | `Mac` | `string` | Required | device mac |
 | `OrgId` | `uuid.UUID` | Required | - |
 | `Reason` | `*string` | Optional | (optional) event reason |
@@ -29,7 +29,7 @@
 ```json
 {
   "device_name": "device_name4",
-  "device_type": "gateway",
+  "device_type": "switch",
   "ev_type": "notice",
   "mac": "mac2",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",

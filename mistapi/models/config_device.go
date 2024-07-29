@@ -68,7 +68,7 @@ type ConfigDevice struct {
     // device Serial
     Serial                *string                            `json:"serial,omitempty"`
     SiteId                *uuid.UUID                         `json:"site_id,omitempty"`
-    // Device Type
+    // Device Type. enum: `ap`
     Type                  *DeviceTypeApEnum                  `json:"type,omitempty"`
     UplinkPortConfig      *ApUplinkPortConfig                `json:"uplink_port_config,omitempty"`
     // USB AP settings

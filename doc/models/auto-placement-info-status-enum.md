@@ -1,7 +1,7 @@
 
 # Auto Placement Info Status Enum
 
-the status of autoplacement for a given map
+the status of autoplacement for a given map. enum: `done`, `error`, `inprogress`, `pending`
 
 ## Enumeration
 
@@ -11,8 +11,8 @@ the status of autoplacement for a given map
 
 | Name |
 |  --- |
-| `pending` |
-| `inprogress` |
 | `done` |
 | `error` |
+| `inprogress` |
+| `pending` |
 

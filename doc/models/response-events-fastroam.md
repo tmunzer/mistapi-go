@@ -30,7 +30,7 @@
       "ssid": "ssid6",
       "subtype": "subtype8",
       "timestamp": 2.64,
-      "type": "none"
+      "type": "pingpong"
     }
   ],
   "start": 16,

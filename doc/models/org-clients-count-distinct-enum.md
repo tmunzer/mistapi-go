@@ -1,6 +1,8 @@
 
 # Org Clients Count Distinct Enum
 
+enum: `ap`, `device`, `hostname`, `ip`, `mac`, `model`, `os`, `ssid`, `vlan`
+
 ## Enumeration
 
 `OrgClientsCountDistinctEnum`
@@ -9,13 +11,13 @@
 
 | Name |
 |  --- |
-| `mac` |
-| `hostname` |
-| `device` |
-| `os` |
-| `model` |
 | `ap` |
-| `vlan` |
-| `ssid` |
+| `device` |
+| `hostname` |
 | `ip` |
+| `mac` |
+| `model` |
+| `os` |
+| `ssid` |
+| `vlan` |
 

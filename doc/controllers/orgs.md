@@ -65,6 +65,24 @@ if err != nil {
 }
 ```
 
+## Example Response *(as JSON)*
+
+```json
+{
+  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "allow_mist": true,
+  "created_time": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "modified_time": 0,
+  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "name": "string",
+  "orggroup_ids": [
+    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
+  ],
+  "session_expiry": 1440
+}
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -104,14 +122,9 @@ CreateOrg(
 ctx := context.Background()
 
 body := models.Org{
+    AlarmtemplateId: models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
     AllowMist:       models.ToPointer(true),
-    CreatedTime:     models.ToPointer(float64(1652905706)),
-    Id:              models.ToPointer(uuid.MustParse("2818e386-8dec-2562-9ede-5b8a0fbbdc71")),
-    ModifiedTime:    models.ToPointer(float64(1652905706)),
-    MspId:           models.ToPointer(uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909")),
-    MspLogoUrl:      models.ToPointer("https://example.com/logo/b9d42c2e-88ee-41f8-b798-f009ce7fe909.jpeg"),
-    MspName:         models.ToPointer("MSP"),
-    Name:            "Org",
+    Name:            "string",
     SessionExpiry:   models.ToPointer(1440),
 }
 
@@ -122,6 +135,24 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "allow_mist": true,
+  "created_time": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "modified_time": 0,
+  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "name": "string",
+  "orggroup_ids": [
+    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
+  ],
+  "session_expiry": 1440
 }
 ```
 
@@ -220,6 +251,24 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "allow_mist": true,
+  "created_time": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "modified_time": 0,
+  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "name": "string",
+  "orggroup_ids": [
+    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
+  ],
+  "session_expiry": 1440
 }
 ```
 
@@ -357,6 +406,24 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "allow_mist": true,
+  "created_time": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "modified_time": 0,
+  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "name": "string",
+  "orggroup_ids": [
+    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
+  ],
+  "session_expiry": 1440
 }
 ```
 

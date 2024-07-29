@@ -23,7 +23,7 @@ type MapJibestream struct {
     Mmpp                 int            `json:"mmpp"`
     // pixel per meter, same as the map JSON value.
     Ppm                  float64        `json:"ppm"`
-    // the vendor ‘jibestream’
+    // the vendor ‘jibestream’. enum: `jibestream`
     VendorName           string         `json:"vendor_name"`
     // the venue or organization id
     VenueId              int            `json:"venue_id"`

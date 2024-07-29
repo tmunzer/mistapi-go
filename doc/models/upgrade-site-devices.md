@@ -23,11 +23,11 @@
 | `RrmFirstBatchPercentage` | `*int` | Optional | percentage of AP’s that need to be present in the first rrm batch |
 | `RrmMaxBatchPercentage` | `*int` | Optional | max percentage of AP’s that need to be present in each rrm batch |
 | `RrmMeshUpgrade` | `*string` | Optional | sequential or parallel (default parallel). Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade |
-| `RrmNodeOrder` | [`*models.UpgradeSiteDevicesRrmNodeOrderEnum`](../../doc/models/upgrade-site-devices-rrm-node-order-enum.md) | Optional | Used in rrm to determine whether to start upgrade from fringe or center AP’s<br>**Default**: `"fringe_to_center"` |
+| `RrmNodeOrder` | [`*models.UpgradeSiteDevicesRrmNodeOrderEnum`](../../doc/models/upgrade-site-devices-rrm-node-order-enum.md) | Optional | Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`<br>**Default**: `"fringe_to_center"` |
 | `RrmSlowRamp` | `*bool` | Optional | true will make rrm batch sizes slowly ramp up |
 | `Snapshot` | `*bool` | Optional | Perform recovery snapshot after device is rebooted (Available on Junos OS devices)<br>**Default**: `false` |
 | `StartTime` | `*float64` | Optional | upgrade start time in epoch seconds, default is now |
-| `Strategy` | [`*models.DeviceUpgradeStrategyEnum`](../../doc/models/device-upgrade-strategy-enum.md) | Optional | `big_bang` (upgrade all at once), `serial` (one at a time), `canary` or `rrm`<br>**Default**: `"big_bang"` |
+| `Strategy` | [`*models.DeviceUpgradeStrategyEnum`](../../doc/models/device-upgrade-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)<br>**Default**: `"big_bang"` |
 | `Version` | `*string` | Optional | specific version / stable<br>**Default**: `"latest"` |
 
 ## Example (as JSON)

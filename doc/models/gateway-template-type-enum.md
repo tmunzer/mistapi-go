@@ -1,6 +1,8 @@
 
 # Gateway Template Type Enum
 
+enum: `spoke`, `standalone`
+
 ## Enumeration
 
 `GatewayTemplateTypeEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `standalone` |
 | `spoke` |
+| `standalone` |
 
 ## Example
 

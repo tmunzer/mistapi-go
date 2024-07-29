@@ -1,6 +1,8 @@
 
 # Service Policy Ewf Rule Profile Enum
 
+enum: `critical`, `standard`, `strict`
+
 ## Enumeration
 
 `ServicePolicyEwfRuleProfileEnum`
@@ -10,6 +12,6 @@
 | Name |
 |  --- |
 | `critical` |
-| `strict` |
 | `standard` |
+| `strict` |
 

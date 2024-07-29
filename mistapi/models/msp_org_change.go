@@ -8,6 +8,7 @@ import (
 
 // MspOrgChange represents a MspOrgChange struct.
 type MspOrgChange struct {
+    // enum: `assign`, `unassign`
     Op                   MspOrgChangeOperationEnum `json:"op"`
     // list of org_id
     OrgIds               []string                  `json:"org_ids"`

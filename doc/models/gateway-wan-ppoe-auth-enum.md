@@ -1,7 +1,7 @@
 
 # Gateway Wan Ppoe Auth Enum
 
-if `type`==`pppoe`
+if `type`==`pppoe`. enum: `chap`, `none`, `pap`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ if `type`==`pppoe`
 
 | Name |
 |  --- |
-| `none` |
 | `chap` |
+| `none` |
 | `pap` |
 

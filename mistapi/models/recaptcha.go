@@ -6,7 +6,7 @@ import (
 
 // Recaptcha represents a Recaptcha struct.
 type Recaptcha struct {
-    // flavor of the captcha
+    // flavor of the captcha. enum: `google`, `hcaptcha`
     Flavor               *RecaptchaFlavorEnum `json:"flavor,omitempty"`
     Required             *bool                `json:"required,omitempty"`
     Sitekey              *string              `json:"sitekey,omitempty"`

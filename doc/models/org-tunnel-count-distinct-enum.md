@@ -1,6 +1,8 @@
 
 # Org Tunnel Count Distinct Enum
 
+enum: `ap`, `auth_algo`, `encrypt_algo`, `ike_version`, `ip`, `last_event`, `mac`, `mxcluster_id`, `mxedge_id`, `node`, `peer_host`, `peer_ip`, `peer_mxedge_id`, `protocol`, `remote_ip`, `remote_port`, `site_id`, `state`, `tunnel_name`, `up`, `wxtunnel_id`
+
 ## Enumeration
 
 `OrgTunnelCountDistinctEnum`
@@ -9,25 +11,25 @@
 
 | Name |
 |  --- |
-| `auth_algo` |
-| `wxtunnel_id` |
 | `ap` |
-| `remote_ip` |
-| `remote_port` |
-| `state` |
-| `mxedge_id` |
-| `mxcluster_id` |
-| `site_id` |
-| `peer_mxedge_id` |
-| `mac` |
-| `node` |
-| `peer_ip` |
-| `peer_host` |
-| `ip` |
-| `tunnel_name` |
-| `protocol` |
+| `auth_algo` |
 | `encrypt_algo` |
 | `ike_version` |
+| `ip` |
 | `last_event` |
+| `mac` |
+| `mxcluster_id` |
+| `mxedge_id` |
+| `node` |
+| `peer_host` |
+| `peer_ip` |
+| `peer_mxedge_id` |
+| `protocol` |
+| `remote_ip` |
+| `remote_port` |
+| `site_id` |
+| `state` |
+| `tunnel_name` |
 | `up` |
+| `wxtunnel_id` |
 

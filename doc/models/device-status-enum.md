@@ -1,6 +1,8 @@
 
 # Device Status Enum
 
+enum: `all`, `connected`, `disconnected`
+
 ## Enumeration
 
 `DeviceStatusEnum`

@@ -31,12 +31,13 @@ type Wlan struct {
     AppLimit                           *WlanAppLimit                  `json:"app_limit,omitempty"`
     // app qos wlan settings
     AppQos                             *WlanAppQos                    `json:"app_qos,omitempty"`
+    // enum: `aps`, `site`, `wxtags`
     ApplyTo                            *WlanApplyToEnum               `json:"apply_to,omitempty"`
     // whether to enable smart arp filter
     ArpFilter                          *bool                          `json:"arp_filter,omitempty"`
     // authentication wlan settings
     Auth                               *WlanAuth                      `json:"auth,omitempty"`
-    // When ordered, AP will prefer and go back to the first server if possible
+    // When ordered, AP will prefer and go back to the first server if possible. enum: `ordered`, `unordered`
     AuthServerSelection                *WlanAuthServerSelectionEnum   `json:"auth_server_selection,omitempty"`
     // list of RADIUS authentication servers, at least one is needed if `auth type`==`eap`, order matters where the first one is treated as primary
     AuthServers                        []RadiusAuthServer             `json:"auth_servers,omitempty"`
@@ -119,7 +120,7 @@ type Wlan struct {
     Hotspot20                          *WlanHotspot20                 `json:"hotspot20,omitempty"`
     Id                                 *uuid.UUID                     `json:"id,omitempty"`
     InjectDhcpOption82                 *WlanInjectDhcpOption82        `json:"inject_dhcp_option_82,omitempty"`
-    // where this WLAN will be connected to
+    // where this WLAN will be connected to. enum: `all`, `eth0`, `eth1`, `eth2`, `eth3`, `mxtunnel`, `site_mxedge`, `wxtunnel`
     Interface                          *WlanInterfaceEnum             `json:"interface,omitempty"`
     // whether to stop clients to talk to each other
     Isolation                          *bool                          `json:"isolation,omitempty"`
@@ -166,6 +167,7 @@ type Wlan struct {
     // Radsec settings
     Radsec                             *Radsec                        `json:"radsec,omitempty"`
     Rateset                            map[string]WlanDatarates       `json:"rateset,omitempty"`
+    // enum: `11r`, `OKC`, `none`
     RoamMode                           *WlanRoamModeEnum              `json:"roam_mode,omitempty"`
     // WLAN operating schedule, default is disabled
     Schedule                           *WlanSchedule                  `json:"schedule,omitempty"`

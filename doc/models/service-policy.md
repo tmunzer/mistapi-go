@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | **Default**: `"allow"` |
+| `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | enum: `allow`, `deny`<br>**Default**: `"allow"` |
 | `Appqoe` | [`*models.ServicePolicyAppqoe`](../../doc/models/service-policy-appqoe.md) | Optional | For SRX Only |
 | `Ewf` | [`[]models.ServicePolicyEwfRule`](../../doc/models/service-policy-ewf-rule.md) | Optional | - |
 | `Idp` | [`*models.IdpConfig`](../../doc/models/idp-config.md) | Optional | - |
@@ -34,19 +34,19 @@
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "strict"
+      "profile": "standard"
     },
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "strict"
+      "profile": "standard"
     },
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "strict"
+      "profile": "standard"
     }
   ],
   "idp": {

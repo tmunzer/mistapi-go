@@ -27,7 +27,7 @@
       "band": "6",
       "bandwidth": 20,
       "channel": 30,
-      "event": "interference-ap-non-wifi",
+      "event": "radar-detected",
       "power": 226,
       "pre_bandwidth": 80,
       "pre_channel": 164,

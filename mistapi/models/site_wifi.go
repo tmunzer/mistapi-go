@@ -30,7 +30,7 @@ type SiteWifi struct {
     MeshPsk                           Optional[string]               `json:"mesh_psk"`
     // optional ssid of mesh networking, default is based on site_id
     MeshSsid                          Optional[string]               `json:"mesh_ssid"`
-    // default / enabled / disabled
+    // enum: `default`, `disabled`, `enabled`
     ProxyArp                          Optional[SiteWifiProxyArpEnum] `json:"proxy_arp"`
     AdditionalProperties              map[string]any                 `json:"_"`
 }

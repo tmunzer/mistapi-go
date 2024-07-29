@@ -21,7 +21,7 @@
 {
   "aps": [
     {
-      "action": "assigned-named-placed",
+      "action": "named-placed",
       "floorplan_id": "000013fe-0000-0000-0000-000000000000",
       "height": 205.3,
       "mac": "mac8",

@@ -1,6 +1,8 @@
 
 # Org Psk Portal Logs Count Distinct Enum
 
+enum: `admin_id`, `admin_name`, `psk_id`, `psk_name`, `pskportal_id`, `user_id`
+
 ## Enumeration
 
 `OrgPskPortalLogsCountDistinctEnum`
@@ -11,8 +13,8 @@
 |  --- |
 | `admin_id` |
 | `admin_name` |
-| `psk_name` |
 | `psk_id` |
+| `psk_name` |
 | `pskportal_id` |
 | `user_id` |
 

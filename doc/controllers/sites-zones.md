@@ -70,7 +70,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-zoneType := models.ZoneTypeEnum("zones")
+zoneType := models.ZoneTypeEnum("rssizones")
 
 distinct := models.SiteZoneCountDistinctEnum("scope_id")
 
@@ -468,7 +468,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-zoneType := models.ZoneTypeEnum("zones")
+zoneType := models.ZoneTypeEnum("rssizones")
 
 
 

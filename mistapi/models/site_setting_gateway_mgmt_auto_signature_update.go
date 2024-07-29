@@ -6,6 +6,7 @@ import (
 
 // SiteSettingGatewayMgmtAutoSignatureUpdate represents a SiteSettingGatewayMgmtAutoSignatureUpdate struct.
 type SiteSettingGatewayMgmtAutoSignatureUpdate struct {
+    // enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed`
     DayOfWeek            *DayOfWeekEnum `json:"day_of_week,omitempty"`
     Enable               *bool          `json:"enable,omitempty"`
     // optional, Mist will decide the timing

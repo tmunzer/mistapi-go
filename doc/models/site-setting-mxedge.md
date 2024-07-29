@@ -53,7 +53,7 @@ site mist edges form a cluster of radsecproxy servers
       {
         "host": "host0",
         "keywrap_enabled": false,
-        "keywrap_format": "hex",
+        "keywrap_format": "ascii",
         "keywrap_kek": "keywrap_kek4",
         "keywrap_mack": "keywrap_mack6"
       }

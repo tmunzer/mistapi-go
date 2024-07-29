@@ -37,8 +37,9 @@ type BgpConfig struct {
     Networks               []string                      `json:"networks,omitempty"`
     // by default, we'll re-advertise all learned BGP routers toward overlay
     NoReadvertiseToOverlay *bool                         `json:"no_readvertise_to_overlay,omitempty"`
+    // enum: `external`, `internal`
     Type                   *BgpConfigTypeEnum            `json:"type,omitempty"`
-    // network name
+    // network name. enum: `lan`, `vpn`, `wan`
     Via                    *BgpConfigViaEnum             `json:"via,omitempty"`
     VpnName                *string                       `json:"vpn_name,omitempty"`
     // if `via`==`wan`

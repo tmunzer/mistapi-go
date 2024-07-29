@@ -83,7 +83,7 @@
                 "protocol": "protocol6"
               }
             ],
-            "type": "any"
+            "type": "radius_group"
           }
         },
         "additional_config_cmds": [

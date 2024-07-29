@@ -1,6 +1,8 @@
 
 # Gateway Port Vpn Path Role Enum
 
+enum: `hub`, `spoke`
+
 ## Enumeration
 
 `GatewayPortVpnPathRoleEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `spoke` |
 | `hub` |
+| `spoke` |
 

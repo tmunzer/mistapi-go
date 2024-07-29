@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookClientInfoEvent`](../../doc/models/webhook-client-info-event.md) | Optional | - |
-| `Topic` | [`*models.WebhookClientInfoTopicEnum`](../../doc/models/webhook-client-info-topic-enum.md) | Optional | - |
+| `Topic` | [`*models.WebhookClientInfoTopicEnum`](../../doc/models/webhook-client-info-topic-enum.md) | Optional | enum: `client-info` |
 
 ## Example (as JSON)
 

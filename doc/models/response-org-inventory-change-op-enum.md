@@ -1,6 +1,8 @@
 
 # Response Org Inventory Change Op Enum
 
+enum: `assign`, `delete`, `downgrade_to_jsi`, `unassign`, `upgrade_to_mist`
+
 ## Enumeration
 
 `ResponseOrgInventoryChangeOpEnum`
@@ -10,8 +12,8 @@
 | Name |
 |  --- |
 | `assign` |
-| `unassign` |
 | `delete` |
-| `upgrade_to_mist` |
 | `downgrade_to_jsi` |
+| `unassign` |
+| `upgrade_to_mist` |
 

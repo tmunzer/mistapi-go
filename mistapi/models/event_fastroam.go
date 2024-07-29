@@ -16,6 +16,7 @@ type EventFastroam struct {
     Subtype              *string                `json:"subtype,omitempty"`
     // timestamp of the event in nsec
     Timestamp            float64                `json:"timestamp"`
+    // enum: `fail`, `none`, `pingpong`, `poor`, `slow`, `success`
     Type                 *EventFastroamTypeEnum `json:"type,omitempty"`
     AdditionalProperties map[string]any         `json:"_"`
 }

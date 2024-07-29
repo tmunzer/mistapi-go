@@ -1,7 +1,7 @@
 
 # Device Type Switch Enum
 
-Device Type
+Device Type. enum: `switch`
 
 ## Enumeration
 

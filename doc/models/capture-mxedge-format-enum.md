@@ -1,7 +1,7 @@
 
 # Capture Mxedge Format Enum
 
-pcap format
+pcap format. enum: `stream`
 
 ## Enumeration
 

@@ -1,7 +1,7 @@
 
 # Org Auto Rules Match Device Type Enum
 
-optional/additional filter
+optional/additional filter. enum: `ap`, `gateway`, `other`, `switch`
 
 ## Enumeration
 
@@ -12,7 +12,7 @@ optional/additional filter
 | Name |
 |  --- |
 | `ap` |
-| `switch` |
 | `gateway` |
 | `other` |
+| `switch` |
 

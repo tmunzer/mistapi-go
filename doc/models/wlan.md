@@ -23,10 +23,10 @@ WLAN
 | `ApIds` | `models.Optional[[]uuid.UUID]` | Optional | list of device ids |
 | `AppLimit` | [`*models.WlanAppLimit`](../../doc/models/wlan-app-limit.md) | Optional | bandwidth limiting for apps (applies to up/down) |
 | `AppQos` | [`*models.WlanAppQos`](../../doc/models/wlan-app-qos.md) | Optional | app qos wlan settings |
-| `ApplyTo` | [`*models.WlanApplyToEnum`](../../doc/models/wlan-apply-to-enum.md) | Optional | - |
+| `ApplyTo` | [`*models.WlanApplyToEnum`](../../doc/models/wlan-apply-to-enum.md) | Optional | enum: `aps`, `site`, `wxtags` |
 | `ArpFilter` | `*bool` | Optional | whether to enable smart arp filter<br>**Default**: `false` |
 | `Auth` | [`*models.WlanAuth`](../../doc/models/wlan-auth.md) | Optional | authentication wlan settings |
-| `AuthServerSelection` | [`*models.WlanAuthServerSelectionEnum`](../../doc/models/wlan-auth-server-selection-enum.md) | Optional | When ordered, AP will prefer and go back to the first server if possible<br>**Default**: `"ordered"` |
+| `AuthServerSelection` | [`*models.WlanAuthServerSelectionEnum`](../../doc/models/wlan-auth-server-selection-enum.md) | Optional | When ordered, AP will prefer and go back to the first server if possible. enum: `ordered`, `unordered`<br>**Default**: `"ordered"` |
 | `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | list of RADIUS authentication servers, at least one is needed if `auth type`==`eap`, order matters where the first one is treated as primary |
 | `AuthServersNasId` | `models.Optional[string]` | Optional | optional, up to 48 bytes, will be dynamically generated if not provided. used only for authentication servers |
 | `AuthServersNasIp` | `models.Optional[string]` | Optional | optional, NAS-IP-ADDRESS to use |
@@ -66,7 +66,7 @@ WLAN
 | `Hotspot20` | [`*models.WlanHotspot20`](../../doc/models/wlan-hotspot-20.md) | Optional | hostspot 2.0 wlan settings |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `InjectDhcpOption82` | [`*models.WlanInjectDhcpOption82`](../../doc/models/wlan-inject-dhcp-option-82.md) | Optional | - |
-| `Interface` | [`*models.WlanInterfaceEnum`](../../doc/models/wlan-interface-enum.md) | Optional | where this WLAN will be connected to<br>**Default**: `"all"` |
+| `Interface` | [`*models.WlanInterfaceEnum`](../../doc/models/wlan-interface-enum.md) | Optional | where this WLAN will be connected to. enum: `all`, `eth0`, `eth1`, `eth2`, `eth3`, `mxtunnel`, `site_mxedge`, `wxtunnel`<br>**Default**: `"all"` |
 | `Isolation` | `*bool` | Optional | whether to stop clients to talk to each other<br>**Default**: `false` |
 | `L2Isolation` | `*bool` | Optional | if isolation is enabled, whether to deny clients to talk to L2 on the LAN<br>**Default**: `false` |
 | `LegacyOverds` | `*bool` | Optional | legacy devices requires the Over-DS (for Fast BSS Transition) bit set (while our chip doesn’t support it). Warning! Enabling this will cause problem for iOS devices.<br>**Default**: `false` |
@@ -93,7 +93,7 @@ WLAN
 | `Qos` | [`*models.WlanQos`](../../doc/models/wlan-qos.md) | Optional | - |
 | `Radsec` | [`*models.Radsec`](../../doc/models/radsec.md) | Optional | Radsec settings |
 | `Rateset` | [`map[string]models.WlanDatarates`](../../doc/models/wlan-datarates.md) | Optional | - |
-| `RoamMode` | [`*models.WlanRoamModeEnum`](../../doc/models/wlan-roam-mode-enum.md) | Optional | **Default**: `"none"` |
+| `RoamMode` | [`*models.WlanRoamModeEnum`](../../doc/models/wlan-roam-mode-enum.md) | Optional | enum: `11r`, `OKC`, `none`<br>**Default**: `"none"` |
 | `Schedule` | [`*models.WlanSchedule`](../../doc/models/wlan-schedule.md) | Optional | WLAN operating schedule, default is disabled |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SleExcluded` | `*bool` | Optional | whether to exclude this WLAN from SLE metrics<br>**Default**: `false` |
@@ -187,7 +187,7 @@ WLAN
     {
       "host": "host4",
       "keywrap_enabled": false,
-      "keywrap_format": "hex",
+      "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 254,
@@ -196,7 +196,7 @@ WLAN
     {
       "host": "host4",
       "keywrap_enabled": false,
-      "keywrap_format": "hex",
+      "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 254,
@@ -205,7 +205,7 @@ WLAN
     {
       "host": "host4",
       "keywrap_enabled": false,
-      "keywrap_format": "hex",
+      "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 254,

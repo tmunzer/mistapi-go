@@ -23,13 +23,14 @@ type Service struct {
     Description                   *string                    `json:"description,omitempty"`
     // for SSR only, when `traffic_type`==`custom`. 0-63 or variable
     Dscp                          *ServiceDscp               `json:"dscp,omitempty"`
+    // enum: `non_revertable`, `none`, `revertable`
     FailoverPolicy                *ServiceFailoverPolicyEnum `json:"failover_policy,omitempty"`
     // if `type`==`custom`, web filtering
     Hostnames                     []string                   `json:"hostnames,omitempty"`
     Id                            *uuid.UUID                 `json:"id,omitempty"`
-    // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-4294967295 or variable
+    // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
     MaxJitter                     *ServiceMaxJitter          `json:"max_jitter,omitempty"`
-    // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-4294967295 or variable
+    // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
     MaxLatency                    *ServiceMaxLatency         `json:"max_latency,omitempty"`
     // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable
     MaxLoss                       *ServiceMaxLoss            `json:"max_loss,omitempty"`
@@ -41,12 +42,13 @@ type Service struct {
     // when `type`==`custom`, optional, if it doesn't exist, http and https is assumed
     Specs                         []ServiceSpec              `json:"specs,omitempty"`
     SsrRelaxedTcpStateEnforcement *bool                      `json:"ssr_relaxed_tcp_state_enforcement,omitempty"`
-    // when `traffic_type`==`custom`
+    // when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`
     TrafficClass                  *ServiceTrafficClassEnum   `json:"traffic_class,omitempty"`
     // values from `/api/v1/consts/traffic_types`
     //   * when `type`==`apps`, we''ll choose traffic_type automatically
     //   * when `type`==`addresses` or `type`==`hostnames`, you can provide your own settings (optional)
     TrafficType                   *string                    `json:"traffic_type,omitempty"`
+    // enum: `app_categories`, `apps`, `custom`, `urls`
     Type                          *ServiceTypeEnum           `json:"type,omitempty"`
     // when `type`==`urls`, no need for spec as URL can encode the ports being used
     Urls                          []string                   `json:"urls,omitempty"`

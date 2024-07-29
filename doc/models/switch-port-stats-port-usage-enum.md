@@ -1,7 +1,7 @@
 
 # Switch Port Stats Port Usage Enum
 
-gateway port usage
+gateway port usage. enum: `lan`
 
 ## Enumeration
 

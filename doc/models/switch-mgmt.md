@@ -28,7 +28,7 @@
     "custom": [
       {
         "port_range": "port_range6",
-        "protocol": "tcp",
+        "protocol": "any",
         "subnet": [
           "subnet3",
           "subnet4"
@@ -36,7 +36,7 @@
       },
       {
         "port_range": "port_range6",
-        "protocol": "tcp",
+        "protocol": "any",
         "subnet": [
           "subnet3",
           "subnet4"
@@ -44,7 +44,7 @@
       },
       {
         "port_range": "port_range6",
-        "protocol": "tcp",
+        "protocol": "any",
         "subnet": [
           "subnet3",
           "subnet4"
@@ -72,7 +72,7 @@
         "timeout": 254
       }
     ],
-    "default_role": "read",
+    "default_role": "none",
     "enabled": false,
     "network": "network6",
     "tacplus_servers": [

@@ -26,7 +26,7 @@
 | `SdkclientName` | `*string` | Optional | if `type`==`sdkclient`, name of the sdkclient |
 | `SdkclientUuid` | `*uuid.UUID` | Optional | if `type`==`sdkclient`, device_id of sdkclient |
 | `StartTime` | `int` | Required | timestamp of the recording (the start) |
-| `Type` | [`models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Required | - |
+| `Type` | [`models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Required | enum: `asset`, `client`, `sdkclient` |
 | `Url` | `string` | Required | URL to a JSON file that contains an array of frames, each frame is the same format |
 
 ## Example (as JSON)
@@ -46,7 +46,7 @@
   "raw_events": "raw_events4",
   "ready": false,
   "start_time": 126,
-  "type": "asset",
+  "type": "sdkclient",
   "url": "url6"
 }
 ```

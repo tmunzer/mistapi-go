@@ -9,8 +9,9 @@ import (
 type ApRadioBand6 struct {
     AllowRrmDisable      *bool                     `json:"allow_rrm_disable,omitempty"`
     AntGain              Optional[int]             `json:"ant_gain"`
+    // enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`
     AntennaMode          *RadioBandAntennaModeEnum `json:"antenna_mode,omitempty"`
-    // channel width for the 6GHz band
+    // channel width for the 6GHz band. enum: `20`, `40`, `80`, `160`
     Bandwidth            *Dot11Bandwidth6Enum      `json:"bandwidth,omitempty"`
     // For Device. (primary) channel for the band, 0 means using the Site Setting
     Channel              Optional[int]             `json:"channel"`
@@ -24,6 +25,7 @@ type ApRadioBand6 struct {
     PowerMax             Optional[int]             `json:"power_max"`
     // when power=0, min tx power to use, HW-specific values will be used if not set
     PowerMin             Optional[int]             `json:"power_min"`
+    // enum: `auto`, `long`, `short`
     Preamble             *RadioBandPreambleEnum    `json:"preamble,omitempty"`
     // for 6GHz Only, standard-power operation, AFC (Automatic Frequency Coordination) will be performed and we'll fallback to Low Power Indoor if AFC failed
     StandardPower        *bool                     `json:"standard_power,omitempty"`

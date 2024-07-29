@@ -1,7 +1,7 @@
 
 # Webhook Delivery Topic Enum
 
-webhook topic
+webhook topic. enum: `alarms`, `audits`, `device-updowns`, `occupancy-alerts`, `ping`
 
 ## Enumeration
 

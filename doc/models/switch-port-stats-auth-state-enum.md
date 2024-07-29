@@ -1,7 +1,7 @@
 
 # Switch Port Stats Auth State Enum
 
-if `up`==`true` and has Authenticator role
+if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init`
 
 ## Enumeration
 
@@ -11,8 +11,8 @@ if `up`==`true` and has Authenticator role
 
 | Name |
 |  --- |
-| `init` |
 | `authenticated` |
 | `authenticating` |
 | `held` |
+| `init` |
 

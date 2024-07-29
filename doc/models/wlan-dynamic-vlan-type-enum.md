@@ -1,7 +1,7 @@
 
 # Wlan Dynamic Vlan Type Enum
 
-standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco)
+standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco). enum: `airespace-interface-name`, `standard`
 
 ## Enumeration
 
@@ -11,8 +11,8 @@ standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-
 
 | Name |
 |  --- |
-| `standard` |
 | `airespace-interface-name` |
+| `standard` |
 
 ## Example
 

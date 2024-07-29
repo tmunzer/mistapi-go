@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`models.NacRuleActionEnum`](../../doc/models/nac-rule-action-enum.md) | Required | - |
+| `Action` | [`models.NacRuleActionEnum`](../../doc/models/nac-rule-action-enum.md) | Required | enum: `allow`, `block` |
 | `ApplyTags` | `[]string` | Optional | all optional, this goes into Access-Accept |
 | `CreatedTime` | `*float64` | Optional | - |
 | `Enabled` | `*bool` | Optional | enabled or not<br>**Default**: `true` |
@@ -36,12 +36,12 @@
   "created_time": 179.02,
   "id": "000025c8-0000-0000-0000-000000000000",
   "matching": {
-    "auth_type": "eap-ttls",
+    "auth_type": "mab",
     "nactags": [
       "nactags6"
     ],
     "port_types": [
-      "wireless"
+      "wired"
     ],
     "site_ids": [
       "00000738-0000-0000-0000-000000000000"

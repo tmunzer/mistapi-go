@@ -19,8 +19,8 @@
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PeerHost` | `*string` | Optional | peer host |
 | `PeerIp` | `*string` | Optional | peer ip address |
-| `Priority` | [`*models.WanTunnelStatsPriorityEnum`](../../doc/models/wan-tunnel-stats-priority-enum.md) | Optional | - |
-| `Protocol` | [`*models.WanTunnelProtocolEnum`](../../doc/models/wan-tunnel-protocol-enum.md) | Optional | - |
+| `Priority` | [`*models.WanTunnelStatsPriorityEnum`](../../doc/models/wan-tunnel-stats-priority-enum.md) | Optional | enum: `primary`, `secondary` |
+| `Protocol` | [`*models.WanTunnelProtocolEnum`](../../doc/models/wan-tunnel-protocol-enum.md) | Optional | enum: `gre`, `ipsec` |
 | `RxBytes` | `*int` | Optional | - |
 | `RxPkts` | `*int` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |

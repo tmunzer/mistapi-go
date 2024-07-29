@@ -6,6 +6,7 @@ import (
 
 // VpnPath represents a VpnPath struct.
 type VpnPath struct {
+    // enum: `broadband`, `lte`
     BfdProfile           *VpnPathBfdProfileEnum `json:"bfd_profile,omitempty"`
     // if different from the wan port
     Ip                   *string                `json:"ip,omitempty"`

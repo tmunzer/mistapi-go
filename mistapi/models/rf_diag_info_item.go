@@ -40,6 +40,7 @@ type RfDiagInfoItem struct {
     SdkclientUuid        *uuid.UUID       `json:"sdkclient_uuid,omitempty"`
     // timestamp of the recording (the start)
     StartTime            int              `json:"start_time"`
+    // enum: `asset`, `client`, `sdkclient`
     Type                 RfClientTypeEnum `json:"type"`
     // URL to a JSON file that contains an array of frames, each frame is the same format
     Url                  string           `json:"url"`

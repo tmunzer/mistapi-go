@@ -19,7 +19,7 @@ type OrgSettingMistNac struct {
     Idps                 []OrgSettingMistNacIdp          `json:"idps,omitempty"`
     // radius server cert to be presented in EAP TLS
     ServerCert           *OrgSettingMistNacServerCert    `json:"server_cert,omitempty"`
-    // by default NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4
+    // by default NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4. enum: `v4`, `v6`
     UseIpVersion         *OrgSettingMistNacIpVersionEnum `json:"use_ip_version,omitempty"`
     // By default NAS devices (switches/aps) and proxies(mxedge) are configured to use port TCP2083(radsec) to reach mist-nac. 
     // Set `use_ssl_port`==`true` to override that port with TCP43 (ssl), 

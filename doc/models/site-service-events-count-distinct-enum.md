@@ -1,6 +1,8 @@
 
 # Site Service Events Count Distinct Enum
 
+enum: `mac`, `model`, `policy`, `port_id`, `site_id`, `type`, `vpn_name`, `vpn_path`
+
 ## Enumeration
 
 `SiteServiceEventsCountDistinctEnum`
@@ -9,12 +11,12 @@
 
 | Name |
 |  --- |
-| `type` |
 | `mac` |
-| `vpn_name` |
-| `vpn_path` |
+| `model` |
 | `policy` |
 | `port_id` |
-| `model` |
 | `site_id` |
+| `type` |
+| `vpn_name` |
+| `vpn_path` |
 

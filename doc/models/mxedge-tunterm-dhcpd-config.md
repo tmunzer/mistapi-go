@@ -13,7 +13,7 @@ global and per-VLAN. Property key is the VLAN ID
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Servers` | `[]string` | Optional | list of DHCP servers; required if `type`==`relay` |
-| `Type` | [`*models.MxedgeTuntermDhcpdTypeEnum`](../../doc/models/mxedge-tunterm-dhcpd-type-enum.md) | Optional | **Default**: `"relay"` |
+| `Type` | [`*models.MxedgeTuntermDhcpdTypeEnum`](../../doc/models/mxedge-tunterm-dhcpd-type-enum.md) | Optional | enum: `relay`<br>**Default**: `"relay"` |
 
 ## Example (as JSON)
 

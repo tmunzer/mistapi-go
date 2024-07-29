@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DefaultDir` | [`*models.ConstDeviceApExtiosDefaultDirEnum`](../../doc/models/const-device-ap-extios-default-dir-enum.md) | Optional | - |
+| `DefaultDir` | [`*models.ConstDeviceApExtiosDefaultDirEnum`](../../doc/models/const-device-ap-extios-default-dir-enum.md) | Optional | enum: `IN`, `OUT` |
 | `Input` | `*bool` | Optional | - |
 | `Output` | `*bool` | Optional | - |
 

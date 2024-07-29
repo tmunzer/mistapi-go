@@ -1,6 +1,8 @@
 
 # Nac Rule Action Enum
 
+enum: `allow`, `block`
+
 ## Enumeration
 
 `NacRuleActionEnum`

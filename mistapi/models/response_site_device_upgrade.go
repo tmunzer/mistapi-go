@@ -26,9 +26,9 @@ type ResponseSiteDeviceUpgrade struct {
     RebootAt             *int                             `json:"reboot_at,omitempty"`
     // firmware download start time in epoch
     StartTime            *float64                         `json:"start_time,omitempty"`
-    // status upgrade is in
+    // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
     Status               *DeviceUpgradeStatusEnum         `json:"status,omitempty"`
-    // `big_bang` (upgrade all at once), `serial` (one at a time), `canary` or `rrm`
+    // enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
     Strategy             *DeviceUpgradeStrategyEnum       `json:"strategy,omitempty"`
     // version to upgrade to
     TargetVersion        *string                          `json:"target_version,omitempty"`

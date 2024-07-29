@@ -30,11 +30,11 @@ Below are the list of supported UI views. Note that this is UI only feature
 
 | Name |
 |  --- |
-| `reporting` |
-| `marketing` |
+| `lobby_admin` |
 | `location` |
+| `marketing` |
+| `mxedge_admin` |
+| `reporting` |
 | `security` |
 | `switch_admin` |
-| `mxedge_admin` |
-| `lobby_admin` |
 

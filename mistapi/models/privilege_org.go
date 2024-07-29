@@ -10,8 +10,9 @@ import (
 // PrivilegeOrg represents a PrivilegeOrg struct.
 // Privilieges settings
 type PrivilegeOrg struct {
-    // access permissions
+    // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
     Role                 PrivilegeOrgRoleEnum   `json:"role"`
+    // enum: `org`, `site`, `sitegroup`
     Scope                PrivilegeOrgScopeEnum  `json:"scope"`
     // if `scope`==`site`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`

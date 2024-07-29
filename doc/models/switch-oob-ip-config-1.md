@@ -16,7 +16,7 @@
 | `Ip` | `*string` | Optional | if `type`==`static` |
 | `Netmask` | `*string` | Optional | used only if `subnet` is not specified in `networks` |
 | `Network` | `*string` | Optional | optional, the network to be used for mgmt |
-| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | **Default**: `"dhcp"` |
+| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
 | `UseMgmtVrf` | `*bool` | Optional | f supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
 | `UseMgmtVrfForHostOut` | `*bool` | Optional | for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired,<br>**Default**: `false` |
 | `Node1` | [`*models.GatewayOobIpConfigNode1`](../../doc/models/gateway-oob-ip-config-node-1.md) | Optional | for HA Cluster, node1 can have different IP Config |

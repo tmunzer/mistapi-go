@@ -1,6 +1,8 @@
 
 # Org Wired Clients Count Distinct Enum
 
+enum: `device_mac`, `mac`, `port_id`, `site_id`, `type`, `vlan`
+
 ## Enumeration
 
 `OrgWiredClientsCountDistinctEnum`
@@ -9,10 +11,10 @@
 
 | Name |
 |  --- |
-| `port_id` |
-| `vlan` |
-| `mac` |
 | `device_mac` |
+| `mac` |
+| `port_id` |
 | `site_id` |
 | `type` |
+| `vlan` |
 

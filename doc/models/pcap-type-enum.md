@@ -1,6 +1,8 @@
 
 # Pcap Type Enum
 
+enum: `client`, `gateway`, `new_assoc`, `radiotap`, `radiotap,wired`, `wired`, `wireless`
+
 ## Enumeration
 
 `PcapTypeEnum`
@@ -9,13 +11,13 @@
 
 | Name |
 |  --- |
-| `new_assoc` |
 | `client` |
-| `wired` |
-| `wireless` |
+| `gateway` |
+| `new_assoc` |
 | `radiotap` |
 | `radiotap,wired` |
-| `gateway` |
+| `wired` |
+| `wireless` |
 
 ## Example
 

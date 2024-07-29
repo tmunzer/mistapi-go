@@ -9,6 +9,7 @@ import (
 // ResponseOrgInventoryChange represents a ResponseOrgInventoryChange struct.
 type ResponseOrgInventoryChange struct {
     Error                []string                         `json:"error"`
+    // enum: `assign`, `delete`, `downgrade_to_jsi`, `unassign`, `upgrade_to_mist`
     Op                   ResponseOrgInventoryChangeOpEnum `json:"op"`
     Reason               []string                         `json:"reason"`
     Success              []string                         `json:"success"`

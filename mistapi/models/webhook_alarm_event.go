@@ -18,7 +18,7 @@ type WebhookAlarmEvent struct {
     ForSite              *bool              `json:"for_site,omitempty"`
     Id                   uuid.UUID          `json:"id"`
     LastSeen             float64            `json:"last_seen"`
-    // only for HA
+    // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     OrgId                uuid.UUID          `json:"org_id"`
     SiteId               uuid.UUID          `json:"site_id"`

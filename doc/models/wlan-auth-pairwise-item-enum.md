@@ -1,6 +1,8 @@
 
 # Wlan Auth Pairwise Item Enum
 
+enum: `wpa1-ccmp`, `wpa1-tkip`, `wpa2-ccmp`, `wpa2-tkip`, `wpa3`
+
 ## Enumeration
 
 `WlanAuthPairwiseItemEnum`
@@ -10,9 +12,9 @@
 | Name |
 |  --- |
 | `wpa1-ccmp` |
-| `wpa2-tkip` |
 | `wpa1-tkip` |
 | `wpa2-ccmp` |
+| `wpa2-tkip` |
 | `wpa3` |
 
 ## Example

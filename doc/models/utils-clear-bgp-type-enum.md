@@ -1,6 +1,8 @@
 
 # Utils Clear Bgp Type Enum
 
+enum: `hard`, `in`, `out`, `soft`
+
 ## Enumeration
 
 `UtilsClearBgpTypeEnum`
@@ -10,7 +12,7 @@
 | Name |
 |  --- |
 | `hard` |
-| `soft` |
 | `in` |
 | `out` |
+| `soft` |
 

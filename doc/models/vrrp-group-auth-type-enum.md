@@ -1,6 +1,8 @@
 
 # Vrrp Group Auth Type Enum
 
+enum: `md5`, `simple`
+
 ## Enumeration
 
 `VrrpGroupAuthTypeEnum`

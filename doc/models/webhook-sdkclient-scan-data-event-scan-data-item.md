@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ap` | `string` | Required | mac address of the AP associated with the BSSID scanned |
-| `Band` | [`models.ScanDataItemBandEnum`](../../doc/models/scan-data-item-band-enum.md) | Required | 5GHz or 2.4GHz band, associated with the BSSID scanned<br>**Constraints**: *Minimum Length*: `1` |
+| `Band` | [`models.ScanDataItemBandEnum`](../../doc/models/scan-data-item-band-enum.md) | Required | 5GHz or 2.4GHz band, associated with the BSSID scanned. enum: `2.4`, `5`<br>**Constraints**: *Minimum Length*: `1` |
 | `Bssid` | `string` | Required | BSSID found during client’s background scan for wifi |
 | `Channel` | `int` | Required | channel of the band found in the scan |
 | `Rssi` | `float64` | Required | client’s RSSI relative to the BSSID scanned |

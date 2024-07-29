@@ -1,6 +1,8 @@
 
 # Msp Tier Enum
 
+enum: `advanced`, `base`
+
 ## Enumeration
 
 `MspTierEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `base` |
 | `advanced` |
+| `base` |
 

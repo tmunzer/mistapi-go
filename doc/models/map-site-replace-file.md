@@ -16,7 +16,7 @@
 
 ```json
 {
-  "file": "file4",
+  "file": "data:text/plain;name=dummy_file;base64,",
   "json": {
     "transform": {
       "rotation": 130.62,

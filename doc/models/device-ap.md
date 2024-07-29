@@ -41,14 +41,14 @@ AP
 | `Notes` | `*string` | Optional | any notes about this AP |
 | `NtpServers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Orientation` | `*int` | Optional | orientation, 0-359, in degrees, up is 0, right is 90. |
+| `Orientation` | `*int` | Optional | orientation, 0-359, in degrees, up is 0, right is 90.<br>**Constraints**: `>= 0`, `<= 359` |
 | `PoePassthrough` | `*bool` | Optional | whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br>**Default**: `false` |
 | `PortConfig` | [`map[string]models.ApPortConfig`](../../doc/models/ap-port-config.md) | Optional | eth0 is not allowed here.<br>Property key is the interface(s) name (e.g. "eth1" or"eth1,eth2") |
 | `PwrConfig` | [`*models.ApPwrConfig`](../../doc/models/ap-pwr-config.md) | Optional | power related configs |
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `Serial` | `*string` | Optional | device Serial |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Type` | [`*models.DeviceTypeApEnum`](../../doc/models/device-type-ap-enum.md) | Optional | Device Type |
+| `Type` | [`*models.DeviceTypeApEnum`](../../doc/models/device-type-ap-enum.md) | Optional | Device Type. enum: `ap` |
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | - |
 | `UsbConfig` | [`*models.ApUsb`](../../doc/models/ap-usb.md) | Optional | USB AP settings<br>Note: if native imagotag is enabled, BLE will be disabled automatically<br>Note: legacy, new config moved to ESL Config. |
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
@@ -86,7 +86,7 @@ AP
   "ble_config": {
     "beacon_enabled": false,
     "beacon_rate": 110,
-    "beacon_rate_mode": "default",
+    "beacon_rate_mode": "custom",
     "beam_disabled": [
       113,
       114,

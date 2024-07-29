@@ -29,7 +29,7 @@ occupancy alert webhook sample
           "occupancy_limit": 78,
           "org_id": "00000f52-0000-0000-0000-000000000000",
           "timestamp": 148.24,
-          "type": "COMPLIANCE-VIOLATION",
+          "type": "COMPLIANCE-OK",
           "zone_id": "000010f6-0000-0000-0000-000000000000",
           "zone_name": "zone_name6"
         },
@@ -39,7 +39,7 @@ occupancy alert webhook sample
           "occupancy_limit": 78,
           "org_id": "00000f52-0000-0000-0000-000000000000",
           "timestamp": 148.24,
-          "type": "COMPLIANCE-VIOLATION",
+          "type": "COMPLIANCE-OK",
           "zone_id": "000010f6-0000-0000-0000-000000000000",
           "zone_name": "zone_name6"
         },
@@ -49,7 +49,7 @@ occupancy alert webhook sample
           "occupancy_limit": 78,
           "org_id": "00000f52-0000-0000-0000-000000000000",
           "timestamp": 148.24,
-          "type": "COMPLIANCE-VIOLATION",
+          "type": "COMPLIANCE-OK",
           "zone_id": "000010f6-0000-0000-0000-000000000000",
           "zone_name": "zone_name6"
         }

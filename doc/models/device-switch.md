@@ -56,7 +56,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
 | `StpConfig` | [`*models.SwitchStpConfig`](../../doc/models/switch-stp-config.md) | Optional | - |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | - |
-| `Type` | [`*models.DeviceTypeSwitchEnum`](../../doc/models/device-type-switch-enum.md) | Optional | Device Type |
+| `Type` | [`*models.DeviceTypeSwitchEnum`](../../doc/models/device-type-switch-enum.md) | Optional | Device Type. enum: `switch` |
 | `UseRouterIdAsSourceIp` | `*bool` | Optional | whether to use it for snmp / syslog / tacplus / radius<br>**Default**: `false` |
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `VirtualChassis` | [`*models.SwitchVirtualChassis`](../../doc/models/switch-virtual-chassis.md) | Optional | required for preprovisioned Virtual Chassis |
@@ -129,7 +129,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
           "protocol": "protocol6"
         }
       ],
-      "type": "any"
+      "type": "radius_group"
     },
     "key1": {
       "gbp_tag": 14,
@@ -144,7 +144,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
           "protocol": "protocol6"
         }
       ],
-      "type": "any"
+      "type": "radius_group"
     },
     "key2": {
       "gbp_tag": 14,
@@ -159,7 +159,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
           "protocol": "protocol6"
         }
       ],
-      "type": "any"
+      "type": "radius_group"
     }
   },
   "additional_config_cmds": [

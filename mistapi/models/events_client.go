@@ -11,9 +11,11 @@ import (
 // client events
 type EventsClient struct {
     Ap                   *string        `json:"ap,omitempty"`
+    // enum: `24`, `5`, `6`
     Band                 Dot11BandEnum  `json:"band"`
     Bssid                *string        `json:"bssid,omitempty"`
     Channel              *int           `json:"channel,omitempty"`
+    // enum: `a`, `ac`, `ax`, `b`, `g`, `n`
     Proto                Dot11ProtoEnum `json:"proto"`
     Ssid                 *string        `json:"ssid,omitempty"`
     Text                 *string        `json:"text,omitempty"`

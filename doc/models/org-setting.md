@@ -77,19 +77,19 @@ Org Settings
     "rules": [
       {
         "expression": "expression4",
-        "match_device_type": "gateway",
+        "match_device_type": "other",
         "match_model": "match_model0",
         "model": "model4",
         "prefix": "prefix6",
-        "src": "model"
+        "src": "name"
       },
       {
         "expression": "expression4",
-        "match_device_type": "gateway",
+        "match_device_type": "other",
         "match_model": "match_model0",
         "model": "model4",
         "prefix": "prefix6",
-        "src": "model"
+        "src": "name"
       }
     ]
   },
@@ -98,11 +98,11 @@ Org Settings
     "rules": [
       {
         "expression": "expression4",
-        "match_device_type": "gateway",
+        "match_device_type": "other",
         "match_model": "match_model0",
         "model": "model4",
         "prefix": "prefix6",
-        "src": "model"
+        "src": "name"
       }
     ]
   },
@@ -111,11 +111,11 @@ Org Settings
     "rules": [
       {
         "expression": "expression4",
-        "match_device_type": "gateway",
+        "match_device_type": "other",
         "match_model": "match_model0",
         "model": "model4",
         "prefix": "prefix6",
-        "src": "model"
+        "src": "name"
       }
     ]
   }

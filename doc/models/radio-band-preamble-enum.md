@@ -1,6 +1,8 @@
 
 # Radio Band Preamble Enum
 
+enum: `auto`, `long`, `short`
+
 ## Enumeration
 
 `RadioBandPreambleEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `short` |
-| `long` |
 | `auto` |
+| `long` |
+| `short` |
 

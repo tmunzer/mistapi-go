@@ -6,6 +6,7 @@ import (
 
 // SwitchStpConfig represents a SwitchStpConfig struct.
 type SwitchStpConfig struct {
+    // enum: `rstp`, `vstp`
     Type                 *SwitchStpConfigTypeEnum `json:"type,omitempty"`
     AdditionalProperties map[string]any           `json:"_"`
 }

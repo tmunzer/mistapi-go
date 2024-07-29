@@ -15,7 +15,7 @@
 | `Airwatch` | [`*models.ClientWirelessStatsAirwatch`](../../doc/models/client-wireless-stats-airwatch.md) | Optional | information if airwatch enabled |
 | `ApId` | `uuid.UUID` | Required | AP ID the client is connected to |
 | `ApMac` | `string` | Required | AP the client is connected to |
-| `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | - |
+| `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | enum: `24`, `5`, `6` |
 | `Channel` | `int` | Required | current channel |
 | `DualBand` | `bool` | Required | whether the client is dual_band capable (determined by whether we’ve seen probe requests from both bands) |
 | `Family` | `string` | Required | device family, through fingerprinting. iPod / Nexus Galaxy / Windows Mobile or CE … |
@@ -33,7 +33,7 @@
 | `NumLocatingAps` | `*int` | Optional | number of APs used to locate this client |
 | `Os` | `string` | Required | device os, through fingerprinting |
 | `PowerSaving` | `bool` | Required | if it’s currently in power-save mode |
-| `Proto` | [`models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Required | - |
+| `Proto` | [`models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Required | enum: `a`, `ac`, `ax`, `b`, `g`, `n` |
 | `PskId` | `*uuid.UUID` | Optional | PSK id (if multi-psk is used) |
 | `Rssi` | `float64` | Required | signal strength |
 | `Rssizones` | [`[]models.ClientWirelessStatsRssiZone`](../../doc/models/client-wireless-stats-rssi-zone.md) | Optional | list of rssizone_id’s where client is in and since when (if known) |
@@ -85,7 +85,7 @@
   "model": "model4",
   "os": "os6",
   "power_saving": false,
-  "proto": "g",
+  "proto": "ax",
   "rssi": 34.4,
   "rx_bps": 141.08,
   "rx_bytes": 36.76,

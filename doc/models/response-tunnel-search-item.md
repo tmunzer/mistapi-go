@@ -22,7 +22,7 @@
 | `RxControlPkts` | `*int` | Optional | - |
 | `Sessions` | [`[]models.MxtunnelStatsSession`](../../doc/models/mxtunnel-stats-session.md) | Optional | list of sessions<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `State` | [`*models.MxtunnelStatsStateEnum`](../../doc/models/mxtunnel-stats-state-enum.md) | Optional | - |
+| `State` | [`*models.MxtunnelStatsStateEnum`](../../doc/models/mxtunnel-stats-state-enum.md) | Optional | enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
 | `TxControlPkts` | `*int` | Optional | - |
 | `Uptime` | `*int` | Optional | duration from first (or last) SA was established |
 | `AuthAlgo` | `*string` | Optional | authentication algorithm |
@@ -34,8 +34,8 @@
 | `Node` | `*string` | Optional | node0/node1 |
 | `PeerHost` | `*string` | Optional | peer host |
 | `PeerIp` | `*string` | Optional | peer ip address |
-| `Priority` | [`*models.WanTunnelStatsPriorityEnum`](../../doc/models/wan-tunnel-stats-priority-enum.md) | Optional | - |
-| `Protocol` | [`*models.WanTunnelProtocolEnum`](../../doc/models/wan-tunnel-protocol-enum.md) | Optional | - |
+| `Priority` | [`*models.WanTunnelStatsPriorityEnum`](../../doc/models/wan-tunnel-stats-priority-enum.md) | Optional | enum: `primary`, `secondary` |
+| `Protocol` | [`*models.WanTunnelProtocolEnum`](../../doc/models/wan-tunnel-protocol-enum.md) | Optional | enum: `gre`, `ipsec` |
 | `RxBytes` | `*int` | Optional | - |
 | `RxPkts` | `*int` | Optional | - |
 | `TunnelName` | `*string` | Optional | Mist Tunnel Name |

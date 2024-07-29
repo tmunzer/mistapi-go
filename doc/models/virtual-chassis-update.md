@@ -14,7 +14,7 @@ Virtual Chassis
 | `Member` | `*int` | Optional | Only if `op`==`renumber` |
 | `Members` | [`[]models.VirtualChassisMemberUpdate`](../../doc/models/virtual-chassis-member-update.md) | Optional | - |
 | `NewMember` | `*int` | Optional | Only if `op`==`renumber` |
-| `Op` | [`*models.VirtualChassisUpdateOpEnum`](../../doc/models/virtual-chassis-update-op-enum.md) | Optional | - |
+| `Op` | [`*models.VirtualChassisUpdateOpEnum`](../../doc/models/virtual-chassis-update-op-enum.md) | Optional | enum: `add`, `preprovision`, `remove`, `renumber` |
 
 ## Example (as JSON)
 
@@ -30,7 +30,7 @@ Virtual Chassis
         "vc_ports3",
         "vc_ports4"
       ],
-      "vc_role": "linecard"
+      "vc_role": "master"
     },
     {
       "mac": "mac2",
@@ -40,7 +40,7 @@ Virtual Chassis
         "vc_ports3",
         "vc_ports4"
       ],
-      "vc_role": "linecard"
+      "vc_role": "master"
     },
     {
       "mac": "mac2",
@@ -50,7 +50,7 @@ Virtual Chassis
         "vc_ports3",
         "vc_ports4"
       ],
-      "vc_role": "linecard"
+      "vc_role": "master"
     }
   ],
   "new-member": 52,

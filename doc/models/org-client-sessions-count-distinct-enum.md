@@ -1,6 +1,8 @@
 
 # Org Client Sessions Count Distinct Enum
 
+enum: `ap`, `device`, `hostname`, `ip`, `model`, `os`, `ssid`, `vlan`
+
 ## Enumeration
 
 `OrgClientSessionsCountDistinctEnum`
@@ -9,12 +11,12 @@
 
 | Name |
 |  --- |
-| `ssid` |
 | `ap` |
-| `ip` |
-| `vlan` |
-| `hostname` |
-| `os` |
-| `model` |
 | `device` |
+| `hostname` |
+| `ip` |
+| `model` |
+| `os` |
+| `ssid` |
+| `vlan` |
 

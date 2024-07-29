@@ -9,7 +9,7 @@ type SwitchVirtualChassisMember struct {
     // fpc0, same as the mac of device_id
     Mac                  *string                               `json:"mac,omitempty"`
     MemberId             *int                                  `json:"member_id,omitempty"`
-    // Both vc_role master and backup will be matched to routing-engine role in Junos preprovisioned VC config
+    // Both vc_role master and backup will be matched to routing-engine role in Junos preprovisioned VC config. enum: `backup`, `linecard`, `master`
     VcRole               *SwitchVirtualChassisMemberVcRoleEnum `json:"vc_role,omitempty"`
     AdditionalProperties map[string]any                        `json:"_"`
 }

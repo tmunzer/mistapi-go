@@ -1,6 +1,8 @@
 
 # Snmp Usmp User Encryption Type Enum
 
+enum: `privacy-3des`, `privacy-aes128`, `privacy-des`, `privacy-none`
+
 ## Enumeration
 
 `SnmpUsmpUserEncryptionTypeEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
+| `privacy-3des` |
 | `privacy-aes128` |
 | `privacy-des` |
-| `privacy-3des` |
 | `privacy-none` |
 

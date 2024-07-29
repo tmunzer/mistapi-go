@@ -20,7 +20,7 @@ type CaptureClient struct {
     NumPackets           Optional[int]    `json:"num_packets"`
     // optional filter by ssid
     Ssid                 Optional[string] `json:"ssid"`
-    // client
+    // enum: `client`
     Type                 string           `json:"type"`
     AdditionalProperties map[string]any   `json:"_"`
 }

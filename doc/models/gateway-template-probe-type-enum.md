@@ -1,6 +1,8 @@
 
 # Gateway Template Probe Type Enum
 
+enum: `http`, `icmp`
+
 ## Enumeration
 
 `GatewayTemplateProbeTypeEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `icmp` |
 | `http` |
+| `icmp` |
 

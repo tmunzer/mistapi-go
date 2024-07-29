@@ -34,6 +34,7 @@ type JseInventoryItem struct {
     ShippedTime          *float64        `json:"shipped_time,omitempty"`
     // serviceable device stock
     Sku                  *string         `json:"sku,omitempty"`
+    // enum: `ap`, `gateway`, `switch`
     Type                 *DeviceTypeEnum `json:"type,omitempty"`
     WarrantyEndTime      *int            `json:"warranty_end_time,omitempty"`
     WarrantyStartTime    *int            `json:"warranty_start_time,omitempty"`

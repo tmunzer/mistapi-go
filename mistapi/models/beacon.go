@@ -34,6 +34,7 @@ type Beacon struct {
     // in dBm
     Power                *int            `json:"power,omitempty"`
     SiteId               *uuid.UUID      `json:"site_id,omitempty"`
+    // enum: `eddystone-uid`, `eddystone-url`, `ibeacon`
     Type                 *BeaconTypeEnum `json:"type,omitempty"`
     // x in pixel
     X                    *float64        `json:"x,omitempty"`

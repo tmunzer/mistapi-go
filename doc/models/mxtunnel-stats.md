@@ -24,7 +24,7 @@ MxTunnels statistics
 | `RxControlPkts` | `*int` | Optional | - |
 | `Sessions` | [`[]models.MxtunnelStatsSession`](../../doc/models/mxtunnel-stats-session.md) | Optional | list of sessions<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `State` | [`*models.MxtunnelStatsStateEnum`](../../doc/models/mxtunnel-stats-state-enum.md) | Optional | - |
+| `State` | [`*models.MxtunnelStatsStateEnum`](../../doc/models/mxtunnel-stats-state-enum.md) | Optional | enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
 | `TxControlPkts` | `*int` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
 

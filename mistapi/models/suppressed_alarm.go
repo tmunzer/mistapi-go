@@ -13,7 +13,7 @@ type SuppressedAlarm struct {
     Duration             *float64                  `json:"duration,omitempty"`
     // poch_time in seconds, Default as now, accepted time range is from now to now + 7 days
     ScheduledTime        *int                      `json:"scheduled_time,omitempty"`
-    // level of scope
+    // level of scope. enum: `org`, `site`
     Scope                *SuppressedAlarmScopeEnum `json:"scope,omitempty"`
     AdditionalProperties map[string]any            `json:"_"`
 }

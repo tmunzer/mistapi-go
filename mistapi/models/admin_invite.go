@@ -25,7 +25,7 @@ type AdminInvite struct {
     Password             string               `json:"password"`
     // reCAPTCHA , see https://www.google.com/recaptcha/
     Recaptcha            string               `json:"recaptcha"`
-    // flavor of the captcha
+    // flavor of the captcha. enum: `google`, `hcaptcha`
     RecaptchaFlavor      *RecaptchaFlavorEnum `json:"recaptcha_flavor,omitempty"`
     // the invite token to apply after account creation
     RefererInviteToken   *string              `json:"referer_invite_token,omitempty"`

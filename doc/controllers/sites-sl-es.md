@@ -72,7 +72,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SleSummaryScopeEnum("switch")
+scope := models.SleSummaryScopeEnum("gateway")
 
 scopeId := "scope_id0"
 
@@ -257,7 +257,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleHistogramScopeParametersEnum("switch")
+scope := models.SiteSleHistogramScopeParametersEnum("gateway")
 
 scopeId := "scope_id0"
 
@@ -437,7 +437,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactSummaryScopeParametersEnum("switch")
+scope := models.SiteSleImpactSummaryScopeParametersEnum("gateway")
 
 scopeId := "scope_id0"
 
@@ -658,7 +658,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleScopeEnum("gateway")
+scope := models.SiteSleScopeEnum("switch")
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -870,7 +870,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedChassisScopeParametersEnum("gateway")
+scope := models.SiteSleImpactedChassisScopeParametersEnum("switch")
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -1078,7 +1078,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedInterfacesScopeParametersEnum("gateway")
+scope := models.SiteSleImpactedInterfacesScopeParametersEnum("switch")
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -1297,7 +1297,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedClientsScopeParametersEnum("gateway")
+scope := models.SiteSleImpactedClientsScopeParametersEnum("switch")
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -1408,7 +1408,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedUsersScopeParameterEnum("site")
+scope := models.SiteSleImpactedUsersScopeParameterEnum("ap")
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -1547,7 +1547,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleMetricClassifiersScopeParametersEnum("switch")
+scope := models.SiteSleMetricClassifiersScopeParametersEnum("gateway")
 
 scopeId := "scope_id0"
 
@@ -1625,7 +1625,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleMetricSummaryScopeParametersEnum("switch")
+scope := models.SiteSleMetricSummaryScopeParametersEnum("gateway")
 
 scopeId := "scope_id0"
 
@@ -2165,7 +2165,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleThresholdScopeParameterEnum("switch")
+scope := models.SiteSleThresholdScopeParameterEnum("gateway")
 
 scopeId := "scope_id0"
 
@@ -2239,7 +2239,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleMetricsScopeParametersEnum("switch")
+scope := models.SiteSleMetricsScopeParametersEnum("gateway")
 
 scopeId := "scope_id0"
 
@@ -2345,7 +2345,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleThresholdScopeParameterEnum("switch")
+scope := models.SiteSleThresholdScopeParameterEnum("gateway")
 
 scopeId := "scope_id0"
 
@@ -2428,7 +2428,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleThresholdScopeParameterEnum("switch")
+scope := models.SiteSleThresholdScopeParameterEnum("gateway")
 
 scopeId := "scope_id0"
 

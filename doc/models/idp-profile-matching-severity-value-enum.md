@@ -1,6 +1,8 @@
 
 # Idp Profile Matching Severity Value Enum
 
+enum: `critical`, `info`, `major`, `minor`
+
 ## Enumeration
 
 `IdpProfileMatchingSeverityValueEnum`
@@ -10,9 +12,9 @@
 | Name |
 |  --- |
 | `critical` |
+| `info` |
 | `major` |
 | `minor` |
-| `info` |
 
 ## Example
 

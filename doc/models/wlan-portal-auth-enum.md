@@ -1,7 +1,7 @@
 
 # Wlan Portal Auth Enum
 
-authentication scheme
+authentication scheme. enum: `external`, `none`, `sso`
 
 ## Enumeration
 
@@ -11,8 +11,8 @@ authentication scheme
 
 | Name |
 |  --- |
-| `none` |
 | `external` |
+| `none` |
 | `sso` |
 
 ## Example

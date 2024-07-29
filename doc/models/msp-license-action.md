@@ -12,7 +12,7 @@
 | `AmendmentId` | `*string` | Optional | required if `op`==`unamend` |
 | `DstOrgId` | `*string` | Optional | required if `op`==`amend`, destination org id<br>**Constraints**: *Minimum Length*: `1` |
 | `Notes` | `*string` | Optional | required if `op`== `annotate` |
-| `Op` | [`models.MspLicenseActionOperationEnum`](../../doc/models/msp-license-action-operation-enum.md) | Required | **Constraints**: *Minimum Length*: `1` |
+| `Op` | [`models.MspLicenseActionOperationEnum`](../../doc/models/msp-license-action-operation-enum.md) | Required | enum: `amend`, `annotate`, `delete`, `unamend`<br>**Constraints**: *Minimum Length*: `1` |
 | `Quantity` | `*float64` | Optional | required if `op`==`amend` |
 | `SubscriptionId` | `*string` | Optional | required if `op`== `annotate`<br>**Constraints**: *Minimum Length*: `1` |
 

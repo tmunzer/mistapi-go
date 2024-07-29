@@ -1,6 +1,8 @@
 
 # Mxedge for Site Enum
 
+enum: `any`, `false`, `true`
+
 ## Enumeration
 
 `MxedgeForSiteEnum`
@@ -10,6 +12,6 @@
 | Name |
 |  --- |
 | `any` |
-| `true` |
 | `false` |
+| `true` |
 

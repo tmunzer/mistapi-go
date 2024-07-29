@@ -6,8 +6,9 @@ import (
 
 // GatewayTemplateTunnelIkeProposal represents a GatewayTemplateTunnelIkeProposal struct.
 type GatewayTemplateTunnelIkeProposal struct {
+    // enum: `md5`, `sha1`, `sha2`
     AuthAlgo             *TunnelConfigsAuthAlgoEnum           `json:"auth_algo,omitempty"`
-    // possible values: 
+    // enum:
     //   * 1
     //   * 2 (1024-bit)
     //   * 5
@@ -19,6 +20,7 @@ type GatewayTemplateTunnelIkeProposal struct {
     //   * 21 (521-bit ECP)
     //   * 24 (2048-bit ECP)
     DhGroup              *GatewayTemplateTunnelIkeDhGroupEnum `json:"dh_group,omitempty"`
+    // enum: `3des`, `aes128`, `aes256`, `aes_gcm128`, `aes_gcm256`
     EncAlgo              Optional[TunnelConfigsEncAlgoEnum]   `json:"enc_algo"`
     AdditionalProperties map[string]any                       `json:"_"`
 }

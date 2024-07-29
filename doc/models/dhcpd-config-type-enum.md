@@ -1,7 +1,7 @@
 
 # Dhcpd Config Type Enum
 
-DHCP Server (local) or DHCP Relay (relay)
+enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)
 
 ## Enumeration
 
@@ -12,6 +12,6 @@ DHCP Server (local) or DHCP Relay (relay)
 | Name |
 |  --- |
 | `local` |
-| `relay` |
 | `none` |
+| `relay` |
 

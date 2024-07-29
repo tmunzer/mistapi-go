@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | **Default**: `"allow"` |
+| `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | enum: `allow`, `deny`<br>**Default**: `"allow"` |
 | `DstTag` | `*string` | Optional | - |
 
 ## Example (as JSON)

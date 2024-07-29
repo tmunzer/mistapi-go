@@ -9,6 +9,7 @@ type ServicePolicyEwfRule struct {
     AlertOnly            *bool                            `json:"alert_only,omitempty"`
     BlockMessage         *string                          `json:"block_message,omitempty"`
     Enabled              *bool                            `json:"enabled,omitempty"`
+    // enum: `critical`, `standard`, `strict`
     Profile              *ServicePolicyEwfRuleProfileEnum `json:"profile,omitempty"`
     AdditionalProperties map[string]any                   `json:"_"`
 }

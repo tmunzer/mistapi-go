@@ -1,6 +1,8 @@
 
 # Webhook Type Enum
 
+enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`
+
 ## Enumeration
 
 `WebhookTypeEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `http-post` |
-| `splunk` |
-| `google-pubsub` |
 | `aws-sns` |
+| `google-pubsub` |
+| `http-post` |
 | `oauth2` |
+| `splunk` |
 

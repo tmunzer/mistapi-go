@@ -1,6 +1,8 @@
 
 # Search Org Devices Mxtunnel Status Enum
 
+enum: `down`, `up`
+
 ## Enumeration
 
 `SearchOrgDevicesMxtunnelStatusEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `up` |
 | `down` |
+| `up` |
 

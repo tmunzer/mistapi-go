@@ -1,6 +1,8 @@
 
 # Allow Deny Enum
 
+enum: `allow`, `deny`
+
 ## Enumeration
 
 `AllowDenyEnum`

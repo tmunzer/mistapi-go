@@ -8,12 +8,12 @@ import (
 // IoT Input AP settings
 type ApIotInput struct {
     // whether to enable a pin
-    Enabled              *bool                 `json:"enabled,omitempty"`
+    Enabled              *bool            `json:"enabled,omitempty"`
     // optional; descriptive pin name
-    Name                 *string               `json:"name,omitempty"`
-    // the type of pull-up the pin uses (internal, external, none), default none
-    Pullup               *ApIotInputPullupEnum `json:"pullup,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Name                 *string          `json:"name,omitempty"`
+    // the type of pull-up the pin uses. enum: `external`, `internal`, `none`
+    Pullup               *ApIotPullupEnum `json:"pullup,omitempty"`
+    AdditionalProperties map[string]any   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApIotInput.
@@ -62,7 +62,7 @@ func (a *ApIotInput) UnmarshalJSON(input []byte) error {
 
 // apIotInput is a temporary struct used for validating the fields of ApIotInput.
 type apIotInput  struct {
-    Enabled *bool                 `json:"enabled,omitempty"`
-    Name    *string               `json:"name,omitempty"`
-    Pullup  *ApIotInputPullupEnum `json:"pullup,omitempty"`
+    Enabled *bool            `json:"enabled,omitempty"`
+    Name    *string          `json:"name,omitempty"`
+    Pullup  *ApIotPullupEnum `json:"pullup,omitempty"`
 }

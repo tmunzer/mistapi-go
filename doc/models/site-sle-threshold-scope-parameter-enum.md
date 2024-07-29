@@ -1,6 +1,8 @@
 
 # Site Sle Threshold Scope Parameter Enum
 
+enum: `ap`, `client`, `gateway`, `site`, `switch`
+
 ## Enumeration
 
 `SiteSleThresholdScopeParameterEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `site` |
 | `ap` |
-| `switch` |
-| `gateway` |
 | `client` |
+| `gateway` |
+| `site` |
+| `switch` |
 

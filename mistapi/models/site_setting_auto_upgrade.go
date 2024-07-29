@@ -9,12 +9,13 @@ import (
 type SiteSettingAutoUpgrade struct {
     // custom versions for different models. Property key is the model name (e.g. "AP41")
     CustomVersions       map[string]string           `json:"custom_versions,omitempty"`
+    // enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed`
     DayOfWeek            *DayOfWeekEnum              `json:"day_of_week,omitempty"`
     // whether auto upgrade should happen (Note that Mist may auto-upgrade if the version is not supported)
     Enabled              *bool                       `json:"enabled,omitempty"`
     // any / HH:MM (24-hour format), upgrade will happen within up to 1-hour from this time
     TimeOfDay            *string                     `json:"time_of_day,omitempty"`
-    // desired version
+    // desired version. enum: `beta`, `custom`, `stable`
     Version              *SiteAutoUpgradeVersionEnum `json:"version,omitempty"`
     AdditionalProperties map[string]any              `json:"_"`
 }

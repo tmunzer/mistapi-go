@@ -1,7 +1,7 @@
 
 # Switch Port Usage Mode Enum
 
-`mode`==`dynamic` must only be used with the port usage with the name `dynamic`
+`mode`==`dynamic` must only be used with the port usage with the name `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk`
 
 ## Enumeration
 
@@ -12,7 +12,7 @@
 | Name |
 |  --- |
 | `access` |
-| `trunk` |
-| `inet` |
 | `dynamic` |
+| `inet` |
+| `trunk` |
 

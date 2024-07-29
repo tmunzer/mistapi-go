@@ -28,7 +28,7 @@
 | `StartedTime` | `*int` | Optional | - |
 | `Switches` | `[]string` | Optional | List of target Switches to capture packets if a switch capture type is specified |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression provided by the user (common) |
-| `Type` | [`models.PcapTypeEnum`](../../doc/models/pcap-type-enum.md) | Required | - |
+| `Type` | [`models.PcapTypeEnum`](../../doc/models/pcap-type-enum.md) | Required | enum: `client`, `gateway`, `new_assoc`, `radiotap`, `radiotap,wired`, `wired`, `wireless` |
 | `WiredTcpdumpExpression` | `*string` | Optional | when `type`==`wired`, wired_tcpdump_expression provided by the user |
 | `WirelessTcpdumpExpression` | `*string` | Optional | when `type`==`‘wireless’`, wireless_tcpdump_expression provided by the user |
 

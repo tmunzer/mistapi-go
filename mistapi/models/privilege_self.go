@@ -24,8 +24,9 @@ type PrivilegeSelf struct {
     OrgName              *string                 `json:"org_name,omitempty"`
     // if `scope`==`orggroup`
     OrggroupIds          []uuid.UUID             `json:"orggroup_ids,omitempty"`
-    // access permissions
+    // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
     Role                 PrivilegeSelfRoleEnum   `json:"role"`
+    // enum: `msp`, `org`, `orggroup`, `site`, `sitegroup`
     Scope                PrivilegeSelfScopeEnum  `json:"scope"`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     SitegroupIds         []uuid.UUID             `json:"sitegroup_ids,omitempty"`

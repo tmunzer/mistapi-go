@@ -1,7 +1,7 @@
 
 # Bgp Config Via Enum
 
-network name
+network name. enum: `lan`, `vpn`, `wan`
 
 ## Enumeration
 

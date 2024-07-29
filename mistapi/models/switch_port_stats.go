@@ -12,7 +12,7 @@ import (
 type SwitchPortStats struct {
     // Indicates if interface is active/inactive
     Active               *bool                         `json:"active,omitempty"`
-    // if `up`==`true` and has Authenticator role
+    // if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init`
     AuthState            *SwitchPortStatsAuthStateEnum `json:"auth_state,omitempty"`
     ForSite              *bool                         `json:"for_site,omitempty"`
     // indicates full or half duplex
@@ -43,13 +43,14 @@ type SwitchPortStats struct {
     OrgId                uuid.UUID                     `json:"org_id"`
     // is the POE configured not be disabled.
     PoeDisabled          *bool                         `json:"poe_disabled,omitempty"`
+    // enum: `802.3af`, `802.3at`, `802.3bt`
     PoeMode              *SwitchPortStatsPoeModeEnum   `json:"poe_mode,omitempty"`
     // is the device attached to POE
     PoeOn                *bool                         `json:"poe_on,omitempty"`
     PortId               string                        `json:"port_id"`
     // interface mac address
     PortMac              string                        `json:"port_mac"`
-    // gateway port usage
+    // gateway port usage. enum: `lan`
     PortUsage            *SwitchPortStatsPortUsageEnum `json:"port_usage,omitempty"`
     // Amount of power being used by the interface at the time the command is executed. Unit in watts.
     PowerDraw            *float64                      `json:"power_draw,omitempty"`
@@ -68,9 +69,9 @@ type SwitchPortStats struct {
     SiteId               uuid.UUID                     `json:"site_id"`
     // port speed
     Speed                *int                          `json:"speed,omitempty"`
-    // if `up`==`true`
+    // if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
     StpRole              *SwitchPortStatsStpRoleEnum   `json:"stp_role,omitempty"`
-    // if `up`==`true`
+    // if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
     StpState             *SwitchPortStatsStpStateEnum  `json:"stp_state,omitempty"`
     // Broadcast output packets
     TxBcastPkts          *int                          `json:"tx_bcast_pkts,omitempty"`
@@ -84,7 +85,7 @@ type SwitchPortStats struct {
     TxMcastPkts          *int                          `json:"tx_mcast_pkts,omitempty"`
     // tx packets
     TxPkts               int                           `json:"tx_pkts"`
-    // device type
+    // device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
     Type                 *SwitchPortStatsTypeEnum      `json:"type,omitempty"`
     // indicates if interface is unconfigured
     Unconfigured         *bool                         `json:"unconfigured,omitempty"`

@@ -12,6 +12,7 @@ type UtilsTraceroute struct {
     Network              *string                      `json:"network,omitempty"`
     // when `protocol`==`udp`, the udp port to use
     Port                 *int                         `json:"port,omitempty"`
+    // enum: `udp`
     Protocol             *UtilsTracerouteProtocolEnum `json:"protocol,omitempty"`
     // maximum time in seconds to wait for the response
     Timeout              *int                         `json:"timeout,omitempty"`

@@ -1,6 +1,8 @@
 
 # List Org Logs Sort Enum
 
+enum: `-timestamp`, `admin_id`, `site_id`, `timestamp`
+
 ## Enumeration
 
 `ListOrgLogsSortEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `timestamp` |
 | `-timestamp` |
-| `site_id` |
 | `admin_id` |
+| `site_id` |
+| `timestamp` |
 

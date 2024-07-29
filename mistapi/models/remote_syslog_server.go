@@ -8,12 +8,15 @@ import (
 type RemoteSyslogServer struct {
     Contents             []RemoteSyslogContent           `json:"contents,omitempty"`
     ExplicitPriority     *bool                           `json:"explicit_priority,omitempty"`
+    // enum: `any`, `authorization`, `change-log`, `config`, `conflict-log`, `daemon`, `dfc`, `external`, `firewall`, `ftp`, `interactive-commands`, `kernel`, `ntp`, `pfe`, `security`, `user`
     Facility             *RemoteSyslogFacilityEnum       `json:"facility,omitempty"`
     Host                 *string                         `json:"host,omitempty"`
     Match                *string                         `json:"match,omitempty"`
     Port                 *int                            `json:"port,omitempty"`
+    // enum: `tcp`, `udp`
     Protocol             *RemoteSyslogServerProtocolEnum `json:"protocol,omitempty"`
     RoutingInstance      *string                         `json:"routing_instance,omitempty"`
+    // enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`
     Severity             *RemoteSyslogSeverityEnum       `json:"severity,omitempty"`
     // if source_address is configured, will use the vlan firstly otherwise use source_ip
     SourceAddress        *string                         `json:"source_address,omitempty"`

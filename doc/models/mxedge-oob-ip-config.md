@@ -20,8 +20,8 @@ ip configuration of the Mist Edge out-of_band management interface
 | `Ip6` | `*string` | Optional | - |
 | `Netmask` | `*string` | Optional | if `type`=`static` |
 | `Netmask6` | `*string` | Optional | - |
-| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | **Default**: `"dhcp"` |
-| `Type6` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | **Default**: `"dhcp"` |
+| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
+| `Type6` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
 
 ## Example (as JSON)
 

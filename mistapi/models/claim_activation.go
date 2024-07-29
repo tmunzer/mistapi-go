@@ -10,8 +10,9 @@ import (
 type ClaimActivation struct {
     // activation code
     Code                 string          `json:"code"`
+    // enum: `ap`, `gateway`, `switch`
     DeviceType           *DeviceTypeEnum `json:"device_type,omitempty"`
-    // what to claim
+    // what to claim. enum: `all`, `inventory`, `license`
     Type                 ClaimTypeEnum   `json:"type"`
     AdditionalProperties map[string]any  `json:"_"`
 }

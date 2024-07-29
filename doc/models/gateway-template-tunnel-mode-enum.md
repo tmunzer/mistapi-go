@@ -1,6 +1,8 @@
 
 # Gateway Template Tunnel Mode Enum
 
+enum: `active-active`, `active-standby`
+
 ## Enumeration
 
 `GatewayTemplateTunnelModeEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `active-standby` |
 | `active-active` |
+| `active-standby` |
 

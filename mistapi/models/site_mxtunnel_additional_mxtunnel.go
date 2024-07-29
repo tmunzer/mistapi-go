@@ -11,6 +11,7 @@ type SiteMxtunnelAdditionalMxtunnel struct {
     // in seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries
     HelloInterval        *int                      `json:"hello_interval,omitempty"`
     HelloRetries         *int                      `json:"hello_retries,omitempty"`
+    // enum: `ip`, `udp`
     Protocol             *SiteMxtunnelProtocolEnum `json:"protocol,omitempty"`
     VlanIds              []int                     `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]any            `json:"_"`

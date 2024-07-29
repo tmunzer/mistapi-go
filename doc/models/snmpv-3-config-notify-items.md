@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Name` | `*string` | Optional | - |
 | `Tag` | `*string` | Optional | - |
-| `Type` | [`*models.Snmpv3ConfigNotifyTypeEnum`](../../doc/models/snmpv-3-config-notify-type-enum.md) | Optional | - |
+| `Type` | [`*models.Snmpv3ConfigNotifyTypeEnum`](../../doc/models/snmpv-3-config-notify-type-enum.md) | Optional | enum: `inform`, `trap` |
 
 ## Example (as JSON)
 
@@ -19,7 +19,7 @@
 {
   "name": "name0",
   "tag": "tag6",
-  "type": "trap"
+  "type": "inform"
 }
 ```
 

@@ -8,7 +8,9 @@ import (
 type MxedgeMgmt struct {
     FipsEnabled          *bool                     `json:"fips_enabled,omitempty"`
     MistPassword         *string                   `json:"mist_password,omitempty"`
+    // enum: `dhcp`, `disabled`, `static`
     OobIpType            *MxedgeMgmtOobIpTypeEnum  `json:"oob_ip_type,omitempty"`
+    // enum: `autoconf`, `dhcp`, `disabled`, `static`
     OobIpType6           *MxedgeMgmtOobIpType6Enum `json:"oob_ip_type6,omitempty"`
     RootPassword         *string                   `json:"root_password,omitempty"`
     AdditionalProperties map[string]any            `json:"_"`

@@ -1,7 +1,7 @@
 
 # Gateway Template Tunnel Ike Dh Group Enum
 
-possible values:
+enum:
 
 * 1
 * 2 (1024-bit)
@@ -23,13 +23,13 @@ possible values:
 | Name |
 |  --- |
 | `1` |
-| `2` |
-| `5` |
 | `14` |
 | `15` |
 | `16` |
 | `19` |
+| `2` |
 | `20` |
 | `21` |
 | `24` |
+| `5` |
 

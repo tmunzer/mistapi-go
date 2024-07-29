@@ -21,7 +21,9 @@ type ApIpConfig1 struct {
     // required if `type`==`static`
     Netmask              *string        `json:"netmask,omitempty"`
     Netmask6             *string        `json:"netmask6,omitempty"`
+    // enum: `dhcp`, `static`
     Type                 *IpTypeEnum    `json:"type,omitempty"`
+    // enum: `autoconf`, `dhcp`, `disabled`, `static`
     Type6                *IpType6Enum   `json:"type6,omitempty"`
     // management vlan id, default is 1 (untagged)
     VlanId               *int           `json:"vlan_id,omitempty"`

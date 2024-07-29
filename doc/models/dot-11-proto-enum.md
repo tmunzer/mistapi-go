@@ -1,6 +1,8 @@
 
 # Dot 11 Proto Enum
 
+enum: `a`, `ac`, `ax`, `b`, `g`, `n`
+
 ## Enumeration
 
 `Dot11ProtoEnum`
@@ -10,9 +12,9 @@
 | Name |
 |  --- |
 | `a` |
+| `ac` |
+| `ax` |
 | `b` |
 | `g` |
 | `n` |
-| `ac` |
-| `ax` |
 

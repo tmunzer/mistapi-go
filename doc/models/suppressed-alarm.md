@@ -12,7 +12,7 @@
 | `Applies` | [`*models.SuppressedAlarmApplies`](../../doc/models/suppressed-alarm-applies.md) | Optional | if `scope`==`site`<br>Object defines the scope (within the org e.g. whole org, and/or some site_groups, and/or some sites) for which the alarm service has to be suppressed for some `duration` |
 | `Duration` | `*float64` | Optional | duration, in seconds. Maximum duration is 86400 * 180 (180 days). 0 is to un-suppress alarms<br>**Default**: `3600`<br>**Constraints**: `>= 0`, `<= 15552000` |
 | `ScheduledTime` | `*int` | Optional | poch_time in seconds, Default as now, accepted time range is from now to now + 7 days |
-| `Scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Optional | level of scope<br>**Default**: `"site"` |
+| `Scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Optional | level of scope. enum: `org`, `site`<br>**Default**: `"site"` |
 
 ## Example (as JSON)
 

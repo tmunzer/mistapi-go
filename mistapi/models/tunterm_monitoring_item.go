@@ -10,6 +10,7 @@ type TuntermMonitoringItem struct {
     Host                 *string                        `json:"host,omitempty"`
     // when `protocol`==`tcp`
     Port                 *int                           `json:"port,omitempty"`
+    // enum: `arp`, `ping`, `tcp`
     Protocol             *TunternMonitoringProtocolEnum `json:"protocol,omitempty"`
     Timeout              *int                           `json:"timeout,omitempty"`
     AdditionalProperties map[string]any                 `json:"_"`

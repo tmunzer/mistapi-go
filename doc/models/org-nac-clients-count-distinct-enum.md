@@ -1,6 +1,8 @@
 
 # Org Nac Clients Count Distinct Enum
 
+enum: `auth_type`, `last_ap`, `last_nacrule_id`, `last_nas_vendor`, `last_ssid`, `last_status`, `last_username`, `last_vlan`, `mac`, `mdm_compliance`, `mdm_provider`, `type`
+
 ## Enumeration
 
 `OrgNacClientsCountDistinctEnum`
@@ -9,16 +11,16 @@
 
 | Name |
 |  --- |
-| `type` |
-| `last_nacrule_id` |
 | `auth_type` |
-| `last_vlan` |
-| `last_nas_vendor` |
-| `last_username` |
 | `last_ap` |
-| `mac` |
+| `last_nacrule_id` |
+| `last_nas_vendor` |
 | `last_ssid` |
 | `last_status` |
+| `last_username` |
+| `last_vlan` |
+| `mac` |
 | `mdm_compliance` |
 | `mdm_provider` |
+| `type` |
 

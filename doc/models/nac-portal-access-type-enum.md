@@ -1,6 +1,8 @@
 
 # Nac Portal Access Type Enum
 
+enum: `wireless`, `wireless+wired`
+
 ## Enumeration
 
 `NacPortalAccessTypeEnum`

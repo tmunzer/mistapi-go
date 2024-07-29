@@ -1,7 +1,7 @@
 
 # Webhook Oauth 2 Grant Type Enum
 
-required when `type`==`oauth2`
+required when `type`==`oauth2`. enum: `client_credentials`, `password`
 
 ## Enumeration
 

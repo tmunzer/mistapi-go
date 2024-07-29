@@ -22,6 +22,7 @@ type PortConfig1 struct {
     Description          *string                       `json:"description,omitempty"`
     // if `speed` and `duplex` are specified, whether to disable autonegotiation
     DisableAutoneg       *bool                         `json:"disable_autoneg,omitempty"`
+    // enum: `auto`, `full`, `half`
     Duplex               *JunosPortConfigDuplexEnum    `json:"duplex,omitempty"`
     // Enable dynamic usage for this port. Set to `dynamic` to enable.
     DynamicUsage         Optional[string]              `json:"dynamic_usage"`
@@ -31,13 +32,14 @@ type PortConfig1 struct {
     // prevent helpdesk to override the port config
     NoLocalOverwrite     *bool                         `json:"no_local_overwrite,omitempty"`
     PoeDisabled          *bool                         `json:"poe_disabled,omitempty"`
+    // enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `auto`
     Speed                *JunosPortConfigSpeedEnum     `json:"speed,omitempty"`
     // port usage name. 
     // If EVPN is used, use `evpn_uplink`or `evpn_downlink`
     Usage                GatewayPortUsage1Enum         `json:"usage"`
     // port admin up (true) / down (false)
     Disabled             *bool                         `json:"disabled,omitempty"`
-    // if `wan_type`==`lte`
+    // if `wan_type`==`lte`. enum: `adsl`, `vdsl`
     DslType              *GatewayPortDslTypeEnum       `json:"dsl_type,omitempty"`
     // if `wan_type`==`dsl`
     // 16 bit int
@@ -49,7 +51,7 @@ type PortConfig1 struct {
     IpConfig             *GatewayPortConfigIpConfig    `json:"ip_config,omitempty"`
     // if `wan_type`==`lte`
     LteApn               *string                       `json:"lte_apn,omitempty"`
-    // if `wan_type`==`lte`
+    // if `wan_type`==`lte`. enum: `chap`, `none`, `pap`
     LteAuth              *GatewayPortLteAuthEnum       `json:"lte_auth,omitempty"`
     LteBackup            *bool                         `json:"lte_backup,omitempty"`
     // if `wan_type`==`lte`
@@ -82,13 +84,13 @@ type PortConfig1 struct {
     // if WAN interface is on a VLAN
     VlanId               *int                          `json:"vlan_id,omitempty"`
     VpnPaths             map[string]GatewayPortVpnPath `json:"vpn_paths,omitempty"`
-    // when `wan_type`==`broadband`
+    // when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`
     WanArpPolicer        *GatewayPortWanArpPolicerEnum `json:"wan_arp_policer,omitempty"`
     // optional, if spoke should reach this port by a different IP
     WanExtIp             *string                       `json:"wan_ext_ip,omitempty"`
     // optional, by default, source-NAT is performed on all WAN Ports using the interface-ip
     WanSourceNat         *GatewayPortWanSourceNat      `json:"wan_source_nat,omitempty"`
-    // if `usage`==`wan`
+    // if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`
     WanType              *GatewayPortWanTypeEnum       `json:"wan_type,omitempty"`
     AdditionalProperties map[string]any                `json:"_"`
 }

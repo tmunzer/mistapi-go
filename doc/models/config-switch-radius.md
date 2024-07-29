@@ -26,7 +26,7 @@ by default, `radius_config` will be used. if a different one has to be used set 
       {
         "host": "host4",
         "keywrap_enabled": false,
-        "keywrap_format": "hex",
+        "keywrap_format": "ascii",
         "keywrap_kek": "keywrap_kek0",
         "keywrap_mack": "keywrap_mack2",
         "port": 254,
@@ -35,7 +35,7 @@ by default, `radius_config` will be used. if a different one has to be used set 
       {
         "host": "host4",
         "keywrap_enabled": false,
-        "keywrap_format": "hex",
+        "keywrap_format": "ascii",
         "keywrap_kek": "keywrap_kek0",
         "keywrap_mack": "keywrap_mack2",
         "port": 254,
@@ -46,7 +46,7 @@ by default, `radius_config` will be used. if a different one has to be used set 
       {
         "host": "host0",
         "keywrap_enabled": false,
-        "keywrap_format": "hex",
+        "keywrap_format": "ascii",
         "keywrap_kek": "keywrap_kek4",
         "keywrap_mack": "keywrap_mack6",
         "port": 114,
@@ -55,7 +55,7 @@ by default, `radius_config` will be used. if a different one has to be used set 
       {
         "host": "host0",
         "keywrap_enabled": false,
-        "keywrap_format": "hex",
+        "keywrap_format": "ascii",
         "keywrap_kek": "keywrap_kek4",
         "keywrap_mack": "keywrap_mack6",
         "port": 114,
@@ -64,7 +64,7 @@ by default, `radius_config` will be used. if a different one has to be used set 
       {
         "host": "host0",
         "keywrap_enabled": false,
-        "keywrap_format": "hex",
+        "keywrap_format": "ascii",
         "keywrap_kek": "keywrap_kek4",
         "keywrap_mack": "keywrap_mack6",
         "port": 114,

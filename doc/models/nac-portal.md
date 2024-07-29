@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AccessType` | [`*models.NacPortalAccessTypeEnum`](../../doc/models/nac-portal-access-type-enum.md) | Optional | **Default**: `"wireless"` |
+| `AccessType` | [`*models.NacPortalAccessTypeEnum`](../../doc/models/nac-portal-access-type-enum.md) | Optional | enum: `wireless`, `wireless+wired`<br>**Default**: `"wireless"` |
 | `BgImageUrl` | `*string` | Optional | background image |
 | `CertExpireTime` | `*int` | Optional | in days |
 | `EnableTelemetry` | `*bool` | Optional | model, version, fingering, events (connecting, disconnect, roaming), which ap |

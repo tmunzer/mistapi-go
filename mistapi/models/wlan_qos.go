@@ -6,6 +6,7 @@ import (
 
 // WlanQos represents a WlanQos struct.
 type WlanQos struct {
+    // enum: `background`, `best_effort`, `video`, `voice`
     Class                *WlanQosClassEnum `json:"class,omitempty"`
     // whether to overwrite QoS
     Overwrite            *bool             `json:"overwrite,omitempty"`

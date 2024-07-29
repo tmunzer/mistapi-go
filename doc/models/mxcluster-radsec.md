@@ -16,8 +16,8 @@ MxEdge Radsec Configuration
 | `Enabled` | `*bool` | Optional | whether to enable service on Mist Edge i.e. RADIUS proxy over TLS |
 | `MatchSsid` | `*bool` | Optional | whether to match ssid in request message to select from a subset of RADIUS servers |
 | `ProxyHosts` | `[]string` | Optional | hostnames or IPs for Mist AP to use as the TLS Server (i.e. they are reachable from AP) in addition to `tunterm_hosts` |
-| `ServerSelection` | [`*models.MxclusterRadsecServerSelectionEnum`](../../doc/models/mxcluster-radsec-server-selection-enum.md) | Optional | ordered (default) / unordered. When ordered, Mist Edge will prefer and go back to the first radius server if possible<br>**Default**: `"ordered"` |
-| `Source` | [`*models.MxclusterRadsecSourceEnum`](../../doc/models/mxcluster-radsec-source-enum.md) | Optional | Specify source address to use when connecting to RADIUS servers<br>**Default**: `"any"` |
+| `ServerSelection` | [`*models.MxclusterRadsecServerSelectionEnum`](../../doc/models/mxcluster-radsec-server-selection-enum.md) | Optional | When ordered, Mist Edge will prefer and go back to the first radius server if possible. enum: `ordered`, `unordered`<br>**Default**: `"ordered"` |
+| `Source` | [`*models.MxclusterRadsecSourceEnum`](../../doc/models/mxcluster-radsec-source-enum.md) | Optional | Specify source address to use when connecting to RADIUS servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`<br>**Default**: `"any"` |
 
 ## Example (as JSON)
 
@@ -49,14 +49,14 @@ MxEdge Radsec Configuration
     {
       "host": "host0",
       "keywrap_enabled": false,
-      "keywrap_format": "hex",
+      "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6"
     },
     {
       "host": "host0",
       "keywrap_enabled": false,
-      "keywrap_format": "hex",
+      "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6"
     }

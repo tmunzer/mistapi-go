@@ -1,6 +1,8 @@
 
 # Site Mxedge Events Count Distinct Enum
 
+enum: `mxcluster_id`, `mxedge_id`, `package`, `type`
+
 ## Enumeration
 
 `SiteMxedgeEventsCountDistinctEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `mxedge_id` |
-| `type` |
 | `mxcluster_id` |
+| `mxedge_id` |
 | `package` |
+| `type` |
 

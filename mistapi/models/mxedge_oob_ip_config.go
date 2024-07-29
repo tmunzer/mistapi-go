@@ -21,7 +21,9 @@ type MxedgeOobIpConfig struct {
     // if `type`=`static`
     Netmask              *string        `json:"netmask,omitempty"`
     Netmask6             *string        `json:"netmask6,omitempty"`
+    // enum: `dhcp`, `static`
     Type                 *IpTypeEnum    `json:"type,omitempty"`
+    // enum: `dhcp`, `static`
     Type6                *IpTypeEnum    `json:"type6,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }

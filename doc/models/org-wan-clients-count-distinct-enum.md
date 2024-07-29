@@ -1,6 +1,8 @@
 
 # Org Wan Clients Count Distinct Enum
 
+enum: `hostname`, `ip`, `mac`, `mfg`
+
 ## Enumeration
 
 `OrgWanClientsCountDistinctEnum`
@@ -11,6 +13,6 @@
 |  --- |
 | `hostname` |
 | `ip` |
-| `mfg` |
 | `mac` |
+| `mfg` |
 

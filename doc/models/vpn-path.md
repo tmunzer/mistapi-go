@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `BfdProfile` | [`*models.VpnPathBfdProfileEnum`](../../doc/models/vpn-path-bfd-profile-enum.md) | Optional | **Default**: `"broadband"` |
+| `BfdProfile` | [`*models.VpnPathBfdProfileEnum`](../../doc/models/vpn-path-bfd-profile-enum.md) | Optional | enum: `broadband`, `lte`<br>**Default**: `"broadband"` |
 | `Ip` | `*string` | Optional | if different from the wan port |
 | `Pod` | `*int` | Optional | **Default**: `1`<br>**Constraints**: `>= 1`, `<= 128` |
 

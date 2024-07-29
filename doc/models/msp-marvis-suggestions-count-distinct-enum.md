@@ -1,6 +1,8 @@
 
 # Msp Marvis Suggestions Count Distinct Enum
 
+enum: `org_id`, `status`
+
 ## Enumeration
 
 `MspMarvisSuggestionsCountDistinctEnum`

@@ -14,7 +14,7 @@ Only if `provider`== `custom-ipsec`
 | `Interval` | `*int` | Optional | how often to trigger the probe |
 | `Threshold` | `*int` | Optional | number of consecutive misses before declaring the tunnel down |
 | `Timeout` | `*int` | Optional | time within which to complete the connectivity check |
-| `Type` | [`*models.GatewayTemplateProbeTypeEnum`](../../doc/models/gateway-template-probe-type-enum.md) | Optional | **Default**: `"icmp"` |
+| `Type` | [`*models.GatewayTemplateProbeTypeEnum`](../../doc/models/gateway-template-probe-type-enum.md) | Optional | enum: `http`, `icmp`<br>**Default**: `"icmp"` |
 
 ## Example (as JSON)
 

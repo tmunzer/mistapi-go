@@ -44,9 +44,9 @@ CountOrgSwitchPorts(
     rxMcastPkts *int,
     rxBcastPkts *int,
     speed *int,
-    stpState *models.CountOrgSwitchPortsStpStateEnum,
-    stpRole *models.CountOrgSwitchPortsStpRoleEnum,
-    authState *models.CountOrgSwitchPortsAuthStateEnum,
+    stpState *models.CountPortsStpStateEnum,
+    stpRole *models.CountPortsStpRoleEnum,
+    authState *models.CountPortsAuthStateEnum,
     up *bool,
     page *int,
     limit *int,
@@ -84,9 +84,9 @@ CountOrgSwitchPorts(
 | `rxMcastPkts` | `*int` | Query, Optional | Multicast input packets |
 | `rxBcastPkts` | `*int` | Query, Optional | Broadcast input packets |
 | `speed` | `*int` | Query, Optional | port speed |
-| `stpState` | [`*models.CountOrgSwitchPortsStpStateEnum`](../../doc/models/count-org-switch-ports-stp-state-enum.md) | Query, Optional | if `up`==`true` |
-| `stpRole` | [`*models.CountOrgSwitchPortsStpRoleEnum`](../../doc/models/count-org-switch-ports-stp-role-enum.md) | Query, Optional | if `up`==`true` |
-| `authState` | [`*models.CountOrgSwitchPortsAuthStateEnum`](../../doc/models/count-org-switch-ports-auth-state-enum.md) | Query, Optional | if `up`==`true` |
+| `stpState` | [`*models.CountPortsStpStateEnum`](../../doc/models/count-ports-stp-state-enum.md) | Query, Optional | if `up`==`true` |
+| `stpRole` | [`*models.CountPortsStpRoleEnum`](../../doc/models/count-ports-stp-role-enum.md) | Query, Optional | if `up`==`true` |
+| `authState` | [`*models.CountPortsAuthStateEnum`](../../doc/models/count-ports-auth-state-enum.md) | Query, Optional | if `up`==`true` |
 | `up` | `*bool` | Query, Optional | indicates if interface is up |
 | `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |

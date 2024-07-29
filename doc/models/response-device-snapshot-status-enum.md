@@ -1,6 +1,8 @@
 
 # Response Device Snapshot Status Enum
 
+enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
+
 ## Enumeration
 
 `ResponseDeviceSnapshotStatusEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `starting` |
-| `inprogress` |
-| `success` |
 | `error` |
+| `inprogress` |
 | `scheduled` |
+| `starting` |
+| `success` |
 

@@ -22,7 +22,7 @@ type WebhookZoneEvent struct {
     SiteId               uuid.UUID                   `json:"site_id"`
     // timestamp of the event, epoch
     Timestamp            int                         `json:"timestamp"`
-    // enter / exit
+    // enum: `enter`, `exit`
     Trigger              WebhookZoneEventTriggerEnum `json:"trigger"`
     Type                 string                      `json:"type"`
     // zone id

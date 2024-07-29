@@ -10,10 +10,10 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AllowDowngrades` | [`*models.MxedgeUpgradeMultiAllowDowngrades`](../../doc/models/mxedge-upgrade-multi-allow-downgrades.md) | Optional | whether downgrade is allowed when running version is higher than expected version for each service |
-| `Channel` | [`*models.MxedgeUpgradeChannelEnum`](../../doc/models/mxedge-upgrade-channel-enum.md) | Optional | upgrade channel to follow, stable (default) / beta / alpha<br>**Default**: `"stable"` |
+| `Channel` | [`*models.MxedgeUpgradeChannelEnum`](../../doc/models/mxedge-upgrade-channel-enum.md) | Optional | upgrade channel to follow. enum: `alpha`, `beta`, `stable`<br>**Default**: `"stable"` |
 | `Distro` | `*string` | Optional | distro upgrade, optional, to specific codename (e.g. bullseye) with highest qualified versions |
 | `MxedgeIds` | `[]uuid.UUID` | Required | list of mxedge IDs to upgrade. If not specified, it means all the org mxedges. |
-| `Strategy` | [`*models.MxedgeUpgradeStrategyEnum`](../../doc/models/mxedge-upgrade-strategy-enum.md) | Optional | * `big_bang`: upgrade all at once<br>* `serial`: one at a time<br>**Default**: `"big_bang"` |
+| `Strategy` | [`*models.MxedgeUpgradeStrategyEnum`](../../doc/models/mxedge-upgrade-strategy-enum.md) | Optional | enum:<br><br>* `big_bang`: upgrade all at once<br>* `serial`: one at a time. enum: `big_bang`, `serial`'<br>**Default**: `"big_bang"` |
 | `Versions` | [`*models.MxedgeUpgradeVersion`](../../doc/models/mxedge-upgrade-version.md) | Optional | version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nignored if distro upgrade |
 
 ## Example (as JSON)

@@ -1,6 +1,8 @@
 
 # Search Site Sw or Gw Ports Device Type Enum
 
+enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
+
 ## Enumeration
 
 `SearchSiteSwOrGwPortsDeviceTypeEnum`
@@ -11,8 +13,8 @@
 |  --- |
 | `ap` |
 | `ble` |
-| `switch` |
 | `gateway` |
 | `mxedge` |
 | `nac` |
+| `switch` |
 

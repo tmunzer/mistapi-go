@@ -10,14 +10,14 @@ type OspfAreasNetwork struct {
     AuthKeys               map[string]string                  `json:"auth_keys,omitempty"`
     // if `auth_type`==`password`, the password, max length is 8
     AuthPassword           *string                            `json:"auth_password,omitempty"`
-    // auth type
+    // auth type. enum: `md5`, `none`, `password`
     AuthType               *OspfAreasNetworkAuthTypeEnum      `json:"auth_type,omitempty"`
     BfdMinimumInterval     *int                               `json:"bfd_minimum_interval,omitempty"`
     DeadInterval           *int                               `json:"dead_interval,omitempty"`
     ExportPolicy           *string                            `json:"export_policy,omitempty"`
     HelloInterval          *int                               `json:"hello_interval,omitempty"`
     ImportPolicy           *string                            `json:"import_policy,omitempty"`
-    // interface type (nbma = non-broadcast multi-access)
+    // interface type (nbma = non-broadcast multi-access). enum: `broadcast`, `nbma`, `p2mp`, `p2p`
     InterfaceType          *OspfAreasNetworkInterfaceTypeEnum `json:"interface_type,omitempty"`
     Metric                 Optional[int]                      `json:"metric"`
     // by default, we'll re-advertise all learned OSPF routes toward overlay

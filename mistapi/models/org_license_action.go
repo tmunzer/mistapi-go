@@ -15,7 +15,7 @@ type OrgLicenseAction struct {
     DstOrgId             *uuid.UUID                    `json:"dst_org_id,omitempty"`
     // if `op`==`annotate`
     Notes                *string                       `json:"notes,omitempty"`
-    // to move a license, use the `amend` operation
+    // to move a license, use the `amend` operation. enum: `amend`, `annotate`, `delete`, `unamend`
     Op                   OrgLicenseActionOperationEnum `json:"op"`
     // if `op`==`amend`, the number of licenses to move
     Quantity             *int                          `json:"quantity,omitempty"`

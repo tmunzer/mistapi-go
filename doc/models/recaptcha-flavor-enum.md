@@ -1,7 +1,7 @@
 
 # Recaptcha Flavor Enum
 
-flavor of the captcha
+flavor of the captcha. enum: `google`, `hcaptcha`
 
 ## Enumeration
 
@@ -11,8 +11,8 @@ flavor of the captcha
 
 | Name |
 |  --- |
-| `hcaptcha` |
 | `google` |
+| `hcaptcha` |
 
 ## Example
 

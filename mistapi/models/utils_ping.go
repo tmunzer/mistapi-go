@@ -12,7 +12,7 @@ type UtilsPing struct {
     // Interface through which packet needs to egress
     EgressInterface      *string            `json:"egress_interface,omitempty"`
     Host                 string             `json:"host"`
-    // only for HA
+    // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     Size                 *int               `json:"size,omitempty"`
     AdditionalProperties map[string]any     `json:"_"`

@@ -29,9 +29,9 @@ type UpgradeOrgDevices struct {
     RrmFirstBatchPercentage *int                             `json:"rrm_first_batch_percentage,omitempty"`
     // max percentage of AP’s that need to be present in each rrm batch
     RrmMaxBatchPercentage   *int                             `json:"rrm_max_batch_percentage,omitempty"`
-    // sequential or parallel (default parallel). Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade
+    // Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade. enum: `parallel`, `sequential`
     RrmMeshUpgrade          *DeviceUpgradeRrmMeshUpgradeEnum `json:"rrm_mesh_upgrade,omitempty"`
-    // Used in rrm to determine whether to start upgrade from fringe or center AP’s
+    // Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`
     RrmNodeOrder            *DeviceUpgradeRrmNodeOrderEnum   `json:"rrm_node_order,omitempty"`
     // true will make rrm batch sizes slowly ramp up
     RrmSlowRamp             *bool                            `json:"rrm_slow_ramp,omitempty"`
@@ -40,7 +40,7 @@ type UpgradeOrgDevices struct {
     Snapshot                *bool                            `json:"snapshot,omitempty"`
     // upgrade start time in epoch seconds, default is now
     StartTime               *float64                         `json:"start_time,omitempty"`
-    // `big_bang` (upgrade all at once), `serial` (one at a time), `canary` or `rrm`
+    // enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
     Strategy                *DeviceUpgradeStrategyEnum       `json:"strategy,omitempty"`
     // specific version / stable
     Version                 *string                          `json:"version,omitempty"`

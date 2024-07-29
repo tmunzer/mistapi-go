@@ -1,6 +1,8 @@
 
 # Org Site Sle Type Enum
 
+enum: `wan`, `wifi`, `wired`
+
 ## Enumeration
 
 `OrgSiteSleTypeEnum`
@@ -10,6 +12,6 @@
 | Name |
 |  --- |
 | `wan` |
-| `wired` |
 | `wifi` |
+| `wired` |
 

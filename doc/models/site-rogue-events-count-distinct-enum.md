@@ -1,6 +1,8 @@
 
 # Site Rogue Events Count Distinct Enum
 
+enum: `ap`, `bssid`, `ssid`, `type`
+
 ## Enumeration
 
 `SiteRogueEventsCountDistinctEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
+| `ap` |
 | `bssid` |
 | `ssid` |
-| `ap` |
 | `type` |
 

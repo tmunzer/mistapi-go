@@ -115,7 +115,7 @@ Network Template
           "protocol": "protocol6"
         }
       ],
-      "type": "any"
+      "type": "radius_group"
     },
     "key1": {
       "gbp_tag": 14,
@@ -130,7 +130,7 @@ Network Template
           "protocol": "protocol6"
         }
       ],
-      "type": "any"
+      "type": "radius_group"
     }
   },
   "additional_config_cmds": [

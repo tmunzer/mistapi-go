@@ -27,7 +27,7 @@
           "vc_ports3",
           "vc_ports4"
         ],
-        "vc_role": "linecard"
+        "vc_role": "master"
       },
       {
         "locating": false,
@@ -38,7 +38,7 @@
           "vc_ports3",
           "vc_ports4"
         ],
-        "vc_role": "linecard"
+        "vc_role": "master"
       }
     ],
     "preprovisioned": false

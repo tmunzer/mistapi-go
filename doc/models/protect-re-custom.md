@@ -12,7 +12,7 @@ custom acls
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `PortRange` | `*string` | Optional | matched dst port, "0" means any<br>**Default**: `"0"` |
-| `Protocol` | [`*models.ProtectReCustomProtocolEnum`](../../doc/models/protect-re-custom-protocol-enum.md) | Optional | **Default**: `"any"` |
+| `Protocol` | [`*models.ProtectReCustomProtocolEnum`](../../doc/models/protect-re-custom-protocol-enum.md) | Optional | enum: `any`, `icmp`, `tcp`, `udp`<br>**Default**: `"any"` |
 | `Subnet` | `[]string` | Optional | - |
 
 ## Example (as JSON)

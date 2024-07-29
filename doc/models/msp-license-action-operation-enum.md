@@ -1,6 +1,8 @@
 
 # Msp License Action Operation Enum
 
+enum: `amend`, `annotate`, `delete`, `unamend`
+
 ## Enumeration
 
 `MspLicenseActionOperationEnum`
@@ -10,7 +12,7 @@
 | Name |
 |  --- |
 | `amend` |
-| `unamend` |
-| `delete` |
 | `annotate` |
+| `delete` |
+| `unamend` |
 

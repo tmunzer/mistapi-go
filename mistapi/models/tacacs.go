@@ -7,6 +7,7 @@ import (
 // Tacacs represents a Tacacs struct.
 type Tacacs struct {
     AcctServers          []TacacsAcctServer     `json:"acct_servers,omitempty"`
+    // enum: `admin`, `helpdesk`, `none`, `read`
     DefaultRole          *TacacsDefaultRoleEnum `json:"default_role,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     // which network the TACACS server resides

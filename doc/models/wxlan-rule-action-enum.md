@@ -1,7 +1,7 @@
 
 # Wxlan Rule Action Enum
 
-type of action, allow / block
+type of action, allow / block. enum: `allow`, `block`
 
 ## Enumeration
 

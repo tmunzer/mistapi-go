@@ -11,17 +11,18 @@ import (
 // Initiate a Wireless Packet Capture
 type CaptureWireless struct {
     ApMac                Optional[string]           `json:"ap_mac"`
+    // enum: `24`, `24,5,6`, `5`, `6`
     Band                 *CaptureWirelessBandEnum   `json:"band,omitempty"`
     // duration of the capture, in seconds
     Duration             *int                       `json:"duration,omitempty"`
-    // pcap format
+    // pcap format. enum: `pcap`, `stream`
     Format               *CaptureWirelessFormatEnum `json:"format,omitempty"`
     // max_len of each packet to capture
     MaxPktLen            *int                       `json:"max_pkt_len,omitempty"`
     // number of packets to capture, 0 for unlimited
     NumPackets           *int                       `json:"num_packets,omitempty"`
     Ssid                 *string                    `json:"ssid,omitempty"`
-    // wireless
+    // enum: `wireless`
     Type                 string                     `json:"type"`
     // WLAN ID
     WlanId               *uuid.UUID                 `json:"wlan_id,omitempty"`

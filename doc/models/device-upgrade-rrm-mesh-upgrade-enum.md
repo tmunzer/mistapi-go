@@ -1,7 +1,7 @@
 
 # Device Upgrade Rrm Mesh Upgrade Enum
 
-sequential or parallel (default parallel). Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade
+Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade. enum: `parallel`, `sequential`
 
 ## Enumeration
 
@@ -11,6 +11,6 @@ sequential or parallel (default parallel). Whether to upgrade mesh AP’s parall
 
 | Name |
 |  --- |
-| `sequential` |
 | `parallel` |
+| `sequential` |
 

@@ -1,7 +1,7 @@
 
 # Webhook Delivery Distinct Enum
 
-webhook topic
+webhook topic. enum: `status`, `status_code`, `topic`, `webhook_id`
 
 ## Enumeration
 
@@ -12,8 +12,8 @@ webhook topic
 | Name |
 |  --- |
 | `status` |
-| `topic` |
 | `status_code` |
+| `topic` |
 | `webhook_id` |
 
 ## Example

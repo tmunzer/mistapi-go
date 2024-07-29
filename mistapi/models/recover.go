@@ -11,7 +11,7 @@ type Recover struct {
     Email                string               `json:"email"`
     // see https://www.google.com/recaptcha/
     Recaptcha            *string              `json:"recaptcha,omitempty"`
-    // flavor of the captcha
+    // flavor of the captcha. enum: `google`, `hcaptcha`
     RecaptchaFlavor      *RecaptchaFlavorEnum `json:"recaptcha_flavor,omitempty"`
     AdditionalProperties map[string]any       `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Ha Cluster Node Enum
 
-only for HA
+only for HA. enum: `node0`, `node1`
 
 ## Enumeration
 

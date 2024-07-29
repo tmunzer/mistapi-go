@@ -23,7 +23,7 @@ type EvpnTopologySwitch struct {
     // by default, core switches are assumed to be connecting all pods. 
     // if you want to limit the pods, you can specify pods.
     Pods                 []int                       `json:"pods,omitempty"`
-    // use `role`==`none` to remove a switch from the topology
+    // use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
     Role                 *EvpnTopologySwitchRoleEnum `json:"role,omitempty"`
     SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
     SuggestedDownlinks   []string                    `json:"suggested_downlinks,omitempty"`

@@ -20,6 +20,7 @@ type ClientWirelessStats struct {
     ApId                 uuid.UUID                        `json:"ap_id"`
     // AP the client is connected to
     ApMac                string                           `json:"ap_mac"`
+    // enum: `24`, `5`, `6`
     Band                 Dot11BandEnum                    `json:"band"`
     // current channel
     Channel              int                              `json:"channel"`
@@ -54,6 +55,7 @@ type ClientWirelessStats struct {
     Os                   string                           `json:"os"`
     // if it’s currently in power-save mode
     PowerSaving          bool                             `json:"power_saving"`
+    // enum: `a`, `ac`, `ax`, `b`, `g`, `n`
     Proto                Dot11ProtoEnum                   `json:"proto"`
     // PSK id (if multi-psk is used)
     PskId                *uuid.UUID                       `json:"psk_id,omitempty"`

@@ -1,7 +1,7 @@
 
 # Sso Nameid Format Enum
 
-if `idp_type`==`saml`
+if `idp_type`==`saml`. enum: `email`, `unspecified`
 
 ## Enumeration
 

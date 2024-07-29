@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Servers` | `[]string` | Optional | list of DHCP servers; required if `type`==`relay` |
-| `Type` | [`*models.MxedgeTuntermDhcpdConfigTypeEnum`](../../doc/models/mxedge-tunterm-dhcpd-config-type-enum.md) | Optional | **Default**: `"relay"` |
+| `Type` | [`*models.MxedgeTuntermDhcpdConfigTypeEnum`](../../doc/models/mxedge-tunterm-dhcpd-config-type-enum.md) | Optional | enum: `relay`<br>**Default**: `"relay"` |
 
 ## Example (as JSON)
 

@@ -1,6 +1,8 @@
 
 # Switch Stp Config Type Enum
 
+enum: `rstp`, `vstp`
+
 ## Enumeration
 
 `SwitchStpConfigTypeEnum`

@@ -1,6 +1,8 @@
 
 # Org Devices Last Configs Count Distinct Enum
 
+enum: `mac`, `name`, `site_id`, `version`
+
 ## Enumeration
 
 `OrgDevicesLastConfigsCountDistinctEnum`
@@ -10,7 +12,7 @@
 | Name |
 |  --- |
 | `mac` |
-| `version` |
 | `name` |
 | `site_id` |
+| `version` |
 

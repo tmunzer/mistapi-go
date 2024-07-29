@@ -1,7 +1,7 @@
 
 # Idp Profile Action Enum
 
-Possible values:
+enum:
 
 * alert (default)
 * drop: siliently dropping packets
@@ -16,8 +16,8 @@ Possible values:
 | Name |
 |  --- |
 | `alert` |
-| `drop` |
 | `close` |
+| `drop` |
 
 ## Example
 

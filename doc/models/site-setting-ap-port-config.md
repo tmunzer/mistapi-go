@@ -35,8 +35,8 @@
         }
       },
       "enable_mac_auth": false,
-      "forwarding": "site_mxedge",
-      "mac_auth_protocol": "pap"
+      "forwarding": "wxtunnel",
+      "mac_auth_protocol": "eap-md5"
     }
   }
 }

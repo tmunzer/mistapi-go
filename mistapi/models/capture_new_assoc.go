@@ -20,7 +20,7 @@ type CaptureNewAssoc struct {
     NumPackets           *int           `json:"num_packets,omitempty"`
     // optional filter by ssid
     Ssid                 *string        `json:"ssid,omitempty"`
-    // new-assoc
+    // enum: `new_assoc`
     Type                 string         `json:"type"`
     AdditionalProperties map[string]any `json:"_"`
 }

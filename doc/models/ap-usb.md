@@ -14,11 +14,11 @@ Note: legacy, new config moved to ESL Config.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Cacert` | `models.Optional[string]` | Optional | only if `type`==`imagotag` |
-| `Channel` | `*int` | Optional | only if `type`==`imagotag`<br>channel selection, not needed by default, required for manual channel override only |
+| `Channel` | `*int` | Optional | only if `type`==`imagotag`, channel selection, not needed by default, required for manual channel override only |
 | `Enabled` | `*bool` | Optional | whether to enable any usb config |
 | `Host` | `*string` | Optional | only if `type`==`imagotag` |
 | `Port` | `*int` | Optional | only if `type`==`imagotag`<br>**Default**: `0` |
-| `Type` | [`*models.ApUsbTypeEnum`](../../doc/models/ap-usb-type-enum.md) | Optional | usb config type |
+| `Type` | [`*models.ApUsbTypeEnum`](../../doc/models/ap-usb-type-enum.md) | Optional | usb config type. enum: `hanshow`, `imagotag`, `solum` |
 | `VerifyCert` | `*bool` | Optional | only if `type`==`imagotag`, whether to turn on SSL verification |
 | `VlanId` | `*int` | Optional | only if `type`==`solum` or `type`==`hanshow`<br>**Default**: `1` |
 

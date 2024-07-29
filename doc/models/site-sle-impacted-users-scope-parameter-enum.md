@@ -1,6 +1,8 @@
 
 # Site Sle Impacted Users Scope Parameter Enum
 
+enum: `ap`, `site`
+
 ## Enumeration
 
 `SiteSleImpactedUsersScopeParameterEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `site` |
 | `ap` |
+| `site` |
 

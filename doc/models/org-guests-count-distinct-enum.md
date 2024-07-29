@@ -1,6 +1,8 @@
 
 # Org Guests Count Distinct Enum
 
+enum: `auth_method`, `company`, `ssid`
+
 ## Enumeration
 
 `OrgGuestsCountDistinctEnum`
@@ -10,6 +12,6 @@
 | Name |
 |  --- |
 | `auth_method` |
-| `ssid` |
 | `company` |
+| `ssid` |
 

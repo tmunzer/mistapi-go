@@ -1,6 +1,8 @@
 
 # Oauth App Name Enum
 
+enum: `intune`, `jamf`, `teams`, `vmware`, `zoom`
+
 ## Enumeration
 
 `OauthAppNameEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `zoom` |
-| `teams` |
 | `intune` |
 | `jamf` |
+| `teams` |
 | `vmware` |
+| `zoom` |
 

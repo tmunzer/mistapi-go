@@ -28,6 +28,7 @@ type SiteMxtunnel struct {
     // 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU
     Mtu                  *int                                      `json:"mtu,omitempty"`
     OrgId                *uuid.UUID                                `json:"org_id,omitempty"`
+    // enum: `ip`, `udp`
     Protocol             *MxtunnelProtocolEnum                     `json:"protocol,omitempty"`
     Radsec               *SiteMxtunnelRadsec                       `json:"radsec,omitempty"`
     SiteId               *uuid.UUID                                `json:"site_id,omitempty"`

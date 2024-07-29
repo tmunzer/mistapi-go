@@ -9,7 +9,7 @@ import (
 
 // PskPortal represents a PskPortal struct.
 type PskPortal struct {
-    // Note: `sponsor` not yet available
+    // enum: `sponsor`, `sso`
     Auth                         *PskPortalAuthEnum        `json:"auth,omitempty"`
     BgImageUrl                   *string                   `json:"bg_image_url,omitempty"`
     // used to cleanup exited psk when portal delete or ssid changed
@@ -43,7 +43,7 @@ type PskPortal struct {
     // UI customization
     TemplateUrl                  *string                   `json:"template_url,omitempty"`
     ThumbnailUrl                 *string                   `json:"thumbnail_url,omitempty"`
-    // for personal psk portal
+    // for personal psk portal. enum: `admin`, `byod`
     Type                         *PskPortalTypeEnum        `json:"type,omitempty"`
     VlanId                       *PskPortalVlanId          `json:"vlan_id,omitempty"`
     AdditionalProperties         map[string]any            `json:"_"`

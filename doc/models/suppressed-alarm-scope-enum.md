@@ -1,7 +1,7 @@
 
 # Suppressed Alarm Scope Enum
 
-level of scope
+level of scope. enum: `org`, `site`
 
 ## Enumeration
 

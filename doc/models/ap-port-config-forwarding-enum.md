@@ -1,6 +1,8 @@
 
 # Ap Port Config Forwarding Enum
 
+enum: `all`, `limited`, `mxtunnel`, `site_mxedge`, `wxtunnel`
+
 ## Enumeration
 
 `ApPortConfigForwardingEnum`
@@ -11,9 +13,9 @@
 |  --- |
 | `all` |
 | `limited` |
-| `wxtunnel` |
 | `mxtunnel` |
 | `site_mxedge` |
+| `wxtunnel` |
 
 ## Example
 

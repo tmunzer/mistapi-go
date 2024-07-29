@@ -10,6 +10,7 @@ type SnmpConfigTrapGroup struct {
     // Categories list can refer to https://www.juniper.net/documentation/software/topics/task/configuration/snmp_trap-groups-configuring-junos-nm.html
     GroupName            *string                   `json:"group_name,omitempty"`
     Targets              []string                  `json:"targets,omitempty"`
+    // enum: `all`, `v1`, `v2`
     Version              *SnmpConfigTrapVerionEnum `json:"version,omitempty"`
     AdditionalProperties map[string]any            `json:"_"`
 }

@@ -18,7 +18,7 @@
 | `Model` | `*string` | Optional | - |
 | `Pod` | `*int` | Optional | optionally, for distribution / access / esilag-access, they can be placed into different pods. e.g.<br><br>* for CLOS, to group dist / access switches into pods<br>* for ERB/CRB, to group dist / esilag-access into pods<br>**Default**: `1`<br>**Constraints**: `>= 1`, `<= 255` |
 | `Pods` | `[]int` | Optional | by default, core switches are assumed to be connecting all pods.<br>if you want to limit the pods, you can specify pods. |
-| `Role` | [`*models.EvpnTopologySwitchRoleEnum`](../../doc/models/evpn-topology-switch-role-enum.md) | Optional | use `role`==`none` to remove a switch from the topology<br>**Constraints**: *Minimum Length*: `1` |
+| `Role` | [`*models.EvpnTopologySwitchRoleEnum`](../../doc/models/evpn-topology-switch-role-enum.md) | Optional | use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`<br>**Constraints**: *Minimum Length*: `1` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SuggestedDownlinks` | `[]string` | Optional | - |
 | `SuggestedEsilaglinks` | `[]string` | Optional | - |
@@ -88,7 +88,7 @@
             "protocol": "protocol6"
           }
         ],
-        "type": "any"
+        "type": "radius_group"
       }
     },
     "additional_config_cmds": [

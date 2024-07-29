@@ -1,6 +1,8 @@
 
 # Snmp Vacm Access Item Prefix List Item Level Enum
 
+enum: `authentication`, `none`, `privacy`
+
 ## Enumeration
 
 `SnmpVacmAccessItemPrefixListItemLevelEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `privacy` |
 | `authentication` |
 | `none` |
+| `privacy` |
 

@@ -1,6 +1,8 @@
 
 # Ble Config Beacon Rate Mode Enum
 
+enum: `custom`, `default`
+
 ## Enumeration
 
 `BleConfigBeaconRateModeEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `default` |
 | `custom` |
+| `default` |
 
 ## Example
 

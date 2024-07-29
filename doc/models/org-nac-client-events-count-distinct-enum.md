@@ -1,6 +1,8 @@
 
 # Org Nac Client Events Count Distinct Enum
 
+enum: `ap`, `auth_type`, `dryrun_nacrule_id`, `mac`, `nacrule_id`, `nas_vendor`, `ssid`, `type`, `username`, `vlan`
+
 ## Enumeration
 
 `OrgNacClientEventsCountDistinctEnum`
@@ -9,14 +11,14 @@
 
 | Name |
 |  --- |
-| `type` |
-| `nacrule_id` |
-| `dryrun_nacrule_id` |
-| `auth_type` |
-| `vlan` |
-| `nas_vendor` |
-| `username` |
 | `ap` |
+| `auth_type` |
+| `dryrun_nacrule_id` |
 | `mac` |
+| `nacrule_id` |
+| `nas_vendor` |
 | `ssid` |
+| `type` |
+| `username` |
+| `vlan` |
 

@@ -1,6 +1,8 @@
 
 # Nac Tag Type Enum
 
+enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `session_timeout`, `vlan`
+
 ## Enumeration
 
 `NacTagTypeEnum`
@@ -10,11 +12,11 @@
 | Name |
 |  --- |
 | `egress_vlan_names` |
-| `match` |
-| `vlan` |
 | `gbp_tag` |
+| `match` |
 | `radius_attrs` |
 | `radius_group` |
 | `radius_vendor_attrs` |
 | `session_timeout` |
+| `vlan` |
 

@@ -9,7 +9,7 @@ import (
 type UpgradeOrgDeviceUpgrade struct {
     Id                   *uuid.UUID               `json:"id,omitempty"`
     StartTime            *float64                 `json:"start_time,omitempty"`
-    // status upgrade is in
+    // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
     Status               *DeviceUpgradeStatusEnum `json:"status,omitempty"`
     Targets              *UpgradeOrgDeviceTargets `json:"targets,omitempty"`
     AdditionalProperties map[string]any           `json:"_"`

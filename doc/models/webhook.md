@@ -18,7 +18,7 @@
 | `Name` | `models.Optional[string]` | Optional | name of the webhook |
 | `Oauth2ClientId` | `*string` | Optional | required when `oauth2_grant_type`==`client_credentials` |
 | `Oauth2ClientSecret` | `*string` | Optional | required when `oauth2_grant_type`==`client_credentials` |
-| `Oauth2GrantType` | [`*models.WebhookOauth2GrantTypeEnum`](../../doc/models/webhook-oauth-2-grant-type-enum.md) | Optional | required when `type`==`oauth2` |
+| `Oauth2GrantType` | [`*models.WebhookOauth2GrantTypeEnum`](../../doc/models/webhook-oauth-2-grant-type-enum.md) | Optional | required when `type`==`oauth2`. enum: `client_credentials`, `password` |
 | `Oauth2Password` | `*string` | Optional | required when `oauth2_grant_type`==`password` |
 | `Oauth2Scopes` | `[]string` | Optional | required when `type`==`oauth2`, if provided, will be used in the token request |
 | `Oauth2TokenUrl` | `*string` | Optional | required when `type`==`oauth2` |
@@ -28,7 +28,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SplunkToken` | `models.Optional[string]` | Optional | required if `type`=`splunk`<br>If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.' |
 | `Topics` | [`[]models.WebhookTopicEnum`](../../doc/models/webhook-topic-enum.md) | Optional | N.B. For org webhooks, only device_events/alarms/audits/client-join/client-sessions/nac-sessions/nac_events topics are supported. |
-| `Type` | [`*models.WebhookTypeEnum`](../../doc/models/webhook-type-enum.md) | Optional | **Default**: `"http-post"` |
+| `Type` | [`*models.WebhookTypeEnum`](../../doc/models/webhook-type-enum.md) | Optional | enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`<br>**Default**: `"http-post"` |
 | `Url` | `models.Optional[string]` | Optional | - |
 | `VerifyCert` | `*bool` | Optional | when url uses HTTPS, whether to verify the certificate<br>**Default**: `true` |
 

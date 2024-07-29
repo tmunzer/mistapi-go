@@ -11,6 +11,7 @@ import (
 type CaptureSwitch struct {
     // duration of the capture, in seconds
     Duration             *int                             `json:"duration,omitempty"`
+    // enum: `stream`
     Format               *CaptureSwitchFormatEnum         `json:"format,omitempty"`
     // max_len of each packet to capture
     MaxPktLen            *int                             `json:"max_pkt_len,omitempty"`
@@ -22,6 +23,7 @@ type CaptureSwitch struct {
     Switches             map[string]CaptureSwitchSwitches `json:"switches,omitempty"`
     // tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist.
     TcpdumpExpression    *string                          `json:"tcpdump_expression,omitempty"`
+    // enum: `switch`
     Type                 string                           `json:"type"`
     AdditionalProperties map[string]any                   `json:"_"`
 }

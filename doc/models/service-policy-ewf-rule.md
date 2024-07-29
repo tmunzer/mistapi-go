@@ -12,7 +12,7 @@
 | `AlertOnly` | `*bool` | Optional | - |
 | `BlockMessage` | `*string` | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `Profile` | [`*models.ServicePolicyEwfRuleProfileEnum`](../../doc/models/service-policy-ewf-rule-profile-enum.md) | Optional | **Default**: `"strict"` |
+| `Profile` | [`*models.ServicePolicyEwfRuleProfileEnum`](../../doc/models/service-policy-ewf-rule-profile-enum.md) | Optional | enum: `critical`, `standard`, `strict`<br>**Default**: `"strict"` |
 
 ## Example (as JSON)
 

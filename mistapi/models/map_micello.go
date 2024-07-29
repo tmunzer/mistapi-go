@@ -15,7 +15,7 @@ type MapMicello struct {
     DefaultLevelId       int            `json:"default_level_id"`
     // micello map id
     MapId                uuid.UUID      `json:"map_id"`
-    // the vendor ‘micello’
+    // the vendor ‘micello’. enum: `micello`
     VendorName           string         `json:"vendor_name"`
     AdditionalProperties map[string]any `json:"_"`
 }

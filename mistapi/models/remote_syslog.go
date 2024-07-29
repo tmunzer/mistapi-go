@@ -14,6 +14,7 @@ type RemoteSyslog struct {
     Network              *string                     `json:"network,omitempty"`
     SendToAllServers     *bool                       `json:"send_to_all_servers,omitempty"`
     Servers              []RemoteSyslogServer        `json:"servers,omitempty"`
+    // enum: `millisecond`, `year`, `year millisecond`
     TimeFormat           *RemoteSyslogTimeFormatEnum `json:"time_format,omitempty"`
     Users                []RemoteSyslogUser          `json:"users,omitempty"`
     AdditionalProperties map[string]any              `json:"_"`

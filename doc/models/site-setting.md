@@ -177,7 +177,7 @@ Site Settings
           "protocol": "protocol6"
         }
       ],
-      "type": "any"
+      "type": "radius_group"
     }
   },
   "additional_config_cmds": [
@@ -206,8 +206,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "mxtunnel",
-            "mac_auth_protocol": "pap"
+            "forwarding": "site_mxedge",
+            "mac_auth_protocol": "eap-md5"
           },
           "key1": {
             "disabled": false,
@@ -220,8 +220,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "mxtunnel",
-            "mac_auth_protocol": "pap"
+            "forwarding": "site_mxedge",
+            "mac_auth_protocol": "eap-md5"
           }
         }
       },
@@ -240,8 +240,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "mxtunnel",
-            "mac_auth_protocol": "pap"
+            "forwarding": "site_mxedge",
+            "mac_auth_protocol": "eap-md5"
           },
           "key1": {
             "disabled": false,
@@ -254,8 +254,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "mxtunnel",
-            "mac_auth_protocol": "pap"
+            "forwarding": "site_mxedge",
+            "mac_auth_protocol": "eap-md5"
           }
         }
       },
@@ -274,8 +274,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "mxtunnel",
-            "mac_auth_protocol": "pap"
+            "forwarding": "site_mxedge",
+            "mac_auth_protocol": "eap-md5"
           },
           "key1": {
             "disabled": false,
@@ -288,8 +288,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "mxtunnel",
-            "mac_auth_protocol": "pap"
+            "forwarding": "site_mxedge",
+            "mac_auth_protocol": "eap-md5"
           }
         }
       }

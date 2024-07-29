@@ -1,7 +1,7 @@
 
 # Device Type Gateway Enum
 
-Device Type
+Device Type. enum: `gateway`
 
 ## Enumeration
 

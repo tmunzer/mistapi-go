@@ -16,7 +16,7 @@
 
 ```json
 {
-  "file": "file2",
+  "file": "data:text/plain;name=dummy_file;base64,",
   "json": "json0"
 }
 ```

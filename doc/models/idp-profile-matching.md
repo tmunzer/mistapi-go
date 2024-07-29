@@ -25,7 +25,7 @@
   ],
   "severity": [
     "critical",
-    "major"
+    "info"
   ]
 }
 ```

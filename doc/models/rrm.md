@@ -20,7 +20,7 @@ RRM
 | `Rftemplate` | [`models.RfTemplate`](../../doc/models/rf-template.md) | Required | RF Template |
 | `RftemplateId` | `uuid.UUID` | Required | - |
 | `RftemplateName` | `string` | Required | - |
-| `Status` | [`models.RrmStatusEnum`](../../doc/models/rrm-status-enum.md) | Required | - |
+| `Status` | [`models.RrmStatusEnum`](../../doc/models/rrm-status-enum.md) | Required | enum: `ready`, `unknown`, `updating` |
 | `Timestamp` | `float64` | Required | time where the status was updated |
 
 ## Example (as JSON)
@@ -103,7 +103,7 @@ RRM
     "band_24": {
       "allow_rrm_disable": false,
       "ant_gain": 0,
-      "antenna_mode": "default",
+      "antenna_mode": "1x1",
       "bandwidth": 20,
       "channels": [
         221
@@ -113,7 +113,7 @@ RRM
   },
   "rftemplate_id": "000025f6-0000-0000-0000-000000000000",
   "rftemplate_name": "rftemplate_name0",
-  "status": "ready",
+  "status": "updating",
   "timestamp": 72.0,
   "band_6": {
     "key0": {

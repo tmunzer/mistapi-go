@@ -20,7 +20,7 @@
 | `OrgName` | `string` | Required | - |
 | `Password` | `string` | Required | - |
 | `Recaptcha` | `string` | Required | reCAPTCHA , see https://www.google.com/recaptcha/ |
-| `RecaptchaFlavor` | [`*models.RecaptchaFlavorEnum`](../../doc/models/recaptcha-flavor-enum.md) | Optional | flavor of the captcha<br>**Default**: `"google"` |
+| `RecaptchaFlavor` | [`*models.RecaptchaFlavorEnum`](../../doc/models/recaptcha-flavor-enum.md) | Optional | flavor of the captcha. enum: `google`, `hcaptcha`<br>**Default**: `"google"` |
 | `RefererInviteToken` | `*string` | Optional | the invite token to apply after account creation |
 | `ReturnTo` | `*string` | Optional | the url the user should be redirected back to |
 | `State` | `*string` | Optional | state of registering user, optional (depends on country/region) |

@@ -17,16 +17,16 @@
 {
   "contents": [
     {
-      "facility": "pfe",
-      "severity": "warning"
+      "facility": "ntp",
+      "severity": "error"
     },
     {
-      "facility": "pfe",
-      "severity": "warning"
+      "facility": "ntp",
+      "severity": "error"
     },
     {
-      "facility": "pfe",
-      "severity": "warning"
+      "facility": "ntp",
+      "severity": "error"
     }
   ]
 }

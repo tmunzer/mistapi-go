@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Sessions` | [`[]models.ApStatsL2TpStatSession`](../../doc/models/ap-stats-l2-tp-stat-session.md) | Optional | list of sessions |
-| `State` | [`*models.L2TpStateEnum`](../../doc/models/l2-tp-state-enum.md) | Optional | - |
+| `State` | [`*models.L2TpStateEnum`](../../doc/models/l2-tp-state-enum.md) | Optional | enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
 | `Uptime` | `models.Optional[int]` | Optional | uptime |
 | `WxtunnelId` | `models.Optional[uuid.UUID]` | Optional | WxlanTunnel ID |
 
@@ -26,19 +26,19 @@
       "local_sid": 84,
       "remote_id": "remote_id6",
       "remote_sid": 208,
-      "state": "wait-ctrl-reply"
+      "state": "established_with_session"
     },
     {
       "local_sid": 84,
       "remote_id": "remote_id6",
       "remote_sid": 208,
-      "state": "wait-ctrl-reply"
+      "state": "established_with_session"
     },
     {
       "local_sid": 84,
       "remote_id": "remote_id6",
       "remote_sid": 208,
-      "state": "wait-ctrl-reply"
+      "state": "established_with_session"
     }
   ]
 }

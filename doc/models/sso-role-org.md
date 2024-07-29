@@ -33,7 +33,7 @@ SSO Role response
       "scope": "site",
       "site_id": "00002366-0000-0000-0000-000000000000",
       "sitegroup_id": "000006ce-0000-0000-0000-000000000000",
-      "views": "lobby_admin"
+      "views": "switch_admin"
     }
   ],
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",

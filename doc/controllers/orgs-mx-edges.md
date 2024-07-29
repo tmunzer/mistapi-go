@@ -324,7 +324,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-name := models.MxedgeServiceNameEnum("tunterm")
+name := models.MxedgeServiceNameEnum("mxagent")
 
 action := models.MxedgeServiceActionEnum("restart")
 

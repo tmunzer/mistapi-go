@@ -16,7 +16,7 @@
 | `Name` | `*string` | Optional | name of the client, may be empty |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `int` | Required | timestamp of the event, epoch |
-| `Trigger` | [`models.WebhookZoneEventTriggerEnum`](../../doc/models/webhook-zone-event-trigger-enum.md) | Required | enter / exit |
+| `Trigger` | [`models.WebhookZoneEventTriggerEnum`](../../doc/models/webhook-zone-event-trigger-enum.md) | Required | enum: `enter`, `exit` |
 | `Type` | `string` | Required | - |
 | `ZoneId` | `uuid.UUID` | Required | zone id |
 

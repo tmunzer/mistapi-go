@@ -6,7 +6,7 @@ import (
 
 // UtilsShowBgpRummary represents a UtilsShowBgpRummary struct.
 type UtilsShowBgpRummary struct {
-    // only for HA
+    // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     AdditionalProperties map[string]any     `json:"_"`
 }

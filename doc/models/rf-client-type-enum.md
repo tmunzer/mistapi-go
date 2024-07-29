@@ -1,6 +1,8 @@
 
 # Rf Client Type Enum
 
+enum: `asset`, `client`, `sdkclient`
+
 ## Enumeration
 
 `RfClientTypeEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `sdkclient` |
-| `client` |
 | `asset` |
+| `client` |
+| `sdkclient` |
 

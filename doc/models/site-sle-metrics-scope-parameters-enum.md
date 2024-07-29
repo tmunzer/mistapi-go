@@ -1,6 +1,8 @@
 
 # Site Sle Metrics Scope Parameters Enum
 
+enum: `ap`, `client`, `gateway`, `site`, `switch`
+
 ## Enumeration
 
 `SiteSleMetricsScopeParametersEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `site` |
 | `ap` |
-| `switch` |
-| `gateway` |
 | `client` |
+| `gateway` |
+| `site` |
+| `switch` |
 

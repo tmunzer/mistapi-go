@@ -16,8 +16,9 @@ type PrivilegeMsp struct {
     OrgName              *string               `json:"org_name,omitempty"`
     // if `scope`==`orggroup`
     OrggroupId           *uuid.UUID            `json:"orggroup_id,omitempty"`
-    // access permissions
+    // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
     Role                 PrivilegeMspRoleEnum  `json:"role"`
+    // enum: `msp`, `org`, `orggroup`
     Scope                PrivilegeMspScopeEnum `json:"scope"`
     // Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
     // You can invite a new user or update existing users in your Org to this custom role. For this, specify view along with role when assigning privileges.

@@ -1,6 +1,8 @@
 
 # Site Sle Impacted Clients Scope Parameters Enum
 
+enum: `gateway`, `site`, `switch`
+
 ## Enumeration
 
 `SiteSleImpactedClientsScopeParametersEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
+| `gateway` |
 | `site` |
 | `switch` |
-| `gateway` |
 

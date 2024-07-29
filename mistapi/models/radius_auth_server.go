@@ -12,6 +12,7 @@ type RadiusAuthServer struct {
     // ip / hostname of RADIUS server
     Host                 string                   `json:"host"`
     KeywrapEnabled       *bool                    `json:"keywrap_enabled,omitempty"`
+    // enum: `ascii`, `hex`
     KeywrapFormat        *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
     KeywrapKek           *string                  `json:"keywrap_kek,omitempty"`
     KeywrapMack          *string                  `json:"keywrap_mack,omitempty"`

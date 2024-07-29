@@ -29,7 +29,7 @@ mxCluster
 | `TuntermExtraRoutes` | [`map[string]models.MxclusterTuntermExtraRoute`](../../doc/models/mxcluster-tunterm-extra-route.md) | Optional | extra routes for Mist Tunneled VLANs. Property key is a CIDR |
 | `TuntermHosts` | `[]string` | Optional | hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP) |
 | `TuntermHostsOrder` | `[]int` | Optional | list of index of tunterm_hosts |
-| `TuntermHostsSelection` | [`*models.MxclusterTuntermHostsSelectionEnum`](../../doc/models/mxcluster-tunterm-hosts-selection-enum.md) | Optional | Ordering of tunterm_hosts for mxedge within the same mxcluster.<br><br>* When `shuffle`, the ordering of tunterm_hosts is randomized by the device\u2019\s MAC.<br>* When `shuffle-by-site`, we shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels).<br>* When `ordered`, the order is decided by tunterm_hosts_order<br>**Default**: `"shuffle"` |
+| `TuntermHostsSelection` | [`*models.MxclusterTuntermHostsSelectionEnum`](../../doc/models/mxcluster-tunterm-hosts-selection-enum.md) | Optional | Ordering of tunterm_hosts for mxedge within the same mxcluster. enum:<br><br>* `shuffle`: the ordering of tunterm_hosts is randomized by the device''s MAC<br>* `shuffle-by-site`: shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels)<br>* `ordered`: order decided by tunterm_hosts_order<br>**Default**: `"shuffle"` |
 | `TuntermMonitoring` | [`[]models.TuntermMonitoringItem`](../../doc/models/tunterm-monitoring-item.md) | Optional | - |
 | `TuntermMonitoringDisabled` | `*bool` | Optional | - |
 
@@ -69,17 +69,17 @@ mxCluster
       "key0": {
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "paloalto"
+        "vendor": "cisco-meraki"
       },
       "key1": {
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "paloalto"
+        "vendor": "cisco-meraki"
       },
       "key2": {
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "paloalto"
+        "vendor": "cisco-meraki"
       }
     },
     "enabled": false,

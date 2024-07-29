@@ -1,6 +1,8 @@
 
 # Protect Re Custom Protocol Enum
 
+enum: `any`, `icmp`, `tcp`, `udp`
+
 ## Enumeration
 
 `ProtectReCustomProtocolEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
+| `any` |
+| `icmp` |
 | `tcp` |
 | `udp` |
-| `icmp` |
-| `any` |
 

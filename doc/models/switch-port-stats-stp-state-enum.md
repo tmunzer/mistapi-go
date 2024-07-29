@@ -1,7 +1,7 @@
 
 # Switch Port Stats Stp State Enum
 
-if `up`==`true`
+if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
 
 ## Enumeration
 
@@ -11,9 +11,9 @@ if `up`==`true`
 
 | Name |
 |  --- |
-| `forwarding` |
 | `blocking` |
+| `disabled` |
+| `forwarding` |
 | `learning` |
 | `listening` |
-| `disabled` |
 

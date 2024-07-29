@@ -13,7 +13,7 @@ BLE AP settings
 |  --- | --- | --- | --- |
 | `BeaconEnabled` | `*bool` | Optional | whether Mist beacons is enabled<br>**Default**: `false` |
 | `BeaconRate` | `*int` | Optional | required if `beacon_rate_mode`==`custom`, 1-10, in number-beacons-per-second<br>**Default**: `0` |
-| `BeaconRateMode` | [`*models.BleConfigBeaconRateModeEnum`](../../doc/models/ble-config-beacon-rate-mode-enum.md) | Optional | **Default**: `"default"` |
+| `BeaconRateMode` | [`*models.BleConfigBeaconRateModeEnum`](../../doc/models/ble-config-beacon-rate-mode-enum.md) | Optional | enum: `custom`, `default`<br>**Default**: `"default"` |
 | `BeamDisabled` | `[]int` | Optional | list of AP BLE location beam numbers (1-8) which should be disabled at the AP and not transmit location information (where beam 1 is oriented at the top the AP, growing counter-clock-wise, with 9 being the omni BLE beam) |
 | `CustomBlePacketEnabled` | `*bool` | Optional | can be enabled if `beacon_enabled`==`true`, whether to send custom packet<br>**Default**: `false` |
 | `CustomBlePacketFrame` | `*string` | Optional | The custom frame to be sent out in this beacon. The frame must be a hexstring |
@@ -37,7 +37,7 @@ BLE AP settings
 | `IbeaconMinor` | `*int` | Optional | Minor number for iBeacon<br>**Constraints**: `>= 1`, `<= 65535` |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | optional, if not specified, the same UUID as the beacon will be used |
 | `Power` | `*int` | Optional | required if `power_mode`==`custom`<br>**Default**: `9`<br>**Constraints**: `>= 1`, `<= 10` |
-| `PowerMode` | [`*models.BleConfigPowerModeEnum`](../../doc/models/ble-config-power-mode-enum.md) | Optional | **Default**: `"default"` |
+| `PowerMode` | [`*models.BleConfigPowerModeEnum`](../../doc/models/ble-config-power-mode-enum.md) | Optional | enum: `custom`, `default`<br>**Default**: `"default"` |
 
 ## Example (as JSON)
 

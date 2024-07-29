@@ -15,7 +15,7 @@
 | `LogoUrl` | `*string` | Optional | For advanced tier (uMSPs) only |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `*string` | Optional | - |
-| `Tier` | [`*models.MspTierEnum`](../../doc/models/msp-tier-enum.md) | Optional | **Default**: `"base"` |
+| `Tier` | [`*models.MspTierEnum`](../../doc/models/msp-tier-enum.md) | Optional | enum: `advanced`, `base`<br>**Default**: `"base"` |
 | `Url` | `*string` | Optional | For advanced tier (uMSPs) only |
 
 ## Example (as JSON)

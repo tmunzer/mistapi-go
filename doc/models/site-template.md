@@ -22,7 +22,7 @@
     "RADIUS_SECRET": "11s64632d"
   },
   "auto_upgrade": {
-    "day_of_week": "thu",
+    "day_of_week": "sun",
     "enabled": false,
     "time_of_day": "time_of_day0",
     "version": "version2"

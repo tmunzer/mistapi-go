@@ -1,7 +1,7 @@
 
 # Ap Port Config Port Auth Enum
 
-When doing port auth
+When doing port auth. enum: `dot1x`, `none`
 
 ## Enumeration
 
@@ -11,8 +11,8 @@ When doing port auth
 
 | Name |
 |  --- |
-| `none` |
 | `dot1x` |
+| `none` |
 
 ## Example
 

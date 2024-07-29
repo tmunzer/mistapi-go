@@ -13,7 +13,7 @@
 | `ImportHeight` | `*bool` | Optional | **Default**: `true` |
 | `ImportOrientation` | `*bool` | Optional | **Default**: `true` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `VendorName` | [`models.MapOrgImportFileJsonVendorNameEnum`](../../doc/models/map-org-import-file-json-vendor-name-enum.md) | Required | - |
+| `VendorName` | [`models.MapOrgImportFileJsonVendorNameEnum`](../../doc/models/map-org-import-file-json-vendor-name-enum.md) | Required | enum: `ekahau`, `ibwave` |
 
 ## Example (as JSON)
 

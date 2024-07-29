@@ -11,6 +11,7 @@ type RfTemplateModelSpecificProperty struct {
     AntGain6             *int                   `json:"ant_gain_6,omitempty"`
     // Radio Band AP settings
     Band24               *RftemplateRadioBand24 `json:"band_24,omitempty"`
+    // enum: `24`, `5`, `6`, `auto`
     Band24Usage          *RadioBand24UsageEnum  `json:"band_24_usage,omitempty"`
     // Radio Band AP settings
     Band5                *RftemplateRadioBand5  `json:"band_5,omitempty"`

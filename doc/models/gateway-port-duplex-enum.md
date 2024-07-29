@@ -1,6 +1,8 @@
 
 # Gateway Port Duplex Enum
 
+enum: `auto`, `full`, `half`
+
 ## Enumeration
 
 `GatewayPortDuplexEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `half` |
-| `full` |
 | `auto` |
+| `full` |
+| `half` |
 
 ## Example
 

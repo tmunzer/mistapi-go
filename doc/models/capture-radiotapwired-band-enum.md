@@ -1,7 +1,7 @@
 
 # Capture Radiotapwired Band Enum
 
-only used for radiotap
+only used for radiotap. enum: `24`, `24,5,6`, `5`, `6`
 
 ## Enumeration
 
@@ -12,9 +12,9 @@ only used for radiotap
 | Name |
 |  --- |
 | `24` |
+| `24,5,6` |
 | `5` |
 | `6` |
-| `24,5,6` |
 
 ## Example
 

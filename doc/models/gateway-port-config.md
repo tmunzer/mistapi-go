@@ -14,13 +14,13 @@ Gateway port config
 | `Description` | `*string` | Optional | - |
 | `DisableAutoneg` | `*bool` | Optional | **Default**: `false` |
 | `Disabled` | `*bool` | Optional | port admin up (true) / down (false)<br>**Default**: `false` |
-| `DslType` | [`*models.GatewayPortDslTypeEnum`](../../doc/models/gateway-port-dsl-type-enum.md) | Optional | if `wan_type`==`lte`<br>**Default**: `"vdsl"` |
+| `DslType` | [`*models.GatewayPortDslTypeEnum`](../../doc/models/gateway-port-dsl-type-enum.md) | Optional | if `wan_type`==`lte`. enum: `adsl`, `vdsl`<br>**Default**: `"vdsl"` |
 | `DslVci` | `*int` | Optional | if `wan_type`==`dsl`<br>16 bit int<br>**Default**: `35` |
 | `DslVpi` | `*int` | Optional | if `wan_type`==`dsl`<br>8 bit int<br>**Default**: `0` |
-| `Duplex` | [`*models.GatewayPortDuplexEnum`](../../doc/models/gateway-port-duplex-enum.md) | Optional | **Default**: `"auto"` |
+| `Duplex` | [`*models.GatewayPortDuplexEnum`](../../doc/models/gateway-port-duplex-enum.md) | Optional | enum: `auto`, `full`, `half`<br>**Default**: `"auto"` |
 | `IpConfig` | [`*models.GatewayPortConfigIpConfig`](../../doc/models/gateway-port-config-ip-config.md) | Optional | Junos IP Config |
 | `LteApn` | `*string` | Optional | if `wan_type`==`lte` |
-| `LteAuth` | [`*models.GatewayPortLteAuthEnum`](../../doc/models/gateway-port-lte-auth-enum.md) | Optional | if `wan_type`==`lte`<br>**Default**: `"none"` |
+| `LteAuth` | [`*models.GatewayPortLteAuthEnum`](../../doc/models/gateway-port-lte-auth-enum.md) | Optional | if `wan_type`==`lte`. enum: `chap`, `none`, `pap`<br>**Default**: `"none"` |
 | `LteBackup` | `*bool` | Optional | - |
 | `LtePassword` | `*string` | Optional | if `wan_type`==`lte` |
 | `LteUsername` | `*string` | Optional | if `wan_type`==`lte` |
@@ -39,13 +39,13 @@ Gateway port config
 | `SsrNoVirtualMac` | `*bool` | Optional | when SSR is running as VM, this is required on certain hosting platforms<br>**Default**: `false` |
 | `SvrPortRange` | `*string` | Optional | for SSR only<br>**Default**: `"none"` |
 | `TrafficShaping` | [`*models.GatewayTrafficShaping`](../../doc/models/gateway-traffic-shaping.md) | Optional | - |
-| `Usage` | [`models.GatewayPortUsageEnum`](../../doc/models/gateway-port-usage-enum.md) | Required | port usage name |
+| `Usage` | [`models.GatewayPortUsageEnum`](../../doc/models/gateway-port-usage-enum.md) | Required | port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan` |
 | `VlanId` | `*int` | Optional | if WAN interface is on a VLAN |
 | `VpnPaths` | [`map[string]models.GatewayPortVpnPath`](../../doc/models/gateway-port-vpn-path.md) | Optional | - |
-| `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | when `wan_type`==`broadband`<br>**Default**: `"recommended"` |
+| `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`<br>**Default**: `"recommended"` |
 | `WanExtIp` | `*string` | Optional | optional, if spoke should reach this port by a different IP |
 | `WanSourceNat` | [`*models.GatewayPortWanSourceNat`](../../doc/models/gateway-port-wan-source-nat.md) | Optional | optional, by default, source-NAT is performed on all WAN Ports using the interface-ip |
-| `WanType` | [`*models.GatewayPortWanTypeEnum`](../../doc/models/gateway-port-wan-type-enum.md) | Optional | if `usage`==`wan`<br>**Default**: `"broadband"` |
+| `WanType` | [`*models.GatewayPortWanTypeEnum`](../../doc/models/gateway-port-wan-type-enum.md) | Optional | if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`<br>**Default**: `"broadband"` |
 
 ## Example (as JSON)
 
@@ -67,7 +67,7 @@ Gateway port config
   "speed": "1g",
   "ssr_no_virtual_mac": false,
   "svr_port_range": "60000-60005",
-  "usage": "lan",
+  "usage": "ha_control",
   "wan_arp_policer": "recommended",
   "wan_type": "broadband",
   "description": "description4"

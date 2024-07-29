@@ -1,6 +1,8 @@
 
 # Privilege Msp Scope Enum
 
+enum: `msp`, `org`, `orggroup`
+
 ## Enumeration
 
 `PrivilegeMspScopeEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `org` |
 | `msp` |
+| `org` |
 | `orggroup` |
 

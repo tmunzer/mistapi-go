@@ -12,7 +12,7 @@ type ResponseAutoPlacementInfo struct {
     EstTimeLeft          *float64                     `json:"est_time_left,omitempty"`
     // time when autoplacement process was last queued for this map
     StartTime            *float64                     `json:"start_time,omitempty"`
-    // the status of autoplacement for a given map
+    // the status of autoplacement for a given map. enum: `done`, `error`, `inprogress`, `pending`
     Status               *AutoPlacementInfoStatusEnum `json:"status,omitempty"`
     AdditionalProperties map[string]any               `json:"_"`
 }

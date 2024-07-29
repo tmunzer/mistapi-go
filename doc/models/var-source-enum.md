@@ -1,6 +1,8 @@
 
 # Var Source Enum
 
+enum: `deviceprofile`, `site`
+
 ## Enumeration
 
 `VarSourceEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `site` |
 | `deviceprofile` |
+| `site` |
 

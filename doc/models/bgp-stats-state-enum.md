@@ -1,6 +1,8 @@
 
 # Bgp Stats State Enum
 
+enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent`
+
 ## Enumeration
 
 `BgpStatsStateEnum`
@@ -9,12 +11,12 @@
 
 | Name |
 |  --- |
-| `idle` |
-| `connect` |
 | `active` |
-| `open_sent` |
-| `open_config` |
+| `connect` |
 | `established` |
+| `idle` |
+| `open_config` |
+| `open_sent` |
 
 ## Example
 

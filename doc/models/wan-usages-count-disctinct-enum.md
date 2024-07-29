@@ -1,6 +1,8 @@
 
 # Wan Usages Count Disctinct Enum
 
+enum: `mac`, `path_type`, `peer_mac`, `peer_port_id`, `policy`, `port_id`, `tenant`
+
 ## Enumeration
 
 `WanUsagesCountDisctinctEnum`
@@ -10,10 +12,10 @@
 | Name |
 |  --- |
 | `mac` |
+| `path_type` |
 | `peer_mac` |
-| `port_id` |
 | `peer_port_id` |
 | `policy` |
+| `port_id` |
 | `tenant` |
-| `path_type` |
 

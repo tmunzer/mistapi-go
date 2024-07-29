@@ -13,7 +13,7 @@ Junos OSPF areas
 |  --- | --- | --- | --- |
 | `IncludeLoopback` | `*bool` | Optional | **Default**: `false` |
 | `Networks` | [`map[string]models.OspfAreasNetwork`](../../doc/models/ospf-areas-network.md) | Optional | Networks to participate in an OSPF area.<br>Property key is the network name |
-| `Type` | [`*models.OspfAreasTypeEnum`](../../doc/models/ospf-areas-type-enum.md) | Optional | OSPF type, default (default) / stub / nssa<br>**Default**: `"default"` |
+| `Type` | [`*models.OspfAreasTypeEnum`](../../doc/models/ospf-areas-type-enum.md) | Optional | OSPF type. enum: `default`, `nssa`, `stub`<br>**Default**: `"default"` |
 
 ## Example (as JSON)
 

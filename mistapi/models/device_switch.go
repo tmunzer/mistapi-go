@@ -79,7 +79,7 @@ type DeviceSwitch struct {
     SnmpConfig            *SnmpConfig                            `json:"snmp_config,omitempty"`
     StpConfig             *SwitchStpConfig                       `json:"stp_config,omitempty"`
     SwitchMgmt            *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
-    // Device Type
+    // Device Type. enum: `switch`
     Type                  *DeviceTypeSwitchEnum                  `json:"type,omitempty"`
     // whether to use it for snmp / syslog / tacplus / radius
     UseRouterIdAsSourceIp *bool                                  `json:"use_router_id_as_source_ip,omitempty"`

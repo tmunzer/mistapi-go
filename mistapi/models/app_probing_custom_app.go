@@ -13,6 +13,7 @@ type AppProbingCustomApp struct {
     Hostname             []string                         `json:"hostname,omitempty"`
     Name                 *string                          `json:"name,omitempty"`
     Network              *string                          `json:"network,omitempty"`
+    // enum: `http`, `udp`
     Protocol             *AppProbingCustomAppProtocolEnum `json:"protocol,omitempty"`
     // if `protocol`==`http`
     Url                  *string                          `json:"url,omitempty"`

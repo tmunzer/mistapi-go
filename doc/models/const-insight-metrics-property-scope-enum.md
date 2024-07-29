@@ -1,6 +1,8 @@
 
 # Const Insight Metrics Property Scope Enum
 
+enum: `ap`, `client`, `device`, `mxedge`, `site`, `switch`
+
 ## Enumeration
 
 `ConstInsightMetricsPropertyScopeEnum`
@@ -9,10 +11,10 @@
 
 | Name |
 |  --- |
-| `site` |
 | `ap` |
 | `client` |
-| `switch` |
 | `device` |
 | `mxedge` |
+| `site` |
+| `switch` |
 

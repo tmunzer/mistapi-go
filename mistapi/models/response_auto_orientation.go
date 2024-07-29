@@ -6,7 +6,7 @@ import (
 
 // ResponseAutoOrientation represents a ResponseAutoOrientation struct.
 type ResponseAutoOrientation struct {
-    // The state of auto orient for a given map derived from an Enum
+    // The state of auto orient for a given map derived from an Enum. enum: `Enqueued`, `Not Started`, `Oriented`
     State                *AutoOrientationStateEnum `json:"state,omitempty"`
     // Time when auto orient process was last queued for this map
     TimeQueued           *float64                  `json:"time_queued,omitempty"`

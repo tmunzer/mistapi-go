@@ -1,6 +1,8 @@
 
 # Site Sle Scope Enum
 
+enum: `gateway`, `site`, `switch`
+
 ## Enumeration
 
 `SiteSleScopeEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
+| `gateway` |
 | `site` |
 | `switch` |
-| `gateway` |
 

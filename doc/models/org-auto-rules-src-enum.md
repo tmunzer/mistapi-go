@@ -1,6 +1,8 @@
 
 # Org Auto Rules Src Enum
 
+enum: `dns_suffix`, `lldp_port_desc`, `lldp_system_name`, `model`, `name`, `subnet`
+
 ## Enumeration
 
 `OrgAutoRulesSrcEnum`
@@ -9,10 +11,10 @@
 
 | Name |
 |  --- |
+| `dns_suffix` |
+| `lldp_port_desc` |
+| `lldp_system_name` |
+| `model` |
 | `name` |
 | `subnet` |
-| `lldp_system_name` |
-| `dns_suffix` |
-| `model` |
-| `lldp_port_desc` |
 

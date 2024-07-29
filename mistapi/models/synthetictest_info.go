@@ -7,6 +7,7 @@ import (
 // SynthetictestInfo represents a SynthetictestInfo struct.
 type SynthetictestInfo struct {
     By                   *string                `json:"by,omitempty"`
+    // enum: `ap`, `gateway`, `switch`
     DeviceType           *DeviceTypeEnum        `json:"device_type,omitempty"`
     Failed               *bool                  `json:"failed,omitempty"`
     Latency              *int                   `json:"latency,omitempty"`
@@ -18,6 +19,7 @@ type SynthetictestInfo struct {
     Status               *string                `json:"status,omitempty"`
     Timestamp            *float64               `json:"timestamp,omitempty"`
     TxMbps               *int                   `json:"tx_mbps,omitempty"`
+    // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `radius`, `speedtest`
     Type                 *SynthetictestTypeEnum `json:"type,omitempty"`
     VlanId               *int                   `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]any         `json:"_"`

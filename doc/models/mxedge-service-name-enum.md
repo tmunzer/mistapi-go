@@ -1,6 +1,8 @@
 
 # Mxedge Service Name Enum
 
+enum: `mxagent`, `mxdas`, `mxocproxy`, `radsecproxy`, `tunterm`
+
 ## Enumeration
 
 `MxedgeServiceNameEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `tunterm` |
-| `radsecproxy` |
 | `mxagent` |
-| `mxocproxy` |
 | `mxdas` |
+| `mxocproxy` |
+| `radsecproxy` |
+| `tunterm` |
 

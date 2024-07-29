@@ -1,6 +1,8 @@
 
 # Nac Rule Matching Port Type Enum
 
+enum: `wired`, `wireless`
+
 ## Enumeration
 
 `NacRuleMatchingPortTypeEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `wireless` |
 | `wired` |
+| `wireless` |
 

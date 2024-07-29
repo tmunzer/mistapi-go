@@ -10,18 +10,17 @@ import (
 // RrmEvent represents a RrmEvent struct.
 type RrmEvent struct {
     ApId                 uuid.UUID                `json:"ap_id"`
+    // enum: `24`, `5`, `6`
     Band                 Dot11BandEnum            `json:"band"`
-    // channel width for the band 
-    //   * `80` is only applicable for band_5 and band_6 
-    //   * `160` is only for band_6
+    // channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
     Bandwidth            Dot11BandwidthEnum       `json:"bandwidth"`
     // channel for the band from rrm
     Channel              int                      `json:"channel"`
-    // schedule-site_rrm / triggered-site_rrm / interference-ap-co-channel / rrm-radar
+    // enum: `interference-ap-co-channel`, `interference-ap-non-wifi`, `neighbor-ap-down`, `neighbor-ap-recovered`, `radar-detected`, `rrm-radar`, `scheduled-site_rrm`, `triggered-site_rrm`
     Event                RrmEventTypeEnum         `json:"event"`
     // tx power of the radio
     Power                int                      `json:"power"`
-    // (previously) channel width for the band , 0 means no previously available
+    // (previously) channel width for the band , 0 means no previously available. enum: `0`, `20`, `40`, `80`, `160`
     PreBandwidth         RrmEventPreBandwidthEnum `json:"pre_bandwidth"`
     // (previously) channel for the band, 0 means no previously available
     PreChannel           int                      `json:"pre_channel"`

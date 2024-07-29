@@ -1,6 +1,8 @@
 
 # Fast Roam Result Enum
 
+enum: `fail`, `none`, `success`
+
 ## Enumeration
 
 `FastRoamResultEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `success` |
 | `fail` |
 | `none` |
+| `success` |
 

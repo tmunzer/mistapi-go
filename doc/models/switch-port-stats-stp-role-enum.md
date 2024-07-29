@@ -1,7 +1,7 @@
 
 # Switch Port Stats Stp Role Enum
 
-if `up`==`true`
+if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
 
 ## Enumeration
 
@@ -11,9 +11,9 @@ if `up`==`true`
 
 | Name |
 |  --- |
-| `designated` |
-| `backup` |
 | `alternate` |
+| `backup` |
+| `designated` |
 | `root` |
 | `root-prevented` |
 

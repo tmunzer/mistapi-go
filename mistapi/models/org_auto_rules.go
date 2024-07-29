@@ -13,12 +13,13 @@ type OrgAutoRules struct {
     // "split(.)[1]"      // "a.b.c" -> "b"
     // "split(-)[1][0:3]" // "a1234-b5678-c90" -> "b56"
     Expression           Optional[string]                 `json:"expression"`
-    // optional/additional filter
+    // optional/additional filter. enum: `ap`, `gateway`, `other`, `switch`
     MatchDeviceType      *OrgAutoRulesMatchDeviceTypeEnum `json:"match_device_type,omitempty"`
     // optional/additional filter
     MatchModel           *string                          `json:"match_model,omitempty"`
     Model                *string                          `json:"model,omitempty"`
     Prefix               Optional[string]                 `json:"prefix"`
+    // enum: `dns_suffix`, `lldp_port_desc`, `lldp_system_name`, `model`, `name`, `subnet`
     Src                  OrgAutoRulesSrcEnum              `json:"src"`
     Subnet               *string                          `json:"subnet,omitempty"`
     Suffix               Optional[string]                 `json:"suffix"`

@@ -1,7 +1,7 @@
 
 # Privilege Msp Role Enum
 
-access permissions
+access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
 
 ## Enumeration
 
@@ -12,8 +12,8 @@ access permissions
 | Name |
 |  --- |
 | `admin` |
-| `write` |
-| `read` |
 | `helpdesk` |
 | `installer` |
+| `read` |
+| `write` |
 

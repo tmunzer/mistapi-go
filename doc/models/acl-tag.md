@@ -15,7 +15,7 @@
 | `RadiusGroup` | `*string` | Optional | required if:<br><br>* `type`==`radius_group`<br>* `type`==`static_gbp`<br>  if from matching radius_group |
 | `Specs` | [`[]models.AclTagSpec`](../../doc/models/acl-tag-spec.md) | Optional | if `type`==`resource`<br>empty means unrestricted, i.e. any |
 | `Subnets` | `[]string` | Optional | if<br><br>- `type`==`subnet`<br>- `type`==`resource` (optional. default is `any`)<br>- `type`==`static_gbp` if from matching subnet |
-| `Type` | [`models.AclTagTypeEnum`](../../doc/models/acl-tag-type-enum.md) | Required | - |
+| `Type` | [`models.AclTagTypeEnum`](../../doc/models/acl-tag-type-enum.md) | Required | enum: `any`, `dynamic_gbp`, `mac`, `network`, `radius_group`, `resource`, `static_gbp`, `subnet` |
 
 ## Example (as JSON)
 
@@ -38,7 +38,7 @@
       "protocol": "protocol6"
     }
   ],
-  "type": "dynamic_gbp"
+  "type": "static_gbp"
 }
 ```
 

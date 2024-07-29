@@ -1,6 +1,8 @@
 
 # Tacacs Default Role Enum
 
+enum: `admin`, `helpdesk`, `none`, `read`
+
 ## Enumeration
 
 `TacacsDefaultRoleEnum`
@@ -10,7 +12,7 @@
 | Name |
 |  --- |
 | `admin` |
+| `helpdesk` |
 | `none` |
 | `read` |
-| `helpdesk` |
 

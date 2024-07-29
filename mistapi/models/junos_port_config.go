@@ -21,6 +21,7 @@ type JunosPortConfig struct {
     Description          *string                    `json:"description,omitempty"`
     // if `speed` and `duplex` are specified, whether to disable autonegotiation
     DisableAutoneg       *bool                      `json:"disable_autoneg,omitempty"`
+    // enum: `auto`, `full`, `half`
     Duplex               *JunosPortConfigDuplexEnum `json:"duplex,omitempty"`
     // Enable dynamic usage for this port. Set to `dynamic` to enable.
     DynamicUsage         Optional[string]           `json:"dynamic_usage"`
@@ -30,6 +31,7 @@ type JunosPortConfig struct {
     // prevent helpdesk to override the port config
     NoLocalOverwrite     *bool                      `json:"no_local_overwrite,omitempty"`
     PoeDisabled          *bool                      `json:"poe_disabled,omitempty"`
+    // enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `auto`
     Speed                *JunosPortConfigSpeedEnum  `json:"speed,omitempty"`
     // port usage name. 
     // If EVPN is used, use `evpn_uplink`or `evpn_downlink`

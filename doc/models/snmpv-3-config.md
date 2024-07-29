@@ -24,17 +24,17 @@
     {
       "name": "name0",
       "tag": "tag4",
-      "type": "trap"
+      "type": "inform"
     },
     {
       "name": "name0",
       "tag": "tag4",
-      "type": "trap"
+      "type": "inform"
     },
     {
       "name": "name0",
       "tag": "tag4",
-      "type": "trap"
+      "type": "inform"
     }
   ],
   "notify_filter": [
@@ -91,13 +91,13 @@
   ],
   "usm": {
     "engine-id": "engine-id8",
-    "engine_type": "remote_engine",
+    "engine_type": "local_engine",
     "users": [
       {
         "authentication_password": "authentication_password0",
-        "authentication_type": "authentication_sha512",
+        "authentication_type": "authentication_sha384",
         "encryption_password": "encryption_password4",
-        "encryption_type": "privacy-aes128",
+        "encryption_type": "privacy-3des",
         "name": "name6"
       }
     ]

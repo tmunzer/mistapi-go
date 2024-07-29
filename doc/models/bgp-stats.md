@@ -21,7 +21,7 @@
 | `RxPkts` | `*int` | Optional | - |
 | `RxRoutes` | `*int` | Optional | number of received routes |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `State` | [`*models.BgpStatsStateEnum`](../../doc/models/bgp-stats-state-enum.md) | Optional | - |
+| `State` | [`*models.BgpStatsStateEnum`](../../doc/models/bgp-stats-state-enum.md) | Optional | enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent` |
 | `Timestamp` | `*float64` | Optional | - |
 | `TxPkts` | `*int` | Optional | - |
 | `TxRoutes` | `*int` | Optional | - |

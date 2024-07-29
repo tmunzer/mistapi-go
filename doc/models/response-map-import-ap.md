@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`models.ResponseMapImportApActionEnum`](../../doc/models/response-map-import-ap-action-enum.md) | Required | - |
+| `Action` | [`models.ResponseMapImportApActionEnum`](../../doc/models/response-map-import-ap-action-enum.md) | Required | enum: `assigned-named-placed`, `assigned-placed`, `ignored`, `named-placed`, `placed` |
 | `FloorplanId` | `uuid.UUID` | Required | - |
 | `Height` | `*float64` | Optional | - |
 | `Mac` | `string` | Required | - |

@@ -7,7 +7,7 @@ import (
 // CaptureScanAps represents a CaptureScanAps struct.
 // Property key is the AP MAC address (e.g. "5c5b35000001"). All optionals, parent parameters will be used if not defined
 type CaptureScanAps struct {
-    // Only Single value allowed
+    // Only Single value allowed. enum: `24`, `5`, `6`
     Band                 *CaptureScanApsBandEnum `json:"band,omitempty"`
     // specify the channel value where scan PCAP has to be started
     Channel              *string                 `json:"channel,omitempty"`

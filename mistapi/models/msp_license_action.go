@@ -14,6 +14,7 @@ type MspLicenseAction struct {
     DstOrgId             *string                       `json:"dst_org_id,omitempty"`
     // required if `op`== `annotate`
     Notes                *string                       `json:"notes,omitempty"`
+    // enum: `amend`, `annotate`, `delete`, `unamend`
     Op                   MspLicenseActionOperationEnum `json:"op"`
     // required if `op`==`amend`
     Quantity             *float64                      `json:"quantity,omitempty"`

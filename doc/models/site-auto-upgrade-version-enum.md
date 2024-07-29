@@ -1,7 +1,7 @@
 
 # Site Auto Upgrade Version Enum
 
-desired version
+desired version. enum: `beta`, `custom`, `stable`
 
 ## Enumeration
 
@@ -12,8 +12,8 @@ desired version
 | Name |
 |  --- |
 | `beta` |
-| `stable` |
 | `custom` |
+| `stable` |
 
 ## Example
 

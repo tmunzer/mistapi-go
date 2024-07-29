@@ -12,12 +12,12 @@
 | `Disabled` | `*bool` | Optional | **Default**: `false` |
 | `DynamicVlan` | [`*models.ApPortConfigDynamicVlan`](../../doc/models/ap-port-config-dynamic-vlan.md) | Optional | optional dynamic vlan |
 | `EnableMacAuth` | `*bool` | Optional | **Default**: `false` |
-| `Forwarding` | [`*models.ApPortConfigForwardingEnum`](../../doc/models/ap-port-config-forwarding-enum.md) | Optional | **Default**: `"all"` |
-| `MacAuthProtocol` | [`*models.ApPortConfigMacAuthProtocolEnum`](../../doc/models/ap-port-config-mac-auth-protocol-enum.md) | Optional | if `enable_mac_auth`==`true`, allows user to select an authentication protocol<br>**Default**: `"pap"` |
+| `Forwarding` | [`*models.ApPortConfigForwardingEnum`](../../doc/models/ap-port-config-forwarding-enum.md) | Optional | enum: `all`, `limited`, `mxtunnel`, `site_mxedge`, `wxtunnel`<br>**Default**: `"all"` |
+| `MacAuthProtocol` | [`*models.ApPortConfigMacAuthProtocolEnum`](../../doc/models/ap-port-config-mac-auth-protocol-enum.md) | Optional | if `enable_mac_auth`==`true`, allows user to select an authentication protocol. enum: `eap-md5`, `eap-peap`, `pap`<br>**Default**: `"pap"` |
 | `MistNac` | [`*models.WlanMistNac`](../../doc/models/wlan-mist-nac.md) | Optional | - |
 | `MxTunnelId` | `*uuid.UUID` | Optional | if `forwarding`==`mxtunnel`, vlan_ids comes from mxtunnel |
 | `MxtunnelName` | `*string` | Optional | if `forwarding`==`site_mxedge`, vlan_ids comes from site_mxedge (`mxtunnels` under site setting) |
-| `PortAuth` | [`*models.ApPortConfigPortAuthEnum`](../../doc/models/ap-port-config-port-auth-enum.md) | Optional | When doing port auth<br>**Default**: `"none"` |
+| `PortAuth` | [`*models.ApPortConfigPortAuthEnum`](../../doc/models/ap-port-config-port-auth-enum.md) | Optional | When doing port auth. enum: `dot1x`, `none`<br>**Default**: `"none"` |
 | `PortVlanId` | `*int` | Optional | if `forwrding`==`limited`<br>**Constraints**: `>= 1`, `<= 4094` |
 | `RadiusConfig` | [`*models.RadiusConfig`](../../doc/models/radius-config.md) | Optional | Junos Radius config |
 | `Radsec` | [`*models.Radsec`](../../doc/models/radsec.md) | Optional | Radsec settings |

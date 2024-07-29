@@ -1,6 +1,8 @@
 
 # Map Type Enum
 
+enum: `google`, `image`
+
 ## Enumeration
 
 `MapTypeEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `image` |
 | `google` |
+| `image` |
 
 ## Example
 

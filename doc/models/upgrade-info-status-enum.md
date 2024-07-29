@@ -1,6 +1,8 @@
 
 # Upgrade Info Status Enum
 
+enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
+
 ## Enumeration
 
 `UpgradeInfoStatusEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `starting` |
-| `inprogress` |
-| `success` |
 | `error` |
+| `inprogress` |
 | `scheduled` |
+| `starting` |
+| `success` |
 

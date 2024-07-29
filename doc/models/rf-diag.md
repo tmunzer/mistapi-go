@@ -15,7 +15,7 @@ RF Diag
 | `Mac` | `*string` | Optional | if `type`==`client` or `asset`, mac of the device |
 | `Name` | `string` | Required | name of the recording, the name of the sdk client would be a good default choice |
 | `SdkclientId` | `*uuid.UUID` | Optional | if `type`==`sdkclient`, sdkclient_id of this recording |
-| `Type` | [`models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Required | - |
+| `Type` | [`models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Required | enum: `asset`, `client`, `sdkclient` |
 
 ## Example (as JSON)
 

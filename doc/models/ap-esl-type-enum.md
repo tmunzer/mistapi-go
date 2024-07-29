@@ -1,7 +1,7 @@
 
 # Ap Esl Type Enum
 
-note: ble_config will be ingored if esl_config is enabled and with native mode.
+note: ble_config will be ingored if esl_config is enabled and with native mode. enum: `hanshow`, `imagotag`, `native`, `solum`
 
 ## Enumeration
 
@@ -11,10 +11,10 @@ note: ble_config will be ingored if esl_config is enabled and with native mode.
 
 | Name |
 |  --- |
-| `imagotag` |
 | `hanshow` |
-| `solum` |
+| `imagotag` |
 | `native` |
+| `solum` |
 
 ## Example
 

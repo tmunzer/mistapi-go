@@ -15,6 +15,7 @@ type JunosIpConfig struct {
     Netmask              *string        `json:"netmask,omitempty"`
     // the network where this mgmt IP reside, this will be used as default network for outbound-ssh, dns, ntp, dns, tacplus, radius, syslog, snmp
     Network              *string        `json:"network,omitempty"`
+    // enum: `dhcp`, `static`
     Type                 *IpTypeEnum    `json:"type,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }

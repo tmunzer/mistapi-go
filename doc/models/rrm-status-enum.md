@@ -1,6 +1,8 @@
 
 # Rrm Status Enum
 
+enum: `ready`, `unknown`, `updating`
+
 ## Enumeration
 
 `RrmStatusEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
+| `ready` |
 | `unknown` |
 | `updating` |
-| `ready` |
 

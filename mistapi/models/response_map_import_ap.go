@@ -9,6 +9,7 @@ import (
 
 // ResponseMapImportAp represents a ResponseMapImportAp struct.
 type ResponseMapImportAp struct {
+    // enum: `assigned-named-placed`, `assigned-placed`, `ignored`, `named-placed`, `placed`
     Action               ResponseMapImportApActionEnum `json:"action"`
     FloorplanId          uuid.UUID                     `json:"floorplan_id"`
     Height               *float64                      `json:"height,omitempty"`

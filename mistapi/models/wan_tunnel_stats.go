@@ -26,7 +26,9 @@ type WanTunnelStats struct {
     PeerHost             *string                     `json:"peer_host,omitempty"`
     // peer ip address
     PeerIp               *string                     `json:"peer_ip,omitempty"`
+    // enum: `primary`, `secondary`
     Priority             *WanTunnelStatsPriorityEnum `json:"priority,omitempty"`
+    // enum: `gre`, `ipsec`
     Protocol             *WanTunnelProtocolEnum      `json:"protocol,omitempty"`
     RxBytes              *int                        `json:"rx_bytes,omitempty"`
     RxPkts               *int                        `json:"rx_pkts,omitempty"`

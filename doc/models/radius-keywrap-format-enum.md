@@ -1,6 +1,8 @@
 
 # Radius Keywrap Format Enum
 
+enum: `ascii`, `hex`
+
 ## Enumeration
 
 `RadiusKeywrapFormatEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `hex` |
 | `ascii` |
+| `hex` |
 

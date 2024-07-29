@@ -9,6 +9,7 @@ import (
 type TuntermDhcpdConfig struct {
     Enabled              *bool                 `json:"enabled,omitempty"`
     Servers              []string              `json:"servers,omitempty"`
+    // enum: `relay`
     Type                 *TuntermDhcpdTypeEnum `json:"type,omitempty"`
     AdditionalProperties map[string]any        `json:"_"`
 }

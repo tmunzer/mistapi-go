@@ -1,6 +1,8 @@
 
 # Privilege Org Scope Enum
 
+enum: `org`, `site`, `sitegroup`
+
 ## Enumeration
 
 `PrivilegeOrgScopeEnum`

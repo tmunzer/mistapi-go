@@ -1,6 +1,8 @@
 
 # Ip Type Enum
 
+enum: `dhcp`, `static`
+
 ## Enumeration
 
 `IpTypeEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `static` |
 | `dhcp` |
+| `static` |
 
 ## Example
 

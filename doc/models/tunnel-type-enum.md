@@ -1,6 +1,8 @@
 
 # Tunnel Type Enum
 
+enum: `wan`, `wxtunnel`
+
 ## Enumeration
 
 `TunnelTypeEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `wxtunnel` |
 | `wan` |
+| `wxtunnel` |
 

@@ -6,6 +6,7 @@ import (
 
 // ConstDeviceApExtios represents a ConstDeviceApExtios struct.
 type ConstDeviceApExtios struct {
+    // enum: `IN`, `OUT`
     DefaultDir           *ConstDeviceApExtiosDefaultDirEnum `json:"default_dir,omitempty"`
     Input                *bool                              `json:"input,omitempty"`
     Output               *bool                              `json:"output,omitempty"`

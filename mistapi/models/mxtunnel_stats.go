@@ -23,6 +23,7 @@ type MxtunnelStats struct {
     // list of sessions
     Sessions             []MxtunnelStatsSession  `json:"sessions,omitempty"`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
+    // enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
     State                *MxtunnelStatsStateEnum `json:"state,omitempty"`
     TxControlPkts        *int                    `json:"tx_control_pkts,omitempty"`
     Uptime               *int                    `json:"uptime,omitempty"`

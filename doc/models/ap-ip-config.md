@@ -20,8 +20,8 @@ IP AP settings
 | `Mtu` | `*int` | Optional | - |
 | `Netmask` | `*string` | Optional | required if `type`==`static` |
 | `Netmask6` | `*string` | Optional | - |
-| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | **Default**: `"dhcp"` |
-| `Type6` | [`*models.IpType6Enum`](../../doc/models/ip-type-6-enum.md) | Optional | **Default**: `"disabled"` |
+| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
+| `Type6` | [`*models.IpType6Enum`](../../doc/models/ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br>**Default**: `"disabled"` |
 | `VlanId` | `*int` | Optional | management vlan id, default is 1 (untagged)<br>**Default**: `1` |
 
 ## Example (as JSON)

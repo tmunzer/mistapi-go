@@ -12,8 +12,11 @@ type SnmpVacmAccessItemPrefixListItem struct {
     NotifyView           *string                                    `json:"notify_view,omitempty"`
     // refer to view name
     ReadView             *string                                    `json:"read_view,omitempty"`
+    // enum: `authentication`, `none`, `privacy`
     SecurityLevel        *SnmpVacmAccessItemPrefixListItemLevelEnum `json:"security_level,omitempty"`
+    // enum: `any`, `usm`, `v1`, `v2c`
     SecurityModel        *SnmpVacmAccessItemPrefixListItemModelEnum `json:"security_model,omitempty"`
+    // enum: `context_prefix`, `default_context_prefix`
     Type                 *SnmpVacmAccessItemTypeEnum                `json:"type,omitempty"`
     // refer to view name
     WriteView            *string                                    `json:"write_view,omitempty"`

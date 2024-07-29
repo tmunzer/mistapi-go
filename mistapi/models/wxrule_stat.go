@@ -10,6 +10,7 @@ import (
 // WxruleStat represents a WxruleStat struct.
 // Wxrule statistics
 type WxruleStat struct {
+    // enum: `allow`, `block`
     Action               WxruleStatsActionEnum                 `json:"action"`
     ClientMac            []string                              `json:"client_mac"`
     DstAllowWxtags       []uuid.UUID                           `json:"dst_allow_wxtags"`

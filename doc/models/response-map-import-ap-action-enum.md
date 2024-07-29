@@ -1,6 +1,8 @@
 
 # Response Map Import Ap Action Enum
 
+enum: `assigned-named-placed`, `assigned-placed`, `ignored`, `named-placed`, `placed`
+
 ## Enumeration
 
 `ResponseMapImportApActionEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `placed` |
-| `assigned-placed` |
-| `named-placed` |
 | `assigned-named-placed` |
+| `assigned-placed` |
 | `ignored` |
+| `named-placed` |
+| `placed` |
 

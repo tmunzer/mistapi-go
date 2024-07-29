@@ -1,6 +1,8 @@
 
 # Bgp Config Type Enum
 
+enum: `external`, `internal`
+
 ## Enumeration
 
 `BgpConfigTypeEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `internal` |
 | `external` |
+| `internal` |
 

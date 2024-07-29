@@ -13,8 +13,8 @@ If EVPN is used, use `evpn_uplink`or `evpn_downlink`
 
 | Name |
 |  --- |
+| `ha_control` |
+| `ha_data` |
 | `lan` |
 | `wan` |
-| `ha_data` |
-| `ha_control` |
 

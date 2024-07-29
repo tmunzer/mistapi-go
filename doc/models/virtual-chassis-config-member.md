@@ -13,7 +13,7 @@
 | `Mac` | `*string` | Optional | fpc0, same as the mac of device_id |
 | `Member` | `*int` | Optional | to create a preprovisionned virtual chassis |
 | `VcPorts` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `VcRole` | [`*models.VirtualChassisConfigMemberVcRoleEnum`](../../doc/models/virtual-chassis-config-member-vc-role-enum.md) | Optional | - |
+| `VcRole` | [`*models.VirtualChassisConfigMemberVcRoleEnum`](../../doc/models/virtual-chassis-config-member-vc-role-enum.md) | Optional | enum: `backup`, `linecard`, `master` |
 
 ## Example (as JSON)
 
@@ -26,7 +26,7 @@
     "vc_ports4",
     "vc_ports5"
   ],
-  "vc_role": "master"
+  "vc_role": "backup"
 }
 ```
 

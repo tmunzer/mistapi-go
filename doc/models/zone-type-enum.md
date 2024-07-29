@@ -1,6 +1,8 @@
 
 # Zone Type Enum
 
+enum: `rssizones`, `zones`
+
 ## Enumeration
 
 `ZoneTypeEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `zones` |
 | `rssizones` |
+| `zones` |
 

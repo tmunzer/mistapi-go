@@ -1,6 +1,8 @@
 
 # Get Org Mxedge Upgrade Info Channel Enum
 
+enum: `alpha`, `beta`, `stable`
+
 ## Enumeration
 
 `GetOrgMxedgeUpgradeInfoChannelEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `stable` |
-| `beta` |
 | `alpha` |
+| `beta` |
+| `stable` |
 

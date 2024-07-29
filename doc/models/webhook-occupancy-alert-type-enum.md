@@ -1,7 +1,7 @@
 
 # Webhook Occupancy Alert Type Enum
 
-event type (COMPLIANCE-VIOLATION / COMPLIANCE-OK)
+enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION`
 
 ## Enumeration
 
@@ -11,6 +11,6 @@ event type (COMPLIANCE-VIOLATION / COMPLIANCE-OK)
 
 | Name |
 |  --- |
-| `COMPLIANCE-VIOLATION` |
 | `COMPLIANCE-OK` |
+| `COMPLIANCE-VIOLATION` |
 

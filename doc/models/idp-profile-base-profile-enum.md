@@ -1,6 +1,8 @@
 
 # Idp Profile Base Profile Enum
 
+enum: `critical`, `standard`, `strict`
+
 ## Enumeration
 
 `IdpProfileBaseProfileEnum`
@@ -10,8 +12,8 @@
 | Name |
 |  --- |
 | `critical` |
-| `strict` |
 | `standard` |
+| `strict` |
 
 ## Example
 

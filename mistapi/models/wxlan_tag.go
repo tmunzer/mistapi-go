@@ -28,12 +28,12 @@ type WxlanTag struct {
     LastIps              []string               `json:"last_ips,omitempty"`
     // if `type`==`client`, Client MAC Address
     Mac                  Optional[string]       `json:"mac"`
-    // required if `type`==`match`
+    // required if `type`==`match`. enum: `ap_id`, `app`, `asset_mac`, `client_mac`, `hostname`, `ip_range_subnet`, `port`, `psk_name`, `psk_role`, `radius_attr`, `radius_class`, `radius_group`, `radius_username`, `sdkclient_uuid`, `wlan_id`
     Match                *WxlanTagMatchEnum     `json:"match,omitempty"`
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // The name
     Name                 string                 `json:"name"`
-    // required if `type`==`match`, type of tag (inclusive/exclusive)
+    // required if `type`==`match`, type of tag (inclusive/exclusive). enum: `in`, `not_in`
     Op                   *WxlanTagOperationEnum `json:"op,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     ResourceMac          Optional[string]       `json:"resource_mac"`
@@ -42,6 +42,7 @@ type WxlanTag struct {
     // if `type`==`spec`
     Specs                []WxlanTagSpec         `json:"specs,omitempty"`
     Subnet               *string                `json:"subnet,omitempty"`
+    // enum: `client`, `match`, `resource`, `spec`, `subnet`, `vlan`
     Type                 WxlanTagTypeEnum       `json:"type"`
     // required if `type`==`match` and
     //   * `match`==`ap_id`: list of AP IDs

@@ -9,8 +9,9 @@ import (
 type RftemplateRadioBand24 struct {
     AllowRrmDisable      *bool                     `json:"allow_rrm_disable,omitempty"`
     AntGain              Optional[int]             `json:"ant_gain"`
+    // enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`
     AntennaMode          *RadioBandAntennaModeEnum `json:"antenna_mode,omitempty"`
-    // channel width for the 2.4GHz band
+    // channel width for the 2.4GHz band. enum: `20`, `40`
     Bandwidth            *Dot11Bandwidth24Enum     `json:"bandwidth,omitempty"`
     // For RFTemplates. List of channels, null or empty array means auto
     Channels             Optional[[]int]           `json:"channels"`
@@ -22,6 +23,7 @@ type RftemplateRadioBand24 struct {
     PowerMax             Optional[int]             `json:"power_max"`
     // when power=0, min tx power to use, HW-specific values will be used if not set
     PowerMin             Optional[int]             `json:"power_min"`
+    // enum: `auto`, `long`, `short`
     Preamble             *RadioBandPreambleEnum    `json:"preamble,omitempty"`
     AdditionalProperties map[string]any            `json:"_"`
 }

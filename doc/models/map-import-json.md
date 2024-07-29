@@ -12,7 +12,7 @@
 | `ImportAllFloorplans` | `*bool` | Optional | **Default**: `false` |
 | `ImportHeight` | `*bool` | Optional | **Default**: `true` |
 | `ImportOrientation` | `*bool` | Optional | **Default**: `true` |
-| `VendorName` | [`models.MapImportJsonVendorNameEnum`](../../doc/models/map-import-json-vendor-name-enum.md) | Required | - |
+| `VendorName` | [`models.MapImportJsonVendorNameEnum`](../../doc/models/map-import-json-vendor-name-enum.md) | Required | enum: `ekahau`, `ibwave` |
 
 ## Example (as JSON)
 

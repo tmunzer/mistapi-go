@@ -21,6 +21,7 @@ type GatewayPathPreferencesPath struct {
     Networks             []string             `json:"networks,omitempty"`
     // if `type`==`local`, if destination IP is to be replaced
     TargetIps            []string             `json:"target_ips,omitempty"`
+    // enum: `local`, `tunnel`, `vpn`, `wan`
     Type                 *GatewayPathTypeEnum `json:"type,omitempty"`
     // required when`type`==`tunnel`, optional if `type`==`vpn` wan
     WanName              *string              `json:"wan_name,omitempty"`

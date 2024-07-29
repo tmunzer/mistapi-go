@@ -1,6 +1,8 @@
 
 # Utils Traceroute Protocol Enum
 
+enum: `udp`
+
 ## Enumeration
 
 `UtilsTracerouteProtocolEnum`

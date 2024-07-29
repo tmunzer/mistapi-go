@@ -23,6 +23,7 @@ type Sso struct {
     IdpSignAlgo           *string              `json:"idp_sign_algo,omitempty"`
     // IDP Single-Sign-On URL
     IdpSsoUrl             *string              `json:"idp_sso_url,omitempty"`
+    // enum: `ldap`, `mxedge_proxy`, `oauth`, `saml`
     IdpType               *SsoIdpTypeEnum      `json:"idp_type,omitempty"`
     // ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role
     IgnoreUnmatchedRoles  *bool                `json:"ignore_unmatched_roles,omitempty"`
@@ -50,7 +51,7 @@ type Sso struct {
     LdapResolveGroups     *bool                `json:"ldap_resolve_groups,omitempty"`
     // if `idp_type`==`ldap`
     LdapServerHosts       []string             `json:"ldap_server_hosts,omitempty"`
-    // if `idp_type`==`ldap`
+    // if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`
     LdapType              *SsoLdapTypeEnum     `json:"ldap_type,omitempty"`
     // Only if `ldap_type`==`custom`
     LdapUserFilter        *string              `json:"ldap_user_filter,omitempty"`
@@ -60,7 +61,7 @@ type Sso struct {
     MxedgeProxy           *SsoMxedgeProxy      `json:"mxedge_proxy,omitempty"`
     // name
     Name                  string               `json:"name"`
-    // if `idp_type`==`saml`
+    // if `idp_type`==`saml`. enum: `email`, `unspecified`
     NameidFormat          *SsoNameidFormatEnum `json:"nameid_format,omitempty"`
     // if `oauth_type`==`okta`, Client Credentials
     OauthCcClientId       *string              `json:"oauth_cc_client_id,omitempty"`
@@ -74,6 +75,7 @@ type Sso struct {
     OauthRopcClientSecret *string              `json:"oauth_ropc_client_secret,omitempty"`
     // if `oauth_type`==`okta`, oauth_tenant_id
     OauthTenantId         *string              `json:"oauth_tenant_id,omitempty"`
+    // enum: `azure`, `azure-gov`, `okta`
     OauthType             *SsoOauthTypeEnum    `json:"oauth_type,omitempty"`
     OrgId                 *uuid.UUID           `json:"org_id,omitempty"`
     // optional, custom role attribute parsing scheme

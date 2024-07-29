@@ -21,7 +21,7 @@ device event webhook sample
   "events": [
     {
       "device_name": "device_name8",
-      "device_type": "gateway",
+      "device_type": "switch",
       "ev_type": "notice",
       "mac": "mac4",
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",

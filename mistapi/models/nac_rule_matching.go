@@ -7,6 +7,7 @@ import (
 
 // NacRuleMatching represents a NacRuleMatching struct.
 type NacRuleMatching struct {
+    // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `psk`
     AuthType             *NacRuleMatchingAuthTypeEnum  `json:"auth_type,omitempty"`
     Nactags              []string                      `json:"nactags,omitempty"`
     PortTypes            []NacRuleMatchingPortTypeEnum `json:"port_types,omitempty"`

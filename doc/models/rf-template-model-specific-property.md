@@ -13,7 +13,7 @@
 | `AntGain5` | `*int` | Optional | - |
 | `AntGain6` | `*int` | Optional | - |
 | `Band24` | [`*models.RftemplateRadioBand24`](../../doc/models/rftemplate-radio-band-24.md) | Optional | Radio Band AP settings |
-| `Band24Usage` | [`*models.RadioBand24UsageEnum`](../../doc/models/radio-band-24-usage-enum.md) | Optional | - |
+| `Band24Usage` | [`*models.RadioBand24UsageEnum`](../../doc/models/radio-band-24-usage-enum.md) | Optional | enum: `24`, `5`, `6`, `auto` |
 | `Band5` | [`*models.RftemplateRadioBand5`](../../doc/models/rftemplate-radio-band-5.md) | Optional | Radio Band AP settings |
 | `Band5On24Radio` | [`*models.RftemplateRadioBand5`](../../doc/models/rftemplate-radio-band-5.md) | Optional | Radio Band AP settings |
 | `Band6` | [`*models.RftemplateRadioBand6`](../../doc/models/rftemplate-radio-band-6.md) | Optional | Radio Band AP settings |
@@ -28,7 +28,7 @@
   "band_24": {
     "allow_rrm_disable": false,
     "ant_gain": 0,
-    "antenna_mode": "default",
+    "antenna_mode": "1x1",
     "bandwidth": 20,
     "channels": [
       221

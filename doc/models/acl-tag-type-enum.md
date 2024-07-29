@@ -1,6 +1,8 @@
 
 # Acl Tag Type Enum
 
+enum: `any`, `dynamic_gbp`, `mac`, `network`, `radius_group`, `resource`, `static_gbp`, `subnet`
+
 ## Enumeration
 
 `AclTagTypeEnum`
@@ -9,12 +11,12 @@
 
 | Name |
 |  --- |
+| `any` |
+| `dynamic_gbp` |
 | `mac` |
-| `subnet` |
 | `network` |
 | `radius_group` |
-| `any` |
 | `resource` |
-| `dynamic_gbp` |
 | `static_gbp` |
+| `subnet` |
 

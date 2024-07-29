@@ -22,8 +22,8 @@
 | `ServerIdOverride` | `*bool` | Optional | `server_id_override`==`true` means the device, when acts as DHCP relay and forwards DHCP responses from DHCP server to clients,<br>should overwrite the Sever Identifier option (i.e. DHCP option 54) in DHCP responses with its own IP address.<br>**Default**: `false` |
 | `Servers` | `[]string` | Optional | if `type`==`relay` |
 | `Servers6` | `[]string` | Optional | if `type6`==`relay` |
-| `Type` | [`*models.DhcpdConfigTypeEnum`](../../doc/models/dhcpd-config-type-enum.md) | Optional | DHCP Server (local) or DHCP Relay (relay)<br>**Default**: `"local"` |
-| `Type6` | [`*models.DhcpdConfigTypeEnum`](../../doc/models/dhcpd-config-type-enum.md) | Optional | DHCP Server (local) or DHCP Relay (relay)<br>**Default**: `"none"` |
+| `Type` | [`*models.DhcpdConfigTypeEnum`](../../doc/models/dhcpd-config-type-enum.md) | Optional | enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)<br>**Default**: `"local"` |
+| `Type6` | [`*models.DhcpdConfigTypeEnum`](../../doc/models/dhcpd-config-type-enum.md) | Optional | enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)<br>**Default**: `"none"` |
 | `VendorEncapulated` | [`map[string]models.DhcpdConfigVendorOption`](../../doc/models/dhcpd-config-vendor-option.md) | Optional | Property key is <enterprise number>:<sub option code>, with<br><br>* enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)<br>* sub option code: 1-255, sub-option code' |
 
 ## Example (as JSON)

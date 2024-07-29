@@ -12,6 +12,7 @@ type VirtualChassisConfigMember struct {
     // to create a preprovisionned virtual chassis
     Member               *int                                  `json:"member,omitempty"`
     VcPorts              []string                              `json:"vc_ports,omitempty"`
+    // enum: `backup`, `linecard`, `master`
     VcRole               *VirtualChassisConfigMemberVcRoleEnum `json:"vc_role,omitempty"`
     AdditionalProperties map[string]any                        `json:"_"`
 }

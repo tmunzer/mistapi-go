@@ -1,7 +1,7 @@
 
 # Ap Client Bridge Auth Type Enum
 
-wpa2-AES/CCMPp is assumed when `type`==`psk`
+wpa2-AES/CCMPp is assumed when `type`==`psk`. enum: `open`, `psk`
 
 ## Enumeration
 

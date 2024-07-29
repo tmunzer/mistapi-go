@@ -7,6 +7,7 @@ import (
 
 // IdpProfile represents a IdpProfile struct.
 type IdpProfile struct {
+    // enum: `critical`, `standard`, `strict`
     BaseProfile          *IdpProfileBaseProfileEnum `json:"base_profile,omitempty"`
     CreatedTime          *float64                   `json:"created_time,omitempty"`
     Id                   *uuid.UUID                 `json:"id,omitempty"`

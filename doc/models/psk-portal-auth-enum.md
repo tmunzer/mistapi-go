@@ -1,7 +1,7 @@
 
 # Psk Portal Auth Enum
 
-Note: `sponsor` not yet available
+enum: `sponsor`, `sso`
 
 ## Enumeration
 
@@ -11,6 +11,6 @@ Note: `sponsor` not yet available
 
 | Name |
 |  --- |
-| `sso` |
 | `sponsor` |
+| `sso` |
 

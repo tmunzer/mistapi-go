@@ -11,8 +11,8 @@
 |  --- | --- | --- | --- |
 | `FipsEnabled` | `*bool` | Optional | **Default**: `false` |
 | `MistPassword` | `*string` | Optional | - |
-| `OobIpType` | [`*models.MxedgeMgmtOobIpTypeEnum`](../../doc/models/mxedge-mgmt-oob-ip-type-enum.md) | Optional | **Default**: `"dhcp"` |
-| `OobIpType6` | [`*models.MxedgeMgmtOobIpType6Enum`](../../doc/models/mxedge-mgmt-oob-ip-type-6-enum.md) | Optional | **Default**: `"autoconf"` |
+| `OobIpType` | [`*models.MxedgeMgmtOobIpTypeEnum`](../../doc/models/mxedge-mgmt-oob-ip-type-enum.md) | Optional | enum: `dhcp`, `disabled`, `static`<br>**Default**: `"dhcp"` |
+| `OobIpType6` | [`*models.MxedgeMgmtOobIpType6Enum`](../../doc/models/mxedge-mgmt-oob-ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br>**Default**: `"autoconf"` |
 | `RootPassword` | `*string` | Optional | - |
 
 ## Example (as JSON)

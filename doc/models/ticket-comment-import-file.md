@@ -17,7 +17,7 @@
 ```json
 {
   "comment": "this is urgent",
-  "file": "file6"
+  "file": "data:text/plain;name=dummy_file;base64,"
 }
 ```
 

@@ -16,7 +16,7 @@ portal wlan settings
 | `AmazonEmailDomains` | `[]string` | Optional | Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `AmazonEnabled` | `*bool` | Optional | whether amazon is enabled as a login method<br>**Default**: `false` |
 | `AmazonExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using amazon auth (in minutes), if not provided, uses expire` |
-| `Auth` | [`*models.WlanPortalAuthEnum`](../../doc/models/wlan-portal-auth-enum.md) | Optional | authentication scheme<br>**Default**: `"none"` |
+| `Auth` | [`*models.WlanPortalAuthEnum`](../../doc/models/wlan-portal-auth-enum.md) | Optional | authentication scheme. enum: `external`, `none`, `sso`<br>**Default**: `"none"` |
 | `AzureClientId` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`.<br>Azure active directory app client id |
 | `AzureClientSecret` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`.<br>Azure active directory app client secret |
 | `AzureEnabled` | `*bool` | Optional | whether Azure Active Directory is enabled as a login method<br>**Default**: `false` |
@@ -62,7 +62,7 @@ portal wlan settings
 | `SmsMessageFormat` | `*string` | Optional | - |
 | `SmsEnabled` | `*bool` | Optional | whether sms is enabled as a login method<br>**Default**: `false` |
 | `SmsExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using sms auth (in minutes), if not provided, uses expire` |
-| `SmsProvider` | [`*models.WlanPortalSmsProviderEnum`](../../doc/models/wlan-portal-sms-provider-enum.md) | Optional | **Default**: `"manual"` |
+| `SmsProvider` | [`*models.WlanPortalSmsProviderEnum`](../../doc/models/wlan-portal-sms-provider-enum.md) | Optional | enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`<br>**Default**: `"manual"` |
 | `SponsorAutoApprove` | `*bool` | Optional | whether to automatically approve guest and allow sponsor to revoke guest access, needs predefined_sponsors_enabled enabled and sponsor_notify_all disabled<br>**Default**: `false` |
 | `SponsorEmailDomains` | `[]string` | Optional | list of domain allowed for sponsor email. Required if `sponsor_enabled` is `true` and `sponsors` is empty. |
 | `SponsorEnabled` | `*bool` | Optional | whether sponsor is enabled<br>**Default**: `false` |
@@ -77,7 +77,7 @@ portal wlan settings
 | `SsoIdpSignAlgo` | `*string` | Optional | signing algorithm for SAML Assertion |
 | `SsoIdpSsoUrl` | `*string` | Optional | IDP Single-Sign-On URL |
 | `SsoIssuer` | `*string` | Optional | IDP issuer URL |
-| `SsoNameidFormat` | [`*models.WlanPortalSsoNameidFormatEnum`](../../doc/models/wlan-portal-sso-nameid-format-enum.md) | Optional | **Default**: `"email"` |
+| `SsoNameidFormat` | [`*models.WlanPortalSsoNameidFormatEnum`](../../doc/models/wlan-portal-sso-nameid-format-enum.md) | Optional | enum: `email`, `unspecified`<br>**Default**: `"email"` |
 | `TelstraClientId` | `*string` | Optional | when `sms_provider`==`telstra`, Client ID provided by Telstra |
 | `TelstraClientSecret` | `*string` | Optional | when `sms_provider`==`telstra`, Client secret provided by Telstra |
 | `TwilioAuthToken` | `models.Optional[string]` | Optional | when `sms_provider`==`twilio`, Auth token account with twilio account |

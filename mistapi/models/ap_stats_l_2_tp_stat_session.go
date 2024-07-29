@@ -12,6 +12,7 @@ type ApStatsL2TpStatSession struct {
     RemoteId             Optional[string] `json:"remote_id"`
     // remote sessions id (dynamically unless Tunnel is said to be static)
     RemoteSid            Optional[int]    `json:"remote_sid"`
+    // enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
     State                *L2TpStateEnum   `json:"state,omitempty"`
     AdditionalProperties map[string]any   `json:"_"`
 }

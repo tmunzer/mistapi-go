@@ -1,7 +1,7 @@
 
 # Admin Compliance Status Enum
 
-trade compliance status
+trade compliance status. enum: `blocked`, `restricted`
 
 ## Enumeration
 
@@ -11,6 +11,6 @@ trade compliance status
 
 | Name |
 |  --- |
-| `restricted` |
 | `blocked` |
+| `restricted` |
 

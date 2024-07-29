@@ -19,25 +19,25 @@ Junos port usages
 | `Description` | `*string` | Optional | Only if `mode`!=`dynamic` |
 | `DisableAutoneg` | `*bool` | Optional | Only if `mode`!=`dynamic` if speed and duplex are specified, whether to disable autonegotiation<br>**Default**: `false` |
 | `Disabled` | `*bool` | Optional | Only if `mode`!=`dynamic` whether the port is disabled<br>**Default**: `false` |
-| `Duplex` | [`*models.SwitchPortUsageDuplexEnum`](../../doc/models/switch-port-usage-duplex-enum.md) | Optional | Only if `mode`!=`dynamic` link connection mode<br>**Default**: `"auto"` |
+| `Duplex` | [`*models.SwitchPortUsageDuplexEnum`](../../doc/models/switch-port-usage-duplex-enum.md) | Optional | Only if `mode`!=`dynamic` link connection mode. enum: `auto`, `full`, `half`<br>**Default**: `"auto"` |
 | `DynamicVlanNetworks` | `[]string` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`, if dynamic vlan is used, specify the possible networks/vlans RADIUS can return |
 | `EnableMacAuth` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` whether to enable MAC Auth<br>**Default**: `false` |
 | `EnableQos` | `*bool` | Optional | Only if `mode`!=`dynamic`<br>**Default**: `false` |
 | `GuestNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed) |
 | `InterSwitchLink` | `*bool` | Optional | Only if `mode`!=`dynamic` inter_switch_link is used together with "isolation" under networks<br>NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together<br>**Default**: `false` |
 | `MacAuthOnly` | `*bool` | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth`==`true` |
-| `MacAuthProtocol` | [`*models.SwitchPortUsageMacAuthProtocolEnum`](../../doc/models/switch-port-usage-mac-auth-protocol-enum.md) | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled.<br>**Default**: `"eap-md5"` |
+| `MacAuthProtocol` | [`*models.SwitchPortUsageMacAuthProtocolEnum`](../../doc/models/switch-port-usage-mac-auth-protocol-enum.md) | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`<br>**Default**: `"eap-md5"` |
 | `MacLimit` | `*int` | Optional | Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform<br>**Default**: `0`<br>**Constraints**: `>= 0` |
-| `Mode` | [`*models.SwitchPortUsageModeEnum`](../../doc/models/switch-port-usage-mode-enum.md) | Optional | `mode`==`dynamic` must only be used with the port usage with the name `dynamic` |
+| `Mode` | [`*models.SwitchPortUsageModeEnum`](../../doc/models/switch-port-usage-mode-enum.md) | Optional | `mode`==`dynamic` must only be used with the port usage with the name `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk` |
 | `Mtu` | `*int` | Optional | Only if `mode`!=`dynamic` media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514. |
 | `Networks` | `[]string` | Optional | Only if `mode`==`trunk`, the list of network/vlans |
 | `PersistMac` | `*bool` | Optional | Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses<br>**Default**: `false` |
 | `PoeDisabled` | `*bool` | Optional | Only if `mode`!=`dynamic` whether PoE capabilities are disabled for a port<br>**Default**: `false` |
-| `PortAuth` | [`models.Optional[models.SwitchPortUsageDot1XEnum]`](../../doc/models/switch-port-usage-dot-1-x-enum.md) | Optional | Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x |
+| `PortAuth` | [`models.Optional[models.SwitchPortUsageDot1XEnum]`](../../doc/models/switch-port-usage-dot-1-x-enum.md) | Optional | Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x. enum: `dot1x` |
 | `PortNetwork` | `*string` | Optional | Only if `mode`!=`dynamic` native network/vlan for untagged traffic |
 | `ReauthInterval` | `*int` | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range<br>**Default**: `3600`<br>**Constraints**: `>= 10`, `<= 65535` |
 | `RejectedNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` when radius server reject / fails |
-| `ResetDefaultWhen` | [`*models.SwitchPortUsageDynamicResetDefaultWhenEnum`](../../doc/models/switch-port-usage-dynamic-reset-default-when-enum.md) | Optional | Only if `mode`==`dynamic` Control when the DPC port should be changed to the default port usage<br>Configuring to none will let the DPC port keep at the current port usage.<br>**Default**: `"link_down"` |
+| `ResetDefaultWhen` | [`*models.SwitchPortUsageDynamicResetDefaultWhenEnum`](../../doc/models/switch-port-usage-dynamic-reset-default-when-enum.md) | Optional | Only if `mode`==`dynamic` Control when the DPC port should be changed to the default port usage. enum: `link_down`, `none` (let the DPC port keep at the current port usage)<br>**Default**: `"link_down"` |
 | `Rules` | [`[]models.SwitchPortUsageDynamicRule`](../../doc/models/switch-port-usage-dynamic-rule.md) | Optional | Only if `mode`==`dynamic` |
 | `Speed` | `*string` | Optional | Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed |
 | `StormControl` | [`*models.SwitchPortUsageStormControl`](../../doc/models/switch-port-usage-storm-control.md) | Optional | Switch storm control<br>Only if `mode`!=`dynamic` |

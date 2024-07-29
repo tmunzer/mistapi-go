@@ -1,7 +1,7 @@
 
 # Evpn Options Routed at Enum
 
-optional, where virtual-gateway should reside
+optional, where virtual-gateway should reside. enum: `core`, `distribution`, `edge`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ optional, where virtual-gateway should reside
 
 | Name |
 |  --- |
-| `edge` |
 | `core` |
 | `distribution` |
+| `edge` |
 

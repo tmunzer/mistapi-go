@@ -8,7 +8,7 @@ import (
 type UtilsClearArp struct {
     // The IP address for which to clear an ARP entry. port_id must be specified. Both vlan and ip cannot be specified.
     Ip                   *string            `json:"ip,omitempty"`
-    // only for HA
+    // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     // The device interface on which to clear the ARP cache.
     PortId               *string            `json:"port_id,omitempty"`

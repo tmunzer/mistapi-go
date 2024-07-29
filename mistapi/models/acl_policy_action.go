@@ -6,6 +6,7 @@ import (
 
 // AclPolicyAction represents a AclPolicyAction struct.
 type AclPolicyAction struct {
+    // enum: `allow`, `deny`
     Action               *AllowDenyEnum `json:"action,omitempty"`
     DstTag               *string        `json:"dst_tag,omitempty"`
     AdditionalProperties map[string]any `json:"_"`

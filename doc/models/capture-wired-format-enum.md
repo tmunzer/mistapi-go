@@ -1,7 +1,7 @@
 
 # Capture Wired Format Enum
 
-pcap format
+pcap format. enum: `pcap`, `stream`
 
 ## Enumeration
 

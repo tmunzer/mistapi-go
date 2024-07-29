@@ -11,6 +11,7 @@ type VrrpGroup struct {
     AuthKey              *string                     `json:"auth_key,omitempty"`
     // if `auth_type`==`simple`
     AuthPassword         *string                     `json:"auth_password,omitempty"`
+    // enum: `md5`, `simple`
     AuthType             *VrrpGroupAuthTypeEnum      `json:"auth_type,omitempty"`
     // Property key is the network name
     Networks             map[string]VrrpGroupNetwork `json:"networks,omitempty"`

@@ -1,6 +1,8 @@
 
 # Capture Radiotapwired Format Enum
 
+enum: `pcap`, `stream`
+
 ## Enumeration
 
 `CaptureRadiotapwiredFormatEnum`

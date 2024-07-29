@@ -22,6 +22,7 @@ type ResponseTunnelSearchItem struct {
     // list of sessions
     Sessions             []MxtunnelStatsSession      `json:"sessions,omitempty"`
     SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
+    // enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
     State                *MxtunnelStatsStateEnum     `json:"state,omitempty"`
     TxControlPkts        *int                        `json:"tx_control_pkts,omitempty"`
     // duration from first (or last) SA was established
@@ -44,7 +45,9 @@ type ResponseTunnelSearchItem struct {
     PeerHost             *string                     `json:"peer_host,omitempty"`
     // peer ip address
     PeerIp               *string                     `json:"peer_ip,omitempty"`
+    // enum: `primary`, `secondary`
     Priority             *WanTunnelStatsPriorityEnum `json:"priority,omitempty"`
+    // enum: `gre`, `ipsec`
     Protocol             *WanTunnelProtocolEnum      `json:"protocol,omitempty"`
     RxBytes              *int                        `json:"rx_bytes,omitempty"`
     RxPkts               *int                        `json:"rx_pkts,omitempty"`

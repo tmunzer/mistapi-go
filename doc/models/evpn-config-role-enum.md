@@ -1,6 +1,8 @@
 
 # Evpn Config Role Enum
 
+enum: `access`, `core`, `distribution`
+
 ## Enumeration
 
 `EvpnConfigRoleEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
+| `access` |
 | `core` |
 | `distribution` |
-| `access` |
 

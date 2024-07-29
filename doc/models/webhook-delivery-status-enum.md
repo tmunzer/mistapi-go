@@ -1,7 +1,7 @@
 
 # Webhook Delivery Status Enum
 
-webhook delivery status
+webhook delivery status. enum: `failure`, `success`
 
 ## Enumeration
 
@@ -11,8 +11,8 @@ webhook delivery status
 
 | Name |
 |  --- |
-| `success` |
 | `failure` |
+| `success` |
 
 ## Example
 

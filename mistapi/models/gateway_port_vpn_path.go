@@ -6,11 +6,13 @@ import (
 
 // GatewayPortVpnPath represents a GatewayPortVpnPath struct.
 type GatewayPortVpnPath struct {
+    // enum: `broadband`, `lte`
     BfdProfile           *GatewayPortVpnPathBfdProfileEnum `json:"bfd_profile,omitempty"`
     // whether to use tunnel mode. SSR only
     BfdUseTunnelMode     *bool                             `json:"bfd_use_tunnel_mode,omitempty"`
     // for a given VPN, when `path_selection.strategy`==`simple`, the preference for a path (lower is preferred)
     Preference           *int                              `json:"preference,omitempty"`
+    // enum: `hub`, `spoke`
     Role                 *GatewayPortVpnPathRoleEnum       `json:"role,omitempty"`
     TrafficShaping       *GatewayTrafficShaping            `json:"traffic_shaping,omitempty"`
     AdditionalProperties map[string]any                    `json:"_"`

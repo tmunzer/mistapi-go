@@ -1,7 +1,7 @@
 
 # Auto Orientation State Enum
 
-The state of auto orient for a given map derived from an Enum
+The state of auto orient for a given map derived from an Enum. enum: `Enqueued`, `Not Started`, `Oriented`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ The state of auto orient for a given map derived from an Enum
 
 | Name |
 |  --- |
-| `Not Started` |
 | `Enqueued` |
+| `Not Started` |
 | `Oriented` |
 

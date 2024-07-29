@@ -23,11 +23,11 @@ type WebhookDelivery struct {
     // HTTP response headers
     RespHeaders          *string                    `json:"resp_headers,omitempty"`
     SiteId               *uuid.UUID                 `json:"site_id,omitempty"`
-    // webhook delivery status
+    // webhook delivery status. enum: `failure`, `success`
     Status               *WebhookDeliveryStatusEnum `json:"status,omitempty"`
     StatusCode           *int                       `json:"status_code,omitempty"`
     Timestamp            *float64                   `json:"timestamp,omitempty"`
-    // webhook topic
+    // webhook topic. enum: `alarms`, `audits`, `device-updowns`, `occupancy-alerts`, `ping`
     Topic                *WebhookDeliveryTopicEnum  `json:"topic,omitempty"`
     WebhookId            *uuid.UUID                 `json:"webhook_id,omitempty"`
     AdditionalProperties map[string]any             `json:"_"`

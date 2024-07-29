@@ -6,7 +6,7 @@ import (
 
 // UtilsShowSession represents a UtilsShowSession struct.
 type UtilsShowSession struct {
-    // only for HA
+    // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     // The exact service name for which to display the active sessions
     ServiceName          *string            `json:"service_name,omitempty"`

@@ -11,7 +11,7 @@ Wxrule statistics
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`models.WxruleStatsActionEnum`](../../doc/models/wxrule-stats-action-enum.md) | Required | - |
+| `Action` | [`models.WxruleStatsActionEnum`](../../doc/models/wxrule-stats-action-enum.md) | Required | enum: `allow`, `block` |
 | `ClientMac` | `[]string` | Required | - |
 | `DstAllowWxtags` | `[]uuid.UUID` | Required | - |
 | `DstDenyWxtags` | `[]uuid.UUID` | Required | - |

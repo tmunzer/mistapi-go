@@ -8,6 +8,7 @@ import (
 
 // ResponseUpgradeDevice represents a ResponseUpgradeDevice struct.
 type ResponseUpgradeDevice struct {
+    // enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
     Status               UpgradeInfoStatusEnum `json:"status"`
     // timestamp
     Timestamp            float64               `json:"timestamp"`

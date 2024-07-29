@@ -1,6 +1,8 @@
 
 # Device Type Enum
 
+enum: `ap`, `gateway`, `switch`
+
 ## Enumeration
 
 `DeviceTypeEnum`
@@ -10,6 +12,6 @@
 | Name |
 |  --- |
 | `ap` |
-| `switch` |
 | `gateway` |
+| `switch` |
 

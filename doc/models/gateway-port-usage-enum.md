@@ -1,7 +1,7 @@
 
 # Gateway Port Usage Enum
 
-port usage name
+port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan`
 
 ## Enumeration
 
@@ -11,8 +11,8 @@ port usage name
 
 | Name |
 |  --- |
+| `ha_control` |
+| `ha_data` |
 | `lan` |
 | `wan` |
-| `ha_data` |
-| `ha_control` |
 

@@ -6,7 +6,7 @@ import (
 
 // UtilsSendSupportLogs represents a UtilsSendSupportLogs struct.
 type UtilsSendSupportLogs struct {
-    // optional choice: process, outbound-ssh, and full (default)
+    // enum: `code-dumps`, `full`, `jma-logs`, `messages`, `outbound-ssh`, `process`, `var-logs`
     Info                 *UtilsSendSupportLogsInfoEnum `json:"info,omitempty"`
     // optional: for SSR, if node is not present, both nodes support files are uploaded
     Node                 *string                       `json:"node,omitempty"`

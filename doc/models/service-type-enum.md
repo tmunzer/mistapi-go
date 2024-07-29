@@ -1,6 +1,8 @@
 
 # Service Type Enum
 
+enum: `app_categories`, `apps`, `custom`, `urls`
+
 ## Enumeration
 
 `ServiceTypeEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `apps` |
 | `app_categories` |
+| `apps` |
 | `custom` |
 | `urls` |
 

@@ -9,6 +9,7 @@ import (
 // WebhookSdkclientScanData represents a WebhookSdkclientScanData struct.
 type WebhookSdkclientScanData struct {
     Events               []WebhookSdkclientScanDataEvent `json:"events"`
+    // enum: `sdkclient_scan_data`
     Topic                string                          `json:"topic"`
     AdditionalProperties map[string]any                  `json:"_"`
 }

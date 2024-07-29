@@ -11,15 +11,16 @@ type ApPortConfig struct {
     // optional dynamic vlan
     DynamicVlan          *ApPortConfigDynamicVlan         `json:"dynamic_vlan,omitempty"`
     EnableMacAuth        *bool                            `json:"enable_mac_auth,omitempty"`
+    // enum: `all`, `limited`, `mxtunnel`, `site_mxedge`, `wxtunnel`
     Forwarding           *ApPortConfigForwardingEnum      `json:"forwarding,omitempty"`
-    // if `enable_mac_auth`==`true`, allows user to select an authentication protocol
+    // if `enable_mac_auth`==`true`, allows user to select an authentication protocol. enum: `eap-md5`, `eap-peap`, `pap`
     MacAuthProtocol      *ApPortConfigMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
     MistNac              *WlanMistNac                     `json:"mist_nac,omitempty"`
     // if `forwarding`==`mxtunnel`, vlan_ids comes from mxtunnel
     MxTunnelId           *uuid.UUID                       `json:"mx_tunnel_id,omitempty"`
     // if `forwarding`==`site_mxedge`, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
     MxtunnelName         *string                          `json:"mxtunnel_name,omitempty"`
-    // When doing port auth
+    // When doing port auth. enum: `dot1x`, `none`
     PortAuth             *ApPortConfigPortAuthEnum        `json:"port_auth,omitempty"`
     // if `forwrding`==`limited`
     PortVlanId           *int                             `json:"port_vlan_id,omitempty"`

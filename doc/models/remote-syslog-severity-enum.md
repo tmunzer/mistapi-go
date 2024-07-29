@@ -1,6 +1,8 @@
 
 # Remote Syslog Severity Enum
 
+enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`
+
 ## Enumeration
 
 `RemoteSyslogSeverityEnum`
@@ -9,12 +11,12 @@
 
 | Name |
 |  --- |
-| `any` |
 | `alert` |
-| `emergency` |
+| `any` |
 | `critical` |
-| `warning` |
+| `emergency` |
+| `error` |
 | `info` |
 | `notice` |
-| `error` |
+| `warning` |
 

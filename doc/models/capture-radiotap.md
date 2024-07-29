@@ -12,15 +12,15 @@ Initiate a Radiotap Packet Capture
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApMac` | `*string` | Optional | - |
-| `Band` | [`*models.CaptureRadiotapBandEnum`](../../doc/models/capture-radiotap-band-enum.md) | Optional | **Default**: `"24"` |
+| `Band` | [`*models.CaptureRadiotapBandEnum`](../../doc/models/capture-radiotap-band-enum.md) | Optional | enum: `24`, `24,5,6`, `5`, `6`<br>**Default**: `"24"` |
 | `ClientMac` | `*string` | Optional | - |
 | `Duration` | `*int` | Optional | duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `<= 86400` |
-| `Format` | [`*models.CaptureRadiotapFormatEnum`](../../doc/models/capture-radiotap-format-enum.md) | Optional | **Default**: `"pcap"` |
+| `Format` | [`*models.CaptureRadiotapFormatEnum`](../../doc/models/capture-radiotap-format-enum.md) | Optional | enum: `pcap`, `stream`<br>**Default**: `"pcap"` |
 | `MaxPktLen` | `*int` | Optional | max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `<= 2048` |
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `>= 0` |
 | `Ssid` | `*string` | Optional | - |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression specific to radiotap |
-| `Type` | `string` | Required, Constant | radiotap<br>**Default**: `"radiotap"` |
+| `Type` | `string` | Required, Constant | enum: `radiotap`<br>**Default**: `"radiotap"` |
 | `WlanId` | `*uuid.UUID` | Optional | wlan id associated with the respective ssid. |
 
 ## Example (as JSON)

@@ -6,6 +6,7 @@ import (
 
 // NacPortal represents a NacPortal struct.
 type NacPortal struct {
+    // enum: `wireless`, `wireless+wired`
     AccessType             *NacPortalAccessTypeEnum `json:"access_type,omitempty"`
     // background image
     BgImageUrl             *string                  `json:"bg_image_url,omitempty"`

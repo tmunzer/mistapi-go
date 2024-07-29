@@ -1,6 +1,8 @@
 
 # Snmp Vacm Access Item Type Enum
 
+enum: `context_prefix`, `default_context_prefix`
+
 ## Enumeration
 
 `SnmpVacmAccessItemTypeEnum`

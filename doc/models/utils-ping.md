@@ -12,7 +12,7 @@
 | `Count` | `*int` | Optional | **Default**: `10` |
 | `EgressInterface` | `*string` | Optional | Interface through which packet needs to egress |
 | `Host` | `string` | Required | - |
-| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA |
+| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `Size` | `*int` | Optional | **Default**: `56`<br>**Constraints**: `>= 56`, `<= 65535` |
 
 ## Example (as JSON)

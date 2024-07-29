@@ -1,6 +1,8 @@
 
 # Wxrule Stats Action Enum
 
+enum: `allow`, `block`
+
 ## Enumeration
 
 `WxruleStatsActionEnum`

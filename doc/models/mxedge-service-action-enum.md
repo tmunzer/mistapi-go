@@ -1,6 +1,8 @@
 
 # Mxedge Service Action Enum
 
+enum: `restart`, `start`, `stop`
+
 ## Enumeration
 
 `MxedgeServiceActionEnum`

@@ -10,7 +10,7 @@ import (
 // Admin represents a Admin struct.
 type Admin struct {
     AdminId              *uuid.UUID                 `json:"admin_id,omitempty"`
-    // trade compliance status
+    // trade compliance status. enum: `blocked`, `restricted`
     ComplianceStatus     *AdminComplianceStatusEnum `json:"compliance_status,omitempty"`
     Email                string                     `json:"email"`
     EnableTwoFactor      *bool                      `json:"enable_two_factor,omitempty"`

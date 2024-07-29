@@ -11,7 +11,7 @@ LED AP settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Brightness` | `*int` | Optional | **Default**: `255` |
+| `Brightness` | `*int` | Optional | **Default**: `255`<br>**Constraints**: `>= 0`, `<= 255` |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
 
 ## Example (as JSON)

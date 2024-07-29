@@ -12,10 +12,10 @@ Auto Upgrade Settings
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CustomVersions` | `map[string]string` | Optional | custom versions for different models. Property key is the model name (e.g. "AP41") |
-| `DayOfWeek` | [`*models.DayOfWeekEnum`](../../doc/models/day-of-week-enum.md) | Optional | - |
+| `DayOfWeek` | [`*models.DayOfWeekEnum`](../../doc/models/day-of-week-enum.md) | Optional | enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed` |
 | `Enabled` | `*bool` | Optional | whether auto upgrade should happen (Note that Mist may auto-upgrade if the version is not supported)<br>**Default**: `false` |
 | `TimeOfDay` | `*string` | Optional | any / HH:MM (24-hour format), upgrade will happen within up to 1-hour from this time |
-| `Version` | [`*models.SiteAutoUpgradeVersionEnum`](../../doc/models/site-auto-upgrade-version-enum.md) | Optional | desired version<br>**Default**: `"stable"` |
+| `Version` | [`*models.SiteAutoUpgradeVersionEnum`](../../doc/models/site-auto-upgrade-version-enum.md) | Optional | desired version. enum: `beta`, `custom`, `stable`<br>**Default**: `"stable"` |
 
 ## Example (as JSON)
 
@@ -29,7 +29,7 @@ Auto Upgrade Settings
   "enabled": false,
   "time_of_day": "12:00",
   "version": "beta",
-  "day_of_week": "sat"
+  "day_of_week": "tue"
 }
 ```
 

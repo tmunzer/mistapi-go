@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Auth` | [`*models.PskPortalAuthEnum`](../../doc/models/psk-portal-auth-enum.md) | Optional | Note: `sponsor` not yet available<br>**Default**: `"sso"` |
+| `Auth` | [`*models.PskPortalAuthEnum`](../../doc/models/psk-portal-auth-enum.md) | Optional | enum: `sponsor`, `sso`<br>**Default**: `"sso"` |
 | `BgImageUrl` | `*string` | Optional | - |
 | `CleanupPsk` | `*bool` | Optional | used to cleanup exited psk when portal delete or ssid changed<br>**Default**: `false` |
 | `CreatedTime` | `*float64` | Optional | - |
@@ -31,7 +31,7 @@
 | `Sso` | [`*models.PskPortalSso`](../../doc/models/psk-portal-sso.md) | Optional | if `auth`==`sso` |
 | `TemplateUrl` | `*string` | Optional | UI customization |
 | `ThumbnailUrl` | `*string` | Optional | - |
-| `Type` | [`*models.PskPortalTypeEnum`](../../doc/models/psk-portal-type-enum.md) | Optional | for personal psk portal |
+| `Type` | [`*models.PskPortalTypeEnum`](../../doc/models/psk-portal-type-enum.md) | Optional | for personal psk portal. enum: `admin`, `byod` |
 | `VlanId` | [`*models.PskPortalVlanId`](../../doc/models/containers/psk-portal-vlan-id.md) | Optional | This is a container for one-of cases. |
 
 ## Example (as JSON)

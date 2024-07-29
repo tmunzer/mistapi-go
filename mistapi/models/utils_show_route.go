@@ -15,6 +15,7 @@ type UtilsShowRoute struct {
     Node                 *HaClusterNode              `json:"node,omitempty"`
     // route prefix
     Prefix               *string                     `json:"prefix,omitempty"`
+    // enum: `any`, `bgp`, `direct`, `evpn`, `ospf`, `static`
     Protocol             *UtilsShowRouteProtocolEnum `json:"protocol,omitempty"`
     // if specified, dump bot received and advertised, if not specified, both will be shown
     //   * for SSR, show bgp neighbors 10.250.18.202 received-routes/advertised-routes

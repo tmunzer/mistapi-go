@@ -13,6 +13,7 @@ type MapOrgImportFileJson struct {
     ImportHeight         *bool                              `json:"import_height,omitempty"`
     ImportOrientation    *bool                              `json:"import_orientation,omitempty"`
     SiteId               *uuid.UUID                         `json:"site_id,omitempty"`
+    // enum: `ekahau`, `ibwave`
     VendorName           MapOrgImportFileJsonVendorNameEnum `json:"vendor_name"`
     AdditionalProperties map[string]any                     `json:"_"`
 }

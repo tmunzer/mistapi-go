@@ -1,6 +1,8 @@
 
 # Event Fastroam Type Enum
 
+enum: `fail`, `none`, `pingpong`, `poor`, `slow`, `success`
+
 ## Enumeration
 
 `EventFastroamTypeEnum`
@@ -9,10 +11,10 @@
 
 | Name |
 |  --- |
-| `success` |
 | `fail` |
 | `none` |
-| `poor` |
 | `pingpong` |
+| `poor` |
 | `slow` |
+| `success` |
 

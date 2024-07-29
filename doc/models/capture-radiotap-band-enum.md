@@ -1,6 +1,8 @@
 
 # Capture Radiotap Band Enum
 
+enum: `24`, `24,5,6`, `5`, `6`
+
 ## Enumeration
 
 `CaptureRadiotapBandEnum`
@@ -10,9 +12,9 @@
 | Name |
 |  --- |
 | `24` |
+| `24,5,6` |
 | `5` |
 | `6` |
-| `24,5,6` |
 
 ## Example
 

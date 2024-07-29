@@ -17,9 +17,9 @@ type MxclusterRadsec struct {
     MatchSsid            *bool                               `json:"match_ssid,omitempty"`
     // hostnames or IPs for Mist AP to use as the TLS Server (i.e. they are reachable from AP) in addition to `tunterm_hosts`
     ProxyHosts           []string                            `json:"proxy_hosts,omitempty"`
-    // ordered (default) / unordered. When ordered, Mist Edge will prefer and go back to the first radius server if possible
+    // When ordered, Mist Edge will prefer and go back to the first radius server if possible. enum: `ordered`, `unordered`
     ServerSelection      *MxclusterRadsecServerSelectionEnum `json:"server_selection,omitempty"`
-    // Specify source address to use when connecting to RADIUS servers
+    // Specify source address to use when connecting to RADIUS servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
     Source               *MxclusterRadsecSourceEnum          `json:"source,omitempty"`
     AdditionalProperties map[string]any                      `json:"_"`
 }

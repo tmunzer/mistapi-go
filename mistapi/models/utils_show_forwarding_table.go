@@ -6,7 +6,7 @@ import (
 
 // UtilsShowForwardingTable represents a UtilsShowForwardingTable struct.
 type UtilsShowForwardingTable struct {
-    // only for HA
+    // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     // IP Prefix
     Prefix               *string            `json:"prefix,omitempty"`

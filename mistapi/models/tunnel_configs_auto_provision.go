@@ -9,6 +9,7 @@ type TunnelConfigsAutoProvision struct {
     Enable               *bool                                 `json:"enable,omitempty"`
     Latlng               *LatLng                               `json:"latlng,omitempty"`
     Primary              *TunnelConfigsAutoProvisionNode       `json:"primary,omitempty"`
+    // enum: `APAC`, `Americas`, `EMEA`, `auto`
     Region               *TunnelConfigsAutoProvisionRegionEnum `json:"region,omitempty"`
     Secondary            *TunnelConfigsAutoProvisionNode       `json:"secondary,omitempty"`
     AdditionalProperties map[string]any                        `json:"_"`

@@ -1,6 +1,8 @@
 
 # Map Import Json Vendor Name Enum
 
+enum: `ekahau`, `ibwave`
+
 ## Enumeration
 
 `MapImportJsonVendorNameEnum`

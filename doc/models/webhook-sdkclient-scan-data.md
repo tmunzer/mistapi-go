@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookSdkclientScanDataEvent`](../../doc/models/webhook-sdkclient-scan-data-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | **Default**: `"sdkclient_scan_data"` |
+| `Topic` | `string` | Required, Constant | enum: `sdkclient_scan_data`<br>**Default**: `"sdkclient_scan_data"` |
 
 ## Example (as JSON)
 

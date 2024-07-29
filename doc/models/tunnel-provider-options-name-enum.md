@@ -1,6 +1,8 @@
 
 # Tunnel Provider Options Name Enum
 
+enum: `custom-ipsec`, `customer-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec`
+
 ## Enumeration
 
 `TunnelProviderOptionsNameEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `zscaler-ipsec` |
-| `zscaler-gre` |
+| `custom-ipsec` |
 | `customer-gre` |
 | `jse-ipsec` |
-| `custom-ipsec` |
+| `zscaler-gre` |
+| `zscaler-ipsec` |
 

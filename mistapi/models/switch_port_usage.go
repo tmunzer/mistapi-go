@@ -24,7 +24,7 @@ type SwitchPortUsage struct {
     DisableAutoneg                           *bool                                       `json:"disable_autoneg,omitempty"`
     // Only if `mode`!=`dynamic` whether the port is disabled
     Disabled                                 *bool                                       `json:"disabled,omitempty"`
-    // Only if `mode`!=`dynamic` link connection mode
+    // Only if `mode`!=`dynamic` link connection mode. enum: `auto`, `full`, `half`
     Duplex                                   *SwitchPortUsageDuplexEnum                  `json:"duplex,omitempty"`
     // Only if `mode`!=`dynamic` and `port_auth`==`dot1x`, if dynamic vlan is used, specify the possible networks/vlans RADIUS can return
     DynamicVlanNetworks                      []string                                    `json:"dynamic_vlan_networks,omitempty"`
@@ -39,11 +39,11 @@ type SwitchPortUsage struct {
     InterSwitchLink                          *bool                                       `json:"inter_switch_link,omitempty"`
     // Only if `mode`!=`dynamic` and `enable_mac_auth`==`true`
     MacAuthOnly                              *bool                                       `json:"mac_auth_only,omitempty"`
-    // Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled.
+    // Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
     MacAuthProtocol                          *SwitchPortUsageMacAuthProtocolEnum         `json:"mac_auth_protocol,omitempty"`
     // Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
     MacLimit                                 *int                                        `json:"mac_limit,omitempty"`
-    // `mode`==`dynamic` must only be used with the port usage with the name `dynamic`
+    // `mode`==`dynamic` must only be used with the port usage with the name `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk`
     Mode                                     *SwitchPortUsageModeEnum                    `json:"mode,omitempty"`
     // Only if `mode`!=`dynamic` media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514.
     Mtu                                      *int                                        `json:"mtu,omitempty"`
@@ -53,7 +53,7 @@ type SwitchPortUsage struct {
     PersistMac                               *bool                                       `json:"persist_mac,omitempty"`
     // Only if `mode`!=`dynamic` whether PoE capabilities are disabled for a port
     PoeDisabled                              *bool                                       `json:"poe_disabled,omitempty"`
-    // Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x
+    // Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x. enum: `dot1x`
     PortAuth                                 Optional[SwitchPortUsageDot1XEnum]          `json:"port_auth"`
     // Only if `mode`!=`dynamic` native network/vlan for untagged traffic
     PortNetwork                              *string                                     `json:"port_network,omitempty"`
@@ -61,8 +61,7 @@ type SwitchPortUsage struct {
     ReauthInterval                           *int                                        `json:"reauth_interval,omitempty"`
     // Only if `mode`!=`dynamic` and `port_auth`==`dot1x` when radius server reject / fails
     RejectedNetwork                          Optional[string]                            `json:"rejected_network"`
-    // Only if `mode`==`dynamic` Control when the DPC port should be changed to the default port usage
-    // Configuring to none will let the DPC port keep at the current port usage.
+    // Only if `mode`==`dynamic` Control when the DPC port should be changed to the default port usage. enum: `link_down`, `none` (let the DPC port keep at the current port usage)
     ResetDefaultWhen                         *SwitchPortUsageDynamicResetDefaultWhenEnum `json:"reset_default_when,omitempty"`
     // Only if `mode`==`dynamic`
     Rules                                    []SwitchPortUsageDynamicRule                `json:"rules,omitempty"`

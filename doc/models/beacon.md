@@ -27,7 +27,7 @@ Beacon
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Power` | `*int` | Optional | in dBm<br>**Default**: `-12`<br>**Constraints**: `>= -12`, `<= 100` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Type` | [`*models.BeaconTypeEnum`](../../doc/models/beacon-type-enum.md) | Optional | **Default**: `"eddystone-uid"` |
+| `Type` | [`*models.BeaconTypeEnum`](../../doc/models/beacon-type-enum.md) | Optional | enum: `eddystone-uid`, `eddystone-url`, `ibeacon`<br>**Default**: `"eddystone-uid"` |
 | `X` | `*float64` | Optional | x in pixel |
 | `Y` | `*float64` | Optional | y in pixel |
 

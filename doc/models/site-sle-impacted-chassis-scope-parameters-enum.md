@@ -1,6 +1,8 @@
 
 # Site Sle Impacted Chassis Scope Parameters Enum
 
+enum: `gateway`, `site`, `switch`
+
 ## Enumeration
 
 `SiteSleImpactedChassisScopeParametersEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
+| `gateway` |
 | `site` |
 | `switch` |
-| `gateway` |
 

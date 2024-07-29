@@ -1,7 +1,7 @@
 
 # Switch Virtual Chassis Member Vc Role Enum
 
-Both vc_role master and backup will be matched to routing-engine role in Junos preprovisioned VC config
+Both vc_role master and backup will be matched to routing-engine role in Junos preprovisioned VC config. enum: `backup`, `linecard`, `master`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ Both vc_role master and backup will be matched to routing-engine role in Junos p
 
 | Name |
 |  --- |
-| `master` |
-| `linecard` |
 | `backup` |
+| `linecard` |
+| `master` |
 

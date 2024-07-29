@@ -11,14 +11,14 @@ import (
 type CaptureMxedge struct {
     // duration of the capture, in seconds
     Duration             *int                            `json:"duration,omitempty"`
-    // pcap format
+    // pcap format. enum: `stream`
     Format               *CaptureMxedgeFormatEnum        `json:"format,omitempty"`
     // max_len of each packet to capture
     MaxPktLen            *int                            `json:"max_pkt_len,omitempty"`
     Mxedges              map[string]CaptureMxedgeMxedges `json:"mxedges,omitempty"`
     // number of packets to capture, 0 for unlimited
     NumPackets           *int                            `json:"num_packets,omitempty"`
-    // mxedge
+    // enum: `mxedge`
     Type                 string                          `json:"type"`
     AdditionalProperties map[string]any                  `json:"_"`
 }

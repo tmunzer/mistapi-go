@@ -10,6 +10,7 @@ import (
 type UtilsClearBgp struct {
     // neighbor ip-address or 'all'
     Neighbor             string                `json:"neighbor"`
+    // enum: `hard`, `in`, `out`, `soft`
     Type                 UtilsClearBgpTypeEnum `json:"type"`
     // vrf name
     Vrf                  *string               `json:"vrf,omitempty"`

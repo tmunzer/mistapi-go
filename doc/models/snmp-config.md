@@ -13,7 +13,7 @@
 | `Contact` | `*string` | Optional | - |
 | `Description` | `*string` | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
-| `EngineId` | [`*models.SnmpConfigEngineIdEnum`](../../doc/models/snmp-config-engine-id-enum.md) | Optional | - |
+| `EngineId` | [`*models.SnmpConfigEngineIdEnum`](../../doc/models/snmp-config-engine-id-enum.md) | Optional | enum: `engine-id-suffix`, `local`, `use-default-ip-address`, `use_mac-address` |
 | `Location` | `*string` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Network` | `*string` | Optional | **Default**: `"default"` |

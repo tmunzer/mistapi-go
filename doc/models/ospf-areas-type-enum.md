@@ -1,7 +1,7 @@
 
 # Ospf Areas Type Enum
 
-OSPF type, default (default) / stub / nssa
+OSPF type. enum: `default`, `nssa`, `stub`
 
 ## Enumeration
 
@@ -12,8 +12,8 @@ OSPF type, default (default) / stub / nssa
 | Name |
 |  --- |
 | `default` |
-| `stub` |
 | `nssa` |
+| `stub` |
 
 ## Example
 

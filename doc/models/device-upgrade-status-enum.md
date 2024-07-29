@@ -1,7 +1,7 @@
 
 # Device Upgrade Status Enum
 
-status upgrade is in
+status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
 
 ## Enumeration
 
@@ -11,11 +11,11 @@ status upgrade is in
 
 | Name |
 |  --- |
-| `downloading` |
+| `cancelled` |
 | `completed` |
 | `created` |
 | `downloaded` |
-| `upgrading` |
-| `cancelled` |
+| `downloading` |
 | `failed` |
+| `upgrading` |
 

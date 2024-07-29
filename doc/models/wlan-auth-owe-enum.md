@@ -1,7 +1,7 @@
 
 # Wlan Auth Owe Enum
 
-`enabled` means transition mode
+if `type`==`open`. enum: `disabled`, `enabled` (means transition mode), `required`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@
 
 | Name |
 |  --- |
-| `enabled` |
 | `disabled` |
+| `enabled` |
 | `required` |
 

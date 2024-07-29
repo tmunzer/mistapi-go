@@ -7,7 +7,7 @@ import (
 // ApClientBridgeAuth represents a ApClientBridgeAuth struct.
 type ApClientBridgeAuth struct {
     Psk                  *string                     `json:"psk,omitempty"`
-    // wpa2-AES/CCMPp is assumed when `type`==`psk`
+    // wpa2-AES/CCMPp is assumed when `type`==`psk`. enum: `open`, `psk`
     Type                 *ApClientBridgeAuthTypeEnum `json:"type,omitempty"`
     AdditionalProperties map[string]any              `json:"_"`
 }

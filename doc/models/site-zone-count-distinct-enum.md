@@ -1,6 +1,8 @@
 
 # Site Zone Count Distinct Enum
 
+enum: `scope`, `scope_id`, `user`, `user_type`
+
 ## Enumeration
 
 `SiteZoneCountDistinctEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `user_type` |
-| `user` |
-| `scope_id` |
 | `scope` |
+| `scope_id` |
+| `user` |
+| `user_type` |
 

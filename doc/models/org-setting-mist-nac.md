@@ -15,7 +15,7 @@
 | `EuOnly` | `*bool` | Optional | By default NAC POD failover considers all NAC pods available around the globe, i.e. EU, US, or APAC based, failover happens based on geo IP of the originating site.<br>For strict GDPR compliancy NAC POD failover would only happen between the PODs located within the EU environment, and no authentication would take place outside of EU. This is an org setting that is applicable to WLANs, switch templates, mxedge clusters that have mist_nac enabled<br>**Default**: `false` |
 | `Idps` | [`[]models.OrgSettingMistNacIdp`](../../doc/models/org-setting-mist-nac-idp.md) | Optional | - |
 | `ServerCert` | [`*models.OrgSettingMistNacServerCert`](../../doc/models/org-setting-mist-nac-server-cert.md) | Optional | radius server cert to be presented in EAP TLS |
-| `UseIpVersion` | [`*models.OrgSettingMistNacIpVersionEnum`](../../doc/models/org-setting-mist-nac-ip-version-enum.md) | Optional | by default NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4<br>**Default**: `"v4"` |
+| `UseIpVersion` | [`*models.OrgSettingMistNacIpVersionEnum`](../../doc/models/org-setting-mist-nac-ip-version-enum.md) | Optional | by default NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4. enum: `v4`, `v6`<br>**Default**: `"v4"` |
 | `UseSslPort` | `*bool` | Optional | By default NAS devices (switches/aps) and proxies(mxedge) are configured to use port TCP2083(radsec) to reach mist-nac.<br>Set `use_ssl_port`==`true` to override that port with TCP43 (ssl),<br>This is a org level setting that is applicable to wlans, switch_templates, and mxedge_clusters that have mist-nac enabled<br>**Default**: `false` |
 
 ## Example (as JSON)

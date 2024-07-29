@@ -1,6 +1,8 @@
 
 # Site Discovered Switches Count Distinct Enum
 
+enum: `mgmt_addr`, `model`, `system_name`, `version`
+
 ## Enumeration
 
 `SiteDiscoveredSwitchesCountDistinctEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
+| `mgmt_addr` |
+| `model` |
 | `system_name` |
 | `version` |
-| `model` |
-| `mgmt_addr` |
 

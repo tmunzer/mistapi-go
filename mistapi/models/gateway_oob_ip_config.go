@@ -15,6 +15,7 @@ type GatewayOobIpConfig struct {
     Netmask              *string                  `json:"netmask,omitempty"`
     // for HA Cluster, node1 can have different IP Config
     Node1                *GatewayOobIpConfigNode1 `json:"node1,omitempty"`
+    // enum: `dhcp`, `static`
     Type                 *IpTypeEnum              `json:"type,omitempty"`
     // if supported on the platform. If enabled, DNS will be using this routing-instance, too
     UseMgmtVrf           *bool                    `json:"use_mgmt_vrf,omitempty"`

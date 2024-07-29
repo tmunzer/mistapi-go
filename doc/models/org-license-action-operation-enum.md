@@ -1,7 +1,7 @@
 
 # Org License Action Operation Enum
 
-to move a license, use the `amend` operation
+to move a license, use the `amend` operation. enum: `amend`, `annotate`, `delete`, `unamend`
 
 ## Enumeration
 
@@ -12,7 +12,7 @@ to move a license, use the `amend` operation
 | Name |
 |  --- |
 | `amend` |
-| `unamend` |
-| `delete` |
 | `annotate` |
+| `delete` |
+| `unamend` |
 

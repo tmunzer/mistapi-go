@@ -1,6 +1,8 @@
 
 # Alarm Count Disctinct Enum
 
+enum: `acked`, `group`, `severity`, `type`
+
 ## Enumeration
 
 `AlarmCountDisctinctEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `type` |
 | `acked` |
-| `severity` |
 | `group` |
+| `severity` |
+| `type` |
 

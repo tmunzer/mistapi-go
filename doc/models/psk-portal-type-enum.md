@@ -1,7 +1,7 @@
 
 # Psk Portal Type Enum
 
-for personal psk portal
+for personal psk portal. enum: `admin`, `byod`
 
 ## Enumeration
 
@@ -11,6 +11,6 @@ for personal psk portal
 
 | Name |
 |  --- |
-| `byod` |
 | `admin` |
+| `byod` |
 

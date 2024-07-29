@@ -11,14 +11,15 @@ import (
 type MxedgeUpgradeMulti struct {
     // whether downgrade is allowed when running version is higher than expected version for each service
     AllowDowngrades      *MxedgeUpgradeMultiAllowDowngrades `json:"allow_downgrades,omitempty"`
-    // upgrade channel to follow, stable (default) / beta / alpha
+    // upgrade channel to follow. enum: `alpha`, `beta`, `stable`
     Channel              *MxedgeUpgradeChannelEnum          `json:"channel,omitempty"`
     // distro upgrade, optional, to specific codename (e.g. bullseye) with highest qualified versions
     Distro               *string                            `json:"distro,omitempty"`
     // list of mxedge IDs to upgrade. If not specified, it means all the org mxedges.
     MxedgeIds            []uuid.UUID                        `json:"mxedge_ids"`
-    // * `big_bang`: upgrade all at once
-    // * `serial`: one at a time
+    // enum:
+    //   * `big_bang`: upgrade all at once
+    //   * `serial`: one at a time. enum: `big_bang`, `serial`'
     Strategy             *MxedgeUpgradeStrategyEnum         `json:"strategy,omitempty"`
     // version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nignored if distro upgrade
     Versions             *MxedgeUpgradeVersion              `json:"versions,omitempty"`

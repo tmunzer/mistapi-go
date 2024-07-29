@@ -524,19 +524,13 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := []models.Psk{
     models.Psk{
         ExpireTime:             models.NewOptional(models.ToPointer(1614990263)),
-        Macs:                   []string{
-            "11:22:33:44:55:66",
-            "aa:bb:",
-            "53",
-        },
+        Mac:                    models.ToPointer("string"),
         MaxUsage:               models.ToPointer(0),
-        Name:                   "name6",
-        NotifyExpiry:           models.ToPointer(false),
-        OrgId:                  models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-        Passphrase:             "passphrase6",
-        SiteId:                 models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
-        Ssid:                   "ssid6",
+        Name:                   "string",
+        Passphrase:             "stringst",
+        Ssid:                   "string",
         Usage:                  models.ToPointer(models.PskUsageEnum("multi")),
+        VlanId:                 models.ToPointer(models.PskVlanIdContainer.FromNumber(10)),
     },
 }
 

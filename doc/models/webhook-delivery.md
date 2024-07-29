@@ -18,10 +18,10 @@
 | `RespBody` | `*string` | Optional | HTTP response body |
 | `RespHeaders` | `*string` | Optional | HTTP response headers |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Status` | [`*models.WebhookDeliveryStatusEnum`](../../doc/models/webhook-delivery-status-enum.md) | Optional | webhook delivery status |
+| `Status` | [`*models.WebhookDeliveryStatusEnum`](../../doc/models/webhook-delivery-status-enum.md) | Optional | webhook delivery status. enum: `failure`, `success` |
 | `StatusCode` | `*int` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
-| `Topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Optional | webhook topic |
+| `Topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Optional | webhook topic. enum: `alarms`, `audits`, `device-updowns`, `occupancy-alerts`, `ping` |
 | `WebhookId` | `*uuid.UUID` | Optional | - |
 
 ## Example (as JSON)

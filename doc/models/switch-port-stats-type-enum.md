@@ -1,7 +1,7 @@
 
 # Switch Port Stats Type Enum
 
-device type
+device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
 
 ## Enumeration
 
@@ -13,10 +13,10 @@ device type
 |  --- |
 | `ap` |
 | `ble` |
-| `switch` |
 | `gateway` |
 | `mxedge` |
 | `nac` |
+| `switch` |
 
 ## Example
 

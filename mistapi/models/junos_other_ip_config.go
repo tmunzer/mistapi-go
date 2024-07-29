@@ -17,7 +17,9 @@ type JunosOtherIpConfig struct {
     Netmask              *string        `json:"netmask,omitempty"`
     // optional, `subnet` from `network` definition will be used if defined
     Netmask6             *string        `json:"netmask6,omitempty"`
+    // enum: `dhcp`, `static`
     Type                 *IpTypeEnum    `json:"type,omitempty"`
+    // enum: `autoconf`, `dhcp`, `disabled`, `static`
     Type6                *IpType6Enum   `json:"type6,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }

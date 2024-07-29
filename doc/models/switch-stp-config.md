@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Type` | [`*models.SwitchStpConfigTypeEnum`](../../doc/models/switch-stp-config-type-enum.md) | Optional | **Default**: `"rstp"` |
+| `Type` | [`*models.SwitchStpConfigTypeEnum`](../../doc/models/switch-stp-config-type-enum.md) | Optional | enum: `rstp`, `vstp`<br>**Default**: `"rstp"` |
 
 ## Example (as JSON)
 

@@ -7,6 +7,7 @@ import (
 // GatewayPathPreferences represents a GatewayPathPreferences struct.
 type GatewayPathPreferences struct {
     Paths                []GatewayPathPreferencesPath `json:"paths,omitempty"`
+    // enum: `ecmp`, `ordered`, `weighted`
     Strategy             *GatewayPathStrategyEnum     `json:"strategy,omitempty"`
     AdditionalProperties map[string]any               `json:"_"`
 }

@@ -521,27 +521,12 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wxtagId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanTag{
-    LastIps:      []string{
-        "string",
-    },
-    Mac:          models.NewOptional(models.ToPointer("string")),
-    Match:        models.ToPointer(models.WxlanTagMatchEnum("wlan_id")),
-    Name:         "string",
-    Op:           models.ToPointer(models.WxlanTagOperationEnum("in")),
-    ResourceMac:  models.NewOptional(models.ToPointer("string")),
-    Services:     []string{
-        "string",
-    },
-    Specs:        []models.WxlanTagSpec{
-        models.WxlanTagSpec{
-            PortRange: models.ToPointer("string"),
-            Protocol:  models.ToPointer("tcp"),
-        },
-    },
-    Subnet:       models.ToPointer("string"),
+    Match:        models.ToPointer(models.WxlanTagMatchEnum("app")),
+    Name:         "match app",
     Type:         models.WxlanTagTypeEnum("match"),
     Values:       []string{
-        "string",
+        "gmail",
+        "dropbox",
     },
 }
 

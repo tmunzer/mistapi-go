@@ -1,7 +1,7 @@
 
 # Webhook Device Events Event Ev Type Enum
 
-(optional) event advisory (notice/warn)
+(optional) event advisory. enum: `notice`, `warn`
 
 ## Enumeration
 

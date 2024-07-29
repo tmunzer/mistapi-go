@@ -25,7 +25,7 @@
 | `Serial` | `*string` | Optional | serial Number of the inventory |
 | `ShippedTime` | `*float64` | Optional | Shipped date |
 | `Sku` | `*string` | Optional | serviceable device stock |
-| `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | - |
+| `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
 | `WarrantyEndTime` | `*int` | Optional | - |
 | `WarrantyStartTime` | `*int` | Optional | - |
 | `WarrantyType` | `*string` | Optional | - |

@@ -25,7 +25,7 @@ Site MxTunnel
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Mtu` | `*int` | Optional | 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 1500` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Protocol` | [`*models.MxtunnelProtocolEnum`](../../doc/models/mxtunnel-protocol-enum.md) | Optional | **Default**: `"udp"` |
+| `Protocol` | [`*models.MxtunnelProtocolEnum`](../../doc/models/mxtunnel-protocol-enum.md) | Optional | enum: `ip`, `udp`<br>**Default**: `"udp"` |
 | `Radsec` | [`*models.SiteMxtunnelRadsec`](../../doc/models/site-mxtunnel-radsec.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `VlanIds` | `[]int` | Optional | list of vlan_ids that will be used |
@@ -58,7 +58,7 @@ Site MxTunnel
       ],
       "hello_interval": 38,
       "hello_retries": 186,
-      "protocol": "udp",
+      "protocol": "ip",
       "vlan_ids": [
         142,
         143
@@ -81,7 +81,7 @@ Site MxTunnel
       ],
       "hello_interval": 38,
       "hello_retries": 186,
-      "protocol": "udp",
+      "protocol": "ip",
       "vlan_ids": [
         142,
         143
@@ -94,7 +94,7 @@ Site MxTunnel
     "ap_subnets8"
   ],
   "auto_preemption": {
-    "day_of_week": "tue",
+    "day_of_week": "mon",
     "enabled": false,
     "time_of_day": "time_of_day4"
   },

@@ -16,7 +16,7 @@
 | `Network` | `*string` | Optional | if source_address is configured, will use the vlan firstly otherwise use source_ip |
 | `SendToAllServers` | `*bool` | Optional | **Default**: `false` |
 | `Servers` | [`[]models.RemoteSyslogServer`](../../doc/models/remote-syslog-server.md) | Optional | - |
-| `TimeFormat` | [`*models.RemoteSyslogTimeFormatEnum`](../../doc/models/remote-syslog-time-format-enum.md) | Optional | - |
+| `TimeFormat` | [`*models.RemoteSyslogTimeFormatEnum`](../../doc/models/remote-syslog-time-format-enum.md) | Optional | enum: `millisecond`, `year`, `year millisecond` |
 | `Users` | [`[]models.RemoteSyslogUser`](../../doc/models/remote-syslog-user.md) | Optional | - |
 
 ## Example (as JSON)
@@ -44,16 +44,16 @@
   "console": {
     "contents": [
       {
-        "facility": "pfe",
-        "severity": "warning"
+        "facility": "ntp",
+        "severity": "error"
       },
       {
-        "facility": "pfe",
-        "severity": "warning"
+        "facility": "ntp",
+        "severity": "error"
       },
       {
-        "facility": "pfe",
-        "severity": "warning"
+        "facility": "ntp",
+        "severity": "error"
       }
     ]
   },
@@ -65,12 +65,12 @@
       },
       "contents": [
         {
-          "facility": "pfe",
-          "severity": "warning"
+          "facility": "ntp",
+          "severity": "error"
         },
         {
-          "facility": "pfe",
-          "severity": "warning"
+          "facility": "ntp",
+          "severity": "error"
         }
       ],
       "explicit_priority": false,

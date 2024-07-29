@@ -1,6 +1,8 @@
 
 # Snmpv 3 Config Notify Type Enum
 
+enum: `inform`, `trap`
+
 ## Enumeration
 
 `Snmpv3ConfigNotifyTypeEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `trap` |
 | `inform` |
+| `trap` |
 

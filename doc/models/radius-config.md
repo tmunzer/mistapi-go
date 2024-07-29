@@ -34,7 +34,7 @@ Junos Radius config
     {
       "host": "host4",
       "keywrap_enabled": false,
-      "keywrap_format": "hex",
+      "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 254,
@@ -43,7 +43,7 @@ Junos Radius config
     {
       "host": "host4",
       "keywrap_enabled": false,
-      "keywrap_format": "hex",
+      "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 254,
@@ -54,7 +54,7 @@ Junos Radius config
     {
       "host": "host0",
       "keywrap_enabled": false,
-      "keywrap_format": "hex",
+      "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
       "port": 114,
@@ -63,7 +63,7 @@ Junos Radius config
     {
       "host": "host0",
       "keywrap_enabled": false,
-      "keywrap_format": "hex",
+      "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
       "port": 114,

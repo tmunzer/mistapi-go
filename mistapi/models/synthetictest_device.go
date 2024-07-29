@@ -16,6 +16,7 @@ type SynthetictestDevice struct {
     Password             *string                    `json:"password,omitempty"`
     // if `type`==`ssr`
     PortId               *string                    `json:"port_id,omitempty"`
+    // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `radius`, `speedtest`
     Type                 SynthetictestTypeEnum      `json:"type"`
     // if `type`==`curl`
     Url                  *string                    `json:"url,omitempty"`

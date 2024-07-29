@@ -24,7 +24,7 @@ MxTunnel
 | `MxclusterIds` | `[]uuid.UUID` | Optional | list of mxclusters to deploy this tunnel to |
 | `Name` | `models.Optional[string]` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Protocol` | [`*models.MxtunnelProtocolEnum`](../../doc/models/mxtunnel-protocol-enum.md) | Optional | **Default**: `"udp"` |
+| `Protocol` | [`*models.MxtunnelProtocolEnum`](../../doc/models/mxtunnel-protocol-enum.md) | Optional | enum: `ip`, `udp`<br>**Default**: `"udp"` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `VlanIds` | `[]int` | Optional | list of vlan_ids that will be used |
 
@@ -42,7 +42,7 @@ MxTunnel
     "00000b0c-0000-0000-0000-000000000000"
   ],
   "auto_preemption": {
-    "day_of_week": "tue",
+    "day_of_week": "mon",
     "enabled": false,
     "time_of_day": "time_of_day4"
   },

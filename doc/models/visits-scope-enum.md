@@ -1,6 +1,8 @@
 
 # Visits Scope Enum
 
+enum: `map`, `rssizone`, `site`, `zone`
+
 ## Enumeration
 
 `VisitsScopeEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `site` |
 | `map` |
-| `zone` |
 | `rssizone` |
+| `site` |
+| `zone` |
 

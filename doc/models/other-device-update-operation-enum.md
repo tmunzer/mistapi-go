@@ -1,7 +1,7 @@
 
 # Other Device Update Operation Enum
 
-The operation being performed
+The operation being performed. enum: `assign`, `unassign`
 
 ## Enumeration
 

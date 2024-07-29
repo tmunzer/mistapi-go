@@ -7,6 +7,7 @@ import (
 // WebhookClientInfo represents a WebhookClientInfo struct.
 type WebhookClientInfo struct {
     Events               []WebhookClientInfoEvent    `json:"events,omitempty"`
+    // enum: `client-info`
     Topic                *WebhookClientInfoTopicEnum `json:"topic,omitempty"`
     AdditionalProperties map[string]any              `json:"_"`
 }

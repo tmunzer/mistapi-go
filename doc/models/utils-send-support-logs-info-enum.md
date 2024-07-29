@@ -1,7 +1,7 @@
 
 # Utils Send Support Logs Info Enum
 
-optional choice: process, outbound-ssh, and full (default)
+enum: `code-dumps`, `full`, `jma-logs`, `messages`, `outbound-ssh`, `process`, `var-logs`
 
 ## Enumeration
 
@@ -11,11 +11,11 @@ optional choice: process, outbound-ssh, and full (default)
 
 | Name |
 |  --- |
-| `process` |
-| `outbound-ssh` |
-| `messages` |
 | `code-dumps` |
 | `full` |
-| `var-logs` |
 | `jma-logs` |
+| `messages` |
+| `outbound-ssh` |
+| `process` |
+| `var-logs` |
 

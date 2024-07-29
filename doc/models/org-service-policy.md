@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | **Default**: `"allow"` |
+| `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | enum: `allow`, `deny`<br>**Default**: `"allow"` |
 | `Appqoe` | [`*models.ServicePolicyAppqoe`](../../doc/models/service-policy-appqoe.md) | Optional | For SRX Only |
 | `CreatedTime` | `*float64` | Optional | - |
 | `Ewf` | [`[]models.ServicePolicyEwfRule`](../../doc/models/service-policy-ewf-rule.md) | Optional | - |
@@ -39,19 +39,19 @@
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "strict"
+      "profile": "standard"
     },
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "strict"
+      "profile": "standard"
     },
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "strict"
+      "profile": "standard"
     }
   ],
   "id": "00000e28-0000-0000-0000-000000000000"

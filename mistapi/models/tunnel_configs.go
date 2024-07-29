@@ -9,7 +9,7 @@ type TunnelConfigs struct {
     AutoProvision        *TunnelConfigsAutoProvision          `json:"auto_provision,omitempty"`
     // Only if `provider`== `custom-ipsec`
     IkeLifetime          *int                                 `json:"ike_lifetime,omitempty"`
-    // Only if `provider`== `custom-ipsec`
+    // Only if `provider`== `custom-ipsec`. enum: `aggressive`, `main`
     IkeMode              *GatewayTemplateTunnelIkeModeEnum    `json:"ike_mode,omitempty"`
     // if `provider`== `custom-ipsec`
     IkeProposals         []GatewayTemplateTunnelIkeProposal   `json:"ike_proposals,omitempty"`
@@ -22,12 +22,14 @@ type TunnelConfigs struct {
     //   * `provider`==`jse-ipsec`
     //   * `provider`== `custom-ipsec`
     LocalId              *string                              `json:"local_id,omitempty"`
+    // enum: `active-active`, `active-standby`
     Mode                 *GatewayTemplateTunnelModeEnum       `json:"mode,omitempty"`
     Primary              *GatewayTemplateTunnelNode           `json:"primary,omitempty"`
     // Only if `provider`== `custom-ipsec`
     Probe                *GatewayTemplateTunnelProbe          `json:"probe,omitempty"`
-    // Only if `provider`== `custom-ipsec`
+    // Only if `provider`== `custom-ipsec`. enum: `gre`, `ipsec`
     Protocol             *GatewayTemplateTunnelProtocolEnum   `json:"protocol,omitempty"`
+    // enum: `custom-ipsec`, `customer-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec`
     Provider             *TunnelProviderOptionsNameEnum       `json:"provider,omitempty"`
     // Only if:
     //   * `provider`== `zscaler-ipsec`
@@ -35,9 +37,7 @@ type TunnelConfigs struct {
     //   * `provider`== `custom-ipsec`
     Psk                  *string                              `json:"psk,omitempty"`
     Secondary            *GatewayTemplateTunnelNode           `json:"secondary,omitempty"`
-    // Only if:
-    //   * `provider`== `custom-gre`
-    //   * `provider`== `custom-ipsec`
+    // Only if `provider`== `custom-gre` or `provider`== `custom-ipsec`. enum: `1`, `2`
     Version              *GatewayTemplateTunnelVersionEnum    `json:"version,omitempty"`
     AdditionalProperties map[string]any                       `json:"_"`
 }

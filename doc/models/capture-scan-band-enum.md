@@ -1,7 +1,7 @@
 
 # Capture Scan Band Enum
 
-Only Single value allowed, default value gets applied when user provides wrong values
+Only Single value allowed, default value gets applied when user provides wrong values. enum: `24`, `5`, `6`
 
 ## Enumeration
 

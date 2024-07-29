@@ -1,6 +1,8 @@
 
 # Search Org Sw or Gw Ports Auth State Enum
 
+enum: `authenticated`, `authenticating`, `held`, `init`
+
 ## Enumeration
 
 `SearchOrgSwOrGwPortsAuthStateEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `init` |
 | `authenticated` |
 | `authenticating` |
 | `held` |
+| `init` |
 

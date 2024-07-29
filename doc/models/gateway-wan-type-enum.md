@@ -1,6 +1,8 @@
 
 # Gateway Wan Type Enum
 
+enum: `dhcp`, `pppoe`, `static`
+
 ## Enumeration
 
 `GatewayWanTypeEnum`
@@ -10,6 +12,6 @@
 | Name |
 |  --- |
 | `dhcp` |
-| `static` |
 | `pppoe` |
+| `static` |
 

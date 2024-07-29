@@ -13,6 +13,7 @@ type LicenseAmendment struct {
     Quantity             *int             `json:"quantity,omitempty"`
     StartTime            *int             `json:"start_time,omitempty"`
     SubscriptionId       *string          `json:"subscription_id,omitempty"`
+    // enum: `SUB-AST`, `SUB-DATA`, `SUB-ENG`, `SUB-EX12`, `SUB-EX24`, `SUB-EX48`, `SUB-MAN`, `SUB-ME`, `SUB-PMA`, `SUB-SRX1`, `SUB-SRX2`, `SUB-SVNA`, `SUB-VNA`, `SUB-WAN1`, `SUB-WAN2`, `SUB-WVNA1`, `SUB-WVNA2`
     Type                 *LicenseTypeEnum `json:"type,omitempty"`
     AdditionalProperties map[string]any   `json:"_"`
 }

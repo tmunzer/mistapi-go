@@ -12,7 +12,7 @@ type VirtualChassisMemberUpdate struct {
     Member               *int                                  `json:"member,omitempty"`
     // Required if `op`==`add` or `op`==`preprovision`
     VcPorts              []string                              `json:"vc_ports,omitempty"`
-    // Required if `op`==`add` or `op`==`preprovision`
+    // Required if `op`==`add` or `op`==`preprovision`. enum: `backup`, `linecard`, `master`
     VcRole               *VirtualChassisMemberUpdateVcRoleEnum `json:"vc_role,omitempty"`
     AdditionalProperties map[string]any                        `json:"_"`
 }

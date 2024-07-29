@@ -13,7 +13,7 @@ type GatewayPortConfig struct {
     DisableAutoneg       *bool                         `json:"disable_autoneg,omitempty"`
     // port admin up (true) / down (false)
     Disabled             *bool                         `json:"disabled,omitempty"`
-    // if `wan_type`==`lte`
+    // if `wan_type`==`lte`. enum: `adsl`, `vdsl`
     DslType              *GatewayPortDslTypeEnum       `json:"dsl_type,omitempty"`
     // if `wan_type`==`dsl`
     // 16 bit int
@@ -21,12 +21,13 @@ type GatewayPortConfig struct {
     // if `wan_type`==`dsl`
     // 8 bit int
     DslVpi               *int                          `json:"dsl_vpi,omitempty"`
+    // enum: `auto`, `full`, `half`
     Duplex               *GatewayPortDuplexEnum        `json:"duplex,omitempty"`
     // Junos IP Config
     IpConfig             *GatewayPortConfigIpConfig    `json:"ip_config,omitempty"`
     // if `wan_type`==`lte`
     LteApn               *string                       `json:"lte_apn,omitempty"`
-    // if `wan_type`==`lte`
+    // if `wan_type`==`lte`. enum: `chap`, `none`, `pap`
     LteAuth              *GatewayPortLteAuthEnum       `json:"lte_auth,omitempty"`
     LteBackup            *bool                         `json:"lte_backup,omitempty"`
     // if `wan_type`==`lte`
@@ -59,18 +60,18 @@ type GatewayPortConfig struct {
     // for SSR only
     SvrPortRange         *string                       `json:"svr_port_range,omitempty"`
     TrafficShaping       *GatewayTrafficShaping        `json:"traffic_shaping,omitempty"`
-    // port usage name
+    // port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan`
     Usage                GatewayPortUsageEnum          `json:"usage"`
     // if WAN interface is on a VLAN
     VlanId               *int                          `json:"vlan_id,omitempty"`
     VpnPaths             map[string]GatewayPortVpnPath `json:"vpn_paths,omitempty"`
-    // when `wan_type`==`broadband`
+    // when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`
     WanArpPolicer        *GatewayPortWanArpPolicerEnum `json:"wan_arp_policer,omitempty"`
     // optional, if spoke should reach this port by a different IP
     WanExtIp             *string                       `json:"wan_ext_ip,omitempty"`
     // optional, by default, source-NAT is performed on all WAN Ports using the interface-ip
     WanSourceNat         *GatewayPortWanSourceNat      `json:"wan_source_nat,omitempty"`
-    // if `usage`==`wan`
+    // if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`
     WanType              *GatewayPortWanTypeEnum       `json:"wan_type,omitempty"`
     AdditionalProperties map[string]any                `json:"_"`
 }

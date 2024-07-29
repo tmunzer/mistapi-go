@@ -6,7 +6,7 @@ import (
 
 // PskPortalTemplate represents a PskPortalTemplate struct.
 type PskPortalTemplate struct {
-    // defines alignment on portal
+    // defines alignment on portal. enum: `center`, `left`, `right`
     Alignment            *PskPortalTemplateAlignmentEnum `json:"alignment,omitempty"`
     Color                *string                         `json:"color,omitempty"`
     // custom logo.  default null, uses Juniper Mist Logo

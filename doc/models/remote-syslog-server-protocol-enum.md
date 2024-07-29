@@ -1,6 +1,8 @@
 
 # Remote Syslog Server Protocol Enum
 
+enum: `tcp`, `udp`
+
 ## Enumeration
 
 `RemoteSyslogServerProtocolEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `udp` |
 | `tcp` |
+| `udp` |
 

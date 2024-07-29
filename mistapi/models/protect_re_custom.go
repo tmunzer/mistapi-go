@@ -9,6 +9,7 @@ import (
 type ProtectReCustom struct {
     // matched dst port, "0" means any
     PortRange            *string                      `json:"port_range,omitempty"`
+    // enum: `any`, `icmp`, `tcp`, `udp`
     Protocol             *ProtectReCustomProtocolEnum `json:"protocol,omitempty"`
     Subnet               []string                     `json:"subnet,omitempty"`
     AdditionalProperties map[string]any               `json:"_"`

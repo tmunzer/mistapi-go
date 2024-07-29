@@ -1,6 +1,8 @@
 
 # Org Tunnel Type Count Enum
 
+enum: `wan`, `wxtunnel`
+
 ## Enumeration
 
 `OrgTunnelTypeCountEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `wxtunnel` |
 | `wan` |
+| `wxtunnel` |
 

@@ -10,7 +10,7 @@ import (
 type WebhookSdkclientScanDataEventScanDataItem struct {
     // mac address of the AP associated with the BSSID scanned
     Ap                   string               `json:"ap"`
-    // 5GHz or 2.4GHz band, associated with the BSSID scanned
+    // 5GHz or 2.4GHz band, associated with the BSSID scanned. enum: `2.4`, `5`
     Band                 ScanDataItemBandEnum `json:"band"`
     // BSSID found during client’s background scan for wifi
     Bssid                string               `json:"bssid"`

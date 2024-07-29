@@ -9,6 +9,7 @@ import (
 // VirtualChassisPort represents a VirtualChassisPort struct.
 type VirtualChassisPort struct {
     Members              []ConfigVcPortMember            `json:"members"`
+    // enum: `delete`, `set`
     Op                   VirtualChassisPortOperationEnum `json:"op"`
     AdditionalProperties map[string]any                  `json:"_"`
 }

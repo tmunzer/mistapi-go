@@ -12,6 +12,7 @@ type BleConfig struct {
     BeaconEnabled           *bool                        `json:"beacon_enabled,omitempty"`
     // required if `beacon_rate_mode`==`custom`, 1-10, in number-beacons-per-second
     BeaconRate              *int                         `json:"beacon_rate,omitempty"`
+    // enum: `custom`, `default`
     BeaconRateMode          *BleConfigBeaconRateModeEnum `json:"beacon_rate_mode,omitempty"`
     // list of AP BLE location beam numbers (1-8) which should be disabled at the AP and not transmit location information (where beam 1 is oriented at the top the AP, growing counter-clock-wise, with 9 being the omni BLE beam)
     BeamDisabled            []int                        `json:"beam_disabled,omitempty"`
@@ -56,6 +57,7 @@ type BleConfig struct {
     IbeaconUuid             *uuid.UUID                   `json:"ibeacon_uuid,omitempty"`
     // required if `power_mode`==`custom`
     Power                   *int                         `json:"power,omitempty"`
+    // enum: `custom`, `default`
     PowerMode               *BleConfigPowerModeEnum      `json:"power_mode,omitempty"`
     AdditionalProperties    map[string]any               `json:"_"`
 }

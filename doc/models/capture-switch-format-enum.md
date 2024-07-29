@@ -1,6 +1,8 @@
 
 # Capture Switch Format Enum
 
+enum: `stream`
+
 ## Enumeration
 
 `CaptureSwitchFormatEnum`

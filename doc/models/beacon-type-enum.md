@@ -1,6 +1,8 @@
 
 # Beacon Type Enum
 
+enum: `eddystone-uid`, `eddystone-url`, `ibeacon`
+
 ## Enumeration
 
 `BeaconTypeEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `ibeacon` |
 | `eddystone-uid` |
 | `eddystone-url` |
+| `ibeacon` |
 

@@ -14,7 +14,7 @@
 | `Hostname` | `[]string` | Optional | if `protocol`==`http` |
 | `Name` | `*string` | Optional | - |
 | `Network` | `*string` | Optional | - |
-| `Protocol` | [`*models.AppProbingCustomAppProtocolEnum`](../../doc/models/app-probing-custom-app-protocol-enum.md) | Optional | **Default**: `"http"` |
+| `Protocol` | [`*models.AppProbingCustomAppProtocolEnum`](../../doc/models/app-probing-custom-app-protocol-enum.md) | Optional | enum: `http`, `udp`<br>**Default**: `"http"` |
 | `Url` | `*string` | Optional | if `protocol`==`http` |
 | `Vrf` | `*string` | Optional | - |
 

@@ -1,6 +1,8 @@
 
 # Org Mxedge Count Distinct Enum
 
+enum: `distro`, `model`, `mxcluster_id`, `site_id`, `tunterm_version`
+
 ## Enumeration
 
 `OrgMxedgeCountDistinctEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
+| `distro` |
 | `model` |
 | `mxcluster_id` |
-| `distro` |
-| `tunterm_version` |
 | `site_id` |
+| `tunterm_version` |
 

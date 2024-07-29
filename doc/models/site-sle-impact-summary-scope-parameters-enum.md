@@ -1,6 +1,8 @@
 
 # Site Sle Impact Summary Scope Parameters Enum
 
+enum: `ap`, `client`, `gateway`, `site`, `switch`
+
 ## Enumeration
 
 `SiteSleImpactSummaryScopeParametersEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `site` |
 | `ap` |
-| `switch` |
-| `gateway` |
 | `client` |
+| `gateway` |
+| `site` |
+| `switch` |
 

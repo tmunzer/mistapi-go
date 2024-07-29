@@ -13,7 +13,7 @@ DHCP server/relay configuration of Mist Tunneled VLANs. Property key is the VLAN
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Servers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Type` | [`*models.TuntermDhcpdTypeEnum`](../../doc/models/tunterm-dhcpd-type-enum.md) | Optional | **Default**: `"relay"` |
+| `Type` | [`*models.TuntermDhcpdTypeEnum`](../../doc/models/tunterm-dhcpd-type-enum.md) | Optional | enum: `relay`<br>**Default**: `"relay"` |
 
 ## Example (as JSON)
 

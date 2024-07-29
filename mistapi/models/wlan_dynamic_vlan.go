@@ -8,18 +8,18 @@ import (
 // for 802.1x
 type WlanDynamicVlan struct {
     // vlan_id to use when there’s no match from RADIUS
-    DefaultVlanId        Optional[WlanDynamicVlanDefaultVlanId] `json:"default_vlan_id"`
+    DefaultVlanId        *WlanDynamicVlanDefaultVlanId `json:"default_vlan_id,omitempty"`
     // whether to enable dynamic vlan
-    Enabled              *bool                                  `json:"enabled,omitempty"`
+    Enabled              *bool                         `json:"enabled,omitempty"`
     // vlan_ids to be locally bridged
-    LocalVlanIds         []WlanDynamicVlanLocalVlanIds          `json:"local_vlan_ids,omitempty"`
-    // standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco)
-    Type                 *WlanDynamicVlanTypeEnum               `json:"type,omitempty"`
+    LocalVlanIds         []WlanDynamicVlanLocalVlanIds `json:"local_vlan_ids,omitempty"`
+    // standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco). enum: `airespace-interface-name`, `standard`
+    Type                 *WlanDynamicVlanTypeEnum      `json:"type,omitempty"`
     // map between vlan_id (as string) to airespace interface names (comma-separated) or null for stndard mapping
     //   * if `dynamic_vlan.type`==`standard`, property key is the Vlan ID and property value is \"\"
     //   * if `dynamic_vlan.type`==`airespace-interface-name`, property key is the Vlan ID and property value is the Airespace Interface Name
-    Vlans                map[string]string                      `json:"vlans,omitempty"`
-    AdditionalProperties map[string]any                         `json:"_"`
+    Vlans                map[string]string             `json:"vlans,omitempty"`
+    AdditionalProperties map[string]any                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDynamicVlan.
@@ -34,12 +34,8 @@ func (w WlanDynamicVlan) MarshalJSON() (
 func (w WlanDynamicVlan) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, w.AdditionalProperties)
-    if w.DefaultVlanId.IsValueSet() {
-        if w.DefaultVlanId.Value() != nil {
-            structMap["default_vlan_id"] = w.DefaultVlanId.Value().toMap()
-        } else {
-            structMap["default_vlan_id"] = nil
-        }
+    if w.DefaultVlanId != nil {
+        structMap["default_vlan_id"] = w.DefaultVlanId.toMap()
     }
     if w.Enabled != nil {
         structMap["enabled"] = w.Enabled
@@ -80,9 +76,9 @@ func (w *WlanDynamicVlan) UnmarshalJSON(input []byte) error {
 
 // wlanDynamicVlan is a temporary struct used for validating the fields of WlanDynamicVlan.
 type wlanDynamicVlan  struct {
-    DefaultVlanId Optional[WlanDynamicVlanDefaultVlanId] `json:"default_vlan_id"`
-    Enabled       *bool                                  `json:"enabled,omitempty"`
-    LocalVlanIds  []WlanDynamicVlanLocalVlanIds          `json:"local_vlan_ids,omitempty"`
-    Type          *WlanDynamicVlanTypeEnum               `json:"type,omitempty"`
-    Vlans         map[string]string                      `json:"vlans,omitempty"`
+    DefaultVlanId *WlanDynamicVlanDefaultVlanId `json:"default_vlan_id,omitempty"`
+    Enabled       *bool                         `json:"enabled,omitempty"`
+    LocalVlanIds  []WlanDynamicVlanLocalVlanIds `json:"local_vlan_ids,omitempty"`
+    Type          *WlanDynamicVlanTypeEnum      `json:"type,omitempty"`
+    Vlans         map[string]string             `json:"vlans,omitempty"`
 }

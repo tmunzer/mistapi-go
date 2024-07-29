@@ -71,6 +71,24 @@ if err != nil {
 }
 ```
 
+## Example Response *(as JSON)*
+
+```json
+{
+  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "allow_mist": true,
+  "created_time": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "modified_time": 0,
+  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "name": "string",
+  "orggroup_ids": [
+    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
+  ],
+  "session_expiry": 1440
+}
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -174,6 +192,24 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "allow_mist": true,
+  "created_time": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "modified_time": 0,
+  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "name": "string",
+  "orggroup_ids": [
+    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
+  ],
+  "session_expiry": 1440
 }
 ```
 
@@ -283,6 +319,26 @@ if err != nil {
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
 }
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+    "allow_mist": true,
+    "created_time": 0,
+    "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+    "modified_time": 0,
+    "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+    "name": "string",
+    "orggroup_ids": [
+      "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
+    ],
+    "session_expiry": 1440
+  }
+]
 ```
 
 ## Errors
@@ -529,6 +585,24 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "alarmtemplate_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "allow_mist": true,
+  "created_time": 0,
+  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "modified_time": 0,
+  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "name": "string",
+  "orggroup_ids": [
+    "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
+  ],
+  "session_expiry": 1440
 }
 ```
 

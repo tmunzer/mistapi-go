@@ -1,6 +1,8 @@
 
 # Tuntern Monitoring Protocol Enum
 
+enum: `arp`, `ping`, `tcp`
+
 ## Enumeration
 
 `TunternMonitoringProtocolEnum`

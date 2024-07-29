@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Macs` | `[]string` | Optional | The mac address of the peer device. |
-| `Op` | [`models.OtherDeviceUpdateOperationEnum`](../../doc/models/other-device-update-operation-enum.md) | Required | The operation being performed |
+| `Op` | [`models.OtherDeviceUpdateOperationEnum`](../../doc/models/other-device-update-operation-enum.md) | Required | The operation being performed. enum: `assign`, `unassign` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 
 ## Example (as JSON)

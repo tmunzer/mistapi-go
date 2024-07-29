@@ -27,34 +27,34 @@ IoT AP settings
     "enabled": false,
     "name": "name0",
     "output": false,
-    "pullup": "external",
+    "pullup": "internal",
     "value": 242
   },
   "A2": {
     "enabled": false,
     "name": "name8",
     "output": false,
-    "pullup": "non",
+    "pullup": "none",
     "value": 180
   },
   "A3": {
     "enabled": false,
     "name": "name6",
     "output": false,
-    "pullup": "external",
+    "pullup": "internal",
     "value": 118
   },
   "A4": {
     "enabled": false,
     "name": "name8",
     "output": false,
-    "pullup": "external",
+    "pullup": "internal",
     "value": 88
   },
   "DI1": {
     "enabled": false,
     "name": "name0",
-    "pullup": "external"
+    "pullup": "internal"
   }
 }
 ```

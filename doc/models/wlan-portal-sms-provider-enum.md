@@ -1,6 +1,8 @@
 
 # Wlan Portal Sms Provider Enum
 
+enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`
+
 ## Enumeration
 
 `WlanPortalSmsProviderEnum`
@@ -9,13 +11,13 @@
 
 | Name |
 |  --- |
-| `manual` |
-| `twilio` |
 | `broadnet` |
 | `clickatell` |
-| `puzzel` |
 | `gupshup` |
+| `manual` |
+| `puzzel` |
 | `telstra` |
+| `twilio` |
 
 ## Example
 

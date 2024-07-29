@@ -53,6 +53,7 @@ type GatewayTemplate struct {
     // Property key is the tunnel name
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
+    // enum: `spoke`, `standalone`
     Type                  *GatewayTemplateTypeEnum           `json:"type,omitempty"`
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
     // Property key is the network name

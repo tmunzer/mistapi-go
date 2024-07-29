@@ -17,8 +17,9 @@ type WebhookDeviceEventsEvent struct {
     AuditId              *uuid.UUID                             `json:"audit_id,omitempty"`
     // device name
     DeviceName           string                                 `json:"device_name"`
+    // enum: `ap`, `gateway`, `switch`
     DeviceType           WebhookDeviceEventsEventDeviceTypeEnum `json:"device_type"`
-    // (optional) event advisory (notice/warn)
+    // (optional) event advisory. enum: `notice`, `warn`
     EvType               WebhookDeviceEventsEventEvTypeEnum     `json:"ev_type"`
     // device mac
     Mac                  string                                 `json:"mac"`

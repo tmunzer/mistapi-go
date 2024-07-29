@@ -47,7 +47,7 @@ type DeviceprofileAp struct {
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     // for people who want to fully control the vlans (advanced)
     SwitchConfig         *ApSwitch               `json:"switch_config,omitempty"`      // Deprecated
-    // Device Type
+    // Device Type. enum: `ap`
     Type                 *DeviceTypeApEnum       `json:"type,omitempty"`
     UplinkPortConfig     *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
     // USB AP settings

@@ -1,6 +1,8 @@
 
 # Virtual Chassis Port Operation Enum
 
+enum: `delete`, `set`
+
 ## Enumeration
 
 `VirtualChassisPortOperationEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `set` |
 | `delete` |
+| `set` |
 

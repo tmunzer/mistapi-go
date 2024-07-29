@@ -1,6 +1,8 @@
 
 # Discovered Switch Metric Type Enum
 
+enum: `inactive_wired_vlans`, `poe_compliance`, `switch_ap_affinity`, `version_compliance`
+
 ## Enumeration
 
 `DiscoveredSwitchMetricTypeEnum`
@@ -10,7 +12,7 @@
 | Name |
 |  --- |
 | `inactive_wired_vlans` |
-| `switch_ap_affinity` |
 | `poe_compliance` |
+| `switch_ap_affinity` |
 | `version_compliance` |
 

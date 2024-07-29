@@ -33,8 +33,8 @@ SSO Role response
       "org_name": "org_name6",
       "orggroup_id": "000010e2-0000-0000-0000-000000000000",
       "role": "admin",
-      "scope": "msp",
-      "views": "lobby_admin"
+      "scope": "org",
+      "views": "switch_admin"
     }
   ],
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",

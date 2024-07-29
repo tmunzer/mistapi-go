@@ -24,18 +24,18 @@ Map
 | `Name` | `*string` | Optional | The name of the map |
 | `OccupancyLimit` | `*int` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Orientation` | `*int` | Optional | orientation of the map, 0 means up is north, 90 means up is west<br>**Default**: `0` |
+| `Orientation` | `*int` | Optional | orientation of the map, 0 means up is north, 90 means up is west<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 359` |
 | `OriginX` | `*int` | Optional | the user-annotated x origin, pixels |
 | `OriginY` | `*int` | Optional | the user-annotated y origin, pixels |
 | `Ppm` | `*float64` | Optional | when type=image, pixels per meter |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SitesurveyPath` | [`[]models.MapSitesurveyPathItems`](../../doc/models/map-sitesurvey-path-items.md) | Optional | sitesurvey_path<br>**Constraints**: *Minimum Items*: `0` |
 | `ThumbnailUrl` | `*string` | Optional | when type=image, the url for the thumbnail image / preview |
-| `Type` | [`*models.MapTypeEnum`](../../doc/models/map-type-enum.md) | Optional | **Default**: `"image"` |
+| `Type` | [`*models.MapTypeEnum`](../../doc/models/map-type-enum.md) | Optional | enum: `google`, `image`<br>**Default**: `"image"` |
 | `Url` | `*string` | Optional | when type=image, the url |
 | `UseAutoOrientation` | `*bool` | Optional | whether this map uses autooreintation values or ignores them<br>**Default**: `false` |
 | `UseAutoPlacement` | `*bool` | Optional | whether this map uses autoplacement values or ignores them<br>**Default**: `false` |
-| `View` | [`models.Optional[models.MapViewEnum]`](../../doc/models/map-view-enum.md) | Optional | when type=google |
+| `View` | [`models.Optional[models.MapViewEnum]`](../../doc/models/map-view-enum.md) | Optional | if `type`==`google`. enum: `hybrid`, `roadmap`, `satellite`, `terrain` |
 | `WallPath` | [`*models.MapWallPath`](../../doc/models/map-wall-path.md) | Optional | a JSON blob for wall definition (same format as wayfinding_path) |
 | `Wayfinding` | [`*models.MapWayfinding`](../../doc/models/map-wayfinding.md) | Optional | properties related to wayfinding |
 | `WayfindingPath` | [`*models.MapWayfindingPath`](../../doc/models/map-wayfinding-path.md) | Optional | a JSON blob for wayfinding (using Dijkstra’s algorithm) |

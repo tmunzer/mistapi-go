@@ -10,7 +10,7 @@ import (
 // WxlanRule represents a WxlanRule struct.
 // WXlan
 type WxlanRule struct {
-    // type of action, allow / block
+    // type of action, allow / block. enum: `allow`, `block`
     Action               *WxlanRuleActionEnum `json:"action,omitempty"`
     ApplyTags            []string             `json:"apply_tags,omitempty"`
     // blocked apps (always blocking, ignoring action), the key of Get Application List

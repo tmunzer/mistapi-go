@@ -11,7 +11,7 @@ WXlan
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`*models.WxlanRuleActionEnum`](../../doc/models/wxlan-rule-action-enum.md) | Optional | type of action, allow / block |
+| `Action` | [`*models.WxlanRuleActionEnum`](../../doc/models/wxlan-rule-action-enum.md) | Optional | type of action, allow / block. enum: `allow`, `block` |
 | `ApplyTags` | `[]string` | Optional | - |
 | `BlockedApps` | `[]string` | Optional | blocked apps (always blocking, ignoring action), the key of Get Application List |
 | `CreatedTime` | `*float64` | Optional | - |

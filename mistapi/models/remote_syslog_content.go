@@ -6,7 +6,9 @@ import (
 
 // RemoteSyslogContent represents a RemoteSyslogContent struct.
 type RemoteSyslogContent struct {
+    // enum: `any`, `authorization`, `change-log`, `config`, `conflict-log`, `daemon`, `dfc`, `external`, `firewall`, `ftp`, `interactive-commands`, `kernel`, `ntp`, `pfe`, `security`, `user`
     Facility             *RemoteSyslogFacilityEnum `json:"facility,omitempty"`
+    // enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`
     Severity             *RemoteSyslogSeverityEnum `json:"severity,omitempty"`
     AdditionalProperties map[string]any            `json:"_"`
 }

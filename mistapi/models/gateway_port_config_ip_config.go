@@ -20,10 +20,11 @@ type GatewayPortConfigIpConfig struct {
     Network              *string                 `json:"network,omitempty"`
     // if `type`==`pppoe`
     PoserPassword        *string                 `json:"poser_password,omitempty"`
-    // if `type`==`pppoe`
+    // if `type`==`pppoe`. enum: `chap`, `none`, `pap`
     PppoeAuth            *GatewayWanPpoeAuthEnum `json:"pppoe_auth,omitempty"`
     // if `type`==`pppoe`
     PppoeUsername        *string                 `json:"pppoe_username,omitempty"`
+    // enum: `dhcp`, `pppoe`, `static`
     Type                 *GatewayWanTypeEnum     `json:"type,omitempty"`
     AdditionalProperties map[string]any          `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # List Msp Logs Sort Enum
 
+enum: `-timestamp`, `admin_id`, `site_id`, `timestamp`
+
 ## Enumeration
 
 `ListMspLogsSortEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `timestamp` |
 | `-timestamp` |
-| `site_id` |
 | `admin_id` |
+| `site_id` |
+| `timestamp` |
 

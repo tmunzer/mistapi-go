@@ -1,6 +1,8 @@
 
 # Site Sle Impact Summary Fields Parameter Enum
 
+enum: `ap`, `band`, `chassis`, `client`, `device_os`, `device_type`, `gateway`, `gateway_zones`, `interface`, `mxedge`, `peer_path`, `server`, `switch`, `vlan`, `wlan`
+
 ## Enumeration
 
 `SiteSleImpactSummaryFieldsParameterEnum`
@@ -9,19 +11,19 @@
 
 | Name |
 |  --- |
-| `wlan` |
-| `device_type` |
-| `device_os` |
-| `band` |
 | `ap` |
-| `server` |
-| `mxedge` |
-| `switch` |
-| `client` |
-| `vlan` |
-| `interface` |
+| `band` |
 | `chassis` |
+| `client` |
+| `device_os` |
+| `device_type` |
 | `gateway` |
-| `peer_path` |
 | `gateway_zones` |
+| `interface` |
+| `mxedge` |
+| `peer_path` |
+| `server` |
+| `switch` |
+| `vlan` |
+| `wlan` |
 

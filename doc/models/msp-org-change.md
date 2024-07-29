@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Op` | [`models.MspOrgChangeOperationEnum`](../../doc/models/msp-org-change-operation-enum.md) | Required | - |
+| `Op` | [`models.MspOrgChangeOperationEnum`](../../doc/models/msp-org-change-operation-enum.md) | Required | enum: `assign`, `unassign` |
 | `OrgIds` | `[]string` | Required | list of org_id |
 
 ## Example (as JSON)

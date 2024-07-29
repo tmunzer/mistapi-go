@@ -1,6 +1,8 @@
 
 # Webhook Topic Enum
 
+enum: `alarms`, `asset-raw`, `asset-raw-rssi`, `audits`, `client-info`, `client-join`, `client-latency`, `client-sessions`, `device-updowns`, `device_events`, `discovered-raw-rssi`, `location`, `location_asset`, `location_centrak`, `location_client`, `location_sdk`, `location_unclient`, `mxedge_events`, `nac-accounting`, `nac_events`, `occupancy-alerts`, `rssizone`, `sdkclient_scan_data`, `site_sle`, `vbeacon`, `wifi-conn-raw`, `wifi-unconn-raw`, `zone`
+
 ## Enumeration
 
 `WebhookTopicEnum`
@@ -10,13 +12,22 @@
 | Name |
 |  --- |
 | `alarms` |
+| `asset-raw` |
+| `asset-raw-rssi` |
 | `audits` |
 | `client-info` |
 | `client-join` |
 | `client-latency` |
 | `client-sessions` |
-| `device_events` |
 | `device-updowns` |
+| `device_events` |
+| `discovered-raw-rssi` |
+| `location` |
+| `location_asset` |
+| `location_centrak` |
+| `location_client` |
+| `location_sdk` |
+| `location_unclient` |
 | `mxedge_events` |
 | `nac-accounting` |
 | `nac_events` |
@@ -25,16 +36,7 @@
 | `sdkclient_scan_data` |
 | `site_sle` |
 | `vbeacon` |
-| `zone` |
-| `location` |
-| `location_asset` |
-| `location_centrak` |
-| `location_client` |
-| `location_unclient` |
-| `location_sdk` |
-| `asset-raw` |
-| `asset-raw-rssi` |
-| `discovered-raw-rssi` |
 | `wifi-conn-raw` |
 | `wifi-unconn-raw` |
+| `zone` |
 

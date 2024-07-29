@@ -1,6 +1,8 @@
 
 # Psk Usage Enum
 
+enum: `macs`, `multi`, `single`
+
 ## Enumeration
 
 `PskUsageEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
+| `macs` |
 | `multi` |
 | `single` |
-| `macs` |
 

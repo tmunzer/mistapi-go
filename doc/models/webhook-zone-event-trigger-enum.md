@@ -1,7 +1,7 @@
 
 # Webhook Zone Event Trigger Enum
 
-enter / exit
+enum: `enter`, `exit`
 
 ## Enumeration
 

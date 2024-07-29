@@ -1,6 +1,8 @@
 
 # Troubleshoot Type Enum
 
+enum: `wan`, `wired`, `wireless`
+
 ## Enumeration
 
 `TroubleshootTypeEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `wireless` |
-| `wired` |
 | `wan` |
+| `wired` |
+| `wireless` |
 

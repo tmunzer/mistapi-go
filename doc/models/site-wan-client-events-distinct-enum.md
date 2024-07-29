@@ -1,6 +1,8 @@
 
 # Site Wan Client Events Distinct Enum
 
+enum: `hostname`, `ip`, `mac`, `mfg`, `type`
+
 ## Enumeration
 
 `SiteWanClientEventsDistinctEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `type` |
 | `hostname` |
 | `ip` |
-| `mfg` |
 | `mac` |
+| `mfg` |
+| `type` |
 

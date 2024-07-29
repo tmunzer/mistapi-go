@@ -130,6 +130,67 @@ if err != nil {
 }
 ```
 
+## Example Response *(as JSON)*
+
+```json
+{
+  "allow_ipv6_ndp": true,
+  "allow_mdns": false,
+  "allow_ssdp": false,
+  "arp_filter": false,
+  "band_steer": false,
+  "band_steer_force_band5": false,
+  "bands": [
+    "24",
+    "5"
+  ],
+  "block_blacklist_clients": false,
+  "bonjour": {
+    "additional_vlan_ids": [
+      10
+    ],
+    "enabled": false,
+    "services": {
+      "airplay": {
+        "radius_groups": [
+          "teachers"
+        ],
+        "scope": "same_ap"
+      }
+    }
+  },
+  "client_limit_down": 0,
+  "client_limit_down_enabled": false,
+  "client_limit_up": 0,
+  "client_limit_up_enabled": false,
+  "disable_11ax": false,
+  "disable_ht_vht_rates": false,
+  "disable_uapsd": false,
+  "disable_v1_roam_notify": false,
+  "disable_v2_roam_notify": false,
+  "disable_wmm": false,
+  "dynamic_vlan": {
+    "default_vlan_id": 999,
+    "enabled": false,
+    "local_vlan_ids": [
+      1
+    ],
+    "type": "airespace-interface-name",
+    "vlans": {
+      "131": "default",
+      "322": "fast,video"
+    }
+  },
+  "enable_local_keycaching": false,
+  "enable_wireless_bridging": false,
+  "enabled": true,
+  "fast_dot1x_timers": false,
+  "hide_ssid": false,
+  "hostname_ie": false,
+  "ssid": "demo"
+}
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -288,6 +349,67 @@ if err != nil {
 }
 ```
 
+## Example Response *(as JSON)*
+
+```json
+{
+  "allow_ipv6_ndp": true,
+  "allow_mdns": false,
+  "allow_ssdp": false,
+  "arp_filter": false,
+  "band_steer": false,
+  "band_steer_force_band5": false,
+  "bands": [
+    "24",
+    "5"
+  ],
+  "block_blacklist_clients": false,
+  "bonjour": {
+    "additional_vlan_ids": [
+      10
+    ],
+    "enabled": false,
+    "services": {
+      "airplay": {
+        "radius_groups": [
+          "teachers"
+        ],
+        "scope": "same_ap"
+      }
+    }
+  },
+  "client_limit_down": 0,
+  "client_limit_down_enabled": false,
+  "client_limit_up": 0,
+  "client_limit_up_enabled": false,
+  "disable_11ax": false,
+  "disable_ht_vht_rates": false,
+  "disable_uapsd": false,
+  "disable_v1_roam_notify": false,
+  "disable_v2_roam_notify": false,
+  "disable_wmm": false,
+  "dynamic_vlan": {
+    "default_vlan_id": 999,
+    "enabled": false,
+    "local_vlan_ids": [
+      1
+    ],
+    "type": "airespace-interface-name",
+    "vlans": {
+      "131": "default",
+      "322": "fast,video"
+    }
+  },
+  "enable_local_keycaching": false,
+  "enable_wireless_bridging": false,
+  "enabled": true,
+  "fast_dot1x_timers": false,
+  "hide_ssid": false,
+  "hostname_ie": false,
+  "ssid": "demo"
+}
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -393,21 +515,34 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wlanId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Wlan{
-    AcctImmediateUpdate:                models.ToPointer(false),
-    AcctInterimInterval:                models.ToPointer(0),
     AllowIpv6Ndp:                       models.ToPointer(true),
     AllowMdns:                          models.ToPointer(false),
     AllowSsdp:                          models.ToPointer(false),
     ArpFilter:                          models.ToPointer(false),
-    AuthServerSelection:                models.ToPointer(models.WlanAuthServerSelectionEnum("ordered")),
-    AuthServersNasId:                   models.NewOptional(models.ToPointer("5c5b350e0101-nas")),
-    AuthServersNasIp:                   models.NewOptional(models.ToPointer("15.3.1.5")),
-    AuthServersRetries:                 models.ToPointer(5),
-    AuthServersTimeout:                 models.ToPointer(5),
     BandSteer:                          models.ToPointer(false),
     BandSteerForceBand5:                models.ToPointer(false),
+    Bands:                              []models.Dot11BandEnum{
+        models.Dot11BandEnum("24"),
+        models.Dot11BandEnum("5"),
+    },
     BlockBlacklistClients:              models.ToPointer(false),
+    Bonjour:                            models.ToPointer(models.WlanBonjour{
+        AdditionalVlanIds: []models.WlanBonjourAdditionalVlanIds{
+            models.WlanBonjourAdditionalVlanIdsContainer.FromNumber(10),
+        },
+        Enabled:           models.ToPointer(false),
+        Services:          map[string]models.WlanBonjourServiceProperties{
+            "airplay": models.WlanBonjourServiceProperties{
+                RadiusGroups: []string{
+                    "teachers",
+                },
+                Scope:        models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
+            },
+        },
+    }),
+    ClientLimitDown:                    models.ToPointer(0),
     ClientLimitDownEnabled:             models.ToPointer(false),
+    ClientLimitUp:                      models.ToPointer(0),
     ClientLimitUpEnabled:               models.ToPointer(false),
     Disable11ax:                        models.ToPointer(false),
     DisableHtVhtRates:                  models.ToPointer(false),
@@ -415,50 +550,25 @@ body := models.Wlan{
     DisableV1RoamNotify:                models.ToPointer(false),
     DisableV2RoamNotify:                models.ToPointer(false),
     DisableWmm:                         models.ToPointer(false),
-    Dtim:                               models.ToPointer(2),
+    DynamicVlan:                        models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
+        DefaultVlanId: models.ToPointer(models.WlanDynamicVlanDefaultVlanIdContainer.FromNumber(999)),
+        Enabled:       models.ToPointer(false),
+        LocalVlanIds:  []models.WlanDynamicVlanLocalVlanIds{
+            models.WlanDynamicVlanLocalVlanIdsContainer.FromNumber(1),
+        },
+        Type:          models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
+        Vlans:         map[string]string{
+            "131": "default",
+            "322": "fast,video",
+        },
+    })),
     EnableLocalKeycaching:              models.ToPointer(false),
     EnableWirelessBridging:             models.ToPointer(false),
-    EnableWirelessBridgingDhcpTracking: models.ToPointer(false),
     Enabled:                            models.ToPointer(true),
     FastDot1xTimers:                    models.ToPointer(false),
     HideSsid:                           models.ToPointer(false),
     HostnameIe:                         models.ToPointer(false),
-    Interface:                          models.ToPointer(models.WlanInterfaceEnum("all")),
-    Isolation:                          models.ToPointer(false),
-    L2Isolation:                        models.ToPointer(false),
-    LegacyOverds:                       models.ToPointer(false),
-    LimitBcast:                         models.ToPointer(false),
-    LimitProbeResponse:                 models.ToPointer(false),
-    MaxIdletime:                        models.ToPointer(1800),
-    NoStaticDns:                        models.ToPointer(false),
-    NoStaticIp:                         models.ToPointer(false),
-    OrgId:                              models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    PortalAllowedHostnames:             []string{
-        "snapchat.com",
-        "ibm.com",
-    },
-    PortalAllowedSubnets:               []string{
-        "63.5.3.0/24",
-    },
-    PortalApiSecret:                    models.NewOptional(models.ToPointer("EIfPMOykI3lMlDdNPub2WcbqT6dNOtWwmYHAd6bY")),
-    PortalDeniedHostnames:              []string{
-        "msg.snapchat.com",
-    },
-    PortalImage:                        models.NewOptional(models.ToPointer("https://url/to/image.png")),
-    RoamMode:                           models.ToPointer(models.WlanRoamModeEnum("none")),
-    SiteId:                             models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
-    SleExcluded:                        models.ToPointer(false),
-    Ssid:                               "corporate",
-    UseEapolV1:                         models.ToPointer(false),
-    VlanEnabled:                        models.ToPointer(false),
-    VlanIds:                            []models.WlanVlanIds{
-        models.WlanVlanIdsContainer.FromNumber(3),
-        models.WlanVlanIdsContainer.FromNumber(4),
-        models.WlanVlanIdsContainer.FromNumber(5),
-    },
-    VlanPooling:                        models.ToPointer(false),
-    WlanLimitDownEnabled:               models.ToPointer(false),
-    WlanLimitUpEnabled:                 models.ToPointer(false),
+    Ssid:                               "demo",
 }
 
 apiResponse, err := orgsWlans.UpdateOrgWlan(ctx, orgId, wlanId, &body)
@@ -468,6 +578,67 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "allow_ipv6_ndp": true,
+  "allow_mdns": false,
+  "allow_ssdp": false,
+  "arp_filter": false,
+  "band_steer": false,
+  "band_steer_force_band5": false,
+  "bands": [
+    "24",
+    "5"
+  ],
+  "block_blacklist_clients": false,
+  "bonjour": {
+    "additional_vlan_ids": [
+      10
+    ],
+    "enabled": false,
+    "services": {
+      "airplay": {
+        "radius_groups": [
+          "teachers"
+        ],
+        "scope": "same_ap"
+      }
+    }
+  },
+  "client_limit_down": 0,
+  "client_limit_down_enabled": false,
+  "client_limit_up": 0,
+  "client_limit_up_enabled": false,
+  "disable_11ax": false,
+  "disable_ht_vht_rates": false,
+  "disable_uapsd": false,
+  "disable_v1_roam_notify": false,
+  "disable_v2_roam_notify": false,
+  "disable_wmm": false,
+  "dynamic_vlan": {
+    "default_vlan_id": 999,
+    "enabled": false,
+    "local_vlan_ids": [
+      1
+    ],
+    "type": "airespace-interface-name",
+    "vlans": {
+      "131": "default",
+      "322": "fast,video"
+    }
+  },
+  "enable_local_keycaching": false,
+  "enable_wireless_bridging": false,
+  "enabled": true,
+  "fast_dot1x_timers": false,
+  "hide_ssid": false,
+  "hostname_ie": false,
+  "ssid": "demo"
 }
 ```
 

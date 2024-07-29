@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AdminId` | `*uuid.UUID` | Optional | - |
-| `ComplianceStatus` | [`*models.AdminComplianceStatusEnum`](../../doc/models/admin-compliance-status-enum.md) | Optional | trade compliance status |
+| `ComplianceStatus` | [`*models.AdminComplianceStatusEnum`](../../doc/models/admin-compliance-status-enum.md) | Optional | trade compliance status. enum: `blocked`, `restricted` |
 | `Email` | `string` | Required | - |
 | `EnableTwoFactor` | `*bool` | Optional | - |
 | `ExpireTime` | `*int` | Optional | - |
@@ -36,7 +36,7 @@
   "hours": 24,
   "last_name": "Sno",
   "session_expiry": 1440,
-  "compliance_status": "restricted",
+  "compliance_status": "blocked",
   "enable_two_factor": false,
   "expire_time": 242
 }

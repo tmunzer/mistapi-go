@@ -1,6 +1,8 @@
 
 # Webhook Device Events Event Device Type Enum
 
+enum: `ap`, `gateway`, `switch`
+
 ## Enumeration
 
 `WebhookDeviceEventsEventDeviceTypeEnum`
@@ -10,6 +12,6 @@
 | Name |
 |  --- |
 | `ap` |
-| `switch` |
 | `gateway` |
+| `switch` |
 

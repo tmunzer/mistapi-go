@@ -1,6 +1,8 @@
 
 # Search Site Switch Ports Stp State Enum
 
+enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
+
 ## Enumeration
 
 `SearchSiteSwitchPortsStpStateEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `forwarding` |
 | `blocking` |
+| `disabled` |
+| `forwarding` |
 | `learning` |
 | `listening` |
-| `disabled` |
 

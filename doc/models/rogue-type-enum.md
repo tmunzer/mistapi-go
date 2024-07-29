@@ -1,6 +1,8 @@
 
 # Rogue Type Enum
 
+enum: `honeypot`, `lan`, `others`, `spoof`
+
 ## Enumeration
 
 `RogueTypeEnum`

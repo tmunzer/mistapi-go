@@ -1,7 +1,7 @@
 
 # Gateway Template Tunnel Protocol Enum
 
-Only if `provider`== `custom-ipsec`
+Only if `provider`== `custom-ipsec`. enum: `gre`, `ipsec`
 
 ## Enumeration
 
@@ -11,6 +11,6 @@ Only if `provider`== `custom-ipsec`
 
 | Name |
 |  --- |
-| `ipsec` |
 | `gre` |
+| `ipsec` |
 

@@ -1,6 +1,8 @@
 
 # Snmp Usm Engine Type Enum
 
+enum: `local_engine`, `remote_engine`
+
 ## Enumeration
 
 `SnmpUsmEngineTypeEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `remote_engine` |
 | `local_engine` |
+| `remote_engine` |
 

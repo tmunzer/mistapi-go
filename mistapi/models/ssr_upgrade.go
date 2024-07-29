@@ -8,7 +8,7 @@ import (
 
 // SsrUpgrade represents a SsrUpgrade struct.
 type SsrUpgrade struct {
-    // upgrade channel to follow
+    // upgrade channel to follow. enum: `alpha`, `beta`, `stable`
     Channel              *SsrUpgradeChannelEnum `json:"channel,omitempty"`
     // eboot start time in epoch seconds, default is start_time, -1 disables reboot
     RebootAt             *int                   `json:"reboot_at,omitempty"`

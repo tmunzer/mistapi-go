@@ -1,6 +1,8 @@
 
 # Virtual Chassis Update Op Enum
 
+enum: `add`, `preprovision`, `remove`, `renumber`
+
 ## Enumeration
 
 `VirtualChassisUpdateOpEnum`
@@ -10,7 +12,7 @@
 | Name |
 |  --- |
 | `add` |
+| `preprovision` |
 | `remove` |
 | `renumber` |
-| `preprovision` |
 

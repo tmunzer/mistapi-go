@@ -22,7 +22,7 @@ vBeacon
 | `Name` | `*string` | Optional | name / label of the device |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Power` | `*int` | Optional | required if `power_mode`==`custom`, -30 - 100, in dBm. For default power_mode, power = 4 dBm.<br>**Default**: `4`<br>**Constraints**: `>= -30`, `<= 100` |
-| `PowerMode` | [`*models.BleConfigPowerModeEnum`](../../doc/models/ble-config-power-mode-enum.md) | Optional | **Default**: `"default"` |
+| `PowerMode` | [`*models.BleConfigPowerModeEnum`](../../doc/models/ble-config-power-mode-enum.md) | Optional | enum: `custom`, `default`<br>**Default**: `"default"` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Url` | `*string` | Optional | URL to show, optional |
 | `Uuid` | `*uuid.UUID` | Optional | bluetooth tag UUID |

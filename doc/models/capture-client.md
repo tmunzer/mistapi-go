@@ -18,7 +18,7 @@ Initiate a Client Packet Capture
 | `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `128`<br>**Constraints**: `<= 2048` |
 | `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024 for client-capture<br>**Default**: `1024` |
 | `Ssid` | `models.Optional[string]` | Optional | optional filter by ssid |
-| `Type` | `string` | Required, Constant | client<br>**Default**: `"client"` |
+| `Type` | `string` | Required, Constant | enum: `client`<br>**Default**: `"client"` |
 
 ## Example (as JSON)
 

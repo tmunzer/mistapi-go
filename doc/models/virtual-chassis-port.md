@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Members` | [`[]models.ConfigVcPortMember`](../../doc/models/config-vc-port-member.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Op` | [`models.VirtualChassisPortOperationEnum`](../../doc/models/virtual-chassis-port-operation-enum.md) | Required | **Constraints**: *Minimum Length*: `1` |
+| `Op` | [`models.VirtualChassisPortOperationEnum`](../../doc/models/virtual-chassis-port-operation-enum.md) | Required | enum: `delete`, `set`<br>**Constraints**: *Minimum Length*: `1` |
 
 ## Example (as JSON)
 
@@ -26,7 +26,7 @@
       ]
     }
   ],
-  "op": "set"
+  "op": "delete"
 }
 ```
 

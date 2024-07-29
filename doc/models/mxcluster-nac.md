@@ -27,17 +27,17 @@
     "key0": {
       "secret": "secret4",
       "site_id": "0000197c-0000-0000-0000-000000000000",
-      "vendor": "paloalto"
+      "vendor": "cisco-meraki"
     },
     "key1": {
       "secret": "secret4",
       "site_id": "0000197c-0000-0000-0000-000000000000",
-      "vendor": "paloalto"
+      "vendor": "cisco-meraki"
     },
     "key2": {
       "secret": "secret4",
       "site_id": "0000197c-0000-0000-0000-000000000000",
-      "vendor": "paloalto"
+      "vendor": "cisco-meraki"
     }
   }
 }

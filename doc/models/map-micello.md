@@ -12,7 +12,7 @@
 | `AccountKey` | `string` | Required | the account key that has access to the map |
 | `DefaultLevelId` | `int` | Required | micello floor/level id |
 | `MapId` | `uuid.UUID` | Required | micello map id |
-| `VendorName` | `string` | Required, Constant | the vendor ‘micello’<br>**Default**: `"micello"` |
+| `VendorName` | `string` | Required, Constant | the vendor ‘micello’. enum: `micello`<br>**Default**: `"micello"` |
 
 ## Example (as JSON)
 

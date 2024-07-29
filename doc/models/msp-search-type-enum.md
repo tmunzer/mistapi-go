@@ -1,6 +1,8 @@
 
 # Msp Search Type Enum
 
+enum: `orgs`
+
 ## Enumeration
 
 `MspSearchTypeEnum`

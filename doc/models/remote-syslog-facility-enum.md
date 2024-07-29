@@ -1,6 +1,8 @@
 
 # Remote Syslog Facility Enum
 
+enum: `any`, `authorization`, `change-log`, `config`, `conflict-log`, `daemon`, `dfc`, `external`, `firewall`, `ftp`, `interactive-commands`, `kernel`, `ntp`, `pfe`, `security`, `user`
+
 ## Enumeration
 
 `RemoteSyslogFacilityEnum`
@@ -11,18 +13,18 @@
 |  --- |
 | `any` |
 | `authorization` |
-| `conflict-log` |
 | `change-log` |
 | `config` |
+| `conflict-log` |
 | `daemon` |
 | `dfc` |
-| `kernel` |
-| `interactive-commands` |
-| `ftp` |
-| `firewall` |
 | `external` |
-| `pfe` |
+| `firewall` |
+| `ftp` |
+| `interactive-commands` |
+| `kernel` |
 | `ntp` |
+| `pfe` |
 | `security` |
 | `user` |
 

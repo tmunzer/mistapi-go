@@ -1,7 +1,7 @@
 
 # Mxcluster Rad Auth Server Keywrap Format Enum
 
-if used for Mist APs
+if used for Mist APs. enum: `ascii`, `hex`
 
 ## Enumeration
 
@@ -11,6 +11,6 @@ if used for Mist APs
 
 | Name |
 |  --- |
-| `hex` |
 | `ascii` |
+| `hex` |
 

@@ -7,6 +7,7 @@ import (
 
 // ServicePolicy represents a ServicePolicy struct.
 type ServicePolicy struct {
+    // enum: `allow`, `deny`
     Action               *AllowDenyEnum         `json:"action,omitempty"`
     // For SRX Only
     Appqoe               *ServicePolicyAppqoe   `json:"appqoe,omitempty"`

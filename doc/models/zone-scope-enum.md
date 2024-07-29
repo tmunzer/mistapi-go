@@ -1,6 +1,8 @@
 
 # Zone Scope Enum
 
+enum: `map`, `rssizone`, `site`, `zone`
+
 ## Enumeration
 
 `ZoneScopeEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `site` |
 | `map` |
-| `zone` |
 | `rssizone` |
+| `site` |
+| `zone` |
 

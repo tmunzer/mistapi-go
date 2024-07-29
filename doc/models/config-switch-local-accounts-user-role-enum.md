@@ -1,6 +1,8 @@
 
 # Config Switch Local Accounts User Role Enum
 
+enum: `admin`, `helpdesk`, `none`, `read`
+
 ## Enumeration
 
 `ConfigSwitchLocalAccountsUserRoleEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `none` |
 | `admin` |
-| `read` |
 | `helpdesk` |
+| `none` |
+| `read` |
 

@@ -39,6 +39,7 @@ type ResponsePcapStatus struct {
     Switches                  []string                  `json:"switches,omitempty"`
     // tcpdump expression provided by the user (common)
     TcpdumpExpression         *string                   `json:"tcpdump_expression,omitempty"`
+    // enum: `client`, `gateway`, `new_assoc`, `radiotap`, `radiotap,wired`, `wired`, `wireless`
     Type                      PcapTypeEnum              `json:"type"`
     // when `type`==`wired`, wired_tcpdump_expression provided by the user
     WiredTcpdumpExpression    *string                   `json:"wired_tcpdump_expression,omitempty"`

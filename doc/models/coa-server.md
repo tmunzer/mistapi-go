@@ -14,7 +14,7 @@ CoA Server
 | `DisableEventTimestampCheck` | `*bool` | Optional | whether to disable Event-Timestamp Check<br>**Default**: `false` |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Ip` | `string` | Required | - |
-| `Port` | `*int` | Optional | **Default**: `3799` |
+| `Port` | `*int` | Optional | **Default**: `3799`<br>**Constraints**: `>= 1`, `<= 65535` |
 | `Secret` | `string` | Required | - |
 
 ## Example (as JSON)

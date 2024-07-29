@@ -1,7 +1,7 @@
 
 # Sso Ldap Type Enum
 
-if `idp_type`==`ldap`
+if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`
 
 ## Enumeration
 
@@ -12,7 +12,7 @@ if `idp_type`==`ldap`
 | Name |
 |  --- |
 | `azure` |
-| `okta` |
-| `google` |
 | `custom` |
+| `google` |
+| `okta` |
 

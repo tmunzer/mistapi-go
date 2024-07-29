@@ -13,7 +13,7 @@ Authentication Server
 |  --- | --- | --- | --- |
 | `Host` | `string` | Required | ip / hostname of RADIUS server |
 | `KeywrapEnabled` | `*bool` | Optional | - |
-| `KeywrapFormat` | [`*models.RadiusKeywrapFormatEnum`](../../doc/models/radius-keywrap-format-enum.md) | Optional | - |
+| `KeywrapFormat` | [`*models.RadiusKeywrapFormatEnum`](../../doc/models/radius-keywrap-format-enum.md) | Optional | enum: `ascii`, `hex` |
 | `KeywrapKek` | `*string` | Optional | - |
 | `KeywrapMack` | `*string` | Optional | - |
 | `Port` | `*int` | Optional | Auth port of RADIUS server<br>**Default**: `1812`<br>**Constraints**: `>= 1`, `<= 65535` |
@@ -29,7 +29,7 @@ Authentication Server
   "port": 1812,
   "secret": "testing123",
   "keywrap_enabled": false,
-  "keywrap_format": "hex"
+  "keywrap_format": "ascii"
 }
 ```
 

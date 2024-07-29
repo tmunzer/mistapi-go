@@ -10,6 +10,7 @@ type SnmpConfig struct {
     Contact              *string                 `json:"contact,omitempty"`
     Description          *string                 `json:"description,omitempty"`
     Enabled              *bool                   `json:"enabled,omitempty"`
+    // enum: `engine-id-suffix`, `local`, `use-default-ip-address`, `use_mac-address`
     EngineId             *SnmpConfigEngineIdEnum `json:"engine_id,omitempty"`
     Location             *string                 `json:"location,omitempty"`
     Name                 *string                 `json:"name,omitempty"`

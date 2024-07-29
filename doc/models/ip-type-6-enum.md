@@ -1,6 +1,8 @@
 
 # Ip Type 6 Enum
 
+enum: `autoconf`, `dhcp`, `disabled`, `static`
+
 ## Enumeration
 
 `IpType6Enum`
@@ -9,10 +11,10 @@
 
 | Name |
 |  --- |
+| `autoconf` |
+| `dhcp` |
 | `disabled` |
 | `static` |
-| `dhcp` |
-| `autoconf` |
 
 ## Example
 

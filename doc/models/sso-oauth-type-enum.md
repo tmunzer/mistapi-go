@@ -1,6 +1,8 @@
 
 # Sso Oauth Type Enum
 
+enum: `azure`, `azure-gov`, `okta`
+
 ## Enumeration
 
 `SsoOauthTypeEnum`

@@ -1,10 +1,7 @@
 
 # Dot 11 Bandwidth Enum
 
-channel width for the band
-
-* `80` is only applicable for band_5 and band_6
-* `160` is only for band_6
+channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 
 ## Enumeration
 

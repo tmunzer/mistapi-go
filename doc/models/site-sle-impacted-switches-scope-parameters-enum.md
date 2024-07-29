@@ -1,6 +1,8 @@
 
 # Site Sle Impacted Switches Scope Parameters Enum
 
+enum: `site`
+
 ## Enumeration
 
 `SiteSleImpactedSwitchesScopeParametersEnum`

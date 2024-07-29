@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Host` | `*string` | Optional | can be ip, ipv6, hostname<br>**Constraints**: *Minimum Length*: `1` |
 | `Port` | `*int` | Optional | when `protocol`==`tcp` |
-| `Protocol` | [`*models.TunternMonitoringProtocolEnum`](../../doc/models/tuntern-monitoring-protocol-enum.md) | Optional | **Constraints**: *Minimum Length*: `1` |
+| `Protocol` | [`*models.TunternMonitoringProtocolEnum`](../../doc/models/tuntern-monitoring-protocol-enum.md) | Optional | enum: `arp`, `ping`, `tcp`<br>**Constraints**: *Minimum Length*: `1` |
 | `Timeout` | `*int` | Optional | **Default**: `300` |
 
 ## Example (as JSON)

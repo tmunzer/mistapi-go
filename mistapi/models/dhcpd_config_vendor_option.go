@@ -6,6 +6,7 @@ import (
 
 // DhcpdConfigVendorOption represents a DhcpdConfigVendorOption struct.
 type DhcpdConfigVendorOption struct {
+    // enum: `boolean`, `hex`, `int16`, `int32`, `ip`, `string`, `uint16`, `uint32`
     Type                 *DhcpdConfigVendorOptionTypeEnum `json:"type,omitempty"`
     Value                *string                          `json:"value,omitempty"`
     AdditionalProperties map[string]any                   `json:"_"`

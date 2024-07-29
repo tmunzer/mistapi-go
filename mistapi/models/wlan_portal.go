@@ -17,7 +17,7 @@ type WlanPortal struct {
     AmazonEnabled               *bool                          `json:"amazon_enabled,omitempty"`
     // interval for which guest remains authorized using amazon auth (in minutes), if not provided, uses expire`
     AmazonExpire                Optional[float64]              `json:"amazon_expire"`
-    // authentication scheme
+    // authentication scheme. enum: `external`, `none`, `sso`
     Auth                        *WlanPortalAuthEnum            `json:"auth,omitempty"`
     // Required if `azure_enabled`==`true`.
     // Azure active directory app client id
@@ -112,6 +112,7 @@ type WlanPortal struct {
     SmsEnabled                  *bool                          `json:"sms_enabled,omitempty"`
     // interval for which guest remains authorized using sms auth (in minutes), if not provided, uses expire`
     SmsExpire                   Optional[float64]              `json:"sms_expire"`
+    // enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`
     SmsProvider                 *WlanPortalSmsProviderEnum     `json:"sms_provider,omitempty"`
     // whether to automatically approve guest and allow sponsor to revoke guest access, needs predefined_sponsors_enabled enabled and sponsor_notify_all disabled
     SponsorAutoApprove          *bool                          `json:"sponsor_auto_approve,omitempty"`
@@ -141,6 +142,7 @@ type WlanPortal struct {
     SsoIdpSsoUrl                *string                        `json:"sso_idp_sso_url,omitempty"`
     // IDP issuer URL
     SsoIssuer                   *string                        `json:"sso_issuer,omitempty"`
+    // enum: `email`, `unspecified`
     SsoNameidFormat             *WlanPortalSsoNameidFormatEnum `json:"sso_nameid_format,omitempty"`
     // when `sms_provider`==`telstra`, Client ID provided by Telstra
     TelstraClientId             *string                        `json:"telstra_client_id,omitempty"`

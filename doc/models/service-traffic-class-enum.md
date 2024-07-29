@@ -1,7 +1,7 @@
 
 # Service Traffic Class Enum
 
-when `traffic_type`==`custom`
+when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`
 
 ## Enumeration
 
@@ -13,6 +13,6 @@ when `traffic_type`==`custom`
 |  --- |
 | `best_effort` |
 | `high` |
-| `medium` |
 | `low` |
+| `medium` |
 

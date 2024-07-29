@@ -36,6 +36,7 @@ type AclTag struct {
     // - `type`==`resource` (optional. default is `any`)
     // - `type`==`static_gbp` if from matching subnet
     Subnets              []string       `json:"subnets,omitempty"`
+    // enum: `any`, `dynamic_gbp`, `mac`, `network`, `radius_group`, `resource`, `static_gbp`, `subnet`
     Type                 AclTagTypeEnum `json:"type"`
     AdditionalProperties map[string]any `json:"_"`
 }

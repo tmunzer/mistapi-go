@@ -40,6 +40,7 @@ type Map struct {
     SitesurveyPath       []MapSitesurveyPathItems `json:"sitesurvey_path,omitempty"`
     // when type=image, the url for the thumbnail image / preview
     ThumbnailUrl         *string                  `json:"thumbnail_url,omitempty"`
+    // enum: `google`, `image`
     Type                 *MapTypeEnum             `json:"type,omitempty"`
     // when type=image, the url
     Url                  *string                  `json:"url,omitempty"`
@@ -47,7 +48,7 @@ type Map struct {
     UseAutoOrientation   *bool                    `json:"use_auto_orientation,omitempty"`
     // whether this map uses autoplacement values or ignores them
     UseAutoPlacement     *bool                    `json:"use_auto_placement,omitempty"`
-    // when type=google
+    // if `type`==`google`. enum: `hybrid`, `roadmap`, `satellite`, `terrain`
     View                 Optional[MapViewEnum]    `json:"view"`
     // a JSON blob for wall definition (same format as wayfinding_path)
     WallPath             *MapWallPath             `json:"wall_path,omitempty"`

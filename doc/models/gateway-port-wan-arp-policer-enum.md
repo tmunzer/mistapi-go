@@ -1,7 +1,7 @@
 
 # Gateway Port Wan Arp Policer Enum
 
-when `wan_type`==`broadband`
+when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ when `wan_type`==`broadband`
 
 | Name |
 |  --- |
-| `recommended` |
 | `default` |
 | `max` |
+| `recommended` |
 

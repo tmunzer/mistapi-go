@@ -1,6 +1,8 @@
 
 # Resolution Enum
 
+enum: `default`, `fine`
+
 ## Enumeration
 
 `ResolutionEnum`

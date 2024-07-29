@@ -1,6 +1,8 @@
 
 # Count Org Devices Mxtunnel Status Enum
 
+enum: `down`, `up`
+
 ## Enumeration
 
 `CountOrgDevicesMxtunnelStatusEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `up` |
 | `down` |
+| `up` |
 

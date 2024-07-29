@@ -16,7 +16,7 @@
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `uuid.UUID` | Required | - |
 | `LastSeen` | `float64` | Required | - |
-| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA |
+| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Ssids` | `[]string` | Optional | - |

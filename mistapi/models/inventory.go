@@ -39,6 +39,7 @@ type Inventory struct {
     SiteId               *uuid.UUID       `json:"site_id,omitempty"`
     // device stock keeping unit
     Sku                  *string          `json:"sku,omitempty"`
+    // enum: `ap`, `gateway`, `switch`
     Type                 *DeviceTypeEnum  `json:"type,omitempty"`
     // only if `type`==`switch`, MAC Address of the Virtual Chassis
     VcMac                *string          `json:"vc_mac,omitempty"`

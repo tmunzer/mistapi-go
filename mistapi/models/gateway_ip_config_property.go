@@ -10,6 +10,7 @@ type GatewayIpConfigProperty struct {
     Netmask              *string        `json:"netmask,omitempty"`
     // optional list of secondary IPs in CIDR format
     SecondaryIps         []string       `json:"secondary_ips,omitempty"`
+    // enum: `dhcp`, `static`
     Type                 *IpTypeEnum    `json:"type,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }

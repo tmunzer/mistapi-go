@@ -30,7 +30,7 @@ e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled
   "custom": [
     {
       "port_range": "port_range6",
-      "protocol": "tcp",
+      "protocol": "any",
       "subnet": [
         "subnet3",
         "subnet4"
@@ -38,7 +38,7 @@ e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled
     },
     {
       "port_range": "port_range6",
-      "protocol": "tcp",
+      "protocol": "any",
       "subnet": [
         "subnet3",
         "subnet4"

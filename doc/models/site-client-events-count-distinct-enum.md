@@ -1,6 +1,8 @@
 
 # Site Client Events Count Distinct Enum
 
+enum: `band`, `channel`, `proto`, `ssid`, `type`, `wlan_id`
+
 ## Enumeration
 
 `SiteClientEventsCountDistinctEnum`
@@ -9,10 +11,10 @@
 
 | Name |
 |  --- |
-| `type` |
-| `proto` |
 | `band` |
 | `channel` |
-| `wlan_id` |
+| `proto` |
 | `ssid` |
+| `type` |
+| `wlan_id` |
 

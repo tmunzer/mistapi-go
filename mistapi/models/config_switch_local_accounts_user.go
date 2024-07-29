@@ -7,6 +7,7 @@ import (
 // ConfigSwitchLocalAccountsUser represents a ConfigSwitchLocalAccountsUser struct.
 type ConfigSwitchLocalAccountsUser struct {
     Password             *string                                `json:"password,omitempty"`
+    // enum: `admin`, `helpdesk`, `none`, `read`
     Role                 *ConfigSwitchLocalAccountsUserRoleEnum `json:"role,omitempty"`
     AdditionalProperties map[string]any                         `json:"_"`
 }

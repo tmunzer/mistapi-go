@@ -8,6 +8,7 @@ import (
 type Snmpv3ConfigNotifyItems struct {
     Name                 *string                     `json:"name,omitempty"`
     Tag                  *string                     `json:"tag,omitempty"`
+    // enum: `inform`, `trap`
     Type                 *Snmpv3ConfigNotifyTypeEnum `json:"type,omitempty"`
     AdditionalProperties map[string]any              `json:"_"`
 }

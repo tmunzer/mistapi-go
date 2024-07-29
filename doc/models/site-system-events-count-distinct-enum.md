@@ -1,6 +1,8 @@
 
 # Site System Events Count Distinct Enum
 
+enum: `type`
+
 ## Enumeration
 
 `SiteSystemEventsCountDistinctEnum`

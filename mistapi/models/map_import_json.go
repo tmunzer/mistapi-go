@@ -11,6 +11,7 @@ type MapImportJson struct {
     ImportAllFloorplans  *bool                       `json:"import_all_floorplans,omitempty"`
     ImportHeight         *bool                       `json:"import_height,omitempty"`
     ImportOrientation    *bool                       `json:"import_orientation,omitempty"`
+    // enum: `ekahau`, `ibwave`
     VendorName           MapImportJsonVendorNameEnum `json:"vendor_name"`
     AdditionalProperties map[string]any              `json:"_"`
 }

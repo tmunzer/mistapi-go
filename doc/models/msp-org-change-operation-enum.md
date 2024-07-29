@@ -1,6 +1,8 @@
 
 # Msp Org Change Operation Enum
 
+enum: `assign`, `unassign`
+
 ## Enumeration
 
 `MspOrgChangeOperationEnum`

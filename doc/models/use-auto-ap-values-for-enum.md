@@ -1,7 +1,7 @@
 
 # Use Auto Ap Values for Enum
 
-The selector to choose auto placement or auto orientation.
+The selector to choose auto placement or auto orientation. enum: `orientation`, `placement`
 
 ## Enumeration
 
@@ -11,6 +11,6 @@ The selector to choose auto placement or auto orientation.
 
 | Name |
 |  --- |
-| `placement` |
 | `orientation` |
+| `placement` |
 

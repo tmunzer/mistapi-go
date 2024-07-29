@@ -13,6 +13,7 @@ type GatewayTemplateTunnelProbe struct {
     Threshold            *int                          `json:"threshold,omitempty"`
     // time within which to complete the connectivity check
     Timeout              *int                          `json:"timeout,omitempty"`
+    // enum: `http`, `icmp`
     Type                 *GatewayTemplateProbeTypeEnum `json:"type,omitempty"`
     AdditionalProperties map[string]any                `json:"_"`
 }

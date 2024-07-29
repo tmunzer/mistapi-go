@@ -7,6 +7,7 @@ import (
 // SnmpVacmSecurityToGroup represents a SnmpVacmSecurityToGroup struct.
 type SnmpVacmSecurityToGroup struct {
     Content              []SnmpVacmSecurityToGroupContentItem `json:"content,omitempty"`
+    // enum: `usm`, `v1`, `v2c`
     SecurityModel        *SnmpVacmSecurityModelEnum           `json:"security_model,omitempty"`
     AdditionalProperties map[string]any                       `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Site Wifi Proxy Arp Enum
 
-default / enabled / disabled
+enum: `default`, `disabled`, `enabled`
 
 ## Enumeration
 
@@ -12,6 +12,6 @@ default / enabled / disabled
 | Name |
 |  --- |
 | `default` |
-| `enabled` |
 | `disabled` |
+| `enabled` |
 

@@ -1,6 +1,8 @@
 
 # Tunnel Configs Enc Algo Enum
 
+enum: `3des`, `aes128`, `aes256`, `aes_gcm128`, `aes_gcm256`
+
 ## Enumeration
 
 `TunnelConfigsEncAlgoEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `aes256` |
 | `3des` |
 | `aes128` |
-| `aes_gcm256` |
+| `aes256` |
 | `aes_gcm128` |
+| `aes_gcm256` |
 

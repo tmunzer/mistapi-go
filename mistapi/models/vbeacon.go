@@ -25,6 +25,7 @@ type Vbeacon struct {
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
     // required if `power_mode`==`custom`, -30 - 100, in dBm. For default power_mode, power = 4 dBm.
     Power                *int                    `json:"power,omitempty"`
+    // enum: `custom`, `default`
     PowerMode            *BleConfigPowerModeEnum `json:"power_mode,omitempty"`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     // URL to show, optional

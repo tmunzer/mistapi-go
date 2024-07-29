@@ -22,21 +22,21 @@
       "context_prefix": "context_prefix2",
       "notify_view": "notify_view6",
       "read_view": "read_view0",
-      "security_level": "authentication",
+      "security_level": "none",
       "security_model": "v1"
     },
     {
       "context_prefix": "context_prefix2",
       "notify_view": "notify_view6",
       "read_view": "read_view0",
-      "security_level": "authentication",
+      "security_level": "none",
       "security_model": "v1"
     },
     {
       "context_prefix": "context_prefix2",
       "notify_view": "notify_view6",
       "read_view": "read_view0",
-      "security_level": "authentication",
+      "security_level": "none",
       "security_model": "v1"
     }
   ]

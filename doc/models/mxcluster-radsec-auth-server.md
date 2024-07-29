@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Host` | `*string` | Optional | ip / hostname of RADIUS server |
 | `KeywrapEnabled` | `*bool` | Optional | if used for Mist APs, enable keywrap algorithm. Default is false |
-| `KeywrapFormat` | [`models.Optional[models.MxclusterRadAuthServerKeywrapFormatEnum]`](../../doc/models/mxcluster-rad-auth-server-keywrap-format-enum.md) | Optional | if used for Mist APs<br>**Default**: `"ascii"` |
+| `KeywrapFormat` | [`models.Optional[models.MxclusterRadAuthServerKeywrapFormatEnum]`](../../doc/models/mxcluster-rad-auth-server-keywrap-format-enum.md) | Optional | if used for Mist APs. enum: `ascii`, `hex`<br>**Default**: `"ascii"` |
 | `KeywrapKek` | `*string` | Optional | if used for Mist APs, encryption key |
 | `KeywrapMack` | `*string` | Optional | if used for Mist APs, Message Authentication Code Key |
 | `Port` | `*int` | Optional | Auth port of RADIUS server<br>**Default**: `1812` |

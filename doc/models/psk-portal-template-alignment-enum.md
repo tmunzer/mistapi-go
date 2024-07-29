@@ -1,7 +1,7 @@
 
 # Psk Portal Template Alignment Enum
 
-defines alignment on portal
+defines alignment on portal. enum: `center`, `left`, `right`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ defines alignment on portal
 
 | Name |
 |  --- |
-| `left` |
 | `center` |
+| `left` |
 | `right` |
 

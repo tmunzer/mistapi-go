@@ -9,6 +9,7 @@ import (
 
 // NacRule represents a NacRule struct.
 type NacRule struct {
+    // enum: `allow`, `block`
     Action               NacRuleActionEnum `json:"action"`
     // all optional, this goes into Access-Accept
     ApplyTags            []string          `json:"apply_tags,omitempty"`

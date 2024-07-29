@@ -1,6 +1,8 @@
 
 # Dhcpd Config Option Type Enum
 
+enum: `boolean`, `hex`, `int16`, `int32`, `ip`, `string`, `uint16`, `uint32`
+
 ## Enumeration
 
 `DhcpdConfigOptionTypeEnum`
@@ -9,12 +11,12 @@
 
 | Name |
 |  --- |
-| `string` |
 | `boolean` |
-| `ip` |
 | `hex` |
 | `int16` |
 | `int32` |
+| `ip` |
+| `string` |
 | `uint16` |
 | `uint32` |
 

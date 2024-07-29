@@ -1,6 +1,8 @@
 
 # Device Type With All Enum
 
+enum: `all`, `ap`, `gateway`, `switch`
+
 ## Enumeration
 
 `DeviceTypeWithAllEnum`
@@ -9,8 +11,8 @@
 
 | Name |
 |  --- |
-| `ap` |
-| `switch` |
-| `gateway` |
 | `all` |
+| `ap` |
+| `gateway` |
+| `switch` |
 

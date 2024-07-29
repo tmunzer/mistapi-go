@@ -1,7 +1,7 @@
 
 # Mxedge Upgrade Channel Enum
 
-upgrade channel to follow, stable (default) / beta / alpha
+upgrade channel to follow. enum: `alpha`, `beta`, `stable`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ upgrade channel to follow, stable (default) / beta / alpha
 
 | Name |
 |  --- |
-| `stable` |
-| `beta` |
 | `alpha` |
+| `beta` |
+| `stable` |
 

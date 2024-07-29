@@ -64,7 +64,7 @@ type DeviceGateway struct {
     // Property key is the tunnel name
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
-    // Device Type
+    // Device Type. enum: `gateway`
     Type                  *DeviceTypeGatewayEnum             `json:"type,omitempty"`
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                  map[string]string                  `json:"vars,omitempty"`

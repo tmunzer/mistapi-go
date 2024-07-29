@@ -1,8 +1,10 @@
 
 # Ssr Upgrade Strategy Enum
 
+enum:
+
 * `big_bang`: upgrade all at once
-* `serial`: one at a time'
+* `serial`: one at a time
 
 ## Enumeration
 

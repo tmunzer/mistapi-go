@@ -26,6 +26,7 @@ type BgpStats struct {
     // number of received routes
     RxRoutes             *int               `json:"rx_routes,omitempty"`
     SiteId               *uuid.UUID         `json:"site_id,omitempty"`
+    // enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent`
     State                *BgpStatsStateEnum `json:"state,omitempty"`
     Timestamp            *float64           `json:"timestamp,omitempty"`
     TxPkts               *int               `json:"tx_pkts,omitempty"`

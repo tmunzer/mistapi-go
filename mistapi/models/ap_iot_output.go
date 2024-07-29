@@ -8,16 +8,16 @@ import (
 // IoT output AP settings
 type ApIotOutput struct {
     // whether to enable a pin
-    Enabled              *bool                  `json:"enabled,omitempty"`
+    Enabled              *bool            `json:"enabled,omitempty"`
     // optional; descriptive pin name
-    Name                 *string                `json:"name,omitempty"`
+    Name                 *string          `json:"name,omitempty"`
     // whether the pin is configured as an output. DO and A1-A4 can be repurposed by changing
-    Output               *bool                  `json:"output,omitempty"`
-    // the type of pull-up the pin uses (internal, external, none), default none
-    Pullup               *ApIotOutputPullupEnum `json:"pullup,omitempty"`
+    Output               *bool            `json:"output,omitempty"`
+    // the type of pull-up the pin uses. enum: `external`, `internal`, `none`
+    Pullup               *ApIotPullupEnum `json:"pullup,omitempty"`
     // output pin signal level, default 0
-    Value                *int                   `json:"value,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    Value                *int             `json:"value,omitempty"`
+    AdditionalProperties map[string]any   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApIotOutput.
@@ -74,9 +74,9 @@ func (a *ApIotOutput) UnmarshalJSON(input []byte) error {
 
 // apIotOutput is a temporary struct used for validating the fields of ApIotOutput.
 type apIotOutput  struct {
-    Enabled *bool                  `json:"enabled,omitempty"`
-    Name    *string                `json:"name,omitempty"`
-    Output  *bool                  `json:"output,omitempty"`
-    Pullup  *ApIotOutputPullupEnum `json:"pullup,omitempty"`
-    Value   *int                   `json:"value,omitempty"`
+    Enabled *bool            `json:"enabled,omitempty"`
+    Name    *string          `json:"name,omitempty"`
+    Output  *bool            `json:"output,omitempty"`
+    Pullup  *ApIotPullupEnum `json:"pullup,omitempty"`
+    Value   *int             `json:"value,omitempty"`
 }

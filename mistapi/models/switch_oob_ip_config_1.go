@@ -16,6 +16,7 @@ type SwitchOobIpConfig1 struct {
     Netmask              *string                  `json:"netmask,omitempty"`
     // optional, the network to be used for mgmt
     Network              *string                  `json:"network,omitempty"`
+    // enum: `dhcp`, `static`
     Type                 *IpTypeEnum              `json:"type,omitempty"`
     // f supported on the platform. If enabled, DNS will be using this routing-instance, too
     UseMgmtVrf           *bool                    `json:"use_mgmt_vrf,omitempty"`

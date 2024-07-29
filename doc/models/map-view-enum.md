@@ -1,7 +1,7 @@
 
 # Map View Enum
 
-when type=google
+if `type`==`google`. enum: `hybrid`, `roadmap`, `satellite`, `terrain`
 
 ## Enumeration
 
@@ -11,8 +11,8 @@ when type=google
 
 | Name |
 |  --- |
+| `hybrid` |
 | `roadmap` |
 | `satellite` |
-| `hybrid` |
 | `terrain` |
 

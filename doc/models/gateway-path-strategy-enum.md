@@ -1,6 +1,8 @@
 
 # Gateway Path Strategy Enum
 
+enum: `ecmp`, `ordered`, `weighted`
+
 ## Enumeration
 
 `GatewayPathStrategyEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
+| `ecmp` |
 | `ordered` |
 | `weighted` |
-| `ecmp` |
 

@@ -11,7 +11,7 @@ type OspfAreas struct {
     // Networks to participate in an OSPF area. 
     // Property key is the network name
     Networks             map[string]OspfAreasNetwork `json:"networks,omitempty"`
-    // OSPF type, default (default) / stub / nssa
+    // OSPF type. enum: `default`, `nssa`, `stub`
     Type                 *OspfAreasTypeEnum          `json:"type,omitempty"`
     AdditionalProperties map[string]any              `json:"_"`
 }

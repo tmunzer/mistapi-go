@@ -12,7 +12,7 @@ type CaptureWired struct {
     ApMac                Optional[string]        `json:"ap_mac"`
     // duration of the capture, in seconds
     Duration             *int                    `json:"duration,omitempty"`
-    // pcap format
+    // pcap format. enum: `pcap`, `stream`
     Format               *CaptureWiredFormatEnum `json:"format,omitempty"`
     // max_len of each packet to capture
     MaxPktLen            *int                    `json:"max_pkt_len,omitempty"`
@@ -20,7 +20,7 @@ type CaptureWired struct {
     NumPackets           *int                    `json:"num_packets,omitempty"`
     // tcpdump expression
     TcpdumpExpression    Optional[string]        `json:"tcpdump_expression"`
-    // wired
+    // enum: `wired`
     Type                 string                  `json:"type"`
     AdditionalProperties map[string]any          `json:"_"`
 }

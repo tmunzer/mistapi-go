@@ -1,7 +1,7 @@
 
 # Device Upgrade Strategy Enum
 
-`big_bang` (upgrade all at once), `serial` (one at a time), `canary` or `rrm`
+enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
 
 ## Enumeration
 
@@ -13,6 +13,6 @@
 |  --- |
 | `big_bang` |
 | `canary` |
-| `serial` |
 | `rrm` |
+| `serial` |
 

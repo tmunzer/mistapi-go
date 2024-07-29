@@ -1,6 +1,8 @@
 
 # Gateway Path Type Enum
 
+enum: `local`, `tunnel`, `vpn`, `wan`
+
 ## Enumeration
 
 `GatewayPathTypeEnum`
@@ -10,7 +12,7 @@
 | Name |
 |  --- |
 | `local` |
-| `wan` |
-| `vpn` |
 | `tunnel` |
+| `vpn` |
+| `wan` |
 

@@ -1,6 +1,8 @@
 
 # Wlan Apply to Enum
 
+enum: `aps`, `site`, `wxtags`
+
 ## Enumeration
 
 `WlanApplyToEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
+| `aps` |
 | `site` |
 | `wxtags` |
-| `aps` |
 

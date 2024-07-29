@@ -42,7 +42,7 @@
       "xcvr_part_number": "740-021487",
       "xcvr_serial": "N6AA9HT",
       "active": false,
-      "auth_state": "init",
+      "auth_state": "authenticated",
       "for_site": false,
       "jitter": 27.56
     }

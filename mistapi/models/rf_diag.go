@@ -18,6 +18,7 @@ type RfDiag struct {
     Name                 string           `json:"name"`
     // if `type`==`sdkclient`, sdkclient_id of this recording
     SdkclientId          *uuid.UUID       `json:"sdkclient_id,omitempty"`
+    // enum: `asset`, `client`, `sdkclient`
     Type                 RfClientTypeEnum `json:"type"`
     AdditionalProperties map[string]any   `json:"_"`
 }

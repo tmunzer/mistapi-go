@@ -9,6 +9,7 @@ import (
 type ApStatsL2TpStat struct {
     // list of sessions
     Sessions             []ApStatsL2TpStatSession `json:"sessions,omitempty"`
+    // enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
     State                *L2TpStateEnum           `json:"state,omitempty"`
     // uptime
     Uptime               Optional[int]            `json:"uptime"`

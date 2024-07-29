@@ -13,15 +13,15 @@ IoT Input AP settings
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | whether to enable a pin<br>**Default**: `false` |
 | `Name` | `*string` | Optional | optional; descriptive pin name |
-| `Pullup` | [`*models.ApIotInputPullupEnum`](../../doc/models/ap-iot-input-pullup-enum.md) | Optional | the type of pull-up the pin uses (internal, external, none), default none |
+| `Pullup` | [`*models.ApIotPullupEnum`](../../doc/models/ap-iot-pullup-enum.md) | Optional | the type of pull-up the pin uses. enum: `external`, `internal`, `none`<br>**Default**: `"none"` |
 
 ## Example (as JSON)
 
 ```json
 {
   "enabled": false,
-  "name": "name8",
-  "pullup": "external"
+  "pullup": "none",
+  "name": "name8"
 }
 ```
 

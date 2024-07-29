@@ -12,7 +12,7 @@ type ResponseUpgradeOrgDevices struct {
     // whether to force upgrade when requested version is same as running version
     Force                *bool                      `json:"force,omitempty"`
     Id                   *uuid.UUID                 `json:"id,omitempty"`
-    // `big_bang` (upgrade all at once), `serial` (one at a time), `canary` or `rrm`
+    // enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
     Strategy             *DeviceUpgradeStrategyEnum `json:"strategy,omitempty"`
     // version to upgrade to
     TargetVersion        *string                    `json:"target_version,omitempty"`

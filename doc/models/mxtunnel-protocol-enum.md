@@ -1,6 +1,8 @@
 
 # Mxtunnel Protocol Enum
 
+enum: `ip`, `udp`
+
 ## Enumeration
 
 `MxtunnelProtocolEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `udp` |
 | `ip` |
+| `udp` |
 

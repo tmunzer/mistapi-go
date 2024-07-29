@@ -42,6 +42,7 @@ type Psk struct {
     SiteId                 *uuid.UUID     `json:"site_id,omitempty"`
     // SSID this PSK should be applicable to
     Ssid                   string         `json:"ssid"`
+    // enum: `macs`, `multi`, `single`
     Usage                  *PskUsageEnum  `json:"usage,omitempty"`
     // VLAN for this PSK key
     VlanId                 *PskVlanId     `json:"vlan_id,omitempty"`

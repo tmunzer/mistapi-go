@@ -1,7 +1,7 @@
 
 # Ssr Upgrade Channel Enum
 
-upgrade channel to follow
+upgrade channel to follow. enum: `alpha`, `beta`, `stable`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ upgrade channel to follow
 
 | Name |
 |  --- |
-| `stable` |
-| `beta` |
 | `alpha` |
+| `beta` |
+| `stable` |
 

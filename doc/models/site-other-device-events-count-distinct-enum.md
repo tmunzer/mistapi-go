@@ -1,6 +1,8 @@
 
 # Site Other Device Events Count Distinct Enum
 
+enum: `mac`, `site_id`, `type`, `vendor`
+
 ## Enumeration
 
 `SiteOtherDeviceEventsCountDistinctEnum`
@@ -10,7 +12,7 @@
 | Name |
 |  --- |
 | `mac` |
+| `site_id` |
 | `type` |
 | `vendor` |
-| `site_id` |
 

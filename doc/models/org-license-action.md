@@ -12,7 +12,7 @@
 | `AmendmentId` | `*uuid.UUID` | Optional | if `op`==`unamend`, the ID of the operation to cancel |
 | `DstOrgId` | `*uuid.UUID` | Optional | if `op`==`amend`, the id of the org where the license is moved |
 | `Notes` | `*string` | Optional | if `op`==`annotate` |
-| `Op` | [`models.OrgLicenseActionOperationEnum`](../../doc/models/org-license-action-operation-enum.md) | Required | to move a license, use the `amend` operation |
+| `Op` | [`models.OrgLicenseActionOperationEnum`](../../doc/models/org-license-action-operation-enum.md) | Required | to move a license, use the `amend` operation. enum: `amend`, `annotate`, `delete`, `unamend` |
 | `Quantity` | `*int` | Optional | if `op`==`amend`, the number of licenses to move |
 | `SubscriptionId` | `*string` | Optional | if `op`==`amend` or `op`==`delete`, the ID of the subscription to use |
 

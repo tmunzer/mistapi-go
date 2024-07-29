@@ -1,6 +1,8 @@
 
 # Day of Week Enum
 
+enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed`
+
 ## Enumeration
 
 `DayOfWeekEnum`
@@ -10,11 +12,11 @@
 | Name |
 |  --- |
 | `any` |
-| `mon` |
-| `tue` |
-| `wed` |
-| `thu` |
 | `fri` |
+| `mon` |
 | `sat` |
 | `sun` |
+| `thu` |
+| `tue` |
+| `wed` |
 

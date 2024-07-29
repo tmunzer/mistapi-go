@@ -22,7 +22,7 @@ type Webhook struct {
     Oauth2ClientId       *string                     `json:"oauth2_client_id,omitempty"`
     // required when `oauth2_grant_type`==`client_credentials`
     Oauth2ClientSecret   *string                     `json:"oauth2_client_secret,omitempty"`
-    // required when `type`==`oauth2`
+    // required when `type`==`oauth2`. enum: `client_credentials`, `password`
     Oauth2GrantType      *WebhookOauth2GrantTypeEnum `json:"oauth2_grant_type,omitempty"`
     // required when `oauth2_grant_type`==`password`
     Oauth2Password       *string                     `json:"oauth2_password,omitempty"`
@@ -44,6 +44,7 @@ type Webhook struct {
     SplunkToken          Optional[string]            `json:"splunk_token"`
     // N.B. For org webhooks, only device_events/alarms/audits/client-join/client-sessions/nac-sessions/nac_events topics are supported.
     Topics               []WebhookTopicEnum          `json:"topics,omitempty"`
+    // enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`
     Type                 *WebhookTypeEnum            `json:"type,omitempty"`
     Url                  Optional[string]            `json:"url"`
     // when url uses HTTPS, whether to verify the certificate

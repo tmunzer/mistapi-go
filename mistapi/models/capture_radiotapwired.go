@@ -10,11 +10,12 @@ import (
 // Initiate a Radiotap Packet Capture and Wired Packet Capture
 type CaptureRadiotapwired struct {
     ApMac                     Optional[string]                `json:"ap_mac"`
-    // only used for radiotap
+    // only used for radiotap. enum: `24`, `24,5,6`, `5`, `6`
     Band                      *CaptureRadiotapwiredBandEnum   `json:"band,omitempty"`
     ClientMac                 Optional[string]                `json:"client_mac"`
     // duration of the capture, in seconds
     Duration                  *int                            `json:"duration,omitempty"`
+    // enum: `pcap`, `stream`
     Format                    *CaptureRadiotapwiredFormatEnum `json:"format,omitempty"`
     // max_len of each packet to capture
     MaxPktLen                 *int                            `json:"max_pkt_len,omitempty"`
@@ -25,7 +26,7 @@ type CaptureRadiotapwired struct {
     Ssid                      Optional[string]                `json:"ssid"`
     // tcpdump expression common for wired,radiotap
     TcpdumpExpression         *string                         `json:"tcpdump_expression,omitempty"`
-    // radiotap,wired
+    // enum: `radiotap,wired`
     Type                      string                          `json:"type"`
     // tcpdump expression for wired
     WiredTcpdumpExpression    *string                         `json:"wired_tcpdump_expression,omitempty"`

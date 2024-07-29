@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `StartTime` | `*float64` | Optional | - |
-| `Status` | [`*models.DeviceUpgradeStatusEnum`](../../doc/models/device-upgrade-status-enum.md) | Optional | status upgrade is in |
+| `Status` | [`*models.DeviceUpgradeStatusEnum`](../../doc/models/device-upgrade-status-enum.md) | Optional | status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading` |
 | `Targets` | [`*models.UpgradeOrgDeviceTargets`](../../doc/models/upgrade-org-device-targets.md) | Optional | - |
 
 ## Example (as JSON)

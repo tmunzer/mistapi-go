@@ -10,7 +10,7 @@ type MxclusterRadsecAuthServer struct {
     Host                 *string                                           `json:"host,omitempty"`
     // if used for Mist APs, enable keywrap algorithm. Default is false
     KeywrapEnabled       *bool                                             `json:"keywrap_enabled,omitempty"`
-    // if used for Mist APs
+    // if used for Mist APs. enum: `ascii`, `hex`
     KeywrapFormat        Optional[MxclusterRadAuthServerKeywrapFormatEnum] `json:"keywrap_format"`
     // if used for Mist APs, encryption key
     KeywrapKek           *string                                           `json:"keywrap_kek,omitempty"`

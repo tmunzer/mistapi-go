@@ -11,7 +11,7 @@ import (
 type OtherDeviceUpdateMulti struct {
     // The mac address of the peer device.
     Macs                 []string                       `json:"macs,omitempty"`
-    // The operation being performed
+    // The operation being performed. enum: `assign`, `unassign`
     Op                   OtherDeviceUpdateOperationEnum `json:"op"`
     SiteId               *uuid.UUID                     `json:"site_id,omitempty"`
     AdditionalProperties map[string]any                 `json:"_"`

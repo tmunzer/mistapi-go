@@ -35,9 +35,9 @@ type DhcpdConfig1 struct {
     Servers              []string                           `json:"servers,omitempty"`
     // if `type6`==`relay`
     Servers6             []string                           `json:"servers6,omitempty"`
-    // DHCP Server (local) or DHCP Relay (relay)
+    // enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)
     Type                 *DhcpdConfigTypeEnum               `json:"type,omitempty"`
-    // DHCP Server (local) or DHCP Relay (relay)
+    // enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)
     Type6                *DhcpdConfigTypeEnum               `json:"type6,omitempty"`
     // Property key is <enterprise number>:<sub option code>, with
     //   * enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)

@@ -8,6 +8,7 @@ import (
 type ResponseDeviceSnapshot struct {
     // the internal status id
     StatusId             *string                           `json:"status_id,omitempty"`
+    // enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
     Staus                *ResponseDeviceSnapshotStatusEnum `json:"staus,omitempty"`
     Timestamp            *float64                          `json:"timestamp,omitempty"`
     AdditionalProperties map[string]any                    `json:"_"`

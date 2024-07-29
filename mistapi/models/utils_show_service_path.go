@@ -7,7 +7,7 @@ import (
 // UtilsShowServicePath represents a UtilsShowServicePath struct.
 // The exact service name for which to display the service path
 type UtilsShowServicePath struct {
-    // only for HA
+    // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     ServiceName          *string            `json:"service_name,omitempty"`
     AdditionalProperties map[string]any     `json:"_"`

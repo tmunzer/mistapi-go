@@ -19,7 +19,7 @@ SSO
 | `IdpCert` | `*string` | Optional | if `idp_type`==`saml`. IDP Cert (used to verify the signed response) |
 | `IdpSignAlgo` | `*string` | Optional | if `idp_type`==`saml`. Signing algorithm for SAML Assertion |
 | `IdpSsoUrl` | `*string` | Optional | IDP Single-Sign-On URL |
-| `IdpType` | [`*models.SsoIdpTypeEnum`](../../doc/models/sso-idp-type-enum.md) | Optional | **Default**: `"saml"` |
+| `IdpType` | [`*models.SsoIdpTypeEnum`](../../doc/models/sso-idp-type-enum.md) | Optional | enum: `ldap`, `mxedge_proxy`, `oauth`, `saml`<br>**Default**: `"saml"` |
 | `IgnoreUnmatchedRoles` | `*bool` | Optional | ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role |
 | `Issuer` | `*string` | Optional | if `idp_type`==`saml`. IDP issuer URL |
 | `LdapBaseDn` | `*string` | Optional | if `idp_type`==`ldap` |
@@ -33,20 +33,20 @@ SSO
 | `LdapGroupFilter` | `*string` | Optional | Only if `ldap_type`==`custom` |
 | `LdapResolveGroups` | `*bool` | Optional | whether to recursively resolve LDAP groups<br>**Default**: `false` |
 | `LdapServerHosts` | `[]string` | Optional | if `idp_type`==`ldap` |
-| `LdapType` | [`*models.SsoLdapTypeEnum`](../../doc/models/sso-ldap-type-enum.md) | Optional | if `idp_type`==`ldap`<br>**Default**: `"azure"` |
+| `LdapType` | [`*models.SsoLdapTypeEnum`](../../doc/models/sso-ldap-type-enum.md) | Optional | if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`<br>**Default**: `"azure"` |
 | `LdapUserFilter` | `*string` | Optional | Only if `ldap_type`==`custom` |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `MxedgeProxy` | [`*models.SsoMxedgeProxy`](../../doc/models/sso-mxedge-proxy.md) | Optional | if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster |
 | `Name` | `string` | Required | name |
-| `NameidFormat` | [`*models.SsoNameidFormatEnum`](../../doc/models/sso-nameid-format-enum.md) | Optional | if `idp_type`==`saml`<br>**Default**: `"email"` |
+| `NameidFormat` | [`*models.SsoNameidFormatEnum`](../../doc/models/sso-nameid-format-enum.md) | Optional | if `idp_type`==`saml`. enum: `email`, `unspecified`<br>**Default**: `"email"` |
 | `OauthCcClientId` | `*string` | Optional | if `oauth_type`==`okta`, Client Credentials |
 | `OauthCcClientSecret` | `*string` | Optional | if `oauth_type`==`okta`, oauth_cc_client_secret is RSA private key, of the form "-----BEGIN RSA PRIVATE KEY--...." |
 | `OauthDiscoveryUrl` | `*string` | Optional | if `idp_type`==`oauth` |
 | `OauthRopcClientId` | `*string` | Optional | ropc = Resource Owner Password Credentials |
 | `OauthRopcClientSecret` | `*string` | Optional | oauth_ropc_client_secret can be empty if oauth_type is azure or azure-gov |
 | `OauthTenantId` | `*string` | Optional | if `oauth_type`==`okta`, oauth_tenant_id |
-| `OauthType` | [`*models.SsoOauthTypeEnum`](../../doc/models/sso-oauth-type-enum.md) | Optional | **Default**: `"azure"` |
+| `OauthType` | [`*models.SsoOauthTypeEnum`](../../doc/models/sso-oauth-type-enum.md) | Optional | enum: `azure`, `azure-gov`, `okta`<br>**Default**: `"azure"` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `RoleAttrExtraction` | `*string` | Optional | optional, custom role attribute parsing scheme<br><br>Supported Role Parsing Schemes<br><br><table><tr><th>Name</th><th>Scheme</th></tr><tr><td>cn</td><td><ul><li>The expected role attribute format in SAML Assertion is “CN=cn,OU=ou1,OU=ou2,…”</li><li>CN (the key) is case insensitive and exactly 1 CN is expected (or the entire entry will be ignored)</li><li>E.g. if role attribute is “CN=cn,OU=ou1,OU=ou2” then parsed role value is “cn”</li></ul></td></tr></table><br> |
 | `RoleAttrFrom` | `*string` | Optional | name of the attribute in SAML Assertion to extract role from<br>**Default**: `"Role"` |

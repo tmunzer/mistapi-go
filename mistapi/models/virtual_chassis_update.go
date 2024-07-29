@@ -12,6 +12,7 @@ type VirtualChassisUpdate struct {
     Members              []VirtualChassisMemberUpdate `json:"members,omitempty"`
     // Only if `op`==`renumber`
     NewMember            *int                         `json:"new-member,omitempty"`
+    // enum: `add`, `preprovision`, `remove`, `renumber`
     Op                   *VirtualChassisUpdateOpEnum  `json:"op,omitempty"`
     AdditionalProperties map[string]any               `json:"_"`
 }

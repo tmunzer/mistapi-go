@@ -1,6 +1,8 @@
 
 # Wxlan Tag Type Enum
 
+enum: `client`, `match`, `resource`, `spec`, `subnet`, `vlan`
+
 ## Enumeration
 
 `WxlanTagTypeEnum`
@@ -9,10 +11,10 @@
 
 | Name |
 |  --- |
-| `match` |
 | `client` |
+| `match` |
 | `resource` |
-| `subnet` |
 | `spec` |
+| `subnet` |
 | `vlan` |
 

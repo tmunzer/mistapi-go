@@ -16,7 +16,7 @@
 | `Ssid` | `string` | Required | - |
 | `Subtype` | `*string` | Optional | - |
 | `Timestamp` | `float64` | Required | timestamp of the event in nsec |
-| `Type` | [`*models.EventFastroamTypeEnum`](../../doc/models/event-fastroam-type-enum.md) | Optional | - |
+| `Type` | [`*models.EventFastroamTypeEnum`](../../doc/models/event-fastroam-type-enum.md) | Optional | enum: `fail`, `none`, `pingpong`, `poor`, `slow`, `success` |
 
 ## Example (as JSON)
 
@@ -29,7 +29,7 @@
   "ssid": "ssid6",
   "subtype": "subtype0",
   "timestamp": 209.26,
-  "type": "pingpong"
+  "type": "slow"
 }
 ```
 

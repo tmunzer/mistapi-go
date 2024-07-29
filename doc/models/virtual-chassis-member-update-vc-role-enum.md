@@ -1,7 +1,7 @@
 
 # Virtual Chassis Member Update Vc Role Enum
 
-Required if `op`==`add` or `op`==`preprovision`
+Required if `op`==`add` or `op`==`preprovision`. enum: `backup`, `linecard`, `master`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ Required if `op`==`add` or `op`==`preprovision`
 
 | Name |
 |  --- |
-| `master` |
 | `backup` |
 | `linecard` |
+| `master` |
 

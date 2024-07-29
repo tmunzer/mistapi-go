@@ -12,6 +12,7 @@ type GatewayOobIpConfigNode1 struct {
     Ip                   *string        `json:"ip,omitempty"`
     // used only if `subnet` is not specified in `networks`
     Netmask              *string        `json:"netmask,omitempty"`
+    // enum: `dhcp`, `static`
     Type                 *IpTypeEnum    `json:"type,omitempty"`
     // if supported on the platform. If enabled, DNS will be using this routing-instance, too
     UseMgmtVrf           *bool          `json:"use_mgmt_vrf,omitempty"`

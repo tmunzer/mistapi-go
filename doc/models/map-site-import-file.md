@@ -19,8 +19,8 @@
 ```json
 {
   "auto_deviceprofile_assignment": true,
-  "csv": "csv8",
-  "file": "file8",
+  "csv": "data:text/plain;name=dummy_file;base64,",
+  "file": "data:text/plain;name=dummy_file;base64,",
   "json": {
     "import_all_floorplans": false,
     "import_height": false,

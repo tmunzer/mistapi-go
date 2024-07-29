@@ -1,6 +1,8 @@
 
 # Wxlan Tunnel Session Ethertype Enum
 
+enum: `ethernet`, `vlan`
+
 ## Enumeration
 
 `WxlanTunnelSessionEthertypeEnum`

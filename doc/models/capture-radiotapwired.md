@@ -12,16 +12,16 @@ Initiate a Radiotap Packet Capture and Wired Packet Capture
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApMac` | `models.Optional[string]` | Optional | - |
-| `Band` | [`*models.CaptureRadiotapwiredBandEnum`](../../doc/models/capture-radiotapwired-band-enum.md) | Optional | only used for radiotap<br>**Default**: `"24"` |
+| `Band` | [`*models.CaptureRadiotapwiredBandEnum`](../../doc/models/capture-radiotapwired-band-enum.md) | Optional | only used for radiotap. enum: `24`, `24,5,6`, `5`, `6`<br>**Default**: `"24"` |
 | `ClientMac` | `models.Optional[string]` | Optional | - |
 | `Duration` | `*int` | Optional | duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `<= 86400` |
-| `Format` | [`*models.CaptureRadiotapwiredFormatEnum`](../../doc/models/capture-radiotapwired-format-enum.md) | Optional | **Default**: `"pcap"` |
+| `Format` | [`*models.CaptureRadiotapwiredFormatEnum`](../../doc/models/capture-radiotapwired-format-enum.md) | Optional | enum: `pcap`, `stream`<br>**Default**: `"pcap"` |
 | `MaxPktLen` | `*int` | Optional | max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `<= 2048` |
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `>= 0` |
 | `RadiotapTcpdumpExpression` | `*string` | Optional | tcpdump expression for radiotap interface (802.11 + radio headers) |
 | `Ssid` | `models.Optional[string]` | Optional | - |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression common for wired,radiotap |
-| `Type` | `string` | Required, Constant | radiotap,wired<br>**Default**: `"radiotap,wired"` |
+| `Type` | `string` | Required, Constant | enum: `radiotap,wired`<br>**Default**: `"radiotap,wired"` |
 | `WiredTcpdumpExpression` | `*string` | Optional | tcpdump expression for wired |
 | `WirelessTcpdumpExpression` | `*string` | Optional | tcpdump expression for radiotap interface (802.11) |
 | `WlanId` | `models.Optional[string]` | Optional | wlan id associated with the respective ssid. |

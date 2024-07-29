@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`*models.IdpProfileActionEnum`](../../doc/models/idp-profile-action-enum.md) | Optional | Possible values:<br><br>* alert (default)<br>* drop: siliently dropping packets<br>* close: notify client/server to close connection<br>**Default**: `"alert"` |
+| `Action` | [`*models.IdpProfileActionEnum`](../../doc/models/idp-profile-action-enum.md) | Optional | enum:<br><br>* alert (default)<br>* drop: siliently dropping packets<br>* close: notify client/server to close connection<br>**Default**: `"alert"` |
 | `Matching` | [`*models.IdpProfileMatching`](../../doc/models/idp-profile-matching.md) | Optional | - |
 | `Name` | `*string` | Optional | - |
 
@@ -27,7 +27,7 @@
     ],
     "severity": [
       "critical",
-      "major"
+      "info"
     ]
   },
   "name": "name8"

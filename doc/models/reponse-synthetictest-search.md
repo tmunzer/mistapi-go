@@ -34,7 +34,7 @@
       "timestamp": 1675718807,
       "tx_mbps": 199,
       "vlan_id": 20,
-      "device_type": "switch",
+      "device_type": "gateway",
       "mac": "mac0"
     }
   ],

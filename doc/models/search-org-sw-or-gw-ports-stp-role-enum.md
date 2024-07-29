@@ -1,6 +1,8 @@
 
 # Search Org Sw or Gw Ports Stp Role Enum
 
+enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
+
 ## Enumeration
 
 `SearchOrgSwOrGwPortsStpRoleEnum`
@@ -9,9 +11,9 @@
 
 | Name |
 |  --- |
-| `designated` |
-| `backup` |
 | `alternate` |
+| `backup` |
+| `designated` |
 | `root` |
 | `root-prevented` |
 

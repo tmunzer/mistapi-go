@@ -1,7 +1,7 @@
 
 # Gateway Port Lte Auth Enum
 
-if `wan_type`==`lte`
+if `wan_type`==`lte`. enum: `chap`, `none`, `pap`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ if `wan_type`==`lte`
 
 | Name |
 |  --- |
-| `none` |
 | `chap` |
+| `none` |
 | `pap` |
 

@@ -1,6 +1,8 @@
 
 # Msp Tickets Count Distinct Enum
 
+enum: `org_id`, `status`, `type`
+
 ## Enumeration
 
 `MspTicketsCountDistinctEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
+| `org_id` |
 | `status` |
 | `type` |
-| `org_id` |
 

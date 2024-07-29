@@ -53,7 +53,7 @@ body := models.SsoRoleMsp{
     Privileges:   []models.PrivilegeMsp{
         models.PrivilegeMsp{
             Role:       models.PrivilegeMspRoleEnum("admin"),
-            Scope:      models.PrivilegeMspScopeEnum("msp"),
+            Scope:      models.PrivilegeMspScopeEnum("org"),
         },
     },
     SiteId:       models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
@@ -244,7 +244,7 @@ body := models.SsoRoleMsp{
     Privileges:   []models.PrivilegeMsp{
         models.PrivilegeMsp{
             Role:       models.PrivilegeMspRoleEnum("admin"),
-            Scope:      models.PrivilegeMspScopeEnum("msp"),
+            Scope:      models.PrivilegeMspScopeEnum("org"),
         },
     },
     SiteId:       models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),

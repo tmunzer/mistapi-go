@@ -24,7 +24,7 @@ Wi-Fi site settings
 | `MeshEnabled` | `*bool` | Optional | whether to enable Mesh feature for the site<br>**Default**: `false` |
 | `MeshPsk` | `models.Optional[string]` | Optional | optional passphrase of mesh networking, default is generated randomly |
 | `MeshSsid` | `models.Optional[string]` | Optional | optional ssid of mesh networking, default is based on site_id |
-| `ProxyArp` | [`models.Optional[models.SiteWifiProxyArpEnum]`](../../doc/models/site-wifi-proxy-arp-enum.md) | Optional | default / enabled / disabled |
+| `ProxyArp` | [`models.Optional[models.SiteWifiProxyArpEnum]`](../../doc/models/site-wifi-proxy-arp-enum.md) | Optional | enum: `default`, `disabled`, `enabled` |
 
 ## Example (as JSON)
 

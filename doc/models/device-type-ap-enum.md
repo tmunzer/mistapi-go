@@ -1,7 +1,7 @@
 
 # Device Type Ap Enum
 
-Device Type
+Device Type. enum: `ap`
 
 ## Enumeration
 

@@ -14,6 +14,7 @@ type Msp struct {
     LogoUrl              *string        `json:"logo_url,omitempty"`
     ModifiedTime         *float64       `json:"modified_time,omitempty"`
     Name                 *string        `json:"name,omitempty"`
+    // enum: `advanced`, `base`
     Tier                 *MspTierEnum   `json:"tier,omitempty"`
     // For advanced tier (uMSPs) only
     Url                  *string        `json:"url,omitempty"`

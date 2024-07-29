@@ -1,7 +1,7 @@
 
 # Ap Usb Type Enum
 
-usb config type
+usb config type. enum: `hanshow`, `imagotag`, `solum`
 
 ## Enumeration
 
@@ -11,9 +11,9 @@ usb config type
 
 | Name |
 |  --- |
+| `hanshow` |
 | `imagotag` |
 | `solum` |
-| `hanshow` |
 
 ## Example
 

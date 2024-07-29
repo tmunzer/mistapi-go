@@ -18,9 +18,9 @@ Junos IP Config
 | `Netmask` | `*string` | Optional | used only if `subnet` is not specified in `networks` |
 | `Network` | `*string` | Optional | optional, the network to be used for mgmt |
 | `PoserPassword` | `*string` | Optional | if `type`==`pppoe` |
-| `PppoeAuth` | [`*models.GatewayWanPpoeAuthEnum`](../../doc/models/gateway-wan-ppoe-auth-enum.md) | Optional | if `type`==`pppoe`<br>**Default**: `"none"` |
+| `PppoeAuth` | [`*models.GatewayWanPpoeAuthEnum`](../../doc/models/gateway-wan-ppoe-auth-enum.md) | Optional | if `type`==`pppoe`. enum: `chap`, `none`, `pap`<br>**Default**: `"none"` |
 | `PppoeUsername` | `*string` | Optional | if `type`==`pppoe` |
-| `Type` | [`*models.GatewayWanTypeEnum`](../../doc/models/gateway-wan-type-enum.md) | Optional | **Default**: `"dhcp"` |
+| `Type` | [`*models.GatewayWanTypeEnum`](../../doc/models/gateway-wan-type-enum.md) | Optional | enum: `dhcp`, `pppoe`, `static`<br>**Default**: `"dhcp"` |
 
 ## Example (as JSON)
 

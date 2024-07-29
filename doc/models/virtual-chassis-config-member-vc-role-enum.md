@@ -1,6 +1,8 @@
 
 # Virtual Chassis Config Member Vc Role Enum
 
+enum: `backup`, `linecard`, `master`
+
 ## Enumeration
 
 `VirtualChassisConfigMemberVcRoleEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `master` |
 | `backup` |
 | `linecard` |
+| `master` |
 

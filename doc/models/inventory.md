@@ -26,7 +26,7 @@
 | `Serial` | `*string` | Optional | device serial |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Sku` | `*string` | Optional | device stock keeping unit |
-| `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | **Default**: `"ap"` |
+| `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
 | `VcMac` | `*string` | Optional | only if `type`==`switch`, MAC Address of the Virtual Chassis |
 
 ## Example (as JSON)

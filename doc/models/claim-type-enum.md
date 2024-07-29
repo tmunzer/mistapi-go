@@ -1,7 +1,7 @@
 
 # Claim Type Enum
 
-what to claim
+what to claim. enum: `all`, `inventory`, `license`
 
 ## Enumeration
 
@@ -12,6 +12,6 @@ what to claim
 | Name |
 |  --- |
 | `all` |
-| `license` |
 | `inventory` |
+| `license` |
 
