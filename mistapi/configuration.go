@@ -10,7 +10,6 @@ type ConfigurationOptions func(*Configuration)
 // Configuration holds configuration settings.
 type Configuration struct {
     environment          Environment
-    defaultHost          string
     httpConfiguration    HttpConfiguration
     apiTokenCredentials  ApiTokenCredentials
     basicAuthCredentials BasicAuthCredentials
@@ -40,13 +39,6 @@ func (config Configuration) cloneWithOptions(options ...ConfigurationOptions) Co
 func WithEnvironment(environment Environment) ConfigurationOptions {
     return func(c *Configuration) {
         c.environment = environment
-    }
-}
-
-// WithDefaultHost is an option that sets the DefaultHost in the Configuration.
-func WithDefaultHost(defaultHost string) ConfigurationOptions {
-    return func(c *Configuration) {
-        c.defaultHost = defaultHost
     }
 }
 
@@ -90,11 +82,6 @@ func (c Configuration) Environment() Environment {
     return c.environment
 }
 
-// DefaultHost returns the DefaultHost from the Configuration.
-func (c Configuration) DefaultHost() string {
-    return c.defaultHost
-}
-
 // HttpConfiguration returns the HttpConfiguration from the Configuration.
 func (c Configuration) HttpConfiguration() HttpConfiguration {
     return c.httpConfiguration
@@ -124,10 +111,6 @@ func CreateConfigurationFromEnvironment(options ...ConfigurationOptions) Configu
     if environment != "" {
         config.environment = Environment(environment)
     }
-    defaultHost := os.Getenv("MISTAPI_DEFAULT_HOST")
-    if defaultHost != "" {
-        config.defaultHost = defaultHost
-    }
     authorization := os.Getenv("MISTAPI_AUTHORIZATION")
     if authorization != "" {
         config.apiTokenCredentials.authorization = authorization
@@ -154,15 +137,22 @@ func CreateConfigurationFromEnvironment(options ...ConfigurationOptions) Configu
 type Server string
 
 const (
-    ENUMDEFAULT Server = "default"
-    APIHOST     Server = "API Host"
+    APIHOST Server = "API Host"
 )
 
 // Environment represents available environments.
 type Environment string
 
 const (
-    PRODUCTION Environment = "production"
+    MIST_GLOBAL_01 Environment = "Mist Global 01"
+    MIST_GLOBAL_02 Environment = "Mist Global 02"
+    MIST_GLOBAL_03 Environment = "Mist Global 03"
+    MIST_GLOBAL_04 Environment = "Mist Global 04"
+    MIST_EMEA_01   Environment = "Mist EMEA 01"
+    MIST_EMEA_02   Environment = "Mist EMEA 02"
+    MIST_EMEA_03   Environment = "Mist EMEA 03"
+    MIST_APAC_01   Environment = "Mist APAC 01"
+    AWS_STAGING    Environment = "AWS Staging"
 )
 
 // CreateRetryConfiguration creates a new RetryConfiguration with the provided options.

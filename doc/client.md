@@ -5,8 +5,7 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| `defaultHost` | `string` | *Default*: `"www.example.com"` |
-| `environment` | `Environment` | The API environment. <br> **Default: `Environment.PRODUCTION`** |
+| `environment` | `Environment` | The API environment. <br> **Default: `Environment.MIST_GLOBAL_01`** |
 | `httpConfiguration` | [`HttpConfiguration`](http-configuration.md) | Configurable http client options like timeout and retries. |
 | `loggerConfiguration` | [`LoggerConfiguration`](logger-configuration.md) | Represents the logger configurations for API calls |
 | `apiTokenCredentials` | [`ApiTokenCredentials`](auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
@@ -23,7 +22,7 @@ client := mistapi.NewClient(
                 mistapi.WithTimeout(0),
             ),
         ),
-        mistapi.WithEnvironment(mistapi.PRODUCTION),
+        mistapi.WithEnvironment(mistapi.MIST_GLOBAL_01),
         mistapi.WithApiTokenCredentials(
             mistapi.NewApiTokenCredentials("Authorization"),
         ),
@@ -36,7 +35,6 @@ client := mistapi.NewClient(
         mistapi.WithCsrfTokenCredentials(
             mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
         ),
-        mistapi.WithDefaultHost("www.example.com"),
         mistapi.WithLoggerConfiguration(
             mistapi.WithLevel("info"),
             mistapi.WithRequestConfiguration(

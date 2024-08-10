@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "net/http"
@@ -411,7 +410,7 @@ func NewClient(configuration Configuration) ClientInterface {
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {
-    			server = "default"
+    			server = "API Host"
     		}
     		return getBaseUri(Server(server), client.configuration)
     	},
@@ -1591,12 +1590,44 @@ func getBaseUri(
             return "https://api.mistsys.com"
         }
     }
-    if configuration.Environment() == Environment(PRODUCTION) {
-        if server == Server(ENUMDEFAULT) {
-            return fmt.Sprintf("https://%v", configuration.DefaultHost())
-        }
+    if configuration.Environment() == Environment(MIST_GLOBAL_01) {
         if server == Server(APIHOST) {
             return "https://api.mist.com"
+        }
+    }
+    if configuration.Environment() == Environment(MIST_GLOBAL_02) {
+        if server == Server(APIHOST) {
+            return "https://api.gc1.mist.com"
+        }
+    }
+    if configuration.Environment() == Environment(MIST_GLOBAL_03) {
+        if server == Server(APIHOST) {
+            return "https://api.ac2.mist.com"
+        }
+    }
+    if configuration.Environment() == Environment(MIST_GLOBAL_04) {
+        if server == Server(APIHOST) {
+            return "https://api.gc2.mist.com"
+        }
+    }
+    if configuration.Environment() == Environment(MIST_EMEA_01) {
+        if server == Server(APIHOST) {
+            return "https://api.eu.mist.com"
+        }
+    }
+    if configuration.Environment() == Environment(MIST_EMEA_02) {
+        if server == Server(APIHOST) {
+            return "https://api.gc3.mist.com"
+        }
+    }
+    if configuration.Environment() == Environment(MIST_EMEA_03) {
+        if server == Server(APIHOST) {
+            return "https://api.ac6.mist.com"
+        }
+    }
+    if configuration.Environment() == Environment(MIST_APAC_01) {
+        if server == Server(APIHOST) {
+            return "https://api.ac5.mist.com"
         }
     }
     return "TODO: Select a valid server."
