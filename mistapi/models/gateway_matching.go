@@ -36,7 +36,7 @@ func (g GatewayMatching) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayMatching.
 // It customizes the JSON unmarshaling process for GatewayMatching objects.
 func (g *GatewayMatching) UnmarshalJSON(input []byte) error {
-    var temp gatewayMatching
+    var temp tempGatewayMatching
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (g *GatewayMatching) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayMatching is a temporary struct used for validating the fields of GatewayMatching.
-type gatewayMatching  struct {
+// tempGatewayMatching is a temporary struct used for validating the fields of GatewayMatching.
+type tempGatewayMatching  struct {
     Enable *bool                 `json:"enable,omitempty"`
     Rules  []GatewayMatchingRule `json:"rules,omitempty"`
 }

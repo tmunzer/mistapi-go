@@ -36,7 +36,7 @@ func (s SiteSettingCriticalUrlMonitoring) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingCriticalUrlMonitoring.
 // It customizes the JSON unmarshaling process for SiteSettingCriticalUrlMonitoring objects.
 func (s *SiteSettingCriticalUrlMonitoring) UnmarshalJSON(input []byte) error {
-    var temp siteSettingCriticalUrlMonitoring
+    var temp tempSiteSettingCriticalUrlMonitoring
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (s *SiteSettingCriticalUrlMonitoring) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingCriticalUrlMonitoring is a temporary struct used for validating the fields of SiteSettingCriticalUrlMonitoring.
-type siteSettingCriticalUrlMonitoring  struct {
+// tempSiteSettingCriticalUrlMonitoring is a temporary struct used for validating the fields of SiteSettingCriticalUrlMonitoring.
+type tempSiteSettingCriticalUrlMonitoring  struct {
     Enabled  *bool                                     `json:"enabled,omitempty"`
     Monitors []SiteSettingCriticalUrlMonitoringMonitor `json:"monitors,omitempty"`
 }

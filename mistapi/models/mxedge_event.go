@@ -52,7 +52,7 @@ func (m MxedgeEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeEvent.
 // It customizes the JSON unmarshaling process for MxedgeEvent objects.
 func (m *MxedgeEvent) UnmarshalJSON(input []byte) error {
-    var temp mxedgeEvent
+    var temp tempMxedgeEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -72,8 +72,8 @@ func (m *MxedgeEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeEvent is a temporary struct used for validating the fields of MxedgeEvent.
-type mxedgeEvent  struct {
+// tempMxedgeEvent is a temporary struct used for validating the fields of MxedgeEvent.
+type tempMxedgeEvent  struct {
     MxclusterId *string    `json:"mxcluster_id,omitempty"`
     MxedgeId    *string    `json:"mxedge_id,omitempty"`
     OrgId       *uuid.UUID `json:"org_id,omitempty"`

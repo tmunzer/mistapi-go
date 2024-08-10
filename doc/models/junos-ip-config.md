@@ -25,14 +25,14 @@ Junos IP Config
 {
   "type": "static",
   "dns": [
-    "dns7"
+    "dns5"
   ],
   "dns_suffix": [
-    "dns_suffix3"
+    "dns_suffix1"
   ],
-  "gateway": "gateway4",
-  "ip": "ip8",
-  "netmask": "netmask4"
+  "gateway": "gateway6",
+  "ip": "ip0",
+  "netmask": "netmask6"
 }
 ```
 

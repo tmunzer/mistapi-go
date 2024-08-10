@@ -35,7 +35,7 @@ func (s SwitchStatsVcSetupInfo) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchStatsVcSetupInfo.
 // It customizes the JSON unmarshaling process for SwitchStatsVcSetupInfo objects.
 func (s *SwitchStatsVcSetupInfo) UnmarshalJSON(input []byte) error {
-    var temp switchStatsVcSetupInfo
+    var temp tempSwitchStatsVcSetupInfo
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *SwitchStatsVcSetupInfo) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchStatsVcSetupInfo is a temporary struct used for validating the fields of SwitchStatsVcSetupInfo.
-type switchStatsVcSetupInfo  struct {
+// tempSwitchStatsVcSetupInfo is a temporary struct used for validating the fields of SwitchStatsVcSetupInfo.
+type tempSwitchStatsVcSetupInfo  struct {
     ConfigType         *string `json:"config_type,omitempty"`
     ErrMissingDevIdFpc *bool   `json:"err_missing_dev_id_fpc,omitempty"`
 }

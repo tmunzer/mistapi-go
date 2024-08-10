@@ -104,7 +104,7 @@ func (u UiSettingsTile) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UiSettingsTile.
 // It customizes the JSON unmarshaling process for UiSettingsTile objects.
 func (u *UiSettingsTile) UnmarshalJSON(input []byte) error {
-    var temp uiSettingsTile
+    var temp tempUiSettingsTile
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -137,8 +137,8 @@ func (u *UiSettingsTile) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// uiSettingsTile is a temporary struct used for validating the fields of UiSettingsTile.
-type uiSettingsTile  struct {
+// tempUiSettingsTile is a temporary struct used for validating the fields of UiSettingsTile.
+type tempUiSettingsTile  struct {
     ChartBand       *string                  `json:"chartBand,omitempty"`
     ChartColor      *string                  `json:"chartColor,omitempty"`
     ChartDirection  *string                  `json:"chartDirection,omitempty"`

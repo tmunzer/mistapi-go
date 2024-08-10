@@ -33,7 +33,7 @@ SSO
 | `LdapGroupFilter` | `*string` | Optional | Only if `ldap_type`==`custom` |
 | `LdapResolveGroups` | `*bool` | Optional | whether to recursively resolve LDAP groups<br>**Default**: `false` |
 | `LdapServerHosts` | `[]string` | Optional | if `idp_type`==`ldap` |
-| `LdapType` | [`*models.SsoLdapTypeEnum`](../../doc/models/sso-ldap-type-enum.md) | Optional | if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`<br>**Default**: `"azure"` |
+| `LdapType` | [`*models.SsoLdapTypeEnum`](../../doc/models/sso-ldap-type-enum.md) | Optional | if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`, `ping_identity`<br>**Default**: `"azure"` |
 | `LdapUserFilter` | `*string` | Optional | Only if `ldap_type`==`custom` |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `MspId` | `*uuid.UUID` | Optional | - |
@@ -41,12 +41,12 @@ SSO
 | `Name` | `string` | Required | name |
 | `NameidFormat` | [`*models.SsoNameidFormatEnum`](../../doc/models/sso-nameid-format-enum.md) | Optional | if `idp_type`==`saml`. enum: `email`, `unspecified`<br>**Default**: `"email"` |
 | `OauthCcClientId` | `*string` | Optional | if `oauth_type`==`okta`, Client Credentials |
-| `OauthCcClientSecret` | `*string` | Optional | if `oauth_type`==`okta`, oauth_cc_client_secret is RSA private key, of the form "-----BEGIN RSA PRIVATE KEY--...." |
+| `OauthCcClientSecret` | `*string` | Optional | if `oauth_type`==`okta` or `oauth_type`==`ping_identity`, oauth_cc_client_secret is RSA private key, of the form "-----BEGIN RSA PRIVATE KEY--...." |
 | `OauthDiscoveryUrl` | `*string` | Optional | if `idp_type`==`oauth` |
 | `OauthRopcClientId` | `*string` | Optional | ropc = Resource Owner Password Credentials |
 | `OauthRopcClientSecret` | `*string` | Optional | oauth_ropc_client_secret can be empty if oauth_type is azure or azure-gov |
-| `OauthTenantId` | `*string` | Optional | if `oauth_type`==`okta`, oauth_tenant_id |
-| `OauthType` | [`*models.SsoOauthTypeEnum`](../../doc/models/sso-oauth-type-enum.md) | Optional | enum: `azure`, `azure-gov`, `okta`<br>**Default**: `"azure"` |
+| `OauthTenantId` | `*string` | Optional | if `oauth_type`==`okta` or `oauth_type`==`ping_identity`, oauth_tenant_id |
+| `OauthType` | [`*models.SsoOauthTypeEnum`](../../doc/models/sso-oauth-type-enum.md) | Optional | enum: `azure`, `azure-gov`, `okta`, `ping_identity`<br>**Default**: `"azure"` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `RoleAttrExtraction` | `*string` | Optional | optional, custom role attribute parsing scheme<br><br>Supported Role Parsing Schemes<br><br><table><tr><th>Name</th><th>Scheme</th></tr><tr><td>cn</td><td><ul><li>The expected role attribute format in SAML Assertion is “CN=cn,OU=ou1,OU=ou2,…”</li><li>CN (the key) is case insensitive and exactly 1 CN is expected (or the entire entry will be ignored)</li><li>E.g. if role attribute is “CN=cn,OU=ou1,OU=ou2” then parsed role value is “cn”</li></ul></td></tr></table><br> |
 | `RoleAttrFrom` | `*string` | Optional | name of the attribute in SAML Assertion to extract role from<br>**Default**: `"Role"` |
@@ -62,7 +62,7 @@ SSO
   "idp_type": "saml",
   "ldap_resolve_groups": false,
   "ldap_type": "azure",
-  "name": "name2",
+  "name": "name6",
   "nameid_format": "email",
   "oauth_cc_client_id": "e60da615-7def-4c5a-8196-43675f45e174",
   "oauth_cc_client_secret": "akL8Q~5kWFMVFYl4TFZ3fi~7cMdyDONi6cj01cpH",
@@ -75,11 +75,11 @@ SSO
   "scim_enabled": false,
   "scim_secret_token": "secret token",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "created_time": 179.52,
-  "custom_logout_url": "custom_logout_url6",
-  "default_role": "default_role4",
-  "domain": "domain8",
-  "id": "000014ca-0000-0000-0000-000000000000"
+  "created_time": 58.56,
+  "custom_logout_url": "custom_logout_url0",
+  "default_role": "default_role8",
+  "domain": "domain2",
+  "id": "00001dca-0000-0000-0000-000000000000"
 }
 ```
 

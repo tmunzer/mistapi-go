@@ -36,7 +36,7 @@ func (w WlanInjectDhcpOption82) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanInjectDhcpOption82.
 // It customizes the JSON unmarshaling process for WlanInjectDhcpOption82 objects.
 func (w *WlanInjectDhcpOption82) UnmarshalJSON(input []byte) error {
-    var temp wlanInjectDhcpOption82
+    var temp tempWlanInjectDhcpOption82
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (w *WlanInjectDhcpOption82) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanInjectDhcpOption82 is a temporary struct used for validating the fields of WlanInjectDhcpOption82.
-type wlanInjectDhcpOption82  struct {
+// tempWlanInjectDhcpOption82 is a temporary struct used for validating the fields of WlanInjectDhcpOption82.
+type tempWlanInjectDhcpOption82  struct {
     CircuitId *string `json:"circuit_id,omitempty"`
     Enabled   *bool   `json:"enabled,omitempty"`
 }

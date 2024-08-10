@@ -39,7 +39,7 @@ func (o OrgSettingAutoSiteAssignment) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingAutoSiteAssignment.
 // It customizes the JSON unmarshaling process for OrgSettingAutoSiteAssignment objects.
 func (o *OrgSettingAutoSiteAssignment) UnmarshalJSON(input []byte) error {
-    var temp orgSettingAutoSiteAssignment
+    var temp tempOrgSettingAutoSiteAssignment
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,8 +55,8 @@ func (o *OrgSettingAutoSiteAssignment) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingAutoSiteAssignment is a temporary struct used for validating the fields of OrgSettingAutoSiteAssignment.
-type orgSettingAutoSiteAssignment  struct {
+// tempOrgSettingAutoSiteAssignment is a temporary struct used for validating the fields of OrgSettingAutoSiteAssignment.
+type tempOrgSettingAutoSiteAssignment  struct {
     Enable *bool                    `json:"enable,omitempty"`
     Rules  Optional[[]OrgAutoRules] `json:"rules"`
 }

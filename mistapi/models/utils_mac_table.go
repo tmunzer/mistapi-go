@@ -39,7 +39,7 @@ func (u UtilsMacTable) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsMacTable.
 // It customizes the JSON unmarshaling process for UtilsMacTable objects.
 func (u *UtilsMacTable) UnmarshalJSON(input []byte) error {
-    var temp utilsMacTable
+    var temp tempUtilsMacTable
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (u *UtilsMacTable) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsMacTable is a temporary struct used for validating the fields of UtilsMacTable.
-type utilsMacTable  struct {
+// tempUtilsMacTable is a temporary struct used for validating the fields of UtilsMacTable.
+type tempUtilsMacTable  struct {
     MacAddress *string `json:"mac_address,omitempty"`
     PortId     *string `json:"port_id,omitempty"`
     VlanId     *string `json:"vlan_id,omitempty"`

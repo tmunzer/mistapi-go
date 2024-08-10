@@ -61,7 +61,7 @@ func (a AccountVmwareInfo) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountVmwareInfo.
 // It customizes the JSON unmarshaling process for AccountVmwareInfo objects.
 func (a *AccountVmwareInfo) UnmarshalJSON(input []byte) error {
-    var temp accountVmwareInfo
+    var temp tempAccountVmwareInfo
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -82,8 +82,8 @@ func (a *AccountVmwareInfo) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountVmwareInfo is a temporary struct used for validating the fields of AccountVmwareInfo.
-type accountVmwareInfo  struct {
+// tempAccountVmwareInfo is a temporary struct used for validating the fields of AccountVmwareInfo.
+type tempAccountVmwareInfo  struct {
     AccountId       *string `json:"account_id,omitempty"`
     InstanceUrl     *string `json:"instance_url,omitempty"`
     LastStatus      *string `json:"last_status,omitempty"`

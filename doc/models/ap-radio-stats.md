@@ -38,9 +38,9 @@ radio stat
   "bandwidth": 20,
   "noise_floor": -90,
   "usage": "24",
-  "channel": 190,
+  "channel": 226,
   "dynamic_chaining_enalbed": false,
-  "mac": "mac4"
+  "mac": "mac6"
 }
 ```
 

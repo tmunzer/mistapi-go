@@ -7,7 +7,7 @@ import (
 
 // UpgradeSiteDevices represents a UpgradeSiteDevices struct.
 type UpgradeSiteDevices struct {
-    // phases for canary deployment. Each phase represents percentage of AP’s that need to be upgraded. default is [1, 10, 50, 100]
+    // phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100]
     CanaryPhases            []int                               `json:"canary_phases,omitempty"`
     DeviceIds               []uuid.UUID                         `json:"device_ids,omitempty"`
     // whether to allow local AP-to-AP FW upgrade
@@ -125,7 +125,7 @@ func (u UpgradeSiteDevices) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UpgradeSiteDevices.
 // It customizes the JSON unmarshaling process for UpgradeSiteDevices objects.
 func (u *UpgradeSiteDevices) UnmarshalJSON(input []byte) error {
-    var temp upgradeSiteDevices
+    var temp tempUpgradeSiteDevices
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -159,8 +159,8 @@ func (u *UpgradeSiteDevices) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// upgradeSiteDevices is a temporary struct used for validating the fields of UpgradeSiteDevices.
-type upgradeSiteDevices  struct {
+// tempUpgradeSiteDevices is a temporary struct used for validating the fields of UpgradeSiteDevices.
+type tempUpgradeSiteDevices  struct {
     CanaryPhases            []int                               `json:"canary_phases,omitempty"`
     DeviceIds               []uuid.UUID                         `json:"device_ids,omitempty"`
     EnableP2p               *bool                               `json:"enable_p2p,omitempty"`

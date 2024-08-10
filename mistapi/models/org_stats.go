@@ -61,7 +61,7 @@ func (o OrgStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgStats.
 // It customizes the JSON unmarshaling process for OrgStats objects.
 func (o *OrgStats) UnmarshalJSON(input []byte) error {
-    var temp orgStats
+    var temp tempOrgStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -94,8 +94,8 @@ func (o *OrgStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgStats is a temporary struct used for validating the fields of OrgStats.
-type orgStats  struct {
+// tempOrgStats is a temporary struct used for validating the fields of OrgStats.
+type tempOrgStats  struct {
     AlarmtemplateId        *uuid.UUID    `json:"alarmtemplate_id"`
     AllowMist              *bool         `json:"allow_mist"`
     CreatedTime            *float64      `json:"created_time"`
@@ -113,52 +113,52 @@ type orgStats  struct {
     Sle                    *[]OrgSleStat `json:"sle"`
 }
 
-func (o *orgStats) validate() error {
+func (o *tempOrgStats) validate() error {
     var errs []string
     if o.AlarmtemplateId == nil {
-        errs = append(errs, "required field `alarmtemplate_id` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `alarmtemplate_id` is missing for type `org_stats`")
     }
     if o.AllowMist == nil {
-        errs = append(errs, "required field `allow_mist` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `allow_mist` is missing for type `org_stats`")
     }
     if o.CreatedTime == nil {
-        errs = append(errs, "required field `created_time` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `created_time` is missing for type `org_stats`")
     }
     if o.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `id` is missing for type `org_stats`")
     }
     if o.ModifiedTime == nil {
-        errs = append(errs, "required field `modified_time` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `modified_time` is missing for type `org_stats`")
     }
     if o.MspId == nil {
-        errs = append(errs, "required field `msp_id` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `msp_id` is missing for type `org_stats`")
     }
     if o.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `name` is missing for type `org_stats`")
     }
     if o.NumDevices == nil {
-        errs = append(errs, "required field `num_devices` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `num_devices` is missing for type `org_stats`")
     }
     if o.NumDevicesConnected == nil {
-        errs = append(errs, "required field `num_devices_connected` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `num_devices_connected` is missing for type `org_stats`")
     }
     if o.NumDevicesDisconnected == nil {
-        errs = append(errs, "required field `num_devices_disconnected` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `num_devices_disconnected` is missing for type `org_stats`")
     }
     if o.NumInventory == nil {
-        errs = append(errs, "required field `num_inventory` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `num_inventory` is missing for type `org_stats`")
     }
     if o.NumSites == nil {
-        errs = append(errs, "required field `num_sites` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `num_sites` is missing for type `org_stats`")
     }
     if o.OrggroupIds == nil {
-        errs = append(errs, "required field `orggroup_ids` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `orggroup_ids` is missing for type `org_stats`")
     }
     if o.SessionExpiry == nil {
-        errs = append(errs, "required field `session_expiry` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `session_expiry` is missing for type `org_stats`")
     }
     if o.Sle == nil {
-        errs = append(errs, "required field `sle` is missing for type `Org_Stats`")
+        errs = append(errs, "required field `sle` is missing for type `org_stats`")
     }
     if len(errs) == 0 {
         return nil

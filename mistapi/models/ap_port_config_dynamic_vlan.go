@@ -44,7 +44,7 @@ func (a ApPortConfigDynamicVlan) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApPortConfigDynamicVlan.
 // It customizes the JSON unmarshaling process for ApPortConfigDynamicVlan objects.
 func (a *ApPortConfigDynamicVlan) UnmarshalJSON(input []byte) error {
-    var temp apPortConfigDynamicVlan
+    var temp tempApPortConfigDynamicVlan
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (a *ApPortConfigDynamicVlan) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apPortConfigDynamicVlan is a temporary struct used for validating the fields of ApPortConfigDynamicVlan.
-type apPortConfigDynamicVlan  struct {
+// tempApPortConfigDynamicVlan is a temporary struct used for validating the fields of ApPortConfigDynamicVlan.
+type tempApPortConfigDynamicVlan  struct {
     DefaultVlanId *int              `json:"default_vlan_id,omitempty"`
     Enabled       *bool             `json:"enabled,omitempty"`
     Type          *string           `json:"type,omitempty"`

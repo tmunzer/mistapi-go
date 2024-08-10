@@ -37,7 +37,7 @@ func (u UtilsTuntermBouncePort) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsTuntermBouncePort.
 // It customizes the JSON unmarshaling process for UtilsTuntermBouncePort objects.
 func (u *UtilsTuntermBouncePort) UnmarshalJSON(input []byte) error {
-    var temp utilsTuntermBouncePort
+    var temp tempUtilsTuntermBouncePort
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,16 +57,16 @@ func (u *UtilsTuntermBouncePort) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsTuntermBouncePort is a temporary struct used for validating the fields of UtilsTuntermBouncePort.
-type utilsTuntermBouncePort  struct {
+// tempUtilsTuntermBouncePort is a temporary struct used for validating the fields of UtilsTuntermBouncePort.
+type tempUtilsTuntermBouncePort  struct {
     HoldTime *int      `json:"hold_time,omitempty"`
     Ports    *[]string `json:"ports"`
 }
 
-func (u *utilsTuntermBouncePort) validate() error {
+func (u *tempUtilsTuntermBouncePort) validate() error {
     var errs []string
     if u.Ports == nil {
-        errs = append(errs, "required field `ports` is missing for type `Utils_Tunterm_Bounce_Port`")
+        errs = append(errs, "required field `ports` is missing for type `utils_tunterm_bounce_port`")
     }
     if len(errs) == 0 {
         return nil

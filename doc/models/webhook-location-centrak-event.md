@@ -21,9 +21,9 @@
 
 ```json
 {
-  "map_id": "map_id4",
-  "mfg_company_id": 206,
-  "mfg_data": "mfg_data2",
+  "map_id": "map_id6",
+  "mfg_company_id": 254,
+  "mfg_data": "mfg_data0",
   "timestamp": 102,
   "wifi_beacon_extended_info": [
     {

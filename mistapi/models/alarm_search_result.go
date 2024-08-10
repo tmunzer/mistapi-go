@@ -47,7 +47,7 @@ func (a AlarmSearchResult) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AlarmSearchResult.
 // It customizes the JSON unmarshaling process for AlarmSearchResult objects.
 func (a *AlarmSearchResult) UnmarshalJSON(input []byte) error {
-    var temp alarmSearchResult
+    var temp tempAlarmSearchResult
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -72,8 +72,8 @@ func (a *AlarmSearchResult) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// alarmSearchResult is a temporary struct used for validating the fields of AlarmSearchResult.
-type alarmSearchResult  struct {
+// tempAlarmSearchResult is a temporary struct used for validating the fields of AlarmSearchResult.
+type tempAlarmSearchResult  struct {
     End     *int     `json:"end"`
     Limit   *int     `json:"limit"`
     Next    *string  `json:"next,omitempty"`
@@ -83,22 +83,22 @@ type alarmSearchResult  struct {
     Total   *int     `json:"total"`
 }
 
-func (a *alarmSearchResult) validate() error {
+func (a *tempAlarmSearchResult) validate() error {
     var errs []string
     if a.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Alarm_Search_Result`")
+        errs = append(errs, "required field `end` is missing for type `alarm_search_result`")
     }
     if a.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Alarm_Search_Result`")
+        errs = append(errs, "required field `limit` is missing for type `alarm_search_result`")
     }
     if a.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Alarm_Search_Result`")
+        errs = append(errs, "required field `results` is missing for type `alarm_search_result`")
     }
     if a.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Alarm_Search_Result`")
+        errs = append(errs, "required field `start` is missing for type `alarm_search_result`")
     }
     if a.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Alarm_Search_Result`")
+        errs = append(errs, "required field `total` is missing for type `alarm_search_result`")
     }
     if len(errs) == 0 {
         return nil

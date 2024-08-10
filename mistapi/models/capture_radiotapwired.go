@@ -111,7 +111,7 @@ func (c CaptureRadiotapwired) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureRadiotapwired.
 // It customizes the JSON unmarshaling process for CaptureRadiotapwired objects.
 func (c *CaptureRadiotapwired) UnmarshalJSON(input []byte) error {
-    var temp captureRadiotapwired
+    var temp tempCaptureRadiotapwired
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -143,8 +143,8 @@ func (c *CaptureRadiotapwired) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureRadiotapwired is a temporary struct used for validating the fields of CaptureRadiotapwired.
-type captureRadiotapwired  struct {
+// tempCaptureRadiotapwired is a temporary struct used for validating the fields of CaptureRadiotapwired.
+type tempCaptureRadiotapwired  struct {
     ApMac                     Optional[string]                `json:"ap_mac"`
     Band                      *CaptureRadiotapwiredBandEnum   `json:"band,omitempty"`
     ClientMac                 Optional[string]                `json:"client_mac"`
@@ -161,10 +161,10 @@ type captureRadiotapwired  struct {
     WlanId                    Optional[string]                `json:"wlan_id"`
 }
 
-func (c *captureRadiotapwired) validate() error {
+func (c *tempCaptureRadiotapwired) validate() error {
     var errs []string
     if c.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Capture_Radiotapwired`")
+        errs = append(errs, "required field `type` is missing for type `capture_radiotapwired`")
     }
     if len(errs) == 0 {
         return nil

@@ -33,7 +33,7 @@ func (w WxtagClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WxtagClient.
 // It customizes the JSON unmarshaling process for WxtagClient objects.
 func (w *WxtagClient) UnmarshalJSON(input []byte) error {
-    var temp wxtagClient
+    var temp tempWxtagClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (w *WxtagClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wxtagClient is a temporary struct used for validating the fields of WxtagClient.
-type wxtagClient  struct {
+// tempWxtagClient is a temporary struct used for validating the fields of WxtagClient.
+type tempWxtagClient  struct {
     Mac   *string  `json:"mac"`
     Since *float64 `json:"since"`
 }
 
-func (w *wxtagClient) validate() error {
+func (w *tempWxtagClient) validate() error {
     var errs []string
     if w.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Wxtag_Client`")
+        errs = append(errs, "required field `mac` is missing for type `wxtag_client`")
     }
     if w.Since == nil {
-        errs = append(errs, "required field `since` is missing for type `Wxtag_Client`")
+        errs = append(errs, "required field `since` is missing for type `wxtag_client`")
     }
     if len(errs) == 0 {
         return nil

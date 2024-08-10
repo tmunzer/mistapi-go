@@ -19,7 +19,7 @@
 {
   "bfd_profile": "broadband",
   "pod": 2,
-  "ip": "ip0"
+  "ip": "ip4"
 }
 ```
 

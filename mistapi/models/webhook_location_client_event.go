@@ -63,7 +63,7 @@ func (w WebhookLocationClientEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookLocationClientEvent.
 // It customizes the JSON unmarshaling process for WebhookLocationClientEvent objects.
 func (w *WebhookLocationClientEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookLocationClientEvent
+    var temp tempWebhookLocationClientEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -85,8 +85,8 @@ func (w *WebhookLocationClientEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookLocationClientEvent is a temporary struct used for validating the fields of WebhookLocationClientEvent.
-type webhookLocationClientEvent  struct {
+// tempWebhookLocationClientEvent is a temporary struct used for validating the fields of WebhookLocationClientEvent.
+type tempWebhookLocationClientEvent  struct {
     Mac                    *string                       `json:"mac,omitempty"`
     MapId                  *uuid.UUID                    `json:"map_id,omitempty"`
     SiteId                 *uuid.UUID                    `json:"site_id,omitempty"`

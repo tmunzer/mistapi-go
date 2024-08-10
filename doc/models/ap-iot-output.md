@@ -25,7 +25,7 @@ IoT output AP settings
   "name": "motion",
   "pullup": "none",
   "output": false,
-  "value": 178
+  "value": 116
 }
 ```
 

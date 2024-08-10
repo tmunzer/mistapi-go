@@ -42,7 +42,7 @@ func (a AccountJamfConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountJamfConfig.
 // It customizes the JSON unmarshaling process for AccountJamfConfig objects.
 func (a *AccountJamfConfig) UnmarshalJSON(input []byte) error {
-    var temp accountJamfConfig
+    var temp tempAccountJamfConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,27 +64,27 @@ func (a *AccountJamfConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountJamfConfig is a temporary struct used for validating the fields of AccountJamfConfig.
-type accountJamfConfig  struct {
+// tempAccountJamfConfig is a temporary struct used for validating the fields of AccountJamfConfig.
+type tempAccountJamfConfig  struct {
     ClientId       *string `json:"client_id"`
     ClientSecret   *string `json:"client_secret"`
     InstanceUrl    *string `json:"instance_url"`
     SmartgroupName *string `json:"smartgroup_name"`
 }
 
-func (a *accountJamfConfig) validate() error {
+func (a *tempAccountJamfConfig) validate() error {
     var errs []string
     if a.ClientId == nil {
-        errs = append(errs, "required field `client_id` is missing for type `Account_Jamf_Config`")
+        errs = append(errs, "required field `client_id` is missing for type `account_jamf_config`")
     }
     if a.ClientSecret == nil {
-        errs = append(errs, "required field `client_secret` is missing for type `Account_Jamf_Config`")
+        errs = append(errs, "required field `client_secret` is missing for type `account_jamf_config`")
     }
     if a.InstanceUrl == nil {
-        errs = append(errs, "required field `instance_url` is missing for type `Account_Jamf_Config`")
+        errs = append(errs, "required field `instance_url` is missing for type `account_jamf_config`")
     }
     if a.SmartgroupName == nil {
-        errs = append(errs, "required field `smartgroup_name` is missing for type `Account_Jamf_Config`")
+        errs = append(errs, "required field `smartgroup_name` is missing for type `account_jamf_config`")
     }
     if len(errs) == 0 {
         return nil

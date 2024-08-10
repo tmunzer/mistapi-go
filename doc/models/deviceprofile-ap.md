@@ -71,7 +71,7 @@ Device Profile
     ],
     "custom_ble_packet_enabled": false
   },
-  "created_time": 17.74
+  "created_time": 42.6
 }
 ```
 

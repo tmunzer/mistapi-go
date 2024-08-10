@@ -38,7 +38,7 @@ func (w WlanSchedule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanSchedule.
 // It customizes the JSON unmarshaling process for WlanSchedule objects.
 func (w *WlanSchedule) UnmarshalJSON(input []byte) error {
-    var temp wlanSchedule
+    var temp tempWlanSchedule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (w *WlanSchedule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanSchedule is a temporary struct used for validating the fields of WlanSchedule.
-type wlanSchedule  struct {
+// tempWlanSchedule is a temporary struct used for validating the fields of WlanSchedule.
+type tempWlanSchedule  struct {
     Enabled *bool  `json:"enabled,omitempty"`
     Hours   *Hours `json:"hours,omitempty"`
 }

@@ -110,7 +110,7 @@ func (d DhcpdConfigProperty) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DhcpdConfigProperty.
 // It customizes the JSON unmarshaling process for DhcpdConfigProperty objects.
 func (d *DhcpdConfigProperty) UnmarshalJSON(input []byte) error {
-    var temp dhcpdConfigProperty
+    var temp tempDhcpdConfigProperty
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -140,8 +140,8 @@ func (d *DhcpdConfigProperty) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// dhcpdConfigProperty is a temporary struct used for validating the fields of DhcpdConfigProperty.
-type dhcpdConfigProperty  struct {
+// tempDhcpdConfigProperty is a temporary struct used for validating the fields of DhcpdConfigProperty.
+type tempDhcpdConfigProperty  struct {
     DnsServers        []string                           `json:"dns_servers,omitempty"`
     DnsSuffix         []string                           `json:"dns_suffix,omitempty"`
     FixedBindings     map[string]DhcpdConfigFixedBinding `json:"fixed_bindings,omitempty"`

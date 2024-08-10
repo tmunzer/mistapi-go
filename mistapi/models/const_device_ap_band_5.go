@@ -39,7 +39,7 @@ func (c ConstDeviceApBand5) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstDeviceApBand5.
 // It customizes the JSON unmarshaling process for ConstDeviceApBand5 objects.
 func (c *ConstDeviceApBand5) UnmarshalJSON(input []byte) error {
-    var temp constDeviceApBand5
+    var temp tempConstDeviceApBand5
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (c *ConstDeviceApBand5) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constDeviceApBand5 is a temporary struct used for validating the fields of ConstDeviceApBand5.
-type constDeviceApBand5  struct {
+// tempConstDeviceApBand5 is a temporary struct used for validating the fields of ConstDeviceApBand5.
+type tempConstDeviceApBand5  struct {
     MaxClients *int `json:"max_clients,omitempty"`
     MaxPower   *int `json:"max_power,omitempty"`
     MinPower   *int `json:"min_power,omitempty"`

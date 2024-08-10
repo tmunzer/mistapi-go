@@ -175,7 +175,7 @@ func (c ConstDeviceAp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstDeviceAp.
 // It customizes the JSON unmarshaling process for ConstDeviceAp objects.
 func (c *ConstDeviceAp) UnmarshalJSON(input []byte) error {
-    var temp constDeviceAp
+    var temp tempConstDeviceAp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -225,8 +225,8 @@ func (c *ConstDeviceAp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constDeviceAp is a temporary struct used for validating the fields of ConstDeviceAp.
-type constDeviceAp  struct {
+// tempConstDeviceAp is a temporary struct used for validating the fields of ConstDeviceAp.
+type tempConstDeviceAp  struct {
     ApType              *string                        `json:"ap_type,omitempty"`
     Band24              *ConstDeviceApBand24           `json:"band24,omitempty"`
     Band5               *ConstDeviceApBand5            `json:"band5,omitempty"`

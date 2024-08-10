@@ -18,7 +18,8 @@
 {
   "op": "assign",
   "org_ids": [
-    "org_ids0"
+    "org_ids6",
+    "org_ids5"
   ]
 }
 ```

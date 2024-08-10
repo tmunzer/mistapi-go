@@ -52,7 +52,7 @@ func (m MxedgeTuntermIgmpSnoopingQuerier) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeTuntermIgmpSnoopingQuerier.
 // It customizes the JSON unmarshaling process for MxedgeTuntermIgmpSnoopingQuerier objects.
 func (m *MxedgeTuntermIgmpSnoopingQuerier) UnmarshalJSON(input []byte) error {
-    var temp mxedgeTuntermIgmpSnoopingQuerier
+    var temp tempMxedgeTuntermIgmpSnoopingQuerier
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (m *MxedgeTuntermIgmpSnoopingQuerier) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeTuntermIgmpSnoopingQuerier is a temporary struct used for validating the fields of MxedgeTuntermIgmpSnoopingQuerier.
-type mxedgeTuntermIgmpSnoopingQuerier  struct {
+// tempMxedgeTuntermIgmpSnoopingQuerier is a temporary struct used for validating the fields of MxedgeTuntermIgmpSnoopingQuerier.
+type tempMxedgeTuntermIgmpSnoopingQuerier  struct {
     MaxResponseTime *int `json:"max_response_time,omitempty"`
     Mtu             *int `json:"mtu,omitempty"`
     QueryInterval   *int `json:"query_interval,omitempty"`

@@ -53,7 +53,7 @@ func (o OrgSettingPasswordPolicy) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingPasswordPolicy.
 // It customizes the JSON unmarshaling process for OrgSettingPasswordPolicy objects.
 func (o *OrgSettingPasswordPolicy) UnmarshalJSON(input []byte) error {
-    var temp orgSettingPasswordPolicy
+    var temp tempOrgSettingPasswordPolicy
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -72,8 +72,8 @@ func (o *OrgSettingPasswordPolicy) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingPasswordPolicy is a temporary struct used for validating the fields of OrgSettingPasswordPolicy.
-type orgSettingPasswordPolicy  struct {
+// tempOrgSettingPasswordPolicy is a temporary struct used for validating the fields of OrgSettingPasswordPolicy.
+type tempOrgSettingPasswordPolicy  struct {
     Enabled               *bool `json:"enabled,omitempty"`
     Freshness             *int  `json:"freshness,omitempty"`
     MinLength             *int  `json:"min_length,omitempty"`

@@ -31,7 +31,7 @@ func (m MacAddresses) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MacAddresses.
 // It customizes the JSON unmarshaling process for MacAddresses objects.
 func (m *MacAddresses) UnmarshalJSON(input []byte) error {
-    var temp macAddresses
+    var temp tempMacAddresses
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (m *MacAddresses) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// macAddresses is a temporary struct used for validating the fields of MacAddresses.
-type macAddresses  struct {
+// tempMacAddresses is a temporary struct used for validating the fields of MacAddresses.
+type tempMacAddresses  struct {
     Macs *[]string `json:"macs"`
 }
 
-func (m *macAddresses) validate() error {
+func (m *tempMacAddresses) validate() error {
     var errs []string
     if m.Macs == nil {
-        errs = append(errs, "required field `macs` is missing for type `Mac_Addresses`")
+        errs = append(errs, "required field `macs` is missing for type `mac_addresses`")
     }
     if len(errs) == 0 {
         return nil

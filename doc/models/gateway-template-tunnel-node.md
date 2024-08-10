@@ -20,26 +20,23 @@
 ```json
 {
   "hosts": [
-    "hosts1",
-    "hosts2"
+    "hosts9",
+    "hosts0"
   ],
   "internal_ips": [
-    "internal_ips2",
-    "internal_ips3",
-    "internal_ips4"
+    "internal_ips0"
   ],
   "probe_ips": [
-    "probe_ips5",
-    "probe_ips6"
+    "probe_ips3",
+    "probe_ips4",
+    "probe_ips5"
   ],
   "remote_ids": [
     "remote_ids9",
-    "remote_ids8"
+    "remote_ids0"
   ],
   "wan_names": [
-    "wan_names6",
-    "wan_names7",
-    "wan_names8"
+    "wan_names4"
   ]
 }
 ```

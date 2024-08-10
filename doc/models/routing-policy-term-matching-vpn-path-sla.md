@@ -19,7 +19,7 @@
 {
   "max_latency": 1500,
   "max_loss": 30,
-  "max_jitter": 152
+  "max_jitter": 142
 }
 ```
 

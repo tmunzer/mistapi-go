@@ -38,7 +38,7 @@ func (a AutoPlacement) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AutoPlacement.
 // It customizes the JSON unmarshaling process for AutoPlacement objects.
 func (a *AutoPlacement) UnmarshalJSON(input []byte) error {
-    var temp autoPlacement
+    var temp tempAutoPlacement
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (a *AutoPlacement) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// autoPlacement is a temporary struct used for validating the fields of AutoPlacement.
-type autoPlacement  struct {
+// tempAutoPlacement is a temporary struct used for validating the fields of AutoPlacement.
+type tempAutoPlacement  struct {
     ForceCollection *bool    `json:"force_collection,omitempty"`
     Macs            []string `json:"macs,omitempty"`
 }

@@ -43,7 +43,7 @@ func (a ApStatsAutoPlacementInfoProbabilitySurface) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStatsAutoPlacementInfoProbabilitySurface.
 // It customizes the JSON unmarshaling process for ApStatsAutoPlacementInfoProbabilitySurface objects.
 func (a *ApStatsAutoPlacementInfoProbabilitySurface) UnmarshalJSON(input []byte) error {
-    var temp apStatsAutoPlacementInfoProbabilitySurface
+    var temp tempApStatsAutoPlacementInfoProbabilitySurface
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,8 +60,8 @@ func (a *ApStatsAutoPlacementInfoProbabilitySurface) UnmarshalJSON(input []byte)
     return nil
 }
 
-// apStatsAutoPlacementInfoProbabilitySurface is a temporary struct used for validating the fields of ApStatsAutoPlacementInfoProbabilitySurface.
-type apStatsAutoPlacementInfoProbabilitySurface  struct {
+// tempApStatsAutoPlacementInfoProbabilitySurface is a temporary struct used for validating the fields of ApStatsAutoPlacementInfoProbabilitySurface.
+type tempApStatsAutoPlacementInfoProbabilitySurface  struct {
     Radius  *float64 `json:"radius,omitempty"`
     RadiusM *float64 `json:"radius_m,omitempty"`
     X       *float64 `json:"x,omitempty"`

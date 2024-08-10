@@ -31,7 +31,7 @@ func (e EmailString) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EmailString.
 // It customizes the JSON unmarshaling process for EmailString objects.
 func (e *EmailString) UnmarshalJSON(input []byte) error {
-    var temp emailString
+    var temp tempEmailString
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (e *EmailString) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// emailString is a temporary struct used for validating the fields of EmailString.
-type emailString  struct {
+// tempEmailString is a temporary struct used for validating the fields of EmailString.
+type tempEmailString  struct {
     Email *string `json:"email"`
 }
 
-func (e *emailString) validate() error {
+func (e *tempEmailString) validate() error {
     var errs []string
     if e.Email == nil {
-        errs = append(errs, "required field `email` is missing for type `Email_String`")
+        errs = append(errs, "required field `email` is missing for type `email_string`")
     }
     if len(errs) == 0 {
         return nil

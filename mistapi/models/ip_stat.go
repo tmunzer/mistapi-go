@@ -95,7 +95,7 @@ func (i IpStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for IpStat.
 // It customizes the JSON unmarshaling process for IpStat objects.
 func (i *IpStat) UnmarshalJSON(input []byte) error {
-    var temp ipStat
+    var temp tempIpStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -119,8 +119,8 @@ func (i *IpStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ipStat is a temporary struct used for validating the fields of IpStat.
-type ipStat  struct {
+// tempIpStat is a temporary struct used for validating the fields of IpStat.
+type tempIpStat  struct {
     DhcpServer Optional[string]  `json:"dhcp_server"`
     Dns        []string          `json:"dns,omitempty"`
     DnsSuffix  []string          `json:"dns_suffix,omitempty"`

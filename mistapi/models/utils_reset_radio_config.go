@@ -37,7 +37,7 @@ func (u UtilsResetRadioConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsResetRadioConfig.
 // It customizes the JSON unmarshaling process for UtilsResetRadioConfig objects.
 func (u *UtilsResetRadioConfig) UnmarshalJSON(input []byte) error {
-    var temp utilsResetRadioConfig
+    var temp tempUtilsResetRadioConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,16 +57,16 @@ func (u *UtilsResetRadioConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsResetRadioConfig is a temporary struct used for validating the fields of UtilsResetRadioConfig.
-type utilsResetRadioConfig  struct {
+// tempUtilsResetRadioConfig is a temporary struct used for validating the fields of UtilsResetRadioConfig.
+type tempUtilsResetRadioConfig  struct {
     Bands *[]string `json:"bands"`
     Force *bool     `json:"force,omitempty"`
 }
 
-func (u *utilsResetRadioConfig) validate() error {
+func (u *tempUtilsResetRadioConfig) validate() error {
     var errs []string
     if u.Bands == nil {
-        errs = append(errs, "required field `bands` is missing for type `Utils_Reset_Radio_Config`")
+        errs = append(errs, "required field `bands` is missing for type `utils_reset_radio_config`")
     }
     if len(errs) == 0 {
         return nil

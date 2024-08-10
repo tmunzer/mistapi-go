@@ -16,8 +16,8 @@
 
 ```json
 {
-  "dest": "dest6",
-  "next_hop": "next_hop6"
+  "dest": "dest2",
+  "next_hop": "next_hop2"
 }
 ```
 

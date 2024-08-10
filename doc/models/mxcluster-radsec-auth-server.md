@@ -24,10 +24,10 @@
 {
   "keywrap_format": "ascii",
   "port": 1812,
-  "host": "host0",
+  "host": "host6",
   "keywrap_enabled": false,
-  "keywrap_kek": "keywrap_kek4",
-  "keywrap_mack": "keywrap_mack6"
+  "keywrap_kek": "keywrap_kek0",
+  "keywrap_mack": "keywrap_mack2"
 }
 ```
 

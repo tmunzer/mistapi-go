@@ -31,7 +31,7 @@ func (e EvpnOptionsVsInstance) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EvpnOptionsVsInstance.
 // It customizes the JSON unmarshaling process for EvpnOptionsVsInstance objects.
 func (e *EvpnOptionsVsInstance) UnmarshalJSON(input []byte) error {
-    var temp evpnOptionsVsInstance
+    var temp tempEvpnOptionsVsInstance
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (e *EvpnOptionsVsInstance) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// evpnOptionsVsInstance is a temporary struct used for validating the fields of EvpnOptionsVsInstance.
-type evpnOptionsVsInstance  struct {
+// tempEvpnOptionsVsInstance is a temporary struct used for validating the fields of EvpnOptionsVsInstance.
+type tempEvpnOptionsVsInstance  struct {
     Networks []string `json:"networks,omitempty"`
 }

@@ -45,7 +45,7 @@ func (u UpgradeOrgDeviceUpgrade) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UpgradeOrgDeviceUpgrade.
 // It customizes the JSON unmarshaling process for UpgradeOrgDeviceUpgrade objects.
 func (u *UpgradeOrgDeviceUpgrade) UnmarshalJSON(input []byte) error {
-    var temp upgradeOrgDeviceUpgrade
+    var temp tempUpgradeOrgDeviceUpgrade
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,8 +63,8 @@ func (u *UpgradeOrgDeviceUpgrade) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// upgradeOrgDeviceUpgrade is a temporary struct used for validating the fields of UpgradeOrgDeviceUpgrade.
-type upgradeOrgDeviceUpgrade  struct {
+// tempUpgradeOrgDeviceUpgrade is a temporary struct used for validating the fields of UpgradeOrgDeviceUpgrade.
+type tempUpgradeOrgDeviceUpgrade  struct {
     Id        *uuid.UUID               `json:"id,omitempty"`
     StartTime *float64                 `json:"start_time,omitempty"`
     Status    *DeviceUpgradeStatusEnum `json:"status,omitempty"`

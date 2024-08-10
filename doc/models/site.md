@@ -45,7 +45,7 @@ Site
   "rftemplate_id": "bb8a9017-1e36-5d6c-6f2b-551abe8a76a2",
   "secpolicy_id": "3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef",
   "timezone": "America/Los_Angeles",
-  "created_time": 154.0
+  "created_time": 113.34
 }
 ```
 

@@ -100,7 +100,7 @@ func (c ConstNacEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstNacEvent.
 // It customizes the JSON unmarshaling process for ConstNacEvent objects.
 func (c *ConstNacEvent) UnmarshalJSON(input []byte) error {
-    var temp constNacEvent
+    var temp tempConstNacEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -132,8 +132,8 @@ func (c *ConstNacEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constNacEvent is a temporary struct used for validating the fields of ConstNacEvent.
-type constNacEvent  struct {
+// tempConstNacEvent is a temporary struct used for validating the fields of ConstNacEvent.
+type tempConstNacEvent  struct {
     Ap          *string    `json:"ap,omitempty"`
     Bssid       *string    `json:"bssid,omitempty"`
     CertCn      *string    `json:"cert_cn,omitempty"`

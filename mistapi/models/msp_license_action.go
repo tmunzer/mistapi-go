@@ -57,7 +57,7 @@ func (m MspLicenseAction) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MspLicenseAction.
 // It customizes the JSON unmarshaling process for MspLicenseAction objects.
 func (m *MspLicenseAction) UnmarshalJSON(input []byte) error {
-    var temp mspLicenseAction
+    var temp tempMspLicenseAction
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -81,8 +81,8 @@ func (m *MspLicenseAction) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mspLicenseAction is a temporary struct used for validating the fields of MspLicenseAction.
-type mspLicenseAction  struct {
+// tempMspLicenseAction is a temporary struct used for validating the fields of MspLicenseAction.
+type tempMspLicenseAction  struct {
     AmendmentId    *string                        `json:"amendment_id,omitempty"`
     DstOrgId       *string                        `json:"dst_org_id,omitempty"`
     Notes          *string                        `json:"notes,omitempty"`
@@ -91,10 +91,10 @@ type mspLicenseAction  struct {
     SubscriptionId *string                        `json:"subscription_id,omitempty"`
 }
 
-func (m *mspLicenseAction) validate() error {
+func (m *tempMspLicenseAction) validate() error {
     var errs []string
     if m.Op == nil {
-        errs = append(errs, "required field `op` is missing for type `Msp_License_Action`")
+        errs = append(errs, "required field `op` is missing for type `msp_license_action`")
     }
     if len(errs) == 0 {
         return nil

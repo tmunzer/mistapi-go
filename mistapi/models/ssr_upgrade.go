@@ -47,7 +47,7 @@ func (s SsrUpgrade) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SsrUpgrade.
 // It customizes the JSON unmarshaling process for SsrUpgrade objects.
 func (s *SsrUpgrade) UnmarshalJSON(input []byte) error {
-    var temp ssrUpgrade
+    var temp tempSsrUpgrade
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -69,18 +69,18 @@ func (s *SsrUpgrade) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ssrUpgrade is a temporary struct used for validating the fields of SsrUpgrade.
-type ssrUpgrade  struct {
+// tempSsrUpgrade is a temporary struct used for validating the fields of SsrUpgrade.
+type tempSsrUpgrade  struct {
     Channel   *SsrUpgradeChannelEnum `json:"channel,omitempty"`
     RebootAt  *int                   `json:"reboot_at,omitempty"`
     StartTime *int                   `json:"start_time,omitempty"`
     Version   *string                `json:"version"`
 }
 
-func (s *ssrUpgrade) validate() error {
+func (s *tempSsrUpgrade) validate() error {
     var errs []string
     if s.Version == nil {
-        errs = append(errs, "required field `version` is missing for type `Ssr_Upgrade`")
+        errs = append(errs, "required field `version` is missing for type `ssr_upgrade`")
     }
     if len(errs) == 0 {
         return nil

@@ -35,7 +35,7 @@ func (m MxedgeVersions) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeVersions.
 // It customizes the JSON unmarshaling process for MxedgeVersions objects.
 func (m *MxedgeVersions) UnmarshalJSON(input []byte) error {
-    var temp mxedgeVersions
+    var temp tempMxedgeVersions
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (m *MxedgeVersions) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeVersions is a temporary struct used for validating the fields of MxedgeVersions.
-type mxedgeVersions  struct {
+// tempMxedgeVersions is a temporary struct used for validating the fields of MxedgeVersions.
+type tempMxedgeVersions  struct {
     Mxagent  *string `json:"mxagent,omitempty"`
     Tuntnerm *string `json:"tuntnerm,omitempty"`
 }

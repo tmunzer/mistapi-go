@@ -74,7 +74,7 @@ func (n NacRule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NacRule.
 // It customizes the JSON unmarshaling process for NacRule objects.
 func (n *NacRule) UnmarshalJSON(input []byte) error {
-    var temp nacRule
+    var temp tempNacRule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -103,8 +103,8 @@ func (n *NacRule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// nacRule is a temporary struct used for validating the fields of NacRule.
-type nacRule  struct {
+// tempNacRule is a temporary struct used for validating the fields of NacRule.
+type tempNacRule  struct {
     Action       *NacRuleActionEnum `json:"action"`
     ApplyTags    []string           `json:"apply_tags,omitempty"`
     CreatedTime  *float64           `json:"created_time,omitempty"`
@@ -118,13 +118,13 @@ type nacRule  struct {
     OrgId        *uuid.UUID         `json:"org_id,omitempty"`
 }
 
-func (n *nacRule) validate() error {
+func (n *tempNacRule) validate() error {
     var errs []string
     if n.Action == nil {
-        errs = append(errs, "required field `action` is missing for type `Nac_Rule`")
+        errs = append(errs, "required field `action` is missing for type `nac_rule`")
     }
     if n.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Nac_Rule`")
+        errs = append(errs, "required field `name` is missing for type `nac_rule`")
     }
     if len(errs) == 0 {
         return nil

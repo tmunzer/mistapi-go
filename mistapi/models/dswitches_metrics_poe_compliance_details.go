@@ -33,7 +33,7 @@ func (d DswitchesMetricsPoeComplianceDetails) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DswitchesMetricsPoeComplianceDetails.
 // It customizes the JSON unmarshaling process for DswitchesMetricsPoeComplianceDetails objects.
 func (d *DswitchesMetricsPoeComplianceDetails) UnmarshalJSON(input []byte) error {
-    var temp dswitchesMetricsPoeComplianceDetails
+    var temp tempDswitchesMetricsPoeComplianceDetails
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (d *DswitchesMetricsPoeComplianceDetails) UnmarshalJSON(input []byte) error
     return nil
 }
 
-// dswitchesMetricsPoeComplianceDetails is a temporary struct used for validating the fields of DswitchesMetricsPoeComplianceDetails.
-type dswitchesMetricsPoeComplianceDetails  struct {
+// tempDswitchesMetricsPoeComplianceDetails is a temporary struct used for validating the fields of DswitchesMetricsPoeComplianceDetails.
+type tempDswitchesMetricsPoeComplianceDetails  struct {
     TotalAps   *int     `json:"total_aps"`
     TotalPower *float64 `json:"total_power"`
 }
 
-func (d *dswitchesMetricsPoeComplianceDetails) validate() error {
+func (d *tempDswitchesMetricsPoeComplianceDetails) validate() error {
     var errs []string
     if d.TotalAps == nil {
-        errs = append(errs, "required field `total_aps` is missing for type `Dswitches_Metrics_Poe_Compliance_Details`")
+        errs = append(errs, "required field `total_aps` is missing for type `dswitches_metrics_poe_compliance_details`")
     }
     if d.TotalPower == nil {
-        errs = append(errs, "required field `total_power` is missing for type `Dswitches_Metrics_Poe_Compliance_Details`")
+        errs = append(errs, "required field `total_power` is missing for type `dswitches_metrics_poe_compliance_details`")
     }
     if len(errs) == 0 {
         return nil

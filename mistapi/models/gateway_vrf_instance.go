@@ -31,7 +31,7 @@ func (g GatewayVrfInstance) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayVrfInstance.
 // It customizes the JSON unmarshaling process for GatewayVrfInstance objects.
 func (g *GatewayVrfInstance) UnmarshalJSON(input []byte) error {
-    var temp gatewayVrfInstance
+    var temp tempGatewayVrfInstance
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (g *GatewayVrfInstance) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayVrfInstance is a temporary struct used for validating the fields of GatewayVrfInstance.
-type gatewayVrfInstance  struct {
+// tempGatewayVrfInstance is a temporary struct used for validating the fields of GatewayVrfInstance.
+type tempGatewayVrfInstance  struct {
     Networks []string `json:"networks,omitempty"`
 }

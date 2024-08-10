@@ -42,7 +42,7 @@ func (r ResponseInsightRogue) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseInsightRogue.
 // It customizes the JSON unmarshaling process for ResponseInsightRogue objects.
 func (r *ResponseInsightRogue) UnmarshalJSON(input []byte) error {
-    var temp responseInsightRogue
+    var temp tempResponseInsightRogue
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponseInsightRogue) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseInsightRogue is a temporary struct used for validating the fields of ResponseInsightRogue.
-type responseInsightRogue  struct {
+// tempResponseInsightRogue is a temporary struct used for validating the fields of ResponseInsightRogue.
+type tempResponseInsightRogue  struct {
     End     *int              `json:"end"`
     Limit   *int              `json:"limit"`
     Next    *string           `json:"next,omitempty"`
@@ -74,19 +74,19 @@ type responseInsightRogue  struct {
     Start   *int              `json:"start"`
 }
 
-func (r *responseInsightRogue) validate() error {
+func (r *tempResponseInsightRogue) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Insight_Rogue`")
+        errs = append(errs, "required field `end` is missing for type `response_insight_rogue`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Insight_Rogue`")
+        errs = append(errs, "required field `limit` is missing for type `response_insight_rogue`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Insight_Rogue`")
+        errs = append(errs, "required field `results` is missing for type `response_insight_rogue`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Insight_Rogue`")
+        errs = append(errs, "required field `start` is missing for type `response_insight_rogue`")
     }
     if len(errs) == 0 {
         return nil

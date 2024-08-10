@@ -33,7 +33,7 @@ func (o OrgSleStatUserMinutes) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSleStatUserMinutes.
 // It customizes the JSON unmarshaling process for OrgSleStatUserMinutes objects.
 func (o *OrgSleStatUserMinutes) UnmarshalJSON(input []byte) error {
-    var temp orgSleStatUserMinutes
+    var temp tempOrgSleStatUserMinutes
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (o *OrgSleStatUserMinutes) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSleStatUserMinutes is a temporary struct used for validating the fields of OrgSleStatUserMinutes.
-type orgSleStatUserMinutes  struct {
+// tempOrgSleStatUserMinutes is a temporary struct used for validating the fields of OrgSleStatUserMinutes.
+type tempOrgSleStatUserMinutes  struct {
     Ok    *float64 `json:"ok"`
     Total *float64 `json:"total"`
 }
 
-func (o *orgSleStatUserMinutes) validate() error {
+func (o *tempOrgSleStatUserMinutes) validate() error {
     var errs []string
     if o.Ok == nil {
-        errs = append(errs, "required field `ok` is missing for type `Org_Sle_Stat_User_Minutes`")
+        errs = append(errs, "required field `ok` is missing for type `org_sle_stat_user_minutes`")
     }
     if o.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Org_Sle_Stat_User_Minutes`")
+        errs = append(errs, "required field `total` is missing for type `org_sle_stat_user_minutes`")
     }
     if len(errs) == 0 {
         return nil

@@ -51,7 +51,7 @@ func (n NetworkInternetAccess) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NetworkInternetAccess.
 // It customizes the JSON unmarshaling process for NetworkInternetAccess objects.
 func (n *NetworkInternetAccess) UnmarshalJSON(input []byte) error {
-    var temp networkInternetAccess
+    var temp tempNetworkInternetAccess
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -70,8 +70,8 @@ func (n *NetworkInternetAccess) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// networkInternetAccess is a temporary struct used for validating the fields of NetworkInternetAccess.
-type networkInternetAccess  struct {
+// tempNetworkInternetAccess is a temporary struct used for validating the fields of NetworkInternetAccess.
+type tempNetworkInternetAccess  struct {
     CreateSimpleServicePolicy *bool                                    `json:"create_simple_service_policy,omitempty"`
     DestinationNat            map[string]NetworkDestinationNatProperty `json:"destination_nat,omitempty"`
     Enabled                   *bool                                    `json:"enabled,omitempty"`

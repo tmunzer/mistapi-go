@@ -38,7 +38,7 @@ func (w WebhookPingEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookPingEvent.
 // It customizes the JSON unmarshaling process for WebhookPingEvent objects.
 func (w *WebhookPingEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookPingEvent
+    var temp tempWebhookPingEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,27 +60,27 @@ func (w *WebhookPingEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookPingEvent is a temporary struct used for validating the fields of WebhookPingEvent.
-type webhookPingEvent  struct {
+// tempWebhookPingEvent is a temporary struct used for validating the fields of WebhookPingEvent.
+type tempWebhookPingEvent  struct {
     Id        *uuid.UUID `json:"id"`
     Name      *string    `json:"name"`
     SiteId    *uuid.UUID `json:"site_id"`
     Timestamp *float64   `json:"timestamp"`
 }
 
-func (w *webhookPingEvent) validate() error {
+func (w *tempWebhookPingEvent) validate() error {
     var errs []string
     if w.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Webhook_Ping_Event`")
+        errs = append(errs, "required field `id` is missing for type `webhook_ping_event`")
     }
     if w.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Webhook_Ping_Event`")
+        errs = append(errs, "required field `name` is missing for type `webhook_ping_event`")
     }
     if w.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Webhook_Ping_Event`")
+        errs = append(errs, "required field `site_id` is missing for type `webhook_ping_event`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Ping_Event`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_ping_event`")
     }
     if len(errs) == 0 {
         return nil

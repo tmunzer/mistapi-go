@@ -21,13 +21,13 @@
 
 ```json
 {
-  "annotation": "annotation2",
-  "ap_mac": "ap_mac6",
-  "avg_rssi": 12.26,
-  "band": "band6",
-  "bssid": "bssid2",
-  "client_mac": "client_mac2",
-  "num_aps": 154
+  "annotation": "annotation4",
+  "ap_mac": "ap_mac2",
+  "avg_rssi": 56.1,
+  "band": "band2",
+  "bssid": "bssid4",
+  "client_mac": "client_mac8",
+  "num_aps": 230
 }
 ```
 

@@ -37,7 +37,7 @@ func (m MxedgeDas) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeDas.
 // It customizes the JSON unmarshaling process for MxedgeDas objects.
 func (m *MxedgeDas) UnmarshalJSON(input []byte) error {
-    var temp mxedgeDas
+    var temp tempMxedgeDas
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (m *MxedgeDas) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeDas is a temporary struct used for validating the fields of MxedgeDas.
-type mxedgeDas  struct {
+// tempMxedgeDas is a temporary struct used for validating the fields of MxedgeDas.
+type tempMxedgeDas  struct {
     CoaServers []MxedgeDasCoaServer `json:"coa_servers,omitempty"`
     Enabled    *bool                `json:"enabled,omitempty"`
 }

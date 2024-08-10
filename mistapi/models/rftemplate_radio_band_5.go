@@ -96,7 +96,7 @@ func (r RftemplateRadioBand5) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RftemplateRadioBand5.
 // It customizes the JSON unmarshaling process for RftemplateRadioBand5 objects.
 func (r *RftemplateRadioBand5) UnmarshalJSON(input []byte) error {
-    var temp rftemplateRadioBand5
+    var temp tempRftemplateRadioBand5
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -120,8 +120,8 @@ func (r *RftemplateRadioBand5) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rftemplateRadioBand5 is a temporary struct used for validating the fields of RftemplateRadioBand5.
-type rftemplateRadioBand5  struct {
+// tempRftemplateRadioBand5 is a temporary struct used for validating the fields of RftemplateRadioBand5.
+type tempRftemplateRadioBand5  struct {
     AllowRrmDisable *bool                     `json:"allow_rrm_disable,omitempty"`
     AntGain         Optional[int]             `json:"ant_gain"`
     AntennaMode     *RadioBandAntennaModeEnum `json:"antenna_mode,omitempty"`

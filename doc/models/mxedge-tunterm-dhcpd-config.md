@@ -22,7 +22,9 @@ global and per-VLAN. Property key is the VLAN ID
   "enabled": false,
   "type": "relay",
   "servers": [
-    "servers7"
+    "servers9",
+    "servers0",
+    "servers1"
   ]
 }
 ```

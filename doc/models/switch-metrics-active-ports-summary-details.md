@@ -16,8 +16,8 @@
 
 ```json
 {
-  "active_port_count": 92,
-  "total_port_count": 2
+  "active_port_count": 44,
+  "total_port_count": 138
 }
 ```
 

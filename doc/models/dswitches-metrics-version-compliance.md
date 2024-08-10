@@ -29,7 +29,7 @@
     ],
     "total_switch_count": 14
   },
-  "score": 141.72
+  "score": 9.44
 }
 ```
 

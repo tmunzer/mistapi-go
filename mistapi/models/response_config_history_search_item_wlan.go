@@ -44,7 +44,7 @@ func (r ResponseConfigHistorySearchItemWlan) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseConfigHistorySearchItemWlan.
 // It customizes the JSON unmarshaling process for ResponseConfigHistorySearchItemWlan objects.
 func (r *ResponseConfigHistorySearchItemWlan) UnmarshalJSON(input []byte) error {
-    var temp responseConfigHistorySearchItemWlan
+    var temp tempResponseConfigHistorySearchItemWlan
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseConfigHistorySearchItemWlan) UnmarshalJSON(input []byte) error 
     return nil
 }
 
-// responseConfigHistorySearchItemWlan is a temporary struct used for validating the fields of ResponseConfigHistorySearchItemWlan.
-type responseConfigHistorySearchItemWlan  struct {
+// tempResponseConfigHistorySearchItemWlan is a temporary struct used for validating the fields of ResponseConfigHistorySearchItemWlan.
+type tempResponseConfigHistorySearchItemWlan  struct {
     Auth    *string    `json:"auth"`
     Bands   []string   `json:"bands,omitempty"`
     Id      *uuid.UUID `json:"id"`
@@ -76,16 +76,16 @@ type responseConfigHistorySearchItemWlan  struct {
     VlanIds []string   `json:"vlan_ids,omitempty"`
 }
 
-func (r *responseConfigHistorySearchItemWlan) validate() error {
+func (r *tempResponseConfigHistorySearchItemWlan) validate() error {
     var errs []string
     if r.Auth == nil {
-        errs = append(errs, "required field `auth` is missing for type `Response_Config_History_Search_Item_Wlan`")
+        errs = append(errs, "required field `auth` is missing for type `response_config_history_search_item_wlan`")
     }
     if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Response_Config_History_Search_Item_Wlan`")
+        errs = append(errs, "required field `id` is missing for type `response_config_history_search_item_wlan`")
     }
     if r.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Response_Config_History_Search_Item_Wlan`")
+        errs = append(errs, "required field `ssid` is missing for type `response_config_history_search_item_wlan`")
     }
     if len(errs) == 0 {
         return nil

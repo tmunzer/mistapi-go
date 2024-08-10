@@ -25,17 +25,17 @@
 
 ```json
 {
-  "battery_voltage": 72.28,
-  "eddystone_instance": "eddystone_instance4",
-  "eddystone_namespace": "eddystone_namespace8",
-  "last_seen": 147.72,
-  "mac": "mac6",
-  "map_id": "00001272-0000-0000-0000-000000000000",
-  "name": "name2",
-  "power": 78,
+  "battery_voltage": 43.64,
+  "eddystone_instance": "eddystone_instance0",
+  "eddystone_namespace": "eddystone_namespace4",
+  "last_seen": 119.08,
+  "mac": "mac2",
+  "map_id": "000007c2-0000-0000-0000-000000000000",
+  "name": "name8",
+  "power": 30,
   "type": "type8",
-  "x": 147.88,
-  "y": 23.16
+  "x": 119.24,
+  "y": 250.52
 }
 ```
 

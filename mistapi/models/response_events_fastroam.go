@@ -42,7 +42,7 @@ func (r ResponseEventsFastroam) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseEventsFastroam.
 // It customizes the JSON unmarshaling process for ResponseEventsFastroam objects.
 func (r *ResponseEventsFastroam) UnmarshalJSON(input []byte) error {
-    var temp responseEventsFastroam
+    var temp tempResponseEventsFastroam
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponseEventsFastroam) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseEventsFastroam is a temporary struct used for validating the fields of ResponseEventsFastroam.
-type responseEventsFastroam  struct {
+// tempResponseEventsFastroam is a temporary struct used for validating the fields of ResponseEventsFastroam.
+type tempResponseEventsFastroam  struct {
     End     *int             `json:"end"`
     Limit   *int             `json:"limit"`
     Next    *string          `json:"next,omitempty"`
@@ -74,19 +74,19 @@ type responseEventsFastroam  struct {
     Start   *int             `json:"start"`
 }
 
-func (r *responseEventsFastroam) validate() error {
+func (r *tempResponseEventsFastroam) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Events_Fastroam`")
+        errs = append(errs, "required field `end` is missing for type `response_events_fastroam`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Events_Fastroam`")
+        errs = append(errs, "required field `limit` is missing for type `response_events_fastroam`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Events_Fastroam`")
+        errs = append(errs, "required field `results` is missing for type `response_events_fastroam`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Events_Fastroam`")
+        errs = append(errs, "required field `start` is missing for type `response_events_fastroam`")
     }
     if len(errs) == 0 {
         return nil

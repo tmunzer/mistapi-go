@@ -26,13 +26,6 @@
       "encryption_password": "encryption_password4",
       "encryption_type": "privacy-3des",
       "name": "name6"
-    },
-    {
-      "authentication_password": "authentication_password0",
-      "authentication_type": "authentication_sha384",
-      "encryption_password": "encryption_password4",
-      "encryption_type": "privacy-3des",
-      "name": "name6"
     }
   ]
 }

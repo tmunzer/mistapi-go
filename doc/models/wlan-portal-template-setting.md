@@ -137,14 +137,14 @@ portal template wlan settings
   "optout": false,
   "optoutDefault": true,
   "optoutLabel": "Do not store",
-  "pageTitle": "pageTitle4",
+  "pageTitle": "pageTitle0",
   "poweredBy": true,
   "tos": true,
-  "accessCodeAlternateEmail": "accessCodeAlternateEmail8",
-  "alignment": "alignment4",
-  "authButtonAmazon": "authButtonAmazon0",
-  "authButtonAzure": "authButtonAzure8",
-  "authButtonEmail": "authButtonEmail6"
+  "accessCodeAlternateEmail": "accessCodeAlternateEmail4",
+  "alignment": "alignment0",
+  "authButtonAmazon": "authButtonAmazon6",
+  "authButtonAzure": "authButtonAzure4",
+  "authButtonEmail": "authButtonEmail2"
 }
 ```
 

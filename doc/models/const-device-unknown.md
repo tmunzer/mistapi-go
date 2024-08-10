@@ -23,8 +23,8 @@
 
 ```json
 {
-  "ap_type": "ap_type8",
-  "description": "description0",
+  "ap_type": "ap_type4",
+  "description": "description4",
   "display": "display2",
   "has_extio": false,
   "has_vble": false

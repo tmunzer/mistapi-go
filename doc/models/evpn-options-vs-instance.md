@@ -16,7 +16,8 @@
 ```json
 {
   "networks": [
-    "networks2"
+    "networks0",
+    "networks1"
   ]
 }
 ```

@@ -34,7 +34,7 @@
   "msp_name": "MSP",
   "name": "Org",
   "session_expiry": 1440,
-  "alarmtemplate_id": "000014e2-0000-0000-0000-000000000000"
+  "alarmtemplate_id": "00000682-0000-0000-0000-000000000000"
 }
 ```
 

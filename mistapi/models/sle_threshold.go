@@ -55,7 +55,7 @@ func (s SleThreshold) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleThreshold.
 // It customizes the JSON unmarshaling process for SleThreshold objects.
 func (s *SleThreshold) UnmarshalJSON(input []byte) error {
-    var temp sleThreshold
+    var temp tempSleThreshold
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (s *SleThreshold) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleThreshold is a temporary struct used for validating the fields of SleThreshold.
-type sleThreshold  struct {
+// tempSleThreshold is a temporary struct used for validating the fields of SleThreshold.
+type tempSleThreshold  struct {
     Default   *float64 `json:"default,omitempty"`
     Direction *string  `json:"direction,omitempty"`
     Maximum   *float64 `json:"maximum,omitempty"`

@@ -43,7 +43,7 @@ func (c ConstMxedgeModel) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstMxedgeModel.
 // It customizes the JSON unmarshaling process for ConstMxedgeModel objects.
 func (c *ConstMxedgeModel) UnmarshalJSON(input []byte) error {
-    var temp constMxedgeModel
+    var temp tempConstMxedgeModel
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (c *ConstMxedgeModel) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constMxedgeModel is a temporary struct used for validating the fields of ConstMxedgeModel.
-type constMxedgeModel  struct {
+// tempConstMxedgeModel is a temporary struct used for validating the fields of ConstMxedgeModel.
+type tempConstMxedgeModel  struct {
     CustomPorts *bool                           `json:"custom_ports,omitempty"`
     Display     *string                         `json:"display,omitempty"`
     Model       *string                         `json:"model,omitempty"`

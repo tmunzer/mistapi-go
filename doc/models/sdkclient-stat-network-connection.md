@@ -20,10 +20,10 @@ various network connection info for the SDK client (if known, else omitted), wit
 
 ```json
 {
-  "mac": "mac0",
-  "rssi": 8.58,
-  "signal_level": 76.6,
-  "type": "type6"
+  "mac": "mac2",
+  "rssi": 143.3,
+  "signal_level": 211.32,
+  "type": "type2"
 }
 ```
 

@@ -21,10 +21,10 @@
 
 ```json
 {
-  "end": 67.82,
-  "interval": 36,
-  "limit": 212,
-  "page": 158,
+  "end": 78.54,
+  "interval": 84,
+  "limit": 252,
+  "page": 110,
   "results": [
     {
       "ap-availability": 204.4,

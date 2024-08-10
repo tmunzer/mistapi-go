@@ -32,7 +32,7 @@ func (s SiteWids) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteWids.
 // It customizes the JSON unmarshaling process for SiteWids objects.
 func (s *SiteWids) UnmarshalJSON(input []byte) error {
-    var temp siteWids
+    var temp tempSiteWids
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (s *SiteWids) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteWids is a temporary struct used for validating the fields of SiteWids.
-type siteWids  struct {
+// tempSiteWids is a temporary struct used for validating the fields of SiteWids.
+type tempSiteWids  struct {
     RepeatedAuthFailures *SiteWidsRepeatedAuthFailures `json:"repeated_auth_failures,omitempty"`
 }

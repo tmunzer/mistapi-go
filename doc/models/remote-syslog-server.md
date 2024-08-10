@@ -37,10 +37,6 @@
     {
       "facility": "ntp",
       "severity": "error"
-    },
-    {
-      "facility": "ntp",
-      "severity": "error"
     }
   ],
   "explicit_priority": false

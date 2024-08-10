@@ -37,7 +37,7 @@ func (g GatewayMetrics) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayMetrics.
 // It customizes the JSON unmarshaling process for GatewayMetrics objects.
 func (g *GatewayMetrics) UnmarshalJSON(input []byte) error {
-    var temp gatewayMetrics
+    var temp tempGatewayMetrics
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (g *GatewayMetrics) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayMetrics is a temporary struct used for validating the fields of GatewayMetrics.
-type gatewayMetrics  struct {
+// tempGatewayMetrics is a temporary struct used for validating the fields of GatewayMetrics.
+type tempGatewayMetrics  struct {
     ConfigSuccess     *float64                  `json:"config_success,omitempty"`
     VersionCompliance *GatewayComplianceVersion `json:"version_compliance,omitempty"`
 }

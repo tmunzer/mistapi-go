@@ -35,7 +35,7 @@ func (r ResponseUpgradeDevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseUpgradeDevice.
 // It customizes the JSON unmarshaling process for ResponseUpgradeDevice objects.
 func (r *ResponseUpgradeDevice) UnmarshalJSON(input []byte) error {
-    var temp responseUpgradeDevice
+    var temp tempResponseUpgradeDevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,19 +55,19 @@ func (r *ResponseUpgradeDevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseUpgradeDevice is a temporary struct used for validating the fields of ResponseUpgradeDevice.
-type responseUpgradeDevice  struct {
+// tempResponseUpgradeDevice is a temporary struct used for validating the fields of ResponseUpgradeDevice.
+type tempResponseUpgradeDevice  struct {
     Status    *UpgradeInfoStatusEnum `json:"status"`
     Timestamp *float64               `json:"timestamp"`
 }
 
-func (r *responseUpgradeDevice) validate() error {
+func (r *tempResponseUpgradeDevice) validate() error {
     var errs []string
     if r.Status == nil {
-        errs = append(errs, "required field `status` is missing for type `Response_Upgrade_Device`")
+        errs = append(errs, "required field `status` is missing for type `response_upgrade_device`")
     }
     if r.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Response_Upgrade_Device`")
+        errs = append(errs, "required field `timestamp` is missing for type `response_upgrade_device`")
     }
     if len(errs) == 0 {
         return nil

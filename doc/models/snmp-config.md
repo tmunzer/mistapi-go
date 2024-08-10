@@ -18,7 +18,7 @@
 | `Name` | `*string` | Optional | - |
 | `Network` | `*string` | Optional | **Default**: `"default"` |
 | `TrapGroups` | [`[]models.SnmpConfigTrapGroup`](../../doc/models/snmp-config-trap-group.md) | Optional | - |
-| `V2cConfig` | [`[]models.SnmpConfigV2CConfig`](../../doc/models/snmp-config-v2-c-config.md) | Optional | - |
+| `V2cConfig` | [`[]models.SnmpConfigV2cConfig`](../../doc/models/snmp-config-v2-c-config.md) | Optional | - |
 | `V3Config` | [`*models.Snmpv3Config`](../../doc/models/snmpv-3-config.md) | Optional | - |
 | `Views` | [`[]models.SnmpConfigView`](../../doc/models/snmp-config-view.md) | Optional | - |
 
@@ -33,6 +33,18 @@
   "name": "TGH-1K-QFX10K",
   "network": "default",
   "client_list": [
+    {
+      "client_list_name": "client_list_name2",
+      "clients": [
+        "clients4"
+      ]
+    },
+    {
+      "client_list_name": "client_list_name2",
+      "clients": [
+        "clients4"
+      ]
+    },
     {
       "client_list_name": "client_list_name2",
       "clients": [

@@ -30,15 +30,19 @@
 
 ```json
 {
-  "address_mode": "address_mode2",
+  "address_mode": "address_mode4",
   "ips": [
-    "ips4"
+    "ips8",
+    "ips9",
+    "ips0"
   ],
   "nat_addresses": [
-    "nat_addresses3"
+    "nat_addresses7",
+    "nat_addresses8",
+    "nat_addresses9"
   ],
-  "network_name": "network_name8",
-  "port_id": "port_id0"
+  "network_name": "network_name2",
+  "port_id": "port_id4"
 }
 ```
 

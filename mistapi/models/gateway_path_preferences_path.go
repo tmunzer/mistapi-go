@@ -73,7 +73,7 @@ func (g GatewayPathPreferencesPath) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayPathPreferencesPath.
 // It customizes the JSON unmarshaling process for GatewayPathPreferencesPath objects.
 func (g *GatewayPathPreferencesPath) UnmarshalJSON(input []byte) error {
-    var temp gatewayPathPreferencesPath
+    var temp tempGatewayPathPreferencesPath
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -96,8 +96,8 @@ func (g *GatewayPathPreferencesPath) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayPathPreferencesPath is a temporary struct used for validating the fields of GatewayPathPreferencesPath.
-type gatewayPathPreferencesPath  struct {
+// tempGatewayPathPreferencesPath is a temporary struct used for validating the fields of GatewayPathPreferencesPath.
+type tempGatewayPathPreferencesPath  struct {
     Cost           *int                 `json:"cost,omitempty"`
     Disabled       *bool                `json:"disabled,omitempty"`
     GatewayIp      *string              `json:"gateway_ip,omitempty"`

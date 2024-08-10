@@ -227,7 +227,7 @@ func (c ClientWireless) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClientWireless.
 // It customizes the JSON unmarshaling process for ClientWireless objects.
 func (c *ClientWireless) UnmarshalJSON(input []byte) error {
-    var temp clientWireless
+    var temp tempClientWireless
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -281,8 +281,8 @@ func (c *ClientWireless) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// clientWireless is a temporary struct used for validating the fields of ClientWireless.
-type clientWireless  struct {
+// tempClientWireless is a temporary struct used for validating the fields of ClientWireless.
+type tempClientWireless  struct {
     Ap            []string    `json:"ap,omitempty"`
     AppVersion    []string    `json:"app_version,omitempty"`
     Band          *string     `json:"band,omitempty"`

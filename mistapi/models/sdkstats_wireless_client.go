@@ -78,7 +78,7 @@ func (s SdkstatsWirelessClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SdkstatsWirelessClient.
 // It customizes the JSON unmarshaling process for SdkstatsWirelessClient objects.
 func (s *SdkstatsWirelessClient) UnmarshalJSON(input []byte) error {
-    var temp sdkstatsWirelessClient
+    var temp tempSdkstatsWirelessClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -106,8 +106,8 @@ func (s *SdkstatsWirelessClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sdkstatsWirelessClient is a temporary struct used for validating the fields of SdkstatsWirelessClient.
-type sdkstatsWirelessClient  struct {
+// tempSdkstatsWirelessClient is a temporary struct used for validating the fields of SdkstatsWirelessClient.
+type tempSdkstatsWirelessClient  struct {
     Id                *uuid.UUID                      `json:"id"`
     LastSeen          *float64                        `json:"last_seen"`
     MapId             Optional[uuid.UUID]             `json:"map_id"`
@@ -120,16 +120,16 @@ type sdkstatsWirelessClient  struct {
     Zones             []SdkclientWirelessStatsZone    `json:"zones,omitempty"`
 }
 
-func (s *sdkstatsWirelessClient) validate() error {
+func (s *tempSdkstatsWirelessClient) validate() error {
     var errs []string
     if s.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Sdkstats_Wireless_Client`")
+        errs = append(errs, "required field `id` is missing for type `sdkstats_wireless_client`")
     }
     if s.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `Sdkstats_Wireless_Client`")
+        errs = append(errs, "required field `last_seen` is missing for type `sdkstats_wireless_client`")
     }
     if s.Uuid == nil {
-        errs = append(errs, "required field `uuid` is missing for type `Sdkstats_Wireless_Client`")
+        errs = append(errs, "required field `uuid` is missing for type `sdkstats_wireless_client`")
     }
     if len(errs) == 0 {
         return nil

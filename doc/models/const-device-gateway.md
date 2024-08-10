@@ -50,12 +50,12 @@
   "t128_device": false,
   "type": "gateway",
   "defaults": {
-    "key0": "defaults4",
-    "key1": "defaults3",
-    "key2": "defaults2"
+    "key0": "defaults6",
+    "key1": "defaults7",
+    "key2": "defaults8"
   },
-  "description": "description0",
-  "ha_node0_fpc": 124
+  "description": "description8",
+  "ha_node0_fpc": 116
 }
 ```
 

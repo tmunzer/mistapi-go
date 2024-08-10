@@ -37,7 +37,7 @@ func (p PskPortalImage) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PskPortalImage.
 // It customizes the JSON unmarshaling process for PskPortalImage objects.
 func (p *PskPortalImage) UnmarshalJSON(input []byte) error {
-    var temp pskPortalImage
+    var temp tempPskPortalImage
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (p *PskPortalImage) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// pskPortalImage is a temporary struct used for validating the fields of PskPortalImage.
-type pskPortalImage  struct {
+// tempPskPortalImage is a temporary struct used for validating the fields of PskPortalImage.
+type tempPskPortalImage  struct {
     File *[]byte `json:"file,omitempty"`
     Json *string `json:"json,omitempty"`
 }

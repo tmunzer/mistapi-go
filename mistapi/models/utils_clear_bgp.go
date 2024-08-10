@@ -40,7 +40,7 @@ func (u UtilsClearBgp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsClearBgp.
 // It customizes the JSON unmarshaling process for UtilsClearBgp objects.
 func (u *UtilsClearBgp) UnmarshalJSON(input []byte) error {
-    var temp utilsClearBgp
+    var temp tempUtilsClearBgp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,20 +61,20 @@ func (u *UtilsClearBgp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsClearBgp is a temporary struct used for validating the fields of UtilsClearBgp.
-type utilsClearBgp  struct {
+// tempUtilsClearBgp is a temporary struct used for validating the fields of UtilsClearBgp.
+type tempUtilsClearBgp  struct {
     Neighbor *string                `json:"neighbor"`
     Type     *UtilsClearBgpTypeEnum `json:"type"`
     Vrf      *string                `json:"vrf,omitempty"`
 }
 
-func (u *utilsClearBgp) validate() error {
+func (u *tempUtilsClearBgp) validate() error {
     var errs []string
     if u.Neighbor == nil {
-        errs = append(errs, "required field `neighbor` is missing for type `Utils_Clear_Bgp`")
+        errs = append(errs, "required field `neighbor` is missing for type `utils_clear_bgp`")
     }
     if u.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Utils_Clear_Bgp`")
+        errs = append(errs, "required field `type` is missing for type `utils_clear_bgp`")
     }
     if len(errs) == 0 {
         return nil

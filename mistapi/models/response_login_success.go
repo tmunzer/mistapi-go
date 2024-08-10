@@ -39,7 +39,7 @@ func (r ResponseLoginSuccess) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseLoginSuccess.
 // It customizes the JSON unmarshaling process for ResponseLoginSuccess objects.
 func (r *ResponseLoginSuccess) UnmarshalJSON(input []byte) error {
-    var temp responseLoginSuccess
+    var temp tempResponseLoginSuccess
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (r *ResponseLoginSuccess) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseLoginSuccess is a temporary struct used for validating the fields of ResponseLoginSuccess.
-type responseLoginSuccess  struct {
+// tempResponseLoginSuccess is a temporary struct used for validating the fields of ResponseLoginSuccess.
+type tempResponseLoginSuccess  struct {
     Email             *string `json:"email,omitempty"`
     TwoFactorPassed   *bool   `json:"two_factor_passed,omitempty"`
     TwoFactorRequired *bool   `json:"two_factor_required,omitempty"`

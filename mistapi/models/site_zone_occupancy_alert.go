@@ -43,7 +43,7 @@ func (s SiteZoneOccupancyAlert) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteZoneOccupancyAlert.
 // It customizes the JSON unmarshaling process for SiteZoneOccupancyAlert objects.
 func (s *SiteZoneOccupancyAlert) UnmarshalJSON(input []byte) error {
-    var temp siteZoneOccupancyAlert
+    var temp tempSiteZoneOccupancyAlert
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,8 +60,8 @@ func (s *SiteZoneOccupancyAlert) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteZoneOccupancyAlert is a temporary struct used for validating the fields of SiteZoneOccupancyAlert.
-type siteZoneOccupancyAlert  struct {
+// tempSiteZoneOccupancyAlert is a temporary struct used for validating the fields of SiteZoneOccupancyAlert.
+type tempSiteZoneOccupancyAlert  struct {
     EmailNotifiers []string `json:"email_notifiers,omitempty"`
     Enabled        *bool    `json:"enabled,omitempty"`
     Threshold      *int     `json:"threshold,omitempty"`

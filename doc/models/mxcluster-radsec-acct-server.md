@@ -19,12 +19,12 @@
 ```json
 {
   "port": 1813,
-  "host": "host0",
-  "secret": "secret6",
+  "host": "host8",
+  "secret": "secret4",
   "ssids": [
     "ssids9",
-    "ssids8",
-    "ssids7"
+    "ssids0",
+    "ssids1"
   ]
 }
 ```

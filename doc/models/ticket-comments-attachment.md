@@ -10,6 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ContentType` | `*string` | Optional | - |
+| `ContentUrl` | `*string` | Optional | - |
 | `CreatedAt` | `*int` | Optional | - |
 | `FileName` | `*string` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | - |
@@ -20,6 +21,7 @@
 ```json
 {
   "content_type": "image/png",
+  "content_url": "https://api.mist.com/api/v1/forward/download?jwt=...",
   "created_at": 1453908369,
   "file_name": "crash.png",
   "id": "d56bd5fa-0a0a-4861-a9df-5ac83d3a2eeb",

@@ -58,8 +58,7 @@ type DeviceAp struct {
     Orientation          *int                    `json:"orientation,omitempty"`
     // whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
     PoePassthrough       *bool                   `json:"poe_passthrough,omitempty"`
-    // eth0 is not allowed here. 
-    // Property key is the interface(s) name (e.g. "eth1" or"eth1,eth2")
+    // eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`)
     PortConfig           map[string]ApPortConfig `json:"port_config,omitempty"`
     // power related configs
     PwrConfig            *ApPwrConfig            `json:"pwr_config,omitempty"`
@@ -247,7 +246,7 @@ func (d DeviceAp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceAp.
 // It customizes the JSON unmarshaling process for DeviceAp objects.
 func (d *DeviceAp) UnmarshalJSON(input []byte) error {
-    var temp deviceAp
+    var temp tempDeviceAp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -304,8 +303,8 @@ func (d *DeviceAp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceAp is a temporary struct used for validating the fields of DeviceAp.
-type deviceAp  struct {
+// tempDeviceAp is a temporary struct used for validating the fields of DeviceAp.
+type tempDeviceAp  struct {
     Aeroscout        *ApAeroscout            `json:"aeroscout,omitempty"`
     BleConfig        *BleConfig              `json:"ble_config,omitempty"`
     Centrak          *ApCentrak              `json:"centrak,omitempty"`

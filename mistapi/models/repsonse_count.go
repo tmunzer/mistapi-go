@@ -41,7 +41,7 @@ func (r RepsonseCount) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RepsonseCount.
 // It customizes the JSON unmarshaling process for RepsonseCount objects.
 func (r *RepsonseCount) UnmarshalJSON(input []byte) error {
-    var temp repsonseCount
+    var temp tempRepsonseCount
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *RepsonseCount) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// repsonseCount is a temporary struct used for validating the fields of RepsonseCount.
-type repsonseCount  struct {
+// tempRepsonseCount is a temporary struct used for validating the fields of RepsonseCount.
+type tempRepsonseCount  struct {
     Distinct *string        `json:"distinct"`
     End      *int           `json:"end"`
     Limit    *int           `json:"limit"`
@@ -75,25 +75,25 @@ type repsonseCount  struct {
     Total    *int           `json:"total"`
 }
 
-func (r *repsonseCount) validate() error {
+func (r *tempRepsonseCount) validate() error {
     var errs []string
     if r.Distinct == nil {
-        errs = append(errs, "required field `distinct` is missing for type `Repsonse_Count`")
+        errs = append(errs, "required field `distinct` is missing for type `repsonse_count`")
     }
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Repsonse_Count`")
+        errs = append(errs, "required field `end` is missing for type `repsonse_count`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Repsonse_Count`")
+        errs = append(errs, "required field `limit` is missing for type `repsonse_count`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Repsonse_Count`")
+        errs = append(errs, "required field `results` is missing for type `repsonse_count`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Repsonse_Count`")
+        errs = append(errs, "required field `start` is missing for type `repsonse_count`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Repsonse_Count`")
+        errs = append(errs, "required field `total` is missing for type `repsonse_count`")
     }
     if len(errs) == 0 {
         return nil

@@ -26,15 +26,15 @@
 ```json
 {
   "ap_mac": "ap_mac2",
-  "ap_name": "ap_name2",
-  "degraded": 38.3,
+  "ap_name": "ap_name8",
+  "degraded": 225.0,
   "device_os": "device_os0",
   "device_type": "device_type0",
-  "duration": 167.36,
+  "duration": 98.06,
   "mac": "mac4",
   "name": "name0",
-  "ssid": "ssid2",
-  "total": 189.7,
+  "ssid": "ssid8",
+  "total": 3.0,
   "wlan_id": "wlan_id2"
 }
 ```

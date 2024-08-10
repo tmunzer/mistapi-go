@@ -32,7 +32,7 @@ func (m MxedgesUnassign) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgesUnassign.
 // It customizes the JSON unmarshaling process for MxedgesUnassign objects.
 func (m *MxedgesUnassign) UnmarshalJSON(input []byte) error {
-    var temp mxedgesUnassign
+    var temp tempMxedgesUnassign
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,15 +51,15 @@ func (m *MxedgesUnassign) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgesUnassign is a temporary struct used for validating the fields of MxedgesUnassign.
-type mxedgesUnassign  struct {
+// tempMxedgesUnassign is a temporary struct used for validating the fields of MxedgesUnassign.
+type tempMxedgesUnassign  struct {
     MxedgeIds *[]uuid.UUID `json:"mxedge_ids"`
 }
 
-func (m *mxedgesUnassign) validate() error {
+func (m *tempMxedgesUnassign) validate() error {
     var errs []string
     if m.MxedgeIds == nil {
-        errs = append(errs, "required field `mxedge_ids` is missing for type `Mxedges_Unassign`")
+        errs = append(errs, "required field `mxedge_ids` is missing for type `mxedges_unassign`")
     }
     if len(errs) == 0 {
         return nil

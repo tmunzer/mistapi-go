@@ -55,7 +55,7 @@ func (s SiteEngagement) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteEngagement.
 // It customizes the JSON unmarshaling process for SiteEngagement objects.
 func (s *SiteEngagement) UnmarshalJSON(input []byte) error {
-    var temp siteEngagement
+    var temp tempSiteEngagement
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -74,8 +74,8 @@ func (s *SiteEngagement) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteEngagement is a temporary struct used for validating the fields of SiteEngagement.
-type siteEngagement  struct {
+// tempSiteEngagement is a temporary struct used for validating the fields of SiteEngagement.
+type tempSiteEngagement  struct {
     DwellTagNames *SiteEngagementDwellTagNames `json:"dwell_tag_names,omitempty"`
     DwellTags     *SiteEngagementDwellTags     `json:"dwell_tags,omitempty"`
     Hours         *Hours                       `json:"hours,omitempty"`

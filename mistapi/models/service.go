@@ -19,6 +19,10 @@ type Service struct {
     //   * /api/v1/const/gateway_applications
     //   * /insight/top_app_by-bytes?wired=true
     Apps                          []string                   `json:"apps,omitempty"`
+    // 0 means unlimited
+    ClientLimitDown               *int                       `json:"client_limit_down,omitempty"`
+    // 0 means unlimited
+    ClientLimitUp                 *int                       `json:"client_limit_up,omitempty"`
     CreatedTime                   *float64                   `json:"created_time,omitempty"`
     Description                   *string                    `json:"description,omitempty"`
     // for SSR only, when `traffic_type`==`custom`. 0-63 or variable
@@ -37,6 +41,10 @@ type Service struct {
     ModifiedTime                  *float64                   `json:"modified_time,omitempty"`
     Name                          *string                    `json:"name,omitempty"`
     OrgId                         *uuid.UUID                 `json:"org_id,omitempty"`
+    // 0 means unlimited
+    ServiceLimitDown              *int                       `json:"service_limit_down,omitempty"`
+    // 0 means unlimited
+    ServiceLimitUp                *int                       `json:"service_limit_up,omitempty"`
     // whether to enable measure SLE
     SleEnabled                    *bool                      `json:"sle_enabled,omitempty"`
     // when `type`==`custom`, optional, if it doesn't exist, http and https is assumed
@@ -77,6 +85,12 @@ func (s Service) toMap() map[string]any {
     if s.Apps != nil {
         structMap["apps"] = s.Apps
     }
+    if s.ClientLimitDown != nil {
+        structMap["client_limit_down"] = s.ClientLimitDown
+    }
+    if s.ClientLimitUp != nil {
+        structMap["client_limit_up"] = s.ClientLimitUp
+    }
     if s.CreatedTime != nil {
         structMap["created_time"] = s.CreatedTime
     }
@@ -113,6 +127,12 @@ func (s Service) toMap() map[string]any {
     if s.OrgId != nil {
         structMap["org_id"] = s.OrgId
     }
+    if s.ServiceLimitDown != nil {
+        structMap["service_limit_down"] = s.ServiceLimitDown
+    }
+    if s.ServiceLimitUp != nil {
+        structMap["service_limit_up"] = s.ServiceLimitUp
+    }
     if s.SleEnabled != nil {
         structMap["sle_enabled"] = s.SleEnabled
     }
@@ -140,12 +160,12 @@ func (s Service) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Service.
 // It customizes the JSON unmarshaling process for Service objects.
 func (s *Service) UnmarshalJSON(input []byte) error {
-    var temp service
+    var temp tempService
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "addresses", "app_categories", "app_subcategories", "apps", "created_time", "description", "dscp", "failover_policy", "hostnames", "id", "max_jitter", "max_latency", "max_loss", "modified_time", "name", "org_id", "sle_enabled", "specs", "ssr_relaxed_tcp_state_enforcement", "traffic_class", "traffic_type", "type", "urls")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "addresses", "app_categories", "app_subcategories", "apps", "client_limit_down", "client_limit_up", "created_time", "description", "dscp", "failover_policy", "hostnames", "id", "max_jitter", "max_latency", "max_loss", "modified_time", "name", "org_id", "service_limit_down", "service_limit_up", "sle_enabled", "specs", "ssr_relaxed_tcp_state_enforcement", "traffic_class", "traffic_type", "type", "urls")
     if err != nil {
     	return err
     }
@@ -155,6 +175,8 @@ func (s *Service) UnmarshalJSON(input []byte) error {
     s.AppCategories = temp.AppCategories
     s.AppSubcategories = temp.AppSubcategories
     s.Apps = temp.Apps
+    s.ClientLimitDown = temp.ClientLimitDown
+    s.ClientLimitUp = temp.ClientLimitUp
     s.CreatedTime = temp.CreatedTime
     s.Description = temp.Description
     s.Dscp = temp.Dscp
@@ -167,6 +189,8 @@ func (s *Service) UnmarshalJSON(input []byte) error {
     s.ModifiedTime = temp.ModifiedTime
     s.Name = temp.Name
     s.OrgId = temp.OrgId
+    s.ServiceLimitDown = temp.ServiceLimitDown
+    s.ServiceLimitUp = temp.ServiceLimitUp
     s.SleEnabled = temp.SleEnabled
     s.Specs = temp.Specs
     s.SsrRelaxedTcpStateEnforcement = temp.SsrRelaxedTcpStateEnforcement
@@ -177,12 +201,14 @@ func (s *Service) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// service is a temporary struct used for validating the fields of Service.
-type service  struct {
+// tempService is a temporary struct used for validating the fields of Service.
+type tempService  struct {
     Addresses                     []string                   `json:"addresses,omitempty"`
     AppCategories                 []string                   `json:"app_categories,omitempty"`
     AppSubcategories              []string                   `json:"app_subcategories,omitempty"`
     Apps                          []string                   `json:"apps,omitempty"`
+    ClientLimitDown               *int                       `json:"client_limit_down,omitempty"`
+    ClientLimitUp                 *int                       `json:"client_limit_up,omitempty"`
     CreatedTime                   *float64                   `json:"created_time,omitempty"`
     Description                   *string                    `json:"description,omitempty"`
     Dscp                          *ServiceDscp               `json:"dscp,omitempty"`
@@ -195,6 +221,8 @@ type service  struct {
     ModifiedTime                  *float64                   `json:"modified_time,omitempty"`
     Name                          *string                    `json:"name,omitempty"`
     OrgId                         *uuid.UUID                 `json:"org_id,omitempty"`
+    ServiceLimitDown              *int                       `json:"service_limit_down,omitempty"`
+    ServiceLimitUp                *int                       `json:"service_limit_up,omitempty"`
     SleEnabled                    *bool                      `json:"sle_enabled,omitempty"`
     Specs                         []ServiceSpec              `json:"specs,omitempty"`
     SsrRelaxedTcpStateEnforcement *bool                      `json:"ssr_relaxed_tcp_state_enforcement,omitempty"`

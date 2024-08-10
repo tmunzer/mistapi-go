@@ -47,7 +47,7 @@ func (w WlanCiscoCwa) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanCiscoCwa.
 // It customizes the JSON unmarshaling process for WlanCiscoCwa objects.
 func (w *WlanCiscoCwa) UnmarshalJSON(input []byte) error {
-    var temp wlanCiscoCwa
+    var temp tempWlanCiscoCwa
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (w *WlanCiscoCwa) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanCiscoCwa is a temporary struct used for validating the fields of WlanCiscoCwa.
-type wlanCiscoCwa  struct {
+// tempWlanCiscoCwa is a temporary struct used for validating the fields of WlanCiscoCwa.
+type tempWlanCiscoCwa  struct {
     AllowedHostnames []string `json:"allowed_hostnames,omitempty"`
     AllowedSubnets   []string `json:"allowed_subnets,omitempty"`
     BlockedSubnets   []string `json:"blocked_subnets,omitempty"`

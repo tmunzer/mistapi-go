@@ -32,7 +32,7 @@ func (p PskIdList) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PskIdList.
 // It customizes the JSON unmarshaling process for PskIdList objects.
 func (p *PskIdList) UnmarshalJSON(input []byte) error {
-    var temp pskIdList
+    var temp tempPskIdList
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (p *PskIdList) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// pskIdList is a temporary struct used for validating the fields of PskIdList.
-type pskIdList  struct {
+// tempPskIdList is a temporary struct used for validating the fields of PskIdList.
+type tempPskIdList  struct {
     PskIds []uuid.UUID `json:"psk_ids,omitempty"`
 }

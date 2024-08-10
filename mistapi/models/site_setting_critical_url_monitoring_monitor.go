@@ -6,9 +6,9 @@ import (
 
 // SiteSettingCriticalUrlMonitoringMonitor represents a SiteSettingCriticalUrlMonitoringMonitor struct.
 type SiteSettingCriticalUrlMonitoringMonitor struct {
-    Url                  *string                                        `json:"url,omitempty"`
-    VlanId               *SiteSettingCriticalUrlMonitoringMonitorVlanId `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any                                 `json:"_"`
+    Url                  *string             `json:"url,omitempty"`
+    VlanId               *VlanIdWithVariable `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]any      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingCriticalUrlMonitoringMonitor.
@@ -35,7 +35,7 @@ func (s SiteSettingCriticalUrlMonitoringMonitor) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingCriticalUrlMonitoringMonitor.
 // It customizes the JSON unmarshaling process for SiteSettingCriticalUrlMonitoringMonitor objects.
 func (s *SiteSettingCriticalUrlMonitoringMonitor) UnmarshalJSON(input []byte) error {
-    var temp siteSettingCriticalUrlMonitoringMonitor
+    var temp tempSiteSettingCriticalUrlMonitoringMonitor
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *SiteSettingCriticalUrlMonitoringMonitor) UnmarshalJSON(input []byte) er
     return nil
 }
 
-// siteSettingCriticalUrlMonitoringMonitor is a temporary struct used for validating the fields of SiteSettingCriticalUrlMonitoringMonitor.
-type siteSettingCriticalUrlMonitoringMonitor  struct {
-    Url    *string                                        `json:"url,omitempty"`
-    VlanId *SiteSettingCriticalUrlMonitoringMonitorVlanId `json:"vlan_id,omitempty"`
+// tempSiteSettingCriticalUrlMonitoringMonitor is a temporary struct used for validating the fields of SiteSettingCriticalUrlMonitoringMonitor.
+type tempSiteSettingCriticalUrlMonitoringMonitor  struct {
+    Url    *string             `json:"url,omitempty"`
+    VlanId *VlanIdWithVariable `json:"vlan_id,omitempty"`
 }

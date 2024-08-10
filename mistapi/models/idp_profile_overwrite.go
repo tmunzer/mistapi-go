@@ -43,7 +43,7 @@ func (i IdpProfileOverwrite) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for IdpProfileOverwrite.
 // It customizes the JSON unmarshaling process for IdpProfileOverwrite objects.
 func (i *IdpProfileOverwrite) UnmarshalJSON(input []byte) error {
-    var temp idpProfileOverwrite
+    var temp tempIdpProfileOverwrite
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,8 +60,8 @@ func (i *IdpProfileOverwrite) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// idpProfileOverwrite is a temporary struct used for validating the fields of IdpProfileOverwrite.
-type idpProfileOverwrite  struct {
+// tempIdpProfileOverwrite is a temporary struct used for validating the fields of IdpProfileOverwrite.
+type tempIdpProfileOverwrite  struct {
     Action   *IdpProfileActionEnum `json:"action,omitempty"`
     Matching *IdpProfileMatching   `json:"matching,omitempty"`
     Name     *string               `json:"name,omitempty"`

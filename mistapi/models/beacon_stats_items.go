@@ -59,7 +59,7 @@ func (b BeaconStatsItems) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for BeaconStatsItems.
 // It customizes the JSON unmarshaling process for BeaconStatsItems objects.
 func (b *BeaconStatsItems) UnmarshalJSON(input []byte) error {
-    var temp beaconStatsItems
+    var temp tempBeaconStatsItems
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -88,8 +88,8 @@ func (b *BeaconStatsItems) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// beaconStatsItems is a temporary struct used for validating the fields of BeaconStatsItems.
-type beaconStatsItems  struct {
+// tempBeaconStatsItems is a temporary struct used for validating the fields of BeaconStatsItems.
+type tempBeaconStatsItems  struct {
     BatteryVoltage     *float64   `json:"battery_voltage,omitempty"`
     EddystoneInstance  *string    `json:"eddystone_instance,omitempty"`
     EddystoneNamespace *string    `json:"eddystone_namespace,omitempty"`
@@ -103,31 +103,31 @@ type beaconStatsItems  struct {
     Y                  *float64   `json:"y"`
 }
 
-func (b *beaconStatsItems) validate() error {
+func (b *tempBeaconStatsItems) validate() error {
     var errs []string
     if b.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `Beacon_Stats_Items`")
+        errs = append(errs, "required field `last_seen` is missing for type `beacon_stats_items`")
     }
     if b.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Beacon_Stats_Items`")
+        errs = append(errs, "required field `mac` is missing for type `beacon_stats_items`")
     }
     if b.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Beacon_Stats_Items`")
+        errs = append(errs, "required field `map_id` is missing for type `beacon_stats_items`")
     }
     if b.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Beacon_Stats_Items`")
+        errs = append(errs, "required field `name` is missing for type `beacon_stats_items`")
     }
     if b.Power == nil {
-        errs = append(errs, "required field `power` is missing for type `Beacon_Stats_Items`")
+        errs = append(errs, "required field `power` is missing for type `beacon_stats_items`")
     }
     if b.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Beacon_Stats_Items`")
+        errs = append(errs, "required field `type` is missing for type `beacon_stats_items`")
     }
     if b.X == nil {
-        errs = append(errs, "required field `x` is missing for type `Beacon_Stats_Items`")
+        errs = append(errs, "required field `x` is missing for type `beacon_stats_items`")
     }
     if b.Y == nil {
-        errs = append(errs, "required field `y` is missing for type `Beacon_Stats_Items`")
+        errs = append(errs, "required field `y` is missing for type `beacon_stats_items`")
     }
     if len(errs) == 0 {
         return nil

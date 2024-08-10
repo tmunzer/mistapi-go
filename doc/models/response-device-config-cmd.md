@@ -15,7 +15,7 @@
 
 ```json
 {
-  "cmd": "cmd6"
+  "cmd": "cmd8"
 }
 ```
 

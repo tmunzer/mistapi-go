@@ -39,7 +39,7 @@ func (m ModuleStatItemPicsItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ModuleStatItemPicsItem.
 // It customizes the JSON unmarshaling process for ModuleStatItemPicsItem objects.
 func (m *ModuleStatItemPicsItem) UnmarshalJSON(input []byte) error {
-    var temp moduleStatItemPicsItem
+    var temp tempModuleStatItemPicsItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (m *ModuleStatItemPicsItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// moduleStatItemPicsItem is a temporary struct used for validating the fields of ModuleStatItemPicsItem.
-type moduleStatItemPicsItem  struct {
+// tempModuleStatItemPicsItem is a temporary struct used for validating the fields of ModuleStatItemPicsItem.
+type tempModuleStatItemPicsItem  struct {
     Index       *int                                   `json:"index,omitempty"`
     ModelNumber *string                                `json:"model_number,omitempty"`
     PortGroups  []ModuleStatItemPicsItemPortGroupsItem `json:"port_groups,omitempty"`

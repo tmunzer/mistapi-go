@@ -91,7 +91,7 @@ func (u UiSettings) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UiSettings.
 // It customizes the JSON unmarshaling process for UiSettings objects.
 func (u *UiSettings) UnmarshalJSON(input []byte) error {
-    var temp uiSettings
+    var temp tempUiSettings
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -125,8 +125,8 @@ func (u *UiSettings) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// uiSettings is a temporary struct used for validating the fields of UiSettings.
-type uiSettings  struct {
+// tempUiSettings is a temporary struct used for validating the fields of UiSettings.
+type tempUiSettings  struct {
     CreatedTime       *float64                    `json:"created_time,omitempty"`
     DefaultScopeId    *string                     `json:"defaultScopeId,omitempty"`
     DefaultScopeType  *string                     `json:"defaultScopeType,omitempty"`
@@ -145,13 +145,13 @@ type uiSettings  struct {
     Tiles             []UiSettingsTile            `json:"tiles,omitempty"`
 }
 
-func (u *uiSettings) validate() error {
+func (u *tempUiSettings) validate() error {
     var errs []string
     if u.Description == nil {
-        errs = append(errs, "required field `description` is missing for type `Ui_Settings`")
+        errs = append(errs, "required field `description` is missing for type `ui_settings`")
     }
     if u.Purpose == nil {
-        errs = append(errs, "required field `purpose` is missing for type `Ui_Settings`")
+        errs = append(errs, "required field `purpose` is missing for type `ui_settings`")
     }
     if len(errs) == 0 {
         return nil

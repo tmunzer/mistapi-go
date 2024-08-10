@@ -45,7 +45,7 @@
     "x_label": "x_label0",
     "y_label": "y_label2"
   },
-  "end": 82.54,
+  "end": 15.18,
   "failures": [
     {
       "key1": "val1",
@@ -63,7 +63,7 @@
     "total_users": 4.14
   },
   "metric": "metric8",
-  "start": 38.6
+  "start": 227.24
 }
 ```
 

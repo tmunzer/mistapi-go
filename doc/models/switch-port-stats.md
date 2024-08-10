@@ -71,7 +71,7 @@ Switch port statistics
   "port_id": "ge-0/0/0",
   "port_mac": "5c4527a96580",
   "rx_bytes": 4563443626,
-  "rx_pkts": 210,
+  "rx_pkts": 238,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "speed": 1000,
   "tx_bytes": 11299516780,
@@ -83,7 +83,7 @@ Switch port statistics
   "active": false,
   "auth_state": "authenticated",
   "for_site": false,
-  "jitter": 179.64
+  "jitter": 5.84
 }
 ```
 

@@ -36,7 +36,7 @@ func (c ConfigSwitchLocalAccountsUser) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConfigSwitchLocalAccountsUser.
 // It customizes the JSON unmarshaling process for ConfigSwitchLocalAccountsUser objects.
 func (c *ConfigSwitchLocalAccountsUser) UnmarshalJSON(input []byte) error {
-    var temp configSwitchLocalAccountsUser
+    var temp tempConfigSwitchLocalAccountsUser
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (c *ConfigSwitchLocalAccountsUser) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// configSwitchLocalAccountsUser is a temporary struct used for validating the fields of ConfigSwitchLocalAccountsUser.
-type configSwitchLocalAccountsUser  struct {
+// tempConfigSwitchLocalAccountsUser is a temporary struct used for validating the fields of ConfigSwitchLocalAccountsUser.
+type tempConfigSwitchLocalAccountsUser  struct {
     Password *string                                `json:"password,omitempty"`
     Role     *ConfigSwitchLocalAccountsUserRoleEnum `json:"role,omitempty"`
 }

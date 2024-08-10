@@ -19,11 +19,11 @@
 
 ```json
 {
-  "mac": "mac4",
-  "magic": "magic0",
-  "model": "model8",
-  "serial": "serial0",
-  "type": "type0"
+  "mac": "mac8",
+  "magic": "magic4",
+  "model": "model2",
+  "serial": "serial4",
+  "type": "type6"
 }
 ```
 

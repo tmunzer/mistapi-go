@@ -41,7 +41,7 @@ func (c ConfigSwitchRadius) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConfigSwitchRadius.
 // It customizes the JSON unmarshaling process for ConfigSwitchRadius objects.
 func (c *ConfigSwitchRadius) UnmarshalJSON(input []byte) error {
-    var temp configSwitchRadius
+    var temp tempConfigSwitchRadius
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (c *ConfigSwitchRadius) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// configSwitchRadius is a temporary struct used for validating the fields of ConfigSwitchRadius.
-type configSwitchRadius  struct {
+// tempConfigSwitchRadius is a temporary struct used for validating the fields of ConfigSwitchRadius.
+type tempConfigSwitchRadius  struct {
     Enabled            *bool         `json:"enabled,omitempty"`
     RadiusConfig       *RadiusConfig `json:"radius_config,omitempty"`
     UseDifferentRadius *string       `json:"use_different_radius,omitempty"`

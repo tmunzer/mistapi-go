@@ -33,13 +33,13 @@
     }
   ],
   "classifier": "classifier2",
-  "end": 101.8,
-  "failure": "failure4",
-  "limit": 148.22,
-  "metric": "metric6",
-  "page": 21.36,
-  "start": 57.86,
-  "total_count": 171.98
+  "end": 249.94,
+  "failure": "failure0",
+  "limit": 0.08,
+  "metric": "metric2",
+  "page": 129.22,
+  "start": 206.0,
+  "total_count": 64.12
 }
 ```
 

@@ -16,10 +16,10 @@
 
 ```json
 {
-  "mac": "mac8",
+  "mac": "mac4",
   "radio_macs": [
-    "radio_macs1",
-    "radio_macs2"
+    "radio_macs7",
+    "radio_macs8"
   ]
 }
 ```

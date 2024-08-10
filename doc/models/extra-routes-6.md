@@ -20,7 +20,7 @@ Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
   "2a02:1234:420a:10c9::/64": {
     "via": "2a02:1234:200a::100"
   },
-  "via": "via6"
+  "via": "via4"
 }
 ```
 

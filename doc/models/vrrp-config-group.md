@@ -15,7 +15,7 @@
 
 ```json
 {
-  "priority": 212
+  "priority": 24
 }
 ```
 

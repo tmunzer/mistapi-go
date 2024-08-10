@@ -17,14 +17,13 @@
 ```json
 {
   "enabled": [
-    "enabled5",
-    "enabled6",
-    "enabled7"
+    "enabled3",
+    "enabled4"
   ],
   "supported": [
     "supported0",
-    "supported1",
-    "supported2"
+    "supported9",
+    "supported8"
   ]
 }
 ```

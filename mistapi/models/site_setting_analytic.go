@@ -32,7 +32,7 @@ func (s SiteSettingAnalytic) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingAnalytic.
 // It customizes the JSON unmarshaling process for SiteSettingAnalytic objects.
 func (s *SiteSettingAnalytic) UnmarshalJSON(input []byte) error {
-    var temp siteSettingAnalytic
+    var temp tempSiteSettingAnalytic
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (s *SiteSettingAnalytic) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingAnalytic is a temporary struct used for validating the fields of SiteSettingAnalytic.
-type siteSettingAnalytic  struct {
+// tempSiteSettingAnalytic is a temporary struct used for validating the fields of SiteSettingAnalytic.
+type tempSiteSettingAnalytic  struct {
     Enabled *bool `json:"enabled,omitempty"`
 }

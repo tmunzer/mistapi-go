@@ -55,10 +55,10 @@ func (o *OrgsClientsWan) CountOrgWanClientEvents(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
@@ -122,10 +122,10 @@ func (o *OrgsClientsWan) CountOrgWanClients(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
@@ -193,10 +193,10 @@ func (o *OrgsClientsWan) SearchOrgWanClientEvents(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     if mType != nil {
         req.QueryParam("type", *mType)
@@ -239,7 +239,7 @@ func (o *OrgsClientsWan) SearchOrgWanClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWanClients takes context, orgId, mac, hostname, ip, network, mfg, start, end, duration, limit, page as parameters and
+// SearchOrgWanClients takes context, orgId, mac, hostname, ip, network, ipSrc, mfg, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.SearchWanClient data and
 // an error if there was an issue with the request or response.
 // Search Org WAN Clients
@@ -250,6 +250,7 @@ func (o *OrgsClientsWan) SearchOrgWanClients(
     hostname *string,
     ip *string,
     network *string,
+    ipSrc *string,
     mfg *string,
     start *int,
     end *int,
@@ -276,10 +277,10 @@ func (o *OrgsClientsWan) SearchOrgWanClients(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     if mac != nil {
         req.QueryParam("mac", *mac)
@@ -292,6 +293,9 @@ func (o *OrgsClientsWan) SearchOrgWanClients(
     }
     if network != nil {
         req.QueryParam("network", *network)
+    }
+    if ipSrc != nil {
+        req.QueryParam("ip_src", *ipSrc)
     }
     if mfg != nil {
         req.QueryParam("mfg", *mfg)

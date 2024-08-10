@@ -33,7 +33,7 @@ func (o OrgDevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgDevice.
 // It customizes the JSON unmarshaling process for OrgDevice objects.
 func (o *OrgDevice) UnmarshalJSON(input []byte) error {
-    var temp orgDevice
+    var temp tempOrgDevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (o *OrgDevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgDevice is a temporary struct used for validating the fields of OrgDevice.
-type orgDevice  struct {
+// tempOrgDevice is a temporary struct used for validating the fields of OrgDevice.
+type tempOrgDevice  struct {
     Mac  *string `json:"mac"`
     Name *string `json:"name"`
 }
 
-func (o *orgDevice) validate() error {
+func (o *tempOrgDevice) validate() error {
     var errs []string
     if o.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Org_Device`")
+        errs = append(errs, "required field `mac` is missing for type `org_device`")
     }
     if o.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Org_Device`")
+        errs = append(errs, "required field `name` is missing for type `org_device`")
     }
     if len(errs) == 0 {
         return nil

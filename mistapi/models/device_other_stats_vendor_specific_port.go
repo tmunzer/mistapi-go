@@ -67,7 +67,7 @@ func (d DeviceOtherStatsVendorSpecificPort) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceOtherStatsVendorSpecificPort.
 // It customizes the JSON unmarshaling process for DeviceOtherStatsVendorSpecificPort objects.
 func (d *DeviceOtherStatsVendorSpecificPort) UnmarshalJSON(input []byte) error {
-    var temp deviceOtherStatsVendorSpecificPort
+    var temp tempDeviceOtherStatsVendorSpecificPort
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -91,8 +91,8 @@ func (d *DeviceOtherStatsVendorSpecificPort) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceOtherStatsVendorSpecificPort is a temporary struct used for validating the fields of DeviceOtherStatsVendorSpecificPort.
-type deviceOtherStatsVendorSpecificPort  struct {
+// tempDeviceOtherStatsVendorSpecificPort is a temporary struct used for validating the fields of DeviceOtherStatsVendorSpecificPort.
+type tempDeviceOtherStatsVendorSpecificPort  struct {
     BytesIn        *int     `json:"bytes_in,omitempty"`
     BytesOut       *int     `json:"bytes_out,omitempty"`
     HealthCategory *string  `json:"health_category,omitempty"`

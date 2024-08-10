@@ -34,7 +34,7 @@ type ApStats struct {
     IpConfig             *ApIpConfig                                   `json:"ip_config,omitempty"`
     IpStat               *IpStat                                       `json:"ip_stat,omitempty"`
     // l2tp tunnel status (key is the wxtunnel_id)
-    L2tpStat             map[string]ApStatsL2TpStat                    `json:"l2tp_stat,omitempty"`
+    L2tpStat             map[string]ApStatsL2tpStat                    `json:"l2tp_stat,omitempty"`
     // last seen timestamp
     LastSeen             Optional[float64]                             `json:"last_seen"`
     // last trouble code of switch
@@ -459,7 +459,7 @@ func (a ApStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStats.
 // It customizes the JSON unmarshaling process for ApStats objects.
 func (a *ApStats) UnmarshalJSON(input []byte) error {
-    var temp apStats
+    var temp tempApStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -540,8 +540,8 @@ func (a *ApStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStats is a temporary struct used for validating the fields of ApStats.
-type apStats  struct {
+// tempApStats is a temporary struct used for validating the fields of ApStats.
+type tempApStats  struct {
     AutoPlacement      *ApStatsAutoPlacement                         `json:"auto_placement,omitempty"`
     AutoUpgradeStat    *ApStatsAutoUpgrade                           `json:"auto_upgrade_stat,omitempty"`
     BleStat            *ApStatsBle                                   `json:"ble_stat,omitempty"`
@@ -563,7 +563,7 @@ type apStats  struct {
     Ip                 Optional[string]                              `json:"ip"`
     IpConfig           *ApIpConfig                                   `json:"ip_config,omitempty"`
     IpStat             *IpStat                                       `json:"ip_stat,omitempty"`
-    L2tpStat           map[string]ApStatsL2TpStat                    `json:"l2tp_stat,omitempty"`
+    L2tpStat           map[string]ApStatsL2tpStat                    `json:"l2tp_stat,omitempty"`
     LastSeen           Optional[float64]                             `json:"last_seen"`
     LastTrouble        *LastTrouble                                  `json:"last_trouble,omitempty"`
     Led                *ApLed                                        `json:"led,omitempty"`
@@ -607,7 +607,7 @@ type apStats  struct {
     Y                  Optional[float64]                             `json:"y"`
 }
 
-func (a *apStats) validate() error {
+func (a *tempApStats) validate() error {
     var errs []string
     if len(errs) == 0 {
         return nil

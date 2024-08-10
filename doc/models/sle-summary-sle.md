@@ -19,7 +19,7 @@
 
 ```json
 {
-  "interval": 160.28,
+  "interval": 247.38,
   "name": "name0",
   "samples": {
     "degraded": [
@@ -34,7 +34,7 @@
       26.94
     ]
   },
-  "x_label": "x_label4",
+  "x_label": "x_label6",
   "y_label": "y_label8"
 }
 ```

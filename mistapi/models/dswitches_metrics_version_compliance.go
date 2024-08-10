@@ -33,7 +33,7 @@ func (d DswitchesMetricsVersionCompliance) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DswitchesMetricsVersionCompliance.
 // It customizes the JSON unmarshaling process for DswitchesMetricsVersionCompliance objects.
 func (d *DswitchesMetricsVersionCompliance) UnmarshalJSON(input []byte) error {
-    var temp dswitchesMetricsVersionCompliance
+    var temp tempDswitchesMetricsVersionCompliance
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (d *DswitchesMetricsVersionCompliance) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// dswitchesMetricsVersionCompliance is a temporary struct used for validating the fields of DswitchesMetricsVersionCompliance.
-type dswitchesMetricsVersionCompliance  struct {
+// tempDswitchesMetricsVersionCompliance is a temporary struct used for validating the fields of DswitchesMetricsVersionCompliance.
+type tempDswitchesMetricsVersionCompliance  struct {
     Details *DswitchesMetricsVersionComplianceDetails `json:"details"`
     Score   *float64                                  `json:"score"`
 }
 
-func (d *dswitchesMetricsVersionCompliance) validate() error {
+func (d *tempDswitchesMetricsVersionCompliance) validate() error {
     var errs []string
     if d.Details == nil {
-        errs = append(errs, "required field `details` is missing for type `Dswitches_Metrics_Version_Compliance`")
+        errs = append(errs, "required field `details` is missing for type `dswitches_metrics_version_compliance`")
     }
     if d.Score == nil {
-        errs = append(errs, "required field `score` is missing for type `Dswitches_Metrics_Version_Compliance`")
+        errs = append(errs, "required field `score` is missing for type `dswitches_metrics_version_compliance`")
     }
     if len(errs) == 0 {
         return nil

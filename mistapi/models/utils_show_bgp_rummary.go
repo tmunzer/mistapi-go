@@ -32,7 +32,7 @@ func (u UtilsShowBgpRummary) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsShowBgpRummary.
 // It customizes the JSON unmarshaling process for UtilsShowBgpRummary objects.
 func (u *UtilsShowBgpRummary) UnmarshalJSON(input []byte) error {
-    var temp utilsShowBgpRummary
+    var temp tempUtilsShowBgpRummary
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (u *UtilsShowBgpRummary) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsShowBgpRummary is a temporary struct used for validating the fields of UtilsShowBgpRummary.
-type utilsShowBgpRummary  struct {
+// tempUtilsShowBgpRummary is a temporary struct used for validating the fields of UtilsShowBgpRummary.
+type tempUtilsShowBgpRummary  struct {
     Node *HaClusterNodeEnum `json:"node,omitempty"`
 }

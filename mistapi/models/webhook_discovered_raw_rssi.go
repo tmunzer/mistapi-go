@@ -35,7 +35,7 @@ func (w WebhookDiscoveredRawRssi) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookDiscoveredRawRssi.
 // It customizes the JSON unmarshaling process for WebhookDiscoveredRawRssi objects.
 func (w *WebhookDiscoveredRawRssi) UnmarshalJSON(input []byte) error {
-    var temp webhookDiscoveredRawRssi
+    var temp tempWebhookDiscoveredRawRssi
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,16 +55,16 @@ func (w *WebhookDiscoveredRawRssi) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookDiscoveredRawRssi is a temporary struct used for validating the fields of WebhookDiscoveredRawRssi.
-type webhookDiscoveredRawRssi  struct {
+// tempWebhookDiscoveredRawRssi is a temporary struct used for validating the fields of WebhookDiscoveredRawRssi.
+type tempWebhookDiscoveredRawRssi  struct {
     Events []WebhookDiscoveredRawRssiEvent `json:"events,omitempty"`
     Topic  *string                         `json:"topic"`
 }
 
-func (w *webhookDiscoveredRawRssi) validate() error {
+func (w *tempWebhookDiscoveredRawRssi) validate() error {
     var errs []string
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Discovered_Raw_Rssi`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_discovered_raw_rssi`")
     }
     if len(errs) == 0 {
         return nil

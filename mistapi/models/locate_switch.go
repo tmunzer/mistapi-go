@@ -37,7 +37,7 @@ func (l LocateSwitch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for LocateSwitch.
 // It customizes the JSON unmarshaling process for LocateSwitch objects.
 func (l *LocateSwitch) UnmarshalJSON(input []byte) error {
-    var temp locateSwitch
+    var temp tempLocateSwitch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (l *LocateSwitch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// locateSwitch is a temporary struct used for validating the fields of LocateSwitch.
-type locateSwitch  struct {
+// tempLocateSwitch is a temporary struct used for validating the fields of LocateSwitch.
+type tempLocateSwitch  struct {
     Duration *int    `json:"duration,omitempty"`
     Mac      *string `json:"mac,omitempty"`
 }

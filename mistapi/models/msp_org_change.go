@@ -35,7 +35,7 @@ func (m MspOrgChange) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MspOrgChange.
 // It customizes the JSON unmarshaling process for MspOrgChange objects.
 func (m *MspOrgChange) UnmarshalJSON(input []byte) error {
-    var temp mspOrgChange
+    var temp tempMspOrgChange
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,19 +55,19 @@ func (m *MspOrgChange) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mspOrgChange is a temporary struct used for validating the fields of MspOrgChange.
-type mspOrgChange  struct {
+// tempMspOrgChange is a temporary struct used for validating the fields of MspOrgChange.
+type tempMspOrgChange  struct {
     Op     *MspOrgChangeOperationEnum `json:"op"`
     OrgIds *[]string                  `json:"org_ids"`
 }
 
-func (m *mspOrgChange) validate() error {
+func (m *tempMspOrgChange) validate() error {
     var errs []string
     if m.Op == nil {
-        errs = append(errs, "required field `op` is missing for type `Msp_Org_Change`")
+        errs = append(errs, "required field `op` is missing for type `msp_org_change`")
     }
     if m.OrgIds == nil {
-        errs = append(errs, "required field `org_ids` is missing for type `Msp_Org_Change`")
+        errs = append(errs, "required field `org_ids` is missing for type `msp_org_change`")
     }
     if len(errs) == 0 {
         return nil

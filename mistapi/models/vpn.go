@@ -50,7 +50,7 @@ func (v Vpn) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Vpn.
 // It customizes the JSON unmarshaling process for Vpn objects.
 func (v *Vpn) UnmarshalJSON(input []byte) error {
-    var temp vpn
+    var temp tempVpn
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -74,8 +74,8 @@ func (v *Vpn) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vpn is a temporary struct used for validating the fields of Vpn.
-type vpn  struct {
+// tempVpn is a temporary struct used for validating the fields of Vpn.
+type tempVpn  struct {
     CreatedTime  *float64            `json:"created_time,omitempty"`
     Id           *uuid.UUID          `json:"id,omitempty"`
     ModifiedTime *float64            `json:"modified_time,omitempty"`
@@ -84,13 +84,13 @@ type vpn  struct {
     Paths        *map[string]VpnPath `json:"paths"`
 }
 
-func (v *vpn) validate() error {
+func (v *tempVpn) validate() error {
     var errs []string
     if v.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Vpn`")
+        errs = append(errs, "required field `name` is missing for type `vpn`")
     }
     if v.Paths == nil {
-        errs = append(errs, "required field `paths` is missing for type `Vpn`")
+        errs = append(errs, "required field `paths` is missing for type `vpn`")
     }
     if len(errs) == 0 {
         return nil

@@ -68,7 +68,7 @@ func (i InventoryUpdate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for InventoryUpdate.
 // It customizes the JSON unmarshaling process for InventoryUpdate objects.
 func (i *InventoryUpdate) UnmarshalJSON(input []byte) error {
-    var temp inventoryUpdate
+    var temp tempInventoryUpdate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -93,8 +93,8 @@ func (i *InventoryUpdate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// inventoryUpdate is a temporary struct used for validating the fields of InventoryUpdate.
-type inventoryUpdate  struct {
+// tempInventoryUpdate is a temporary struct used for validating the fields of InventoryUpdate.
+type tempInventoryUpdate  struct {
     DisableAutoConfig *bool                         `json:"disable_auto_config,omitempty"`
     Macs              []string                      `json:"macs,omitempty"`
     Managed           *bool                         `json:"managed,omitempty"`
@@ -104,10 +104,10 @@ type inventoryUpdate  struct {
     SiteId            *uuid.UUID                    `json:"site_id,omitempty"`
 }
 
-func (i *inventoryUpdate) validate() error {
+func (i *tempInventoryUpdate) validate() error {
     var errs []string
     if i.Op == nil {
-        errs = append(errs, "required field `op` is missing for type `Inventory_Update`")
+        errs = append(errs, "required field `op` is missing for type `inventory_update`")
     }
     if len(errs) == 0 {
         return nil

@@ -67,7 +67,7 @@ func (s SynthetictestDevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SynthetictestDevice.
 // It customizes the JSON unmarshaling process for SynthetictestDevice objects.
 func (s *SynthetictestDevice) UnmarshalJSON(input []byte) error {
-    var temp synthetictestDevice
+    var temp tempSynthetictestDevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -93,8 +93,8 @@ func (s *SynthetictestDevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// synthetictestDevice is a temporary struct used for validating the fields of SynthetictestDevice.
-type synthetictestDevice  struct {
+// tempSynthetictestDevice is a temporary struct used for validating the fields of SynthetictestDevice.
+type tempSynthetictestDevice  struct {
     Hostname *string                    `json:"hostname,omitempty"`
     Ip       *string                    `json:"ip,omitempty"`
     Password *string                    `json:"password,omitempty"`
@@ -105,10 +105,10 @@ type synthetictestDevice  struct {
     VlanId   *SynthetictestDeviceVlanId `json:"vlan_id,omitempty"`
 }
 
-func (s *synthetictestDevice) validate() error {
+func (s *tempSynthetictestDevice) validate() error {
     var errs []string
     if s.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Synthetictest_Device`")
+        errs = append(errs, "required field `type` is missing for type `synthetictest_device`")
     }
     if len(errs) == 0 {
         return nil

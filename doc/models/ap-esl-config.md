@@ -28,7 +28,7 @@
   "port": 0,
   "type": "imagotag",
   "vlan_id": 1,
-  "cacert": "cacert0"
+  "cacert": "cacert4"
 }
 ```
 

@@ -19,15 +19,13 @@
 
 ```json
 {
-  "equals": "equals4",
+  "equals": "equals2",
   "equals_any": [
-    "equals_any3",
-    "equals_any2",
     "equals_any1"
   ],
-  "expression": "expression2",
-  "src": "link_peermac",
-  "usage": "usage2"
+  "expression": "expression0",
+  "src": "radius_usermac",
+  "usage": "usage0"
 }
 ```
 

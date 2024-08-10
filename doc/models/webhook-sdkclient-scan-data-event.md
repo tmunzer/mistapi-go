@@ -23,14 +23,23 @@
 
 ```json
 {
-  "connection_ap": "connection_ap0",
-  "connection_band": "connection_band2",
-  "connection_bssid": "connection_bssid8",
-  "connection_channel": 72,
-  "connection_rssi": 95.26,
-  "last_seen": 156.4,
-  "mac": "mac4",
+  "connection_ap": "connection_ap4",
+  "connection_band": "connection_band8",
+  "connection_bssid": "connection_bssid4",
+  "connection_channel": 154,
+  "connection_rssi": 55.12,
+  "last_seen": 116.26,
+  "mac": "mac0",
   "scan_data": [
+    {
+      "ap": "ap6",
+      "band": "2.4",
+      "bssid": "bssid2",
+      "channel": 72,
+      "rssi": 228.1,
+      "ssid": "ssid4",
+      "timestamp": 102.06
+    },
     {
       "ap": "ap6",
       "band": "2.4",
@@ -50,7 +59,7 @@
       "timestamp": 102.06
     }
   ],
-  "site_id": "00002694-0000-0000-0000-000000000000"
+  "site_id": "000005b6-0000-0000-0000-000000000000"
 }
 ```
 

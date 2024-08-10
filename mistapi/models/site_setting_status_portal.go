@@ -35,7 +35,7 @@ func (s SiteSettingStatusPortal) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingStatusPortal.
 // It customizes the JSON unmarshaling process for SiteSettingStatusPortal objects.
 func (s *SiteSettingStatusPortal) UnmarshalJSON(input []byte) error {
-    var temp siteSettingStatusPortal
+    var temp tempSiteSettingStatusPortal
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *SiteSettingStatusPortal) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingStatusPortal is a temporary struct used for validating the fields of SiteSettingStatusPortal.
-type siteSettingStatusPortal  struct {
+// tempSiteSettingStatusPortal is a temporary struct used for validating the fields of SiteSettingStatusPortal.
+type tempSiteSettingStatusPortal  struct {
     Enabled   *bool    `json:"enabled,omitempty"`
     Hostnames []string `json:"hostnames,omitempty"`
 }

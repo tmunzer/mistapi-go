@@ -10,6 +10,8 @@ type UtilsShowSession struct {
     Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     // The exact service name for which to display the active sessions
     ServiceName          *string            `json:"service_name,omitempty"`
+    // Show session details by session_id
+    SessionId            *string            `json:"session_id,omitempty"`
     AdditionalProperties map[string]any     `json:"_"`
 }
 
@@ -31,18 +33,21 @@ func (u UtilsShowSession) toMap() map[string]any {
     if u.ServiceName != nil {
         structMap["service_name"] = u.ServiceName
     }
+    if u.SessionId != nil {
+        structMap["session_id"] = u.SessionId
+    }
     return structMap
 }
 
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsShowSession.
 // It customizes the JSON unmarshaling process for UtilsShowSession objects.
 func (u *UtilsShowSession) UnmarshalJSON(input []byte) error {
-    var temp utilsShowSession
+    var temp tempUtilsShowSession
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "node", "service_name")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "node", "service_name", "session_id")
     if err != nil {
     	return err
     }
@@ -50,11 +55,13 @@ func (u *UtilsShowSession) UnmarshalJSON(input []byte) error {
     u.AdditionalProperties = additionalProperties
     u.Node = temp.Node
     u.ServiceName = temp.ServiceName
+    u.SessionId = temp.SessionId
     return nil
 }
 
-// utilsShowSession is a temporary struct used for validating the fields of UtilsShowSession.
-type utilsShowSession  struct {
+// tempUtilsShowSession is a temporary struct used for validating the fields of UtilsShowSession.
+type tempUtilsShowSession  struct {
     Node        *HaClusterNodeEnum `json:"node,omitempty"`
     ServiceName *string            `json:"service_name,omitempty"`
+    SessionId   *string            `json:"session_id,omitempty"`
 }

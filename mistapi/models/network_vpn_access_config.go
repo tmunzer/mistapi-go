@@ -100,7 +100,7 @@ func (n NetworkVpnAccessConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NetworkVpnAccessConfig.
 // It customizes the JSON unmarshaling process for NetworkVpnAccessConfig objects.
 func (n *NetworkVpnAccessConfig) UnmarshalJSON(input []byte) error {
-    var temp networkVpnAccessConfig
+    var temp tempNetworkVpnAccessConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -128,8 +128,8 @@ func (n *NetworkVpnAccessConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// networkVpnAccessConfig is a temporary struct used for validating the fields of NetworkVpnAccessConfig.
-type networkVpnAccessConfig  struct {
+// tempNetworkVpnAccessConfig is a temporary struct used for validating the fields of NetworkVpnAccessConfig.
+type tempNetworkVpnAccessConfig  struct {
     AdvertisedSubnet          *string                                  `json:"advertised_subnet,omitempty"`
     AllowPing                 *bool                                    `json:"allow_ping,omitempty"`
     DestinationNat            map[string]NetworkDestinationNatProperty `json:"destination_nat,omitempty"`

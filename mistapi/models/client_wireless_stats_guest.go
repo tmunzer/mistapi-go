@@ -47,7 +47,7 @@ func (c ClientWirelessStatsGuest) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClientWirelessStatsGuest.
 // It customizes the JSON unmarshaling process for ClientWirelessStatsGuest objects.
 func (c *ClientWirelessStatsGuest) UnmarshalJSON(input []byte) error {
-    var temp clientWirelessStatsGuest
+    var temp tempClientWirelessStatsGuest
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -72,8 +72,8 @@ func (c *ClientWirelessStatsGuest) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// clientWirelessStatsGuest is a temporary struct used for validating the fields of ClientWirelessStatsGuest.
-type clientWirelessStatsGuest  struct {
+// tempClientWirelessStatsGuest is a temporary struct used for validating the fields of ClientWirelessStatsGuest.
+type tempClientWirelessStatsGuest  struct {
     Authorized             *bool    `json:"authorized"`
     AuthorizedExpiringTime *float64 `json:"authorized_expiring_time"`
     AuthorizedTime         *float64 `json:"authorized_time"`
@@ -83,28 +83,28 @@ type clientWirelessStatsGuest  struct {
     Name                   *string  `json:"name"`
 }
 
-func (c *clientWirelessStatsGuest) validate() error {
+func (c *tempClientWirelessStatsGuest) validate() error {
     var errs []string
     if c.Authorized == nil {
-        errs = append(errs, "required field `authorized` is missing for type `Client_Wireless_Stats_Guest`")
+        errs = append(errs, "required field `authorized` is missing for type `client_wireless_stats_guest`")
     }
     if c.AuthorizedExpiringTime == nil {
-        errs = append(errs, "required field `authorized_expiring_time` is missing for type `Client_Wireless_Stats_Guest`")
+        errs = append(errs, "required field `authorized_expiring_time` is missing for type `client_wireless_stats_guest`")
     }
     if c.AuthorizedTime == nil {
-        errs = append(errs, "required field `authorized_time` is missing for type `Client_Wireless_Stats_Guest`")
+        errs = append(errs, "required field `authorized_time` is missing for type `client_wireless_stats_guest`")
     }
     if c.Company == nil {
-        errs = append(errs, "required field `company` is missing for type `Client_Wireless_Stats_Guest`")
+        errs = append(errs, "required field `company` is missing for type `client_wireless_stats_guest`")
     }
     if c.Email == nil {
-        errs = append(errs, "required field `email` is missing for type `Client_Wireless_Stats_Guest`")
+        errs = append(errs, "required field `email` is missing for type `client_wireless_stats_guest`")
     }
     if c.Field1 == nil {
-        errs = append(errs, "required field `field1` is missing for type `Client_Wireless_Stats_Guest`")
+        errs = append(errs, "required field `field1` is missing for type `client_wireless_stats_guest`")
     }
     if c.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Client_Wireless_Stats_Guest`")
+        errs = append(errs, "required field `name` is missing for type `client_wireless_stats_guest`")
     }
     if len(errs) == 0 {
         return nil

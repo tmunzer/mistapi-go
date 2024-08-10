@@ -52,7 +52,7 @@ func (u UtilsClearArp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsClearArp.
 // It customizes the JSON unmarshaling process for UtilsClearArp objects.
 func (u *UtilsClearArp) UnmarshalJSON(input []byte) error {
-    var temp utilsClearArp
+    var temp tempUtilsClearArp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (u *UtilsClearArp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsClearArp is a temporary struct used for validating the fields of UtilsClearArp.
-type utilsClearArp  struct {
+// tempUtilsClearArp is a temporary struct used for validating the fields of UtilsClearArp.
+type tempUtilsClearArp  struct {
     Ip     *string            `json:"ip,omitempty"`
     Node   *HaClusterNodeEnum `json:"node,omitempty"`
     PortId *string            `json:"port_id,omitempty"`

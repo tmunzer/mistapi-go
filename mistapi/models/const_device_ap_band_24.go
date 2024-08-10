@@ -43,7 +43,7 @@ func (c ConstDeviceApBand24) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstDeviceApBand24.
 // It customizes the JSON unmarshaling process for ConstDeviceApBand24 objects.
 func (c *ConstDeviceApBand24) UnmarshalJSON(input []byte) error {
-    var temp constDeviceApBand24
+    var temp tempConstDeviceApBand24
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (c *ConstDeviceApBand24) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constDeviceApBand24 is a temporary struct used for validating the fields of ConstDeviceApBand24.
-type constDeviceApBand24  struct {
+// tempConstDeviceApBand24 is a temporary struct used for validating the fields of ConstDeviceApBand24.
+type tempConstDeviceApBand24  struct {
     Band5ChannelsOp *string `json:"band5_channels_op,omitempty"`
     MaxClients      *int    `json:"max_clients,omitempty"`
     MaxPower        *int    `json:"max_power,omitempty"`

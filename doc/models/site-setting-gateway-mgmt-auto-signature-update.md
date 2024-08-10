@@ -18,8 +18,8 @@
 ```json
 {
   "enable": true,
-  "day_of_week": "mon",
-  "time_of_day": "time_of_day2"
+  "day_of_week": "any",
+  "time_of_day": "time_of_day8"
 }
 ```
 

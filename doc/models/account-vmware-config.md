@@ -17,9 +17,9 @@
 
 ```json
 {
-  "client_id": "client_id4",
-  "client_secret": "client_secret0",
-  "instance_url": "instance_url2"
+  "client_id": "client_id8",
+  "client_secret": "client_secret4",
+  "instance_url": "instance_url4"
 }
 ```
 

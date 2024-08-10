@@ -30,7 +30,7 @@
   "no_resolve": false,
   "preference": 30,
   "via": "10.2.1.1",
-  "metric": 198
+  "metric": 168
 }
 ```
 

@@ -73,7 +73,7 @@ func (e EventsClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EventsClient.
 // It customizes the JSON unmarshaling process for EventsClient objects.
 func (e *EventsClient) UnmarshalJSON(input []byte) error {
-    var temp eventsClient
+    var temp tempEventsClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -102,8 +102,8 @@ func (e *EventsClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// eventsClient is a temporary struct used for validating the fields of EventsClient.
-type eventsClient  struct {
+// tempEventsClient is a temporary struct used for validating the fields of EventsClient.
+type tempEventsClient  struct {
     Ap        *string         `json:"ap,omitempty"`
     Band      *Dot11BandEnum  `json:"band"`
     Bssid     *string         `json:"bssid,omitempty"`
@@ -117,16 +117,16 @@ type eventsClient  struct {
     WlanId    *uuid.UUID      `json:"wlan_id,omitempty"`
 }
 
-func (e *eventsClient) validate() error {
+func (e *tempEventsClient) validate() error {
     var errs []string
     if e.Band == nil {
-        errs = append(errs, "required field `band` is missing for type `Events_Client`")
+        errs = append(errs, "required field `band` is missing for type `events_client`")
     }
     if e.Proto == nil {
-        errs = append(errs, "required field `proto` is missing for type `Events_Client`")
+        errs = append(errs, "required field `proto` is missing for type `events_client`")
     }
     if e.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Events_Client`")
+        errs = append(errs, "required field `timestamp` is missing for type `events_client`")
     }
     if len(errs) == 0 {
         return nil

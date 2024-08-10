@@ -38,7 +38,7 @@ func (a AccountOauthConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountOauthConfig.
 // It customizes the JSON unmarshaling process for AccountOauthConfig objects.
 func (a *AccountOauthConfig) UnmarshalJSON(input []byte) error {
-    var temp accountOauthConfig
+    var temp tempAccountOauthConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,16 +58,16 @@ func (a *AccountOauthConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountOauthConfig is a temporary struct used for validating the fields of AccountOauthConfig.
-type accountOauthConfig  struct {
+// tempAccountOauthConfig is a temporary struct used for validating the fields of AccountOauthConfig.
+type tempAccountOauthConfig  struct {
     AccountId           *string `json:"account_id"`
     MaxDailyApiRequests *int    `json:"max_daily_api_requests,omitempty"`
 }
 
-func (a *accountOauthConfig) validate() error {
+func (a *tempAccountOauthConfig) validate() error {
     var errs []string
     if a.AccountId == nil {
-        errs = append(errs, "required field `account_id` is missing for type `Account_Oauth_Config`")
+        errs = append(errs, "required field `account_id` is missing for type `account_oauth_config`")
     }
     if len(errs) == 0 {
         return nil

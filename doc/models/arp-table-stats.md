@@ -16,8 +16,8 @@
 
 ```json
 {
-  "arp_table_count": 204,
-  "max_entries_supported": 92
+  "arp_table_count": 136,
+  "max_entries_supported": 8
 }
 ```
 

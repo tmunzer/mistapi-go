@@ -37,7 +37,7 @@ func (s ServicePacket) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ServicePacket.
 // It customizes the JSON unmarshaling process for ServicePacket objects.
 func (s *ServicePacket) UnmarshalJSON(input []byte) error {
-    var temp servicePacket
+    var temp tempServicePacket
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (s *ServicePacket) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// servicePacket is a temporary struct used for validating the fields of ServicePacket.
-type servicePacket  struct {
+// tempServicePacket is a temporary struct used for validating the fields of ServicePacket.
+type tempServicePacket  struct {
     ServiceData *string `json:"service_data,omitempty"`
     ServiceUuid *string `json:"service_uuid,omitempty"`
 }

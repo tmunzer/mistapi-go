@@ -31,7 +31,7 @@ func (r ResponseLoginLookup) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseLoginLookup.
 // It customizes the JSON unmarshaling process for ResponseLoginLookup objects.
 func (r *ResponseLoginLookup) UnmarshalJSON(input []byte) error {
-    var temp responseLoginLookup
+    var temp tempResponseLoginLookup
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (r *ResponseLoginLookup) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseLoginLookup is a temporary struct used for validating the fields of ResponseLoginLookup.
-type responseLoginLookup  struct {
+// tempResponseLoginLookup is a temporary struct used for validating the fields of ResponseLoginLookup.
+type tempResponseLoginLookup  struct {
     SsoUrl *string `json:"sso_url,omitempty"`
 }

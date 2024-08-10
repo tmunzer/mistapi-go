@@ -72,7 +72,7 @@ func (s Sdkinvite) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Sdkinvite.
 // It customizes the JSON unmarshaling process for Sdkinvite objects.
 func (s *Sdkinvite) UnmarshalJSON(input []byte) error {
-    var temp sdkinvite
+    var temp tempSdkinvite
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -100,8 +100,8 @@ func (s *Sdkinvite) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sdkinvite is a temporary struct used for validating the fields of Sdkinvite.
-type sdkinvite  struct {
+// tempSdkinvite is a temporary struct used for validating the fields of Sdkinvite.
+type tempSdkinvite  struct {
     CreatedTime  *float64   `json:"created_time,omitempty"`
     Enabled      *bool      `json:"enabled,omitempty"`
     ExpireTime   *int       `json:"expire_time,omitempty"`
@@ -114,10 +114,10 @@ type sdkinvite  struct {
     SiteId       *uuid.UUID `json:"site_id,omitempty"`
 }
 
-func (s *sdkinvite) validate() error {
+func (s *tempSdkinvite) validate() error {
     var errs []string
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sdkinvite`")
+        errs = append(errs, "required field `name` is missing for type `sdkinvite`")
     }
     if len(errs) == 0 {
         return nil

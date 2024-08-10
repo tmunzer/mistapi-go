@@ -35,7 +35,7 @@ func (o OrgSleStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSleStat.
 // It customizes the JSON unmarshaling process for OrgSleStat objects.
 func (o *OrgSleStat) UnmarshalJSON(input []byte) error {
-    var temp orgSleStat
+    var temp tempOrgSleStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,16 +55,16 @@ func (o *OrgSleStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSleStat is a temporary struct used for validating the fields of OrgSleStat.
-type orgSleStat  struct {
+// tempOrgSleStat is a temporary struct used for validating the fields of OrgSleStat.
+type tempOrgSleStat  struct {
     Path        *string                `json:"path"`
     UserMinutes *OrgSleStatUserMinutes `json:"user_minutes,omitempty"`
 }
 
-func (o *orgSleStat) validate() error {
+func (o *tempOrgSleStat) validate() error {
     var errs []string
     if o.Path == nil {
-        errs = append(errs, "required field `path` is missing for type `Org_Sle_Stat`")
+        errs = append(errs, "required field `path` is missing for type `org_sle_stat`")
     }
     if len(errs) == 0 {
         return nil

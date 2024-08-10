@@ -41,7 +41,7 @@ func (r ResponseDeviceSnapshot) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseDeviceSnapshot.
 // It customizes the JSON unmarshaling process for ResponseDeviceSnapshot objects.
 func (r *ResponseDeviceSnapshot) UnmarshalJSON(input []byte) error {
-    var temp responseDeviceSnapshot
+    var temp tempResponseDeviceSnapshot
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (r *ResponseDeviceSnapshot) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseDeviceSnapshot is a temporary struct used for validating the fields of ResponseDeviceSnapshot.
-type responseDeviceSnapshot  struct {
+// tempResponseDeviceSnapshot is a temporary struct used for validating the fields of ResponseDeviceSnapshot.
+type tempResponseDeviceSnapshot  struct {
     StatusId  *string                           `json:"status_id,omitempty"`
     Staus     *ResponseDeviceSnapshotStatusEnum `json:"staus,omitempty"`
     Timestamp *float64                          `json:"timestamp,omitempty"`

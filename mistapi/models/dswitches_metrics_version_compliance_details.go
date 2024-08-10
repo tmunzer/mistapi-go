@@ -33,7 +33,7 @@ func (d DswitchesMetricsVersionComplianceDetails) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DswitchesMetricsVersionComplianceDetails.
 // It customizes the JSON unmarshaling process for DswitchesMetricsVersionComplianceDetails objects.
 func (d *DswitchesMetricsVersionComplianceDetails) UnmarshalJSON(input []byte) error {
-    var temp dswitchesMetricsVersionComplianceDetails
+    var temp tempDswitchesMetricsVersionComplianceDetails
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (d *DswitchesMetricsVersionComplianceDetails) UnmarshalJSON(input []byte) e
     return nil
 }
 
-// dswitchesMetricsVersionComplianceDetails is a temporary struct used for validating the fields of DswitchesMetricsVersionComplianceDetails.
-type dswitchesMetricsVersionComplianceDetails  struct {
+// tempDswitchesMetricsVersionComplianceDetails is a temporary struct used for validating the fields of DswitchesMetricsVersionComplianceDetails.
+type tempDswitchesMetricsVersionComplianceDetails  struct {
     MajorVersions    *[]DswitchesComplianceMajorVersion `json:"major_versions"`
     TotalSwitchCount *int                               `json:"total_switch_count"`
 }
 
-func (d *dswitchesMetricsVersionComplianceDetails) validate() error {
+func (d *tempDswitchesMetricsVersionComplianceDetails) validate() error {
     var errs []string
     if d.MajorVersions == nil {
-        errs = append(errs, "required field `major_versions` is missing for type `Dswitches_Metrics_Version_Compliance_Details`")
+        errs = append(errs, "required field `major_versions` is missing for type `dswitches_metrics_version_compliance_details`")
     }
     if d.TotalSwitchCount == nil {
-        errs = append(errs, "required field `total_switch_count` is missing for type `Dswitches_Metrics_Version_Compliance_Details`")
+        errs = append(errs, "required field `total_switch_count` is missing for type `dswitches_metrics_version_compliance_details`")
     }
     if len(errs) == 0 {
         return nil

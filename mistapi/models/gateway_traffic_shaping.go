@@ -37,7 +37,7 @@ func (g GatewayTrafficShaping) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayTrafficShaping.
 // It customizes the JSON unmarshaling process for GatewayTrafficShaping objects.
 func (g *GatewayTrafficShaping) UnmarshalJSON(input []byte) error {
-    var temp gatewayTrafficShaping
+    var temp tempGatewayTrafficShaping
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (g *GatewayTrafficShaping) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayTrafficShaping is a temporary struct used for validating the fields of GatewayTrafficShaping.
-type gatewayTrafficShaping  struct {
+// tempGatewayTrafficShaping is a temporary struct used for validating the fields of GatewayTrafficShaping.
+type tempGatewayTrafficShaping  struct {
     ClassPercentages []int `json:"class_percentages,omitempty"`
     Enabled          *bool `json:"enabled,omitempty"`
 }

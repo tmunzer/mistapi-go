@@ -41,7 +41,7 @@ func (r ResponseEventsDevices) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseEventsDevices.
 // It customizes the JSON unmarshaling process for ResponseEventsDevices objects.
 func (r *ResponseEventsDevices) UnmarshalJSON(input []byte) error {
-    var temp responseEventsDevices
+    var temp tempResponseEventsDevices
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponseEventsDevices) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseEventsDevices is a temporary struct used for validating the fields of ResponseEventsDevices.
-type responseEventsDevices  struct {
+// tempResponseEventsDevices is a temporary struct used for validating the fields of ResponseEventsDevices.
+type tempResponseEventsDevices  struct {
     End     *int              `json:"end"`
     Limit   *int              `json:"limit"`
     Next    *string           `json:"next"`
@@ -75,25 +75,25 @@ type responseEventsDevices  struct {
     Total   *int              `json:"total"`
 }
 
-func (r *responseEventsDevices) validate() error {
+func (r *tempResponseEventsDevices) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Events_Devices`")
+        errs = append(errs, "required field `end` is missing for type `response_events_devices`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Events_Devices`")
+        errs = append(errs, "required field `limit` is missing for type `response_events_devices`")
     }
     if r.Next == nil {
-        errs = append(errs, "required field `next` is missing for type `Response_Events_Devices`")
+        errs = append(errs, "required field `next` is missing for type `response_events_devices`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Events_Devices`")
+        errs = append(errs, "required field `results` is missing for type `response_events_devices`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Events_Devices`")
+        errs = append(errs, "required field `start` is missing for type `response_events_devices`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Events_Devices`")
+        errs = append(errs, "required field `total` is missing for type `response_events_devices`")
     }
     if len(errs) == 0 {
         return nil

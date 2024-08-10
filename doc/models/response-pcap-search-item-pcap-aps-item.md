@@ -18,10 +18,10 @@
 
 ```json
 {
-  "band": "band8",
-  "bandwith": "bandwith0",
-  "channel": 38,
-  "tcpdump_expression": "tcpdump_expression6"
+  "band": "band4",
+  "bandwith": "bandwith6",
+  "channel": 16,
+  "tcpdump_expression": "tcpdump_expression2"
 }
 ```
 

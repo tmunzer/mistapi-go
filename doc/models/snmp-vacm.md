@@ -54,25 +54,6 @@
           "security_model": "v1"
         }
       ]
-    },
-    {
-      "group_name": "group_name4",
-      "prefix_list": [
-        {
-          "context_prefix": "context_prefix2",
-          "notify_view": "notify_view6",
-          "read_view": "read_view0",
-          "security_level": "none",
-          "security_model": "v1"
-        },
-        {
-          "context_prefix": "context_prefix2",
-          "notify_view": "notify_view6",
-          "read_view": "read_view0",
-          "security_level": "none",
-          "security_model": "v1"
-        }
-      ]
     }
   ],
   "security_to_group": {

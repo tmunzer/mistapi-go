@@ -17,7 +17,7 @@
 ```json
 {
   "type": "int16",
-  "value": "value6"
+  "value": "value8"
 }
 ```
 

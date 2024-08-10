@@ -441,11 +441,11 @@
     ]
   },
   "certified": false,
-  "code": 60,
+  "code": 40,
   "dfs_ok": false,
-  "key": "key8",
-  "name": "name8",
-  "uses": "uses0",
+  "key": "key6",
+  "name": "name6",
+  "uses": "uses8",
   "band6_enabled": false
 }
 ```

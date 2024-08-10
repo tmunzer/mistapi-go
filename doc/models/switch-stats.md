@@ -42,6 +42,7 @@ Switch statistics
 | `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Name` | `*string` | Optional | device name if configured |
 | `OrgId` | `*uuid.UUID` | Optional | - |
+| `Ports` | [`[]models.DeviceStatsPort`](../../doc/models/device-stats-port.md) | Optional | - |
 | `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
 | `Serial` | `*string` | Optional | - |
 | `ServiceStat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
@@ -82,14 +83,8 @@ Switch statistics
     "arp_table_count": 136,
     "max_entries_supported": 8
   },
-  "cert_expiry": 18,
+  "cert_expiry": 146,
   "clients": [
-    {
-      "device_mac": "device_mac2",
-      "hostname": "hostname6",
-      "mac": "mac2",
-      "port_id": "port_id8"
-    },
     {
       "device_mac": "device_mac2",
       "hostname": "hostname6",

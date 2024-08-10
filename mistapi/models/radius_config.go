@@ -70,7 +70,7 @@ func (r RadiusConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RadiusConfig.
 // It customizes the JSON unmarshaling process for RadiusConfig objects.
 func (r *RadiusConfig) UnmarshalJSON(input []byte) error {
-    var temp radiusConfig
+    var temp tempRadiusConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -93,8 +93,8 @@ func (r *RadiusConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// radiusConfig is a temporary struct used for validating the fields of RadiusConfig.
-type radiusConfig  struct {
+// tempRadiusConfig is a temporary struct used for validating the fields of RadiusConfig.
+type tempRadiusConfig  struct {
     AcctInterimInterval *int               `json:"acct_interim_interval,omitempty"`
     AcctServers         []RadiusAcctServer `json:"acct_servers,omitempty"`
     AuthServers         []RadiusAuthServer `json:"auth_servers,omitempty"`

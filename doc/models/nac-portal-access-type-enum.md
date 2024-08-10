@@ -1,7 +1,7 @@
 
 # Nac Portal Access Type Enum
 
-enum: `wireless`, `wireless+wired`
+if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`
 
 ## Enumeration
 

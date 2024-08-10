@@ -38,7 +38,7 @@ func (a ApPwrConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApPwrConfig.
 // It customizes the JSON unmarshaling process for ApPwrConfig objects.
 func (a *ApPwrConfig) UnmarshalJSON(input []byte) error {
-    var temp apPwrConfig
+    var temp tempApPwrConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (a *ApPwrConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apPwrConfig is a temporary struct used for validating the fields of ApPwrConfig.
-type apPwrConfig  struct {
+// tempApPwrConfig is a temporary struct used for validating the fields of ApPwrConfig.
+type tempApPwrConfig  struct {
     Base              *int  `json:"base,omitempty"`
     PreferUsbOverWifi *bool `json:"prefer_usb_over_wifi,omitempty"`
 }

@@ -39,7 +39,7 @@ func (m ModuleStatItemFansItems) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ModuleStatItemFansItems.
 // It customizes the JSON unmarshaling process for ModuleStatItemFansItems objects.
 func (m *ModuleStatItemFansItems) UnmarshalJSON(input []byte) error {
-    var temp moduleStatItemFansItems
+    var temp tempModuleStatItemFansItems
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (m *ModuleStatItemFansItems) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// moduleStatItemFansItems is a temporary struct used for validating the fields of ModuleStatItemFansItems.
-type moduleStatItemFansItems  struct {
+// tempModuleStatItemFansItems is a temporary struct used for validating the fields of ModuleStatItemFansItems.
+type tempModuleStatItemFansItems  struct {
     Airflow *string `json:"airflow,omitempty"`
     Name    *string `json:"name,omitempty"`
     Status  *string `json:"status,omitempty"`

@@ -20,9 +20,8 @@
   "enabled": false,
   "type": "relay",
   "servers": [
-    "servers7",
-    "servers8",
-    "servers9"
+    "servers3",
+    "servers4"
   ]
 }
 ```

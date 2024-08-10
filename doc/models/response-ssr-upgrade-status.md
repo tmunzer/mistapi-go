@@ -20,10 +20,10 @@
 
 ```json
 {
-  "channel": "channel2",
-  "device_type": "device_type8",
-  "id": "id2",
-  "status": "status4",
+  "channel": "channel8",
+  "device_type": "device_type4",
+  "id": "id6",
+  "status": "status8",
   "targets": {
     "failed": [
       "failed6"

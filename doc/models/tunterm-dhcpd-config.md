@@ -22,8 +22,9 @@ DHCP server/relay configuration of Mist Tunneled VLANs. Property key is the VLAN
   "enabled": false,
   "type": "relay",
   "servers": [
-    "servers1",
-    "servers2"
+    "servers5",
+    "servers6",
+    "servers7"
   ]
 }
 ```

@@ -31,7 +31,7 @@ func (r RrmBandMetricInterference) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RrmBandMetricInterference.
 // It customizes the JSON unmarshaling process for RrmBandMetricInterference objects.
 func (r *RrmBandMetricInterference) UnmarshalJSON(input []byte) error {
-    var temp rrmBandMetricInterference
+    var temp tempRrmBandMetricInterference
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (r *RrmBandMetricInterference) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rrmBandMetricInterference is a temporary struct used for validating the fields of RrmBandMetricInterference.
-type rrmBandMetricInterference  struct {
+// tempRrmBandMetricInterference is a temporary struct used for validating the fields of RrmBandMetricInterference.
+type tempRrmBandMetricInterference  struct {
     Radar *float64 `json:"radar,omitempty"`
 }

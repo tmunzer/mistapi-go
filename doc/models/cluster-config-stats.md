@@ -24,16 +24,12 @@
 
 ```json
 {
-  "configuration": "configuration0",
+  "configuration": "configuration6",
   "control_link_info": {
     "name": "name0",
     "status": "status2"
   },
   "ethernet_connection": [
-    {
-      "name": "name2",
-      "status": "status6"
-    },
     {
       "name": "name2",
       "status": "status6"
@@ -54,7 +50,7 @@
     "State": "State4",
     "Status": "Status0"
   },
-  "last_status_change_reason": "last_status_change_reason8"
+  "last_status_change_reason": "last_status_change_reason4"
 }
 ```
 

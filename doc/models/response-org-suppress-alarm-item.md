@@ -17,7 +17,7 @@
 ```json
 {
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "duration": 116
+  "duration": 158
 }
 ```
 

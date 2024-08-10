@@ -230,7 +230,7 @@ func (m ModuleStatItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ModuleStatItem.
 // It customizes the JSON unmarshaling process for ModuleStatItem objects.
 func (m *ModuleStatItem) UnmarshalJSON(input []byte) error {
-    var temp moduleStatItem
+    var temp tempModuleStatItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -273,8 +273,8 @@ func (m *ModuleStatItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// moduleStatItem is a temporary struct used for validating the fields of ModuleStatItem.
-type moduleStatItem  struct {
+// tempModuleStatItem is a temporary struct used for validating the fields of ModuleStatItem.
+type tempModuleStatItem  struct {
     BackupVersion     Optional[string]                 `json:"backup_version"`
     BiosVersion       Optional[string]                 `json:"bios_version"`
     CpldVersion       Optional[string]                 `json:"cpld_version"`

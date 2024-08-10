@@ -36,7 +36,7 @@ func (o OrgSettingDeviceCert) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingDeviceCert.
 // It customizes the JSON unmarshaling process for OrgSettingDeviceCert objects.
 func (o *OrgSettingDeviceCert) UnmarshalJSON(input []byte) error {
-    var temp orgSettingDeviceCert
+    var temp tempOrgSettingDeviceCert
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (o *OrgSettingDeviceCert) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingDeviceCert is a temporary struct used for validating the fields of OrgSettingDeviceCert.
-type orgSettingDeviceCert  struct {
+// tempOrgSettingDeviceCert is a temporary struct used for validating the fields of OrgSettingDeviceCert.
+type tempOrgSettingDeviceCert  struct {
     Cert *string `json:"cert,omitempty"`
     Key  *string `json:"key,omitempty"`
 }

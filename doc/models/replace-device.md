@@ -23,7 +23,7 @@
   "mac": "5c5b35000101",
   "site_id": "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
   "discard": [
-    "discard8"
+    "discard6"
   ],
   "tunterm_port_config": {
     "downstream_ports": [

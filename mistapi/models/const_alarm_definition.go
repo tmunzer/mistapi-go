@@ -53,7 +53,7 @@ func (c ConstAlarmDefinition) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstAlarmDefinition.
 // It customizes the JSON unmarshaling process for ConstAlarmDefinition objects.
 func (c *ConstAlarmDefinition) UnmarshalJSON(input []byte) error {
-    var temp constAlarmDefinition
+    var temp tempConstAlarmDefinition
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -78,8 +78,8 @@ func (c *ConstAlarmDefinition) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constAlarmDefinition is a temporary struct used for validating the fields of ConstAlarmDefinition.
-type constAlarmDefinition  struct {
+// tempConstAlarmDefinition is a temporary struct used for validating the fields of ConstAlarmDefinition.
+type tempConstAlarmDefinition  struct {
     Display                  *string      `json:"display"`
     Example                  *interface{} `json:"example,omitempty"`
     Fields                   *[]string    `json:"fields"`
@@ -89,22 +89,22 @@ type constAlarmDefinition  struct {
     Severity                 *string      `json:"severity"`
 }
 
-func (c *constAlarmDefinition) validate() error {
+func (c *tempConstAlarmDefinition) validate() error {
     var errs []string
     if c.Display == nil {
-        errs = append(errs, "required field `display` is missing for type `Const_Alarm_Definition`")
+        errs = append(errs, "required field `display` is missing for type `const_alarm_definition`")
     }
     if c.Fields == nil {
-        errs = append(errs, "required field `fields` is missing for type `Const_Alarm_Definition`")
+        errs = append(errs, "required field `fields` is missing for type `const_alarm_definition`")
     }
     if c.Group == nil {
-        errs = append(errs, "required field `group` is missing for type `Const_Alarm_Definition`")
+        errs = append(errs, "required field `group` is missing for type `const_alarm_definition`")
     }
     if c.Key == nil {
-        errs = append(errs, "required field `key` is missing for type `Const_Alarm_Definition`")
+        errs = append(errs, "required field `key` is missing for type `const_alarm_definition`")
     }
     if c.Severity == nil {
-        errs = append(errs, "required field `severity` is missing for type `Const_Alarm_Definition`")
+        errs = append(errs, "required field `severity` is missing for type `const_alarm_definition`")
     }
     if len(errs) == 0 {
         return nil

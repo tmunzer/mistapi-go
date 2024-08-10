@@ -39,7 +39,7 @@ func (r ResponseInsightRogueClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseInsightRogueClient.
 // It customizes the JSON unmarshaling process for ResponseInsightRogueClient objects.
 func (r *ResponseInsightRogueClient) UnmarshalJSON(input []byte) error {
-    var temp responseInsightRogueClient
+    var temp tempResponseInsightRogueClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (r *ResponseInsightRogueClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseInsightRogueClient is a temporary struct used for validating the fields of ResponseInsightRogueClient.
-type responseInsightRogueClient  struct {
+// tempResponseInsightRogueClient is a temporary struct used for validating the fields of ResponseInsightRogueClient.
+type tempResponseInsightRogueClient  struct {
     End     *int                  `json:"end"`
     Limit   *int                  `json:"limit"`
     Next    *string               `json:"next"`
@@ -71,22 +71,22 @@ type responseInsightRogueClient  struct {
     Start   *int                  `json:"start"`
 }
 
-func (r *responseInsightRogueClient) validate() error {
+func (r *tempResponseInsightRogueClient) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Insight_Rogue_Client`")
+        errs = append(errs, "required field `end` is missing for type `response_insight_rogue_client`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Insight_Rogue_Client`")
+        errs = append(errs, "required field `limit` is missing for type `response_insight_rogue_client`")
     }
     if r.Next == nil {
-        errs = append(errs, "required field `next` is missing for type `Response_Insight_Rogue_Client`")
+        errs = append(errs, "required field `next` is missing for type `response_insight_rogue_client`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Insight_Rogue_Client`")
+        errs = append(errs, "required field `results` is missing for type `response_insight_rogue_client`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Insight_Rogue_Client`")
+        errs = append(errs, "required field `start` is missing for type `response_insight_rogue_client`")
     }
     if len(errs) == 0 {
         return nil

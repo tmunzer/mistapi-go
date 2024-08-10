@@ -53,7 +53,7 @@ func (s SnmpUsmpUser) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SnmpUsmpUser.
 // It customizes the JSON unmarshaling process for SnmpUsmpUser objects.
 func (s *SnmpUsmpUser) UnmarshalJSON(input []byte) error {
-    var temp snmpUsmpUser
+    var temp tempSnmpUsmpUser
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -72,8 +72,8 @@ func (s *SnmpUsmpUser) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpUsmpUser is a temporary struct used for validating the fields of SnmpUsmpUser.
-type snmpUsmpUser  struct {
+// tempSnmpUsmpUser is a temporary struct used for validating the fields of SnmpUsmpUser.
+type tempSnmpUsmpUser  struct {
     AuthenticationPassword *string                             `json:"authentication_password,omitempty"`
     AuthenticationType     *SnmpUsmpUserAuthenticationTypeEnum `json:"authentication_type,omitempty"`
     EncryptionPassword     *string                             `json:"encryption_password,omitempty"`

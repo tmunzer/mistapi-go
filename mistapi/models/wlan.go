@@ -183,9 +183,9 @@ type Wlan struct {
     UseEapolV1                         *bool                          `json:"use_eapol_v1,omitempty"`
     // if vlan tagging is enabled
     VlanEnabled                        *bool                          `json:"vlan_enabled,omitempty"`
-    VlanId                             *WlanVlanId                    `json:"vlan_id,omitempty"`
+    VlanId                             *VlanIdWithVariable            `json:"vlan_id,omitempty"`
     // vlan_ids to use when there’s no match from RA
-    VlanIds                            []WlanVlanIds                  `json:"vlan_ids,omitempty"`
+    VlanIds                            []VlanIdWithVariable           `json:"vlan_ids,omitempty"`
     // vlan pooling allows AP to place client on different VLAN using a deterministic algorithm
     VlanPooling                        *bool                          `json:"vlan_pooling,omitempty"`
     // kbps
@@ -590,7 +590,7 @@ func (w Wlan) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Wlan.
 // It customizes the JSON unmarshaling process for Wlan objects.
 func (w *Wlan) UnmarshalJSON(input []byte) error {
-    var temp wlan
+    var temp tempWlan
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -707,8 +707,8 @@ func (w *Wlan) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlan is a temporary struct used for validating the fields of Wlan.
-type wlan  struct {
+// tempWlan is a temporary struct used for validating the fields of Wlan.
+type tempWlan  struct {
     AcctImmediateUpdate                *bool                          `json:"acct_immediate_update,omitempty"`
     AcctInterimInterval                *int                           `json:"acct_interim_interval,omitempty"`
     AcctServers                        []RadiusAcctServer             `json:"acct_servers,omitempty"`
@@ -798,8 +798,8 @@ type wlan  struct {
     Thumbnail                          Optional[string]               `json:"thumbnail"`
     UseEapolV1                         *bool                          `json:"use_eapol_v1,omitempty"`
     VlanEnabled                        *bool                          `json:"vlan_enabled,omitempty"`
-    VlanId                             *WlanVlanId                    `json:"vlan_id,omitempty"`
-    VlanIds                            []WlanVlanIds                  `json:"vlan_ids,omitempty"`
+    VlanId                             *VlanIdWithVariable            `json:"vlan_id,omitempty"`
+    VlanIds                            []VlanIdWithVariable           `json:"vlan_ids,omitempty"`
     VlanPooling                        *bool                          `json:"vlan_pooling,omitempty"`
     WlanLimitDown                      Optional[int]                  `json:"wlan_limit_down"`
     WlanLimitDownEnabled               *bool                          `json:"wlan_limit_down_enabled,omitempty"`
@@ -810,10 +810,10 @@ type wlan  struct {
     WxtunnelRemoteId                   Optional[string]               `json:"wxtunnel_remote_id"`
 }
 
-func (w *wlan) validate() error {
+func (w *tempWlan) validate() error {
     var errs []string
     if w.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Wlan`")
+        errs = append(errs, "required field `ssid` is missing for type `wlan`")
     }
     if len(errs) == 0 {
         return nil

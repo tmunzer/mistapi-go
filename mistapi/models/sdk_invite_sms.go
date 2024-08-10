@@ -31,7 +31,7 @@ func (s SdkInviteSms) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SdkInviteSms.
 // It customizes the JSON unmarshaling process for SdkInviteSms objects.
 func (s *SdkInviteSms) UnmarshalJSON(input []byte) error {
-    var temp sdkInviteSms
+    var temp tempSdkInviteSms
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (s *SdkInviteSms) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sdkInviteSms is a temporary struct used for validating the fields of SdkInviteSms.
-type sdkInviteSms  struct {
+// tempSdkInviteSms is a temporary struct used for validating the fields of SdkInviteSms.
+type tempSdkInviteSms  struct {
     Number *string `json:"number"`
 }
 
-func (s *sdkInviteSms) validate() error {
+func (s *tempSdkInviteSms) validate() error {
     var errs []string
     if s.Number == nil {
-        errs = append(errs, "required field `number` is missing for type `Sdk_Invite_Sms`")
+        errs = append(errs, "required field `number` is missing for type `sdk_invite_sms`")
     }
     if len(errs) == 0 {
         return nil

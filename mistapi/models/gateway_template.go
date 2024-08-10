@@ -167,7 +167,7 @@ func (g GatewayTemplate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayTemplate.
 // It customizes the JSON unmarshaling process for GatewayTemplate objects.
 func (g *GatewayTemplate) UnmarshalJSON(input []byte) error {
-    var temp gatewayTemplate
+    var temp tempGatewayTemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -215,8 +215,8 @@ func (g *GatewayTemplate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayTemplate is a temporary struct used for validating the fields of GatewayTemplate.
-type gatewayTemplate  struct {
+// tempGatewayTemplate is a temporary struct used for validating the fields of GatewayTemplate.
+type tempGatewayTemplate  struct {
     AdditionalConfigCmds  []string                           `json:"additional_config_cmds,omitempty"`
     BgpConfig             map[string]BgpConfig               `json:"bgp_config,omitempty"`
     CreatedTime           *float64                           `json:"created_time,omitempty"`
@@ -249,10 +249,10 @@ type gatewayTemplate  struct {
     VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
 }
 
-func (g *gatewayTemplate) validate() error {
+func (g *tempGatewayTemplate) validate() error {
     var errs []string
     if g.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Gateway_Template`")
+        errs = append(errs, "required field `name` is missing for type `gateway_template`")
     }
     if len(errs) == 0 {
         return nil

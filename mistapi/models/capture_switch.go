@@ -10,22 +10,22 @@ import (
 // Initiate a Switch (Junos) Packet Capture
 type CaptureSwitch struct {
     // duration of the capture, in seconds
-    Duration             *int                             `json:"duration,omitempty"`
+    Duration             *int                                           `json:"duration,omitempty"`
     // enum: `stream`
-    Format               *CaptureSwitchFormatEnum         `json:"format,omitempty"`
+    Format               *CaptureSwitchFormatEnum                       `json:"format,omitempty"`
     // max_len of each packet to capture
-    MaxPktLen            *int                             `json:"max_pkt_len,omitempty"`
+    MaxPktLen            *int                                           `json:"max_pkt_len,omitempty"`
     // number of packets to capture, 0 for unlimited
-    NumPackets           *int                             `json:"num_packets,omitempty"`
-    // dict of port which uses port id as the key
-    Ports                []string                         `json:"ports,omitempty"`
+    NumPackets           *int                                           `json:"num_packets,omitempty"`
+    // Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request
+    Ports                map[string]CaptureSwitchPortsTcpdumpExpression `json:"ports,omitempty"`
     // Property key is the switch mac
-    Switches             map[string]CaptureSwitchSwitches `json:"switches,omitempty"`
+    Switches             map[string]CaptureSwitchSwitches               `json:"switches,omitempty"`
     // tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist.
-    TcpdumpExpression    *string                          `json:"tcpdump_expression,omitempty"`
+    TcpdumpExpression    *string                                        `json:"tcpdump_expression,omitempty"`
     // enum: `switch`
-    Type                 string                           `json:"type"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    Type                 string                                         `json:"type"`
+    AdditionalProperties map[string]any                                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureSwitch.
@@ -68,7 +68,7 @@ func (c CaptureSwitch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureSwitch.
 // It customizes the JSON unmarshaling process for CaptureSwitch objects.
 func (c *CaptureSwitch) UnmarshalJSON(input []byte) error {
-    var temp captureSwitch
+    var temp tempCaptureSwitch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -94,22 +94,22 @@ func (c *CaptureSwitch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureSwitch is a temporary struct used for validating the fields of CaptureSwitch.
-type captureSwitch  struct {
-    Duration          *int                             `json:"duration,omitempty"`
-    Format            *CaptureSwitchFormatEnum         `json:"format,omitempty"`
-    MaxPktLen         *int                             `json:"max_pkt_len,omitempty"`
-    NumPackets        *int                             `json:"num_packets,omitempty"`
-    Ports             []string                         `json:"ports,omitempty"`
-    Switches          map[string]CaptureSwitchSwitches `json:"switches,omitempty"`
-    TcpdumpExpression *string                          `json:"tcpdump_expression,omitempty"`
-    Type              *string                          `json:"type"`
+// tempCaptureSwitch is a temporary struct used for validating the fields of CaptureSwitch.
+type tempCaptureSwitch  struct {
+    Duration          *int                                           `json:"duration,omitempty"`
+    Format            *CaptureSwitchFormatEnum                       `json:"format,omitempty"`
+    MaxPktLen         *int                                           `json:"max_pkt_len,omitempty"`
+    NumPackets        *int                                           `json:"num_packets,omitempty"`
+    Ports             map[string]CaptureSwitchPortsTcpdumpExpression `json:"ports,omitempty"`
+    Switches          map[string]CaptureSwitchSwitches               `json:"switches,omitempty"`
+    TcpdumpExpression *string                                        `json:"tcpdump_expression,omitempty"`
+    Type              *string                                        `json:"type"`
 }
 
-func (c *captureSwitch) validate() error {
+func (c *tempCaptureSwitch) validate() error {
     var errs []string
     if c.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Capture_Switch`")
+        errs = append(errs, "required field `type` is missing for type `capture_switch`")
     }
     if len(errs) == 0 {
         return nil

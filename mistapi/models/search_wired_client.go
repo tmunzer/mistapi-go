@@ -43,7 +43,7 @@ func (s SearchWiredClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SearchWiredClient.
 // It customizes the JSON unmarshaling process for SearchWiredClient objects.
 func (s *SearchWiredClient) UnmarshalJSON(input []byte) error {
-    var temp searchWiredClient
+    var temp tempSearchWiredClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (s *SearchWiredClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// searchWiredClient is a temporary struct used for validating the fields of SearchWiredClient.
-type searchWiredClient  struct {
+// tempSearchWiredClient is a temporary struct used for validating the fields of SearchWiredClient.
+type tempSearchWiredClient  struct {
     End     *float64               `json:"end"`
     Limit   *int                   `json:"limit"`
     Next    *string                `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type searchWiredClient  struct {
     Total   *int                   `json:"total"`
 }
 
-func (s *searchWiredClient) validate() error {
+func (s *tempSearchWiredClient) validate() error {
     var errs []string
     if s.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Search_Wired_Client`")
+        errs = append(errs, "required field `end` is missing for type `search_wired_client`")
     }
     if s.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Search_Wired_Client`")
+        errs = append(errs, "required field `limit` is missing for type `search_wired_client`")
     }
     if s.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Search_Wired_Client`")
+        errs = append(errs, "required field `results` is missing for type `search_wired_client`")
     }
     if s.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Search_Wired_Client`")
+        errs = append(errs, "required field `start` is missing for type `search_wired_client`")
     }
     if s.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Search_Wired_Client`")
+        errs = append(errs, "required field `total` is missing for type `search_wired_client`")
     }
     if len(errs) == 0 {
         return nil

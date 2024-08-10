@@ -48,7 +48,7 @@ func (m MxedgeUpgradeMultiAllowDowngrades) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeUpgradeMultiAllowDowngrades.
 // It customizes the JSON unmarshaling process for MxedgeUpgradeMultiAllowDowngrades objects.
 func (m *MxedgeUpgradeMultiAllowDowngrades) UnmarshalJSON(input []byte) error {
-    var temp mxedgeUpgradeMultiAllowDowngrades
+    var temp tempMxedgeUpgradeMultiAllowDowngrades
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (m *MxedgeUpgradeMultiAllowDowngrades) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeUpgradeMultiAllowDowngrades is a temporary struct used for validating the fields of MxedgeUpgradeMultiAllowDowngrades.
-type mxedgeUpgradeMultiAllowDowngrades  struct {
+// tempMxedgeUpgradeMultiAllowDowngrades is a temporary struct used for validating the fields of MxedgeUpgradeMultiAllowDowngrades.
+type tempMxedgeUpgradeMultiAllowDowngrades  struct {
     Mxagent     *bool `json:"mxagent,omitempty"`
     Mxdas       *bool `json:"mxdas,omitempty"`
     Mxocproxy   *bool `json:"mxocproxy,omitempty"`

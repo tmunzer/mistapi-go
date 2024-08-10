@@ -39,7 +39,7 @@ func (i IdpProfileMatching) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for IdpProfileMatching.
 // It customizes the JSON unmarshaling process for IdpProfileMatching objects.
 func (i *IdpProfileMatching) UnmarshalJSON(input []byte) error {
-    var temp idpProfileMatching
+    var temp tempIdpProfileMatching
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (i *IdpProfileMatching) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// idpProfileMatching is a temporary struct used for validating the fields of IdpProfileMatching.
-type idpProfileMatching  struct {
+// tempIdpProfileMatching is a temporary struct used for validating the fields of IdpProfileMatching.
+type tempIdpProfileMatching  struct {
     AttackName []string                              `json:"attack_name,omitempty"`
     DstSubnet  []string                              `json:"dst_subnet,omitempty"`
     Severity   []IdpProfileMatchingSeverityValueEnum `json:"severity,omitempty"`

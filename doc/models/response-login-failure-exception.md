@@ -16,8 +16,8 @@
 
 ```json
 {
-  "detail": "detail4",
-  "forward_url": "forward_url6"
+  "detail": "detail0",
+  "forward_url": "forward_url2"
 }
 ```
 

@@ -55,7 +55,7 @@ func (m MxtunnelIpsec) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxtunnelIpsec.
 // It customizes the JSON unmarshaling process for MxtunnelIpsec objects.
 func (m *MxtunnelIpsec) UnmarshalJSON(input []byte) error {
-    var temp mxtunnelIpsec
+    var temp tempMxtunnelIpsec
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -75,8 +75,8 @@ func (m *MxtunnelIpsec) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxtunnelIpsec is a temporary struct used for validating the fields of MxtunnelIpsec.
-type mxtunnelIpsec  struct {
+// tempMxtunnelIpsec is a temporary struct used for validating the fields of MxtunnelIpsec.
+type tempMxtunnelIpsec  struct {
     DnsServers  Optional[[]string]        `json:"dns_servers"`
     DnsSuffix   []string                  `json:"dns_suffix,omitempty"`
     Enabled     *bool                     `json:"enabled,omitempty"`

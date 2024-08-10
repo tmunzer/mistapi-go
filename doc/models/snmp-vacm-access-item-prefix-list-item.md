@@ -26,7 +26,7 @@
   "read_view": "all",
   "write_view": "all",
   "security_level": "privacy",
-  "security_model": "v1"
+  "security_model": "any"
 }
 ```
 

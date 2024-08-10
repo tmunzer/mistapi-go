@@ -43,9 +43,25 @@ MxEdge Radsec Configuration
         "ssids5",
         "ssids6"
       ]
+    },
+    {
+      "host": "host4",
+      "port": 254,
+      "secret": "secret0",
+      "ssids": [
+        "ssids5",
+        "ssids6"
+      ]
     }
   ],
   "auth_servers": [
+    {
+      "host": "host0",
+      "keywrap_enabled": false,
+      "keywrap_format": "ascii",
+      "keywrap_kek": "keywrap_kek4",
+      "keywrap_mack": "keywrap_mack6"
+    },
     {
       "host": "host0",
       "keywrap_enabled": false,
@@ -64,8 +80,9 @@ MxEdge Radsec Configuration
   "enabled": false,
   "match_ssid": false,
   "proxy_hosts": [
-    "proxy_hosts2",
-    "proxy_hosts3"
+    "proxy_hosts8",
+    "proxy_hosts9",
+    "proxy_hosts0"
   ]
 }
 ```

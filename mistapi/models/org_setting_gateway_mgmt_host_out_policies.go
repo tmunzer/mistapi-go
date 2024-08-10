@@ -40,7 +40,7 @@ func (o OrgSettingGatewayMgmtHostOutPolicies) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingGatewayMgmtHostOutPolicies.
 // It customizes the JSON unmarshaling process for OrgSettingGatewayMgmtHostOutPolicies objects.
 func (o *OrgSettingGatewayMgmtHostOutPolicies) UnmarshalJSON(input []byte) error {
-    var temp orgSettingGatewayMgmtHostOutPolicies
+    var temp tempOrgSettingGatewayMgmtHostOutPolicies
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (o *OrgSettingGatewayMgmtHostOutPolicies) UnmarshalJSON(input []byte) error
     return nil
 }
 
-// orgSettingGatewayMgmtHostOutPolicies is a temporary struct used for validating the fields of OrgSettingGatewayMgmtHostOutPolicies.
-type orgSettingGatewayMgmtHostOutPolicies  struct {
+// tempOrgSettingGatewayMgmtHostOutPolicies is a temporary struct used for validating the fields of OrgSettingGatewayMgmtHostOutPolicies.
+type tempOrgSettingGatewayMgmtHostOutPolicies  struct {
     Dns  *OrgSettingGatewayMgmtHostOutPoliciesDns  `json:"dns,omitempty"`
     Mist *OrgSettingGatewayMgmtHostOutPoliciesMist `json:"mist,omitempty"`
     Ntp  *OrgSettingGatewayMgmtHostOutPoliciesNtp  `json:"ntp,omitempty"`

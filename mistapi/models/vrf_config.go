@@ -32,7 +32,7 @@ func (v VrfConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VrfConfig.
 // It customizes the JSON unmarshaling process for VrfConfig objects.
 func (v *VrfConfig) UnmarshalJSON(input []byte) error {
-    var temp vrfConfig
+    var temp tempVrfConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (v *VrfConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vrfConfig is a temporary struct used for validating the fields of VrfConfig.
-type vrfConfig  struct {
+// tempVrfConfig is a temporary struct used for validating the fields of VrfConfig.
+type tempVrfConfig  struct {
     Enabled *bool `json:"enabled,omitempty"`
 }

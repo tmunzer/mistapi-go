@@ -19,10 +19,11 @@
 
 ```json
 {
-  "end": 166,
-  "limit": 4,
+  "end": 206,
+  "limit": 220,
   "results": {
-    "When": "When8",
+    "dhcp_expire_time": 124.26,
+    "dhcp_start_time": 9.94,
     "hostname": [
       "hostname6",
       "hostname7",
@@ -32,11 +33,10 @@
       "ip7",
       "ip8"
     ],
-    "last_hostname": "last_hostname8",
-    "last_ip": "last_ip6"
+    "ip_src": "ip_src6"
   },
-  "start": 124,
-  "total": 98
+  "start": 164,
+  "total": 58
 }
 ```
 

@@ -47,7 +47,7 @@ func (a ApAeroscout) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApAeroscout.
 // It customizes the JSON unmarshaling process for ApAeroscout objects.
 func (a *ApAeroscout) UnmarshalJSON(input []byte) error {
-    var temp apAeroscout
+    var temp tempApAeroscout
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,8 +64,8 @@ func (a *ApAeroscout) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apAeroscout is a temporary struct used for validating the fields of ApAeroscout.
-type apAeroscout  struct {
+// tempApAeroscout is a temporary struct used for validating the fields of ApAeroscout.
+type tempApAeroscout  struct {
     Enabled         *bool            `json:"enabled,omitempty"`
     Host            Optional[string] `json:"host"`
     LocateConnected *bool            `json:"locate_connected,omitempty"`

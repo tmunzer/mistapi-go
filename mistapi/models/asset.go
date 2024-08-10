@@ -69,7 +69,7 @@ func (a Asset) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Asset.
 // It customizes the JSON unmarshaling process for Asset objects.
 func (a *Asset) UnmarshalJSON(input []byte) error {
-    var temp asset
+    var temp tempAsset
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -97,8 +97,8 @@ func (a *Asset) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// asset is a temporary struct used for validating the fields of Asset.
-type asset  struct {
+// tempAsset is a temporary struct used for validating the fields of Asset.
+type tempAsset  struct {
     CreatedTime  *float64   `json:"created_time,omitempty"`
     ForSite      *bool      `json:"for_site,omitempty"`
     Id           *uuid.UUID `json:"id,omitempty"`
@@ -111,13 +111,13 @@ type asset  struct {
     TagId        *uuid.UUID `json:"tag_id,omitempty"`
 }
 
-func (a *asset) validate() error {
+func (a *tempAsset) validate() error {
     var errs []string
     if a.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Asset`")
+        errs = append(errs, "required field `mac` is missing for type `asset`")
     }
     if a.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Asset`")
+        errs = append(errs, "required field `name` is missing for type `asset`")
     }
     if len(errs) == 0 {
         return nil

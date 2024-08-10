@@ -610,7 +610,7 @@ func (w WlanPortalTemplateSetting) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanPortalTemplateSetting.
 // It customizes the JSON unmarshaling process for WlanPortalTemplateSetting objects.
 func (w *WlanPortalTemplateSetting) UnmarshalJSON(input []byte) error {
-    var temp wlanPortalTemplateSetting
+    var temp tempWlanPortalTemplateSetting
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -743,8 +743,8 @@ func (w *WlanPortalTemplateSetting) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanPortalTemplateSetting is a temporary struct used for validating the fields of WlanPortalTemplateSetting.
-type wlanPortalTemplateSetting  struct {
+// tempWlanPortalTemplateSetting is a temporary struct used for validating the fields of WlanPortalTemplateSetting.
+type tempWlanPortalTemplateSetting  struct {
     AccessCodeAlternateEmail *string `json:"accessCodeAlternateEmail,omitempty"`
     Alignment                *string `json:"alignment,omitempty"`
     AuthButtonAmazon         *string `json:"authButtonAmazon,omitempty"`
@@ -862,10 +862,10 @@ type wlanPortalTemplateSetting  struct {
     TosText                  *string `json:"tosText,omitempty"`
 }
 
-func (w *wlanPortalTemplateSetting) validate() error {
+func (w *tempWlanPortalTemplateSetting) validate() error {
     var errs []string
     if w.PageTitle == nil {
-        errs = append(errs, "required field `pageTitle` is missing for type `Wlan_Portal_Template_Setting`")
+        errs = append(errs, "required field `pageTitle` is missing for type `wlan_portal_template_setting`")
     }
     if len(errs) == 0 {
         return nil

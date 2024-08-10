@@ -72,7 +72,7 @@ func (r ResponseSiteDeviceUpgradeCounts) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSiteDeviceUpgradeCounts.
 // It customizes the JSON unmarshaling process for ResponseSiteDeviceUpgradeCounts objects.
 func (r *ResponseSiteDeviceUpgradeCounts) UnmarshalJSON(input []byte) error {
-    var temp responseSiteDeviceUpgradeCounts
+    var temp tempResponseSiteDeviceUpgradeCounts
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -95,8 +95,8 @@ func (r *ResponseSiteDeviceUpgradeCounts) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSiteDeviceUpgradeCounts is a temporary struct used for validating the fields of ResponseSiteDeviceUpgradeCounts.
-type responseSiteDeviceUpgradeCounts  struct {
+// tempResponseSiteDeviceUpgradeCounts is a temporary struct used for validating the fields of ResponseSiteDeviceUpgradeCounts.
+type tempResponseSiteDeviceUpgradeCounts  struct {
     DownloadRequested *int `json:"download_requested,omitempty"`
     Downloaded        *int `json:"downloaded,omitempty"`
     Failed            *int `json:"failed,omitempty"`

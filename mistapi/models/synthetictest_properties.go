@@ -6,11 +6,11 @@ import (
 
 // SynthetictestProperties represents a SynthetictestProperties struct.
 type SynthetictestProperties struct {
-    CustomTestUrls       []string                         `json:"custom_test_urls,omitempty"`
+    CustomTestUrls       []string             `json:"custom_test_urls,omitempty"`
     // for some vlans where we don't want this to run
-    Disabled             *bool                            `json:"disabled,omitempty"`
-    VlanIds              []SynthetictestPropertiesVlanIds `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    Disabled             *bool                `json:"disabled,omitempty"`
+    VlanIds              []VlanIdWithVariable `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]any       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestProperties.
@@ -40,7 +40,7 @@ func (s SynthetictestProperties) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SynthetictestProperties.
 // It customizes the JSON unmarshaling process for SynthetictestProperties objects.
 func (s *SynthetictestProperties) UnmarshalJSON(input []byte) error {
-    var temp synthetictestProperties
+    var temp tempSynthetictestProperties
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,9 +57,9 @@ func (s *SynthetictestProperties) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// synthetictestProperties is a temporary struct used for validating the fields of SynthetictestProperties.
-type synthetictestProperties  struct {
-    CustomTestUrls []string                         `json:"custom_test_urls,omitempty"`
-    Disabled       *bool                            `json:"disabled,omitempty"`
-    VlanIds        []SynthetictestPropertiesVlanIds `json:"vlan_ids,omitempty"`
+// tempSynthetictestProperties is a temporary struct used for validating the fields of SynthetictestProperties.
+type tempSynthetictestProperties  struct {
+    CustomTestUrls []string             `json:"custom_test_urls,omitempty"`
+    Disabled       *bool                `json:"disabled,omitempty"`
+    VlanIds        []VlanIdWithVariable `json:"vlan_ids,omitempty"`
 }

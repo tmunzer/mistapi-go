@@ -41,7 +41,7 @@ func (v VpnPath) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VpnPath.
 // It customizes the JSON unmarshaling process for VpnPath objects.
 func (v *VpnPath) UnmarshalJSON(input []byte) error {
-    var temp vpnPath
+    var temp tempVpnPath
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (v *VpnPath) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vpnPath is a temporary struct used for validating the fields of VpnPath.
-type vpnPath  struct {
+// tempVpnPath is a temporary struct used for validating the fields of VpnPath.
+type tempVpnPath  struct {
     BfdProfile *VpnPathBfdProfileEnum `json:"bfd_profile,omitempty"`
     Ip         *string                `json:"ip,omitempty"`
     Pod        *int                   `json:"pod,omitempty"`

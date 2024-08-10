@@ -31,7 +31,7 @@ func (c CodeString) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CodeString.
 // It customizes the JSON unmarshaling process for CodeString objects.
 func (c *CodeString) UnmarshalJSON(input []byte) error {
-    var temp codeString
+    var temp tempCodeString
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (c *CodeString) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// codeString is a temporary struct used for validating the fields of CodeString.
-type codeString  struct {
+// tempCodeString is a temporary struct used for validating the fields of CodeString.
+type tempCodeString  struct {
     Code *string `json:"code"`
 }
 
-func (c *codeString) validate() error {
+func (c *tempCodeString) validate() error {
     var errs []string
     if c.Code == nil {
-        errs = append(errs, "required field `code` is missing for type `Code_String`")
+        errs = append(errs, "required field `code` is missing for type `code_string`")
     }
     if len(errs) == 0 {
         return nil

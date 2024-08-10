@@ -1,7 +1,7 @@
 
 # Capture Mxedge Mxedges Interfaces
 
-Property key is the Port name (e.g. "port1")
+Property key is the Port name (e.g. "port1", "kni0", "lacp0", "ipsec", "drop", "oobm"), currently limited to specifying one interface per mxedge
 
 ## Structure
 
@@ -17,7 +17,7 @@ Property key is the Port name (e.g. "port1")
 
 ```json
 {
-  "tcpdump_expression": "tcpdump_expression2"
+  "tcpdump_expression": "tcpdump_expression8"
 }
 ```
 

@@ -33,7 +33,7 @@ type SiteSetting struct {
     CreatedTime                     *float64                               `json:"created_time,omitempty"`
     // you can define some URLs that's critical to site operaitons the latency will be captured and considered for site health
     CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring      `json:"critical_url_monitoring,omitempty"`
-    // sending AP_DISCONNECTED event in device-updowns only if AP_CONNECTED is not seen within the threshold, in minutes
+    // by default, device_updown_thresold, if set, will apply to all devices types if different values for specific device type is desired, use the following
     DeviceUpdownThreshold           Optional[int]                          `json:"device_updown_threshold"`
     DhcpSnooping                    *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
     // if some system-default port usages are not desired - namely, ap / iot / uplink
@@ -97,6 +97,8 @@ type SiteSetting struct {
     // Junos Radius config
     RadiusConfig                    *RadiusConfig                          `json:"radius_config,omitempty"`
     RemoteSyslog                    *RemoteSyslog                          `json:"remote_syslog,omitempty"`
+    // by default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled
+    RemoveExistingConfigs           *bool                                  `json:"remove_existing_configs,omitempty"`
     // whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)
     ReportGatt                      *bool                                  `json:"report_gatt,omitempty"`
     // Rogue site settings
@@ -118,6 +120,7 @@ type SiteSetting struct {
     Switch                          *NetworkTemplate                       `json:"switch,omitempty"`
     // Switch template
     SwitchMatching                  *SwitchMatching                        `json:"switch_matching,omitempty"`
+    // Switch settings
     SwitchMgmt                      *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
     // enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.
     SwitchUpdownThreshold           Optional[int]                          `json:"switch_updown_threshold"`
@@ -325,6 +328,9 @@ func (s SiteSetting) toMap() map[string]any {
     if s.RemoteSyslog != nil {
         structMap["remote_syslog"] = s.RemoteSyslog.toMap()
     }
+    if s.RemoveExistingConfigs != nil {
+        structMap["remove_existing_configs"] = s.RemoveExistingConfigs
+    }
     if s.ReportGatt != nil {
         structMap["report_gatt"] = s.ReportGatt
     }
@@ -437,12 +443,12 @@ func (s SiteSetting) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSetting.
 // It customizes the JSON unmarshaling process for SiteSetting objects.
 func (s *SiteSetting) UnmarshalJSON(input []byte) error {
-    var temp siteSetting
+    var temp tempSiteSetting
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
     if err != nil {
     	return err
     }
@@ -498,6 +504,7 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
     s.RadioConfig = temp.RadioConfig
     s.RadiusConfig = temp.RadiusConfig
     s.RemoteSyslog = temp.RemoteSyslog
+    s.RemoveExistingConfigs = temp.RemoveExistingConfigs
     s.ReportGatt = temp.ReportGatt
     s.Rogue = temp.Rogue
     s.Rtsa = temp.Rtsa
@@ -535,8 +542,8 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSetting is a temporary struct used for validating the fields of SiteSetting.
-type siteSetting  struct {
+// tempSiteSetting is a temporary struct used for validating the fields of SiteSetting.
+type tempSiteSetting  struct {
     AclPolicies                     []AclPolicy                            `json:"acl_policies,omitempty"`
     AclTags                         map[string]AclTag                      `json:"acl_tags,omitempty"`
     AdditionalConfigCmds            []string                               `json:"additional_config_cmds,omitempty"`
@@ -587,6 +594,7 @@ type siteSetting  struct {
     RadioConfig                     *ApRadio                               `json:"radio_config,omitempty"`
     RadiusConfig                    *RadiusConfig                          `json:"radius_config,omitempty"`
     RemoteSyslog                    *RemoteSyslog                          `json:"remote_syslog,omitempty"`
+    RemoveExistingConfigs           *bool                                  `json:"remove_existing_configs,omitempty"`
     ReportGatt                      *bool                                  `json:"report_gatt,omitempty"`
     Rogue                           *SiteRogue                             `json:"rogue,omitempty"`
     Rtsa                            *SiteSettingRtsa                       `json:"rtsa,omitempty"`

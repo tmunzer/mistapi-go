@@ -29,8 +29,28 @@
         "labels1"
       ],
       "mac": "mac0",
-      "notes": "notes6",
-      "vlan": 130
+      "name": "name6",
+      "notes": "notes6"
+    },
+    {
+      "id": "000023ba-0000-0000-0000-000000000000",
+      "labels": [
+        "labels2",
+        "labels1"
+      ],
+      "mac": "mac0",
+      "name": "name6",
+      "notes": "notes6"
+    },
+    {
+      "id": "000023ba-0000-0000-0000-000000000000",
+      "labels": [
+        "labels2",
+        "labels1"
+      ],
+      "mac": "mac0",
+      "name": "name6",
+      "notes": "notes6"
     }
   ]
 }

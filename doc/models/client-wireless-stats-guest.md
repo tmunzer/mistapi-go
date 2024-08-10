@@ -24,10 +24,10 @@ information about this portal
 ```json
 {
   "authorized": false,
-  "authorized_expiring_time": 228.7,
-  "authorized_time": 205.2,
+  "authorized_expiring_time": 161.3,
+  "authorized_time": 118.2,
   "company": "company8",
-  "email": "email2",
+  "email": "email8",
   "field1": "field12",
   "name": "name8"
 }

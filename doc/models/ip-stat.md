@@ -31,12 +31,14 @@
   "netmask": "255.255.255.0",
   "netmask6": "/64",
   "dns": [
-    "dns9"
+    "dns3",
+    "dns4"
   ],
   "dns_suffix": [
-    "dns_suffix3"
+    "dns_suffix5",
+    "dns_suffix6"
   ],
-  "gateway": "gateway4"
+  "gateway": "gateway6"
 }
 ```
 

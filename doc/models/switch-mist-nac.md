@@ -19,7 +19,7 @@ enable mist_nac to use radsec
 ```json
 {
   "enabled": false,
-  "network": "network6"
+  "network": "network4"
 }
 ```
 

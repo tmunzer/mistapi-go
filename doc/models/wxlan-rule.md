@@ -54,11 +54,10 @@ WXlan
   ],
   "template_id": "6aa54cbd-e039-4878-846a-04f270de8a5c",
   "apply_tags": [
-    "apply_tags8",
-    "apply_tags9",
-    "apply_tags0"
+    "apply_tags0",
+    "apply_tags1"
   ],
-  "created_time": 51.9
+  "created_time": 145.62
 }
 ```
 

@@ -16,9 +16,7 @@
 ```json
 {
   "success": [
-    "success4",
-    "success5",
-    "success6"
+    "success4"
   ]
 }
 ```

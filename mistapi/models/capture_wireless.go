@@ -76,7 +76,7 @@ func (c CaptureWireless) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureWireless.
 // It customizes the JSON unmarshaling process for CaptureWireless objects.
 func (c *CaptureWireless) UnmarshalJSON(input []byte) error {
-    var temp captureWireless
+    var temp tempCaptureWireless
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -103,8 +103,8 @@ func (c *CaptureWireless) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureWireless is a temporary struct used for validating the fields of CaptureWireless.
-type captureWireless  struct {
+// tempCaptureWireless is a temporary struct used for validating the fields of CaptureWireless.
+type tempCaptureWireless  struct {
     ApMac      Optional[string]           `json:"ap_mac"`
     Band       *CaptureWirelessBandEnum   `json:"band,omitempty"`
     Duration   *int                       `json:"duration,omitempty"`
@@ -116,10 +116,10 @@ type captureWireless  struct {
     WlanId     *uuid.UUID                 `json:"wlan_id,omitempty"`
 }
 
-func (c *captureWireless) validate() error {
+func (c *tempCaptureWireless) validate() error {
     var errs []string
     if c.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Capture_Wireless`")
+        errs = append(errs, "required field `type` is missing for type `capture_wireless`")
     }
     if len(errs) == 0 {
         return nil

@@ -41,7 +41,7 @@ func (r ResponseSelfAuditLogs) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSelfAuditLogs.
 // It customizes the JSON unmarshaling process for ResponseSelfAuditLogs objects.
 func (r *ResponseSelfAuditLogs) UnmarshalJSON(input []byte) error {
-    var temp responseSelfAuditLogs
+    var temp tempResponseSelfAuditLogs
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponseSelfAuditLogs) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSelfAuditLogs is a temporary struct used for validating the fields of ResponseSelfAuditLogs.
-type responseSelfAuditLogs  struct {
+// tempResponseSelfAuditLogs is a temporary struct used for validating the fields of ResponseSelfAuditLogs.
+type tempResponseSelfAuditLogs  struct {
     End     *int        `json:"end"`
     Limit   *int        `json:"limit"`
     Page    *int        `json:"page"`
@@ -75,25 +75,25 @@ type responseSelfAuditLogs  struct {
     Total   *int        `json:"total"`
 }
 
-func (r *responseSelfAuditLogs) validate() error {
+func (r *tempResponseSelfAuditLogs) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Self_Audit_Logs`")
+        errs = append(errs, "required field `end` is missing for type `response_self_audit_logs`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Self_Audit_Logs`")
+        errs = append(errs, "required field `limit` is missing for type `response_self_audit_logs`")
     }
     if r.Page == nil {
-        errs = append(errs, "required field `page` is missing for type `Response_Self_Audit_Logs`")
+        errs = append(errs, "required field `page` is missing for type `response_self_audit_logs`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Self_Audit_Logs`")
+        errs = append(errs, "required field `results` is missing for type `response_self_audit_logs`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Self_Audit_Logs`")
+        errs = append(errs, "required field `start` is missing for type `response_self_audit_logs`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Self_Audit_Logs`")
+        errs = append(errs, "required field `total` is missing for type `response_self_audit_logs`")
     }
     if len(errs) == 0 {
         return nil

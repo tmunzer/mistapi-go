@@ -42,7 +42,7 @@ func (w WxlanTagSpec) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WxlanTagSpec.
 // It customizes the JSON unmarshaling process for WxlanTagSpec objects.
 func (w *WxlanTagSpec) UnmarshalJSON(input []byte) error {
-    var temp wxlanTagSpec
+    var temp tempWxlanTagSpec
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,8 +59,8 @@ func (w *WxlanTagSpec) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wxlanTagSpec is a temporary struct used for validating the fields of WxlanTagSpec.
-type wxlanTagSpec  struct {
+// tempWxlanTagSpec is a temporary struct used for validating the fields of WxlanTagSpec.
+type tempWxlanTagSpec  struct {
     PortRange *string  `json:"port_range,omitempty"`
     Protocol  *string  `json:"protocol,omitempty"`
     Subnets   []string `json:"subnets,omitempty"`

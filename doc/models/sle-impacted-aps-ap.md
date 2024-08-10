@@ -20,10 +20,10 @@
 ```json
 {
   "ap_mac": "ap_mac2",
-  "degraded": 55.9,
-  "duration": 184.96,
+  "degraded": 10.9,
+  "duration": 139.96,
   "name": "name0",
-  "total": 172.1
+  "total": 217.1
 }
 ```
 

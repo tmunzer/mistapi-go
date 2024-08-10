@@ -43,7 +43,7 @@ func (t TemplateApplies) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TemplateApplies.
 // It customizes the JSON unmarshaling process for TemplateApplies objects.
 func (t *TemplateApplies) UnmarshalJSON(input []byte) error {
-    var temp templateApplies
+    var temp tempTemplateApplies
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,8 +60,8 @@ func (t *TemplateApplies) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// templateApplies is a temporary struct used for validating the fields of TemplateApplies.
-type templateApplies  struct {
+// tempTemplateApplies is a temporary struct used for validating the fields of TemplateApplies.
+type tempTemplateApplies  struct {
     OrgId        *uuid.UUID  `json:"org_id,omitempty"`
     SiteIds      []uuid.UUID `json:"site_ids,omitempty"`
     SitegroupIds []uuid.UUID `json:"sitegroup_ids,omitempty"`

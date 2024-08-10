@@ -63,7 +63,7 @@
     }
   ],
   "chassis_id": [
-    "chassis_id6"
+    "chassis_id2"
   ],
   "for_site": false
 }

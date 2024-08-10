@@ -19,8 +19,8 @@
 
 ```json
 {
-  "cochannel_neighbors": 248.02,
-  "density": 62.36,
+  "cochannel_neighbors": 110.94,
+  "density": 56.56,
   "interferences": {
     "149": {
       "radar": 0.3
@@ -29,8 +29,8 @@
       "radar": 0.2
     }
   },
-  "neighbors": 98.64,
-  "noise": 172.66
+  "neighbors": 217.56,
+  "noise": 202.26
 }
 ```
 

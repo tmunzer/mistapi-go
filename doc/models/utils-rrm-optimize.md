@@ -18,13 +18,13 @@
 ```json
 {
   "bands": [
-    "bands4",
-    "bands5",
-    "bands6"
+    "bands2"
   ],
   "txpower_only": false,
   "macs": [
-    "macs9"
+    "macs7",
+    "macs6",
+    "macs5"
   ]
 }
 ```

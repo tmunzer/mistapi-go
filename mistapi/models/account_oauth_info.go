@@ -67,7 +67,7 @@ func (a AccountOauthInfo) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountOauthInfo.
 // It customizes the JSON unmarshaling process for AccountOauthInfo objects.
 func (a *AccountOauthInfo) UnmarshalJSON(input []byte) error {
-    var temp accountOauthInfo
+    var temp tempAccountOauthInfo
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -89,8 +89,8 @@ func (a *AccountOauthInfo) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountOauthInfo is a temporary struct used for validating the fields of AccountOauthInfo.
-type accountOauthInfo  struct {
+// tempAccountOauthInfo is a temporary struct used for validating the fields of AccountOauthInfo.
+type tempAccountOauthInfo  struct {
     AccountId           *string  `json:"account_id,omitempty"`
     Company             *string  `json:"company,omitempty"`
     Error               *string  `json:"error,omitempty"`

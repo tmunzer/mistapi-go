@@ -25,6 +25,14 @@ version compliance score, major version for gateway, type
     "key0": {
       "major_count": 80,
       "major_version": "major_version0"
+    },
+    "key1": {
+      "major_count": 80,
+      "major_version": "major_version0"
+    },
+    "key2": {
+      "major_count": 80,
+      "major_version": "major_version0"
     }
   }
 }

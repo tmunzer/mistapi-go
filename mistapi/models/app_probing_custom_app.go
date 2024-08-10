@@ -63,7 +63,7 @@ func (a AppProbingCustomApp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AppProbingCustomApp.
 // It customizes the JSON unmarshaling process for AppProbingCustomApp objects.
 func (a *AppProbingCustomApp) UnmarshalJSON(input []byte) error {
-    var temp appProbingCustomApp
+    var temp tempAppProbingCustomApp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -85,8 +85,8 @@ func (a *AppProbingCustomApp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// appProbingCustomApp is a temporary struct used for validating the fields of AppProbingCustomApp.
-type appProbingCustomApp  struct {
+// tempAppProbingCustomApp is a temporary struct used for validating the fields of AppProbingCustomApp.
+type tempAppProbingCustomApp  struct {
     Address  *string                          `json:"address,omitempty"`
     AppType  *string                          `json:"app_type,omitempty"`
     Hostname []string                         `json:"hostname,omitempty"`

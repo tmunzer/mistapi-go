@@ -30,7 +30,7 @@ Initiate a Client Packet Capture
   "max_pkt_len": 128,
   "num_packets": 1000,
   "type": "client",
-  "ap_mac": "ap_mac2"
+  "ap_mac": "ap_mac0"
 }
 ```
 

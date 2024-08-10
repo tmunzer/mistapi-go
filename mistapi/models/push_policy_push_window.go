@@ -38,7 +38,7 @@ func (p PushPolicyPushWindow) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PushPolicyPushWindow.
 // It customizes the JSON unmarshaling process for PushPolicyPushWindow objects.
 func (p *PushPolicyPushWindow) UnmarshalJSON(input []byte) error {
-    var temp pushPolicyPushWindow
+    var temp tempPushPolicyPushWindow
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (p *PushPolicyPushWindow) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// pushPolicyPushWindow is a temporary struct used for validating the fields of PushPolicyPushWindow.
-type pushPolicyPushWindow  struct {
+// tempPushPolicyPushWindow is a temporary struct used for validating the fields of PushPolicyPushWindow.
+type tempPushPolicyPushWindow  struct {
     Enabled *bool  `json:"enabled,omitempty"`
     Hours   *Hours `json:"hours,omitempty"`
 }

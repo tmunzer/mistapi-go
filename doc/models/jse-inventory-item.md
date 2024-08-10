@@ -25,7 +25,7 @@
 | `Serial` | `*string` | Optional | serial Number of the inventory |
 | `ShippedTime` | `*float64` | Optional | Shipped date |
 | `Sku` | `*string` | Optional | serviceable device stock |
-| `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
+| `Type` | [`*models.JseInventoryItemTypeEnum`](../../doc/models/jse-inventory-item-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
 | `WarrantyEndTime` | `*int` | Optional | - |
 | `WarrantyStartTime` | `*int` | Optional | - |
 | `WarrantyType` | `*string` | Optional | - |
@@ -34,11 +34,11 @@
 
 ```json
 {
-  "contract_end_time": 250,
-  "contract_id": "contract_id0",
-  "contract_sku": "contract_sku0",
-  "contract_start_time": 68,
-  "contract_type": "contract_type0"
+  "contract_end_time": 120,
+  "contract_id": "contract_id4",
+  "contract_sku": "contract_sku4",
+  "contract_start_time": 182,
+  "contract_type": "contract_type4"
 }
 ```
 

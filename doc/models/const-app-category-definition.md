@@ -33,8 +33,7 @@
   },
   "key": "Images",
   "includes": [
-    "includes1",
-    "includes2"
+    "includes5"
   ]
 }
 ```

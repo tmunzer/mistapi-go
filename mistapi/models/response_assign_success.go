@@ -31,7 +31,7 @@ func (r ResponseAssignSuccess) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseAssignSuccess.
 // It customizes the JSON unmarshaling process for ResponseAssignSuccess objects.
 func (r *ResponseAssignSuccess) UnmarshalJSON(input []byte) error {
-    var temp responseAssignSuccess
+    var temp tempResponseAssignSuccess
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (r *ResponseAssignSuccess) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseAssignSuccess is a temporary struct used for validating the fields of ResponseAssignSuccess.
-type responseAssignSuccess  struct {
+// tempResponseAssignSuccess is a temporary struct used for validating the fields of ResponseAssignSuccess.
+type tempResponseAssignSuccess  struct {
     Success *[]string `json:"success"`
 }
 
-func (r *responseAssignSuccess) validate() error {
+func (r *tempResponseAssignSuccess) validate() error {
     var errs []string
     if r.Success == nil {
-        errs = append(errs, "required field `success` is missing for type `Response_Assign_Success`")
+        errs = append(errs, "required field `success` is missing for type `response_assign_success`")
     }
     if len(errs) == 0 {
         return nil

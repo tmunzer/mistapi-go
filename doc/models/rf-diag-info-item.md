@@ -33,21 +33,21 @@
 
 ```json
 {
-  "asset_id": "00000968-0000-0000-0000-000000000000",
-  "asset_name": "asset_name0",
-  "client_name": "client_name6",
-  "duration": 102,
-  "end_time": 86,
-  "frame_count": 12,
-  "id": "id2",
-  "mac": "mac6",
-  "map_id": "000000da-0000-0000-0000-000000000000",
-  "name": "name2",
-  "raw_events": "raw_events4",
+  "asset_id": "000016c0-0000-0000-0000-000000000000",
+  "asset_name": "asset_name6",
+  "client_name": "client_name8",
+  "duration": 142,
+  "end_time": 126,
+  "frame_count": 52,
+  "id": "id8",
+  "mac": "mac2",
+  "map_id": "000018de-0000-0000-0000-000000000000",
+  "name": "name8",
+  "raw_events": "raw_events0",
   "ready": false,
-  "start_time": 126,
+  "start_time": 166,
   "type": "sdkclient",
-  "url": "url6"
+  "url": "url2"
 }
 ```
 

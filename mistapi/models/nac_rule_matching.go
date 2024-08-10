@@ -7,7 +7,7 @@ import (
 
 // NacRuleMatching represents a NacRuleMatching struct.
 type NacRuleMatching struct {
-    // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `psk`
+    // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
     AuthType             *NacRuleMatchingAuthTypeEnum  `json:"auth_type,omitempty"`
     Nactags              []string                      `json:"nactags,omitempty"`
     PortTypes            []NacRuleMatchingPortTypeEnum `json:"port_types,omitempty"`
@@ -56,7 +56,7 @@ func (n NacRuleMatching) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NacRuleMatching.
 // It customizes the JSON unmarshaling process for NacRuleMatching objects.
 func (n *NacRuleMatching) UnmarshalJSON(input []byte) error {
-    var temp nacRuleMatching
+    var temp tempNacRuleMatching
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (n *NacRuleMatching) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// nacRuleMatching is a temporary struct used for validating the fields of NacRuleMatching.
-type nacRuleMatching  struct {
+// tempNacRuleMatching is a temporary struct used for validating the fields of NacRuleMatching.
+type tempNacRuleMatching  struct {
     AuthType     *NacRuleMatchingAuthTypeEnum  `json:"auth_type,omitempty"`
     Nactags      []string                      `json:"nactags,omitempty"`
     PortTypes    []NacRuleMatchingPortTypeEnum `json:"port_types,omitempty"`

@@ -41,7 +41,7 @@ func (r ResponseSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSearch.
 // It customizes the JSON unmarshaling process for ResponseSearch objects.
 func (r *ResponseSearch) UnmarshalJSON(input []byte) error {
-    var temp responseSearch
+    var temp tempResponseSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,8 +64,8 @@ func (r *ResponseSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSearch is a temporary struct used for validating the fields of ResponseSearch.
-type responseSearch  struct {
+// tempResponseSearch is a temporary struct used for validating the fields of ResponseSearch.
+type tempResponseSearch  struct {
     Limit   *int                  `json:"limit"`
     Next    *string               `json:"next,omitempty"`
     Page    *int                  `json:"page"`
@@ -73,19 +73,19 @@ type responseSearch  struct {
     Total   *int                  `json:"total"`
 }
 
-func (r *responseSearch) validate() error {
+func (r *tempResponseSearch) validate() error {
     var errs []string
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_search`")
     }
     if r.Page == nil {
-        errs = append(errs, "required field `page` is missing for type `Response_Search`")
+        errs = append(errs, "required field `page` is missing for type `response_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_search`")
     }
     if len(errs) == 0 {
         return nil

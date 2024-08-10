@@ -39,14 +39,15 @@ MxTunnel
   "protocol": "udp",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "anchor_mxtunnel_ids": [
-    "00000b0c-0000-0000-0000-000000000000"
+    "00000338-0000-0000-0000-000000000000",
+    "00000339-0000-0000-0000-000000000000"
   ],
   "auto_preemption": {
     "day_of_week": "mon",
     "enabled": false,
     "time_of_day": "time_of_day4"
   },
-  "created_time": 245.94,
+  "created_time": 69.9,
   "for_site": false
 }
 ```

@@ -38,7 +38,7 @@ func (s SiteSettingConfigPushPolicy) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingConfigPushPolicy.
 // It customizes the JSON unmarshaling process for SiteSettingConfigPushPolicy objects.
 func (s *SiteSettingConfigPushPolicy) UnmarshalJSON(input []byte) error {
-    var temp siteSettingConfigPushPolicy
+    var temp tempSiteSettingConfigPushPolicy
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (s *SiteSettingConfigPushPolicy) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingConfigPushPolicy is a temporary struct used for validating the fields of SiteSettingConfigPushPolicy.
-type siteSettingConfigPushPolicy  struct {
+// tempSiteSettingConfigPushPolicy is a temporary struct used for validating the fields of SiteSettingConfigPushPolicy.
+type tempSiteSettingConfigPushPolicy  struct {
     NoPush     *bool                 `json:"no_push,omitempty"`
     PushWindow *PushPolicyPushWindow `json:"push_window,omitempty"`
 }

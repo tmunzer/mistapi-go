@@ -38,7 +38,7 @@ func (w WxlanTunnelIpsec) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WxlanTunnelIpsec.
 // It customizes the JSON unmarshaling process for WxlanTunnelIpsec objects.
 func (w *WxlanTunnelIpsec) UnmarshalJSON(input []byte) error {
-    var temp wxlanTunnelIpsec
+    var temp tempWxlanTunnelIpsec
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,16 +58,16 @@ func (w *WxlanTunnelIpsec) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wxlanTunnelIpsec is a temporary struct used for validating the fields of WxlanTunnelIpsec.
-type wxlanTunnelIpsec  struct {
+// tempWxlanTunnelIpsec is a temporary struct used for validating the fields of WxlanTunnelIpsec.
+type tempWxlanTunnelIpsec  struct {
     Enabled *bool   `json:"enabled,omitempty"`
     Psk     *string `json:"psk"`
 }
 
-func (w *wxlanTunnelIpsec) validate() error {
+func (w *tempWxlanTunnelIpsec) validate() error {
     var errs []string
     if w.Psk == nil {
-        errs = append(errs, "required field `psk` is missing for type `Wxlan_Tunnel_Ipsec`")
+        errs = append(errs, "required field `psk` is missing for type `wxlan_tunnel_ipsec`")
     }
     if len(errs) == 0 {
         return nil

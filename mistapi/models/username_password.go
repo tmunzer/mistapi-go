@@ -35,7 +35,7 @@ func (u UsernamePassword) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UsernamePassword.
 // It customizes the JSON unmarshaling process for UsernamePassword objects.
 func (u *UsernamePassword) UnmarshalJSON(input []byte) error {
-    var temp usernamePassword
+    var temp tempUsernamePassword
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (u *UsernamePassword) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// usernamePassword is a temporary struct used for validating the fields of UsernamePassword.
-type usernamePassword  struct {
+// tempUsernamePassword is a temporary struct used for validating the fields of UsernamePassword.
+type tempUsernamePassword  struct {
     Password *string `json:"password,omitempty"`
     Username *string `json:"username,omitempty"`
 }

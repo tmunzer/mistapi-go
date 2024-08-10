@@ -34,7 +34,7 @@ func (w WebhookPing) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookPing.
 // It customizes the JSON unmarshaling process for WebhookPing objects.
 func (w *WebhookPing) UnmarshalJSON(input []byte) error {
-    var temp webhookPing
+    var temp tempWebhookPing
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,19 +54,19 @@ func (w *WebhookPing) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookPing is a temporary struct used for validating the fields of WebhookPing.
-type webhookPing  struct {
+// tempWebhookPing is a temporary struct used for validating the fields of WebhookPing.
+type tempWebhookPing  struct {
     Events *[]WebhookPingEvent `json:"events"`
     Topic  *string             `json:"topic"`
 }
 
-func (w *webhookPing) validate() error {
+func (w *tempWebhookPing) validate() error {
     var errs []string
     if w.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Webhook_Ping`")
+        errs = append(errs, "required field `events` is missing for type `webhook_ping`")
     }
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Ping`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_ping`")
     }
     if len(errs) == 0 {
         return nil

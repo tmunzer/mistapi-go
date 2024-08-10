@@ -32,19 +32,17 @@ Property key is the interface name
 
 ```json
 {
-  "address_mode": "address_mode8",
+  "address_mode": "address_mode6",
   "ips": [
-    "ips0",
-    "ips1",
-    "ips2"
+    "ips8",
+    "ips9"
   ],
   "nat_addresses": [
-    "nat_addresses9",
-    "nat_addresses0",
-    "nat_addresses1"
+    "nat_addresses7",
+    "nat_addresses8"
   ],
-  "network_name": "network_name4",
-  "port_id": "port_id6"
+  "network_name": "network_name2",
+  "port_id": "port_id4"
 }
 ```
 

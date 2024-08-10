@@ -45,7 +45,7 @@ type PskPortal struct {
     ThumbnailUrl                 *string                   `json:"thumbnail_url,omitempty"`
     // for personal psk portal. enum: `admin`, `byod`
     Type                         *PskPortalTypeEnum        `json:"type,omitempty"`
-    VlanId                       *PskPortalVlanId          `json:"vlan_id,omitempty"`
+    VlanId                       *VlanIdWithVariable       `json:"vlan_id,omitempty"`
     AdditionalProperties         map[string]any            `json:"_"`
 }
 
@@ -135,7 +135,7 @@ func (p PskPortal) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PskPortal.
 // It customizes the JSON unmarshaling process for PskPortal objects.
 func (p *PskPortal) UnmarshalJSON(input []byte) error {
-    var temp pskPortal
+    var temp tempPskPortal
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -177,8 +177,8 @@ func (p *PskPortal) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// pskPortal is a temporary struct used for validating the fields of PskPortal.
-type pskPortal  struct {
+// tempPskPortal is a temporary struct used for validating the fields of PskPortal.
+type tempPskPortal  struct {
     Auth                         *PskPortalAuthEnum        `json:"auth,omitempty"`
     BgImageUrl                   *string                   `json:"bg_image_url,omitempty"`
     CleanupPsk                   *bool                     `json:"cleanup_psk,omitempty"`
@@ -202,16 +202,16 @@ type pskPortal  struct {
     TemplateUrl                  *string                   `json:"template_url,omitempty"`
     ThumbnailUrl                 *string                   `json:"thumbnail_url,omitempty"`
     Type                         *PskPortalTypeEnum        `json:"type,omitempty"`
-    VlanId                       *PskPortalVlanId          `json:"vlan_id,omitempty"`
+    VlanId                       *VlanIdWithVariable       `json:"vlan_id,omitempty"`
 }
 
-func (p *pskPortal) validate() error {
+func (p *tempPskPortal) validate() error {
     var errs []string
     if p.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Psk_Portal`")
+        errs = append(errs, "required field `name` is missing for type `psk_portal`")
     }
     if p.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Psk_Portal`")
+        errs = append(errs, "required field `ssid` is missing for type `psk_portal`")
     }
     if len(errs) == 0 {
         return nil

@@ -16,8 +16,8 @@
 
 ```json
 {
-  "count": 132,
-  "type": "type6"
+  "count": 2,
+  "type": "type2"
 }
 ```
 

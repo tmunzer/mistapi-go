@@ -56,7 +56,7 @@ func (r ResponseUpgradeOrgDevices) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseUpgradeOrgDevices.
 // It customizes the JSON unmarshaling process for ResponseUpgradeOrgDevices objects.
 func (r *ResponseUpgradeOrgDevices) UnmarshalJSON(input []byte) error {
-    var temp responseUpgradeOrgDevices
+    var temp tempResponseUpgradeOrgDevices
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (r *ResponseUpgradeOrgDevices) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseUpgradeOrgDevices is a temporary struct used for validating the fields of ResponseUpgradeOrgDevices.
-type responseUpgradeOrgDevices  struct {
+// tempResponseUpgradeOrgDevices is a temporary struct used for validating the fields of ResponseUpgradeOrgDevices.
+type tempResponseUpgradeOrgDevices  struct {
     EnableP2p     *bool                      `json:"enable_p2p,omitempty"`
     Force         *bool                      `json:"force,omitempty"`
     Id            *uuid.UUID                 `json:"id,omitempty"`

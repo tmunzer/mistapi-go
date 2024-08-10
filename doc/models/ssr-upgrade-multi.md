@@ -22,12 +22,13 @@
 {
   "channel": "stable",
   "device_ids": [
-    "000023c3-0000-0000-0000-000000000000"
+    "000005c7-0000-0000-0000-000000000000",
+    "000005c8-0000-0000-0000-000000000000"
   ],
   "strategy": "big_bang",
-  "reboot_at": 122,
-  "start_time": 192,
-  "version": "version2"
+  "reboot_at": 78,
+  "start_time": 148,
+  "version": "version6"
 }
 ```
 

@@ -32,7 +32,7 @@ func (s SiteSettingApPortConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingApPortConfig.
 // It customizes the JSON unmarshaling process for SiteSettingApPortConfig objects.
 func (s *SiteSettingApPortConfig) UnmarshalJSON(input []byte) error {
-    var temp siteSettingApPortConfig
+    var temp tempSiteSettingApPortConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (s *SiteSettingApPortConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingApPortConfig is a temporary struct used for validating the fields of SiteSettingApPortConfig.
-type siteSettingApPortConfig  struct {
+// tempSiteSettingApPortConfig is a temporary struct used for validating the fields of SiteSettingApPortConfig.
+type tempSiteSettingApPortConfig  struct {
     ModelSpecific map[string]ApPortConfig `json:"model_specific,omitempty"`
 }

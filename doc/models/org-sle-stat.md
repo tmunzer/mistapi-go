@@ -16,7 +16,7 @@
 
 ```json
 {
-  "path": "path2",
+  "path": "path6",
   "user_minutes": {
     "ok": 13.84,
     "total": 12.38

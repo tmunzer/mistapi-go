@@ -57,7 +57,7 @@ func (c CaptureMxedge) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureMxedge.
 // It customizes the JSON unmarshaling process for CaptureMxedge objects.
 func (c *CaptureMxedge) UnmarshalJSON(input []byte) error {
-    var temp captureMxedge
+    var temp tempCaptureMxedge
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -81,8 +81,8 @@ func (c *CaptureMxedge) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureMxedge is a temporary struct used for validating the fields of CaptureMxedge.
-type captureMxedge  struct {
+// tempCaptureMxedge is a temporary struct used for validating the fields of CaptureMxedge.
+type tempCaptureMxedge  struct {
     Duration   *int                            `json:"duration,omitempty"`
     Format     *CaptureMxedgeFormatEnum        `json:"format,omitempty"`
     MaxPktLen  *int                            `json:"max_pkt_len,omitempty"`
@@ -91,10 +91,10 @@ type captureMxedge  struct {
     Type       *string                         `json:"type"`
 }
 
-func (c *captureMxedge) validate() error {
+func (c *tempCaptureMxedge) validate() error {
     var errs []string
     if c.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Capture_Mxedge`")
+        errs = append(errs, "required field `type` is missing for type `capture_mxedge`")
     }
     if len(errs) == 0 {
         return nil

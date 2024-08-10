@@ -23,7 +23,8 @@
 | `RadiusGroup` | `*string` | Optional | if `type`==`radius_group` |
 | `RadiusVendorAttrs` | `[]string` | Optional | if `type`==`radius_vendor_attrs`, user can specify a list of one or more vendor-specific attributes in the field "radius_vendor_attrs".<br>It is the responsibility of the user to provide a syntactically correct string, otherwise it may not work as expected.<br>Note that it is allowed to have more than one radius_vendor_attrs in the result of a given rule. |
 | `SessionTimeout` | `*int` | Optional | if `type`==`session_timeout, in seconds |
-| `Type` | [`models.NacTagTypeEnum`](../../doc/models/nac-tag-type-enum.md) | Required | enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `session_timeout`, `vlan`<br>**Constraints**: *Minimum Length*: `1` |
+| `Type` | [`models.NacTagTypeEnum`](../../doc/models/nac-tag-type-enum.md) | Required | enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `session_timeout`, `username_attr`, `vlan`<br>**Constraints**: *Minimum Length*: `1` |
+| `UsernameAttr` | [`*models.NacTagUsernameAttrEnum`](../../doc/models/nac-tag-username-attr-enum.md) | Optional | - |
 | `Values` | `[]string` | Optional | if `type`==`match` |
 | `Vlan` | `*string` | Optional | if `type`==`vlan` |
 
@@ -38,7 +39,7 @@
     "2-vlan10"
   ],
   "match_all": false,
-  "name": "name8",
+  "name": "name4",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "radius_attrs": [
     "Idle-Timeout=600",
@@ -49,10 +50,10 @@
     "PaloAlto-Panorama-Admin-Role=administrator"
   ],
   "session_timeout": 86000,
-  "type": "radius_group",
-  "created_time": 67.68,
-  "gbp_tag": 206,
-  "id": "0000102a-0000-0000-0000-000000000000"
+  "type": "vlan",
+  "created_time": 105.64,
+  "gbp_tag": 162,
+  "id": "00001efe-0000-0000-0000-000000000000"
 }
 ```
 

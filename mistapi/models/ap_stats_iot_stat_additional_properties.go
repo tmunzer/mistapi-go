@@ -35,7 +35,7 @@ func (a ApStatsIotStatAdditionalProperties) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStatsIotStatAdditionalProperties.
 // It customizes the JSON unmarshaling process for ApStatsIotStatAdditionalProperties objects.
 func (a *ApStatsIotStatAdditionalProperties) UnmarshalJSON(input []byte) error {
-    var temp apStatsIotStatAdditionalProperties
+    var temp tempApStatsIotStatAdditionalProperties
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,7 +50,7 @@ func (a *ApStatsIotStatAdditionalProperties) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStatsIotStatAdditionalProperties is a temporary struct used for validating the fields of ApStatsIotStatAdditionalProperties.
-type apStatsIotStatAdditionalProperties  struct {
+// tempApStatsIotStatAdditionalProperties is a temporary struct used for validating the fields of ApStatsIotStatAdditionalProperties.
+type tempApStatsIotStatAdditionalProperties  struct {
     Value Optional[int] `json:"value"`
 }

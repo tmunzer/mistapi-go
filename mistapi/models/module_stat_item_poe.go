@@ -35,7 +35,7 @@ func (m ModuleStatItemPoe) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ModuleStatItemPoe.
 // It customizes the JSON unmarshaling process for ModuleStatItemPoe objects.
 func (m *ModuleStatItemPoe) UnmarshalJSON(input []byte) error {
-    var temp moduleStatItemPoe
+    var temp tempModuleStatItemPoe
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (m *ModuleStatItemPoe) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// moduleStatItemPoe is a temporary struct used for validating the fields of ModuleStatItemPoe.
-type moduleStatItemPoe  struct {
+// tempModuleStatItemPoe is a temporary struct used for validating the fields of ModuleStatItemPoe.
+type tempModuleStatItemPoe  struct {
     MaxPower  *float64 `json:"max_power,omitempty"`
     PowerDraw *float64 `json:"power_draw,omitempty"`
 }

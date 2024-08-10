@@ -32,7 +32,7 @@ func (o OrgSettingGatewayMgmtAppProbing) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingGatewayMgmtAppProbing.
 // It customizes the JSON unmarshaling process for OrgSettingGatewayMgmtAppProbing objects.
 func (o *OrgSettingGatewayMgmtAppProbing) UnmarshalJSON(input []byte) error {
-    var temp orgSettingGatewayMgmtAppProbing
+    var temp tempOrgSettingGatewayMgmtAppProbing
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (o *OrgSettingGatewayMgmtAppProbing) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingGatewayMgmtAppProbing is a temporary struct used for validating the fields of OrgSettingGatewayMgmtAppProbing.
-type orgSettingGatewayMgmtAppProbing  struct {
+// tempOrgSettingGatewayMgmtAppProbing is a temporary struct used for validating the fields of OrgSettingGatewayMgmtAppProbing.
+type tempOrgSettingGatewayMgmtAppProbing  struct {
     Apps []string `json:"apps,omitempty"`
 }

@@ -35,7 +35,7 @@ func (s SwitchStatsClientsStatsTotal) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchStatsClientsStatsTotal.
 // It customizes the JSON unmarshaling process for SwitchStatsClientsStatsTotal objects.
 func (s *SwitchStatsClientsStatsTotal) UnmarshalJSON(input []byte) error {
-    var temp switchStatsClientsStatsTotal
+    var temp tempSwitchStatsClientsStatsTotal
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *SwitchStatsClientsStatsTotal) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchStatsClientsStatsTotal is a temporary struct used for validating the fields of SwitchStatsClientsStatsTotal.
-type switchStatsClientsStatsTotal  struct {
+// tempSwitchStatsClientsStatsTotal is a temporary struct used for validating the fields of SwitchStatsClientsStatsTotal.
+type tempSwitchStatsClientsStatsTotal  struct {
     NumAps          []int `json:"num_aps,omitempty"`
     NumWiredClients *int  `json:"num_wired_clients,omitempty"`
 }

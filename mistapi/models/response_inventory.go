@@ -47,7 +47,7 @@ func (r ResponseInventory) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseInventory.
 // It customizes the JSON unmarshaling process for ResponseInventory objects.
 func (r *ResponseInventory) UnmarshalJSON(input []byte) error {
-    var temp responseInventory
+    var temp tempResponseInventory
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (r *ResponseInventory) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseInventory is a temporary struct used for validating the fields of ResponseInventory.
-type responseInventory  struct {
+// tempResponseInventory is a temporary struct used for validating the fields of ResponseInventory.
+type tempResponseInventory  struct {
     Added               []string                                    `json:"added,omitempty"`
     Duplicated          []string                                    `json:"duplicated,omitempty"`
     Error               []string                                    `json:"error,omitempty"`

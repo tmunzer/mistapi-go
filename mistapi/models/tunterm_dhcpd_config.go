@@ -41,7 +41,7 @@ func (t TuntermDhcpdConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TuntermDhcpdConfig.
 // It customizes the JSON unmarshaling process for TuntermDhcpdConfig objects.
 func (t *TuntermDhcpdConfig) UnmarshalJSON(input []byte) error {
-    var temp tuntermDhcpdConfig
+    var temp tempTuntermDhcpdConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (t *TuntermDhcpdConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tuntermDhcpdConfig is a temporary struct used for validating the fields of TuntermDhcpdConfig.
-type tuntermDhcpdConfig  struct {
+// tempTuntermDhcpdConfig is a temporary struct used for validating the fields of TuntermDhcpdConfig.
+type tempTuntermDhcpdConfig  struct {
     Enabled *bool                 `json:"enabled,omitempty"`
     Servers []string              `json:"servers,omitempty"`
     Type    *TuntermDhcpdTypeEnum `json:"type,omitempty"`

@@ -40,7 +40,7 @@ func (s SynthetictestRadiusServer) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SynthetictestRadiusServer.
 // It customizes the JSON unmarshaling process for SynthetictestRadiusServer objects.
 func (s *SynthetictestRadiusServer) UnmarshalJSON(input []byte) error {
-    var temp synthetictestRadiusServer
+    var temp tempSynthetictestRadiusServer
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,20 +61,20 @@ func (s *SynthetictestRadiusServer) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// synthetictestRadiusServer is a temporary struct used for validating the fields of SynthetictestRadiusServer.
-type synthetictestRadiusServer  struct {
+// tempSynthetictestRadiusServer is a temporary struct used for validating the fields of SynthetictestRadiusServer.
+type tempSynthetictestRadiusServer  struct {
     Password *string `json:"password"`
     Profile  *string `json:"profile,omitempty"`
     User     *string `json:"user"`
 }
 
-func (s *synthetictestRadiusServer) validate() error {
+func (s *tempSynthetictestRadiusServer) validate() error {
     var errs []string
     if s.Password == nil {
-        errs = append(errs, "required field `password` is missing for type `Synthetictest_Radius_Server`")
+        errs = append(errs, "required field `password` is missing for type `synthetictest_radius_server`")
     }
     if s.User == nil {
-        errs = append(errs, "required field `user` is missing for type `Synthetictest_Radius_Server`")
+        errs = append(errs, "required field `user` is missing for type `synthetictest_radius_server`")
     }
     if len(errs) == 0 {
         return nil

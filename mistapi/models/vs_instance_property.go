@@ -31,7 +31,7 @@ func (v VsInstanceProperty) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VsInstanceProperty.
 // It customizes the JSON unmarshaling process for VsInstanceProperty objects.
 func (v *VsInstanceProperty) UnmarshalJSON(input []byte) error {
-    var temp vsInstanceProperty
+    var temp tempVsInstanceProperty
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (v *VsInstanceProperty) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vsInstanceProperty is a temporary struct used for validating the fields of VsInstanceProperty.
-type vsInstanceProperty  struct {
+// tempVsInstanceProperty is a temporary struct used for validating the fields of VsInstanceProperty.
+type tempVsInstanceProperty  struct {
     Networks []string `json:"networks,omitempty"`
 }

@@ -107,7 +107,7 @@ func (a ApPortConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApPortConfig.
 // It customizes the JSON unmarshaling process for ApPortConfig objects.
 func (a *ApPortConfig) UnmarshalJSON(input []byte) error {
-    var temp apPortConfig
+    var temp tempApPortConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -137,8 +137,8 @@ func (a *ApPortConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apPortConfig is a temporary struct used for validating the fields of ApPortConfig.
-type apPortConfig  struct {
+// tempApPortConfig is a temporary struct used for validating the fields of ApPortConfig.
+type tempApPortConfig  struct {
     Disabled         *bool                            `json:"disabled,omitempty"`
     DynamicVlan      *ApPortConfigDynamicVlan         `json:"dynamic_vlan,omitempty"`
     EnableMacAuth    *bool                            `json:"enable_mac_auth,omitempty"`

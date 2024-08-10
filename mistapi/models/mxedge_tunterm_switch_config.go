@@ -6,9 +6,9 @@ import (
 
 // MxedgeTuntermSwitchConfig represents a MxedgeTuntermSwitchConfig struct.
 type MxedgeTuntermSwitchConfig struct {
-    PortVlanId           *int                               `json:"port_vlan_id,omitempty"`
-    VlanIds              []MxedgeTuntermSwitchConfigVlanIds `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any                     `json:"_"`
+    PortVlanId           *int                              `json:"port_vlan_id,omitempty"`
+    VlanIds              []MxedgeTuntermSwitchConfigVlanId `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]any                    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermSwitchConfig.
@@ -35,7 +35,7 @@ func (m MxedgeTuntermSwitchConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeTuntermSwitchConfig.
 // It customizes the JSON unmarshaling process for MxedgeTuntermSwitchConfig objects.
 func (m *MxedgeTuntermSwitchConfig) UnmarshalJSON(input []byte) error {
-    var temp mxedgeTuntermSwitchConfig
+    var temp tempMxedgeTuntermSwitchConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (m *MxedgeTuntermSwitchConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeTuntermSwitchConfig is a temporary struct used for validating the fields of MxedgeTuntermSwitchConfig.
-type mxedgeTuntermSwitchConfig  struct {
-    PortVlanId *int                               `json:"port_vlan_id,omitempty"`
-    VlanIds    []MxedgeTuntermSwitchConfigVlanIds `json:"vlan_ids,omitempty"`
+// tempMxedgeTuntermSwitchConfig is a temporary struct used for validating the fields of MxedgeTuntermSwitchConfig.
+type tempMxedgeTuntermSwitchConfig  struct {
+    PortVlanId *int                              `json:"port_vlan_id,omitempty"`
+    VlanIds    []MxedgeTuntermSwitchConfigVlanId `json:"vlan_ids,omitempty"`
 }

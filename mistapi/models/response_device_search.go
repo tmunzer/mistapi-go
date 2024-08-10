@@ -8,13 +8,13 @@ import (
 
 // ResponseDeviceSearch represents a ResponseDeviceSearch struct.
 type ResponseDeviceSearch struct {
-    End                  int                           `json:"end"`
-    Limit                int                           `json:"limit"`
-    Next                 *string                       `json:"next,omitempty"`
-    Results              []ResponseDeviceSearchResults `json:"results"`
-    Start                int                           `json:"start"`
-    Total                int                           `json:"total"`
-    AdditionalProperties map[string]any                `json:"_"`
+    End                  int                                 `json:"end"`
+    Limit                int                                 `json:"limit"`
+    Next                 *string                             `json:"next,omitempty"`
+    Results              []ResponseDeviceSearchResultsItems2 `json:"results"`
+    Start                int                                 `json:"start"`
+    Total                int                                 `json:"total"`
+    AdditionalProperties map[string]any                      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceSearch.
@@ -43,7 +43,7 @@ func (r ResponseDeviceSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseDeviceSearch.
 // It customizes the JSON unmarshaling process for ResponseDeviceSearch objects.
 func (r *ResponseDeviceSearch) UnmarshalJSON(input []byte) error {
-    var temp responseDeviceSearch
+    var temp tempResponseDeviceSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,32 +67,32 @@ func (r *ResponseDeviceSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseDeviceSearch is a temporary struct used for validating the fields of ResponseDeviceSearch.
-type responseDeviceSearch  struct {
-    End     *int                           `json:"end"`
-    Limit   *int                           `json:"limit"`
-    Next    *string                        `json:"next,omitempty"`
-    Results *[]ResponseDeviceSearchResults `json:"results"`
-    Start   *int                           `json:"start"`
-    Total   *int                           `json:"total"`
+// tempResponseDeviceSearch is a temporary struct used for validating the fields of ResponseDeviceSearch.
+type tempResponseDeviceSearch  struct {
+    End     *int                                 `json:"end"`
+    Limit   *int                                 `json:"limit"`
+    Next    *string                              `json:"next,omitempty"`
+    Results *[]ResponseDeviceSearchResultsItems2 `json:"results"`
+    Start   *int                                 `json:"start"`
+    Total   *int                                 `json:"total"`
 }
 
-func (r *responseDeviceSearch) validate() error {
+func (r *tempResponseDeviceSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Device_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_device_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Device_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_device_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Device_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_device_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Device_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_device_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Device_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_device_search`")
     }
     if len(errs) == 0 {
         return nil

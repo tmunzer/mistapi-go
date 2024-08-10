@@ -31,23 +31,22 @@ Org statistics
 
 ```json
 {
-  "alarmtemplate_id": "00000fca-0000-0000-0000-000000000000",
+  "alarmtemplate_id": "000009f4-0000-0000-0000-000000000000",
   "allow_mist": false,
-  "created_time": 116.02,
-  "id": "00000d2c-0000-0000-0000-000000000000",
-  "modified_time": 218.94,
-  "msp_id": "00000b28-0000-0000-0000-000000000000",
-  "name": "name2",
-  "num_devices": 90,
-  "num_devices_connected": 54,
-  "num_devices_disconnected": 194,
-  "num_inventory": 216,
-  "num_sites": 180,
+  "created_time": 45.08,
+  "id": "00000756-0000-0000-0000-000000000000",
+  "modified_time": 33.88,
+  "msp_id": "00000552-0000-0000-0000-000000000000",
+  "name": "name8",
+  "num_devices": 164,
+  "num_devices_connected": 236,
+  "num_devices_disconnected": 12,
+  "num_inventory": 142,
+  "num_sites": 254,
   "orggroup_ids": [
-    "00000f3e-0000-0000-0000-000000000000",
-    "00000f3f-0000-0000-0000-000000000000"
+    "00000968-0000-0000-0000-000000000000"
   ],
-  "session_expiry": 76,
+  "session_expiry": 2,
   "sle": [
     {
       "path": "path2",

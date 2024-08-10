@@ -67,7 +67,7 @@ func (a ApEslConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApEslConfig.
 // It customizes the JSON unmarshaling process for ApEslConfig objects.
 func (a *ApEslConfig) UnmarshalJSON(input []byte) error {
-    var temp apEslConfig
+    var temp tempApEslConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -89,8 +89,8 @@ func (a *ApEslConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apEslConfig is a temporary struct used for validating the fields of ApEslConfig.
-type apEslConfig  struct {
+// tempApEslConfig is a temporary struct used for validating the fields of ApEslConfig.
+type tempApEslConfig  struct {
     Cacert     *string        `json:"cacert,omitempty"`
     Channel    *int           `json:"channel,omitempty"`
     Enabled    *bool          `json:"enabled,omitempty"`

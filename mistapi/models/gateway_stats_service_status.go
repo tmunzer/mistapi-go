@@ -67,7 +67,7 @@ func (g GatewayStatsServiceStatus) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayStatsServiceStatus.
 // It customizes the JSON unmarshaling process for GatewayStatsServiceStatus objects.
 func (g *GatewayStatsServiceStatus) UnmarshalJSON(input []byte) error {
-    var temp gatewayStatsServiceStatus
+    var temp tempGatewayStatsServiceStatus
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -91,8 +91,8 @@ func (g *GatewayStatsServiceStatus) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayStatsServiceStatus is a temporary struct used for validating the fields of GatewayStatsServiceStatus.
-type gatewayStatsServiceStatus  struct {
+// tempGatewayStatsServiceStatus is a temporary struct used for validating the fields of GatewayStatsServiceStatus.
+type tempGatewayStatsServiceStatus  struct {
     AppidInstallResult    *string `json:"appid_install_result,omitempty"`
     AppidInstallTimestamp *string `json:"appid_install_timestamp,omitempty"`
     AppidStatus           *string `json:"appid_status,omitempty"`

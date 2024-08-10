@@ -31,7 +31,7 @@ func (t TwoFactorString) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TwoFactorString.
 // It customizes the JSON unmarshaling process for TwoFactorString objects.
 func (t *TwoFactorString) UnmarshalJSON(input []byte) error {
-    var temp twoFactorString
+    var temp tempTwoFactorString
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (t *TwoFactorString) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// twoFactorString is a temporary struct used for validating the fields of TwoFactorString.
-type twoFactorString  struct {
+// tempTwoFactorString is a temporary struct used for validating the fields of TwoFactorString.
+type tempTwoFactorString  struct {
     TwoFactor *string `json:"two_factor"`
 }
 
-func (t *twoFactorString) validate() error {
+func (t *tempTwoFactorString) validate() error {
     var errs []string
     if t.TwoFactor == nil {
-        errs = append(errs, "required field `two_factor` is missing for type `Two_Factor_String`")
+        errs = append(errs, "required field `two_factor` is missing for type `two_factor_string`")
     }
     if len(errs) == 0 {
         return nil

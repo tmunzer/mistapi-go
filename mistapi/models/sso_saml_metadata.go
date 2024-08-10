@@ -37,7 +37,7 @@ func (s SsoSamlMetadata) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SsoSamlMetadata.
 // It customizes the JSON unmarshaling process for SsoSamlMetadata objects.
 func (s *SsoSamlMetadata) UnmarshalJSON(input []byte) error {
-    var temp ssoSamlMetadata
+    var temp tempSsoSamlMetadata
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,27 +59,27 @@ func (s *SsoSamlMetadata) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ssoSamlMetadata is a temporary struct used for validating the fields of SsoSamlMetadata.
-type ssoSamlMetadata  struct {
+// tempSsoSamlMetadata is a temporary struct used for validating the fields of SsoSamlMetadata.
+type tempSsoSamlMetadata  struct {
     AcsUrl      *string `json:"acs_url"`
     EntityId    *string `json:"entity_id"`
     LogoutUrl   *string `json:"logout_url"`
     MetadataXml *string `json:"metadata_xml"`
 }
 
-func (s *ssoSamlMetadata) validate() error {
+func (s *tempSsoSamlMetadata) validate() error {
     var errs []string
     if s.AcsUrl == nil {
-        errs = append(errs, "required field `acs_url` is missing for type `Sso_Saml_Metadata`")
+        errs = append(errs, "required field `acs_url` is missing for type `sso_saml_metadata`")
     }
     if s.EntityId == nil {
-        errs = append(errs, "required field `entity_id` is missing for type `Sso_Saml_Metadata`")
+        errs = append(errs, "required field `entity_id` is missing for type `sso_saml_metadata`")
     }
     if s.LogoutUrl == nil {
-        errs = append(errs, "required field `logout_url` is missing for type `Sso_Saml_Metadata`")
+        errs = append(errs, "required field `logout_url` is missing for type `sso_saml_metadata`")
     }
     if s.MetadataXml == nil {
-        errs = append(errs, "required field `metadata_xml` is missing for type `Sso_Saml_Metadata`")
+        errs = append(errs, "required field `metadata_xml` is missing for type `sso_saml_metadata`")
     }
     if len(errs) == 0 {
         return nil

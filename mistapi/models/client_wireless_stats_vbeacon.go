@@ -36,7 +36,7 @@ func (c ClientWirelessStatsVbeacon) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClientWirelessStatsVbeacon.
 // It customizes the JSON unmarshaling process for ClientWirelessStatsVbeacon objects.
 func (c *ClientWirelessStatsVbeacon) UnmarshalJSON(input []byte) error {
-    var temp clientWirelessStatsVbeacon
+    var temp tempClientWirelessStatsVbeacon
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (c *ClientWirelessStatsVbeacon) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// clientWirelessStatsVbeacon is a temporary struct used for validating the fields of ClientWirelessStatsVbeacon.
-type clientWirelessStatsVbeacon  struct {
+// tempClientWirelessStatsVbeacon is a temporary struct used for validating the fields of ClientWirelessStatsVbeacon.
+type tempClientWirelessStatsVbeacon  struct {
     Id    *uuid.UUID `json:"id,omitempty"`
     Since *int       `json:"since,omitempty"`
 }

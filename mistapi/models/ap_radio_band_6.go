@@ -110,7 +110,7 @@ func (a ApRadioBand6) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApRadioBand6.
 // It customizes the JSON unmarshaling process for ApRadioBand6 objects.
 func (a *ApRadioBand6) UnmarshalJSON(input []byte) error {
-    var temp apRadioBand6
+    var temp tempApRadioBand6
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -136,8 +136,8 @@ func (a *ApRadioBand6) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apRadioBand6 is a temporary struct used for validating the fields of ApRadioBand6.
-type apRadioBand6  struct {
+// tempApRadioBand6 is a temporary struct used for validating the fields of ApRadioBand6.
+type tempApRadioBand6  struct {
     AllowRrmDisable *bool                     `json:"allow_rrm_disable,omitempty"`
     AntGain         Optional[int]             `json:"ant_gain"`
     AntennaMode     *RadioBandAntennaModeEnum `json:"antenna_mode,omitempty"`

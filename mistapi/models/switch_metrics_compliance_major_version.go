@@ -43,7 +43,7 @@ func (s SwitchMetricsComplianceMajorVersion) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchMetricsComplianceMajorVersion.
 // It customizes the JSON unmarshaling process for SwitchMetricsComplianceMajorVersion objects.
 func (s *SwitchMetricsComplianceMajorVersion) UnmarshalJSON(input []byte) error {
-    var temp switchMetricsComplianceMajorVersion
+    var temp tempSwitchMetricsComplianceMajorVersion
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (s *SwitchMetricsComplianceMajorVersion) UnmarshalJSON(input []byte) error 
     return nil
 }
 
-// switchMetricsComplianceMajorVersion is a temporary struct used for validating the fields of SwitchMetricsComplianceMajorVersion.
-type switchMetricsComplianceMajorVersion  struct {
+// tempSwitchMetricsComplianceMajorVersion is a temporary struct used for validating the fields of SwitchMetricsComplianceMajorVersion.
+type tempSwitchMetricsComplianceMajorVersion  struct {
     MajorCount   *int     `json:"major_count,omitempty"`
     MajorVersion *string  `json:"major_version,omitempty"`
     Model        *string  `json:"model,omitempty"`

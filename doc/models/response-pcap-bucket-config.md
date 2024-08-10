@@ -16,8 +16,8 @@
 
 ```json
 {
-  "bucket": "bucket0",
-  "detail": "detail8"
+  "bucket": "bucket6",
+  "detail": "detail2"
 }
 ```
 

@@ -41,7 +41,7 @@ func (r ResponseMxedgeUpgrade) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseMxedgeUpgrade.
 // It customizes the JSON unmarshaling process for ResponseMxedgeUpgrade objects.
 func (r *ResponseMxedgeUpgrade) UnmarshalJSON(input []byte) error {
-    var temp responseMxedgeUpgrade
+    var temp tempResponseMxedgeUpgrade
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponseMxedgeUpgrade) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseMxedgeUpgrade is a temporary struct used for validating the fields of ResponseMxedgeUpgrade.
-type responseMxedgeUpgrade  struct {
+// tempResponseMxedgeUpgrade is a temporary struct used for validating the fields of ResponseMxedgeUpgrade.
+type tempResponseMxedgeUpgrade  struct {
     Channel  *string                      `json:"channel"`
     Counts   *MxedgeUpgradeResponseCounts `json:"counts"`
     Id       *string                      `json:"id"`
@@ -75,25 +75,25 @@ type responseMxedgeUpgrade  struct {
     Versions *interface{}                 `json:"versions"`
 }
 
-func (r *responseMxedgeUpgrade) validate() error {
+func (r *tempResponseMxedgeUpgrade) validate() error {
     var errs []string
     if r.Channel == nil {
-        errs = append(errs, "required field `channel` is missing for type `Response_Mxedge_Upgrade`")
+        errs = append(errs, "required field `channel` is missing for type `response_mxedge_upgrade`")
     }
     if r.Counts == nil {
-        errs = append(errs, "required field `counts` is missing for type `Response_Mxedge_Upgrade`")
+        errs = append(errs, "required field `counts` is missing for type `response_mxedge_upgrade`")
     }
     if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Response_Mxedge_Upgrade`")
+        errs = append(errs, "required field `id` is missing for type `response_mxedge_upgrade`")
     }
     if r.Status == nil {
-        errs = append(errs, "required field `status` is missing for type `Response_Mxedge_Upgrade`")
+        errs = append(errs, "required field `status` is missing for type `response_mxedge_upgrade`")
     }
     if r.Strategy == nil {
-        errs = append(errs, "required field `strategy` is missing for type `Response_Mxedge_Upgrade`")
+        errs = append(errs, "required field `strategy` is missing for type `response_mxedge_upgrade`")
     }
     if r.Versions == nil {
-        errs = append(errs, "required field `versions` is missing for type `Response_Mxedge_Upgrade`")
+        errs = append(errs, "required field `versions` is missing for type `response_mxedge_upgrade`")
     }
     if len(errs) == 0 {
         return nil

@@ -31,7 +31,7 @@ func (r ResponseSsoFailureSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSsoFailureSearch.
 // It customizes the JSON unmarshaling process for ResponseSsoFailureSearch objects.
 func (r *ResponseSsoFailureSearch) UnmarshalJSON(input []byte) error {
-    var temp responseSsoFailureSearch
+    var temp tempResponseSsoFailureSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (r *ResponseSsoFailureSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSsoFailureSearch is a temporary struct used for validating the fields of ResponseSsoFailureSearch.
-type responseSsoFailureSearch  struct {
+// tempResponseSsoFailureSearch is a temporary struct used for validating the fields of ResponseSsoFailureSearch.
+type tempResponseSsoFailureSearch  struct {
     Results *[]ResponseSsoFailureSearchItem `json:"results"`
 }
 
-func (r *responseSsoFailureSearch) validate() error {
+func (r *tempResponseSsoFailureSearch) validate() error {
     var errs []string
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Sso_Failure_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_sso_failure_search`")
     }
     if len(errs) == 0 {
         return nil

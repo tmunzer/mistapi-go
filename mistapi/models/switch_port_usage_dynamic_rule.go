@@ -53,7 +53,7 @@ func (s SwitchPortUsageDynamicRule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchPortUsageDynamicRule.
 // It customizes the JSON unmarshaling process for SwitchPortUsageDynamicRule objects.
 func (s *SwitchPortUsageDynamicRule) UnmarshalJSON(input []byte) error {
-    var temp switchPortUsageDynamicRule
+    var temp tempSwitchPortUsageDynamicRule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (s *SwitchPortUsageDynamicRule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchPortUsageDynamicRule is a temporary struct used for validating the fields of SwitchPortUsageDynamicRule.
-type switchPortUsageDynamicRule  struct {
+// tempSwitchPortUsageDynamicRule is a temporary struct used for validating the fields of SwitchPortUsageDynamicRule.
+type tempSwitchPortUsageDynamicRule  struct {
     Equals     *string                            `json:"equals,omitempty"`
     EqualsAny  []string                           `json:"equals_any,omitempty"`
     Expression *string                            `json:"expression,omitempty"`
@@ -85,10 +85,10 @@ type switchPortUsageDynamicRule  struct {
     Usage      *string                            `json:"usage,omitempty"`
 }
 
-func (s *switchPortUsageDynamicRule) validate() error {
+func (s *tempSwitchPortUsageDynamicRule) validate() error {
     var errs []string
     if s.Src == nil {
-        errs = append(errs, "required field `src` is missing for type `Switch_Port_Usage_Dynamic_Rule`")
+        errs = append(errs, "required field `src` is missing for type `switch_port_usage_dynamic_rule`")
     }
     if len(errs) == 0 {
         return nil

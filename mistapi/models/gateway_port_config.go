@@ -197,7 +197,7 @@ func (g GatewayPortConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayPortConfig.
 // It customizes the JSON unmarshaling process for GatewayPortConfig objects.
 func (g *GatewayPortConfig) UnmarshalJSON(input []byte) error {
-    var temp gatewayPortConfig
+    var temp tempGatewayPortConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -250,8 +250,8 @@ func (g *GatewayPortConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayPortConfig is a temporary struct used for validating the fields of GatewayPortConfig.
-type gatewayPortConfig  struct {
+// tempGatewayPortConfig is a temporary struct used for validating the fields of GatewayPortConfig.
+type tempGatewayPortConfig  struct {
     Description     *string                       `json:"description,omitempty"`
     DisableAutoneg  *bool                         `json:"disable_autoneg,omitempty"`
     Disabled        *bool                         `json:"disabled,omitempty"`
@@ -289,10 +289,10 @@ type gatewayPortConfig  struct {
     WanType         *GatewayPortWanTypeEnum       `json:"wan_type,omitempty"`
 }
 
-func (g *gatewayPortConfig) validate() error {
+func (g *tempGatewayPortConfig) validate() error {
     var errs []string
     if g.Usage == nil {
-        errs = append(errs, "required field `usage` is missing for type `Gateway_Port_Config`")
+        errs = append(errs, "required field `usage` is missing for type `gateway_port_config`")
     }
     if len(errs) == 0 {
         return nil

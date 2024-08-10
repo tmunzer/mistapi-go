@@ -248,7 +248,7 @@ func (s SwitchPortStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchPortStats.
 // It customizes the JSON unmarshaling process for SwitchPortStats objects.
 func (s *SwitchPortStats) UnmarshalJSON(input []byte) error {
-    var temp switchPortStats
+    var temp tempSwitchPortStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -312,8 +312,8 @@ func (s *SwitchPortStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchPortStats is a temporary struct used for validating the fields of SwitchPortStats.
-type switchPortStats  struct {
+// tempSwitchPortStats is a temporary struct used for validating the fields of SwitchPortStats.
+type tempSwitchPortStats  struct {
     Active             *bool                         `json:"active,omitempty"`
     AuthState          *SwitchPortStatsAuthStateEnum `json:"auth_state,omitempty"`
     ForSite            *bool                         `json:"for_site,omitempty"`
@@ -362,37 +362,37 @@ type switchPortStats  struct {
     XcvrSerial         *string                       `json:"xcvr_serial,omitempty"`
 }
 
-func (s *switchPortStats) validate() error {
+func (s *tempSwitchPortStats) validate() error {
     var errs []string
     if s.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Switch_Port_Stats`")
+        errs = append(errs, "required field `mac` is missing for type `switch_port_stats`")
     }
     if s.NeighborMac == nil {
-        errs = append(errs, "required field `neighbor_mac` is missing for type `Switch_Port_Stats`")
+        errs = append(errs, "required field `neighbor_mac` is missing for type `switch_port_stats`")
     }
     if s.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Switch_Port_Stats`")
+        errs = append(errs, "required field `org_id` is missing for type `switch_port_stats`")
     }
     if s.PortId == nil {
-        errs = append(errs, "required field `port_id` is missing for type `Switch_Port_Stats`")
+        errs = append(errs, "required field `port_id` is missing for type `switch_port_stats`")
     }
     if s.PortMac == nil {
-        errs = append(errs, "required field `port_mac` is missing for type `Switch_Port_Stats`")
+        errs = append(errs, "required field `port_mac` is missing for type `switch_port_stats`")
     }
     if s.RxBytes == nil {
-        errs = append(errs, "required field `rx_bytes` is missing for type `Switch_Port_Stats`")
+        errs = append(errs, "required field `rx_bytes` is missing for type `switch_port_stats`")
     }
     if s.RxPkts == nil {
-        errs = append(errs, "required field `rx_pkts` is missing for type `Switch_Port_Stats`")
+        errs = append(errs, "required field `rx_pkts` is missing for type `switch_port_stats`")
     }
     if s.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Switch_Port_Stats`")
+        errs = append(errs, "required field `site_id` is missing for type `switch_port_stats`")
     }
     if s.TxBytes == nil {
-        errs = append(errs, "required field `tx_bytes` is missing for type `Switch_Port_Stats`")
+        errs = append(errs, "required field `tx_bytes` is missing for type `switch_port_stats`")
     }
     if s.TxPkts == nil {
-        errs = append(errs, "required field `tx_pkts` is missing for type `Switch_Port_Stats`")
+        errs = append(errs, "required field `tx_pkts` is missing for type `switch_port_stats`")
     }
     if len(errs) == 0 {
         return nil

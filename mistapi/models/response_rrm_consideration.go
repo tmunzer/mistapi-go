@@ -31,7 +31,7 @@ func (r ResponseRrmConsideration) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseRrmConsideration.
 // It customizes the JSON unmarshaling process for ResponseRrmConsideration objects.
 func (r *ResponseRrmConsideration) UnmarshalJSON(input []byte) error {
-    var temp responseRrmConsideration
+    var temp tempResponseRrmConsideration
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (r *ResponseRrmConsideration) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseRrmConsideration is a temporary struct used for validating the fields of ResponseRrmConsideration.
-type responseRrmConsideration  struct {
+// tempResponseRrmConsideration is a temporary struct used for validating the fields of ResponseRrmConsideration.
+type tempResponseRrmConsideration  struct {
     Results *[]RrmConsideration `json:"results"`
 }
 
-func (r *responseRrmConsideration) validate() error {
+func (r *tempResponseRrmConsideration) validate() error {
     var errs []string
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Rrm_Consideration`")
+        errs = append(errs, "required field `results` is missing for type `response_rrm_consideration`")
     }
     if len(errs) == 0 {
         return nil

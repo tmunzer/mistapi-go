@@ -51,7 +51,7 @@ func (r RoutingPolicyTermMatchingVpnPathSla) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RoutingPolicyTermMatchingVpnPathSla.
 // It customizes the JSON unmarshaling process for RoutingPolicyTermMatchingVpnPathSla objects.
 func (r *RoutingPolicyTermMatchingVpnPathSla) UnmarshalJSON(input []byte) error {
-    var temp routingPolicyTermMatchingVpnPathSla
+    var temp tempRoutingPolicyTermMatchingVpnPathSla
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -68,8 +68,8 @@ func (r *RoutingPolicyTermMatchingVpnPathSla) UnmarshalJSON(input []byte) error 
     return nil
 }
 
-// routingPolicyTermMatchingVpnPathSla is a temporary struct used for validating the fields of RoutingPolicyTermMatchingVpnPathSla.
-type routingPolicyTermMatchingVpnPathSla  struct {
+// tempRoutingPolicyTermMatchingVpnPathSla is a temporary struct used for validating the fields of RoutingPolicyTermMatchingVpnPathSla.
+type tempRoutingPolicyTermMatchingVpnPathSla  struct {
     MaxJitter  Optional[int] `json:"max_jitter"`
     MaxLatency Optional[int] `json:"max_latency"`
     MaxLoss    Optional[int] `json:"max_loss"`

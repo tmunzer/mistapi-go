@@ -19,9 +19,9 @@
 ```json
 {
   "timeout": 10,
-  "host": "host0",
-  "port": "port8",
-  "secret": "secret6"
+  "host": "host4",
+  "port": "port2",
+  "secret": "secret8"
 }
 ```
 

@@ -5,7 +5,7 @@ enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait
 
 ## Enumeration
 
-`L2TpStateEnum`
+`L2tpStateEnum`
 
 ## Fields
 

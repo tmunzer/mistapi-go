@@ -15,7 +15,7 @@ type UpgradeOrgDevices struct {
     Force                   *bool                            `json:"force,omitempty"`
     // percentage of failures allowed across the entire upgrade(not applicable for `big_bang`)
     MaxFailurePercentage    *float64                         `json:"max_failure_percentage,omitempty"`
-    // number of failures allowed within each phase. Only applicable for canary. Array length should be same as `canary_phases``. Will be used if provided, else max_failure_percentage will be used.
+    // number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
     MaxFailures             []int                            `json:"max_failures,omitempty"`
     Models                  []string                         `json:"models,omitempty"`
     P2pClusterSize          *int                             `json:"p2p_cluster_size,omitempty"`
@@ -125,7 +125,7 @@ func (u UpgradeOrgDevices) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UpgradeOrgDevices.
 // It customizes the JSON unmarshaling process for UpgradeOrgDevices objects.
 func (u *UpgradeOrgDevices) UnmarshalJSON(input []byte) error {
-    var temp upgradeOrgDevices
+    var temp tempUpgradeOrgDevices
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -159,8 +159,8 @@ func (u *UpgradeOrgDevices) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// upgradeOrgDevices is a temporary struct used for validating the fields of UpgradeOrgDevices.
-type upgradeOrgDevices  struct {
+// tempUpgradeOrgDevices is a temporary struct used for validating the fields of UpgradeOrgDevices.
+type tempUpgradeOrgDevices  struct {
     CanaryPhases            []int                            `json:"canary_phases,omitempty"`
     EnableP2p               *bool                            `json:"enable_p2p,omitempty"`
     Force                   *bool                            `json:"force,omitempty"`

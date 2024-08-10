@@ -39,7 +39,7 @@ func (m MxedgeStatsTuntermPortConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeStatsTuntermPortConfig.
 // It customizes the JSON unmarshaling process for MxedgeStatsTuntermPortConfig objects.
 func (m *MxedgeStatsTuntermPortConfig) UnmarshalJSON(input []byte) error {
-    var temp mxedgeStatsTuntermPortConfig
+    var temp tempMxedgeStatsTuntermPortConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (m *MxedgeStatsTuntermPortConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeStatsTuntermPortConfig is a temporary struct used for validating the fields of MxedgeStatsTuntermPortConfig.
-type mxedgeStatsTuntermPortConfig  struct {
+// tempMxedgeStatsTuntermPortConfig is a temporary struct used for validating the fields of MxedgeStatsTuntermPortConfig.
+type tempMxedgeStatsTuntermPortConfig  struct {
     DownstreamPorts            []string `json:"downstream_ports,omitempty"`
     SeparateUpstreamDownstream *bool    `json:"separate_upstream_downstream,omitempty"`
     UpstreamPorts              []string `json:"upstream_ports,omitempty"`

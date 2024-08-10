@@ -32,7 +32,7 @@ func (o OrgSettingSwitchMgmt) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingSwitchMgmt.
 // It customizes the JSON unmarshaling process for OrgSettingSwitchMgmt objects.
 func (o *OrgSettingSwitchMgmt) UnmarshalJSON(input []byte) error {
-    var temp orgSettingSwitchMgmt
+    var temp tempOrgSettingSwitchMgmt
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (o *OrgSettingSwitchMgmt) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingSwitchMgmt is a temporary struct used for validating the fields of OrgSettingSwitchMgmt.
-type orgSettingSwitchMgmt  struct {
+// tempOrgSettingSwitchMgmt is a temporary struct used for validating the fields of OrgSettingSwitchMgmt.
+type tempOrgSettingSwitchMgmt  struct {
     ApAffinityThreshold *int `json:"ap_affinity_threshold,omitempty"`
 }

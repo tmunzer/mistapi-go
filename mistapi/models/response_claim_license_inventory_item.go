@@ -39,7 +39,7 @@ func (r ResponseClaimLicenseInventoryItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseClaimLicenseInventoryItem.
 // It customizes the JSON unmarshaling process for ResponseClaimLicenseInventoryItem objects.
 func (r *ResponseClaimLicenseInventoryItem) UnmarshalJSON(input []byte) error {
-    var temp responseClaimLicenseInventoryItem
+    var temp tempResponseClaimLicenseInventoryItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (r *ResponseClaimLicenseInventoryItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseClaimLicenseInventoryItem is a temporary struct used for validating the fields of ResponseClaimLicenseInventoryItem.
-type responseClaimLicenseInventoryItem  struct {
+// tempResponseClaimLicenseInventoryItem is a temporary struct used for validating the fields of ResponseClaimLicenseInventoryItem.
+type tempResponseClaimLicenseInventoryItem  struct {
     Mac    *string `json:"mac"`
     Magic  *string `json:"magic"`
     Model  *string `json:"model"`
@@ -71,22 +71,22 @@ type responseClaimLicenseInventoryItem  struct {
     Type   *string `json:"type"`
 }
 
-func (r *responseClaimLicenseInventoryItem) validate() error {
+func (r *tempResponseClaimLicenseInventoryItem) validate() error {
     var errs []string
     if r.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Response_Claim_License_Inventory_Item`")
+        errs = append(errs, "required field `mac` is missing for type `response_claim_license_inventory_item`")
     }
     if r.Magic == nil {
-        errs = append(errs, "required field `magic` is missing for type `Response_Claim_License_Inventory_Item`")
+        errs = append(errs, "required field `magic` is missing for type `response_claim_license_inventory_item`")
     }
     if r.Model == nil {
-        errs = append(errs, "required field `model` is missing for type `Response_Claim_License_Inventory_Item`")
+        errs = append(errs, "required field `model` is missing for type `response_claim_license_inventory_item`")
     }
     if r.Serial == nil {
-        errs = append(errs, "required field `serial` is missing for type `Response_Claim_License_Inventory_Item`")
+        errs = append(errs, "required field `serial` is missing for type `response_claim_license_inventory_item`")
     }
     if r.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Response_Claim_License_Inventory_Item`")
+        errs = append(errs, "required field `type` is missing for type `response_claim_license_inventory_item`")
     }
     if len(errs) == 0 {
         return nil

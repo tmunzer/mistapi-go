@@ -5,7 +5,7 @@ Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x. enum: `dot1x`
 
 ## Enumeration
 
-`SwitchPortUsageDot1XEnum`
+`SwitchPortUsageDot1xEnum`
 
 ## Fields
 

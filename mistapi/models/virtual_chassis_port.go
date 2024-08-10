@@ -34,7 +34,7 @@ func (v VirtualChassisPort) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VirtualChassisPort.
 // It customizes the JSON unmarshaling process for VirtualChassisPort objects.
 func (v *VirtualChassisPort) UnmarshalJSON(input []byte) error {
-    var temp virtualChassisPort
+    var temp tempVirtualChassisPort
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,19 +54,19 @@ func (v *VirtualChassisPort) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// virtualChassisPort is a temporary struct used for validating the fields of VirtualChassisPort.
-type virtualChassisPort  struct {
+// tempVirtualChassisPort is a temporary struct used for validating the fields of VirtualChassisPort.
+type tempVirtualChassisPort  struct {
     Members *[]ConfigVcPortMember            `json:"members"`
     Op      *VirtualChassisPortOperationEnum `json:"op"`
 }
 
-func (v *virtualChassisPort) validate() error {
+func (v *tempVirtualChassisPort) validate() error {
     var errs []string
     if v.Members == nil {
-        errs = append(errs, "required field `members` is missing for type `Virtual_Chassis_Port`")
+        errs = append(errs, "required field `members` is missing for type `virtual_chassis_port`")
     }
     if v.Op == nil {
-        errs = append(errs, "required field `op` is missing for type `Virtual_Chassis_Port`")
+        errs = append(errs, "required field `op` is missing for type `virtual_chassis_port`")
     }
     if len(errs) == 0 {
         return nil

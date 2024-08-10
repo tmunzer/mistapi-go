@@ -29,11 +29,11 @@
       "value": 95.62
     }
   ],
-  "end": 54.28,
-  "metric": "metric2",
-  "start": 10.34,
+  "end": 37.86,
+  "metric": "metric0",
+  "start": 249.92,
   "x_label": "x_label6",
-  "y_label": "y_label8"
+  "y_label": "y_label6"
 }
 ```
 

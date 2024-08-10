@@ -26,7 +26,7 @@
       ]
     }
   ],
-  "total_switch_count": 160
+  "total_switch_count": 226
 }
 ```
 

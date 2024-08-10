@@ -15,18 +15,22 @@ Applications used for the Gateway configurations
 | `AppCategories` | `[]string` | Optional | when `type`==`app_categories`, list of application categories are available through /api/v1/const/app_categories |
 | `AppSubcategories` | `[]string` | Optional | when `type`==`app_categories`, list of application categories are available through /api/v1/const/app_subcategories |
 | `Apps` | `[]string` | Optional | when `type`==`apps`, list of applications are available through:<br><br>* /api/v1/const/applications<br>* /api/v1/const/gateway_applications<br>* /insight/top_app_by-bytes?wired=true |
+| `ClientLimitDown` | `*int` | Optional | 0 means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 107374182` |
+| `ClientLimitUp` | `*int` | Optional | 0 means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 107374182` |
 | `CreatedTime` | `*float64` | Optional | - |
 | `Description` | `*string` | Optional | - |
-| `Dscp` | [`*models.ServiceDscp`](../../doc/models/containers/service-dscp.md) | Optional | This is a container for one-of cases. |
+| `Dscp` | [`*models.ServiceDscp`](../../doc/models/containers/service-dscp.md) | Optional | for SSR only, when `traffic_type`==`custom`. 0-63 or variable |
 | `FailoverPolicy` | [`*models.ServiceFailoverPolicyEnum`](../../doc/models/service-failover-policy-enum.md) | Optional | enum: `non_revertable`, `none`, `revertable`<br>**Default**: `"revertable"` |
 | `Hostnames` | `[]string` | Optional | if `type`==`custom`, web filtering |
 | `Id` | `*uuid.UUID` | Optional | - |
-| `MaxJitter` | [`*models.ServiceMaxJitter`](../../doc/models/containers/service-max-jitter.md) | Optional | This is a container for one-of cases. |
-| `MaxLatency` | [`*models.ServiceMaxLatency`](../../doc/models/containers/service-max-latency.md) | Optional | This is a container for one-of cases. |
-| `MaxLoss` | [`*models.ServiceMaxLoss`](../../doc/models/containers/service-max-loss.md) | Optional | This is a container for one-of cases. |
+| `MaxJitter` | [`*models.ServiceMaxJitter`](../../doc/models/containers/service-max-jitter.md) | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable |
+| `MaxLatency` | [`*models.ServiceMaxLatency`](../../doc/models/containers/service-max-latency.md) | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable |
+| `MaxLoss` | [`*models.ServiceMaxLoss`](../../doc/models/containers/service-max-loss.md) | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
+| `ServiceLimitDown` | `*int` | Optional | 0 means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 107374182` |
+| `ServiceLimitUp` | `*int` | Optional | 0 means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 107374182` |
 | `SleEnabled` | `*bool` | Optional | whether to enable measure SLE<br>**Default**: `false` |
 | `Specs` | [`[]models.ServiceSpec`](../../doc/models/service-spec.md) | Optional | when `type`==`custom`, optional, if it doesn't exist, http and https is assumed |
 | `SsrRelaxedTcpStateEnforcement` | `*bool` | Optional | **Default**: `false` |
@@ -49,19 +53,22 @@ Applications used for the Gateway configurations
     "office365",
     "okta"
   ],
+  "client_limit_down": 300000,
+  "client_limit_up": 300000,
   "failover_policy": "revertable",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+  "service_limit_down": 300000,
+  "service_limit_up": 300000,
   "sle_enabled": false,
   "ssr_relaxed_tcp_state_enforcement": false,
   "traffic_class": "best_effort",
   "traffic_type": "data_best_effort",
   "type": "custom",
   "addresses": [
-    "addresses8",
-    "addresses9",
-    "addresses0"
-  ],
-  "created_time": 40.82
+    "addresses6",
+    "addresses7",
+    "addresses8"
+  ]
 }
 ```
 

@@ -104,7 +104,7 @@ func (j JunosPortConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for JunosPortConfig.
 // It customizes the JSON unmarshaling process for JunosPortConfig objects.
 func (j *JunosPortConfig) UnmarshalJSON(input []byte) error {
-    var temp junosPortConfig
+    var temp tempJunosPortConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -137,8 +137,8 @@ func (j *JunosPortConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// junosPortConfig is a temporary struct used for validating the fields of JunosPortConfig.
-type junosPortConfig  struct {
+// tempJunosPortConfig is a temporary struct used for validating the fields of JunosPortConfig.
+type tempJunosPortConfig  struct {
     AeDisableLacp    *bool                      `json:"ae_disable_lacp,omitempty"`
     AeIdx            *int                       `json:"ae_idx,omitempty"`
     AeLacpSlow       *bool                      `json:"ae_lacp_slow,omitempty"`
@@ -156,10 +156,10 @@ type junosPortConfig  struct {
     Usage            *string                    `json:"usage"`
 }
 
-func (j *junosPortConfig) validate() error {
+func (j *tempJunosPortConfig) validate() error {
     var errs []string
     if j.Usage == nil {
-        errs = append(errs, "required field `usage` is missing for type `Junos_Port_Config`")
+        errs = append(errs, "required field `usage` is missing for type `junos_port_config`")
     }
     if len(errs) == 0 {
         return nil

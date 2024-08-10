@@ -64,7 +64,7 @@ func (d DeviceOtherStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceOtherStats.
 // It customizes the JSON unmarshaling process for DeviceOtherStats objects.
 func (d *DeviceOtherStats) UnmarshalJSON(input []byte) error {
-    var temp deviceOtherStats
+    var temp tempDeviceOtherStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -87,8 +87,8 @@ func (d *DeviceOtherStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceOtherStats is a temporary struct used for validating the fields of DeviceOtherStats.
-type deviceOtherStats  struct {
+// tempDeviceOtherStats is a temporary struct used for validating the fields of DeviceOtherStats.
+type tempDeviceOtherStats  struct {
     ConfigStatus   *string                         `json:"config_status,omitempty"`
     LastConfig     *int                            `json:"last_config,omitempty"`
     LastSeen       *int                            `json:"last_seen,omitempty"`

@@ -18,7 +18,7 @@
 {
   "enabled": false,
   "vlan_ids": [
-    "vlan_ids4"
+    "vlan_ids6"
   ]
 }
 ```

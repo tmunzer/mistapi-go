@@ -35,7 +35,7 @@ func (m MacTableStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MacTableStats.
 // It customizes the JSON unmarshaling process for MacTableStats objects.
 func (m *MacTableStats) UnmarshalJSON(input []byte) error {
-    var temp macTableStats
+    var temp tempMacTableStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (m *MacTableStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// macTableStats is a temporary struct used for validating the fields of MacTableStats.
-type macTableStats  struct {
+// tempMacTableStats is a temporary struct used for validating the fields of MacTableStats.
+type tempMacTableStats  struct {
     MacTableCount          *int `json:"mac_table_count,omitempty"`
     MaxMacEntriesSupported *int `json:"max_mac_entries_supported,omitempty"`
 }

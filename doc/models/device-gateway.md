@@ -84,8 +84,7 @@ device gateway
   "x": 53.5,
   "y": 173.1,
   "additional_config_cmds": [
-    "additional_config_cmds0",
-    "additional_config_cmds9"
+    "additional_config_cmds6"
   ],
   "bgp_config": {
     "key0": {
@@ -100,36 +99,10 @@ device gateway
         }
       ],
       "disable_bfd": false
-    },
-    "key1": {
-      "auth_key": "auth_key8",
-      "bfd_minimum_interval": 212,
-      "bfd_multiplier": 90,
-      "communities": [
-        {
-          "id": "id8",
-          "local_preference": 56,
-          "vpn_name": "vpn_name0"
-        }
-      ],
-      "disable_bfd": false
-    },
-    "key2": {
-      "auth_key": "auth_key8",
-      "bfd_minimum_interval": 212,
-      "bfd_multiplier": 90,
-      "communities": [
-        {
-          "id": "id8",
-          "local_preference": 56,
-          "vpn_name": "vpn_name0"
-        }
-      ],
-      "disable_bfd": false
     }
   },
-  "created_time": 227.76,
-  "deviceprofile_id": "00001a64-0000-0000-0000-000000000000",
+  "created_time": 176.02,
+  "deviceprofile_id": "0000062e-0000-0000-0000-000000000000",
   "dhcpd_config": {
     "enabled": false
   }

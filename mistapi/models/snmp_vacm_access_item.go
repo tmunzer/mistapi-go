@@ -35,7 +35,7 @@ func (s SnmpVacmAccessItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SnmpVacmAccessItem.
 // It customizes the JSON unmarshaling process for SnmpVacmAccessItem objects.
 func (s *SnmpVacmAccessItem) UnmarshalJSON(input []byte) error {
-    var temp snmpVacmAccessItem
+    var temp tempSnmpVacmAccessItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *SnmpVacmAccessItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpVacmAccessItem is a temporary struct used for validating the fields of SnmpVacmAccessItem.
-type snmpVacmAccessItem  struct {
+// tempSnmpVacmAccessItem is a temporary struct used for validating the fields of SnmpVacmAccessItem.
+type tempSnmpVacmAccessItem  struct {
     GroupName  *string                            `json:"group_name,omitempty"`
     PrefixList []SnmpVacmAccessItemPrefixListItem `json:"prefix_list,omitempty"`
 }

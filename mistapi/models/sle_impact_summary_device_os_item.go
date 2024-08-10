@@ -39,7 +39,7 @@ func (s SleImpactSummaryDeviceOsItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactSummaryDeviceOsItem.
 // It customizes the JSON unmarshaling process for SleImpactSummaryDeviceOsItem objects.
 func (s *SleImpactSummaryDeviceOsItem) UnmarshalJSON(input []byte) error {
-    var temp sleImpactSummaryDeviceOsItem
+    var temp tempSleImpactSummaryDeviceOsItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (s *SleImpactSummaryDeviceOsItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactSummaryDeviceOsItem is a temporary struct used for validating the fields of SleImpactSummaryDeviceOsItem.
-type sleImpactSummaryDeviceOsItem  struct {
+// tempSleImpactSummaryDeviceOsItem is a temporary struct used for validating the fields of SleImpactSummaryDeviceOsItem.
+type tempSleImpactSummaryDeviceOsItem  struct {
     Degraded *float64 `json:"degraded"`
     DeviceOs *string  `json:"device_os"`
     Duration *float64 `json:"duration"`
@@ -71,22 +71,22 @@ type sleImpactSummaryDeviceOsItem  struct {
     Total    *float64 `json:"total"`
 }
 
-func (s *sleImpactSummaryDeviceOsItem) validate() error {
+func (s *tempSleImpactSummaryDeviceOsItem) validate() error {
     var errs []string
     if s.Degraded == nil {
-        errs = append(errs, "required field `degraded` is missing for type `Sle_Impact_Summary_Device_Os_Item`")
+        errs = append(errs, "required field `degraded` is missing for type `sle_impact_summary_device_os_item`")
     }
     if s.DeviceOs == nil {
-        errs = append(errs, "required field `device_os` is missing for type `Sle_Impact_Summary_Device_Os_Item`")
+        errs = append(errs, "required field `device_os` is missing for type `sle_impact_summary_device_os_item`")
     }
     if s.Duration == nil {
-        errs = append(errs, "required field `duration` is missing for type `Sle_Impact_Summary_Device_Os_Item`")
+        errs = append(errs, "required field `duration` is missing for type `sle_impact_summary_device_os_item`")
     }
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sle_Impact_Summary_Device_Os_Item`")
+        errs = append(errs, "required field `name` is missing for type `sle_impact_summary_device_os_item`")
     }
     if s.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Sle_Impact_Summary_Device_Os_Item`")
+        errs = append(errs, "required field `total` is missing for type `sle_impact_summary_device_os_item`")
     }
     if len(errs) == 0 {
         return nil

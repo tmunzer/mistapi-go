@@ -95,7 +95,7 @@ func (a AssetOfInterest) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AssetOfInterest.
 // It customizes the JSON unmarshaling process for AssetOfInterest objects.
 func (a *AssetOfInterest) UnmarshalJSON(input []byte) error {
-    var temp assetOfInterest
+    var temp tempAssetOfInterest
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -126,8 +126,8 @@ func (a *AssetOfInterest) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// assetOfInterest is a temporary struct used for validating the fields of AssetOfInterest.
-type assetOfInterest  struct {
+// tempAssetOfInterest is a temporary struct used for validating the fields of AssetOfInterest.
+type tempAssetOfInterest  struct {
     CheckpointPrep     *float64 `json:"_checkpoint_prep,omitempty"`
     CheckpointPreparer *float64 `json:"_checkpoint_preparer,omitempty"`
     CheckpointScan     *float64 `json:"_checkpoint_scan,omitempty"`

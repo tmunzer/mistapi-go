@@ -26,7 +26,7 @@ Support Ticket
 
 ```json
 {
-  "case_number": "case_number0",
+  "case_number": "case_number6",
   "comments": [
     {
       "attachment_ids": [
@@ -37,10 +37,10 @@ Support Ticket
       "attachments": [
         {
           "content_type": "content_type4",
+          "content_url": "content_url4",
           "created_at": 174,
           "file_name": "file_name8",
-          "id": "000001f4-0000-0000-0000-000000000000",
-          "size_in_bytes": 42
+          "id": "000001f4-0000-0000-0000-000000000000"
         }
       ],
       "author": "author2",
@@ -56,10 +56,29 @@ Support Ticket
       "attachments": [
         {
           "content_type": "content_type4",
+          "content_url": "content_url4",
           "created_at": 174,
           "file_name": "file_name8",
-          "id": "000001f4-0000-0000-0000-000000000000",
-          "size_in_bytes": 42
+          "id": "000001f4-0000-0000-0000-000000000000"
+        }
+      ],
+      "author": "author2",
+      "comment": "comment8",
+      "created_at": 176
+    },
+    {
+      "attachment_ids": [
+        "00001052-0000-0000-0000-000000000000",
+        "00001053-0000-0000-0000-000000000000",
+        "00001054-0000-0000-0000-000000000000"
+      ],
+      "attachments": [
+        {
+          "content_type": "content_type4",
+          "content_url": "content_url4",
+          "created_at": 174,
+          "file_name": "file_name8",
+          "id": "000001f4-0000-0000-0000-000000000000"
         }
       ],
       "author": "author2",
@@ -67,11 +86,11 @@ Support Ticket
       "created_at": 176
     }
   ],
-  "created_at": 136,
-  "id": "00001ebe-0000-0000-0000-000000000000",
+  "created_at": 160,
+  "id": "000019d6-0000-0000-0000-000000000000",
   "requester": "requester8",
-  "subject": "subject4",
-  "type": "type0"
+  "subject": "subject2",
+  "type": "type6"
 }
 ```
 

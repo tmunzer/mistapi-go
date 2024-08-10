@@ -101,7 +101,7 @@ func (w WebhookLocationEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookLocationEvent.
 // It customizes the JSON unmarshaling process for WebhookLocationEvent objects.
 func (w *WebhookLocationEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookLocationEvent
+    var temp tempWebhookLocationEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -138,8 +138,8 @@ func (w *WebhookLocationEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookLocationEvent is a temporary struct used for validating the fields of WebhookLocationEvent.
-type webhookLocationEvent  struct {
+// tempWebhookLocationEvent is a temporary struct used for validating the fields of WebhookLocationEvent.
+type tempWebhookLocationEvent  struct {
     BatteryVoltage         *int                          `json:"battery_voltage,omitempty"`
     EddystoneUidInstance   *string                       `json:"eddystone_uid_instance,omitempty"`
     EddystoneUidNamespace  *string                       `json:"eddystone_uid_namespace,omitempty"`
@@ -161,28 +161,28 @@ type webhookLocationEvent  struct {
     Y                      *float64                      `json:"y"`
 }
 
-func (w *webhookLocationEvent) validate() error {
+func (w *tempWebhookLocationEvent) validate() error {
     var errs []string
     if w.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Webhook_Location_Event`")
+        errs = append(errs, "required field `id` is missing for type `webhook_location_event`")
     }
     if w.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Webhook_Location_Event`")
+        errs = append(errs, "required field `map_id` is missing for type `webhook_location_event`")
     }
     if w.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Webhook_Location_Event`")
+        errs = append(errs, "required field `site_id` is missing for type `webhook_location_event`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Location_Event`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_location_event`")
     }
     if w.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Webhook_Location_Event`")
+        errs = append(errs, "required field `type` is missing for type `webhook_location_event`")
     }
     if w.X == nil {
-        errs = append(errs, "required field `x` is missing for type `Webhook_Location_Event`")
+        errs = append(errs, "required field `x` is missing for type `webhook_location_event`")
     }
     if w.Y == nil {
-        errs = append(errs, "required field `y` is missing for type `Webhook_Location_Event`")
+        errs = append(errs, "required field `y` is missing for type `webhook_location_event`")
     }
     if len(errs) == 0 {
         return nil

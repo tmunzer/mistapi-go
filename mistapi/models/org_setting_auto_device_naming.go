@@ -39,7 +39,7 @@ func (o OrgSettingAutoDeviceNaming) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingAutoDeviceNaming.
 // It customizes the JSON unmarshaling process for OrgSettingAutoDeviceNaming objects.
 func (o *OrgSettingAutoDeviceNaming) UnmarshalJSON(input []byte) error {
-    var temp orgSettingAutoDeviceNaming
+    var temp tempOrgSettingAutoDeviceNaming
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,8 +55,8 @@ func (o *OrgSettingAutoDeviceNaming) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingAutoDeviceNaming is a temporary struct used for validating the fields of OrgSettingAutoDeviceNaming.
-type orgSettingAutoDeviceNaming  struct {
+// tempOrgSettingAutoDeviceNaming is a temporary struct used for validating the fields of OrgSettingAutoDeviceNaming.
+type tempOrgSettingAutoDeviceNaming  struct {
     Enable *bool                    `json:"enable,omitempty"`
     Rules  Optional[[]OrgAutoRules] `json:"rules"`
 }

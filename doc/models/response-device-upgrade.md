@@ -27,7 +27,7 @@
 
 ```json
 {
-  "id": "00001774-0000-0000-0000-000000000000",
+  "id": "00001312-0000-0000-0000-000000000000",
   "strategy": "big_bang",
   "counts": {
     "download_requested": [
@@ -52,10 +52,10 @@
       "rebooted8"
     ]
   },
-  "current_phase": 10,
+  "current_phase": 168,
   "enable_p2p": false,
   "force": false,
-  "max_failure_percentage": 132
+  "max_failure_percentage": 34
 }
 ```
 

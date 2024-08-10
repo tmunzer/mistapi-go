@@ -115,7 +115,7 @@ func (a Alarm) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Alarm.
 // It customizes the JSON unmarshaling process for Alarm objects.
 func (a *Alarm) UnmarshalJSON(input []byte) error {
-    var temp alarm
+    var temp tempAlarm
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -153,8 +153,8 @@ func (a *Alarm) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// alarm is a temporary struct used for validating the fields of Alarm.
-type alarm  struct {
+// tempAlarm is a temporary struct used for validating the fields of Alarm.
+type tempAlarm  struct {
     AckAdminId   *uuid.UUID `json:"ack_admin_id,omitempty"`
     AckAdminName *string    `json:"ack_admin_name,omitempty"`
     Acked        *bool      `json:"acked,omitempty"`
@@ -177,28 +177,28 @@ type alarm  struct {
     Type         *string    `json:"type"`
 }
 
-func (a *alarm) validate() error {
+func (a *tempAlarm) validate() error {
     var errs []string
     if a.Count == nil {
-        errs = append(errs, "required field `count` is missing for type `Alarm`")
+        errs = append(errs, "required field `count` is missing for type `alarm`")
     }
     if a.Group == nil {
-        errs = append(errs, "required field `group` is missing for type `Alarm`")
+        errs = append(errs, "required field `group` is missing for type `alarm`")
     }
     if a.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Alarm`")
+        errs = append(errs, "required field `id` is missing for type `alarm`")
     }
     if a.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `Alarm`")
+        errs = append(errs, "required field `last_seen` is missing for type `alarm`")
     }
     if a.Severity == nil {
-        errs = append(errs, "required field `severity` is missing for type `Alarm`")
+        errs = append(errs, "required field `severity` is missing for type `alarm`")
     }
     if a.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Alarm`")
+        errs = append(errs, "required field `timestamp` is missing for type `alarm`")
     }
     if a.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Alarm`")
+        errs = append(errs, "required field `type` is missing for type `alarm`")
     }
     if len(errs) == 0 {
         return nil

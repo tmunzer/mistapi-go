@@ -33,18 +33,18 @@
 
 ```json
 {
-  "id": "00001b7a-0000-0000-0000-000000000000",
-  "map_id": "000002b2-0000-0000-0000-000000000000",
+  "id": "000025fe-0000-0000-0000-000000000000",
+  "map_id": "00001f3e-0000-0000-0000-000000000000",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "timestamp": 24,
+  "timestamp": 76,
   "type": "type4",
-  "x": 132.2,
-  "y": 7.48,
-  "battery_voltage": 28,
-  "eddystone_uid_instance": "eddystone_uid_instance8",
-  "eddystone_uid_namespace": "eddystone_uid_namespace0",
-  "eddystone_url_url": "eddystone_url_url0",
-  "ibeacon_major": 72
+  "x": 84.88,
+  "y": 46.4,
+  "battery_voltage": 80,
+  "eddystone_uid_instance": "eddystone_uid_instance0",
+  "eddystone_uid_namespace": "eddystone_uid_namespace8",
+  "eddystone_url_url": "eddystone_url_url8",
+  "ibeacon_major": 124
 }
 ```
 

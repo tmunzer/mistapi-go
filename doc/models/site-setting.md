@@ -26,7 +26,7 @@ Site Settings
 | `ConfigPushPolicy` | [`*models.SiteSettingConfigPushPolicy`](../../doc/models/site-setting-config-push-policy.md) | Optional | mist also uses some heuristic rules to prevent destructive configs from being pushed |
 | `CreatedTime` | `*float64` | Optional | - |
 | `CriticalUrlMonitoring` | [`*models.SiteSettingCriticalUrlMonitoring`](../../doc/models/site-setting-critical-url-monitoring.md) | Optional | you can define some URLs that's critical to site operaitons the latency will be captured and considered for site health |
-| `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | sending AP_DISCONNECTED event in device-updowns only if AP_CONNECTED is not seen within the threshold, in minutes<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
+| `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | by default, device_updown_thresold, if set, will apply to all devices types if different values for specific device type is desired, use the following<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DisabledSystemDefinedPortUsages` | `[]string` | Optional | if some system-default port usages are not desired - namely, ap / iot / uplink |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
@@ -61,6 +61,7 @@ Site Settings
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `RadiusConfig` | [`*models.RadiusConfig`](../../doc/models/radius-config.md) | Optional | Junos Radius config |
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
+| `RemoveExistingConfigs` | `*bool` | Optional | by default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled<br>**Default**: `false` |
 | `ReportGatt` | `*bool` | Optional | whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)<br>**Default**: `false` |
 | `Rogue` | [`*models.SiteRogue`](../../doc/models/site-rogue.md) | Optional | Rogue site settings |
 | `Rtsa` | [`*models.SiteSettingRtsa`](../../doc/models/site-setting-rtsa.md) | Optional | managed mobility |
@@ -74,7 +75,7 @@ Site Settings
 | `StatusPortal` | [`*models.SiteSettingStatusPortal`](../../doc/models/site-setting-status-portal.md) | Optional | - |
 | `Switch` | [`*models.NetworkTemplate`](../../doc/models/network-template.md) | Optional | Network Template |
 | `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | Switch template |
-| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | - |
+| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
 | `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `SyntheticTest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
 | `TrackAnonymousDevices` | `*bool` | Optional | whether to track anonymous BLE assets (requires ‘track_asset’  enabled)<br>**Default**: `false` |
@@ -112,6 +113,7 @@ Site Settings
   "gateway_updown_threshold": 0,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "persist_config_on_device": false,
+  "remove_existing_configs": false,
   "report_gatt": false,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "switch_updown_threshold": 0,
@@ -148,19 +150,6 @@ Site Settings
         "src_tags1",
         "src_tags0"
       ]
-    },
-    {
-      "actions": [
-        {
-          "action": "allow",
-          "dst_tag": "dst_tag0"
-        }
-      ],
-      "name": "name2",
-      "src_tags": [
-        "src_tags1",
-        "src_tags0"
-      ]
     }
   ],
   "acl_tags": {
@@ -178,11 +167,41 @@ Site Settings
         }
       ],
       "type": "radius_group"
+    },
+    "key1": {
+      "gbp_tag": 14,
+      "macs": [
+        "macs1"
+      ],
+      "network": "network2",
+      "radius_group": "radius_group8",
+      "specs": [
+        {
+          "port_range": "port_range8",
+          "protocol": "protocol6"
+        }
+      ],
+      "type": "radius_group"
+    },
+    "key2": {
+      "gbp_tag": 14,
+      "macs": [
+        "macs1"
+      ],
+      "network": "network2",
+      "radius_group": "radius_group8",
+      "specs": [
+        {
+          "port_range": "port_range8",
+          "protocol": "protocol6"
+        }
+      ],
+      "type": "radius_group"
     }
   },
   "additional_config_cmds": [
-    "additional_config_cmds4",
-    "additional_config_cmds3",
+    "additional_config_cmds0",
+    "additional_config_cmds1",
     "additional_config_cmds2"
   ],
   "analytic": {

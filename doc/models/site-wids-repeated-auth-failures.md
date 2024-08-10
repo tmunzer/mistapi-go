@@ -17,7 +17,7 @@
 ```json
 {
   "duration": 60,
-  "threshold": 156
+  "threshold": 80
 }
 ```
 

@@ -26,10 +26,10 @@
 ```json
 {
   "full_duplex": false,
-  "mac": "mac4",
-  "rx_bytes": 34.98,
-  "rx_errors": 84,
-  "rx_pkts": 228
+  "mac": "mac8",
+  "rx_bytes": 19.72,
+  "rx_errors": 94,
+  "rx_pkts": 238
 }
 ```
 

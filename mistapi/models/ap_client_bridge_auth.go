@@ -36,7 +36,7 @@ func (a ApClientBridgeAuth) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApClientBridgeAuth.
 // It customizes the JSON unmarshaling process for ApClientBridgeAuth objects.
 func (a *ApClientBridgeAuth) UnmarshalJSON(input []byte) error {
-    var temp apClientBridgeAuth
+    var temp tempApClientBridgeAuth
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (a *ApClientBridgeAuth) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apClientBridgeAuth is a temporary struct used for validating the fields of ApClientBridgeAuth.
-type apClientBridgeAuth  struct {
+// tempApClientBridgeAuth is a temporary struct used for validating the fields of ApClientBridgeAuth.
+type tempApClientBridgeAuth  struct {
     Psk  *string                     `json:"psk,omitempty"`
     Type *ApClientBridgeAuthTypeEnum `json:"type,omitempty"`
 }

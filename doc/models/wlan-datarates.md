@@ -34,7 +34,7 @@ data rates wlan settings
   ],
   "min_rssi": -70,
   "vht": "03ff03ff03ff01ff",
-  "template": "template2"
+  "template": "template4"
 }
 ```
 

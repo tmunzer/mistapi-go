@@ -43,7 +43,7 @@ func (c ConstGatewayApplicationsDefinition) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstGatewayApplicationsDefinition.
 // It customizes the JSON unmarshaling process for ConstGatewayApplicationsDefinition objects.
 func (c *ConstGatewayApplicationsDefinition) UnmarshalJSON(input []byte) error {
-    var temp constGatewayApplicationsDefinition
+    var temp tempConstGatewayApplicationsDefinition
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (c *ConstGatewayApplicationsDefinition) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constGatewayApplicationsDefinition is a temporary struct used for validating the fields of ConstGatewayApplicationsDefinition.
-type constGatewayApplicationsDefinition  struct {
+// tempConstGatewayApplicationsDefinition is a temporary struct used for validating the fields of ConstGatewayApplicationsDefinition.
+type tempConstGatewayApplicationsDefinition  struct {
     AppId    *bool   `json:"app_id,omitempty"`
     Key      *string `json:"key,omitempty"`
     Name     *string `json:"name,omitempty"`

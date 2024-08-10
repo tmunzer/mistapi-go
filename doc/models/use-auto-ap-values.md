@@ -20,8 +20,6 @@
   "accept": false,
   "for": "placement",
   "macs": [
-    "macs3",
-    "macs2",
     "macs1"
   ]
 }

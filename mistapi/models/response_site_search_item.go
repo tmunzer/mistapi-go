@@ -58,7 +58,7 @@ func (r ResponseSiteSearchItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSiteSearchItem.
 // It customizes the JSON unmarshaling process for ResponseSiteSearchItem objects.
 func (r *ResponseSiteSearchItem) UnmarshalJSON(input []byte) error {
-    var temp responseSiteSearchItem
+    var temp tempResponseSiteSearchItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -88,8 +88,8 @@ func (r *ResponseSiteSearchItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSiteSearchItem is a temporary struct used for validating the fields of ResponseSiteSearchItem.
-type responseSiteSearchItem  struct {
+// tempResponseSiteSearchItem is a temporary struct used for validating the fields of ResponseSiteSearchItem.
+type tempResponseSiteSearchItem  struct {
     AutoUpgradeEnabled *bool      `json:"auto_upgrade_enabled"`
     AutoUpgradeVersion *string    `json:"auto_upgrade_version"`
     CountryCode        *string    `json:"country_code"`
@@ -104,40 +104,40 @@ type responseSiteSearchItem  struct {
     WifiEnabled        *bool      `json:"wifi_enabled"`
 }
 
-func (r *responseSiteSearchItem) validate() error {
+func (r *tempResponseSiteSearchItem) validate() error {
     var errs []string
     if r.AutoUpgradeEnabled == nil {
-        errs = append(errs, "required field `auto_upgrade_enabled` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `auto_upgrade_enabled` is missing for type `response_site_search_item`")
     }
     if r.AutoUpgradeVersion == nil {
-        errs = append(errs, "required field `auto_upgrade_version` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `auto_upgrade_version` is missing for type `response_site_search_item`")
     }
     if r.HoneypotEnabled == nil {
-        errs = append(errs, "required field `honeypot_enabled` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `honeypot_enabled` is missing for type `response_site_search_item`")
     }
     if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `id` is missing for type `response_site_search_item`")
     }
     if r.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `name` is missing for type `response_site_search_item`")
     }
     if r.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `org_id` is missing for type `response_site_search_item`")
     }
     if r.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `site_id` is missing for type `response_site_search_item`")
     }
     if r.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `timestamp` is missing for type `response_site_search_item`")
     }
     if r.Timezone == nil {
-        errs = append(errs, "required field `timezone` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `timezone` is missing for type `response_site_search_item`")
     }
     if r.VnaEnabled == nil {
-        errs = append(errs, "required field `vna_enabled` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `vna_enabled` is missing for type `response_site_search_item`")
     }
     if r.WifiEnabled == nil {
-        errs = append(errs, "required field `wifi_enabled` is missing for type `Response_Site_Search_Item`")
+        errs = append(errs, "required field `wifi_enabled` is missing for type `response_site_search_item`")
     }
     if len(errs) == 0 {
         return nil

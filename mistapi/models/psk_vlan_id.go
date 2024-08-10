@@ -7,7 +7,7 @@ import (
 )
 
 // PskVlanId represents a PskVlanId struct.
-// This is a container for one-of cases.
+// VLAN for this PSK key
 type PskVlanId struct {
     value    any
     isString bool
@@ -75,7 +75,7 @@ func (p *PskVlanId) AsNumber() (
 }
 
 // internalPskVlanId represents a pskVlanId struct.
-// This is a container for one-of cases.
+// VLAN for this PSK key
 type internalPskVlanId struct {}
 
 var PskVlanIdContainer internalPskVlanId

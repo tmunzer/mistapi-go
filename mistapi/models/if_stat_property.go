@@ -91,7 +91,7 @@ func (i IfStatProperty) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for IfStatProperty.
 // It customizes the JSON unmarshaling process for IfStatProperty objects.
 func (i *IfStatProperty) UnmarshalJSON(input []byte) error {
-    var temp ifStatProperty
+    var temp tempIfStatProperty
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -121,8 +121,8 @@ func (i *IfStatProperty) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ifStatProperty is a temporary struct used for validating the fields of IfStatProperty.
-type ifStatProperty  struct {
+// tempIfStatProperty is a temporary struct used for validating the fields of IfStatProperty.
+type tempIfStatProperty  struct {
     AddressMode     *string                  `json:"address_mode,omitempty"`
     Ips             []string                 `json:"ips,omitempty"`
     NatAddresses    []string                 `json:"nat_addresses,omitempty"`

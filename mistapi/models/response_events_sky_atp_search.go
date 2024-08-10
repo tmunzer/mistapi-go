@@ -43,7 +43,7 @@ func (r ResponseEventsSkyAtpSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseEventsSkyAtpSearch.
 // It customizes the JSON unmarshaling process for ResponseEventsSkyAtpSearch objects.
 func (r *ResponseEventsSkyAtpSearch) UnmarshalJSON(input []byte) error {
-    var temp responseEventsSkyAtpSearch
+    var temp tempResponseEventsSkyAtpSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseEventsSkyAtpSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseEventsSkyAtpSearch is a temporary struct used for validating the fields of ResponseEventsSkyAtpSearch.
-type responseEventsSkyAtpSearch  struct {
+// tempResponseEventsSkyAtpSearch is a temporary struct used for validating the fields of ResponseEventsSkyAtpSearch.
+type tempResponseEventsSkyAtpSearch  struct {
     End     *int            `json:"end"`
     Limit   *int            `json:"limit"`
     Next    *string         `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type responseEventsSkyAtpSearch  struct {
     Total   *int            `json:"total"`
 }
 
-func (r *responseEventsSkyAtpSearch) validate() error {
+func (r *tempResponseEventsSkyAtpSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Events_Sky_Atp_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_events_sky_atp_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Events_Sky_Atp_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_events_sky_atp_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Events_Sky_Atp_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_events_sky_atp_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Events_Sky_Atp_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_events_sky_atp_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Events_Sky_Atp_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_events_sky_atp_search`")
     }
     if len(errs) == 0 {
         return nil

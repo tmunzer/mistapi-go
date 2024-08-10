@@ -51,7 +51,7 @@ func (r ResponseStatsCalls) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseStatsCalls.
 // It customizes the JSON unmarshaling process for ResponseStatsCalls objects.
 func (r *ResponseStatsCalls) UnmarshalJSON(input []byte) error {
-    var temp responseStatsCalls
+    var temp tempResponseStatsCalls
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (r *ResponseStatsCalls) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseStatsCalls is a temporary struct used for validating the fields of ResponseStatsCalls.
-type responseStatsCalls  struct {
+// tempResponseStatsCalls is a temporary struct used for validating the fields of ResponseStatsCalls.
+type tempResponseStatsCalls  struct {
     End     *float64    `json:"end,omitempty"`
     Limit   *int        `json:"limit,omitempty"`
     Next    *string     `json:"next,omitempty"`

@@ -92,7 +92,7 @@ func (w WlanAuth) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanAuth.
 // It customizes the JSON unmarshaling process for WlanAuth objects.
 func (w *WlanAuth) UnmarshalJSON(input []byte) error {
-    var temp wlanAuth
+    var temp tempWlanAuth
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -122,8 +122,8 @@ func (w *WlanAuth) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanAuth is a temporary struct used for validating the fields of WlanAuth.
-type wlanAuth  struct {
+// tempWlanAuth is a temporary struct used for validating the fields of WlanAuth.
+type tempWlanAuth  struct {
     AnticlogThreshold  *int                       `json:"anticlog_threshold,omitempty"`
     EapReauth          *bool                      `json:"eap_reauth,omitempty"`
     EnableMacAuth      *bool                      `json:"enable_mac_auth,omitempty"`
@@ -138,10 +138,10 @@ type wlanAuth  struct {
     WepAsSecondaryAuth *bool                      `json:"wep_as_secondary_auth,omitempty"`
 }
 
-func (w *wlanAuth) validate() error {
+func (w *tempWlanAuth) validate() error {
     var errs []string
     if w.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Wlan_Auth`")
+        errs = append(errs, "required field `type` is missing for type `wlan_auth`")
     }
     if len(errs) == 0 {
         return nil

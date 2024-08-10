@@ -16,7 +16,7 @@ type ResponsePcapStatus struct {
     Duration                  *int                      `json:"duration,omitempty"`
     // List of APs where configuration attempt failed
     Failed                    []string                  `json:"failed,omitempty"`
-    // List of target Gateways to capture packets if a gateway capture type is specified
+    // Information on gateways to capture packets on if a gateway capture type is specified
     Gateways                  []string                  `json:"gateways,omitempty"`
     // unique id for the capture
     Id                        uuid.UUID                 `json:"id"`
@@ -35,7 +35,7 @@ type ResponsePcapStatus struct {
     ScanTcpdumpExpression     *string                   `json:"scan_tcpdump_expression,omitempty"`
     Ssid                      Optional[string]          `json:"ssid"`
     StartedTime               *int                      `json:"started_time,omitempty"`
-    // List of target Switches to capture packets if a switch capture type is specified
+    // Information on switches to capture packets on if a switch capture type is specified. irb port interface is automatically added to capture as needed to ensure all desired packets are captured.
     Switches                  []string                  `json:"switches,omitempty"`
     // tcpdump expression provided by the user (common)
     TcpdumpExpression         *string                   `json:"tcpdump_expression,omitempty"`
@@ -140,7 +140,7 @@ func (r ResponsePcapStatus) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponsePcapStatus.
 // It customizes the JSON unmarshaling process for ResponsePcapStatus objects.
 func (r *ResponsePcapStatus) UnmarshalJSON(input []byte) error {
-    var temp responsePcapStatus
+    var temp tempResponsePcapStatus
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -180,8 +180,8 @@ func (r *ResponsePcapStatus) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responsePcapStatus is a temporary struct used for validating the fields of ResponsePcapStatus.
-type responsePcapStatus  struct {
+// tempResponsePcapStatus is a temporary struct used for validating the fields of ResponsePcapStatus.
+type tempResponsePcapStatus  struct {
     ApMac                     Optional[string]          `json:"ap_mac"`
     Aps                       []string                  `json:"aps,omitempty"`
     ClientMac                 Optional[string]          `json:"client_mac"`
@@ -206,13 +206,13 @@ type responsePcapStatus  struct {
     WirelessTcpdumpExpression *string                   `json:"wireless_tcpdump_expression,omitempty"`
 }
 
-func (r *responsePcapStatus) validate() error {
+func (r *tempResponsePcapStatus) validate() error {
     var errs []string
     if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Response_Pcap_Status`")
+        errs = append(errs, "required field `id` is missing for type `response_pcap_status`")
     }
     if r.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Response_Pcap_Status`")
+        errs = append(errs, "required field `type` is missing for type `response_pcap_status`")
     }
     if len(errs) == 0 {
         return nil

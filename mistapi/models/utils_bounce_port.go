@@ -37,7 +37,7 @@ func (u UtilsBouncePort) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsBouncePort.
 // It customizes the JSON unmarshaling process for UtilsBouncePort objects.
 func (u *UtilsBouncePort) UnmarshalJSON(input []byte) error {
-    var temp utilsBouncePort
+    var temp tempUtilsBouncePort
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (u *UtilsBouncePort) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsBouncePort is a temporary struct used for validating the fields of UtilsBouncePort.
-type utilsBouncePort  struct {
+// tempUtilsBouncePort is a temporary struct used for validating the fields of UtilsBouncePort.
+type tempUtilsBouncePort  struct {
     Port  *string  `json:"port,omitempty"`
     Ports []string `json:"ports,omitempty"`
 }

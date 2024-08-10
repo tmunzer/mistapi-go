@@ -33,7 +33,7 @@ func (r ResponseConfigHistorySearchItemRadio) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseConfigHistorySearchItemRadio.
 // It customizes the JSON unmarshaling process for ResponseConfigHistorySearchItemRadio objects.
 func (r *ResponseConfigHistorySearchItemRadio) UnmarshalJSON(input []byte) error {
-    var temp responseConfigHistorySearchItemRadio
+    var temp tempResponseConfigHistorySearchItemRadio
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (r *ResponseConfigHistorySearchItemRadio) UnmarshalJSON(input []byte) error
     return nil
 }
 
-// responseConfigHistorySearchItemRadio is a temporary struct used for validating the fields of ResponseConfigHistorySearchItemRadio.
-type responseConfigHistorySearchItemRadio  struct {
+// tempResponseConfigHistorySearchItemRadio is a temporary struct used for validating the fields of ResponseConfigHistorySearchItemRadio.
+type tempResponseConfigHistorySearchItemRadio  struct {
     Band    *string `json:"band"`
     Channel *int    `json:"channel"`
 }
 
-func (r *responseConfigHistorySearchItemRadio) validate() error {
+func (r *tempResponseConfigHistorySearchItemRadio) validate() error {
     var errs []string
     if r.Band == nil {
-        errs = append(errs, "required field `band` is missing for type `Response_Config_History_Search_Item_Radio`")
+        errs = append(errs, "required field `band` is missing for type `response_config_history_search_item_radio`")
     }
     if r.Channel == nil {
-        errs = append(errs, "required field `channel` is missing for type `Response_Config_History_Search_Item_Radio`")
+        errs = append(errs, "required field `channel` is missing for type `response_config_history_search_item_radio`")
     }
     if len(errs) == 0 {
         return nil

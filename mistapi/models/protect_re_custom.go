@@ -42,7 +42,7 @@ func (p ProtectReCustom) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ProtectReCustom.
 // It customizes the JSON unmarshaling process for ProtectReCustom objects.
 func (p *ProtectReCustom) UnmarshalJSON(input []byte) error {
-    var temp protectReCustom
+    var temp tempProtectReCustom
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,8 +59,8 @@ func (p *ProtectReCustom) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// protectReCustom is a temporary struct used for validating the fields of ProtectReCustom.
-type protectReCustom  struct {
+// tempProtectReCustom is a temporary struct used for validating the fields of ProtectReCustom.
+type tempProtectReCustom  struct {
     PortRange *string                      `json:"port_range,omitempty"`
     Protocol  *ProtectReCustomProtocolEnum `json:"protocol,omitempty"`
     Subnet    []string                     `json:"subnet,omitempty"`

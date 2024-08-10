@@ -54,7 +54,7 @@ func (u UserApitoken) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UserApitoken.
 // It customizes the JSON unmarshaling process for UserApitoken objects.
 func (u *UserApitoken) UnmarshalJSON(input []byte) error {
-    var temp userApitoken
+    var temp tempUserApitoken
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -73,8 +73,8 @@ func (u *UserApitoken) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// userApitoken is a temporary struct used for validating the fields of UserApitoken.
-type userApitoken  struct {
+// tempUserApitoken is a temporary struct used for validating the fields of UserApitoken.
+type tempUserApitoken  struct {
     CreatedTime *float64      `json:"created_time,omitempty"`
     Id          *uuid.UUID    `json:"id,omitempty"`
     Key         *string       `json:"key,omitempty"`

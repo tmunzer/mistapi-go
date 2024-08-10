@@ -27,10 +27,10 @@
   "type": "static",
   "use_mgmt_vrf": false,
   "use_mgmt_vrf_for_host_out": false,
-  "gateway": "gateway6",
-  "ip": "ip0",
-  "netmask": "netmask6",
-  "network": "network8"
+  "gateway": "gateway0",
+  "ip": "ip4",
+  "netmask": "netmask0",
+  "network": "network6"
 }
 ```
 

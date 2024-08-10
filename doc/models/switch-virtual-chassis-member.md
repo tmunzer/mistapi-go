@@ -18,8 +18,8 @@
 ```json
 {
   "mac": "aff827549235",
-  "member_id": 242,
-  "vc_role": "linecard"
+  "member_id": 104,
+  "vc_role": "backup"
 }
 ```
 

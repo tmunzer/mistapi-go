@@ -43,7 +43,7 @@ func (i InsightRogueClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for InsightRogueClient.
 // It customizes the JSON unmarshaling process for InsightRogueClient objects.
 func (i *InsightRogueClient) UnmarshalJSON(input []byte) error {
-    var temp insightRogueClient
+    var temp tempInsightRogueClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -68,8 +68,8 @@ func (i *InsightRogueClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// insightRogueClient is a temporary struct used for validating the fields of InsightRogueClient.
-type insightRogueClient  struct {
+// tempInsightRogueClient is a temporary struct used for validating the fields of InsightRogueClient.
+type tempInsightRogueClient  struct {
     Annotation *string  `json:"annotation"`
     ApMac      *string  `json:"ap_mac"`
     AvgRssi    *float64 `json:"avg_rssi"`
@@ -79,28 +79,28 @@ type insightRogueClient  struct {
     NumAps     *int     `json:"num_aps"`
 }
 
-func (i *insightRogueClient) validate() error {
+func (i *tempInsightRogueClient) validate() error {
     var errs []string
     if i.Annotation == nil {
-        errs = append(errs, "required field `annotation` is missing for type `Insight_Rogue_Client`")
+        errs = append(errs, "required field `annotation` is missing for type `insight_rogue_client`")
     }
     if i.ApMac == nil {
-        errs = append(errs, "required field `ap_mac` is missing for type `Insight_Rogue_Client`")
+        errs = append(errs, "required field `ap_mac` is missing for type `insight_rogue_client`")
     }
     if i.AvgRssi == nil {
-        errs = append(errs, "required field `avg_rssi` is missing for type `Insight_Rogue_Client`")
+        errs = append(errs, "required field `avg_rssi` is missing for type `insight_rogue_client`")
     }
     if i.Band == nil {
-        errs = append(errs, "required field `band` is missing for type `Insight_Rogue_Client`")
+        errs = append(errs, "required field `band` is missing for type `insight_rogue_client`")
     }
     if i.Bssid == nil {
-        errs = append(errs, "required field `bssid` is missing for type `Insight_Rogue_Client`")
+        errs = append(errs, "required field `bssid` is missing for type `insight_rogue_client`")
     }
     if i.ClientMac == nil {
-        errs = append(errs, "required field `client_mac` is missing for type `Insight_Rogue_Client`")
+        errs = append(errs, "required field `client_mac` is missing for type `insight_rogue_client`")
     }
     if i.NumAps == nil {
-        errs = append(errs, "required field `num_aps` is missing for type `Insight_Rogue_Client`")
+        errs = append(errs, "required field `num_aps` is missing for type `insight_rogue_client`")
     }
     if len(errs) == 0 {
         return nil

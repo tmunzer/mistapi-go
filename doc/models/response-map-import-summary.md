@@ -17,9 +17,9 @@
 
 ```json
 {
-  "num_ap_assigned": 10,
-  "num_inv_assigned": 118,
-  "num_map_assigned": 108
+  "num_ap_assigned": 120,
+  "num_inv_assigned": 228,
+  "num_map_assigned": 218
 }
 ```
 

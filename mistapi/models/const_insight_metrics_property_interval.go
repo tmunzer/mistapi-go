@@ -35,7 +35,7 @@ func (c ConstInsightMetricsPropertyInterval) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstInsightMetricsPropertyInterval.
 // It customizes the JSON unmarshaling process for ConstInsightMetricsPropertyInterval objects.
 func (c *ConstInsightMetricsPropertyInterval) UnmarshalJSON(input []byte) error {
-    var temp constInsightMetricsPropertyInterval
+    var temp tempConstInsightMetricsPropertyInterval
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (c *ConstInsightMetricsPropertyInterval) UnmarshalJSON(input []byte) error 
     return nil
 }
 
-// constInsightMetricsPropertyInterval is a temporary struct used for validating the fields of ConstInsightMetricsPropertyInterval.
-type constInsightMetricsPropertyInterval  struct {
+// tempConstInsightMetricsPropertyInterval is a temporary struct used for validating the fields of ConstInsightMetricsPropertyInterval.
+type tempConstInsightMetricsPropertyInterval  struct {
     Interval *int `json:"interval,omitempty"`
     MaxAge   *int `json:"max_age,omitempty"`
 }

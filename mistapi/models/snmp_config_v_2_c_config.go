@@ -4,8 +4,8 @@ import (
     "encoding/json"
 )
 
-// SnmpConfigV2CConfig represents a SnmpConfigV2CConfig struct.
-type SnmpConfigV2CConfig struct {
+// SnmpConfigV2cConfig represents a SnmpConfigV2cConfig struct.
+type SnmpConfigV2cConfig struct {
     Authorization        *string        `json:"authorization,omitempty"`
     // client_list_name here should refer to client_list above
     ClientListName       *string        `json:"client_list_name,omitempty"`
@@ -15,16 +15,16 @@ type SnmpConfigV2CConfig struct {
     AdditionalProperties map[string]any `json:"_"`
 }
 
-// MarshalJSON implements the json.Marshaler interface for SnmpConfigV2CConfig.
-// It customizes the JSON marshaling process for SnmpConfigV2CConfig objects.
-func (s SnmpConfigV2CConfig) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for SnmpConfigV2cConfig.
+// It customizes the JSON marshaling process for SnmpConfigV2cConfig objects.
+func (s SnmpConfigV2cConfig) MarshalJSON() (
     []byte,
     error) {
     return json.Marshal(s.toMap())
 }
 
-// toMap converts the SnmpConfigV2CConfig object to a map representation for JSON marshaling.
-func (s SnmpConfigV2CConfig) toMap() map[string]any {
+// toMap converts the SnmpConfigV2cConfig object to a map representation for JSON marshaling.
+func (s SnmpConfigV2cConfig) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Authorization != nil {
@@ -42,10 +42,10 @@ func (s SnmpConfigV2CConfig) toMap() map[string]any {
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for SnmpConfigV2CConfig.
-// It customizes the JSON unmarshaling process for SnmpConfigV2CConfig objects.
-func (s *SnmpConfigV2CConfig) UnmarshalJSON(input []byte) error {
-    var temp snmpConfigV2CConfig
+// UnmarshalJSON implements the json.Unmarshaler interface for SnmpConfigV2cConfig.
+// It customizes the JSON unmarshaling process for SnmpConfigV2cConfig objects.
+func (s *SnmpConfigV2cConfig) UnmarshalJSON(input []byte) error {
+    var temp tempSnmpConfigV2cConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,8 +63,8 @@ func (s *SnmpConfigV2CConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpConfigV2CConfig is a temporary struct used for validating the fields of SnmpConfigV2CConfig.
-type snmpConfigV2CConfig  struct {
+// tempSnmpConfigV2cConfig is a temporary struct used for validating the fields of SnmpConfigV2cConfig.
+type tempSnmpConfigV2cConfig  struct {
     Authorization  *string `json:"authorization,omitempty"`
     ClientListName *string `json:"client_list_name,omitempty"`
     CommunityName  *string `json:"community_name,omitempty"`

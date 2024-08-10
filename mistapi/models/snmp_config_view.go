@@ -40,7 +40,7 @@ func (s SnmpConfigView) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SnmpConfigView.
 // It customizes the JSON unmarshaling process for SnmpConfigView objects.
 func (s *SnmpConfigView) UnmarshalJSON(input []byte) error {
-    var temp snmpConfigView
+    var temp tempSnmpConfigView
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (s *SnmpConfigView) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpConfigView is a temporary struct used for validating the fields of SnmpConfigView.
-type snmpConfigView  struct {
+// tempSnmpConfigView is a temporary struct used for validating the fields of SnmpConfigView.
+type tempSnmpConfigView  struct {
     Include  *bool   `json:"include,omitempty"`
     Oid      *string `json:"oid,omitempty"`
     ViewName *string `json:"view_name,omitempty"`

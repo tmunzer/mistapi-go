@@ -39,7 +39,7 @@ func (r ResponseInventoryInventoryDuplicatedItems) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseInventoryInventoryDuplicatedItems.
 // It customizes the JSON unmarshaling process for ResponseInventoryInventoryDuplicatedItems objects.
 func (r *ResponseInventoryInventoryDuplicatedItems) UnmarshalJSON(input []byte) error {
-    var temp responseInventoryInventoryDuplicatedItems
+    var temp tempResponseInventoryInventoryDuplicatedItems
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (r *ResponseInventoryInventoryDuplicatedItems) UnmarshalJSON(input []byte) 
     return nil
 }
 
-// responseInventoryInventoryDuplicatedItems is a temporary struct used for validating the fields of ResponseInventoryInventoryDuplicatedItems.
-type responseInventoryInventoryDuplicatedItems  struct {
+// tempResponseInventoryInventoryDuplicatedItems is a temporary struct used for validating the fields of ResponseInventoryInventoryDuplicatedItems.
+type tempResponseInventoryInventoryDuplicatedItems  struct {
     Mac    *string `json:"mac"`
     Magic  *string `json:"magic"`
     Model  *string `json:"model"`
@@ -71,22 +71,22 @@ type responseInventoryInventoryDuplicatedItems  struct {
     Type   *string `json:"type"`
 }
 
-func (r *responseInventoryInventoryDuplicatedItems) validate() error {
+func (r *tempResponseInventoryInventoryDuplicatedItems) validate() error {
     var errs []string
     if r.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Response_Inventory_Inventory_Duplicated_Items`")
+        errs = append(errs, "required field `mac` is missing for type `response_inventory_inventory_duplicated_items`")
     }
     if r.Magic == nil {
-        errs = append(errs, "required field `magic` is missing for type `Response_Inventory_Inventory_Duplicated_Items`")
+        errs = append(errs, "required field `magic` is missing for type `response_inventory_inventory_duplicated_items`")
     }
     if r.Model == nil {
-        errs = append(errs, "required field `model` is missing for type `Response_Inventory_Inventory_Duplicated_Items`")
+        errs = append(errs, "required field `model` is missing for type `response_inventory_inventory_duplicated_items`")
     }
     if r.Serial == nil {
-        errs = append(errs, "required field `serial` is missing for type `Response_Inventory_Inventory_Duplicated_Items`")
+        errs = append(errs, "required field `serial` is missing for type `response_inventory_inventory_duplicated_items`")
     }
     if r.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Response_Inventory_Inventory_Duplicated_Items`")
+        errs = append(errs, "required field `type` is missing for type `response_inventory_inventory_duplicated_items`")
     }
     if len(errs) == 0 {
         return nil

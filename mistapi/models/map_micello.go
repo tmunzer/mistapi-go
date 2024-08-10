@@ -42,7 +42,7 @@ func (m MapMicello) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapMicello.
 // It customizes the JSON unmarshaling process for MapMicello objects.
 func (m *MapMicello) UnmarshalJSON(input []byte) error {
-    var temp mapMicello
+    var temp tempMapMicello
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,27 +64,27 @@ func (m *MapMicello) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapMicello is a temporary struct used for validating the fields of MapMicello.
-type mapMicello  struct {
+// tempMapMicello is a temporary struct used for validating the fields of MapMicello.
+type tempMapMicello  struct {
     AccountKey     *string    `json:"account_key"`
     DefaultLevelId *int       `json:"default_level_id"`
     MapId          *uuid.UUID `json:"map_id"`
     VendorName     *string    `json:"vendor_name"`
 }
 
-func (m *mapMicello) validate() error {
+func (m *tempMapMicello) validate() error {
     var errs []string
     if m.AccountKey == nil {
-        errs = append(errs, "required field `account_key` is missing for type `Map_Micello`")
+        errs = append(errs, "required field `account_key` is missing for type `map_micello`")
     }
     if m.DefaultLevelId == nil {
-        errs = append(errs, "required field `default_level_id` is missing for type `Map_Micello`")
+        errs = append(errs, "required field `default_level_id` is missing for type `map_micello`")
     }
     if m.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Map_Micello`")
+        errs = append(errs, "required field `map_id` is missing for type `map_micello`")
     }
     if m.VendorName == nil {
-        errs = append(errs, "required field `vendor_name` is missing for type `Map_Micello`")
+        errs = append(errs, "required field `vendor_name` is missing for type `map_micello`")
     }
     if len(errs) == 0 {
         return nil

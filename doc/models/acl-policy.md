@@ -28,9 +28,9 @@
     }
   ],
   "src_tags": [
-    "src_tags5",
-    "src_tags6",
-    "src_tags7"
+    "src_tags9",
+    "src_tags0",
+    "src_tags1"
   ]
 }
 ```

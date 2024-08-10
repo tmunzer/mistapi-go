@@ -23,9 +23,9 @@
 
 ```json
 {
-  "classifier": "classifier4",
-  "end": 216,
-  "failure": "failure2",
+  "classifier": "classifier0",
+  "end": 186,
+  "failure": "failure8",
   "interfaces": [
     {
       "degraded": 98.24,
@@ -49,7 +49,7 @@
       "switch_name": "switch_name6"
     }
   ],
-  "limit": 46
+  "limit": 16
 }
 ```
 

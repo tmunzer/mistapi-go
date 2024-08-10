@@ -32,7 +32,7 @@
 | `TemplateUrl` | `*string` | Optional | UI customization |
 | `ThumbnailUrl` | `*string` | Optional | - |
 | `Type` | [`*models.PskPortalTypeEnum`](../../doc/models/psk-portal-type-enum.md) | Optional | for personal psk portal. enum: `admin`, `byod` |
-| `VlanId` | [`*models.PskPortalVlanId`](../../doc/models/containers/psk-portal-vlan-id.md) | Optional | This is a container for one-of cases. |
+| `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,14 +42,14 @@
   "cleanup_psk": false,
   "hide_psks_created_by_other_admins": false,
   "max_usage": 0,
-  "name": "name6",
+  "name": "name0",
   "notification_renew_url": "https://custom-sso/url",
   "notify_on_create_or_edit": false,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "ssid": "ssid6",
-  "bg_image_url": "bg_image_url2",
-  "created_time": 38.26,
-  "expire_time": 204
+  "ssid": "ssid2",
+  "bg_image_url": "bg_image_url8",
+  "created_time": 207.6,
+  "expire_time": 166
 }
 ```
 

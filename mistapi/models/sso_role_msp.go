@@ -63,7 +63,7 @@ func (s SsoRoleMsp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SsoRoleMsp.
 // It customizes the JSON unmarshaling process for SsoRoleMsp objects.
 func (s *SsoRoleMsp) UnmarshalJSON(input []byte) error {
-    var temp ssoRoleMsp
+    var temp tempSsoRoleMsp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -90,8 +90,8 @@ func (s *SsoRoleMsp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ssoRoleMsp is a temporary struct used for validating the fields of SsoRoleMsp.
-type ssoRoleMsp  struct {
+// tempSsoRoleMsp is a temporary struct used for validating the fields of SsoRoleMsp.
+type tempSsoRoleMsp  struct {
     CreatedTime  *float64        `json:"created_time,omitempty"`
     ForSite      *bool           `json:"for_site,omitempty"`
     Id           *uuid.UUID      `json:"id,omitempty"`
@@ -103,13 +103,13 @@ type ssoRoleMsp  struct {
     SiteId       *uuid.UUID      `json:"site_id,omitempty"`
 }
 
-func (s *ssoRoleMsp) validate() error {
+func (s *tempSsoRoleMsp) validate() error {
     var errs []string
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sso_Role_Msp`")
+        errs = append(errs, "required field `name` is missing for type `sso_role_msp`")
     }
     if s.Privileges == nil {
-        errs = append(errs, "required field `privileges` is missing for type `Sso_Role_Msp`")
+        errs = append(errs, "required field `privileges` is missing for type `sso_role_msp`")
     }
     if len(errs) == 0 {
         return nil

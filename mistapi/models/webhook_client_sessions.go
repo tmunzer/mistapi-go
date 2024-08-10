@@ -34,7 +34,7 @@ func (w WebhookClientSessions) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookClientSessions.
 // It customizes the JSON unmarshaling process for WebhookClientSessions objects.
 func (w *WebhookClientSessions) UnmarshalJSON(input []byte) error {
-    var temp webhookClientSessions
+    var temp tempWebhookClientSessions
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,19 +54,19 @@ func (w *WebhookClientSessions) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookClientSessions is a temporary struct used for validating the fields of WebhookClientSessions.
-type webhookClientSessions  struct {
+// tempWebhookClientSessions is a temporary struct used for validating the fields of WebhookClientSessions.
+type tempWebhookClientSessions  struct {
     Events *[]WebhookClientSessionsEvent `json:"events"`
     Topic  *string                       `json:"topic"`
 }
 
-func (w *webhookClientSessions) validate() error {
+func (w *tempWebhookClientSessions) validate() error {
     var errs []string
     if w.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Webhook_Client_Sessions`")
+        errs = append(errs, "required field `events` is missing for type `webhook_client_sessions`")
     }
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Client_Sessions`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_client_sessions`")
     }
     if len(errs) == 0 {
         return nil

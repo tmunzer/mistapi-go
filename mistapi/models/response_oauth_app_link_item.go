@@ -30,7 +30,7 @@ type ResponseOauthAppLinkItem struct {
     // Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/
     MaxDailyApiRequests  *int           `json:"max_daily_api_requests,omitempty"`
     // This error is provided when the VMware account fails to fetch token/data
-    LinkedTimestamp      *int           `json:"linked_timestamp,omitempty"`
+    LinkedTimestamp      *int64         `json:"linked_timestamp,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }
 
@@ -91,7 +91,7 @@ func (r ResponseOauthAppLinkItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseOauthAppLinkItem.
 // It customizes the JSON unmarshaling process for ResponseOauthAppLinkItem objects.
 func (r *ResponseOauthAppLinkItem) UnmarshalJSON(input []byte) error {
-    var temp responseOauthAppLinkItem
+    var temp tempResponseOauthAppLinkItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -118,8 +118,8 @@ func (r *ResponseOauthAppLinkItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseOauthAppLinkItem is a temporary struct used for validating the fields of ResponseOauthAppLinkItem.
-type responseOauthAppLinkItem  struct {
+// tempResponseOauthAppLinkItem is a temporary struct used for validating the fields of ResponseOauthAppLinkItem.
+type tempResponseOauthAppLinkItem  struct {
     ClientId            *string  `json:"client_id,omitempty"`
     Error               *string  `json:"error,omitempty"`
     InstanceUrl         *string  `json:"instance_url,omitempty"`
@@ -132,5 +132,5 @@ type responseOauthAppLinkItem  struct {
     Company             *string  `json:"company,omitempty"`
     Errors              []string `json:"errors,omitempty"`
     MaxDailyApiRequests *int     `json:"max_daily_api_requests,omitempty"`
-    LinkedTimestamp     *int     `json:"linked_timestamp,omitempty"`
+    LinkedTimestamp     *int64   `json:"linked_timestamp,omitempty"`
 }

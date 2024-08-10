@@ -24,16 +24,16 @@
 
 ```json
 {
-  "ap_mac": "ap_mac2",
-  "avg_rssi": 160.7,
-  "bssid": "bssid4",
-  "channel": "channel4",
-  "delta_x": 15.6,
-  "delta_y": 63.26,
-  "num_aps": 150,
+  "ap_mac": "ap_mac4",
+  "avg_rssi": 133.82,
+  "bssid": "bssid6",
+  "channel": "channel2",
+  "delta_x": 22.92,
+  "delta_y": 101.78,
+  "num_aps": 138,
   "seen_on_lan": false,
-  "ssid": "ssid2",
-  "times_heard": 100
+  "ssid": "ssid0",
+  "times_heard": 112
 }
 ```
 

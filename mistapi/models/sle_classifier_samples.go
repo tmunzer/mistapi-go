@@ -35,7 +35,7 @@ func (s SleClassifierSamples) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleClassifierSamples.
 // It customizes the JSON unmarshaling process for SleClassifierSamples objects.
 func (s *SleClassifierSamples) UnmarshalJSON(input []byte) error {
-    var temp sleClassifierSamples
+    var temp tempSleClassifierSamples
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,23 +56,23 @@ func (s *SleClassifierSamples) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleClassifierSamples is a temporary struct used for validating the fields of SleClassifierSamples.
-type sleClassifierSamples  struct {
+// tempSleClassifierSamples is a temporary struct used for validating the fields of SleClassifierSamples.
+type tempSleClassifierSamples  struct {
     Degraded *[]float64 `json:"degraded"`
     Duration *[]float64 `json:"duration"`
     Total    *[]float64 `json:"total"`
 }
 
-func (s *sleClassifierSamples) validate() error {
+func (s *tempSleClassifierSamples) validate() error {
     var errs []string
     if s.Degraded == nil {
-        errs = append(errs, "required field `degraded` is missing for type `Sle_Classifier_Samples`")
+        errs = append(errs, "required field `degraded` is missing for type `sle_classifier_samples`")
     }
     if s.Duration == nil {
-        errs = append(errs, "required field `duration` is missing for type `Sle_Classifier_Samples`")
+        errs = append(errs, "required field `duration` is missing for type `sle_classifier_samples`")
     }
     if s.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Sle_Classifier_Samples`")
+        errs = append(errs, "required field `total` is missing for type `sle_classifier_samples`")
     }
     if len(errs) == 0 {
         return nil

@@ -38,7 +38,7 @@ func (w WlanDnsServerRewrite) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanDnsServerRewrite.
 // It customizes the JSON unmarshaling process for WlanDnsServerRewrite objects.
 func (w *WlanDnsServerRewrite) UnmarshalJSON(input []byte) error {
-    var temp wlanDnsServerRewrite
+    var temp tempWlanDnsServerRewrite
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (w *WlanDnsServerRewrite) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanDnsServerRewrite is a temporary struct used for validating the fields of WlanDnsServerRewrite.
-type wlanDnsServerRewrite  struct {
+// tempWlanDnsServerRewrite is a temporary struct used for validating the fields of WlanDnsServerRewrite.
+type tempWlanDnsServerRewrite  struct {
     Enabled      *bool             `json:"enabled,omitempty"`
     RadiusGroups map[string]string `json:"radius_groups,omitempty"`
 }

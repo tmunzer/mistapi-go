@@ -28,8 +28,7 @@ Property key is the network name
     ]
   },
   "networks": [
-    "networks6",
-    "networks7"
+    "networks2"
   ]
 }
 ```

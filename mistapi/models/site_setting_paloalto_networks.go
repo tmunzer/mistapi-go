@@ -35,7 +35,7 @@ func (s SiteSettingPaloaltoNetworks) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingPaloaltoNetworks.
 // It customizes the JSON unmarshaling process for SiteSettingPaloaltoNetworks objects.
 func (s *SiteSettingPaloaltoNetworks) UnmarshalJSON(input []byte) error {
-    var temp siteSettingPaloaltoNetworks
+    var temp tempSiteSettingPaloaltoNetworks
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *SiteSettingPaloaltoNetworks) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingPaloaltoNetworks is a temporary struct used for validating the fields of SiteSettingPaloaltoNetworks.
-type siteSettingPaloaltoNetworks  struct {
+// tempSiteSettingPaloaltoNetworks is a temporary struct used for validating the fields of SiteSettingPaloaltoNetworks.
+type tempSiteSettingPaloaltoNetworks  struct {
     Gateways            []SiteSettingPaloaltoNetworkGateway `json:"gateways,omitempty"`
     SendMistNacUserInfo *bool                               `json:"send_mist_nac_user_info,omitempty"`
 }

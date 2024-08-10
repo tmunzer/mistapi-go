@@ -28,21 +28,24 @@
 
 ```json
 {
-  "id": "00000afc-0000-0000-0000-000000000000",
-  "last_seen": 145.82,
+  "id": "00001c58-0000-0000-0000-000000000000",
+  "last_seen": 246.26,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "timestamp": 122,
-  "type": "type8",
+  "timestamp": 182,
+  "type": "type4",
   "aps": [
-    "aps3"
+    "aps7",
+    "aps8",
+    "aps9"
   ],
   "bssids": [
     "bssids8",
-    "bssids7"
+    "bssids9",
+    "bssids0"
   ],
-  "count": 112,
-  "event_id": "000013f4-0000-0000-0000-000000000000",
+  "count": 52,
+  "event_id": "00002550-0000-0000-0000-000000000000",
   "for_site": false
 }
 ```

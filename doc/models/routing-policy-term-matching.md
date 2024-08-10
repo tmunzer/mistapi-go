@@ -26,23 +26,23 @@ zero or more criteria/filter can be specified to match the term, all criteria ha
 ```json
 {
   "as_path": [
-    "as_path4"
+    "as_path2",
+    "as_path1"
   ],
   "community": [
-    "community2"
+    "community4",
+    "community5"
   ],
   "network": [
-    "network1",
-    "network2"
+    "network7"
   ],
   "prefix": [
-    "prefix3",
-    "prefix4",
     "prefix5"
   ],
   "protocol": [
-    "protocol3",
-    "protocol4"
+    "protocol5",
+    "protocol6",
+    "protocol7"
   ]
 }
 ```

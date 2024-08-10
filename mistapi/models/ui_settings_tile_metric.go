@@ -31,7 +31,7 @@ func (u UiSettingsTileMetric) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UiSettingsTileMetric.
 // It customizes the JSON unmarshaling process for UiSettingsTileMetric objects.
 func (u *UiSettingsTileMetric) UnmarshalJSON(input []byte) error {
-    var temp uiSettingsTileMetric
+    var temp tempUiSettingsTileMetric
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (u *UiSettingsTileMetric) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// uiSettingsTileMetric is a temporary struct used for validating the fields of UiSettingsTileMetric.
-type uiSettingsTileMetric  struct {
+// tempUiSettingsTileMetric is a temporary struct used for validating the fields of UiSettingsTileMetric.
+type tempUiSettingsTileMetric  struct {
     ApiName *string `json:"apiName,omitempty"`
 }

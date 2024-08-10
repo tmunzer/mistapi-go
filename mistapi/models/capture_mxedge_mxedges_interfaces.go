@@ -5,7 +5,7 @@ import (
 )
 
 // CaptureMxedgeMxedgesInterfaces represents a CaptureMxedgeMxedgesInterfaces struct.
-// Property key is the Port name (e.g. "port1")
+// Property key is the Port name (e.g. "port1", "kni0", "lacp0", "ipsec", "drop", "oobm"), currently limited to specifying one interface per mxedge
 type CaptureMxedgeMxedgesInterfaces struct {
     // tcpdump expression common for wired,radiotap
     TcpdumpExpression    *string        `json:"tcpdump_expression,omitempty"`
@@ -33,7 +33,7 @@ func (c CaptureMxedgeMxedgesInterfaces) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureMxedgeMxedgesInterfaces.
 // It customizes the JSON unmarshaling process for CaptureMxedgeMxedgesInterfaces objects.
 func (c *CaptureMxedgeMxedgesInterfaces) UnmarshalJSON(input []byte) error {
-    var temp captureMxedgeMxedgesInterfaces
+    var temp tempCaptureMxedgeMxedgesInterfaces
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -48,7 +48,7 @@ func (c *CaptureMxedgeMxedgesInterfaces) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureMxedgeMxedgesInterfaces is a temporary struct used for validating the fields of CaptureMxedgeMxedgesInterfaces.
-type captureMxedgeMxedgesInterfaces  struct {
+// tempCaptureMxedgeMxedgesInterfaces is a temporary struct used for validating the fields of CaptureMxedgeMxedgesInterfaces.
+type tempCaptureMxedgeMxedgesInterfaces  struct {
     TcpdumpExpression *string `json:"tcpdump_expression,omitempty"`
 }

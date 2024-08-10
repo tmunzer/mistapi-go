@@ -31,7 +31,7 @@ func (s SearchWanUsage) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SearchWanUsage.
 // It customizes the JSON unmarshaling process for SearchWanUsage objects.
 func (s *SearchWanUsage) UnmarshalJSON(input []byte) error {
-    var temp searchWanUsage
+    var temp tempSearchWanUsage
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (s *SearchWanUsage) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// searchWanUsage is a temporary struct used for validating the fields of SearchWanUsage.
-type searchWanUsage  struct {
+// tempSearchWanUsage is a temporary struct used for validating the fields of SearchWanUsage.
+type tempSearchWanUsage  struct {
     Results []WanUsages `json:"results,omitempty"`
 }

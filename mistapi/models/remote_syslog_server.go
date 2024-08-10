@@ -79,7 +79,7 @@ func (r RemoteSyslogServer) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RemoteSyslogServer.
 // It customizes the JSON unmarshaling process for RemoteSyslogServer objects.
 func (r *RemoteSyslogServer) UnmarshalJSON(input []byte) error {
-    var temp remoteSyslogServer
+    var temp tempRemoteSyslogServer
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -105,8 +105,8 @@ func (r *RemoteSyslogServer) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// remoteSyslogServer is a temporary struct used for validating the fields of RemoteSyslogServer.
-type remoteSyslogServer  struct {
+// tempRemoteSyslogServer is a temporary struct used for validating the fields of RemoteSyslogServer.
+type tempRemoteSyslogServer  struct {
     Contents         []RemoteSyslogContent           `json:"contents,omitempty"`
     ExplicitPriority *bool                           `json:"explicit_priority,omitempty"`
     Facility         *RemoteSyslogFacilityEnum       `json:"facility,omitempty"`

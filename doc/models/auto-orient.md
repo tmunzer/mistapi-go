@@ -19,8 +19,8 @@
   "force_collection": false,
   "macs": [
     "macs3",
-    "macs2",
-    "macs1"
+    "macs4",
+    "macs5"
   ]
 }
 ```

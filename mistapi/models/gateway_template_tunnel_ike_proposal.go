@@ -56,7 +56,7 @@ func (g GatewayTemplateTunnelIkeProposal) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayTemplateTunnelIkeProposal.
 // It customizes the JSON unmarshaling process for GatewayTemplateTunnelIkeProposal objects.
 func (g *GatewayTemplateTunnelIkeProposal) UnmarshalJSON(input []byte) error {
-    var temp gatewayTemplateTunnelIkeProposal
+    var temp tempGatewayTemplateTunnelIkeProposal
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -73,8 +73,8 @@ func (g *GatewayTemplateTunnelIkeProposal) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayTemplateTunnelIkeProposal is a temporary struct used for validating the fields of GatewayTemplateTunnelIkeProposal.
-type gatewayTemplateTunnelIkeProposal  struct {
+// tempGatewayTemplateTunnelIkeProposal is a temporary struct used for validating the fields of GatewayTemplateTunnelIkeProposal.
+type tempGatewayTemplateTunnelIkeProposal  struct {
     AuthAlgo *TunnelConfigsAuthAlgoEnum           `json:"auth_algo,omitempty"`
     DhGroup  *GatewayTemplateTunnelIkeDhGroupEnum `json:"dh_group,omitempty"`
     EncAlgo  Optional[TunnelConfigsEncAlgoEnum]   `json:"enc_algo"`

@@ -31,7 +31,7 @@ func (m MxclusterRadsecTls) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxclusterRadsecTls.
 // It customizes the JSON unmarshaling process for MxclusterRadsecTls objects.
 func (m *MxclusterRadsecTls) UnmarshalJSON(input []byte) error {
-    var temp mxclusterRadsecTls
+    var temp tempMxclusterRadsecTls
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (m *MxclusterRadsecTls) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxclusterRadsecTls is a temporary struct used for validating the fields of MxclusterRadsecTls.
-type mxclusterRadsecTls  struct {
+// tempMxclusterRadsecTls is a temporary struct used for validating the fields of MxclusterRadsecTls.
+type tempMxclusterRadsecTls  struct {
     Keypair *string `json:"keypair,omitempty"`
 }

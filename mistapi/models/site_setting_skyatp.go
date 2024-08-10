@@ -36,7 +36,7 @@ func (s SiteSettingSkyatp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingSkyatp.
 // It customizes the JSON unmarshaling process for SiteSettingSkyatp objects.
 func (s *SiteSettingSkyatp) UnmarshalJSON(input []byte) error {
-    var temp siteSettingSkyatp
+    var temp tempSiteSettingSkyatp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (s *SiteSettingSkyatp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingSkyatp is a temporary struct used for validating the fields of SiteSettingSkyatp.
-type siteSettingSkyatp  struct {
+// tempSiteSettingSkyatp is a temporary struct used for validating the fields of SiteSettingSkyatp.
+type tempSiteSettingSkyatp  struct {
     Enabled          *bool `json:"enabled,omitempty"`
     SendIpMacMapping *bool `json:"send_ip_mac_mapping,omitempty"`
 }

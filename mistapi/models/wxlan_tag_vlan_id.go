@@ -7,7 +7,7 @@ import (
 )
 
 // WxlanTagVlanId represents a WxlanTagVlanId struct.
-// This is a container for one-of cases.
+// if `type`==`vlan_id`, VLAN ID or variable
 type WxlanTagVlanId struct {
     value    any
     isString bool
@@ -75,7 +75,7 @@ func (w *WxlanTagVlanId) AsNumber() (
 }
 
 // internalWxlanTagVlanId represents a wxlanTagVlanId struct.
-// This is a container for one-of cases.
+// if `type`==`vlan_id`, VLAN ID or variable
 type internalWxlanTagVlanId struct {}
 
 var WxlanTagVlanIdContainer internalWxlanTagVlanId

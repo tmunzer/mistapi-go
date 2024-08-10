@@ -36,7 +36,7 @@ Junos VRRP group
       "ip": "10.182.102.1"
     }
   },
-  "auth_password": "auth_password0"
+  "auth_password": "auth_password2"
 }
 ```
 

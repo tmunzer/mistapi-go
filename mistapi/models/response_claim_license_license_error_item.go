@@ -33,7 +33,7 @@ func (r ResponseClaimLicenseLicenseErrorItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseClaimLicenseLicenseErrorItem.
 // It customizes the JSON unmarshaling process for ResponseClaimLicenseLicenseErrorItem objects.
 func (r *ResponseClaimLicenseLicenseErrorItem) UnmarshalJSON(input []byte) error {
-    var temp responseClaimLicenseLicenseErrorItem
+    var temp tempResponseClaimLicenseLicenseErrorItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (r *ResponseClaimLicenseLicenseErrorItem) UnmarshalJSON(input []byte) error
     return nil
 }
 
-// responseClaimLicenseLicenseErrorItem is a temporary struct used for validating the fields of ResponseClaimLicenseLicenseErrorItem.
-type responseClaimLicenseLicenseErrorItem  struct {
+// tempResponseClaimLicenseLicenseErrorItem is a temporary struct used for validating the fields of ResponseClaimLicenseLicenseErrorItem.
+type tempResponseClaimLicenseLicenseErrorItem  struct {
     Order  *string `json:"order"`
     Reason *string `json:"reason"`
 }
 
-func (r *responseClaimLicenseLicenseErrorItem) validate() error {
+func (r *tempResponseClaimLicenseLicenseErrorItem) validate() error {
     var errs []string
     if r.Order == nil {
-        errs = append(errs, "required field `order` is missing for type `Response_Claim_License_License_Error_Item`")
+        errs = append(errs, "required field `order` is missing for type `response_claim_license_license_error_item`")
     }
     if r.Reason == nil {
-        errs = append(errs, "required field `reason` is missing for type `Response_Claim_License_License_Error_Item`")
+        errs = append(errs, "required field `reason` is missing for type `response_claim_license_license_error_item`")
     }
     if len(errs) == 0 {
         return nil

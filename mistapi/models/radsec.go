@@ -73,7 +73,7 @@ func (r Radsec) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Radsec.
 // It customizes the JSON unmarshaling process for Radsec objects.
 func (r *Radsec) UnmarshalJSON(input []byte) error {
-    var temp radsec
+    var temp tempRadsec
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -96,8 +96,8 @@ func (r *Radsec) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// radsec is a temporary struct used for validating the fields of Radsec.
-type radsec  struct {
+// tempRadsec is a temporary struct used for validating the fields of Radsec.
+type tempRadsec  struct {
     CoaEnabled    *bool          `json:"coa_enabled,omitempty"`
     Enabled       *bool          `json:"enabled,omitempty"`
     IdleTimeout   *int           `json:"idle_timeout,omitempty"`

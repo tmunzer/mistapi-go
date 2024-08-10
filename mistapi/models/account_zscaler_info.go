@@ -41,7 +41,7 @@ func (a AccountZscalerInfo) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountZscalerInfo.
 // It customizes the JSON unmarshaling process for AccountZscalerInfo objects.
 func (a *AccountZscalerInfo) UnmarshalJSON(input []byte) error {
-    var temp accountZscalerInfo
+    var temp tempAccountZscalerInfo
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (a *AccountZscalerInfo) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountZscalerInfo is a temporary struct used for validating the fields of AccountZscalerInfo.
-type accountZscalerInfo  struct {
+// tempAccountZscalerInfo is a temporary struct used for validating the fields of AccountZscalerInfo.
+type tempAccountZscalerInfo  struct {
     CloudName  *string `json:"cloud_name,omitempty"`
     PartnerKey *string `json:"partner_key,omitempty"`
     Username   *string `json:"username,omitempty"`

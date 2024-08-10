@@ -47,7 +47,7 @@ func (s SleImpactedUsers) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactedUsers.
 // It customizes the JSON unmarshaling process for SleImpactedUsers objects.
 func (s *SleImpactedUsers) UnmarshalJSON(input []byte) error {
-    var temp sleImpactedUsers
+    var temp tempSleImpactedUsers
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -74,8 +74,8 @@ func (s *SleImpactedUsers) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactedUsers is a temporary struct used for validating the fields of SleImpactedUsers.
-type sleImpactedUsers  struct {
+// tempSleImpactedUsers is a temporary struct used for validating the fields of SleImpactedUsers.
+type tempSleImpactedUsers  struct {
     Classifier *string                 `json:"classifier"`
     End        *float64                `json:"end"`
     Failure    *string                 `json:"failure"`
@@ -87,34 +87,34 @@ type sleImpactedUsers  struct {
     Users      *[]SleImpactedUsersUser `json:"users"`
 }
 
-func (s *sleImpactedUsers) validate() error {
+func (s *tempSleImpactedUsers) validate() error {
     var errs []string
     if s.Classifier == nil {
-        errs = append(errs, "required field `classifier` is missing for type `Sle_Impacted_Users`")
+        errs = append(errs, "required field `classifier` is missing for type `sle_impacted_users`")
     }
     if s.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Sle_Impacted_Users`")
+        errs = append(errs, "required field `end` is missing for type `sle_impacted_users`")
     }
     if s.Failure == nil {
-        errs = append(errs, "required field `failure` is missing for type `Sle_Impacted_Users`")
+        errs = append(errs, "required field `failure` is missing for type `sle_impacted_users`")
     }
     if s.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Sle_Impacted_Users`")
+        errs = append(errs, "required field `limit` is missing for type `sle_impacted_users`")
     }
     if s.Metric == nil {
-        errs = append(errs, "required field `metric` is missing for type `Sle_Impacted_Users`")
+        errs = append(errs, "required field `metric` is missing for type `sle_impacted_users`")
     }
     if s.Page == nil {
-        errs = append(errs, "required field `page` is missing for type `Sle_Impacted_Users`")
+        errs = append(errs, "required field `page` is missing for type `sle_impacted_users`")
     }
     if s.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Sle_Impacted_Users`")
+        errs = append(errs, "required field `start` is missing for type `sle_impacted_users`")
     }
     if s.TotalCount == nil {
-        errs = append(errs, "required field `total_count` is missing for type `Sle_Impacted_Users`")
+        errs = append(errs, "required field `total_count` is missing for type `sle_impacted_users`")
     }
     if s.Users == nil {
-        errs = append(errs, "required field `users` is missing for type `Sle_Impacted_Users`")
+        errs = append(errs, "required field `users` is missing for type `sle_impacted_users`")
     }
     if len(errs) == 0 {
         return nil

@@ -35,7 +35,7 @@ func (a ApStatsAutoUpgrade) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStatsAutoUpgrade.
 // It customizes the JSON unmarshaling process for ApStatsAutoUpgrade objects.
 func (a *ApStatsAutoUpgrade) UnmarshalJSON(input []byte) error {
-    var temp apStatsAutoUpgrade
+    var temp tempApStatsAutoUpgrade
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,7 +50,7 @@ func (a *ApStatsAutoUpgrade) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStatsAutoUpgrade is a temporary struct used for validating the fields of ApStatsAutoUpgrade.
-type apStatsAutoUpgrade  struct {
+// tempApStatsAutoUpgrade is a temporary struct used for validating the fields of ApStatsAutoUpgrade.
+type tempApStatsAutoUpgrade  struct {
     Lastcheck Optional[int64] `json:"lastcheck"`
 }

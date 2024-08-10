@@ -37,7 +37,7 @@ func (e EvpnConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EvpnConfig.
 // It customizes the JSON unmarshaling process for EvpnConfig objects.
 func (e *EvpnConfig) UnmarshalJSON(input []byte) error {
-    var temp evpnConfig
+    var temp tempEvpnConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (e *EvpnConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// evpnConfig is a temporary struct used for validating the fields of EvpnConfig.
-type evpnConfig  struct {
+// tempEvpnConfig is a temporary struct used for validating the fields of EvpnConfig.
+type tempEvpnConfig  struct {
     Enabled *bool               `json:"enabled,omitempty"`
     Role    *EvpnConfigRoleEnum `json:"role,omitempty"`
 }

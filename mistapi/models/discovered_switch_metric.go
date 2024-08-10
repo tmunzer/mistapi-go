@@ -92,7 +92,7 @@ func (d DiscoveredSwitchMetric) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DiscoveredSwitchMetric.
 // It customizes the JSON unmarshaling process for DiscoveredSwitchMetric objects.
 func (d *DiscoveredSwitchMetric) UnmarshalJSON(input []byte) error {
-    var temp discoveredSwitchMetric
+    var temp tempDiscoveredSwitchMetric
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -122,8 +122,8 @@ func (d *DiscoveredSwitchMetric) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// discoveredSwitchMetric is a temporary struct used for validating the fields of DiscoveredSwitchMetric.
-type discoveredSwitchMetric  struct {
+// tempDiscoveredSwitchMetric is a temporary struct used for validating the fields of DiscoveredSwitchMetric.
+type tempDiscoveredSwitchMetric  struct {
     Adopted    *bool                      `json:"adopted,omitempty"`
     Aps        []DiscoveredSwitchMetricAp `json:"aps,omitempty"`
     ChassisId  []string                   `json:"chassis_id,omitempty"`

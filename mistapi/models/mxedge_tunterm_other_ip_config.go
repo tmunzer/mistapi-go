@@ -33,7 +33,7 @@ func (m MxedgeTuntermOtherIpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeTuntermOtherIpConfig.
 // It customizes the JSON unmarshaling process for MxedgeTuntermOtherIpConfig objects.
 func (m *MxedgeTuntermOtherIpConfig) UnmarshalJSON(input []byte) error {
-    var temp mxedgeTuntermOtherIpConfig
+    var temp tempMxedgeTuntermOtherIpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (m *MxedgeTuntermOtherIpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeTuntermOtherIpConfig is a temporary struct used for validating the fields of MxedgeTuntermOtherIpConfig.
-type mxedgeTuntermOtherIpConfig  struct {
+// tempMxedgeTuntermOtherIpConfig is a temporary struct used for validating the fields of MxedgeTuntermOtherIpConfig.
+type tempMxedgeTuntermOtherIpConfig  struct {
     Ip      *string `json:"ip"`
     Netmask *string `json:"netmask"`
 }
 
-func (m *mxedgeTuntermOtherIpConfig) validate() error {
+func (m *tempMxedgeTuntermOtherIpConfig) validate() error {
     var errs []string
     if m.Ip == nil {
-        errs = append(errs, "required field `ip` is missing for type `Mxedge_Tunterm_Other_Ip_Config`")
+        errs = append(errs, "required field `ip` is missing for type `mxedge_tunterm_other_ip_config`")
     }
     if m.Netmask == nil {
-        errs = append(errs, "required field `netmask` is missing for type `Mxedge_Tunterm_Other_Ip_Config`")
+        errs = append(errs, "required field `netmask` is missing for type `mxedge_tunterm_other_ip_config`")
     }
     if len(errs) == 0 {
         return nil

@@ -41,7 +41,7 @@ func (s SwitchVirtualChassisMember) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchVirtualChassisMember.
 // It customizes the JSON unmarshaling process for SwitchVirtualChassisMember objects.
 func (s *SwitchVirtualChassisMember) UnmarshalJSON(input []byte) error {
-    var temp switchVirtualChassisMember
+    var temp tempSwitchVirtualChassisMember
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (s *SwitchVirtualChassisMember) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchVirtualChassisMember is a temporary struct used for validating the fields of SwitchVirtualChassisMember.
-type switchVirtualChassisMember  struct {
+// tempSwitchVirtualChassisMember is a temporary struct used for validating the fields of SwitchVirtualChassisMember.
+type tempSwitchVirtualChassisMember  struct {
     Mac      *string                               `json:"mac,omitempty"`
     MemberId *int                                  `json:"member_id,omitempty"`
     VcRole   *SwitchVirtualChassisMemberVcRoleEnum `json:"vc_role,omitempty"`

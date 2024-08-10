@@ -41,7 +41,7 @@ func (s SnmpUsm) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SnmpUsm.
 // It customizes the JSON unmarshaling process for SnmpUsm objects.
 func (s *SnmpUsm) UnmarshalJSON(input []byte) error {
-    var temp snmpUsm
+    var temp tempSnmpUsm
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (s *SnmpUsm) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpUsm is a temporary struct used for validating the fields of SnmpUsm.
-type snmpUsm  struct {
+// tempSnmpUsm is a temporary struct used for validating the fields of SnmpUsm.
+type tempSnmpUsm  struct {
     EngineId   *string                `json:"engine-id,omitempty"`
     EngineType *SnmpUsmEngineTypeEnum `json:"engine_type,omitempty"`
     Users      []SnmpUsmpUser         `json:"users,omitempty"`

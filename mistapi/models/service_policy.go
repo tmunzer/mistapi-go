@@ -74,7 +74,7 @@ func (s ServicePolicy) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ServicePolicy.
 // It customizes the JSON unmarshaling process for ServicePolicy objects.
 func (s *ServicePolicy) UnmarshalJSON(input []byte) error {
-    var temp servicePolicy
+    var temp tempServicePolicy
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -98,8 +98,8 @@ func (s *ServicePolicy) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// servicePolicy is a temporary struct used for validating the fields of ServicePolicy.
-type servicePolicy  struct {
+// tempServicePolicy is a temporary struct used for validating the fields of ServicePolicy.
+type tempServicePolicy  struct {
     Action          *AllowDenyEnum         `json:"action,omitempty"`
     Appqoe          *ServicePolicyAppqoe   `json:"appqoe,omitempty"`
     Ewf             []ServicePolicyEwfRule `json:"ewf,omitempty"`

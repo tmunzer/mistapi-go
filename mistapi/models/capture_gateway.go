@@ -63,7 +63,7 @@ func (c CaptureGateway) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureGateway.
 // It customizes the JSON unmarshaling process for CaptureGateway objects.
 func (c *CaptureGateway) UnmarshalJSON(input []byte) error {
-    var temp captureGateway
+    var temp tempCaptureGateway
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -88,8 +88,8 @@ func (c *CaptureGateway) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureGateway is a temporary struct used for validating the fields of CaptureGateway.
-type captureGateway  struct {
+// tempCaptureGateway is a temporary struct used for validating the fields of CaptureGateway.
+type tempCaptureGateway  struct {
     Duration   *int                              `json:"duration,omitempty"`
     Format     *CaptureGatewayFormatEnum         `json:"format,omitempty"`
     Gateways   map[string]CaptureGatewayGateways `json:"gateways,omitempty"`
@@ -99,10 +99,10 @@ type captureGateway  struct {
     Type       *string                           `json:"type"`
 }
 
-func (c *captureGateway) validate() error {
+func (c *tempCaptureGateway) validate() error {
     var errs []string
     if c.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Capture_Gateway`")
+        errs = append(errs, "required field `type` is missing for type `capture_gateway`")
     }
     if len(errs) == 0 {
         return nil

@@ -18,7 +18,9 @@
 {
   "client_list_name": "clist-1",
   "clients": [
-    "clients6"
+    "clients0",
+    "clients9",
+    "clients8"
   ]
 }
 ```

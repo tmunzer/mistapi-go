@@ -32,6 +32,17 @@ Virtual Chassis
         "vc_ports4"
       ],
       "vc_role": "master"
+    },
+    {
+      "locating": false,
+      "mac": "mac2",
+      "member": 176,
+      "vc_ports": [
+        "vc_ports2",
+        "vc_ports3",
+        "vc_ports4"
+      ],
+      "vc_role": "master"
     }
   ]
 }

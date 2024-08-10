@@ -21,13 +21,13 @@
 
 ```json
 {
-  "action": "assigned-placed",
-  "floorplan_id": "00000c80-0000-0000-0000-000000000000",
-  "height": 86.12,
-  "mac": "mac0",
-  "map_id": "00001390-0000-0000-0000-000000000000",
-  "orientation": 240,
-  "reason": "reason8"
+  "action": "placed",
+  "floorplan_id": "0000110a-0000-0000-0000-000000000000",
+  "height": 41.74,
+  "mac": "mac2",
+  "map_id": "00000f06-0000-0000-0000-000000000000",
+  "orientation": 154,
+  "reason": "reason6"
 }
 ```
 

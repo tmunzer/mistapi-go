@@ -19,7 +19,7 @@ Org API Token
 | `Name` | `models.Optional[string]` | Optional | name of the token |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Privileges` | [`[]models.PrivilegeOrg`](../../doc/models/privilege-org.md) | Optional | list of privileges the token has on the orgs/sites<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `SrcIps` | `[]string` | Optional | to restrict where the API can be called from |
+| `SrcIps` | `[]string` | Optional | list of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified |
 
 ## Example (as JSON)
 
@@ -40,7 +40,8 @@ Org API Token
     }
   ],
   "src_ips": [
-    "198.51.0.42/32"
+    "63.3.56.0/24",
+    "63.3.55.4"
   ]
 }
 ```

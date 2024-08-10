@@ -16,11 +16,10 @@
 
 ```json
 {
-  "hold_time": 26,
+  "hold_time": 210,
   "ports": [
-    "ports7",
-    "ports8",
-    "ports9"
+    "ports9",
+    "ports0"
   ]
 }
 ```

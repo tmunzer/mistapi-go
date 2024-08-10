@@ -38,16 +38,6 @@
         "String7",
         "String8"
       ]
-    },
-    {
-      "custom_test_urls": [
-        "custom_test_urls9"
-      ],
-      "disabled": false,
-      "vlan_ids": [
-        "String7",
-        "String8"
-      ]
     }
   ],
   "wan_speedtest": {

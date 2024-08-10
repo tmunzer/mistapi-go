@@ -47,7 +47,7 @@ func (c CoaServer) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CoaServer.
 // It customizes the JSON unmarshaling process for CoaServer objects.
 func (c *CoaServer) UnmarshalJSON(input []byte) error {
-    var temp coaServer
+    var temp tempCoaServer
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -70,8 +70,8 @@ func (c *CoaServer) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// coaServer is a temporary struct used for validating the fields of CoaServer.
-type coaServer  struct {
+// tempCoaServer is a temporary struct used for validating the fields of CoaServer.
+type tempCoaServer  struct {
     DisableEventTimestampCheck *bool   `json:"disable_event_timestamp_check,omitempty"`
     Enabled                    *bool   `json:"enabled,omitempty"`
     Ip                         *string `json:"ip"`
@@ -79,13 +79,13 @@ type coaServer  struct {
     Secret                     *string `json:"secret"`
 }
 
-func (c *coaServer) validate() error {
+func (c *tempCoaServer) validate() error {
     var errs []string
     if c.Ip == nil {
-        errs = append(errs, "required field `ip` is missing for type `Coa_Server`")
+        errs = append(errs, "required field `ip` is missing for type `coa_server`")
     }
     if c.Secret == nil {
-        errs = append(errs, "required field `secret` is missing for type `Coa_Server`")
+        errs = append(errs, "required field `secret` is missing for type `coa_server`")
     }
     if len(errs) == 0 {
         return nil

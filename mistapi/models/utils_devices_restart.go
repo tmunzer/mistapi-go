@@ -38,7 +38,7 @@ func (u UtilsDevicesRestart) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsDevicesRestart.
 // It customizes the JSON unmarshaling process for UtilsDevicesRestart objects.
 func (u *UtilsDevicesRestart) UnmarshalJSON(input []byte) error {
-    var temp utilsDevicesRestart
+    var temp tempUtilsDevicesRestart
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (u *UtilsDevicesRestart) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsDevicesRestart is a temporary struct used for validating the fields of UtilsDevicesRestart.
-type utilsDevicesRestart  struct {
+// tempUtilsDevicesRestart is a temporary struct used for validating the fields of UtilsDevicesRestart.
+type tempUtilsDevicesRestart  struct {
     Member *string `json:"member,omitempty"`
     Node   *string `json:"node,omitempty"`
 }

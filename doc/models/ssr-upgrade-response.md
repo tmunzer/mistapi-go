@@ -28,13 +28,14 @@
     "success": 90,
     "upgrading": 112
   },
-  "device_type": "device_type8",
-  "id": "id8",
-  "status": "status0",
-  "strategy": "strategy8",
+  "device_type": "device_type0",
+  "id": "id0",
+  "status": "status2",
+  "strategy": "strategy0",
   "versions": {
-    "key0": "versions3",
-    "key1": "versions4"
+    "key0": "versions5",
+    "key1": "versions6",
+    "key2": "versions7"
   }
 }
 ```

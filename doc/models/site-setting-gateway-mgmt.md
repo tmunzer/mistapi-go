@@ -16,6 +16,8 @@ Gateway Site settings
 | `AppUsage` | `*bool` | Optional | consumes uplink bandwidth, requires WA license |
 | `AutoSignatureUpdate` | [`*models.SiteSettingGatewayMgmtAutoSignatureUpdate`](../../doc/models/site-setting-gateway-mgmt-auto-signature-update.md) | Optional | - |
 | `ConfigRevertTimer` | `*int` | Optional | he rollback timer for commit confirmed<br>**Default**: `10`<br>**Constraints**: `>= 1`, `<= 30` |
+| `DisableConsole` | `*bool` | Optional | for both SSR and SRX disable console port<br>**Default**: `false` |
+| `DisableOob` | `*bool` | Optional | for both SSR and SRX disable management interface<br>**Default**: `false` |
 | `ProbeHosts` | `[]string` | Optional | - |
 | `RootPassword` | `*string` | Optional | for SRX only |
 | `SecurityLogSourceAddress` | `*string` | Optional | - |
@@ -29,6 +31,8 @@ Gateway Site settings
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA...Wxa6p6UW0ZbcP john@host"
   ],
   "config_revert_timer": 10,
+  "disable_console": false,
+  "disable_oob": false,
   "probe_hosts": [
     "8.8.8.8"
   ],

@@ -39,7 +39,7 @@ func (n NetworkDestinationNatProperty) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NetworkDestinationNatProperty.
 // It customizes the JSON unmarshaling process for NetworkDestinationNatProperty objects.
 func (n *NetworkDestinationNatProperty) UnmarshalJSON(input []byte) error {
-    var temp networkDestinationNatProperty
+    var temp tempNetworkDestinationNatProperty
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (n *NetworkDestinationNatProperty) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// networkDestinationNatProperty is a temporary struct used for validating the fields of NetworkDestinationNatProperty.
-type networkDestinationNatProperty  struct {
+// tempNetworkDestinationNatProperty is a temporary struct used for validating the fields of NetworkDestinationNatProperty.
+type tempNetworkDestinationNatProperty  struct {
     InternalIp *string `json:"internal_ip,omitempty"`
     Name       *string `json:"name,omitempty"`
     Port       *int    `json:"port,omitempty"`

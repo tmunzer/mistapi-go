@@ -33,7 +33,7 @@ func (d DswitchesMetricsPoeCompliance) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DswitchesMetricsPoeCompliance.
 // It customizes the JSON unmarshaling process for DswitchesMetricsPoeCompliance objects.
 func (d *DswitchesMetricsPoeCompliance) UnmarshalJSON(input []byte) error {
-    var temp dswitchesMetricsPoeCompliance
+    var temp tempDswitchesMetricsPoeCompliance
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (d *DswitchesMetricsPoeCompliance) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// dswitchesMetricsPoeCompliance is a temporary struct used for validating the fields of DswitchesMetricsPoeCompliance.
-type dswitchesMetricsPoeCompliance  struct {
+// tempDswitchesMetricsPoeCompliance is a temporary struct used for validating the fields of DswitchesMetricsPoeCompliance.
+type tempDswitchesMetricsPoeCompliance  struct {
     Details *DswitchesMetricsPoeComplianceDetails `json:"details"`
     Score   *float64                              `json:"score"`
 }
 
-func (d *dswitchesMetricsPoeCompliance) validate() error {
+func (d *tempDswitchesMetricsPoeCompliance) validate() error {
     var errs []string
     if d.Details == nil {
-        errs = append(errs, "required field `details` is missing for type `Dswitches_Metrics_Poe_Compliance`")
+        errs = append(errs, "required field `details` is missing for type `dswitches_metrics_poe_compliance`")
     }
     if d.Score == nil {
-        errs = append(errs, "required field `score` is missing for type `Dswitches_Metrics_Poe_Compliance`")
+        errs = append(errs, "required field `score` is missing for type `dswitches_metrics_poe_compliance`")
     }
     if len(errs) == 0 {
         return nil

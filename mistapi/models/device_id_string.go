@@ -32,7 +32,7 @@ func (d DeviceIdString) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceIdString.
 // It customizes the JSON unmarshaling process for DeviceIdString objects.
 func (d *DeviceIdString) UnmarshalJSON(input []byte) error {
-    var temp deviceIdString
+    var temp tempDeviceIdString
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,15 +51,15 @@ func (d *DeviceIdString) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceIdString is a temporary struct used for validating the fields of DeviceIdString.
-type deviceIdString  struct {
+// tempDeviceIdString is a temporary struct used for validating the fields of DeviceIdString.
+type tempDeviceIdString  struct {
     DeviceId *uuid.UUID `json:"device_id"`
 }
 
-func (d *deviceIdString) validate() error {
+func (d *tempDeviceIdString) validate() error {
     var errs []string
     if d.DeviceId == nil {
-        errs = append(errs, "required field `device_id` is missing for type `Device_Id_String`")
+        errs = append(errs, "required field `device_id` is missing for type `device_id_string`")
     }
     if len(errs) == 0 {
         return nil

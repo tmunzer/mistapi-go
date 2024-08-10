@@ -43,7 +43,7 @@ func (a AutoPreemption) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AutoPreemption.
 // It customizes the JSON unmarshaling process for AutoPreemption objects.
 func (a *AutoPreemption) UnmarshalJSON(input []byte) error {
-    var temp autoPreemption
+    var temp tempAutoPreemption
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,8 +60,8 @@ func (a *AutoPreemption) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// autoPreemption is a temporary struct used for validating the fields of AutoPreemption.
-type autoPreemption  struct {
+// tempAutoPreemption is a temporary struct used for validating the fields of AutoPreemption.
+type tempAutoPreemption  struct {
     DayOfWeek *DayOfWeekEnum `json:"day_of_week,omitempty"`
     Enabled   *bool          `json:"enabled,omitempty"`
     TimeOfDay *string        `json:"time_of_day,omitempty"`

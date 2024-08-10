@@ -18,10 +18,10 @@
 
 ```json
 {
-  "failed": 218,
-  "queued": 226,
-  "success": 38,
-  "upgrading": 60
+  "failed": 56,
+  "queued": 132,
+  "success": 200,
+  "upgrading": 222
 }
 ```
 

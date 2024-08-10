@@ -40,7 +40,7 @@ func (g GatewayComplianceVersion) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayComplianceVersion.
 // It customizes the JSON unmarshaling process for GatewayComplianceVersion objects.
 func (g *GatewayComplianceVersion) UnmarshalJSON(input []byte) error {
-    var temp gatewayComplianceVersion
+    var temp tempGatewayComplianceVersion
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (g *GatewayComplianceVersion) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayComplianceVersion is a temporary struct used for validating the fields of GatewayComplianceVersion.
-type gatewayComplianceVersion  struct {
+// tempGatewayComplianceVersion is a temporary struct used for validating the fields of GatewayComplianceVersion.
+type tempGatewayComplianceVersion  struct {
     MajorVersion map[string]GatewayComplianceMajorVersionProperties `json:"major_version,omitempty"`
     Score        *float64                                           `json:"score,omitempty"`
     Type         *string                                            `json:"type,omitempty"`

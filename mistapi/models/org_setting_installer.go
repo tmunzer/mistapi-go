@@ -44,7 +44,7 @@ func (o OrgSettingInstaller) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingInstaller.
 // It customizes the JSON unmarshaling process for OrgSettingInstaller objects.
 func (o *OrgSettingInstaller) UnmarshalJSON(input []byte) error {
-    var temp orgSettingInstaller
+    var temp tempOrgSettingInstaller
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (o *OrgSettingInstaller) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingInstaller is a temporary struct used for validating the fields of OrgSettingInstaller.
-type orgSettingInstaller  struct {
+// tempOrgSettingInstaller is a temporary struct used for validating the fields of OrgSettingInstaller.
+type tempOrgSettingInstaller  struct {
     AllowAllDevices *bool       `json:"allow_all_devices,omitempty"`
     AllowAllSites   *bool       `json:"allow_all_sites,omitempty"`
     ExtraSiteIds    []uuid.UUID `json:"extra_site_ids,omitempty"`

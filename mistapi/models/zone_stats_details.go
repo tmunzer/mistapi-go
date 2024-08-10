@@ -63,7 +63,7 @@ func (z ZoneStatsDetails) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ZoneStatsDetails.
 // It customizes the JSON unmarshaling process for ZoneStatsDetails objects.
 func (z *ZoneStatsDetails) UnmarshalJSON(input []byte) error {
-    var temp zoneStatsDetails
+    var temp tempZoneStatsDetails
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -90,8 +90,8 @@ func (z *ZoneStatsDetails) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// zoneStatsDetails is a temporary struct used for validating the fields of ZoneStatsDetails.
-type zoneStatsDetails  struct {
+// tempZoneStatsDetails is a temporary struct used for validating the fields of ZoneStatsDetails.
+type tempZoneStatsDetails  struct {
     Assets        []string                     `json:"assets,omitempty"`
     ClientWaits   *ZoneStatsDetailsClientWaits `json:"client_waits"`
     Clients       []string                     `json:"clients,omitempty"`
@@ -103,25 +103,25 @@ type zoneStatsDetails  struct {
     Sdkclients    []string                     `json:"sdkclients,omitempty"`
 }
 
-func (z *zoneStatsDetails) validate() error {
+func (z *tempZoneStatsDetails) validate() error {
     var errs []string
     if z.ClientWaits == nil {
-        errs = append(errs, "required field `client_waits` is missing for type `Zone_Stats_Details`")
+        errs = append(errs, "required field `client_waits` is missing for type `zone_stats_details`")
     }
     if z.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Zone_Stats_Details`")
+        errs = append(errs, "required field `id` is missing for type `zone_stats_details`")
     }
     if z.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Zone_Stats_Details`")
+        errs = append(errs, "required field `map_id` is missing for type `zone_stats_details`")
     }
     if z.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Zone_Stats_Details`")
+        errs = append(errs, "required field `name` is missing for type `zone_stats_details`")
     }
     if z.NumClients == nil {
-        errs = append(errs, "required field `num_clients` is missing for type `Zone_Stats_Details`")
+        errs = append(errs, "required field `num_clients` is missing for type `zone_stats_details`")
     }
     if z.NumSdkclients == nil {
-        errs = append(errs, "required field `num_sdkclients` is missing for type `Zone_Stats_Details`")
+        errs = append(errs, "required field `num_sdkclients` is missing for type `zone_stats_details`")
     }
     if len(errs) == 0 {
         return nil

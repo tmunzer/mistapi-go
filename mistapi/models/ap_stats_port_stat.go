@@ -91,7 +91,7 @@ func (a ApStatsPortStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStatsPortStat.
 // It customizes the JSON unmarshaling process for ApStatsPortStat objects.
 func (a *ApStatsPortStat) UnmarshalJSON(input []byte) error {
-    var temp apStatsPortStat
+    var temp tempApStatsPortStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -113,8 +113,8 @@ func (a *ApStatsPortStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStatsPortStat is a temporary struct used for validating the fields of ApStatsPortStat.
-type apStatsPortStat  struct {
+// tempApStatsPortStat is a temporary struct used for validating the fields of ApStatsPortStat.
+type tempApStatsPortStat  struct {
     FullDuplex Optional[bool]    `json:"full_duplex"`
     RxBytes    Optional[float64] `json:"rx_bytes"`
     RxErrors   Optional[float64] `json:"rx_errors"`

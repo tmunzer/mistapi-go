@@ -31,7 +31,7 @@ func (s SiteSettingSrxApp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingSrxApp.
 // It customizes the JSON unmarshaling process for SiteSettingSrxApp objects.
 func (s *SiteSettingSrxApp) UnmarshalJSON(input []byte) error {
-    var temp siteSettingSrxApp
+    var temp tempSiteSettingSrxApp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (s *SiteSettingSrxApp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingSrxApp is a temporary struct used for validating the fields of SiteSettingSrxApp.
-type siteSettingSrxApp  struct {
+// tempSiteSettingSrxApp is a temporary struct used for validating the fields of SiteSettingSrxApp.
+type tempSiteSettingSrxApp  struct {
     Enabled *bool `json:"enabled,omitempty"`
 }

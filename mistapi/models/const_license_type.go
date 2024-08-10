@@ -43,7 +43,7 @@ func (c ConstLicenseType) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstLicenseType.
 // It customizes the JSON unmarshaling process for ConstLicenseType objects.
 func (c *ConstLicenseType) UnmarshalJSON(input []byte) error {
-    var temp constLicenseType
+    var temp tempConstLicenseType
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (c *ConstLicenseType) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constLicenseType is a temporary struct used for validating the fields of ConstLicenseType.
-type constLicenseType  struct {
+// tempConstLicenseType is a temporary struct used for validating the fields of ConstLicenseType.
+type tempConstLicenseType  struct {
     Description *string  `json:"description,omitempty"`
     Includes    []string `json:"includes,omitempty"`
     Key         *string  `json:"key,omitempty"`

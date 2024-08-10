@@ -7,7 +7,7 @@ import (
 )
 
 // ServiceMaxJitter represents a ServiceMaxJitter struct.
-// This is a container for one-of cases.
+// for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
 type ServiceMaxJitter struct {
     value    any
     isString bool
@@ -75,7 +75,7 @@ func (s *ServiceMaxJitter) AsNumber() (
 }
 
 // internalServiceMaxJitter represents a serviceMaxJitter struct.
-// This is a container for one-of cases.
+// for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
 type internalServiceMaxJitter struct {}
 
 var ServiceMaxJitterContainer internalServiceMaxJitter

@@ -18,9 +18,9 @@
 
 ```json
 {
-  "band": 14,
-  "bandwidth": 204,
-  "channel": 24,
+  "band": 104,
+  "bandwidth": 38,
+  "channel": 190,
   "tcpdump_expresssion": "tcpdump_expresssion8"
 }
 ```

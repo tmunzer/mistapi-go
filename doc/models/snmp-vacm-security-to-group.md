@@ -20,13 +20,9 @@
     {
       "group": "group2",
       "security_name": "security_name6"
-    },
-    {
-      "group": "group2",
-      "security_name": "security_name6"
     }
   ],
-  "security_model": "v1"
+  "security_model": "usm"
 }
 ```
 

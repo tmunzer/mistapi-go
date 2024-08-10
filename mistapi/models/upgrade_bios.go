@@ -37,7 +37,7 @@ func (u UpgradeBios) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UpgradeBios.
 // It customizes the JSON unmarshaling process for UpgradeBios objects.
 func (u *UpgradeBios) UnmarshalJSON(input []byte) error {
-    var temp upgradeBios
+    var temp tempUpgradeBios
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (u *UpgradeBios) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// upgradeBios is a temporary struct used for validating the fields of UpgradeBios.
-type upgradeBios  struct {
+// tempUpgradeBios is a temporary struct used for validating the fields of UpgradeBios.
+type tempUpgradeBios  struct {
     Reboot  *bool   `json:"reboot,omitempty"`
     Version *string `json:"version,omitempty"`
 }

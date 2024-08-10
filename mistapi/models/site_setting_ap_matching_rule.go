@@ -40,7 +40,7 @@ func (s SiteSettingApMatchingRule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingApMatchingRule.
 // It customizes the JSON unmarshaling process for SiteSettingApMatchingRule objects.
 func (s *SiteSettingApMatchingRule) UnmarshalJSON(input []byte) error {
-    var temp siteSettingApMatchingRule
+    var temp tempSiteSettingApMatchingRule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (s *SiteSettingApMatchingRule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingApMatchingRule is a temporary struct used for validating the fields of SiteSettingApMatchingRule.
-type siteSettingApMatchingRule  struct {
+// tempSiteSettingApMatchingRule is a temporary struct used for validating the fields of SiteSettingApMatchingRule.
+type tempSiteSettingApMatchingRule  struct {
     MatchModel *string                 `json:"match_model,omitempty"`
     Name       *string                 `json:"name,omitempty"`
     PortConfig map[string]ApPortConfig `json:"port_config,omitempty"`

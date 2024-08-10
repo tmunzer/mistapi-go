@@ -18,11 +18,12 @@
 ```json
 {
   "interfaces": [
-    "interfaces7",
-    "interfaces8"
+    "interfaces5",
+    "interfaces6",
+    "interfaces7"
   ],
-  "switch_mac": "switch_mac4",
-  "switch_name": "switch_name8"
+  "switch_mac": "switch_mac2",
+  "switch_name": "switch_name6"
 }
 ```
 

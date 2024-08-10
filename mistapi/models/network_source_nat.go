@@ -32,7 +32,7 @@ func (n NetworkSourceNat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NetworkSourceNat.
 // It customizes the JSON unmarshaling process for NetworkSourceNat objects.
 func (n *NetworkSourceNat) UnmarshalJSON(input []byte) error {
-    var temp networkSourceNat
+    var temp tempNetworkSourceNat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (n *NetworkSourceNat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// networkSourceNat is a temporary struct used for validating the fields of NetworkSourceNat.
-type networkSourceNat  struct {
+// tempNetworkSourceNat is a temporary struct used for validating the fields of NetworkSourceNat.
+type tempNetworkSourceNat  struct {
     ExternalIp *string `json:"external_ip,omitempty"`
 }

@@ -47,8 +47,16 @@
       "y_label": "y_label0"
     }
   ],
-  "end": 110.9,
+  "end": 255.54,
   "events": [
+    {
+      "key1": "val1",
+      "key2": "val2"
+    },
+    {
+      "key1": "val1",
+      "key2": "val2"
+    },
     {
       "key1": "val1",
       "key2": "val2"
@@ -79,7 +87,7 @@
     "x_label": "x_label4",
     "y_label": "y_label6"
   },
-  "start": 66.96
+  "start": 211.6
 }
 ```
 

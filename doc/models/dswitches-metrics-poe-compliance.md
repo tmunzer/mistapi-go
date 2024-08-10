@@ -20,7 +20,7 @@
     "total_aps": 132,
     "total_power": 137.54
   },
-  "score": 163.98
+  "score": 126.52
 }
 ```
 

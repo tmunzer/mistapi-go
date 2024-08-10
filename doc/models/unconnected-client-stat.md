@@ -24,14 +24,14 @@ Unconnected clients statistics
 
 ```json
 {
-  "ap_mac": "ap_mac8",
-  "last_seen": 135.06,
-  "mac": "mac0",
-  "manufacture": "manufacture0",
-  "map_id": "00000184-0000-0000-0000-000000000000",
-  "rssi": 130,
-  "x": 135.22,
-  "y": 10.5
+  "ap_mac": "ap_mac0",
+  "last_seen": 154.38,
+  "mac": "mac2",
+  "manufacture": "manufacture2",
+  "map_id": "000025b8-0000-0000-0000-000000000000",
+  "rssi": 14,
+  "x": 101.46,
+  "y": 29.82
 }
 ```
 

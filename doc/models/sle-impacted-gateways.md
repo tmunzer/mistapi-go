@@ -23,9 +23,9 @@
 
 ```json
 {
-  "classifier": "classifier2",
-  "end": 130,
-  "failure": "failure4",
+  "classifier": "classifier8",
+  "end": 122,
+  "failure": "failure6",
   "gateways": [
     {
       "degraded": 114.84,
@@ -35,7 +35,7 @@
       "gateway_version": "gateway_version8"
     }
   ],
-  "limit": 40
+  "limit": 48
 }
 ```
 

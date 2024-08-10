@@ -22,14 +22,14 @@
 
 ```json
 {
-  "ap_mac": "ap_mac0",
-  "client_mac": "client_mac6",
-  "fromap": "fromap6",
-  "latency": 43.52,
-  "ssid": "ssid6",
-  "subtype": "subtype0",
-  "timestamp": 209.26,
-  "type": "slow"
+  "ap_mac": "ap_mac2",
+  "client_mac": "client_mac8",
+  "fromap": "fromap2",
+  "latency": 124.3,
+  "ssid": "ssid2",
+  "subtype": "subtype2",
+  "timestamp": 128.48,
+  "type": "fail"
 }
 ```
 

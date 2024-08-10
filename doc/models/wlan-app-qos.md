@@ -34,6 +34,13 @@ app qos wlan settings
       "port_ranges": "port_ranges6",
       "protocol": "protocol2",
       "src_subnet": "src_subnet0"
+    },
+    {
+      "dscp": 44,
+      "dst_subnet": "dst_subnet2",
+      "port_ranges": "port_ranges6",
+      "protocol": "protocol2",
+      "src_subnet": "src_subnet0"
     }
   ]
 }

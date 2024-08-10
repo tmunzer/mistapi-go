@@ -67,10 +67,10 @@ Gateway port config
   "speed": "1g",
   "ssr_no_virtual_mac": false,
   "svr_port_range": "60000-60005",
-  "usage": "ha_control",
+  "usage": "lan",
   "wan_arp_policer": "recommended",
   "wan_type": "broadband",
-  "description": "description4"
+  "description": "description6"
 }
 ```
 

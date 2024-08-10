@@ -52,7 +52,7 @@ func (o OrgSiteSleWanResult) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSiteSleWanResult.
 // It customizes the JSON unmarshaling process for OrgSiteSleWanResult objects.
 func (o *OrgSiteSleWanResult) UnmarshalJSON(input []byte) error {
-    var temp orgSiteSleWanResult
+    var temp tempOrgSiteSleWanResult
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (o *OrgSiteSleWanResult) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSiteSleWanResult is a temporary struct used for validating the fields of OrgSiteSleWanResult.
-type orgSiteSleWanResult  struct {
+// tempOrgSiteSleWanResult is a temporary struct used for validating the fields of OrgSiteSleWanResult.
+type tempOrgSiteSleWanResult  struct {
     ApplicationHealth *float64   `json:"application_health,omitempty"`
     GatewayHealth     *float64   `json:"gateway-health,omitempty"`
     NumClients        *float64   `json:"num_clients,omitempty"`
@@ -86,10 +86,10 @@ type orgSiteSleWanResult  struct {
     WanLinkHealth     *float64   `json:"wan-link-health,omitempty"`
 }
 
-func (o *orgSiteSleWanResult) validate() error {
+func (o *tempOrgSiteSleWanResult) validate() error {
     var errs []string
     if o.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Org_Site_Sle_Wan_Result`")
+        errs = append(errs, "required field `site_id` is missing for type `org_site_sle_wan_result`")
     }
     if len(errs) == 0 {
         return nil

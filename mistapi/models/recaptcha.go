@@ -40,7 +40,7 @@ func (r Recaptcha) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Recaptcha.
 // It customizes the JSON unmarshaling process for Recaptcha objects.
 func (r *Recaptcha) UnmarshalJSON(input []byte) error {
-    var temp recaptcha
+    var temp tempRecaptcha
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (r *Recaptcha) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// recaptcha is a temporary struct used for validating the fields of Recaptcha.
-type recaptcha  struct {
+// tempRecaptcha is a temporary struct used for validating the fields of Recaptcha.
+type tempRecaptcha  struct {
     Flavor   *RecaptchaFlavorEnum `json:"flavor,omitempty"`
     Required *bool                `json:"required,omitempty"`
     Sitekey  *string              `json:"sitekey,omitempty"`

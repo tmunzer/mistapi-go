@@ -60,7 +60,7 @@ func (a ApTemplate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApTemplate.
 // It customizes the JSON unmarshaling process for ApTemplate objects.
 func (a *ApTemplate) UnmarshalJSON(input []byte) error {
-    var temp apTemplate
+    var temp tempApTemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -86,8 +86,8 @@ func (a *ApTemplate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apTemplate is a temporary struct used for validating the fields of ApTemplate.
-type apTemplate  struct {
+// tempApTemplate is a temporary struct used for validating the fields of ApTemplate.
+type tempApTemplate  struct {
     ApMatching   *ApTemplateMatching `json:"ap_matching"`
     CreatedTime  *float64            `json:"created_time,omitempty"`
     ForSite      *bool               `json:"for_site,omitempty"`
@@ -98,10 +98,10 @@ type apTemplate  struct {
     Wifi         *ApTemplateWifi     `json:"wifi,omitempty"`
 }
 
-func (a *apTemplate) validate() error {
+func (a *tempApTemplate) validate() error {
     var errs []string
     if a.ApMatching == nil {
-        errs = append(errs, "required field `ap_matching` is missing for type `Ap_Template`")
+        errs = append(errs, "required field `ap_matching` is missing for type `ap_template`")
     }
     if len(errs) == 0 {
         return nil

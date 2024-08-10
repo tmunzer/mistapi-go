@@ -48,7 +48,7 @@ func (u UpgradeFpgaMulti) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UpgradeFpgaMulti.
 // It customizes the JSON unmarshaling process for UpgradeFpgaMulti objects.
 func (u *UpgradeFpgaMulti) UnmarshalJSON(input []byte) error {
-    var temp upgradeFpgaMulti
+    var temp tempUpgradeFpgaMulti
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (u *UpgradeFpgaMulti) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// upgradeFpgaMulti is a temporary struct used for validating the fields of UpgradeFpgaMulti.
-type upgradeFpgaMulti  struct {
+// tempUpgradeFpgaMulti is a temporary struct used for validating the fields of UpgradeFpgaMulti.
+type tempUpgradeFpgaMulti  struct {
     DeviceIds []uuid.UUID `json:"device_ids,omitempty"`
     Models    []string    `json:"models,omitempty"`
     Reboot    *bool       `json:"reboot,omitempty"`

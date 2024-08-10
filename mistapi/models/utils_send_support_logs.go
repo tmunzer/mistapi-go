@@ -42,7 +42,7 @@ func (u UtilsSendSupportLogs) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsSendSupportLogs.
 // It customizes the JSON unmarshaling process for UtilsSendSupportLogs objects.
 func (u *UtilsSendSupportLogs) UnmarshalJSON(input []byte) error {
-    var temp utilsSendSupportLogs
+    var temp tempUtilsSendSupportLogs
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,8 +59,8 @@ func (u *UtilsSendSupportLogs) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsSendSupportLogs is a temporary struct used for validating the fields of UtilsSendSupportLogs.
-type utilsSendSupportLogs  struct {
+// tempUtilsSendSupportLogs is a temporary struct used for validating the fields of UtilsSendSupportLogs.
+type tempUtilsSendSupportLogs  struct {
     Info             *UtilsSendSupportLogsInfoEnum `json:"info,omitempty"`
     Node             *string                       `json:"node,omitempty"`
     NumMessagesFiles *int                          `json:"num_messages_files,omitempty"`

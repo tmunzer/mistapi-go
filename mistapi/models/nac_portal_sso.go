@@ -56,7 +56,7 @@ func (n NacPortalSso) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NacPortalSso.
 // It customizes the JSON unmarshaling process for NacPortalSso objects.
 func (n *NacPortalSso) UnmarshalJSON(input []byte) error {
-    var temp nacPortalSso
+    var temp tempNacPortalSso
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (n *NacPortalSso) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// nacPortalSso is a temporary struct used for validating the fields of NacPortalSso.
-type nacPortalSso  struct {
+// tempNacPortalSso is a temporary struct used for validating the fields of NacPortalSso.
+type tempNacPortalSso  struct {
     IdpCert           *string                    `json:"idp_cert,omitempty"`
     IdpSignAlgo       *string                    `json:"idp_sign_algo,omitempty"`
     IdpSsoUrl         *string                    `json:"idp_sso_url,omitempty"`

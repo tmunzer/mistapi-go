@@ -42,7 +42,7 @@
       "total": 22.12
     }
   ],
-  "classifier": "classifier2",
+  "classifier": "classifier4",
   "device_os": [
     {
       "degraded": 94.1,
@@ -61,10 +61,10 @@
       "total": 159.9
     }
   ],
-  "end": 58.6,
+  "end": 186.58,
   "failure": "failure4",
-  "metric": "metric6",
-  "start": 14.66,
+  "metric": "metric8",
+  "start": 142.64,
   "wlan": [
     {
       "degraded": 169.9,

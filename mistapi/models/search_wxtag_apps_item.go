@@ -35,7 +35,7 @@ func (s SearchWxtagAppsItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SearchWxtagAppsItem.
 // It customizes the JSON unmarshaling process for SearchWxtagAppsItem objects.
 func (s *SearchWxtagAppsItem) UnmarshalJSON(input []byte) error {
-    var temp searchWxtagAppsItem
+    var temp tempSearchWxtagAppsItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,23 +56,23 @@ func (s *SearchWxtagAppsItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// searchWxtagAppsItem is a temporary struct used for validating the fields of SearchWxtagAppsItem.
-type searchWxtagAppsItem  struct {
+// tempSearchWxtagAppsItem is a temporary struct used for validating the fields of SearchWxtagAppsItem.
+type tempSearchWxtagAppsItem  struct {
     Group *string `json:"group"`
     Key   *string `json:"key"`
     Name  *string `json:"name"`
 }
 
-func (s *searchWxtagAppsItem) validate() error {
+func (s *tempSearchWxtagAppsItem) validate() error {
     var errs []string
     if s.Group == nil {
-        errs = append(errs, "required field `group` is missing for type `Search_Wxtag_Apps_Item`")
+        errs = append(errs, "required field `group` is missing for type `search_wxtag_apps_item`")
     }
     if s.Key == nil {
-        errs = append(errs, "required field `key` is missing for type `Search_Wxtag_Apps_Item`")
+        errs = append(errs, "required field `key` is missing for type `search_wxtag_apps_item`")
     }
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Search_Wxtag_Apps_Item`")
+        errs = append(errs, "required field `name` is missing for type `search_wxtag_apps_item`")
     }
     if len(errs) == 0 {
         return nil

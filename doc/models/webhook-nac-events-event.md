@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ap` | `*string` | Optional | random mac |
-| `AuthType` | `*string` | Optional | authentication type, e.g. "eap-tls", "eap-ttls", "eap-teap", "mab", "device-auth" |
+| `AuthType` | `*string` | Optional | authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
 | `Bssid` | `*string` | Optional | BSSID |
 | `DryrunNacruleId` | `*uuid.UUID` | Optional | NAC Policy Dry Run Rule ID, if present and matched |
 | `DryrunNacruleMatched` | `*bool` | Optional | True - if dryrun rule present and matched with priority, False - if not matched or not present |

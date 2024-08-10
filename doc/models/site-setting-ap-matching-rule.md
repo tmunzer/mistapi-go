@@ -33,20 +33,6 @@
       "enable_mac_auth": false,
       "forwarding": "site_mxedge",
       "mac_auth_protocol": "eap-md5"
-    },
-    "key1": {
-      "disabled": false,
-      "dynamic_vlan": {
-        "default_vlan_id": 34,
-        "enabled": false,
-        "type": "type6",
-        "vlans": {
-          "key0": "vlans1"
-        }
-      },
-      "enable_mac_auth": false,
-      "forwarding": "site_mxedge",
-      "mac_auth_protocol": "eap-md5"
     }
   }
 }

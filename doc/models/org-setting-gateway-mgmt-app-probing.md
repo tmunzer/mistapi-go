@@ -16,7 +16,7 @@
 ```json
 {
   "apps": [
-    "apps8"
+    "facebook"
   ]
 }
 ```

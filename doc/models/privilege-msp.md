@@ -22,12 +22,12 @@ Privilieges settings
 
 ```json
 {
-  "org_id": "00002258-0000-0000-0000-000000000000",
-  "org_name": "org_name6",
-  "orggroup_id": "00002672-0000-0000-0000-000000000000",
-  "role": "admin",
-  "scope": "orggroup",
-  "views": "security"
+  "org_id": "00001be0-0000-0000-0000-000000000000",
+  "org_name": "org_name0",
+  "orggroup_id": "00000716-0000-0000-0000-000000000000",
+  "role": "helpdesk",
+  "scope": "org",
+  "views": "reporting"
 }
 ```
 

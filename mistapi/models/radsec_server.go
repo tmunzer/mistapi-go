@@ -35,7 +35,7 @@ func (r RadsecServer) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RadsecServer.
 // It customizes the JSON unmarshaling process for RadsecServer objects.
 func (r *RadsecServer) UnmarshalJSON(input []byte) error {
-    var temp radsecServer
+    var temp tempRadsecServer
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (r *RadsecServer) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// radsecServer is a temporary struct used for validating the fields of RadsecServer.
-type radsecServer  struct {
+// tempRadsecServer is a temporary struct used for validating the fields of RadsecServer.
+type tempRadsecServer  struct {
     Host *string `json:"host,omitempty"`
     Port *int    `json:"port,omitempty"`
 }

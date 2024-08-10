@@ -38,7 +38,7 @@ func (t TestTelstra) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TestTelstra.
 // It customizes the JSON unmarshaling process for TestTelstra objects.
 func (t *TestTelstra) UnmarshalJSON(input []byte) error {
-    var temp testTelstra
+    var temp tempTestTelstra
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,23 +59,23 @@ func (t *TestTelstra) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// testTelstra is a temporary struct used for validating the fields of TestTelstra.
-type testTelstra  struct {
+// tempTestTelstra is a temporary struct used for validating the fields of TestTelstra.
+type tempTestTelstra  struct {
     TelstraClientId     *string `json:"telstra_client_id"`
     TelstraClientSecret *string `json:"telstra_client_secret"`
     To                  *string `json:"to"`
 }
 
-func (t *testTelstra) validate() error {
+func (t *tempTestTelstra) validate() error {
     var errs []string
     if t.TelstraClientId == nil {
-        errs = append(errs, "required field `telstra_client_id` is missing for type `Test_Telstra`")
+        errs = append(errs, "required field `telstra_client_id` is missing for type `test_telstra`")
     }
     if t.TelstraClientSecret == nil {
-        errs = append(errs, "required field `telstra_client_secret` is missing for type `Test_Telstra`")
+        errs = append(errs, "required field `telstra_client_secret` is missing for type `test_telstra`")
     }
     if t.To == nil {
-        errs = append(errs, "required field `to` is missing for type `Test_Telstra`")
+        errs = append(errs, "required field `to` is missing for type `test_telstra`")
     }
     if len(errs) == 0 {
         return nil

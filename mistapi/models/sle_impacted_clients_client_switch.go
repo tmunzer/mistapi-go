@@ -39,7 +39,7 @@ func (s SleImpactedClientsClientSwitch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactedClientsClientSwitch.
 // It customizes the JSON unmarshaling process for SleImpactedClientsClientSwitch objects.
 func (s *SleImpactedClientsClientSwitch) UnmarshalJSON(input []byte) error {
-    var temp sleImpactedClientsClientSwitch
+    var temp tempSleImpactedClientsClientSwitch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (s *SleImpactedClientsClientSwitch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactedClientsClientSwitch is a temporary struct used for validating the fields of SleImpactedClientsClientSwitch.
-type sleImpactedClientsClientSwitch  struct {
+// tempSleImpactedClientsClientSwitch is a temporary struct used for validating the fields of SleImpactedClientsClientSwitch.
+type tempSleImpactedClientsClientSwitch  struct {
     Interfaces []string `json:"interfaces,omitempty"`
     SwitchMac  *string  `json:"switch_mac,omitempty"`
     SwitchName *string  `json:"switch_name,omitempty"`

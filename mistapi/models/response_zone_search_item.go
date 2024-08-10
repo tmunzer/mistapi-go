@@ -43,7 +43,7 @@ func (r ResponseZoneSearchItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseZoneSearchItem.
 // It customizes the JSON unmarshaling process for ResponseZoneSearchItem objects.
 func (r *ResponseZoneSearchItem) UnmarshalJSON(input []byte) error {
-    var temp responseZoneSearchItem
+    var temp tempResponseZoneSearchItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (r *ResponseZoneSearchItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseZoneSearchItem is a temporary struct used for validating the fields of ResponseZoneSearchItem.
-type responseZoneSearchItem  struct {
+// tempResponseZoneSearchItem is a temporary struct used for validating the fields of ResponseZoneSearchItem.
+type tempResponseZoneSearchItem  struct {
     Enter     *int    `json:"enter,omitempty"`
     Scope     *string `json:"scope,omitempty"`
     Timestamp *int    `json:"timestamp,omitempty"`

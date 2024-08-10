@@ -36,7 +36,7 @@ func (d DhcpdConfigOption) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DhcpdConfigOption.
 // It customizes the JSON unmarshaling process for DhcpdConfigOption objects.
 func (d *DhcpdConfigOption) UnmarshalJSON(input []byte) error {
-    var temp dhcpdConfigOption
+    var temp tempDhcpdConfigOption
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (d *DhcpdConfigOption) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// dhcpdConfigOption is a temporary struct used for validating the fields of DhcpdConfigOption.
-type dhcpdConfigOption  struct {
+// tempDhcpdConfigOption is a temporary struct used for validating the fields of DhcpdConfigOption.
+type tempDhcpdConfigOption  struct {
     Type  *DhcpdConfigOptionTypeEnum `json:"type,omitempty"`
     Value *string                    `json:"value,omitempty"`
 }

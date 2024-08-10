@@ -35,7 +35,7 @@ func (c ConfigVcPortMember) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConfigVcPortMember.
 // It customizes the JSON unmarshaling process for ConfigVcPortMember objects.
 func (c *ConfigVcPortMember) UnmarshalJSON(input []byte) error {
-    var temp configVcPortMember
+    var temp tempConfigVcPortMember
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,16 +55,16 @@ func (c *ConfigVcPortMember) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// configVcPortMember is a temporary struct used for validating the fields of ConfigVcPortMember.
-type configVcPortMember  struct {
+// tempConfigVcPortMember is a temporary struct used for validating the fields of ConfigVcPortMember.
+type tempConfigVcPortMember  struct {
     Member  *float64 `json:"member"`
     VcPorts []string `json:"vc_ports,omitempty"`
 }
 
-func (c *configVcPortMember) validate() error {
+func (c *tempConfigVcPortMember) validate() error {
     var errs []string
     if c.Member == nil {
-        errs = append(errs, "required field `member` is missing for type `Config_Vc_Port_Member`")
+        errs = append(errs, "required field `member` is missing for type `config_vc_port_member`")
     }
     if len(errs) == 0 {
         return nil

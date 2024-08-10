@@ -47,7 +47,7 @@ func (r ResponseEventsOtherDevicesSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseEventsOtherDevicesSearch.
 // It customizes the JSON unmarshaling process for ResponseEventsOtherDevicesSearch objects.
 func (r *ResponseEventsOtherDevicesSearch) UnmarshalJSON(input []byte) error {
-    var temp responseEventsOtherDevicesSearch
+    var temp tempResponseEventsOtherDevicesSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (r *ResponseEventsOtherDevicesSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseEventsOtherDevicesSearch is a temporary struct used for validating the fields of ResponseEventsOtherDevicesSearch.
-type responseEventsOtherDevicesSearch  struct {
+// tempResponseEventsOtherDevicesSearch is a temporary struct used for validating the fields of ResponseEventsOtherDevicesSearch.
+type tempResponseEventsOtherDevicesSearch  struct {
     End     *int              `json:"end,omitempty"`
     Limit   *int              `json:"limit,omitempty"`
     Results *EventOtherdevice `json:"results,omitempty"`

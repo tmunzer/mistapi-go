@@ -63,7 +63,7 @@ func (r ResponseConfigHistorySearchItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseConfigHistorySearchItem.
 // It customizes the JSON unmarshaling process for ResponseConfigHistorySearchItem objects.
 func (r *ResponseConfigHistorySearchItem) UnmarshalJSON(input []byte) error {
-    var temp responseConfigHistorySearchItem
+    var temp tempResponseConfigHistorySearchItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -92,8 +92,8 @@ func (r *ResponseConfigHistorySearchItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseConfigHistorySearchItem is a temporary struct used for validating the fields of ResponseConfigHistorySearchItem.
-type responseConfigHistorySearchItem  struct {
+// tempResponseConfigHistorySearchItem is a temporary struct used for validating the fields of ResponseConfigHistorySearchItem.
+type tempResponseConfigHistorySearchItem  struct {
     Channel24         *int                                   `json:"channel_24"`
     Channel5          *int                                   `json:"channel_5"`
     RadioMacs         []string                               `json:"radio_macs,omitempty"`
@@ -107,22 +107,22 @@ type responseConfigHistorySearchItem  struct {
     Wlans             []ResponseConfigHistorySearchItemWlan  `json:"wlans,omitempty"`
 }
 
-func (r *responseConfigHistorySearchItem) validate() error {
+func (r *tempResponseConfigHistorySearchItem) validate() error {
     var errs []string
     if r.Channel24 == nil {
-        errs = append(errs, "required field `channel_24` is missing for type `Response_Config_History_Search_Item`")
+        errs = append(errs, "required field `channel_24` is missing for type `response_config_history_search_item`")
     }
     if r.Channel5 == nil {
-        errs = append(errs, "required field `channel_5` is missing for type `Response_Config_History_Search_Item`")
+        errs = append(errs, "required field `channel_5` is missing for type `response_config_history_search_item`")
     }
     if r.SecpolicyViolated == nil {
-        errs = append(errs, "required field `secpolicy_violated` is missing for type `Response_Config_History_Search_Item`")
+        errs = append(errs, "required field `secpolicy_violated` is missing for type `response_config_history_search_item`")
     }
     if r.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Response_Config_History_Search_Item`")
+        errs = append(errs, "required field `timestamp` is missing for type `response_config_history_search_item`")
     }
     if r.Version == nil {
-        errs = append(errs, "required field `version` is missing for type `Response_Config_History_Search_Item`")
+        errs = append(errs, "required field `version` is missing for type `response_config_history_search_item`")
     }
     if len(errs) == 0 {
         return nil

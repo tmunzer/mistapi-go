@@ -43,7 +43,7 @@ func (s SiteEngagementDwellTagNames) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteEngagementDwellTagNames.
 // It customizes the JSON unmarshaling process for SiteEngagementDwellTagNames objects.
 func (s *SiteEngagementDwellTagNames) UnmarshalJSON(input []byte) error {
-    var temp siteEngagementDwellTagNames
+    var temp tempSiteEngagementDwellTagNames
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (s *SiteEngagementDwellTagNames) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteEngagementDwellTagNames is a temporary struct used for validating the fields of SiteEngagementDwellTagNames.
-type siteEngagementDwellTagNames  struct {
+// tempSiteEngagementDwellTagNames is a temporary struct used for validating the fields of SiteEngagementDwellTagNames.
+type tempSiteEngagementDwellTagNames  struct {
     Bounce    *string `json:"bounce,omitempty"`
     Engaged   *string `json:"engaged,omitempty"`
     Passerby  *string `json:"passerby,omitempty"`

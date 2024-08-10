@@ -20,8 +20,8 @@
 {
   "channel": "stable",
   "version": "stable",
-  "reboot_at": 50,
-  "start_time": 236
+  "reboot_at": 124,
+  "start_time": 194
 }
 ```
 

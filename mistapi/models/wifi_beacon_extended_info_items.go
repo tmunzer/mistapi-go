@@ -42,7 +42,7 @@ func (w WifiBeaconExtendedInfoItems) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WifiBeaconExtendedInfoItems.
 // It customizes the JSON unmarshaling process for WifiBeaconExtendedInfoItems objects.
 func (w *WifiBeaconExtendedInfoItems) UnmarshalJSON(input []byte) error {
-    var temp wifiBeaconExtendedInfoItems
+    var temp tempWifiBeaconExtendedInfoItems
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,8 +59,8 @@ func (w *WifiBeaconExtendedInfoItems) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wifiBeaconExtendedInfoItems is a temporary struct used for validating the fields of WifiBeaconExtendedInfoItems.
-type wifiBeaconExtendedInfoItems  struct {
+// tempWifiBeaconExtendedInfoItems is a temporary struct used for validating the fields of WifiBeaconExtendedInfoItems.
+type tempWifiBeaconExtendedInfoItems  struct {
     FrameCtrl *int    `json:"frame_ctrl,omitempty"`
     Payload   *string `json:"payload,omitempty"`
     SeqCtrl   *int    `json:"seq_ctrl,omitempty"`

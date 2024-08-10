@@ -24,6 +24,20 @@
       "avg_dns": 84.7,
       "max_auth": 92.74,
       "max_dhcp": 117.02
+    },
+    {
+      "avg_auth": 161.94,
+      "avg_dhcp": 179.42,
+      "avg_dns": 84.7,
+      "max_auth": 92.74,
+      "max_dhcp": 117.02
+    },
+    {
+      "avg_auth": 161.94,
+      "avg_dhcp": 179.42,
+      "avg_dns": 84.7,
+      "max_auth": 92.74,
+      "max_dhcp": 117.02
     }
   ]
 }

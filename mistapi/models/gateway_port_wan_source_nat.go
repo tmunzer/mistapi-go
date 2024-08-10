@@ -38,7 +38,7 @@ func (g GatewayPortWanSourceNat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayPortWanSourceNat.
 // It customizes the JSON unmarshaling process for GatewayPortWanSourceNat objects.
 func (g *GatewayPortWanSourceNat) UnmarshalJSON(input []byte) error {
-    var temp gatewayPortWanSourceNat
+    var temp tempGatewayPortWanSourceNat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (g *GatewayPortWanSourceNat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayPortWanSourceNat is a temporary struct used for validating the fields of GatewayPortWanSourceNat.
-type gatewayPortWanSourceNat  struct {
+// tempGatewayPortWanSourceNat is a temporary struct used for validating the fields of GatewayPortWanSourceNat.
+type tempGatewayPortWanSourceNat  struct {
     Disabled *bool   `json:"disabled,omitempty"`
     NatPool  *string `json:"nat_pool,omitempty"`
 }

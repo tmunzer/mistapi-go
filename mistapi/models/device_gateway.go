@@ -240,7 +240,7 @@ func (d DeviceGateway) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceGateway.
 // It customizes the JSON unmarshaling process for DeviceGateway objects.
 func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
-    var temp deviceGateway
+    var temp tempDeviceGateway
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -298,8 +298,8 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceGateway is a temporary struct used for validating the fields of DeviceGateway.
-type deviceGateway  struct {
+// tempDeviceGateway is a temporary struct used for validating the fields of DeviceGateway.
+type tempDeviceGateway  struct {
     AdditionalConfigCmds  []string                           `json:"additional_config_cmds,omitempty"`
     BgpConfig             map[string]BgpConfig               `json:"bgp_config,omitempty"`
     CreatedTime           *float64                           `json:"created_time,omitempty"`

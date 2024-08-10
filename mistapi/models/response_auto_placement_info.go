@@ -47,7 +47,7 @@ func (r ResponseAutoPlacementInfo) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseAutoPlacementInfo.
 // It customizes the JSON unmarshaling process for ResponseAutoPlacementInfo objects.
 func (r *ResponseAutoPlacementInfo) UnmarshalJSON(input []byte) error {
-    var temp responseAutoPlacementInfo
+    var temp tempResponseAutoPlacementInfo
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponseAutoPlacementInfo) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseAutoPlacementInfo is a temporary struct used for validating the fields of ResponseAutoPlacementInfo.
-type responseAutoPlacementInfo  struct {
+// tempResponseAutoPlacementInfo is a temporary struct used for validating the fields of ResponseAutoPlacementInfo.
+type tempResponseAutoPlacementInfo  struct {
     EndTime     *float64                     `json:"end_time,omitempty"`
     EstTimeLeft *float64                     `json:"est_time_left,omitempty"`
     StartTime   *float64                     `json:"start_time,omitempty"`

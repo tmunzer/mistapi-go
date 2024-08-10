@@ -37,7 +37,7 @@ func (i ImageImport) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ImageImport.
 // It customizes the JSON unmarshaling process for ImageImport objects.
 func (i *ImageImport) UnmarshalJSON(input []byte) error {
-    var temp imageImport
+    var temp tempImageImport
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,16 +57,16 @@ func (i *ImageImport) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// imageImport is a temporary struct used for validating the fields of ImageImport.
-type imageImport  struct {
+// tempImageImport is a temporary struct used for validating the fields of ImageImport.
+type tempImageImport  struct {
     File *[]byte `json:"file"`
     Json *string `json:"json,omitempty"`
 }
 
-func (i *imageImport) validate() error {
+func (i *tempImageImport) validate() error {
     var errs []string
     if i.File == nil {
-        errs = append(errs, "required field `file` is missing for type `Image_Import`")
+        errs = append(errs, "required field `file` is missing for type `image_import`")
     }
     if len(errs) == 0 {
         return nil

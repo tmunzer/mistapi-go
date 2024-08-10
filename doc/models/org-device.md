@@ -16,8 +16,8 @@
 
 ```json
 {
-  "mac": "mac8",
-  "name": "name4"
+  "mac": "mac0",
+  "name": "name6"
 }
 ```
 

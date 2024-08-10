@@ -54,7 +54,7 @@ type SwitchPortUsage struct {
     // Only if `mode`!=`dynamic` whether PoE capabilities are disabled for a port
     PoeDisabled                              *bool                                       `json:"poe_disabled,omitempty"`
     // Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x. enum: `dot1x`
-    PortAuth                                 Optional[SwitchPortUsageDot1XEnum]          `json:"port_auth"`
+    PortAuth                                 Optional[SwitchPortUsageDot1xEnum]          `json:"port_auth"`
     // Only if `mode`!=`dynamic` native network/vlan for untagged traffic
     PortNetwork                              *string                                     `json:"port_network,omitempty"`
     // Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range
@@ -72,6 +72,8 @@ type SwitchPortUsage struct {
     StormControl                             *SwitchPortUsageStormControl                `json:"storm_control,omitempty"`
     // Only if `mode`!=`dynamic` when enabled, the port is not expected to receive BPDU frames
     StpEdge                                  *bool                                       `json:"stp_edge,omitempty"`
+    StpNoRootPort                            *bool                                       `json:"stp_no_root_port,omitempty"`
+    StpP2p                                   *bool                                       `json:"stp_p2p,omitempty"`
     // Only if `mode`!=`dynamic` network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth
     VoipNetwork                              *string                                     `json:"voip_network,omitempty"`
     AdditionalProperties                     map[string]any                              `json:"_"`
@@ -194,6 +196,12 @@ func (s SwitchPortUsage) toMap() map[string]any {
     if s.StpEdge != nil {
         structMap["stp_edge"] = s.StpEdge
     }
+    if s.StpNoRootPort != nil {
+        structMap["stp_no_root_port"] = s.StpNoRootPort
+    }
+    if s.StpP2p != nil {
+        structMap["stp_p2p"] = s.StpP2p
+    }
     if s.VoipNetwork != nil {
         structMap["voip_network"] = s.VoipNetwork
     }
@@ -203,12 +211,12 @@ func (s SwitchPortUsage) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchPortUsage.
 // It customizes the JSON unmarshaling process for SwitchPortUsage objects.
 func (s *SwitchPortUsage) UnmarshalJSON(input []byte) error {
-    var temp switchPortUsage
+    var temp tempSwitchPortUsage
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkonwn_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "rejected_network", "reset_default_when", "rules", "speed", "storm_control", "stp_edge", "voip_network")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkonwn_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "rejected_network", "reset_default_when", "rules", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "voip_network")
     if err != nil {
     	return err
     }
@@ -245,12 +253,14 @@ func (s *SwitchPortUsage) UnmarshalJSON(input []byte) error {
     s.Speed = temp.Speed
     s.StormControl = temp.StormControl
     s.StpEdge = temp.StpEdge
+    s.StpNoRootPort = temp.StpNoRootPort
+    s.StpP2p = temp.StpP2p
     s.VoipNetwork = temp.VoipNetwork
     return nil
 }
 
-// switchPortUsage is a temporary struct used for validating the fields of SwitchPortUsage.
-type switchPortUsage  struct {
+// tempSwitchPortUsage is a temporary struct used for validating the fields of SwitchPortUsage.
+type tempSwitchPortUsage  struct {
     AllNetworks                              *bool                                       `json:"all_networks,omitempty"`
     AllowDhcpd                               *bool                                       `json:"allow_dhcpd,omitempty"`
     AllowMultipleSupplicants                 *bool                                       `json:"allow_multiple_supplicants,omitempty"`
@@ -273,7 +283,7 @@ type switchPortUsage  struct {
     Networks                                 []string                                    `json:"networks,omitempty"`
     PersistMac                               *bool                                       `json:"persist_mac,omitempty"`
     PoeDisabled                              *bool                                       `json:"poe_disabled,omitempty"`
-    PortAuth                                 Optional[SwitchPortUsageDot1XEnum]          `json:"port_auth"`
+    PortAuth                                 Optional[SwitchPortUsageDot1xEnum]          `json:"port_auth"`
     PortNetwork                              *string                                     `json:"port_network,omitempty"`
     ReauthInterval                           *int                                        `json:"reauth_interval,omitempty"`
     RejectedNetwork                          Optional[string]                            `json:"rejected_network"`
@@ -282,5 +292,7 @@ type switchPortUsage  struct {
     Speed                                    *string                                     `json:"speed,omitempty"`
     StormControl                             *SwitchPortUsageStormControl                `json:"storm_control,omitempty"`
     StpEdge                                  *bool                                       `json:"stp_edge,omitempty"`
+    StpNoRootPort                            *bool                                       `json:"stp_no_root_port,omitempty"`
+    StpP2p                                   *bool                                       `json:"stp_p2p,omitempty"`
     VoipNetwork                              *string                                     `json:"voip_network,omitempty"`
 }

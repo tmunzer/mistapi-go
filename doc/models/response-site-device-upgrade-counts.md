@@ -23,11 +23,11 @@
 
 ```json
 {
-  "download_requested": 242,
-  "downloaded": 82,
-  "failed": 14,
-  "reboot_in_progress": 192,
-  "rebooted": 228
+  "download_requested": 102,
+  "downloaded": 222,
+  "failed": 130,
+  "reboot_in_progress": 52,
+  "rebooted": 112
 }
 ```
 

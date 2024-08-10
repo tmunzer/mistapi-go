@@ -64,7 +64,7 @@ func (w WiredClientResponse) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WiredClientResponse.
 // It customizes the JSON unmarshaling process for WiredClientResponse objects.
 func (w *WiredClientResponse) UnmarshalJSON(input []byte) error {
-    var temp wiredClientResponse
+    var temp tempWiredClientResponse
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -87,8 +87,8 @@ func (w *WiredClientResponse) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wiredClientResponse is a temporary struct used for validating the fields of WiredClientResponse.
-type wiredClientResponse  struct {
+// tempWiredClientResponse is a temporary struct used for validating the fields of WiredClientResponse.
+type tempWiredClientResponse  struct {
     DeviceMac     []string                               `json:"device_mac,omitempty"`
     DeviceMacPort []WiredClientResponseDeviceMacPortItem `json:"device_mac_port,omitempty"`
     Ip            []string                               `json:"ip,omitempty"`

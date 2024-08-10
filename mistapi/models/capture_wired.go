@@ -70,7 +70,7 @@ func (c CaptureWired) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureWired.
 // It customizes the JSON unmarshaling process for CaptureWired objects.
 func (c *CaptureWired) UnmarshalJSON(input []byte) error {
-    var temp captureWired
+    var temp tempCaptureWired
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -95,8 +95,8 @@ func (c *CaptureWired) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureWired is a temporary struct used for validating the fields of CaptureWired.
-type captureWired  struct {
+// tempCaptureWired is a temporary struct used for validating the fields of CaptureWired.
+type tempCaptureWired  struct {
     ApMac             Optional[string]        `json:"ap_mac"`
     Duration          *int                    `json:"duration,omitempty"`
     Format            *CaptureWiredFormatEnum `json:"format,omitempty"`
@@ -106,10 +106,10 @@ type captureWired  struct {
     Type              *string                 `json:"type"`
 }
 
-func (c *captureWired) validate() error {
+func (c *tempCaptureWired) validate() error {
     var errs []string
     if c.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Capture_Wired`")
+        errs = append(errs, "required field `type` is missing for type `capture_wired`")
     }
     if len(errs) == 0 {
         return nil

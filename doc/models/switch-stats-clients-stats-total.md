@@ -17,11 +17,10 @@
 ```json
 {
   "num_aps": [
-    135,
-    134,
-    133
+    21,
+    20
   ],
-  "num_wired_clients": 78
+  "num_wired_clients": 220
 }
 ```
 

@@ -64,7 +64,7 @@ func (r RfTemplateModelSpecificProperty) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RfTemplateModelSpecificProperty.
 // It customizes the JSON unmarshaling process for RfTemplateModelSpecificProperty objects.
 func (r *RfTemplateModelSpecificProperty) UnmarshalJSON(input []byte) error {
-    var temp rfTemplateModelSpecificProperty
+    var temp tempRfTemplateModelSpecificProperty
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -86,8 +86,8 @@ func (r *RfTemplateModelSpecificProperty) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rfTemplateModelSpecificProperty is a temporary struct used for validating the fields of RfTemplateModelSpecificProperty.
-type rfTemplateModelSpecificProperty  struct {
+// tempRfTemplateModelSpecificProperty is a temporary struct used for validating the fields of RfTemplateModelSpecificProperty.
+type tempRfTemplateModelSpecificProperty  struct {
     AntGain24      *int                   `json:"ant_gain_24,omitempty"`
     AntGain5       *int                   `json:"ant_gain_5,omitempty"`
     AntGain6       *int                   `json:"ant_gain_6,omitempty"`

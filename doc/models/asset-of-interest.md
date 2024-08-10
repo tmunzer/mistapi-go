@@ -31,11 +31,11 @@
 
 ```json
 {
-  "_checkpoint_prep": 196.7,
-  "_checkpoint_preparer": 24.38,
-  "_checkpoint_scan": 86.32,
-  "_timestamp": 48.74,
-  "_ttl": 132.9
+  "_checkpoint_prep": 248.76,
+  "_checkpoint_preparer": 179.56,
+  "_checkpoint_scan": 138.38,
+  "_timestamp": 252.68,
+  "_ttl": 80.84
 }
 ```
 

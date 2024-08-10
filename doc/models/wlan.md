@@ -102,8 +102,8 @@ WLAN
 | `Thumbnail` | `models.Optional[string]` | Optional | Url of portal background image thumbnail |
 | `UseEapolV1` | `*bool` | Optional | if `auth.type`==’eap’ or ‘psk’, should only be set for legacy client, such as pre-2004, 802.11b devices<br>**Default**: `false` |
 | `VlanEnabled` | `*bool` | Optional | if vlan tagging is enabled<br>**Default**: `false` |
-| `VlanId` | [`*models.WlanVlanId`](../../doc/models/containers/wlan-vlan-id.md) | Optional | This is a container for one-of cases. |
-| `VlanIds` | [`[]models.WlanVlanIds`](../../doc/models/containers/wlan-vlan-ids.md) | Optional | This is Array of a container for one-of cases. |
+| `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
+| `VlanIds` | [`[]models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | vlan_ids to use when there’s no match from RA |
 | `VlanPooling` | `*bool` | Optional | vlan pooling allows AP to place client on different VLAN using a deterministic algorithm<br>**Default**: `false` |
 | `WlanLimitDown` | `models.Optional[int]` | Optional | kbps |
 | `WlanLimitDownEnabled` | `*bool` | Optional | if downlink limiting for whole wlan is enabled<br>**Default**: `false` |
@@ -184,24 +184,6 @@ WLAN
   "wlan_limit_down_enabled": false,
   "wlan_limit_up_enabled": false,
   "acct_servers": [
-    {
-      "host": "host4",
-      "keywrap_enabled": false,
-      "keywrap_format": "ascii",
-      "keywrap_kek": "keywrap_kek0",
-      "keywrap_mack": "keywrap_mack2",
-      "port": 254,
-      "secret": "secret0"
-    },
-    {
-      "host": "host4",
-      "keywrap_enabled": false,
-      "keywrap_format": "ascii",
-      "keywrap_kek": "keywrap_kek0",
-      "keywrap_mack": "keywrap_mack2",
-      "port": 254,
-      "secret": "secret0"
-    },
     {
       "host": "host4",
       "keywrap_enabled": false,

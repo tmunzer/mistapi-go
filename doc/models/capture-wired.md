@@ -29,7 +29,7 @@ Initiate a Wired Packet Capture
   "num_packets": 100,
   "tcpdump_expression": "tcp port 80",
   "type": "wired",
-  "ap_mac": "ap_mac4"
+  "ap_mac": "ap_mac8"
 }
 ```
 

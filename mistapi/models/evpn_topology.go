@@ -10,7 +10,7 @@ import (
 // EvpnTopology represents a EvpnTopology struct.
 type EvpnTopology struct {
     // Switch settings
-    Config               *ConfigSwitch        `json:"config,omitempty"`
+    Config               *SwitchMgmt          `json:"config,omitempty"`
     Id                   *uuid.UUID           `json:"id,omitempty"`
     Name                 *string              `json:"name,omitempty"`
     Overwrite            *bool                `json:"overwrite,omitempty"`
@@ -54,7 +54,7 @@ func (e EvpnTopology) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EvpnTopology.
 // It customizes the JSON unmarshaling process for EvpnTopology objects.
 func (e *EvpnTopology) UnmarshalJSON(input []byte) error {
-    var temp evpnTopology
+    var temp tempEvpnTopology
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -78,9 +78,9 @@ func (e *EvpnTopology) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// evpnTopology is a temporary struct used for validating the fields of EvpnTopology.
-type evpnTopology  struct {
-    Config    *ConfigSwitch         `json:"config,omitempty"`
+// tempEvpnTopology is a temporary struct used for validating the fields of EvpnTopology.
+type tempEvpnTopology  struct {
+    Config    *SwitchMgmt           `json:"config,omitempty"`
     Id        *uuid.UUID            `json:"id,omitempty"`
     Name      *string               `json:"name,omitempty"`
     Overwrite *bool                 `json:"overwrite,omitempty"`
@@ -88,10 +88,10 @@ type evpnTopology  struct {
     Switches  *[]EvpnTopologySwitch `json:"switches"`
 }
 
-func (e *evpnTopology) validate() error {
+func (e *tempEvpnTopology) validate() error {
     var errs []string
     if e.Switches == nil {
-        errs = append(errs, "required field `switches` is missing for type `Evpn_Topology`")
+        errs = append(errs, "required field `switches` is missing for type `evpn_topology`")
     }
     if len(errs) == 0 {
         return nil

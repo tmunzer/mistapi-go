@@ -21,10 +21,6 @@
     {
       "api_key": "api_key8",
       "api_url": "api_url0"
-    },
-    {
-      "api_key": "api_key8",
-      "api_url": "api_url0"
     }
   ]
 }

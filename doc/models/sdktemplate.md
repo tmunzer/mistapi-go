@@ -34,7 +34,7 @@ SDK Template
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "bg_image": "bg_image0",
   "btn_flr_bgcolor": "btn_flr_bgcolor4",
-  "created_time": 225.64,
+  "created_time": 41.34,
   "default": false,
   "for_site": false
 }

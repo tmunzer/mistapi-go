@@ -16,8 +16,8 @@
 ```json
 {
   "addresses": [
-    "addresses2",
-    "addresses3"
+    "addresses6",
+    "addresses7"
   ]
 }
 ```

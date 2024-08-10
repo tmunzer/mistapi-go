@@ -41,7 +41,7 @@ func (s SleHistogram) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleHistogram.
 // It customizes the JSON unmarshaling process for SleHistogram objects.
 func (s *SleHistogram) UnmarshalJSON(input []byte) error {
-    var temp sleHistogram
+    var temp tempSleHistogram
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (s *SleHistogram) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleHistogram is a temporary struct used for validating the fields of SleHistogram.
-type sleHistogram  struct {
+// tempSleHistogram is a temporary struct used for validating the fields of SleHistogram.
+type tempSleHistogram  struct {
     Data   *[]SleHistogramDataItem `json:"data"`
     End    *float64                `json:"end"`
     Metric *string                 `json:"metric"`
@@ -75,25 +75,25 @@ type sleHistogram  struct {
     YLabel *string                 `json:"y_label"`
 }
 
-func (s *sleHistogram) validate() error {
+func (s *tempSleHistogram) validate() error {
     var errs []string
     if s.Data == nil {
-        errs = append(errs, "required field `data` is missing for type `Sle_Histogram`")
+        errs = append(errs, "required field `data` is missing for type `sle_histogram`")
     }
     if s.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Sle_Histogram`")
+        errs = append(errs, "required field `end` is missing for type `sle_histogram`")
     }
     if s.Metric == nil {
-        errs = append(errs, "required field `metric` is missing for type `Sle_Histogram`")
+        errs = append(errs, "required field `metric` is missing for type `sle_histogram`")
     }
     if s.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Sle_Histogram`")
+        errs = append(errs, "required field `start` is missing for type `sle_histogram`")
     }
     if s.XLabel == nil {
-        errs = append(errs, "required field `x_label` is missing for type `Sle_Histogram`")
+        errs = append(errs, "required field `x_label` is missing for type `sle_histogram`")
     }
     if s.YLabel == nil {
-        errs = append(errs, "required field `y_label` is missing for type `Sle_Histogram`")
+        errs = append(errs, "required field `y_label` is missing for type `sle_histogram`")
     }
     if len(errs) == 0 {
         return nil

@@ -57,7 +57,7 @@ func (h Hours) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Hours.
 // It customizes the JSON unmarshaling process for Hours objects.
 func (h *Hours) UnmarshalJSON(input []byte) error {
-    var temp hours
+    var temp tempHours
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -78,8 +78,8 @@ func (h *Hours) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// hours is a temporary struct used for validating the fields of Hours.
-type hours  struct {
+// tempHours is a temporary struct used for validating the fields of Hours.
+type tempHours  struct {
     Fri *string `json:"fri,omitempty"`
     Mon *string `json:"mon,omitempty"`
     Sat *string `json:"sat,omitempty"`

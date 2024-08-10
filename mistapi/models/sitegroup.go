@@ -53,7 +53,7 @@ func (s Sitegroup) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Sitegroup.
 // It customizes the JSON unmarshaling process for Sitegroup objects.
 func (s *Sitegroup) UnmarshalJSON(input []byte) error {
-    var temp sitegroup
+    var temp tempSitegroup
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (s *Sitegroup) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sitegroup is a temporary struct used for validating the fields of Sitegroup.
-type sitegroup  struct {
+// tempSitegroup is a temporary struct used for validating the fields of Sitegroup.
+type tempSitegroup  struct {
     CreatedTime  *float64    `json:"created_time,omitempty"`
     Id           *uuid.UUID  `json:"id,omitempty"`
     ModifiedTime *float64    `json:"modified_time,omitempty"`
@@ -87,10 +87,10 @@ type sitegroup  struct {
     SiteIds      []uuid.UUID `json:"site_ids,omitempty"`
 }
 
-func (s *sitegroup) validate() error {
+func (s *tempSitegroup) validate() error {
     var errs []string
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sitegroup`")
+        errs = append(errs, "required field `name` is missing for type `sitegroup`")
     }
     if len(errs) == 0 {
         return nil

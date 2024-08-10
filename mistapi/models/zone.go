@@ -68,7 +68,7 @@ func (z Zone) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Zone.
 // It customizes the JSON unmarshaling process for Zone objects.
 func (z *Zone) UnmarshalJSON(input []byte) error {
-    var temp zone
+    var temp tempZone
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -91,8 +91,8 @@ func (z *Zone) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// zone is a temporary struct used for validating the fields of Zone.
-type zone  struct {
+// tempZone is a temporary struct used for validating the fields of Zone.
+type tempZone  struct {
     CreatedTime  *float64     `json:"created_time,omitempty"`
     ForSite      *bool        `json:"for_site,omitempty"`
     Id           *uuid.UUID   `json:"id,omitempty"`

@@ -18,10 +18,10 @@
 
 ```json
 {
-  "day_of_week": "tue",
+  "day_of_week": "any",
   "enabled": false,
-  "time_of_day": "time_of_day8",
-  "version": "version4"
+  "time_of_day": "time_of_day0",
+  "version": "version2"
 }
 ```
 

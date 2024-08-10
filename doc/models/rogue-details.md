@@ -16,7 +16,7 @@
 
 ```json
 {
-  "manufacture": "manufacture0",
+  "manufacture": "manufacture8",
   "seen_as_client": false
 }
 ```

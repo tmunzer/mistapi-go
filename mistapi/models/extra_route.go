@@ -61,7 +61,7 @@ func (e ExtraRoute) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ExtraRoute.
 // It customizes the JSON unmarshaling process for ExtraRoute objects.
 func (e *ExtraRoute) UnmarshalJSON(input []byte) error {
-    var temp extraRoute
+    var temp tempExtraRoute
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -81,8 +81,8 @@ func (e *ExtraRoute) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// extraRoute is a temporary struct used for validating the fields of ExtraRoute.
-type extraRoute  struct {
+// tempExtraRoute is a temporary struct used for validating the fields of ExtraRoute.
+type tempExtraRoute  struct {
     Discard       *bool                                        `json:"discard,omitempty"`
     Metric        Optional[int]                                `json:"metric"`
     NextQualified map[string]ExtraRouteNextQualifiedProperties `json:"next_qualified,omitempty"`

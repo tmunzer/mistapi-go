@@ -38,7 +38,7 @@ func (a AccountVmwareConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountVmwareConfig.
 // It customizes the JSON unmarshaling process for AccountVmwareConfig objects.
 func (a *AccountVmwareConfig) UnmarshalJSON(input []byte) error {
-    var temp accountVmwareConfig
+    var temp tempAccountVmwareConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,23 +59,23 @@ func (a *AccountVmwareConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountVmwareConfig is a temporary struct used for validating the fields of AccountVmwareConfig.
-type accountVmwareConfig  struct {
+// tempAccountVmwareConfig is a temporary struct used for validating the fields of AccountVmwareConfig.
+type tempAccountVmwareConfig  struct {
     ClientId     *string `json:"client_id"`
     ClientSecret *string `json:"client_secret"`
     InstanceUrl  *string `json:"instance_url"`
 }
 
-func (a *accountVmwareConfig) validate() error {
+func (a *tempAccountVmwareConfig) validate() error {
     var errs []string
     if a.ClientId == nil {
-        errs = append(errs, "required field `client_id` is missing for type `Account_Vmware_Config`")
+        errs = append(errs, "required field `client_id` is missing for type `account_vmware_config`")
     }
     if a.ClientSecret == nil {
-        errs = append(errs, "required field `client_secret` is missing for type `Account_Vmware_Config`")
+        errs = append(errs, "required field `client_secret` is missing for type `account_vmware_config`")
     }
     if a.InstanceUrl == nil {
-        errs = append(errs, "required field `instance_url` is missing for type `Account_Vmware_Config`")
+        errs = append(errs, "required field `instance_url` is missing for type `account_vmware_config`")
     }
     if len(errs) == 0 {
         return nil

@@ -51,7 +51,7 @@ type Sso struct {
     LdapResolveGroups     *bool                `json:"ldap_resolve_groups,omitempty"`
     // if `idp_type`==`ldap`
     LdapServerHosts       []string             `json:"ldap_server_hosts,omitempty"`
-    // if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`
+    // if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`, `ping_identity`
     LdapType              *SsoLdapTypeEnum     `json:"ldap_type,omitempty"`
     // Only if `ldap_type`==`custom`
     LdapUserFilter        *string              `json:"ldap_user_filter,omitempty"`
@@ -65,7 +65,7 @@ type Sso struct {
     NameidFormat          *SsoNameidFormatEnum `json:"nameid_format,omitempty"`
     // if `oauth_type`==`okta`, Client Credentials
     OauthCcClientId       *string              `json:"oauth_cc_client_id,omitempty"`
-    // if `oauth_type`==`okta`, oauth_cc_client_secret is RSA private key, of the form "-----BEGIN RSA PRIVATE KEY--...."
+    // if `oauth_type`==`okta` or `oauth_type`==`ping_identity`, oauth_cc_client_secret is RSA private key, of the form "-----BEGIN RSA PRIVATE KEY--...."
     OauthCcClientSecret   *string              `json:"oauth_cc_client_secret,omitempty"`
     // if `idp_type`==`oauth`
     OauthDiscoveryUrl     *string              `json:"oauth_discovery_url,omitempty"`
@@ -73,9 +73,9 @@ type Sso struct {
     OauthRopcClientId     *string              `json:"oauth_ropc_client_id,omitempty"`
     // oauth_ropc_client_secret can be empty if oauth_type is azure or azure-gov
     OauthRopcClientSecret *string              `json:"oauth_ropc_client_secret,omitempty"`
-    // if `oauth_type`==`okta`, oauth_tenant_id
+    // if `oauth_type`==`okta` or `oauth_type`==`ping_identity`, oauth_tenant_id
     OauthTenantId         *string              `json:"oauth_tenant_id,omitempty"`
-    // enum: `azure`, `azure-gov`, `okta`
+    // enum: `azure`, `azure-gov`, `okta`, `ping_identity`
     OauthType             *SsoOauthTypeEnum    `json:"oauth_type,omitempty"`
     OrgId                 *uuid.UUID           `json:"org_id,omitempty"`
     // optional, custom role attribute parsing scheme
@@ -238,7 +238,7 @@ func (s Sso) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Sso.
 // It customizes the JSON unmarshaling process for Sso objects.
 func (s *Sso) UnmarshalJSON(input []byte) error {
-    var temp sso
+    var temp tempSso
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -299,8 +299,8 @@ func (s *Sso) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sso is a temporary struct used for validating the fields of Sso.
-type sso  struct {
+// tempSso is a temporary struct used for validating the fields of Sso.
+type tempSso  struct {
     CreatedTime           *float64             `json:"created_time,omitempty"`
     CustomLogoutUrl       *string              `json:"custom_logout_url,omitempty"`
     DefaultRole           *string              `json:"default_role,omitempty"`
@@ -346,10 +346,10 @@ type sso  struct {
     Type                  *string              `json:"type,omitempty"`
 }
 
-func (s *sso) validate() error {
+func (s *tempSso) validate() error {
     var errs []string
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sso`")
+        errs = append(errs, "required field `name` is missing for type `sso`")
     }
     if len(errs) == 0 {
         return nil

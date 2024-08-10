@@ -151,8 +151,8 @@ body := models.Secpolicy{
             },
             BlockBlacklistClients:              models.ToPointer(false),
             Bonjour:                            models.ToPointer(models.WlanBonjour{
-                AdditionalVlanIds: []models.WlanBonjourAdditionalVlanIds{
-                    models.WlanBonjourAdditionalVlanIdsContainer.FromNumber(10),
+                AdditionalVlanIds: []models.VlanIdWithVariable{
+                    models.VlanIdWithVariableContainer.FromNumber(10),
                 },
                 Enabled:           models.ToPointer(false),
                 Services:          map[string]models.WlanBonjourServiceProperties{
@@ -205,18 +205,18 @@ body := models.Secpolicy{
             Dtim:                               models.ToPointer(2),
             DynamicPsk:                         models.NewOptional(models.ToPointer(models.WlanDynamicPsk{
                 DefaultPsk:    models.ToPointer("foryoureyesonly"),
-                DefaultVlanId: models.ToPointer(models.WlanDynamicPskDefaultVlanIdContainer.FromNumber(999)),
+                DefaultVlanId: models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
                 Enabled:       models.ToPointer(false),
                 Source:        models.ToPointer(models.DynamicPskSourceEnum("cloud_psks")),
-                VlanIds:       []models.WlanDynamicPskVlanIds{
-                    models.WlanDynamicPskVlanIdsContainer.FromNumber(1),
+                VlanIds:       []models.VlanIdWithVariable{
+                    models.VlanIdWithVariableContainer.FromNumber(1),
                 },
             })),
             DynamicVlan:                        models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
-                DefaultVlanId:  models.ToPointer(models.WlanDynamicVlanDefaultVlanIdContainer.FromNumber(999)),
+                DefaultVlanId:  models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
                 Enabled:        models.ToPointer(false),
-                LocalVlanIds:   []models.WlanDynamicVlanLocalVlanIds{
-                    models.WlanDynamicVlanLocalVlanIdsContainer.FromNumber(1),
+                LocalVlanIds:   []models.VlanIdWithVariable{
+                    models.VlanIdWithVariableContainer.FromNumber(1),
                 },
                 Type:           models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
                 Vlans:          map[string]string{
@@ -424,11 +424,11 @@ body := models.Secpolicy{
             Thumbnail:                          models.NewOptional(models.ToPointer("http://example.com")),
             UseEapolV1:                         models.ToPointer(false),
             VlanEnabled:                        models.ToPointer(false),
-            VlanId:                             models.ToPointer(models.WlanVlanIdContainer.FromNumber(1)),
-            VlanIds:                            []models.WlanVlanIds{
-                models.WlanVlanIdsContainer.FromNumber(3),
-                models.WlanVlanIdsContainer.FromNumber(4),
-                models.WlanVlanIdsContainer.FromNumber(5),
+            VlanId:                             models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(1)),
+            VlanIds:                            []models.VlanIdWithVariable{
+                models.VlanIdWithVariableContainer.FromNumber(3),
+                models.VlanIdWithVariableContainer.FromNumber(4),
+                models.VlanIdWithVariableContainer.FromNumber(5),
             },
             VlanPooling:                        models.ToPointer(false),
             WlanLimitDown:                      models.NewOptional(models.ToPointer(0)),
@@ -487,10 +487,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Delete Org Sec Policy
@@ -539,10 +539,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Get Org Sec Policy
@@ -621,10 +621,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # List Org Sec Policies
@@ -709,10 +709,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Update Org Sec Policies
@@ -798,8 +798,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 

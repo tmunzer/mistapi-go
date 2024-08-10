@@ -36,7 +36,7 @@ func (m MapWallPath) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapWallPath.
 // It customizes the JSON unmarshaling process for MapWallPath objects.
 func (m *MapWallPath) UnmarshalJSON(input []byte) error {
-    var temp mapWallPath
+    var temp tempMapWallPath
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (m *MapWallPath) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapWallPath is a temporary struct used for validating the fields of MapWallPath.
-type mapWallPath  struct {
+// tempMapWallPath is a temporary struct used for validating the fields of MapWallPath.
+type tempMapWallPath  struct {
     Coordinate *string   `json:"coordinate,omitempty"`
     Nodes      []MapNode `json:"nodes,omitempty"`
 }

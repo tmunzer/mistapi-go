@@ -16,8 +16,8 @@
 
 ```json
 {
-  "mac_table_count": 60,
-  "max_mac_entries_supported": 204
+  "mac_table_count": 26,
+  "max_mac_entries_supported": 170
 }
 ```
 

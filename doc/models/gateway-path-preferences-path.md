@@ -24,7 +24,7 @@
 ```json
 {
   "wan_name": "wan0",
-  "cost": 128,
+  "cost": 20,
   "disabled": false,
   "gateway_ip": "gateway_ip2",
   "internet_access": false,

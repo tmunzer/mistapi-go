@@ -37,7 +37,7 @@ func (o OrgSettingGatewayMgmtOverlayIp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingGatewayMgmtOverlayIp.
 // It customizes the JSON unmarshaling process for OrgSettingGatewayMgmtOverlayIp objects.
 func (o *OrgSettingGatewayMgmtOverlayIp) UnmarshalJSON(input []byte) error {
-    var temp orgSettingGatewayMgmtOverlayIp
+    var temp tempOrgSettingGatewayMgmtOverlayIp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (o *OrgSettingGatewayMgmtOverlayIp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingGatewayMgmtOverlayIp is a temporary struct used for validating the fields of OrgSettingGatewayMgmtOverlayIp.
-type orgSettingGatewayMgmtOverlayIp  struct {
+// tempOrgSettingGatewayMgmtOverlayIp is a temporary struct used for validating the fields of OrgSettingGatewayMgmtOverlayIp.
+type tempOrgSettingGatewayMgmtOverlayIp  struct {
     Ip      *string `json:"ip,omitempty"`
     Node1Ip *string `json:"node1_ip,omitempty"`
 }

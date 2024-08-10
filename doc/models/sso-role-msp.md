@@ -25,7 +25,7 @@ SSO Role response
 
 ```json
 {
-  "name": "name6",
+  "name": "name0",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "privileges": [
     {
@@ -38,11 +38,11 @@ SSO Role response
     }
   ],
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "created_time": 5.16,
+  "created_time": 45.5,
   "for_site": false,
-  "id": "000008ee-0000-0000-0000-000000000000",
-  "modified_time": 73.8,
-  "msp_id": "000006ea-0000-0000-0000-000000000000"
+  "id": "00001d60-0000-0000-0000-000000000000",
+  "modified_time": 33.46,
+  "msp_id": "00001b5c-0000-0000-0000-000000000000"
 }
 ```
 

@@ -38,7 +38,7 @@ func (s ServiceSpec) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ServiceSpec.
 // It customizes the JSON unmarshaling process for ServiceSpec objects.
 func (s *ServiceSpec) UnmarshalJSON(input []byte) error {
-    var temp serviceSpec
+    var temp tempServiceSpec
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (s *ServiceSpec) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// serviceSpec is a temporary struct used for validating the fields of ServiceSpec.
-type serviceSpec  struct {
+// tempServiceSpec is a temporary struct used for validating the fields of ServiceSpec.
+type tempServiceSpec  struct {
     PortRange *string `json:"port_range,omitempty"`
     Protocol  *string `json:"protocol,omitempty"`
 }

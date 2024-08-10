@@ -57,7 +57,7 @@ func (u UtilsTraceroute) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsTraceroute.
 // It customizes the JSON unmarshaling process for UtilsTraceroute objects.
 func (u *UtilsTraceroute) UnmarshalJSON(input []byte) error {
-    var temp utilsTraceroute
+    var temp tempUtilsTraceroute
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (u *UtilsTraceroute) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsTraceroute is a temporary struct used for validating the fields of UtilsTraceroute.
-type utilsTraceroute  struct {
+// tempUtilsTraceroute is a temporary struct used for validating the fields of UtilsTraceroute.
+type tempUtilsTraceroute  struct {
     Host     *string                      `json:"host,omitempty"`
     Network  *string                      `json:"network,omitempty"`
     Port     *int                         `json:"port,omitempty"`

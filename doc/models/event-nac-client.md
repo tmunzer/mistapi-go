@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ap` | `*string` | Optional | - |
-| `AuthType` | `*string` | Optional | authentication type, e.g. “eap-tls”, “eap-ttls”, “eap-teap”, “mab”, “psk”, “device-auth” |
+| `AuthType` | `*string` | Optional | authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
 | `Bssid` | `*string` | Optional | - |
 | `DeviceMac` | `*string` | Optional | - |
 | `DryrunNacruleId` | `*uuid.UUID` | Optional | NAC Policy Dry Run Rule ID, if present and matched |
@@ -74,7 +74,7 @@
   "username": "user@deaflyz.net",
   "vlan": "750",
   "vlan_source": "nactag",
-  "device_mac": "device_mac0"
+  "device_mac": "device_mac6"
 }
 ```
 

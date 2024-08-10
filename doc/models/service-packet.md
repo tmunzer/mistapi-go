@@ -16,8 +16,8 @@
 
 ```json
 {
-  "service_data": "service_data6",
-  "service_uuid": "service_uuid6"
+  "service_data": "service_data8",
+  "service_uuid": "service_uuid4"
 }
 ```
 

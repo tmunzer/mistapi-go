@@ -21,11 +21,11 @@
 
 ```json
 {
-  "chassis": "chassis6",
-  "degraded": 169.32,
-  "duration": 42.38,
-  "role": "role6",
-  "switch_mac": "switch_mac0"
+  "chassis": "chassis8",
+  "degraded": 159.04,
+  "duration": 32.1,
+  "role": "role8",
+  "switch_mac": "switch_mac2"
 }
 ```
 

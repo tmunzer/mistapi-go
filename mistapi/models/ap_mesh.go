@@ -47,7 +47,7 @@ func (a ApMesh) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApMesh.
 // It customizes the JSON unmarshaling process for ApMesh objects.
 func (a *ApMesh) UnmarshalJSON(input []byte) error {
-    var temp apMesh
+    var temp tempApMesh
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,8 +64,8 @@ func (a *ApMesh) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apMesh is a temporary struct used for validating the fields of ApMesh.
-type apMesh  struct {
+// tempApMesh is a temporary struct used for validating the fields of ApMesh.
+type tempApMesh  struct {
     Enabled *bool           `json:"enabled,omitempty"`
     Group   Optional[int]   `json:"group"`
     Role    *ApMeshRoleEnum `json:"role,omitempty"`

@@ -32,7 +32,7 @@ func (w WlanPortalTemplate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanPortalTemplate.
 // It customizes the JSON unmarshaling process for WlanPortalTemplate objects.
 func (w *WlanPortalTemplate) UnmarshalJSON(input []byte) error {
-    var temp wlanPortalTemplate
+    var temp tempWlanPortalTemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (w *WlanPortalTemplate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanPortalTemplate is a temporary struct used for validating the fields of WlanPortalTemplate.
-type wlanPortalTemplate  struct {
+// tempWlanPortalTemplate is a temporary struct used for validating the fields of WlanPortalTemplate.
+type tempWlanPortalTemplate  struct {
     PortalTemplate *WlanPortalTemplateSetting `json:"portal_template,omitempty"`
 }

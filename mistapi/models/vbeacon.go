@@ -113,7 +113,7 @@ func (v Vbeacon) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Vbeacon.
 // It customizes the JSON unmarshaling process for Vbeacon objects.
 func (v *Vbeacon) UnmarshalJSON(input []byte) error {
-    var temp vbeacon
+    var temp tempVbeacon
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -145,8 +145,8 @@ func (v *Vbeacon) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vbeacon is a temporary struct used for validating the fields of Vbeacon.
-type vbeacon  struct {
+// tempVbeacon is a temporary struct used for validating the fields of Vbeacon.
+type tempVbeacon  struct {
     CreatedTime        *float64                `json:"created_time,omitempty"`
     ForSite            *bool                   `json:"for_site,omitempty"`
     Id                 *uuid.UUID              `json:"id,omitempty"`

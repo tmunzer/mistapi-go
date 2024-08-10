@@ -21,7 +21,7 @@
 | `Company` | `*string` | Optional | Name of the company whose account mist has subscribed to |
 | `Errors` | `[]string` | Optional | - |
 | `MaxDailyApiRequests` | `*int` | Optional | Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/ |
-| `LinkedTimestamp` | `*int` | Optional | This error is provided when the VMware account fails to fetch token/data |
+| `LinkedTimestamp` | `*int64` | Optional | This error is provided when the VMware account fails to fetch token/data |
 
 ## Example (as JSON)
 
@@ -41,6 +41,7 @@
     "API daily rate limit reached for your account"
   ],
   "max_daily_api_requests": 5000,
+  "linked_timestamp": 1665465339000,
   "client_id": "client_id0"
 }
 ```

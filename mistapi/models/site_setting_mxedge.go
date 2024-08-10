@@ -38,7 +38,7 @@ func (s SiteSettingMxedge) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingMxedge.
 // It customizes the JSON unmarshaling process for SiteSettingMxedge objects.
 func (s *SiteSettingMxedge) UnmarshalJSON(input []byte) error {
-    var temp siteSettingMxedge
+    var temp tempSiteSettingMxedge
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (s *SiteSettingMxedge) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingMxedge is a temporary struct used for validating the fields of SiteSettingMxedge.
-type siteSettingMxedge  struct {
+// tempSiteSettingMxedge is a temporary struct used for validating the fields of SiteSettingMxedge.
+type tempSiteSettingMxedge  struct {
     MistDas *MxedgeDas       `json:"mist_das,omitempty"`
     Radsec  *MxclusterRadsec `json:"radsec,omitempty"`
 }

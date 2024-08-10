@@ -69,7 +69,7 @@ func (t Template) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Template.
 // It customizes the JSON unmarshaling process for Template objects.
 func (t *Template) UnmarshalJSON(input []byte) error {
-    var temp template
+    var temp tempTemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -96,8 +96,8 @@ func (t *Template) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// template is a temporary struct used for validating the fields of Template.
-type template  struct {
+// tempTemplate is a temporary struct used for validating the fields of Template.
+type tempTemplate  struct {
     Applies               *TemplateApplies    `json:"applies,omitempty"`
     CreatedTime           *float64            `json:"created_time,omitempty"`
     DeviceprofileIds      []uuid.UUID         `json:"deviceprofile_ids,omitempty"`
@@ -109,10 +109,10 @@ type template  struct {
     OrgId                 *uuid.UUID          `json:"org_id,omitempty"`
 }
 
-func (t *template) validate() error {
+func (t *tempTemplate) validate() error {
     var errs []string
     if t.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Template`")
+        errs = append(errs, "required field `name` is missing for type `template`")
     }
     if len(errs) == 0 {
         return nil

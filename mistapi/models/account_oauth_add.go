@@ -8,9 +8,10 @@ import (
 
 // AccountOauthAdd represents a AccountOauthAdd struct.
 type AccountOauthAdd struct {
-    value                 any
-    isAccountJamfConfig   bool
-    isAccountVmwareConfig bool
+    value                      any
+    isAccountJamfConfig        bool
+    isAccountVmwareConfig      bool
+    isAccountMobicontrolConfig bool
 }
 
 // String converts the AccountOauthAdd object to a string representation.
@@ -39,6 +40,8 @@ func (a *AccountOauthAdd) toMap() any {
         return obj.toMap()
     case *AccountVmwareConfig:
         return obj.toMap()
+    case *AccountMobicontrolConfig:
+        return obj.toMap()
     }
     return nil
 }
@@ -49,6 +52,7 @@ func (a *AccountOauthAdd) UnmarshalJSON(input []byte) error {
     result, err := UnmarshallOneOf(input,
         NewTypeHolder(&AccountJamfConfig{}, false, &a.isAccountJamfConfig),
         NewTypeHolder(&AccountVmwareConfig{}, false, &a.isAccountVmwareConfig),
+        NewTypeHolder(&AccountMobicontrolConfig{}, false, &a.isAccountMobicontrolConfig),
     )
     
     a.value = result
@@ -73,6 +77,15 @@ func (a *AccountOauthAdd) AsAccountVmwareConfig() (
     return a.value.(*AccountVmwareConfig), true
 }
 
+func (a *AccountOauthAdd) AsAccountMobicontrolConfig() (
+    *AccountMobicontrolConfig,
+    bool) {
+    if !a.isAccountMobicontrolConfig {
+        return nil, false
+    }
+    return a.value.(*AccountMobicontrolConfig), true
+}
+
 // internalAccountOauthAdd represents a accountOauthAdd struct.
 type internalAccountOauthAdd struct {}
 
@@ -85,5 +98,10 @@ func (a *internalAccountOauthAdd) FromAccountJamfConfig(val AccountJamfConfig) A
 
 // The internalAccountOauthAdd instance, wrapping the provided AccountVmwareConfig value.
 func (a *internalAccountOauthAdd) FromAccountVmwareConfig(val AccountVmwareConfig) AccountOauthAdd {
+    return AccountOauthAdd{value: &val}
+}
+
+// The internalAccountOauthAdd instance, wrapping the provided AccountMobicontrolConfig value.
+func (a *internalAccountOauthAdd) FromAccountMobicontrolConfig(val AccountMobicontrolConfig) AccountOauthAdd {
     return AccountOauthAdd{value: &val}
 }

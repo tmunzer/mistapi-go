@@ -47,7 +47,7 @@ func (s SearchWebhookDelivery) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SearchWebhookDelivery.
 // It customizes the JSON unmarshaling process for SearchWebhookDelivery objects.
 func (s *SearchWebhookDelivery) UnmarshalJSON(input []byte) error {
-    var temp searchWebhookDelivery
+    var temp tempSearchWebhookDelivery
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (s *SearchWebhookDelivery) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// searchWebhookDelivery is a temporary struct used for validating the fields of SearchWebhookDelivery.
-type searchWebhookDelivery  struct {
+// tempSearchWebhookDelivery is a temporary struct used for validating the fields of SearchWebhookDelivery.
+type tempSearchWebhookDelivery  struct {
     End     *int              `json:"end,omitempty"`
     Limit   *int              `json:"limit,omitempty"`
     Results []WebhookDelivery `json:"results,omitempty"`

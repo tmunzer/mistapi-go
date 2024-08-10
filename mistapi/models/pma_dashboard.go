@@ -47,7 +47,7 @@ func (p PmaDashboard) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PmaDashboard.
 // It customizes the JSON unmarshaling process for PmaDashboard objects.
 func (p *PmaDashboard) UnmarshalJSON(input []byte) error {
-    var temp pmaDashboard
+    var temp tempPmaDashboard
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (p *PmaDashboard) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// pmaDashboard is a temporary struct used for validating the fields of PmaDashboard.
-type pmaDashboard  struct {
+// tempPmaDashboard is a temporary struct used for validating the fields of PmaDashboard.
+type tempPmaDashboard  struct {
     Description *string `json:"description,omitempty"`
     Label       *string `json:"label,omitempty"`
     Name        *string `json:"name,omitempty"`

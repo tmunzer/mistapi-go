@@ -33,7 +33,7 @@ func (d DswitchesMetricsInactiveWiredVlans) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DswitchesMetricsInactiveWiredVlans.
 // It customizes the JSON unmarshaling process for DswitchesMetricsInactiveWiredVlans objects.
 func (d *DswitchesMetricsInactiveWiredVlans) UnmarshalJSON(input []byte) error {
-    var temp dswitchesMetricsInactiveWiredVlans
+    var temp tempDswitchesMetricsInactiveWiredVlans
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (d *DswitchesMetricsInactiveWiredVlans) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// dswitchesMetricsInactiveWiredVlans is a temporary struct used for validating the fields of DswitchesMetricsInactiveWiredVlans.
-type dswitchesMetricsInactiveWiredVlans  struct {
+// tempDswitchesMetricsInactiveWiredVlans is a temporary struct used for validating the fields of DswitchesMetricsInactiveWiredVlans.
+type tempDswitchesMetricsInactiveWiredVlans  struct {
     Details *interface{} `json:"details"`
     Score   *float64     `json:"score"`
 }
 
-func (d *dswitchesMetricsInactiveWiredVlans) validate() error {
+func (d *tempDswitchesMetricsInactiveWiredVlans) validate() error {
     var errs []string
     if d.Details == nil {
-        errs = append(errs, "required field `details` is missing for type `Dswitches_Metrics_Inactive_Wired_Vlans`")
+        errs = append(errs, "required field `details` is missing for type `dswitches_metrics_inactive_wired_vlans`")
     }
     if d.Score == nil {
-        errs = append(errs, "required field `score` is missing for type `Dswitches_Metrics_Inactive_Wired_Vlans`")
+        errs = append(errs, "required field `score` is missing for type `dswitches_metrics_inactive_wired_vlans`")
     }
     if len(errs) == 0 {
         return nil

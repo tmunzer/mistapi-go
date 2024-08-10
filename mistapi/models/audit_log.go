@@ -58,7 +58,7 @@ func (a AuditLog) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AuditLog.
 // It customizes the JSON unmarshaling process for AuditLog objects.
 func (a *AuditLog) UnmarshalJSON(input []byte) error {
-    var temp auditLog
+    var temp tempAuditLog
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -86,8 +86,8 @@ func (a *AuditLog) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// auditLog is a temporary struct used for validating the fields of AuditLog.
-type auditLog  struct {
+// tempAuditLog is a temporary struct used for validating the fields of AuditLog.
+type tempAuditLog  struct {
     AdminId   *uuid.UUID   `json:"admin_id"`
     AdminName *string      `json:"admin_name"`
     After     *interface{} `json:"after,omitempty"`
@@ -100,28 +100,28 @@ type auditLog  struct {
     Timestamp *float64     `json:"timestamp"`
 }
 
-func (a *auditLog) validate() error {
+func (a *tempAuditLog) validate() error {
     var errs []string
     if a.AdminId == nil {
-        errs = append(errs, "required field `admin_id` is missing for type `Audit_Log`")
+        errs = append(errs, "required field `admin_id` is missing for type `audit_log`")
     }
     if a.AdminName == nil {
-        errs = append(errs, "required field `admin_name` is missing for type `Audit_Log`")
+        errs = append(errs, "required field `admin_name` is missing for type `audit_log`")
     }
     if a.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Audit_Log`")
+        errs = append(errs, "required field `id` is missing for type `audit_log`")
     }
     if a.Message == nil {
-        errs = append(errs, "required field `message` is missing for type `Audit_Log`")
+        errs = append(errs, "required field `message` is missing for type `audit_log`")
     }
     if a.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Audit_Log`")
+        errs = append(errs, "required field `org_id` is missing for type `audit_log`")
     }
     if a.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Audit_Log`")
+        errs = append(errs, "required field `site_id` is missing for type `audit_log`")
     }
     if a.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Audit_Log`")
+        errs = append(errs, "required field `timestamp` is missing for type `audit_log`")
     }
     if len(errs) == 0 {
         return nil

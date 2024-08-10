@@ -18,15 +18,15 @@
 
 ```json
 {
-  "end": 110,
-  "interval": 236,
+  "end": 16,
+  "interval": 182,
   "results": [
     {
       "key1": "val1",
       "key2": "val2"
     }
   ],
-  "start": 68
+  "start": 230
 }
 ```
 

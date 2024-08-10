@@ -22,15 +22,15 @@
 
 ```json
 {
-  "degraded": 156.2,
-  "duration": 29.26,
+  "degraded": 238.34,
+  "duration": 111.4,
   "interface": [
-    "interface8",
+    "interface0",
     "interface9",
-    "interface0"
+    "interface8"
   ],
-  "name": "name0",
-  "switch_mac": "switch_mac8"
+  "name": "name4",
+  "switch_mac": "switch_mac2"
 }
 ```
 

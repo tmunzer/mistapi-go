@@ -3,7 +3,7 @@
 
 ## Structure
 
-`SnmpConfigV2CConfig`
+`SnmpConfigV2cConfig`
 
 ## Fields
 

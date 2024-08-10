@@ -35,7 +35,7 @@ func (s SiteApp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteApp.
 // It customizes the JSON unmarshaling process for SiteApp objects.
 func (s *SiteApp) UnmarshalJSON(input []byte) error {
-    var temp siteApp
+    var temp tempSiteApp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,23 +56,23 @@ func (s *SiteApp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteApp is a temporary struct used for validating the fields of SiteApp.
-type siteApp  struct {
+// tempSiteApp is a temporary struct used for validating the fields of SiteApp.
+type tempSiteApp  struct {
     Group *string `json:"group"`
     Key   *string `json:"key"`
     Name  *string `json:"name"`
 }
 
-func (s *siteApp) validate() error {
+func (s *tempSiteApp) validate() error {
     var errs []string
     if s.Group == nil {
-        errs = append(errs, "required field `group` is missing for type `Site_App`")
+        errs = append(errs, "required field `group` is missing for type `site_app`")
     }
     if s.Key == nil {
-        errs = append(errs, "required field `key` is missing for type `Site_App`")
+        errs = append(errs, "required field `key` is missing for type `site_app`")
     }
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Site_App`")
+        errs = append(errs, "required field `name` is missing for type `site_app`")
     }
     if len(errs) == 0 {
         return nil

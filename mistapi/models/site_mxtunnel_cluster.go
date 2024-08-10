@@ -35,7 +35,7 @@ func (s SiteMxtunnelCluster) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteMxtunnelCluster.
 // It customizes the JSON unmarshaling process for SiteMxtunnelCluster objects.
 func (s *SiteMxtunnelCluster) UnmarshalJSON(input []byte) error {
-    var temp siteMxtunnelCluster
+    var temp tempSiteMxtunnelCluster
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *SiteMxtunnelCluster) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteMxtunnelCluster is a temporary struct used for validating the fields of SiteMxtunnelCluster.
-type siteMxtunnelCluster  struct {
+// tempSiteMxtunnelCluster is a temporary struct used for validating the fields of SiteMxtunnelCluster.
+type tempSiteMxtunnelCluster  struct {
     Name         *string  `json:"name,omitempty"`
     TuntermHosts []string `json:"tunterm_hosts,omitempty"`
 }

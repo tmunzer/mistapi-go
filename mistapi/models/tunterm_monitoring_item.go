@@ -46,7 +46,7 @@ func (t TuntermMonitoringItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TuntermMonitoringItem.
 // It customizes the JSON unmarshaling process for TuntermMonitoringItem objects.
 func (t *TuntermMonitoringItem) UnmarshalJSON(input []byte) error {
-    var temp tuntermMonitoringItem
+    var temp tempTuntermMonitoringItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,8 +64,8 @@ func (t *TuntermMonitoringItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tuntermMonitoringItem is a temporary struct used for validating the fields of TuntermMonitoringItem.
-type tuntermMonitoringItem  struct {
+// tempTuntermMonitoringItem is a temporary struct used for validating the fields of TuntermMonitoringItem.
+type tempTuntermMonitoringItem  struct {
     Host     *string                        `json:"host,omitempty"`
     Port     *int                           `json:"port,omitempty"`
     Protocol *TunternMonitoringProtocolEnum `json:"protocol,omitempty"`

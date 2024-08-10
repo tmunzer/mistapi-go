@@ -40,7 +40,7 @@ func (r ReponseSynthetictest) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ReponseSynthetictest.
 // It customizes the JSON unmarshaling process for ReponseSynthetictest objects.
 func (r *ReponseSynthetictest) UnmarshalJSON(input []byte) error {
-    var temp reponseSynthetictest
+    var temp tempReponseSynthetictest
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (r *ReponseSynthetictest) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// reponseSynthetictest is a temporary struct used for validating the fields of ReponseSynthetictest.
-type reponseSynthetictest  struct {
+// tempReponseSynthetictest is a temporary struct used for validating the fields of ReponseSynthetictest.
+type tempReponseSynthetictest  struct {
     Id      *uuid.UUID `json:"id,omitempty"`
     Message *string    `json:"message,omitempty"`
     Status  *string    `json:"status,omitempty"`

@@ -102,7 +102,7 @@ func (v VpnPeerStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VpnPeerStat.
 // It customizes the JSON unmarshaling process for VpnPeerStat objects.
 func (v *VpnPeerStat) UnmarshalJSON(input []byte) error {
-    var temp vpnPeerStat
+    var temp tempVpnPeerStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -133,8 +133,8 @@ func (v *VpnPeerStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vpnPeerStat is a temporary struct used for validating the fields of VpnPeerStat.
-type vpnPeerStat  struct {
+// tempVpnPeerStat is a temporary struct used for validating the fields of VpnPeerStat.
+type tempVpnPeerStat  struct {
     IsActive       *bool      `json:"is_active,omitempty"`
     LastSeen       *float64   `json:"last_seen,omitempty"`
     Latency        *float64   `json:"latency,omitempty"`

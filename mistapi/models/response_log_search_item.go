@@ -73,7 +73,7 @@ func (r ResponseLogSearchItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseLogSearchItem.
 // It customizes the JSON unmarshaling process for ResponseLogSearchItem objects.
 func (r *ResponseLogSearchItem) UnmarshalJSON(input []byte) error {
-    var temp responseLogSearchItem
+    var temp tempResponseLogSearchItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -101,8 +101,8 @@ func (r *ResponseLogSearchItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseLogSearchItem is a temporary struct used for validating the fields of ResponseLogSearchItem.
-type responseLogSearchItem  struct {
+// tempResponseLogSearchItem is a temporary struct used for validating the fields of ResponseLogSearchItem.
+type tempResponseLogSearchItem  struct {
     AdminId   *uuid.UUID   `json:"admin_id"`
     AdminName *string      `json:"admin_name"`
     After     *interface{} `json:"after,omitempty"`
@@ -115,19 +115,19 @@ type responseLogSearchItem  struct {
     Timestamp *float64     `json:"timestamp"`
 }
 
-func (r *responseLogSearchItem) validate() error {
+func (r *tempResponseLogSearchItem) validate() error {
     var errs []string
     if r.Message == nil {
-        errs = append(errs, "required field `message` is missing for type `Response_Log_Search_Item`")
+        errs = append(errs, "required field `message` is missing for type `response_log_search_item`")
     }
     if r.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Response_Log_Search_Item`")
+        errs = append(errs, "required field `org_id` is missing for type `response_log_search_item`")
     }
     if r.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Response_Log_Search_Item`")
+        errs = append(errs, "required field `site_id` is missing for type `response_log_search_item`")
     }
     if r.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Response_Log_Search_Item`")
+        errs = append(errs, "required field `timestamp` is missing for type `response_log_search_item`")
     }
     if len(errs) == 0 {
         return nil

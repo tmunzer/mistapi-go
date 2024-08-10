@@ -39,7 +39,7 @@ func (m MxedgeStatsTuntermIpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeStatsTuntermIpConfig.
 // It customizes the JSON unmarshaling process for MxedgeStatsTuntermIpConfig objects.
 func (m *MxedgeStatsTuntermIpConfig) UnmarshalJSON(input []byte) error {
-    var temp mxedgeStatsTuntermIpConfig
+    var temp tempMxedgeStatsTuntermIpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (m *MxedgeStatsTuntermIpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeStatsTuntermIpConfig is a temporary struct used for validating the fields of MxedgeStatsTuntermIpConfig.
-type mxedgeStatsTuntermIpConfig  struct {
+// tempMxedgeStatsTuntermIpConfig is a temporary struct used for validating the fields of MxedgeStatsTuntermIpConfig.
+type tempMxedgeStatsTuntermIpConfig  struct {
     Gateway *string `json:"gateway,omitempty"`
     Ip      *string `json:"ip,omitempty"`
     Netmask *string `json:"netmask,omitempty"`

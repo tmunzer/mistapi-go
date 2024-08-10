@@ -46,7 +46,7 @@
   "group": "infrastructure",
   "key": "device_down",
   "severity": "warn",
-  "marvis_suggestion_category": "marvis_suggestion_category2"
+  "marvis_suggestion_category": "marvis_suggestion_category4"
 }
 ```
 

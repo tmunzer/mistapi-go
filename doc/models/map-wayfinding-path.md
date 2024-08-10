@@ -29,6 +29,16 @@ a JSON blob for wayfinding (using Dijkstra’s algorithm)
         "x": 224.72,
         "y": 100.0
       }
+    },
+    {
+      "edges": {
+        "key0": "edges6"
+      },
+      "name": "name6",
+      "position": {
+        "x": 224.72,
+        "y": 100.0
+      }
     }
   ]
 }

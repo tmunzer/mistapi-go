@@ -26,9 +26,9 @@ for HA Cluster, node1 can have different IP Config
   "type": "static",
   "use_mgmt_vrf": false,
   "use_mgmt_vrf_for_host_out": false,
-  "gateway": "gateway2",
-  "ip": "ip6",
-  "netmask": "netmask2"
+  "gateway": "gateway0",
+  "ip": "ip4",
+  "netmask": "netmask0"
 }
 ```
 

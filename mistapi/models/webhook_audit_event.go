@@ -46,7 +46,7 @@ func (w WebhookAuditEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookAuditEvent.
 // It customizes the JSON unmarshaling process for WebhookAuditEvent objects.
 func (w *WebhookAuditEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookAuditEvent
+    var temp tempWebhookAuditEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -72,8 +72,8 @@ func (w *WebhookAuditEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookAuditEvent is a temporary struct used for validating the fields of WebhookAuditEvent.
-type webhookAuditEvent  struct {
+// tempWebhookAuditEvent is a temporary struct used for validating the fields of WebhookAuditEvent.
+type tempWebhookAuditEvent  struct {
     AdminName *string    `json:"admin_name"`
     DeviceId  *uuid.UUID `json:"device_id"`
     Id        *uuid.UUID `json:"id"`
@@ -84,31 +84,31 @@ type webhookAuditEvent  struct {
     Timestamp *float64   `json:"timestamp"`
 }
 
-func (w *webhookAuditEvent) validate() error {
+func (w *tempWebhookAuditEvent) validate() error {
     var errs []string
     if w.AdminName == nil {
-        errs = append(errs, "required field `admin_name` is missing for type `Webhook_Audit_Event`")
+        errs = append(errs, "required field `admin_name` is missing for type `webhook_audit_event`")
     }
     if w.DeviceId == nil {
-        errs = append(errs, "required field `device_id` is missing for type `Webhook_Audit_Event`")
+        errs = append(errs, "required field `device_id` is missing for type `webhook_audit_event`")
     }
     if w.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Webhook_Audit_Event`")
+        errs = append(errs, "required field `id` is missing for type `webhook_audit_event`")
     }
     if w.Message == nil {
-        errs = append(errs, "required field `message` is missing for type `Webhook_Audit_Event`")
+        errs = append(errs, "required field `message` is missing for type `webhook_audit_event`")
     }
     if w.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Webhook_Audit_Event`")
+        errs = append(errs, "required field `org_id` is missing for type `webhook_audit_event`")
     }
     if w.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Webhook_Audit_Event`")
+        errs = append(errs, "required field `site_id` is missing for type `webhook_audit_event`")
     }
     if w.SrcIp == nil {
-        errs = append(errs, "required field `src_ip` is missing for type `Webhook_Audit_Event`")
+        errs = append(errs, "required field `src_ip` is missing for type `webhook_audit_event`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Audit_Event`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_audit_event`")
     }
     if len(errs) == 0 {
         return nil

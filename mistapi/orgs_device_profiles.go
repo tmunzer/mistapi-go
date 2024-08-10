@@ -24,7 +24,7 @@ func NewOrgsDeviceProfiles(baseController baseController) *OrgsDeviceProfiles {
 }
 
 // ListOrgDeviceProfiles takes context, orgId, mType, limit, page as parameters and
-// returns an models.ApiResponse with []models.ListOrgDeviceProfilesResponse data and
+// returns an models.ApiResponse with []models.Deviceprofile2 data and
 // an error if there was an issue with the request or response.
 // Get List of Org Device Profiles
 func (o *OrgsDeviceProfiles) ListOrgDeviceProfiles(
@@ -33,7 +33,7 @@ func (o *OrgsDeviceProfiles) ListOrgDeviceProfiles(
     mType *models.DeviceTypeEnum,
     limit *int,
     page *int) (
-    models.ApiResponse[[]models.ListOrgDeviceProfilesResponse],
+    models.ApiResponse[[]models.Deviceprofile2],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -53,10 +53,10 @@ func (o *OrgsDeviceProfiles) ListOrgDeviceProfiles(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     if mType != nil {
         req.QueryParam("type", *mType)
@@ -68,25 +68,25 @@ func (o *OrgsDeviceProfiles) ListOrgDeviceProfiles(
         req.QueryParam("page", *page)
     }
     
-    var result []models.ListOrgDeviceProfilesResponse
+    var result []models.Deviceprofile2
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ListOrgDeviceProfilesResponse](decoder)
+    result, err = utilities.DecodeResults[[]models.Deviceprofile2](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // CreateOrgDeviceProfiles takes context, orgId, body as parameters and
-// returns an models.ApiResponse with models.CreateOrgDeviceProfilesResponse data and
+// returns an models.ApiResponse with models.Deviceprofile2 data and
 // an error if there was an issue with the request or response.
 // Create Device Profile
 func (o *OrgsDeviceProfiles) CreateOrgDeviceProfiles(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.Deviceprofile2) (
-    models.ApiResponse[models.CreateOrgDeviceProfilesResponse],
+    models.ApiResponse[models.Deviceprofile2],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -106,23 +106,23 @@ func (o *OrgsDeviceProfiles) CreateOrgDeviceProfiles(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     req.Header("Content-Type", "application/json")
     if body != nil {
         req.Json(body)
     }
     
-    var result models.CreateOrgDeviceProfilesResponse
+    var result models.Deviceprofile2
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.CreateOrgDeviceProfilesResponse](decoder)
+    result, err = utilities.DecodeResults[models.Deviceprofile2](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -154,10 +154,10 @@ func (o *OrgsDeviceProfiles) DeleteOrgDeviceProfile(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
     context, err := req.Call()
@@ -168,14 +168,14 @@ func (o *OrgsDeviceProfiles) DeleteOrgDeviceProfile(
 }
 
 // GetOrgDeviceProfile takes context, orgId, deviceprofileId as parameters and
-// returns an models.ApiResponse with models.GetOrgDeviceProfileResponse data and
+// returns an models.ApiResponse with models.Deviceprofile2 data and
 // an error if there was an issue with the request or response.
 // Get Org device Profile Details
 func (o *OrgsDeviceProfiles) GetOrgDeviceProfile(
     ctx context.Context,
     orgId uuid.UUID,
     deviceprofileId uuid.UUID) (
-    models.ApiResponse[models.GetOrgDeviceProfileResponse],
+    models.ApiResponse[models.Deviceprofile2],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -195,24 +195,24 @@ func (o *OrgsDeviceProfiles) GetOrgDeviceProfile(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.GetOrgDeviceProfileResponse
+    var result models.Deviceprofile2
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.GetOrgDeviceProfileResponse](decoder)
+    result, err = utilities.DecodeResults[models.Deviceprofile2](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // UpdateOrgDeviceProfile takes context, orgId, deviceprofileId, body as parameters and
-// returns an models.ApiResponse with models.UpdateOrgDeviceProfileResponse data and
+// returns an models.ApiResponse with models.Deviceprofile2 data and
 // an error if there was an issue with the request or response.
 // Update Org Device Profile
 func (o *OrgsDeviceProfiles) UpdateOrgDeviceProfile(
@@ -220,7 +220,7 @@ func (o *OrgsDeviceProfiles) UpdateOrgDeviceProfile(
     orgId uuid.UUID,
     deviceprofileId uuid.UUID,
     body *models.Deviceprofile2) (
-    models.ApiResponse[models.UpdateOrgDeviceProfileResponse],
+    models.ApiResponse[models.Deviceprofile2],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -240,23 +240,23 @@ func (o *OrgsDeviceProfiles) UpdateOrgDeviceProfile(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     req.Header("Content-Type", "application/json")
     if body != nil {
         req.Json(body)
     }
     
-    var result models.UpdateOrgDeviceProfileResponse
+    var result models.Deviceprofile2
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.UpdateOrgDeviceProfileResponse](decoder)
+    result, err = utilities.DecodeResults[models.Deviceprofile2](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -289,10 +289,10 @@ func (o *OrgsDeviceProfiles) AssignOrgDeviceProfile(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     req.Header("Content-Type", "application/json")
     if body != nil {
@@ -338,10 +338,10 @@ func (o *OrgsDeviceProfiles) UnassignOrgDeviceProfile(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     req.Header("Content-Type", "application/json")
     if body != nil {

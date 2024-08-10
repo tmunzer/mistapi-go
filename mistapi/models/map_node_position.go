@@ -33,7 +33,7 @@ func (m MapNodePosition) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapNodePosition.
 // It customizes the JSON unmarshaling process for MapNodePosition objects.
 func (m *MapNodePosition) UnmarshalJSON(input []byte) error {
-    var temp mapNodePosition
+    var temp tempMapNodePosition
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (m *MapNodePosition) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapNodePosition is a temporary struct used for validating the fields of MapNodePosition.
-type mapNodePosition  struct {
+// tempMapNodePosition is a temporary struct used for validating the fields of MapNodePosition.
+type tempMapNodePosition  struct {
     X *float64 `json:"x"`
     Y *float64 `json:"y"`
 }
 
-func (m *mapNodePosition) validate() error {
+func (m *tempMapNodePosition) validate() error {
     var errs []string
     if m.X == nil {
-        errs = append(errs, "required field `x` is missing for type `Map_Node_Position`")
+        errs = append(errs, "required field `x` is missing for type `map_node_position`")
     }
     if m.Y == nil {
-        errs = append(errs, "required field `y` is missing for type `Map_Node_Position`")
+        errs = append(errs, "required field `y` is missing for type `map_node_position`")
     }
     if len(errs) == 0 {
         return nil

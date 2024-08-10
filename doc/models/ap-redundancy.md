@@ -23,10 +23,6 @@
     "key0": {
       "num_aps": 2,
       "num_aps_with_switch_redundancy": 254
-    },
-    "key1": {
-      "num_aps": 2,
-      "num_aps_with_switch_redundancy": 254
     }
   }
 }

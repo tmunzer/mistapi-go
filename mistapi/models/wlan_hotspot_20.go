@@ -55,7 +55,7 @@ func (w WlanHotspot20) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanHotspot20.
 // It customizes the JSON unmarshaling process for WlanHotspot20 objects.
 func (w *WlanHotspot20) UnmarshalJSON(input []byte) error {
-    var temp wlanHotspot20
+    var temp tempWlanHotspot20
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -75,8 +75,8 @@ func (w *WlanHotspot20) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanHotspot20 is a temporary struct used for validating the fields of WlanHotspot20.
-type wlanHotspot20  struct {
+// tempWlanHotspot20 is a temporary struct used for validating the fields of WlanHotspot20.
+type tempWlanHotspot20  struct {
     DomainName []string                         `json:"domain_name,omitempty"`
     Enabled    *bool                            `json:"enabled,omitempty"`
     NaiRealms  []string                         `json:"nai_realms,omitempty"`

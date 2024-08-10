@@ -56,7 +56,7 @@ func (a ApSwitch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApSwitch.
 // It customizes the JSON unmarshaling process for ApSwitch objects.
 func (a *ApSwitch) UnmarshalJSON(input []byte) error {
-    var temp apSwitch
+    var temp tempApSwitch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (a *ApSwitch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apSwitch is a temporary struct used for validating the fields of ApSwitch.
-type apSwitch  struct {
+// tempApSwitch is a temporary struct used for validating the fields of ApSwitch.
+type tempApSwitch  struct {
     Enabled *bool            `json:"enabled,omitempty"`
     Eth0    *ApSwitchSetting `json:"eth0,omitempty"`
     Eth1    *ApSwitchSetting `json:"eth1,omitempty"`

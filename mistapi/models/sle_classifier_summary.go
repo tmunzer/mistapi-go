@@ -41,7 +41,7 @@ func (s SleClassifierSummary) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleClassifierSummary.
 // It customizes the JSON unmarshaling process for SleClassifierSummary objects.
 func (s *SleClassifierSummary) UnmarshalJSON(input []byte) error {
-    var temp sleClassifierSummary
+    var temp tempSleClassifierSummary
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (s *SleClassifierSummary) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleClassifierSummary is a temporary struct used for validating the fields of SleClassifierSummary.
-type sleClassifierSummary  struct {
+// tempSleClassifierSummary is a temporary struct used for validating the fields of SleClassifierSummary.
+type tempSleClassifierSummary  struct {
     Classifier *SleClassifier              `json:"classifier"`
     End        *float64                    `json:"end"`
     Failures   *[]interface{}              `json:"failures"`
@@ -75,25 +75,25 @@ type sleClassifierSummary  struct {
     Start      *float64                    `json:"start"`
 }
 
-func (s *sleClassifierSummary) validate() error {
+func (s *tempSleClassifierSummary) validate() error {
     var errs []string
     if s.Classifier == nil {
-        errs = append(errs, "required field `classifier` is missing for type `Sle_Classifier_Summary`")
+        errs = append(errs, "required field `classifier` is missing for type `sle_classifier_summary`")
     }
     if s.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Sle_Classifier_Summary`")
+        errs = append(errs, "required field `end` is missing for type `sle_classifier_summary`")
     }
     if s.Failures == nil {
-        errs = append(errs, "required field `failures` is missing for type `Sle_Classifier_Summary`")
+        errs = append(errs, "required field `failures` is missing for type `sle_classifier_summary`")
     }
     if s.Impact == nil {
-        errs = append(errs, "required field `impact` is missing for type `Sle_Classifier_Summary`")
+        errs = append(errs, "required field `impact` is missing for type `sle_classifier_summary`")
     }
     if s.Metric == nil {
-        errs = append(errs, "required field `metric` is missing for type `Sle_Classifier_Summary`")
+        errs = append(errs, "required field `metric` is missing for type `sle_classifier_summary`")
     }
     if s.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Sle_Classifier_Summary`")
+        errs = append(errs, "required field `start` is missing for type `sle_classifier_summary`")
     }
     if len(errs) == 0 {
         return nil

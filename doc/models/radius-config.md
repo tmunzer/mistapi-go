@@ -68,6 +68,15 @@ Junos Radius config
       "keywrap_mack": "keywrap_mack6",
       "port": 114,
       "secret": "secret4"
+    },
+    {
+      "host": "host0",
+      "keywrap_enabled": false,
+      "keywrap_format": "ascii",
+      "keywrap_kek": "keywrap_kek4",
+      "keywrap_mack": "keywrap_mack6",
+      "port": 114,
+      "secret": "secret4"
     }
   ]
 }

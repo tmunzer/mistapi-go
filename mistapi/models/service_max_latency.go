@@ -7,7 +7,7 @@ import (
 )
 
 // ServiceMaxLatency represents a ServiceMaxLatency struct.
-// This is a container for one-of cases.
+// for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
 type ServiceMaxLatency struct {
     value    any
     isString bool
@@ -75,7 +75,7 @@ func (s *ServiceMaxLatency) AsNumber() (
 }
 
 // internalServiceMaxLatency represents a serviceMaxLatency struct.
-// This is a container for one-of cases.
+// for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
 type internalServiceMaxLatency struct {}
 
 var ServiceMaxLatencyContainer internalServiceMaxLatency

@@ -31,7 +31,7 @@ func (r ResponseDeviceConfigCmd) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseDeviceConfigCmd.
 // It customizes the JSON unmarshaling process for ResponseDeviceConfigCmd objects.
 func (r *ResponseDeviceConfigCmd) UnmarshalJSON(input []byte) error {
-    var temp responseDeviceConfigCmd
+    var temp tempResponseDeviceConfigCmd
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (r *ResponseDeviceConfigCmd) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseDeviceConfigCmd is a temporary struct used for validating the fields of ResponseDeviceConfigCmd.
-type responseDeviceConfigCmd  struct {
+// tempResponseDeviceConfigCmd is a temporary struct used for validating the fields of ResponseDeviceConfigCmd.
+type tempResponseDeviceConfigCmd  struct {
     Cmd *string `json:"cmd"`
 }
 
-func (r *responseDeviceConfigCmd) validate() error {
+func (r *tempResponseDeviceConfigCmd) validate() error {
     var errs []string
     if r.Cmd == nil {
-        errs = append(errs, "required field `cmd` is missing for type `Response_Device_Config_Cmd`")
+        errs = append(errs, "required field `cmd` is missing for type `response_device_config_cmd`")
     }
     if len(errs) == 0 {
         return nil

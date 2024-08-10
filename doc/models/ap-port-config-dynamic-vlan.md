@@ -22,11 +22,11 @@ optional dynamic vlan
 {
   "default_vlan_id": 999,
   "vlans": {
-    "1-10": "vlans5",
-    "user": "vlans6"
+    "1-10": "vlans3",
+    "user": "vlans4"
   },
   "enabled": false,
-  "type": "type0"
+  "type": "type2"
 }
 ```
 

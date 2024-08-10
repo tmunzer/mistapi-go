@@ -23,14 +23,14 @@ func NewSitesDeviceProfiles(baseController baseController) *SitesDeviceProfiles 
 }
 
 // ListSiteDeviceProfilesDerived takes context, siteId, resolve as parameters and
-// returns an models.ApiResponse with []models.ListSiteDeviceProfilesDerivedResponse data and
+// returns an models.ApiResponse with []models.Deviceprofile2 data and
 // an error if there was an issue with the request or response.
 // Retrieves the list of Device Profiles available for the Site
 func (s *SitesDeviceProfiles) ListSiteDeviceProfilesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
-    models.ApiResponse[[]models.ListSiteDeviceProfilesDerivedResponse],
+    models.ApiResponse[[]models.Deviceprofile2],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -50,21 +50,21 @@ func (s *SitesDeviceProfiles) ListSiteDeviceProfilesDerived(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     if resolve != nil {
         req.QueryParam("resolve", *resolve)
     }
     
-    var result []models.ListSiteDeviceProfilesDerivedResponse
+    var result []models.Deviceprofile2
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ListSiteDeviceProfilesDerivedResponse](decoder)
+    result, err = utilities.DecodeResults[[]models.Deviceprofile2](decoder)
     return models.NewApiResponse(result, resp), err
 }

@@ -26,13 +26,13 @@
 
 ```json
 {
-  "mac": "mac2",
+  "mac": "mac0",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "auth_state": "auth_state8",
-  "device_id": "device_id4",
-  "eth_port": "eth_port6",
-  "last_seen": 232.78,
-  "rx_bytes": 198.66
+  "auth_state": "auth_state4",
+  "device_id": "device_id2",
+  "eth_port": "eth_port4",
+  "last_seen": 111.26,
+  "rx_bytes": 77.14
 }
 ```
 

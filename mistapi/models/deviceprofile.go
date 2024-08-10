@@ -39,7 +39,7 @@ type Deviceprofile struct {
     // whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
     PoePassthrough        *bool                              `json:"poe_passthrough,omitempty"`
     // Property key is the interface(s) name (e.g. "eth1,eth2")
-    PortConfig            *PortConfig                        `json:"port_config,omitempty"`
+    PortConfig            *PortConfig1                       `json:"port_config,omitempty"`
     // power related configs
     PwrConfig             *ApPwrConfig                       `json:"pwr_config,omitempty"`
     // Radio AP settings
@@ -268,7 +268,7 @@ func (d Deviceprofile) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Deviceprofile.
 // It customizes the JSON unmarshaling process for Deviceprofile objects.
 func (d *Deviceprofile) UnmarshalJSON(input []byte) error {
-    var temp deviceprofile
+    var temp tempDeviceprofile
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -332,8 +332,8 @@ func (d *Deviceprofile) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceprofile is a temporary struct used for validating the fields of Deviceprofile.
-type deviceprofile  struct {
+// tempDeviceprofile is a temporary struct used for validating the fields of Deviceprofile.
+type tempDeviceprofile  struct {
     Aeroscout             *ApAeroscout                       `json:"aeroscout,omitempty"`
     BleConfig             *BleConfig                         `json:"ble_config,omitempty"`
     CreatedTime           *float64                           `json:"created_time,omitempty"`
@@ -353,7 +353,7 @@ type deviceprofile  struct {
     NtpServers            []string                           `json:"ntp_servers,omitempty"`
     OrgId                 *uuid.UUID                         `json:"org_id,omitempty"`
     PoePassthrough        *bool                              `json:"poe_passthrough,omitempty"`
-    PortConfig            *PortConfig                        `json:"port_config,omitempty"`
+    PortConfig            *PortConfig1                       `json:"port_config,omitempty"`
     PwrConfig             *ApPwrConfig                       `json:"pwr_config,omitempty"`
     RadioConfig           *ApRadio                           `json:"radio_config,omitempty"`
     SiteId                *uuid.UUID                         `json:"site_id,omitempty"`

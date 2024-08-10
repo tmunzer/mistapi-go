@@ -32,7 +32,7 @@ func (s ServicePolicyAppqoe) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ServicePolicyAppqoe.
 // It customizes the JSON unmarshaling process for ServicePolicyAppqoe objects.
 func (s *ServicePolicyAppqoe) UnmarshalJSON(input []byte) error {
-    var temp servicePolicyAppqoe
+    var temp tempServicePolicyAppqoe
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (s *ServicePolicyAppqoe) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// servicePolicyAppqoe is a temporary struct used for validating the fields of ServicePolicyAppqoe.
-type servicePolicyAppqoe  struct {
+// tempServicePolicyAppqoe is a temporary struct used for validating the fields of ServicePolicyAppqoe.
+type tempServicePolicyAppqoe  struct {
     Enabled *bool `json:"enabled,omitempty"`
 }

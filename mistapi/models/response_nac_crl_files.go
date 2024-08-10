@@ -31,7 +31,7 @@ func (r ResponseNacCrlFiles) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseNacCrlFiles.
 // It customizes the JSON unmarshaling process for ResponseNacCrlFiles objects.
 func (r *ResponseNacCrlFiles) UnmarshalJSON(input []byte) error {
-    var temp responseNacCrlFiles
+    var temp tempResponseNacCrlFiles
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (r *ResponseNacCrlFiles) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseNacCrlFiles is a temporary struct used for validating the fields of ResponseNacCrlFiles.
-type responseNacCrlFiles  struct {
+// tempResponseNacCrlFiles is a temporary struct used for validating the fields of ResponseNacCrlFiles.
+type tempResponseNacCrlFiles  struct {
     Results []NacCrlFile `json:"results,omitempty"`
 }

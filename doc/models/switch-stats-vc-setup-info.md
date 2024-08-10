@@ -16,7 +16,7 @@
 
 ```json
 {
-  "config_type": "config_type8",
+  "config_type": "config_type0",
   "err_missing_dev_id_fpc": false
 }
 ```

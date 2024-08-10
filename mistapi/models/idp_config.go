@@ -46,7 +46,7 @@ func (i IdpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for IdpConfig.
 // It customizes the JSON unmarshaling process for IdpConfig objects.
 func (i *IdpConfig) UnmarshalJSON(input []byte) error {
-    var temp idpConfig
+    var temp tempIdpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,8 +64,8 @@ func (i *IdpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// idpConfig is a temporary struct used for validating the fields of IdpConfig.
-type idpConfig  struct {
+// tempIdpConfig is a temporary struct used for validating the fields of IdpConfig.
+type tempIdpConfig  struct {
     AlertOnly    *bool      `json:"alert_only,omitempty"`
     Enabled      *bool      `json:"enabled,omitempty"`
     IdpprofileId *uuid.UUID `json:"idpprofile_id,omitempty"`

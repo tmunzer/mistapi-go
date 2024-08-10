@@ -33,7 +33,7 @@ func (r ResponseSelfOauthUrl) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSelfOauthUrl.
 // It customizes the JSON unmarshaling process for ResponseSelfOauthUrl objects.
 func (r *ResponseSelfOauthUrl) UnmarshalJSON(input []byte) error {
-    var temp responseSelfOauthUrl
+    var temp tempResponseSelfOauthUrl
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (r *ResponseSelfOauthUrl) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSelfOauthUrl is a temporary struct used for validating the fields of ResponseSelfOauthUrl.
-type responseSelfOauthUrl  struct {
+// tempResponseSelfOauthUrl is a temporary struct used for validating the fields of ResponseSelfOauthUrl.
+type tempResponseSelfOauthUrl  struct {
     AuthorizationUrl *string `json:"authorization_url"`
     Linked           *bool   `json:"linked"`
 }
 
-func (r *responseSelfOauthUrl) validate() error {
+func (r *tempResponseSelfOauthUrl) validate() error {
     var errs []string
     if r.AuthorizationUrl == nil {
-        errs = append(errs, "required field `authorization_url` is missing for type `Response_Self_Oauth_Url`")
+        errs = append(errs, "required field `authorization_url` is missing for type `response_self_oauth_url`")
     }
     if r.Linked == nil {
-        errs = append(errs, "required field `linked` is missing for type `Response_Self_Oauth_Url`")
+        errs = append(errs, "required field `linked` is missing for type `response_self_oauth_url`")
     }
     if len(errs) == 0 {
         return nil

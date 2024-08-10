@@ -63,7 +63,7 @@ func (r RssiZone) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RssiZone.
 // It customizes the JSON unmarshaling process for RssiZone objects.
 func (r *RssiZone) UnmarshalJSON(input []byte) error {
-    var temp rssiZone
+    var temp tempRssiZone
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -89,8 +89,8 @@ func (r *RssiZone) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rssiZone is a temporary struct used for validating the fields of RssiZone.
-type rssiZone  struct {
+// tempRssiZone is a temporary struct used for validating the fields of RssiZone.
+type tempRssiZone  struct {
     CreatedTime  *float64          `json:"created_time,omitempty"`
     Devices      *[]RssiZoneDevice `json:"devices"`
     ForSite      *bool             `json:"for_site,omitempty"`
@@ -101,10 +101,10 @@ type rssiZone  struct {
     SiteId       *uuid.UUID        `json:"site_id,omitempty"`
 }
 
-func (r *rssiZone) validate() error {
+func (r *tempRssiZone) validate() error {
     var errs []string
     if r.Devices == nil {
-        errs = append(errs, "required field `devices` is missing for type `Rssi_Zone`")
+        errs = append(errs, "required field `devices` is missing for type `rssi_zone`")
     }
     if len(errs) == 0 {
         return nil

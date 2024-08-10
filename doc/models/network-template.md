@@ -34,7 +34,7 @@ Network Template
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
 | `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | Switch template |
-| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | - |
+| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.SwitchVrfInstance`](../../doc/models/switch-vrf-instance.md) | Optional | Property key is the network name |
 
@@ -61,32 +61,6 @@ Network Template
     }
   },
   "acl_policies": [
-    {
-      "actions": [
-        {
-          "action": "allow",
-          "dst_tag": "dst_tag0"
-        }
-      ],
-      "name": "name2",
-      "src_tags": [
-        "src_tags1",
-        "src_tags0"
-      ]
-    },
-    {
-      "actions": [
-        {
-          "action": "allow",
-          "dst_tag": "dst_tag0"
-        }
-      ],
-      "name": "name2",
-      "src_tags": [
-        "src_tags1",
-        "src_tags0"
-      ]
-    },
     {
       "actions": [
         {
@@ -131,12 +105,29 @@ Network Template
         }
       ],
       "type": "radius_group"
+    },
+    "key2": {
+      "gbp_tag": 14,
+      "macs": [
+        "macs1"
+      ],
+      "network": "network2",
+      "radius_group": "radius_group8",
+      "specs": [
+        {
+          "port_range": "port_range8",
+          "protocol": "protocol6"
+        }
+      ],
+      "type": "radius_group"
     }
   },
   "additional_config_cmds": [
-    "additional_config_cmds0"
+    "additional_config_cmds0",
+    "additional_config_cmds9",
+    "additional_config_cmds8"
   ],
-  "created_time": 225.36,
+  "created_time": 167.36,
   "dhcp_snooping": {
     "all_networks": false,
     "enable_arp_spoof_check": false,

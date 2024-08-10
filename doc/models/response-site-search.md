@@ -20,8 +20,8 @@
 
 ```json
 {
-  "end": 238,
-  "limit": 188,
+  "end": 190,
+  "limit": 236,
   "results": [
     {
       "auto_upgrade_enabled": false,
@@ -38,9 +38,9 @@
       "wifi_enabled": false
     }
   ],
-  "start": 196,
-  "total": 26,
-  "next": "next6"
+  "start": 148,
+  "total": 74,
+  "next": "next2"
 }
 ```
 

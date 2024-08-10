@@ -39,7 +39,7 @@ Initiate a Scan Radio Packet Capture
   "num_packets": 100,
   "tcpdump_expression": "tcp port 80",
   "type": "scan",
-  "ap_mac": "ap_mac2",
+  "ap_mac": "ap_mac4",
   "aps": {
     "key0": {
       "band": "24",

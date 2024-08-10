@@ -51,7 +51,7 @@ func (g GatewayPortVpnPath) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayPortVpnPath.
 // It customizes the JSON unmarshaling process for GatewayPortVpnPath objects.
 func (g *GatewayPortVpnPath) UnmarshalJSON(input []byte) error {
-    var temp gatewayPortVpnPath
+    var temp tempGatewayPortVpnPath
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -70,8 +70,8 @@ func (g *GatewayPortVpnPath) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayPortVpnPath is a temporary struct used for validating the fields of GatewayPortVpnPath.
-type gatewayPortVpnPath  struct {
+// tempGatewayPortVpnPath is a temporary struct used for validating the fields of GatewayPortVpnPath.
+type tempGatewayPortVpnPath  struct {
     BfdProfile       *GatewayPortVpnPathBfdProfileEnum `json:"bfd_profile,omitempty"`
     BfdUseTunnelMode *bool                             `json:"bfd_use_tunnel_mode,omitempty"`
     Preference       *int                              `json:"preference,omitempty"`

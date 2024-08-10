@@ -7,7 +7,6 @@ import (
 )
 
 // ConstInsightMetricsPropertyExample represents a ConstInsightMetricsPropertyExample struct.
-// This is Array of a container for any-of cases.
 type ConstInsightMetricsPropertyExample struct {
     value       any
     isNumber    bool
@@ -110,7 +109,6 @@ func (c *ConstInsightMetricsPropertyExample) AsBoolean() (
 }
 
 // internalConstInsightMetricsPropertyExample represents a constInsightMetricsPropertyExample struct.
-// This is Array of a container for any-of cases.
 type internalConstInsightMetricsPropertyExample struct {}
 
 var ConstInsightMetricsPropertyExampleContainer internalConstInsightMetricsPropertyExample

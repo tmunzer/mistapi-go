@@ -63,7 +63,7 @@ func (p PskPortalSso) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PskPortalSso.
 // It customizes the JSON unmarshaling process for PskPortalSso objects.
 func (p *PskPortalSso) UnmarshalJSON(input []byte) error {
-    var temp pskPortalSso
+    var temp tempPskPortalSso
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -85,8 +85,8 @@ func (p *PskPortalSso) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// pskPortalSso is a temporary struct used for validating the fields of PskPortalSso.
-type pskPortalSso  struct {
+// tempPskPortalSso is a temporary struct used for validating the fields of PskPortalSso.
+type tempPskPortalSso  struct {
     AllowedRoles         []string          `json:"allowed_roles,omitempty"`
     IdpCert              *string           `json:"idp_cert,omitempty"`
     IdpSignAlgo          *string           `json:"idp_sign_algo,omitempty"`

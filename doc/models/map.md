@@ -65,9 +65,9 @@ Map
   "use_auto_orientation": false,
   "use_auto_placement": false,
   "width": 1250,
-  "created_time": 7.46,
+  "created_time": 45.28,
   "for_site": false,
-  "height_m": 180.52
+  "height_m": 113.3
 }
 ```
 

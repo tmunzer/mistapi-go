@@ -38,7 +38,7 @@ func (c ConstAppSubcategoryDefinition) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstAppSubcategoryDefinition.
 // It customizes the JSON unmarshaling process for ConstAppSubcategoryDefinition objects.
 func (c *ConstAppSubcategoryDefinition) UnmarshalJSON(input []byte) error {
-    var temp constAppSubcategoryDefinition
+    var temp tempConstAppSubcategoryDefinition
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,23 +59,23 @@ func (c *ConstAppSubcategoryDefinition) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constAppSubcategoryDefinition is a temporary struct used for validating the fields of ConstAppSubcategoryDefinition.
-type constAppSubcategoryDefinition  struct {
+// tempConstAppSubcategoryDefinition is a temporary struct used for validating the fields of ConstAppSubcategoryDefinition.
+type tempConstAppSubcategoryDefinition  struct {
     Display     *string `json:"display"`
     Key         *string `json:"key"`
     TrafficType *string `json:"traffic_type"`
 }
 
-func (c *constAppSubcategoryDefinition) validate() error {
+func (c *tempConstAppSubcategoryDefinition) validate() error {
     var errs []string
     if c.Display == nil {
-        errs = append(errs, "required field `display` is missing for type `Const_App_Subcategory_Definition`")
+        errs = append(errs, "required field `display` is missing for type `const_app_subcategory_definition`")
     }
     if c.Key == nil {
-        errs = append(errs, "required field `key` is missing for type `Const_App_Subcategory_Definition`")
+        errs = append(errs, "required field `key` is missing for type `const_app_subcategory_definition`")
     }
     if c.TrafficType == nil {
-        errs = append(errs, "required field `traffic_type` is missing for type `Const_App_Subcategory_Definition`")
+        errs = append(errs, "required field `traffic_type` is missing for type `const_app_subcategory_definition`")
     }
     if len(errs) == 0 {
         return nil

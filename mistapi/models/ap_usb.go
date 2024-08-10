@@ -74,7 +74,7 @@ func (a ApUsb) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApUsb.
 // It customizes the JSON unmarshaling process for ApUsb objects.
 func (a *ApUsb) UnmarshalJSON(input []byte) error {
-    var temp apUsb
+    var temp tempApUsb
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -96,8 +96,8 @@ func (a *ApUsb) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apUsb is a temporary struct used for validating the fields of ApUsb.
-type apUsb  struct {
+// tempApUsb is a temporary struct used for validating the fields of ApUsb.
+type tempApUsb  struct {
     Cacert     Optional[string] `json:"cacert"`
     Channel    *int             `json:"channel,omitempty"`
     Enabled    *bool            `json:"enabled,omitempty"`

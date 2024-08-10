@@ -43,7 +43,7 @@ func (r ResponseSsrUpgradeStatus) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSsrUpgradeStatus.
 // It customizes the JSON unmarshaling process for ResponseSsrUpgradeStatus objects.
 func (r *ResponseSsrUpgradeStatus) UnmarshalJSON(input []byte) error {
-    var temp responseSsrUpgradeStatus
+    var temp tempResponseSsrUpgradeStatus
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseSsrUpgradeStatus) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSsrUpgradeStatus is a temporary struct used for validating the fields of ResponseSsrUpgradeStatus.
-type responseSsrUpgradeStatus  struct {
+// tempResponseSsrUpgradeStatus is a temporary struct used for validating the fields of ResponseSsrUpgradeStatus.
+type tempResponseSsrUpgradeStatus  struct {
     Channel    *string                          `json:"channel"`
     DeviceType *string                          `json:"device_type,omitempty"`
     Id         *string                          `json:"id"`
@@ -77,22 +77,22 @@ type responseSsrUpgradeStatus  struct {
     Versions   *interface{}                     `json:"versions"`
 }
 
-func (r *responseSsrUpgradeStatus) validate() error {
+func (r *tempResponseSsrUpgradeStatus) validate() error {
     var errs []string
     if r.Channel == nil {
-        errs = append(errs, "required field `channel` is missing for type `Response_Ssr_Upgrade_Status`")
+        errs = append(errs, "required field `channel` is missing for type `response_ssr_upgrade_status`")
     }
     if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Response_Ssr_Upgrade_Status`")
+        errs = append(errs, "required field `id` is missing for type `response_ssr_upgrade_status`")
     }
     if r.Status == nil {
-        errs = append(errs, "required field `status` is missing for type `Response_Ssr_Upgrade_Status`")
+        errs = append(errs, "required field `status` is missing for type `response_ssr_upgrade_status`")
     }
     if r.Targets == nil {
-        errs = append(errs, "required field `targets` is missing for type `Response_Ssr_Upgrade_Status`")
+        errs = append(errs, "required field `targets` is missing for type `response_ssr_upgrade_status`")
     }
     if r.Versions == nil {
-        errs = append(errs, "required field `versions` is missing for type `Response_Ssr_Upgrade_Status`")
+        errs = append(errs, "required field `versions` is missing for type `response_ssr_upgrade_status`")
     }
     if len(errs) == 0 {
         return nil

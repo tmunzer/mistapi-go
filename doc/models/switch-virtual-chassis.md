@@ -24,11 +24,6 @@ required for preprovisioned Virtual Chassis
       "mac": "mac2",
       "member_id": 58,
       "vc_role": "master"
-    },
-    {
-      "mac": "mac2",
-      "member_id": 58,
-      "vc_role": "master"
     }
   ]
 }

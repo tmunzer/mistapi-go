@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Accounts` | [`[]models.ResponseOauthAppLinkAccounts`](../../doc/models/containers/response-oauth-app-link-accounts.md) | Optional | This is Array of a container for any-of cases. |
+| `Accounts` | [`[]models.ResponseOauthAppLinkItem2`](../../doc/models/containers/response-oauth-app-link-item-2.md) | Optional | List of linked account details |
 | `Linked` | `*bool` | Optional | Basic Auth application linked status in mist portal enabled for VMware |
 
 ## Example (as JSON)
@@ -18,18 +18,18 @@
 {
   "accounts": [
     {
-      "client_id": "client_id0",
-      "error": "error2",
-      "instance_url": "instance_url2",
-      "last_status": "last_status2",
-      "last_sync": 188
+      "client_id": "client_id6",
+      "error": "error8",
+      "instance_url": "instance_url6",
+      "last_status": "last_status8",
+      "last_sync": 168
     },
     {
-      "client_id": "client_id0",
-      "error": "error2",
-      "instance_url": "instance_url2",
-      "last_status": "last_status2",
-      "last_sync": 188
+      "client_id": "client_id6",
+      "error": "error8",
+      "instance_url": "instance_url6",
+      "last_status": "last_status8",
+      "last_sync": 168
     }
   ],
   "linked": false

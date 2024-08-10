@@ -42,7 +42,7 @@
   "last_name": "Smith",
   "org_name": "Smith LLC",
   "password": "foryoureyesonly",
-  "recaptcha": "recaptcha0",
+  "recaptcha": "recaptcha2",
   "recaptcha_flavor": "hcaptcha",
   "referer_invite_token": "Dm2gtT8dwMeM4Bc2E8FLIaA96VHOjPat",
   "return_to": "http://mist.zendesk.com/hc/quickstart.pdf",

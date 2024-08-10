@@ -80,7 +80,7 @@ func (r ResponsePcapSearchItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponsePcapSearchItem.
 // It customizes the JSON unmarshaling process for ResponsePcapSearchItem objects.
 func (r *ResponsePcapSearchItem) UnmarshalJSON(input []byte) error {
-    var temp responsePcapSearchItem
+    var temp tempResponsePcapSearchItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -112,8 +112,8 @@ func (r *ResponsePcapSearchItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responsePcapSearchItem is a temporary struct used for validating the fields of ResponsePcapSearchItem.
-type responsePcapSearchItem  struct {
+// tempResponsePcapSearchItem is a temporary struct used for validating the fields of ResponsePcapSearchItem.
+type tempResponsePcapSearchItem  struct {
     ApMacs            []string                                     `json:"ap_macs,omitempty"`
     Aps               []string                                     `json:"aps,omitempty"`
     Duration          *float64                                     `json:"duration,omitempty"`
@@ -130,16 +130,16 @@ type responsePcapSearchItem  struct {
     Url               *string                                      `json:"url"`
 }
 
-func (r *responsePcapSearchItem) validate() error {
+func (r *tempResponsePcapSearchItem) validate() error {
     var errs []string
     if r.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Response_Pcap_Search_Item`")
+        errs = append(errs, "required field `timestamp` is missing for type `response_pcap_search_item`")
     }
     if r.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Response_Pcap_Search_Item`")
+        errs = append(errs, "required field `type` is missing for type `response_pcap_search_item`")
     }
     if r.Url == nil {
-        errs = append(errs, "required field `url` is missing for type `Response_Pcap_Search_Item`")
+        errs = append(errs, "required field `url` is missing for type `response_pcap_search_item`")
     }
     if len(errs) == 0 {
         return nil

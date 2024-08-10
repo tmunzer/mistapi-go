@@ -16,8 +16,8 @@
 
 ```json
 {
-  "metric": 30,
-  "preference": 146
+  "metric": 172,
+  "preference": 4
 }
 ```
 

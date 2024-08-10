@@ -31,11 +31,11 @@ Radsec settings
   "use_site_mxedge": false,
   "enabled": false,
   "mxcluster_ids": [
-    "00000537-0000-0000-0000-000000000000"
+    "000007d5-0000-0000-0000-000000000000",
+    "000007d6-0000-0000-0000-000000000000"
   ],
   "proxy_hosts": [
-    "proxy_hosts4",
-    "proxy_hosts3"
+    "proxy_hosts4"
   ]
 }
 ```

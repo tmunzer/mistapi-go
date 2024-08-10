@@ -78,7 +78,7 @@ func (a AclTag) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AclTag.
 // It customizes the JSON unmarshaling process for AclTag objects.
 func (a *AclTag) UnmarshalJSON(input []byte) error {
-    var temp aclTag
+    var temp tempAclTag
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -103,8 +103,8 @@ func (a *AclTag) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// aclTag is a temporary struct used for validating the fields of AclTag.
-type aclTag  struct {
+// tempAclTag is a temporary struct used for validating the fields of AclTag.
+type tempAclTag  struct {
     GbpTag      *int            `json:"gbp_tag,omitempty"`
     Macs        []string        `json:"macs,omitempty"`
     Network     *string         `json:"network,omitempty"`
@@ -114,10 +114,10 @@ type aclTag  struct {
     Type        *AclTagTypeEnum `json:"type"`
 }
 
-func (a *aclTag) validate() error {
+func (a *tempAclTag) validate() error {
     var errs []string
     if a.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Acl_Tag`")
+        errs = append(errs, "required field `type` is missing for type `acl_tag`")
     }
     if len(errs) == 0 {
         return nil

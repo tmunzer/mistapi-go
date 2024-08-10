@@ -17,9 +17,9 @@
 
 ```json
 {
-  "dscp": 128,
-  "dst_subnet": "dst_subnet8",
-  "src_subnet": "src_subnet6"
+  "dscp": 210,
+  "dst_subnet": "dst_subnet0",
+  "src_subnet": "src_subnet8"
 }
 ```
 

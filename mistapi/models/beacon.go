@@ -118,7 +118,7 @@ func (b Beacon) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Beacon.
 // It customizes the JSON unmarshaling process for Beacon objects.
 func (b *Beacon) UnmarshalJSON(input []byte) error {
-    var temp beacon
+    var temp tempBeacon
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -151,8 +151,8 @@ func (b *Beacon) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// beacon is a temporary struct used for validating the fields of Beacon.
-type beacon  struct {
+// tempBeacon is a temporary struct used for validating the fields of Beacon.
+type tempBeacon  struct {
     CreatedTime        *float64        `json:"created_time,omitempty"`
     EddystoneInstance  *string         `json:"eddystone_instance,omitempty"`
     EddystoneNamespace *string         `json:"eddystone_namespace,omitempty"`

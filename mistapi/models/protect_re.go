@@ -51,7 +51,7 @@ func (p ProtectRe) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ProtectRe.
 // It customizes the JSON unmarshaling process for ProtectRe objects.
 func (p *ProtectRe) UnmarshalJSON(input []byte) error {
-    var temp protectRe
+    var temp tempProtectRe
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -69,8 +69,8 @@ func (p *ProtectRe) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// protectRe is a temporary struct used for validating the fields of ProtectRe.
-type protectRe  struct {
+// tempProtectRe is a temporary struct used for validating the fields of ProtectRe.
+type tempProtectRe  struct {
     AllowedServices []string          `json:"allowed_services,omitempty"`
     Custom          []ProtectReCustom `json:"custom,omitempty"`
     Enabled         *bool             `json:"enabled,omitempty"`

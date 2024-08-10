@@ -80,7 +80,7 @@ func (t TunnelProviderOptionsZscaler) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TunnelProviderOptionsZscaler.
 // It customizes the JSON unmarshaling process for TunnelProviderOptionsZscaler objects.
 func (t *TunnelProviderOptionsZscaler) UnmarshalJSON(input []byte) error {
-    var temp tunnelProviderOptionsZscaler
+    var temp tempTunnelProviderOptionsZscaler
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -105,8 +105,8 @@ func (t *TunnelProviderOptionsZscaler) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tunnelProviderOptionsZscaler is a temporary struct used for validating the fields of TunnelProviderOptionsZscaler.
-type tunnelProviderOptionsZscaler  struct {
+// tempTunnelProviderOptionsZscaler is a temporary struct used for validating the fields of TunnelProviderOptionsZscaler.
+type tempTunnelProviderOptionsZscaler  struct {
     AupAcceptanceRequired *bool                                     `json:"aup_acceptance_required,omitempty"`
     AupExpire             *int                                      `json:"aup_expire,omitempty"`
     AupSslProxy           *bool                                     `json:"aup_ssl_proxy,omitempty"`

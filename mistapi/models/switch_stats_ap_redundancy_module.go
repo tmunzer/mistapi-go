@@ -35,7 +35,7 @@ func (s SwitchStatsApRedundancyModule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchStatsApRedundancyModule.
 // It customizes the JSON unmarshaling process for SwitchStatsApRedundancyModule objects.
 func (s *SwitchStatsApRedundancyModule) UnmarshalJSON(input []byte) error {
-    var temp switchStatsApRedundancyModule
+    var temp tempSwitchStatsApRedundancyModule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *SwitchStatsApRedundancyModule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchStatsApRedundancyModule is a temporary struct used for validating the fields of SwitchStatsApRedundancyModule.
-type switchStatsApRedundancyModule  struct {
+// tempSwitchStatsApRedundancyModule is a temporary struct used for validating the fields of SwitchStatsApRedundancyModule.
+type tempSwitchStatsApRedundancyModule  struct {
     NumAps                     *int `json:"num_aps,omitempty"`
     NumApsWithSwitchRedundancy *int `json:"num_aps_with_switch_redundancy,omitempty"`
 }

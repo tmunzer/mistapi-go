@@ -43,7 +43,7 @@ func (r ResponseOrgSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseOrgSearch.
 // It customizes the JSON unmarshaling process for ResponseOrgSearch objects.
 func (r *ResponseOrgSearch) UnmarshalJSON(input []byte) error {
-    var temp responseOrgSearch
+    var temp tempResponseOrgSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseOrgSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseOrgSearch is a temporary struct used for validating the fields of ResponseOrgSearch.
-type responseOrgSearch  struct {
+// tempResponseOrgSearch is a temporary struct used for validating the fields of ResponseOrgSearch.
+type tempResponseOrgSearch  struct {
     End     *float64                 `json:"end"`
     Limit   *int                     `json:"limit"`
     Next    *string                  `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type responseOrgSearch  struct {
     Total   *int                     `json:"total"`
 }
 
-func (r *responseOrgSearch) validate() error {
+func (r *tempResponseOrgSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Org_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_org_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Org_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_org_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Org_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_org_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Org_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_org_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Org_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_org_search`")
     }
     if len(errs) == 0 {
         return nil

@@ -18,14 +18,13 @@
 
 ```json
 {
-  "mac": "mac8",
-  "member": 40,
+  "mac": "mac2",
+  "member": 196,
   "vc_ports": [
-    "vc_ports8",
-    "vc_ports9",
-    "vc_ports0"
+    "vc_ports2",
+    "vc_ports3"
   ],
-  "vc_role": "master"
+  "vc_role": "backup"
 }
 ```
 

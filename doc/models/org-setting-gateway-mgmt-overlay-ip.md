@@ -16,8 +16,8 @@
 
 ```json
 {
-  "ip": "ip8",
-  "node1_ip": "node1_ip6"
+  "ip": "ip2",
+  "node1_ip": "node1_ip0"
 }
 ```
 

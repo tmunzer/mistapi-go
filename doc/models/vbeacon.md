@@ -48,9 +48,9 @@ vBeacon
   "wayfinding_nodename": "node1",
   "x": 53.5,
   "y": 173.1,
-  "created_time": 102.96,
+  "created_time": 135.22,
   "for_site": false,
-  "id": "00001df2-0000-0000-0000-000000000000"
+  "id": "000014ac-0000-0000-0000-000000000000"
 }
 ```
 

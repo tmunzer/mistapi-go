@@ -36,7 +36,7 @@ func (s SwitchMistNac) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchMistNac.
 // It customizes the JSON unmarshaling process for SwitchMistNac objects.
 func (s *SwitchMistNac) UnmarshalJSON(input []byte) error {
-    var temp switchMistNac
+    var temp tempSwitchMistNac
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (s *SwitchMistNac) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchMistNac is a temporary struct used for validating the fields of SwitchMistNac.
-type switchMistNac  struct {
+// tempSwitchMistNac is a temporary struct used for validating the fields of SwitchMistNac.
+type tempSwitchMistNac  struct {
     Enabled *bool   `json:"enabled,omitempty"`
     Network *string `json:"network,omitempty"`
 }

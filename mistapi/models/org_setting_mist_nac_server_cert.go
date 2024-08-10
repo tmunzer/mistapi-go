@@ -41,7 +41,7 @@ func (o OrgSettingMistNacServerCert) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingMistNacServerCert.
 // It customizes the JSON unmarshaling process for OrgSettingMistNacServerCert objects.
 func (o *OrgSettingMistNacServerCert) UnmarshalJSON(input []byte) error {
-    var temp orgSettingMistNacServerCert
+    var temp tempOrgSettingMistNacServerCert
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (o *OrgSettingMistNacServerCert) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingMistNacServerCert is a temporary struct used for validating the fields of OrgSettingMistNacServerCert.
-type orgSettingMistNacServerCert  struct {
+// tempOrgSettingMistNacServerCert is a temporary struct used for validating the fields of OrgSettingMistNacServerCert.
+type tempOrgSettingMistNacServerCert  struct {
     Cert     *string `json:"cert,omitempty"`
     Key      *string `json:"key,omitempty"`
     Password *string `json:"password,omitempty"`

@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CanaryPhases` | `[]int` | Optional | phases for canary deployment. Each phase represents percentage of AP’s that need to be upgraded. default is [1, 10, 50, 100] |
+| `CanaryPhases` | `[]int` | Optional | phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100] |
 | `DeviceIds` | `[]uuid.UUID` | Optional | - |
 | `EnableP2p` | `*bool` | Optional | whether to allow local AP-to-AP FW upgrade |
 | `Force` | `*bool` | Optional | true will force upgrade when requested version is same as running version<br>**Default**: `false` |
@@ -35,10 +35,17 @@
 ```json
 {
   "canary_phases": [
-    167
+    135,
+    136
   ],
   "force": false,
   "max_failure_percentage": 5.0,
+  "max_failures": [
+    1,
+    1,
+    5,
+    5
+  ],
   "p2p_cluster_size": 0,
   "reboot": false,
   "reboot_at": 1624399840,
@@ -50,9 +57,7 @@
   "strategy": "big_bang",
   "version": "3.1.5",
   "device_ids": [
-    "00001f1b-0000-0000-0000-000000000000",
-    "00001f1c-0000-0000-0000-000000000000",
-    "00001f1d-0000-0000-0000-000000000000"
+    "000019b7-0000-0000-0000-000000000000"
   ],
   "enable_p2p": false
 }

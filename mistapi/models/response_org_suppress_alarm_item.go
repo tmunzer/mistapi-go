@@ -37,7 +37,7 @@ func (r ResponseOrgSuppressAlarmItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseOrgSuppressAlarmItem.
 // It customizes the JSON unmarshaling process for ResponseOrgSuppressAlarmItem objects.
 func (r *ResponseOrgSuppressAlarmItem) UnmarshalJSON(input []byte) error {
-    var temp responseOrgSuppressAlarmItem
+    var temp tempResponseOrgSuppressAlarmItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (r *ResponseOrgSuppressAlarmItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseOrgSuppressAlarmItem is a temporary struct used for validating the fields of ResponseOrgSuppressAlarmItem.
-type responseOrgSuppressAlarmItem  struct {
+// tempResponseOrgSuppressAlarmItem is a temporary struct used for validating the fields of ResponseOrgSuppressAlarmItem.
+type tempResponseOrgSuppressAlarmItem  struct {
     Duration *int       `json:"duration,omitempty"`
     SiteId   *uuid.UUID `json:"site_id,omitempty"`
 }

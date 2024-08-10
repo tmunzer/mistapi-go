@@ -100,6 +100,8 @@ type WlanPortal struct {
     Password                    Optional[string]               `json:"password"`
     // whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`
     PredefinedSponsorsEnabled   *bool                          `json:"predefined_sponsors_enabled,omitempty"`
+    // whether to hide sponsor’s email from list of sponsors
+    PredefinedSponsorsHideEmail *bool                          `json:"predefined_sponsors_hide_email,omitempty"`
     Privacy                     *bool                          `json:"privacy,omitempty"`
     // when `sms_provider`==`puzzel`
     PuzzelPassword              *string                        `json:"puzzel_password,omitempty"`
@@ -377,6 +379,9 @@ func (w WlanPortal) toMap() map[string]any {
     if w.PredefinedSponsorsEnabled != nil {
         structMap["predefined_sponsors_enabled"] = w.PredefinedSponsorsEnabled
     }
+    if w.PredefinedSponsorsHideEmail != nil {
+        structMap["predefined_sponsors_hide_email"] = w.PredefinedSponsorsHideEmail
+    }
     if w.Privacy != nil {
         structMap["privacy"] = w.Privacy
     }
@@ -487,12 +492,12 @@ func (w WlanPortal) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanPortal.
 // It customizes the JSON unmarshaling process for WlanPortal objects.
 func (w *WlanPortal) UnmarshalJSON(input []byte) error {
-    var temp wlanPortal
+    var temp tempWlanPortal
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "amazon_client_id", "amazon_client_secret", "amazon_email_domains", "amazon_enabled", "amazon_expire", "auth", "azure_client_id", "azure_client_secret", "azure_enabled", "azure_expire", "azure_tenant_id", "broadnet_password", "broadnet_sid", "broadnet_user_id", "bypass_when_cloud_down", "clickatell_api_key", "cross_site", "email_enabled", "enabled", "expire", "external_portal_url", "facebook_client_id", "facebook_client_secret", "facebook_email_domains", "facebook_enabled", "facebook_expire", "forward", "forward_url", "google_client_id", "google_client_secret", "google_email_domains", "google_enabled", "google_expire", "gupshup_password", "gupshup_userid", "microsoft_client_id", "microsoft_client_secret", "microsoft_email_domains", "microsoft_enabled", "microsoft_expire", "passphrase_enabled", "passphrase_expire", "password", "predefined_sponsors_enabled", "privacy", "puzzel_password", "puzzel_service_id", "puzzel_username", "smsMessageFormat", "sms_enabled", "sms_expire", "sms_provider", "sponsor_auto_approve", "sponsor_email_domains", "sponsor_enabled", "sponsor_expire", "sponsor_link_validity_duration", "sponsor_notify_all", "sponsor_status_notify", "sponsors", "sso_default_role", "sso_forced_role", "sso_idp_cert", "sso_idp_sign_algo", "sso_idp_sso_url", "sso_issuer", "sso_nameid_format", "telstra_client_id", "telstra_client_secret", "twilio_auth_token", "twilio_phone_number", "twilio_sid")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "amazon_client_id", "amazon_client_secret", "amazon_email_domains", "amazon_enabled", "amazon_expire", "auth", "azure_client_id", "azure_client_secret", "azure_enabled", "azure_expire", "azure_tenant_id", "broadnet_password", "broadnet_sid", "broadnet_user_id", "bypass_when_cloud_down", "clickatell_api_key", "cross_site", "email_enabled", "enabled", "expire", "external_portal_url", "facebook_client_id", "facebook_client_secret", "facebook_email_domains", "facebook_enabled", "facebook_expire", "forward", "forward_url", "google_client_id", "google_client_secret", "google_email_domains", "google_enabled", "google_expire", "gupshup_password", "gupshup_userid", "microsoft_client_id", "microsoft_client_secret", "microsoft_email_domains", "microsoft_enabled", "microsoft_expire", "passphrase_enabled", "passphrase_expire", "password", "predefined_sponsors_enabled", "predefined_sponsors_hide_email", "privacy", "puzzel_password", "puzzel_service_id", "puzzel_username", "smsMessageFormat", "sms_enabled", "sms_expire", "sms_provider", "sponsor_auto_approve", "sponsor_email_domains", "sponsor_enabled", "sponsor_expire", "sponsor_link_validity_duration", "sponsor_notify_all", "sponsor_status_notify", "sponsors", "sso_default_role", "sso_forced_role", "sso_idp_cert", "sso_idp_sign_algo", "sso_idp_sso_url", "sso_issuer", "sso_nameid_format", "telstra_client_id", "telstra_client_secret", "twilio_auth_token", "twilio_phone_number", "twilio_sid")
     if err != nil {
     	return err
     }
@@ -542,6 +547,7 @@ func (w *WlanPortal) UnmarshalJSON(input []byte) error {
     w.PassphraseExpire = temp.PassphraseExpire
     w.Password = temp.Password
     w.PredefinedSponsorsEnabled = temp.PredefinedSponsorsEnabled
+    w.PredefinedSponsorsHideEmail = temp.PredefinedSponsorsHideEmail
     w.Privacy = temp.Privacy
     w.PuzzelPassword = temp.PuzzelPassword
     w.PuzzelServiceId = temp.PuzzelServiceId
@@ -573,8 +579,8 @@ func (w *WlanPortal) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanPortal is a temporary struct used for validating the fields of WlanPortal.
-type wlanPortal  struct {
+// tempWlanPortal is a temporary struct used for validating the fields of WlanPortal.
+type tempWlanPortal  struct {
     AmazonClientId              Optional[string]               `json:"amazon_client_id"`
     AmazonClientSecret          Optional[string]               `json:"amazon_client_secret"`
     AmazonEmailDomains          []string                       `json:"amazon_email_domains,omitempty"`
@@ -619,6 +625,7 @@ type wlanPortal  struct {
     PassphraseExpire            Optional[float64]              `json:"passphrase_expire"`
     Password                    Optional[string]               `json:"password"`
     PredefinedSponsorsEnabled   *bool                          `json:"predefined_sponsors_enabled,omitempty"`
+    PredefinedSponsorsHideEmail *bool                          `json:"predefined_sponsors_hide_email,omitempty"`
     Privacy                     *bool                          `json:"privacy,omitempty"`
     PuzzelPassword              *string                        `json:"puzzel_password,omitempty"`
     PuzzelServiceId             *string                        `json:"puzzel_service_id,omitempty"`

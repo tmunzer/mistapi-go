@@ -21,11 +21,11 @@
 
 ```json
 {
-  "default": 24.6,
-  "direction": "direction6",
-  "maximum": 33.58,
-  "metric": "metric2",
-  "minimum": 5.46
+  "default": 158.88,
+  "direction": "direction4",
+  "maximum": 155.3,
+  "metric": "metric0",
+  "minimum": 127.18
 }
 ```
 

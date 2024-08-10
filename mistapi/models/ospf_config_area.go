@@ -32,7 +32,7 @@ func (o OspfConfigArea) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OspfConfigArea.
 // It customizes the JSON unmarshaling process for OspfConfigArea objects.
 func (o *OspfConfigArea) UnmarshalJSON(input []byte) error {
-    var temp ospfConfigArea
+    var temp tempOspfConfigArea
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (o *OspfConfigArea) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ospfConfigArea is a temporary struct used for validating the fields of OspfConfigArea.
-type ospfConfigArea  struct {
+// tempOspfConfigArea is a temporary struct used for validating the fields of OspfConfigArea.
+type tempOspfConfigArea  struct {
     NoSummary *bool `json:"no_summary,omitempty"`
 }

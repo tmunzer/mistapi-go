@@ -40,7 +40,7 @@ func (m MapNode) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapNode.
 // It customizes the JSON unmarshaling process for MapNode objects.
 func (m *MapNode) UnmarshalJSON(input []byte) error {
-    var temp mapNode
+    var temp tempMapNode
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,17 +61,17 @@ func (m *MapNode) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapNode is a temporary struct used for validating the fields of MapNode.
-type mapNode  struct {
+// tempMapNode is a temporary struct used for validating the fields of MapNode.
+type tempMapNode  struct {
     Edges    map[string]string `json:"edges,omitempty"`
     Name     *string           `json:"name"`
     Position *MapNodePosition  `json:"position,omitempty"`
 }
 
-func (m *mapNode) validate() error {
+func (m *tempMapNode) validate() error {
     var errs []string
     if m.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Map_Node`")
+        errs = append(errs, "required field `name` is missing for type `map_node`")
     }
     if len(errs) == 0 {
         return nil

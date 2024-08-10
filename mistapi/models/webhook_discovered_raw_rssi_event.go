@@ -88,7 +88,7 @@ func (w WebhookDiscoveredRawRssiEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookDiscoveredRawRssiEvent.
 // It customizes the JSON unmarshaling process for WebhookDiscoveredRawRssiEvent objects.
 func (w *WebhookDiscoveredRawRssiEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookDiscoveredRawRssiEvent
+    var temp tempWebhookDiscoveredRawRssiEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -122,8 +122,8 @@ func (w *WebhookDiscoveredRawRssiEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookDiscoveredRawRssiEvent is a temporary struct used for validating the fields of WebhookDiscoveredRawRssiEvent.
-type webhookDiscoveredRawRssiEvent  struct {
+// tempWebhookDiscoveredRawRssiEvent is a temporary struct used for validating the fields of WebhookDiscoveredRawRssiEvent.
+type tempWebhookDiscoveredRawRssiEvent  struct {
     ApLoc          []float64       `json:"ap_loc,omitempty"`
     Beam           *int            `json:"beam"`
     DeviceId       *uuid.UUID      `json:"device_id"`
@@ -142,28 +142,28 @@ type webhookDiscoveredRawRssiEvent  struct {
     Timestamp      *int            `json:"timestamp,omitempty"`
 }
 
-func (w *webhookDiscoveredRawRssiEvent) validate() error {
+func (w *tempWebhookDiscoveredRawRssiEvent) validate() error {
     var errs []string
     if w.Beam == nil {
-        errs = append(errs, "required field `beam` is missing for type `Webhook_Discovered_Raw_Rssi_Event`")
+        errs = append(errs, "required field `beam` is missing for type `webhook_discovered_raw_rssi_event`")
     }
     if w.DeviceId == nil {
-        errs = append(errs, "required field `device_id` is missing for type `Webhook_Discovered_Raw_Rssi_Event`")
+        errs = append(errs, "required field `device_id` is missing for type `webhook_discovered_raw_rssi_event`")
     }
     if w.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Webhook_Discovered_Raw_Rssi_Event`")
+        errs = append(errs, "required field `mac` is missing for type `webhook_discovered_raw_rssi_event`")
     }
     if w.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Webhook_Discovered_Raw_Rssi_Event`")
+        errs = append(errs, "required field `map_id` is missing for type `webhook_discovered_raw_rssi_event`")
     }
     if w.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Webhook_Discovered_Raw_Rssi_Event`")
+        errs = append(errs, "required field `org_id` is missing for type `webhook_discovered_raw_rssi_event`")
     }
     if w.Rssi == nil {
-        errs = append(errs, "required field `rssi` is missing for type `Webhook_Discovered_Raw_Rssi_Event`")
+        errs = append(errs, "required field `rssi` is missing for type `webhook_discovered_raw_rssi_event`")
     }
     if w.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Webhook_Discovered_Raw_Rssi_Event`")
+        errs = append(errs, "required field `site_id` is missing for type `webhook_discovered_raw_rssi_event`")
     }
     if len(errs) == 0 {
         return nil

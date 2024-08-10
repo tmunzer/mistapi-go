@@ -19,7 +19,7 @@ type OrgApitoken struct {
     OrgId                *uuid.UUID        `json:"org_id,omitempty"`
     // list of privileges the token has on the orgs/sites
     Privileges           []PrivilegeOrg    `json:"privileges,omitempty"`
-    // to restrict where the API can be called from
+    // list of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified
     SrcIps               []string          `json:"src_ips,omitempty"`
     AdditionalProperties map[string]any    `json:"_"`
 }
@@ -81,7 +81,7 @@ func (o OrgApitoken) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgApitoken.
 // It customizes the JSON unmarshaling process for OrgApitoken objects.
 func (o *OrgApitoken) UnmarshalJSON(input []byte) error {
-    var temp orgApitoken
+    var temp tempOrgApitoken
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -104,8 +104,8 @@ func (o *OrgApitoken) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgApitoken is a temporary struct used for validating the fields of OrgApitoken.
-type orgApitoken  struct {
+// tempOrgApitoken is a temporary struct used for validating the fields of OrgApitoken.
+type tempOrgApitoken  struct {
     CreatedBy   Optional[string]  `json:"created_by"`
     CreatedTime *float64          `json:"created_time,omitempty"`
     Id          *uuid.UUID        `json:"id,omitempty"`

@@ -35,7 +35,7 @@ func (c ClusterConfigStatsEthernetConnectionItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClusterConfigStatsEthernetConnectionItem.
 // It customizes the JSON unmarshaling process for ClusterConfigStatsEthernetConnectionItem objects.
 func (c *ClusterConfigStatsEthernetConnectionItem) UnmarshalJSON(input []byte) error {
-    var temp clusterConfigStatsEthernetConnectionItem
+    var temp tempClusterConfigStatsEthernetConnectionItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (c *ClusterConfigStatsEthernetConnectionItem) UnmarshalJSON(input []byte) e
     return nil
 }
 
-// clusterConfigStatsEthernetConnectionItem is a temporary struct used for validating the fields of ClusterConfigStatsEthernetConnectionItem.
-type clusterConfigStatsEthernetConnectionItem  struct {
+// tempClusterConfigStatsEthernetConnectionItem is a temporary struct used for validating the fields of ClusterConfigStatsEthernetConnectionItem.
+type tempClusterConfigStatsEthernetConnectionItem  struct {
     Name   *string `json:"name,omitempty"`
     Status *string `json:"status,omitempty"`
 }

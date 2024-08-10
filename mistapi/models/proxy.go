@@ -32,7 +32,7 @@ func (p Proxy) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Proxy.
 // It customizes the JSON unmarshaling process for Proxy objects.
 func (p *Proxy) UnmarshalJSON(input []byte) error {
-    var temp proxy
+    var temp tempProxy
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (p *Proxy) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// proxy is a temporary struct used for validating the fields of Proxy.
-type proxy  struct {
+// tempProxy is a temporary struct used for validating the fields of Proxy.
+type tempProxy  struct {
     Url *string `json:"url,omitempty"`
 }

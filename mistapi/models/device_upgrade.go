@@ -52,7 +52,7 @@ func (d DeviceUpgrade) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceUpgrade.
 // It customizes the JSON unmarshaling process for DeviceUpgrade objects.
 func (d *DeviceUpgrade) UnmarshalJSON(input []byte) error {
-    var temp deviceUpgrade
+    var temp tempDeviceUpgrade
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -75,8 +75,8 @@ func (d *DeviceUpgrade) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceUpgrade is a temporary struct used for validating the fields of DeviceUpgrade.
-type deviceUpgrade  struct {
+// tempDeviceUpgrade is a temporary struct used for validating the fields of DeviceUpgrade.
+type tempDeviceUpgrade  struct {
     Reboot    *bool    `json:"reboot,omitempty"`
     RebootAt  *int     `json:"reboot_at,omitempty"`
     Snapshot  *bool    `json:"snapshot,omitempty"`
@@ -84,10 +84,10 @@ type deviceUpgrade  struct {
     Version   *string  `json:"version"`
 }
 
-func (d *deviceUpgrade) validate() error {
+func (d *tempDeviceUpgrade) validate() error {
     var errs []string
     if d.Version == nil {
-        errs = append(errs, "required field `version` is missing for type `Device_Upgrade`")
+        errs = append(errs, "required field `version` is missing for type `device_upgrade`")
     }
     if len(errs) == 0 {
         return nil

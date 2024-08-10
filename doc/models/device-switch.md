@@ -55,7 +55,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
 | `StpConfig` | [`*models.SwitchStpConfig`](../../doc/models/switch-stp-config.md) | Optional | - |
-| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | - |
+| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
 | `Type` | [`*models.DeviceTypeSwitchEnum`](../../doc/models/device-type-switch-enum.md) | Optional | Device Type. enum: `switch` |
 | `UseRouterIdAsSourceIp` | `*bool` | Optional | whether to use it for snmp / syslog / tacplus / radius<br>**Default**: `false` |
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
@@ -113,6 +113,19 @@ You can configure `port_usages` and `networks` settings at the device level, but
         "src_tags1",
         "src_tags0"
       ]
+    },
+    {
+      "actions": [
+        {
+          "action": "allow",
+          "dst_tag": "dst_tag0"
+        }
+      ],
+      "name": "name2",
+      "src_tags": [
+        "src_tags1",
+        "src_tags0"
+      ]
     }
   ],
   "acl_tags": {
@@ -130,45 +143,14 @@ You can configure `port_usages` and `networks` settings at the device level, but
         }
       ],
       "type": "radius_group"
-    },
-    "key1": {
-      "gbp_tag": 14,
-      "macs": [
-        "macs1"
-      ],
-      "network": "network2",
-      "radius_group": "radius_group8",
-      "specs": [
-        {
-          "port_range": "port_range8",
-          "protocol": "protocol6"
-        }
-      ],
-      "type": "radius_group"
-    },
-    "key2": {
-      "gbp_tag": 14,
-      "macs": [
-        "macs1"
-      ],
-      "network": "network2",
-      "radius_group": "radius_group8",
-      "specs": [
-        {
-          "port_range": "port_range8",
-          "protocol": "protocol6"
-        }
-      ],
-      "type": "radius_group"
     }
   },
   "additional_config_cmds": [
-    "additional_config_cmds4",
-    "additional_config_cmds3",
-    "additional_config_cmds2"
+    "additional_config_cmds2",
+    "additional_config_cmds3"
   ],
-  "created_time": 63.2,
-  "deviceprofile_id": "0000012c-0000-0000-0000-000000000000"
+  "created_time": 110.44,
+  "deviceprofile_id": "000024d0-0000-0000-0000-000000000000"
 }
 ```
 

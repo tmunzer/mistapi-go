@@ -43,7 +43,7 @@ func (s SearchWirelssClientSession) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SearchWirelssClientSession.
 // It customizes the JSON unmarshaling process for SearchWirelssClientSession objects.
 func (s *SearchWirelssClientSession) UnmarshalJSON(input []byte) error {
-    var temp searchWirelssClientSession
+    var temp tempSearchWirelssClientSession
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (s *SearchWirelssClientSession) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// searchWirelssClientSession is a temporary struct used for validating the fields of SearchWirelssClientSession.
-type searchWirelssClientSession  struct {
+// tempSearchWirelssClientSession is a temporary struct used for validating the fields of SearchWirelssClientSession.
+type tempSearchWirelssClientSession  struct {
     End     *float64                `json:"end"`
     Limit   *int                    `json:"limit"`
     Next    *string                 `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type searchWirelssClientSession  struct {
     Total   *int                    `json:"total"`
 }
 
-func (s *searchWirelssClientSession) validate() error {
+func (s *tempSearchWirelssClientSession) validate() error {
     var errs []string
     if s.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Search_Wirelss_Client_Session`")
+        errs = append(errs, "required field `end` is missing for type `search_wirelss_client_session`")
     }
     if s.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Search_Wirelss_Client_Session`")
+        errs = append(errs, "required field `limit` is missing for type `search_wirelss_client_session`")
     }
     if s.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Search_Wirelss_Client_Session`")
+        errs = append(errs, "required field `results` is missing for type `search_wirelss_client_session`")
     }
     if s.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Search_Wirelss_Client_Session`")
+        errs = append(errs, "required field `start` is missing for type `search_wirelss_client_session`")
     }
     if s.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Search_Wirelss_Client_Session`")
+        errs = append(errs, "required field `total` is missing for type `search_wirelss_client_session`")
     }
     if len(errs) == 0 {
         return nil

@@ -19,7 +19,7 @@
 {
   "email": "test@mistsys.com",
   "recaptcha_flavor": "hcaptcha",
-  "recaptcha": "recaptcha8"
+  "recaptcha": "recaptcha4"
 }
 ```
 

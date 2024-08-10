@@ -41,7 +41,7 @@ func (r Recover) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Recover.
 // It customizes the JSON unmarshaling process for Recover objects.
 func (r *Recover) UnmarshalJSON(input []byte) error {
-    var temp recover
+    var temp tempRecover
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,17 +62,17 @@ func (r *Recover) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// recover is a temporary struct used for validating the fields of Recover.
-type recover  struct {
+// tempRecover is a temporary struct used for validating the fields of Recover.
+type tempRecover  struct {
     Email           *string              `json:"email"`
     Recaptcha       *string              `json:"recaptcha,omitempty"`
     RecaptchaFlavor *RecaptchaFlavorEnum `json:"recaptcha_flavor,omitempty"`
 }
 
-func (r *recover) validate() error {
+func (r *tempRecover) validate() error {
     var errs []string
     if r.Email == nil {
-        errs = append(errs, "required field `email` is missing for type `Recover`")
+        errs = append(errs, "required field `email` is missing for type `recover`")
     }
     if len(errs) == 0 {
         return nil

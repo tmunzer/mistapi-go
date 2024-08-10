@@ -69,7 +69,7 @@ func (w WebhookClientJoinEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookClientJoinEvent.
 // It customizes the JSON unmarshaling process for WebhookClientJoinEvent objects.
 func (w *WebhookClientJoinEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookClientJoinEvent
+    var temp tempWebhookClientJoinEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -102,8 +102,8 @@ func (w *WebhookClientJoinEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookClientJoinEvent is a temporary struct used for validating the fields of WebhookClientJoinEvent.
-type webhookClientJoinEvent  struct {
+// tempWebhookClientJoinEvent is a temporary struct used for validating the fields of WebhookClientJoinEvent.
+type tempWebhookClientJoinEvent  struct {
     Ap           *string    `json:"ap"`
     ApName       *string    `json:"ap_name"`
     Band         *string    `json:"band"`
@@ -121,52 +121,52 @@ type webhookClientJoinEvent  struct {
     WlanId       *uuid.UUID `json:"wlan_id"`
 }
 
-func (w *webhookClientJoinEvent) validate() error {
+func (w *tempWebhookClientJoinEvent) validate() error {
     var errs []string
     if w.Ap == nil {
-        errs = append(errs, "required field `ap` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `ap` is missing for type `webhook_client_join_event`")
     }
     if w.ApName == nil {
-        errs = append(errs, "required field `ap_name` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `ap_name` is missing for type `webhook_client_join_event`")
     }
     if w.Band == nil {
-        errs = append(errs, "required field `band` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `band` is missing for type `webhook_client_join_event`")
     }
     if w.Bssid == nil {
-        errs = append(errs, "required field `bssid` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `bssid` is missing for type `webhook_client_join_event`")
     }
     if w.Connect == nil {
-        errs = append(errs, "required field `connect` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `connect` is missing for type `webhook_client_join_event`")
     }
     if w.ConnectFloat == nil {
-        errs = append(errs, "required field `connect_float` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `connect_float` is missing for type `webhook_client_join_event`")
     }
     if w.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `mac` is missing for type `webhook_client_join_event`")
     }
     if w.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `org_id` is missing for type `webhook_client_join_event`")
     }
     if w.Rssi == nil {
-        errs = append(errs, "required field `rssi` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `rssi` is missing for type `webhook_client_join_event`")
     }
     if w.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `site_id` is missing for type `webhook_client_join_event`")
     }
     if w.SiteName == nil {
-        errs = append(errs, "required field `site_name` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `site_name` is missing for type `webhook_client_join_event`")
     }
     if w.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `ssid` is missing for type `webhook_client_join_event`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_client_join_event`")
     }
     if w.Version == nil {
-        errs = append(errs, "required field `version` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `version` is missing for type `webhook_client_join_event`")
     }
     if w.WlanId == nil {
-        errs = append(errs, "required field `wlan_id` is missing for type `Webhook_Client_Join_Event`")
+        errs = append(errs, "required field `wlan_id` is missing for type `webhook_client_join_event`")
     }
     if len(errs) == 0 {
         return nil

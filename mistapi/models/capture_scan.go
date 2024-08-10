@@ -105,7 +105,7 @@ func (c CaptureScan) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureScan.
 // It customizes the JSON unmarshaling process for CaptureScan objects.
 func (c *CaptureScan) UnmarshalJSON(input []byte) error {
-    var temp captureScan
+    var temp tempCaptureScan
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -136,8 +136,8 @@ func (c *CaptureScan) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureScan is a temporary struct used for validating the fields of CaptureScan.
-type captureScan  struct {
+// tempCaptureScan is a temporary struct used for validating the fields of CaptureScan.
+type tempCaptureScan  struct {
     ApMac             Optional[string]              `json:"ap_mac"`
     Aps               map[string]CaptureScanAps     `json:"aps,omitempty"`
     Band              Optional[CaptureScanBandEnum] `json:"band"`
@@ -153,10 +153,10 @@ type captureScan  struct {
     Width             *string                       `json:"width,omitempty"`
 }
 
-func (c *captureScan) validate() error {
+func (c *tempCaptureScan) validate() error {
     var errs []string
     if c.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Capture_Scan`")
+        errs = append(errs, "required field `type` is missing for type `capture_scan`")
     }
     if len(errs) == 0 {
         return nil

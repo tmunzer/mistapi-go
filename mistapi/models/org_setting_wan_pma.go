@@ -31,7 +31,7 @@ func (o OrgSettingWanPma) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingWanPma.
 // It customizes the JSON unmarshaling process for OrgSettingWanPma objects.
 func (o *OrgSettingWanPma) UnmarshalJSON(input []byte) error {
-    var temp orgSettingWanPma
+    var temp tempOrgSettingWanPma
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (o *OrgSettingWanPma) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingWanPma is a temporary struct used for validating the fields of OrgSettingWanPma.
-type orgSettingWanPma  struct {
+// tempOrgSettingWanPma is a temporary struct used for validating the fields of OrgSettingWanPma.
+type tempOrgSettingWanPma  struct {
     Enabled *bool `json:"enabled,omitempty"`
 }

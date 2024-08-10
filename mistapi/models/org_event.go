@@ -44,7 +44,7 @@ func (o OrgEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgEvent.
 // It customizes the JSON unmarshaling process for OrgEvent objects.
 func (o *OrgEvent) UnmarshalJSON(input []byte) error {
-    var temp orgEvent
+    var temp tempOrgEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (o *OrgEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgEvent is a temporary struct used for validating the fields of OrgEvent.
-type orgEvent  struct {
+// tempOrgEvent is a temporary struct used for validating the fields of OrgEvent.
+type tempOrgEvent  struct {
     OrgId     *uuid.UUID `json:"org_id,omitempty"`
     Text      *string    `json:"text,omitempty"`
     Timestamp *float64   `json:"timestamp,omitempty"`

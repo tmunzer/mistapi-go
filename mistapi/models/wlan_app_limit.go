@@ -44,7 +44,7 @@ func (w WlanAppLimit) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanAppLimit.
 // It customizes the JSON unmarshaling process for WlanAppLimit objects.
 func (w *WlanAppLimit) UnmarshalJSON(input []byte) error {
-    var temp wlanAppLimit
+    var temp tempWlanAppLimit
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (w *WlanAppLimit) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanAppLimit is a temporary struct used for validating the fields of WlanAppLimit.
-type wlanAppLimit  struct {
+// tempWlanAppLimit is a temporary struct used for validating the fields of WlanAppLimit.
+type tempWlanAppLimit  struct {
     Apps     map[string]int `json:"apps,omitempty"`
     Enabled  *bool          `json:"enabled,omitempty"`
     WxtagIds map[string]int `json:"wxtag_ids,omitempty"`

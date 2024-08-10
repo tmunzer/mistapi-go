@@ -38,7 +38,7 @@ func (r ResponseOrgInventoryChange) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseOrgInventoryChange.
 // It customizes the JSON unmarshaling process for ResponseOrgInventoryChange objects.
 func (r *ResponseOrgInventoryChange) UnmarshalJSON(input []byte) error {
-    var temp responseOrgInventoryChange
+    var temp tempResponseOrgInventoryChange
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,27 +60,27 @@ func (r *ResponseOrgInventoryChange) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseOrgInventoryChange is a temporary struct used for validating the fields of ResponseOrgInventoryChange.
-type responseOrgInventoryChange  struct {
+// tempResponseOrgInventoryChange is a temporary struct used for validating the fields of ResponseOrgInventoryChange.
+type tempResponseOrgInventoryChange  struct {
     Error   *[]string                         `json:"error"`
     Op      *ResponseOrgInventoryChangeOpEnum `json:"op"`
     Reason  *[]string                         `json:"reason"`
     Success *[]string                         `json:"success"`
 }
 
-func (r *responseOrgInventoryChange) validate() error {
+func (r *tempResponseOrgInventoryChange) validate() error {
     var errs []string
     if r.Error == nil {
-        errs = append(errs, "required field `error` is missing for type `Response_Org_Inventory_Change`")
+        errs = append(errs, "required field `error` is missing for type `response_org_inventory_change`")
     }
     if r.Op == nil {
-        errs = append(errs, "required field `op` is missing for type `Response_Org_Inventory_Change`")
+        errs = append(errs, "required field `op` is missing for type `response_org_inventory_change`")
     }
     if r.Reason == nil {
-        errs = append(errs, "required field `reason` is missing for type `Response_Org_Inventory_Change`")
+        errs = append(errs, "required field `reason` is missing for type `response_org_inventory_change`")
     }
     if r.Success == nil {
-        errs = append(errs, "required field `success` is missing for type `Response_Org_Inventory_Change`")
+        errs = append(errs, "required field `success` is missing for type `response_org_inventory_change`")
     }
     if len(errs) == 0 {
         return nil

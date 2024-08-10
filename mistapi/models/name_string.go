@@ -31,7 +31,7 @@ func (n NameString) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NameString.
 // It customizes the JSON unmarshaling process for NameString objects.
 func (n *NameString) UnmarshalJSON(input []byte) error {
-    var temp nameString
+    var temp tempNameString
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (n *NameString) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// nameString is a temporary struct used for validating the fields of NameString.
-type nameString  struct {
+// tempNameString is a temporary struct used for validating the fields of NameString.
+type tempNameString  struct {
     Name *string `json:"name,omitempty"`
 }

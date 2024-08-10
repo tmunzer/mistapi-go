@@ -32,7 +32,7 @@ func (r ResponseVirtualChassisConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseVirtualChassisConfig.
 // It customizes the JSON unmarshaling process for ResponseVirtualChassisConfig objects.
 func (r *ResponseVirtualChassisConfig) UnmarshalJSON(input []byte) error {
-    var temp responseVirtualChassisConfig
+    var temp tempResponseVirtualChassisConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (r *ResponseVirtualChassisConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseVirtualChassisConfig is a temporary struct used for validating the fields of ResponseVirtualChassisConfig.
-type responseVirtualChassisConfig  struct {
+// tempResponseVirtualChassisConfig is a temporary struct used for validating the fields of ResponseVirtualChassisConfig.
+type tempResponseVirtualChassisConfig  struct {
     Id *VirtualChassisConfig `json:"id,omitempty"`
 }

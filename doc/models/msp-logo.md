@@ -15,7 +15,7 @@
 
 ```json
 {
-  "logo_url": "logo_url6"
+  "logo_url": "logo_url0"
 }
 ```
 

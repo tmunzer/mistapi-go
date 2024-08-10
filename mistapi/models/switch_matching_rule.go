@@ -19,7 +19,7 @@ type SwitchMatchingRule struct {
     // port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output.
     PortMirroring        map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     // Switch settings
-    SwitchMgmt           *ConfigSwitch                          `json:"switch_mgmt,omitempty"`
+    SwitchMgmt           *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
     AdditionalProperties map[string]any                         `json:"_"`
 }
 
@@ -59,7 +59,7 @@ func (s SwitchMatchingRule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchMatchingRule.
 // It customizes the JSON unmarshaling process for SwitchMatchingRule objects.
 func (s *SwitchMatchingRule) UnmarshalJSON(input []byte) error {
-    var temp switchMatchingRule
+    var temp tempSwitchMatchingRule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -79,12 +79,12 @@ func (s *SwitchMatchingRule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchMatchingRule is a temporary struct used for validating the fields of SwitchMatchingRule.
-type switchMatchingRule  struct {
+// tempSwitchMatchingRule is a temporary struct used for validating the fields of SwitchMatchingRule.
+type tempSwitchMatchingRule  struct {
     AdditionalConfigCmds []string                               `json:"additional_config_cmds,omitempty"`
     MatchRole            *string                                `json:"match_role,omitempty"`
     Name                 *string                                `json:"name,omitempty"`
     PortConfig           map[string]JunosPortConfig             `json:"port_config,omitempty"`
     PortMirroring        map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
-    SwitchMgmt           *ConfigSwitch                          `json:"switch_mgmt,omitempty"`
+    SwitchMgmt           *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
 }

@@ -44,7 +44,7 @@ func (m MapSitesurveyPathItems) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapSitesurveyPathItems.
 // It customizes the JSON unmarshaling process for MapSitesurveyPathItems objects.
 func (m *MapSitesurveyPathItems) UnmarshalJSON(input []byte) error {
-    var temp mapSitesurveyPathItems
+    var temp tempMapSitesurveyPathItems
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (m *MapSitesurveyPathItems) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapSitesurveyPathItems is a temporary struct used for validating the fields of MapSitesurveyPathItems.
-type mapSitesurveyPathItems  struct {
+// tempMapSitesurveyPathItems is a temporary struct used for validating the fields of MapSitesurveyPathItems.
+type tempMapSitesurveyPathItems  struct {
     Coordinate *string    `json:"coordinate,omitempty"`
     Id         *uuid.UUID `json:"id,omitempty"`
     Name       *string    `json:"name,omitempty"`

@@ -3,7 +3,7 @@
 
 ## Structure
 
-`ApStatsL2TpStatSession`
+`ApStatsL2tpStatSession`
 
 ## Fields
 
@@ -12,7 +12,7 @@
 | `LocalSid` | `models.Optional[int]` | Optional | remote sessions id (dynamically unless Tunnel is said to be static) |
 | `RemoteId` | `models.Optional[string]` | Optional | WxlanTunnel Remote ID (user-configured) |
 | `RemoteSid` | `models.Optional[int]` | Optional | remote sessions id (dynamically unless Tunnel is said to be static) |
-| `State` | [`*models.L2TpStateEnum`](../../doc/models/l2-tp-state-enum.md) | Optional | enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
+| `State` | [`*models.L2tpStateEnum`](../../doc/models/l2-tp-state-enum.md) | Optional | enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
 
 ## Example (as JSON)
 

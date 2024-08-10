@@ -25,13 +25,12 @@ if `auth`==`sso`
 ```json
 {
   "allowed_roles": [
-    "allowed_roles5",
-    "allowed_roles6"
+    "allowed_roles7"
   ],
-  "idp_cert": "idp_cert0",
-  "idp_sign_algo": "idp_sign_algo2",
-  "idp_sso_url": "idp_sso_url6",
-  "issuer": "issuer6"
+  "idp_cert": "idp_cert2",
+  "idp_sign_algo": "idp_sign_algo4",
+  "idp_sso_url": "idp_sso_url8",
+  "issuer": "issuer8"
 }
 ```
 

@@ -51,10 +51,10 @@
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "band_24_bandwith": "band_24_bandwith0",
-  "band_24_channel": 152,
-  "band_24_power": 202,
+  "band_24_channel": 252,
+  "band_24_power": 154,
   "band_5_bandwith": "band_5_bandwith4",
-  "band_5_channel": 84
+  "band_5_channel": 184
 }
 ```
 

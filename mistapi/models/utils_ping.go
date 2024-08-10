@@ -49,7 +49,7 @@ func (u UtilsPing) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsPing.
 // It customizes the JSON unmarshaling process for UtilsPing objects.
 func (u *UtilsPing) UnmarshalJSON(input []byte) error {
-    var temp utilsPing
+    var temp tempUtilsPing
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -72,8 +72,8 @@ func (u *UtilsPing) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsPing is a temporary struct used for validating the fields of UtilsPing.
-type utilsPing  struct {
+// tempUtilsPing is a temporary struct used for validating the fields of UtilsPing.
+type tempUtilsPing  struct {
     Count           *int               `json:"count,omitempty"`
     EgressInterface *string            `json:"egress_interface,omitempty"`
     Host            *string            `json:"host"`
@@ -81,10 +81,10 @@ type utilsPing  struct {
     Size            *int               `json:"size,omitempty"`
 }
 
-func (u *utilsPing) validate() error {
+func (u *tempUtilsPing) validate() error {
     var errs []string
     if u.Host == nil {
-        errs = append(errs, "required field `host` is missing for type `Utils_Ping`")
+        errs = append(errs, "required field `host` is missing for type `utils_ping`")
     }
     if len(errs) == 0 {
         return nil

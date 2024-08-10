@@ -76,6 +76,44 @@
       "explicit_priority": false,
       "file": "file4",
       "match": "match4"
+    },
+    {
+      "archive": {
+        "files": 122,
+        "size": "size8"
+      },
+      "contents": [
+        {
+          "facility": "ntp",
+          "severity": "error"
+        },
+        {
+          "facility": "ntp",
+          "severity": "error"
+        }
+      ],
+      "explicit_priority": false,
+      "file": "file4",
+      "match": "match4"
+    },
+    {
+      "archive": {
+        "files": 122,
+        "size": "size8"
+      },
+      "contents": [
+        {
+          "facility": "ntp",
+          "severity": "error"
+        },
+        {
+          "facility": "ntp",
+          "severity": "error"
+        }
+      ],
+      "explicit_priority": false,
+      "file": "file4",
+      "match": "match4"
     }
   ]
 }

@@ -24,7 +24,9 @@ Delivery object to configure the alarm delivery
   "to_org_admins": true,
   "to_site_admins": false,
   "additional_emails": [
-    "additional_emails9"
+    "additional_emails9",
+    "additional_emails0",
+    "additional_emails1"
   ]
 }
 ```

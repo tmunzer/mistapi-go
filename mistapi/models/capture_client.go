@@ -89,7 +89,7 @@ func (c CaptureClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureClient.
 // It customizes the JSON unmarshaling process for CaptureClient objects.
 func (c *CaptureClient) UnmarshalJSON(input []byte) error {
-    var temp captureClient
+    var temp tempCaptureClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -115,8 +115,8 @@ func (c *CaptureClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureClient is a temporary struct used for validating the fields of CaptureClient.
-type captureClient  struct {
+// tempCaptureClient is a temporary struct used for validating the fields of CaptureClient.
+type tempCaptureClient  struct {
     ApMac         Optional[string] `json:"ap_mac"`
     ClientMac     Optional[string] `json:"client_mac"`
     Duration      Optional[int]    `json:"duration"`
@@ -127,10 +127,10 @@ type captureClient  struct {
     Type          *string          `json:"type"`
 }
 
-func (c *captureClient) validate() error {
+func (c *tempCaptureClient) validate() error {
     var errs []string
     if c.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Capture_Client`")
+        errs = append(errs, "required field `type` is missing for type `capture_client`")
     }
     if len(errs) == 0 {
         return nil

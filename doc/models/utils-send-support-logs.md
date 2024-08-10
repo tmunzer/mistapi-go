@@ -19,7 +19,7 @@
 {
   "info": "full",
   "num_messages_files": 1,
-  "node": "node2"
+  "node": "node6"
 }
 ```
 

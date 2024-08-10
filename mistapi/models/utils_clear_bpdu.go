@@ -32,7 +32,7 @@ func (u UtilsClearBpdu) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsClearBpdu.
 // It customizes the JSON unmarshaling process for UtilsClearBpdu objects.
 func (u *UtilsClearBpdu) UnmarshalJSON(input []byte) error {
-    var temp utilsClearBpdu
+    var temp tempUtilsClearBpdu
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (u *UtilsClearBpdu) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsClearBpdu is a temporary struct used for validating the fields of UtilsClearBpdu.
-type utilsClearBpdu  struct {
+// tempUtilsClearBpdu is a temporary struct used for validating the fields of UtilsClearBpdu.
+type tempUtilsClearBpdu  struct {
     Port *string `json:"port,omitempty"`
 }

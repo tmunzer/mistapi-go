@@ -17,12 +17,14 @@
 ```json
 {
   "locked": [
-    "locked6",
-    "locked7"
+    "locked4",
+    "locked5",
+    "locked6"
   ],
   "moved": [
-    "moved1",
-    "moved2"
+    "moved9",
+    "moved0",
+    "moved1"
   ]
 }
 ```

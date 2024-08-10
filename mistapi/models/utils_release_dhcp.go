@@ -11,7 +11,7 @@ type UtilsReleaseDhcp struct {
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     // The nework interface on which to release the current DHCP release
-    Port                 string             `json:"port"`
+    PortId               string             `json:"port_id"`
     AdditionalProperties map[string]any     `json:"_"`
 }
 
@@ -30,14 +30,14 @@ func (u UtilsReleaseDhcp) toMap() map[string]any {
     if u.Node != nil {
         structMap["node"] = u.Node
     }
-    structMap["port"] = u.Port
+    structMap["port_id"] = u.PortId
     return structMap
 }
 
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsReleaseDhcp.
 // It customizes the JSON unmarshaling process for UtilsReleaseDhcp objects.
 func (u *UtilsReleaseDhcp) UnmarshalJSON(input []byte) error {
-    var temp utilsReleaseDhcp
+    var temp tempUtilsReleaseDhcp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,27 +46,27 @@ func (u *UtilsReleaseDhcp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "node", "port")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "node", "port_id")
     if err != nil {
     	return err
     }
     
     u.AdditionalProperties = additionalProperties
     u.Node = temp.Node
-    u.Port = *temp.Port
+    u.PortId = *temp.PortId
     return nil
 }
 
-// utilsReleaseDhcp is a temporary struct used for validating the fields of UtilsReleaseDhcp.
-type utilsReleaseDhcp  struct {
-    Node *HaClusterNodeEnum `json:"node,omitempty"`
-    Port *string            `json:"port"`
+// tempUtilsReleaseDhcp is a temporary struct used for validating the fields of UtilsReleaseDhcp.
+type tempUtilsReleaseDhcp  struct {
+    Node   *HaClusterNodeEnum `json:"node,omitempty"`
+    PortId *string            `json:"port_id"`
 }
 
-func (u *utilsReleaseDhcp) validate() error {
+func (u *tempUtilsReleaseDhcp) validate() error {
     var errs []string
-    if u.Port == nil {
-        errs = append(errs, "required field `port` is missing for type `Utils_Release_Dhcp`")
+    if u.PortId == nil {
+        errs = append(errs, "required field `port_id` is missing for type `utils_release_dhcp`")
     }
     if len(errs) == 0 {
         return nil

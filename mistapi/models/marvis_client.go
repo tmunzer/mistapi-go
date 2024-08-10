@@ -45,7 +45,7 @@ func (m MarvisClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MarvisClient.
 // It customizes the JSON unmarshaling process for MarvisClient objects.
 func (m *MarvisClient) UnmarshalJSON(input []byte) error {
-    var temp marvisClient
+    var temp tempMarvisClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,8 +63,8 @@ func (m *MarvisClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// marvisClient is a temporary struct used for validating the fields of MarvisClient.
-type marvisClient  struct {
+// tempMarvisClient is a temporary struct used for validating the fields of MarvisClient.
+type tempMarvisClient  struct {
     Diabled      *bool      `json:"diabled,omitempty"`
     Id           *uuid.UUID `json:"id,omitempty"`
     Name         *string    `json:"name,omitempty"`

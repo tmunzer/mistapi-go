@@ -95,7 +95,7 @@ func (w WebhookClientSessionsEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookClientSessionsEvent.
 // It customizes the JSON unmarshaling process for WebhookClientSessionsEvent objects.
 func (w *WebhookClientSessionsEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookClientSessionsEvent
+    var temp tempWebhookClientSessionsEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -137,8 +137,8 @@ func (w *WebhookClientSessionsEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookClientSessionsEvent is a temporary struct used for validating the fields of WebhookClientSessionsEvent.
-type webhookClientSessionsEvent  struct {
+// tempWebhookClientSessionsEvent is a temporary struct used for validating the fields of WebhookClientSessionsEvent.
+type tempWebhookClientSessionsEvent  struct {
     Ap                *string    `json:"ap"`
     ApName            *string    `json:"ap_name"`
     Band              *string    `json:"band"`
@@ -165,79 +165,79 @@ type webhookClientSessionsEvent  struct {
     WlanId            *uuid.UUID `json:"wlan_id"`
 }
 
-func (w *webhookClientSessionsEvent) validate() error {
+func (w *tempWebhookClientSessionsEvent) validate() error {
     var errs []string
     if w.Ap == nil {
-        errs = append(errs, "required field `ap` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `ap` is missing for type `webhook_client_sessions_event`")
     }
     if w.ApName == nil {
-        errs = append(errs, "required field `ap_name` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `ap_name` is missing for type `webhook_client_sessions_event`")
     }
     if w.Band == nil {
-        errs = append(errs, "required field `band` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `band` is missing for type `webhook_client_sessions_event`")
     }
     if w.Bssid == nil {
-        errs = append(errs, "required field `bssid` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `bssid` is missing for type `webhook_client_sessions_event`")
     }
     if w.ClientFamily == nil {
-        errs = append(errs, "required field `client_family` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `client_family` is missing for type `webhook_client_sessions_event`")
     }
     if w.ClientManufacture == nil {
-        errs = append(errs, "required field `client_manufacture` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `client_manufacture` is missing for type `webhook_client_sessions_event`")
     }
     if w.ClientModel == nil {
-        errs = append(errs, "required field `client_model` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `client_model` is missing for type `webhook_client_sessions_event`")
     }
     if w.ClientOs == nil {
-        errs = append(errs, "required field `client_os` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `client_os` is missing for type `webhook_client_sessions_event`")
     }
     if w.Connect == nil {
-        errs = append(errs, "required field `connect` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `connect` is missing for type `webhook_client_sessions_event`")
     }
     if w.ConnectFloat == nil {
-        errs = append(errs, "required field `connect_float` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `connect_float` is missing for type `webhook_client_sessions_event`")
     }
     if w.Disconnect == nil {
-        errs = append(errs, "required field `disconnect` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `disconnect` is missing for type `webhook_client_sessions_event`")
     }
     if w.DisconnectFloat == nil {
-        errs = append(errs, "required field `disconnect_float` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `disconnect_float` is missing for type `webhook_client_sessions_event`")
     }
     if w.Duration == nil {
-        errs = append(errs, "required field `duration` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `duration` is missing for type `webhook_client_sessions_event`")
     }
     if w.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `mac` is missing for type `webhook_client_sessions_event`")
     }
     if w.NextAp == nil {
-        errs = append(errs, "required field `next_ap` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `next_ap` is missing for type `webhook_client_sessions_event`")
     }
     if w.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `org_id` is missing for type `webhook_client_sessions_event`")
     }
     if w.Rssi == nil {
-        errs = append(errs, "required field `rssi` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `rssi` is missing for type `webhook_client_sessions_event`")
     }
     if w.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `site_id` is missing for type `webhook_client_sessions_event`")
     }
     if w.SiteName == nil {
-        errs = append(errs, "required field `site_name` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `site_name` is missing for type `webhook_client_sessions_event`")
     }
     if w.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `ssid` is missing for type `webhook_client_sessions_event`")
     }
     if w.TerminationReason == nil {
-        errs = append(errs, "required field `termination_reason` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `termination_reason` is missing for type `webhook_client_sessions_event`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_client_sessions_event`")
     }
     if w.Version == nil {
-        errs = append(errs, "required field `version` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `version` is missing for type `webhook_client_sessions_event`")
     }
     if w.WlanId == nil {
-        errs = append(errs, "required field `wlan_id` is missing for type `Webhook_Client_Sessions_Event`")
+        errs = append(errs, "required field `wlan_id` is missing for type `webhook_client_sessions_event`")
     }
     if len(errs) == 0 {
         return nil

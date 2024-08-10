@@ -42,7 +42,7 @@ func (z ZoneStatsDetailsClientWaits) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ZoneStatsDetailsClientWaits.
 // It customizes the JSON unmarshaling process for ZoneStatsDetailsClientWaits objects.
 func (z *ZoneStatsDetailsClientWaits) UnmarshalJSON(input []byte) error {
-    var temp zoneStatsDetailsClientWaits
+    var temp tempZoneStatsDetailsClientWaits
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,27 +64,27 @@ func (z *ZoneStatsDetailsClientWaits) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// zoneStatsDetailsClientWaits is a temporary struct used for validating the fields of ZoneStatsDetailsClientWaits.
-type zoneStatsDetailsClientWaits  struct {
+// tempZoneStatsDetailsClientWaits is a temporary struct used for validating the fields of ZoneStatsDetailsClientWaits.
+type tempZoneStatsDetailsClientWaits  struct {
     Avg *int `json:"avg"`
     Max *int `json:"max"`
     Min *int `json:"min"`
     P95 *int `json:"p95"`
 }
 
-func (z *zoneStatsDetailsClientWaits) validate() error {
+func (z *tempZoneStatsDetailsClientWaits) validate() error {
     var errs []string
     if z.Avg == nil {
-        errs = append(errs, "required field `avg` is missing for type `Zone_Stats_Details_Client_Waits`")
+        errs = append(errs, "required field `avg` is missing for type `zone_stats_details_client_waits`")
     }
     if z.Max == nil {
-        errs = append(errs, "required field `max` is missing for type `Zone_Stats_Details_Client_Waits`")
+        errs = append(errs, "required field `max` is missing for type `zone_stats_details_client_waits`")
     }
     if z.Min == nil {
-        errs = append(errs, "required field `min` is missing for type `Zone_Stats_Details_Client_Waits`")
+        errs = append(errs, "required field `min` is missing for type `zone_stats_details_client_waits`")
     }
     if z.P95 == nil {
-        errs = append(errs, "required field `p95` is missing for type `Zone_Stats_Details_Client_Waits`")
+        errs = append(errs, "required field `p95` is missing for type `zone_stats_details_client_waits`")
     }
     if len(errs) == 0 {
         return nil

@@ -63,7 +63,7 @@ func (p PskPortalPassphraseRules) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PskPortalPassphraseRules.
 // It customizes the JSON unmarshaling process for PskPortalPassphraseRules objects.
 func (p *PskPortalPassphraseRules) UnmarshalJSON(input []byte) error {
-    var temp pskPortalPassphraseRules
+    var temp tempPskPortalPassphraseRules
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -84,8 +84,8 @@ func (p *PskPortalPassphraseRules) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// pskPortalPassphraseRules is a temporary struct used for validating the fields of PskPortalPassphraseRules.
-type pskPortalPassphraseRules  struct {
+// tempPskPortalPassphraseRules is a temporary struct used for validating the fields of PskPortalPassphraseRules.
+type tempPskPortalPassphraseRules  struct {
     AlphabertsEnabled *bool   `json:"alphaberts_enabled,omitempty"`
     Length            *int    `json:"length,omitempty"`
     MaxLength         *int    `json:"max_length,omitempty"`

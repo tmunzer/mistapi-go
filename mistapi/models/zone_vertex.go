@@ -35,7 +35,7 @@ func (z ZoneVertex) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ZoneVertex.
 // It customizes the JSON unmarshaling process for ZoneVertex objects.
 func (z *ZoneVertex) UnmarshalJSON(input []byte) error {
-    var temp zoneVertex
+    var temp tempZoneVertex
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,19 +55,19 @@ func (z *ZoneVertex) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// zoneVertex is a temporary struct used for validating the fields of ZoneVertex.
-type zoneVertex  struct {
+// tempZoneVertex is a temporary struct used for validating the fields of ZoneVertex.
+type tempZoneVertex  struct {
     X *float64 `json:"x"`
     Y *float64 `json:"y"`
 }
 
-func (z *zoneVertex) validate() error {
+func (z *tempZoneVertex) validate() error {
     var errs []string
     if z.X == nil {
-        errs = append(errs, "required field `x` is missing for type `Zone_Vertex`")
+        errs = append(errs, "required field `x` is missing for type `zone_vertex`")
     }
     if z.Y == nil {
-        errs = append(errs, "required field `y` is missing for type `Zone_Vertex`")
+        errs = append(errs, "required field `y` is missing for type `zone_vertex`")
     }
     if len(errs) == 0 {
         return nil

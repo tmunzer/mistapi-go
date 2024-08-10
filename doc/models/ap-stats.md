@@ -32,7 +32,7 @@ AP statistics
 | `Ip` | `models.Optional[string]` | Optional | - |
 | `IpConfig` | [`*models.ApIpConfig`](../../doc/models/ap-ip-config.md) | Optional | IP AP settings |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
-| `L2tpStat` | [`map[string]models.ApStatsL2TpStat`](../../doc/models/ap-stats-l2-tp-stat.md) | Optional | l2tp tunnel status (key is the wxtunnel_id) |
+| `L2tpStat` | [`map[string]models.ApStatsL2tpStat`](../../doc/models/ap-stats-l2-tp-stat.md) | Optional | l2tp tunnel status (key is the wxtunnel_id) |
 | `LastSeen` | `models.Optional[float64]` | Optional | last seen timestamp |
 | `LastTrouble` | [`*models.LastTrouble`](../../doc/models/last-trouble.md) | Optional | last trouble code of switch |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |

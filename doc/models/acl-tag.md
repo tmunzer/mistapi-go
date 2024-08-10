@@ -21,13 +21,13 @@
 
 ```json
 {
-  "gbp_tag": 60,
+  "gbp_tag": 132,
   "macs": [
-    "macs9",
-    "macs0"
+    "macs5",
+    "macs6"
   ],
-  "network": "network2",
-  "radius_group": "radius_group8",
+  "network": "network4",
+  "radius_group": "radius_group4",
   "specs": [
     {
       "port_range": "port_range8",

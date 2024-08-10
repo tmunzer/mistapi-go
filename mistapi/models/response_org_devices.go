@@ -31,7 +31,7 @@ func (r ResponseOrgDevices) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseOrgDevices.
 // It customizes the JSON unmarshaling process for ResponseOrgDevices objects.
 func (r *ResponseOrgDevices) UnmarshalJSON(input []byte) error {
-    var temp responseOrgDevices
+    var temp tempResponseOrgDevices
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (r *ResponseOrgDevices) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseOrgDevices is a temporary struct used for validating the fields of ResponseOrgDevices.
-type responseOrgDevices  struct {
+// tempResponseOrgDevices is a temporary struct used for validating the fields of ResponseOrgDevices.
+type tempResponseOrgDevices  struct {
     Results *[]OrgDevice `json:"results"`
 }
 
-func (r *responseOrgDevices) validate() error {
+func (r *tempResponseOrgDevices) validate() error {
     var errs []string
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Org_Devices`")
+        errs = append(errs, "required field `results` is missing for type `response_org_devices`")
     }
     if len(errs) == 0 {
         return nil

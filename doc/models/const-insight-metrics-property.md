@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Ctype` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Description` | `*string` | Optional | - |
-| `Example` | [`[]models.ConstInsightMetricsPropertyExample`](../../doc/models/containers/const-insight-metrics-property-example.md) | Optional | This is Array of a container for any-of cases. |
+| `Example` | [`[]models.ConstInsightMetricsPropertyExample`](../../doc/models/containers/const-insight-metrics-property-example.md) | Optional | - |
 | `Intervals` | [`map[string]models.ConstInsightMetricsPropertyInterval`](../../doc/models/const-insight-metrics-property-interval.md) | Optional | Property key is the interval (e.g. 10m, 1h, ...) |
 | `Keys` | `*interface{}` | Optional | - |
 | `Params` | [`map[string]models.ConstInsightMetricsPropertyParam`](../../doc/models/const-insight-metrics-property-param.md) | Optional | Property key is the parameter name |
@@ -29,13 +29,13 @@
 ```json
 {
   "ctype": [
-    "ctype0"
+    "ctype0",
+    "ctype9",
+    "ctype8"
   ],
-  "description": "description4",
+  "description": "description8",
   "example": [
-    184,
-    185,
-    186
+    60
   ],
   "intervals": {
     "key0": {
@@ -43,6 +43,10 @@
       "max_age": 96
     },
     "key1": {
+      "interval": 140,
+      "max_age": 96
+    },
+    "key2": {
       "interval": 140,
       "max_age": 96
     }

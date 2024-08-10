@@ -42,7 +42,7 @@ func (r ResponseMapImportFloorplan) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseMapImportFloorplan.
 // It customizes the JSON unmarshaling process for ResponseMapImportFloorplan objects.
 func (r *ResponseMapImportFloorplan) UnmarshalJSON(input []byte) error {
-    var temp responseMapImportFloorplan
+    var temp tempResponseMapImportFloorplan
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponseMapImportFloorplan) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseMapImportFloorplan is a temporary struct used for validating the fields of ResponseMapImportFloorplan.
-type responseMapImportFloorplan  struct {
+// tempResponseMapImportFloorplan is a temporary struct used for validating the fields of ResponseMapImportFloorplan.
+type tempResponseMapImportFloorplan  struct {
     Action *string    `json:"action"`
     Id     *uuid.UUID `json:"id"`
     MapId  *uuid.UUID `json:"map_id"`
@@ -74,19 +74,19 @@ type responseMapImportFloorplan  struct {
     Reason *string    `json:"reason,omitempty"`
 }
 
-func (r *responseMapImportFloorplan) validate() error {
+func (r *tempResponseMapImportFloorplan) validate() error {
     var errs []string
     if r.Action == nil {
-        errs = append(errs, "required field `action` is missing for type `Response_Map_Import_Floorplan`")
+        errs = append(errs, "required field `action` is missing for type `response_map_import_floorplan`")
     }
     if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Response_Map_Import_Floorplan`")
+        errs = append(errs, "required field `id` is missing for type `response_map_import_floorplan`")
     }
     if r.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Response_Map_Import_Floorplan`")
+        errs = append(errs, "required field `map_id` is missing for type `response_map_import_floorplan`")
     }
     if r.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Response_Map_Import_Floorplan`")
+        errs = append(errs, "required field `name` is missing for type `response_map_import_floorplan`")
     }
     if len(errs) == 0 {
         return nil

@@ -19,11 +19,11 @@
 
 ```json
 {
-  "authentication_password": "authentication_password2",
-  "authentication_type": "authentication_sha",
-  "encryption_password": "encryption_password6",
-  "encryption_type": "privacy-3des",
-  "name": "name8"
+  "authentication_password": "authentication_password8",
+  "authentication_type": "authentication_none",
+  "encryption_password": "encryption_password2",
+  "encryption_type": "privacy-des",
+  "name": "name4"
 }
 ```
 

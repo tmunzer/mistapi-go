@@ -33,7 +33,7 @@ func (r RogueDetails) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RogueDetails.
 // It customizes the JSON unmarshaling process for RogueDetails objects.
 func (r *RogueDetails) UnmarshalJSON(input []byte) error {
-    var temp rogueDetails
+    var temp tempRogueDetails
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (r *RogueDetails) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rogueDetails is a temporary struct used for validating the fields of RogueDetails.
-type rogueDetails  struct {
+// tempRogueDetails is a temporary struct used for validating the fields of RogueDetails.
+type tempRogueDetails  struct {
     Manufacture  *string `json:"manufacture"`
     SeenAsClient *bool   `json:"seen_as_client"`
 }
 
-func (r *rogueDetails) validate() error {
+func (r *tempRogueDetails) validate() error {
     var errs []string
     if r.Manufacture == nil {
-        errs = append(errs, "required field `manufacture` is missing for type `Rogue_Details`")
+        errs = append(errs, "required field `manufacture` is missing for type `rogue_details`")
     }
     if r.SeenAsClient == nil {
-        errs = append(errs, "required field `seen_as_client` is missing for type `Rogue_Details`")
+        errs = append(errs, "required field `seen_as_client` is missing for type `rogue_details`")
     }
     if len(errs) == 0 {
         return nil

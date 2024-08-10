@@ -23,14 +23,14 @@
 {
   "disable_auto_config": false,
   "managed": false,
-  "op": "delete",
+  "op": "unassign",
   "macs": [
-    "macs5",
-    "macs6"
+    "macs9"
   ],
   "no_reassign": false,
   "serials": [
-    "serials6"
+    "serials0",
+    "serials1"
   ]
 }
 ```

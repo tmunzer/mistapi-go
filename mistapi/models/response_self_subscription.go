@@ -32,7 +32,7 @@ func (r ResponseSelfSubscription) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSelfSubscription.
 // It customizes the JSON unmarshaling process for ResponseSelfSubscription objects.
 func (r *ResponseSelfSubscription) UnmarshalJSON(input []byte) error {
-    var temp responseSelfSubscription
+    var temp tempResponseSelfSubscription
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,15 +51,15 @@ func (r *ResponseSelfSubscription) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSelfSubscription is a temporary struct used for validating the fields of ResponseSelfSubscription.
-type responseSelfSubscription  struct {
+// tempResponseSelfSubscription is a temporary struct used for validating the fields of ResponseSelfSubscription.
+type tempResponseSelfSubscription  struct {
     OrgId *uuid.UUID `json:"org_id"`
 }
 
-func (r *responseSelfSubscription) validate() error {
+func (r *tempResponseSelfSubscription) validate() error {
     var errs []string
     if r.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Response_Self_Subscription`")
+        errs = append(errs, "required field `org_id` is missing for type `response_self_subscription`")
     }
     if len(errs) == 0 {
         return nil

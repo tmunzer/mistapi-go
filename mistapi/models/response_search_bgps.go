@@ -47,7 +47,7 @@ func (r ResponseSearchBgps) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSearchBgps.
 // It customizes the JSON unmarshaling process for ResponseSearchBgps objects.
 func (r *ResponseSearchBgps) UnmarshalJSON(input []byte) error {
-    var temp responseSearchBgps
+    var temp tempResponseSearchBgps
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (r *ResponseSearchBgps) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSearchBgps is a temporary struct used for validating the fields of ResponseSearchBgps.
-type responseSearchBgps  struct {
+// tempResponseSearchBgps is a temporary struct used for validating the fields of ResponseSearchBgps.
+type tempResponseSearchBgps  struct {
     End     *float64   `json:"end,omitempty"`
     Limit   *int       `json:"limit,omitempty"`
     Results []BgpStats `json:"results,omitempty"`

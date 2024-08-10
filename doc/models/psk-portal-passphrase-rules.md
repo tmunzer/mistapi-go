@@ -25,9 +25,9 @@
   "numerics_enabled": true,
   "symbols": "()[]{}_%@#&$",
   "symbols_enabled": true,
-  "length": 124,
-  "max_length": 192,
-  "min_length": 68
+  "length": 80,
+  "max_length": 148,
+  "min_length": 112
 }
 ```
 

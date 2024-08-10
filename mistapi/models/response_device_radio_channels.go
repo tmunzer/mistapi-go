@@ -62,7 +62,7 @@ func (r ResponseDeviceRadioChannels) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseDeviceRadioChannels.
 // It customizes the JSON unmarshaling process for ResponseDeviceRadioChannels objects.
 func (r *ResponseDeviceRadioChannels) UnmarshalJSON(input []byte) error {
-    var temp responseDeviceRadioChannels
+    var temp tempResponseDeviceRadioChannels
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -93,8 +93,8 @@ func (r *ResponseDeviceRadioChannels) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseDeviceRadioChannels is a temporary struct used for validating the fields of ResponseDeviceRadioChannels.
-type responseDeviceRadioChannels  struct {
+// tempResponseDeviceRadioChannels is a temporary struct used for validating the fields of ResponseDeviceRadioChannels.
+type tempResponseDeviceRadioChannels  struct {
     Band2440mhzAllowed *bool                   `json:"band24_40mhz_allowed"`
     Band24Channels     *map[string]interface{} `json:"band24_channels"`
     Band24Enabled      *bool                   `json:"band24_enabled"`
@@ -110,40 +110,40 @@ type responseDeviceRadioChannels  struct {
     Uses               *string                 `json:"uses"`
 }
 
-func (r *responseDeviceRadioChannels) validate() error {
+func (r *tempResponseDeviceRadioChannels) validate() error {
     var errs []string
     if r.Band2440mhzAllowed == nil {
-        errs = append(errs, "required field `band24_40mhz_allowed` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `band24_40mhz_allowed` is missing for type `response_device_radio_channels`")
     }
     if r.Band24Channels == nil {
-        errs = append(errs, "required field `band24_channels` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `band24_channels` is missing for type `response_device_radio_channels`")
     }
     if r.Band24Enabled == nil {
-        errs = append(errs, "required field `band24_enabled` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `band24_enabled` is missing for type `response_device_radio_channels`")
     }
     if r.Band5Channels == nil {
-        errs = append(errs, "required field `band5_channels` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `band5_channels` is missing for type `response_device_radio_channels`")
     }
     if r.Band5Enabled == nil {
-        errs = append(errs, "required field `band5_enabled` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `band5_enabled` is missing for type `response_device_radio_channels`")
     }
     if r.Certified == nil {
-        errs = append(errs, "required field `certified` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `certified` is missing for type `response_device_radio_channels`")
     }
     if r.Code == nil {
-        errs = append(errs, "required field `code` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `code` is missing for type `response_device_radio_channels`")
     }
     if r.DfsOk == nil {
-        errs = append(errs, "required field `dfs_ok` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `dfs_ok` is missing for type `response_device_radio_channels`")
     }
     if r.Key == nil {
-        errs = append(errs, "required field `key` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `key` is missing for type `response_device_radio_channels`")
     }
     if r.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `name` is missing for type `response_device_radio_channels`")
     }
     if r.Uses == nil {
-        errs = append(errs, "required field `uses` is missing for type `Response_Device_Radio_Channels`")
+        errs = append(errs, "required field `uses` is missing for type `response_device_radio_channels`")
     }
     if len(errs) == 0 {
         return nil

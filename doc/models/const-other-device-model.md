@@ -19,11 +19,11 @@
 
 ```json
 {
-  "_vendor_model_id": "_vendor_model_id8",
-  "display": "display0",
-  "model": "model6",
-  "type": "type2",
-  "vendor": "vendor4"
+  "_vendor_model_id": "_vendor_model_id2",
+  "display": "display4",
+  "model": "model0",
+  "type": "type8",
+  "vendor": "vendor8"
 }
 ```
 

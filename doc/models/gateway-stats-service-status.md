@@ -24,11 +24,11 @@
 
 ```json
 {
-  "appid_install_result": "appid_install_result4",
-  "appid_install_timestamp": "appid_install_timestamp4",
-  "appid_status": "appid_status0",
-  "appid_version": 200,
-  "ewf_status": "ewf_status6"
+  "appid_install_result": "appid_install_result0",
+  "appid_install_timestamp": "appid_install_timestamp8",
+  "appid_status": "appid_status6",
+  "appid_version": 110,
+  "ewf_status": "ewf_status0"
 }
 ```
 

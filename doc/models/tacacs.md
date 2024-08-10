@@ -26,17 +26,17 @@
       "port": "port4",
       "secret": "secret0",
       "timeout": 254
+    },
+    {
+      "host": "host4",
+      "port": "port4",
+      "secret": "secret0",
+      "timeout": 254
     }
   ],
   "enabled": false,
-  "network": "network4",
+  "network": "network6",
   "tacplus_servers": [
-    {
-      "host": "host6",
-      "port": "port2",
-      "secret": "secret2",
-      "timeout": 18
-    },
     {
       "host": "host6",
       "port": "port2",

@@ -102,7 +102,7 @@ func (a AdminInvite) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AdminInvite.
 // It customizes the JSON unmarshaling process for AdminInvite objects.
 func (a *AdminInvite) UnmarshalJSON(input []byte) error {
-    var temp adminInvite
+    var temp tempAdminInvite
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -138,8 +138,8 @@ func (a *AdminInvite) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// adminInvite is a temporary struct used for validating the fields of AdminInvite.
-type adminInvite  struct {
+// tempAdminInvite is a temporary struct used for validating the fields of AdminInvite.
+type tempAdminInvite  struct {
     AccountOnly        *bool                `json:"account_only,omitempty"`
     AllowMist          *bool                `json:"allow_mist,omitempty"`
     City               *string              `json:"city,omitempty"`
@@ -160,25 +160,25 @@ type adminInvite  struct {
     Zipcode            *string              `json:"zipcode,omitempty"`
 }
 
-func (a *adminInvite) validate() error {
+func (a *tempAdminInvite) validate() error {
     var errs []string
     if a.Email == nil {
-        errs = append(errs, "required field `email` is missing for type `Admin_Invite`")
+        errs = append(errs, "required field `email` is missing for type `admin_invite`")
     }
     if a.FirstName == nil {
-        errs = append(errs, "required field `first_name` is missing for type `Admin_Invite`")
+        errs = append(errs, "required field `first_name` is missing for type `admin_invite`")
     }
     if a.LastName == nil {
-        errs = append(errs, "required field `last_name` is missing for type `Admin_Invite`")
+        errs = append(errs, "required field `last_name` is missing for type `admin_invite`")
     }
     if a.OrgName == nil {
-        errs = append(errs, "required field `org_name` is missing for type `Admin_Invite`")
+        errs = append(errs, "required field `org_name` is missing for type `admin_invite`")
     }
     if a.Password == nil {
-        errs = append(errs, "required field `password` is missing for type `Admin_Invite`")
+        errs = append(errs, "required field `password` is missing for type `admin_invite`")
     }
     if a.Recaptcha == nil {
-        errs = append(errs, "required field `recaptcha` is missing for type `Admin_Invite`")
+        errs = append(errs, "required field `recaptcha` is missing for type `admin_invite`")
     }
     if len(errs) == 0 {
         return nil

@@ -31,7 +31,7 @@ func (s SiteSettingWanVna) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingWanVna.
 // It customizes the JSON unmarshaling process for SiteSettingWanVna objects.
 func (s *SiteSettingWanVna) UnmarshalJSON(input []byte) error {
-    var temp siteSettingWanVna
+    var temp tempSiteSettingWanVna
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (s *SiteSettingWanVna) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingWanVna is a temporary struct used for validating the fields of SiteSettingWanVna.
-type siteSettingWanVna  struct {
+// tempSiteSettingWanVna is a temporary struct used for validating the fields of SiteSettingWanVna.
+type tempSiteSettingWanVna  struct {
     Enabled *bool `json:"enabled,omitempty"`
 }

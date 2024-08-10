@@ -36,7 +36,7 @@ func (s SnmpVacmSecurityToGroup) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SnmpVacmSecurityToGroup.
 // It customizes the JSON unmarshaling process for SnmpVacmSecurityToGroup objects.
 func (s *SnmpVacmSecurityToGroup) UnmarshalJSON(input []byte) error {
-    var temp snmpVacmSecurityToGroup
+    var temp tempSnmpVacmSecurityToGroup
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (s *SnmpVacmSecurityToGroup) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpVacmSecurityToGroup is a temporary struct used for validating the fields of SnmpVacmSecurityToGroup.
-type snmpVacmSecurityToGroup  struct {
+// tempSnmpVacmSecurityToGroup is a temporary struct used for validating the fields of SnmpVacmSecurityToGroup.
+type tempSnmpVacmSecurityToGroup  struct {
     Content       []SnmpVacmSecurityToGroupContentItem `json:"content,omitempty"`
     SecurityModel *SnmpVacmSecurityModelEnum           `json:"security_model,omitempty"`
 }

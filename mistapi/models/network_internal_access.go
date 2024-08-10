@@ -31,7 +31,7 @@ func (n NetworkInternalAccess) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NetworkInternalAccess.
 // It customizes the JSON unmarshaling process for NetworkInternalAccess objects.
 func (n *NetworkInternalAccess) UnmarshalJSON(input []byte) error {
-    var temp networkInternalAccess
+    var temp tempNetworkInternalAccess
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (n *NetworkInternalAccess) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// networkInternalAccess is a temporary struct used for validating the fields of NetworkInternalAccess.
-type networkInternalAccess  struct {
+// tempNetworkInternalAccess is a temporary struct used for validating the fields of NetworkInternalAccess.
+type tempNetworkInternalAccess  struct {
     Enabled *bool `json:"enabled,omitempty"`
 }

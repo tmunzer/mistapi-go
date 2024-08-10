@@ -48,6 +48,7 @@ Gateway statistics
 | `Name` | `*string` | Optional | device name if configured |
 | `NodeName` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | serial |
+| `Ports` | [`[]models.DeviceStatsPort`](../../doc/models/device-stats-port.md) | Optional | - |
 | `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
 | `RouterName` | `*string` | Optional | device name if configured |
 | `Serial` | `*string` | Optional | serial |
@@ -94,7 +95,7 @@ Gateway statistics
     "arp_table_count": 136,
     "max_entries_supported": 8
   },
-  "cert_expiry": 90,
+  "cert_expiry": 210,
   "cluster_config": {
     "configuration": "configuration0",
     "control_link_info": {

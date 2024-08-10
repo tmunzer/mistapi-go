@@ -42,7 +42,7 @@ func (o OrgSettingJcloud) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingJcloud.
 // It customizes the JSON unmarshaling process for OrgSettingJcloud objects.
 func (o *OrgSettingJcloud) UnmarshalJSON(input []byte) error {
-    var temp orgSettingJcloud
+    var temp tempOrgSettingJcloud
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,8 +59,8 @@ func (o *OrgSettingJcloud) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingJcloud is a temporary struct used for validating the fields of OrgSettingJcloud.
-type orgSettingJcloud  struct {
+// tempOrgSettingJcloud is a temporary struct used for validating the fields of OrgSettingJcloud.
+type tempOrgSettingJcloud  struct {
     OrgApitoken     *string `json:"org_apitoken,omitempty"`
     OrgApitokenName *string `json:"org_apitoken_name,omitempty"`
     OrgId           *string `json:"org_id,omitempty"`

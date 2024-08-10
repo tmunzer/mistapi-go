@@ -31,7 +31,7 @@ func (w WxruleStatsUsageProperties) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WxruleStatsUsageProperties.
 // It customizes the JSON unmarshaling process for WxruleStatsUsageProperties objects.
 func (w *WxruleStatsUsageProperties) UnmarshalJSON(input []byte) error {
-    var temp wxruleStatsUsageProperties
+    var temp tempWxruleStatsUsageProperties
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (w *WxruleStatsUsageProperties) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wxruleStatsUsageProperties is a temporary struct used for validating the fields of WxruleStatsUsageProperties.
-type wxruleStatsUsageProperties  struct {
+// tempWxruleStatsUsageProperties is a temporary struct used for validating the fields of WxruleStatsUsageProperties.
+type tempWxruleStatsUsageProperties  struct {
     NumFlows *int `json:"num_flows,omitempty"`
 }

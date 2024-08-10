@@ -36,7 +36,7 @@ func (w WebhookAssetRaw) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookAssetRaw.
 // It customizes the JSON unmarshaling process for WebhookAssetRaw objects.
 func (w *WebhookAssetRaw) UnmarshalJSON(input []byte) error {
-    var temp webhookAssetRaw
+    var temp tempWebhookAssetRaw
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,19 +56,19 @@ func (w *WebhookAssetRaw) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookAssetRaw is a temporary struct used for validating the fields of WebhookAssetRaw.
-type webhookAssetRaw  struct {
+// tempWebhookAssetRaw is a temporary struct used for validating the fields of WebhookAssetRaw.
+type tempWebhookAssetRaw  struct {
     Events *[]WebhookAssetRawEvent `json:"events"`
     Topic  *string                 `json:"topic"`
 }
 
-func (w *webhookAssetRaw) validate() error {
+func (w *tempWebhookAssetRaw) validate() error {
     var errs []string
     if w.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Webhook_Asset_Raw`")
+        errs = append(errs, "required field `events` is missing for type `webhook_asset_raw`")
     }
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Asset_Raw`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_asset_raw`")
     }
     if len(errs) == 0 {
         return nil

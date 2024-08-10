@@ -48,7 +48,7 @@ func (d Delivery) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Delivery.
 // It customizes the JSON unmarshaling process for Delivery objects.
 func (d *Delivery) UnmarshalJSON(input []byte) error {
-    var temp delivery
+    var temp tempDelivery
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -70,18 +70,18 @@ func (d *Delivery) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// delivery is a temporary struct used for validating the fields of Delivery.
-type delivery  struct {
+// tempDelivery is a temporary struct used for validating the fields of Delivery.
+type tempDelivery  struct {
     AdditionalEmails []string `json:"additional_emails,omitempty"`
     Enabled          *bool    `json:"enabled"`
     ToOrgAdmins      *bool    `json:"to_org_admins,omitempty"`
     ToSiteAdmins     *bool    `json:"to_site_admins,omitempty"`
 }
 
-func (d *delivery) validate() error {
+func (d *tempDelivery) validate() error {
     var errs []string
     if d.Enabled == nil {
-        errs = append(errs, "required field `enabled` is missing for type `Delivery`")
+        errs = append(errs, "required field `enabled` is missing for type `delivery`")
     }
     if len(errs) == 0 {
         return nil

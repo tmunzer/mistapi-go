@@ -48,7 +48,7 @@ func (v VrrpGroup) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VrrpGroup.
 // It customizes the JSON unmarshaling process for VrrpGroup objects.
 func (v *VrrpGroup) UnmarshalJSON(input []byte) error {
-    var temp vrrpGroup
+    var temp tempVrrpGroup
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (v *VrrpGroup) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vrrpGroup is a temporary struct used for validating the fields of VrrpGroup.
-type vrrpGroup  struct {
+// tempVrrpGroup is a temporary struct used for validating the fields of VrrpGroup.
+type tempVrrpGroup  struct {
     AuthKey      *string                     `json:"auth_key,omitempty"`
     AuthPassword *string                     `json:"auth_password,omitempty"`
     AuthType     *VrrpGroupAuthTypeEnum      `json:"auth_type,omitempty"`

@@ -38,7 +38,7 @@ func (u UtilsDevicesRestartMulti) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsDevicesRestartMulti.
 // It customizes the JSON unmarshaling process for UtilsDevicesRestartMulti objects.
 func (u *UtilsDevicesRestartMulti) UnmarshalJSON(input []byte) error {
-    var temp utilsDevicesRestartMulti
+    var temp tempUtilsDevicesRestartMulti
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,16 +58,16 @@ func (u *UtilsDevicesRestartMulti) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsDevicesRestartMulti is a temporary struct used for validating the fields of UtilsDevicesRestartMulti.
-type utilsDevicesRestartMulti  struct {
+// tempUtilsDevicesRestartMulti is a temporary struct used for validating the fields of UtilsDevicesRestartMulti.
+type tempUtilsDevicesRestartMulti  struct {
     DeviceIds *[]uuid.UUID `json:"device_ids"`
     Node      *string      `json:"node,omitempty"`
 }
 
-func (u *utilsDevicesRestartMulti) validate() error {
+func (u *tempUtilsDevicesRestartMulti) validate() error {
     var errs []string
     if u.DeviceIds == nil {
-        errs = append(errs, "required field `device_ids` is missing for type `Utils_Devices_Restart_Multi`")
+        errs = append(errs, "required field `device_ids` is missing for type `utils_devices_restart_multi`")
     }
     if len(errs) == 0 {
         return nil

@@ -57,7 +57,7 @@ func (s Secpolicy) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Secpolicy.
 // It customizes the JSON unmarshaling process for Secpolicy objects.
 func (s *Secpolicy) UnmarshalJSON(input []byte) error {
-    var temp secpolicy
+    var temp tempSecpolicy
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -78,8 +78,8 @@ func (s *Secpolicy) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// secpolicy is a temporary struct used for validating the fields of Secpolicy.
-type secpolicy  struct {
+// tempSecpolicy is a temporary struct used for validating the fields of Secpolicy.
+type tempSecpolicy  struct {
     CreatedTime  *float64   `json:"created_time,omitempty"`
     Id           *uuid.UUID `json:"id,omitempty"`
     ModifiedTime *float64   `json:"modified_time,omitempty"`

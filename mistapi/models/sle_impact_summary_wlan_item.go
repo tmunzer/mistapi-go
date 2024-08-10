@@ -39,7 +39,7 @@ func (s SleImpactSummaryWlanItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactSummaryWlanItem.
 // It customizes the JSON unmarshaling process for SleImpactSummaryWlanItem objects.
 func (s *SleImpactSummaryWlanItem) UnmarshalJSON(input []byte) error {
-    var temp sleImpactSummaryWlanItem
+    var temp tempSleImpactSummaryWlanItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (s *SleImpactSummaryWlanItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactSummaryWlanItem is a temporary struct used for validating the fields of SleImpactSummaryWlanItem.
-type sleImpactSummaryWlanItem  struct {
+// tempSleImpactSummaryWlanItem is a temporary struct used for validating the fields of SleImpactSummaryWlanItem.
+type tempSleImpactSummaryWlanItem  struct {
     Degraded *float64 `json:"degraded"`
     Duration *float64 `json:"duration"`
     Name     *string  `json:"name"`
@@ -71,22 +71,22 @@ type sleImpactSummaryWlanItem  struct {
     WlanId   *string  `json:"wlan_id"`
 }
 
-func (s *sleImpactSummaryWlanItem) validate() error {
+func (s *tempSleImpactSummaryWlanItem) validate() error {
     var errs []string
     if s.Degraded == nil {
-        errs = append(errs, "required field `degraded` is missing for type `Sle_Impact_Summary_Wlan_Item`")
+        errs = append(errs, "required field `degraded` is missing for type `sle_impact_summary_wlan_item`")
     }
     if s.Duration == nil {
-        errs = append(errs, "required field `duration` is missing for type `Sle_Impact_Summary_Wlan_Item`")
+        errs = append(errs, "required field `duration` is missing for type `sle_impact_summary_wlan_item`")
     }
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sle_Impact_Summary_Wlan_Item`")
+        errs = append(errs, "required field `name` is missing for type `sle_impact_summary_wlan_item`")
     }
     if s.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Sle_Impact_Summary_Wlan_Item`")
+        errs = append(errs, "required field `total` is missing for type `sle_impact_summary_wlan_item`")
     }
     if s.WlanId == nil {
-        errs = append(errs, "required field `wlan_id` is missing for type `Sle_Impact_Summary_Wlan_Item`")
+        errs = append(errs, "required field `wlan_id` is missing for type `sle_impact_summary_wlan_item`")
     }
     if len(errs) == 0 {
         return nil

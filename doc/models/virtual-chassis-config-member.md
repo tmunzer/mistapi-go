@@ -20,13 +20,12 @@
 ```json
 {
   "locating": false,
-  "mac": "mac4",
-  "member": 36,
+  "mac": "mac2",
+  "member": 194,
   "vc_ports": [
-    "vc_ports4",
-    "vc_ports5"
+    "vc_ports2"
   ],
-  "vc_role": "backup"
+  "vc_role": "master"
 }
 ```
 

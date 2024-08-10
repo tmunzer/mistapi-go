@@ -48,7 +48,7 @@ func (m MxclusterNac) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxclusterNac.
 // It customizes the JSON unmarshaling process for MxclusterNac objects.
 func (m *MxclusterNac) UnmarshalJSON(input []byte) error {
-    var temp mxclusterNac
+    var temp tempMxclusterNac
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (m *MxclusterNac) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxclusterNac is a temporary struct used for validating the fields of MxclusterNac.
-type mxclusterNac  struct {
+// tempMxclusterNac is a temporary struct used for validating the fields of MxclusterNac.
+type tempMxclusterNac  struct {
     AcctServerPort *int                            `json:"acct_server_port,omitempty"`
     AuthServerPort *int                            `json:"auth_server_port,omitempty"`
     ClientIps      map[string]MxclusterNacClientIp `json:"client_ips,omitempty"`

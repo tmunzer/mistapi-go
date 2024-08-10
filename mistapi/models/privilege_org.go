@@ -66,7 +66,7 @@ func (p PrivilegeOrg) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PrivilegeOrg.
 // It customizes the JSON unmarshaling process for PrivilegeOrg objects.
 func (p *PrivilegeOrg) UnmarshalJSON(input []byte) error {
-    var temp privilegeOrg
+    var temp tempPrivilegeOrg
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -89,8 +89,8 @@ func (p *PrivilegeOrg) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// privilegeOrg is a temporary struct used for validating the fields of PrivilegeOrg.
-type privilegeOrg  struct {
+// tempPrivilegeOrg is a temporary struct used for validating the fields of PrivilegeOrg.
+type tempPrivilegeOrg  struct {
     Role        *PrivilegeOrgRoleEnum  `json:"role"`
     Scope       *PrivilegeOrgScopeEnum `json:"scope"`
     SiteId      *uuid.UUID             `json:"site_id,omitempty"`
@@ -98,13 +98,13 @@ type privilegeOrg  struct {
     Views       *PrivilegeOrgViewsEnum `json:"views,omitempty"`
 }
 
-func (p *privilegeOrg) validate() error {
+func (p *tempPrivilegeOrg) validate() error {
     var errs []string
     if p.Role == nil {
-        errs = append(errs, "required field `role` is missing for type `Privilege_Org`")
+        errs = append(errs, "required field `role` is missing for type `privilege_org`")
     }
     if p.Scope == nil {
-        errs = append(errs, "required field `scope` is missing for type `Privilege_Org`")
+        errs = append(errs, "required field `scope` is missing for type `privilege_org`")
     }
     if len(errs) == 0 {
         return nil

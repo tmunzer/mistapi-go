@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Url` | `*string` | Optional | - |
-| `VlanId` | [`*models.SiteSettingCriticalUrlMonitoringMonitorVlanId`](../../doc/models/containers/site-setting-critical-url-monitoring-monitor-vlan-id.md) | Optional | This is a container for one-of cases. |
+| `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 
 ## Example (as JSON)
 

@@ -31,7 +31,7 @@ func (a ApCentrak) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApCentrak.
 // It customizes the JSON unmarshaling process for ApCentrak objects.
 func (a *ApCentrak) UnmarshalJSON(input []byte) error {
-    var temp apCentrak
+    var temp tempApCentrak
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (a *ApCentrak) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apCentrak is a temporary struct used for validating the fields of ApCentrak.
-type apCentrak  struct {
+// tempApCentrak is a temporary struct used for validating the fields of ApCentrak.
+type tempApCentrak  struct {
     Enabled *bool `json:"enabled,omitempty"`
 }

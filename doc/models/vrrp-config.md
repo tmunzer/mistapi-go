@@ -22,12 +22,6 @@ Junos VRRP config
   "groups": {
     "key0": {
       "priority": 102
-    },
-    "key1": {
-      "priority": 102
-    },
-    "key2": {
-      "priority": 102
     }
   }
 }

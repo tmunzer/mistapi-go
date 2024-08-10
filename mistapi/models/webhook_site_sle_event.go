@@ -44,7 +44,7 @@ func (w WebhookSiteSleEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookSiteSleEvent.
 // It customizes the JSON unmarshaling process for WebhookSiteSleEvent objects.
 func (w *WebhookSiteSleEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookSiteSleEvent
+    var temp tempWebhookSiteSleEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (w *WebhookSiteSleEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookSiteSleEvent is a temporary struct used for validating the fields of WebhookSiteSleEvent.
-type webhookSiteSleEvent  struct {
+// tempWebhookSiteSleEvent is a temporary struct used for validating the fields of WebhookSiteSleEvent.
+type tempWebhookSiteSleEvent  struct {
     OrgId     *uuid.UUID              `json:"org_id,omitempty"`
     SiteId    *uuid.UUID              `json:"site_id,omitempty"`
     Sle       *WebhookSiteSleEventSle `json:"sle,omitempty"`

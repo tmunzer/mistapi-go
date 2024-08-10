@@ -37,7 +37,7 @@ func (l LastTrouble) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for LastTrouble.
 // It customizes the JSON unmarshaling process for LastTrouble objects.
 func (l *LastTrouble) UnmarshalJSON(input []byte) error {
-    var temp lastTrouble
+    var temp tempLastTrouble
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (l *LastTrouble) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// lastTrouble is a temporary struct used for validating the fields of LastTrouble.
-type lastTrouble  struct {
+// tempLastTrouble is a temporary struct used for validating the fields of LastTrouble.
+type tempLastTrouble  struct {
     Code      *string `json:"code,omitempty"`
     Timestamp *int    `json:"timestamp,omitempty"`
 }

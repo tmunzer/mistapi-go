@@ -128,7 +128,7 @@ func (r ResponseOrgSearchItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseOrgSearchItem.
 // It customizes the JSON unmarshaling process for ResponseOrgSearchItem objects.
 func (r *ResponseOrgSearchItem) UnmarshalJSON(input []byte) error {
-    var temp responseOrgSearchItem
+    var temp tempResponseOrgSearchItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -166,8 +166,8 @@ func (r *ResponseOrgSearchItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseOrgSearchItem is a temporary struct used for validating the fields of ResponseOrgSearchItem.
-type responseOrgSearchItem  struct {
+// tempResponseOrgSearchItem is a temporary struct used for validating the fields of ResponseOrgSearchItem.
+type tempResponseOrgSearchItem  struct {
     MspId            *uuid.UUID `json:"msp_id,omitempty"`
     Name             *string    `json:"name,omitempty"`
     NumAps           *int       `json:"num_aps,omitempty"`

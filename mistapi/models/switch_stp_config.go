@@ -32,7 +32,7 @@ func (s SwitchStpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchStpConfig.
 // It customizes the JSON unmarshaling process for SwitchStpConfig objects.
 func (s *SwitchStpConfig) UnmarshalJSON(input []byte) error {
-    var temp switchStpConfig
+    var temp tempSwitchStpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (s *SwitchStpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchStpConfig is a temporary struct used for validating the fields of SwitchStpConfig.
-type switchStpConfig  struct {
+// tempSwitchStpConfig is a temporary struct used for validating the fields of SwitchStpConfig.
+type tempSwitchStpConfig  struct {
     Type *SwitchStpConfigTypeEnum `json:"type,omitempty"`
 }

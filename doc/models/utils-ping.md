@@ -22,7 +22,7 @@
   "count": 10,
   "host": "1.1.1.1",
   "size": 56,
-  "egress_interface": "egress_interface8",
+  "egress_interface": "egress_interface2",
   "node": "node0"
 }
 ```

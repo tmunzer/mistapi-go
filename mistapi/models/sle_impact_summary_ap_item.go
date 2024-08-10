@@ -39,7 +39,7 @@ func (s SleImpactSummaryApItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactSummaryApItem.
 // It customizes the JSON unmarshaling process for SleImpactSummaryApItem objects.
 func (s *SleImpactSummaryApItem) UnmarshalJSON(input []byte) error {
-    var temp sleImpactSummaryApItem
+    var temp tempSleImpactSummaryApItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (s *SleImpactSummaryApItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactSummaryApItem is a temporary struct used for validating the fields of SleImpactSummaryApItem.
-type sleImpactSummaryApItem  struct {
+// tempSleImpactSummaryApItem is a temporary struct used for validating the fields of SleImpactSummaryApItem.
+type tempSleImpactSummaryApItem  struct {
     ApMac    *string  `json:"ap_mac"`
     Degraded *float64 `json:"degraded"`
     Duration *float64 `json:"duration"`
@@ -71,22 +71,22 @@ type sleImpactSummaryApItem  struct {
     Total    *float64 `json:"total"`
 }
 
-func (s *sleImpactSummaryApItem) validate() error {
+func (s *tempSleImpactSummaryApItem) validate() error {
     var errs []string
     if s.ApMac == nil {
-        errs = append(errs, "required field `ap_mac` is missing for type `Sle_Impact_Summary_Ap_Item`")
+        errs = append(errs, "required field `ap_mac` is missing for type `sle_impact_summary_ap_item`")
     }
     if s.Degraded == nil {
-        errs = append(errs, "required field `degraded` is missing for type `Sle_Impact_Summary_Ap_Item`")
+        errs = append(errs, "required field `degraded` is missing for type `sle_impact_summary_ap_item`")
     }
     if s.Duration == nil {
-        errs = append(errs, "required field `duration` is missing for type `Sle_Impact_Summary_Ap_Item`")
+        errs = append(errs, "required field `duration` is missing for type `sle_impact_summary_ap_item`")
     }
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sle_Impact_Summary_Ap_Item`")
+        errs = append(errs, "required field `name` is missing for type `sle_impact_summary_ap_item`")
     }
     if s.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Sle_Impact_Summary_Ap_Item`")
+        errs = append(errs, "required field `total` is missing for type `sle_impact_summary_ap_item`")
     }
     if len(errs) == 0 {
         return nil

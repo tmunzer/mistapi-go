@@ -21,14 +21,12 @@
 ```json
 {
   "dns_servers": [
-    "dns_servers0",
-    "dns_servers1",
-    "dns_servers2"
+    "dns_servers8",
+    "dns_servers7"
   ],
   "dns_suffix": [
-    "dns_suffix3",
-    "dns_suffix2",
-    "dns_suffix1"
+    "dns_suffix1",
+    "dns_suffix2"
   ],
   "enabled": false,
   "extra_routes": [

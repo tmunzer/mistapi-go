@@ -31,7 +31,7 @@ func (s Synthetictest) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Synthetictest.
 // It customizes the JSON unmarshaling process for Synthetictest objects.
 func (s *Synthetictest) UnmarshalJSON(input []byte) error {
-    var temp synthetictest
+    var temp tempSynthetictest
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (s *Synthetictest) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// synthetictest is a temporary struct used for validating the fields of Synthetictest.
-type synthetictest  struct {
+// tempSynthetictest is a temporary struct used for validating the fields of Synthetictest.
+type tempSynthetictest  struct {
     Email *string `json:"email,omitempty"`
 }

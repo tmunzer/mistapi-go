@@ -51,7 +51,7 @@ func (g GatewayTemplateTunnelNode) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayTemplateTunnelNode.
 // It customizes the JSON unmarshaling process for GatewayTemplateTunnelNode objects.
 func (g *GatewayTemplateTunnelNode) UnmarshalJSON(input []byte) error {
-    var temp gatewayTemplateTunnelNode
+    var temp tempGatewayTemplateTunnelNode
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -70,8 +70,8 @@ func (g *GatewayTemplateTunnelNode) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayTemplateTunnelNode is a temporary struct used for validating the fields of GatewayTemplateTunnelNode.
-type gatewayTemplateTunnelNode  struct {
+// tempGatewayTemplateTunnelNode is a temporary struct used for validating the fields of GatewayTemplateTunnelNode.
+type tempGatewayTemplateTunnelNode  struct {
     Hosts       []string `json:"hosts,omitempty"`
     InternalIps []string `json:"internal_ips,omitempty"`
     ProbeIps    []string `json:"probe_ips,omitempty"`

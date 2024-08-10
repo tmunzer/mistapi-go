@@ -57,7 +57,7 @@ func (m MapJibestream) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapJibestream.
 // It customizes the JSON unmarshaling process for MapJibestream objects.
 func (m *MapJibestream) UnmarshalJSON(input []byte) error {
-    var temp mapJibestream
+    var temp tempMapJibestream
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -84,8 +84,8 @@ func (m *MapJibestream) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapJibestream is a temporary struct used for validating the fields of MapJibestream.
-type mapJibestream  struct {
+// tempMapJibestream is a temporary struct used for validating the fields of MapJibestream.
+type tempMapJibestream  struct {
     ClientId     *uuid.UUID `json:"client_id"`
     ClientSecret *string    `json:"client_secret"`
     CustomerId   *int       `json:"customer_id"`
@@ -97,34 +97,34 @@ type mapJibestream  struct {
     VenueId      *int       `json:"venue_id"`
 }
 
-func (m *mapJibestream) validate() error {
+func (m *tempMapJibestream) validate() error {
     var errs []string
     if m.ClientId == nil {
-        errs = append(errs, "required field `client_id` is missing for type `Map_Jibestream`")
+        errs = append(errs, "required field `client_id` is missing for type `map_jibestream`")
     }
     if m.ClientSecret == nil {
-        errs = append(errs, "required field `client_secret` is missing for type `Map_Jibestream`")
+        errs = append(errs, "required field `client_secret` is missing for type `map_jibestream`")
     }
     if m.CustomerId == nil {
-        errs = append(errs, "required field `customer_id` is missing for type `Map_Jibestream`")
+        errs = append(errs, "required field `customer_id` is missing for type `map_jibestream`")
     }
     if m.EndpointUrl == nil {
-        errs = append(errs, "required field `endpoint_url` is missing for type `Map_Jibestream`")
+        errs = append(errs, "required field `endpoint_url` is missing for type `map_jibestream`")
     }
     if m.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Map_Jibestream`")
+        errs = append(errs, "required field `map_id` is missing for type `map_jibestream`")
     }
     if m.Mmpp == nil {
-        errs = append(errs, "required field `mmpp` is missing for type `Map_Jibestream`")
+        errs = append(errs, "required field `mmpp` is missing for type `map_jibestream`")
     }
     if m.Ppm == nil {
-        errs = append(errs, "required field `ppm` is missing for type `Map_Jibestream`")
+        errs = append(errs, "required field `ppm` is missing for type `map_jibestream`")
     }
     if m.VendorName == nil {
-        errs = append(errs, "required field `vendor_name` is missing for type `Map_Jibestream`")
+        errs = append(errs, "required field `vendor_name` is missing for type `map_jibestream`")
     }
     if m.VenueId == nil {
-        errs = append(errs, "required field `venue_id` is missing for type `Map_Jibestream`")
+        errs = append(errs, "required field `venue_id` is missing for type `map_jibestream`")
     }
     if len(errs) == 0 {
         return nil

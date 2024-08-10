@@ -37,7 +37,7 @@ func (v VrrpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VrrpConfig.
 // It customizes the JSON unmarshaling process for VrrpConfig objects.
 func (v *VrrpConfig) UnmarshalJSON(input []byte) error {
-    var temp vrrpConfig
+    var temp tempVrrpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (v *VrrpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vrrpConfig is a temporary struct used for validating the fields of VrrpConfig.
-type vrrpConfig  struct {
+// tempVrrpConfig is a temporary struct used for validating the fields of VrrpConfig.
+type tempVrrpConfig  struct {
     Enabled *bool                      `json:"enabled,omitempty"`
     Groups  map[string]VrrpConfigGroup `json:"groups,omitempty"`
 }

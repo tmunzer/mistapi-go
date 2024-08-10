@@ -47,7 +47,7 @@ func (v VirtualChassisUpdate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VirtualChassisUpdate.
 // It customizes the JSON unmarshaling process for VirtualChassisUpdate objects.
 func (v *VirtualChassisUpdate) UnmarshalJSON(input []byte) error {
-    var temp virtualChassisUpdate
+    var temp tempVirtualChassisUpdate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (v *VirtualChassisUpdate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// virtualChassisUpdate is a temporary struct used for validating the fields of VirtualChassisUpdate.
-type virtualChassisUpdate  struct {
+// tempVirtualChassisUpdate is a temporary struct used for validating the fields of VirtualChassisUpdate.
+type tempVirtualChassisUpdate  struct {
     Member    *int                         `json:"member,omitempty"`
     Members   []VirtualChassisMemberUpdate `json:"members,omitempty"`
     NewMember *int                         `json:"new-member,omitempty"`

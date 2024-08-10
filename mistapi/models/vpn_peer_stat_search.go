@@ -43,7 +43,7 @@ func (v VpnPeerStatSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VpnPeerStatSearch.
 // It customizes the JSON unmarshaling process for VpnPeerStatSearch objects.
 func (v *VpnPeerStatSearch) UnmarshalJSON(input []byte) error {
-    var temp vpnPeerStatSearch
+    var temp tempVpnPeerStatSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (v *VpnPeerStatSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vpnPeerStatSearch is a temporary struct used for validating the fields of VpnPeerStatSearch.
-type vpnPeerStatSearch  struct {
+// tempVpnPeerStatSearch is a temporary struct used for validating the fields of VpnPeerStatSearch.
+type tempVpnPeerStatSearch  struct {
     End     *float64       `json:"end"`
     Limit   *int           `json:"limit"`
     Next    *string        `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type vpnPeerStatSearch  struct {
     Total   *int           `json:"total"`
 }
 
-func (v *vpnPeerStatSearch) validate() error {
+func (v *tempVpnPeerStatSearch) validate() error {
     var errs []string
     if v.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Vpn_Peer_Stat_Search`")
+        errs = append(errs, "required field `end` is missing for type `vpn_peer_stat_search`")
     }
     if v.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Vpn_Peer_Stat_Search`")
+        errs = append(errs, "required field `limit` is missing for type `vpn_peer_stat_search`")
     }
     if v.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Vpn_Peer_Stat_Search`")
+        errs = append(errs, "required field `results` is missing for type `vpn_peer_stat_search`")
     }
     if v.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Vpn_Peer_Stat_Search`")
+        errs = append(errs, "required field `start` is missing for type `vpn_peer_stat_search`")
     }
     if v.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Vpn_Peer_Stat_Search`")
+        errs = append(errs, "required field `total` is missing for type `vpn_peer_stat_search`")
     }
     if len(errs) == 0 {
         return nil

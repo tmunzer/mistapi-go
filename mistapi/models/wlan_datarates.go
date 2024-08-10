@@ -65,7 +65,7 @@ func (w WlanDatarates) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanDatarates.
 // It customizes the JSON unmarshaling process for WlanDatarates objects.
 func (w *WlanDatarates) UnmarshalJSON(input []byte) error {
-    var temp wlanDatarates
+    var temp tempWlanDatarates
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -84,8 +84,8 @@ func (w *WlanDatarates) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanDatarates is a temporary struct used for validating the fields of WlanDatarates.
-type wlanDatarates  struct {
+// tempWlanDatarates is a temporary struct used for validating the fields of WlanDatarates.
+type tempWlanDatarates  struct {
     Ht       Optional[string]              `json:"ht"`
     Legacy   []WlanDataratesLegacyItemEnum `json:"legacy,omitempty"`
     MinRssi  *int                          `json:"min_rssi,omitempty"`

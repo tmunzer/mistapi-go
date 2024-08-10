@@ -35,7 +35,7 @@ func (c ConstInsightMetricsPropertyReportDuration) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstInsightMetricsPropertyReportDuration.
 // It customizes the JSON unmarshaling process for ConstInsightMetricsPropertyReportDuration objects.
 func (c *ConstInsightMetricsPropertyReportDuration) UnmarshalJSON(input []byte) error {
-    var temp constInsightMetricsPropertyReportDuration
+    var temp tempConstInsightMetricsPropertyReportDuration
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (c *ConstInsightMetricsPropertyReportDuration) UnmarshalJSON(input []byte) 
     return nil
 }
 
-// constInsightMetricsPropertyReportDuration is a temporary struct used for validating the fields of ConstInsightMetricsPropertyReportDuration.
-type constInsightMetricsPropertyReportDuration  struct {
+// tempConstInsightMetricsPropertyReportDuration is a temporary struct used for validating the fields of ConstInsightMetricsPropertyReportDuration.
+type tempConstInsightMetricsPropertyReportDuration  struct {
     Interval *int `json:"interval,omitempty"`
     MaxAge   *int `json:"max_age,omitempty"`
 }

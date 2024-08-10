@@ -33,7 +33,7 @@ func (a AssetImport) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AssetImport.
 // It customizes the JSON unmarshaling process for AssetImport objects.
 func (a *AssetImport) UnmarshalJSON(input []byte) error {
-    var temp assetImport
+    var temp tempAssetImport
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (a *AssetImport) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// assetImport is a temporary struct used for validating the fields of AssetImport.
-type assetImport  struct {
+// tempAssetImport is a temporary struct used for validating the fields of AssetImport.
+type tempAssetImport  struct {
     Mac  *string `json:"mac"`
     Name *string `json:"name"`
 }
 
-func (a *assetImport) validate() error {
+func (a *tempAssetImport) validate() error {
     var errs []string
     if a.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Asset_Import`")
+        errs = append(errs, "required field `mac` is missing for type `asset_import`")
     }
     if a.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Asset_Import`")
+        errs = append(errs, "required field `name` is missing for type `asset_import`")
     }
     if len(errs) == 0 {
         return nil

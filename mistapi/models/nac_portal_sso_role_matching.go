@@ -35,7 +35,7 @@ func (n NacPortalSsoRoleMatching) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NacPortalSsoRoleMatching.
 // It customizes the JSON unmarshaling process for NacPortalSsoRoleMatching objects.
 func (n *NacPortalSsoRoleMatching) UnmarshalJSON(input []byte) error {
-    var temp nacPortalSsoRoleMatching
+    var temp tempNacPortalSsoRoleMatching
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (n *NacPortalSsoRoleMatching) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// nacPortalSsoRoleMatching is a temporary struct used for validating the fields of NacPortalSsoRoleMatching.
-type nacPortalSsoRoleMatching  struct {
+// tempNacPortalSsoRoleMatching is a temporary struct used for validating the fields of NacPortalSsoRoleMatching.
+type tempNacPortalSsoRoleMatching  struct {
     Assigned *string `json:"assigned,omitempty"`
     Match    *string `json:"match,omitempty"`
 }

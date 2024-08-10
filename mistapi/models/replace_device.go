@@ -52,7 +52,7 @@ func (r ReplaceDevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ReplaceDevice.
 // It customizes the JSON unmarshaling process for ReplaceDevice objects.
 func (r *ReplaceDevice) UnmarshalJSON(input []byte) error {
-    var temp replaceDevice
+    var temp tempReplaceDevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (r *ReplaceDevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// replaceDevice is a temporary struct used for validating the fields of ReplaceDevice.
-type replaceDevice  struct {
+// tempReplaceDevice is a temporary struct used for validating the fields of ReplaceDevice.
+type tempReplaceDevice  struct {
     Discard           []string           `json:"discard,omitempty"`
     InventoryMac      *string            `json:"inventory_mac,omitempty"`
     Mac               *string            `json:"mac,omitempty"`

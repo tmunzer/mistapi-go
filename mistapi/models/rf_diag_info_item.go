@@ -102,7 +102,7 @@ func (r RfDiagInfoItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RfDiagInfoItem.
 // It customizes the JSON unmarshaling process for RfDiagInfoItem objects.
 func (r *RfDiagInfoItem) UnmarshalJSON(input []byte) error {
-    var temp rfDiagInfoItem
+    var temp tempRfDiagInfoItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -139,8 +139,8 @@ func (r *RfDiagInfoItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rfDiagInfoItem is a temporary struct used for validating the fields of RfDiagInfoItem.
-type rfDiagInfoItem  struct {
+// tempRfDiagInfoItem is a temporary struct used for validating the fields of RfDiagInfoItem.
+type tempRfDiagInfoItem  struct {
     AssetId       *uuid.UUID        `json:"asset_id,omitempty"`
     AssetName     *string           `json:"asset_name,omitempty"`
     ClientName    *string           `json:"client_name,omitempty"`
@@ -162,37 +162,37 @@ type rfDiagInfoItem  struct {
     Url           *string           `json:"url"`
 }
 
-func (r *rfDiagInfoItem) validate() error {
+func (r *tempRfDiagInfoItem) validate() error {
     var errs []string
     if r.Duration == nil {
-        errs = append(errs, "required field `duration` is missing for type `Rf_Diag_Info_Item`")
+        errs = append(errs, "required field `duration` is missing for type `rf_diag_info_item`")
     }
     if r.EndTime == nil {
-        errs = append(errs, "required field `end_time` is missing for type `Rf_Diag_Info_Item`")
+        errs = append(errs, "required field `end_time` is missing for type `rf_diag_info_item`")
     }
     if r.FrameCount == nil {
-        errs = append(errs, "required field `frame_count` is missing for type `Rf_Diag_Info_Item`")
+        errs = append(errs, "required field `frame_count` is missing for type `rf_diag_info_item`")
     }
     if r.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Rf_Diag_Info_Item`")
+        errs = append(errs, "required field `map_id` is missing for type `rf_diag_info_item`")
     }
     if r.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Rf_Diag_Info_Item`")
+        errs = append(errs, "required field `name` is missing for type `rf_diag_info_item`")
     }
     if r.RawEvents == nil {
-        errs = append(errs, "required field `raw_events` is missing for type `Rf_Diag_Info_Item`")
+        errs = append(errs, "required field `raw_events` is missing for type `rf_diag_info_item`")
     }
     if r.Ready == nil {
-        errs = append(errs, "required field `ready` is missing for type `Rf_Diag_Info_Item`")
+        errs = append(errs, "required field `ready` is missing for type `rf_diag_info_item`")
     }
     if r.StartTime == nil {
-        errs = append(errs, "required field `start_time` is missing for type `Rf_Diag_Info_Item`")
+        errs = append(errs, "required field `start_time` is missing for type `rf_diag_info_item`")
     }
     if r.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Rf_Diag_Info_Item`")
+        errs = append(errs, "required field `type` is missing for type `rf_diag_info_item`")
     }
     if r.Url == nil {
-        errs = append(errs, "required field `url` is missing for type `Rf_Diag_Info_Item`")
+        errs = append(errs, "required field `url` is missing for type `rf_diag_info_item`")
     }
     if len(errs) == 0 {
         return nil

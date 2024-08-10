@@ -10,17 +10,15 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `PortVlanId` | `*int` | Optional | - |
-| `VlanIds` | [`[]models.MxedgeTuntermSwitchConfigVlanIds`](../../doc/models/containers/mxedge-tunterm-switch-config-vlan-ids.md) | Optional | This is Array of a container for any-of cases. |
+| `VlanIds` | [`[]models.MxedgeTuntermSwitchConfigVlanId`](../../doc/models/containers/mxedge-tunterm-switch-config-vlan-id.md) | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "port_vlan_id": 0,
+  "port_vlan_id": 66,
   "vlan_ids": [
-    186,
-    187,
-    188
+    252
   ]
 }
 ```

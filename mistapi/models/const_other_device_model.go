@@ -47,7 +47,7 @@ func (c ConstOtherDeviceModel) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstOtherDeviceModel.
 // It customizes the JSON unmarshaling process for ConstOtherDeviceModel objects.
 func (c *ConstOtherDeviceModel) UnmarshalJSON(input []byte) error {
-    var temp constOtherDeviceModel
+    var temp tempConstOtherDeviceModel
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (c *ConstOtherDeviceModel) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constOtherDeviceModel is a temporary struct used for validating the fields of ConstOtherDeviceModel.
-type constOtherDeviceModel  struct {
+// tempConstOtherDeviceModel is a temporary struct used for validating the fields of ConstOtherDeviceModel.
+type tempConstOtherDeviceModel  struct {
     VendorModelId *string `json:"_vendor_model_id,omitempty"`
     Display       *string `json:"display,omitempty"`
     Model         *string `json:"model,omitempty"`

@@ -7,7 +7,7 @@ import (
 )
 
 // SynthetictestDeviceVlanId represents a SynthetictestDeviceVlanId struct.
-// This is a container for one-of cases.
+// required for AP
 type SynthetictestDeviceVlanId struct {
     value    any
     isString bool
@@ -75,7 +75,7 @@ func (s *SynthetictestDeviceVlanId) AsNumber() (
 }
 
 // internalSynthetictestDeviceVlanId represents a synthetictestDeviceVlanId struct.
-// This is a container for one-of cases.
+// required for AP
 type internalSynthetictestDeviceVlanId struct {}
 
 var SynthetictestDeviceVlanIdContainer internalSynthetictestDeviceVlanId

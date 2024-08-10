@@ -168,7 +168,7 @@ func (a ApSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApSearch.
 // It customizes the JSON unmarshaling process for ApSearch objects.
 func (a *ApSearch) UnmarshalJSON(input []byte) error {
-    var temp apSearch
+    var temp tempApSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -213,8 +213,8 @@ func (a *ApSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apSearch is a temporary struct used for validating the fields of ApSearch.
-type apSearch  struct {
+// tempApSearch is a temporary struct used for validating the fields of ApSearch.
+type tempApSearch  struct {
     Band24Bandwith     *string    `json:"band_24_bandwith,omitempty"`
     Band24Channel      *int       `json:"band_24_channel,omitempty"`
     Band24Power        *int       `json:"band_24_power,omitempty"`

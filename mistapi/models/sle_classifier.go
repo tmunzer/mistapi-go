@@ -43,7 +43,7 @@ func (s SleClassifier) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleClassifier.
 // It customizes the JSON unmarshaling process for SleClassifier objects.
 func (s *SleClassifier) UnmarshalJSON(input []byte) error {
-    var temp sleClassifier
+    var temp tempSleClassifier
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (s *SleClassifier) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleClassifier is a temporary struct used for validating the fields of SleClassifier.
-type sleClassifier  struct {
+// tempSleClassifier is a temporary struct used for validating the fields of SleClassifier.
+type tempSleClassifier  struct {
     Impact   *SleClassifierImpact  `json:"impact"`
     Interval *float64              `json:"interval"`
     Name     *string               `json:"name"`
@@ -77,22 +77,22 @@ type sleClassifier  struct {
     YLabel   *string               `json:"y_label"`
 }
 
-func (s *sleClassifier) validate() error {
+func (s *tempSleClassifier) validate() error {
     var errs []string
     if s.Impact == nil {
-        errs = append(errs, "required field `impact` is missing for type `Sle_Classifier`")
+        errs = append(errs, "required field `impact` is missing for type `sle_classifier`")
     }
     if s.Interval == nil {
-        errs = append(errs, "required field `interval` is missing for type `Sle_Classifier`")
+        errs = append(errs, "required field `interval` is missing for type `sle_classifier`")
     }
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sle_Classifier`")
+        errs = append(errs, "required field `name` is missing for type `sle_classifier`")
     }
     if s.XLabel == nil {
-        errs = append(errs, "required field `x_label` is missing for type `Sle_Classifier`")
+        errs = append(errs, "required field `x_label` is missing for type `sle_classifier`")
     }
     if s.YLabel == nil {
-        errs = append(errs, "required field `y_label` is missing for type `Sle_Classifier`")
+        errs = append(errs, "required field `y_label` is missing for type `sle_classifier`")
     }
     if len(errs) == 0 {
         return nil

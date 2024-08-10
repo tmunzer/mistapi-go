@@ -6,6 +6,25 @@ import (
     "github.com/google/uuid"
 )
 
+// ErrorDeleteFailed is a custom error.
+type ErrorDeleteFailed struct {
+    https.ApiError
+    Detail         string    `json:"detail"`
+    OrgId          uuid.UUID `json:"org_id"`
+}
+
+// NewErrorDeleteFailed is a constructor for ErrorDeleteFailed.
+// It creates and returns a pointer to a new ErrorDeleteFailed instance with the given statusCode and body.
+func NewErrorDeleteFailed(apiError https.ApiError) error {
+    return &ErrorDeleteFailed{ApiError: apiError}
+}
+
+// Error implements the Error method for the error interface.
+// It returns a formatted error message for ErrorDeleteFailed.
+func (e *ErrorDeleteFailed) Error() string {
+    return fmt.Sprintf("ErrorDeleteFailed occured: %v", e.Message)
+}
+
 // ResponseDetailString is a custom error.
 type ResponseDetailString struct {
     https.ApiError
@@ -60,25 +79,6 @@ func (r *ResponseHttp404) Error() string {
     return fmt.Sprintf("ResponseHttp404 occured: %v", r.Message)
 }
 
-// ErrorDeleteFailed is a custom error.
-type ErrorDeleteFailed struct {
-    https.ApiError
-    Detail         string    `json:"detail"`
-    OrgId          uuid.UUID `json:"org_id"`
-}
-
-// NewErrorDeleteFailed is a constructor for ErrorDeleteFailed.
-// It creates and returns a pointer to a new ErrorDeleteFailed instance with the given statusCode and body.
-func NewErrorDeleteFailed(apiError https.ApiError) error {
-    return &ErrorDeleteFailed{ApiError: apiError}
-}
-
-// Error implements the Error method for the error interface.
-// It returns a formatted error message for ErrorDeleteFailed.
-func (e *ErrorDeleteFailed) Error() string {
-    return fmt.Sprintf("ErrorDeleteFailed occured: %v", e.Message)
-}
-
 // ResponseLoginFailure is a custom error.
 type ResponseLoginFailure struct {
     https.ApiError
@@ -115,4 +115,58 @@ func NewResponseSelfOauthLinkFailure(apiError https.ApiError) error {
 // It returns a formatted error message for ResponseSelfOauthLinkFailure.
 func (r *ResponseSelfOauthLinkFailure) Error() string {
     return fmt.Sprintf("ResponseSelfOauthLinkFailure occured: %v", r.Message)
+}
+
+// ResponseHttp401Error is a custom error.
+type ResponseHttp401Error struct {
+    https.ApiError
+    Detail         *string `json:"detail,omitempty"`
+}
+
+// NewResponseHttp401Error is a constructor for ResponseHttp401Error.
+// It creates and returns a pointer to a new ResponseHttp401Error instance with the given statusCode and body.
+func NewResponseHttp401Error(apiError https.ApiError) error {
+    return &ResponseHttp401Error{ApiError: apiError}
+}
+
+// Error implements the Error method for the error interface.
+// It returns a formatted error message for ResponseHttp401Error.
+func (r *ResponseHttp401Error) Error() string {
+    return fmt.Sprintf("ResponseHttp401Error occured: %v", r.Message)
+}
+
+// ResponseHttp403Error is a custom error.
+type ResponseHttp403Error struct {
+    https.ApiError
+    Detail         *string `json:"detail,omitempty"`
+}
+
+// NewResponseHttp403Error is a constructor for ResponseHttp403Error.
+// It creates and returns a pointer to a new ResponseHttp403Error instance with the given statusCode and body.
+func NewResponseHttp403Error(apiError https.ApiError) error {
+    return &ResponseHttp403Error{ApiError: apiError}
+}
+
+// Error implements the Error method for the error interface.
+// It returns a formatted error message for ResponseHttp403Error.
+func (r *ResponseHttp403Error) Error() string {
+    return fmt.Sprintf("ResponseHttp403Error occured: %v", r.Message)
+}
+
+// ResponseHttp429Error is a custom error.
+type ResponseHttp429Error struct {
+    https.ApiError
+    Detail         *string `json:"detail,omitempty"`
+}
+
+// NewResponseHttp429Error is a constructor for ResponseHttp429Error.
+// It creates and returns a pointer to a new ResponseHttp429Error instance with the given statusCode and body.
+func NewResponseHttp429Error(apiError https.ApiError) error {
+    return &ResponseHttp429Error{ApiError: apiError}
+}
+
+// Error implements the Error method for the error interface.
+// It returns a formatted error message for ResponseHttp429Error.
+func (r *ResponseHttp429Error) Error() string {
+    return fmt.Sprintf("ResponseHttp429Error occured: %v", r.Message)
 }

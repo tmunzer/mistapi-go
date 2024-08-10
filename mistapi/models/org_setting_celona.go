@@ -35,7 +35,7 @@ func (o OrgSettingCelona) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingCelona.
 // It customizes the JSON unmarshaling process for OrgSettingCelona objects.
 func (o *OrgSettingCelona) UnmarshalJSON(input []byte) error {
-    var temp orgSettingCelona
+    var temp tempOrgSettingCelona
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (o *OrgSettingCelona) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingCelona is a temporary struct used for validating the fields of OrgSettingCelona.
-type orgSettingCelona  struct {
+// tempOrgSettingCelona is a temporary struct used for validating the fields of OrgSettingCelona.
+type tempOrgSettingCelona  struct {
     ApiKey    *string `json:"api_key,omitempty"`
     ApiPrefix *string `json:"api_prefix,omitempty"`
 }

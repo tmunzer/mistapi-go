@@ -59,7 +59,7 @@ func (c ConstTrafficType) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstTrafficType.
 // It customizes the JSON unmarshaling process for ConstTrafficType objects.
 func (c *ConstTrafficType) UnmarshalJSON(input []byte) error {
-    var temp constTrafficType
+    var temp tempConstTrafficType
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -81,8 +81,8 @@ func (c *ConstTrafficType) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constTrafficType is a temporary struct used for validating the fields of ConstTrafficType.
-type constTrafficType  struct {
+// tempConstTrafficType is a temporary struct used for validating the fields of ConstTrafficType.
+type tempConstTrafficType  struct {
     Display        *string `json:"display,omitempty"`
     Dscp           *int    `json:"dscp,omitempty"`
     FailoverPolicy *string `json:"failover_policy,omitempty"`

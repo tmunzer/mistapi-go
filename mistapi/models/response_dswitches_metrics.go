@@ -37,7 +37,7 @@ func (r ResponseDswitchesMetrics) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseDswitchesMetrics.
 // It customizes the JSON unmarshaling process for ResponseDswitchesMetrics objects.
 func (r *ResponseDswitchesMetrics) UnmarshalJSON(input []byte) error {
-    var temp responseDswitchesMetrics
+    var temp tempResponseDswitchesMetrics
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,27 +59,27 @@ func (r *ResponseDswitchesMetrics) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseDswitchesMetrics is a temporary struct used for validating the fields of ResponseDswitchesMetrics.
-type responseDswitchesMetrics  struct {
+// tempResponseDswitchesMetrics is a temporary struct used for validating the fields of ResponseDswitchesMetrics.
+type tempResponseDswitchesMetrics  struct {
     InactiveWiredVlans *DswitchesMetricsInactiveWiredVlans `json:"inactive_wired_vlans"`
     PoeCompliance      *DswitchesMetricsPoeCompliance      `json:"poe_compliance"`
     SwitchApAffinity   *DswitchesMetricsSwitchApAffinity   `json:"switch_ap_affinity"`
     VersionCompliance  *DswitchesMetricsVersionCompliance  `json:"version_compliance"`
 }
 
-func (r *responseDswitchesMetrics) validate() error {
+func (r *tempResponseDswitchesMetrics) validate() error {
     var errs []string
     if r.InactiveWiredVlans == nil {
-        errs = append(errs, "required field `inactive_wired_vlans` is missing for type `Response_Dswitches_Metrics`")
+        errs = append(errs, "required field `inactive_wired_vlans` is missing for type `response_dswitches_metrics`")
     }
     if r.PoeCompliance == nil {
-        errs = append(errs, "required field `poe_compliance` is missing for type `Response_Dswitches_Metrics`")
+        errs = append(errs, "required field `poe_compliance` is missing for type `response_dswitches_metrics`")
     }
     if r.SwitchApAffinity == nil {
-        errs = append(errs, "required field `switch_ap_affinity` is missing for type `Response_Dswitches_Metrics`")
+        errs = append(errs, "required field `switch_ap_affinity` is missing for type `response_dswitches_metrics`")
     }
     if r.VersionCompliance == nil {
-        errs = append(errs, "required field `version_compliance` is missing for type `Response_Dswitches_Metrics`")
+        errs = append(errs, "required field `version_compliance` is missing for type `response_dswitches_metrics`")
     }
     if len(errs) == 0 {
         return nil

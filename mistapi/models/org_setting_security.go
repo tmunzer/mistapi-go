@@ -42,7 +42,7 @@ func (o OrgSettingSecurity) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingSecurity.
 // It customizes the JSON unmarshaling process for OrgSettingSecurity objects.
 func (o *OrgSettingSecurity) UnmarshalJSON(input []byte) error {
-    var temp orgSettingSecurity
+    var temp tempOrgSettingSecurity
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,8 +59,8 @@ func (o *OrgSettingSecurity) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingSecurity is a temporary struct used for validating the fields of OrgSettingSecurity.
-type orgSettingSecurity  struct {
+// tempOrgSettingSecurity is a temporary struct used for validating the fields of OrgSettingSecurity.
+type tempOrgSettingSecurity  struct {
     DisableLocalSsh     *bool   `json:"disable_local_ssh,omitempty"`
     FipsZeroizePassword *string `json:"fips_zeroize_password,omitempty"`
     LimitSshAccess      *bool   `json:"limit_ssh_access,omitempty"`

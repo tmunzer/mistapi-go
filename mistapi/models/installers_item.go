@@ -36,7 +36,7 @@ func (i InstallersItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for InstallersItem.
 // It customizes the JSON unmarshaling process for InstallersItem objects.
 func (i *InstallersItem) UnmarshalJSON(input []byte) error {
-    var temp installersItem
+    var temp tempInstallersItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (i *InstallersItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// installersItem is a temporary struct used for validating the fields of InstallersItem.
-type installersItem  struct {
+// tempInstallersItem is a temporary struct used for validating the fields of InstallersItem.
+type tempInstallersItem  struct {
     Id   *uuid.UUID `json:"id,omitempty"`
     Name *string    `json:"name,omitempty"`
 }

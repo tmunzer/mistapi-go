@@ -52,7 +52,7 @@ func (r RfDiag) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RfDiag.
 // It customizes the JSON unmarshaling process for RfDiag objects.
 func (r *RfDiag) UnmarshalJSON(input []byte) error {
-    var temp rfDiag
+    var temp tempRfDiag
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -75,8 +75,8 @@ func (r *RfDiag) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rfDiag is a temporary struct used for validating the fields of RfDiag.
-type rfDiag  struct {
+// tempRfDiag is a temporary struct used for validating the fields of RfDiag.
+type tempRfDiag  struct {
     Duration    *int              `json:"duration,omitempty"`
     Mac         *string           `json:"mac,omitempty"`
     Name        *string           `json:"name"`
@@ -84,13 +84,13 @@ type rfDiag  struct {
     Type        *RfClientTypeEnum `json:"type"`
 }
 
-func (r *rfDiag) validate() error {
+func (r *tempRfDiag) validate() error {
     var errs []string
     if r.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Rf_Diag`")
+        errs = append(errs, "required field `name` is missing for type `rf_diag`")
     }
     if r.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Rf_Diag`")
+        errs = append(errs, "required field `type` is missing for type `rf_diag`")
     }
     if len(errs) == 0 {
         return nil

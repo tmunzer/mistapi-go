@@ -40,7 +40,7 @@ func (a AccountZscalerConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountZscalerConfig.
 // It customizes the JSON unmarshaling process for AccountZscalerConfig objects.
 func (a *AccountZscalerConfig) UnmarshalJSON(input []byte) error {
-    var temp accountZscalerConfig
+    var temp tempAccountZscalerConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,27 +62,27 @@ func (a *AccountZscalerConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountZscalerConfig is a temporary struct used for validating the fields of AccountZscalerConfig.
-type accountZscalerConfig  struct {
+// tempAccountZscalerConfig is a temporary struct used for validating the fields of AccountZscalerConfig.
+type tempAccountZscalerConfig  struct {
     CloudName  *string `json:"cloud_name"`
     PartnerKey *string `json:"partner_key"`
     Password   *string `json:"password"`
     Username   *string `json:"username"`
 }
 
-func (a *accountZscalerConfig) validate() error {
+func (a *tempAccountZscalerConfig) validate() error {
     var errs []string
     if a.CloudName == nil {
-        errs = append(errs, "required field `cloud_name` is missing for type `Account_Zscaler_Config`")
+        errs = append(errs, "required field `cloud_name` is missing for type `account_zscaler_config`")
     }
     if a.PartnerKey == nil {
-        errs = append(errs, "required field `partner_key` is missing for type `Account_Zscaler_Config`")
+        errs = append(errs, "required field `partner_key` is missing for type `account_zscaler_config`")
     }
     if a.Password == nil {
-        errs = append(errs, "required field `password` is missing for type `Account_Zscaler_Config`")
+        errs = append(errs, "required field `password` is missing for type `account_zscaler_config`")
     }
     if a.Username == nil {
-        errs = append(errs, "required field `username` is missing for type `Account_Zscaler_Config`")
+        errs = append(errs, "required field `username` is missing for type `account_zscaler_config`")
     }
     if len(errs) == 0 {
         return nil

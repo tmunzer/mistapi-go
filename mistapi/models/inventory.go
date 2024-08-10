@@ -125,7 +125,7 @@ func (i Inventory) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Inventory.
 // It customizes the JSON unmarshaling process for Inventory objects.
 func (i *Inventory) UnmarshalJSON(input []byte) error {
-    var temp inventory
+    var temp tempInventory
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -158,8 +158,8 @@ func (i *Inventory) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// inventory is a temporary struct used for validating the fields of Inventory.
-type inventory  struct {
+// tempInventory is a temporary struct used for validating the fields of Inventory.
+type tempInventory  struct {
     Adopted         *bool            `json:"adopted,omitempty"`
     Connected       *bool            `json:"connected,omitempty"`
     CreatedTime     *float64         `json:"created_time,omitempty"`

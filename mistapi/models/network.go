@@ -29,7 +29,7 @@ type Network struct {
     Subnet               *string                           `json:"subnet,omitempty"`
     Subnet6              *string                           `json:"subnet6,omitempty"`
     Tenants              map[string]NetworkTenant          `json:"tenants,omitempty"`
-    VlanId               *NetworkVlanId                    `json:"vlan_id,omitempty"`
+    VlanId               *VlanIdWithVariable               `json:"vlan_id,omitempty"`
     // Property key is the VPN name. Whether this network can be accessed from vpn
     VpnAccess            map[string]NetworkVpnAccessConfig `json:"vpn_access,omitempty"`
     AdditionalProperties map[string]any                    `json:"_"`
@@ -102,7 +102,7 @@ func (n Network) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Network.
 // It customizes the JSON unmarshaling process for Network objects.
 func (n *Network) UnmarshalJSON(input []byte) error {
-    var temp network
+    var temp tempNetwork
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -137,8 +137,8 @@ func (n *Network) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// network is a temporary struct used for validating the fields of Network.
-type network  struct {
+// tempNetwork is a temporary struct used for validating the fields of Network.
+type tempNetwork  struct {
     CreatedTime          *float64                          `json:"created_time,omitempty"`
     DisallowMistServices *bool                             `json:"disallow_mist_services,omitempty"`
     Gateway              *string                           `json:"gateway,omitempty"`
@@ -154,14 +154,14 @@ type network  struct {
     Subnet               *string                           `json:"subnet,omitempty"`
     Subnet6              *string                           `json:"subnet6,omitempty"`
     Tenants              map[string]NetworkTenant          `json:"tenants,omitempty"`
-    VlanId               *NetworkVlanId                    `json:"vlan_id,omitempty"`
+    VlanId               *VlanIdWithVariable               `json:"vlan_id,omitempty"`
     VpnAccess            map[string]NetworkVpnAccessConfig `json:"vpn_access,omitempty"`
 }
 
-func (n *network) validate() error {
+func (n *tempNetwork) validate() error {
     var errs []string
     if n.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Network`")
+        errs = append(errs, "required field `name` is missing for type `network`")
     }
     if len(errs) == 0 {
         return nil

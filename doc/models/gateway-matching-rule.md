@@ -18,9 +18,9 @@
 ```json
 {
   "additional_config_cmds": [
-    "additional_config_cmds2"
+    "additional_config_cmds4"
   ],
-  "name": "name8",
+  "name": "name0",
   "port_config": {
     "key0": {
       "ae_disable_lacp": false,

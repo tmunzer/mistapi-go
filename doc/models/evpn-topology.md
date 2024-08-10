@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Config` | [`*models.ConfigSwitch`](../../doc/models/config-switch.md) | Optional | Switch settings |
+| `Config` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Overwrite` | `*bool` | Optional | - |
@@ -113,8 +113,7 @@
   },
   "overwrite": false,
   "pod_names": {
-    "key0": "pod_names4",
-    "key1": "pod_names5"
+    "key0": "pod_names2"
   }
 }
 ```

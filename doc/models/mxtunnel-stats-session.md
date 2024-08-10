@@ -18,10 +18,10 @@
 
 ```json
 {
-  "local_sid": 224,
-  "remote_id": "remote_id2",
-  "remote_sid": 68,
-  "state": "state0"
+  "local_sid": 248,
+  "remote_id": "remote_id4",
+  "remote_sid": 44,
+  "state": "state2"
 }
 ```
 

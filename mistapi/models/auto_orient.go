@@ -38,7 +38,7 @@ func (a AutoOrient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AutoOrient.
 // It customizes the JSON unmarshaling process for AutoOrient objects.
 func (a *AutoOrient) UnmarshalJSON(input []byte) error {
-    var temp autoOrient
+    var temp tempAutoOrient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,8 +54,8 @@ func (a *AutoOrient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// autoOrient is a temporary struct used for validating the fields of AutoOrient.
-type autoOrient  struct {
+// tempAutoOrient is a temporary struct used for validating the fields of AutoOrient.
+type tempAutoOrient  struct {
     ForceCollection *bool    `json:"force_collection,omitempty"`
     Macs            []string `json:"macs,omitempty"`
 }

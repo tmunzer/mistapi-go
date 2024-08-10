@@ -167,7 +167,7 @@ func (d DeviceprofileGateway) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceprofileGateway.
 // It customizes the JSON unmarshaling process for DeviceprofileGateway objects.
 func (d *DeviceprofileGateway) UnmarshalJSON(input []byte) error {
-    var temp deviceprofileGateway
+    var temp tempDeviceprofileGateway
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -215,8 +215,8 @@ func (d *DeviceprofileGateway) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceprofileGateway is a temporary struct used for validating the fields of DeviceprofileGateway.
-type deviceprofileGateway  struct {
+// tempDeviceprofileGateway is a temporary struct used for validating the fields of DeviceprofileGateway.
+type tempDeviceprofileGateway  struct {
     AdditionalConfigCmds  []string                           `json:"additional_config_cmds,omitempty"`
     BgpConfig             map[string]BgpConfig               `json:"bgp_config,omitempty"`
     CreatedTime           *float64                           `json:"created_time,omitempty"`
@@ -249,10 +249,10 @@ type deviceprofileGateway  struct {
     VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
 }
 
-func (d *deviceprofileGateway) validate() error {
+func (d *tempDeviceprofileGateway) validate() error {
     var errs []string
     if d.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Deviceprofile_Gateway`")
+        errs = append(errs, "required field `name` is missing for type `deviceprofile_gateway`")
     }
     if len(errs) == 0 {
         return nil

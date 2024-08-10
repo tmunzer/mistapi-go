@@ -33,7 +33,7 @@ Junos port usages
 | `Networks` | `[]string` | Optional | Only if `mode`==`trunk`, the list of network/vlans |
 | `PersistMac` | `*bool` | Optional | Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses<br>**Default**: `false` |
 | `PoeDisabled` | `*bool` | Optional | Only if `mode`!=`dynamic` whether PoE capabilities are disabled for a port<br>**Default**: `false` |
-| `PortAuth` | [`models.Optional[models.SwitchPortUsageDot1XEnum]`](../../doc/models/switch-port-usage-dot-1-x-enum.md) | Optional | Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x. enum: `dot1x` |
+| `PortAuth` | [`models.Optional[models.SwitchPortUsageDot1xEnum]`](../../doc/models/switch-port-usage-dot-1-x-enum.md) | Optional | Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x. enum: `dot1x` |
 | `PortNetwork` | `*string` | Optional | Only if `mode`!=`dynamic` native network/vlan for untagged traffic |
 | `ReauthInterval` | `*int` | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range<br>**Default**: `3600`<br>**Constraints**: `>= 10`, `<= 65535` |
 | `RejectedNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` when radius server reject / fails |
@@ -42,6 +42,8 @@ Junos port usages
 | `Speed` | `*string` | Optional | Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed |
 | `StormControl` | [`*models.SwitchPortUsageStormControl`](../../doc/models/switch-port-usage-storm-control.md) | Optional | Switch storm control<br>Only if `mode`!=`dynamic` |
 | `StpEdge` | `*bool` | Optional | Only if `mode`!=`dynamic` when enabled, the port is not expected to receive BPDU frames<br>**Default**: `false` |
+| `StpNoRootPort` | `*bool` | Optional | **Default**: `false` |
+| `StpP2p` | `*bool` | Optional | **Default**: `false` |
 | `VoipNetwork` | `*string` | Optional | Only if `mode`!=`dynamic` network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth |
 
 ## Example (as JSON)
@@ -69,6 +71,8 @@ Junos port usages
   "reauth_interval": 3600,
   "reset_default_when": "link_down",
   "stp_edge": false,
+  "stp_no_root_port": false,
+  "stp_p2p": false,
   "allow_dhcpd": false
 }
 ```

@@ -51,7 +51,7 @@ func (e EventFastroam) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EventFastroam.
 // It customizes the JSON unmarshaling process for EventFastroam objects.
 func (e *EventFastroam) UnmarshalJSON(input []byte) error {
-    var temp eventFastroam
+    var temp tempEventFastroam
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (e *EventFastroam) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// eventFastroam is a temporary struct used for validating the fields of EventFastroam.
-type eventFastroam  struct {
+// tempEventFastroam is a temporary struct used for validating the fields of EventFastroam.
+type tempEventFastroam  struct {
     ApMac     *string                `json:"ap_mac"`
     ClientMac *string                `json:"client_mac"`
     Fromap    *string                `json:"fromap"`
@@ -89,25 +89,25 @@ type eventFastroam  struct {
     Type      *EventFastroamTypeEnum `json:"type,omitempty"`
 }
 
-func (e *eventFastroam) validate() error {
+func (e *tempEventFastroam) validate() error {
     var errs []string
     if e.ApMac == nil {
-        errs = append(errs, "required field `ap_mac` is missing for type `Event_Fastroam`")
+        errs = append(errs, "required field `ap_mac` is missing for type `event_fastroam`")
     }
     if e.ClientMac == nil {
-        errs = append(errs, "required field `client_mac` is missing for type `Event_Fastroam`")
+        errs = append(errs, "required field `client_mac` is missing for type `event_fastroam`")
     }
     if e.Fromap == nil {
-        errs = append(errs, "required field `fromap` is missing for type `Event_Fastroam`")
+        errs = append(errs, "required field `fromap` is missing for type `event_fastroam`")
     }
     if e.Latency == nil {
-        errs = append(errs, "required field `latency` is missing for type `Event_Fastroam`")
+        errs = append(errs, "required field `latency` is missing for type `event_fastroam`")
     }
     if e.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Event_Fastroam`")
+        errs = append(errs, "required field `ssid` is missing for type `event_fastroam`")
     }
     if e.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Event_Fastroam`")
+        errs = append(errs, "required field `timestamp` is missing for type `event_fastroam`")
     }
     if len(errs) == 0 {
         return nil

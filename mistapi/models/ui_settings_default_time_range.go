@@ -55,7 +55,7 @@ func (u UiSettingsDefaultTimeRange) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UiSettingsDefaultTimeRange.
 // It customizes the JSON unmarshaling process for UiSettingsDefaultTimeRange objects.
 func (u *UiSettingsDefaultTimeRange) UnmarshalJSON(input []byte) error {
-    var temp uiSettingsDefaultTimeRange
+    var temp tempUiSettingsDefaultTimeRange
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (u *UiSettingsDefaultTimeRange) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// uiSettingsDefaultTimeRange is a temporary struct used for validating the fields of UiSettingsDefaultTimeRange.
-type uiSettingsDefaultTimeRange  struct {
+// tempUiSettingsDefaultTimeRange is a temporary struct used for validating the fields of UiSettingsDefaultTimeRange.
+type tempUiSettingsDefaultTimeRange  struct {
     End       *int    `json:"end,omitempty"`
     EndDate   *string `json:"endDate,omitempty"`
     Interval  *string `json:"interval,omitempty"`

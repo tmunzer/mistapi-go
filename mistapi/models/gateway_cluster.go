@@ -31,7 +31,7 @@ func (g GatewayCluster) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayCluster.
 // It customizes the JSON unmarshaling process for GatewayCluster objects.
 func (g *GatewayCluster) UnmarshalJSON(input []byte) error {
-    var temp gatewayCluster
+    var temp tempGatewayCluster
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (g *GatewayCluster) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayCluster is a temporary struct used for validating the fields of GatewayCluster.
-type gatewayCluster  struct {
+// tempGatewayCluster is a temporary struct used for validating the fields of GatewayCluster.
+type tempGatewayCluster  struct {
     Nodes *[]GatewayClusterNode `json:"nodes"`
 }
 
-func (g *gatewayCluster) validate() error {
+func (g *tempGatewayCluster) validate() error {
     var errs []string
     if g.Nodes == nil {
-        errs = append(errs, "required field `nodes` is missing for type `Gateway_Cluster`")
+        errs = append(errs, "required field `nodes` is missing for type `gateway_cluster`")
     }
     if len(errs) == 0 {
         return nil

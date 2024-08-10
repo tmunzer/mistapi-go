@@ -31,7 +31,7 @@ Initiate a Wireless Packet Capture
   "max_pkt_len": 68,
   "num_packets": 100,
   "type": "wireless",
-  "ap_mac": "ap_mac8"
+  "ap_mac": "ap_mac4"
 }
 ```
 

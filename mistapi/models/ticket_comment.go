@@ -44,7 +44,7 @@ func (t TicketComment) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TicketComment.
 // It customizes the JSON unmarshaling process for TicketComment objects.
 func (t *TicketComment) UnmarshalJSON(input []byte) error {
-    var temp ticketComment
+    var temp tempTicketComment
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (t *TicketComment) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ticketComment is a temporary struct used for validating the fields of TicketComment.
-type ticketComment  struct {
+// tempTicketComment is a temporary struct used for validating the fields of TicketComment.
+type tempTicketComment  struct {
     AttachmentIds []uuid.UUID                `json:"attachment_ids,omitempty"`
     Attachments   []TicketCommentsAttachment `json:"attachments,omitempty"`
     Author        *string                    `json:"author"`
@@ -76,16 +76,16 @@ type ticketComment  struct {
     CreatedAt     *int                       `json:"created_at"`
 }
 
-func (t *ticketComment) validate() error {
+func (t *tempTicketComment) validate() error {
     var errs []string
     if t.Author == nil {
-        errs = append(errs, "required field `author` is missing for type `Ticket_Comment`")
+        errs = append(errs, "required field `author` is missing for type `ticket_comment`")
     }
     if t.Comment == nil {
-        errs = append(errs, "required field `comment` is missing for type `Ticket_Comment`")
+        errs = append(errs, "required field `comment` is missing for type `ticket_comment`")
     }
     if t.CreatedAt == nil {
-        errs = append(errs, "required field `created_at` is missing for type `Ticket_Comment`")
+        errs = append(errs, "required field `created_at` is missing for type `ticket_comment`")
     }
     if len(errs) == 0 {
         return nil

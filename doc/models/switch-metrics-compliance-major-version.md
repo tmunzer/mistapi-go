@@ -18,13 +18,12 @@
 
 ```json
 {
-  "major_count": 186,
-  "major_version": "major_version2",
-  "model": "model4",
+  "major_count": 136,
+  "major_version": "major_version6",
+  "model": "model0",
   "system_names": [
-    "system_names4",
-    "system_names5",
-    "system_names6"
+    "system_names0",
+    "system_names1"
   ]
 }
 ```

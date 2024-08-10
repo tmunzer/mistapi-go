@@ -39,7 +39,7 @@ func (t TemplateExceptions) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TemplateExceptions.
 // It customizes the JSON unmarshaling process for TemplateExceptions objects.
 func (t *TemplateExceptions) UnmarshalJSON(input []byte) error {
-    var temp templateExceptions
+    var temp tempTemplateExceptions
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,8 +55,8 @@ func (t *TemplateExceptions) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// templateExceptions is a temporary struct used for validating the fields of TemplateExceptions.
-type templateExceptions  struct {
+// tempTemplateExceptions is a temporary struct used for validating the fields of TemplateExceptions.
+type tempTemplateExceptions  struct {
     SiteIds      []uuid.UUID `json:"site_ids,omitempty"`
     SitegroupIds []uuid.UUID `json:"sitegroup_ids,omitempty"`
 }

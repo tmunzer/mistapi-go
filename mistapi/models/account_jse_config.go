@@ -37,7 +37,7 @@ func (a AccountJseConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountJseConfig.
 // It customizes the JSON unmarshaling process for AccountJseConfig objects.
 func (a *AccountJseConfig) UnmarshalJSON(input []byte) error {
-    var temp accountJseConfig
+    var temp tempAccountJseConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,20 +58,20 @@ func (a *AccountJseConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountJseConfig is a temporary struct used for validating the fields of AccountJseConfig.
-type accountJseConfig  struct {
+// tempAccountJseConfig is a temporary struct used for validating the fields of AccountJseConfig.
+type tempAccountJseConfig  struct {
     CloudName *string `json:"cloud_name,omitempty"`
     Password  *string `json:"password"`
     Username  *string `json:"username"`
 }
 
-func (a *accountJseConfig) validate() error {
+func (a *tempAccountJseConfig) validate() error {
     var errs []string
     if a.Password == nil {
-        errs = append(errs, "required field `password` is missing for type `Account_Jse_Config`")
+        errs = append(errs, "required field `password` is missing for type `account_jse_config`")
     }
     if a.Username == nil {
-        errs = append(errs, "required field `username` is missing for type `Account_Jse_Config`")
+        errs = append(errs, "required field `username` is missing for type `account_jse_config`")
     }
     if len(errs) == 0 {
         return nil

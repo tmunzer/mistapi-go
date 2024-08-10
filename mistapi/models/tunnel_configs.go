@@ -24,6 +24,8 @@ type TunnelConfigs struct {
     LocalId              *string                              `json:"local_id,omitempty"`
     // enum: `active-active`, `active-standby`
     Mode                 *GatewayTemplateTunnelModeEnum       `json:"mode,omitempty"`
+    // networks reachable via this tunnel
+    Networks             []string                             `json:"networks,omitempty"`
     Primary              *GatewayTemplateTunnelNode           `json:"primary,omitempty"`
     // Only if `provider`== `custom-ipsec`
     Probe                *GatewayTemplateTunnelProbe          `json:"probe,omitempty"`
@@ -78,6 +80,9 @@ func (t TunnelConfigs) toMap() map[string]any {
     if t.Mode != nil {
         structMap["mode"] = t.Mode
     }
+    if t.Networks != nil {
+        structMap["networks"] = t.Networks
+    }
     if t.Primary != nil {
         structMap["primary"] = t.Primary.toMap()
     }
@@ -105,12 +110,12 @@ func (t TunnelConfigs) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TunnelConfigs.
 // It customizes the JSON unmarshaling process for TunnelConfigs objects.
 func (t *TunnelConfigs) UnmarshalJSON(input []byte) error {
-    var temp tunnelConfigs
+    var temp tempTunnelConfigs
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_provision", "ike_lifetime", "ike_mode", "ike_proposals", "ipsec_lifetime", "ipsec_proposals", "local_id", "mode", "primary", "probe", "protocol", "provider", "psk", "secondary", "version")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_provision", "ike_lifetime", "ike_mode", "ike_proposals", "ipsec_lifetime", "ipsec_proposals", "local_id", "mode", "networks", "primary", "probe", "protocol", "provider", "psk", "secondary", "version")
     if err != nil {
     	return err
     }
@@ -124,6 +129,7 @@ func (t *TunnelConfigs) UnmarshalJSON(input []byte) error {
     t.IpsecProposals = temp.IpsecProposals
     t.LocalId = temp.LocalId
     t.Mode = temp.Mode
+    t.Networks = temp.Networks
     t.Primary = temp.Primary
     t.Probe = temp.Probe
     t.Protocol = temp.Protocol
@@ -134,8 +140,8 @@ func (t *TunnelConfigs) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tunnelConfigs is a temporary struct used for validating the fields of TunnelConfigs.
-type tunnelConfigs  struct {
+// tempTunnelConfigs is a temporary struct used for validating the fields of TunnelConfigs.
+type tempTunnelConfigs  struct {
     AutoProvision  *TunnelConfigsAutoProvision          `json:"auto_provision,omitempty"`
     IkeLifetime    *int                                 `json:"ike_lifetime,omitempty"`
     IkeMode        *GatewayTemplateTunnelIkeModeEnum    `json:"ike_mode,omitempty"`
@@ -144,6 +150,7 @@ type tunnelConfigs  struct {
     IpsecProposals []GatewayTemplateTunnelIpsecProposal `json:"ipsec_proposals,omitempty"`
     LocalId        *string                              `json:"local_id,omitempty"`
     Mode           *GatewayTemplateTunnelModeEnum       `json:"mode,omitempty"`
+    Networks       []string                             `json:"networks,omitempty"`
     Primary        *GatewayTemplateTunnelNode           `json:"primary,omitempty"`
     Probe          *GatewayTemplateTunnelProbe          `json:"probe,omitempty"`
     Protocol       *GatewayTemplateTunnelProtocolEnum   `json:"protocol,omitempty"`

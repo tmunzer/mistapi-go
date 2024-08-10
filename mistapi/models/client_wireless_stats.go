@@ -223,7 +223,7 @@ func (c ClientWirelessStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClientWirelessStats.
 // It customizes the JSON unmarshaling process for ClientWirelessStats objects.
 func (c *ClientWirelessStats) UnmarshalJSON(input []byte) error {
-    var temp clientWirelessStats
+    var temp tempClientWirelessStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -294,8 +294,8 @@ func (c *ClientWirelessStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// clientWirelessStats is a temporary struct used for validating the fields of ClientWirelessStats.
-type clientWirelessStats  struct {
+// tempClientWirelessStats is a temporary struct used for validating the fields of ClientWirelessStats.
+type tempClientWirelessStats  struct {
     Ttl             *float64                         `json:"_ttl"`
     Accuracy        *int                             `json:"accuracy,omitempty"`
     AirespaceIfname *string                          `json:"airespace_ifname,omitempty"`
@@ -351,112 +351,112 @@ type clientWirelessStats  struct {
     Zones           []ClientWirelessStatsZone        `json:"zones,omitempty"`
 }
 
-func (c *clientWirelessStats) validate() error {
+func (c *tempClientWirelessStats) validate() error {
     var errs []string
     if c.Ttl == nil {
-        errs = append(errs, "required field `_ttl` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `_ttl` is missing for type `client_wireless_stats`")
     }
     if c.ApId == nil {
-        errs = append(errs, "required field `ap_id` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `ap_id` is missing for type `client_wireless_stats`")
     }
     if c.ApMac == nil {
-        errs = append(errs, "required field `ap_mac` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `ap_mac` is missing for type `client_wireless_stats`")
     }
     if c.Band == nil {
-        errs = append(errs, "required field `band` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `band` is missing for type `client_wireless_stats`")
     }
     if c.Channel == nil {
-        errs = append(errs, "required field `channel` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `channel` is missing for type `client_wireless_stats`")
     }
     if c.DualBand == nil {
-        errs = append(errs, "required field `dual_band` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `dual_band` is missing for type `client_wireless_stats`")
     }
     if c.Family == nil {
-        errs = append(errs, "required field `family` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `family` is missing for type `client_wireless_stats`")
     }
     if c.Hostname == nil {
-        errs = append(errs, "required field `hostname` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `hostname` is missing for type `client_wireless_stats`")
     }
     if c.IdleTime == nil {
-        errs = append(errs, "required field `idle_time` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `idle_time` is missing for type `client_wireless_stats`")
     }
     if c.Ip == nil {
-        errs = append(errs, "required field `ip` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `ip` is missing for type `client_wireless_stats`")
     }
     if c.IsGuest == nil {
-        errs = append(errs, "required field `is_guest` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `is_guest` is missing for type `client_wireless_stats`")
     }
     if c.KeyMgmt == nil {
-        errs = append(errs, "required field `key_mgmt` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `key_mgmt` is missing for type `client_wireless_stats`")
     }
     if c.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `last_seen` is missing for type `client_wireless_stats`")
     }
     if c.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `mac` is missing for type `client_wireless_stats`")
     }
     if c.Manufacture == nil {
-        errs = append(errs, "required field `manufacture` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `manufacture` is missing for type `client_wireless_stats`")
     }
     if c.Model == nil {
-        errs = append(errs, "required field `model` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `model` is missing for type `client_wireless_stats`")
     }
     if c.Os == nil {
-        errs = append(errs, "required field `os` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `os` is missing for type `client_wireless_stats`")
     }
     if c.PowerSaving == nil {
-        errs = append(errs, "required field `power_saving` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `power_saving` is missing for type `client_wireless_stats`")
     }
     if c.Proto == nil {
-        errs = append(errs, "required field `proto` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `proto` is missing for type `client_wireless_stats`")
     }
     if c.Rssi == nil {
-        errs = append(errs, "required field `rssi` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `rssi` is missing for type `client_wireless_stats`")
     }
     if c.RxBps == nil {
-        errs = append(errs, "required field `rx_bps` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `rx_bps` is missing for type `client_wireless_stats`")
     }
     if c.RxBytes == nil {
-        errs = append(errs, "required field `rx_bytes` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `rx_bytes` is missing for type `client_wireless_stats`")
     }
     if c.RxPackets == nil {
-        errs = append(errs, "required field `rx_packets` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `rx_packets` is missing for type `client_wireless_stats`")
     }
     if c.RxRate == nil {
-        errs = append(errs, "required field `rx_rate` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `rx_rate` is missing for type `client_wireless_stats`")
     }
     if c.RxRetries == nil {
-        errs = append(errs, "required field `rx_retries` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `rx_retries` is missing for type `client_wireless_stats`")
     }
     if c.Snr == nil {
-        errs = append(errs, "required field `snr` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `snr` is missing for type `client_wireless_stats`")
     }
     if c.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `ssid` is missing for type `client_wireless_stats`")
     }
     if c.TxBps == nil {
-        errs = append(errs, "required field `tx_bps` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `tx_bps` is missing for type `client_wireless_stats`")
     }
     if c.TxBytes == nil {
-        errs = append(errs, "required field `tx_bytes` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `tx_bytes` is missing for type `client_wireless_stats`")
     }
     if c.TxPackets == nil {
-        errs = append(errs, "required field `tx_packets` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `tx_packets` is missing for type `client_wireless_stats`")
     }
     if c.TxRate == nil {
-        errs = append(errs, "required field `tx_rate` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `tx_rate` is missing for type `client_wireless_stats`")
     }
     if c.TxRetries == nil {
-        errs = append(errs, "required field `tx_retries` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `tx_retries` is missing for type `client_wireless_stats`")
     }
     if c.Uptime == nil {
-        errs = append(errs, "required field `uptime` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `uptime` is missing for type `client_wireless_stats`")
     }
     if c.Username == nil {
-        errs = append(errs, "required field `username` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `username` is missing for type `client_wireless_stats`")
     }
     if c.WlanId == nil {
-        errs = append(errs, "required field `wlan_id` is missing for type `Client_Wireless_Stats`")
+        errs = append(errs, "required field `wlan_id` is missing for type `client_wireless_stats`")
     }
     if len(errs) == 0 {
         return nil

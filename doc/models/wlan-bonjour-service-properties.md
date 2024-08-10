@@ -20,9 +20,7 @@
   "disable_local": false,
   "scope": "same_site",
   "radius_groups": [
-    "radius_groups3",
-    "radius_groups4",
-    "radius_groups5"
+    "radius_groups7"
   ]
 }
 ```

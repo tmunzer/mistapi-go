@@ -1,7 +1,7 @@
 
 # Sso Oauth Type Enum
 
-enum: `azure`, `azure-gov`, `okta`
+enum: `azure`, `azure-gov`, `okta`, `ping_identity`
 
 ## Enumeration
 
@@ -14,4 +14,5 @@ enum: `azure`, `azure-gov`, `okta`
 | `azure` |
 | `azure-gov` |
 | `okta` |
+| `ping_identity` |
 

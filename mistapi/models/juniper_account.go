@@ -35,7 +35,7 @@ func (j JuniperAccount) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for JuniperAccount.
 // It customizes the JSON unmarshaling process for JuniperAccount objects.
 func (j *JuniperAccount) UnmarshalJSON(input []byte) error {
-    var temp juniperAccount
+    var temp tempJuniperAccount
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (j *JuniperAccount) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// juniperAccount is a temporary struct used for validating the fields of JuniperAccount.
-type juniperAccount  struct {
+// tempJuniperAccount is a temporary struct used for validating the fields of JuniperAccount.
+type tempJuniperAccount  struct {
     LinkedBy *string `json:"linked_by,omitempty"`
     Name     *string `json:"name,omitempty"`
 }

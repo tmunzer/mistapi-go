@@ -76,10 +76,10 @@ Portal Template
 | `PassphraseTitle` | `*string` | Optional | Title for passphrase details page<br>**Default**: `"Sign in with Passphrase"` |
 | `PoweredBy` | `*bool` | Optional | whether to show “Powered by Mist”<br>**Default**: `true` |
 | `PrivacyPolicy` | `*bool` | Optional | **Default**: `false` |
-| `PrivacyPolicyAcceptLabel` | `*string` | Optional | prefix of the label of the link to go to /privacy_notice |
-| `PrivacyPolicyError` | `*string` | Optional | error message when privacy notice is not accepted |
-| `PrivacyPolicyLink` | `*string` | Optional | label of the link to go to /privacy_notice, |
-| `PrivacyPolicyText` | `*string` | Optional | privacy notice text |
+| `PrivacyPolicyAcceptLabel` | `*string` | Optional | prefix of the label of the link to go to /privacy_notice<br>**Default**: `"I accept the Privacy Notice"` |
+| `PrivacyPolicyError` | `*string` | Optional | error message when privacy notice is not accepted<br>**Default**: `"Please review and accept privacy notice"` |
+| `PrivacyPolicyLink` | `*string` | Optional | label of the link to go to /privacy_notice,<br>**Default**: `"Privacy Notice"` |
+| `PrivacyPolicyText` | `*string` | Optional | **Default**: `"privacy notice content"` |
 | `RequiredFieldLabel` | `*string` | Optional | label to denote required field<br>**Default**: `"required"` |
 | `SignInLabel` | `*string` | Optional | label of the button to /signin<br>**Default**: `"Sign In"` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
@@ -243,7 +243,7 @@ Portal Template
   "tosError": "Please review and accept terms of service",
   "tosLink": "Terms of Service",
   "tosText": "terms of service",
-  "alignment": "alignment6"
+  "alignment": "alignment0"
 }
 ```
 

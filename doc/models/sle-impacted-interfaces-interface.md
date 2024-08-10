@@ -20,11 +20,11 @@
 
 ```json
 {
-  "degraded": 24.42,
-  "duration": 153.48,
-  "interface_name": "interface_name6",
-  "switch_mac": "switch_mac0",
-  "switch_name": "switch_name4"
+  "degraded": 225.26,
+  "duration": 98.32,
+  "interface_name": "interface_name2",
+  "switch_mac": "switch_mac4",
+  "switch_name": "switch_name8"
 }
 ```
 

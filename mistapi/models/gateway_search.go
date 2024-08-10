@@ -80,7 +80,7 @@ func (g GatewaySearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewaySearch.
 // It customizes the JSON unmarshaling process for GatewaySearch objects.
 func (g *GatewaySearch) UnmarshalJSON(input []byte) error {
-    var temp gatewaySearch
+    var temp tempGatewaySearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -107,8 +107,8 @@ func (g *GatewaySearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewaySearch is a temporary struct used for validating the fields of GatewaySearch.
-type gatewaySearch  struct {
+// tempGatewaySearch is a temporary struct used for validating the fields of GatewaySearch.
+type tempGatewaySearch  struct {
     ExtIp        *string    `json:"ext_ip,omitempty"`
     Hostname     []string   `json:"hostname,omitempty"`
     Ip           *string    `json:"ip,omitempty"`

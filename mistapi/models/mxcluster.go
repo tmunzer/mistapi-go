@@ -125,7 +125,7 @@ func (m Mxcluster) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Mxcluster.
 // It customizes the JSON unmarshaling process for Mxcluster objects.
 func (m *Mxcluster) UnmarshalJSON(input []byte) error {
-    var temp mxcluster
+    var temp tempMxcluster
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -160,8 +160,8 @@ func (m *Mxcluster) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxcluster is a temporary struct used for validating the fields of Mxcluster.
-type mxcluster  struct {
+// tempMxcluster is a temporary struct used for validating the fields of Mxcluster.
+type tempMxcluster  struct {
     CreatedTime               *float64                              `json:"created_time,omitempty"`
     ForSite                   *bool                                 `json:"for_site,omitempty"`
     Id                        *uuid.UUID                            `json:"id,omitempty"`

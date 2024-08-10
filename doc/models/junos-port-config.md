@@ -38,9 +38,9 @@ Switch port config
   "mtu": 1514,
   "poe_disabled": false,
   "speed": "auto",
-  "usage": "usage0",
+  "usage": "usage6",
   "ae_disable_lacp": false,
-  "ae_idx": 84,
+  "ae_idx": 244,
   "critical": false
 }
 ```

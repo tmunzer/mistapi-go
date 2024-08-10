@@ -43,11 +43,18 @@ e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled
         "subnet3",
         "subnet4"
       ]
+    },
+    {
+      "port_range": "port_range6",
+      "protocol": "any",
+      "subnet": [
+        "subnet3",
+        "subnet4"
+      ]
     }
   ],
   "trusted_hosts": [
-    "trusted_hosts0",
-    "trusted_hosts1"
+    "trusted_hosts2"
   ]
 }
 ```

@@ -15,7 +15,7 @@
 
 ```json
 {
-  "cert": "cert2"
+  "cert": "cert4"
 }
 ```
 

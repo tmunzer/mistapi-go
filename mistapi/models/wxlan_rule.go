@@ -94,7 +94,7 @@ func (w WxlanRule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WxlanRule.
 // It customizes the JSON unmarshaling process for WxlanRule objects.
 func (w *WxlanRule) UnmarshalJSON(input []byte) error {
-    var temp wxlanRule
+    var temp tempWxlanRule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -127,8 +127,8 @@ func (w *WxlanRule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wxlanRule is a temporary struct used for validating the fields of WxlanRule.
-type wxlanRule  struct {
+// tempWxlanRule is a temporary struct used for validating the fields of WxlanRule.
+type tempWxlanRule  struct {
     Action         *WxlanRuleActionEnum `json:"action,omitempty"`
     ApplyTags      []string             `json:"apply_tags,omitempty"`
     BlockedApps    []string             `json:"blocked_apps,omitempty"`
@@ -146,13 +146,13 @@ type wxlanRule  struct {
     TemplateId     *uuid.UUID           `json:"template_id,omitempty"`
 }
 
-func (w *wxlanRule) validate() error {
+func (w *tempWxlanRule) validate() error {
     var errs []string
     if w.Order == nil {
-        errs = append(errs, "required field `order` is missing for type `Wxlan_Rule`")
+        errs = append(errs, "required field `order` is missing for type `wxlan_rule`")
     }
     if w.SrcWxtags == nil {
-        errs = append(errs, "required field `src_wxtags` is missing for type `Wxlan_Rule`")
+        errs = append(errs, "required field `src_wxtags` is missing for type `wxlan_rule`")
     }
     if len(errs) == 0 {
         return nil

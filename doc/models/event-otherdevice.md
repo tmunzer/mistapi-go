@@ -29,7 +29,7 @@
   "timestamp": 547235620.89,
   "type": "CELLULAR_EDGE_MODEM_WAN_PLUGGED",
   "vendor": "cradlepoint",
-  "device_mac": "device_mac4"
+  "device_mac": "device_mac8"
 }
 ```
 

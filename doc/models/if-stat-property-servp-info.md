@@ -22,10 +22,10 @@
 ```json
 {
   "asn": "asn0",
-  "city": "city6",
+  "city": "city4",
   "country_code": "country_code4",
-  "latitude": 150.02,
-  "longitude": 103.78
+  "latitude": 48.18,
+  "longitude": 45.98
 }
 ```
 

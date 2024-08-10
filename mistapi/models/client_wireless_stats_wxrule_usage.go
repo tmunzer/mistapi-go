@@ -36,7 +36,7 @@ func (c ClientWirelessStatsWxruleUsage) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClientWirelessStatsWxruleUsage.
 // It customizes the JSON unmarshaling process for ClientWirelessStatsWxruleUsage objects.
 func (c *ClientWirelessStatsWxruleUsage) UnmarshalJSON(input []byte) error {
-    var temp clientWirelessStatsWxruleUsage
+    var temp tempClientWirelessStatsWxruleUsage
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (c *ClientWirelessStatsWxruleUsage) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// clientWirelessStatsWxruleUsage is a temporary struct used for validating the fields of ClientWirelessStatsWxruleUsage.
-type clientWirelessStatsWxruleUsage  struct {
+// tempClientWirelessStatsWxruleUsage is a temporary struct used for validating the fields of ClientWirelessStatsWxruleUsage.
+type tempClientWirelessStatsWxruleUsage  struct {
     TagId *uuid.UUID `json:"tag_id,omitempty"`
     Usage *int       `json:"usage,omitempty"`
 }

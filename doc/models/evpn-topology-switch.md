@@ -99,14 +99,12 @@
     "deviceprofile_id": "00001f46-0000-0000-0000-000000000000"
   },
   "downlinks": [
-    "downlinks6",
-    "downlinks5"
+    "downlinks2"
   ],
   "esilaglinks": [
-    "esilaglinks4",
-    "esilaglinks5"
+    "esilaglinks2"
   ],
-  "evpn_id": 94
+  "evpn_id": 104
 }
 ```
 

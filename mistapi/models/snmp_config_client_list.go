@@ -35,7 +35,7 @@ func (s SnmpConfigClientList) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SnmpConfigClientList.
 // It customizes the JSON unmarshaling process for SnmpConfigClientList objects.
 func (s *SnmpConfigClientList) UnmarshalJSON(input []byte) error {
-    var temp snmpConfigClientList
+    var temp tempSnmpConfigClientList
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *SnmpConfigClientList) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpConfigClientList is a temporary struct used for validating the fields of SnmpConfigClientList.
-type snmpConfigClientList  struct {
+// tempSnmpConfigClientList is a temporary struct used for validating the fields of SnmpConfigClientList.
+type tempSnmpConfigClientList  struct {
     ClientListName *string  `json:"client_list_name,omitempty"`
     Clients        []string `json:"clients,omitempty"`
 }

@@ -8,7 +8,7 @@ import (
 // EventNacClient represents a EventNacClient struct.
 type EventNacClient struct {
     Ap                   *string        `json:"ap,omitempty"`
-    // authentication type, e.g. “eap-tls”, “eap-ttls”, “eap-teap”, “mab”, “psk”, “device-auth”
+    // authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth"
     AuthType             *string        `json:"auth_type,omitempty"`
     Bssid                *string        `json:"bssid,omitempty"`
     DeviceMac            *string        `json:"device_mac,omitempty"`
@@ -148,7 +148,7 @@ func (e EventNacClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EventNacClient.
 // It customizes the JSON unmarshaling process for EventNacClient objects.
 func (e *EventNacClient) UnmarshalJSON(input []byte) error {
-    var temp eventNacClient
+    var temp tempEventNacClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -189,8 +189,8 @@ func (e *EventNacClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// eventNacClient is a temporary struct used for validating the fields of EventNacClient.
-type eventNacClient  struct {
+// tempEventNacClient is a temporary struct used for validating the fields of EventNacClient.
+type tempEventNacClient  struct {
     Ap                   *string    `json:"ap,omitempty"`
     AuthType             *string    `json:"auth_type,omitempty"`
     Bssid                *string    `json:"bssid,omitempty"`

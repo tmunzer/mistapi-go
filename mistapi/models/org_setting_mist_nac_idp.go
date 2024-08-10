@@ -44,7 +44,7 @@ func (o OrgSettingMistNacIdp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingMistNacIdp.
 // It customizes the JSON unmarshaling process for OrgSettingMistNacIdp objects.
 func (o *OrgSettingMistNacIdp) UnmarshalJSON(input []byte) error {
-    var temp orgSettingMistNacIdp
+    var temp tempOrgSettingMistNacIdp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (o *OrgSettingMistNacIdp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingMistNacIdp is a temporary struct used for validating the fields of OrgSettingMistNacIdp.
-type orgSettingMistNacIdp  struct {
+// tempOrgSettingMistNacIdp is a temporary struct used for validating the fields of OrgSettingMistNacIdp.
+type tempOrgSettingMistNacIdp  struct {
     ExcludeRealms []string   `json:"exclude_realms,omitempty"`
     Id            *uuid.UUID `json:"id,omitempty"`
     UserRealms    []string   `json:"user_realms,omitempty"`

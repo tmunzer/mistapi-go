@@ -40,7 +40,7 @@ func (w WlanAppQos) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanAppQos.
 // It customizes the JSON unmarshaling process for WlanAppQos objects.
 func (w *WlanAppQos) UnmarshalJSON(input []byte) error {
-    var temp wlanAppQos
+    var temp tempWlanAppQos
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (w *WlanAppQos) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanAppQos is a temporary struct used for validating the fields of WlanAppQos.
-type wlanAppQos  struct {
+// tempWlanAppQos is a temporary struct used for validating the fields of WlanAppQos.
+type tempWlanAppQos  struct {
     Apps    map[string]WlanAppQosAppsProperties `json:"apps,omitempty"`
     Enabled *bool                               `json:"enabled,omitempty"`
     Others  []WlanAppQosOthersItem              `json:"others,omitempty"`

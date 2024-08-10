@@ -13,7 +13,7 @@
 | `EnableP2p` | `*bool` | Optional | whether to allow local AP-to-AP FW upgrade |
 | `Force` | `*bool` | Optional | true will force upgrade when requested version is same as running version<br>**Default**: `false` |
 | `MaxFailurePercentage` | `*float64` | Optional | percentage of failures allowed across the entire upgrade(not applicable for `big_bang`)<br>**Default**: `5`<br>**Constraints**: `>= 0`, `<= 100` |
-| `MaxFailures` | `[]int` | Optional | number of failures allowed within each phase. Only applicable for canary. Array length should be same as `canary_phases``. Will be used if provided, else max_failure_percentage will be used. |
+| `MaxFailures` | `[]int` | Optional | number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used |
 | `Models` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `P2pClusterSize` | `*int` | Optional | **Default**: `10`<br>**Constraints**: `>= 0` |
 | `P2pParallelism` | `*int` | Optional | number of parallel p2p download batches to creat |
@@ -35,7 +35,8 @@
 ```json
 {
   "canary_phases": [
-    71
+    139,
+    138
   ],
   "force": false,
   "max_failure_percentage": 5.0,
@@ -52,9 +53,8 @@
   "version": "3.1.5",
   "enable_p2p": false,
   "max_failures": [
-    185,
-    186,
-    187
+    253,
+    254
   ]
 }
 ```

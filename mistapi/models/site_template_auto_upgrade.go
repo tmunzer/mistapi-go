@@ -44,7 +44,7 @@ func (s SiteTemplateAutoUpgrade) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteTemplateAutoUpgrade.
 // It customizes the JSON unmarshaling process for SiteTemplateAutoUpgrade objects.
 func (s *SiteTemplateAutoUpgrade) UnmarshalJSON(input []byte) error {
-    var temp siteTemplateAutoUpgrade
+    var temp tempSiteTemplateAutoUpgrade
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (s *SiteTemplateAutoUpgrade) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteTemplateAutoUpgrade is a temporary struct used for validating the fields of SiteTemplateAutoUpgrade.
-type siteTemplateAutoUpgrade  struct {
+// tempSiteTemplateAutoUpgrade is a temporary struct used for validating the fields of SiteTemplateAutoUpgrade.
+type tempSiteTemplateAutoUpgrade  struct {
     DayOfWeek *DayOfWeekEnum `json:"day_of_week,omitempty"`
     Enabled   *bool          `json:"enabled,omitempty"`
     TimeOfDay *string        `json:"time_of_day,omitempty"`

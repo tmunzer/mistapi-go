@@ -34,7 +34,7 @@ func (m MxedgesAssign) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgesAssign.
 // It customizes the JSON unmarshaling process for MxedgesAssign objects.
 func (m *MxedgesAssign) UnmarshalJSON(input []byte) error {
-    var temp mxedgesAssign
+    var temp tempMxedgesAssign
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,19 +54,19 @@ func (m *MxedgesAssign) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgesAssign is a temporary struct used for validating the fields of MxedgesAssign.
-type mxedgesAssign  struct {
+// tempMxedgesAssign is a temporary struct used for validating the fields of MxedgesAssign.
+type tempMxedgesAssign  struct {
     MxedgeIds *[]uuid.UUID `json:"mxedge_ids"`
     SiteId    *uuid.UUID   `json:"site_id"`
 }
 
-func (m *mxedgesAssign) validate() error {
+func (m *tempMxedgesAssign) validate() error {
     var errs []string
     if m.MxedgeIds == nil {
-        errs = append(errs, "required field `mxedge_ids` is missing for type `Mxedges_Assign`")
+        errs = append(errs, "required field `mxedge_ids` is missing for type `mxedges_assign`")
     }
     if m.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Mxedges_Assign`")
+        errs = append(errs, "required field `site_id` is missing for type `mxedges_assign`")
     }
     if len(errs) == 0 {
         return nil

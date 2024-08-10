@@ -57,7 +57,7 @@ func (m MxedgeStatsCpuStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeStatsCpuStat.
 // It customizes the JSON unmarshaling process for MxedgeStatsCpuStat objects.
 func (m *MxedgeStatsCpuStat) UnmarshalJSON(input []byte) error {
-    var temp mxedgeStatsCpuStat
+    var temp tempMxedgeStatsCpuStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (m *MxedgeStatsCpuStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeStatsCpuStat is a temporary struct used for validating the fields of MxedgeStatsCpuStat.
-type mxedgeStatsCpuStat  struct {
+// tempMxedgeStatsCpuStat is a temporary struct used for validating the fields of MxedgeStatsCpuStat.
+type tempMxedgeStatsCpuStat  struct {
     Cpus      map[string]CpuStat `json:"cpus,omitempty"`
     Idle      *int               `json:"idle,omitempty"`
     Interrupt *int               `json:"interrupt,omitempty"`

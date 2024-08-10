@@ -24,7 +24,7 @@
   "hold_time": 90,
   "export_policy": "export_policy4",
   "import_policy": "import_policy8",
-  "multihop_ttl": 36
+  "multihop_ttl": 72
 }
 ```
 

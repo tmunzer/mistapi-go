@@ -21,9 +21,9 @@ Only if `provider`== `custom-ipsec`
 ```json
 {
   "type": "icmp",
-  "interval": 60,
-  "threshold": 120,
-  "timeout": 184
+  "interval": 192,
+  "threshold": 252,
+  "timeout": 60
 }
 ```
 

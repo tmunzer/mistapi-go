@@ -3,7 +3,7 @@
 
 ## Structure
 
-`ReponseRouter128TRegisterCmd`
+`ReponseRouter128tRegisterCmd`
 
 ## Fields
 
@@ -17,9 +17,9 @@
 
 ```json
 {
-  "conductor_cmd": "conductor_cmd4",
-  "registration_code": "registration_code8",
-  "router_shell_cmd": "router_shell_cmd6"
+  "conductor_cmd": "conductor_cmd6",
+  "registration_code": "registration_code0",
+  "router_shell_cmd": "router_shell_cmd4"
 }
 ```
 

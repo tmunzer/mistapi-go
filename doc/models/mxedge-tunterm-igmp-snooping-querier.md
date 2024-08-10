@@ -23,7 +23,7 @@
   "mtu": 1500,
   "query_interval": 125,
   "version": 3,
-  "robustness": 170
+  "robustness": 150
 }
 ```
 

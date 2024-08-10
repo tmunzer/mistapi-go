@@ -31,15 +31,15 @@ LLDP Stat (neighbor information, power negotiations)
   "port_id": "ge-0/0/4",
   "system_desc": "uniper Networks, Inc. ex4300-48t internet router, kernel JUNOS 20.4R3-S7.2, Build date: 2023-04-21 19:47:18 UTC Copyright (c) 1996-2023 Juniper Networks, Inc.",
   "system_name": "Core-AE23",
-  "chassis_id": "chassis_id8",
+  "chassis_id": "chassis_id0",
   "lldp_med_supported": false,
-  "mgmt_addr": "mgmt_addr6",
+  "mgmt_addr": "mgmt_addr8",
   "mgmt_addrs": [
-    "mgmt_addrs1",
-    "mgmt_addrs2",
-    "mgmt_addrs3"
+    "mgmt_addrs3",
+    "mgmt_addrs4",
+    "mgmt_addrs5"
   ],
-  "port_desc": "port_desc2"
+  "port_desc": "port_desc4"
 }
 ```
 

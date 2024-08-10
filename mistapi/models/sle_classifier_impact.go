@@ -37,7 +37,7 @@ func (s SleClassifierImpact) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleClassifierImpact.
 // It customizes the JSON unmarshaling process for SleClassifierImpact objects.
 func (s *SleClassifierImpact) UnmarshalJSON(input []byte) error {
-    var temp sleClassifierImpact
+    var temp tempSleClassifierImpact
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,27 +59,27 @@ func (s *SleClassifierImpact) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleClassifierImpact is a temporary struct used for validating the fields of SleClassifierImpact.
-type sleClassifierImpact  struct {
+// tempSleClassifierImpact is a temporary struct used for validating the fields of SleClassifierImpact.
+type tempSleClassifierImpact  struct {
     NumAps     *float64 `json:"num_aps"`
     NumUsers   *float64 `json:"num_users"`
     TotalAps   *float64 `json:"total_aps"`
     TotalUsers *float64 `json:"total_users"`
 }
 
-func (s *sleClassifierImpact) validate() error {
+func (s *tempSleClassifierImpact) validate() error {
     var errs []string
     if s.NumAps == nil {
-        errs = append(errs, "required field `num_aps` is missing for type `Sle_Classifier_Impact`")
+        errs = append(errs, "required field `num_aps` is missing for type `sle_classifier_impact`")
     }
     if s.NumUsers == nil {
-        errs = append(errs, "required field `num_users` is missing for type `Sle_Classifier_Impact`")
+        errs = append(errs, "required field `num_users` is missing for type `sle_classifier_impact`")
     }
     if s.TotalAps == nil {
-        errs = append(errs, "required field `total_aps` is missing for type `Sle_Classifier_Impact`")
+        errs = append(errs, "required field `total_aps` is missing for type `sle_classifier_impact`")
     }
     if s.TotalUsers == nil {
-        errs = append(errs, "required field `total_users` is missing for type `Sle_Classifier_Impact`")
+        errs = append(errs, "required field `total_users` is missing for type `sle_classifier_impact`")
     }
     if len(errs) == 0 {
         return nil

@@ -51,7 +51,7 @@ func (s SleImpactedUsersUser) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactedUsersUser.
 // It customizes the JSON unmarshaling process for SleImpactedUsersUser objects.
 func (s *SleImpactedUsersUser) UnmarshalJSON(input []byte) error {
-    var temp sleImpactedUsersUser
+    var temp tempSleImpactedUsersUser
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -80,8 +80,8 @@ func (s *SleImpactedUsersUser) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactedUsersUser is a temporary struct used for validating the fields of SleImpactedUsersUser.
-type sleImpactedUsersUser  struct {
+// tempSleImpactedUsersUser is a temporary struct used for validating the fields of SleImpactedUsersUser.
+type tempSleImpactedUsersUser  struct {
     ApMac      *string  `json:"ap_mac"`
     ApName     *string  `json:"ap_name"`
     Degraded   *float64 `json:"degraded"`
@@ -95,40 +95,40 @@ type sleImpactedUsersUser  struct {
     WlanId     *string  `json:"wlan_id"`
 }
 
-func (s *sleImpactedUsersUser) validate() error {
+func (s *tempSleImpactedUsersUser) validate() error {
     var errs []string
     if s.ApMac == nil {
-        errs = append(errs, "required field `ap_mac` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `ap_mac` is missing for type `sle_impacted_users_user`")
     }
     if s.ApName == nil {
-        errs = append(errs, "required field `ap_name` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `ap_name` is missing for type `sle_impacted_users_user`")
     }
     if s.Degraded == nil {
-        errs = append(errs, "required field `degraded` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `degraded` is missing for type `sle_impacted_users_user`")
     }
     if s.DeviceOs == nil {
-        errs = append(errs, "required field `device_os` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `device_os` is missing for type `sle_impacted_users_user`")
     }
     if s.DeviceType == nil {
-        errs = append(errs, "required field `device_type` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `device_type` is missing for type `sle_impacted_users_user`")
     }
     if s.Duration == nil {
-        errs = append(errs, "required field `duration` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `duration` is missing for type `sle_impacted_users_user`")
     }
     if s.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `mac` is missing for type `sle_impacted_users_user`")
     }
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `name` is missing for type `sle_impacted_users_user`")
     }
     if s.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `ssid` is missing for type `sle_impacted_users_user`")
     }
     if s.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `total` is missing for type `sle_impacted_users_user`")
     }
     if s.WlanId == nil {
-        errs = append(errs, "required field `wlan_id` is missing for type `Sle_Impacted_Users_User`")
+        errs = append(errs, "required field `wlan_id` is missing for type `sle_impacted_users_user`")
     }
     if len(errs) == 0 {
         return nil

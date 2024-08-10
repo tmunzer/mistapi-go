@@ -31,7 +31,7 @@ func (w WebsocketSession) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebsocketSession.
 // It customizes the JSON unmarshaling process for WebsocketSession objects.
 func (w *WebsocketSession) UnmarshalJSON(input []byte) error {
-    var temp websocketSession
+    var temp tempWebsocketSession
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (w *WebsocketSession) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// websocketSession is a temporary struct used for validating the fields of WebsocketSession.
-type websocketSession  struct {
+// tempWebsocketSession is a temporary struct used for validating the fields of WebsocketSession.
+type tempWebsocketSession  struct {
     Session *string `json:"session"`
 }
 
-func (w *websocketSession) validate() error {
+func (w *tempWebsocketSession) validate() error {
     var errs []string
     if w.Session == nil {
-        errs = append(errs, "required field `session` is missing for type `Websocket_Session`")
+        errs = append(errs, "required field `session` is missing for type `websocket_session`")
     }
     if len(errs) == 0 {
         return nil

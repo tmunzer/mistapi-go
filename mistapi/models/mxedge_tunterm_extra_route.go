@@ -31,7 +31,7 @@ func (m MxedgeTuntermExtraRoute) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeTuntermExtraRoute.
 // It customizes the JSON unmarshaling process for MxedgeTuntermExtraRoute objects.
 func (m *MxedgeTuntermExtraRoute) UnmarshalJSON(input []byte) error {
-    var temp mxedgeTuntermExtraRoute
+    var temp tempMxedgeTuntermExtraRoute
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (m *MxedgeTuntermExtraRoute) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeTuntermExtraRoute is a temporary struct used for validating the fields of MxedgeTuntermExtraRoute.
-type mxedgeTuntermExtraRoute  struct {
+// tempMxedgeTuntermExtraRoute is a temporary struct used for validating the fields of MxedgeTuntermExtraRoute.
+type tempMxedgeTuntermExtraRoute  struct {
     Via *string `json:"via,omitempty"`
 }

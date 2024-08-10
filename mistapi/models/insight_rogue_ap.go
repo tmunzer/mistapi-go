@@ -69,7 +69,7 @@ func (i InsightRogueAp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for InsightRogueAp.
 // It customizes the JSON unmarshaling process for InsightRogueAp objects.
 func (i *InsightRogueAp) UnmarshalJSON(input []byte) error {
-    var temp insightRogueAp
+    var temp tempInsightRogueAp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -97,8 +97,8 @@ func (i *InsightRogueAp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// insightRogueAp is a temporary struct used for validating the fields of InsightRogueAp.
-type insightRogueAp  struct {
+// tempInsightRogueAp is a temporary struct used for validating the fields of InsightRogueAp.
+type tempInsightRogueAp  struct {
     ApMac      *string  `json:"ap_mac"`
     AvgRssi    *float64 `json:"avg_rssi"`
     Bssid      *string  `json:"bssid"`
@@ -111,22 +111,22 @@ type insightRogueAp  struct {
     TimesHeard *int     `json:"times_heard,omitempty"`
 }
 
-func (i *insightRogueAp) validate() error {
+func (i *tempInsightRogueAp) validate() error {
     var errs []string
     if i.ApMac == nil {
-        errs = append(errs, "required field `ap_mac` is missing for type `Insight_Rogue_Ap`")
+        errs = append(errs, "required field `ap_mac` is missing for type `insight_rogue_ap`")
     }
     if i.AvgRssi == nil {
-        errs = append(errs, "required field `avg_rssi` is missing for type `Insight_Rogue_Ap`")
+        errs = append(errs, "required field `avg_rssi` is missing for type `insight_rogue_ap`")
     }
     if i.Bssid == nil {
-        errs = append(errs, "required field `bssid` is missing for type `Insight_Rogue_Ap`")
+        errs = append(errs, "required field `bssid` is missing for type `insight_rogue_ap`")
     }
     if i.Channel == nil {
-        errs = append(errs, "required field `channel` is missing for type `Insight_Rogue_Ap`")
+        errs = append(errs, "required field `channel` is missing for type `insight_rogue_ap`")
     }
     if i.NumAps == nil {
-        errs = append(errs, "required field `num_aps` is missing for type `Insight_Rogue_Ap`")
+        errs = append(errs, "required field `num_aps` is missing for type `insight_rogue_ap`")
     }
     if len(errs) == 0 {
         return nil

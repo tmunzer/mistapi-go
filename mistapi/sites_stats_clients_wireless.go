@@ -23,7 +23,7 @@ func NewSitesStatsClientsWireless(baseController baseController) *SitesStatsClie
 }
 
 // ListSiteWirelessClientsStats takes context, siteId, wired, limit, start, end, duration as parameters and
-// returns an models.ApiResponse with []models.StatsClientAnyOf data and
+// returns an models.ApiResponse with []models.ClientStats data and
 // an error if there was an issue with the request or response.
 // Get List of Site All Clients Stats Details
 func (s *SitesStatsClientsWireless) ListSiteWirelessClientsStats(
@@ -34,7 +34,7 @@ func (s *SitesStatsClientsWireless) ListSiteWirelessClientsStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[]models.StatsClientAnyOf],
+    models.ApiResponse[[]models.ClientStats],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -54,10 +54,10 @@ func (s *SitesStatsClientsWireless) ListSiteWirelessClientsStats(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     if wired != nil {
         req.QueryParam("wired", *wired)
@@ -75,18 +75,18 @@ func (s *SitesStatsClientsWireless) ListSiteWirelessClientsStats(
         req.QueryParam("duration", *duration)
     }
     
-    var result []models.StatsClientAnyOf
+    var result []models.ClientStats
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.StatsClientAnyOf](decoder)
+    result, err = utilities.DecodeResults[[]models.ClientStats](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // GetSiteWirelessClientStats takes context, siteId, clientMac, wired as parameters and
-// returns an models.ApiResponse with []models.StatsClientAnyOf data and
+// returns an models.ApiResponse with []models.ClientStats data and
 // an error if there was an issue with the request or response.
 // Get Site Client Stats Details
 func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
@@ -94,7 +94,7 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
     siteId uuid.UUID,
     clientMac string,
     wired *bool) (
-    models.ApiResponse[[]models.StatsClientAnyOf],
+    models.ApiResponse[[]models.ClientStats],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -114,22 +114,22 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     if wired != nil {
         req.QueryParam("wired", *wired)
     }
     
-    var result []models.StatsClientAnyOf
+    var result []models.ClientStats
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.StatsClientAnyOf](decoder)
+    result, err = utilities.DecodeResults[[]models.ClientStats](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -166,10 +166,10 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientsStatsByMap(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     if page != nil {
         req.QueryParam("page", *page)
@@ -225,10 +225,10 @@ func (s *SitesStatsClientsWireless) ListSiteUnconnectedClientStats(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
     var result []models.UnconnectedClientStat

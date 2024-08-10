@@ -39,7 +39,7 @@ func (s SleSummarySle) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleSummarySle.
 // It customizes the JSON unmarshaling process for SleSummarySle objects.
 func (s *SleSummarySle) UnmarshalJSON(input []byte) error {
-    var temp sleSummarySle
+    var temp tempSleSummarySle
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (s *SleSummarySle) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleSummarySle is a temporary struct used for validating the fields of SleSummarySle.
-type sleSummarySle  struct {
+// tempSleSummarySle is a temporary struct used for validating the fields of SleSummarySle.
+type tempSleSummarySle  struct {
     Interval *float64              `json:"interval"`
     Name     *string               `json:"name"`
     Samples  *SleSummarySleSamples `json:"samples"`
@@ -71,22 +71,22 @@ type sleSummarySle  struct {
     YLabel   *string               `json:"y_label"`
 }
 
-func (s *sleSummarySle) validate() error {
+func (s *tempSleSummarySle) validate() error {
     var errs []string
     if s.Interval == nil {
-        errs = append(errs, "required field `interval` is missing for type `Sle_Summary_Sle`")
+        errs = append(errs, "required field `interval` is missing for type `sle_summary_sle`")
     }
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sle_Summary_Sle`")
+        errs = append(errs, "required field `name` is missing for type `sle_summary_sle`")
     }
     if s.Samples == nil {
-        errs = append(errs, "required field `samples` is missing for type `Sle_Summary_Sle`")
+        errs = append(errs, "required field `samples` is missing for type `sle_summary_sle`")
     }
     if s.XLabel == nil {
-        errs = append(errs, "required field `x_label` is missing for type `Sle_Summary_Sle`")
+        errs = append(errs, "required field `x_label` is missing for type `sle_summary_sle`")
     }
     if s.YLabel == nil {
-        errs = append(errs, "required field `y_label` is missing for type `Sle_Summary_Sle`")
+        errs = append(errs, "required field `y_label` is missing for type `sle_summary_sle`")
     }
     if len(errs) == 0 {
         return nil

@@ -72,7 +72,7 @@ func (c CallStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CallStats.
 // It customizes the JSON unmarshaling process for CallStats objects.
 func (c *CallStats) UnmarshalJSON(input []byte) error {
-    var temp callStats
+    var temp tempCallStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -97,8 +97,8 @@ func (c *CallStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// callStats is a temporary struct used for validating the fields of CallStats.
-type callStats  struct {
+// tempCallStats is a temporary struct used for validating the fields of CallStats.
+type tempCallStats  struct {
     App                *string    `json:"app,omitempty"`
     AudioQuality       *int       `json:"audio_quality,omitempty"`
     EndTime            *int       `json:"end_time,omitempty"`

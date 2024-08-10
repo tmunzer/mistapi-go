@@ -16,10 +16,11 @@
 
 ```json
 {
-  "member": 40.02,
+  "member": 64.66,
   "vc_ports": [
-    "vc_ports0",
-    "vc_ports1"
+    "vc_ports4",
+    "vc_ports5",
+    "vc_ports6"
   ]
 }
 ```

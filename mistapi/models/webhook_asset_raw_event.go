@@ -98,7 +98,7 @@ func (w WebhookAssetRawEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookAssetRawEvent.
 // It customizes the JSON unmarshaling process for WebhookAssetRawEvent objects.
 func (w *WebhookAssetRawEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookAssetRawEvent
+    var temp tempWebhookAssetRawEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -134,8 +134,8 @@ func (w *WebhookAssetRawEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookAssetRawEvent is a temporary struct used for validating the fields of WebhookAssetRawEvent.
-type webhookAssetRawEvent  struct {
+// tempWebhookAssetRawEvent is a temporary struct used for validating the fields of WebhookAssetRawEvent.
+type tempWebhookAssetRawEvent  struct {
     AssetId               *uuid.UUID      `json:"asset_id"`
     Beam                  *int            `json:"beam"`
     DeviceId              *uuid.UUID      `json:"device_id"`
@@ -156,37 +156,37 @@ type webhookAssetRawEvent  struct {
     Timestamp             *float64        `json:"timestamp"`
 }
 
-func (w *webhookAssetRawEvent) validate() error {
+func (w *tempWebhookAssetRawEvent) validate() error {
     var errs []string
     if w.AssetId == nil {
-        errs = append(errs, "required field `asset_id` is missing for type `Webhook_Asset_Raw_Event`")
+        errs = append(errs, "required field `asset_id` is missing for type `webhook_asset_raw_event`")
     }
     if w.Beam == nil {
-        errs = append(errs, "required field `beam` is missing for type `Webhook_Asset_Raw_Event`")
+        errs = append(errs, "required field `beam` is missing for type `webhook_asset_raw_event`")
     }
     if w.DeviceId == nil {
-        errs = append(errs, "required field `device_id` is missing for type `Webhook_Asset_Raw_Event`")
+        errs = append(errs, "required field `device_id` is missing for type `webhook_asset_raw_event`")
     }
     if w.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Webhook_Asset_Raw_Event`")
+        errs = append(errs, "required field `mac` is missing for type `webhook_asset_raw_event`")
     }
     if w.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Webhook_Asset_Raw_Event`")
+        errs = append(errs, "required field `map_id` is missing for type `webhook_asset_raw_event`")
     }
     if w.MfgCompanyId == nil {
-        errs = append(errs, "required field `mfg_company_id` is missing for type `Webhook_Asset_Raw_Event`")
+        errs = append(errs, "required field `mfg_company_id` is missing for type `webhook_asset_raw_event`")
     }
     if w.MfgData == nil {
-        errs = append(errs, "required field `mfg_data` is missing for type `Webhook_Asset_Raw_Event`")
+        errs = append(errs, "required field `mfg_data` is missing for type `webhook_asset_raw_event`")
     }
     if w.Rssi == nil {
-        errs = append(errs, "required field `rssi` is missing for type `Webhook_Asset_Raw_Event`")
+        errs = append(errs, "required field `rssi` is missing for type `webhook_asset_raw_event`")
     }
     if w.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Webhook_Asset_Raw_Event`")
+        errs = append(errs, "required field `site_id` is missing for type `webhook_asset_raw_event`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Asset_Raw_Event`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_asset_raw_event`")
     }
     if len(errs) == 0 {
         return nil

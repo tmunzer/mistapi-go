@@ -35,7 +35,7 @@ func (r ResponseSsoFailureSearchItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSsoFailureSearchItem.
 // It customizes the JSON unmarshaling process for ResponseSsoFailureSearchItem objects.
 func (r *ResponseSsoFailureSearchItem) UnmarshalJSON(input []byte) error {
-    var temp responseSsoFailureSearchItem
+    var temp tempResponseSsoFailureSearchItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,23 +56,23 @@ func (r *ResponseSsoFailureSearchItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSsoFailureSearchItem is a temporary struct used for validating the fields of ResponseSsoFailureSearchItem.
-type responseSsoFailureSearchItem  struct {
+// tempResponseSsoFailureSearchItem is a temporary struct used for validating the fields of ResponseSsoFailureSearchItem.
+type tempResponseSsoFailureSearchItem  struct {
     Detail           *string  `json:"detail"`
     SamlAssertionXml *string  `json:"saml_assertion_xml"`
     Timestamp        *float64 `json:"timestamp"`
 }
 
-func (r *responseSsoFailureSearchItem) validate() error {
+func (r *tempResponseSsoFailureSearchItem) validate() error {
     var errs []string
     if r.Detail == nil {
-        errs = append(errs, "required field `detail` is missing for type `Response_Sso_Failure_Search_Item`")
+        errs = append(errs, "required field `detail` is missing for type `response_sso_failure_search_item`")
     }
     if r.SamlAssertionXml == nil {
-        errs = append(errs, "required field `saml_assertion_xml` is missing for type `Response_Sso_Failure_Search_Item`")
+        errs = append(errs, "required field `saml_assertion_xml` is missing for type `response_sso_failure_search_item`")
     }
     if r.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Response_Sso_Failure_Search_Item`")
+        errs = append(errs, "required field `timestamp` is missing for type `response_sso_failure_search_item`")
     }
     if len(errs) == 0 {
         return nil

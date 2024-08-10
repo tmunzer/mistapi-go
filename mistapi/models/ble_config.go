@@ -161,7 +161,7 @@ func (b BleConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for BleConfig.
 // It customizes the JSON unmarshaling process for BleConfig objects.
 func (b *BleConfig) UnmarshalJSON(input []byte) error {
-    var temp bleConfig
+    var temp tempBleConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -202,8 +202,8 @@ func (b *BleConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// bleConfig is a temporary struct used for validating the fields of BleConfig.
-type bleConfig  struct {
+// tempBleConfig is a temporary struct used for validating the fields of BleConfig.
+type tempBleConfig  struct {
     BeaconEnabled           *bool                        `json:"beacon_enabled,omitempty"`
     BeaconRate              *int                         `json:"beacon_rate,omitempty"`
     BeaconRateMode          *BleConfigBeaconRateModeEnum `json:"beacon_rate_mode,omitempty"`

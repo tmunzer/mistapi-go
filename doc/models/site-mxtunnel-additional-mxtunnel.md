@@ -39,12 +39,6 @@
       "tunterm_hosts": [
         "tunterm_hosts6"
       ]
-    },
-    {
-      "name": "name6",
-      "tunterm_hosts": [
-        "tunterm_hosts6"
-      ]
     }
   ]
 }

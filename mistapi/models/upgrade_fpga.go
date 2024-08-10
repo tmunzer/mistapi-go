@@ -37,7 +37,7 @@ func (u UpgradeFpga) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UpgradeFpga.
 // It customizes the JSON unmarshaling process for UpgradeFpga objects.
 func (u *UpgradeFpga) UnmarshalJSON(input []byte) error {
-    var temp upgradeFpga
+    var temp tempUpgradeFpga
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (u *UpgradeFpga) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// upgradeFpga is a temporary struct used for validating the fields of UpgradeFpga.
-type upgradeFpga  struct {
+// tempUpgradeFpga is a temporary struct used for validating the fields of UpgradeFpga.
+type tempUpgradeFpga  struct {
     Reboot  *bool   `json:"reboot,omitempty"`
     Version *string `json:"version,omitempty"`
 }

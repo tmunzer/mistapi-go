@@ -16,8 +16,8 @@
 
 ```json
 {
-  "authorization_url": "authorization_url4",
-  "client_id": "client_id6"
+  "authorization_url": "authorization_url8",
+  "client_id": "client_id0"
 }
 ```
 

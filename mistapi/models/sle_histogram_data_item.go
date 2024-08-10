@@ -35,7 +35,7 @@ func (s SleHistogramDataItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleHistogramDataItem.
 // It customizes the JSON unmarshaling process for SleHistogramDataItem objects.
 func (s *SleHistogramDataItem) UnmarshalJSON(input []byte) error {
-    var temp sleHistogramDataItem
+    var temp tempSleHistogramDataItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,16 +55,16 @@ func (s *SleHistogramDataItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleHistogramDataItem is a temporary struct used for validating the fields of SleHistogramDataItem.
-type sleHistogramDataItem  struct {
+// tempSleHistogramDataItem is a temporary struct used for validating the fields of SleHistogramDataItem.
+type tempSleHistogramDataItem  struct {
     Range []float64 `json:"range,omitempty"`
     Value *float64  `json:"value"`
 }
 
-func (s *sleHistogramDataItem) validate() error {
+func (s *tempSleHistogramDataItem) validate() error {
     var errs []string
     if s.Value == nil {
-        errs = append(errs, "required field `value` is missing for type `Sle_Histogram_Data_Item`")
+        errs = append(errs, "required field `value` is missing for type `sle_histogram_data_item`")
     }
     if len(errs) == 0 {
         return nil

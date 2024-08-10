@@ -24,7 +24,7 @@
   "port": 33434,
   "protocol": "udp",
   "timeout": 60,
-  "host": "host4"
+  "host": "host2"
 }
 ```
 

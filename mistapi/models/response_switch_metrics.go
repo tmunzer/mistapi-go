@@ -39,7 +39,7 @@ func (r ResponseSwitchMetrics) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSwitchMetrics.
 // It customizes the JSON unmarshaling process for ResponseSwitchMetrics objects.
 func (r *ResponseSwitchMetrics) UnmarshalJSON(input []byte) error {
-    var temp responseSwitchMetrics
+    var temp tempResponseSwitchMetrics
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (r *ResponseSwitchMetrics) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSwitchMetrics is a temporary struct used for validating the fields of ResponseSwitchMetrics.
-type responseSwitchMetrics  struct {
+// tempResponseSwitchMetrics is a temporary struct used for validating the fields of ResponseSwitchMetrics.
+type tempResponseSwitchMetrics  struct {
     ActivePortsSummary *ResponseSwitchMetricsActivePortsSummary `json:"active_ports_summary,omitempty"`
     ConfigSuccess      *ResponseSwitchMetricsConfigSuccess      `json:"config_success,omitempty"`
     VersionCompliance  *ResponseSwitchMetricsVersionCompliance  `json:"version_compliance,omitempty"`

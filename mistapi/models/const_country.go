@@ -39,7 +39,7 @@ func (c ConstCountry) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstCountry.
 // It customizes the JSON unmarshaling process for ConstCountry objects.
 func (c *ConstCountry) UnmarshalJSON(input []byte) error {
-    var temp constCountry
+    var temp tempConstCountry
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,27 +61,27 @@ func (c *ConstCountry) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constCountry is a temporary struct used for validating the fields of ConstCountry.
-type constCountry  struct {
+// tempConstCountry is a temporary struct used for validating the fields of ConstCountry.
+type tempConstCountry  struct {
     Alpha2    *string  `json:"alpha2"`
     Certified *bool    `json:"certified"`
     Name      *string  `json:"name"`
     Numeric   *float64 `json:"numeric"`
 }
 
-func (c *constCountry) validate() error {
+func (c *tempConstCountry) validate() error {
     var errs []string
     if c.Alpha2 == nil {
-        errs = append(errs, "required field `alpha2` is missing for type `Const_Country`")
+        errs = append(errs, "required field `alpha2` is missing for type `const_country`")
     }
     if c.Certified == nil {
-        errs = append(errs, "required field `certified` is missing for type `Const_Country`")
+        errs = append(errs, "required field `certified` is missing for type `const_country`")
     }
     if c.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Const_Country`")
+        errs = append(errs, "required field `name` is missing for type `const_country`")
     }
     if c.Numeric == nil {
-        errs = append(errs, "required field `numeric` is missing for type `Const_Country`")
+        errs = append(errs, "required field `numeric` is missing for type `const_country`")
     }
     if len(errs) == 0 {
         return nil

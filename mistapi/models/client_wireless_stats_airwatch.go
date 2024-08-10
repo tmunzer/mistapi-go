@@ -32,7 +32,7 @@ func (c ClientWirelessStatsAirwatch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClientWirelessStatsAirwatch.
 // It customizes the JSON unmarshaling process for ClientWirelessStatsAirwatch objects.
 func (c *ClientWirelessStatsAirwatch) UnmarshalJSON(input []byte) error {
-    var temp clientWirelessStatsAirwatch
+    var temp tempClientWirelessStatsAirwatch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,15 +51,15 @@ func (c *ClientWirelessStatsAirwatch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// clientWirelessStatsAirwatch is a temporary struct used for validating the fields of ClientWirelessStatsAirwatch.
-type clientWirelessStatsAirwatch  struct {
+// tempClientWirelessStatsAirwatch is a temporary struct used for validating the fields of ClientWirelessStatsAirwatch.
+type tempClientWirelessStatsAirwatch  struct {
     Authorized *bool `json:"authorized"`
 }
 
-func (c *clientWirelessStatsAirwatch) validate() error {
+func (c *tempClientWirelessStatsAirwatch) validate() error {
     var errs []string
     if c.Authorized == nil {
-        errs = append(errs, "required field `authorized` is missing for type `Client_Wireless_Stats_Airwatch`")
+        errs = append(errs, "required field `authorized` is missing for type `client_wireless_stats_airwatch`")
     }
     if len(errs) == 0 {
         return nil

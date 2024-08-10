@@ -27,9 +27,9 @@ out-of-band (vme/em0/fxp0) IP config
   "type": "static",
   "use_mgmt_vrf": false,
   "use_mgmt_vrf_for_host_out": false,
-  "gateway": "gateway4",
-  "ip": "ip8",
-  "netmask": "netmask4",
+  "gateway": "gateway0",
+  "ip": "ip4",
+  "netmask": "netmask0",
   "node1": {
     "gateway": "gateway2",
     "ip": "ip6",

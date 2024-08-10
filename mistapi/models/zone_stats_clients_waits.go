@@ -48,7 +48,7 @@ func (z ZoneStatsClientsWaits) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ZoneStatsClientsWaits.
 // It customizes the JSON unmarshaling process for ZoneStatsClientsWaits objects.
 func (z *ZoneStatsClientsWaits) UnmarshalJSON(input []byte) error {
-    var temp zoneStatsClientsWaits
+    var temp tempZoneStatsClientsWaits
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (z *ZoneStatsClientsWaits) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// zoneStatsClientsWaits is a temporary struct used for validating the fields of ZoneStatsClientsWaits.
-type zoneStatsClientsWaits  struct {
+// tempZoneStatsClientsWaits is a temporary struct used for validating the fields of ZoneStatsClientsWaits.
+type tempZoneStatsClientsWaits  struct {
     Avg *float64 `json:"avg,omitempty"`
     Max *float64 `json:"max,omitempty"`
     Min *float64 `json:"min,omitempty"`

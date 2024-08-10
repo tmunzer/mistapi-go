@@ -7,13 +7,13 @@ import (
 // PskPortalTemplate represents a PskPortalTemplate struct.
 type PskPortalTemplate struct {
     // defines alignment on portal. enum: `center`, `left`, `right`
-    Alignment            *PskPortalTemplateAlignmentEnum `json:"alignment,omitempty"`
-    Color                *string                         `json:"color,omitempty"`
-    // custom logo.  default null, uses Juniper Mist Logo
-    Logo                 Optional[string]                `json:"logo"`
+    Alignment            *PortalTemplateAlignmentEnum `json:"alignment,omitempty"`
+    Color                *string                      `json:"color,omitempty"`
+    // custom logo with “data:image/png;base64,” format.  default null, uses Juniper Mist Logo
+    Logo                 Optional[string]             `json:"logo"`
     // whether to hide "Powered by Juniper Mist" and email footers
-    PoweredBy            *bool                           `json:"poweredBy,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    PoweredBy            *bool                        `json:"poweredBy,omitempty"`
+    AdditionalProperties map[string]any               `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalTemplate.
@@ -50,7 +50,7 @@ func (p PskPortalTemplate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PskPortalTemplate.
 // It customizes the JSON unmarshaling process for PskPortalTemplate objects.
 func (p *PskPortalTemplate) UnmarshalJSON(input []byte) error {
-    var temp pskPortalTemplate
+    var temp tempPskPortalTemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -68,10 +68,10 @@ func (p *PskPortalTemplate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// pskPortalTemplate is a temporary struct used for validating the fields of PskPortalTemplate.
-type pskPortalTemplate  struct {
-    Alignment *PskPortalTemplateAlignmentEnum `json:"alignment,omitempty"`
-    Color     *string                         `json:"color,omitempty"`
-    Logo      Optional[string]                `json:"logo"`
-    PoweredBy *bool                           `json:"poweredBy,omitempty"`
+// tempPskPortalTemplate is a temporary struct used for validating the fields of PskPortalTemplate.
+type tempPskPortalTemplate  struct {
+    Alignment *PortalTemplateAlignmentEnum `json:"alignment,omitempty"`
+    Color     *string                      `json:"color,omitempty"`
+    Logo      Optional[string]             `json:"logo"`
+    PoweredBy *bool                        `json:"poweredBy,omitempty"`
 }

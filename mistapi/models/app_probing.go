@@ -6,6 +6,7 @@ import (
 
 // AppProbing represents a AppProbing struct.
 type AppProbing struct {
+    // app-keys from /api/v1/const/applications
     Apps                 []string              `json:"apps,omitempty"`
     CustomApps           []AppProbingCustomApp `json:"custom_apps,omitempty"`
     Enabled              *bool                 `json:"enabled,omitempty"`
@@ -39,7 +40,7 @@ func (a AppProbing) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AppProbing.
 // It customizes the JSON unmarshaling process for AppProbing objects.
 func (a *AppProbing) UnmarshalJSON(input []byte) error {
-    var temp appProbing
+    var temp tempAppProbing
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +57,8 @@ func (a *AppProbing) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// appProbing is a temporary struct used for validating the fields of AppProbing.
-type appProbing  struct {
+// tempAppProbing is a temporary struct used for validating the fields of AppProbing.
+type tempAppProbing  struct {
     Apps       []string              `json:"apps,omitempty"`
     CustomApps []AppProbingCustomApp `json:"custom_apps,omitempty"`
     Enabled    *bool                 `json:"enabled,omitempty"`

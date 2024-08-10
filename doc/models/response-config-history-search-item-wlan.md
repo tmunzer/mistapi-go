@@ -21,16 +21,12 @@
 {
   "auth": "auth0",
   "bands": [
-    "bands4",
-    "bands5",
-    "bands6"
+    "bands4"
   ],
-  "id": "00000388-0000-0000-0000-000000000000",
-  "ssid": "ssid2",
+  "id": "00000130-0000-0000-0000-000000000000",
+  "ssid": "ssid8",
   "vlan_ids": [
-    "vlan_ids0",
-    "vlan_ids1",
-    "vlan_ids2"
+    "vlan_ids6"
   ]
 }
 ```

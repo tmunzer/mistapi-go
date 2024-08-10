@@ -45,7 +45,7 @@ func (s SnmpConfigTrapGroup) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SnmpConfigTrapGroup.
 // It customizes the JSON unmarshaling process for SnmpConfigTrapGroup objects.
 func (s *SnmpConfigTrapGroup) UnmarshalJSON(input []byte) error {
-    var temp snmpConfigTrapGroup
+    var temp tempSnmpConfigTrapGroup
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,8 +63,8 @@ func (s *SnmpConfigTrapGroup) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpConfigTrapGroup is a temporary struct used for validating the fields of SnmpConfigTrapGroup.
-type snmpConfigTrapGroup  struct {
+// tempSnmpConfigTrapGroup is a temporary struct used for validating the fields of SnmpConfigTrapGroup.
+type tempSnmpConfigTrapGroup  struct {
     Categories []string                  `json:"categories,omitempty"`
     GroupName  *string                   `json:"group_name,omitempty"`
     Targets    []string                  `json:"targets,omitempty"`

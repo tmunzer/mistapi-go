@@ -136,7 +136,7 @@ func (b BgpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for BgpConfig.
 // It customizes the JSON unmarshaling process for BgpConfig objects.
 func (b *BgpConfig) UnmarshalJSON(input []byte) error {
-    var temp bgpConfig
+    var temp tempBgpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -171,8 +171,8 @@ func (b *BgpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// bgpConfig is a temporary struct used for validating the fields of BgpConfig.
-type bgpConfig  struct {
+// tempBgpConfig is a temporary struct used for validating the fields of BgpConfig.
+type tempBgpConfig  struct {
     AuthKey                *string                       `json:"auth_key,omitempty"`
     BfdMinimumInterval     Optional[int]                 `json:"bfd_minimum_interval"`
     BfdMultiplier          Optional[int]                 `json:"bfd_multiplier"`

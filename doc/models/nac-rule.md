@@ -30,13 +30,13 @@
     "c049dfcd-0c73-5014-1c64-062e9903f1e5"
   ],
   "enabled": true,
-  "name": "name2",
+  "name": "name0",
   "order": 1,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "created_time": 179.02,
-  "id": "000025c8-0000-0000-0000-000000000000",
+  "created_time": 238.9,
+  "id": "000004ec-0000-0000-0000-000000000000",
   "matching": {
-    "auth_type": "mab",
+    "auth_type": "cert",
     "nactags": [
       "nactags6"
     ],

@@ -65,7 +65,7 @@ func (c CaptureNewAssoc) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureNewAssoc.
 // It customizes the JSON unmarshaling process for CaptureNewAssoc objects.
 func (c *CaptureNewAssoc) UnmarshalJSON(input []byte) error {
-    var temp captureNewAssoc
+    var temp tempCaptureNewAssoc
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -91,8 +91,8 @@ func (c *CaptureNewAssoc) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureNewAssoc is a temporary struct used for validating the fields of CaptureNewAssoc.
-type captureNewAssoc  struct {
+// tempCaptureNewAssoc is a temporary struct used for validating the fields of CaptureNewAssoc.
+type tempCaptureNewAssoc  struct {
     ApMac         *string `json:"ap_mac,omitempty"`
     ClientMac     *string `json:"client_mac,omitempty"`
     Duration      *int    `json:"duration,omitempty"`
@@ -103,10 +103,10 @@ type captureNewAssoc  struct {
     Type          *string `json:"type"`
 }
 
-func (c *captureNewAssoc) validate() error {
+func (c *tempCaptureNewAssoc) validate() error {
     var errs []string
     if c.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Capture_New_Assoc`")
+        errs = append(errs, "required field `type` is missing for type `capture_new_assoc`")
     }
     if len(errs) == 0 {
         return nil

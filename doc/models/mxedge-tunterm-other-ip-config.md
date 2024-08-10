@@ -16,8 +16,8 @@
 
 ```json
 {
-  "ip": "ip6",
-  "netmask": "netmask2"
+  "ip": "ip2",
+  "netmask": "netmask8"
 }
 ```
 

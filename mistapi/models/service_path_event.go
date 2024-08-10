@@ -76,7 +76,7 @@ func (s ServicePathEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ServicePathEvent.
 // It customizes the JSON unmarshaling process for ServicePathEvent objects.
 func (s *ServicePathEvent) UnmarshalJSON(input []byte) error {
-    var temp servicePathEvent
+    var temp tempServicePathEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -102,8 +102,8 @@ func (s *ServicePathEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// servicePathEvent is a temporary struct used for validating the fields of ServicePathEvent.
-type servicePathEvent  struct {
+// tempServicePathEvent is a temporary struct used for validating the fields of ServicePathEvent.
+type tempServicePathEvent  struct {
     Mac       *string    `json:"mac,omitempty"`
     Model     *string    `json:"model,omitempty"`
     OrgId     *uuid.UUID `json:"org_id,omitempty"`

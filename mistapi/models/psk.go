@@ -131,7 +131,7 @@ func (p Psk) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Psk.
 // It customizes the JSON unmarshaling process for Psk objects.
 func (p *Psk) UnmarshalJSON(input []byte) error {
-    var temp psk
+    var temp tempPsk
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -171,8 +171,8 @@ func (p *Psk) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// psk is a temporary struct used for validating the fields of Psk.
-type psk  struct {
+// tempPsk is a temporary struct used for validating the fields of Psk.
+type tempPsk  struct {
     AdminSsoId             *string       `json:"admin_sso_id,omitempty"`
     CreatedTime            *float64      `json:"created_time,omitempty"`
     Email                  *string       `json:"email,omitempty"`
@@ -197,16 +197,16 @@ type psk  struct {
     VlanId                 *PskVlanId    `json:"vlan_id,omitempty"`
 }
 
-func (p *psk) validate() error {
+func (p *tempPsk) validate() error {
     var errs []string
     if p.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Psk`")
+        errs = append(errs, "required field `name` is missing for type `psk`")
     }
     if p.Passphrase == nil {
-        errs = append(errs, "required field `passphrase` is missing for type `Psk`")
+        errs = append(errs, "required field `passphrase` is missing for type `psk`")
     }
     if p.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Psk`")
+        errs = append(errs, "required field `ssid` is missing for type `psk`")
     }
     if len(errs) == 0 {
         return nil

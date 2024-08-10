@@ -39,7 +39,7 @@ func (m MapWayfindingMicello) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapWayfindingMicello.
 // It customizes the JSON unmarshaling process for MapWayfindingMicello objects.
 func (m *MapWayfindingMicello) UnmarshalJSON(input []byte) error {
-    var temp mapWayfindingMicello
+    var temp tempMapWayfindingMicello
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (m *MapWayfindingMicello) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapWayfindingMicello is a temporary struct used for validating the fields of MapWayfindingMicello.
-type mapWayfindingMicello  struct {
+// tempMapWayfindingMicello is a temporary struct used for validating the fields of MapWayfindingMicello.
+type tempMapWayfindingMicello  struct {
     AccountKey     *string `json:"account_key,omitempty"`
     DefaultLevelId *int    `json:"default_level_id,omitempty"`
     MapId          *string `json:"map_id,omitempty"`

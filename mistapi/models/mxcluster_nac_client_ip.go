@@ -46,7 +46,7 @@ func (m MxclusterNacClientIp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxclusterNacClientIp.
 // It customizes the JSON unmarshaling process for MxclusterNacClientIp objects.
 func (m *MxclusterNacClientIp) UnmarshalJSON(input []byte) error {
-    var temp mxclusterNacClientIp
+    var temp tempMxclusterNacClientIp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,8 +63,8 @@ func (m *MxclusterNacClientIp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxclusterNacClientIp is a temporary struct used for validating the fields of MxclusterNacClientIp.
-type mxclusterNacClientIp  struct {
+// tempMxclusterNacClientIp is a temporary struct used for validating the fields of MxclusterNacClientIp.
+type tempMxclusterNacClientIp  struct {
     Secret *string                       `json:"secret,omitempty"`
     SiteId *uuid.UUID                    `json:"site_id,omitempty"`
     Vendor *MxclusterNacClientVendorEnum `json:"vendor,omitempty"`

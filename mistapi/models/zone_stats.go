@@ -99,7 +99,7 @@ func (z ZoneStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ZoneStats.
 // It customizes the JSON unmarshaling process for ZoneStats objects.
 func (z *ZoneStats) UnmarshalJSON(input []byte) error {
-    var temp zoneStats
+    var temp tempZoneStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -133,8 +133,8 @@ func (z *ZoneStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// zoneStats is a temporary struct used for validating the fields of ZoneStats.
-type zoneStats  struct {
+// tempZoneStats is a temporary struct used for validating the fields of ZoneStats.
+type tempZoneStats  struct {
     AssetsWaits     *ZoneStatsAssetsWaits     `json:"assets_waits,omitempty"`
     ClientsWaits    *ZoneStatsClientsWaits    `json:"clients_waits,omitempty"`
     CreatedTime     *float64                  `json:"created_time,omitempty"`
@@ -153,16 +153,16 @@ type zoneStats  struct {
     VerticesM       []ZoneVertexM             `json:"vertices_m,omitempty"`
 }
 
-func (z *zoneStats) validate() error {
+func (z *tempZoneStats) validate() error {
     var errs []string
     if z.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Zone_Stats`")
+        errs = append(errs, "required field `id` is missing for type `zone_stats`")
     }
     if z.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Zone_Stats`")
+        errs = append(errs, "required field `map_id` is missing for type `zone_stats`")
     }
     if z.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Zone_Stats`")
+        errs = append(errs, "required field `name` is missing for type `zone_stats`")
     }
     if len(errs) == 0 {
         return nil

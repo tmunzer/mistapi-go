@@ -15,7 +15,7 @@
 
 ```json
 {
-  "path_preference": "path_preference8"
+  "path_preference": "path_preference0"
 }
 ```
 

@@ -31,7 +31,7 @@ OAuth linked Jamf apps account details
   "linked_by": "Testname1",
   "name": "Test Compay1 Ltd",
   "smartgroup_name": "CompliantGroup1",
-  "client_id": "client_id0"
+  "client_id": "client_id6"
 }
 ```
 

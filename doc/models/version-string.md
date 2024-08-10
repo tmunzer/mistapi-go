@@ -15,7 +15,7 @@
 
 ```json
 {
-  "version": "version2"
+  "version": "version6"
 }
 ```
 

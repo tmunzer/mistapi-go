@@ -53,7 +53,7 @@ func (b BgpConfigNeighbors) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for BgpConfigNeighbors.
 // It customizes the JSON unmarshaling process for BgpConfigNeighbors objects.
 func (b *BgpConfigNeighbors) UnmarshalJSON(input []byte) error {
-    var temp bgpConfigNeighbors
+    var temp tempBgpConfigNeighbors
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -73,8 +73,8 @@ func (b *BgpConfigNeighbors) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// bgpConfigNeighbors is a temporary struct used for validating the fields of BgpConfigNeighbors.
-type bgpConfigNeighbors  struct {
+// tempBgpConfigNeighbors is a temporary struct used for validating the fields of BgpConfigNeighbors.
+type tempBgpConfigNeighbors  struct {
     Disabled     *bool   `json:"disabled,omitempty"`
     ExportPolicy *string `json:"export_policy,omitempty"`
     HoldTime     *int    `json:"hold_time,omitempty"`

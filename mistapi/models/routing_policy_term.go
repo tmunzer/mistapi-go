@@ -37,7 +37,7 @@ func (r RoutingPolicyTerm) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RoutingPolicyTerm.
 // It customizes the JSON unmarshaling process for RoutingPolicyTerm objects.
 func (r *RoutingPolicyTerm) UnmarshalJSON(input []byte) error {
-    var temp routingPolicyTerm
+    var temp tempRoutingPolicyTerm
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (r *RoutingPolicyTerm) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// routingPolicyTerm is a temporary struct used for validating the fields of RoutingPolicyTerm.
-type routingPolicyTerm  struct {
+// tempRoutingPolicyTerm is a temporary struct used for validating the fields of RoutingPolicyTerm.
+type tempRoutingPolicyTerm  struct {
     Action   *RoutingPolicyTermAction   `json:"action,omitempty"`
     Matching *RoutingPolicyTermMatching `json:"matching,omitempty"`
 }

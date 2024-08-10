@@ -19,7 +19,7 @@
 {
   "flavor": "hcaptcha",
   "required": false,
-  "sitekey": "sitekey4"
+  "sitekey": "sitekey0"
 }
 ```
 

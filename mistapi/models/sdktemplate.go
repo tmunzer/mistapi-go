@@ -83,7 +83,7 @@ func (s Sdktemplate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Sdktemplate.
 // It customizes the JSON unmarshaling process for Sdktemplate objects.
 func (s *Sdktemplate) UnmarshalJSON(input []byte) error {
-    var temp sdktemplate
+    var temp tempSdktemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -114,8 +114,8 @@ func (s *Sdktemplate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sdktemplate is a temporary struct used for validating the fields of Sdktemplate.
-type sdktemplate  struct {
+// tempSdktemplate is a temporary struct used for validating the fields of Sdktemplate.
+type tempSdktemplate  struct {
     BgImage        *string    `json:"bg_image,omitempty"`
     BtnFlrBgcolor  *string    `json:"btn_flr_bgcolor,omitempty"`
     CreatedTime    *float64   `json:"created_time,omitempty"`
@@ -131,10 +131,10 @@ type sdktemplate  struct {
     WelcomeMsg     *string    `json:"welcome_msg,omitempty"`
 }
 
-func (s *sdktemplate) validate() error {
+func (s *tempSdktemplate) validate() error {
     var errs []string
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sdktemplate`")
+        errs = append(errs, "required field `name` is missing for type `sdktemplate`")
     }
     if len(errs) == 0 {
         return nil

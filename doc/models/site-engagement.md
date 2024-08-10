@@ -45,7 +45,7 @@
     "sun": "sun6",
     "thu": "thu6"
   },
-  "min_dwell": 82
+  "min_dwell": 36
 }
 ```
 

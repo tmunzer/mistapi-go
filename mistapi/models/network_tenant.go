@@ -31,7 +31,7 @@ func (n NetworkTenant) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NetworkTenant.
 // It customizes the JSON unmarshaling process for NetworkTenant objects.
 func (n *NetworkTenant) UnmarshalJSON(input []byte) error {
-    var temp networkTenant
+    var temp tempNetworkTenant
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (n *NetworkTenant) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// networkTenant is a temporary struct used for validating the fields of NetworkTenant.
-type networkTenant  struct {
+// tempNetworkTenant is a temporary struct used for validating the fields of NetworkTenant.
+type tempNetworkTenant  struct {
     Addresses []string `json:"addresses,omitempty"`
 }

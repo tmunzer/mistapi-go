@@ -35,7 +35,7 @@ func (r ResponseDeviceBiosUpgrade) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseDeviceBiosUpgrade.
 // It customizes the JSON unmarshaling process for ResponseDeviceBiosUpgrade objects.
 func (r *ResponseDeviceBiosUpgrade) UnmarshalJSON(input []byte) error {
-    var temp responseDeviceBiosUpgrade
+    var temp tempResponseDeviceBiosUpgrade
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (r *ResponseDeviceBiosUpgrade) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseDeviceBiosUpgrade is a temporary struct used for validating the fields of ResponseDeviceBiosUpgrade.
-type responseDeviceBiosUpgrade  struct {
+// tempResponseDeviceBiosUpgrade is a temporary struct used for validating the fields of ResponseDeviceBiosUpgrade.
+type tempResponseDeviceBiosUpgrade  struct {
     Status    *string `json:"status,omitempty"`
     Timestamp *int    `json:"timestamp,omitempty"`
 }

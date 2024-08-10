@@ -9,7 +9,7 @@ import (
 type WebhookNacEventsEvent struct {
     // random mac
     Ap                   *string        `json:"ap,omitempty"`
-    // authentication type, e.g. "eap-tls", "eap-ttls", "eap-teap", "mab", "device-auth"
+    // authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth"
     AuthType             *string        `json:"auth_type,omitempty"`
     // BSSID
     Bssid                *string        `json:"bssid,omitempty"`
@@ -127,7 +127,7 @@ func (w WebhookNacEventsEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookNacEventsEvent.
 // It customizes the JSON unmarshaling process for WebhookNacEventsEvent objects.
 func (w *WebhookNacEventsEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookNacEventsEvent
+    var temp tempWebhookNacEventsEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -161,8 +161,8 @@ func (w *WebhookNacEventsEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookNacEventsEvent is a temporary struct used for validating the fields of WebhookNacEventsEvent.
-type webhookNacEventsEvent  struct {
+// tempWebhookNacEventsEvent is a temporary struct used for validating the fields of WebhookNacEventsEvent.
+type tempWebhookNacEventsEvent  struct {
     Ap                   *string    `json:"ap,omitempty"`
     AuthType             *string    `json:"auth_type,omitempty"`
     Bssid                *string    `json:"bssid,omitempty"`

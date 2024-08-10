@@ -34,7 +34,7 @@ func (o OrgSettingApiPolicy) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingApiPolicy.
 // It customizes the JSON unmarshaling process for OrgSettingApiPolicy objects.
 func (o *OrgSettingApiPolicy) UnmarshalJSON(input []byte) error {
-    var temp orgSettingApiPolicy
+    var temp tempOrgSettingApiPolicy
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -49,7 +49,7 @@ func (o *OrgSettingApiPolicy) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingApiPolicy is a temporary struct used for validating the fields of OrgSettingApiPolicy.
-type orgSettingApiPolicy  struct {
+// tempOrgSettingApiPolicy is a temporary struct used for validating the fields of OrgSettingApiPolicy.
+type tempOrgSettingApiPolicy  struct {
     NoReveal *bool `json:"no_reveal,omitempty"`
 }

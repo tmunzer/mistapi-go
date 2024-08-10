@@ -23,9 +23,9 @@ RF Diag
 {
   "duration": 180,
   "name": "name6",
-  "type": "client",
+  "type": "sdkclient",
   "mac": "mac0",
-  "sdkclient_id": "00001116-0000-0000-0000-000000000000"
+  "sdkclient_id": "00000a0e-0000-0000-0000-000000000000"
 }
 ```
 

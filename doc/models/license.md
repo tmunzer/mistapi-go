@@ -27,12 +27,27 @@ License
       "id": "id8",
       "modified_time": 202.08,
       "quantity": 182
+    },
+    {
+      "created_time": 132.88,
+      "end_time": 210,
+      "id": "id8",
+      "modified_time": 202.08,
+      "quantity": 182
     }
   ],
   "entitled": {
-    "key0": 192
+    "key0": 120,
+    "key1": 119
   },
   "licenses": [
+    {
+      "created_time": 186.08,
+      "end_time": 154,
+      "id": "0000017a-0000-0000-0000-000000000000",
+      "modified_time": 148.88,
+      "order_id": "order_id2"
+    },
     {
       "created_time": 186.08,
       "end_time": 154,
@@ -42,9 +57,7 @@ License
     }
   ],
   "summary": {
-    "key0": 234,
-    "key1": 235,
-    "key2": 236
+    "key0": 22
   }
 }
 ```

@@ -36,7 +36,7 @@ func (a AclPolicyAction) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AclPolicyAction.
 // It customizes the JSON unmarshaling process for AclPolicyAction objects.
 func (a *AclPolicyAction) UnmarshalJSON(input []byte) error {
-    var temp aclPolicyAction
+    var temp tempAclPolicyAction
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (a *AclPolicyAction) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// aclPolicyAction is a temporary struct used for validating the fields of AclPolicyAction.
-type aclPolicyAction  struct {
+// tempAclPolicyAction is a temporary struct used for validating the fields of AclPolicyAction.
+type tempAclPolicyAction  struct {
     Action *AllowDenyEnum `json:"action,omitempty"`
     DstTag *string        `json:"dst_tag,omitempty"`
 }

@@ -18,13 +18,13 @@
 
 ```json
 {
-  "description": "description6",
-  "display": "display8",
+  "description": "description4",
+  "display": "display6",
   "example": {
     "key1": "val1",
     "key2": "val2"
   },
-  "key": "key6"
+  "key": "key4"
 }
 ```
 

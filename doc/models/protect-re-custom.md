@@ -22,7 +22,8 @@ custom acls
   "port_range": "80,1035-1040",
   "protocol": "any",
   "subnet": [
-    "subnet1"
+    "subnet3",
+    "subnet4"
   ]
 }
 ```

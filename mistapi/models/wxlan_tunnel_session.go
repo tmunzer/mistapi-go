@@ -71,7 +71,7 @@ func (w WxlanTunnelSession) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WxlanTunnelSession.
 // It customizes the JSON unmarshaling process for WxlanTunnelSession objects.
 func (w *WxlanTunnelSession) UnmarshalJSON(input []byte) error {
-    var temp wxlanTunnelSession
+    var temp tempWxlanTunnelSession
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -94,8 +94,8 @@ func (w *WxlanTunnelSession) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wxlanTunnelSession is a temporary struct used for validating the fields of WxlanTunnelSession.
-type wxlanTunnelSession  struct {
+// tempWxlanTunnelSession is a temporary struct used for validating the fields of WxlanTunnelSession.
+type tempWxlanTunnelSession  struct {
     ApAsSessionId       *string                          `json:"ap_as_session_id,omitempty"`
     Comment             *string                          `json:"comment,omitempty"`
     EnableCookie        *bool                            `json:"enable_cookie,omitempty"`

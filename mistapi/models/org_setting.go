@@ -19,7 +19,7 @@ type OrgSetting struct {
     Cacerts                     []string                               `json:"cacerts,omitempty"`
     Celona                      *OrgSettingCelona                      `json:"celona,omitempty"`
     Cloudshark                  *OrgSettingCloudshark                  `json:"cloudshark,omitempty"`
-    Cradlepoint                 *AccountCradlepointConfig              `json:"cradlepoint,omitempty"`
+    Cradlepoint                 *OrgSettingCradlepoint                 `json:"cradlepoint,omitempty"`
     CreatedTime                 *float64                               `json:"created_time,omitempty"`
     // common device cert, optional
     DeviceCert                  *OrgSettingDeviceCert                  `json:"device_cert,omitempty"`
@@ -233,7 +233,7 @@ func (o OrgSetting) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSetting.
 // It customizes the JSON unmarshaling process for OrgSetting objects.
 func (o *OrgSetting) UnmarshalJSON(input []byte) error {
-    var temp orgSetting
+    var temp tempOrgSetting
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -290,8 +290,8 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSetting is a temporary struct used for validating the fields of OrgSetting.
-type orgSetting  struct {
+// tempOrgSetting is a temporary struct used for validating the fields of OrgSetting.
+type tempOrgSetting  struct {
     ApUpdownThreshold           Optional[int]                          `json:"ap_updown_threshold"`
     ApiPolicy                   *OrgSettingApiPolicy                   `json:"api_policy,omitempty"`
     AutoDeviceNaming            *OrgSettingAutoDeviceNaming            `json:"auto_device_naming,omitempty"`
@@ -301,7 +301,7 @@ type orgSetting  struct {
     Cacerts                     []string                               `json:"cacerts,omitempty"`
     Celona                      *OrgSettingCelona                      `json:"celona,omitempty"`
     Cloudshark                  *OrgSettingCloudshark                  `json:"cloudshark,omitempty"`
-    Cradlepoint                 *AccountCradlepointConfig              `json:"cradlepoint,omitempty"`
+    Cradlepoint                 *OrgSettingCradlepoint                 `json:"cradlepoint,omitempty"`
     CreatedTime                 *float64                               `json:"created_time,omitempty"`
     DeviceCert                  *OrgSettingDeviceCert                  `json:"device_cert,omitempty"`
     DeviceUpdownThreshold       Optional[int]                          `json:"device_updown_threshold"`

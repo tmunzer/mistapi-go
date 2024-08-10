@@ -33,11 +33,11 @@ RF Template
 
 ```json
 {
-  "name": "name2",
+  "name": "name8",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "ant_gain_24": 158,
-  "ant_gain_5": 70,
-  "ant_gain_6": 186,
+  "ant_gain_24": 10,
+  "ant_gain_5": 78,
+  "ant_gain_6": 38,
   "band_24": {
     "allow_rrm_disable": false,
     "ant_gain": 0,

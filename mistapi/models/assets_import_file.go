@@ -32,7 +32,7 @@ func (a AssetsImportFile) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AssetsImportFile.
 // It customizes the JSON unmarshaling process for AssetsImportFile objects.
 func (a *AssetsImportFile) UnmarshalJSON(input []byte) error {
-    var temp assetsImportFile
+    var temp tempAssetsImportFile
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (a *AssetsImportFile) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// assetsImportFile is a temporary struct used for validating the fields of AssetsImportFile.
-type assetsImportFile  struct {
+// tempAssetsImportFile is a temporary struct used for validating the fields of AssetsImportFile.
+type tempAssetsImportFile  struct {
     File *[]byte `json:"file,omitempty"`
 }

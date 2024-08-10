@@ -79,7 +79,7 @@ func (i InstallerProvisionDevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for InstallerProvisionDevice.
 // It customizes the JSON unmarshaling process for InstallerProvisionDevice objects.
 func (i *InstallerProvisionDevice) UnmarshalJSON(input []byte) error {
-    var temp installerProvisionDevice
+    var temp tempInstallerProvisionDevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -109,8 +109,8 @@ func (i *InstallerProvisionDevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// installerProvisionDevice is a temporary struct used for validating the fields of InstallerProvisionDevice.
-type installerProvisionDevice  struct {
+// tempInstallerProvisionDevice is a temporary struct used for validating the fields of InstallerProvisionDevice.
+type tempInstallerProvisionDevice  struct {
     DeviceprofileName *string    `json:"deviceprofile_name,omitempty"`
     ForSite           *bool      `json:"for_site,omitempty"`
     Height            *float64   `json:"height,omitempty"`
@@ -125,10 +125,10 @@ type installerProvisionDevice  struct {
     Y                 *float64   `json:"y,omitempty"`
 }
 
-func (i *installerProvisionDevice) validate() error {
+func (i *tempInstallerProvisionDevice) validate() error {
     var errs []string
     if i.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Installer_Provision_Device`")
+        errs = append(errs, "required field `name` is missing for type `installer_provision_device`")
     }
     if len(errs) == 0 {
         return nil

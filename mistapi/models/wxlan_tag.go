@@ -144,7 +144,7 @@ func (w WxlanTag) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WxlanTag.
 // It customizes the JSON unmarshaling process for WxlanTag objects.
 func (w *WxlanTag) UnmarshalJSON(input []byte) error {
-    var temp wxlanTag
+    var temp tempWxlanTag
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -180,8 +180,8 @@ func (w *WxlanTag) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wxlanTag is a temporary struct used for validating the fields of WxlanTag.
-type wxlanTag  struct {
+// tempWxlanTag is a temporary struct used for validating the fields of WxlanTag.
+type tempWxlanTag  struct {
     CreatedTime  *float64               `json:"created_time,omitempty"`
     ForSite      *bool                  `json:"for_site,omitempty"`
     Id           *uuid.UUID             `json:"id,omitempty"`
@@ -202,13 +202,13 @@ type wxlanTag  struct {
     VlanId       *WxlanTagVlanId        `json:"vlan_id,omitempty"`
 }
 
-func (w *wxlanTag) validate() error {
+func (w *tempWxlanTag) validate() error {
     var errs []string
     if w.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Wxlan_Tag`")
+        errs = append(errs, "required field `name` is missing for type `wxlan_tag`")
     }
     if w.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Wxlan_Tag`")
+        errs = append(errs, "required field `type` is missing for type `wxlan_tag`")
     }
     if len(errs) == 0 {
         return nil

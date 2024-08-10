@@ -79,7 +79,7 @@ func (w WebhookAlarmEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookAlarmEvent.
 // It customizes the JSON unmarshaling process for WebhookAlarmEvent objects.
 func (w *WebhookAlarmEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookAlarmEvent
+    var temp tempWebhookAlarmEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -111,8 +111,8 @@ func (w *WebhookAlarmEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookAlarmEvent is a temporary struct used for validating the fields of WebhookAlarmEvent.
-type webhookAlarmEvent  struct {
+// tempWebhookAlarmEvent is a temporary struct used for validating the fields of WebhookAlarmEvent.
+type tempWebhookAlarmEvent  struct {
     Aps       []string           `json:"aps,omitempty"`
     Bssids    []string           `json:"bssids,omitempty"`
     Count     *int               `json:"count,omitempty"`
@@ -129,25 +129,25 @@ type webhookAlarmEvent  struct {
     Update    *bool              `json:"update,omitempty"`
 }
 
-func (w *webhookAlarmEvent) validate() error {
+func (w *tempWebhookAlarmEvent) validate() error {
     var errs []string
     if w.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Webhook_Alarm_Event`")
+        errs = append(errs, "required field `id` is missing for type `webhook_alarm_event`")
     }
     if w.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `Webhook_Alarm_Event`")
+        errs = append(errs, "required field `last_seen` is missing for type `webhook_alarm_event`")
     }
     if w.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Webhook_Alarm_Event`")
+        errs = append(errs, "required field `org_id` is missing for type `webhook_alarm_event`")
     }
     if w.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Webhook_Alarm_Event`")
+        errs = append(errs, "required field `site_id` is missing for type `webhook_alarm_event`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Alarm_Event`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_alarm_event`")
     }
     if w.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Webhook_Alarm_Event`")
+        errs = append(errs, "required field `type` is missing for type `webhook_alarm_event`")
     }
     if len(errs) == 0 {
         return nil

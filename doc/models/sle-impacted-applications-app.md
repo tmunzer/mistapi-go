@@ -21,10 +21,10 @@
 ```json
 {
   "app": "app6",
-  "degraded": 52,
-  "duration": 158,
+  "degraded": 192,
+  "duration": 42,
   "name": "name6",
-  "threshold": 14
+  "threshold": 154
 }
 ```
 

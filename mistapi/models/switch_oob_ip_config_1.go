@@ -73,7 +73,7 @@ func (s SwitchOobIpConfig1) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchOobIpConfig1.
 // It customizes the JSON unmarshaling process for SwitchOobIpConfig1 objects.
 func (s *SwitchOobIpConfig1) UnmarshalJSON(input []byte) error {
-    var temp switchOobIpConfig1
+    var temp tempSwitchOobIpConfig1
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -96,8 +96,8 @@ func (s *SwitchOobIpConfig1) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchOobIpConfig1 is a temporary struct used for validating the fields of SwitchOobIpConfig1.
-type switchOobIpConfig1  struct {
+// tempSwitchOobIpConfig1 is a temporary struct used for validating the fields of SwitchOobIpConfig1.
+type tempSwitchOobIpConfig1  struct {
     Gateway              *string                  `json:"gateway,omitempty"`
     Ip                   *string                  `json:"ip,omitempty"`
     Netmask              *string                  `json:"netmask,omitempty"`

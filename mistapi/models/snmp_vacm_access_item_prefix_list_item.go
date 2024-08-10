@@ -62,7 +62,7 @@ func (s SnmpVacmAccessItemPrefixListItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SnmpVacmAccessItemPrefixListItem.
 // It customizes the JSON unmarshaling process for SnmpVacmAccessItemPrefixListItem objects.
 func (s *SnmpVacmAccessItemPrefixListItem) UnmarshalJSON(input []byte) error {
-    var temp snmpVacmAccessItemPrefixListItem
+    var temp tempSnmpVacmAccessItemPrefixListItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -83,8 +83,8 @@ func (s *SnmpVacmAccessItemPrefixListItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpVacmAccessItemPrefixListItem is a temporary struct used for validating the fields of SnmpVacmAccessItemPrefixListItem.
-type snmpVacmAccessItemPrefixListItem  struct {
+// tempSnmpVacmAccessItemPrefixListItem is a temporary struct used for validating the fields of SnmpVacmAccessItemPrefixListItem.
+type tempSnmpVacmAccessItemPrefixListItem  struct {
     ContextPrefix *string                                    `json:"context_prefix,omitempty"`
     NotifyView    *string                                    `json:"notify_view,omitempty"`
     ReadView      *string                                    `json:"read_view,omitempty"`

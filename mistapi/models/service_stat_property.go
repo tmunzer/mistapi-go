@@ -59,7 +59,7 @@ func (s ServiceStatProperty) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ServiceStatProperty.
 // It customizes the JSON unmarshaling process for ServiceStatProperty objects.
 func (s *ServiceStatProperty) UnmarshalJSON(input []byte) error {
-    var temp serviceStatProperty
+    var temp tempServiceStatProperty
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -81,8 +81,8 @@ func (s *ServiceStatProperty) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// serviceStatProperty is a temporary struct used for validating the fields of ServiceStatProperty.
-type serviceStatProperty  struct {
+// tempServiceStatProperty is a temporary struct used for validating the fields of ServiceStatProperty.
+type tempServiceStatProperty  struct {
     AshVersion          *string `json:"ash_version,omitempty"`
     CiaVersion          *string `json:"cia_version,omitempty"`
     EmberVersion        *string `json:"ember_version,omitempty"`

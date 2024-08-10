@@ -43,7 +43,7 @@ func (r ResponseClientEventsSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseClientEventsSearch.
 // It customizes the JSON unmarshaling process for ResponseClientEventsSearch objects.
 func (r *ResponseClientEventsSearch) UnmarshalJSON(input []byte) error {
-    var temp responseClientEventsSearch
+    var temp tempResponseClientEventsSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseClientEventsSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseClientEventsSearch is a temporary struct used for validating the fields of ResponseClientEventsSearch.
-type responseClientEventsSearch  struct {
+// tempResponseClientEventsSearch is a temporary struct used for validating the fields of ResponseClientEventsSearch.
+type tempResponseClientEventsSearch  struct {
     End     *int            `json:"end"`
     Limit   *int            `json:"limit"`
     Next    *string         `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type responseClientEventsSearch  struct {
     Total   *int            `json:"total"`
 }
 
-func (r *responseClientEventsSearch) validate() error {
+func (r *tempResponseClientEventsSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Client_Events_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_client_events_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Client_Events_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_client_events_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Client_Events_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_client_events_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Client_Events_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_client_events_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Client_Events_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_client_events_search`")
     }
     if len(errs) == 0 {
         return nil

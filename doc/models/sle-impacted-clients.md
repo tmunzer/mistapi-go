@@ -53,11 +53,40 @@
           "switch_name": "switch_name0"
         }
       ]
+    },
+    {
+      "degraded": 18,
+      "duration": 124,
+      "mac": "mac2",
+      "name": "name8",
+      "switches": [
+        {
+          "interfaces": [
+            "interfaces9"
+          ],
+          "switch_mac": "switch_mac6",
+          "switch_name": "switch_name0"
+        },
+        {
+          "interfaces": [
+            "interfaces9"
+          ],
+          "switch_mac": "switch_mac6",
+          "switch_name": "switch_name0"
+        },
+        {
+          "interfaces": [
+            "interfaces9"
+          ],
+          "switch_mac": "switch_mac6",
+          "switch_name": "switch_name0"
+        }
+      ]
     }
   ],
-  "end": 130,
-  "failure": "failure8",
-  "limit": 40
+  "end": 136,
+  "failure": "failure4",
+  "limit": 222
 }
 ```
 

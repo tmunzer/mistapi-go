@@ -43,7 +43,7 @@ func (r RouteSummaryStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RouteSummaryStats.
 // It customizes the JSON unmarshaling process for RouteSummaryStats objects.
 func (r *RouteSummaryStats) UnmarshalJSON(input []byte) error {
-    var temp routeSummaryStats
+    var temp tempRouteSummaryStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (r *RouteSummaryStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// routeSummaryStats is a temporary struct used for validating the fields of RouteSummaryStats.
-type routeSummaryStats  struct {
+// tempRouteSummaryStats is a temporary struct used for validating the fields of RouteSummaryStats.
+type tempRouteSummaryStats  struct {
     FibRoutes                 *int `json:"fib_routes,omitempty"`
     MaxUnicastRoutesSupported *int `json:"max_unicast_routes_supported,omitempty"`
     RibRoutes                 *int `json:"rib_routes,omitempty"`

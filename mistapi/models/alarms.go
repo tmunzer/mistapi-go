@@ -37,7 +37,7 @@ func (a Alarms) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Alarms.
 // It customizes the JSON unmarshaling process for Alarms objects.
 func (a *Alarms) UnmarshalJSON(input []byte) error {
-    var temp alarms
+    var temp tempAlarms
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,16 +57,16 @@ func (a *Alarms) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// alarms is a temporary struct used for validating the fields of Alarms.
-type alarms  struct {
+// tempAlarms is a temporary struct used for validating the fields of Alarms.
+type tempAlarms  struct {
     AlarmIds *[]uuid.UUID `json:"alarm_ids"`
     Note     *string      `json:"note,omitempty"`
 }
 
-func (a *alarms) validate() error {
+func (a *tempAlarms) validate() error {
     var errs []string
     if a.AlarmIds == nil {
-        errs = append(errs, "required field `alarm_ids` is missing for type `Alarms`")
+        errs = append(errs, "required field `alarm_ids` is missing for type `alarms`")
     }
     if len(errs) == 0 {
         return nil

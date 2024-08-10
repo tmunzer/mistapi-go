@@ -20,28 +20,8 @@ Virtual Chassis
 
 ```json
 {
-  "member": 118,
+  "member": 10,
   "members": [
-    {
-      "mac": "mac2",
-      "member": 176,
-      "vc_ports": [
-        "vc_ports2",
-        "vc_ports3",
-        "vc_ports4"
-      ],
-      "vc_role": "master"
-    },
-    {
-      "mac": "mac2",
-      "member": 176,
-      "vc_ports": [
-        "vc_ports2",
-        "vc_ports3",
-        "vc_ports4"
-      ],
-      "vc_role": "master"
-    },
     {
       "mac": "mac2",
       "member": 176,
@@ -53,7 +33,7 @@ Virtual Chassis
       "vc_role": "master"
     }
   ],
-  "new-member": 52,
+  "new-member": 200,
   "op": "add"
 }
 ```

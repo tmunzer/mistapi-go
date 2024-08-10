@@ -21,11 +21,11 @@ Privilieges settings
 
 ```json
 {
-  "role": "installer",
+  "role": "write",
   "scope": "sitegroup",
-  "site_id": "000011c6-0000-0000-0000-000000000000",
-  "sitegroup_id": "00001c3e-0000-0000-0000-000000000000",
-  "views": "lobby_admin"
+  "site_id": "0000169c-0000-0000-0000-000000000000",
+  "sitegroup_id": "00002114-0000-0000-0000-000000000000",
+  "views": "marketing"
 }
 ```
 

@@ -35,6 +35,16 @@ if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
       "host": "host4",
       "port": 254,
       "secret": "secret0"
+    },
+    {
+      "host": "host4",
+      "port": 254,
+      "secret": "secret0"
+    },
+    {
+      "host": "host4",
+      "port": 254,
+      "secret": "secret0"
     }
   ],
   "auth_servers": [
@@ -42,9 +52,19 @@ if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
       "host": "host0",
       "port": 114,
       "secret": "secret4"
+    },
+    {
+      "host": "host0",
+      "port": 114,
+      "secret": "secret4"
+    },
+    {
+      "host": "host0",
+      "port": 114,
+      "secret": "secret4"
     }
   ],
-  "operator_name": "operator_name6"
+  "operator_name": "operator_name2"
 }
 ```
 

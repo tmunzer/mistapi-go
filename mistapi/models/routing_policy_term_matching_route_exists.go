@@ -37,7 +37,7 @@ func (r RoutingPolicyTermMatchingRouteExists) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RoutingPolicyTermMatchingRouteExists.
 // It customizes the JSON unmarshaling process for RoutingPolicyTermMatchingRouteExists objects.
 func (r *RoutingPolicyTermMatchingRouteExists) UnmarshalJSON(input []byte) error {
-    var temp routingPolicyTermMatchingRouteExists
+    var temp tempRoutingPolicyTermMatchingRouteExists
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (r *RoutingPolicyTermMatchingRouteExists) UnmarshalJSON(input []byte) error
     return nil
 }
 
-// routingPolicyTermMatchingRouteExists is a temporary struct used for validating the fields of RoutingPolicyTermMatchingRouteExists.
-type routingPolicyTermMatchingRouteExists  struct {
+// tempRoutingPolicyTermMatchingRouteExists is a temporary struct used for validating the fields of RoutingPolicyTermMatchingRouteExists.
+type tempRoutingPolicyTermMatchingRouteExists  struct {
     Route   *string `json:"route,omitempty"`
     VrfName *string `json:"vrf_name,omitempty"`
 }

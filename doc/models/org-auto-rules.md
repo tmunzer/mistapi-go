@@ -28,10 +28,10 @@ auto_rules in org settings
   "expression": "split(.)[1]",
   "match_device_type": "ap",
   "prefix": "XX-",
-  "src": "name",
+  "src": "lldp_system_name",
   "suffix": "-YY",
-  "match_model": "match_model2",
-  "model": "model8"
+  "match_model": "match_model8",
+  "model": "model6"
 }
 ```
 

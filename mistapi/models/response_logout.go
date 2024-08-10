@@ -32,7 +32,7 @@ func (r ResponseLogout) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseLogout.
 // It customizes the JSON unmarshaling process for ResponseLogout objects.
 func (r *ResponseLogout) UnmarshalJSON(input []byte) error {
-    var temp responseLogout
+    var temp tempResponseLogout
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (r *ResponseLogout) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseLogout is a temporary struct used for validating the fields of ResponseLogout.
-type responseLogout  struct {
+// tempResponseLogout is a temporary struct used for validating the fields of ResponseLogout.
+type tempResponseLogout  struct {
     ForwardUrl *string `json:"forward_url,omitempty"`
 }

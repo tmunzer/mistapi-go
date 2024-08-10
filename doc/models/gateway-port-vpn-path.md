@@ -22,7 +22,7 @@
   "bfd_profile": "broadband",
   "bfd_use_tunnel_mode": false,
   "role": "spoke",
-  "preference": 172,
+  "preference": 38,
   "traffic_shaping": {
     "class_percentages": [
       93,

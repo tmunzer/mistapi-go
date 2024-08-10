@@ -16,16 +16,16 @@ import (
 //   * `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap)
 type WlanDynamicPsk struct {
     // default PSK to use if cloud WLC is not available, 8-63 characters
-    DefaultPsk           *string                      `json:"default_psk,omitempty"`
-    DefaultVlanId        *WlanDynamicPskDefaultVlanId `json:"default_vlan_id,omitempty"`
-    Enabled              *bool                        `json:"enabled,omitempty"`
+    DefaultPsk           *string               `json:"default_psk,omitempty"`
+    DefaultVlanId        *VlanIdWithVariable   `json:"default_vlan_id,omitempty"`
+    Enabled              *bool                 `json:"enabled,omitempty"`
     // when 11r is enabled, we'll try to use the cached PMK, this can be disabled
     // `false` means auto
-    ForceLookup          *bool                        `json:"force_lookup,omitempty"`
+    ForceLookup          *bool                 `json:"force_lookup,omitempty"`
     // enum: `cloud_psks`, `radius`
-    Source               *DynamicPskSourceEnum        `json:"source,omitempty"`
-    VlanIds              []WlanDynamicPskVlanIds      `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    Source               *DynamicPskSourceEnum `json:"source,omitempty"`
+    VlanIds              []VlanIdWithVariable  `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]any        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDynamicPsk.
@@ -64,7 +64,7 @@ func (w WlanDynamicPsk) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanDynamicPsk.
 // It customizes the JSON unmarshaling process for WlanDynamicPsk objects.
 func (w *WlanDynamicPsk) UnmarshalJSON(input []byte) error {
-    var temp wlanDynamicPsk
+    var temp tempWlanDynamicPsk
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -84,12 +84,12 @@ func (w *WlanDynamicPsk) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanDynamicPsk is a temporary struct used for validating the fields of WlanDynamicPsk.
-type wlanDynamicPsk  struct {
-    DefaultPsk    *string                      `json:"default_psk,omitempty"`
-    DefaultVlanId *WlanDynamicPskDefaultVlanId `json:"default_vlan_id,omitempty"`
-    Enabled       *bool                        `json:"enabled,omitempty"`
-    ForceLookup   *bool                        `json:"force_lookup,omitempty"`
-    Source        *DynamicPskSourceEnum        `json:"source,omitempty"`
-    VlanIds       []WlanDynamicPskVlanIds      `json:"vlan_ids,omitempty"`
+// tempWlanDynamicPsk is a temporary struct used for validating the fields of WlanDynamicPsk.
+type tempWlanDynamicPsk  struct {
+    DefaultPsk    *string               `json:"default_psk,omitempty"`
+    DefaultVlanId *VlanIdWithVariable   `json:"default_vlan_id,omitempty"`
+    Enabled       *bool                 `json:"enabled,omitempty"`
+    ForceLookup   *bool                 `json:"force_lookup,omitempty"`
+    Source        *DynamicPskSourceEnum `json:"source,omitempty"`
+    VlanIds       []VlanIdWithVariable  `json:"vlan_ids,omitempty"`
 }

@@ -16,8 +16,8 @@
 ```json
 {
   "cli": [
-    "cli6",
-    "cli7",
+    "cli0",
+    "cli9",
     "cli8"
   ]
 }

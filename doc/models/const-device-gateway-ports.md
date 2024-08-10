@@ -19,9 +19,9 @@ Object Key is the interface name (e.g. "ge-0/0/1", ...)
 
 ```json
 {
-  "display": "display2",
-  "pci_address": "pci_address4",
-  "speed": 26
+  "display": "display8",
+  "pci_address": "pci_address8",
+  "speed": 146
 }
 ```
 

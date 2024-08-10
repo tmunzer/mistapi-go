@@ -53,7 +53,7 @@ func (s SiteOccupancyAnalytics) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteOccupancyAnalytics.
 // It customizes the JSON unmarshaling process for SiteOccupancyAnalytics objects.
 func (s *SiteOccupancyAnalytics) UnmarshalJSON(input []byte) error {
-    var temp siteOccupancyAnalytics
+    var temp tempSiteOccupancyAnalytics
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -72,8 +72,8 @@ func (s *SiteOccupancyAnalytics) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteOccupancyAnalytics is a temporary struct used for validating the fields of SiteOccupancyAnalytics.
-type siteOccupancyAnalytics  struct {
+// tempSiteOccupancyAnalytics is a temporary struct used for validating the fields of SiteOccupancyAnalytics.
+type tempSiteOccupancyAnalytics  struct {
     AssetsEnabled             *bool `json:"assets_enabled,omitempty"`
     ClientsEnabled            *bool `json:"clients_enabled,omitempty"`
     MinDuration               *int  `json:"min_duration,omitempty"`

@@ -36,7 +36,7 @@ func (a ApLed) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApLed.
 // It customizes the JSON unmarshaling process for ApLed objects.
 func (a *ApLed) UnmarshalJSON(input []byte) error {
-    var temp apLed
+    var temp tempApLed
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (a *ApLed) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apLed is a temporary struct used for validating the fields of ApLed.
-type apLed  struct {
+// tempApLed is a temporary struct used for validating the fields of ApLed.
+type tempApLed  struct {
     Brightness *int  `json:"brightness,omitempty"`
     Enabled    *bool `json:"enabled,omitempty"`
 }

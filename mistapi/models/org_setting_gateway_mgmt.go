@@ -7,6 +7,7 @@ import (
 // OrgSettingGatewayMgmt represents a OrgSettingGatewayMgmt struct.
 type OrgSettingGatewayMgmt struct {
     AppProbing           *OrgSettingGatewayMgmtAppProbing      `json:"app_probing,omitempty"`
+    // consumes uplink bandwidth, requires WA license
     AppUsage             *bool                                 `json:"app_usage,omitempty"`
     // optional, for some of the host-out traffic, the path preference can be specified by default, ECMP will be used from all available route/path available services: dns/mist/ntp
     HostOutPolicies      *OrgSettingGatewayMgmtHostOutPolicies `json:"host_out_policies,omitempty"`
@@ -44,7 +45,7 @@ func (o OrgSettingGatewayMgmt) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingGatewayMgmt.
 // It customizes the JSON unmarshaling process for OrgSettingGatewayMgmt objects.
 func (o *OrgSettingGatewayMgmt) UnmarshalJSON(input []byte) error {
-    var temp orgSettingGatewayMgmt
+    var temp tempOrgSettingGatewayMgmt
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +63,8 @@ func (o *OrgSettingGatewayMgmt) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingGatewayMgmt is a temporary struct used for validating the fields of OrgSettingGatewayMgmt.
-type orgSettingGatewayMgmt  struct {
+// tempOrgSettingGatewayMgmt is a temporary struct used for validating the fields of OrgSettingGatewayMgmt.
+type tempOrgSettingGatewayMgmt  struct {
     AppProbing      *OrgSettingGatewayMgmtAppProbing      `json:"app_probing,omitempty"`
     AppUsage        *bool                                 `json:"app_usage,omitempty"`
     HostOutPolicies *OrgSettingGatewayMgmtHostOutPolicies `json:"host_out_policies,omitempty"`

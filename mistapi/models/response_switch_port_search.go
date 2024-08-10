@@ -39,7 +39,7 @@ func (r ResponseSwitchPortSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSwitchPortSearch.
 // It customizes the JSON unmarshaling process for ResponseSwitchPortSearch objects.
 func (r *ResponseSwitchPortSearch) UnmarshalJSON(input []byte) error {
-    var temp responseSwitchPortSearch
+    var temp tempResponseSwitchPortSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (r *ResponseSwitchPortSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSwitchPortSearch is a temporary struct used for validating the fields of ResponseSwitchPortSearch.
-type responseSwitchPortSearch  struct {
+// tempResponseSwitchPortSearch is a temporary struct used for validating the fields of ResponseSwitchPortSearch.
+type tempResponseSwitchPortSearch  struct {
     End     *int               `json:"end"`
     Limit   *int               `json:"limit"`
     Results *[]SwitchPortStats `json:"results"`
@@ -71,22 +71,22 @@ type responseSwitchPortSearch  struct {
     Total   *int               `json:"total"`
 }
 
-func (r *responseSwitchPortSearch) validate() error {
+func (r *tempResponseSwitchPortSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Switch_Port_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_switch_port_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Switch_Port_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_switch_port_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Switch_Port_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_switch_port_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Switch_Port_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_switch_port_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Switch_Port_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_switch_port_search`")
     }
     if len(errs) == 0 {
         return nil

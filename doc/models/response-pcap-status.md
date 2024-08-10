@@ -14,7 +14,7 @@
 | `ClientMac` | `models.Optional[string]` | Optional | - |
 | `Duration` | `*int` | Optional | - |
 | `Failed` | `[]string` | Optional | List of APs where configuration attempt failed |
-| `Gateways` | `[]string` | Optional | List of target Gateways to capture packets if a gateway capture type is specified |
+| `Gateways` | `[]string` | Optional | Information on gateways to capture packets on if a gateway capture type is specified |
 | `Id` | `uuid.UUID` | Required | unique id for the capture |
 | `IncludesMcast` | `*bool` | Optional | - |
 | `MaxNumPackets` | `*int` | Optional | max number of packets configured by user |
@@ -26,7 +26,7 @@
 | `ScanTcpdumpExpression` | `*string` | Optional | when `type`==`scan`, scan_tcpdump_expression provided by the user |
 | `Ssid` | `models.Optional[string]` | Optional | - |
 | `StartedTime` | `*int` | Optional | - |
-| `Switches` | `[]string` | Optional | List of target Switches to capture packets if a switch capture type is specified |
+| `Switches` | `[]string` | Optional | Information on switches to capture packets on if a switch capture type is specified. irb port interface is automatically added to capture as needed to ensure all desired packets are captured. |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression provided by the user (common) |
 | `Type` | [`models.PcapTypeEnum`](../../doc/models/pcap-type-enum.md) | Required | enum: `client`, `gateway`, `new_assoc`, `radiotap`, `radiotap,wired`, `wired`, `wireless` |
 | `WiredTcpdumpExpression` | `*string` | Optional | when `type`==`wired`, wired_tcpdump_expression provided by the user |
@@ -38,7 +38,7 @@
 {
   "client_mac": "60a10a773412",
   "duration": 300,
-  "id": "000001a4-0000-0000-0000-000000000000",
+  "id": "00001e5c-0000-0000-0000-000000000000",
   "max_num_packets": 1000,
   "max_pkt_len": 128,
   "pcap_aps": {
@@ -51,11 +51,11 @@
   },
   "started_time": 1435080709,
   "type": "client",
-  "ap_mac": "ap_mac2",
+  "ap_mac": "ap_mac4",
   "aps": [
-    "aps1",
-    "aps2",
-    "aps3"
+    "aps3",
+    "aps4",
+    "aps5"
   ],
   "failed": [
     "failed6"

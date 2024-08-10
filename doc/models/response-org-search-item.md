@@ -39,11 +39,11 @@
 ```json
 {
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "msp_id": "0000204c-0000-0000-0000-000000000000",
-  "name": "name4",
-  "num_aps": 214,
-  "num_gateways": 38,
-  "num_sites": 232
+  "msp_id": "00000c94-0000-0000-0000-000000000000",
+  "name": "name6",
+  "num_aps": 126,
+  "num_gateways": 126,
+  "num_sites": 64
 }
 ```
 

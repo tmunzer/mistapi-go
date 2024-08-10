@@ -37,15 +37,15 @@ Zone details statistics
   "num_clients": 80,
   "num_sdkclients": 0,
   "assets": [
-    "assets0",
-    "assets9"
+    "assets0"
   ],
   "clients": [
-    "clients0"
+    "clients0",
+    "clients1",
+    "clients2"
   ],
   "sdkclients": [
-    "sdkclients6",
-    "sdkclients7"
+    "sdkclients6"
   ]
 }
 ```

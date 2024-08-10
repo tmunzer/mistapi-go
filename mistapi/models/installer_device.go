@@ -104,7 +104,7 @@ func (i InstallerDevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for InstallerDevice.
 // It customizes the JSON unmarshaling process for InstallerDevice objects.
 func (i *InstallerDevice) UnmarshalJSON(input []byte) error {
-    var temp installerDevice
+    var temp tempInstallerDevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -136,8 +136,8 @@ func (i *InstallerDevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// installerDevice is a temporary struct used for validating the fields of InstallerDevice.
-type installerDevice  struct {
+// tempInstallerDevice is a temporary struct used for validating the fields of InstallerDevice.
+type tempInstallerDevice  struct {
     Connected         *bool            `json:"connected,omitempty"`
     DeviceprofileName *string          `json:"deviceprofile_name,omitempty"`
     ExtIp             *string          `json:"ext_ip,omitempty"`

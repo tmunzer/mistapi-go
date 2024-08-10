@@ -55,7 +55,7 @@ func (d DiscoveredSwitchAp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DiscoveredSwitchAp.
 // It customizes the JSON unmarshaling process for DiscoveredSwitchAp objects.
 func (d *DiscoveredSwitchAp) UnmarshalJSON(input []byte) error {
-    var temp discoveredSwitchAp
+    var temp tempDiscoveredSwitchAp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (d *DiscoveredSwitchAp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// discoveredSwitchAp is a temporary struct used for validating the fields of DiscoveredSwitchAp.
-type discoveredSwitchAp  struct {
+// tempDiscoveredSwitchAp is a temporary struct used for validating the fields of DiscoveredSwitchAp.
+type tempDiscoveredSwitchAp  struct {
     Hostname  *string  `json:"hostname,omitempty"`
     Mac       *string  `json:"mac,omitempty"`
     PoeStatus *bool    `json:"poe_status,omitempty"`

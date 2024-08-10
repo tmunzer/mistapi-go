@@ -41,6 +41,13 @@ RRM
       "curr_bandwidht": 80,
       "curr_channel": 200,
       "curr_power": 116
+    },
+    "key2": {
+      "bandwidth": 20,
+      "channel": 80,
+      "curr_bandwidht": 80,
+      "curr_channel": 200,
+      "curr_power": 116
     }
   },
   "band_24_metric": {
@@ -66,13 +73,6 @@ RRM
       "curr_power": 64
     },
     "key1": {
-      "bandwidth": 20,
-      "channel": 132,
-      "curr_bandwidht": 80,
-      "curr_channel": 252,
-      "curr_power": 64
-    },
-    "key2": {
       "bandwidth": 20,
       "channel": 132,
       "curr_bandwidht": 80,
@@ -111,19 +111,12 @@ RRM
     },
     "band_24_usage": "24"
   },
-  "rftemplate_id": "000025f6-0000-0000-0000-000000000000",
-  "rftemplate_name": "rftemplate_name0",
-  "status": "updating",
-  "timestamp": 72.0,
+  "rftemplate_id": "00000cf4-0000-0000-0000-000000000000",
+  "rftemplate_name": "rftemplate_name8",
+  "status": "ready",
+  "timestamp": 36.02,
   "band_6": {
     "key0": {
-      "bandwidth": 20,
-      "channel": 200,
-      "curr_bandwidht": 80,
-      "curr_channel": 64,
-      "curr_power": 252
-    },
-    "key1": {
       "bandwidth": 20,
       "channel": 200,
       "curr_bandwidht": 80,

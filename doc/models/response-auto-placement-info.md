@@ -18,10 +18,10 @@
 
 ```json
 {
-  "end_time": 38.78,
-  "est_time_left": 93.3,
-  "start_time": 122.1,
-  "status": "inprogress"
+  "end_time": 184.76,
+  "est_time_left": 52.68,
+  "start_time": 23.88,
+  "status": "done"
 }
 ```
 

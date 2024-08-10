@@ -32,7 +32,7 @@ func (e EvpnOptionsOverlay) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EvpnOptionsOverlay.
 // It customizes the JSON unmarshaling process for EvpnOptionsOverlay objects.
 func (e *EvpnOptionsOverlay) UnmarshalJSON(input []byte) error {
-    var temp evpnOptionsOverlay
+    var temp tempEvpnOptionsOverlay
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (e *EvpnOptionsOverlay) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// evpnOptionsOverlay is a temporary struct used for validating the fields of EvpnOptionsOverlay.
-type evpnOptionsOverlay  struct {
+// tempEvpnOptionsOverlay is a temporary struct used for validating the fields of EvpnOptionsOverlay.
+type tempEvpnOptionsOverlay  struct {
     As *int `json:"as,omitempty"`
 }

@@ -21,8 +21,8 @@
 
 ```json
 {
-  "degraded": 55.66,
-  "duration": 40,
+  "degraded": 231.66,
+  "duration": 232,
   "gateway_mac": "gateway_mac4",
   "gateway_model": "gateway_model8",
   "gateway_version": "gateway_version0"

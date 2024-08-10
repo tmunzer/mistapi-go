@@ -58,7 +58,7 @@ func (r RadiusAuthServer) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RadiusAuthServer.
 // It customizes the JSON unmarshaling process for RadiusAuthServer objects.
 func (r *RadiusAuthServer) UnmarshalJSON(input []byte) error {
-    var temp radiusAuthServer
+    var temp tempRadiusAuthServer
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -83,8 +83,8 @@ func (r *RadiusAuthServer) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// radiusAuthServer is a temporary struct used for validating the fields of RadiusAuthServer.
-type radiusAuthServer  struct {
+// tempRadiusAuthServer is a temporary struct used for validating the fields of RadiusAuthServer.
+type tempRadiusAuthServer  struct {
     Host           *string                  `json:"host"`
     KeywrapEnabled *bool                    `json:"keywrap_enabled,omitempty"`
     KeywrapFormat  *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
@@ -94,13 +94,13 @@ type radiusAuthServer  struct {
     Secret         *string                  `json:"secret"`
 }
 
-func (r *radiusAuthServer) validate() error {
+func (r *tempRadiusAuthServer) validate() error {
     var errs []string
     if r.Host == nil {
-        errs = append(errs, "required field `host` is missing for type `Radius_Auth_Server`")
+        errs = append(errs, "required field `host` is missing for type `radius_auth_server`")
     }
     if r.Secret == nil {
-        errs = append(errs, "required field `secret` is missing for type `Radius_Auth_Server`")
+        errs = append(errs, "required field `secret` is missing for type `radius_auth_server`")
     }
     if len(errs) == 0 {
         return nil

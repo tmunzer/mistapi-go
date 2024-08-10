@@ -129,7 +129,7 @@ func (a ApStatsLldpStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStatsLldpStat.
 // It customizes the JSON unmarshaling process for ApStatsLldpStat objects.
 func (a *ApStatsLldpStat) UnmarshalJSON(input []byte) error {
-    var temp apStatsLldpStat
+    var temp tempApStatsLldpStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -155,8 +155,8 @@ func (a *ApStatsLldpStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStatsLldpStat is a temporary struct used for validating the fields of ApStatsLldpStat.
-type apStatsLldpStat  struct {
+// tempApStatsLldpStat is a temporary struct used for validating the fields of ApStatsLldpStat.
+type tempApStatsLldpStat  struct {
     ChassisId         Optional[string]  `json:"chassis_id"`
     LldpMedSupported  Optional[bool]    `json:"lldp_med_supported"`
     MgmtAddr          Optional[string]  `json:"mgmt_addr"`

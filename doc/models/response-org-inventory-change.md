@@ -19,17 +19,17 @@
 ```json
 {
   "error": [
-    "error3"
+    "error3",
+    "error4",
+    "error5"
   ],
   "op": "delete",
   "reason": [
     "reason4",
-    "reason3",
-    "reason2"
+    "reason3"
   ],
   "success": [
-    "success2",
-    "success3"
+    "success2"
   ]
 }
 ```

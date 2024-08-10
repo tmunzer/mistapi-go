@@ -60,7 +60,7 @@ func (e EventOtherdevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EventOtherdevice.
 // It customizes the JSON unmarshaling process for EventOtherdevice objects.
 func (e *EventOtherdevice) UnmarshalJSON(input []byte) error {
-    var temp eventOtherdevice
+    var temp tempEventOtherdevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -82,8 +82,8 @@ func (e *EventOtherdevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// eventOtherdevice is a temporary struct used for validating the fields of EventOtherdevice.
-type eventOtherdevice  struct {
+// tempEventOtherdevice is a temporary struct used for validating the fields of EventOtherdevice.
+type tempEventOtherdevice  struct {
     DeviceMac *string    `json:"device_mac,omitempty"`
     Mac       *string    `json:"mac,omitempty"`
     OrgId     *uuid.UUID `json:"org_id,omitempty"`

@@ -31,7 +31,7 @@ func (a AccountJuniperInfo) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountJuniperInfo.
 // It customizes the JSON unmarshaling process for AccountJuniperInfo objects.
 func (a *AccountJuniperInfo) UnmarshalJSON(input []byte) error {
-    var temp accountJuniperInfo
+    var temp tempAccountJuniperInfo
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (a *AccountJuniperInfo) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountJuniperInfo is a temporary struct used for validating the fields of AccountJuniperInfo.
-type accountJuniperInfo  struct {
+// tempAccountJuniperInfo is a temporary struct used for validating the fields of AccountJuniperInfo.
+type tempAccountJuniperInfo  struct {
     Accounts []JuniperAccount `json:"accounts,omitempty"`
 }

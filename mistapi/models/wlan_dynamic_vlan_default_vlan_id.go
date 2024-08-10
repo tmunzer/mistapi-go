@@ -7,7 +7,7 @@ import (
 )
 
 // WlanDynamicVlanDefaultVlanId represents a WlanDynamicVlanDefaultVlanId struct.
-// This is a container for one-of cases.
+// VLAN ID, VLAN range or variable to use when there’s no match from RADIUS
 type WlanDynamicVlanDefaultVlanId struct {
     value    any
     isString bool
@@ -75,7 +75,7 @@ func (w *WlanDynamicVlanDefaultVlanId) AsNumber() (
 }
 
 // internalWlanDynamicVlanDefaultVlanId represents a wlanDynamicVlanDefaultVlanId struct.
-// This is a container for one-of cases.
+// VLAN ID, VLAN range or variable to use when there’s no match from RADIUS
 type internalWlanDynamicVlanDefaultVlanId struct {}
 
 var WlanDynamicVlanDefaultVlanIdContainer internalWlanDynamicVlanDefaultVlanId

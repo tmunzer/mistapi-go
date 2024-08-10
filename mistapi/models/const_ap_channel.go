@@ -84,7 +84,7 @@ func (c ConstApChannel) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstApChannel.
 // It customizes the JSON unmarshaling process for ConstApChannel objects.
 func (c *ConstApChannel) UnmarshalJSON(input []byte) error {
-    var temp constApChannel
+    var temp tempConstApChannel
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -111,8 +111,8 @@ func (c *ConstApChannel) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constApChannel is a temporary struct used for validating the fields of ConstApChannel.
-type constApChannel  struct {
+// tempConstApChannel is a temporary struct used for validating the fields of ConstApChannel.
+type tempConstApChannel  struct {
     Band2440mhzAllowed *bool                  `json:"band24_40mhz_allowed,omitempty"`
     Band24Channels     map[string]interface{} `json:"band24_channels,omitempty"`
     Band24Enabled      *bool                  `json:"band24_enabled,omitempty"`

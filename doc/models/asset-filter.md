@@ -44,9 +44,9 @@ Asset Filter
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "service_uuid": "0000fe6a-0000-1000-8000-0030459b3cfb",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "ap_mac": "ap_mac2",
-  "beam": 6,
-  "created_time": 214.6,
+  "ap_mac": "ap_mac0",
+  "beam": 124,
+  "created_time": 126.18,
   "disasbled": false
 }
 ```

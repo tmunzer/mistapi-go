@@ -21,13 +21,13 @@
 
 ```json
 {
-  "channel": 38,
-  "noise": 50.3,
-  "other_rssi": 128.0,
-  "other_ssid": "other_ssid0",
-  "util_score": 171.42,
-  "util_score_non_wifi": 19.76,
-  "util_score_other": 203.04
+  "channel": 144,
+  "noise": 137.64,
+  "other_rssi": 196.06,
+  "other_ssid": "other_ssid6",
+  "util_score": 16.52,
+  "util_score_non_wifi": 168.18,
+  "util_score_other": 15.1
 }
 ```
 

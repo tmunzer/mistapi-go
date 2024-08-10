@@ -29,17 +29,16 @@ Junos IP Config
   "pppoe_auth": "none",
   "type": "dhcp",
   "dns": [
-    "dns3",
-    "dns2",
-    "dns1"
+    "dns7",
+    "dns8"
   ],
   "dns_suffix": [
-    "dns_suffix7",
-    "dns_suffix6"
+    "dns_suffix9",
+    "dns_suffix0"
   ],
-  "gateway": "gateway4",
-  "ip": "ip8",
-  "netmask": "netmask4"
+  "gateway": "gateway0",
+  "ip": "ip4",
+  "netmask": "netmask0"
 }
 ```
 

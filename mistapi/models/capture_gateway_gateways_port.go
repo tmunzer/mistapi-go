@@ -32,7 +32,7 @@ func (c CaptureGatewayGatewaysPort) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureGatewayGatewaysPort.
 // It customizes the JSON unmarshaling process for CaptureGatewayGatewaysPort objects.
 func (c *CaptureGatewayGatewaysPort) UnmarshalJSON(input []byte) error {
-    var temp captureGatewayGatewaysPort
+    var temp tempCaptureGatewayGatewaysPort
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (c *CaptureGatewayGatewaysPort) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureGatewayGatewaysPort is a temporary struct used for validating the fields of CaptureGatewayGatewaysPort.
-type captureGatewayGatewaysPort  struct {
+// tempCaptureGatewayGatewaysPort is a temporary struct used for validating the fields of CaptureGatewayGatewaysPort.
+type tempCaptureGatewayGatewaysPort  struct {
     TcpdumpExpression *string `json:"tcpdump_expression,omitempty"`
 }

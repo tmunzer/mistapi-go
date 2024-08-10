@@ -20,12 +20,12 @@
 
 ```json
 {
-  "amendment_id": "0000018c-0000-0000-0000-000000000000",
-  "dst_org_id": "00001982-0000-0000-0000-000000000000",
-  "notes": "notes0",
-  "op": "amend",
-  "quantity": 90,
-  "subscription_id": "subscription_id0"
+  "amendment_id": "00000f82-0000-0000-0000-000000000000",
+  "dst_org_id": "00000b8c-0000-0000-0000-000000000000",
+  "notes": "notes4",
+  "op": "delete",
+  "quantity": 80,
+  "subscription_id": "subscription_id4"
 }
 ```
 

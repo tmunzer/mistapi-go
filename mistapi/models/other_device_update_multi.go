@@ -42,7 +42,7 @@ func (o OtherDeviceUpdateMulti) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OtherDeviceUpdateMulti.
 // It customizes the JSON unmarshaling process for OtherDeviceUpdateMulti objects.
 func (o *OtherDeviceUpdateMulti) UnmarshalJSON(input []byte) error {
-    var temp otherDeviceUpdateMulti
+    var temp tempOtherDeviceUpdateMulti
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,17 +63,17 @@ func (o *OtherDeviceUpdateMulti) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// otherDeviceUpdateMulti is a temporary struct used for validating the fields of OtherDeviceUpdateMulti.
-type otherDeviceUpdateMulti  struct {
+// tempOtherDeviceUpdateMulti is a temporary struct used for validating the fields of OtherDeviceUpdateMulti.
+type tempOtherDeviceUpdateMulti  struct {
     Macs   []string                        `json:"macs,omitempty"`
     Op     *OtherDeviceUpdateOperationEnum `json:"op"`
     SiteId *uuid.UUID                      `json:"site_id,omitempty"`
 }
 
-func (o *otherDeviceUpdateMulti) validate() error {
+func (o *tempOtherDeviceUpdateMulti) validate() error {
     var errs []string
     if o.Op == nil {
-        errs = append(errs, "required field `op` is missing for type `Other_Device_Update_Multi`")
+        errs = append(errs, "required field `op` is missing for type `other_device_update_multi`")
     }
     if len(errs) == 0 {
         return nil

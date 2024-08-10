@@ -37,7 +37,7 @@ func (a AlarmAck) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AlarmAck.
 // It customizes the JSON unmarshaling process for AlarmAck objects.
 func (a *AlarmAck) UnmarshalJSON(input []byte) error {
-    var temp alarmAck
+    var temp tempAlarmAck
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,16 +57,16 @@ func (a *AlarmAck) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// alarmAck is a temporary struct used for validating the fields of AlarmAck.
-type alarmAck  struct {
+// tempAlarmAck is a temporary struct used for validating the fields of AlarmAck.
+type tempAlarmAck  struct {
     AlarmIds *[]uuid.UUID `json:"alarm_ids"`
     Note     *string      `json:"note,omitempty"`
 }
 
-func (a *alarmAck) validate() error {
+func (a *tempAlarmAck) validate() error {
     var errs []string
     if a.AlarmIds == nil {
-        errs = append(errs, "required field `alarm_ids` is missing for type `Alarm_Ack`")
+        errs = append(errs, "required field `alarm_ids` is missing for type `alarm_ack`")
     }
     if len(errs) == 0 {
         return nil

@@ -32,7 +32,7 @@ func (r ResponseUpgradeSiteDevices) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseUpgradeSiteDevices.
 // It customizes the JSON unmarshaling process for ResponseUpgradeSiteDevices objects.
 func (r *ResponseUpgradeSiteDevices) UnmarshalJSON(input []byte) error {
-    var temp responseUpgradeSiteDevices
+    var temp tempResponseUpgradeSiteDevices
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,15 +51,15 @@ func (r *ResponseUpgradeSiteDevices) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseUpgradeSiteDevices is a temporary struct used for validating the fields of ResponseUpgradeSiteDevices.
-type responseUpgradeSiteDevices  struct {
+// tempResponseUpgradeSiteDevices is a temporary struct used for validating the fields of ResponseUpgradeSiteDevices.
+type tempResponseUpgradeSiteDevices  struct {
     UpgradeId *uuid.UUID `json:"upgrade_id"`
 }
 
-func (r *responseUpgradeSiteDevices) validate() error {
+func (r *tempResponseUpgradeSiteDevices) validate() error {
     var errs []string
     if r.UpgradeId == nil {
-        errs = append(errs, "required field `upgrade_id` is missing for type `Response_Upgrade_Site_Devices`")
+        errs = append(errs, "required field `upgrade_id` is missing for type `response_upgrade_site_devices`")
     }
     if len(errs) == 0 {
         return nil

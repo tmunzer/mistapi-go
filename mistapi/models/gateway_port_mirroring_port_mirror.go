@@ -47,7 +47,7 @@ func (g GatewayPortMirroringPortMirror) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayPortMirroringPortMirror.
 // It customizes the JSON unmarshaling process for GatewayPortMirroringPortMirror objects.
 func (g *GatewayPortMirroringPortMirror) UnmarshalJSON(input []byte) error {
-    var temp gatewayPortMirroringPortMirror
+    var temp tempGatewayPortMirroringPortMirror
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (g *GatewayPortMirroringPortMirror) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayPortMirroringPortMirror is a temporary struct used for validating the fields of GatewayPortMirroringPortMirror.
-type gatewayPortMirroringPortMirror  struct {
+// tempGatewayPortMirroringPortMirror is a temporary struct used for validating the fields of GatewayPortMirroringPortMirror.
+type tempGatewayPortMirroringPortMirror  struct {
     FamilyType     *string  `json:"family_type,omitempty"`
     IngressPortIds []string `json:"ingress_port_ids,omitempty"`
     OutputPortId   *string  `json:"output_port_id,omitempty"`

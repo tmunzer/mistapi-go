@@ -35,7 +35,7 @@ type StatsDevice struct {
     IpConfig             *ApIpConfig                                   `json:"ip_config,omitempty"`
     IpStat               *IpStat                                       `json:"ip_stat,omitempty"`
     // l2tp tunnel status (key is the wxtunnel_id)
-    L2tpStat             map[string]ApStatsL2TpStat                    `json:"l2tp_stat,omitempty"`
+    L2tpStat             map[string]ApStatsL2tpStat                    `json:"l2tp_stat,omitempty"`
     // last seen timestamp
     LastSeen             Optional[float64]                             `json:"last_seen"`
     // last trouble code of switch
@@ -116,9 +116,10 @@ type StatsDevice struct {
     MacTableStats        *MacTableStats                                `json:"mac_table_stats,omitempty"`
     // memory usage stat (for virtual chassis, memory usage of master RE)
     MemoryStat           *MemoryStat                                   `json:"memory_stat,omitempty"`
-    ModuleStat           []ModuleStatItem                              `json:"module_stat,omitempty"`
+    ModuleStat           []ModuleStatItem1                             `json:"module_stat,omitempty"`
+    Ports                []DeviceStatsPort                             `json:"ports,omitempty"`
     RouteSummaryStats    *RouteSummaryStats                            `json:"route_summary_stats,omitempty"`
-    ServiceStat          *ServiceStat                                  `json:"service_stat,omitempty"`
+    ServiceStat          *ServiceStatProperty                          `json:"service_stat,omitempty"`
     VcMac                Optional[string]                              `json:"vc_mac"`
     VcSetupInfo          *SwitchStatsVcSetupInfo                       `json:"vc_setup_info,omitempty"`
     ClusterConfig        *ClusterConfigStats                           `json:"cluster_config,omitempty"`
@@ -547,6 +548,9 @@ func (s StatsDevice) toMap() map[string]any {
     if s.ModuleStat != nil {
         structMap["module_stat"] = s.ModuleStat
     }
+    if s.Ports != nil {
+        structMap["ports"] = s.Ports
+    }
     if s.RouteSummaryStats != nil {
         structMap["route_summary_stats"] = s.RouteSummaryStats.toMap()
     }
@@ -621,12 +625,12 @@ func (s StatsDevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for StatsDevice.
 // It customizes the JSON unmarshaling process for StatsDevice objects.
 func (s *StatsDevice) UnmarshalJSON(input []byte) error {
-    var temp statsDevice
+    var temp tempStatsDevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "ext_ip", "fwupdate", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "locating", "locked", "mac", "map_id", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y", "ap_redundancy", "arp_table_stats", "clients", "clients_stats", "config_status", "cpu_stat", "dhcpd_stat", "fw_versions_outofsync", "has_pcap", "hostname", "if_stat", "mac_table_stats", "memory_stat", "module_stat", "route_summary_stats", "service_stat", "vc_mac", "vc_setup_info", "cluster_config", "cluster_stat", "conductor_name", "cpu2_stat", "dhcpd2_stat", "if2_stat", "ip2_stat", "is_ha", "memory2_stat", "module2_stat", "node_name", "router_name", "service2_stat", "service_status", "spu2_stat", "spu_stat")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "ext_ip", "fwupdate", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "locating", "locked", "mac", "map_id", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y", "ap_redundancy", "arp_table_stats", "clients", "clients_stats", "config_status", "cpu_stat", "dhcpd_stat", "fw_versions_outofsync", "has_pcap", "hostname", "if_stat", "mac_table_stats", "memory_stat", "module_stat", "ports", "route_summary_stats", "service_stat", "vc_mac", "vc_setup_info", "cluster_config", "cluster_stat", "conductor_name", "cpu2_stat", "dhcpd2_stat", "if2_stat", "ip2_stat", "is_ha", "memory2_stat", "module2_stat", "node_name", "router_name", "service2_stat", "service_status", "spu2_stat", "spu_stat")
     if err != nil {
     	return err
     }
@@ -709,6 +713,7 @@ func (s *StatsDevice) UnmarshalJSON(input []byte) error {
     s.MacTableStats = temp.MacTableStats
     s.MemoryStat = temp.MemoryStat
     s.ModuleStat = temp.ModuleStat
+    s.Ports = temp.Ports
     s.RouteSummaryStats = temp.RouteSummaryStats
     s.ServiceStat = temp.ServiceStat
     s.VcMac = temp.VcMac
@@ -732,8 +737,8 @@ func (s *StatsDevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// statsDevice is a temporary struct used for validating the fields of StatsDevice.
-type statsDevice  struct {
+// tempStatsDevice is a temporary struct used for validating the fields of StatsDevice.
+type tempStatsDevice  struct {
     AutoPlacement       *ApStatsAutoPlacement                         `json:"auto_placement,omitempty"`
     AutoUpgradeStat     *ApStatsAutoUpgrade                           `json:"auto_upgrade_stat,omitempty"`
     BleStat             *ApStatsBle                                   `json:"ble_stat,omitempty"`
@@ -755,7 +760,7 @@ type statsDevice  struct {
     Ip                  Optional[string]                              `json:"ip"`
     IpConfig            *ApIpConfig                                   `json:"ip_config,omitempty"`
     IpStat              *IpStat                                       `json:"ip_stat,omitempty"`
-    L2tpStat            map[string]ApStatsL2TpStat                    `json:"l2tp_stat,omitempty"`
+    L2tpStat            map[string]ApStatsL2tpStat                    `json:"l2tp_stat,omitempty"`
     LastSeen            Optional[float64]                             `json:"last_seen"`
     LastTrouble         *LastTrouble                                  `json:"last_trouble,omitempty"`
     Led                 *ApLed                                        `json:"led,omitempty"`
@@ -810,9 +815,10 @@ type statsDevice  struct {
     IfStat              *IfStat                                       `json:"if_stat,omitempty"`
     MacTableStats       *MacTableStats                                `json:"mac_table_stats,omitempty"`
     MemoryStat          *MemoryStat                                   `json:"memory_stat,omitempty"`
-    ModuleStat          []ModuleStatItem                              `json:"module_stat,omitempty"`
+    ModuleStat          []ModuleStatItem1                             `json:"module_stat,omitempty"`
+    Ports               []DeviceStatsPort                             `json:"ports,omitempty"`
     RouteSummaryStats   *RouteSummaryStats                            `json:"route_summary_stats,omitempty"`
-    ServiceStat         *ServiceStat                                  `json:"service_stat,omitempty"`
+    ServiceStat         *ServiceStatProperty                          `json:"service_stat,omitempty"`
     VcMac               Optional[string]                              `json:"vc_mac"`
     VcSetupInfo         *SwitchStatsVcSetupInfo                       `json:"vc_setup_info,omitempty"`
     ClusterConfig       *ClusterConfigStats                           `json:"cluster_config,omitempty"`

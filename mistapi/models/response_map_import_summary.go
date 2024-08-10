@@ -35,7 +35,7 @@ func (r ResponseMapImportSummary) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseMapImportSummary.
 // It customizes the JSON unmarshaling process for ResponseMapImportSummary objects.
 func (r *ResponseMapImportSummary) UnmarshalJSON(input []byte) error {
-    var temp responseMapImportSummary
+    var temp tempResponseMapImportSummary
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,23 +56,23 @@ func (r *ResponseMapImportSummary) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseMapImportSummary is a temporary struct used for validating the fields of ResponseMapImportSummary.
-type responseMapImportSummary  struct {
+// tempResponseMapImportSummary is a temporary struct used for validating the fields of ResponseMapImportSummary.
+type tempResponseMapImportSummary  struct {
     NumApAssigned  *int `json:"num_ap_assigned"`
     NumInvAssigned *int `json:"num_inv_assigned"`
     NumMapAssigned *int `json:"num_map_assigned"`
 }
 
-func (r *responseMapImportSummary) validate() error {
+func (r *tempResponseMapImportSummary) validate() error {
     var errs []string
     if r.NumApAssigned == nil {
-        errs = append(errs, "required field `num_ap_assigned` is missing for type `Response_Map_Import_Summary`")
+        errs = append(errs, "required field `num_ap_assigned` is missing for type `response_map_import_summary`")
     }
     if r.NumInvAssigned == nil {
-        errs = append(errs, "required field `num_inv_assigned` is missing for type `Response_Map_Import_Summary`")
+        errs = append(errs, "required field `num_inv_assigned` is missing for type `response_map_import_summary`")
     }
     if r.NumMapAssigned == nil {
-        errs = append(errs, "required field `num_map_assigned` is missing for type `Response_Map_Import_Summary`")
+        errs = append(errs, "required field `num_map_assigned` is missing for type `response_map_import_summary`")
     }
     if len(errs) == 0 {
         return nil

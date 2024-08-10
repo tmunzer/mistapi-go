@@ -63,7 +63,7 @@ func (j JunosOtherIpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for JunosOtherIpConfig.
 // It customizes the JSON unmarshaling process for JunosOtherIpConfig objects.
 func (j *JunosOtherIpConfig) UnmarshalJSON(input []byte) error {
-    var temp junosOtherIpConfig
+    var temp tempJunosOtherIpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -84,8 +84,8 @@ func (j *JunosOtherIpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// junosOtherIpConfig is a temporary struct used for validating the fields of JunosOtherIpConfig.
-type junosOtherIpConfig  struct {
+// tempJunosOtherIpConfig is a temporary struct used for validating the fields of JunosOtherIpConfig.
+type tempJunosOtherIpConfig  struct {
     EvpnAnycast *bool        `json:"evpn_anycast,omitempty"`
     Ip          *string      `json:"ip,omitempty"`
     Ip6         *string      `json:"ip6,omitempty"`

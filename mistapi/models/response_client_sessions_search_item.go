@@ -58,7 +58,7 @@ func (r ResponseClientSessionsSearchItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseClientSessionsSearchItem.
 // It customizes the JSON unmarshaling process for ResponseClientSessionsSearchItem objects.
 func (r *ResponseClientSessionsSearchItem) UnmarshalJSON(input []byte) error {
-    var temp responseClientSessionsSearchItem
+    var temp tempResponseClientSessionsSearchItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -89,8 +89,8 @@ func (r *ResponseClientSessionsSearchItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseClientSessionsSearchItem is a temporary struct used for validating the fields of ResponseClientSessionsSearchItem.
-type responseClientSessionsSearchItem  struct {
+// tempResponseClientSessionsSearchItem is a temporary struct used for validating the fields of ResponseClientSessionsSearchItem.
+type tempResponseClientSessionsSearchItem  struct {
     Ap                *string    `json:"ap"`
     Band              *string    `json:"band"`
     ClientManufacture *string    `json:"client_manufacture"`
@@ -106,43 +106,43 @@ type responseClientSessionsSearchItem  struct {
     WlanId            *uuid.UUID `json:"wlan_id"`
 }
 
-func (r *responseClientSessionsSearchItem) validate() error {
+func (r *tempResponseClientSessionsSearchItem) validate() error {
     var errs []string
     if r.Ap == nil {
-        errs = append(errs, "required field `ap` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `ap` is missing for type `response_client_sessions_search_item`")
     }
     if r.Band == nil {
-        errs = append(errs, "required field `band` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `band` is missing for type `response_client_sessions_search_item`")
     }
     if r.ClientManufacture == nil {
-        errs = append(errs, "required field `client_manufacture` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `client_manufacture` is missing for type `response_client_sessions_search_item`")
     }
     if r.Connect == nil {
-        errs = append(errs, "required field `connect` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `connect` is missing for type `response_client_sessions_search_item`")
     }
     if r.Disconnect == nil {
-        errs = append(errs, "required field `disconnect` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `disconnect` is missing for type `response_client_sessions_search_item`")
     }
     if r.Duration == nil {
-        errs = append(errs, "required field `duration` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `duration` is missing for type `response_client_sessions_search_item`")
     }
     if r.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `mac` is missing for type `response_client_sessions_search_item`")
     }
     if r.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `org_id` is missing for type `response_client_sessions_search_item`")
     }
     if r.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `site_id` is missing for type `response_client_sessions_search_item`")
     }
     if r.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `ssid` is missing for type `response_client_sessions_search_item`")
     }
     if r.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `timestamp` is missing for type `response_client_sessions_search_item`")
     }
     if r.WlanId == nil {
-        errs = append(errs, "required field `wlan_id` is missing for type `Response_Client_Sessions_Search_Item`")
+        errs = append(errs, "required field `wlan_id` is missing for type `response_client_sessions_search_item`")
     }
     if len(errs) == 0 {
         return nil

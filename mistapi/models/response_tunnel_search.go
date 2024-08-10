@@ -8,13 +8,13 @@ import (
 
 // ResponseTunnelSearch represents a ResponseTunnelSearch struct.
 type ResponseTunnelSearch struct {
-    End                  int                           `json:"end"`
-    Limit                int                           `json:"limit"`
-    Next                 *string                       `json:"next,omitempty"`
-    Results              []ResponseTunnelSearchResults `json:"results"`
-    Start                int                           `json:"start"`
-    Total                int                           `json:"total"`
-    AdditionalProperties map[string]any                `json:"_"`
+    End                  int                         `json:"end"`
+    Limit                int                         `json:"limit"`
+    Next                 *string                     `json:"next,omitempty"`
+    Results              []ResponseTunnelSearchItem2 `json:"results"`
+    Start                int                         `json:"start"`
+    Total                int                         `json:"total"`
+    AdditionalProperties map[string]any              `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseTunnelSearch.
@@ -43,7 +43,7 @@ func (r ResponseTunnelSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseTunnelSearch.
 // It customizes the JSON unmarshaling process for ResponseTunnelSearch objects.
 func (r *ResponseTunnelSearch) UnmarshalJSON(input []byte) error {
-    var temp responseTunnelSearch
+    var temp tempResponseTunnelSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,32 +67,32 @@ func (r *ResponseTunnelSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseTunnelSearch is a temporary struct used for validating the fields of ResponseTunnelSearch.
-type responseTunnelSearch  struct {
-    End     *int                           `json:"end"`
-    Limit   *int                           `json:"limit"`
-    Next    *string                        `json:"next,omitempty"`
-    Results *[]ResponseTunnelSearchResults `json:"results"`
-    Start   *int                           `json:"start"`
-    Total   *int                           `json:"total"`
+// tempResponseTunnelSearch is a temporary struct used for validating the fields of ResponseTunnelSearch.
+type tempResponseTunnelSearch  struct {
+    End     *int                         `json:"end"`
+    Limit   *int                         `json:"limit"`
+    Next    *string                      `json:"next,omitempty"`
+    Results *[]ResponseTunnelSearchItem2 `json:"results"`
+    Start   *int                         `json:"start"`
+    Total   *int                         `json:"total"`
 }
 
-func (r *responseTunnelSearch) validate() error {
+func (r *tempResponseTunnelSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Tunnel_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_tunnel_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Tunnel_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_tunnel_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Tunnel_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_tunnel_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Tunnel_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_tunnel_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Tunnel_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_tunnel_search`")
     }
     if len(errs) == 0 {
         return nil

@@ -50,7 +50,7 @@ func (m MxedgeDasCoaServer) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeDasCoaServer.
 // It customizes the JSON unmarshaling process for MxedgeDasCoaServer objects.
 func (m *MxedgeDasCoaServer) UnmarshalJSON(input []byte) error {
-    var temp mxedgeDasCoaServer
+    var temp tempMxedgeDasCoaServer
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -69,8 +69,8 @@ func (m *MxedgeDasCoaServer) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeDasCoaServer is a temporary struct used for validating the fields of MxedgeDasCoaServer.
-type mxedgeDasCoaServer  struct {
+// tempMxedgeDasCoaServer is a temporary struct used for validating the fields of MxedgeDasCoaServer.
+type tempMxedgeDasCoaServer  struct {
     DisableEventTimestampCheck *bool   `json:"disable_event_timestamp_check,omitempty"`
     Enabled                    *bool   `json:"enabled,omitempty"`
     Host                       *string `json:"host,omitempty"`

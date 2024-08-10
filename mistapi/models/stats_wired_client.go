@@ -87,7 +87,7 @@ func (s StatsWiredClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for StatsWiredClient.
 // It customizes the JSON unmarshaling process for StatsWiredClient objects.
 func (s *StatsWiredClient) UnmarshalJSON(input []byte) error {
-    var temp statsWiredClient
+    var temp tempStatsWiredClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -117,8 +117,8 @@ func (s *StatsWiredClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// statsWiredClient is a temporary struct used for validating the fields of StatsWiredClient.
-type statsWiredClient  struct {
+// tempStatsWiredClient is a temporary struct used for validating the fields of StatsWiredClient.
+type tempStatsWiredClient  struct {
     AuthState *string    `json:"auth_state,omitempty"`
     DeviceId  *string    `json:"device_id,omitempty"`
     EthPort   *string    `json:"eth_port,omitempty"`
@@ -133,10 +133,10 @@ type statsWiredClient  struct {
     VlanId    *float64   `json:"vlan_id,omitempty"`
 }
 
-func (s *statsWiredClient) validate() error {
+func (s *tempStatsWiredClient) validate() error {
     var errs []string
     if s.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Stats_Wired_Client`")
+        errs = append(errs, "required field `mac` is missing for type `stats_wired_client`")
     }
     if len(errs) == 0 {
         return nil

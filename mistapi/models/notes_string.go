@@ -31,7 +31,7 @@ func (n NotesString) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NotesString.
 // It customizes the JSON unmarshaling process for NotesString objects.
 func (n *NotesString) UnmarshalJSON(input []byte) error {
-    var temp notesString
+    var temp tempNotesString
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (n *NotesString) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// notesString is a temporary struct used for validating the fields of NotesString.
-type notesString  struct {
+// tempNotesString is a temporary struct used for validating the fields of NotesString.
+type tempNotesString  struct {
     Notes *string `json:"notes,omitempty"`
 }

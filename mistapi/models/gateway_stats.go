@@ -63,6 +63,7 @@ type GatewayStats struct {
     NodeName             *string                        `json:"node_name,omitempty"`
     // serial
     OrgId                *uuid.UUID                     `json:"org_id,omitempty"`
+    Ports                []DeviceStatsPort              `json:"ports,omitempty"`
     RouteSummaryStats    *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     // device name if configured
     RouterName           *string                        `json:"router_name,omitempty"`
@@ -231,6 +232,9 @@ func (g GatewayStats) toMap() map[string]any {
     if g.OrgId != nil {
         structMap["org_id"] = g.OrgId
     }
+    if g.Ports != nil {
+        structMap["ports"] = g.Ports
+    }
     if g.RouteSummaryStats != nil {
         structMap["route_summary_stats"] = g.RouteSummaryStats.toMap()
     }
@@ -276,7 +280,7 @@ func (g GatewayStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayStats.
 // It customizes the JSON unmarshaling process for GatewayStats objects.
 func (g *GatewayStats) UnmarshalJSON(input []byte) error {
-    var temp gatewayStats
+    var temp tempGatewayStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -285,7 +289,7 @@ func (g *GatewayStats) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_redundancy", "arp_table_stats", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "type", "uptime", "version")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_redundancy", "arp_table_stats", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "ports", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "type", "uptime", "version")
     if err != nil {
     	return err
     }
@@ -328,6 +332,7 @@ func (g *GatewayStats) UnmarshalJSON(input []byte) error {
     g.Name = temp.Name
     g.NodeName = temp.NodeName
     g.OrgId = temp.OrgId
+    g.Ports = temp.Ports
     g.RouteSummaryStats = temp.RouteSummaryStats
     g.RouterName = temp.RouterName
     g.Serial = temp.Serial
@@ -344,8 +349,8 @@ func (g *GatewayStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayStats is a temporary struct used for validating the fields of GatewayStats.
-type gatewayStats  struct {
+// tempGatewayStats is a temporary struct used for validating the fields of GatewayStats.
+type tempGatewayStats  struct {
     ApRedundancy      *ApRedundancy                  `json:"ap_redundancy,omitempty"`
     ArpTableStats     *ArpTableStats                 `json:"arp_table_stats,omitempty"`
     CertExpiry        *int64                         `json:"cert_expiry,omitempty"`
@@ -383,6 +388,7 @@ type gatewayStats  struct {
     Name              *string                        `json:"name,omitempty"`
     NodeName          *string                        `json:"node_name,omitempty"`
     OrgId             *uuid.UUID                     `json:"org_id,omitempty"`
+    Ports             []DeviceStatsPort              `json:"ports,omitempty"`
     RouteSummaryStats *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     RouterName        *string                        `json:"router_name,omitempty"`
     Serial            *string                        `json:"serial,omitempty"`
@@ -398,10 +404,10 @@ type gatewayStats  struct {
     Version           *string                        `json:"version,omitempty"`
 }
 
-func (g *gatewayStats) validate() error {
+func (g *tempGatewayStats) validate() error {
     var errs []string
     if g.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Gateway_Stats`")
+        errs = append(errs, "required field `mac` is missing for type `gateway_stats`")
     }
     if len(errs) == 0 {
         return nil

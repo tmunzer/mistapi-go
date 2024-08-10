@@ -16,7 +16,7 @@ property key define the type of matching, value is the string to match. e.g: `ma
 | `Name` | `*string` | Optional | - |
 | `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | Propery key is the interface name or interface range |
 | `PortMirroring` | [`map[string]models.SwitchPortMirroringProperty`](../../doc/models/switch-port-mirroring-property.md) | Optional | Property key is the port mirroring instance name<br>port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. |
-| `SwitchMgmt` | [`*models.ConfigSwitch`](../../doc/models/config-switch.md) | Optional | Switch settings |
+| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
 
 ## Example (as JSON)
 
@@ -25,10 +25,10 @@ property key define the type of matching, value is the string to match. e.g: `ma
   "match_model": "EX4300",
   "match_name[0:3]": "abc",
   "additional_config_cmds": [
-    "additional_config_cmds8"
+    "additional_config_cmds4"
   ],
-  "match_role": "match_role0",
-  "name": "name0",
+  "match_role": "match_role2",
+  "name": "name2",
   "port_config": {
     "key0": {
       "ae_disable_lacp": false,

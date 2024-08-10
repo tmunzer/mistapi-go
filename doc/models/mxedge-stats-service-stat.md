@@ -20,11 +20,11 @@
 
 ```json
 {
-  "ext_ip": "ext_ip6",
-  "last_seen": 58.88,
-  "package_state": "package_state2",
-  "package_version": "package_version0",
-  "running_state": "running_state0"
+  "ext_ip": "ext_ip2",
+  "last_seen": 220.04,
+  "package_state": "package_state8",
+  "package_version": "package_version6",
+  "running_state": "running_state6"
 }
 ```
 

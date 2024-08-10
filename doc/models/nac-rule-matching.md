@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AuthType` | [`*models.NacRuleMatchingAuthTypeEnum`](../../doc/models/nac-rule-matching-auth-type-enum.md) | Optional | enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `psk` |
+| `AuthType` | [`*models.NacRuleMatchingAuthTypeEnum`](../../doc/models/nac-rule-matching-auth-type-enum.md) | Optional | enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk` |
 | `Nactags` | `[]string` | Optional | - |
 | `PortTypes` | [`[]models.NacRuleMatchingPortTypeEnum`](../../doc/models/nac-rule-matching-port-type-enum.md) | Optional | - |
 | `SiteIds` | `[]uuid.UUID` | Optional | list of site ids to match |
@@ -35,7 +35,7 @@
     "bb19fc3e-4124-4b57-80d9-c3f6edce47c4",
     "bb19fc3e-6564-4b57-80d9-c3f6edce47c1"
   ],
-  "auth_type": "mab"
+  "auth_type": "idp"
 }
 ```
 

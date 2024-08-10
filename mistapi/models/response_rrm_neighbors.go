@@ -42,7 +42,7 @@ func (r ResponseRrmNeighbors) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseRrmNeighbors.
 // It customizes the JSON unmarshaling process for ResponseRrmNeighbors objects.
 func (r *ResponseRrmNeighbors) UnmarshalJSON(input []byte) error {
-    var temp responseRrmNeighbors
+    var temp tempResponseRrmNeighbors
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponseRrmNeighbors) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseRrmNeighbors is a temporary struct used for validating the fields of ResponseRrmNeighbors.
-type responseRrmNeighbors  struct {
+// tempResponseRrmNeighbors is a temporary struct used for validating the fields of ResponseRrmNeighbors.
+type tempResponseRrmNeighbors  struct {
     End     *int            `json:"end"`
     Limit   *int            `json:"limit"`
     Next    *string         `json:"next,omitempty"`
@@ -74,19 +74,19 @@ type responseRrmNeighbors  struct {
     Start   *int            `json:"start"`
 }
 
-func (r *responseRrmNeighbors) validate() error {
+func (r *tempResponseRrmNeighbors) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Rrm_Neighbors`")
+        errs = append(errs, "required field `end` is missing for type `response_rrm_neighbors`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Rrm_Neighbors`")
+        errs = append(errs, "required field `limit` is missing for type `response_rrm_neighbors`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Rrm_Neighbors`")
+        errs = append(errs, "required field `results` is missing for type `response_rrm_neighbors`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Rrm_Neighbors`")
+        errs = append(errs, "required field `start` is missing for type `response_rrm_neighbors`")
     }
     if len(errs) == 0 {
         return nil

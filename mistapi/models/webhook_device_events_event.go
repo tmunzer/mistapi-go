@@ -84,7 +84,7 @@ func (w WebhookDeviceEventsEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookDeviceEventsEvent.
 // It customizes the JSON unmarshaling process for WebhookDeviceEventsEvent objects.
 func (w *WebhookDeviceEventsEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookDeviceEventsEvent
+    var temp tempWebhookDeviceEventsEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -116,8 +116,8 @@ func (w *WebhookDeviceEventsEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookDeviceEventsEvent is a temporary struct used for validating the fields of WebhookDeviceEventsEvent.
-type webhookDeviceEventsEvent  struct {
+// tempWebhookDeviceEventsEvent is a temporary struct used for validating the fields of WebhookDeviceEventsEvent.
+type tempWebhookDeviceEventsEvent  struct {
     Ap         *string                                 `json:"ap,omitempty"`
     ApName     *string                                 `json:"ap_name,omitempty"`
     AuditId    *uuid.UUID                              `json:"audit_id,omitempty"`
@@ -134,28 +134,28 @@ type webhookDeviceEventsEvent  struct {
     Type       *string                                 `json:"type"`
 }
 
-func (w *webhookDeviceEventsEvent) validate() error {
+func (w *tempWebhookDeviceEventsEvent) validate() error {
     var errs []string
     if w.DeviceName == nil {
-        errs = append(errs, "required field `device_name` is missing for type `Webhook_Device_Events_Event`")
+        errs = append(errs, "required field `device_name` is missing for type `webhook_device_events_event`")
     }
     if w.DeviceType == nil {
-        errs = append(errs, "required field `device_type` is missing for type `Webhook_Device_Events_Event`")
+        errs = append(errs, "required field `device_type` is missing for type `webhook_device_events_event`")
     }
     if w.EvType == nil {
-        errs = append(errs, "required field `ev_type` is missing for type `Webhook_Device_Events_Event`")
+        errs = append(errs, "required field `ev_type` is missing for type `webhook_device_events_event`")
     }
     if w.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Webhook_Device_Events_Event`")
+        errs = append(errs, "required field `mac` is missing for type `webhook_device_events_event`")
     }
     if w.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Webhook_Device_Events_Event`")
+        errs = append(errs, "required field `org_id` is missing for type `webhook_device_events_event`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Device_Events_Event`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_device_events_event`")
     }
     if w.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Webhook_Device_Events_Event`")
+        errs = append(errs, "required field `type` is missing for type `webhook_device_events_event`")
     }
     if len(errs) == 0 {
         return nil

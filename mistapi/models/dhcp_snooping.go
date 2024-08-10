@@ -50,7 +50,7 @@ func (d DhcpSnooping) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DhcpSnooping.
 // It customizes the JSON unmarshaling process for DhcpSnooping objects.
 func (d *DhcpSnooping) UnmarshalJSON(input []byte) error {
-    var temp dhcpSnooping
+    var temp tempDhcpSnooping
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -69,8 +69,8 @@ func (d *DhcpSnooping) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// dhcpSnooping is a temporary struct used for validating the fields of DhcpSnooping.
-type dhcpSnooping  struct {
+// tempDhcpSnooping is a temporary struct used for validating the fields of DhcpSnooping.
+type tempDhcpSnooping  struct {
     AllNetworks         *bool    `json:"all_networks,omitempty"`
     EnableArpSpoofCheck *bool    `json:"enable_arp_spoof_check,omitempty"`
     EnableIpSourceGuard *bool    `json:"enable_ip_source_guard,omitempty"`

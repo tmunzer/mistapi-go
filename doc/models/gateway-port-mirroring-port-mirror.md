@@ -20,12 +20,13 @@
 ```json
 {
   "output_port_id": "ge-0/0/5",
-  "family_type": "family_type0",
+  "family_type": "family_type4",
   "ingress_port_ids": [
-    "ingress_port_ids2"
+    "ingress_port_ids6",
+    "ingress_port_ids5"
   ],
-  "rate": 108,
-  "run_length": 0
+  "rate": 198,
+  "run_length": 166
 }
 ```
 

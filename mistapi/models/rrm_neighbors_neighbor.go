@@ -35,7 +35,7 @@ func (r RrmNeighborsNeighbor) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RrmNeighborsNeighbor.
 // It customizes the JSON unmarshaling process for RrmNeighborsNeighbor objects.
 func (r *RrmNeighborsNeighbor) UnmarshalJSON(input []byte) error {
-    var temp rrmNeighborsNeighbor
+    var temp tempRrmNeighborsNeighbor
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (r *RrmNeighborsNeighbor) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rrmNeighborsNeighbor is a temporary struct used for validating the fields of RrmNeighborsNeighbor.
-type rrmNeighborsNeighbor  struct {
+// tempRrmNeighborsNeighbor is a temporary struct used for validating the fields of RrmNeighborsNeighbor.
+type tempRrmNeighborsNeighbor  struct {
     Mac  *string `json:"mac,omitempty"`
     Rssi *int    `json:"rssi,omitempty"`
 }

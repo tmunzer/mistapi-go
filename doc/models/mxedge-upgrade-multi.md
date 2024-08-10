@@ -22,7 +22,7 @@
 {
   "channel": "stable",
   "mxedge_ids": [
-    "00002230-0000-0000-0000-000000000000"
+    "00000bb2-0000-0000-0000-000000000000"
   ],
   "strategy": "big_bang",
   "allow_downgrades": {

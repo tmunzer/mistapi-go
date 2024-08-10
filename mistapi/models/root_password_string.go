@@ -31,7 +31,7 @@ func (r RootPasswordString) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RootPasswordString.
 // It customizes the JSON unmarshaling process for RootPasswordString objects.
 func (r *RootPasswordString) UnmarshalJSON(input []byte) error {
-    var temp rootPasswordString
+    var temp tempRootPasswordString
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (r *RootPasswordString) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rootPasswordString is a temporary struct used for validating the fields of RootPasswordString.
-type rootPasswordString  struct {
+// tempRootPasswordString is a temporary struct used for validating the fields of RootPasswordString.
+type tempRootPasswordString  struct {
     RootPassword *string `json:"root_password"`
 }
 
-func (r *rootPasswordString) validate() error {
+func (r *tempRootPasswordString) validate() error {
     var errs []string
     if r.RootPassword == nil {
-        errs = append(errs, "required field `root_password` is missing for type `Root_Password_String`")
+        errs = append(errs, "required field `root_password` is missing for type `root_password_string`")
     }
     if len(errs) == 0 {
         return nil

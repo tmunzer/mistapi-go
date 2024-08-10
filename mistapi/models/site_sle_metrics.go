@@ -33,7 +33,7 @@ func (s SiteSleMetrics) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSleMetrics.
 // It customizes the JSON unmarshaling process for SiteSleMetrics objects.
 func (s *SiteSleMetrics) UnmarshalJSON(input []byte) error {
-    var temp siteSleMetrics
+    var temp tempSiteSleMetrics
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (s *SiteSleMetrics) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSleMetrics is a temporary struct used for validating the fields of SiteSleMetrics.
-type siteSleMetrics  struct {
+// tempSiteSleMetrics is a temporary struct used for validating the fields of SiteSleMetrics.
+type tempSiteSleMetrics  struct {
     Enabled   *[]string `json:"enabled"`
     Supported *[]string `json:"supported"`
 }
 
-func (s *siteSleMetrics) validate() error {
+func (s *tempSiteSleMetrics) validate() error {
     var errs []string
     if s.Enabled == nil {
-        errs = append(errs, "required field `enabled` is missing for type `Site_Sle_Metrics`")
+        errs = append(errs, "required field `enabled` is missing for type `site_sle_metrics`")
     }
     if s.Supported == nil {
-        errs = append(errs, "required field `supported` is missing for type `Site_Sle_Metrics`")
+        errs = append(errs, "required field `supported` is missing for type `site_sle_metrics`")
     }
     if len(errs) == 0 {
         return nil

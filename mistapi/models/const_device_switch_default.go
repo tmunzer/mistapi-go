@@ -31,7 +31,7 @@ func (c ConstDeviceSwitchDefault) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstDeviceSwitchDefault.
 // It customizes the JSON unmarshaling process for ConstDeviceSwitchDefault objects.
 func (c *ConstDeviceSwitchDefault) UnmarshalJSON(input []byte) error {
-    var temp constDeviceSwitchDefault
+    var temp tempConstDeviceSwitchDefault
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (c *ConstDeviceSwitchDefault) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constDeviceSwitchDefault is a temporary struct used for validating the fields of ConstDeviceSwitchDefault.
-type constDeviceSwitchDefault  struct {
+// tempConstDeviceSwitchDefault is a temporary struct used for validating the fields of ConstDeviceSwitchDefault.
+type tempConstDeviceSwitchDefault  struct {
     Ports *string `json:"_ports,omitempty"`
 }

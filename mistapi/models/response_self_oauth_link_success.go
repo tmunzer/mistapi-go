@@ -33,7 +33,7 @@ func (r ResponseSelfOauthLinkSuccess) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSelfOauthLinkSuccess.
 // It customizes the JSON unmarshaling process for ResponseSelfOauthLinkSuccess objects.
 func (r *ResponseSelfOauthLinkSuccess) UnmarshalJSON(input []byte) error {
-    var temp responseSelfOauthLinkSuccess
+    var temp tempResponseSelfOauthLinkSuccess
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (r *ResponseSelfOauthLinkSuccess) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSelfOauthLinkSuccess is a temporary struct used for validating the fields of ResponseSelfOauthLinkSuccess.
-type responseSelfOauthLinkSuccess  struct {
+// tempResponseSelfOauthLinkSuccess is a temporary struct used for validating the fields of ResponseSelfOauthLinkSuccess.
+type tempResponseSelfOauthLinkSuccess  struct {
     Action *string `json:"action"`
     Id     *string `json:"id"`
 }
 
-func (r *responseSelfOauthLinkSuccess) validate() error {
+func (r *tempResponseSelfOauthLinkSuccess) validate() error {
     var errs []string
     if r.Action == nil {
-        errs = append(errs, "required field `action` is missing for type `Response_Self_Oauth_Link_Success`")
+        errs = append(errs, "required field `action` is missing for type `response_self_oauth_link_success`")
     }
     if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Response_Self_Oauth_Link_Success`")
+        errs = append(errs, "required field `id` is missing for type `response_self_oauth_link_success`")
     }
     if len(errs) == 0 {
         return nil

@@ -51,7 +51,7 @@ func (s SleImpactedClientsClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactedClientsClient.
 // It customizes the JSON unmarshaling process for SleImpactedClientsClient objects.
 func (s *SleImpactedClientsClient) UnmarshalJSON(input []byte) error {
-    var temp sleImpactedClientsClient
+    var temp tempSleImpactedClientsClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (s *SleImpactedClientsClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactedClientsClient is a temporary struct used for validating the fields of SleImpactedClientsClient.
-type sleImpactedClientsClient  struct {
+// tempSleImpactedClientsClient is a temporary struct used for validating the fields of SleImpactedClientsClient.
+type tempSleImpactedClientsClient  struct {
     Degraded *int                             `json:"degraded,omitempty"`
     Duration *int                             `json:"duration,omitempty"`
     Mac      *string                          `json:"mac,omitempty"`

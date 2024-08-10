@@ -24,22 +24,26 @@
 ```json
 {
   "download_requested": [
-    "download_requested0"
+    "download_requested4",
+    "download_requested3",
+    "download_requested2"
   ],
   "downloaded": [
-    "downloaded6",
-    "downloaded7",
     "downloaded8"
   ],
   "failed": [
-    "failed0"
+    "failed4",
+    "failed3",
+    "failed2"
   ],
   "reboot_in_progress": [
-    "reboot_in_progress9",
-    "reboot_in_progress0"
+    "reboot_in_progress1",
+    "reboot_in_progress2",
+    "reboot_in_progress3"
   ],
   "rebooted": [
-    "rebooted1"
+    "rebooted3",
+    "rebooted4"
   ]
 }
 ```

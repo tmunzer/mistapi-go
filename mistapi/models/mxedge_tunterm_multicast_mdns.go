@@ -35,7 +35,7 @@ func (m MxedgeTuntermMulticastMdns) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeTuntermMulticastMdns.
 // It customizes the JSON unmarshaling process for MxedgeTuntermMulticastMdns objects.
 func (m *MxedgeTuntermMulticastMdns) UnmarshalJSON(input []byte) error {
-    var temp mxedgeTuntermMulticastMdns
+    var temp tempMxedgeTuntermMulticastMdns
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (m *MxedgeTuntermMulticastMdns) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeTuntermMulticastMdns is a temporary struct used for validating the fields of MxedgeTuntermMulticastMdns.
-type mxedgeTuntermMulticastMdns  struct {
+// tempMxedgeTuntermMulticastMdns is a temporary struct used for validating the fields of MxedgeTuntermMulticastMdns.
+type tempMxedgeTuntermMulticastMdns  struct {
     Enabled *bool    `json:"enabled,omitempty"`
     VlanIds []string `json:"vlan_ids,omitempty"`
 }

@@ -22,14 +22,12 @@ Anomaly
 ```json
 {
   "events": [
-    "events6",
-    "events5",
     "events4"
   ],
-  "since": 193.66,
-  "sle_baseline": 169.14,
-  "sle_deviation": 83.6,
-  "timestamp": 63.24
+  "since": 194.04,
+  "sle_baseline": 169.52,
+  "sle_deviation": 83.98,
+  "timestamp": 63.62
 }
 ```
 

@@ -33,8 +33,7 @@ authentication wlan settings
   "enable_mac_auth": false,
   "key_idx": 1,
   "keys": [
-    "keys8",
-    "keys9"
+    "keys8"
   ],
   "multi_psk_only": false,
   "owe": "disabled",

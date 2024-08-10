@@ -67,7 +67,7 @@ func (u UtilsShowForwardingTable) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsShowForwardingTable.
 // It customizes the JSON unmarshaling process for UtilsShowForwardingTable objects.
 func (u *UtilsShowForwardingTable) UnmarshalJSON(input []byte) error {
-    var temp utilsShowForwardingTable
+    var temp tempUtilsShowForwardingTable
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -89,8 +89,8 @@ func (u *UtilsShowForwardingTable) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsShowForwardingTable is a temporary struct used for validating the fields of UtilsShowForwardingTable.
-type utilsShowForwardingTable  struct {
+// tempUtilsShowForwardingTable is a temporary struct used for validating the fields of UtilsShowForwardingTable.
+type tempUtilsShowForwardingTable  struct {
     Node            *HaClusterNodeEnum `json:"node,omitempty"`
     Prefix          *string            `json:"prefix,omitempty"`
     ServiceIp       *string            `json:"service_ip,omitempty"`

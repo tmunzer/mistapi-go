@@ -37,7 +37,7 @@ func (a ApUplinkPortConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApUplinkPortConfig.
 // It customizes the JSON unmarshaling process for ApUplinkPortConfig objects.
 func (a *ApUplinkPortConfig) UnmarshalJSON(input []byte) error {
-    var temp apUplinkPortConfig
+    var temp tempApUplinkPortConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (a *ApUplinkPortConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apUplinkPortConfig is a temporary struct used for validating the fields of ApUplinkPortConfig.
-type apUplinkPortConfig  struct {
+// tempApUplinkPortConfig is a temporary struct used for validating the fields of ApUplinkPortConfig.
+type tempApUplinkPortConfig  struct {
     Dot1x             *bool `json:"dot1x,omitempty"`
     KeepWlansUpIfDown *bool `json:"keep_wlans_up_if_down,omitempty"`
 }

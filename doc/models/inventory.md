@@ -38,9 +38,9 @@
   "type": "ap",
   "adopted": false,
   "connected": false,
-  "created_time": 179.36,
-  "deviceprofile_id": "deviceprofile_id6",
-  "hostname": "hostname8"
+  "created_time": 98.34,
+  "deviceprofile_id": "deviceprofile_id4",
+  "hostname": "hostname0"
 }
 ```
 

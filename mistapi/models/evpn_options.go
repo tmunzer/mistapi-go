@@ -78,7 +78,7 @@ func (e EvpnOptions) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EvpnOptions.
 // It customizes the JSON unmarshaling process for EvpnOptions objects.
 func (e *EvpnOptions) UnmarshalJSON(input []byte) error {
-    var temp evpnOptions
+    var temp tempEvpnOptions
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -102,8 +102,8 @@ func (e *EvpnOptions) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// evpnOptions is a temporary struct used for validating the fields of EvpnOptions.
-type evpnOptions  struct {
+// tempEvpnOptions is a temporary struct used for validating the fields of EvpnOptions.
+type tempEvpnOptions  struct {
     AutoLoopbackSubnet  *string                          `json:"auto_loopback_subnet,omitempty"`
     AutoLoopbackSubnet6 *string                          `json:"auto_loopback_subnet6,omitempty"`
     AutoRouterIdSubnet  *string                          `json:"auto_router_id_subnet,omitempty"`

@@ -47,7 +47,7 @@ func (c ClusterConfigStatsFabricLinkInfo) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClusterConfigStatsFabricLinkInfo.
 // It customizes the JSON unmarshaling process for ClusterConfigStatsFabricLinkInfo objects.
 func (c *ClusterConfigStatsFabricLinkInfo) UnmarshalJSON(input []byte) error {
-    var temp clusterConfigStatsFabricLinkInfo
+    var temp tempClusterConfigStatsFabricLinkInfo
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (c *ClusterConfigStatsFabricLinkInfo) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// clusterConfigStatsFabricLinkInfo is a temporary struct used for validating the fields of ClusterConfigStatsFabricLinkInfo.
-type clusterConfigStatsFabricLinkInfo  struct {
+// tempClusterConfigStatsFabricLinkInfo is a temporary struct used for validating the fields of ClusterConfigStatsFabricLinkInfo.
+type tempClusterConfigStatsFabricLinkInfo  struct {
     DataPlaneNotifiedStatus *string  `json:"DataPlaneNotifiedStatus,omitempty"`
     Interface               []string `json:"Interface,omitempty"`
     InternalStatus          *string  `json:"InternalStatus,omitempty"`

@@ -32,7 +32,7 @@ func (s SwitchVrfInstances) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchVrfInstances.
 // It customizes the JSON unmarshaling process for SwitchVrfInstances objects.
 func (s *SwitchVrfInstances) UnmarshalJSON(input []byte) error {
-    var temp switchVrfInstances
+    var temp tempSwitchVrfInstances
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (s *SwitchVrfInstances) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchVrfInstances is a temporary struct used for validating the fields of SwitchVrfInstances.
-type switchVrfInstances  struct {
+// tempSwitchVrfInstances is a temporary struct used for validating the fields of SwitchVrfInstances.
+type tempSwitchVrfInstances  struct {
     Networks []string `json:"networks,omitempty"`
 }

@@ -40,7 +40,7 @@ func (s SimpleAlertArpFailure) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SimpleAlertArpFailure.
 // It customizes the JSON unmarshaling process for SimpleAlertArpFailure objects.
 func (s *SimpleAlertArpFailure) UnmarshalJSON(input []byte) error {
-    var temp simpleAlertArpFailure
+    var temp tempSimpleAlertArpFailure
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (s *SimpleAlertArpFailure) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// simpleAlertArpFailure is a temporary struct used for validating the fields of SimpleAlertArpFailure.
-type simpleAlertArpFailure  struct {
+// tempSimpleAlertArpFailure is a temporary struct used for validating the fields of SimpleAlertArpFailure.
+type tempSimpleAlertArpFailure  struct {
     ClientCount   *int `json:"client_count,omitempty"`
     Duration      *int `json:"duration,omitempty"`
     IncidentCount *int `json:"incident_count,omitempty"`

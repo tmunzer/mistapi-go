@@ -22,14 +22,14 @@
 
 ```json
 {
-  "current_occupancy": 78,
-  "map_id": "00002676-0000-0000-0000-000000000000",
-  "occupancy_limit": 186,
+  "current_occupancy": 80,
+  "map_id": "00002274-0000-0000-0000-000000000000",
+  "occupancy_limit": 188,
   "org_id": "52b50564-8821-4c3e-97be-5061c7760002",
-  "timestamp": 133.96,
+  "timestamp": 144.22,
   "type": "COMPLIANCE-OK",
-  "zone_id": "00002142-0000-0000-0000-000000000000",
-  "zone_name": "zone_name8"
+  "zone_id": "00002544-0000-0000-0000-000000000000",
+  "zone_name": "zone_name4"
 }
 ```
 

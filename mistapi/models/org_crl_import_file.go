@@ -37,7 +37,7 @@ func (o OrgCrlImportFile) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgCrlImportFile.
 // It customizes the JSON unmarshaling process for OrgCrlImportFile objects.
 func (o *OrgCrlImportFile) UnmarshalJSON(input []byte) error {
-    var temp orgCrlImportFile
+    var temp tempOrgCrlImportFile
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (o *OrgCrlImportFile) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgCrlImportFile is a temporary struct used for validating the fields of OrgCrlImportFile.
-type orgCrlImportFile  struct {
+// tempOrgCrlImportFile is a temporary struct used for validating the fields of OrgCrlImportFile.
+type tempOrgCrlImportFile  struct {
     File *[]byte `json:"file,omitempty"`
     Json *string `json:"json,omitempty"`
 }

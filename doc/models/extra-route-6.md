@@ -30,7 +30,7 @@
   "no_resolve": false,
   "preference": 30,
   "via": "2a02:1234:200a::100",
-  "metric": 234
+  "metric": 10
 }
 ```
 

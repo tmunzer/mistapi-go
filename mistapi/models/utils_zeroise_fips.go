@@ -32,7 +32,7 @@ func (u UtilsZeroiseFips) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsZeroiseFips.
 // It customizes the JSON unmarshaling process for UtilsZeroiseFips objects.
 func (u *UtilsZeroiseFips) UnmarshalJSON(input []byte) error {
-    var temp utilsZeroiseFips
+    var temp tempUtilsZeroiseFips
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,15 +51,15 @@ func (u *UtilsZeroiseFips) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsZeroiseFips is a temporary struct used for validating the fields of UtilsZeroiseFips.
-type utilsZeroiseFips  struct {
+// tempUtilsZeroiseFips is a temporary struct used for validating the fields of UtilsZeroiseFips.
+type tempUtilsZeroiseFips  struct {
     Password *string `json:"password"`
 }
 
-func (u *utilsZeroiseFips) validate() error {
+func (u *tempUtilsZeroiseFips) validate() error {
     var errs []string
     if u.Password == nil {
-        errs = append(errs, "required field `password` is missing for type `Utils_Zeroise_Fips`")
+        errs = append(errs, "required field `password` is missing for type `utils_zeroise_fips`")
     }
     if len(errs) == 0 {
         return nil

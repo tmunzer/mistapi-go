@@ -53,7 +53,7 @@ func (o Orggroup) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Orggroup.
 // It customizes the JSON unmarshaling process for Orggroup objects.
 func (o *Orggroup) UnmarshalJSON(input []byte) error {
-    var temp orggroup
+    var temp tempOrggroup
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (o *Orggroup) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orggroup is a temporary struct used for validating the fields of Orggroup.
-type orggroup  struct {
+// tempOrggroup is a temporary struct used for validating the fields of Orggroup.
+type tempOrggroup  struct {
     CreatedTime  *float64    `json:"created_time,omitempty"`
     Id           *uuid.UUID  `json:"id,omitempty"`
     ModifiedTime *float64    `json:"modified_time,omitempty"`
@@ -87,10 +87,10 @@ type orggroup  struct {
     OrgIds       []uuid.UUID `json:"org_ids,omitempty"`
 }
 
-func (o *orggroup) validate() error {
+func (o *tempOrggroup) validate() error {
     var errs []string
     if o.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Orggroup`")
+        errs = append(errs, "required field `name` is missing for type `orggroup`")
     }
     if len(errs) == 0 {
         return nil

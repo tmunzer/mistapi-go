@@ -48,7 +48,7 @@ func (t TuntermPortConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TuntermPortConfig.
 // It customizes the JSON unmarshaling process for TuntermPortConfig objects.
 func (t *TuntermPortConfig) UnmarshalJSON(input []byte) error {
-    var temp tuntermPortConfig
+    var temp tempTuntermPortConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (t *TuntermPortConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tuntermPortConfig is a temporary struct used for validating the fields of TuntermPortConfig.
-type tuntermPortConfig  struct {
+// tempTuntermPortConfig is a temporary struct used for validating the fields of TuntermPortConfig.
+type tempTuntermPortConfig  struct {
     DownstreamPorts            []string `json:"downstream_ports,omitempty"`
     SeparateUpstreamDownstream *bool    `json:"separate_upstream_downstream,omitempty"`
     UpstreamPortVlanId         *int     `json:"upstream_port_vlan_id,omitempty"`

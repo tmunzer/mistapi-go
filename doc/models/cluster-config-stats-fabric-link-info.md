@@ -19,15 +19,14 @@
 
 ```json
 {
-  "DataPlaneNotifiedStatus": "DataPlaneNotifiedStatus6",
+  "DataPlaneNotifiedStatus": "DataPlaneNotifiedStatus4",
   "Interface": [
-    "Interface2",
-    "Interface3",
-    "Interface4"
+    "Interface4",
+    "Interface5"
   ],
-  "InternalStatus": "InternalStatus6",
-  "State": "State4",
-  "Status": "Status2"
+  "InternalStatus": "InternalStatus4",
+  "State": "State2",
+  "Status": "Status4"
 }
 ```
 

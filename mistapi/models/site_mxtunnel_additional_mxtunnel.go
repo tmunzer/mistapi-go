@@ -50,7 +50,7 @@ func (s SiteMxtunnelAdditionalMxtunnel) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteMxtunnelAdditionalMxtunnel.
 // It customizes the JSON unmarshaling process for SiteMxtunnelAdditionalMxtunnel objects.
 func (s *SiteMxtunnelAdditionalMxtunnel) UnmarshalJSON(input []byte) error {
-    var temp siteMxtunnelAdditionalMxtunnel
+    var temp tempSiteMxtunnelAdditionalMxtunnel
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -69,8 +69,8 @@ func (s *SiteMxtunnelAdditionalMxtunnel) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteMxtunnelAdditionalMxtunnel is a temporary struct used for validating the fields of SiteMxtunnelAdditionalMxtunnel.
-type siteMxtunnelAdditionalMxtunnel  struct {
+// tempSiteMxtunnelAdditionalMxtunnel is a temporary struct used for validating the fields of SiteMxtunnelAdditionalMxtunnel.
+type tempSiteMxtunnelAdditionalMxtunnel  struct {
     Clusters      []SiteMxtunnelCluster     `json:"clusters,omitempty"`
     HelloInterval *int                      `json:"hello_interval,omitempty"`
     HelloRetries  *int                      `json:"hello_retries,omitempty"`

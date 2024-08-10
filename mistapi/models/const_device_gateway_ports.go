@@ -40,7 +40,7 @@ func (c ConstDeviceGatewayPorts) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstDeviceGatewayPorts.
 // It customizes the JSON unmarshaling process for ConstDeviceGatewayPorts objects.
 func (c *ConstDeviceGatewayPorts) UnmarshalJSON(input []byte) error {
-    var temp constDeviceGatewayPorts
+    var temp tempConstDeviceGatewayPorts
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (c *ConstDeviceGatewayPorts) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constDeviceGatewayPorts is a temporary struct used for validating the fields of ConstDeviceGatewayPorts.
-type constDeviceGatewayPorts  struct {
+// tempConstDeviceGatewayPorts is a temporary struct used for validating the fields of ConstDeviceGatewayPorts.
+type tempConstDeviceGatewayPorts  struct {
     Display    *string `json:"display,omitempty"`
     PciAddress *string `json:"pci_address,omitempty"`
     Speed      *int    `json:"speed,omitempty"`

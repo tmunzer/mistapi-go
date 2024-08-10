@@ -36,7 +36,7 @@ func (w WebhookZone) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookZone.
 // It customizes the JSON unmarshaling process for WebhookZone objects.
 func (w *WebhookZone) UnmarshalJSON(input []byte) error {
-    var temp webhookZone
+    var temp tempWebhookZone
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,19 +56,19 @@ func (w *WebhookZone) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookZone is a temporary struct used for validating the fields of WebhookZone.
-type webhookZone  struct {
+// tempWebhookZone is a temporary struct used for validating the fields of WebhookZone.
+type tempWebhookZone  struct {
     Events *[]WebhookZoneEvent `json:"events"`
     Topic  *string             `json:"topic"`
 }
 
-func (w *webhookZone) validate() error {
+func (w *tempWebhookZone) validate() error {
     var errs []string
     if w.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Webhook_Zone`")
+        errs = append(errs, "required field `events` is missing for type `webhook_zone`")
     }
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Zone`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_zone`")
     }
     if len(errs) == 0 {
         return nil

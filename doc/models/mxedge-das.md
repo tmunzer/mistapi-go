@@ -26,13 +26,6 @@ configure cloud-assisted dynamic authorization service on this cluster of mist e
       "host": "host8",
       "port": 28,
       "secret": "secret2"
-    },
-    {
-      "disable_event_timestamp_check": false,
-      "enabled": false,
-      "host": "host8",
-      "port": 28,
-      "secret": "secret2"
     }
   ]
 }

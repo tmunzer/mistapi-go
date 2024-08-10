@@ -44,7 +44,7 @@ func (o OrgSettingMgmt) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingMgmt.
 // It customizes the JSON unmarshaling process for OrgSettingMgmt objects.
 func (o *OrgSettingMgmt) UnmarshalJSON(input []byte) error {
-    var temp orgSettingMgmt
+    var temp tempOrgSettingMgmt
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (o *OrgSettingMgmt) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingMgmt is a temporary struct used for validating the fields of OrgSettingMgmt.
-type orgSettingMgmt  struct {
+// tempOrgSettingMgmt is a temporary struct used for validating the fields of OrgSettingMgmt.
+type tempOrgSettingMgmt  struct {
     MxtunnelIds []uuid.UUID `json:"mxtunnel_ids,omitempty"`
     UseMxtunnel *bool       `json:"use_mxtunnel,omitempty"`
     UseWxtunnel *bool       `json:"use_wxtunnel,omitempty"`

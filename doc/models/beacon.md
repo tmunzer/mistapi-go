@@ -39,10 +39,10 @@ Beacon
   "power": -12,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "type": "eddystone-uid",
-  "created_time": 161.28,
-  "eddystone_instance": "eddystone_instance0",
-  "eddystone_namespace": "eddystone_namespace4",
-  "eddystone_url": "eddystone_url4",
+  "created_time": 53.64,
+  "eddystone_instance": "eddystone_instance6",
+  "eddystone_namespace": "eddystone_namespace0",
+  "eddystone_url": "eddystone_url8",
   "for_site": false
 }
 ```

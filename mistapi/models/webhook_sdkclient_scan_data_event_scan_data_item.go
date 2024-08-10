@@ -50,7 +50,7 @@ func (w WebhookSdkclientScanDataEventScanDataItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookSdkclientScanDataEventScanDataItem.
 // It customizes the JSON unmarshaling process for WebhookSdkclientScanDataEventScanDataItem objects.
 func (w *WebhookSdkclientScanDataEventScanDataItem) UnmarshalJSON(input []byte) error {
-    var temp webhookSdkclientScanDataEventScanDataItem
+    var temp tempWebhookSdkclientScanDataEventScanDataItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -75,8 +75,8 @@ func (w *WebhookSdkclientScanDataEventScanDataItem) UnmarshalJSON(input []byte) 
     return nil
 }
 
-// webhookSdkclientScanDataEventScanDataItem is a temporary struct used for validating the fields of WebhookSdkclientScanDataEventScanDataItem.
-type webhookSdkclientScanDataEventScanDataItem  struct {
+// tempWebhookSdkclientScanDataEventScanDataItem is a temporary struct used for validating the fields of WebhookSdkclientScanDataEventScanDataItem.
+type tempWebhookSdkclientScanDataEventScanDataItem  struct {
     Ap        *string               `json:"ap"`
     Band      *ScanDataItemBandEnum `json:"band"`
     Bssid     *string               `json:"bssid"`
@@ -86,28 +86,28 @@ type webhookSdkclientScanDataEventScanDataItem  struct {
     Timestamp *float64              `json:"timestamp"`
 }
 
-func (w *webhookSdkclientScanDataEventScanDataItem) validate() error {
+func (w *tempWebhookSdkclientScanDataEventScanDataItem) validate() error {
     var errs []string
     if w.Ap == nil {
-        errs = append(errs, "required field `ap` is missing for type `Webhook_Sdkclient_Scan_Data_Event_Scan_Data_Item`")
+        errs = append(errs, "required field `ap` is missing for type `webhook_sdkclient_scan_data_event_scan_data_item`")
     }
     if w.Band == nil {
-        errs = append(errs, "required field `band` is missing for type `Webhook_Sdkclient_Scan_Data_Event_Scan_Data_Item`")
+        errs = append(errs, "required field `band` is missing for type `webhook_sdkclient_scan_data_event_scan_data_item`")
     }
     if w.Bssid == nil {
-        errs = append(errs, "required field `bssid` is missing for type `Webhook_Sdkclient_Scan_Data_Event_Scan_Data_Item`")
+        errs = append(errs, "required field `bssid` is missing for type `webhook_sdkclient_scan_data_event_scan_data_item`")
     }
     if w.Channel == nil {
-        errs = append(errs, "required field `channel` is missing for type `Webhook_Sdkclient_Scan_Data_Event_Scan_Data_Item`")
+        errs = append(errs, "required field `channel` is missing for type `webhook_sdkclient_scan_data_event_scan_data_item`")
     }
     if w.Rssi == nil {
-        errs = append(errs, "required field `rssi` is missing for type `Webhook_Sdkclient_Scan_Data_Event_Scan_Data_Item`")
+        errs = append(errs, "required field `rssi` is missing for type `webhook_sdkclient_scan_data_event_scan_data_item`")
     }
     if w.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Webhook_Sdkclient_Scan_Data_Event_Scan_Data_Item`")
+        errs = append(errs, "required field `ssid` is missing for type `webhook_sdkclient_scan_data_event_scan_data_item`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Sdkclient_Scan_Data_Event_Scan_Data_Item`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_sdkclient_scan_data_event_scan_data_item`")
     }
     if len(errs) == 0 {
         return nil

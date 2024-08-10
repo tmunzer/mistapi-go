@@ -47,7 +47,7 @@ func (r ResponsePcapSearchItemPcapApsItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponsePcapSearchItemPcapApsItem.
 // It customizes the JSON unmarshaling process for ResponsePcapSearchItemPcapApsItem objects.
 func (r *ResponsePcapSearchItemPcapApsItem) UnmarshalJSON(input []byte) error {
-    var temp responsePcapSearchItemPcapApsItem
+    var temp tempResponsePcapSearchItemPcapApsItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponsePcapSearchItemPcapApsItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responsePcapSearchItemPcapApsItem is a temporary struct used for validating the fields of ResponsePcapSearchItemPcapApsItem.
-type responsePcapSearchItemPcapApsItem  struct {
+// tempResponsePcapSearchItemPcapApsItem is a temporary struct used for validating the fields of ResponsePcapSearchItemPcapApsItem.
+type tempResponsePcapSearchItemPcapApsItem  struct {
     Band              *string          `json:"band,omitempty"`
     Bandwith          *string          `json:"bandwith,omitempty"`
     Channel           *int             `json:"channel,omitempty"`

@@ -35,7 +35,7 @@ func (m MxtunnelIpsecExtraRoute) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxtunnelIpsecExtraRoute.
 // It customizes the JSON unmarshaling process for MxtunnelIpsecExtraRoute objects.
 func (m *MxtunnelIpsecExtraRoute) UnmarshalJSON(input []byte) error {
-    var temp mxtunnelIpsecExtraRoute
+    var temp tempMxtunnelIpsecExtraRoute
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (m *MxtunnelIpsecExtraRoute) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxtunnelIpsecExtraRoute is a temporary struct used for validating the fields of MxtunnelIpsecExtraRoute.
-type mxtunnelIpsecExtraRoute  struct {
+// tempMxtunnelIpsecExtraRoute is a temporary struct used for validating the fields of MxtunnelIpsecExtraRoute.
+type tempMxtunnelIpsecExtraRoute  struct {
     Dest    *string `json:"dest,omitempty"`
     NextHop *string `json:"next_hop,omitempty"`
 }

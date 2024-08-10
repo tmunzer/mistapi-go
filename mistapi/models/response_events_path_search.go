@@ -47,7 +47,7 @@ func (r ResponseEventsPathSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseEventsPathSearch.
 // It customizes the JSON unmarshaling process for ResponseEventsPathSearch objects.
 func (r *ResponseEventsPathSearch) UnmarshalJSON(input []byte) error {
-    var temp responseEventsPathSearch
+    var temp tempResponseEventsPathSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (r *ResponseEventsPathSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseEventsPathSearch is a temporary struct used for validating the fields of ResponseEventsPathSearch.
-type responseEventsPathSearch  struct {
+// tempResponseEventsPathSearch is a temporary struct used for validating the fields of ResponseEventsPathSearch.
+type tempResponseEventsPathSearch  struct {
     End     *int               `json:"end,omitempty"`
     Limit   *int               `json:"limit,omitempty"`
     Results []ServicePathEvent `json:"results,omitempty"`

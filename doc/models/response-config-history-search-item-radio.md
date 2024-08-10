@@ -16,8 +16,8 @@
 
 ```json
 {
-  "band": "band2",
-  "channel": 166
+  "band": "band6",
+  "channel": 72
 }
 ```
 

@@ -6,23 +6,23 @@ import (
 
 // SynthetictestInfo represents a SynthetictestInfo struct.
 type SynthetictestInfo struct {
-    By                   *string                `json:"by,omitempty"`
+    By                   *string                          `json:"by,omitempty"`
     // enum: `ap`, `gateway`, `switch`
-    DeviceType           *DeviceTypeEnum        `json:"device_type,omitempty"`
-    Failed               *bool                  `json:"failed,omitempty"`
-    Latency              *int                   `json:"latency,omitempty"`
-    Mac                  *string                `json:"mac,omitempty"`
-    PortId               *string                `json:"port_id,omitempty"`
-    Reason               *string                `json:"reason,omitempty"`
-    RxMbps               *int                   `json:"rx_mbps,omitempty"`
-    StartTime            *int                   `json:"start_time,omitempty"`
-    Status               *string                `json:"status,omitempty"`
-    Timestamp            *float64               `json:"timestamp,omitempty"`
-    TxMbps               *int                   `json:"tx_mbps,omitempty"`
+    DeviceType           *SynthetictestInfoDeviceTypeEnum `json:"device_type,omitempty"`
+    Failed               *bool                            `json:"failed,omitempty"`
+    Latency              *int                             `json:"latency,omitempty"`
+    Mac                  *string                          `json:"mac,omitempty"`
+    PortId               *string                          `json:"port_id,omitempty"`
+    Reason               *string                          `json:"reason,omitempty"`
+    RxMbps               *int                             `json:"rx_mbps,omitempty"`
+    StartTime            *int                             `json:"start_time,omitempty"`
+    Status               *string                          `json:"status,omitempty"`
+    Timestamp            *float64                         `json:"timestamp,omitempty"`
+    TxMbps               *int                             `json:"tx_mbps,omitempty"`
     // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `radius`, `speedtest`
-    Type                 *SynthetictestTypeEnum `json:"type,omitempty"`
-    VlanId               *int                   `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    Type                 *SynthetictestTypeEnum           `json:"type,omitempty"`
+    VlanId               *int                             `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]any                   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestInfo.
@@ -85,7 +85,7 @@ func (s SynthetictestInfo) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SynthetictestInfo.
 // It customizes the JSON unmarshaling process for SynthetictestInfo objects.
 func (s *SynthetictestInfo) UnmarshalJSON(input []byte) error {
-    var temp synthetictestInfo
+    var temp tempSynthetictestInfo
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -113,20 +113,20 @@ func (s *SynthetictestInfo) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// synthetictestInfo is a temporary struct used for validating the fields of SynthetictestInfo.
-type synthetictestInfo  struct {
-    By         *string                `json:"by,omitempty"`
-    DeviceType *DeviceTypeEnum        `json:"device_type,omitempty"`
-    Failed     *bool                  `json:"failed,omitempty"`
-    Latency    *int                   `json:"latency,omitempty"`
-    Mac        *string                `json:"mac,omitempty"`
-    PortId     *string                `json:"port_id,omitempty"`
-    Reason     *string                `json:"reason,omitempty"`
-    RxMbps     *int                   `json:"rx_mbps,omitempty"`
-    StartTime  *int                   `json:"start_time,omitempty"`
-    Status     *string                `json:"status,omitempty"`
-    Timestamp  *float64               `json:"timestamp,omitempty"`
-    TxMbps     *int                   `json:"tx_mbps,omitempty"`
-    Type       *SynthetictestTypeEnum `json:"type,omitempty"`
-    VlanId     *int                   `json:"vlan_id,omitempty"`
+// tempSynthetictestInfo is a temporary struct used for validating the fields of SynthetictestInfo.
+type tempSynthetictestInfo  struct {
+    By         *string                          `json:"by,omitempty"`
+    DeviceType *SynthetictestInfoDeviceTypeEnum `json:"device_type,omitempty"`
+    Failed     *bool                            `json:"failed,omitempty"`
+    Latency    *int                             `json:"latency,omitempty"`
+    Mac        *string                          `json:"mac,omitempty"`
+    PortId     *string                          `json:"port_id,omitempty"`
+    Reason     *string                          `json:"reason,omitempty"`
+    RxMbps     *int                             `json:"rx_mbps,omitempty"`
+    StartTime  *int                             `json:"start_time,omitempty"`
+    Status     *string                          `json:"status,omitempty"`
+    Timestamp  *float64                         `json:"timestamp,omitempty"`
+    TxMbps     *int                             `json:"tx_mbps,omitempty"`
+    Type       *SynthetictestTypeEnum           `json:"type,omitempty"`
+    VlanId     *int                             `json:"vlan_id,omitempty"`
 }

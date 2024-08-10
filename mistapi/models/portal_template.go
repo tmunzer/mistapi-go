@@ -122,7 +122,6 @@ type PortalTemplate struct {
     PrivacyPolicyError       *string        `json:"privacyPolicyError,omitempty"`
     // label of the link to go to /privacy_notice,
     PrivacyPolicyLink        *string        `json:"privacyPolicyLink,omitempty"`
-    // privacy notice text
     PrivacyPolicyText        *string        `json:"privacyPolicyText,omitempty"`
     // label to denote required field
     RequiredFieldLabel       *string        `json:"requiredFieldLabel,omitempty"`
@@ -571,7 +570,7 @@ func (p PortalTemplate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PortalTemplate.
 // It customizes the JSON unmarshaling process for PortalTemplate objects.
 func (p *PortalTemplate) UnmarshalJSON(input []byte) error {
-    var temp portalTemplate
+    var temp tempPortalTemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -707,8 +706,8 @@ func (p *PortalTemplate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// portalTemplate is a temporary struct used for validating the fields of PortalTemplate.
-type portalTemplate  struct {
+// tempPortalTemplate is a temporary struct used for validating the fields of PortalTemplate.
+type tempPortalTemplate  struct {
     AccessCodeAlternateEmail *string    `json:"accessCodeAlternateEmail,omitempty"`
     Alignment                *string    `json:"alignment,omitempty"`
     AuthButtonAmazon         *string    `json:"authButtonAmazon,omitempty"`
@@ -829,10 +828,10 @@ type portalTemplate  struct {
     TosText                  *string    `json:"tosText,omitempty"`
 }
 
-func (p *portalTemplate) validate() error {
+func (p *tempPortalTemplate) validate() error {
     var errs []string
     if p.PageTitle == nil {
-        errs = append(errs, "required field `pageTitle` is missing for type `Portal_Template`")
+        errs = append(errs, "required field `pageTitle` is missing for type `portal_template`")
     }
     if len(errs) == 0 {
         return nil

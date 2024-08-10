@@ -35,7 +35,7 @@ func (w WebhookNacEvents) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookNacEvents.
 // It customizes the JSON unmarshaling process for WebhookNacEvents objects.
 func (w *WebhookNacEvents) UnmarshalJSON(input []byte) error {
-    var temp webhookNacEvents
+    var temp tempWebhookNacEvents
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (w *WebhookNacEvents) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookNacEvents is a temporary struct used for validating the fields of WebhookNacEvents.
-type webhookNacEvents  struct {
+// tempWebhookNacEvents is a temporary struct used for validating the fields of WebhookNacEvents.
+type tempWebhookNacEvents  struct {
     Events []WebhookNacEventsEvent `json:"events,omitempty"`
     Topic  *string                 `json:"topic,omitempty"`
 }

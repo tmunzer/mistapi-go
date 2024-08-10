@@ -6,7 +6,7 @@ import (
 
 // NacPortal represents a NacPortal struct.
 type NacPortal struct {
-    // enum: `wireless`, `wireless+wired`
+    // if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`
     AccessType             *NacPortalAccessTypeEnum `json:"access_type,omitempty"`
     // background image
     BgImageUrl             *string                  `json:"bg_image_url,omitempty"`
@@ -16,6 +16,8 @@ type NacPortal struct {
     EnableTelemetry        *bool                    `json:"enable_telemetry,omitempty"`
     // in days
     ExpiryNotificationTime *int                     `json:"expiry_notification_time,omitempty"`
+    // portal wlan settings
+    GuestPortalConfig      *WlanPortal              `json:"guest_portal_config,omitempty"`
     Name                   *string                  `json:"name,omitempty"`
     // phase 2
     NotifyExpiry           *bool                    `json:"notify_expiry,omitempty"`
@@ -24,6 +26,7 @@ type NacPortal struct {
     TemplateUrl            *string                  `json:"template_url,omitempty"`
     ThumbnailUrl           *string                  `json:"thumbnail_url,omitempty"`
     Tos                    *string                  `json:"tos,omitempty"`
+    Type                   *NacPortalTypeEnum       `json:"type,omitempty"`
     AdditionalProperties   map[string]any           `json:"_"`
 }
 
@@ -54,6 +57,9 @@ func (n NacPortal) toMap() map[string]any {
     if n.ExpiryNotificationTime != nil {
         structMap["expiry_notification_time"] = n.ExpiryNotificationTime
     }
+    if n.GuestPortalConfig != nil {
+        structMap["guest_portal_config"] = n.GuestPortalConfig.toMap()
+    }
     if n.Name != nil {
         structMap["name"] = n.Name
     }
@@ -75,18 +81,21 @@ func (n NacPortal) toMap() map[string]any {
     if n.Tos != nil {
         structMap["tos"] = n.Tos
     }
+    if n.Type != nil {
+        structMap["type"] = n.Type
+    }
     return structMap
 }
 
 // UnmarshalJSON implements the json.Unmarshaler interface for NacPortal.
 // It customizes the JSON unmarshaling process for NacPortal objects.
 func (n *NacPortal) UnmarshalJSON(input []byte) error {
-    var temp nacPortal
+    var temp tempNacPortal
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "access_type", "bg_image_url", "cert_expire_time", "enable_telemetry", "expiry_notification_time", "name", "notify_expiry", "ssid", "sso", "template_url", "thumbnail_url", "tos")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "access_type", "bg_image_url", "cert_expire_time", "enable_telemetry", "expiry_notification_time", "guest_portal_config", "name", "notify_expiry", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type")
     if err != nil {
     	return err
     }
@@ -97,6 +106,7 @@ func (n *NacPortal) UnmarshalJSON(input []byte) error {
     n.CertExpireTime = temp.CertExpireTime
     n.EnableTelemetry = temp.EnableTelemetry
     n.ExpiryNotificationTime = temp.ExpiryNotificationTime
+    n.GuestPortalConfig = temp.GuestPortalConfig
     n.Name = temp.Name
     n.NotifyExpiry = temp.NotifyExpiry
     n.Ssid = temp.Ssid
@@ -104,16 +114,18 @@ func (n *NacPortal) UnmarshalJSON(input []byte) error {
     n.TemplateUrl = temp.TemplateUrl
     n.ThumbnailUrl = temp.ThumbnailUrl
     n.Tos = temp.Tos
+    n.Type = temp.Type
     return nil
 }
 
-// nacPortal is a temporary struct used for validating the fields of NacPortal.
-type nacPortal  struct {
+// tempNacPortal is a temporary struct used for validating the fields of NacPortal.
+type tempNacPortal  struct {
     AccessType             *NacPortalAccessTypeEnum `json:"access_type,omitempty"`
     BgImageUrl             *string                  `json:"bg_image_url,omitempty"`
     CertExpireTime         *int                     `json:"cert_expire_time,omitempty"`
     EnableTelemetry        *bool                    `json:"enable_telemetry,omitempty"`
     ExpiryNotificationTime *int                     `json:"expiry_notification_time,omitempty"`
+    GuestPortalConfig      *WlanPortal              `json:"guest_portal_config,omitempty"`
     Name                   *string                  `json:"name,omitempty"`
     NotifyExpiry           *bool                    `json:"notify_expiry,omitempty"`
     Ssid                   *string                  `json:"ssid,omitempty"`
@@ -121,4 +133,5 @@ type nacPortal  struct {
     TemplateUrl            *string                  `json:"template_url,omitempty"`
     ThumbnailUrl           *string                  `json:"thumbnail_url,omitempty"`
     Tos                    *string                  `json:"tos,omitempty"`
+    Type                   *NacPortalTypeEnum       `json:"type,omitempty"`
 }

@@ -39,7 +39,7 @@ func (s SiteSettingTuntermMulticastConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingTuntermMulticastConfig.
 // It customizes the JSON unmarshaling process for SiteSettingTuntermMulticastConfig objects.
 func (s *SiteSettingTuntermMulticastConfig) UnmarshalJSON(input []byte) error {
-    var temp siteSettingTuntermMulticastConfig
+    var temp tempSiteSettingTuntermMulticastConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (s *SiteSettingTuntermMulticastConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingTuntermMulticastConfig is a temporary struct used for validating the fields of SiteSettingTuntermMulticastConfig.
-type siteSettingTuntermMulticastConfig  struct {
+// tempSiteSettingTuntermMulticastConfig is a temporary struct used for validating the fields of SiteSettingTuntermMulticastConfig.
+type tempSiteSettingTuntermMulticastConfig  struct {
     Mdns         *SiteSettingTuntermMulticastConfigMdns `json:"mdns,omitempty"`
     MulticastAll *bool                                  `json:"multicast_all,omitempty"`
     Ssdp         *SiteSettingTuntermMulticastConfigSsdp `json:"ssdp,omitempty"`

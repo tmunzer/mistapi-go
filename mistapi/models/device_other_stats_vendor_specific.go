@@ -36,7 +36,7 @@ func (d DeviceOtherStatsVendorSpecific) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceOtherStatsVendorSpecific.
 // It customizes the JSON unmarshaling process for DeviceOtherStatsVendorSpecific objects.
 func (d *DeviceOtherStatsVendorSpecific) UnmarshalJSON(input []byte) error {
-    var temp deviceOtherStatsVendorSpecific
+    var temp tempDeviceOtherStatsVendorSpecific
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (d *DeviceOtherStatsVendorSpecific) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceOtherStatsVendorSpecific is a temporary struct used for validating the fields of DeviceOtherStatsVendorSpecific.
-type deviceOtherStatsVendorSpecific  struct {
+// tempDeviceOtherStatsVendorSpecific is a temporary struct used for validating the fields of DeviceOtherStatsVendorSpecific.
+type tempDeviceOtherStatsVendorSpecific  struct {
     Ports         map[string]DeviceOtherStatsVendorSpecificPort `json:"ports,omitempty"`
     TargetVersion *string                                       `json:"target_version,omitempty"`
 }

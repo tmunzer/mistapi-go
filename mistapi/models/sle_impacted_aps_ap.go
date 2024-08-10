@@ -39,7 +39,7 @@ func (s SleImpactedApsAp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactedApsAp.
 // It customizes the JSON unmarshaling process for SleImpactedApsAp objects.
 func (s *SleImpactedApsAp) UnmarshalJSON(input []byte) error {
-    var temp sleImpactedApsAp
+    var temp tempSleImpactedApsAp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (s *SleImpactedApsAp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactedApsAp is a temporary struct used for validating the fields of SleImpactedApsAp.
-type sleImpactedApsAp  struct {
+// tempSleImpactedApsAp is a temporary struct used for validating the fields of SleImpactedApsAp.
+type tempSleImpactedApsAp  struct {
     ApMac    *string  `json:"ap_mac"`
     Degraded *float64 `json:"degraded"`
     Duration *float64 `json:"duration"`
@@ -71,22 +71,22 @@ type sleImpactedApsAp  struct {
     Total    *float64 `json:"total"`
 }
 
-func (s *sleImpactedApsAp) validate() error {
+func (s *tempSleImpactedApsAp) validate() error {
     var errs []string
     if s.ApMac == nil {
-        errs = append(errs, "required field `ap_mac` is missing for type `Sle_Impacted_Aps_Ap`")
+        errs = append(errs, "required field `ap_mac` is missing for type `sle_impacted_aps_ap`")
     }
     if s.Degraded == nil {
-        errs = append(errs, "required field `degraded` is missing for type `Sle_Impacted_Aps_Ap`")
+        errs = append(errs, "required field `degraded` is missing for type `sle_impacted_aps_ap`")
     }
     if s.Duration == nil {
-        errs = append(errs, "required field `duration` is missing for type `Sle_Impacted_Aps_Ap`")
+        errs = append(errs, "required field `duration` is missing for type `sle_impacted_aps_ap`")
     }
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Sle_Impacted_Aps_Ap`")
+        errs = append(errs, "required field `name` is missing for type `sle_impacted_aps_ap`")
     }
     if s.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Sle_Impacted_Aps_Ap`")
+        errs = append(errs, "required field `total` is missing for type `sle_impacted_aps_ap`")
     }
     if len(errs) == 0 {
         return nil

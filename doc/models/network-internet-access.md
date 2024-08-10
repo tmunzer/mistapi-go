@@ -33,16 +33,21 @@ whether this network has direct internet access
       "internal_ip": "internal_ip0",
       "name": "name4",
       "port": 162
-    },
-    "key2": {
-      "internal_ip": "internal_ip0",
-      "name": "name4",
-      "port": 162
     }
   },
   "enabled": false,
   "static_nat": {
     "key0": {
+      "internal_ip": "internal_ip0",
+      "name": "name4",
+      "wan_name": "wan_name0"
+    },
+    "key1": {
+      "internal_ip": "internal_ip0",
+      "name": "name4",
+      "wan_name": "wan_name0"
+    },
+    "key2": {
       "internal_ip": "internal_ip0",
       "name": "name4",
       "wan_name": "wan_name0"

@@ -46,7 +46,7 @@ func (m MapSiteImportFile) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapSiteImportFile.
 // It customizes the JSON unmarshaling process for MapSiteImportFile objects.
 func (m *MapSiteImportFile) UnmarshalJSON(input []byte) error {
-    var temp mapSiteImportFile
+    var temp tempMapSiteImportFile
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,8 +64,8 @@ func (m *MapSiteImportFile) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapSiteImportFile is a temporary struct used for validating the fields of MapSiteImportFile.
-type mapSiteImportFile  struct {
+// tempMapSiteImportFile is a temporary struct used for validating the fields of MapSiteImportFile.
+type tempMapSiteImportFile  struct {
     AutoDeviceprofileAssignment *bool          `json:"auto_deviceprofile_assignment,omitempty"`
     Csv                         *[]byte        `json:"csv,omitempty"`
     File                        *[]byte        `json:"file,omitempty"`

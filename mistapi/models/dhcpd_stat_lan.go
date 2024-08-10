@@ -35,7 +35,7 @@ func (d DhcpdStatLan) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DhcpdStatLan.
 // It customizes the JSON unmarshaling process for DhcpdStatLan objects.
 func (d *DhcpdStatLan) UnmarshalJSON(input []byte) error {
-    var temp dhcpdStatLan
+    var temp tempDhcpdStatLan
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (d *DhcpdStatLan) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// dhcpdStatLan is a temporary struct used for validating the fields of DhcpdStatLan.
-type dhcpdStatLan  struct {
+// tempDhcpdStatLan is a temporary struct used for validating the fields of DhcpdStatLan.
+type tempDhcpdStatLan  struct {
     NumIps    *int `json:"num_ips,omitempty"`
     NumLeased *int `json:"num_leased,omitempty"`
 }

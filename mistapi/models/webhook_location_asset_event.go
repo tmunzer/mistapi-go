@@ -96,7 +96,7 @@ func (w WebhookLocationAssetEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookLocationAssetEvent.
 // It customizes the JSON unmarshaling process for WebhookLocationAssetEvent objects.
 func (w *WebhookLocationAssetEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookLocationAssetEvent
+    var temp tempWebhookLocationAssetEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -126,8 +126,8 @@ func (w *WebhookLocationAssetEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookLocationAssetEvent is a temporary struct used for validating the fields of WebhookLocationAssetEvent.
-type webhookLocationAssetEvent  struct {
+// tempWebhookLocationAssetEvent is a temporary struct used for validating the fields of WebhookLocationAssetEvent.
+type tempWebhookLocationAssetEvent  struct {
     BatteryVoltage        *int       `json:"battery_voltage,omitempty"`
     EddystoneUidInstance  *string    `json:"eddystone_uid_instance,omitempty"`
     EddystoneUidNamespace *string    `json:"eddystone_uid_namespace,omitempty"`

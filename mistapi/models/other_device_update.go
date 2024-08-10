@@ -36,7 +36,7 @@ func (o OtherDeviceUpdate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OtherDeviceUpdate.
 // It customizes the JSON unmarshaling process for OtherDeviceUpdate objects.
 func (o *OtherDeviceUpdate) UnmarshalJSON(input []byte) error {
-    var temp otherDeviceUpdate
+    var temp tempOtherDeviceUpdate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (o *OtherDeviceUpdate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// otherDeviceUpdate is a temporary struct used for validating the fields of OtherDeviceUpdate.
-type otherDeviceUpdate  struct {
+// tempOtherDeviceUpdate is a temporary struct used for validating the fields of OtherDeviceUpdate.
+type tempOtherDeviceUpdate  struct {
     DeviceMac *string    `json:"device_mac,omitempty"`
     SiteId    *uuid.UUID `json:"site_id,omitempty"`
 }

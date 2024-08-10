@@ -21,11 +21,11 @@
 ```json
 {
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "num_clients": 245.6,
-  "num_switches": 244.5,
-  "switch_health": 245.0,
-  "switch_stc": 83.18,
-  "switch_throughput": 99.56
+  "num_clients": 64.3,
+  "num_switches": 63.2,
+  "switch_health": 63.7,
+  "switch_stc": 157.88,
+  "switch_throughput": 231.14
 }
 ```
 

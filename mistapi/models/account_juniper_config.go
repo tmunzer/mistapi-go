@@ -35,7 +35,7 @@ func (a AccountJuniperConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountJuniperConfig.
 // It customizes the JSON unmarshaling process for AccountJuniperConfig objects.
 func (a *AccountJuniperConfig) UnmarshalJSON(input []byte) error {
-    var temp accountJuniperConfig
+    var temp tempAccountJuniperConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,19 +55,19 @@ func (a *AccountJuniperConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountJuniperConfig is a temporary struct used for validating the fields of AccountJuniperConfig.
-type accountJuniperConfig  struct {
+// tempAccountJuniperConfig is a temporary struct used for validating the fields of AccountJuniperConfig.
+type tempAccountJuniperConfig  struct {
     Password *string `json:"password"`
     Username *string `json:"username"`
 }
 
-func (a *accountJuniperConfig) validate() error {
+func (a *tempAccountJuniperConfig) validate() error {
     var errs []string
     if a.Password == nil {
-        errs = append(errs, "required field `password` is missing for type `Account_Juniper_Config`")
+        errs = append(errs, "required field `password` is missing for type `account_juniper_config`")
     }
     if a.Username == nil {
-        errs = append(errs, "required field `username` is missing for type `Account_Juniper_Config`")
+        errs = append(errs, "required field `username` is missing for type `account_juniper_config`")
     }
     if len(errs) == 0 {
         return nil

@@ -25,11 +25,11 @@
 {
   "pseudo_802.1ad_enabled": false,
   "use_ap_as_session_ids": false,
-  "ap_as_session_id": "ap_as_session_id2",
-  "comment": "comment6",
+  "ap_as_session_id": "ap_as_session_id6",
+  "comment": "comment8",
   "enable_cookie": false,
   "ethertype": "ethernet",
-  "local_session_id": 10
+  "local_session_id": 208
 }
 ```
 

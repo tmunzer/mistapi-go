@@ -17,8 +17,8 @@
 
 ```json
 {
-  "index": 224,
-  "model_number": "model_number2",
+  "index": 36,
+  "model_number": "model_number8",
   "port_groups": [
     {
       "count": 32,

@@ -89,9 +89,9 @@ Site MxTunnel
     }
   },
   "ap_subnets": [
-    "ap_subnets6",
-    "ap_subnets7",
-    "ap_subnets8"
+    "ap_subnets4",
+    "ap_subnets5",
+    "ap_subnets6"
   ],
   "auto_preemption": {
     "day_of_week": "mon",
@@ -106,7 +106,7 @@ Site MxTunnel
       ]
     }
   ],
-  "created_time": 103.18
+  "created_time": 248.86
 }
 ```
 

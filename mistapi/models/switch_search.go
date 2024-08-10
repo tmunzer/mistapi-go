@@ -80,7 +80,7 @@ func (s SwitchSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchSearch.
 // It customizes the JSON unmarshaling process for SwitchSearch objects.
 func (s *SwitchSearch) UnmarshalJSON(input []byte) error {
-    var temp switchSearch
+    var temp tempSwitchSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -107,8 +107,8 @@ func (s *SwitchSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchSearch is a temporary struct used for validating the fields of SwitchSearch.
-type switchSearch  struct {
+// tempSwitchSearch is a temporary struct used for validating the fields of SwitchSearch.
+type tempSwitchSearch  struct {
     ExtIp        *string    `json:"ext_ip,omitempty"`
     Hostname     []string   `json:"hostname,omitempty"`
     Ip           *string    `json:"ip,omitempty"`

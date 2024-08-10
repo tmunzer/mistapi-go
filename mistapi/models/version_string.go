@@ -31,7 +31,7 @@ func (v VersionString) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VersionString.
 // It customizes the JSON unmarshaling process for VersionString objects.
 func (v *VersionString) UnmarshalJSON(input []byte) error {
-    var temp versionString
+    var temp tempVersionString
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (v *VersionString) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// versionString is a temporary struct used for validating the fields of VersionString.
-type versionString  struct {
+// tempVersionString is a temporary struct used for validating the fields of VersionString.
+type tempVersionString  struct {
     Version *string `json:"version,omitempty"`
 }

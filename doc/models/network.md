@@ -26,7 +26,7 @@ Networks are usually subnets that have cross-site significance. `networks`in Org
 | `Subnet` | `*string` | Optional | - |
 | `Subnet6` | `*string` | Optional | - |
 | `Tenants` | [`map[string]models.NetworkTenant`](../../doc/models/network-tenant.md) | Optional | - |
-| `VlanId` | [`*models.NetworkVlanId`](../../doc/models/containers/network-vlan-id.md) | Optional | This is a container for one-of cases. |
+| `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 | `VpnAccess` | [`map[string]models.NetworkVpnAccessConfig`](../../doc/models/network-vpn-access-config.md) | Optional | Property key is the VPN name. Whether this network can be accessed from vpn |
 
 ## Example (as JSON)
@@ -36,12 +36,12 @@ Networks are usually subnets that have cross-site significance. `networks`in Org
   "disallow_mist_services": false,
   "gateway": "192.168.70.1",
   "gateway6": "fdad:b0bc:f29e::1",
-  "name": "name6",
+  "name": "name4",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "subnet": "192.168.70.0/24",
   "subnet6": "fdad:b0bc:f29e::/32",
-  "created_time": 224.26,
-  "id": "00001064-0000-0000-0000-000000000000"
+  "created_time": 103.24,
+  "id": "0000082e-0000-0000-0000-000000000000"
 }
 ```
 

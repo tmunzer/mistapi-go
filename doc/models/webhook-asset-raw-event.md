@@ -32,21 +32,21 @@
 
 ```json
 {
-  "asset_id": "000004dc-0000-0000-0000-000000000000",
-  "beam": 2,
-  "device_id": "00000bd0-0000-0000-0000-000000000000",
-  "mac": "mac2",
-  "map_id": "000003b2-0000-0000-0000-000000000000",
-  "mfg_company_id": 1.12,
-  "mfg_data": "mfg_data0",
-  "rssi": 249.0,
+  "asset_id": "00001ea0-0000-0000-0000-000000000000",
+  "beam": 166,
+  "device_id": "00002594-0000-0000-0000-000000000000",
+  "mac": "mac8",
+  "map_id": "000010fe-0000-0000-0000-000000000000",
+  "mfg_company_id": 123.08,
+  "mfg_data": "mfg_data6",
+  "rssi": 114.96,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "timestamp": 122.96,
-  "ibeacon_major": 56,
-  "ibeacon_minor": 174,
-  "ibeacon_uuid": "00002230-0000-0000-0000-000000000000",
-  "service_data_data": "service_data_data6",
-  "service_data_last_rx_time": 76
+  "timestamp": 244.92,
+  "ibeacon_major": 220,
+  "ibeacon_minor": 82,
+  "ibeacon_uuid": "0000122c-0000-0000-0000-000000000000",
+  "service_data_data": "service_data_data2",
+  "service_data_last_rx_time": 168
 }
 ```
 

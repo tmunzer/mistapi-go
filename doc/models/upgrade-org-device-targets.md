@@ -25,23 +25,25 @@
 {
   "download_requested": [
     "download_requested0",
-    "download_requested1"
+    "download_requested1",
+    "download_requested2"
   ],
   "downloaded": [
-    "downloaded4",
-    "downloaded5"
+    "downloaded4"
   ],
   "failed": [
     "failed0",
-    "failed1"
+    "failed1",
+    "failed2"
   ],
   "reboot_in_progress": [
-    "reboot_in_progress3"
+    "reboot_in_progress3",
+    "reboot_in_progress2",
+    "reboot_in_progress1"
   ],
   "rebooted": [
     "rebooted9",
-    "rebooted0",
-    "rebooted1"
+    "rebooted0"
   ]
 }
 ```

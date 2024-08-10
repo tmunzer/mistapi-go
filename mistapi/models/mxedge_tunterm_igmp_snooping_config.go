@@ -40,7 +40,7 @@ func (m MxedgeTuntermIgmpSnoopingConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeTuntermIgmpSnoopingConfig.
 // It customizes the JSON unmarshaling process for MxedgeTuntermIgmpSnoopingConfig objects.
 func (m *MxedgeTuntermIgmpSnoopingConfig) UnmarshalJSON(input []byte) error {
-    var temp mxedgeTuntermIgmpSnoopingConfig
+    var temp tempMxedgeTuntermIgmpSnoopingConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (m *MxedgeTuntermIgmpSnoopingConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeTuntermIgmpSnoopingConfig is a temporary struct used for validating the fields of MxedgeTuntermIgmpSnoopingConfig.
-type mxedgeTuntermIgmpSnoopingConfig  struct {
+// tempMxedgeTuntermIgmpSnoopingConfig is a temporary struct used for validating the fields of MxedgeTuntermIgmpSnoopingConfig.
+type tempMxedgeTuntermIgmpSnoopingConfig  struct {
     Enabled *bool                             `json:"enabled,omitempty"`
     Querier *MxedgeTuntermIgmpSnoopingQuerier `json:"querier,omitempty"`
     VlanIds []int                             `json:"vlan_ids,omitempty"`

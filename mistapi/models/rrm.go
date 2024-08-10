@@ -63,7 +63,7 @@ func (r Rrm) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Rrm.
 // It customizes the JSON unmarshaling process for Rrm objects.
 func (r *Rrm) UnmarshalJSON(input []byte) error {
-    var temp rrm
+    var temp tempRrm
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -92,8 +92,8 @@ func (r *Rrm) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rrm is a temporary struct used for validating the fields of Rrm.
-type rrm  struct {
+// tempRrm is a temporary struct used for validating the fields of Rrm.
+type tempRrm  struct {
     Band24         *map[string]RrmBand `json:"band_24"`
     Band24Metric   *RrmBandMetric      `json:"band_24_metric"`
     Band5          *map[string]RrmBand `json:"band_5"`
@@ -107,34 +107,34 @@ type rrm  struct {
     Timestamp      *float64            `json:"timestamp"`
 }
 
-func (r *rrm) validate() error {
+func (r *tempRrm) validate() error {
     var errs []string
     if r.Band24 == nil {
-        errs = append(errs, "required field `band_24` is missing for type `Rrm`")
+        errs = append(errs, "required field `band_24` is missing for type `rrm`")
     }
     if r.Band24Metric == nil {
-        errs = append(errs, "required field `band_24_metric` is missing for type `Rrm`")
+        errs = append(errs, "required field `band_24_metric` is missing for type `rrm`")
     }
     if r.Band5 == nil {
-        errs = append(errs, "required field `band_5` is missing for type `Rrm`")
+        errs = append(errs, "required field `band_5` is missing for type `rrm`")
     }
     if r.Band5Metric == nil {
-        errs = append(errs, "required field `band_5_metric` is missing for type `Rrm`")
+        errs = append(errs, "required field `band_5_metric` is missing for type `rrm`")
     }
     if r.Rftemplate == nil {
-        errs = append(errs, "required field `rftemplate` is missing for type `Rrm`")
+        errs = append(errs, "required field `rftemplate` is missing for type `rrm`")
     }
     if r.RftemplateId == nil {
-        errs = append(errs, "required field `rftemplate_id` is missing for type `Rrm`")
+        errs = append(errs, "required field `rftemplate_id` is missing for type `rrm`")
     }
     if r.RftemplateName == nil {
-        errs = append(errs, "required field `rftemplate_name` is missing for type `Rrm`")
+        errs = append(errs, "required field `rftemplate_name` is missing for type `rrm`")
     }
     if r.Status == nil {
-        errs = append(errs, "required field `status` is missing for type `Rrm`")
+        errs = append(errs, "required field `status` is missing for type `rrm`")
     }
     if r.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Rrm`")
+        errs = append(errs, "required field `timestamp` is missing for type `rrm`")
     }
     if len(errs) == 0 {
         return nil

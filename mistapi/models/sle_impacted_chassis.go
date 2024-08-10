@@ -63,7 +63,7 @@ func (s SleImpactedChassis) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactedChassis.
 // It customizes the JSON unmarshaling process for SleImpactedChassis objects.
 func (s *SleImpactedChassis) UnmarshalJSON(input []byte) error {
-    var temp sleImpactedChassis
+    var temp tempSleImpactedChassis
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -86,8 +86,8 @@ func (s *SleImpactedChassis) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactedChassis is a temporary struct used for validating the fields of SleImpactedChassis.
-type sleImpactedChassis  struct {
+// tempSleImpactedChassis is a temporary struct used for validating the fields of SleImpactedChassis.
+type tempSleImpactedChassis  struct {
     Chassis    []SleImpactedChassisChassisItem `json:"chassis,omitempty"`
     Classifier *string                         `json:"classifier,omitempty"`
     End        *int                            `json:"end,omitempty"`

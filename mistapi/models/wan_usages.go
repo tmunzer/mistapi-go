@@ -59,7 +59,7 @@ func (w WanUsages) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WanUsages.
 // It customizes the JSON unmarshaling process for WanUsages objects.
 func (w *WanUsages) UnmarshalJSON(input []byte) error {
-    var temp wanUsages
+    var temp tempWanUsages
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -81,8 +81,8 @@ func (w *WanUsages) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wanUsages is a temporary struct used for validating the fields of WanUsages.
-type wanUsages  struct {
+// tempWanUsages is a temporary struct used for validating the fields of WanUsages.
+type tempWanUsages  struct {
     Mac        *string `json:"mac,omitempty"`
     PathType   *string `json:"path_type,omitempty"`
     PathWeight *int    `json:"path_weight,omitempty"`

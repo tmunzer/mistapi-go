@@ -20,8 +20,8 @@
 
 ```json
 {
-  "end": 206,
-  "limit": 220,
+  "end": 204,
+  "limit": 222,
   "results": [
     {
       "full_duplex": true,
@@ -48,9 +48,9 @@
       "jitter": 27.56
     }
   ],
-  "start": 164,
-  "total": 198,
-  "next": "next2"
+  "start": 162,
+  "total": 196,
+  "next": "next8"
 }
 ```
 

@@ -37,7 +37,7 @@ func (s SsrUpgradeResponseCounts) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SsrUpgradeResponseCounts.
 // It customizes the JSON unmarshaling process for SsrUpgradeResponseCounts objects.
 func (s *SsrUpgradeResponseCounts) UnmarshalJSON(input []byte) error {
-    var temp ssrUpgradeResponseCounts
+    var temp tempSsrUpgradeResponseCounts
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,27 +59,27 @@ func (s *SsrUpgradeResponseCounts) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ssrUpgradeResponseCounts is a temporary struct used for validating the fields of SsrUpgradeResponseCounts.
-type ssrUpgradeResponseCounts  struct {
+// tempSsrUpgradeResponseCounts is a temporary struct used for validating the fields of SsrUpgradeResponseCounts.
+type tempSsrUpgradeResponseCounts  struct {
     Failed    *int `json:"failed"`
     Queued    *int `json:"queued"`
     Success   *int `json:"success"`
     Upgrading *int `json:"upgrading"`
 }
 
-func (s *ssrUpgradeResponseCounts) validate() error {
+func (s *tempSsrUpgradeResponseCounts) validate() error {
     var errs []string
     if s.Failed == nil {
-        errs = append(errs, "required field `failed` is missing for type `Ssr_Upgrade_Response_Counts`")
+        errs = append(errs, "required field `failed` is missing for type `ssr_upgrade_response_counts`")
     }
     if s.Queued == nil {
-        errs = append(errs, "required field `queued` is missing for type `Ssr_Upgrade_Response_Counts`")
+        errs = append(errs, "required field `queued` is missing for type `ssr_upgrade_response_counts`")
     }
     if s.Success == nil {
-        errs = append(errs, "required field `success` is missing for type `Ssr_Upgrade_Response_Counts`")
+        errs = append(errs, "required field `success` is missing for type `ssr_upgrade_response_counts`")
     }
     if s.Upgrading == nil {
-        errs = append(errs, "required field `upgrading` is missing for type `Ssr_Upgrade_Response_Counts`")
+        errs = append(errs, "required field `upgrading` is missing for type `ssr_upgrade_response_counts`")
     }
     if len(errs) == 0 {
         return nil

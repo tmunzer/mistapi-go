@@ -27,14 +27,14 @@ client events
 
 ```json
 {
-  "ap": "ap8",
+  "ap": "ap2",
   "band": "5",
   "bssid": "bssid6",
-  "channel": 108,
-  "proto": "ax",
+  "channel": 2,
+  "proto": "g",
   "ssid": "ssid0",
-  "text": "text2",
-  "timestamp": 204.1
+  "text": "text8",
+  "timestamp": 36.2
 }
 ```
 

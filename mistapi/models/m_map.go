@@ -174,7 +174,7 @@ func (m Map) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Map.
 // It customizes the JSON unmarshaling process for Map objects.
 func (m *Map) UnmarshalJSON(input []byte) error {
-    var temp mMap
+    var temp tempMap
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -218,8 +218,8 @@ func (m *Map) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mMap is a temporary struct used for validating the fields of Map.
-type mMap  struct {
+// tempMap is a temporary struct used for validating the fields of Map.
+type tempMap  struct {
     CreatedTime        *float64                 `json:"created_time,omitempty"`
     Flags              map[string]int           `json:"flags,omitempty"`
     ForSite            *bool                    `json:"for_site,omitempty"`

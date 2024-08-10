@@ -47,7 +47,7 @@ func (s SearchEventsWanClient) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SearchEventsWanClient.
 // It customizes the JSON unmarshaling process for SearchEventsWanClient objects.
 func (s *SearchEventsWanClient) UnmarshalJSON(input []byte) error {
-    var temp searchEventsWanClient
+    var temp tempSearchEventsWanClient
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (s *SearchEventsWanClient) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// searchEventsWanClient is a temporary struct used for validating the fields of SearchEventsWanClient.
-type searchEventsWanClient  struct {
+// tempSearchEventsWanClient is a temporary struct used for validating the fields of SearchEventsWanClient.
+type tempSearchEventsWanClient  struct {
     End     *int             `json:"end,omitempty"`
     Limit   *int             `json:"limit,omitempty"`
     Results *EventsClientWan `json:"results,omitempty"`

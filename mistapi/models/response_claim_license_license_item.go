@@ -37,7 +37,7 @@ func (r ResponseClaimLicenseLicenseItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseClaimLicenseLicenseItem.
 // It customizes the JSON unmarshaling process for ResponseClaimLicenseLicenseItem objects.
 func (r *ResponseClaimLicenseLicenseItem) UnmarshalJSON(input []byte) error {
-    var temp responseClaimLicenseLicenseItem
+    var temp tempResponseClaimLicenseLicenseItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,27 +59,27 @@ func (r *ResponseClaimLicenseLicenseItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseClaimLicenseLicenseItem is a temporary struct used for validating the fields of ResponseClaimLicenseLicenseItem.
-type responseClaimLicenseLicenseItem  struct {
+// tempResponseClaimLicenseLicenseItem is a temporary struct used for validating the fields of ResponseClaimLicenseLicenseItem.
+type tempResponseClaimLicenseLicenseItem  struct {
     End      *int    `json:"end"`
     Quantity *int    `json:"quantity"`
     Start    *int    `json:"start"`
     Type     *string `json:"type"`
 }
 
-func (r *responseClaimLicenseLicenseItem) validate() error {
+func (r *tempResponseClaimLicenseLicenseItem) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Claim_License_License_Item`")
+        errs = append(errs, "required field `end` is missing for type `response_claim_license_license_item`")
     }
     if r.Quantity == nil {
-        errs = append(errs, "required field `quantity` is missing for type `Response_Claim_License_License_Item`")
+        errs = append(errs, "required field `quantity` is missing for type `response_claim_license_license_item`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Claim_License_License_Item`")
+        errs = append(errs, "required field `start` is missing for type `response_claim_license_license_item`")
     }
     if r.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Response_Claim_License_License_Item`")
+        errs = append(errs, "required field `type` is missing for type `response_claim_license_license_item`")
     }
     if len(errs) == 0 {
         return nil

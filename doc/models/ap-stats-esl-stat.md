@@ -18,9 +18,9 @@
 
 ```json
 {
-  "channel": 42,
+  "channel": 154,
   "connected": false,
-  "type": "type6",
+  "type": "type0",
   "up": false
 }
 ```

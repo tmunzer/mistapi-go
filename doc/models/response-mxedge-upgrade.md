@@ -20,16 +20,16 @@
 
 ```json
 {
-  "channel": "channel2",
+  "channel": "channel0",
   "counts": {
     "failed": 166,
     "queued": 234,
     "success": 90,
     "upgrading": 112
   },
-  "id": "id2",
+  "id": "id4",
   "status": "status4",
-  "strategy": "strategy2",
+  "strategy": "strategy4",
   "versions": {
     "key1": "val1",
     "key2": "val2"

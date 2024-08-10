@@ -20,7 +20,7 @@ Org Settings
 | `Cacerts` | `[]string` | Optional | list of PEM-encoded ca certs |
 | `Celona` | [`*models.OrgSettingCelona`](../../doc/models/org-setting-celona.md) | Optional | - |
 | `Cloudshark` | [`*models.OrgSettingCloudshark`](../../doc/models/org-setting-cloudshark.md) | Optional | - |
-| `Cradlepoint` | [`*models.AccountCradlepointConfig`](../../doc/models/account-cradlepoint-config.md) | Optional | - |
+| `Cradlepoint` | [`*models.OrgSettingCradlepoint`](../../doc/models/org-setting-cradlepoint.md) | Optional | - |
 | `CreatedTime` | `*float64` | Optional | - |
 | `DeviceCert` | [`*models.OrgSettingDeviceCert`](../../doc/models/org-setting-device-cert.md) | Optional | common device cert, optional |
 | `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery via<br><br>* device-updowns webhooks topic,<br>* Mist Alert Framework; e.g. send AP/SW/GW down event only if AP/SW/GW Up is not seen within the threshold in minutes; 0 - 240, default is 0 (trigger immediate)<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |

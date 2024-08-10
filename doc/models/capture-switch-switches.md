@@ -23,6 +23,10 @@
     "key1": {
       "key1": "val1",
       "key2": "val2"
+    },
+    "key2": {
+      "key1": "val1",
+      "key2": "val2"
     }
   }
 }

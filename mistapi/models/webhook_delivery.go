@@ -93,7 +93,7 @@ func (w WebhookDelivery) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookDelivery.
 // It customizes the JSON unmarshaling process for WebhookDelivery objects.
 func (w *WebhookDelivery) UnmarshalJSON(input []byte) error {
-    var temp webhookDelivery
+    var temp tempWebhookDelivery
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -121,8 +121,8 @@ func (w *WebhookDelivery) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookDelivery is a temporary struct used for validating the fields of WebhookDelivery.
-type webhookDelivery  struct {
+// tempWebhookDelivery is a temporary struct used for validating the fields of WebhookDelivery.
+type tempWebhookDelivery  struct {
     Error       *string                    `json:"error,omitempty"`
     Id          *uuid.UUID                 `json:"id,omitempty"`
     OrgId       *uuid.UUID                 `json:"org_id,omitempty"`

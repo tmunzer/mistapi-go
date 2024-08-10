@@ -33,7 +33,7 @@ func (s SwitchPortMirroring) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchPortMirroring.
 // It customizes the JSON unmarshaling process for SwitchPortMirroring objects.
 func (s *SwitchPortMirroring) UnmarshalJSON(input []byte) error {
-    var temp switchPortMirroring
+    var temp tempSwitchPortMirroring
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -48,7 +48,7 @@ func (s *SwitchPortMirroring) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchPortMirroring is a temporary struct used for validating the fields of SwitchPortMirroring.
-type switchPortMirroring  struct {
+// tempSwitchPortMirroring is a temporary struct used for validating the fields of SwitchPortMirroring.
+type tempSwitchPortMirroring  struct {
     PortMirror *GatewayPortMirroringPortMirror `json:"port_mirror,omitempty"`
 }

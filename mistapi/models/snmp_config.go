@@ -16,7 +16,7 @@ type SnmpConfig struct {
     Name                 *string                 `json:"name,omitempty"`
     Network              *string                 `json:"network,omitempty"`
     TrapGroups           []SnmpConfigTrapGroup   `json:"trap_groups,omitempty"`
-    V2cConfig            []SnmpConfigV2CConfig   `json:"v2c_config,omitempty"`
+    V2cConfig            []SnmpConfigV2cConfig   `json:"v2c_config,omitempty"`
     V3Config             *Snmpv3Config           `json:"v3_config,omitempty"`
     Views                []SnmpConfigView        `json:"views,omitempty"`
     AdditionalProperties map[string]any          `json:"_"`
@@ -76,7 +76,7 @@ func (s SnmpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SnmpConfig.
 // It customizes the JSON unmarshaling process for SnmpConfig objects.
 func (s *SnmpConfig) UnmarshalJSON(input []byte) error {
-    var temp snmpConfig
+    var temp tempSnmpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -102,8 +102,8 @@ func (s *SnmpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpConfig is a temporary struct used for validating the fields of SnmpConfig.
-type snmpConfig  struct {
+// tempSnmpConfig is a temporary struct used for validating the fields of SnmpConfig.
+type tempSnmpConfig  struct {
     ClientList  []SnmpConfigClientList  `json:"client_list,omitempty"`
     Contact     *string                 `json:"contact,omitempty"`
     Description *string                 `json:"description,omitempty"`
@@ -113,7 +113,7 @@ type snmpConfig  struct {
     Name        *string                 `json:"name,omitempty"`
     Network     *string                 `json:"network,omitempty"`
     TrapGroups  []SnmpConfigTrapGroup   `json:"trap_groups,omitempty"`
-    V2cConfig   []SnmpConfigV2CConfig   `json:"v2c_config,omitempty"`
+    V2cConfig   []SnmpConfigV2cConfig   `json:"v2c_config,omitempty"`
     V3Config    *Snmpv3Config           `json:"v3_config,omitempty"`
     Views       []SnmpConfigView        `json:"views,omitempty"`
 }

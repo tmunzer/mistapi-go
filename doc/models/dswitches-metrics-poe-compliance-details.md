@@ -16,8 +16,8 @@
 
 ```json
 {
-  "total_aps": 98,
-  "total_power": 152.56
+  "total_aps": 180,
+  "total_power": 204.58
 }
 ```
 

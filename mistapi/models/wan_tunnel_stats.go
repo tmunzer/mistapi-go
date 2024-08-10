@@ -126,7 +126,7 @@ func (w WanTunnelStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WanTunnelStats.
 // It customizes the JSON unmarshaling process for WanTunnelStats objects.
 func (w *WanTunnelStats) UnmarshalJSON(input []byte) error {
-    var temp wanTunnelStats
+    var temp tempWanTunnelStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -161,8 +161,8 @@ func (w *WanTunnelStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wanTunnelStats is a temporary struct used for validating the fields of WanTunnelStats.
-type wanTunnelStats  struct {
+// tempWanTunnelStats is a temporary struct used for validating the fields of WanTunnelStats.
+type tempWanTunnelStats  struct {
     AuthAlgo    *string                     `json:"auth_algo,omitempty"`
     EncryptAlgo *string                     `json:"encrypt_algo,omitempty"`
     IkeVersion  *string                     `json:"ike_version,omitempty"`

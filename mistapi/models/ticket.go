@@ -74,7 +74,7 @@ func (t Ticket) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Ticket.
 // It customizes the JSON unmarshaling process for Ticket objects.
 func (t *Ticket) UnmarshalJSON(input []byte) error {
-    var temp ticket
+    var temp tempTicket
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -102,8 +102,8 @@ func (t *Ticket) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ticket is a temporary struct used for validating the fields of Ticket.
-type ticket  struct {
+// tempTicket is a temporary struct used for validating the fields of Ticket.
+type tempTicket  struct {
     CaseNumber     *string           `json:"case_number,omitempty"`
     Comments       []TicketComment   `json:"comments,omitempty"`
     CreatedAt      *int              `json:"created_at,omitempty"`
@@ -116,13 +116,13 @@ type ticket  struct {
     UpdatedAt      *int              `json:"updated_at,omitempty"`
 }
 
-func (t *ticket) validate() error {
+func (t *tempTicket) validate() error {
     var errs []string
     if t.Subject == nil {
-        errs = append(errs, "required field `subject` is missing for type `Ticket`")
+        errs = append(errs, "required field `subject` is missing for type `ticket`")
     }
     if t.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Ticket`")
+        errs = append(errs, "required field `type` is missing for type `ticket`")
     }
     if len(errs) == 0 {
         return nil

@@ -29,14 +29,15 @@
 {
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "ext_ip": "ext_ip8",
+  "ext_ip": "ext_ip2",
   "hostname": [
     "hostname2",
-    "hostname3"
+    "hostname1",
+    "hostname0"
   ],
-  "ip": "ip4",
-  "last_hostname": "last_hostname4",
-  "mac": "mac4"
+  "ip": "ip8",
+  "last_hostname": "last_hostname0",
+  "mac": "mac8"
 }
 ```
 

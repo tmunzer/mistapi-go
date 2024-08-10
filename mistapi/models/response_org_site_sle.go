@@ -55,7 +55,7 @@ func (r ResponseOrgSiteSle) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseOrgSiteSle.
 // It customizes the JSON unmarshaling process for ResponseOrgSiteSle objects.
 func (r *ResponseOrgSiteSle) UnmarshalJSON(input []byte) error {
-    var temp responseOrgSiteSle
+    var temp tempResponseOrgSiteSle
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (r *ResponseOrgSiteSle) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseOrgSiteSle is a temporary struct used for validating the fields of ResponseOrgSiteSle.
-type responseOrgSiteSle  struct {
+// tempResponseOrgSiteSle is a temporary struct used for validating the fields of ResponseOrgSiteSle.
+type tempResponseOrgSiteSle  struct {
     End      *float64                `json:"end,omitempty"`
     Interval *int                    `json:"interval,omitempty"`
     Limit    *int                    `json:"limit,omitempty"`

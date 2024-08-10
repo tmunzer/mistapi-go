@@ -42,7 +42,7 @@ func (r ResponseEventsRrm) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseEventsRrm.
 // It customizes the JSON unmarshaling process for ResponseEventsRrm objects.
 func (r *ResponseEventsRrm) UnmarshalJSON(input []byte) error {
-    var temp responseEventsRrm
+    var temp tempResponseEventsRrm
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponseEventsRrm) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseEventsRrm is a temporary struct used for validating the fields of ResponseEventsRrm.
-type responseEventsRrm  struct {
+// tempResponseEventsRrm is a temporary struct used for validating the fields of ResponseEventsRrm.
+type tempResponseEventsRrm  struct {
     End     *int        `json:"end"`
     Limit   *int        `json:"limit"`
     Next    *string     `json:"next,omitempty"`
@@ -74,19 +74,19 @@ type responseEventsRrm  struct {
     Start   *int        `json:"start"`
 }
 
-func (r *responseEventsRrm) validate() error {
+func (r *tempResponseEventsRrm) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Events_Rrm`")
+        errs = append(errs, "required field `end` is missing for type `response_events_rrm`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Events_Rrm`")
+        errs = append(errs, "required field `limit` is missing for type `response_events_rrm`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Events_Rrm`")
+        errs = append(errs, "required field `results` is missing for type `response_events_rrm`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Events_Rrm`")
+        errs = append(errs, "required field `start` is missing for type `response_events_rrm`")
     }
     if len(errs) == 0 {
         return nil

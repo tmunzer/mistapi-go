@@ -17,7 +17,7 @@ memory usage stat (for virtual chassis, memory usage of master RE)
 
 ```json
 {
-  "usage": 113.64
+  "usage": 57.54
 }
 ```
 

@@ -106,7 +106,7 @@ func (r RfTemplate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RfTemplate.
 // It customizes the JSON unmarshaling process for RfTemplate objects.
 func (r *RfTemplate) UnmarshalJSON(input []byte) error {
-    var temp rfTemplate
+    var temp tempRfTemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -141,8 +141,8 @@ func (r *RfTemplate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rfTemplate is a temporary struct used for validating the fields of RfTemplate.
-type rfTemplate  struct {
+// tempRfTemplate is a temporary struct used for validating the fields of RfTemplate.
+type tempRfTemplate  struct {
     AntGain24       *int                                       `json:"ant_gain_24,omitempty"`
     AntGain5        *int                                       `json:"ant_gain_5,omitempty"`
     AntGain6        *int                                       `json:"ant_gain_6,omitempty"`
@@ -162,10 +162,10 @@ type rfTemplate  struct {
     ScanningEnabled *bool                                      `json:"scanning_enabled,omitempty"`
 }
 
-func (r *rfTemplate) validate() error {
+func (r *tempRfTemplate) validate() error {
     var errs []string
     if r.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Rf_Template`")
+        errs = append(errs, "required field `name` is missing for type `rf_template`")
     }
     if len(errs) == 0 {
         return nil

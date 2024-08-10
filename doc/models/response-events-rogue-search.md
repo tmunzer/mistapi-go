@@ -20,8 +20,8 @@
 
 ```json
 {
-  "end": 160,
-  "limit": 10,
+  "end": 112,
+  "limit": 58,
   "results": [
     {
       "ap": "ap8",
@@ -32,9 +32,9 @@
       "timestamp": 2.64
     }
   ],
-  "start": 118,
-  "total": 104,
-  "next": "next8"
+  "start": 70,
+  "total": 152,
+  "next": "next2"
 }
 ```
 

@@ -55,7 +55,7 @@ func (s SleImpactedGatewaysGateway) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactedGatewaysGateway.
 // It customizes the JSON unmarshaling process for SleImpactedGatewaysGateway objects.
 func (s *SleImpactedGatewaysGateway) UnmarshalJSON(input []byte) error {
-    var temp sleImpactedGatewaysGateway
+    var temp tempSleImpactedGatewaysGateway
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (s *SleImpactedGatewaysGateway) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactedGatewaysGateway is a temporary struct used for validating the fields of SleImpactedGatewaysGateway.
-type sleImpactedGatewaysGateway  struct {
+// tempSleImpactedGatewaysGateway is a temporary struct used for validating the fields of SleImpactedGatewaysGateway.
+type tempSleImpactedGatewaysGateway  struct {
     Degraded       *float64 `json:"degraded,omitempty"`
     Duration       *int     `json:"duration,omitempty"`
     GatewayMac     *string  `json:"gateway_mac,omitempty"`

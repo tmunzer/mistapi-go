@@ -32,17 +32,18 @@
 
 ```json
 {
-  "id": "00000858-0000-0000-0000-000000000000",
+  "id": "000000c2-0000-0000-0000-000000000000",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "timestamp": 32.54,
+  "timestamp": 1.12,
   "type": "type4",
-  "ap_count": 132,
+  "ap_count": 62,
   "aps": [
-    "aps7"
+    "aps5",
+    "aps6"
   ],
-  "client_mac": "client_mac4",
-  "duration": 134.32,
+  "client_mac": "client_mac2",
+  "duration": 102.9,
   "enabled": false
 }
 ```

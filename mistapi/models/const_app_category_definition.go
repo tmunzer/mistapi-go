@@ -44,7 +44,7 @@ func (c ConstAppCategoryDefinition) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstAppCategoryDefinition.
 // It customizes the JSON unmarshaling process for ConstAppCategoryDefinition objects.
 func (c *ConstAppCategoryDefinition) UnmarshalJSON(input []byte) error {
-    var temp constAppCategoryDefinition
+    var temp tempConstAppCategoryDefinition
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,21 +66,21 @@ func (c *ConstAppCategoryDefinition) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constAppCategoryDefinition is a temporary struct used for validating the fields of ConstAppCategoryDefinition.
-type constAppCategoryDefinition  struct {
+// tempConstAppCategoryDefinition is a temporary struct used for validating the fields of ConstAppCategoryDefinition.
+type tempConstAppCategoryDefinition  struct {
     Display  *string                            `json:"display"`
     Filters  *ConstAppCategoryDefinitionFilters `json:"filters,omitempty"`
     Includes []string                           `json:"includes,omitempty"`
     Key      *string                            `json:"key"`
 }
 
-func (c *constAppCategoryDefinition) validate() error {
+func (c *tempConstAppCategoryDefinition) validate() error {
     var errs []string
     if c.Display == nil {
-        errs = append(errs, "required field `display` is missing for type `Const_App_Category_Definition`")
+        errs = append(errs, "required field `display` is missing for type `const_app_category_definition`")
     }
     if c.Key == nil {
-        errs = append(errs, "required field `key` is missing for type `Const_App_Category_Definition`")
+        errs = append(errs, "required field `key` is missing for type `const_app_category_definition`")
     }
     if len(errs) == 0 {
         return nil

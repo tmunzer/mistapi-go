@@ -40,7 +40,7 @@ func (s SiteSettingAutoPlacement) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingAutoPlacement.
 // It customizes the JSON unmarshaling process for SiteSettingAutoPlacement objects.
 func (s *SiteSettingAutoPlacement) UnmarshalJSON(input []byte) error {
-    var temp siteSettingAutoPlacement
+    var temp tempSiteSettingAutoPlacement
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (s *SiteSettingAutoPlacement) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingAutoPlacement is a temporary struct used for validating the fields of SiteSettingAutoPlacement.
-type siteSettingAutoPlacement  struct {
+// tempSiteSettingAutoPlacement is a temporary struct used for validating the fields of SiteSettingAutoPlacement.
+type tempSiteSettingAutoPlacement  struct {
     Orientation *int     `json:"orientation,omitempty"`
     X           *float64 `json:"x,omitempty"`
     Y           *float64 `json:"y,omitempty"`

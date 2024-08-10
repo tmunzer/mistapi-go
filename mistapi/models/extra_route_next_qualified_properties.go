@@ -43,7 +43,7 @@ func (e ExtraRouteNextQualifiedProperties) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ExtraRouteNextQualifiedProperties.
 // It customizes the JSON unmarshaling process for ExtraRouteNextQualifiedProperties objects.
 func (e *ExtraRouteNextQualifiedProperties) UnmarshalJSON(input []byte) error {
-    var temp extraRouteNextQualifiedProperties
+    var temp tempExtraRouteNextQualifiedProperties
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,8 +59,8 @@ func (e *ExtraRouteNextQualifiedProperties) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// extraRouteNextQualifiedProperties is a temporary struct used for validating the fields of ExtraRouteNextQualifiedProperties.
-type extraRouteNextQualifiedProperties  struct {
+// tempExtraRouteNextQualifiedProperties is a temporary struct used for validating the fields of ExtraRouteNextQualifiedProperties.
+type tempExtraRouteNextQualifiedProperties  struct {
     Metric     Optional[int] `json:"metric"`
     Preference Optional[int] `json:"preference"`
 }

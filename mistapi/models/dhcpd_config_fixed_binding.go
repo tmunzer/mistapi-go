@@ -35,7 +35,7 @@ func (d DhcpdConfigFixedBinding) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DhcpdConfigFixedBinding.
 // It customizes the JSON unmarshaling process for DhcpdConfigFixedBinding objects.
 func (d *DhcpdConfigFixedBinding) UnmarshalJSON(input []byte) error {
-    var temp dhcpdConfigFixedBinding
+    var temp tempDhcpdConfigFixedBinding
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (d *DhcpdConfigFixedBinding) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// dhcpdConfigFixedBinding is a temporary struct used for validating the fields of DhcpdConfigFixedBinding.
-type dhcpdConfigFixedBinding  struct {
+// tempDhcpdConfigFixedBinding is a temporary struct used for validating the fields of DhcpdConfigFixedBinding.
+type tempDhcpdConfigFixedBinding  struct {
     Ip   *string `json:"ip,omitempty"`
     Name *string `json:"name,omitempty"`
 }

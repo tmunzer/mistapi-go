@@ -43,7 +43,7 @@ func (t TacacsAuthServer) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TacacsAuthServer.
 // It customizes the JSON unmarshaling process for TacacsAuthServer objects.
 func (t *TacacsAuthServer) UnmarshalJSON(input []byte) error {
-    var temp tacacsAuthServer
+    var temp tempTacacsAuthServer
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (t *TacacsAuthServer) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tacacsAuthServer is a temporary struct used for validating the fields of TacacsAuthServer.
-type tacacsAuthServer  struct {
+// tempTacacsAuthServer is a temporary struct used for validating the fields of TacacsAuthServer.
+type tempTacacsAuthServer  struct {
     Host    *string `json:"host,omitempty"`
     Port    *string `json:"port,omitempty"`
     Secret  *string `json:"secret,omitempty"`

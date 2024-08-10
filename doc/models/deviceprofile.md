@@ -28,7 +28,7 @@
 | `NtpServers` | `[]string` | Optional | list of NTP servers specific to this device. By default, those in Site Settings will be used<br>**Constraints**: *Unique Items Required* |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PoePassthrough` | `*bool` | Optional | whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br>**Default**: `false` |
-| `PortConfig` | [`*models.PortConfig`](../../doc/models/port-config.md) | Optional | Property key is the interface(s) name (e.g. "eth1,eth2") |
+| `PortConfig` | [`*models.PortConfig1`](../../doc/models/port-config-1.md) | Optional | Property key is the interface(s) name (e.g. "eth1,eth2") |
 | `PwrConfig` | [`*models.ApPwrConfig`](../../doc/models/ap-pwr-config.md) | Optional | power related configs |
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `SiteId` | `*uuid.UUID` | Optional | - |
@@ -108,7 +108,7 @@
     ],
     "custom_ble_packet_enabled": false
   },
-  "created_time": 79.24
+  "created_time": 69.86
 }
 ```
 

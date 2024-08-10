@@ -36,7 +36,7 @@ func (w WebhookDeviceEvents) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookDeviceEvents.
 // It customizes the JSON unmarshaling process for WebhookDeviceEvents objects.
 func (w *WebhookDeviceEvents) UnmarshalJSON(input []byte) error {
-    var temp webhookDeviceEvents
+    var temp tempWebhookDeviceEvents
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,19 +56,19 @@ func (w *WebhookDeviceEvents) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookDeviceEvents is a temporary struct used for validating the fields of WebhookDeviceEvents.
-type webhookDeviceEvents  struct {
+// tempWebhookDeviceEvents is a temporary struct used for validating the fields of WebhookDeviceEvents.
+type tempWebhookDeviceEvents  struct {
     Events *[]WebhookDeviceEventsEvent `json:"events"`
     Topic  *string                     `json:"topic"`
 }
 
-func (w *webhookDeviceEvents) validate() error {
+func (w *tempWebhookDeviceEvents) validate() error {
     var errs []string
     if w.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Webhook_Device_Events`")
+        errs = append(errs, "required field `events` is missing for type `webhook_device_events`")
     }
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Device_Events`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_device_events`")
     }
     if len(errs) == 0 {
         return nil

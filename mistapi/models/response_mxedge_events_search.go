@@ -47,7 +47,7 @@ func (r ResponseMxedgeEventsSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseMxedgeEventsSearch.
 // It customizes the JSON unmarshaling process for ResponseMxedgeEventsSearch objects.
 func (r *ResponseMxedgeEventsSearch) UnmarshalJSON(input []byte) error {
-    var temp responseMxedgeEventsSearch
+    var temp tempResponseMxedgeEventsSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (r *ResponseMxedgeEventsSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseMxedgeEventsSearch is a temporary struct used for validating the fields of ResponseMxedgeEventsSearch.
-type responseMxedgeEventsSearch  struct {
+// tempResponseMxedgeEventsSearch is a temporary struct used for validating the fields of ResponseMxedgeEventsSearch.
+type tempResponseMxedgeEventsSearch  struct {
     End     *int          `json:"end,omitempty"`
     Limit   *int          `json:"limit,omitempty"`
     Page    *int          `json:"page,omitempty"`

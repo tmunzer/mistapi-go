@@ -55,7 +55,7 @@ func (u UiSettingsTileTimeRange) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UiSettingsTileTimeRange.
 // It customizes the JSON unmarshaling process for UiSettingsTileTimeRange objects.
 func (u *UiSettingsTileTimeRange) UnmarshalJSON(input []byte) error {
-    var temp uiSettingsTileTimeRange
+    var temp tempUiSettingsTileTimeRange
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (u *UiSettingsTileTimeRange) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// uiSettingsTileTimeRange is a temporary struct used for validating the fields of UiSettingsTileTimeRange.
-type uiSettingsTileTimeRange  struct {
+// tempUiSettingsTileTimeRange is a temporary struct used for validating the fields of UiSettingsTileTimeRange.
+type tempUiSettingsTileTimeRange  struct {
     End       *float64 `json:"end,omitempty"`
     EndDate   *string  `json:"endDate,omitempty"`
     Interval  *string  `json:"interval,omitempty"`

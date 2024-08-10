@@ -45,7 +45,7 @@ func (r ResponseLocationCoverage) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseLocationCoverage.
 // It customizes the JSON unmarshaling process for ResponseLocationCoverage objects.
 func (r *ResponseLocationCoverage) UnmarshalJSON(input []byte) error {
-    var temp responseLocationCoverage
+    var temp tempResponseLocationCoverage
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -69,8 +69,8 @@ func (r *ResponseLocationCoverage) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseLocationCoverage is a temporary struct used for validating the fields of ResponseLocationCoverage.
-type responseLocationCoverage  struct {
+// tempResponseLocationCoverage is a temporary struct used for validating the fields of ResponseLocationCoverage.
+type tempResponseLocationCoverage  struct {
     BeamsMeans *[][]float64 `json:"beams_means"`
     End        *int         `json:"end"`
     Gridsize   *float64     `json:"gridsize"`
@@ -79,25 +79,25 @@ type responseLocationCoverage  struct {
     Start      *int         `json:"start"`
 }
 
-func (r *responseLocationCoverage) validate() error {
+func (r *tempResponseLocationCoverage) validate() error {
     var errs []string
     if r.BeamsMeans == nil {
-        errs = append(errs, "required field `beams_means` is missing for type `Response_Location_Coverage`")
+        errs = append(errs, "required field `beams_means` is missing for type `response_location_coverage`")
     }
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Location_Coverage`")
+        errs = append(errs, "required field `end` is missing for type `response_location_coverage`")
     }
     if r.Gridsize == nil {
-        errs = append(errs, "required field `gridsize` is missing for type `Response_Location_Coverage`")
+        errs = append(errs, "required field `gridsize` is missing for type `response_location_coverage`")
     }
     if r.ResultDef == nil {
-        errs = append(errs, "required field `result_def` is missing for type `Response_Location_Coverage`")
+        errs = append(errs, "required field `result_def` is missing for type `response_location_coverage`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Location_Coverage`")
+        errs = append(errs, "required field `results` is missing for type `response_location_coverage`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Location_Coverage`")
+        errs = append(errs, "required field `start` is missing for type `response_location_coverage`")
     }
     if len(errs) == 0 {
         return nil

@@ -47,11 +47,11 @@
 {
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "band_24_bandwith": "band_24_bandwith2",
-  "band_24_channel": 0,
-  "band_24_power": 98,
-  "band_5_bandwith": "band_5_bandwith2",
-  "band_5_channel": 188
+  "band_24_bandwith": "band_24_bandwith8",
+  "band_24_channel": 200,
+  "band_24_power": 154,
+  "band_5_bandwith": "band_5_bandwith6",
+  "band_5_channel": 132
 }
 ```
 

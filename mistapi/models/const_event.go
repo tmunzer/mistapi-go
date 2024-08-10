@@ -41,7 +41,7 @@ func (c ConstEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstEvent.
 // It customizes the JSON unmarshaling process for ConstEvent objects.
 func (c *ConstEvent) UnmarshalJSON(input []byte) error {
-    var temp constEvent
+    var temp tempConstEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,21 +63,21 @@ func (c *ConstEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constEvent is a temporary struct used for validating the fields of ConstEvent.
-type constEvent  struct {
+// tempConstEvent is a temporary struct used for validating the fields of ConstEvent.
+type tempConstEvent  struct {
     Description *string      `json:"description,omitempty"`
     Display     *string      `json:"display"`
     Example     *interface{} `json:"example,omitempty"`
     Key         *string      `json:"key"`
 }
 
-func (c *constEvent) validate() error {
+func (c *tempConstEvent) validate() error {
     var errs []string
     if c.Display == nil {
-        errs = append(errs, "required field `display` is missing for type `Const_Event`")
+        errs = append(errs, "required field `display` is missing for type `const_event`")
     }
     if c.Key == nil {
-        errs = append(errs, "required field `key` is missing for type `Const_Event`")
+        errs = append(errs, "required field `key` is missing for type `const_event`")
     }
     if len(errs) == 0 {
         return nil

@@ -39,7 +39,7 @@ func (s SynthetictestConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SynthetictestConfig.
 // It customizes the JSON unmarshaling process for SynthetictestConfig objects.
 func (s *SynthetictestConfig) UnmarshalJSON(input []byte) error {
-    var temp synthetictestConfig
+    var temp tempSynthetictestConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (s *SynthetictestConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// synthetictestConfig is a temporary struct used for validating the fields of SynthetictestConfig.
-type synthetictestConfig  struct {
+// tempSynthetictestConfig is a temporary struct used for validating the fields of SynthetictestConfig.
+type tempSynthetictestConfig  struct {
     Disabled     *bool                            `json:"disabled,omitempty"`
     Vlans        []SynthetictestProperties        `json:"vlans,omitempty"`
     WanSpeedtest *SynthetictestConfigWanSpeedtest `json:"wan_speedtest,omitempty"`

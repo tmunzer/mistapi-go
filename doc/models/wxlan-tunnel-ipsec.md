@@ -19,7 +19,7 @@ IPSec-related configurations; requires DMVPN be enabled
 ```json
 {
   "enabled": false,
-  "psk": "psk4"
+  "psk": "psk8"
 }
 ```
 

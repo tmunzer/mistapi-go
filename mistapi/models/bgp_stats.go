@@ -112,7 +112,7 @@ func (b BgpStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for BgpStats.
 // It customizes the JSON unmarshaling process for BgpStats objects.
 func (b *BgpStats) UnmarshalJSON(input []byte) error {
-    var temp bgpStats
+    var temp tempBgpStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -145,8 +145,8 @@ func (b *BgpStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// bgpStats is a temporary struct used for validating the fields of BgpStats.
-type bgpStats  struct {
+// tempBgpStats is a temporary struct used for validating the fields of BgpStats.
+type tempBgpStats  struct {
     EvpnOverlay *bool              `json:"evpn_overlay,omitempty"`
     ForOverlay  *bool              `json:"for_overlay,omitempty"`
     LocalAs     *int               `json:"local_as,omitempty"`

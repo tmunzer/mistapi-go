@@ -77,7 +77,7 @@ func (l LicenseSub) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for LicenseSub.
 // It customizes the JSON unmarshaling process for LicenseSub objects.
 func (l *LicenseSub) UnmarshalJSON(input []byte) error {
-    var temp licenseSub
+    var temp tempLicenseSub
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -102,8 +102,8 @@ func (l *LicenseSub) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// licenseSub is a temporary struct used for validating the fields of LicenseSub.
-type licenseSub  struct {
+// tempLicenseSub is a temporary struct used for validating the fields of LicenseSub.
+type tempLicenseSub  struct {
     CreatedTime       *float64         `json:"created_time,omitempty"`
     EndTime           *int             `json:"end_time,omitempty"`
     Id                *uuid.UUID       `json:"id,omitempty"`

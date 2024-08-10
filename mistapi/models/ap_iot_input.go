@@ -43,7 +43,7 @@ func (a ApIotInput) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApIotInput.
 // It customizes the JSON unmarshaling process for ApIotInput objects.
 func (a *ApIotInput) UnmarshalJSON(input []byte) error {
-    var temp apIotInput
+    var temp tempApIotInput
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,8 +60,8 @@ func (a *ApIotInput) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apIotInput is a temporary struct used for validating the fields of ApIotInput.
-type apIotInput  struct {
+// tempApIotInput is a temporary struct used for validating the fields of ApIotInput.
+type tempApIotInput  struct {
     Enabled *bool            `json:"enabled,omitempty"`
     Name    *string          `json:"name,omitempty"`
     Pullup  *ApIotPullupEnum `json:"pullup,omitempty"`

@@ -21,11 +21,11 @@
 
 ```json
 {
-  "hostname": "hostname6",
-  "mac": "mac2",
+  "hostname": "hostname8",
+  "mac": "mac0",
   "poe_status": false,
-  "port": "port8",
-  "port_id": "port_id8"
+  "port": "port6",
+  "port_id": "port_id4"
 }
 ```
 

@@ -30,23 +30,9 @@
       "name": "name0",
       "tag": "tag4",
       "type": "inform"
-    },
-    {
-      "name": "name0",
-      "tag": "tag4",
-      "type": "inform"
     }
   ],
   "notify_filter": [
-    {
-      "contents": [
-        {
-          "include": false,
-          "oid": "oid4"
-        }
-      ],
-      "profile_name": "profile_name2"
-    },
     {
       "contents": [
         {
@@ -64,16 +50,16 @@
       "port": 198,
       "tag_list": "tag_list4",
       "target_address_name": "target_address_name6"
+    },
+    {
+      "address": "address8",
+      "address_mask": "address_mask0",
+      "port": 198,
+      "tag_list": "tag_list4",
+      "target_address_name": "target_address_name6"
     }
   ],
   "target_parameters": [
-    {
-      "message_processing_model": "v3",
-      "name": "name4",
-      "notify_filter": "notify_filter6",
-      "security_level": "none",
-      "security_model": "usm"
-    },
     {
       "message_processing_model": "v3",
       "name": "name4",

@@ -36,7 +36,7 @@ func (m MapWayfindingPath) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapWayfindingPath.
 // It customizes the JSON unmarshaling process for MapWayfindingPath objects.
 func (m *MapWayfindingPath) UnmarshalJSON(input []byte) error {
-    var temp mapWayfindingPath
+    var temp tempMapWayfindingPath
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (m *MapWayfindingPath) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapWayfindingPath is a temporary struct used for validating the fields of MapWayfindingPath.
-type mapWayfindingPath  struct {
+// tempMapWayfindingPath is a temporary struct used for validating the fields of MapWayfindingPath.
+type tempMapWayfindingPath  struct {
     Coordinate *string   `json:"coordinate,omitempty"`
     Nodes      []MapNode `json:"nodes,omitempty"`
 }

@@ -30,6 +30,13 @@
       "bssid": "bssid0",
       "device_mac": "device_mac0",
       "dryrun_nacrule_id": "00000112-0000-0000-0000-000000000000"
+    },
+    {
+      "ap": "ap8",
+      "auth_type": "auth_type4",
+      "bssid": "bssid0",
+      "device_mac": "device_mac0",
+      "dryrun_nacrule_id": "00000112-0000-0000-0000-000000000000"
     }
   ]
 }

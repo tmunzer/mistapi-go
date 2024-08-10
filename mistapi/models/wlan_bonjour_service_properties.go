@@ -42,7 +42,7 @@ func (w WlanBonjourServiceProperties) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanBonjourServiceProperties.
 // It customizes the JSON unmarshaling process for WlanBonjourServiceProperties objects.
 func (w *WlanBonjourServiceProperties) UnmarshalJSON(input []byte) error {
-    var temp wlanBonjourServiceProperties
+    var temp tempWlanBonjourServiceProperties
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,8 +59,8 @@ func (w *WlanBonjourServiceProperties) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanBonjourServiceProperties is a temporary struct used for validating the fields of WlanBonjourServiceProperties.
-type wlanBonjourServiceProperties  struct {
+// tempWlanBonjourServiceProperties is a temporary struct used for validating the fields of WlanBonjourServiceProperties.
+type tempWlanBonjourServiceProperties  struct {
     DisableLocal *bool                                  `json:"disable_local,omitempty"`
     RadiusGroups []string                               `json:"radius_groups,omitempty"`
     Scope        *WlanBonjourServicePropertiesScopeEnum `json:"scope,omitempty"`

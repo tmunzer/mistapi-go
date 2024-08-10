@@ -40,7 +40,7 @@ func (s SiteTemplate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteTemplate.
 // It customizes the JSON unmarshaling process for SiteTemplate objects.
 func (s *SiteTemplate) UnmarshalJSON(input []byte) error {
-    var temp siteTemplate
+    var temp tempSiteTemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (s *SiteTemplate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteTemplate is a temporary struct used for validating the fields of SiteTemplate.
-type siteTemplate  struct {
+// tempSiteTemplate is a temporary struct used for validating the fields of SiteTemplate.
+type tempSiteTemplate  struct {
     AutoUpgrade *SiteTemplateAutoUpgrade `json:"auto_upgrade,omitempty"`
     Name        *string                  `json:"name,omitempty"`
     Vars        map[string]string        `json:"vars,omitempty"`

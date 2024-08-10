@@ -68,7 +68,7 @@ func (c CpuStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CpuStat.
 // It customizes the JSON unmarshaling process for CpuStat objects.
 func (c *CpuStat) UnmarshalJSON(input []byte) error {
-    var temp cpuStat
+    var temp tempCpuStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -87,8 +87,8 @@ func (c *CpuStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// cpuStat is a temporary struct used for validating the fields of CpuStat.
-type cpuStat  struct {
+// tempCpuStat is a temporary struct used for validating the fields of CpuStat.
+type tempCpuStat  struct {
     Idle      Optional[float64] `json:"idle"`
     Interrupt Optional[float64] `json:"interrupt"`
     LoadAvg   []float64         `json:"load_avg,omitempty"`

@@ -46,11 +46,6 @@
       "internal_ip": "internal_ip0",
       "name": "name4",
       "port": 162
-    },
-    "key2": {
-      "internal_ip": "internal_ip0",
-      "name": "name4",
-      "port": 162
     }
   }
 }

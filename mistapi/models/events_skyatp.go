@@ -51,7 +51,7 @@ func (e EventsSkyatp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EventsSkyatp.
 // It customizes the JSON unmarshaling process for EventsSkyatp objects.
 func (e *EventsSkyatp) UnmarshalJSON(input []byte) error {
-    var temp eventsSkyatp
+    var temp tempEventsSkyatp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -78,8 +78,8 @@ func (e *EventsSkyatp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// eventsSkyatp is a temporary struct used for validating the fields of EventsSkyatp.
-type eventsSkyatp  struct {
+// tempEventsSkyatp is a temporary struct used for validating the fields of EventsSkyatp.
+type tempEventsSkyatp  struct {
     DeviceMac   *string    `json:"device_mac"`
     ForSite     *bool      `json:"for_site,omitempty"`
     Ip          *string    `json:"ip"`
@@ -91,31 +91,31 @@ type eventsSkyatp  struct {
     Type        *string    `json:"type"`
 }
 
-func (e *eventsSkyatp) validate() error {
+func (e *tempEventsSkyatp) validate() error {
     var errs []string
     if e.DeviceMac == nil {
-        errs = append(errs, "required field `device_mac` is missing for type `Events_Skyatp`")
+        errs = append(errs, "required field `device_mac` is missing for type `events_skyatp`")
     }
     if e.Ip == nil {
-        errs = append(errs, "required field `ip` is missing for type `Events_Skyatp`")
+        errs = append(errs, "required field `ip` is missing for type `events_skyatp`")
     }
     if e.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Events_Skyatp`")
+        errs = append(errs, "required field `mac` is missing for type `events_skyatp`")
     }
     if e.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Events_Skyatp`")
+        errs = append(errs, "required field `org_id` is missing for type `events_skyatp`")
     }
     if e.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Events_Skyatp`")
+        errs = append(errs, "required field `site_id` is missing for type `events_skyatp`")
     }
     if e.ThreatLevel == nil {
-        errs = append(errs, "required field `threat_level` is missing for type `Events_Skyatp`")
+        errs = append(errs, "required field `threat_level` is missing for type `events_skyatp`")
     }
     if e.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Events_Skyatp`")
+        errs = append(errs, "required field `timestamp` is missing for type `events_skyatp`")
     }
     if e.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Events_Skyatp`")
+        errs = append(errs, "required field `type` is missing for type `events_skyatp`")
     }
     if len(errs) == 0 {
         return nil

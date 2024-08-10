@@ -22,8 +22,8 @@
   "disable_event_timestamp_check": false,
   "port": 3799,
   "enabled": false,
-  "host": "host2",
-  "secret": "secret8"
+  "host": "host8",
+  "secret": "secret2"
 }
 ```
 

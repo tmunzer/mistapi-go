@@ -37,13 +37,6 @@
       "org_id": "00002492-0000-0000-0000-000000000000",
       "service": "service4",
       "timestamp": 2.64
-    },
-    {
-      "mxcluster_id": "mxcluster_id6",
-      "mxedge_id": "mxedge_id2",
-      "org_id": "00002492-0000-0000-0000-000000000000",
-      "service": "service4",
-      "timestamp": 2.64
     }
   ]
 }

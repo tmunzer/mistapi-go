@@ -35,7 +35,7 @@ func (a ApTemplateMatching) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApTemplateMatching.
 // It customizes the JSON unmarshaling process for ApTemplateMatching objects.
 func (a *ApTemplateMatching) UnmarshalJSON(input []byte) error {
-    var temp apTemplateMatching
+    var temp tempApTemplateMatching
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (a *ApTemplateMatching) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apTemplateMatching is a temporary struct used for validating the fields of ApTemplateMatching.
-type apTemplateMatching  struct {
+// tempApTemplateMatching is a temporary struct used for validating the fields of ApTemplateMatching.
+type tempApTemplateMatching  struct {
     Enabled *bool                    `json:"enabled,omitempty"`
     Rules   []ApTemplateMatchingRule `json:"rules,omitempty"`
 }

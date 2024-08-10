@@ -49,7 +49,7 @@ func (s SleImpactSummary) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactSummary.
 // It customizes the JSON unmarshaling process for SleImpactSummary objects.
 func (s *SleImpactSummary) UnmarshalJSON(input []byte) error {
-    var temp sleImpactSummary
+    var temp tempSleImpactSummary
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (s *SleImpactSummary) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactSummary is a temporary struct used for validating the fields of SleImpactSummary.
-type sleImpactSummary  struct {
+// tempSleImpactSummary is a temporary struct used for validating the fields of SleImpactSummary.
+type tempSleImpactSummary  struct {
     Ap         *[]SleImpactSummaryApItem         `json:"ap"`
     Band       *[]SleImpactSummaryBandItem       `json:"band"`
     Classifier *string                           `json:"classifier"`
@@ -91,37 +91,37 @@ type sleImpactSummary  struct {
     Wlan       *[]SleImpactSummaryWlanItem       `json:"wlan"`
 }
 
-func (s *sleImpactSummary) validate() error {
+func (s *tempSleImpactSummary) validate() error {
     var errs []string
     if s.Ap == nil {
-        errs = append(errs, "required field `ap` is missing for type `Sle_Impact_Summary`")
+        errs = append(errs, "required field `ap` is missing for type `sle_impact_summary`")
     }
     if s.Band == nil {
-        errs = append(errs, "required field `band` is missing for type `Sle_Impact_Summary`")
+        errs = append(errs, "required field `band` is missing for type `sle_impact_summary`")
     }
     if s.Classifier == nil {
-        errs = append(errs, "required field `classifier` is missing for type `Sle_Impact_Summary`")
+        errs = append(errs, "required field `classifier` is missing for type `sle_impact_summary`")
     }
     if s.DeviceOs == nil {
-        errs = append(errs, "required field `device_os` is missing for type `Sle_Impact_Summary`")
+        errs = append(errs, "required field `device_os` is missing for type `sle_impact_summary`")
     }
     if s.DeviceType == nil {
-        errs = append(errs, "required field `device_type` is missing for type `Sle_Impact_Summary`")
+        errs = append(errs, "required field `device_type` is missing for type `sle_impact_summary`")
     }
     if s.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Sle_Impact_Summary`")
+        errs = append(errs, "required field `end` is missing for type `sle_impact_summary`")
     }
     if s.Failure == nil {
-        errs = append(errs, "required field `failure` is missing for type `Sle_Impact_Summary`")
+        errs = append(errs, "required field `failure` is missing for type `sle_impact_summary`")
     }
     if s.Metric == nil {
-        errs = append(errs, "required field `metric` is missing for type `Sle_Impact_Summary`")
+        errs = append(errs, "required field `metric` is missing for type `sle_impact_summary`")
     }
     if s.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Sle_Impact_Summary`")
+        errs = append(errs, "required field `start` is missing for type `sle_impact_summary`")
     }
     if s.Wlan == nil {
-        errs = append(errs, "required field `wlan` is missing for type `Sle_Impact_Summary`")
+        errs = append(errs, "required field `wlan` is missing for type `sle_impact_summary`")
     }
     if len(errs) == 0 {
         return nil

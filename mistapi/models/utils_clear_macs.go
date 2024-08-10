@@ -32,7 +32,7 @@ func (u UtilsClearMacs) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsClearMacs.
 // It customizes the JSON unmarshaling process for UtilsClearMacs objects.
 func (u *UtilsClearMacs) UnmarshalJSON(input []byte) error {
-    var temp utilsClearMacs
+    var temp tempUtilsClearMacs
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (u *UtilsClearMacs) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsClearMacs is a temporary struct used for validating the fields of UtilsClearMacs.
-type utilsClearMacs  struct {
+// tempUtilsClearMacs is a temporary struct used for validating the fields of UtilsClearMacs.
+type tempUtilsClearMacs  struct {
     Ports []string `json:"ports,omitempty"`
 }

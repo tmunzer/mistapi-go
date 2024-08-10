@@ -46,7 +46,7 @@ func (r ResponseMspInventoryDevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseMspInventoryDevice.
 // It customizes the JSON unmarshaling process for ResponseMspInventoryDevice objects.
 func (r *ResponseMspInventoryDevice) UnmarshalJSON(input []byte) error {
-    var temp responseMspInventoryDevice
+    var temp tempResponseMspInventoryDevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (r *ResponseMspInventoryDevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseMspInventoryDevice is a temporary struct used for validating the fields of ResponseMspInventoryDevice.
-type responseMspInventoryDevice  struct {
+// tempResponseMspInventoryDevice is a temporary struct used for validating the fields of ResponseMspInventoryDevice.
+type tempResponseMspInventoryDevice  struct {
     ForSite *bool      `json:"for_site,omitempty"`
     Mac     *string    `json:"mac"`
     Model   *string    `json:"model"`
@@ -82,25 +82,25 @@ type responseMspInventoryDevice  struct {
     Type    *string    `json:"type"`
 }
 
-func (r *responseMspInventoryDevice) validate() error {
+func (r *tempResponseMspInventoryDevice) validate() error {
     var errs []string
     if r.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Response_Msp_Inventory_Device`")
+        errs = append(errs, "required field `mac` is missing for type `response_msp_inventory_device`")
     }
     if r.Model == nil {
-        errs = append(errs, "required field `model` is missing for type `Response_Msp_Inventory_Device`")
+        errs = append(errs, "required field `model` is missing for type `response_msp_inventory_device`")
     }
     if r.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Response_Msp_Inventory_Device`")
+        errs = append(errs, "required field `org_id` is missing for type `response_msp_inventory_device`")
     }
     if r.Serial == nil {
-        errs = append(errs, "required field `serial` is missing for type `Response_Msp_Inventory_Device`")
+        errs = append(errs, "required field `serial` is missing for type `response_msp_inventory_device`")
     }
     if r.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Response_Msp_Inventory_Device`")
+        errs = append(errs, "required field `site_id` is missing for type `response_msp_inventory_device`")
     }
     if r.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Response_Msp_Inventory_Device`")
+        errs = append(errs, "required field `type` is missing for type `response_msp_inventory_device`")
     }
     if len(errs) == 0 {
         return nil

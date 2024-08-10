@@ -19,8 +19,8 @@
 
 ```json
 {
-  "end": 166,
-  "limit": 4,
+  "end": 108,
+  "limit": 62,
   "results": [
     {
       "ap_mac": "ap_mac8",
@@ -35,7 +35,7 @@
       "times_heard": 110
     }
   ],
-  "start": 124,
+  "start": 66,
   "next": "next6"
 }
 ```

@@ -16,8 +16,8 @@
 
 ```json
 {
-  "interval": 26,
-  "max_age": 210
+  "interval": 108,
+  "max_age": 128
 }
 ```
 

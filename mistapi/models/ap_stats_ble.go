@@ -210,7 +210,7 @@ func (a ApStatsBle) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStatsBle.
 // It customizes the JSON unmarshaling process for ApStatsBle objects.
 func (a *ApStatsBle) UnmarshalJSON(input []byte) error {
-    var temp apStatsBle
+    var temp tempApStatsBle
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -247,8 +247,8 @@ func (a *ApStatsBle) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStatsBle is a temporary struct used for validating the fields of ApStatsBle.
-type apStatsBle  struct {
+// tempApStatsBle is a temporary struct used for validating the fields of ApStatsBle.
+type tempApStatsBle  struct {
     BeaconEnabled         Optional[bool]      `json:"beacon_enabled"`
     BeaconRate            Optional[int]       `json:"beacon_rate"`
     EddystoneUidEnabled   Optional[bool]      `json:"eddystone_uid_enabled"`

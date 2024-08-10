@@ -35,7 +35,7 @@ func (g GatewayStatsCluster) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayStatsCluster.
 // It customizes the JSON unmarshaling process for GatewayStatsCluster objects.
 func (g *GatewayStatsCluster) UnmarshalJSON(input []byte) error {
-    var temp gatewayStatsCluster
+    var temp tempGatewayStatsCluster
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,7 +50,7 @@ func (g *GatewayStatsCluster) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayStatsCluster is a temporary struct used for validating the fields of GatewayStatsCluster.
-type gatewayStatsCluster  struct {
+// tempGatewayStatsCluster is a temporary struct used for validating the fields of GatewayStatsCluster.
+type tempGatewayStatsCluster  struct {
     State Optional[string] `json:"state"`
 }

@@ -73,7 +73,7 @@ func (e EventsDeviceAp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EventsDeviceAp.
 // It customizes the JSON unmarshaling process for EventsDeviceAp objects.
 func (e *EventsDeviceAp) UnmarshalJSON(input []byte) error {
-    var temp eventsDeviceAp
+    var temp tempEventsDeviceAp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -102,8 +102,8 @@ func (e *EventsDeviceAp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// eventsDeviceAp is a temporary struct used for validating the fields of EventsDeviceAp.
-type eventsDeviceAp  struct {
+// tempEventsDeviceAp is a temporary struct used for validating the fields of EventsDeviceAp.
+type tempEventsDeviceAp  struct {
     Ap         *string    `json:"ap,omitempty"`
     Apfw       *string    `json:"apfw,omitempty"`
     Count      *int       `json:"count,omitempty"`
@@ -117,10 +117,10 @@ type eventsDeviceAp  struct {
     Type       *string    `json:"type,omitempty"`
 }
 
-func (e *eventsDeviceAp) validate() error {
+func (e *tempEventsDeviceAp) validate() error {
     var errs []string
     if e.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Events_Device_Ap`")
+        errs = append(errs, "required field `timestamp` is missing for type `events_device_ap`")
     }
     if len(errs) == 0 {
         return nil

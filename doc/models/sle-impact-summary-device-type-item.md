@@ -19,11 +19,11 @@
 
 ```json
 {
-  "degraded": 117.34,
+  "degraded": 230.14,
   "device_type": "device_type6",
-  "duration": 246.4,
+  "duration": 103.2,
   "name": "name4",
-  "total": 110.66
+  "total": 253.86
 }
 ```
 

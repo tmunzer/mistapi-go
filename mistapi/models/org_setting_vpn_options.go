@@ -36,7 +36,7 @@ func (o OrgSettingVpnOptions) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingVpnOptions.
 // It customizes the JSON unmarshaling process for OrgSettingVpnOptions objects.
 func (o *OrgSettingVpnOptions) UnmarshalJSON(input []byte) error {
-    var temp orgSettingVpnOptions
+    var temp tempOrgSettingVpnOptions
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (o *OrgSettingVpnOptions) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSettingVpnOptions is a temporary struct used for validating the fields of OrgSettingVpnOptions.
-type orgSettingVpnOptions  struct {
+// tempOrgSettingVpnOptions is a temporary struct used for validating the fields of OrgSettingVpnOptions.
+type tempOrgSettingVpnOptions  struct {
     AsBase   *int    `json:"as_base,omitempty"`
     StSubnet *string `json:"st_subnet,omitempty"`
 }

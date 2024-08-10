@@ -35,7 +35,7 @@ func (m MapSiteReplaceFile) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapSiteReplaceFile.
 // It customizes the JSON unmarshaling process for MapSiteReplaceFile objects.
 func (m *MapSiteReplaceFile) UnmarshalJSON(input []byte) error {
-    var temp mapSiteReplaceFile
+    var temp tempMapSiteReplaceFile
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,16 +55,16 @@ func (m *MapSiteReplaceFile) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapSiteReplaceFile is a temporary struct used for validating the fields of MapSiteReplaceFile.
-type mapSiteReplaceFile  struct {
+// tempMapSiteReplaceFile is a temporary struct used for validating the fields of MapSiteReplaceFile.
+type tempMapSiteReplaceFile  struct {
     File *[]byte                 `json:"file"`
     Json *MapSiteReplaceFileJson `json:"json,omitempty"`
 }
 
-func (m *mapSiteReplaceFile) validate() error {
+func (m *tempMapSiteReplaceFile) validate() error {
     var errs []string
     if m.File == nil {
-        errs = append(errs, "required field `file` is missing for type `Map_Site_Replace_File`")
+        errs = append(errs, "required field `file` is missing for type `map_site_replace_file`")
     }
     if len(errs) == 0 {
         return nil

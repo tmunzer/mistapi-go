@@ -20,8 +20,8 @@ OAuth linked Jamf apps account details
 
 ```json
 {
-  "client_id": "client_id6",
-  "client_secret": "client_secret2",
+  "client_id": "client_id0",
+  "client_secret": "client_secret6",
   "instance_url": "junipertest.jamfcloud.com",
   "smartgroup_name": "CompliantGroup1"
 }

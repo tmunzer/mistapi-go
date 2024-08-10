@@ -17,7 +17,7 @@ Property key is the destination CIDR (e.g. "10.0.0.0/8")
 
 ```json
 {
-  "via": "via6"
+  "via": "via2"
 }
 ```
 

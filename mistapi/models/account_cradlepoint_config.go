@@ -43,7 +43,7 @@ func (a AccountCradlepointConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AccountCradlepointConfig.
 // It customizes the JSON unmarshaling process for AccountCradlepointConfig objects.
 func (a *AccountCradlepointConfig) UnmarshalJSON(input []byte) error {
-    var temp accountCradlepointConfig
+    var temp tempAccountCradlepointConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (a *AccountCradlepointConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// accountCradlepointConfig is a temporary struct used for validating the fields of AccountCradlepointConfig.
-type accountCradlepointConfig  struct {
+// tempAccountCradlepointConfig is a temporary struct used for validating the fields of AccountCradlepointConfig.
+type tempAccountCradlepointConfig  struct {
     CpApiId   *string `json:"cp_api_id,omitempty"`
     CpApiKey  *string `json:"cp_api_key,omitempty"`
     EcmApiId  *string `json:"ecm_api_id,omitempty"`

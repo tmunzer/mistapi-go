@@ -34,7 +34,7 @@ func (s SdkclientWirelessStatsVbeacon) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SdkclientWirelessStatsVbeacon.
 // It customizes the JSON unmarshaling process for SdkclientWirelessStatsVbeacon objects.
 func (s *SdkclientWirelessStatsVbeacon) UnmarshalJSON(input []byte) error {
-    var temp sdkclientWirelessStatsVbeacon
+    var temp tempSdkclientWirelessStatsVbeacon
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,19 +54,19 @@ func (s *SdkclientWirelessStatsVbeacon) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sdkclientWirelessStatsVbeacon is a temporary struct used for validating the fields of SdkclientWirelessStatsVbeacon.
-type sdkclientWirelessStatsVbeacon  struct {
+// tempSdkclientWirelessStatsVbeacon is a temporary struct used for validating the fields of SdkclientWirelessStatsVbeacon.
+type tempSdkclientWirelessStatsVbeacon  struct {
     Id    *uuid.UUID `json:"id"`
     Since *float64   `json:"since"`
 }
 
-func (s *sdkclientWirelessStatsVbeacon) validate() error {
+func (s *tempSdkclientWirelessStatsVbeacon) validate() error {
     var errs []string
     if s.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Sdkclient_Wireless_Stats_Vbeacon`")
+        errs = append(errs, "required field `id` is missing for type `sdkclient_wireless_stats_vbeacon`")
     }
     if s.Since == nil {
-        errs = append(errs, "required field `since` is missing for type `Sdkclient_Wireless_Stats_Vbeacon`")
+        errs = append(errs, "required field `since` is missing for type `sdkclient_wireless_stats_vbeacon`")
     }
     if len(errs) == 0 {
         return nil

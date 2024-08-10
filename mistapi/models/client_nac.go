@@ -132,7 +132,7 @@ func (c ClientNac) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClientNac.
 // It customizes the JSON unmarshaling process for ClientNac objects.
 func (c *ClientNac) UnmarshalJSON(input []byte) error {
-    var temp clientNac
+    var temp tempClientNac
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -172,8 +172,8 @@ func (c *ClientNac) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// clientNac is a temporary struct used for validating the fields of ClientNac.
-type clientNac  struct {
+// tempClientNac is a temporary struct used for validating the fields of ClientNac.
+type tempClientNac  struct {
     Ap              []string   `json:"ap,omitempty"`
     AuthType        *string    `json:"auth_type,omitempty"`
     CertCn          []string   `json:"cert_cn,omitempty"`

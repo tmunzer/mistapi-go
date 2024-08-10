@@ -33,7 +33,7 @@ func (a ApRadioMac) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApRadioMac.
 // It customizes the JSON unmarshaling process for ApRadioMac objects.
 func (a *ApRadioMac) UnmarshalJSON(input []byte) error {
-    var temp apRadioMac
+    var temp tempApRadioMac
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (a *ApRadioMac) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apRadioMac is a temporary struct used for validating the fields of ApRadioMac.
-type apRadioMac  struct {
+// tempApRadioMac is a temporary struct used for validating the fields of ApRadioMac.
+type tempApRadioMac  struct {
     Mac       *string   `json:"mac"`
     RadioMacs *[]string `json:"radio_macs"`
 }
 
-func (a *apRadioMac) validate() error {
+func (a *tempApRadioMac) validate() error {
     var errs []string
     if a.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Ap_Radio_Mac`")
+        errs = append(errs, "required field `mac` is missing for type `ap_radio_mac`")
     }
     if a.RadioMacs == nil {
-        errs = append(errs, "required field `radio_macs` is missing for type `Ap_Radio_Mac`")
+        errs = append(errs, "required field `radio_macs` is missing for type `ap_radio_mac`")
     }
     if len(errs) == 0 {
         return nil

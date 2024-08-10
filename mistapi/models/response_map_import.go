@@ -42,7 +42,7 @@ func (r ResponseMapImport) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseMapImport.
 // It customizes the JSON unmarshaling process for ResponseMapImport objects.
 func (r *ResponseMapImport) UnmarshalJSON(input []byte) error {
-    var temp responseMapImport
+    var temp tempResponseMapImport
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (r *ResponseMapImport) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseMapImport is a temporary struct used for validating the fields of ResponseMapImport.
-type responseMapImport  struct {
+// tempResponseMapImport is a temporary struct used for validating the fields of ResponseMapImport.
+type tempResponseMapImport  struct {
     Aps        *[]ResponseMapImportAp        `json:"aps"`
     Floorplans *[]ResponseMapImportFloorplan `json:"floorplans"`
     ForSite    *bool                         `json:"for_site,omitempty"`
@@ -74,19 +74,19 @@ type responseMapImport  struct {
     Summary    *ResponseMapImportSummary     `json:"summary"`
 }
 
-func (r *responseMapImport) validate() error {
+func (r *tempResponseMapImport) validate() error {
     var errs []string
     if r.Aps == nil {
-        errs = append(errs, "required field `aps` is missing for type `Response_Map_Import`")
+        errs = append(errs, "required field `aps` is missing for type `response_map_import`")
     }
     if r.Floorplans == nil {
-        errs = append(errs, "required field `floorplans` is missing for type `Response_Map_Import`")
+        errs = append(errs, "required field `floorplans` is missing for type `response_map_import`")
     }
     if r.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Response_Map_Import`")
+        errs = append(errs, "required field `site_id` is missing for type `response_map_import`")
     }
     if r.Summary == nil {
-        errs = append(errs, "required field `summary` is missing for type `Response_Map_Import`")
+        errs = append(errs, "required field `summary` is missing for type `response_map_import`")
     }
     if len(errs) == 0 {
         return nil

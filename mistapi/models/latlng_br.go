@@ -36,7 +36,7 @@ func (l LatlngBr) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for LatlngBr.
 // It customizes the JSON unmarshaling process for LatlngBr objects.
 func (l *LatlngBr) UnmarshalJSON(input []byte) error {
-    var temp latlngBr
+    var temp tempLatlngBr
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (l *LatlngBr) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// latlngBr is a temporary struct used for validating the fields of LatlngBr.
-type latlngBr  struct {
+// tempLatlngBr is a temporary struct used for validating the fields of LatlngBr.
+type tempLatlngBr  struct {
     Lat *string `json:"lat,omitempty"`
     Lng *string `json:"lng,omitempty"`
 }

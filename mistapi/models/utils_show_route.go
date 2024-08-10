@@ -68,7 +68,7 @@ func (u UtilsShowRoute) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsShowRoute.
 // It customizes the JSON unmarshaling process for UtilsShowRoute objects.
 func (u *UtilsShowRoute) UnmarshalJSON(input []byte) error {
-    var temp utilsShowRoute
+    var temp tempUtilsShowRoute
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -90,8 +90,8 @@ func (u *UtilsShowRoute) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsShowRoute is a temporary struct used for validating the fields of UtilsShowRoute.
-type utilsShowRoute  struct {
+// tempUtilsShowRoute is a temporary struct used for validating the fields of UtilsShowRoute.
+type tempUtilsShowRoute  struct {
     Duration *int                        `json:"duration,omitempty"`
     Interval *int                        `json:"interval,omitempty"`
     Neighbor *string                     `json:"neighbor,omitempty"`

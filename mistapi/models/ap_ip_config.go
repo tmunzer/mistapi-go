@@ -84,7 +84,7 @@ func (a ApIpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApIpConfig.
 // It customizes the JSON unmarshaling process for ApIpConfig objects.
 func (a *ApIpConfig) UnmarshalJSON(input []byte) error {
-    var temp apIpConfig
+    var temp tempApIpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -110,8 +110,8 @@ func (a *ApIpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apIpConfig is a temporary struct used for validating the fields of ApIpConfig.
-type apIpConfig  struct {
+// tempApIpConfig is a temporary struct used for validating the fields of ApIpConfig.
+type tempApIpConfig  struct {
     Dns       []string     `json:"dns,omitempty"`
     DnsSuffix []string     `json:"dns_suffix,omitempty"`
     Gateway   *string      `json:"gateway,omitempty"`

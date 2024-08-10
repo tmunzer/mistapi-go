@@ -39,7 +39,7 @@ func (o OrgSettingAutoDeviceprofileAssignment) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSettingAutoDeviceprofileAssignment.
 // It customizes the JSON unmarshaling process for OrgSettingAutoDeviceprofileAssignment objects.
 func (o *OrgSettingAutoDeviceprofileAssignment) UnmarshalJSON(input []byte) error {
-    var temp orgSettingAutoDeviceprofileAssignment
+    var temp tempOrgSettingAutoDeviceprofileAssignment
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -55,8 +55,8 @@ func (o *OrgSettingAutoDeviceprofileAssignment) UnmarshalJSON(input []byte) erro
     return nil
 }
 
-// orgSettingAutoDeviceprofileAssignment is a temporary struct used for validating the fields of OrgSettingAutoDeviceprofileAssignment.
-type orgSettingAutoDeviceprofileAssignment  struct {
+// tempOrgSettingAutoDeviceprofileAssignment is a temporary struct used for validating the fields of OrgSettingAutoDeviceprofileAssignment.
+type tempOrgSettingAutoDeviceprofileAssignment  struct {
     Enable *bool                    `json:"enable,omitempty"`
     Rules  Optional[[]OrgAutoRules] `json:"rules"`
 }

@@ -63,7 +63,7 @@ func (m Msp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Msp.
 // It customizes the JSON unmarshaling process for Msp objects.
 func (m *Msp) UnmarshalJSON(input []byte) error {
-    var temp msp
+    var temp tempMsp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -85,8 +85,8 @@ func (m *Msp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// msp is a temporary struct used for validating the fields of Msp.
-type msp  struct {
+// tempMsp is a temporary struct used for validating the fields of Msp.
+type tempMsp  struct {
     AllowMist    *bool        `json:"allow_mist,omitempty"`
     CreatedTime  *float64     `json:"created_time,omitempty"`
     Id           *uuid.UUID   `json:"id,omitempty"`

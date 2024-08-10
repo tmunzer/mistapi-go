@@ -18,10 +18,10 @@
 
 ```json
 {
-  "detail": "detail8",
+  "detail": "detail6",
   "invite_not_applied": false,
-  "min_length": 212,
-  "return_to": "return_to8"
+  "min_length": 206,
+  "return_to": "return_to6"
 }
 ```
 

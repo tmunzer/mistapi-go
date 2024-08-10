@@ -20,18 +20,32 @@
 ```json
 {
   "added": [
-    "added0",
-    "added1",
-    "added2"
+    "added6",
+    "added7"
   ],
   "duplicated": [
-    "duplicated9",
-    "duplicated0"
+    "duplicated5"
   ],
   "error": [
-    "error3"
+    "error9",
+    "error0",
+    "error1"
   ],
   "inventory_added": [
+    {
+      "mac": "mac0",
+      "magic": "magic6",
+      "model": "model4",
+      "serial": "serial6",
+      "type": "type6"
+    },
+    {
+      "mac": "mac0",
+      "magic": "magic6",
+      "model": "model4",
+      "serial": "serial6",
+      "type": "type6"
+    },
     {
       "mac": "mac0",
       "magic": "magic6",
@@ -41,20 +55,6 @@
     }
   ],
   "inventory_duplicated": [
-    {
-      "mac": "mac0",
-      "magic": "magic6",
-      "model": "model4",
-      "serial": "serial6",
-      "type": "type6"
-    },
-    {
-      "mac": "mac0",
-      "magic": "magic6",
-      "model": "model4",
-      "serial": "serial6",
-      "type": "type6"
-    },
     {
       "mac": "mac0",
       "magic": "magic6",

@@ -42,7 +42,7 @@ func (a ApStatsRadioStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStatsRadioStat.
 // It customizes the JSON unmarshaling process for ApStatsRadioStat objects.
 func (a *ApStatsRadioStat) UnmarshalJSON(input []byte) error {
-    var temp apStatsRadioStat
+    var temp tempApStatsRadioStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,8 +59,8 @@ func (a *ApStatsRadioStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStatsRadioStat is a temporary struct used for validating the fields of ApStatsRadioStat.
-type apStatsRadioStat  struct {
+// tempApStatsRadioStat is a temporary struct used for validating the fields of ApStatsRadioStat.
+type tempApStatsRadioStat  struct {
     Band24 *ApRadioStats `json:"band_24,omitempty"`
     Band5  *ApRadioStats `json:"band_5,omitempty"`
     Band6  *ApRadioStats `json:"band_6,omitempty"`

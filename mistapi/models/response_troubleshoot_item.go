@@ -43,7 +43,7 @@ func (r ResponseTroubleshootItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseTroubleshootItem.
 // It customizes the JSON unmarshaling process for ResponseTroubleshootItem objects.
 func (r *ResponseTroubleshootItem) UnmarshalJSON(input []byte) error {
-    var temp responseTroubleshootItem
+    var temp tempResponseTroubleshootItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (r *ResponseTroubleshootItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseTroubleshootItem is a temporary struct used for validating the fields of ResponseTroubleshootItem.
-type responseTroubleshootItem  struct {
+// tempResponseTroubleshootItem is a temporary struct used for validating the fields of ResponseTroubleshootItem.
+type tempResponseTroubleshootItem  struct {
     Category       *string `json:"category,omitempty"`
     Reason         *string `json:"reason,omitempty"`
     Recommendation *string `json:"recommendation,omitempty"`

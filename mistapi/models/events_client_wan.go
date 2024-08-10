@@ -60,7 +60,7 @@ func (e EventsClientWan) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EventsClientWan.
 // It customizes the JSON unmarshaling process for EventsClientWan objects.
 func (e *EventsClientWan) UnmarshalJSON(input []byte) error {
-    var temp eventsClientWan
+    var temp tempEventsClientWan
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -82,8 +82,8 @@ func (e *EventsClientWan) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// eventsClientWan is a temporary struct used for validating the fields of EventsClientWan.
-type eventsClientWan  struct {
+// tempEventsClientWan is a temporary struct used for validating the fields of EventsClientWan.
+type tempEventsClientWan  struct {
     When      *string      `json:"When,omitempty"`
     EvType    *string      `json:"ev_type,omitempty"`
     Metadata  *interface{} `json:"metadata,omitempty"`

@@ -31,7 +31,7 @@ func (c CountResult) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CountResult.
 // It customizes the JSON unmarshaling process for CountResult objects.
 func (c *CountResult) UnmarshalJSON(input []byte) error {
-    var temp countResult
+    var temp tempCountResult
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (c *CountResult) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// countResult is a temporary struct used for validating the fields of CountResult.
-type countResult  struct {
+// tempCountResult is a temporary struct used for validating the fields of CountResult.
+type tempCountResult  struct {
     Count *int `json:"count"`
 }
 
-func (c *countResult) validate() error {
+func (c *tempCountResult) validate() error {
     var errs []string
     if c.Count == nil {
-        errs = append(errs, "required field `count` is missing for type `Count_Result`")
+        errs = append(errs, "required field `count` is missing for type `count_result`")
     }
     if len(errs) == 0 {
         return nil

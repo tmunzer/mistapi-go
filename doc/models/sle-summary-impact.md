@@ -18,10 +18,10 @@
 
 ```json
 {
-  "num_aps": 19.32,
-  "num_users": 18.4,
-  "total_aps": 1.68,
-  "total_users": 9.7
+  "num_aps": 9.92,
+  "num_users": 245.16,
+  "total_aps": 228.44,
+  "total_users": 19.54
 }
 ```
 

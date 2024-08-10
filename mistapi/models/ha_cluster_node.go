@@ -32,7 +32,7 @@ func (h HaClusterNode) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for HaClusterNode.
 // It customizes the JSON unmarshaling process for HaClusterNode objects.
 func (h *HaClusterNode) UnmarshalJSON(input []byte) error {
-    var temp haClusterNode
+    var temp tempHaClusterNode
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (h *HaClusterNode) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// haClusterNode is a temporary struct used for validating the fields of HaClusterNode.
-type haClusterNode  struct {
+// tempHaClusterNode is a temporary struct used for validating the fields of HaClusterNode.
+type tempHaClusterNode  struct {
     Node *HaClusterNodeEnum `json:"node,omitempty"`
 }

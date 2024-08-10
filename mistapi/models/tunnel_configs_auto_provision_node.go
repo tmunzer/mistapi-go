@@ -36,7 +36,7 @@ func (t TunnelConfigsAutoProvisionNode) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TunnelConfigsAutoProvisionNode.
 // It customizes the JSON unmarshaling process for TunnelConfigsAutoProvisionNode objects.
 func (t *TunnelConfigsAutoProvisionNode) UnmarshalJSON(input []byte) error {
-    var temp tunnelConfigsAutoProvisionNode
+    var temp tempTunnelConfigsAutoProvisionNode
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (t *TunnelConfigsAutoProvisionNode) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tunnelConfigsAutoProvisionNode is a temporary struct used for validating the fields of TunnelConfigsAutoProvisionNode.
-type tunnelConfigsAutoProvisionNode  struct {
+// tempTunnelConfigsAutoProvisionNode is a temporary struct used for validating the fields of TunnelConfigsAutoProvisionNode.
+type tempTunnelConfigsAutoProvisionNode  struct {
     NumHosts *string  `json:"num_hosts,omitempty"`
     WanNames []string `json:"wan_names,omitempty"`
 }

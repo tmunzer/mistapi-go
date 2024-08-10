@@ -43,7 +43,7 @@ func (o OrgSiteWanWifi) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgSiteWanWifi.
 // It customizes the JSON unmarshaling process for OrgSiteWanWifi objects.
 func (o *OrgSiteWanWifi) UnmarshalJSON(input []byte) error {
-    var temp orgSiteWanWifi
+    var temp tempOrgSiteWanWifi
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -68,8 +68,8 @@ func (o *OrgSiteWanWifi) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgSiteWanWifi is a temporary struct used for validating the fields of OrgSiteWanWifi.
-type orgSiteWanWifi  struct {
+// tempOrgSiteWanWifi is a temporary struct used for validating the fields of OrgSiteWanWifi.
+type tempOrgSiteWanWifi  struct {
     End      *float64               `json:"end"`
     Interval *int                   `json:"interval"`
     Limit    *int                   `json:"limit"`
@@ -79,28 +79,28 @@ type orgSiteWanWifi  struct {
     Total    *int                   `json:"total"`
 }
 
-func (o *orgSiteWanWifi) validate() error {
+func (o *tempOrgSiteWanWifi) validate() error {
     var errs []string
     if o.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Org_Site_Wan_Wifi`")
+        errs = append(errs, "required field `end` is missing for type `org_site_wan_wifi`")
     }
     if o.Interval == nil {
-        errs = append(errs, "required field `interval` is missing for type `Org_Site_Wan_Wifi`")
+        errs = append(errs, "required field `interval` is missing for type `org_site_wan_wifi`")
     }
     if o.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Org_Site_Wan_Wifi`")
+        errs = append(errs, "required field `limit` is missing for type `org_site_wan_wifi`")
     }
     if o.Page == nil {
-        errs = append(errs, "required field `page` is missing for type `Org_Site_Wan_Wifi`")
+        errs = append(errs, "required field `page` is missing for type `org_site_wan_wifi`")
     }
     if o.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Org_Site_Wan_Wifi`")
+        errs = append(errs, "required field `results` is missing for type `org_site_wan_wifi`")
     }
     if o.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Org_Site_Wan_Wifi`")
+        errs = append(errs, "required field `start` is missing for type `org_site_wan_wifi`")
     }
     if o.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Org_Site_Wan_Wifi`")
+        errs = append(errs, "required field `total` is missing for type `org_site_wan_wifi`")
     }
     if len(errs) == 0 {
         return nil

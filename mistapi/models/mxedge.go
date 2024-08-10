@@ -149,7 +149,7 @@ func (m Mxedge) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Mxedge.
 // It customizes the JSON unmarshaling process for Mxedge objects.
 func (m *Mxedge) UnmarshalJSON(input []byte) error {
-    var temp mxedge
+    var temp tempMxedge
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -195,8 +195,8 @@ func (m *Mxedge) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedge is a temporary struct used for validating the fields of Mxedge.
-type mxedge  struct {
+// tempMxedge is a temporary struct used for validating the fields of Mxedge.
+type tempMxedge  struct {
     CreatedTime               *float64                              `json:"created_time,omitempty"`
     ForSite                   *bool                                 `json:"for_site,omitempty"`
     Id                        *uuid.UUID                            `json:"id,omitempty"`
@@ -227,13 +227,13 @@ type mxedge  struct {
     Versions                  *MxedgeVersions                       `json:"versions,omitempty"`
 }
 
-func (m *mxedge) validate() error {
+func (m *tempMxedge) validate() error {
     var errs []string
     if m.Model == nil {
-        errs = append(errs, "required field `model` is missing for type `Mxedge`")
+        errs = append(errs, "required field `model` is missing for type `mxedge`")
     }
     if m.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Mxedge`")
+        errs = append(errs, "required field `name` is missing for type `mxedge`")
     }
     if len(errs) == 0 {
         return nil

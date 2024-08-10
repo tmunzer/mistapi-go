@@ -34,7 +34,7 @@ func (w WebhookSdkclientScanData) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookSdkclientScanData.
 // It customizes the JSON unmarshaling process for WebhookSdkclientScanData objects.
 func (w *WebhookSdkclientScanData) UnmarshalJSON(input []byte) error {
-    var temp webhookSdkclientScanData
+    var temp tempWebhookSdkclientScanData
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,19 +54,19 @@ func (w *WebhookSdkclientScanData) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookSdkclientScanData is a temporary struct used for validating the fields of WebhookSdkclientScanData.
-type webhookSdkclientScanData  struct {
+// tempWebhookSdkclientScanData is a temporary struct used for validating the fields of WebhookSdkclientScanData.
+type tempWebhookSdkclientScanData  struct {
     Events *[]WebhookSdkclientScanDataEvent `json:"events"`
     Topic  *string                          `json:"topic"`
 }
 
-func (w *webhookSdkclientScanData) validate() error {
+func (w *tempWebhookSdkclientScanData) validate() error {
     var errs []string
     if w.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Webhook_Sdkclient_Scan_Data`")
+        errs = append(errs, "required field `events` is missing for type `webhook_sdkclient_scan_data`")
     }
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Sdkclient_Scan_Data`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_sdkclient_scan_data`")
     }
     if len(errs) == 0 {
         return nil

@@ -40,7 +40,7 @@ func (c ConstDeviceApExtios) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstDeviceApExtios.
 // It customizes the JSON unmarshaling process for ConstDeviceApExtios objects.
 func (c *ConstDeviceApExtios) UnmarshalJSON(input []byte) error {
-    var temp constDeviceApExtios
+    var temp tempConstDeviceApExtios
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (c *ConstDeviceApExtios) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constDeviceApExtios is a temporary struct used for validating the fields of ConstDeviceApExtios.
-type constDeviceApExtios  struct {
+// tempConstDeviceApExtios is a temporary struct used for validating the fields of ConstDeviceApExtios.
+type tempConstDeviceApExtios  struct {
     DefaultDir *ConstDeviceApExtiosDefaultDirEnum `json:"default_dir,omitempty"`
     Input      *bool                              `json:"input,omitempty"`
     Output     *bool                              `json:"output,omitempty"`

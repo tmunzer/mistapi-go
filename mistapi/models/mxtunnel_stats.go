@@ -96,7 +96,7 @@ func (m MxtunnelStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxtunnelStats.
 // It customizes the JSON unmarshaling process for MxtunnelStats objects.
 func (m *MxtunnelStats) UnmarshalJSON(input []byte) error {
-    var temp mxtunnelStats
+    var temp tempMxtunnelStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -126,8 +126,8 @@ func (m *MxtunnelStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxtunnelStats is a temporary struct used for validating the fields of MxtunnelStats.
-type mxtunnelStats  struct {
+// tempMxtunnelStats is a temporary struct used for validating the fields of MxtunnelStats.
+type tempMxtunnelStats  struct {
     Ap            *string                 `json:"ap,omitempty"`
     ForSite       *bool                   `json:"for_site,omitempty"`
     LastSeen      *float64                `json:"last_seen,omitempty"`

@@ -104,7 +104,7 @@ func (r ResponsePcapStart) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponsePcapStart.
 // It customizes the JSON unmarshaling process for ResponsePcapStart objects.
 func (r *ResponsePcapStart) UnmarshalJSON(input []byte) error {
-    var temp responsePcapStart
+    var temp tempResponsePcapStart
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -140,8 +140,8 @@ func (r *ResponsePcapStart) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responsePcapStart is a temporary struct used for validating the fields of ResponsePcapStart.
-type responsePcapStart  struct {
+// tempResponsePcapStart is a temporary struct used for validating the fields of ResponsePcapStart.
+type tempResponsePcapStart  struct {
     ApCount                 *int             `json:"ap_count,omitempty"`
     Aps                     []string         `json:"aps,omitempty"`
     ClientMac               Optional[string] `json:"client_mac"`
@@ -162,22 +162,22 @@ type responsePcapStart  struct {
     Type                    *string          `json:"type"`
 }
 
-func (r *responsePcapStart) validate() error {
+func (r *tempResponsePcapStart) validate() error {
     var errs []string
     if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Response_Pcap_Start`")
+        errs = append(errs, "required field `id` is missing for type `response_pcap_start`")
     }
     if r.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Response_Pcap_Start`")
+        errs = append(errs, "required field `org_id` is missing for type `response_pcap_start`")
     }
     if r.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Response_Pcap_Start`")
+        errs = append(errs, "required field `site_id` is missing for type `response_pcap_start`")
     }
     if r.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Response_Pcap_Start`")
+        errs = append(errs, "required field `timestamp` is missing for type `response_pcap_start`")
     }
     if r.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Response_Pcap_Start`")
+        errs = append(errs, "required field `type` is missing for type `response_pcap_start`")
     }
     if len(errs) == 0 {
         return nil

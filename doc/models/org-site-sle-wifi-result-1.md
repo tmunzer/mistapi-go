@@ -34,11 +34,11 @@
 ```json
 {
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "ap-availability": 200.82,
-  "ap-health": 233.06,
-  "capacity": 145.7,
-  "coverage": 124.68,
-  "num_aps": 5.26
+  "ap-availability": 209.5,
+  "ap-health": 241.74,
+  "capacity": 154.38,
+  "coverage": 133.36,
+  "num_aps": 242.06
 }
 ```
 

@@ -17,7 +17,7 @@
 ```json
 {
   "major_version": "19.4R2-S1.2",
-  "major_count": 216
+  "major_count": 56
 }
 ```
 

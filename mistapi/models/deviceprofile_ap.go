@@ -165,7 +165,7 @@ func (d DeviceprofileAp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceprofileAp.
 // It customizes the JSON unmarshaling process for DeviceprofileAp objects.
 func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
-    var temp deviceprofileAp
+    var temp tempDeviceprofileAp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -207,8 +207,8 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceprofileAp is a temporary struct used for validating the fields of DeviceprofileAp.
-type deviceprofileAp  struct {
+// tempDeviceprofileAp is a temporary struct used for validating the fields of DeviceprofileAp.
+type tempDeviceprofileAp  struct {
     Aeroscout        *ApAeroscout            `json:"aeroscout,omitempty"`
     BleConfig        *BleConfig              `json:"ble_config,omitempty"`
     CreatedTime      *float64                `json:"created_time,omitempty"`

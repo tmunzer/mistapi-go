@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `By` | `*string` | Optional | - |
-| `DeviceType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
+| `DeviceType` | [`*models.SynthetictestInfoDeviceTypeEnum`](../../doc/models/synthetictest-info-device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
 | `Failed` | `*bool` | Optional | - |
 | `Latency` | `*int` | Optional | - |
 | `Mac` | `*string` | Optional | - |
@@ -39,7 +39,7 @@
   "tx_mbps": 199,
   "vlan_id": 20,
   "device_type": "switch",
-  "mac": "mac6"
+  "mac": "mac2"
 }
 ```
 

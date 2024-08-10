@@ -18,8 +18,8 @@
 ```json
 {
   "default": false,
-  "package": "package8",
-  "version": "version2"
+  "package": "package4",
+  "version": "version0"
 }
 ```
 

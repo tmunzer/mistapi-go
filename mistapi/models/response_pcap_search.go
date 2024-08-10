@@ -43,7 +43,7 @@ func (r ResponsePcapSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponsePcapSearch.
 // It customizes the JSON unmarshaling process for ResponsePcapSearch objects.
 func (r *ResponsePcapSearch) UnmarshalJSON(input []byte) error {
-    var temp responsePcapSearch
+    var temp tempResponsePcapSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponsePcapSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responsePcapSearch is a temporary struct used for validating the fields of ResponsePcapSearch.
-type responsePcapSearch  struct {
+// tempResponsePcapSearch is a temporary struct used for validating the fields of ResponsePcapSearch.
+type tempResponsePcapSearch  struct {
     End     *int                      `json:"end"`
     Limit   *int                      `json:"limit"`
     Next    *string                   `json:"next"`
@@ -77,22 +77,22 @@ type responsePcapSearch  struct {
     Total   *int                      `json:"total,omitempty"`
 }
 
-func (r *responsePcapSearch) validate() error {
+func (r *tempResponsePcapSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Pcap_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_pcap_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Pcap_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_pcap_search`")
     }
     if r.Next == nil {
-        errs = append(errs, "required field `next` is missing for type `Response_Pcap_Search`")
+        errs = append(errs, "required field `next` is missing for type `response_pcap_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Pcap_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_pcap_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Pcap_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_pcap_search`")
     }
     if len(errs) == 0 {
         return nil

@@ -18,10 +18,10 @@
 
 ```json
 {
-  "fib_routes": 60,
-  "max_unicast_routes_supported": 54,
-  "rib_routes": 178,
-  "total_routes": 210
+  "fib_routes": 100,
+  "max_unicast_routes_supported": 94,
+  "rib_routes": 218,
+  "total_routes": 170
 }
 ```
 

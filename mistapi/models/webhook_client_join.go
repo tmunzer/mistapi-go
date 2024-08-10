@@ -34,7 +34,7 @@ func (w WebhookClientJoin) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookClientJoin.
 // It customizes the JSON unmarshaling process for WebhookClientJoin objects.
 func (w *WebhookClientJoin) UnmarshalJSON(input []byte) error {
-    var temp webhookClientJoin
+    var temp tempWebhookClientJoin
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,19 +54,19 @@ func (w *WebhookClientJoin) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookClientJoin is a temporary struct used for validating the fields of WebhookClientJoin.
-type webhookClientJoin  struct {
+// tempWebhookClientJoin is a temporary struct used for validating the fields of WebhookClientJoin.
+type tempWebhookClientJoin  struct {
     Events *[]WebhookClientJoinEvent `json:"events"`
     Topic  *string                   `json:"topic"`
 }
 
-func (w *webhookClientJoin) validate() error {
+func (w *tempWebhookClientJoin) validate() error {
     var errs []string
     if w.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Webhook_Client_Join`")
+        errs = append(errs, "required field `events` is missing for type `webhook_client_join`")
     }
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Client_Join`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_client_join`")
     }
     if len(errs) == 0 {
         return nil

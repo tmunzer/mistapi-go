@@ -67,7 +67,7 @@ func (f FwupdateStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for FwupdateStat.
 // It customizes the JSON unmarshaling process for FwupdateStat objects.
 func (f *FwupdateStat) UnmarshalJSON(input []byte) error {
-    var temp fwupdateStat
+    var temp tempFwupdateStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -86,8 +86,8 @@ func (f *FwupdateStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// fwupdateStat is a temporary struct used for validating the fields of FwupdateStat.
-type fwupdateStat  struct {
+// tempFwupdateStat is a temporary struct used for validating the fields of FwupdateStat.
+type tempFwupdateStat  struct {
     Progress  Optional[int]     `json:"progress"`
     Status    Optional[string]  `json:"status"`
     StatusId  Optional[int]     `json:"status_id"`

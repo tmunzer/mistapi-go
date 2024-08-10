@@ -52,7 +52,7 @@ func (w WlanAirwatch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanAirwatch.
 // It customizes the JSON unmarshaling process for WlanAirwatch objects.
 func (w *WlanAirwatch) UnmarshalJSON(input []byte) error {
-    var temp wlanAirwatch
+    var temp tempWlanAirwatch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (w *WlanAirwatch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanAirwatch is a temporary struct used for validating the fields of WlanAirwatch.
-type wlanAirwatch  struct {
+// tempWlanAirwatch is a temporary struct used for validating the fields of WlanAirwatch.
+type tempWlanAirwatch  struct {
     ApiKey     *string `json:"api_key,omitempty"`
     ConsoleUrl *string `json:"console_url,omitempty"`
     Enabled    *bool   `json:"enabled,omitempty"`

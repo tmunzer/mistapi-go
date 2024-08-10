@@ -19,11 +19,11 @@
 
 ```json
 {
-  "ap_mac": "ap_mac4",
-  "degraded": 71.52,
-  "duration": 200.58,
-  "name": "name2",
-  "total": 156.48
+  "ap_mac": "ap_mac8",
+  "degraded": 172.76,
+  "duration": 45.82,
+  "name": "name6",
+  "total": 55.24
 }
 ```
 

@@ -40,7 +40,7 @@ func (d DeviceVersionItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceVersionItem.
 // It customizes the JSON unmarshaling process for DeviceVersionItem objects.
 func (d *DeviceVersionItem) UnmarshalJSON(input []byte) error {
-    var temp deviceVersionItem
+    var temp tempDeviceVersionItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,20 +61,20 @@ func (d *DeviceVersionItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceVersionItem is a temporary struct used for validating the fields of DeviceVersionItem.
-type deviceVersionItem  struct {
+// tempDeviceVersionItem is a temporary struct used for validating the fields of DeviceVersionItem.
+type tempDeviceVersionItem  struct {
     Model   *string `json:"model"`
     Tag     *string `json:"tag,omitempty"`
     Version *string `json:"version"`
 }
 
-func (d *deviceVersionItem) validate() error {
+func (d *tempDeviceVersionItem) validate() error {
     var errs []string
     if d.Model == nil {
-        errs = append(errs, "required field `model` is missing for type `Device_Version_Item`")
+        errs = append(errs, "required field `model` is missing for type `device_version_item`")
     }
     if d.Version == nil {
-        errs = append(errs, "required field `version` is missing for type `Device_Version_Item`")
+        errs = append(errs, "required field `version` is missing for type `device_version_item`")
     }
     if len(errs) == 0 {
         return nil

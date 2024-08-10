@@ -17,7 +17,7 @@
 
 ```json
 {
-  "code": "code4",
+  "code": "code8",
   "device_type": "ap",
   "type": "all"
 }

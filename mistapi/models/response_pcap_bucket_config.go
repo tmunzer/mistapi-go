@@ -35,7 +35,7 @@ func (r ResponsePcapBucketConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponsePcapBucketConfig.
 // It customizes the JSON unmarshaling process for ResponsePcapBucketConfig objects.
 func (r *ResponsePcapBucketConfig) UnmarshalJSON(input []byte) error {
-    var temp responsePcapBucketConfig
+    var temp tempResponsePcapBucketConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (r *ResponsePcapBucketConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responsePcapBucketConfig is a temporary struct used for validating the fields of ResponsePcapBucketConfig.
-type responsePcapBucketConfig  struct {
+// tempResponsePcapBucketConfig is a temporary struct used for validating the fields of ResponsePcapBucketConfig.
+type tempResponsePcapBucketConfig  struct {
     Bucket *string `json:"bucket,omitempty"`
     Detail *string `json:"detail,omitempty"`
 }

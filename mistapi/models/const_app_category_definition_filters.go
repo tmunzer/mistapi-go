@@ -35,7 +35,7 @@ func (c ConstAppCategoryDefinitionFilters) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstAppCategoryDefinitionFilters.
 // It customizes the JSON unmarshaling process for ConstAppCategoryDefinitionFilters objects.
 func (c *ConstAppCategoryDefinitionFilters) UnmarshalJSON(input []byte) error {
-    var temp constAppCategoryDefinitionFilters
+    var temp tempConstAppCategoryDefinitionFilters
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (c *ConstAppCategoryDefinitionFilters) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constAppCategoryDefinitionFilters is a temporary struct used for validating the fields of ConstAppCategoryDefinitionFilters.
-type constAppCategoryDefinitionFilters  struct {
+// tempConstAppCategoryDefinitionFilters is a temporary struct used for validating the fields of ConstAppCategoryDefinitionFilters.
+type tempConstAppCategoryDefinitionFilters  struct {
     Srx []string `json:"srx,omitempty"`
     Ssr []string `json:"ssr,omitempty"`
 }

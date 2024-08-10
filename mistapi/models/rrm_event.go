@@ -63,7 +63,7 @@ func (r RrmEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RrmEvent.
 // It customizes the JSON unmarshaling process for RrmEvent objects.
 func (r *RrmEvent) UnmarshalJSON(input []byte) error {
-    var temp rrmEvent
+    var temp tempRrmEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -93,8 +93,8 @@ func (r *RrmEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rrmEvent is a temporary struct used for validating the fields of RrmEvent.
-type rrmEvent  struct {
+// tempRrmEvent is a temporary struct used for validating the fields of RrmEvent.
+type tempRrmEvent  struct {
     ApId         *uuid.UUID                `json:"ap_id"`
     Band         *Dot11BandEnum            `json:"band"`
     Bandwidth    *Dot11BandwidthEnum       `json:"bandwidth"`
@@ -109,43 +109,43 @@ type rrmEvent  struct {
     Usage        *string                   `json:"usage"`
 }
 
-func (r *rrmEvent) validate() error {
+func (r *tempRrmEvent) validate() error {
     var errs []string
     if r.ApId == nil {
-        errs = append(errs, "required field `ap_id` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `ap_id` is missing for type `rrm_event`")
     }
     if r.Band == nil {
-        errs = append(errs, "required field `band` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `band` is missing for type `rrm_event`")
     }
     if r.Bandwidth == nil {
-        errs = append(errs, "required field `bandwidth` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `bandwidth` is missing for type `rrm_event`")
     }
     if r.Channel == nil {
-        errs = append(errs, "required field `channel` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `channel` is missing for type `rrm_event`")
     }
     if r.Event == nil {
-        errs = append(errs, "required field `event` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `event` is missing for type `rrm_event`")
     }
     if r.Power == nil {
-        errs = append(errs, "required field `power` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `power` is missing for type `rrm_event`")
     }
     if r.PreBandwidth == nil {
-        errs = append(errs, "required field `pre_bandwidth` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `pre_bandwidth` is missing for type `rrm_event`")
     }
     if r.PreChannel == nil {
-        errs = append(errs, "required field `pre_channel` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `pre_channel` is missing for type `rrm_event`")
     }
     if r.PrePower == nil {
-        errs = append(errs, "required field `pre_power` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `pre_power` is missing for type `rrm_event`")
     }
     if r.PreUsage == nil {
-        errs = append(errs, "required field `pre_usage` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `pre_usage` is missing for type `rrm_event`")
     }
     if r.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `timestamp` is missing for type `rrm_event`")
     }
     if r.Usage == nil {
-        errs = append(errs, "required field `usage` is missing for type `Rrm_Event`")
+        errs = append(errs, "required field `usage` is missing for type `rrm_event`")
     }
     if len(errs) == 0 {
         return nil

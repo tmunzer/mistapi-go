@@ -23,14 +23,14 @@
 
 ```json
 {
-  "classifier": "classifier0",
-  "end": 85.32,
-  "failure": "failure2",
-  "limit": 164.7,
-  "metric": "metric4",
-  "page": 37.84,
-  "start": 41.38,
-  "total_count": 155.5,
+  "classifier": "classifier6",
+  "end": 53.18,
+  "failure": "failure4",
+  "limit": 196.84,
+  "metric": "metric8",
+  "page": 69.98,
+  "start": 9.24,
+  "total_count": 123.36,
   "users": [
     {
       "ap_mac": "ap_mac8",

@@ -37,7 +37,7 @@ func (w WebhookAlarms) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookAlarms.
 // It customizes the JSON unmarshaling process for WebhookAlarms objects.
 func (w *WebhookAlarms) UnmarshalJSON(input []byte) error {
-    var temp webhookAlarms
+    var temp tempWebhookAlarms
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,19 +57,19 @@ func (w *WebhookAlarms) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookAlarms is a temporary struct used for validating the fields of WebhookAlarms.
-type webhookAlarms  struct {
+// tempWebhookAlarms is a temporary struct used for validating the fields of WebhookAlarms.
+type tempWebhookAlarms  struct {
     Events *[]WebhookAlarmEvent `json:"events"`
     Topic  *string              `json:"topic"`
 }
 
-func (w *webhookAlarms) validate() error {
+func (w *tempWebhookAlarms) validate() error {
     var errs []string
     if w.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Webhook_Alarms`")
+        errs = append(errs, "required field `events` is missing for type `webhook_alarms`")
     }
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Alarms`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_alarms`")
     }
     if len(errs) == 0 {
         return nil

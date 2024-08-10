@@ -97,7 +97,7 @@ func (e EvpnTopologySwitch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EvpnTopologySwitch.
 // It customizes the JSON unmarshaling process for EvpnTopologySwitch objects.
 func (e *EvpnTopologySwitch) UnmarshalJSON(input []byte) error {
-    var temp evpnTopologySwitch
+    var temp tempEvpnTopologySwitch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -126,8 +126,8 @@ func (e *EvpnTopologySwitch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// evpnTopologySwitch is a temporary struct used for validating the fields of EvpnTopologySwitch.
-type evpnTopologySwitch  struct {
+// tempEvpnTopologySwitch is a temporary struct used for validating the fields of EvpnTopologySwitch.
+type tempEvpnTopologySwitch  struct {
     Config               *DeviceSwitch               `json:"config,omitempty"`
     DeviceprofileId      *uuid.UUID                  `json:"deviceprofile_id,omitempty"`
     Downlinks            []string                    `json:"downlinks,omitempty"`

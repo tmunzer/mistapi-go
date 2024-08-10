@@ -35,7 +35,7 @@ func (s Snmpv3ConfigNotifyFilterItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Snmpv3ConfigNotifyFilterItem.
 // It customizes the JSON unmarshaling process for Snmpv3ConfigNotifyFilterItem objects.
 func (s *Snmpv3ConfigNotifyFilterItem) UnmarshalJSON(input []byte) error {
-    var temp snmpv3ConfigNotifyFilterItem
+    var temp tempSnmpv3ConfigNotifyFilterItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *Snmpv3ConfigNotifyFilterItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpv3ConfigNotifyFilterItem is a temporary struct used for validating the fields of Snmpv3ConfigNotifyFilterItem.
-type snmpv3ConfigNotifyFilterItem  struct {
+// tempSnmpv3ConfigNotifyFilterItem is a temporary struct used for validating the fields of Snmpv3ConfigNotifyFilterItem.
+type tempSnmpv3ConfigNotifyFilterItem  struct {
     Contents    []Snmpv3ConfigNotifyFilterItemContent `json:"contents,omitempty"`
     ProfileName *string                               `json:"profile_name,omitempty"`
 }

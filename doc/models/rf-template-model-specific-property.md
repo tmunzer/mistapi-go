@@ -22,9 +22,9 @@
 
 ```json
 {
-  "ant_gain_24": 20,
-  "ant_gain_5": 188,
-  "ant_gain_6": 48,
+  "ant_gain_24": 218,
+  "ant_gain_5": 126,
+  "ant_gain_6": 246,
   "band_24": {
     "allow_rrm_disable": false,
     "ant_gain": 0,
@@ -34,7 +34,7 @@
       221
     ]
   },
-  "band_24_usage": "24"
+  "band_24_usage": "6"
 }
 ```
 

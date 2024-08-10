@@ -42,7 +42,7 @@ func (e EventsRogue) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for EventsRogue.
 // It customizes the JSON unmarshaling process for EventsRogue objects.
 func (e *EventsRogue) UnmarshalJSON(input []byte) error {
-    var temp eventsRogue
+    var temp tempEventsRogue
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (e *EventsRogue) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// eventsRogue is a temporary struct used for validating the fields of EventsRogue.
-type eventsRogue  struct {
+// tempEventsRogue is a temporary struct used for validating the fields of EventsRogue.
+type tempEventsRogue  struct {
     Ap        *string  `json:"ap"`
     Bssid     *string  `json:"bssid"`
     Channel   *int     `json:"channel"`
@@ -76,25 +76,25 @@ type eventsRogue  struct {
     Timestamp *float64 `json:"timestamp"`
 }
 
-func (e *eventsRogue) validate() error {
+func (e *tempEventsRogue) validate() error {
     var errs []string
     if e.Ap == nil {
-        errs = append(errs, "required field `ap` is missing for type `Events_Rogue`")
+        errs = append(errs, "required field `ap` is missing for type `events_rogue`")
     }
     if e.Bssid == nil {
-        errs = append(errs, "required field `bssid` is missing for type `Events_Rogue`")
+        errs = append(errs, "required field `bssid` is missing for type `events_rogue`")
     }
     if e.Channel == nil {
-        errs = append(errs, "required field `channel` is missing for type `Events_Rogue`")
+        errs = append(errs, "required field `channel` is missing for type `events_rogue`")
     }
     if e.Rssi == nil {
-        errs = append(errs, "required field `rssi` is missing for type `Events_Rogue`")
+        errs = append(errs, "required field `rssi` is missing for type `events_rogue`")
     }
     if e.Ssid == nil {
-        errs = append(errs, "required field `ssid` is missing for type `Events_Rogue`")
+        errs = append(errs, "required field `ssid` is missing for type `events_rogue`")
     }
     if e.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Events_Rogue`")
+        errs = append(errs, "required field `timestamp` is missing for type `events_rogue`")
     }
     if len(errs) == 0 {
         return nil

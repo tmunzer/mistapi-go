@@ -33,7 +33,7 @@ func (d DswitchesMetricsSwitchApAffinity) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DswitchesMetricsSwitchApAffinity.
 // It customizes the JSON unmarshaling process for DswitchesMetricsSwitchApAffinity objects.
 func (d *DswitchesMetricsSwitchApAffinity) UnmarshalJSON(input []byte) error {
-    var temp dswitchesMetricsSwitchApAffinity
+    var temp tempDswitchesMetricsSwitchApAffinity
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (d *DswitchesMetricsSwitchApAffinity) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// dswitchesMetricsSwitchApAffinity is a temporary struct used for validating the fields of DswitchesMetricsSwitchApAffinity.
-type dswitchesMetricsSwitchApAffinity  struct {
+// tempDswitchesMetricsSwitchApAffinity is a temporary struct used for validating the fields of DswitchesMetricsSwitchApAffinity.
+type tempDswitchesMetricsSwitchApAffinity  struct {
     Details *DswitchesMetricsSwitchApAffinityDetails `json:"details"`
     Score   *float64                                 `json:"score"`
 }
 
-func (d *dswitchesMetricsSwitchApAffinity) validate() error {
+func (d *tempDswitchesMetricsSwitchApAffinity) validate() error {
     var errs []string
     if d.Details == nil {
-        errs = append(errs, "required field `details` is missing for type `Dswitches_Metrics_Switch_Ap_Affinity`")
+        errs = append(errs, "required field `details` is missing for type `dswitches_metrics_switch_ap_affinity`")
     }
     if d.Score == nil {
-        errs = append(errs, "required field `score` is missing for type `Dswitches_Metrics_Switch_Ap_Affinity`")
+        errs = append(errs, "required field `score` is missing for type `dswitches_metrics_switch_ap_affinity`")
     }
     if len(errs) == 0 {
         return nil

@@ -33,7 +33,7 @@ func (l LatLng) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for LatLng.
 // It customizes the JSON unmarshaling process for LatLng objects.
 func (l *LatLng) UnmarshalJSON(input []byte) error {
-    var temp latLng
+    var temp tempLatLng
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (l *LatLng) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// latLng is a temporary struct used for validating the fields of LatLng.
-type latLng  struct {
+// tempLatLng is a temporary struct used for validating the fields of LatLng.
+type tempLatLng  struct {
     Lat *float64 `json:"lat"`
     Lng *float64 `json:"lng"`
 }
 
-func (l *latLng) validate() error {
+func (l *tempLatLng) validate() error {
     var errs []string
     if l.Lat == nil {
-        errs = append(errs, "required field `lat` is missing for type `Lat_Lng`")
+        errs = append(errs, "required field `lat` is missing for type `lat_lng`")
     }
     if l.Lng == nil {
-        errs = append(errs, "required field `lng` is missing for type `Lat_Lng`")
+        errs = append(errs, "required field `lng` is missing for type `lat_lng`")
     }
     if len(errs) == 0 {
         return nil

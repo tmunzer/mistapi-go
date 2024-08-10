@@ -16,10 +16,10 @@
 
 ```json
 {
-  "port": "port8",
+  "port": "port4",
   "ports": [
-    "ports3",
-    "ports4"
+    "ports1",
+    "ports2"
   ]
 }
 ```

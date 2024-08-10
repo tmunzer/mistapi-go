@@ -42,7 +42,7 @@ func (a Anomaly) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Anomaly.
 // It customizes the JSON unmarshaling process for Anomaly objects.
 func (a *Anomaly) UnmarshalJSON(input []byte) error {
-    var temp anomaly
+    var temp tempAnomaly
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -65,8 +65,8 @@ func (a *Anomaly) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// anomaly is a temporary struct used for validating the fields of Anomaly.
-type anomaly  struct {
+// tempAnomaly is a temporary struct used for validating the fields of Anomaly.
+type tempAnomaly  struct {
     Events       *[]string `json:"events"`
     Since        *float64  `json:"since,omitempty"`
     SleBaseline  *float64  `json:"sle_baseline"`
@@ -74,19 +74,19 @@ type anomaly  struct {
     Timestamp    *float64  `json:"timestamp"`
 }
 
-func (a *anomaly) validate() error {
+func (a *tempAnomaly) validate() error {
     var errs []string
     if a.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Anomaly`")
+        errs = append(errs, "required field `events` is missing for type `anomaly`")
     }
     if a.SleBaseline == nil {
-        errs = append(errs, "required field `sle_baseline` is missing for type `Anomaly`")
+        errs = append(errs, "required field `sle_baseline` is missing for type `anomaly`")
     }
     if a.SleDeviation == nil {
-        errs = append(errs, "required field `sle_deviation` is missing for type `Anomaly`")
+        errs = append(errs, "required field `sle_deviation` is missing for type `anomaly`")
     }
     if a.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Anomaly`")
+        errs = append(errs, "required field `timestamp` is missing for type `anomaly`")
     }
     if len(errs) == 0 {
         return nil

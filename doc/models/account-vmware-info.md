@@ -21,10 +21,10 @@
 
 ```json
 {
-  "account_id": "account_id8",
-  "instance_url": "instance_url6",
-  "last_status": "last_status0",
-  "last_sync": 110,
+  "account_id": "account_id0",
+  "instance_url": "instance_url2",
+  "last_status": "last_status2",
+  "last_sync": 142,
   "linked_by": "linked_by4"
 }
 ```

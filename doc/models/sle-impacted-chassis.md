@@ -30,19 +30,12 @@
       "duration": 44.52,
       "role": "role0",
       "switch_mac": "switch_mac4"
-    },
-    {
-      "chassis": "chassis0",
-      "degraded": 171.46,
-      "duration": 44.52,
-      "role": "role0",
-      "switch_mac": "switch_mac4"
     }
   ],
-  "classifier": "classifier4",
-  "end": 164,
-  "failure": "failure2",
-  "limit": 6
+  "classifier": "classifier0",
+  "end": 146,
+  "failure": "failure8",
+  "limit": 24
 }
 ```
 

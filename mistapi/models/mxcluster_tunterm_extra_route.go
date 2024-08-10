@@ -31,7 +31,7 @@ func (m MxclusterTuntermExtraRoute) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxclusterTuntermExtraRoute.
 // It customizes the JSON unmarshaling process for MxclusterTuntermExtraRoute objects.
 func (m *MxclusterTuntermExtraRoute) UnmarshalJSON(input []byte) error {
-    var temp mxclusterTuntermExtraRoute
+    var temp tempMxclusterTuntermExtraRoute
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (m *MxclusterTuntermExtraRoute) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxclusterTuntermExtraRoute is a temporary struct used for validating the fields of MxclusterTuntermExtraRoute.
-type mxclusterTuntermExtraRoute  struct {
+// tempMxclusterTuntermExtraRoute is a temporary struct used for validating the fields of MxclusterTuntermExtraRoute.
+type tempMxclusterTuntermExtraRoute  struct {
     Via *string `json:"via,omitempty"`
 }

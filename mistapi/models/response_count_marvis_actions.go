@@ -43,7 +43,7 @@ func (r ResponseCountMarvisActions) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseCountMarvisActions.
 // It customizes the JSON unmarshaling process for ResponseCountMarvisActions objects.
 func (r *ResponseCountMarvisActions) UnmarshalJSON(input []byte) error {
-    var temp responseCountMarvisActions
+    var temp tempResponseCountMarvisActions
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (r *ResponseCountMarvisActions) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseCountMarvisActions is a temporary struct used for validating the fields of ResponseCountMarvisActions.
-type responseCountMarvisActions  struct {
+// tempResponseCountMarvisActions is a temporary struct used for validating the fields of ResponseCountMarvisActions.
+type tempResponseCountMarvisActions  struct {
     Distinct *string                            `json:"distinct,omitempty"`
     Limit    *int                               `json:"limit,omitempty"`
     Results  []ResponseCountMarvisActionsResult `json:"results,omitempty"`

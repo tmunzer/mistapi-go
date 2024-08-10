@@ -37,7 +37,7 @@ func (u UtilsShowServicePath) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsShowServicePath.
 // It customizes the JSON unmarshaling process for UtilsShowServicePath objects.
 func (u *UtilsShowServicePath) UnmarshalJSON(input []byte) error {
-    var temp utilsShowServicePath
+    var temp tempUtilsShowServicePath
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (u *UtilsShowServicePath) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsShowServicePath is a temporary struct used for validating the fields of UtilsShowServicePath.
-type utilsShowServicePath  struct {
+// tempUtilsShowServicePath is a temporary struct used for validating the fields of UtilsShowServicePath.
+type tempUtilsShowServicePath  struct {
     Node        *HaClusterNodeEnum `json:"node,omitempty"`
     ServiceName *string            `json:"service_name,omitempty"`
 }

@@ -43,7 +43,7 @@ func (r ResponseSiteSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSiteSearch.
 // It customizes the JSON unmarshaling process for ResponseSiteSearch objects.
 func (r *ResponseSiteSearch) UnmarshalJSON(input []byte) error {
-    var temp responseSiteSearch
+    var temp tempResponseSiteSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseSiteSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSiteSearch is a temporary struct used for validating the fields of ResponseSiteSearch.
-type responseSiteSearch  struct {
+// tempResponseSiteSearch is a temporary struct used for validating the fields of ResponseSiteSearch.
+type tempResponseSiteSearch  struct {
     End     *int                      `json:"end"`
     Limit   *int                      `json:"limit"`
     Next    *string                   `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type responseSiteSearch  struct {
     Total   *int                      `json:"total"`
 }
 
-func (r *responseSiteSearch) validate() error {
+func (r *tempResponseSiteSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Site_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_site_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Site_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_site_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Site_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_site_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Site_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_site_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Site_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_site_search`")
     }
     if len(errs) == 0 {
         return nil

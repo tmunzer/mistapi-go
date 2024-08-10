@@ -47,7 +47,7 @@ func (r ResponsePskPortalLogsSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponsePskPortalLogsSearch.
 // It customizes the JSON unmarshaling process for ResponsePskPortalLogsSearch objects.
 func (r *ResponsePskPortalLogsSearch) UnmarshalJSON(input []byte) error {
-    var temp responsePskPortalLogsSearch
+    var temp tempResponsePskPortalLogsSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (r *ResponsePskPortalLogsSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responsePskPortalLogsSearch is a temporary struct used for validating the fields of ResponsePskPortalLogsSearch.
-type responsePskPortalLogsSearch  struct {
+// tempResponsePskPortalLogsSearch is a temporary struct used for validating the fields of ResponsePskPortalLogsSearch.
+type tempResponsePskPortalLogsSearch  struct {
     End     *int                              `json:"end,omitempty"`
     Limit   *int                              `json:"limit,omitempty"`
     Results []ResponsePskPortalLogsSearchItem `json:"results,omitempty"`

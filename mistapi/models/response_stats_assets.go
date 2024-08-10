@@ -43,7 +43,7 @@ func (r ResponseStatsAssets) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseStatsAssets.
 // It customizes the JSON unmarshaling process for ResponseStatsAssets objects.
 func (r *ResponseStatsAssets) UnmarshalJSON(input []byte) error {
-    var temp responseStatsAssets
+    var temp tempResponseStatsAssets
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseStatsAssets) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseStatsAssets is a temporary struct used for validating the fields of ResponseStatsAssets.
-type responseStatsAssets  struct {
+// tempResponseStatsAssets is a temporary struct used for validating the fields of ResponseStatsAssets.
+type tempResponseStatsAssets  struct {
     End     *int          `json:"end"`
     Limit   *int          `json:"limit"`
     Next    *string       `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type responseStatsAssets  struct {
     Total   *int          `json:"total"`
 }
 
-func (r *responseStatsAssets) validate() error {
+func (r *tempResponseStatsAssets) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Stats_Assets`")
+        errs = append(errs, "required field `end` is missing for type `response_stats_assets`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Stats_Assets`")
+        errs = append(errs, "required field `limit` is missing for type `response_stats_assets`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Stats_Assets`")
+        errs = append(errs, "required field `results` is missing for type `response_stats_assets`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Stats_Assets`")
+        errs = append(errs, "required field `start` is missing for type `response_stats_assets`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Stats_Assets`")
+        errs = append(errs, "required field `total` is missing for type `response_stats_assets`")
     }
     if len(errs) == 0 {
         return nil

@@ -57,7 +57,7 @@ func (m MxedgeStatsServiceStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeStatsServiceStat.
 // It customizes the JSON unmarshaling process for MxedgeStatsServiceStat objects.
 func (m *MxedgeStatsServiceStat) UnmarshalJSON(input []byte) error {
-    var temp mxedgeStatsServiceStat
+    var temp tempMxedgeStatsServiceStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (m *MxedgeStatsServiceStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeStatsServiceStat is a temporary struct used for validating the fields of MxedgeStatsServiceStat.
-type mxedgeStatsServiceStat  struct {
+// tempMxedgeStatsServiceStat is a temporary struct used for validating the fields of MxedgeStatsServiceStat.
+type tempMxedgeStatsServiceStat  struct {
     ExtIp          *string  `json:"ext_ip,omitempty"`
     LastSeen       *float64 `json:"last_seen,omitempty"`
     PackageState   *string  `json:"package_state,omitempty"`

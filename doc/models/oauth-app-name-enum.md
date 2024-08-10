@@ -1,7 +1,7 @@
 
 # Oauth App Name Enum
 
-enum: `intune`, `jamf`, `teams`, `vmware`, `zoom`
+enum: `intune`, `jamf`, `mobicontrol`, `teams`, `vmware`, `zoom`
 
 ## Enumeration
 
@@ -13,6 +13,7 @@ enum: `intune`, `jamf`, `teams`, `vmware`, `zoom`
 |  --- |
 | `intune` |
 | `jamf` |
+| `mobicontrol` |
 | `teams` |
 | `vmware` |
 | `zoom` |

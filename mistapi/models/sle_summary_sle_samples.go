@@ -35,7 +35,7 @@ func (s SleSummarySleSamples) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleSummarySleSamples.
 // It customizes the JSON unmarshaling process for SleSummarySleSamples objects.
 func (s *SleSummarySleSamples) UnmarshalJSON(input []byte) error {
-    var temp sleSummarySleSamples
+    var temp tempSleSummarySleSamples
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,23 +56,23 @@ func (s *SleSummarySleSamples) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleSummarySleSamples is a temporary struct used for validating the fields of SleSummarySleSamples.
-type sleSummarySleSamples  struct {
+// tempSleSummarySleSamples is a temporary struct used for validating the fields of SleSummarySleSamples.
+type tempSleSummarySleSamples  struct {
     Degraded *[]float64 `json:"degraded"`
     Total    *[]float64 `json:"total"`
     Value    *[]float64 `json:"value"`
 }
 
-func (s *sleSummarySleSamples) validate() error {
+func (s *tempSleSummarySleSamples) validate() error {
     var errs []string
     if s.Degraded == nil {
-        errs = append(errs, "required field `degraded` is missing for type `Sle_Summary_Sle_Samples`")
+        errs = append(errs, "required field `degraded` is missing for type `sle_summary_sle_samples`")
     }
     if s.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Sle_Summary_Sle_Samples`")
+        errs = append(errs, "required field `total` is missing for type `sle_summary_sle_samples`")
     }
     if s.Value == nil {
-        errs = append(errs, "required field `value` is missing for type `Sle_Summary_Sle_Samples`")
+        errs = append(errs, "required field `value` is missing for type `sle_summary_sle_samples`")
     }
     if len(errs) == 0 {
         return nil

@@ -48,7 +48,7 @@ func (j JseDevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for JseDevice.
 // It customizes the JSON unmarshaling process for JseDevice objects.
 func (j *JseDevice) UnmarshalJSON(input []byte) error {
-    var temp jseDevice
+    var temp tempJseDevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (j *JseDevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// jseDevice is a temporary struct used for validating the fields of JseDevice.
-type jseDevice  struct {
+// tempJseDevice is a temporary struct used for validating the fields of JseDevice.
+type tempJseDevice  struct {
     ExtIp    *string  `json:"ext_ip,omitempty"`
     LastSeen *float64 `json:"last_seen,omitempty"`
     Mac      *string  `json:"mac,omitempty"`

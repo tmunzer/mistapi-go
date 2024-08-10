@@ -33,7 +33,7 @@ func (w WebsocketSessionWithUrl) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebsocketSessionWithUrl.
 // It customizes the JSON unmarshaling process for WebsocketSessionWithUrl objects.
 func (w *WebsocketSessionWithUrl) UnmarshalJSON(input []byte) error {
-    var temp websocketSessionWithUrl
+    var temp tempWebsocketSessionWithUrl
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (w *WebsocketSessionWithUrl) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// websocketSessionWithUrl is a temporary struct used for validating the fields of WebsocketSessionWithUrl.
-type websocketSessionWithUrl  struct {
+// tempWebsocketSessionWithUrl is a temporary struct used for validating the fields of WebsocketSessionWithUrl.
+type tempWebsocketSessionWithUrl  struct {
     Session *string `json:"session"`
     Url     *string `json:"url"`
 }
 
-func (w *websocketSessionWithUrl) validate() error {
+func (w *tempWebsocketSessionWithUrl) validate() error {
     var errs []string
     if w.Session == nil {
-        errs = append(errs, "required field `session` is missing for type `Websocket_Session_With_Url`")
+        errs = append(errs, "required field `session` is missing for type `websocket_session_with_url`")
     }
     if w.Url == nil {
-        errs = append(errs, "required field `url` is missing for type `Websocket_Session_With_Url`")
+        errs = append(errs, "required field `url` is missing for type `websocket_session_with_url`")
     }
     if len(errs) == 0 {
         return nil

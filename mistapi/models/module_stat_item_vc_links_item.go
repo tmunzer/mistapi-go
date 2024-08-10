@@ -39,7 +39,7 @@ func (m ModuleStatItemVcLinksItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ModuleStatItemVcLinksItem.
 // It customizes the JSON unmarshaling process for ModuleStatItemVcLinksItem objects.
 func (m *ModuleStatItemVcLinksItem) UnmarshalJSON(input []byte) error {
-    var temp moduleStatItemVcLinksItem
+    var temp tempModuleStatItemVcLinksItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (m *ModuleStatItemVcLinksItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// moduleStatItemVcLinksItem is a temporary struct used for validating the fields of ModuleStatItemVcLinksItem.
-type moduleStatItemVcLinksItem  struct {
+// tempModuleStatItemVcLinksItem is a temporary struct used for validating the fields of ModuleStatItemVcLinksItem.
+type tempModuleStatItemVcLinksItem  struct {
     NeighborModuleIdx *int    `json:"neighbor_module_idx,omitempty"`
     NeighborPortId    *string `json:"neighbor_port_id,omitempty"`
     PortId            *string `json:"port_id,omitempty"`

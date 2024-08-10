@@ -32,7 +32,7 @@ func (v VrfExtraRoute) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VrfExtraRoute.
 // It customizes the JSON unmarshaling process for VrfExtraRoute objects.
 func (v *VrfExtraRoute) UnmarshalJSON(input []byte) error {
-    var temp vrfExtraRoute
+    var temp tempVrfExtraRoute
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (v *VrfExtraRoute) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vrfExtraRoute is a temporary struct used for validating the fields of VrfExtraRoute.
-type vrfExtraRoute  struct {
+// tempVrfExtraRoute is a temporary struct used for validating the fields of VrfExtraRoute.
+type tempVrfExtraRoute  struct {
     Via *string `json:"via,omitempty"`
 }

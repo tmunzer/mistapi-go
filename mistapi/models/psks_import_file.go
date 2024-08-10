@@ -31,7 +31,7 @@ func (p PsksImportFile) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PsksImportFile.
 // It customizes the JSON unmarshaling process for PsksImportFile objects.
 func (p *PsksImportFile) UnmarshalJSON(input []byte) error {
-    var temp psksImportFile
+    var temp tempPsksImportFile
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (p *PsksImportFile) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// psksImportFile is a temporary struct used for validating the fields of PsksImportFile.
-type psksImportFile  struct {
+// tempPsksImportFile is a temporary struct used for validating the fields of PsksImportFile.
+type tempPsksImportFile  struct {
     File *[]byte `json:"file,omitempty"`
 }

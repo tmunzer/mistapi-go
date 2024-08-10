@@ -49,7 +49,7 @@ func (m MapOrgImportFileJson) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapOrgImportFileJson.
 // It customizes the JSON unmarshaling process for MapOrgImportFileJson objects.
 func (m *MapOrgImportFileJson) UnmarshalJSON(input []byte) error {
-    var temp mapOrgImportFileJson
+    var temp tempMapOrgImportFileJson
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -72,8 +72,8 @@ func (m *MapOrgImportFileJson) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapOrgImportFileJson is a temporary struct used for validating the fields of MapOrgImportFileJson.
-type mapOrgImportFileJson  struct {
+// tempMapOrgImportFileJson is a temporary struct used for validating the fields of MapOrgImportFileJson.
+type tempMapOrgImportFileJson  struct {
     ImportAllFloorplans *bool                               `json:"import_all_floorplans,omitempty"`
     ImportHeight        *bool                               `json:"import_height,omitempty"`
     ImportOrientation   *bool                               `json:"import_orientation,omitempty"`
@@ -81,10 +81,10 @@ type mapOrgImportFileJson  struct {
     VendorName          *MapOrgImportFileJsonVendorNameEnum `json:"vendor_name"`
 }
 
-func (m *mapOrgImportFileJson) validate() error {
+func (m *tempMapOrgImportFileJson) validate() error {
     var errs []string
     if m.VendorName == nil {
-        errs = append(errs, "required field `vendor_name` is missing for type `Map_Org_Import_File_Json`")
+        errs = append(errs, "required field `vendor_name` is missing for type `map_org_import_file_json`")
     }
     if len(errs) == 0 {
         return nil

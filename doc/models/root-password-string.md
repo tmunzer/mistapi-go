@@ -15,7 +15,7 @@
 
 ```json
 {
-  "root_password": "root_password2"
+  "root_password": "root_password6"
 }
 ```
 

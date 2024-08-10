@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Interval` | `int` | Required | - |
-| `Results` | [`[]models.ResponseDeviceMetricsResults`](../../doc/models/containers/response-device-metrics-results.md) | Required | This is Array of a container for one-of cases. |
+| `Results` | [`[]models.ResponseDeviceMetricsResultsItems`](../../doc/models/containers/response-device-metrics-results-items.md) | Required | - |
 | `Rt` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 
@@ -19,15 +19,17 @@
 
 ```json
 {
-  "end": 78,
-  "interval": 244,
+  "end": 172,
+  "interval": 82,
   "results": [
-    "String0"
+    "String0",
+    "String1"
   ],
   "rt": [
-    "rt6"
+    "rt4",
+    "rt5"
   ],
-  "start": 36
+  "start": 130
 }
 ```
 

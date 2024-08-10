@@ -2,6 +2,7 @@ package mistapi
 
 import (
     "context"
+    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "net/http"
@@ -11,28 +12,51 @@ import (
 type ClientInterface interface {
     Configuration() Configuration
     CloneWithConfiguration(options ...ConfigurationOptions) ClientInterface
+    Admins() *Admins
+    AdminsLogin() *AdminsLogin
+    AdminsLogout() *AdminsLogout
+    AdminsRecoverPassword() *AdminsRecoverPassword
+    AdminsLookup() *AdminsLookup
+    AdminsLoginOAuth2() *AdminsLoginOAuth2
+    Installer() *Installer
+    MSPs() *MSPs
+    MSPsAdmins() *MSPsAdmins
+    MSPsInventory() *MSPsInventory
+    MSPsLogo() *MSPsLogo
+    MSPsLogs() *MSPsLogs
+    MSPsLicenses() *MSPsLicenses
+    MSPsMarvis() *MSPsMarvis
+    MSPsOrgGroups() *MSPsOrgGroups
+    MSPsOrgs() *MSPsOrgs
+    MSPsSLEs() *MSPsSLEs
+    MSPsSSORoles() *MSPsSSORoles
+    MSPsSSO() *MSPsSSO
+    MSPsTickets() *MSPsTickets
     Orgs() *Orgs
+    OrgsAdmins() *OrgsAdmins
+    OrgsAlarms() *OrgsAlarms
+    OrgsAlarmTemplates() *OrgsAlarmTemplates
     OrgsAPTemplates() *OrgsAPTemplates
     OrgsAPITokens() *OrgsAPITokens
-    OrgsAdmins() *OrgsAdmins
-    OrgsAlarmTemplates() *OrgsAlarmTemplates
-    OrgsAlarms() *OrgsAlarms
-    OrgsAssetFilters() *OrgsAssetFilters
     OrgsAssets() *OrgsAssets
-    OrgsCRL() *OrgsCRL
+    OrgsAssetFilters() *OrgsAssetFilters
     OrgsCert() *OrgsCert
+    OrgsAntivirusProfiles() *OrgsAntivirusProfiles
     OrgsClientsMarvis() *OrgsClientsMarvis
     OrgsClientsNAC() *OrgsClientsNAC
-    OrgsClientsSDK() *OrgsClientsSDK
     OrgsClientsWan() *OrgsClientsWan
     OrgsClientsWired() *OrgsClientsWired
     OrgsClientsWireless() *OrgsClientsWireless
+    OrgsClientsSDK() *OrgsClientsSDK
     OrgsCradlepoint() *OrgsCradlepoint
+    OrgsCRL() *OrgsCRL
     OrgsDeviceProfiles() *OrgsDeviceProfiles
     OrgsDevices() *OrgsDevices
-    OrgsDevicesOthers() *OrgsDevicesOthers
     OrgsDevicesSSR() *OrgsDevicesSSR
     OrgsEVPNTopologies() *OrgsEVPNTopologies
+    OrgsDevicesOthers() *OrgsDevicesOthers
+    OrgsSettingZscaler() *OrgsSettingZscaler
+    OrgsSCEP() *OrgsSCEP
     OrgsGatewayTemplates() *OrgsGatewayTemplates
     OrgsGuests() *OrgsGuests
     OrgsIDPProfiles() *OrgsIDPProfiles
@@ -42,35 +66,15 @@ type ClientInterface interface {
     OrgsLicenses() *OrgsLicenses
     OrgsLinkedApplications() *OrgsLinkedApplications
     OrgsLogs() *OrgsLogs
-    OrgsMaps() *OrgsMaps
     OrgsMarvis() *OrgsMarvis
+    OrgsMaps() *OrgsMaps
     OrgsMxClusters() *OrgsMxClusters
     OrgsMxEdges() *OrgsMxEdges
     OrgsMxTunnels() *OrgsMxTunnels
-    OrgsNACCRL() *OrgsNACCRL
     OrgsNACIDP() *OrgsNACIDP
-    OrgsNACPortals() *OrgsNACPortals
-    OrgsNACRules() *OrgsNACRules
     OrgsNACTags() *OrgsNACTags
-    OrgsNetworkTemplates() *OrgsNetworkTemplates
-    OrgsNetworks() *OrgsNetworks
-    OrgsPremiumAnalytics() *OrgsPremiumAnalytics
-    OrgsPskPortals() *OrgsPskPortals
-    OrgsPsks() *OrgsPsks
-    OrgsRFTemplates() *OrgsRFTemplates
-    OrgsSDKInvites() *OrgsSDKInvites
-    OrgsSDKTemplates() *OrgsSDKTemplates
-    OrgsSLEs() *OrgsSLEs
-    OrgsSSO() *OrgsSSO
-    OrgsSSORoles() *OrgsSSORoles
-    OrgsSecPolicies() *OrgsSecPolicies
-    OrgsServicePolicies() *OrgsServicePolicies
-    OrgsServices() *OrgsServices
-    OrgsSetting() *OrgsSetting
-    OrgsSettingZscaler() *OrgsSettingZscaler
-    OrgsSiteTemplates() *OrgsSiteTemplates
-    OrgsSitegroups() *OrgsSitegroups
-    OrgsSites() *OrgsSites
+    OrgsNACPortals() *OrgsNACPortals
+    OrgsNACCRL() *OrgsNACCRL
     OrgsStats() *OrgsStats
     OrgsStatsAssets() *OrgsStatsAssets
     OrgsStatsBGPPeers() *OrgsStatsBGPPeers
@@ -80,55 +84,41 @@ type ClientInterface interface {
     OrgsStatsPorts() *OrgsStatsPorts
     OrgsStatsTunnels() *OrgsStatsTunnels
     OrgsStatsVPNPeers() *OrgsStatsVPNPeers
+    OrgsNACRules() *OrgsNACRules
+    OrgsNetworkTemplates() *OrgsNetworkTemplates
+    OrgsNetworks() *OrgsNetworks
+    OrgsPremiumAnalytics() *OrgsPremiumAnalytics
+    OrgsPsks() *OrgsPsks
+    OrgsPskPortals() *OrgsPskPortals
+    OrgsRFTemplates() *OrgsRFTemplates
+    OrgsSDKInvites() *OrgsSDKInvites
+    OrgsSDKTemplates() *OrgsSDKTemplates
+    OrgsSecPolicies() *OrgsSecPolicies
+    OrgsServices() *OrgsServices
+    OrgsServicePolicies() *OrgsServicePolicies
+    OrgsSetting() *OrgsSetting
+    OrgsSitegroups() *OrgsSitegroups
+    OrgsSites() *OrgsSites
+    OrgsSiteTemplates() *OrgsSiteTemplates
+    OrgsSLEs() *OrgsSLEs
+    OrgsSSORoles() *OrgsSSORoles
+    OrgsSSO() *OrgsSSO
     OrgsSubscriptions() *OrgsSubscriptions
+    OrgsWLANTemplates() *OrgsWLANTemplates
     OrgsTickets() *OrgsTickets
     OrgsUserMACs() *OrgsUserMACs
-    OrgsVPNs() *OrgsVPNs
     OrgsVars() *OrgsVars
-    OrgsWLANTemplates() *OrgsWLANTemplates
+    OrgsVPNs() *OrgsVPNs
     OrgsWebhooks() *OrgsWebhooks
     OrgsWlans() *OrgsWlans
     OrgsWxRules() *OrgsWxRules
     OrgsWxTags() *OrgsWxTags
     OrgsWxTunnels() *OrgsWxTunnels
-    UtilitiesPCAPs() *UtilitiesPCAPs
-    UtilitiesUpgrade() *UtilitiesUpgrade
-    UtilitiesWiFi() *UtilitiesWiFi
-    Installer() *Installer
-    Admins() *Admins
-    AdminsLogin() *AdminsLogin
-    AdminsLoginOAuth2() *AdminsLoginOAuth2
-    AdminsLogout() *AdminsLogout
-    AdminsLookup() *AdminsLookup
-    AdminsRecoverPassword() *AdminsRecoverPassword
-    ConstantsDefinitions() *ConstantsDefinitions
-    ConstantsEvents() *ConstantsEvents
-    ConstantsMisc() *ConstantsMisc
-    ConstantsModels() *ConstantsModels
-    SelfAPIToken() *SelfAPIToken
-    SelfAccount() *SelfAccount
-    SelfAlarms() *SelfAlarms
-    SelfAuditLogs() *SelfAuditLogs
-    SelfMFA() *SelfMFA
-    SelfOAuth2() *SelfOAuth2
-    MSPs() *MSPs
-    MSPsAdmins() *MSPsAdmins
-    MSPsInventory() *MSPsInventory
-    MSPsLicenses() *MSPsLicenses
-    MSPsLogo() *MSPsLogo
-    MSPsLogs() *MSPsLogs
-    MSPsMarvis() *MSPsMarvis
-    MSPsOrgGroups() *MSPsOrgGroups
-    MSPsOrgs() *MSPsOrgs
-    MSPsSLEs() *MSPsSLEs
-    MSPsSSO() *MSPsSSO
-    MSPsSSORoles() *MSPsSSORoles
-    MSPsTickets() *MSPsTickets
     Sites() *Sites
-    SitesAPTemplates() *SitesAPTemplates
     SitesAlarms() *SitesAlarms
-    SitesAnomaly() *SitesAnomaly
+    SitesAPTemplates() *SitesAPTemplates
     SitesApplications() *SitesApplications
+    SitesAnomaly() *SitesAnomaly
     SitesAssetFilters() *SitesAssetFilters
     SitesAssets() *SitesAssets
     SitesBeacons() *SitesBeacons
@@ -136,15 +126,15 @@ type ClientInterface interface {
     SitesClientsWan() *SitesClientsWan
     SitesClientsWired() *SitesClientsWired
     SitesClientsWireless() *SitesClientsWireless
-    SitesDeviceProfiles() *SitesDeviceProfiles
     SitesDevices() *SitesDevices
+    SitesDevicesWireless() *SitesDevicesWireless
     SitesDevicesOthers() *SitesDevicesOthers
-    SitesDevicesWANCluster() *SitesDevicesWANCluster
     SitesDevicesWired() *SitesDevicesWired
     SitesDevicesWiredVirtualChassis() *SitesDevicesWiredVirtualChassis
-    SitesDevicesWireless() *SitesDevicesWireless
-    SitesEVPNTopologies() *SitesEVPNTopologies
+    SitesDevicesWANCluster() *SitesDevicesWANCluster
+    SitesDeviceProfiles() *SitesDeviceProfiles
     SitesEvents() *SitesEvents
+    SitesEVPNTopologies() *SitesEVPNTopologies
     SitesGatewayTemplates() *SitesGatewayTemplates
     SitesGuests() *SitesGuests
     SitesInsights() *SitesInsights
@@ -158,32 +148,19 @@ type ClientInterface interface {
     SitesNetworks() *SitesNetworks
     SitesPsks() *SitesPsks
     SitesRFTemplates() *SitesRFTemplates
-    SitesRRM() *SitesRRM
-    SitesRSSIZones() *SitesRSSIZones
     SitesRfdiags() *SitesRfdiags
     SitesRogues() *SitesRogues
-    SitesSLEs() *SitesSLEs
-    SitesServicePolicies() *SitesServicePolicies
+    SitesRRM() *SitesRRM
+    SitesRSSIZones() *SitesRSSIZones
     SitesServices() *SitesServices
+    SitesServicePolicies() *SitesServicePolicies
     SitesSetting() *SitesSetting
     SitesSiteTemplates() *SitesSiteTemplates
     SitesSkyatp() *SitesSkyatp
-    SitesStats() *SitesStats
-    SitesStatsApps() *SitesStatsApps
-    SitesStatsAssets() *SitesStatsAssets
-    SitesStatsBGPPeers() *SitesStatsBGPPeers
-    SitesStatsBeacons() *SitesStatsBeacons
-    SitesStatsCalls() *SitesStatsCalls
-    SitesStatsClientsSDK() *SitesStatsClientsSDK
-    SitesStatsClientsWireless() *SitesStatsClientsWireless
-    SitesStatsDevices() *SitesStatsDevices
-    SitesStatsDiscoveredSwitches() *SitesStatsDiscoveredSwitches
-    SitesStatsMxEdges() *SitesStatsMxEdges
-    SitesStatsPorts() *SitesStatsPorts
-    SitesStatsWxRules() *SitesStatsWxRules
-    SitesStatsZones() *SitesStatsZones
+    SitesSLEs() *SitesSLEs
     SitesSyntheticTests() *SitesSyntheticTests
     SitesUISettings() *SitesUISettings
+    SitesVBeacons() *SitesVBeacons
     SitesVPNs() *SitesVPNs
     SitesWANUsages() *SitesWANUsages
     SitesWebhooks() *SitesWebhooks
@@ -192,12 +169,38 @@ type ClientInterface interface {
     SitesWxTags() *SitesWxTags
     SitesWxTunnels() *SitesWxTunnels
     SitesZones() *SitesZones
-    SitesVBeacons() *SitesVBeacons
+    SitesStats() *SitesStats
+    SitesStatsApps() *SitesStatsApps
+    SitesStatsAssets() *SitesStatsAssets
+    SitesStatsBeacons() *SitesStatsBeacons
+    SitesStatsBGPPeers() *SitesStatsBGPPeers
+    SitesStatsCalls() *SitesStatsCalls
+    SitesStatsClientsWireless() *SitesStatsClientsWireless
+    SitesStatsClientsSDK() *SitesStatsClientsSDK
+    SitesStatsDevices() *SitesStatsDevices
+    SitesStatsMxEdges() *SitesStatsMxEdges
+    SitesStatsPorts() *SitesStatsPorts
+    SitesStatsWxRules() *SitesStatsWxRules
+    SitesStatsZones() *SitesStatsZones
+    SitesStatsDiscoveredSwitches() *SitesStatsDiscoveredSwitches
+    ConstantsDefinitions() *ConstantsDefinitions
+    ConstantsEvents() *ConstantsEvents
+    ConstantsModels() *ConstantsModels
+    ConstantsMisc() *ConstantsMisc
+    SelfAccount() *SelfAccount
+    SelfAPIToken() *SelfAPIToken
+    SelfOAuth2() *SelfOAuth2
+    SelfMFA() *SelfMFA
+    SelfAlarms() *SelfAlarms
+    SelfAuditLogs() *SelfAuditLogs
     UtilitiesCommon() *UtilitiesCommon
+    UtilitiesWAN() *UtilitiesWAN
     UtilitiesLAN() *UtilitiesLAN
+    UtilitiesWiFi() *UtilitiesWiFi
+    UtilitiesPCAPs() *UtilitiesPCAPs
     UtilitiesLocation() *UtilitiesLocation
     UtilitiesMxEdge() *UtilitiesMxEdge
-    UtilitiesWAN() *UtilitiesWAN
+    UtilitiesUpgrade() *UtilitiesUpgrade
     UserAgent() *string
 }
 
@@ -206,28 +209,51 @@ type client struct {
     callBuilderFactory              https.CallBuilderFactory
     configuration                   Configuration
     userAgent                       string
+    admins                          Admins
+    adminsLogin                     AdminsLogin
+    adminsLogout                    AdminsLogout
+    adminsRecoverPassword           AdminsRecoverPassword
+    adminsLookup                    AdminsLookup
+    adminsLoginOAuth2               AdminsLoginOAuth2
+    installer                       Installer
+    mSPs                            MSPs
+    mSPsAdmins                      MSPsAdmins
+    mSPsInventory                   MSPsInventory
+    mSPsLogo                        MSPsLogo
+    mSPsLogs                        MSPsLogs
+    mSPsLicenses                    MSPsLicenses
+    mSPsMarvis                      MSPsMarvis
+    mSPsOrgGroups                   MSPsOrgGroups
+    mSPsOrgs                        MSPsOrgs
+    mSPsSLEs                        MSPsSLEs
+    mSPsSSORoles                    MSPsSSORoles
+    mSPsSSO                         MSPsSSO
+    mSPsTickets                     MSPsTickets
     orgs                            Orgs
+    orgsAdmins                      OrgsAdmins
+    orgsAlarms                      OrgsAlarms
+    orgsAlarmTemplates              OrgsAlarmTemplates
     orgsAPTemplates                 OrgsAPTemplates
     orgsAPITokens                   OrgsAPITokens
-    orgsAdmins                      OrgsAdmins
-    orgsAlarmTemplates              OrgsAlarmTemplates
-    orgsAlarms                      OrgsAlarms
-    orgsAssetFilters                OrgsAssetFilters
     orgsAssets                      OrgsAssets
-    orgsCRL                         OrgsCRL
+    orgsAssetFilters                OrgsAssetFilters
     orgsCert                        OrgsCert
+    orgsAntivirusProfiles           OrgsAntivirusProfiles
     orgsClientsMarvis               OrgsClientsMarvis
     orgsClientsNAC                  OrgsClientsNAC
-    orgsClientsSDK                  OrgsClientsSDK
     orgsClientsWan                  OrgsClientsWan
     orgsClientsWired                OrgsClientsWired
     orgsClientsWireless             OrgsClientsWireless
+    orgsClientsSDK                  OrgsClientsSDK
     orgsCradlepoint                 OrgsCradlepoint
+    orgsCRL                         OrgsCRL
     orgsDeviceProfiles              OrgsDeviceProfiles
     orgsDevices                     OrgsDevices
-    orgsDevicesOthers               OrgsDevicesOthers
     orgsDevicesSSR                  OrgsDevicesSSR
     orgsEVPNTopologies              OrgsEVPNTopologies
+    orgsDevicesOthers               OrgsDevicesOthers
+    orgsSettingZscaler              OrgsSettingZscaler
+    orgsSCEP                        OrgsSCEP
     orgsGatewayTemplates            OrgsGatewayTemplates
     orgsGuests                      OrgsGuests
     orgsIDPProfiles                 OrgsIDPProfiles
@@ -237,35 +263,15 @@ type client struct {
     orgsLicenses                    OrgsLicenses
     orgsLinkedApplications          OrgsLinkedApplications
     orgsLogs                        OrgsLogs
-    orgsMaps                        OrgsMaps
     orgsMarvis                      OrgsMarvis
+    orgsMaps                        OrgsMaps
     orgsMxClusters                  OrgsMxClusters
     orgsMxEdges                     OrgsMxEdges
     orgsMxTunnels                   OrgsMxTunnels
-    orgsNACCRL                      OrgsNACCRL
     orgsNACIDP                      OrgsNACIDP
-    orgsNACPortals                  OrgsNACPortals
-    orgsNACRules                    OrgsNACRules
     orgsNACTags                     OrgsNACTags
-    orgsNetworkTemplates            OrgsNetworkTemplates
-    orgsNetworks                    OrgsNetworks
-    orgsPremiumAnalytics            OrgsPremiumAnalytics
-    orgsPskPortals                  OrgsPskPortals
-    orgsPsks                        OrgsPsks
-    orgsRFTemplates                 OrgsRFTemplates
-    orgsSDKInvites                  OrgsSDKInvites
-    orgsSDKTemplates                OrgsSDKTemplates
-    orgsSLEs                        OrgsSLEs
-    orgsSSO                         OrgsSSO
-    orgsSSORoles                    OrgsSSORoles
-    orgsSecPolicies                 OrgsSecPolicies
-    orgsServicePolicies             OrgsServicePolicies
-    orgsServices                    OrgsServices
-    orgsSetting                     OrgsSetting
-    orgsSettingZscaler              OrgsSettingZscaler
-    orgsSiteTemplates               OrgsSiteTemplates
-    orgsSitegroups                  OrgsSitegroups
-    orgsSites                       OrgsSites
+    orgsNACPortals                  OrgsNACPortals
+    orgsNACCRL                      OrgsNACCRL
     orgsStats                       OrgsStats
     orgsStatsAssets                 OrgsStatsAssets
     orgsStatsBGPPeers               OrgsStatsBGPPeers
@@ -275,55 +281,41 @@ type client struct {
     orgsStatsPorts                  OrgsStatsPorts
     orgsStatsTunnels                OrgsStatsTunnels
     orgsStatsVPNPeers               OrgsStatsVPNPeers
+    orgsNACRules                    OrgsNACRules
+    orgsNetworkTemplates            OrgsNetworkTemplates
+    orgsNetworks                    OrgsNetworks
+    orgsPremiumAnalytics            OrgsPremiumAnalytics
+    orgsPsks                        OrgsPsks
+    orgsPskPortals                  OrgsPskPortals
+    orgsRFTemplates                 OrgsRFTemplates
+    orgsSDKInvites                  OrgsSDKInvites
+    orgsSDKTemplates                OrgsSDKTemplates
+    orgsSecPolicies                 OrgsSecPolicies
+    orgsServices                    OrgsServices
+    orgsServicePolicies             OrgsServicePolicies
+    orgsSetting                     OrgsSetting
+    orgsSitegroups                  OrgsSitegroups
+    orgsSites                       OrgsSites
+    orgsSiteTemplates               OrgsSiteTemplates
+    orgsSLEs                        OrgsSLEs
+    orgsSSORoles                    OrgsSSORoles
+    orgsSSO                         OrgsSSO
     orgsSubscriptions               OrgsSubscriptions
+    orgsWLANTemplates               OrgsWLANTemplates
     orgsTickets                     OrgsTickets
     orgsUserMACs                    OrgsUserMACs
-    orgsVPNs                        OrgsVPNs
     orgsVars                        OrgsVars
-    orgsWLANTemplates               OrgsWLANTemplates
+    orgsVPNs                        OrgsVPNs
     orgsWebhooks                    OrgsWebhooks
     orgsWlans                       OrgsWlans
     orgsWxRules                     OrgsWxRules
     orgsWxTags                      OrgsWxTags
     orgsWxTunnels                   OrgsWxTunnels
-    utilitiesPCAPs                  UtilitiesPCAPs
-    utilitiesUpgrade                UtilitiesUpgrade
-    utilitiesWiFi                   UtilitiesWiFi
-    installer                       Installer
-    admins                          Admins
-    adminsLogin                     AdminsLogin
-    adminsLoginOAuth2               AdminsLoginOAuth2
-    adminsLogout                    AdminsLogout
-    adminsLookup                    AdminsLookup
-    adminsRecoverPassword           AdminsRecoverPassword
-    constantsDefinitions            ConstantsDefinitions
-    constantsEvents                 ConstantsEvents
-    constantsMisc                   ConstantsMisc
-    constantsModels                 ConstantsModels
-    selfAPIToken                    SelfAPIToken
-    selfAccount                     SelfAccount
-    selfAlarms                      SelfAlarms
-    selfAuditLogs                   SelfAuditLogs
-    selfMFA                         SelfMFA
-    selfOAuth2                      SelfOAuth2
-    mSPs                            MSPs
-    mSPsAdmins                      MSPsAdmins
-    mSPsInventory                   MSPsInventory
-    mSPsLicenses                    MSPsLicenses
-    mSPsLogo                        MSPsLogo
-    mSPsLogs                        MSPsLogs
-    mSPsMarvis                      MSPsMarvis
-    mSPsOrgGroups                   MSPsOrgGroups
-    mSPsOrgs                        MSPsOrgs
-    mSPsSLEs                        MSPsSLEs
-    mSPsSSO                         MSPsSSO
-    mSPsSSORoles                    MSPsSSORoles
-    mSPsTickets                     MSPsTickets
     sites                           Sites
-    sitesAPTemplates                SitesAPTemplates
     sitesAlarms                     SitesAlarms
-    sitesAnomaly                    SitesAnomaly
+    sitesAPTemplates                SitesAPTemplates
     sitesApplications               SitesApplications
+    sitesAnomaly                    SitesAnomaly
     sitesAssetFilters               SitesAssetFilters
     sitesAssets                     SitesAssets
     sitesBeacons                    SitesBeacons
@@ -331,15 +323,15 @@ type client struct {
     sitesClientsWan                 SitesClientsWan
     sitesClientsWired               SitesClientsWired
     sitesClientsWireless            SitesClientsWireless
-    sitesDeviceProfiles             SitesDeviceProfiles
     sitesDevices                    SitesDevices
+    sitesDevicesWireless            SitesDevicesWireless
     sitesDevicesOthers              SitesDevicesOthers
-    sitesDevicesWANCluster          SitesDevicesWANCluster
     sitesDevicesWired               SitesDevicesWired
     sitesDevicesWiredVirtualChassis SitesDevicesWiredVirtualChassis
-    sitesDevicesWireless            SitesDevicesWireless
-    sitesEVPNTopologies             SitesEVPNTopologies
+    sitesDevicesWANCluster          SitesDevicesWANCluster
+    sitesDeviceProfiles             SitesDeviceProfiles
     sitesEvents                     SitesEvents
+    sitesEVPNTopologies             SitesEVPNTopologies
     sitesGatewayTemplates           SitesGatewayTemplates
     sitesGuests                     SitesGuests
     sitesInsights                   SitesInsights
@@ -353,32 +345,19 @@ type client struct {
     sitesNetworks                   SitesNetworks
     sitesPsks                       SitesPsks
     sitesRFTemplates                SitesRFTemplates
-    sitesRRM                        SitesRRM
-    sitesRSSIZones                  SitesRSSIZones
     sitesRfdiags                    SitesRfdiags
     sitesRogues                     SitesRogues
-    sitesSLEs                       SitesSLEs
-    sitesServicePolicies            SitesServicePolicies
+    sitesRRM                        SitesRRM
+    sitesRSSIZones                  SitesRSSIZones
     sitesServices                   SitesServices
+    sitesServicePolicies            SitesServicePolicies
     sitesSetting                    SitesSetting
     sitesSiteTemplates              SitesSiteTemplates
     sitesSkyatp                     SitesSkyatp
-    sitesStats                      SitesStats
-    sitesStatsApps                  SitesStatsApps
-    sitesStatsAssets                SitesStatsAssets
-    sitesStatsBGPPeers              SitesStatsBGPPeers
-    sitesStatsBeacons               SitesStatsBeacons
-    sitesStatsCalls                 SitesStatsCalls
-    sitesStatsClientsSDK            SitesStatsClientsSDK
-    sitesStatsClientsWireless       SitesStatsClientsWireless
-    sitesStatsDevices               SitesStatsDevices
-    sitesStatsDiscoveredSwitches    SitesStatsDiscoveredSwitches
-    sitesStatsMxEdges               SitesStatsMxEdges
-    sitesStatsPorts                 SitesStatsPorts
-    sitesStatsWxRules               SitesStatsWxRules
-    sitesStatsZones                 SitesStatsZones
+    sitesSLEs                       SitesSLEs
     sitesSyntheticTests             SitesSyntheticTests
     sitesUISettings                 SitesUISettings
+    sitesVBeacons                   SitesVBeacons
     sitesVPNs                       SitesVPNs
     sitesWANUsages                  SitesWANUsages
     sitesWebhooks                   SitesWebhooks
@@ -387,12 +366,38 @@ type client struct {
     sitesWxTags                     SitesWxTags
     sitesWxTunnels                  SitesWxTunnels
     sitesZones                      SitesZones
-    sitesVBeacons                   SitesVBeacons
+    sitesStats                      SitesStats
+    sitesStatsApps                  SitesStatsApps
+    sitesStatsAssets                SitesStatsAssets
+    sitesStatsBeacons               SitesStatsBeacons
+    sitesStatsBGPPeers              SitesStatsBGPPeers
+    sitesStatsCalls                 SitesStatsCalls
+    sitesStatsClientsWireless       SitesStatsClientsWireless
+    sitesStatsClientsSDK            SitesStatsClientsSDK
+    sitesStatsDevices               SitesStatsDevices
+    sitesStatsMxEdges               SitesStatsMxEdges
+    sitesStatsPorts                 SitesStatsPorts
+    sitesStatsWxRules               SitesStatsWxRules
+    sitesStatsZones                 SitesStatsZones
+    sitesStatsDiscoveredSwitches    SitesStatsDiscoveredSwitches
+    constantsDefinitions            ConstantsDefinitions
+    constantsEvents                 ConstantsEvents
+    constantsModels                 ConstantsModels
+    constantsMisc                   ConstantsMisc
+    selfAccount                     SelfAccount
+    selfAPIToken                    SelfAPIToken
+    selfOAuth2                      SelfOAuth2
+    selfMFA                         SelfMFA
+    selfAlarms                      SelfAlarms
+    selfAuditLogs                   SelfAuditLogs
     utilitiesCommon                 UtilitiesCommon
+    utilitiesWAN                    UtilitiesWAN
     utilitiesLAN                    UtilitiesLAN
+    utilitiesWiFi                   UtilitiesWiFi
+    utilitiesPCAPs                  UtilitiesPCAPs
     utilitiesLocation               UtilitiesLocation
     utilitiesMxEdge                 UtilitiesMxEdge
-    utilitiesWAN                    UtilitiesWAN
+    utilitiesUpgrade                UtilitiesUpgrade
 }
 
 // NewClient is the constructor for creating a new client instance.
@@ -406,7 +411,7 @@ func NewClient(configuration Configuration) ClientInterface {
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {
-    			server = "API Host"
+    			server = "default"
     		}
     		return getBaseUri(Server(server), client.configuration)
     	},
@@ -419,28 +424,51 @@ func NewClient(configuration Configuration) ClientInterface {
     )
     
     baseController := NewBaseController(client)
+    client.admins = *NewAdmins(*baseController)
+    client.adminsLogin = *NewAdminsLogin(*baseController)
+    client.adminsLogout = *NewAdminsLogout(*baseController)
+    client.adminsRecoverPassword = *NewAdminsRecoverPassword(*baseController)
+    client.adminsLookup = *NewAdminsLookup(*baseController)
+    client.adminsLoginOAuth2 = *NewAdminsLoginOAuth2(*baseController)
+    client.installer = *NewInstaller(*baseController)
+    client.mSPs = *NewMSPs(*baseController)
+    client.mSPsAdmins = *NewMSPsAdmins(*baseController)
+    client.mSPsInventory = *NewMSPsInventory(*baseController)
+    client.mSPsLogo = *NewMSPsLogo(*baseController)
+    client.mSPsLogs = *NewMSPsLogs(*baseController)
+    client.mSPsLicenses = *NewMSPsLicenses(*baseController)
+    client.mSPsMarvis = *NewMSPsMarvis(*baseController)
+    client.mSPsOrgGroups = *NewMSPsOrgGroups(*baseController)
+    client.mSPsOrgs = *NewMSPsOrgs(*baseController)
+    client.mSPsSLEs = *NewMSPsSLEs(*baseController)
+    client.mSPsSSORoles = *NewMSPsSSORoles(*baseController)
+    client.mSPsSSO = *NewMSPsSSO(*baseController)
+    client.mSPsTickets = *NewMSPsTickets(*baseController)
     client.orgs = *NewOrgs(*baseController)
+    client.orgsAdmins = *NewOrgsAdmins(*baseController)
+    client.orgsAlarms = *NewOrgsAlarms(*baseController)
+    client.orgsAlarmTemplates = *NewOrgsAlarmTemplates(*baseController)
     client.orgsAPTemplates = *NewOrgsAPTemplates(*baseController)
     client.orgsAPITokens = *NewOrgsAPITokens(*baseController)
-    client.orgsAdmins = *NewOrgsAdmins(*baseController)
-    client.orgsAlarmTemplates = *NewOrgsAlarmTemplates(*baseController)
-    client.orgsAlarms = *NewOrgsAlarms(*baseController)
-    client.orgsAssetFilters = *NewOrgsAssetFilters(*baseController)
     client.orgsAssets = *NewOrgsAssets(*baseController)
-    client.orgsCRL = *NewOrgsCRL(*baseController)
+    client.orgsAssetFilters = *NewOrgsAssetFilters(*baseController)
     client.orgsCert = *NewOrgsCert(*baseController)
+    client.orgsAntivirusProfiles = *NewOrgsAntivirusProfiles(*baseController)
     client.orgsClientsMarvis = *NewOrgsClientsMarvis(*baseController)
     client.orgsClientsNAC = *NewOrgsClientsNAC(*baseController)
-    client.orgsClientsSDK = *NewOrgsClientsSDK(*baseController)
     client.orgsClientsWan = *NewOrgsClientsWan(*baseController)
     client.orgsClientsWired = *NewOrgsClientsWired(*baseController)
     client.orgsClientsWireless = *NewOrgsClientsWireless(*baseController)
+    client.orgsClientsSDK = *NewOrgsClientsSDK(*baseController)
     client.orgsCradlepoint = *NewOrgsCradlepoint(*baseController)
+    client.orgsCRL = *NewOrgsCRL(*baseController)
     client.orgsDeviceProfiles = *NewOrgsDeviceProfiles(*baseController)
     client.orgsDevices = *NewOrgsDevices(*baseController)
-    client.orgsDevicesOthers = *NewOrgsDevicesOthers(*baseController)
     client.orgsDevicesSSR = *NewOrgsDevicesSSR(*baseController)
     client.orgsEVPNTopologies = *NewOrgsEVPNTopologies(*baseController)
+    client.orgsDevicesOthers = *NewOrgsDevicesOthers(*baseController)
+    client.orgsSettingZscaler = *NewOrgsSettingZscaler(*baseController)
+    client.orgsSCEP = *NewOrgsSCEP(*baseController)
     client.orgsGatewayTemplates = *NewOrgsGatewayTemplates(*baseController)
     client.orgsGuests = *NewOrgsGuests(*baseController)
     client.orgsIDPProfiles = *NewOrgsIDPProfiles(*baseController)
@@ -450,35 +478,15 @@ func NewClient(configuration Configuration) ClientInterface {
     client.orgsLicenses = *NewOrgsLicenses(*baseController)
     client.orgsLinkedApplications = *NewOrgsLinkedApplications(*baseController)
     client.orgsLogs = *NewOrgsLogs(*baseController)
-    client.orgsMaps = *NewOrgsMaps(*baseController)
     client.orgsMarvis = *NewOrgsMarvis(*baseController)
+    client.orgsMaps = *NewOrgsMaps(*baseController)
     client.orgsMxClusters = *NewOrgsMxClusters(*baseController)
     client.orgsMxEdges = *NewOrgsMxEdges(*baseController)
     client.orgsMxTunnels = *NewOrgsMxTunnels(*baseController)
-    client.orgsNACCRL = *NewOrgsNACCRL(*baseController)
     client.orgsNACIDP = *NewOrgsNACIDP(*baseController)
-    client.orgsNACPortals = *NewOrgsNACPortals(*baseController)
-    client.orgsNACRules = *NewOrgsNACRules(*baseController)
     client.orgsNACTags = *NewOrgsNACTags(*baseController)
-    client.orgsNetworkTemplates = *NewOrgsNetworkTemplates(*baseController)
-    client.orgsNetworks = *NewOrgsNetworks(*baseController)
-    client.orgsPremiumAnalytics = *NewOrgsPremiumAnalytics(*baseController)
-    client.orgsPskPortals = *NewOrgsPskPortals(*baseController)
-    client.orgsPsks = *NewOrgsPsks(*baseController)
-    client.orgsRFTemplates = *NewOrgsRFTemplates(*baseController)
-    client.orgsSDKInvites = *NewOrgsSDKInvites(*baseController)
-    client.orgsSDKTemplates = *NewOrgsSDKTemplates(*baseController)
-    client.orgsSLEs = *NewOrgsSLEs(*baseController)
-    client.orgsSSO = *NewOrgsSSO(*baseController)
-    client.orgsSSORoles = *NewOrgsSSORoles(*baseController)
-    client.orgsSecPolicies = *NewOrgsSecPolicies(*baseController)
-    client.orgsServicePolicies = *NewOrgsServicePolicies(*baseController)
-    client.orgsServices = *NewOrgsServices(*baseController)
-    client.orgsSetting = *NewOrgsSetting(*baseController)
-    client.orgsSettingZscaler = *NewOrgsSettingZscaler(*baseController)
-    client.orgsSiteTemplates = *NewOrgsSiteTemplates(*baseController)
-    client.orgsSitegroups = *NewOrgsSitegroups(*baseController)
-    client.orgsSites = *NewOrgsSites(*baseController)
+    client.orgsNACPortals = *NewOrgsNACPortals(*baseController)
+    client.orgsNACCRL = *NewOrgsNACCRL(*baseController)
     client.orgsStats = *NewOrgsStats(*baseController)
     client.orgsStatsAssets = *NewOrgsStatsAssets(*baseController)
     client.orgsStatsBGPPeers = *NewOrgsStatsBGPPeers(*baseController)
@@ -488,55 +496,41 @@ func NewClient(configuration Configuration) ClientInterface {
     client.orgsStatsPorts = *NewOrgsStatsPorts(*baseController)
     client.orgsStatsTunnels = *NewOrgsStatsTunnels(*baseController)
     client.orgsStatsVPNPeers = *NewOrgsStatsVPNPeers(*baseController)
+    client.orgsNACRules = *NewOrgsNACRules(*baseController)
+    client.orgsNetworkTemplates = *NewOrgsNetworkTemplates(*baseController)
+    client.orgsNetworks = *NewOrgsNetworks(*baseController)
+    client.orgsPremiumAnalytics = *NewOrgsPremiumAnalytics(*baseController)
+    client.orgsPsks = *NewOrgsPsks(*baseController)
+    client.orgsPskPortals = *NewOrgsPskPortals(*baseController)
+    client.orgsRFTemplates = *NewOrgsRFTemplates(*baseController)
+    client.orgsSDKInvites = *NewOrgsSDKInvites(*baseController)
+    client.orgsSDKTemplates = *NewOrgsSDKTemplates(*baseController)
+    client.orgsSecPolicies = *NewOrgsSecPolicies(*baseController)
+    client.orgsServices = *NewOrgsServices(*baseController)
+    client.orgsServicePolicies = *NewOrgsServicePolicies(*baseController)
+    client.orgsSetting = *NewOrgsSetting(*baseController)
+    client.orgsSitegroups = *NewOrgsSitegroups(*baseController)
+    client.orgsSites = *NewOrgsSites(*baseController)
+    client.orgsSiteTemplates = *NewOrgsSiteTemplates(*baseController)
+    client.orgsSLEs = *NewOrgsSLEs(*baseController)
+    client.orgsSSORoles = *NewOrgsSSORoles(*baseController)
+    client.orgsSSO = *NewOrgsSSO(*baseController)
     client.orgsSubscriptions = *NewOrgsSubscriptions(*baseController)
+    client.orgsWLANTemplates = *NewOrgsWLANTemplates(*baseController)
     client.orgsTickets = *NewOrgsTickets(*baseController)
     client.orgsUserMACs = *NewOrgsUserMACs(*baseController)
-    client.orgsVPNs = *NewOrgsVPNs(*baseController)
     client.orgsVars = *NewOrgsVars(*baseController)
-    client.orgsWLANTemplates = *NewOrgsWLANTemplates(*baseController)
+    client.orgsVPNs = *NewOrgsVPNs(*baseController)
     client.orgsWebhooks = *NewOrgsWebhooks(*baseController)
     client.orgsWlans = *NewOrgsWlans(*baseController)
     client.orgsWxRules = *NewOrgsWxRules(*baseController)
     client.orgsWxTags = *NewOrgsWxTags(*baseController)
     client.orgsWxTunnels = *NewOrgsWxTunnels(*baseController)
-    client.utilitiesPCAPs = *NewUtilitiesPCAPs(*baseController)
-    client.utilitiesUpgrade = *NewUtilitiesUpgrade(*baseController)
-    client.utilitiesWiFi = *NewUtilitiesWiFi(*baseController)
-    client.installer = *NewInstaller(*baseController)
-    client.admins = *NewAdmins(*baseController)
-    client.adminsLogin = *NewAdminsLogin(*baseController)
-    client.adminsLoginOAuth2 = *NewAdminsLoginOAuth2(*baseController)
-    client.adminsLogout = *NewAdminsLogout(*baseController)
-    client.adminsLookup = *NewAdminsLookup(*baseController)
-    client.adminsRecoverPassword = *NewAdminsRecoverPassword(*baseController)
-    client.constantsDefinitions = *NewConstantsDefinitions(*baseController)
-    client.constantsEvents = *NewConstantsEvents(*baseController)
-    client.constantsMisc = *NewConstantsMisc(*baseController)
-    client.constantsModels = *NewConstantsModels(*baseController)
-    client.selfAPIToken = *NewSelfAPIToken(*baseController)
-    client.selfAccount = *NewSelfAccount(*baseController)
-    client.selfAlarms = *NewSelfAlarms(*baseController)
-    client.selfAuditLogs = *NewSelfAuditLogs(*baseController)
-    client.selfMFA = *NewSelfMFA(*baseController)
-    client.selfOAuth2 = *NewSelfOAuth2(*baseController)
-    client.mSPs = *NewMSPs(*baseController)
-    client.mSPsAdmins = *NewMSPsAdmins(*baseController)
-    client.mSPsInventory = *NewMSPsInventory(*baseController)
-    client.mSPsLicenses = *NewMSPsLicenses(*baseController)
-    client.mSPsLogo = *NewMSPsLogo(*baseController)
-    client.mSPsLogs = *NewMSPsLogs(*baseController)
-    client.mSPsMarvis = *NewMSPsMarvis(*baseController)
-    client.mSPsOrgGroups = *NewMSPsOrgGroups(*baseController)
-    client.mSPsOrgs = *NewMSPsOrgs(*baseController)
-    client.mSPsSLEs = *NewMSPsSLEs(*baseController)
-    client.mSPsSSO = *NewMSPsSSO(*baseController)
-    client.mSPsSSORoles = *NewMSPsSSORoles(*baseController)
-    client.mSPsTickets = *NewMSPsTickets(*baseController)
     client.sites = *NewSites(*baseController)
-    client.sitesAPTemplates = *NewSitesAPTemplates(*baseController)
     client.sitesAlarms = *NewSitesAlarms(*baseController)
-    client.sitesAnomaly = *NewSitesAnomaly(*baseController)
+    client.sitesAPTemplates = *NewSitesAPTemplates(*baseController)
     client.sitesApplications = *NewSitesApplications(*baseController)
+    client.sitesAnomaly = *NewSitesAnomaly(*baseController)
     client.sitesAssetFilters = *NewSitesAssetFilters(*baseController)
     client.sitesAssets = *NewSitesAssets(*baseController)
     client.sitesBeacons = *NewSitesBeacons(*baseController)
@@ -544,15 +538,15 @@ func NewClient(configuration Configuration) ClientInterface {
     client.sitesClientsWan = *NewSitesClientsWan(*baseController)
     client.sitesClientsWired = *NewSitesClientsWired(*baseController)
     client.sitesClientsWireless = *NewSitesClientsWireless(*baseController)
-    client.sitesDeviceProfiles = *NewSitesDeviceProfiles(*baseController)
     client.sitesDevices = *NewSitesDevices(*baseController)
+    client.sitesDevicesWireless = *NewSitesDevicesWireless(*baseController)
     client.sitesDevicesOthers = *NewSitesDevicesOthers(*baseController)
-    client.sitesDevicesWANCluster = *NewSitesDevicesWANCluster(*baseController)
     client.sitesDevicesWired = *NewSitesDevicesWired(*baseController)
     client.sitesDevicesWiredVirtualChassis = *NewSitesDevicesWiredVirtualChassis(*baseController)
-    client.sitesDevicesWireless = *NewSitesDevicesWireless(*baseController)
-    client.sitesEVPNTopologies = *NewSitesEVPNTopologies(*baseController)
+    client.sitesDevicesWANCluster = *NewSitesDevicesWANCluster(*baseController)
+    client.sitesDeviceProfiles = *NewSitesDeviceProfiles(*baseController)
     client.sitesEvents = *NewSitesEvents(*baseController)
+    client.sitesEVPNTopologies = *NewSitesEVPNTopologies(*baseController)
     client.sitesGatewayTemplates = *NewSitesGatewayTemplates(*baseController)
     client.sitesGuests = *NewSitesGuests(*baseController)
     client.sitesInsights = *NewSitesInsights(*baseController)
@@ -566,32 +560,19 @@ func NewClient(configuration Configuration) ClientInterface {
     client.sitesNetworks = *NewSitesNetworks(*baseController)
     client.sitesPsks = *NewSitesPsks(*baseController)
     client.sitesRFTemplates = *NewSitesRFTemplates(*baseController)
-    client.sitesRRM = *NewSitesRRM(*baseController)
-    client.sitesRSSIZones = *NewSitesRSSIZones(*baseController)
     client.sitesRfdiags = *NewSitesRfdiags(*baseController)
     client.sitesRogues = *NewSitesRogues(*baseController)
-    client.sitesSLEs = *NewSitesSLEs(*baseController)
-    client.sitesServicePolicies = *NewSitesServicePolicies(*baseController)
+    client.sitesRRM = *NewSitesRRM(*baseController)
+    client.sitesRSSIZones = *NewSitesRSSIZones(*baseController)
     client.sitesServices = *NewSitesServices(*baseController)
+    client.sitesServicePolicies = *NewSitesServicePolicies(*baseController)
     client.sitesSetting = *NewSitesSetting(*baseController)
     client.sitesSiteTemplates = *NewSitesSiteTemplates(*baseController)
     client.sitesSkyatp = *NewSitesSkyatp(*baseController)
-    client.sitesStats = *NewSitesStats(*baseController)
-    client.sitesStatsApps = *NewSitesStatsApps(*baseController)
-    client.sitesStatsAssets = *NewSitesStatsAssets(*baseController)
-    client.sitesStatsBGPPeers = *NewSitesStatsBGPPeers(*baseController)
-    client.sitesStatsBeacons = *NewSitesStatsBeacons(*baseController)
-    client.sitesStatsCalls = *NewSitesStatsCalls(*baseController)
-    client.sitesStatsClientsSDK = *NewSitesStatsClientsSDK(*baseController)
-    client.sitesStatsClientsWireless = *NewSitesStatsClientsWireless(*baseController)
-    client.sitesStatsDevices = *NewSitesStatsDevices(*baseController)
-    client.sitesStatsDiscoveredSwitches = *NewSitesStatsDiscoveredSwitches(*baseController)
-    client.sitesStatsMxEdges = *NewSitesStatsMxEdges(*baseController)
-    client.sitesStatsPorts = *NewSitesStatsPorts(*baseController)
-    client.sitesStatsWxRules = *NewSitesStatsWxRules(*baseController)
-    client.sitesStatsZones = *NewSitesStatsZones(*baseController)
+    client.sitesSLEs = *NewSitesSLEs(*baseController)
     client.sitesSyntheticTests = *NewSitesSyntheticTests(*baseController)
     client.sitesUISettings = *NewSitesUISettings(*baseController)
+    client.sitesVBeacons = *NewSitesVBeacons(*baseController)
     client.sitesVPNs = *NewSitesVPNs(*baseController)
     client.sitesWANUsages = *NewSitesWANUsages(*baseController)
     client.sitesWebhooks = *NewSitesWebhooks(*baseController)
@@ -600,12 +581,38 @@ func NewClient(configuration Configuration) ClientInterface {
     client.sitesWxTags = *NewSitesWxTags(*baseController)
     client.sitesWxTunnels = *NewSitesWxTunnels(*baseController)
     client.sitesZones = *NewSitesZones(*baseController)
-    client.sitesVBeacons = *NewSitesVBeacons(*baseController)
+    client.sitesStats = *NewSitesStats(*baseController)
+    client.sitesStatsApps = *NewSitesStatsApps(*baseController)
+    client.sitesStatsAssets = *NewSitesStatsAssets(*baseController)
+    client.sitesStatsBeacons = *NewSitesStatsBeacons(*baseController)
+    client.sitesStatsBGPPeers = *NewSitesStatsBGPPeers(*baseController)
+    client.sitesStatsCalls = *NewSitesStatsCalls(*baseController)
+    client.sitesStatsClientsWireless = *NewSitesStatsClientsWireless(*baseController)
+    client.sitesStatsClientsSDK = *NewSitesStatsClientsSDK(*baseController)
+    client.sitesStatsDevices = *NewSitesStatsDevices(*baseController)
+    client.sitesStatsMxEdges = *NewSitesStatsMxEdges(*baseController)
+    client.sitesStatsPorts = *NewSitesStatsPorts(*baseController)
+    client.sitesStatsWxRules = *NewSitesStatsWxRules(*baseController)
+    client.sitesStatsZones = *NewSitesStatsZones(*baseController)
+    client.sitesStatsDiscoveredSwitches = *NewSitesStatsDiscoveredSwitches(*baseController)
+    client.constantsDefinitions = *NewConstantsDefinitions(*baseController)
+    client.constantsEvents = *NewConstantsEvents(*baseController)
+    client.constantsModels = *NewConstantsModels(*baseController)
+    client.constantsMisc = *NewConstantsMisc(*baseController)
+    client.selfAccount = *NewSelfAccount(*baseController)
+    client.selfAPIToken = *NewSelfAPIToken(*baseController)
+    client.selfOAuth2 = *NewSelfOAuth2(*baseController)
+    client.selfMFA = *NewSelfMFA(*baseController)
+    client.selfAlarms = *NewSelfAlarms(*baseController)
+    client.selfAuditLogs = *NewSelfAuditLogs(*baseController)
     client.utilitiesCommon = *NewUtilitiesCommon(*baseController)
+    client.utilitiesWAN = *NewUtilitiesWAN(*baseController)
     client.utilitiesLAN = *NewUtilitiesLAN(*baseController)
+    client.utilitiesWiFi = *NewUtilitiesWiFi(*baseController)
+    client.utilitiesPCAPs = *NewUtilitiesPCAPs(*baseController)
     client.utilitiesLocation = *NewUtilitiesLocation(*baseController)
     client.utilitiesMxEdge = *NewUtilitiesMxEdge(*baseController)
-    client.utilitiesWAN = *NewUtilitiesWAN(*baseController)
+    client.utilitiesUpgrade = *NewUtilitiesUpgrade(*baseController)
     return client
 }
 
@@ -619,9 +626,124 @@ func (c *client) CloneWithConfiguration(options ...ConfigurationOptions) ClientI
     return NewClient(c.configuration.cloneWithOptions(options...))
 }
 
+// Admins returns the admins instance of the client.
+func (c *client) Admins() *Admins {
+    return &c.admins
+}
+
+// AdminsLogin returns the adminsLogin instance of the client.
+func (c *client) AdminsLogin() *AdminsLogin {
+    return &c.adminsLogin
+}
+
+// AdminsLogout returns the adminsLogout instance of the client.
+func (c *client) AdminsLogout() *AdminsLogout {
+    return &c.adminsLogout
+}
+
+// AdminsRecoverPassword returns the adminsRecoverPassword instance of the client.
+func (c *client) AdminsRecoverPassword() *AdminsRecoverPassword {
+    return &c.adminsRecoverPassword
+}
+
+// AdminsLookup returns the adminsLookup instance of the client.
+func (c *client) AdminsLookup() *AdminsLookup {
+    return &c.adminsLookup
+}
+
+// AdminsLoginOAuth2 returns the adminsLoginOAuth2 instance of the client.
+func (c *client) AdminsLoginOAuth2() *AdminsLoginOAuth2 {
+    return &c.adminsLoginOAuth2
+}
+
+// Installer returns the installer instance of the client.
+func (c *client) Installer() *Installer {
+    return &c.installer
+}
+
+// MSPs returns the mSPs instance of the client.
+func (c *client) MSPs() *MSPs {
+    return &c.mSPs
+}
+
+// MSPsAdmins returns the mSPsAdmins instance of the client.
+func (c *client) MSPsAdmins() *MSPsAdmins {
+    return &c.mSPsAdmins
+}
+
+// MSPsInventory returns the mSPsInventory instance of the client.
+func (c *client) MSPsInventory() *MSPsInventory {
+    return &c.mSPsInventory
+}
+
+// MSPsLogo returns the mSPsLogo instance of the client.
+func (c *client) MSPsLogo() *MSPsLogo {
+    return &c.mSPsLogo
+}
+
+// MSPsLogs returns the mSPsLogs instance of the client.
+func (c *client) MSPsLogs() *MSPsLogs {
+    return &c.mSPsLogs
+}
+
+// MSPsLicenses returns the mSPsLicenses instance of the client.
+func (c *client) MSPsLicenses() *MSPsLicenses {
+    return &c.mSPsLicenses
+}
+
+// MSPsMarvis returns the mSPsMarvis instance of the client.
+func (c *client) MSPsMarvis() *MSPsMarvis {
+    return &c.mSPsMarvis
+}
+
+// MSPsOrgGroups returns the mSPsOrgGroups instance of the client.
+func (c *client) MSPsOrgGroups() *MSPsOrgGroups {
+    return &c.mSPsOrgGroups
+}
+
+// MSPsOrgs returns the mSPsOrgs instance of the client.
+func (c *client) MSPsOrgs() *MSPsOrgs {
+    return &c.mSPsOrgs
+}
+
+// MSPsSLEs returns the mSPsSLEs instance of the client.
+func (c *client) MSPsSLEs() *MSPsSLEs {
+    return &c.mSPsSLEs
+}
+
+// MSPsSSORoles returns the mSPsSSORoles instance of the client.
+func (c *client) MSPsSSORoles() *MSPsSSORoles {
+    return &c.mSPsSSORoles
+}
+
+// MSPsSSO returns the mSPsSSO instance of the client.
+func (c *client) MSPsSSO() *MSPsSSO {
+    return &c.mSPsSSO
+}
+
+// MSPsTickets returns the mSPsTickets instance of the client.
+func (c *client) MSPsTickets() *MSPsTickets {
+    return &c.mSPsTickets
+}
+
 // Orgs returns the orgs instance of the client.
 func (c *client) Orgs() *Orgs {
     return &c.orgs
+}
+
+// OrgsAdmins returns the orgsAdmins instance of the client.
+func (c *client) OrgsAdmins() *OrgsAdmins {
+    return &c.orgsAdmins
+}
+
+// OrgsAlarms returns the orgsAlarms instance of the client.
+func (c *client) OrgsAlarms() *OrgsAlarms {
+    return &c.orgsAlarms
+}
+
+// OrgsAlarmTemplates returns the orgsAlarmTemplates instance of the client.
+func (c *client) OrgsAlarmTemplates() *OrgsAlarmTemplates {
+    return &c.orgsAlarmTemplates
 }
 
 // OrgsAPTemplates returns the orgsAPTemplates instance of the client.
@@ -634,19 +756,9 @@ func (c *client) OrgsAPITokens() *OrgsAPITokens {
     return &c.orgsAPITokens
 }
 
-// OrgsAdmins returns the orgsAdmins instance of the client.
-func (c *client) OrgsAdmins() *OrgsAdmins {
-    return &c.orgsAdmins
-}
-
-// OrgsAlarmTemplates returns the orgsAlarmTemplates instance of the client.
-func (c *client) OrgsAlarmTemplates() *OrgsAlarmTemplates {
-    return &c.orgsAlarmTemplates
-}
-
-// OrgsAlarms returns the orgsAlarms instance of the client.
-func (c *client) OrgsAlarms() *OrgsAlarms {
-    return &c.orgsAlarms
+// OrgsAssets returns the orgsAssets instance of the client.
+func (c *client) OrgsAssets() *OrgsAssets {
+    return &c.orgsAssets
 }
 
 // OrgsAssetFilters returns the orgsAssetFilters instance of the client.
@@ -654,19 +766,14 @@ func (c *client) OrgsAssetFilters() *OrgsAssetFilters {
     return &c.orgsAssetFilters
 }
 
-// OrgsAssets returns the orgsAssets instance of the client.
-func (c *client) OrgsAssets() *OrgsAssets {
-    return &c.orgsAssets
-}
-
-// OrgsCRL returns the orgsCRL instance of the client.
-func (c *client) OrgsCRL() *OrgsCRL {
-    return &c.orgsCRL
-}
-
 // OrgsCert returns the orgsCert instance of the client.
 func (c *client) OrgsCert() *OrgsCert {
     return &c.orgsCert
+}
+
+// OrgsAntivirusProfiles returns the orgsAntivirusProfiles instance of the client.
+func (c *client) OrgsAntivirusProfiles() *OrgsAntivirusProfiles {
+    return &c.orgsAntivirusProfiles
 }
 
 // OrgsClientsMarvis returns the orgsClientsMarvis instance of the client.
@@ -677,11 +784,6 @@ func (c *client) OrgsClientsMarvis() *OrgsClientsMarvis {
 // OrgsClientsNAC returns the orgsClientsNAC instance of the client.
 func (c *client) OrgsClientsNAC() *OrgsClientsNAC {
     return &c.orgsClientsNAC
-}
-
-// OrgsClientsSDK returns the orgsClientsSDK instance of the client.
-func (c *client) OrgsClientsSDK() *OrgsClientsSDK {
-    return &c.orgsClientsSDK
 }
 
 // OrgsClientsWan returns the orgsClientsWan instance of the client.
@@ -699,9 +801,19 @@ func (c *client) OrgsClientsWireless() *OrgsClientsWireless {
     return &c.orgsClientsWireless
 }
 
+// OrgsClientsSDK returns the orgsClientsSDK instance of the client.
+func (c *client) OrgsClientsSDK() *OrgsClientsSDK {
+    return &c.orgsClientsSDK
+}
+
 // OrgsCradlepoint returns the orgsCradlepoint instance of the client.
 func (c *client) OrgsCradlepoint() *OrgsCradlepoint {
     return &c.orgsCradlepoint
+}
+
+// OrgsCRL returns the orgsCRL instance of the client.
+func (c *client) OrgsCRL() *OrgsCRL {
+    return &c.orgsCRL
 }
 
 // OrgsDeviceProfiles returns the orgsDeviceProfiles instance of the client.
@@ -714,11 +826,6 @@ func (c *client) OrgsDevices() *OrgsDevices {
     return &c.orgsDevices
 }
 
-// OrgsDevicesOthers returns the orgsDevicesOthers instance of the client.
-func (c *client) OrgsDevicesOthers() *OrgsDevicesOthers {
-    return &c.orgsDevicesOthers
-}
-
 // OrgsDevicesSSR returns the orgsDevicesSSR instance of the client.
 func (c *client) OrgsDevicesSSR() *OrgsDevicesSSR {
     return &c.orgsDevicesSSR
@@ -727,6 +834,21 @@ func (c *client) OrgsDevicesSSR() *OrgsDevicesSSR {
 // OrgsEVPNTopologies returns the orgsEVPNTopologies instance of the client.
 func (c *client) OrgsEVPNTopologies() *OrgsEVPNTopologies {
     return &c.orgsEVPNTopologies
+}
+
+// OrgsDevicesOthers returns the orgsDevicesOthers instance of the client.
+func (c *client) OrgsDevicesOthers() *OrgsDevicesOthers {
+    return &c.orgsDevicesOthers
+}
+
+// OrgsSettingZscaler returns the orgsSettingZscaler instance of the client.
+func (c *client) OrgsSettingZscaler() *OrgsSettingZscaler {
+    return &c.orgsSettingZscaler
+}
+
+// OrgsSCEP returns the orgsSCEP instance of the client.
+func (c *client) OrgsSCEP() *OrgsSCEP {
+    return &c.orgsSCEP
 }
 
 // OrgsGatewayTemplates returns the orgsGatewayTemplates instance of the client.
@@ -774,14 +896,14 @@ func (c *client) OrgsLogs() *OrgsLogs {
     return &c.orgsLogs
 }
 
-// OrgsMaps returns the orgsMaps instance of the client.
-func (c *client) OrgsMaps() *OrgsMaps {
-    return &c.orgsMaps
-}
-
 // OrgsMarvis returns the orgsMarvis instance of the client.
 func (c *client) OrgsMarvis() *OrgsMarvis {
     return &c.orgsMarvis
+}
+
+// OrgsMaps returns the orgsMaps instance of the client.
+func (c *client) OrgsMaps() *OrgsMaps {
+    return &c.orgsMaps
 }
 
 // OrgsMxClusters returns the orgsMxClusters instance of the client.
@@ -799,24 +921,9 @@ func (c *client) OrgsMxTunnels() *OrgsMxTunnels {
     return &c.orgsMxTunnels
 }
 
-// OrgsNACCRL returns the orgsNACCRL instance of the client.
-func (c *client) OrgsNACCRL() *OrgsNACCRL {
-    return &c.orgsNACCRL
-}
-
 // OrgsNACIDP returns the orgsNACIDP instance of the client.
 func (c *client) OrgsNACIDP() *OrgsNACIDP {
     return &c.orgsNACIDP
-}
-
-// OrgsNACPortals returns the orgsNACPortals instance of the client.
-func (c *client) OrgsNACPortals() *OrgsNACPortals {
-    return &c.orgsNACPortals
-}
-
-// OrgsNACRules returns the orgsNACRules instance of the client.
-func (c *client) OrgsNACRules() *OrgsNACRules {
-    return &c.orgsNACRules
 }
 
 // OrgsNACTags returns the orgsNACTags instance of the client.
@@ -824,99 +931,14 @@ func (c *client) OrgsNACTags() *OrgsNACTags {
     return &c.orgsNACTags
 }
 
-// OrgsNetworkTemplates returns the orgsNetworkTemplates instance of the client.
-func (c *client) OrgsNetworkTemplates() *OrgsNetworkTemplates {
-    return &c.orgsNetworkTemplates
+// OrgsNACPortals returns the orgsNACPortals instance of the client.
+func (c *client) OrgsNACPortals() *OrgsNACPortals {
+    return &c.orgsNACPortals
 }
 
-// OrgsNetworks returns the orgsNetworks instance of the client.
-func (c *client) OrgsNetworks() *OrgsNetworks {
-    return &c.orgsNetworks
-}
-
-// OrgsPremiumAnalytics returns the orgsPremiumAnalytics instance of the client.
-func (c *client) OrgsPremiumAnalytics() *OrgsPremiumAnalytics {
-    return &c.orgsPremiumAnalytics
-}
-
-// OrgsPskPortals returns the orgsPskPortals instance of the client.
-func (c *client) OrgsPskPortals() *OrgsPskPortals {
-    return &c.orgsPskPortals
-}
-
-// OrgsPsks returns the orgsPsks instance of the client.
-func (c *client) OrgsPsks() *OrgsPsks {
-    return &c.orgsPsks
-}
-
-// OrgsRFTemplates returns the orgsRFTemplates instance of the client.
-func (c *client) OrgsRFTemplates() *OrgsRFTemplates {
-    return &c.orgsRFTemplates
-}
-
-// OrgsSDKInvites returns the orgsSDKInvites instance of the client.
-func (c *client) OrgsSDKInvites() *OrgsSDKInvites {
-    return &c.orgsSDKInvites
-}
-
-// OrgsSDKTemplates returns the orgsSDKTemplates instance of the client.
-func (c *client) OrgsSDKTemplates() *OrgsSDKTemplates {
-    return &c.orgsSDKTemplates
-}
-
-// OrgsSLEs returns the orgsSLEs instance of the client.
-func (c *client) OrgsSLEs() *OrgsSLEs {
-    return &c.orgsSLEs
-}
-
-// OrgsSSO returns the orgsSSO instance of the client.
-func (c *client) OrgsSSO() *OrgsSSO {
-    return &c.orgsSSO
-}
-
-// OrgsSSORoles returns the orgsSSORoles instance of the client.
-func (c *client) OrgsSSORoles() *OrgsSSORoles {
-    return &c.orgsSSORoles
-}
-
-// OrgsSecPolicies returns the orgsSecPolicies instance of the client.
-func (c *client) OrgsSecPolicies() *OrgsSecPolicies {
-    return &c.orgsSecPolicies
-}
-
-// OrgsServicePolicies returns the orgsServicePolicies instance of the client.
-func (c *client) OrgsServicePolicies() *OrgsServicePolicies {
-    return &c.orgsServicePolicies
-}
-
-// OrgsServices returns the orgsServices instance of the client.
-func (c *client) OrgsServices() *OrgsServices {
-    return &c.orgsServices
-}
-
-// OrgsSetting returns the orgsSetting instance of the client.
-func (c *client) OrgsSetting() *OrgsSetting {
-    return &c.orgsSetting
-}
-
-// OrgsSettingZscaler returns the orgsSettingZscaler instance of the client.
-func (c *client) OrgsSettingZscaler() *OrgsSettingZscaler {
-    return &c.orgsSettingZscaler
-}
-
-// OrgsSiteTemplates returns the orgsSiteTemplates instance of the client.
-func (c *client) OrgsSiteTemplates() *OrgsSiteTemplates {
-    return &c.orgsSiteTemplates
-}
-
-// OrgsSitegroups returns the orgsSitegroups instance of the client.
-func (c *client) OrgsSitegroups() *OrgsSitegroups {
-    return &c.orgsSitegroups
-}
-
-// OrgsSites returns the orgsSites instance of the client.
-func (c *client) OrgsSites() *OrgsSites {
-    return &c.orgsSites
+// OrgsNACCRL returns the orgsNACCRL instance of the client.
+func (c *client) OrgsNACCRL() *OrgsNACCRL {
+    return &c.orgsNACCRL
 }
 
 // OrgsStats returns the orgsStats instance of the client.
@@ -964,9 +986,109 @@ func (c *client) OrgsStatsVPNPeers() *OrgsStatsVPNPeers {
     return &c.orgsStatsVPNPeers
 }
 
+// OrgsNACRules returns the orgsNACRules instance of the client.
+func (c *client) OrgsNACRules() *OrgsNACRules {
+    return &c.orgsNACRules
+}
+
+// OrgsNetworkTemplates returns the orgsNetworkTemplates instance of the client.
+func (c *client) OrgsNetworkTemplates() *OrgsNetworkTemplates {
+    return &c.orgsNetworkTemplates
+}
+
+// OrgsNetworks returns the orgsNetworks instance of the client.
+func (c *client) OrgsNetworks() *OrgsNetworks {
+    return &c.orgsNetworks
+}
+
+// OrgsPremiumAnalytics returns the orgsPremiumAnalytics instance of the client.
+func (c *client) OrgsPremiumAnalytics() *OrgsPremiumAnalytics {
+    return &c.orgsPremiumAnalytics
+}
+
+// OrgsPsks returns the orgsPsks instance of the client.
+func (c *client) OrgsPsks() *OrgsPsks {
+    return &c.orgsPsks
+}
+
+// OrgsPskPortals returns the orgsPskPortals instance of the client.
+func (c *client) OrgsPskPortals() *OrgsPskPortals {
+    return &c.orgsPskPortals
+}
+
+// OrgsRFTemplates returns the orgsRFTemplates instance of the client.
+func (c *client) OrgsRFTemplates() *OrgsRFTemplates {
+    return &c.orgsRFTemplates
+}
+
+// OrgsSDKInvites returns the orgsSDKInvites instance of the client.
+func (c *client) OrgsSDKInvites() *OrgsSDKInvites {
+    return &c.orgsSDKInvites
+}
+
+// OrgsSDKTemplates returns the orgsSDKTemplates instance of the client.
+func (c *client) OrgsSDKTemplates() *OrgsSDKTemplates {
+    return &c.orgsSDKTemplates
+}
+
+// OrgsSecPolicies returns the orgsSecPolicies instance of the client.
+func (c *client) OrgsSecPolicies() *OrgsSecPolicies {
+    return &c.orgsSecPolicies
+}
+
+// OrgsServices returns the orgsServices instance of the client.
+func (c *client) OrgsServices() *OrgsServices {
+    return &c.orgsServices
+}
+
+// OrgsServicePolicies returns the orgsServicePolicies instance of the client.
+func (c *client) OrgsServicePolicies() *OrgsServicePolicies {
+    return &c.orgsServicePolicies
+}
+
+// OrgsSetting returns the orgsSetting instance of the client.
+func (c *client) OrgsSetting() *OrgsSetting {
+    return &c.orgsSetting
+}
+
+// OrgsSitegroups returns the orgsSitegroups instance of the client.
+func (c *client) OrgsSitegroups() *OrgsSitegroups {
+    return &c.orgsSitegroups
+}
+
+// OrgsSites returns the orgsSites instance of the client.
+func (c *client) OrgsSites() *OrgsSites {
+    return &c.orgsSites
+}
+
+// OrgsSiteTemplates returns the orgsSiteTemplates instance of the client.
+func (c *client) OrgsSiteTemplates() *OrgsSiteTemplates {
+    return &c.orgsSiteTemplates
+}
+
+// OrgsSLEs returns the orgsSLEs instance of the client.
+func (c *client) OrgsSLEs() *OrgsSLEs {
+    return &c.orgsSLEs
+}
+
+// OrgsSSORoles returns the orgsSSORoles instance of the client.
+func (c *client) OrgsSSORoles() *OrgsSSORoles {
+    return &c.orgsSSORoles
+}
+
+// OrgsSSO returns the orgsSSO instance of the client.
+func (c *client) OrgsSSO() *OrgsSSO {
+    return &c.orgsSSO
+}
+
 // OrgsSubscriptions returns the orgsSubscriptions instance of the client.
 func (c *client) OrgsSubscriptions() *OrgsSubscriptions {
     return &c.orgsSubscriptions
+}
+
+// OrgsWLANTemplates returns the orgsWLANTemplates instance of the client.
+func (c *client) OrgsWLANTemplates() *OrgsWLANTemplates {
+    return &c.orgsWLANTemplates
 }
 
 // OrgsTickets returns the orgsTickets instance of the client.
@@ -979,19 +1101,14 @@ func (c *client) OrgsUserMACs() *OrgsUserMACs {
     return &c.orgsUserMACs
 }
 
-// OrgsVPNs returns the orgsVPNs instance of the client.
-func (c *client) OrgsVPNs() *OrgsVPNs {
-    return &c.orgsVPNs
-}
-
 // OrgsVars returns the orgsVars instance of the client.
 func (c *client) OrgsVars() *OrgsVars {
     return &c.orgsVars
 }
 
-// OrgsWLANTemplates returns the orgsWLANTemplates instance of the client.
-func (c *client) OrgsWLANTemplates() *OrgsWLANTemplates {
-    return &c.orgsWLANTemplates
+// OrgsVPNs returns the orgsVPNs instance of the client.
+func (c *client) OrgsVPNs() *OrgsVPNs {
+    return &c.orgsVPNs
 }
 
 // OrgsWebhooks returns the orgsWebhooks instance of the client.
@@ -1019,180 +1136,9 @@ func (c *client) OrgsWxTunnels() *OrgsWxTunnels {
     return &c.orgsWxTunnels
 }
 
-// UtilitiesPCAPs returns the utilitiesPCAPs instance of the client.
-func (c *client) UtilitiesPCAPs() *UtilitiesPCAPs {
-    return &c.utilitiesPCAPs
-}
-
-// UtilitiesUpgrade returns the utilitiesUpgrade instance of the client.
-func (c *client) UtilitiesUpgrade() *UtilitiesUpgrade {
-    return &c.utilitiesUpgrade
-}
-
-// UtilitiesWiFi returns the utilitiesWiFi instance of the client.
-func (c *client) UtilitiesWiFi() *UtilitiesWiFi {
-    return &c.utilitiesWiFi
-}
-
-// Installer returns the installer instance of the client.
-func (c *client) Installer() *Installer {
-    return &c.installer
-}
-
-// Admins returns the admins instance of the client.
-func (c *client) Admins() *Admins {
-    return &c.admins
-}
-
-// AdminsLogin returns the adminsLogin instance of the client.
-func (c *client) AdminsLogin() *AdminsLogin {
-    return &c.adminsLogin
-}
-
-// AdminsLoginOAuth2 returns the adminsLoginOAuth2 instance of the client.
-func (c *client) AdminsLoginOAuth2() *AdminsLoginOAuth2 {
-    return &c.adminsLoginOAuth2
-}
-
-// AdminsLogout returns the adminsLogout instance of the client.
-func (c *client) AdminsLogout() *AdminsLogout {
-    return &c.adminsLogout
-}
-
-// AdminsLookup returns the adminsLookup instance of the client.
-func (c *client) AdminsLookup() *AdminsLookup {
-    return &c.adminsLookup
-}
-
-// AdminsRecoverPassword returns the adminsRecoverPassword instance of the client.
-func (c *client) AdminsRecoverPassword() *AdminsRecoverPassword {
-    return &c.adminsRecoverPassword
-}
-
-// ConstantsDefinitions returns the constantsDefinitions instance of the client.
-func (c *client) ConstantsDefinitions() *ConstantsDefinitions {
-    return &c.constantsDefinitions
-}
-
-// ConstantsEvents returns the constantsEvents instance of the client.
-func (c *client) ConstantsEvents() *ConstantsEvents {
-    return &c.constantsEvents
-}
-
-// ConstantsMisc returns the constantsMisc instance of the client.
-func (c *client) ConstantsMisc() *ConstantsMisc {
-    return &c.constantsMisc
-}
-
-// ConstantsModels returns the constantsModels instance of the client.
-func (c *client) ConstantsModels() *ConstantsModels {
-    return &c.constantsModels
-}
-
-
-// SelfAPIToken returns the selfAPIToken instance of the client.
-func (c *client) SelfAPIToken() *SelfAPIToken {
-    return &c.selfAPIToken
-}
-
-// SelfAccount returns the selfAccount instance of the client.
-func (c *client) SelfAccount() *SelfAccount {
-    return &c.selfAccount
-}
-
-// SelfAlarms returns the selfAlarms instance of the client.
-func (c *client) SelfAlarms() *SelfAlarms {
-    return &c.selfAlarms
-}
-
-// SelfAuditLogs returns the selfAuditLogs instance of the client.
-func (c *client) SelfAuditLogs() *SelfAuditLogs {
-    return &c.selfAuditLogs
-}
-
-// SelfMFA returns the selfMFA instance of the client.
-func (c *client) SelfMFA() *SelfMFA {
-    return &c.selfMFA
-}
-
-// SelfOAuth2 returns the selfOAuth2 instance of the client.
-func (c *client) SelfOAuth2() *SelfOAuth2 {
-    return &c.selfOAuth2
-}
-
-// MSPs returns the mSPs instance of the client.
-func (c *client) MSPs() *MSPs {
-    return &c.mSPs
-}
-
-// MSPsAdmins returns the mSPsAdmins instance of the client.
-func (c *client) MSPsAdmins() *MSPsAdmins {
-    return &c.mSPsAdmins
-}
-
-// MSPsInventory returns the mSPsInventory instance of the client.
-func (c *client) MSPsInventory() *MSPsInventory {
-    return &c.mSPsInventory
-}
-
-// MSPsLicenses returns the mSPsLicenses instance of the client.
-func (c *client) MSPsLicenses() *MSPsLicenses {
-    return &c.mSPsLicenses
-}
-
-// MSPsLogo returns the mSPsLogo instance of the client.
-func (c *client) MSPsLogo() *MSPsLogo {
-    return &c.mSPsLogo
-}
-
-// MSPsLogs returns the mSPsLogs instance of the client.
-func (c *client) MSPsLogs() *MSPsLogs {
-    return &c.mSPsLogs
-}
-
-// MSPsMarvis returns the mSPsMarvis instance of the client.
-func (c *client) MSPsMarvis() *MSPsMarvis {
-    return &c.mSPsMarvis
-}
-
-// MSPsOrgGroups returns the mSPsOrgGroups instance of the client.
-func (c *client) MSPsOrgGroups() *MSPsOrgGroups {
-    return &c.mSPsOrgGroups
-}
-
-// MSPsOrgs returns the mSPsOrgs instance of the client.
-func (c *client) MSPsOrgs() *MSPsOrgs {
-    return &c.mSPsOrgs
-}
-
-// MSPsSLEs returns the mSPsSLEs instance of the client.
-func (c *client) MSPsSLEs() *MSPsSLEs {
-    return &c.mSPsSLEs
-}
-
-// MSPsSSO returns the mSPsSSO instance of the client.
-func (c *client) MSPsSSO() *MSPsSSO {
-    return &c.mSPsSSO
-}
-
-// MSPsSSORoles returns the mSPsSSORoles instance of the client.
-func (c *client) MSPsSSORoles() *MSPsSSORoles {
-    return &c.mSPsSSORoles
-}
-
-// MSPsTickets returns the mSPsTickets instance of the client.
-func (c *client) MSPsTickets() *MSPsTickets {
-    return &c.mSPsTickets
-}
-
 // Sites returns the sites instance of the client.
 func (c *client) Sites() *Sites {
     return &c.sites
-}
-
-// SitesAPTemplates returns the sitesAPTemplates instance of the client.
-func (c *client) SitesAPTemplates() *SitesAPTemplates {
-    return &c.sitesAPTemplates
 }
 
 // SitesAlarms returns the sitesAlarms instance of the client.
@@ -1200,14 +1146,19 @@ func (c *client) SitesAlarms() *SitesAlarms {
     return &c.sitesAlarms
 }
 
-// SitesAnomaly returns the sitesAnomaly instance of the client.
-func (c *client) SitesAnomaly() *SitesAnomaly {
-    return &c.sitesAnomaly
+// SitesAPTemplates returns the sitesAPTemplates instance of the client.
+func (c *client) SitesAPTemplates() *SitesAPTemplates {
+    return &c.sitesAPTemplates
 }
 
 // SitesApplications returns the sitesApplications instance of the client.
 func (c *client) SitesApplications() *SitesApplications {
     return &c.sitesApplications
+}
+
+// SitesAnomaly returns the sitesAnomaly instance of the client.
+func (c *client) SitesAnomaly() *SitesAnomaly {
+    return &c.sitesAnomaly
 }
 
 // SitesAssetFilters returns the sitesAssetFilters instance of the client.
@@ -1245,24 +1196,19 @@ func (c *client) SitesClientsWireless() *SitesClientsWireless {
     return &c.sitesClientsWireless
 }
 
-// SitesDeviceProfiles returns the sitesDeviceProfiles instance of the client.
-func (c *client) SitesDeviceProfiles() *SitesDeviceProfiles {
-    return &c.sitesDeviceProfiles
-}
-
 // SitesDevices returns the sitesDevices instance of the client.
 func (c *client) SitesDevices() *SitesDevices {
     return &c.sitesDevices
 }
 
+// SitesDevicesWireless returns the sitesDevicesWireless instance of the client.
+func (c *client) SitesDevicesWireless() *SitesDevicesWireless {
+    return &c.sitesDevicesWireless
+}
+
 // SitesDevicesOthers returns the sitesDevicesOthers instance of the client.
 func (c *client) SitesDevicesOthers() *SitesDevicesOthers {
     return &c.sitesDevicesOthers
-}
-
-// SitesDevicesWANCluster returns the sitesDevicesWANCluster instance of the client.
-func (c *client) SitesDevicesWANCluster() *SitesDevicesWANCluster {
-    return &c.sitesDevicesWANCluster
 }
 
 // SitesDevicesWired returns the sitesDevicesWired instance of the client.
@@ -1275,19 +1221,24 @@ func (c *client) SitesDevicesWiredVirtualChassis() *SitesDevicesWiredVirtualChas
     return &c.sitesDevicesWiredVirtualChassis
 }
 
-// SitesDevicesWireless returns the sitesDevicesWireless instance of the client.
-func (c *client) SitesDevicesWireless() *SitesDevicesWireless {
-    return &c.sitesDevicesWireless
+// SitesDevicesWANCluster returns the sitesDevicesWANCluster instance of the client.
+func (c *client) SitesDevicesWANCluster() *SitesDevicesWANCluster {
+    return &c.sitesDevicesWANCluster
 }
 
-// SitesEVPNTopologies returns the sitesEVPNTopologies instance of the client.
-func (c *client) SitesEVPNTopologies() *SitesEVPNTopologies {
-    return &c.sitesEVPNTopologies
+// SitesDeviceProfiles returns the sitesDeviceProfiles instance of the client.
+func (c *client) SitesDeviceProfiles() *SitesDeviceProfiles {
+    return &c.sitesDeviceProfiles
 }
 
 // SitesEvents returns the sitesEvents instance of the client.
 func (c *client) SitesEvents() *SitesEvents {
     return &c.sitesEvents
+}
+
+// SitesEVPNTopologies returns the sitesEVPNTopologies instance of the client.
+func (c *client) SitesEVPNTopologies() *SitesEVPNTopologies {
+    return &c.sitesEVPNTopologies
 }
 
 // SitesGatewayTemplates returns the sitesGatewayTemplates instance of the client.
@@ -1355,16 +1306,6 @@ func (c *client) SitesRFTemplates() *SitesRFTemplates {
     return &c.sitesRFTemplates
 }
 
-// SitesRRM returns the sitesRRM instance of the client.
-func (c *client) SitesRRM() *SitesRRM {
-    return &c.sitesRRM
-}
-
-// SitesRSSIZones returns the sitesRSSIZones instance of the client.
-func (c *client) SitesRSSIZones() *SitesRSSIZones {
-    return &c.sitesRSSIZones
-}
-
 // SitesRfdiags returns the sitesRfdiags instance of the client.
 func (c *client) SitesRfdiags() *SitesRfdiags {
     return &c.sitesRfdiags
@@ -1375,19 +1316,24 @@ func (c *client) SitesRogues() *SitesRogues {
     return &c.sitesRogues
 }
 
-// SitesSLEs returns the sitesSLEs instance of the client.
-func (c *client) SitesSLEs() *SitesSLEs {
-    return &c.sitesSLEs
+// SitesRRM returns the sitesRRM instance of the client.
+func (c *client) SitesRRM() *SitesRRM {
+    return &c.sitesRRM
 }
 
-// SitesServicePolicies returns the sitesServicePolicies instance of the client.
-func (c *client) SitesServicePolicies() *SitesServicePolicies {
-    return &c.sitesServicePolicies
+// SitesRSSIZones returns the sitesRSSIZones instance of the client.
+func (c *client) SitesRSSIZones() *SitesRSSIZones {
+    return &c.sitesRSSIZones
 }
 
 // SitesServices returns the sitesServices instance of the client.
 func (c *client) SitesServices() *SitesServices {
     return &c.sitesServices
+}
+
+// SitesServicePolicies returns the sitesServicePolicies instance of the client.
+func (c *client) SitesServicePolicies() *SitesServicePolicies {
+    return &c.sitesServicePolicies
 }
 
 // SitesSetting returns the sitesSetting instance of the client.
@@ -1405,74 +1351,9 @@ func (c *client) SitesSkyatp() *SitesSkyatp {
     return &c.sitesSkyatp
 }
 
-// SitesStats returns the sitesStats instance of the client.
-func (c *client) SitesStats() *SitesStats {
-    return &c.sitesStats
-}
-
-// SitesStatsApps returns the sitesStatsApps instance of the client.
-func (c *client) SitesStatsApps() *SitesStatsApps {
-    return &c.sitesStatsApps
-}
-
-// SitesStatsAssets returns the sitesStatsAssets instance of the client.
-func (c *client) SitesStatsAssets() *SitesStatsAssets {
-    return &c.sitesStatsAssets
-}
-
-// SitesStatsBGPPeers returns the sitesStatsBGPPeers instance of the client.
-func (c *client) SitesStatsBGPPeers() *SitesStatsBGPPeers {
-    return &c.sitesStatsBGPPeers
-}
-
-// SitesStatsBeacons returns the sitesStatsBeacons instance of the client.
-func (c *client) SitesStatsBeacons() *SitesStatsBeacons {
-    return &c.sitesStatsBeacons
-}
-
-// SitesStatsCalls returns the sitesStatsCalls instance of the client.
-func (c *client) SitesStatsCalls() *SitesStatsCalls {
-    return &c.sitesStatsCalls
-}
-
-// SitesStatsClientsSDK returns the sitesStatsClientsSDK instance of the client.
-func (c *client) SitesStatsClientsSDK() *SitesStatsClientsSDK {
-    return &c.sitesStatsClientsSDK
-}
-
-// SitesStatsClientsWireless returns the sitesStatsClientsWireless instance of the client.
-func (c *client) SitesStatsClientsWireless() *SitesStatsClientsWireless {
-    return &c.sitesStatsClientsWireless
-}
-
-// SitesStatsDevices returns the sitesStatsDevices instance of the client.
-func (c *client) SitesStatsDevices() *SitesStatsDevices {
-    return &c.sitesStatsDevices
-}
-
-// SitesStatsDiscoveredSwitches returns the sitesStatsDiscoveredSwitches instance of the client.
-func (c *client) SitesStatsDiscoveredSwitches() *SitesStatsDiscoveredSwitches {
-    return &c.sitesStatsDiscoveredSwitches
-}
-
-// SitesStatsMxEdges returns the sitesStatsMxEdges instance of the client.
-func (c *client) SitesStatsMxEdges() *SitesStatsMxEdges {
-    return &c.sitesStatsMxEdges
-}
-
-// SitesStatsPorts returns the sitesStatsPorts instance of the client.
-func (c *client) SitesStatsPorts() *SitesStatsPorts {
-    return &c.sitesStatsPorts
-}
-
-// SitesStatsWxRules returns the sitesStatsWxRules instance of the client.
-func (c *client) SitesStatsWxRules() *SitesStatsWxRules {
-    return &c.sitesStatsWxRules
-}
-
-// SitesStatsZones returns the sitesStatsZones instance of the client.
-func (c *client) SitesStatsZones() *SitesStatsZones {
-    return &c.sitesStatsZones
+// SitesSLEs returns the sitesSLEs instance of the client.
+func (c *client) SitesSLEs() *SitesSLEs {
+    return &c.sitesSLEs
 }
 
 // SitesSyntheticTests returns the sitesSyntheticTests instance of the client.
@@ -1483,6 +1364,11 @@ func (c *client) SitesSyntheticTests() *SitesSyntheticTests {
 // SitesUISettings returns the sitesUISettings instance of the client.
 func (c *client) SitesUISettings() *SitesUISettings {
     return &c.sitesUISettings
+}
+
+// SitesVBeacons returns the sitesVBeacons instance of the client.
+func (c *client) SitesVBeacons() *SitesVBeacons {
+    return &c.sitesVBeacons
 }
 
 // SitesVPNs returns the sitesVPNs instance of the client.
@@ -1525,19 +1411,150 @@ func (c *client) SitesZones() *SitesZones {
     return &c.sitesZones
 }
 
-// SitesVBeacons returns the sitesVBeacons instance of the client.
-func (c *client) SitesVBeacons() *SitesVBeacons {
-    return &c.sitesVBeacons
+// SitesStats returns the sitesStats instance of the client.
+func (c *client) SitesStats() *SitesStats {
+    return &c.sitesStats
 }
+
+// SitesStatsApps returns the sitesStatsApps instance of the client.
+func (c *client) SitesStatsApps() *SitesStatsApps {
+    return &c.sitesStatsApps
+}
+
+// SitesStatsAssets returns the sitesStatsAssets instance of the client.
+func (c *client) SitesStatsAssets() *SitesStatsAssets {
+    return &c.sitesStatsAssets
+}
+
+// SitesStatsBeacons returns the sitesStatsBeacons instance of the client.
+func (c *client) SitesStatsBeacons() *SitesStatsBeacons {
+    return &c.sitesStatsBeacons
+}
+
+// SitesStatsBGPPeers returns the sitesStatsBGPPeers instance of the client.
+func (c *client) SitesStatsBGPPeers() *SitesStatsBGPPeers {
+    return &c.sitesStatsBGPPeers
+}
+
+// SitesStatsCalls returns the sitesStatsCalls instance of the client.
+func (c *client) SitesStatsCalls() *SitesStatsCalls {
+    return &c.sitesStatsCalls
+}
+
+// SitesStatsClientsWireless returns the sitesStatsClientsWireless instance of the client.
+func (c *client) SitesStatsClientsWireless() *SitesStatsClientsWireless {
+    return &c.sitesStatsClientsWireless
+}
+
+// SitesStatsClientsSDK returns the sitesStatsClientsSDK instance of the client.
+func (c *client) SitesStatsClientsSDK() *SitesStatsClientsSDK {
+    return &c.sitesStatsClientsSDK
+}
+
+// SitesStatsDevices returns the sitesStatsDevices instance of the client.
+func (c *client) SitesStatsDevices() *SitesStatsDevices {
+    return &c.sitesStatsDevices
+}
+
+// SitesStatsMxEdges returns the sitesStatsMxEdges instance of the client.
+func (c *client) SitesStatsMxEdges() *SitesStatsMxEdges {
+    return &c.sitesStatsMxEdges
+}
+
+// SitesStatsPorts returns the sitesStatsPorts instance of the client.
+func (c *client) SitesStatsPorts() *SitesStatsPorts {
+    return &c.sitesStatsPorts
+}
+
+// SitesStatsWxRules returns the sitesStatsWxRules instance of the client.
+func (c *client) SitesStatsWxRules() *SitesStatsWxRules {
+    return &c.sitesStatsWxRules
+}
+
+// SitesStatsZones returns the sitesStatsZones instance of the client.
+func (c *client) SitesStatsZones() *SitesStatsZones {
+    return &c.sitesStatsZones
+}
+
+// SitesStatsDiscoveredSwitches returns the sitesStatsDiscoveredSwitches instance of the client.
+func (c *client) SitesStatsDiscoveredSwitches() *SitesStatsDiscoveredSwitches {
+    return &c.sitesStatsDiscoveredSwitches
+}
+
+// ConstantsDefinitions returns the constantsDefinitions instance of the client.
+func (c *client) ConstantsDefinitions() *ConstantsDefinitions {
+    return &c.constantsDefinitions
+}
+
+// ConstantsEvents returns the constantsEvents instance of the client.
+func (c *client) ConstantsEvents() *ConstantsEvents {
+    return &c.constantsEvents
+}
+
+// ConstantsModels returns the constantsModels instance of the client.
+func (c *client) ConstantsModels() *ConstantsModels {
+    return &c.constantsModels
+}
+
+// ConstantsMisc returns the constantsMisc instance of the client.
+func (c *client) ConstantsMisc() *ConstantsMisc {
+    return &c.constantsMisc
+}
+
+// SelfAccount returns the selfAccount instance of the client.
+func (c *client) SelfAccount() *SelfAccount {
+    return &c.selfAccount
+}
+
+// SelfAPIToken returns the selfAPIToken instance of the client.
+func (c *client) SelfAPIToken() *SelfAPIToken {
+    return &c.selfAPIToken
+}
+
+// SelfOAuth2 returns the selfOAuth2 instance of the client.
+func (c *client) SelfOAuth2() *SelfOAuth2 {
+    return &c.selfOAuth2
+}
+
+// SelfMFA returns the selfMFA instance of the client.
+func (c *client) SelfMFA() *SelfMFA {
+    return &c.selfMFA
+}
+
+// SelfAlarms returns the selfAlarms instance of the client.
+func (c *client) SelfAlarms() *SelfAlarms {
+    return &c.selfAlarms
+}
+
+// SelfAuditLogs returns the selfAuditLogs instance of the client.
+func (c *client) SelfAuditLogs() *SelfAuditLogs {
+    return &c.selfAuditLogs
+}
+
 
 // UtilitiesCommon returns the utilitiesCommon instance of the client.
 func (c *client) UtilitiesCommon() *UtilitiesCommon {
     return &c.utilitiesCommon
 }
 
+// UtilitiesWAN returns the utilitiesWAN instance of the client.
+func (c *client) UtilitiesWAN() *UtilitiesWAN {
+    return &c.utilitiesWAN
+}
+
 // UtilitiesLAN returns the utilitiesLAN instance of the client.
 func (c *client) UtilitiesLAN() *UtilitiesLAN {
     return &c.utilitiesLAN
+}
+
+// UtilitiesWiFi returns the utilitiesWiFi instance of the client.
+func (c *client) UtilitiesWiFi() *UtilitiesWiFi {
+    return &c.utilitiesWiFi
+}
+
+// UtilitiesPCAPs returns the utilitiesPCAPs instance of the client.
+func (c *client) UtilitiesPCAPs() *UtilitiesPCAPs {
+    return &c.utilitiesPCAPs
 }
 
 // UtilitiesLocation returns the utilitiesLocation instance of the client.
@@ -1550,9 +1567,9 @@ func (c *client) UtilitiesMxEdge() *UtilitiesMxEdge {
     return &c.utilitiesMxEdge
 }
 
-// UtilitiesWAN returns the utilitiesWAN instance of the client.
-func (c *client) UtilitiesWAN() *UtilitiesWAN {
-    return &c.utilitiesWAN
+// UtilitiesUpgrade returns the utilitiesUpgrade instance of the client.
+func (c *client) UtilitiesUpgrade() *UtilitiesUpgrade {
+    return &c.utilitiesUpgrade
 }
 
 // UserAgent returns the userAgent instance of the client.
@@ -1574,44 +1591,12 @@ func getBaseUri(
             return "https://api.mistsys.com"
         }
     }
-    if configuration.Environment() == Environment(MIST_GLOBAL_01) {
+    if configuration.Environment() == Environment(PRODUCTION) {
+        if server == Server(ENUMDEFAULT) {
+            return fmt.Sprintf("https://%v", configuration.DefaultHost())
+        }
         if server == Server(APIHOST) {
             return "https://api.mist.com"
-        }
-    }
-    if configuration.Environment() == Environment(MIST_GLOBAL_02) {
-        if server == Server(APIHOST) {
-            return "https://api.gc1.mist.com"
-        }
-    }
-    if configuration.Environment() == Environment(MIST_GLOBAL_03) {
-        if server == Server(APIHOST) {
-            return "https://api.ac2.mist.com"
-        }
-    }
-    if configuration.Environment() == Environment(MIST_GLOBAL_04) {
-        if server == Server(APIHOST) {
-            return "https://api.gc2.mist.com"
-        }
-    }
-    if configuration.Environment() == Environment(MIST_EMEA_01) {
-        if server == Server(APIHOST) {
-            return "https://api.eu.mist.com"
-        }
-    }
-    if configuration.Environment() == Environment(MIST_EMEA_02) {
-        if server == Server(APIHOST) {
-            return "https://api.gc3.mist.com"
-        }
-    }
-    if configuration.Environment() == Environment(MIST_EMEA_03) {
-        if server == Server(APIHOST) {
-            return "https://api.ac6.mist.com"
-        }
-    }
-    if configuration.Environment() == Environment(MIST_APAC_01) {
-        if server == Server(APIHOST) {
-            return "https://api.ac5.mist.com"
         }
     }
     return "TODO: Select a valid server."

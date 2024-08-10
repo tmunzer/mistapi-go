@@ -41,7 +41,7 @@ func (t TestTwilio) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TestTwilio.
 // It customizes the JSON unmarshaling process for TestTwilio objects.
 func (t *TestTwilio) UnmarshalJSON(input []byte) error {
-    var temp testTwilio
+    var temp tempTestTwilio
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,27 +63,27 @@ func (t *TestTwilio) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// testTwilio is a temporary struct used for validating the fields of TestTwilio.
-type testTwilio  struct {
+// tempTestTwilio is a temporary struct used for validating the fields of TestTwilio.
+type tempTestTwilio  struct {
     From            *string `json:"from"`
     To              *string `json:"to"`
     TwilioAuthToken *string `json:"twilio_auth_token"`
     TwilioSid       *string `json:"twilio_sid"`
 }
 
-func (t *testTwilio) validate() error {
+func (t *tempTestTwilio) validate() error {
     var errs []string
     if t.From == nil {
-        errs = append(errs, "required field `from` is missing for type `Test_Twilio`")
+        errs = append(errs, "required field `from` is missing for type `test_twilio`")
     }
     if t.To == nil {
-        errs = append(errs, "required field `to` is missing for type `Test_Twilio`")
+        errs = append(errs, "required field `to` is missing for type `test_twilio`")
     }
     if t.TwilioAuthToken == nil {
-        errs = append(errs, "required field `twilio_auth_token` is missing for type `Test_Twilio`")
+        errs = append(errs, "required field `twilio_auth_token` is missing for type `test_twilio`")
     }
     if t.TwilioSid == nil {
-        errs = append(errs, "required field `twilio_sid` is missing for type `Test_Twilio`")
+        errs = append(errs, "required field `twilio_sid` is missing for type `test_twilio`")
     }
     if len(errs) == 0 {
         return nil

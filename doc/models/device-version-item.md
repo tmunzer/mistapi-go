@@ -17,9 +17,9 @@
 
 ```json
 {
-  "model": "model2",
-  "tag": "tag2",
-  "version": "version0"
+  "model": "model8",
+  "tag": "tag6",
+  "version": "version6"
 }
 ```
 

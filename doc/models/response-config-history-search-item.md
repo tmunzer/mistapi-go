@@ -25,11 +25,11 @@
 
 ```json
 {
-  "channel_24": 160,
-  "channel_5": 188,
+  "channel_24": 76,
+  "channel_5": 168,
   "radio_macs": [
-    "radio_macs1",
-    "radio_macs2"
+    "radio_macs5",
+    "radio_macs6"
   ],
   "radios": [
     {
@@ -39,19 +39,18 @@
   ],
   "secpolicy_violated": false,
   "ssids": [
-    "ssids5",
-    "ssids4",
-    "ssids3"
+    "ssids9",
+    "ssids8"
   ],
   "ssids_24": [
-    "ssids_240",
-    "ssids_241"
+    "ssids_244",
+    "ssids_243"
   ],
   "ssids_5": [
-    "ssids_54"
+    "ssids_58"
   ],
-  "timestamp": 189.32,
-  "version": "version0"
+  "timestamp": 237.76,
+  "version": "version4"
 }
 ```
 

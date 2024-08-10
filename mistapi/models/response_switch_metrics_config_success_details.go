@@ -31,7 +31,7 @@ func (r ResponseSwitchMetricsConfigSuccessDetails) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSwitchMetricsConfigSuccessDetails.
 // It customizes the JSON unmarshaling process for ResponseSwitchMetricsConfigSuccessDetails objects.
 func (r *ResponseSwitchMetricsConfigSuccessDetails) UnmarshalJSON(input []byte) error {
-    var temp responseSwitchMetricsConfigSuccessDetails
+    var temp tempResponseSwitchMetricsConfigSuccessDetails
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (r *ResponseSwitchMetricsConfigSuccessDetails) UnmarshalJSON(input []byte) 
     return nil
 }
 
-// responseSwitchMetricsConfigSuccessDetails is a temporary struct used for validating the fields of ResponseSwitchMetricsConfigSuccessDetails.
-type responseSwitchMetricsConfigSuccessDetails  struct {
+// tempResponseSwitchMetricsConfigSuccessDetails is a temporary struct used for validating the fields of ResponseSwitchMetricsConfigSuccessDetails.
+type tempResponseSwitchMetricsConfigSuccessDetails  struct {
     ConfigSuccessCount *int `json:"config_success_count,omitempty"`
 }

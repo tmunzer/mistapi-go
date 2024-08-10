@@ -54,7 +54,7 @@ func (i InstallerSite) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for InstallerSite.
 // It customizes the JSON unmarshaling process for InstallerSite objects.
 func (i *InstallerSite) UnmarshalJSON(input []byte) error {
-    var temp installerSite
+    var temp tempInstallerSite
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -80,8 +80,8 @@ func (i *InstallerSite) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// installerSite is a temporary struct used for validating the fields of InstallerSite.
-type installerSite  struct {
+// tempInstallerSite is a temporary struct used for validating the fields of InstallerSite.
+type tempInstallerSite  struct {
     Address        *string    `json:"address"`
     CountryCode    *string    `json:"country_code"`
     Id             *uuid.UUID `json:"id,omitempty"`
@@ -92,19 +92,19 @@ type installerSite  struct {
     Timezone       *string    `json:"timezone,omitempty"`
 }
 
-func (i *installerSite) validate() error {
+func (i *tempInstallerSite) validate() error {
     var errs []string
     if i.Address == nil {
-        errs = append(errs, "required field `address` is missing for type `Installer_Site`")
+        errs = append(errs, "required field `address` is missing for type `installer_site`")
     }
     if i.CountryCode == nil {
-        errs = append(errs, "required field `country_code` is missing for type `Installer_Site`")
+        errs = append(errs, "required field `country_code` is missing for type `installer_site`")
     }
     if i.Latlng == nil {
-        errs = append(errs, "required field `latlng` is missing for type `Installer_Site`")
+        errs = append(errs, "required field `latlng` is missing for type `installer_site`")
     }
     if i.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Installer_Site`")
+        errs = append(errs, "required field `name` is missing for type `installer_site`")
     }
     if len(errs) == 0 {
         return nil

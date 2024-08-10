@@ -16,17 +16,17 @@
 | `Type` | [`models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Required | enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `radius`, `speedtest` |
 | `Url` | `*string` | Optional | if `type`==`curl` |
 | `Username` | `*string` | Optional | if `type`==`radius` |
-| `VlanId` | [`*models.SynthetictestDeviceVlanId`](../../doc/models/containers/synthetictest-device-vlan-id.md) | Optional | This is a container for one-of cases. |
+| `VlanId` | [`*models.SynthetictestDeviceVlanId`](../../doc/models/containers/synthetictest-device-vlan-id.md) | Optional | required for AP |
 
 ## Example (as JSON)
 
 ```json
 {
-  "hostname": "hostname8",
+  "hostname": "hostname2",
   "ip": "ip0",
   "password": "password0",
   "port_id": "port_id6",
-  "type": "dhcp6",
+  "type": "curl",
   "url": "url0"
 }
 ```

@@ -40,7 +40,7 @@ func (m MxtunnelStatsSession) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxtunnelStatsSession.
 // It customizes the JSON unmarshaling process for MxtunnelStatsSession objects.
 func (m *MxtunnelStatsSession) UnmarshalJSON(input []byte) error {
-    var temp mxtunnelStatsSession
+    var temp tempMxtunnelStatsSession
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,27 +62,27 @@ func (m *MxtunnelStatsSession) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxtunnelStatsSession is a temporary struct used for validating the fields of MxtunnelStatsSession.
-type mxtunnelStatsSession  struct {
+// tempMxtunnelStatsSession is a temporary struct used for validating the fields of MxtunnelStatsSession.
+type tempMxtunnelStatsSession  struct {
     LocalSid  *int    `json:"local_sid"`
     RemoteId  *string `json:"remote_id"`
     RemoteSid *int    `json:"remote_sid"`
     State     *string `json:"state"`
 }
 
-func (m *mxtunnelStatsSession) validate() error {
+func (m *tempMxtunnelStatsSession) validate() error {
     var errs []string
     if m.LocalSid == nil {
-        errs = append(errs, "required field `local_sid` is missing for type `Mxtunnel_Stats_Session`")
+        errs = append(errs, "required field `local_sid` is missing for type `mxtunnel_stats_session`")
     }
     if m.RemoteId == nil {
-        errs = append(errs, "required field `remote_id` is missing for type `Mxtunnel_Stats_Session`")
+        errs = append(errs, "required field `remote_id` is missing for type `mxtunnel_stats_session`")
     }
     if m.RemoteSid == nil {
-        errs = append(errs, "required field `remote_sid` is missing for type `Mxtunnel_Stats_Session`")
+        errs = append(errs, "required field `remote_sid` is missing for type `mxtunnel_stats_session`")
     }
     if m.State == nil {
-        errs = append(errs, "required field `state` is missing for type `Mxtunnel_Stats_Session`")
+        errs = append(errs, "required field `state` is missing for type `mxtunnel_stats_session`")
     }
     if len(errs) == 0 {
         return nil

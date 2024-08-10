@@ -31,7 +31,7 @@ func (m MspLogo) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MspLogo.
 // It customizes the JSON unmarshaling process for MspLogo objects.
 func (m *MspLogo) UnmarshalJSON(input []byte) error {
-    var temp mspLogo
+    var temp tempMspLogo
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (m *MspLogo) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mspLogo is a temporary struct used for validating the fields of MspLogo.
-type mspLogo  struct {
+// tempMspLogo is a temporary struct used for validating the fields of MspLogo.
+type tempMspLogo  struct {
     LogoUrl *string `json:"logo_url,omitempty"`
 }

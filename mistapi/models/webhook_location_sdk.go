@@ -36,7 +36,7 @@ func (w WebhookLocationSdk) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookLocationSdk.
 // It customizes the JSON unmarshaling process for WebhookLocationSdk objects.
 func (w *WebhookLocationSdk) UnmarshalJSON(input []byte) error {
-    var temp webhookLocationSdk
+    var temp tempWebhookLocationSdk
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,19 +56,19 @@ func (w *WebhookLocationSdk) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookLocationSdk is a temporary struct used for validating the fields of WebhookLocationSdk.
-type webhookLocationSdk  struct {
+// tempWebhookLocationSdk is a temporary struct used for validating the fields of WebhookLocationSdk.
+type tempWebhookLocationSdk  struct {
     Events *[]WebhookLocationSdkEvent `json:"events"`
     Topic  *string                    `json:"topic"`
 }
 
-func (w *webhookLocationSdk) validate() error {
+func (w *tempWebhookLocationSdk) validate() error {
     var errs []string
     if w.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Webhook_Location_Sdk`")
+        errs = append(errs, "required field `events` is missing for type `webhook_location_sdk`")
     }
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Location_Sdk`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_location_sdk`")
     }
     if len(errs) == 0 {
         return nil

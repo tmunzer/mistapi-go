@@ -108,7 +108,7 @@ func (a AssetFilter) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AssetFilter.
 // It customizes the JSON unmarshaling process for AssetFilter objects.
 func (a *AssetFilter) UnmarshalJSON(input []byte) error {
-    var temp assetFilter
+    var temp tempAssetFilter
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -144,8 +144,8 @@ func (a *AssetFilter) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// assetFilter is a temporary struct used for validating the fields of AssetFilter.
-type assetFilter  struct {
+// tempAssetFilter is a temporary struct used for validating the fields of AssetFilter.
+type tempAssetFilter  struct {
     ApMac                 *string    `json:"ap_mac,omitempty"`
     Beam                  *int       `json:"beam,omitempty"`
     CreatedTime           *float64   `json:"created_time,omitempty"`
@@ -166,10 +166,10 @@ type assetFilter  struct {
     SiteId                *uuid.UUID `json:"site_id,omitempty"`
 }
 
-func (a *assetFilter) validate() error {
+func (a *tempAssetFilter) validate() error {
     var errs []string
     if a.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Asset_Filter`")
+        errs = append(errs, "required field `name` is missing for type `asset_filter`")
     }
     if len(errs) == 0 {
         return nil

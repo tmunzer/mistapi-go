@@ -22,8 +22,8 @@ add tags to visits within the duration (in seconds), available tags (passerby, b
 {
   "engaged": "300-14400",
   "stationed": "14400-43200",
-  "bounce": "bounce0",
-  "passerby": "passerby6"
+  "bounce": "bounce2",
+  "passerby": "passerby4"
 }
 ```
 

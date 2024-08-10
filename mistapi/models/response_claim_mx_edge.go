@@ -34,7 +34,7 @@ func (r ResponseClaimMxEdge) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseClaimMxEdge.
 // It customizes the JSON unmarshaling process for ResponseClaimMxEdge objects.
 func (r *ResponseClaimMxEdge) UnmarshalJSON(input []byte) error {
-    var temp responseClaimMxEdge
+    var temp tempResponseClaimMxEdge
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,19 +54,19 @@ func (r *ResponseClaimMxEdge) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseClaimMxEdge is a temporary struct used for validating the fields of ResponseClaimMxEdge.
-type responseClaimMxEdge  struct {
+// tempResponseClaimMxEdge is a temporary struct used for validating the fields of ResponseClaimMxEdge.
+type tempResponseClaimMxEdge  struct {
     Id    *uuid.UUID `json:"id"`
     Magic *string    `json:"magic"`
 }
 
-func (r *responseClaimMxEdge) validate() error {
+func (r *tempResponseClaimMxEdge) validate() error {
     var errs []string
     if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Response_Claim_Mx_Edge`")
+        errs = append(errs, "required field `id` is missing for type `response_claim_mx_edge`")
     }
     if r.Magic == nil {
-        errs = append(errs, "required field `magic` is missing for type `Response_Claim_Mx_Edge`")
+        errs = append(errs, "required field `magic` is missing for type `response_claim_mx_edge`")
     }
     if len(errs) == 0 {
         return nil

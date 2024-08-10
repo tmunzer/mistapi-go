@@ -51,7 +51,7 @@ func (g GatewayStatsSpuItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayStatsSpuItem.
 // It customizes the JSON unmarshaling process for GatewayStatsSpuItem objects.
 func (g *GatewayStatsSpuItem) UnmarshalJSON(input []byte) error {
-    var temp gatewayStatsSpuItem
+    var temp tempGatewayStatsSpuItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (g *GatewayStatsSpuItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayStatsSpuItem is a temporary struct used for validating the fields of GatewayStatsSpuItem.
-type gatewayStatsSpuItem  struct {
+// tempGatewayStatsSpuItem is a temporary struct used for validating the fields of GatewayStatsSpuItem.
+type tempGatewayStatsSpuItem  struct {
     SpuCpu            *int `json:"spu_cpu,omitempty"`
     SpuCurrentSession *int `json:"spu_current_session,omitempty"`
     SpuMaxSession     *int `json:"spu_max_session,omitempty"`

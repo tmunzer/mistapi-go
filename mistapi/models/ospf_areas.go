@@ -43,7 +43,7 @@ func (o OspfAreas) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OspfAreas.
 // It customizes the JSON unmarshaling process for OspfAreas objects.
 func (o *OspfAreas) UnmarshalJSON(input []byte) error {
-    var temp ospfAreas
+    var temp tempOspfAreas
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,8 +60,8 @@ func (o *OspfAreas) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ospfAreas is a temporary struct used for validating the fields of OspfAreas.
-type ospfAreas  struct {
+// tempOspfAreas is a temporary struct used for validating the fields of OspfAreas.
+type tempOspfAreas  struct {
     IncludeLoopback *bool                       `json:"include_loopback,omitempty"`
     Networks        map[string]OspfAreasNetwork `json:"networks,omitempty"`
     Type            *OspfAreasTypeEnum          `json:"type,omitempty"`

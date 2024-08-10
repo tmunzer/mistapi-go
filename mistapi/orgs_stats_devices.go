@@ -23,7 +23,7 @@ func NewOrgsStatsDevices(baseController baseController) *OrgsStatsDevices {
 }
 
 // ListOrgDevicesStats takes context, orgId, mType, status, siteId, mac, evpntopoId, evpnUnused, fields, page, limit, start, end, duration as parameters and
-// returns an models.ApiResponse with []models.ListOrgDevicesStatsResponse data and
+// returns an models.ApiResponse with []models.StatsDevice2 data and
 // an error if there was an issue with the request or response.
 // Get List of Org Devices stats
 // This API renders some high-level device stats, pagination is assumed and returned in response header (as the response is an array)
@@ -42,7 +42,7 @@ func (o *OrgsStatsDevices) ListOrgDevicesStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[]models.ListOrgDevicesStatsResponse],
+    models.ApiResponse[[]models.StatsDevice2],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -62,10 +62,10 @@ func (o *OrgsStatsDevices) ListOrgDevicesStats(
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
         "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp400},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp400},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     if mType != nil {
         req.QueryParam("type", *mType)
@@ -104,12 +104,12 @@ func (o *OrgsStatsDevices) ListOrgDevicesStats(
         req.QueryParam("duration", *duration)
     }
     
-    var result []models.ListOrgDevicesStatsResponse
+    var result []models.StatsDevice2
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ListOrgDevicesStatsResponse](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsDevice2](decoder)
     return models.NewApiResponse(result, resp), err
 }

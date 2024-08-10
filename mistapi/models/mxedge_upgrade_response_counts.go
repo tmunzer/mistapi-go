@@ -37,7 +37,7 @@ func (m MxedgeUpgradeResponseCounts) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeUpgradeResponseCounts.
 // It customizes the JSON unmarshaling process for MxedgeUpgradeResponseCounts objects.
 func (m *MxedgeUpgradeResponseCounts) UnmarshalJSON(input []byte) error {
-    var temp mxedgeUpgradeResponseCounts
+    var temp tempMxedgeUpgradeResponseCounts
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,27 +59,27 @@ func (m *MxedgeUpgradeResponseCounts) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeUpgradeResponseCounts is a temporary struct used for validating the fields of MxedgeUpgradeResponseCounts.
-type mxedgeUpgradeResponseCounts  struct {
+// tempMxedgeUpgradeResponseCounts is a temporary struct used for validating the fields of MxedgeUpgradeResponseCounts.
+type tempMxedgeUpgradeResponseCounts  struct {
     Failed    *int `json:"failed"`
     Queued    *int `json:"queued"`
     Success   *int `json:"success"`
     Upgrading *int `json:"upgrading"`
 }
 
-func (m *mxedgeUpgradeResponseCounts) validate() error {
+func (m *tempMxedgeUpgradeResponseCounts) validate() error {
     var errs []string
     if m.Failed == nil {
-        errs = append(errs, "required field `failed` is missing for type `Mxedge_Upgrade_Response_Counts`")
+        errs = append(errs, "required field `failed` is missing for type `mxedge_upgrade_response_counts`")
     }
     if m.Queued == nil {
-        errs = append(errs, "required field `queued` is missing for type `Mxedge_Upgrade_Response_Counts`")
+        errs = append(errs, "required field `queued` is missing for type `mxedge_upgrade_response_counts`")
     }
     if m.Success == nil {
-        errs = append(errs, "required field `success` is missing for type `Mxedge_Upgrade_Response_Counts`")
+        errs = append(errs, "required field `success` is missing for type `mxedge_upgrade_response_counts`")
     }
     if m.Upgrading == nil {
-        errs = append(errs, "required field `upgrading` is missing for type `Mxedge_Upgrade_Response_Counts`")
+        errs = append(errs, "required field `upgrading` is missing for type `mxedge_upgrade_response_counts`")
     }
     if len(errs) == 0 {
         return nil

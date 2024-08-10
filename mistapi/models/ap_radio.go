@@ -88,7 +88,7 @@ func (a ApRadio) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApRadio.
 // It customizes the JSON unmarshaling process for ApRadio objects.
 func (a *ApRadio) UnmarshalJSON(input []byte) error {
-    var temp apRadio
+    var temp tempApRadio
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -114,8 +114,8 @@ func (a *ApRadio) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apRadio is a temporary struct used for validating the fields of ApRadio.
-type apRadio  struct {
+// tempApRadio is a temporary struct used for validating the fields of ApRadio.
+type tempApRadio  struct {
     AllowRrmDisable *bool                   `json:"allow_rrm_disable,omitempty"`
     AntGain24       *int                    `json:"ant_gain_24,omitempty"`
     AntGain5        *int                    `json:"ant_gain_5,omitempty"`

@@ -35,7 +35,7 @@ func (w WebhookClientLatency) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookClientLatency.
 // It customizes the JSON unmarshaling process for WebhookClientLatency objects.
 func (w *WebhookClientLatency) UnmarshalJSON(input []byte) error {
-    var temp webhookClientLatency
+    var temp tempWebhookClientLatency
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (w *WebhookClientLatency) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookClientLatency is a temporary struct used for validating the fields of WebhookClientLatency.
-type webhookClientLatency  struct {
+// tempWebhookClientLatency is a temporary struct used for validating the fields of WebhookClientLatency.
+type tempWebhookClientLatency  struct {
     Events []WebhookClientLatencyEvent `json:"events,omitempty"`
     Topic  *string                     `json:"topic,omitempty"`
 }

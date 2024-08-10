@@ -54,7 +54,7 @@ func (s SwitchPortUsageStormControl) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchPortUsageStormControl.
 // It customizes the JSON unmarshaling process for SwitchPortUsageStormControl objects.
 func (s *SwitchPortUsageStormControl) UnmarshalJSON(input []byte) error {
-    var temp switchPortUsageStormControl
+    var temp tempSwitchPortUsageStormControl
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -73,8 +73,8 @@ func (s *SwitchPortUsageStormControl) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchPortUsageStormControl is a temporary struct used for validating the fields of SwitchPortUsageStormControl.
-type switchPortUsageStormControl  struct {
+// tempSwitchPortUsageStormControl is a temporary struct used for validating the fields of SwitchPortUsageStormControl.
+type tempSwitchPortUsageStormControl  struct {
     NoBroadcast           *bool `json:"no_broadcast,omitempty"`
     NoMulticast           *bool `json:"no_multicast,omitempty"`
     NoRegisteredMulticast *bool `json:"no_registered_multicast,omitempty"`

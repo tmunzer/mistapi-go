@@ -26,18 +26,18 @@
 
 ```json
 {
-  "ap_id": "00001a68-0000-0000-0000-000000000000",
-  "band": "24",
+  "ap_id": "00000c18-0000-0000-0000-000000000000",
+  "band": "5",
   "bandwidth": 20,
-  "channel": 34,
+  "channel": 130,
   "event": "interference-ap-co-channel",
-  "power": 26,
-  "pre_bandwidth": 0,
-  "pre_channel": 160,
-  "pre_power": 51.28,
-  "pre_usage": "pre_usage6",
-  "timestamp": 43.56,
-  "usage": "usage6"
+  "power": 186,
+  "pre_bandwidth": 20,
+  "pre_channel": 64,
+  "pre_power": 187.92,
+  "pre_usage": "pre_usage8",
+  "timestamp": 162.92,
+  "usage": "usage2"
 }
 ```
 

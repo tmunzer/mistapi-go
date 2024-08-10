@@ -67,7 +67,7 @@ func (r RrmBand) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RrmBand.
 // It customizes the JSON unmarshaling process for RrmBand objects.
 func (r *RrmBand) UnmarshalJSON(input []byte) error {
-    var temp rrmBand
+    var temp tempRrmBand
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -89,8 +89,8 @@ func (r *RrmBand) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rrmBand is a temporary struct used for validating the fields of RrmBand.
-type rrmBand  struct {
+// tempRrmBand is a temporary struct used for validating the fields of RrmBand.
+type tempRrmBand  struct {
     Bandwidth     *Dot11BandwidthEnum `json:"bandwidth,omitempty"`
     Channel       *int                `json:"channel,omitempty"`
     CurrBandwidht *Dot11BandwidthEnum `json:"curr_bandwidht,omitempty"`

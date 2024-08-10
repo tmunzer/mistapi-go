@@ -19,14 +19,14 @@
 
 ```json
 {
-  "num_devices": 42,
+  "num_devices": 254,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "usages": {
-    "key0": 249
+    "key0": 205
   },
   "for_site": false,
   "fully_loaded": {
-    "key0": 156
+    "key0": 56
   }
 }
 ```

@@ -24,11 +24,11 @@
 
 ```json
 {
-  "bytes_in": 8,
-  "bytes_out": 108,
-  "health_category": "health_category4",
-  "health_score": 254,
-  "id": "id4"
+  "bytes_in": 178,
+  "bytes_out": 62,
+  "health_category": "health_category0",
+  "health_score": 172,
+  "id": "id0"
 }
 ```
 

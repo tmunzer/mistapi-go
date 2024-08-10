@@ -37,7 +37,7 @@ func (s SsrVersion) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SsrVersion.
 // It customizes the JSON unmarshaling process for SsrVersion objects.
 func (s *SsrVersion) UnmarshalJSON(input []byte) error {
-    var temp ssrVersion
+    var temp tempSsrVersion
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,20 +58,20 @@ func (s *SsrVersion) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ssrVersion is a temporary struct used for validating the fields of SsrVersion.
-type ssrVersion  struct {
+// tempSsrVersion is a temporary struct used for validating the fields of SsrVersion.
+type tempSsrVersion  struct {
     Default *bool   `json:"default,omitempty"`
     Package *string `json:"package"`
     Version *string `json:"version"`
 }
 
-func (s *ssrVersion) validate() error {
+func (s *tempSsrVersion) validate() error {
     var errs []string
     if s.Package == nil {
-        errs = append(errs, "required field `package` is missing for type `Ssr_Version`")
+        errs = append(errs, "required field `package` is missing for type `ssr_version`")
     }
     if s.Version == nil {
-        errs = append(errs, "required field `version` is missing for type `Ssr_Version`")
+        errs = append(errs, "required field `version` is missing for type `ssr_version`")
     }
     if len(errs) == 0 {
         return nil

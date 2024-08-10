@@ -36,7 +36,7 @@ func (r ResponseMobileVerifySecret) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseMobileVerifySecret.
 // It customizes the JSON unmarshaling process for ResponseMobileVerifySecret objects.
 func (r *ResponseMobileVerifySecret) UnmarshalJSON(input []byte) error {
-    var temp responseMobileVerifySecret
+    var temp tempResponseMobileVerifySecret
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,23 +57,23 @@ func (r *ResponseMobileVerifySecret) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseMobileVerifySecret is a temporary struct used for validating the fields of ResponseMobileVerifySecret.
-type responseMobileVerifySecret  struct {
+// tempResponseMobileVerifySecret is a temporary struct used for validating the fields of ResponseMobileVerifySecret.
+type tempResponseMobileVerifySecret  struct {
     Name   *string    `json:"name"`
     OrgId  *uuid.UUID `json:"org_id"`
     Secret *string    `json:"secret"`
 }
 
-func (r *responseMobileVerifySecret) validate() error {
+func (r *tempResponseMobileVerifySecret) validate() error {
     var errs []string
     if r.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Response_Mobile_Verify_Secret`")
+        errs = append(errs, "required field `name` is missing for type `response_mobile_verify_secret`")
     }
     if r.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Response_Mobile_Verify_Secret`")
+        errs = append(errs, "required field `org_id` is missing for type `response_mobile_verify_secret`")
     }
     if r.Secret == nil {
-        errs = append(errs, "required field `secret` is missing for type `Response_Mobile_Verify_Secret`")
+        errs = append(errs, "required field `secret` is missing for type `response_mobile_verify_secret`")
     }
     if len(errs) == 0 {
         return nil

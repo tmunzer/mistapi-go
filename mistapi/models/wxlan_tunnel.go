@@ -129,7 +129,7 @@ func (w WxlanTunnel) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WxlanTunnel.
 // It customizes the JSON unmarshaling process for WxlanTunnel objects.
 func (w *WxlanTunnel) UnmarshalJSON(input []byte) error {
-    var temp wxlanTunnel
+    var temp tempWxlanTunnel
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -168,8 +168,8 @@ func (w *WxlanTunnel) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wxlanTunnel is a temporary struct used for validating the fields of WxlanTunnel.
-type wxlanTunnel  struct {
+// tempWxlanTunnel is a temporary struct used for validating the fields of WxlanTunnel.
+type tempWxlanTunnel  struct {
     CreatedTime   *float64             `json:"created_time,omitempty"`
     Dmvpn         *WxlanTunnelDmvpn    `json:"dmvpn,omitempty"`
     ForMgmt       *bool                `json:"for_mgmt,omitempty"`
@@ -193,10 +193,10 @@ type wxlanTunnel  struct {
     UseUdp        *bool                `json:"use_udp,omitempty"`
 }
 
-func (w *wxlanTunnel) validate() error {
+func (w *tempWxlanTunnel) validate() error {
     var errs []string
     if w.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Wxlan_Tunnel`")
+        errs = append(errs, "required field `name` is missing for type `wxlan_tunnel`")
     }
     if len(errs) == 0 {
         return nil

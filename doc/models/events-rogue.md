@@ -22,12 +22,12 @@ rogue events
 
 ```json
 {
-  "ap": "ap4",
-  "bssid": "bssid2",
-  "channel": 144,
-  "rssi": 210,
-  "ssid": "ssid6",
-  "timestamp": 144.86
+  "ap": "ap2",
+  "bssid": "bssid4",
+  "channel": 26,
+  "rssi": 72,
+  "ssid": "ssid0",
+  "timestamp": 43.4
 }
 ```
 

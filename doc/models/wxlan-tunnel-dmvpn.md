@@ -20,10 +20,10 @@ Dynamic Multipoint VPN configurations
 ```json
 {
   "enabled": false,
-  "holding_time": 156,
+  "holding_time": 226,
   "host_routes": [
-    "host_routes2",
-    "host_routes3"
+    "host_routes8",
+    "host_routes9"
   ]
 }
 ```

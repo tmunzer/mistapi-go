@@ -45,7 +45,7 @@ func (g GatewayIpConfigProperty) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayIpConfigProperty.
 // It customizes the JSON unmarshaling process for GatewayIpConfigProperty objects.
 func (g *GatewayIpConfigProperty) UnmarshalJSON(input []byte) error {
-    var temp gatewayIpConfigProperty
+    var temp tempGatewayIpConfigProperty
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,8 +63,8 @@ func (g *GatewayIpConfigProperty) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayIpConfigProperty is a temporary struct used for validating the fields of GatewayIpConfigProperty.
-type gatewayIpConfigProperty  struct {
+// tempGatewayIpConfigProperty is a temporary struct used for validating the fields of GatewayIpConfigProperty.
+type tempGatewayIpConfigProperty  struct {
     Ip           *string     `json:"ip,omitempty"`
     Netmask      *string     `json:"netmask,omitempty"`
     SecondaryIps []string    `json:"secondary_ips,omitempty"`

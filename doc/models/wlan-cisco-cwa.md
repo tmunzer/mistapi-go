@@ -22,16 +22,16 @@ Cisco CWA (central web authentication) required RADIUS with COA in order to work
 {
   "enabled": false,
   "allowed_hostnames": [
-    "allowed_hostnames0",
-    "allowed_hostnames1"
+    "allowed_hostnames0"
   ],
   "allowed_subnets": [
     "allowed_subnets6",
-    "allowed_subnets7",
-    "allowed_subnets8"
+    "allowed_subnets7"
   ],
   "blocked_subnets": [
-    "blocked_subnets2"
+    "blocked_subnets4",
+    "blocked_subnets5",
+    "blocked_subnets6"
   ]
 }
 ```

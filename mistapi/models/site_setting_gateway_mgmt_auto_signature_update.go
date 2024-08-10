@@ -41,7 +41,7 @@ func (s SiteSettingGatewayMgmtAutoSignatureUpdate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingGatewayMgmtAutoSignatureUpdate.
 // It customizes the JSON unmarshaling process for SiteSettingGatewayMgmtAutoSignatureUpdate objects.
 func (s *SiteSettingGatewayMgmtAutoSignatureUpdate) UnmarshalJSON(input []byte) error {
-    var temp siteSettingGatewayMgmtAutoSignatureUpdate
+    var temp tempSiteSettingGatewayMgmtAutoSignatureUpdate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (s *SiteSettingGatewayMgmtAutoSignatureUpdate) UnmarshalJSON(input []byte) 
     return nil
 }
 
-// siteSettingGatewayMgmtAutoSignatureUpdate is a temporary struct used for validating the fields of SiteSettingGatewayMgmtAutoSignatureUpdate.
-type siteSettingGatewayMgmtAutoSignatureUpdate  struct {
+// tempSiteSettingGatewayMgmtAutoSignatureUpdate is a temporary struct used for validating the fields of SiteSettingGatewayMgmtAutoSignatureUpdate.
+type tempSiteSettingGatewayMgmtAutoSignatureUpdate  struct {
     DayOfWeek *DayOfWeekEnum `json:"day_of_week,omitempty"`
     Enable    *bool          `json:"enable,omitempty"`
     TimeOfDay *string        `json:"time_of_day,omitempty"`

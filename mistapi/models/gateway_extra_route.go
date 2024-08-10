@@ -31,7 +31,7 @@ func (g GatewayExtraRoute) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayExtraRoute.
 // It customizes the JSON unmarshaling process for GatewayExtraRoute objects.
 func (g *GatewayExtraRoute) UnmarshalJSON(input []byte) error {
-    var temp gatewayExtraRoute
+    var temp tempGatewayExtraRoute
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (g *GatewayExtraRoute) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayExtraRoute is a temporary struct used for validating the fields of GatewayExtraRoute.
-type gatewayExtraRoute  struct {
+// tempGatewayExtraRoute is a temporary struct used for validating the fields of GatewayExtraRoute.
+type tempGatewayExtraRoute  struct {
     Via *string `json:"via,omitempty"`
 }

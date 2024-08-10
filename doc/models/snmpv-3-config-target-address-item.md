@@ -24,7 +24,7 @@
   "address_mask": "address_mask",
   "port": 161,
   "target_address_name": "target_address_name",
-  "tag_list": "tag_list2"
+  "tag_list": "tag_list4"
 }
 ```
 

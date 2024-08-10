@@ -31,7 +31,7 @@ func (r ResponseCertificate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseCertificate.
 // It customizes the JSON unmarshaling process for ResponseCertificate objects.
 func (r *ResponseCertificate) UnmarshalJSON(input []byte) error {
-    var temp responseCertificate
+    var temp tempResponseCertificate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (r *ResponseCertificate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseCertificate is a temporary struct used for validating the fields of ResponseCertificate.
-type responseCertificate  struct {
+// tempResponseCertificate is a temporary struct used for validating the fields of ResponseCertificate.
+type tempResponseCertificate  struct {
     Cert *string `json:"cert"`
 }
 
-func (r *responseCertificate) validate() error {
+func (r *tempResponseCertificate) validate() error {
     var errs []string
     if r.Cert == nil {
-        errs = append(errs, "required field `cert` is missing for type `Response_Certificate`")
+        errs = append(errs, "required field `cert` is missing for type `response_certificate`")
     }
     if len(errs) == 0 {
         return nil

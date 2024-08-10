@@ -43,7 +43,7 @@ func (r ResponseVerifyTokenSuccess) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseVerifyTokenSuccess.
 // It customizes the JSON unmarshaling process for ResponseVerifyTokenSuccess objects.
 func (r *ResponseVerifyTokenSuccess) UnmarshalJSON(input []byte) error {
-    var temp responseVerifyTokenSuccess
+    var temp tempResponseVerifyTokenSuccess
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (r *ResponseVerifyTokenSuccess) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseVerifyTokenSuccess is a temporary struct used for validating the fields of ResponseVerifyTokenSuccess.
-type responseVerifyTokenSuccess  struct {
+// tempResponseVerifyTokenSuccess is a temporary struct used for validating the fields of ResponseVerifyTokenSuccess.
+type tempResponseVerifyTokenSuccess  struct {
     Detail           *string `json:"detail,omitempty"`
     InviteNotApplied *bool   `json:"invite_not_applied,omitempty"`
     MinLength        *int    `json:"min_length,omitempty"`

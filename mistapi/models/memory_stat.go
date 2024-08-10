@@ -32,7 +32,7 @@ func (m MemoryStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MemoryStat.
 // It customizes the JSON unmarshaling process for MemoryStat objects.
 func (m *MemoryStat) UnmarshalJSON(input []byte) error {
-    var temp memoryStat
+    var temp tempMemoryStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,15 +51,15 @@ func (m *MemoryStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// memoryStat is a temporary struct used for validating the fields of MemoryStat.
-type memoryStat  struct {
+// tempMemoryStat is a temporary struct used for validating the fields of MemoryStat.
+type tempMemoryStat  struct {
     Usage *float64 `json:"usage"`
 }
 
-func (m *memoryStat) validate() error {
+func (m *tempMemoryStat) validate() error {
     var errs []string
     if m.Usage == nil {
-        errs = append(errs, "required field `usage` is missing for type `Memory_Stat`")
+        errs = append(errs, "required field `usage` is missing for type `memory_stat`")
     }
     if len(errs) == 0 {
         return nil

@@ -31,7 +31,7 @@ func (v VrrpGroupNetwork) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for VrrpGroupNetwork.
 // It customizes the JSON unmarshaling process for VrrpGroupNetwork objects.
 func (v *VrrpGroupNetwork) UnmarshalJSON(input []byte) error {
-    var temp vrrpGroupNetwork
+    var temp tempVrrpGroupNetwork
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (v *VrrpGroupNetwork) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// vrrpGroupNetwork is a temporary struct used for validating the fields of VrrpGroupNetwork.
-type vrrpGroupNetwork  struct {
+// tempVrrpGroupNetwork is a temporary struct used for validating the fields of VrrpGroupNetwork.
+type tempVrrpGroupNetwork  struct {
     Ip *string `json:"ip,omitempty"`
 }

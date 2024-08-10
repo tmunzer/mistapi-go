@@ -59,7 +59,7 @@ func (j JunosIpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for JunosIpConfig.
 // It customizes the JSON unmarshaling process for JunosIpConfig objects.
 func (j *JunosIpConfig) UnmarshalJSON(input []byte) error {
-    var temp junosIpConfig
+    var temp tempJunosIpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -80,8 +80,8 @@ func (j *JunosIpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// junosIpConfig is a temporary struct used for validating the fields of JunosIpConfig.
-type junosIpConfig  struct {
+// tempJunosIpConfig is a temporary struct used for validating the fields of JunosIpConfig.
+type tempJunosIpConfig  struct {
     Dns       []string    `json:"dns,omitempty"`
     DnsSuffix []string    `json:"dns_suffix,omitempty"`
     Gateway   *string     `json:"gateway,omitempty"`

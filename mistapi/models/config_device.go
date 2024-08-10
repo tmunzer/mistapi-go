@@ -58,9 +58,8 @@ type ConfigDevice struct {
     Orientation           *int                               `json:"orientation,omitempty"`
     // whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
     PoePassthrough        *bool                              `json:"poe_passthrough,omitempty"`
-    // eth0 is not allowed here. 
-    // Property key is the interface(s) name (e.g. "eth1" or"eth1,eth2")
-    PortConfig            *PortConfig1                       `json:"port_config,omitempty"`
+    // eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`)
+    PortConfig            *PortConfig                        `json:"port_config,omitempty"`
     // power related configs
     PwrConfig             *ApPwrConfig                       `json:"pwr_config,omitempty"`
     // Radio AP settings
@@ -126,6 +125,7 @@ type ConfigDevice struct {
     RouterId              *string                            `json:"router_id,omitempty"`
     SnmpConfig            *SnmpConfig                        `json:"snmp_config,omitempty"`
     StpConfig             *SwitchStpConfig                   `json:"stp_config,omitempty"`
+    // Switch settings
     SwitchMgmt            *SwitchMgmt                        `json:"switch_mgmt,omitempty"`
     // whether to use it for snmp / syslog / tacplus / radius
     UseRouterIdAsSourceIp *bool                              `json:"use_router_id_as_source_ip,omitempty"`
@@ -436,7 +436,7 @@ func (c ConfigDevice) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConfigDevice.
 // It customizes the JSON unmarshaling process for ConfigDevice objects.
 func (c *ConfigDevice) UnmarshalJSON(input []byte) error {
-    var temp configDevice
+    var temp tempConfigDevice
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -533,8 +533,8 @@ func (c *ConfigDevice) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// configDevice is a temporary struct used for validating the fields of ConfigDevice.
-type configDevice  struct {
+// tempConfigDevice is a temporary struct used for validating the fields of ConfigDevice.
+type tempConfigDevice  struct {
     Aeroscout             *ApAeroscout                       `json:"aeroscout,omitempty"`
     BleConfig             *BleConfig                         `json:"ble_config,omitempty"`
     Centrak               *ApCentrak                         `json:"centrak,omitempty"`
@@ -567,7 +567,7 @@ type configDevice  struct {
     OrgId                 *uuid.UUID                         `json:"org_id,omitempty"`
     Orientation           *int                               `json:"orientation,omitempty"`
     PoePassthrough        *bool                              `json:"poe_passthrough,omitempty"`
-    PortConfig            *PortConfig1                       `json:"port_config,omitempty"`
+    PortConfig            *PortConfig                        `json:"port_config,omitempty"`
     PwrConfig             *ApPwrConfig                       `json:"pwr_config,omitempty"`
     RadioConfig           *ApRadio                           `json:"radio_config,omitempty"`
     Serial                *string                            `json:"serial,omitempty"`

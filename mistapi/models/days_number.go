@@ -31,7 +31,7 @@ func (d DaysNumber) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DaysNumber.
 // It customizes the JSON unmarshaling process for DaysNumber objects.
 func (d *DaysNumber) UnmarshalJSON(input []byte) error {
-    var temp daysNumber
+    var temp tempDaysNumber
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (d *DaysNumber) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// daysNumber is a temporary struct used for validating the fields of DaysNumber.
-type daysNumber  struct {
+// tempDaysNumber is a temporary struct used for validating the fields of DaysNumber.
+type tempDaysNumber  struct {
     Days *int `json:"days,omitempty"`
 }

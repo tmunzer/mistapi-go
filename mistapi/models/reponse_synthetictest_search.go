@@ -43,7 +43,7 @@ func (r ReponseSynthetictestSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ReponseSynthetictestSearch.
 // It customizes the JSON unmarshaling process for ReponseSynthetictestSearch objects.
 func (r *ReponseSynthetictestSearch) UnmarshalJSON(input []byte) error {
-    var temp reponseSynthetictestSearch
+    var temp tempReponseSynthetictestSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ReponseSynthetictestSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// reponseSynthetictestSearch is a temporary struct used for validating the fields of ReponseSynthetictestSearch.
-type reponseSynthetictestSearch  struct {
+// tempReponseSynthetictestSearch is a temporary struct used for validating the fields of ReponseSynthetictestSearch.
+type tempReponseSynthetictestSearch  struct {
     End     *int                 `json:"end"`
     Limit   *int                 `json:"limit"`
     Next    *string              `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type reponseSynthetictestSearch  struct {
     Total   *int                 `json:"total"`
 }
 
-func (r *reponseSynthetictestSearch) validate() error {
+func (r *tempReponseSynthetictestSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Reponse_Synthetictest_Search`")
+        errs = append(errs, "required field `end` is missing for type `reponse_synthetictest_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Reponse_Synthetictest_Search`")
+        errs = append(errs, "required field `limit` is missing for type `reponse_synthetictest_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Reponse_Synthetictest_Search`")
+        errs = append(errs, "required field `results` is missing for type `reponse_synthetictest_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Reponse_Synthetictest_Search`")
+        errs = append(errs, "required field `start` is missing for type `reponse_synthetictest_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Reponse_Synthetictest_Search`")
+        errs = append(errs, "required field `total` is missing for type `reponse_synthetictest_search`")
     }
     if len(errs) == 0 {
         return nil

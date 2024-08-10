@@ -58,7 +58,7 @@ func (s SiteRogue) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteRogue.
 // It customizes the JSON unmarshaling process for SiteRogue objects.
 func (s *SiteRogue) UnmarshalJSON(input []byte) error {
-    var temp siteRogue
+    var temp tempSiteRogue
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -78,8 +78,8 @@ func (s *SiteRogue) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteRogue is a temporary struct used for validating the fields of SiteRogue.
-type siteRogue  struct {
+// tempSiteRogue is a temporary struct used for validating the fields of SiteRogue.
+type tempSiteRogue  struct {
     Enabled           *bool    `json:"enabled,omitempty"`
     HoneypotEnabled   *bool    `json:"honeypot_enabled,omitempty"`
     MinDuration       *int     `json:"min_duration,omitempty"`

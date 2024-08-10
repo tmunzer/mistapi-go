@@ -35,7 +35,7 @@ func (r ResponseSetDevicesMap) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSetDevicesMap.
 // It customizes the JSON unmarshaling process for ResponseSetDevicesMap objects.
 func (r *ResponseSetDevicesMap) UnmarshalJSON(input []byte) error {
-    var temp responseSetDevicesMap
+    var temp tempResponseSetDevicesMap
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (r *ResponseSetDevicesMap) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSetDevicesMap is a temporary struct used for validating the fields of ResponseSetDevicesMap.
-type responseSetDevicesMap  struct {
+// tempResponseSetDevicesMap is a temporary struct used for validating the fields of ResponseSetDevicesMap.
+type tempResponseSetDevicesMap  struct {
     Locked []string `json:"locked,omitempty"`
     Moved  []string `json:"moved,omitempty"`
 }

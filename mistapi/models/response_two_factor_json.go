@@ -31,7 +31,7 @@ func (r ResponseTwoFactorJson) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseTwoFactorJson.
 // It customizes the JSON unmarshaling process for ResponseTwoFactorJson objects.
 func (r *ResponseTwoFactorJson) UnmarshalJSON(input []byte) error {
-    var temp responseTwoFactorJson
+    var temp tempResponseTwoFactorJson
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (r *ResponseTwoFactorJson) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseTwoFactorJson is a temporary struct used for validating the fields of ResponseTwoFactorJson.
-type responseTwoFactorJson  struct {
+// tempResponseTwoFactorJson is a temporary struct used for validating the fields of ResponseTwoFactorJson.
+type tempResponseTwoFactorJson  struct {
     TwoFactorSecret *string `json:"two_factor_secret,omitempty"`
 }

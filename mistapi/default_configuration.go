@@ -31,7 +31,8 @@ func DefaultHttpConfiguration() HttpConfiguration {
 // DefaultConfiguration returns the default Configuration.
 func DefaultConfiguration() Configuration {
     return newConfiguration(
-        WithEnvironment(MIST_GLOBAL_01),
+        WithEnvironment(PRODUCTION),
+        WithDefaultHost("www.example.com"),
         WithHttpConfiguration(DefaultHttpConfiguration()),
     )
 }

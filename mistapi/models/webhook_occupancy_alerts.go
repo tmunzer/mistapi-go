@@ -34,7 +34,7 @@ func (w WebhookOccupancyAlerts) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookOccupancyAlerts.
 // It customizes the JSON unmarshaling process for WebhookOccupancyAlerts objects.
 func (w *WebhookOccupancyAlerts) UnmarshalJSON(input []byte) error {
-    var temp webhookOccupancyAlerts
+    var temp tempWebhookOccupancyAlerts
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -54,19 +54,19 @@ func (w *WebhookOccupancyAlerts) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookOccupancyAlerts is a temporary struct used for validating the fields of WebhookOccupancyAlerts.
-type webhookOccupancyAlerts  struct {
+// tempWebhookOccupancyAlerts is a temporary struct used for validating the fields of WebhookOccupancyAlerts.
+type tempWebhookOccupancyAlerts  struct {
     Events *[]WebhookOccupancyAlertsEvent `json:"events"`
     Topic  *string                        `json:"topic"`
 }
 
-func (w *webhookOccupancyAlerts) validate() error {
+func (w *tempWebhookOccupancyAlerts) validate() error {
     var errs []string
     if w.Events == nil {
-        errs = append(errs, "required field `events` is missing for type `Webhook_Occupancy_Alerts`")
+        errs = append(errs, "required field `events` is missing for type `webhook_occupancy_alerts`")
     }
     if w.Topic == nil {
-        errs = append(errs, "required field `topic` is missing for type `Webhook_Occupancy_Alerts`")
+        errs = append(errs, "required field `topic` is missing for type `webhook_occupancy_alerts`")
     }
     if len(errs) == 0 {
         return nil

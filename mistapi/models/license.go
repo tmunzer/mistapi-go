@@ -46,7 +46,7 @@ func (l License) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for License.
 // It customizes the JSON unmarshaling process for License objects.
 func (l *License) UnmarshalJSON(input []byte) error {
-    var temp license
+    var temp tempLicense
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,8 +64,8 @@ func (l *License) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// license is a temporary struct used for validating the fields of License.
-type license  struct {
+// tempLicense is a temporary struct used for validating the fields of License.
+type tempLicense  struct {
     Amendments []LicenseAmendment `json:"amendments,omitempty"`
     Entitled   map[string]int     `json:"entitled,omitempty"`
     Licenses   []LicenseSub       `json:"licenses,omitempty"`

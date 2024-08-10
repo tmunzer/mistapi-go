@@ -100,7 +100,7 @@ func (a ApStatMeshDownlink) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStatMeshDownlink.
 // It customizes the JSON unmarshaling process for ApStatMeshDownlink objects.
 func (a *ApStatMeshDownlink) UnmarshalJSON(input []byte) error {
-    var temp apStatMeshDownlink
+    var temp tempApStatMeshDownlink
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -132,8 +132,8 @@ func (a *ApStatMeshDownlink) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStatMeshDownlink is a temporary struct used for validating the fields of ApStatMeshDownlink.
-type apStatMeshDownlink  struct {
+// tempApStatMeshDownlink is a temporary struct used for validating the fields of ApStatMeshDownlink.
+type tempApStatMeshDownlink  struct {
     Band      *string    `json:"band,omitempty"`
     Channel   *int       `json:"channel,omitempty"`
     IdleTime  *int       `json:"idle_time,omitempty"`

@@ -36,7 +36,7 @@ func (a AssetZone) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AssetZone.
 // It customizes the JSON unmarshaling process for AssetZone objects.
 func (a *AssetZone) UnmarshalJSON(input []byte) error {
-    var temp assetZone
+    var temp tempAssetZone
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (a *AssetZone) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// assetZone is a temporary struct used for validating the fields of AssetZone.
-type assetZone  struct {
+// tempAssetZone is a temporary struct used for validating the fields of AssetZone.
+type tempAssetZone  struct {
     Id    *uuid.UUID `json:"id,omitempty"`
     Since *float64   `json:"since,omitempty"`
 }

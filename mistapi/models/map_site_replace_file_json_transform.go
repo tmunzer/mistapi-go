@@ -48,7 +48,7 @@ func (m MapSiteReplaceFileJsonTransform) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MapSiteReplaceFileJsonTransform.
 // It customizes the JSON unmarshaling process for MapSiteReplaceFileJsonTransform objects.
 func (m *MapSiteReplaceFileJsonTransform) UnmarshalJSON(input []byte) error {
-    var temp mapSiteReplaceFileJsonTransform
+    var temp tempMapSiteReplaceFileJsonTransform
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (m *MapSiteReplaceFileJsonTransform) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mapSiteReplaceFileJsonTransform is a temporary struct used for validating the fields of MapSiteReplaceFileJsonTransform.
-type mapSiteReplaceFileJsonTransform  struct {
+// tempMapSiteReplaceFileJsonTransform is a temporary struct used for validating the fields of MapSiteReplaceFileJsonTransform.
+type tempMapSiteReplaceFileJsonTransform  struct {
     Rotation *float64 `json:"rotation,omitempty"`
     Scale    *float64 `json:"scale,omitempty"`
     X        *float64 `json:"x,omitempty"`

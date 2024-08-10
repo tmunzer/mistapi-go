@@ -31,7 +31,7 @@ func (p PcapBucket) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PcapBucket.
 // It customizes the JSON unmarshaling process for PcapBucket objects.
 func (p *PcapBucket) UnmarshalJSON(input []byte) error {
-    var temp pcapBucket
+    var temp tempPcapBucket
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -50,15 +50,15 @@ func (p *PcapBucket) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// pcapBucket is a temporary struct used for validating the fields of PcapBucket.
-type pcapBucket  struct {
+// tempPcapBucket is a temporary struct used for validating the fields of PcapBucket.
+type tempPcapBucket  struct {
     Bucket *string `json:"bucket"`
 }
 
-func (p *pcapBucket) validate() error {
+func (p *tempPcapBucket) validate() error {
     var errs []string
     if p.Bucket == nil {
-        errs = append(errs, "required field `bucket` is missing for type `Pcap_Bucket`")
+        errs = append(errs, "required field `bucket` is missing for type `pcap_bucket`")
     }
     if len(errs) == 0 {
         return nil

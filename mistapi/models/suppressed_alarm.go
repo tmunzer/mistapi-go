@@ -48,7 +48,7 @@ func (s SuppressedAlarm) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SuppressedAlarm.
 // It customizes the JSON unmarshaling process for SuppressedAlarm objects.
 func (s *SuppressedAlarm) UnmarshalJSON(input []byte) error {
-    var temp suppressedAlarm
+    var temp tempSuppressedAlarm
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (s *SuppressedAlarm) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// suppressedAlarm is a temporary struct used for validating the fields of SuppressedAlarm.
-type suppressedAlarm  struct {
+// tempSuppressedAlarm is a temporary struct used for validating the fields of SuppressedAlarm.
+type tempSuppressedAlarm  struct {
     Applies       *SuppressedAlarmApplies   `json:"applies,omitempty"`
     Duration      *float64                  `json:"duration,omitempty"`
     ScheduledTime *int                      `json:"scheduled_time,omitempty"`

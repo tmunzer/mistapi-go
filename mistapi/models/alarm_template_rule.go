@@ -36,7 +36,7 @@ func (a AlarmTemplateRule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AlarmTemplateRule.
 // It customizes the JSON unmarshaling process for AlarmTemplateRule objects.
 func (a *AlarmTemplateRule) UnmarshalJSON(input []byte) error {
-    var temp alarmTemplateRule
+    var temp tempAlarmTemplateRule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (a *AlarmTemplateRule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// alarmTemplateRule is a temporary struct used for validating the fields of AlarmTemplateRule.
-type alarmTemplateRule  struct {
+// tempAlarmTemplateRule is a temporary struct used for validating the fields of AlarmTemplateRule.
+type tempAlarmTemplateRule  struct {
     Delivery *Delivery `json:"delivery,omitempty"`
     Enabled  *bool     `json:"enabled,omitempty"`
 }

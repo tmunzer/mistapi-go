@@ -46,7 +46,7 @@ func (r RrmBandMetric) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RrmBandMetric.
 // It customizes the JSON unmarshaling process for RrmBandMetric objects.
 func (r *RrmBandMetric) UnmarshalJSON(input []byte) error {
-    var temp rrmBandMetric
+    var temp tempRrmBandMetric
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -69,8 +69,8 @@ func (r *RrmBandMetric) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rrmBandMetric is a temporary struct used for validating the fields of RrmBandMetric.
-type rrmBandMetric  struct {
+// tempRrmBandMetric is a temporary struct used for validating the fields of RrmBandMetric.
+type tempRrmBandMetric  struct {
     CochannelNeighbors *float64                             `json:"cochannel_neighbors"`
     Density            *float64                             `json:"density"`
     Interferences      map[string]RrmBandMetricInterference `json:"interferences,omitempty"`
@@ -78,19 +78,19 @@ type rrmBandMetric  struct {
     Noise              *float64                             `json:"noise"`
 }
 
-func (r *rrmBandMetric) validate() error {
+func (r *tempRrmBandMetric) validate() error {
     var errs []string
     if r.CochannelNeighbors == nil {
-        errs = append(errs, "required field `cochannel_neighbors` is missing for type `Rrm_Band_Metric`")
+        errs = append(errs, "required field `cochannel_neighbors` is missing for type `rrm_band_metric`")
     }
     if r.Density == nil {
-        errs = append(errs, "required field `density` is missing for type `Rrm_Band_Metric`")
+        errs = append(errs, "required field `density` is missing for type `rrm_band_metric`")
     }
     if r.Neighbors == nil {
-        errs = append(errs, "required field `neighbors` is missing for type `Rrm_Band_Metric`")
+        errs = append(errs, "required field `neighbors` is missing for type `rrm_band_metric`")
     }
     if r.Noise == nil {
-        errs = append(errs, "required field `noise` is missing for type `Rrm_Band_Metric`")
+        errs = append(errs, "required field `noise` is missing for type `rrm_band_metric`")
     }
     if len(errs) == 0 {
         return nil

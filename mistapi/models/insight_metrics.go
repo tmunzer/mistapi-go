@@ -38,7 +38,7 @@ func (i InsightMetrics) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for InsightMetrics.
 // It customizes the JSON unmarshaling process for InsightMetrics objects.
 func (i *InsightMetrics) UnmarshalJSON(input []byte) error {
-    var temp insightMetrics
+    var temp tempInsightMetrics
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,27 +60,27 @@ func (i *InsightMetrics) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// insightMetrics is a temporary struct used for validating the fields of InsightMetrics.
-type insightMetrics  struct {
+// tempInsightMetrics is a temporary struct used for validating the fields of InsightMetrics.
+type tempInsightMetrics  struct {
     End      *int           `json:"end"`
     Interval *int           `json:"interval"`
     Results  *[]interface{} `json:"results"`
     Start    *int           `json:"start"`
 }
 
-func (i *insightMetrics) validate() error {
+func (i *tempInsightMetrics) validate() error {
     var errs []string
     if i.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Insight_Metrics`")
+        errs = append(errs, "required field `end` is missing for type `insight_metrics`")
     }
     if i.Interval == nil {
-        errs = append(errs, "required field `interval` is missing for type `Insight_Metrics`")
+        errs = append(errs, "required field `interval` is missing for type `insight_metrics`")
     }
     if i.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Insight_Metrics`")
+        errs = append(errs, "required field `results` is missing for type `insight_metrics`")
     }
     if i.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Insight_Metrics`")
+        errs = append(errs, "required field `start` is missing for type `insight_metrics`")
     }
     if len(errs) == 0 {
         return nil

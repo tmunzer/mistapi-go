@@ -46,7 +46,7 @@ func (l LicenseUsageOrg) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for LicenseUsageOrg.
 // It customizes the JSON unmarshaling process for LicenseUsageOrg objects.
 func (l *LicenseUsageOrg) UnmarshalJSON(input []byte) error {
-    var temp licenseUsageOrg
+    var temp tempLicenseUsageOrg
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -69,8 +69,8 @@ func (l *LicenseUsageOrg) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// licenseUsageOrg is a temporary struct used for validating the fields of LicenseUsageOrg.
-type licenseUsageOrg  struct {
+// tempLicenseUsageOrg is a temporary struct used for validating the fields of LicenseUsageOrg.
+type tempLicenseUsageOrg  struct {
     ForSite     *bool           `json:"for_site,omitempty"`
     FullyLoaded map[string]int  `json:"fully_loaded,omitempty"`
     NumDevices  *int            `json:"num_devices"`
@@ -78,16 +78,16 @@ type licenseUsageOrg  struct {
     Usages      *map[string]int `json:"usages"`
 }
 
-func (l *licenseUsageOrg) validate() error {
+func (l *tempLicenseUsageOrg) validate() error {
     var errs []string
     if l.NumDevices == nil {
-        errs = append(errs, "required field `num_devices` is missing for type `License_Usage_Org`")
+        errs = append(errs, "required field `num_devices` is missing for type `license_usage_org`")
     }
     if l.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `License_Usage_Org`")
+        errs = append(errs, "required field `site_id` is missing for type `license_usage_org`")
     }
     if l.Usages == nil {
-        errs = append(errs, "required field `usages` is missing for type `License_Usage_Org`")
+        errs = append(errs, "required field `usages` is missing for type `license_usage_org`")
     }
     if len(errs) == 0 {
         return nil

@@ -37,7 +37,7 @@ func (l Login) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Login.
 // It customizes the JSON unmarshaling process for Login objects.
 func (l *Login) UnmarshalJSON(input []byte) error {
-    var temp login
+    var temp tempLogin
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,20 +58,20 @@ func (l *Login) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// login is a temporary struct used for validating the fields of Login.
-type login  struct {
+// tempLogin is a temporary struct used for validating the fields of Login.
+type tempLogin  struct {
     Email     *string `json:"email"`
     Password  *string `json:"password"`
     TwoFactor *string `json:"two_factor,omitempty"`
 }
 
-func (l *login) validate() error {
+func (l *tempLogin) validate() error {
     var errs []string
     if l.Email == nil {
-        errs = append(errs, "required field `email` is missing for type `Login`")
+        errs = append(errs, "required field `email` is missing for type `login`")
     }
     if l.Password == nil {
-        errs = append(errs, "required field `password` is missing for type `Login`")
+        errs = append(errs, "required field `password` is missing for type `login`")
     }
     if len(errs) == 0 {
         return nil

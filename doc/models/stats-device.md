@@ -30,7 +30,7 @@
 | `Ip` | `models.Optional[string]` | Optional | IP address |
 | `IpConfig` | [`*models.ApIpConfig`](../../doc/models/ap-ip-config.md) | Optional | IP AP settings |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
-| `L2tpStat` | [`map[string]models.ApStatsL2TpStat`](../../doc/models/ap-stats-l2-tp-stat.md) | Optional | l2tp tunnel status (key is the wxtunnel_id) |
+| `L2tpStat` | [`map[string]models.ApStatsL2tpStat`](../../doc/models/ap-stats-l2-tp-stat.md) | Optional | l2tp tunnel status (key is the wxtunnel_id) |
 | `LastSeen` | `models.Optional[float64]` | Optional | last seen timestamp |
 | `LastTrouble` | [`*models.LastTrouble`](../../doc/models/last-trouble.md) | Optional | last trouble code of switch |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
@@ -85,9 +85,10 @@
 | `IfStat` | [`*models.IfStat`](../../doc/models/if-stat.md) | Optional | Property key is the interface name |
 | `MacTableStats` | [`*models.MacTableStats`](../../doc/models/mac-table-stats.md) | Optional | - |
 | `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
-| `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `ModuleStat` | [`[]models.ModuleStatItem1`](../../doc/models/module-stat-item-1.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Ports` | [`[]models.DeviceStatsPort`](../../doc/models/device-stats-port.md) | Optional | - |
 | `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
-| `ServiceStat` | [`*models.ServiceStat`](../../doc/models/service-stat.md) | Optional | - |
+| `ServiceStat` | [`*models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
 | `VcMac` | `models.Optional[string]` | Optional | - |
 | `VcSetupInfo` | [`*models.SwitchStatsVcSetupInfo`](../../doc/models/switch-stats-vc-setup-info.md) | Optional | - |
 | `ClusterConfig` | [`*models.ClusterConfigStats`](../../doc/models/cluster-config-stats.md) | Optional | - |

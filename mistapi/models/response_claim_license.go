@@ -39,7 +39,7 @@ func (r ResponseClaimLicense) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseClaimLicense.
 // It customizes the JSON unmarshaling process for ResponseClaimLicense objects.
 func (r *ResponseClaimLicense) UnmarshalJSON(input []byte) error {
-    var temp responseClaimLicense
+    var temp tempResponseClaimLicense
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (r *ResponseClaimLicense) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseClaimLicense is a temporary struct used for validating the fields of ResponseClaimLicense.
-type responseClaimLicense  struct {
+// tempResponseClaimLicense is a temporary struct used for validating the fields of ResponseClaimLicense.
+type tempResponseClaimLicense  struct {
     InventoryAdded      *[]ResponseClaimLicenseInventoryItem    `json:"inventory_added"`
     InventoryDuplicated *[]ResponseClaimLicenseInventoryItem    `json:"inventory_duplicated"`
     LicenseAdded        *[]ResponseClaimLicenseLicenseItem      `json:"license_added"`
@@ -71,22 +71,22 @@ type responseClaimLicense  struct {
     LicenseError        *[]ResponseClaimLicenseLicenseErrorItem `json:"license_error"`
 }
 
-func (r *responseClaimLicense) validate() error {
+func (r *tempResponseClaimLicense) validate() error {
     var errs []string
     if r.InventoryAdded == nil {
-        errs = append(errs, "required field `inventory_added` is missing for type `Response_Claim_License`")
+        errs = append(errs, "required field `inventory_added` is missing for type `response_claim_license`")
     }
     if r.InventoryDuplicated == nil {
-        errs = append(errs, "required field `inventory_duplicated` is missing for type `Response_Claim_License`")
+        errs = append(errs, "required field `inventory_duplicated` is missing for type `response_claim_license`")
     }
     if r.LicenseAdded == nil {
-        errs = append(errs, "required field `license_added` is missing for type `Response_Claim_License`")
+        errs = append(errs, "required field `license_added` is missing for type `response_claim_license`")
     }
     if r.LicenseDuplicated == nil {
-        errs = append(errs, "required field `license_duplicated` is missing for type `Response_Claim_License`")
+        errs = append(errs, "required field `license_duplicated` is missing for type `response_claim_license`")
     }
     if r.LicenseError == nil {
-        errs = append(errs, "required field `license_error` is missing for type `Response_Claim_License`")
+        errs = append(errs, "required field `license_error` is missing for type `response_claim_license`")
     }
     if len(errs) == 0 {
         return nil

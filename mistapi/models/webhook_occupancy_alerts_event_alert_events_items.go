@@ -47,7 +47,7 @@ func (w WebhookOccupancyAlertsEventAlertEventsItems) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookOccupancyAlertsEventAlertEventsItems.
 // It customizes the JSON unmarshaling process for WebhookOccupancyAlertsEventAlertEventsItems objects.
 func (w *WebhookOccupancyAlertsEventAlertEventsItems) UnmarshalJSON(input []byte) error {
-    var temp webhookOccupancyAlertsEventAlertEventsItems
+    var temp tempWebhookOccupancyAlertsEventAlertEventsItems
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -73,8 +73,8 @@ func (w *WebhookOccupancyAlertsEventAlertEventsItems) UnmarshalJSON(input []byte
     return nil
 }
 
-// webhookOccupancyAlertsEventAlertEventsItems is a temporary struct used for validating the fields of WebhookOccupancyAlertsEventAlertEventsItems.
-type webhookOccupancyAlertsEventAlertEventsItems  struct {
+// tempWebhookOccupancyAlertsEventAlertEventsItems is a temporary struct used for validating the fields of WebhookOccupancyAlertsEventAlertEventsItems.
+type tempWebhookOccupancyAlertsEventAlertEventsItems  struct {
     CurrentOccupancy *int                           `json:"current_occupancy"`
     MapId            *uuid.UUID                     `json:"map_id"`
     OccupancyLimit   *int                           `json:"occupancy_limit"`
@@ -85,31 +85,31 @@ type webhookOccupancyAlertsEventAlertEventsItems  struct {
     ZoneName         *string                        `json:"zone_name"`
 }
 
-func (w *webhookOccupancyAlertsEventAlertEventsItems) validate() error {
+func (w *tempWebhookOccupancyAlertsEventAlertEventsItems) validate() error {
     var errs []string
     if w.CurrentOccupancy == nil {
-        errs = append(errs, "required field `current_occupancy` is missing for type `Webhook_Occupancy_Alerts_Event_Alert_Events_Items`")
+        errs = append(errs, "required field `current_occupancy` is missing for type `webhook_occupancy_alerts_event_alert_events_items`")
     }
     if w.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Webhook_Occupancy_Alerts_Event_Alert_Events_Items`")
+        errs = append(errs, "required field `map_id` is missing for type `webhook_occupancy_alerts_event_alert_events_items`")
     }
     if w.OccupancyLimit == nil {
-        errs = append(errs, "required field `occupancy_limit` is missing for type `Webhook_Occupancy_Alerts_Event_Alert_Events_Items`")
+        errs = append(errs, "required field `occupancy_limit` is missing for type `webhook_occupancy_alerts_event_alert_events_items`")
     }
     if w.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Webhook_Occupancy_Alerts_Event_Alert_Events_Items`")
+        errs = append(errs, "required field `org_id` is missing for type `webhook_occupancy_alerts_event_alert_events_items`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Occupancy_Alerts_Event_Alert_Events_Items`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_occupancy_alerts_event_alert_events_items`")
     }
     if w.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Webhook_Occupancy_Alerts_Event_Alert_Events_Items`")
+        errs = append(errs, "required field `type` is missing for type `webhook_occupancy_alerts_event_alert_events_items`")
     }
     if w.ZoneId == nil {
-        errs = append(errs, "required field `zone_id` is missing for type `Webhook_Occupancy_Alerts_Event_Alert_Events_Items`")
+        errs = append(errs, "required field `zone_id` is missing for type `webhook_occupancy_alerts_event_alert_events_items`")
     }
     if w.ZoneName == nil {
-        errs = append(errs, "required field `zone_name` is missing for type `Webhook_Occupancy_Alerts_Event_Alert_Events_Items`")
+        errs = append(errs, "required field `zone_name` is missing for type `webhook_occupancy_alerts_event_alert_events_items`")
     }
     if len(errs) == 0 {
         return nil

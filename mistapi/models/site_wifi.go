@@ -107,7 +107,7 @@ func (s SiteWifi) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteWifi.
 // It customizes the JSON unmarshaling process for SiteWifi objects.
 func (s *SiteWifi) UnmarshalJSON(input []byte) error {
-    var temp siteWifi
+    var temp tempSiteWifi
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -135,8 +135,8 @@ func (s *SiteWifi) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteWifi is a temporary struct used for validating the fields of SiteWifi.
-type siteWifi  struct {
+// tempSiteWifi is a temporary struct used for validating the fields of SiteWifi.
+type tempSiteWifi  struct {
     CiscoEnabled                      *bool                          `json:"cisco_enabled,omitempty"`
     Disable11k                        *bool                          `json:"disable_11k,omitempty"`
     DisableRadiosWhenPowerConstrained *bool                          `json:"disable_radios_when_power_constrained,omitempty"`

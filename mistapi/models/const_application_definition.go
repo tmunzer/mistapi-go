@@ -63,7 +63,7 @@ func (c ConstApplicationDefinition) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstApplicationDefinition.
 // It customizes the JSON unmarshaling process for ConstApplicationDefinition objects.
 func (c *ConstApplicationDefinition) UnmarshalJSON(input []byte) error {
-    var temp constApplicationDefinition
+    var temp tempConstApplicationDefinition
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -86,8 +86,8 @@ func (c *ConstApplicationDefinition) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constApplicationDefinition is a temporary struct used for validating the fields of ConstApplicationDefinition.
-type constApplicationDefinition  struct {
+// tempConstApplicationDefinition is a temporary struct used for validating the fields of ConstApplicationDefinition.
+type tempConstApplicationDefinition  struct {
     AppId          *bool   `json:"app_id,omitempty"`
     AppImageUrl    *string `json:"app_image_url,omitempty"`
     AppProbe       *bool   `json:"app_probe,omitempty"`

@@ -94,7 +94,7 @@ func (g Guest) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Guest.
 // It customizes the JSON unmarshaling process for Guest objects.
 func (g *Guest) UnmarshalJSON(input []byte) error {
-    var temp guest
+    var temp tempGuest
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -122,8 +122,8 @@ func (g *Guest) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// guest is a temporary struct used for validating the fields of Guest.
-type guest  struct {
+// tempGuest is a temporary struct used for validating the fields of Guest.
+type tempGuest  struct {
     Authorized             *bool      `json:"authorized,omitempty"`
     AuthorizedExpiringTime *float64   `json:"authorized_expiring_time,omitempty"`
     AuthorizedTime         *float64   `json:"authorized_time,omitempty"`

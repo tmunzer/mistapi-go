@@ -41,7 +41,7 @@ func (m MxedgeTuntermDhcpdConfigProperty) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeTuntermDhcpdConfigProperty.
 // It customizes the JSON unmarshaling process for MxedgeTuntermDhcpdConfigProperty objects.
 func (m *MxedgeTuntermDhcpdConfigProperty) UnmarshalJSON(input []byte) error {
-    var temp mxedgeTuntermDhcpdConfigProperty
+    var temp tempMxedgeTuntermDhcpdConfigProperty
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (m *MxedgeTuntermDhcpdConfigProperty) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeTuntermDhcpdConfigProperty is a temporary struct used for validating the fields of MxedgeTuntermDhcpdConfigProperty.
-type mxedgeTuntermDhcpdConfigProperty  struct {
+// tempMxedgeTuntermDhcpdConfigProperty is a temporary struct used for validating the fields of MxedgeTuntermDhcpdConfigProperty.
+type tempMxedgeTuntermDhcpdConfigProperty  struct {
     Enabled *bool                             `json:"enabled,omitempty"`
     Servers []string                          `json:"servers,omitempty"`
     Type    *MxedgeTuntermDhcpdConfigTypeEnum `json:"type,omitempty"`

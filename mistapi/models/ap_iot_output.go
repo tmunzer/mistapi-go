@@ -53,7 +53,7 @@ func (a ApIotOutput) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApIotOutput.
 // It customizes the JSON unmarshaling process for ApIotOutput objects.
 func (a *ApIotOutput) UnmarshalJSON(input []byte) error {
-    var temp apIotOutput
+    var temp tempApIotOutput
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -72,8 +72,8 @@ func (a *ApIotOutput) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apIotOutput is a temporary struct used for validating the fields of ApIotOutput.
-type apIotOutput  struct {
+// tempApIotOutput is a temporary struct used for validating the fields of ApIotOutput.
+type tempApIotOutput  struct {
     Enabled *bool            `json:"enabled,omitempty"`
     Name    *string          `json:"name,omitempty"`
     Output  *bool            `json:"output,omitempty"`

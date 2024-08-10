@@ -48,7 +48,7 @@ func (g GatewayTemplateTunnelProbe) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayTemplateTunnelProbe.
 // It customizes the JSON unmarshaling process for GatewayTemplateTunnelProbe objects.
 func (g *GatewayTemplateTunnelProbe) UnmarshalJSON(input []byte) error {
-    var temp gatewayTemplateTunnelProbe
+    var temp tempGatewayTemplateTunnelProbe
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (g *GatewayTemplateTunnelProbe) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayTemplateTunnelProbe is a temporary struct used for validating the fields of GatewayTemplateTunnelProbe.
-type gatewayTemplateTunnelProbe  struct {
+// tempGatewayTemplateTunnelProbe is a temporary struct used for validating the fields of GatewayTemplateTunnelProbe.
+type tempGatewayTemplateTunnelProbe  struct {
     Interval  *int                          `json:"interval,omitempty"`
     Threshold *int                          `json:"threshold,omitempty"`
     Timeout   *int                          `json:"timeout,omitempty"`

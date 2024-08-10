@@ -43,7 +43,7 @@ func (r ResponseDiscoveredSwitchMetrics) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseDiscoveredSwitchMetrics.
 // It customizes the JSON unmarshaling process for ResponseDiscoveredSwitchMetrics objects.
 func (r *ResponseDiscoveredSwitchMetrics) UnmarshalJSON(input []byte) error {
-    var temp responseDiscoveredSwitchMetrics
+    var temp tempResponseDiscoveredSwitchMetrics
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseDiscoveredSwitchMetrics) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseDiscoveredSwitchMetrics is a temporary struct used for validating the fields of ResponseDiscoveredSwitchMetrics.
-type responseDiscoveredSwitchMetrics  struct {
+// tempResponseDiscoveredSwitchMetrics is a temporary struct used for validating the fields of ResponseDiscoveredSwitchMetrics.
+type tempResponseDiscoveredSwitchMetrics  struct {
     End     *float64                  `json:"end"`
     Limit   *int                      `json:"limit"`
     Next    *string                   `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type responseDiscoveredSwitchMetrics  struct {
     Total   *int                      `json:"total"`
 }
 
-func (r *responseDiscoveredSwitchMetrics) validate() error {
+func (r *tempResponseDiscoveredSwitchMetrics) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Discovered_Switch_Metrics`")
+        errs = append(errs, "required field `end` is missing for type `response_discovered_switch_metrics`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Discovered_Switch_Metrics`")
+        errs = append(errs, "required field `limit` is missing for type `response_discovered_switch_metrics`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Discovered_Switch_Metrics`")
+        errs = append(errs, "required field `results` is missing for type `response_discovered_switch_metrics`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Discovered_Switch_Metrics`")
+        errs = append(errs, "required field `start` is missing for type `response_discovered_switch_metrics`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Discovered_Switch_Metrics`")
+        errs = append(errs, "required field `total` is missing for type `response_discovered_switch_metrics`")
     }
     if len(errs) == 0 {
         return nil

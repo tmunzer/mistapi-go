@@ -49,7 +49,7 @@ func (r ResponseMapImportAp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseMapImportAp.
 // It customizes the JSON unmarshaling process for ResponseMapImportAp objects.
 func (r *ResponseMapImportAp) UnmarshalJSON(input []byte) error {
-    var temp responseMapImportAp
+    var temp tempResponseMapImportAp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -74,8 +74,8 @@ func (r *ResponseMapImportAp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseMapImportAp is a temporary struct used for validating the fields of ResponseMapImportAp.
-type responseMapImportAp  struct {
+// tempResponseMapImportAp is a temporary struct used for validating the fields of ResponseMapImportAp.
+type tempResponseMapImportAp  struct {
     Action      *ResponseMapImportApActionEnum `json:"action"`
     FloorplanId *uuid.UUID                     `json:"floorplan_id"`
     Height      *float64                       `json:"height,omitempty"`
@@ -85,22 +85,22 @@ type responseMapImportAp  struct {
     Reason      *string                        `json:"reason,omitempty"`
 }
 
-func (r *responseMapImportAp) validate() error {
+func (r *tempResponseMapImportAp) validate() error {
     var errs []string
     if r.Action == nil {
-        errs = append(errs, "required field `action` is missing for type `Response_Map_Import_Ap`")
+        errs = append(errs, "required field `action` is missing for type `response_map_import_ap`")
     }
     if r.FloorplanId == nil {
-        errs = append(errs, "required field `floorplan_id` is missing for type `Response_Map_Import_Ap`")
+        errs = append(errs, "required field `floorplan_id` is missing for type `response_map_import_ap`")
     }
     if r.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Response_Map_Import_Ap`")
+        errs = append(errs, "required field `mac` is missing for type `response_map_import_ap`")
     }
     if r.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Response_Map_Import_Ap`")
+        errs = append(errs, "required field `map_id` is missing for type `response_map_import_ap`")
     }
     if r.Orientation == nil {
-        errs = append(errs, "required field `orientation` is missing for type `Response_Map_Import_Ap`")
+        errs = append(errs, "required field `orientation` is missing for type `response_map_import_ap`")
     }
     if len(errs) == 0 {
         return nil

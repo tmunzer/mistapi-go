@@ -67,7 +67,7 @@ func (a ApStatsUsbStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStatsUsbStat.
 // It customizes the JSON unmarshaling process for ApStatsUsbStat objects.
 func (a *ApStatsUsbStat) UnmarshalJSON(input []byte) error {
-    var temp apStatsUsbStat
+    var temp tempApStatsUsbStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -86,8 +86,8 @@ func (a *ApStatsUsbStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStatsUsbStat is a temporary struct used for validating the fields of ApStatsUsbStat.
-type apStatsUsbStat  struct {
+// tempApStatsUsbStat is a temporary struct used for validating the fields of ApStatsUsbStat.
+type tempApStatsUsbStat  struct {
     Channel      Optional[int]    `json:"channel"`
     Connected    Optional[bool]   `json:"connected"`
     LastActivity Optional[int]    `json:"last_activity"`

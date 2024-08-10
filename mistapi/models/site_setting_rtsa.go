@@ -49,7 +49,7 @@ func (s SiteSettingRtsa) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingRtsa.
 // It customizes the JSON unmarshaling process for SiteSettingRtsa objects.
 func (s *SiteSettingRtsa) UnmarshalJSON(input []byte) error {
-    var temp siteSettingRtsa
+    var temp tempSiteSettingRtsa
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -68,8 +68,8 @@ func (s *SiteSettingRtsa) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingRtsa is a temporary struct used for validating the fields of SiteSettingRtsa.
-type siteSettingRtsa  struct {
+// tempSiteSettingRtsa is a temporary struct used for validating the fields of SiteSettingRtsa.
+type tempSiteSettingRtsa  struct {
     AppWaking             *bool `json:"app_waking,omitempty"`
     DisableDeadReckoning  *bool `json:"disable_dead_reckoning,omitempty"`
     DisablePressureSensor *bool `json:"disable_pressure_sensor,omitempty"`

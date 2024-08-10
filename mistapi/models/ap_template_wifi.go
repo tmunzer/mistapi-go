@@ -75,7 +75,7 @@ func (a ApTemplateWifi) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApTemplateWifi.
 // It customizes the JSON unmarshaling process for ApTemplateWifi objects.
 func (a *ApTemplateWifi) UnmarshalJSON(input []byte) error {
-    var temp apTemplateWifi
+    var temp tempApTemplateWifi
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -101,8 +101,8 @@ func (a *ApTemplateWifi) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apTemplateWifi is a temporary struct used for validating the fields of ApTemplateWifi.
-type apTemplateWifi  struct {
+// tempApTemplateWifi is a temporary struct used for validating the fields of ApTemplateWifi.
+type tempApTemplateWifi  struct {
     CiscoEnabled                      *bool `json:"cisco_enabled,omitempty"`
     Disable11k                        *bool `json:"disable_11k,omitempty"`
     DisableRadiosWhenPowerConstrained *bool `json:"disable_radios_when_power_constrained,omitempty"`

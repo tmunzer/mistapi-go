@@ -15,7 +15,7 @@
 
 ```json
 {
-  "config_success_count": 16
+  "config_success_count": 58
 }
 ```
 

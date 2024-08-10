@@ -48,7 +48,7 @@ func (c CaptureScanAps) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureScanAps.
 // It customizes the JSON unmarshaling process for CaptureScanAps objects.
 func (c *CaptureScanAps) UnmarshalJSON(input []byte) error {
-    var temp captureScanAps
+    var temp tempCaptureScanAps
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (c *CaptureScanAps) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureScanAps is a temporary struct used for validating the fields of CaptureScanAps.
-type captureScanAps  struct {
+// tempCaptureScanAps is a temporary struct used for validating the fields of CaptureScanAps.
+type tempCaptureScanAps  struct {
     Band              *CaptureScanApsBandEnum `json:"band,omitempty"`
     Channel           *string                 `json:"channel,omitempty"`
     TcpdumpExpression *string                 `json:"tcpdump_expression,omitempty"`

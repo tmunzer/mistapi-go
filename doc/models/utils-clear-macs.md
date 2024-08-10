@@ -16,8 +16,6 @@
 ```json
 {
   "ports": [
-    "ports7",
-    "ports8",
     "ports9"
   ]
 }

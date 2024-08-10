@@ -35,7 +35,9 @@ hostspot 2.0 wlan settings
   "venue_name": "some_name",
   "enabled": false,
   "nai_realms": [
-    "nai_realms5"
+    "nai_realms5",
+    "nai_realms4",
+    "nai_realms3"
   ]
 }
 ```

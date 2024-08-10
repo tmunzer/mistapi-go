@@ -29,7 +29,7 @@ Auto Upgrade Settings
   "enabled": false,
   "time_of_day": "12:00",
   "version": "beta",
-  "day_of_week": "tue"
+  "day_of_week": "any"
 }
 ```
 

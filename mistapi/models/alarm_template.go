@@ -58,7 +58,7 @@ func (a AlarmTemplate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AlarmTemplate.
 // It customizes the JSON unmarshaling process for AlarmTemplate objects.
 func (a *AlarmTemplate) UnmarshalJSON(input []byte) error {
-    var temp alarmTemplate
+    var temp tempAlarmTemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -83,8 +83,8 @@ func (a *AlarmTemplate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// alarmTemplate is a temporary struct used for validating the fields of AlarmTemplate.
-type alarmTemplate  struct {
+// tempAlarmTemplate is a temporary struct used for validating the fields of AlarmTemplate.
+type tempAlarmTemplate  struct {
     CreatedTime  *float64                      `json:"created_time,omitempty"`
     Delivery     *Delivery                     `json:"delivery"`
     Id           *uuid.UUID                    `json:"id,omitempty"`
@@ -94,13 +94,13 @@ type alarmTemplate  struct {
     Rules        *map[string]AlarmTemplateRule `json:"rules"`
 }
 
-func (a *alarmTemplate) validate() error {
+func (a *tempAlarmTemplate) validate() error {
     var errs []string
     if a.Delivery == nil {
-        errs = append(errs, "required field `delivery` is missing for type `Alarm_Template`")
+        errs = append(errs, "required field `delivery` is missing for type `alarm_template`")
     }
     if a.Rules == nil {
-        errs = append(errs, "required field `rules` is missing for type `Alarm_Template`")
+        errs = append(errs, "required field `rules` is missing for type `alarm_template`")
     }
     if len(errs) == 0 {
         return nil

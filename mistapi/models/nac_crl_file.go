@@ -52,7 +52,7 @@ func (n NacCrlFile) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NacCrlFile.
 // It customizes the JSON unmarshaling process for NacCrlFile objects.
 func (n *NacCrlFile) UnmarshalJSON(input []byte) error {
-    var temp nacCrlFile
+    var temp tempNacCrlFile
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (n *NacCrlFile) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// nacCrlFile is a temporary struct used for validating the fields of NacCrlFile.
-type nacCrlFile  struct {
+// tempNacCrlFile is a temporary struct used for validating the fields of NacCrlFile.
+type tempNacCrlFile  struct {
     CreatedTime  *float64 `json:"created_time,omitempty"`
     Id           *string  `json:"id,omitempty"`
     ModifiedTime *float64 `json:"modified_time,omitempty"`

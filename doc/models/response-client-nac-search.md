@@ -39,22 +39,6 @@
         "cert_issuer2"
       ],
       "idp_id": "idp_id6"
-    },
-    {
-      "ap": [
-        "ap6",
-        "ap7",
-        "ap8"
-      ],
-      "auth_type": "auth_type4",
-      "cert_cn": [
-        "cert_cn9",
-        "cert_cn8"
-      ],
-      "cert_issuer": [
-        "cert_issuer2"
-      ],
-      "idp_id": "idp_id6"
     }
   ]
 }

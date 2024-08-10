@@ -60,7 +60,7 @@ func (m MxedgeUpgradeMulti) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeUpgradeMulti.
 // It customizes the JSON unmarshaling process for MxedgeUpgradeMulti objects.
 func (m *MxedgeUpgradeMulti) UnmarshalJSON(input []byte) error {
-    var temp mxedgeUpgradeMulti
+    var temp tempMxedgeUpgradeMulti
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -84,8 +84,8 @@ func (m *MxedgeUpgradeMulti) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeUpgradeMulti is a temporary struct used for validating the fields of MxedgeUpgradeMulti.
-type mxedgeUpgradeMulti  struct {
+// tempMxedgeUpgradeMulti is a temporary struct used for validating the fields of MxedgeUpgradeMulti.
+type tempMxedgeUpgradeMulti  struct {
     AllowDowngrades *MxedgeUpgradeMultiAllowDowngrades `json:"allow_downgrades,omitempty"`
     Channel         *MxedgeUpgradeChannelEnum          `json:"channel,omitempty"`
     Distro          *string                            `json:"distro,omitempty"`
@@ -94,10 +94,10 @@ type mxedgeUpgradeMulti  struct {
     Versions        *MxedgeUpgradeVersion              `json:"versions,omitempty"`
 }
 
-func (m *mxedgeUpgradeMulti) validate() error {
+func (m *tempMxedgeUpgradeMulti) validate() error {
     var errs []string
     if m.MxedgeIds == nil {
-        errs = append(errs, "required field `mxedge_ids` is missing for type `Mxedge_Upgrade_Multi`")
+        errs = append(errs, "required field `mxedge_ids` is missing for type `mxedge_upgrade_multi`")
     }
     if len(errs) == 0 {
         return nil

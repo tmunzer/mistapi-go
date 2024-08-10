@@ -35,7 +35,7 @@ func (m MlOverwriteAdditionalProperties) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MlOverwriteAdditionalProperties.
 // It customizes the JSON unmarshaling process for MlOverwriteAdditionalProperties objects.
 func (m *MlOverwriteAdditionalProperties) UnmarshalJSON(input []byte) error {
-    var temp mlOverwriteAdditionalProperties
+    var temp tempMlOverwriteAdditionalProperties
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (m *MlOverwriteAdditionalProperties) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mlOverwriteAdditionalProperties is a temporary struct used for validating the fields of MlOverwriteAdditionalProperties.
-type mlOverwriteAdditionalProperties  struct {
+// tempMlOverwriteAdditionalProperties is a temporary struct used for validating the fields of MlOverwriteAdditionalProperties.
+type tempMlOverwriteAdditionalProperties  struct {
     Int *int `json:"int,omitempty"`
     Ple *int `json:"ple,omitempty"`
 }

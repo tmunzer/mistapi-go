@@ -43,7 +43,7 @@ func (r ResponseClientSessionsSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseClientSessionsSearch.
 // It customizes the JSON unmarshaling process for ResponseClientSessionsSearch objects.
 func (r *ResponseClientSessionsSearch) UnmarshalJSON(input []byte) error {
-    var temp responseClientSessionsSearch
+    var temp tempResponseClientSessionsSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseClientSessionsSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseClientSessionsSearch is a temporary struct used for validating the fields of ResponseClientSessionsSearch.
-type responseClientSessionsSearch  struct {
+// tempResponseClientSessionsSearch is a temporary struct used for validating the fields of ResponseClientSessionsSearch.
+type tempResponseClientSessionsSearch  struct {
     End     *int                                `json:"end"`
     Limit   *int                                `json:"limit"`
     Next    *string                             `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type responseClientSessionsSearch  struct {
     Total   *int                                `json:"total"`
 }
 
-func (r *responseClientSessionsSearch) validate() error {
+func (r *tempResponseClientSessionsSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Client_Sessions_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_client_sessions_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Client_Sessions_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_client_sessions_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Client_Sessions_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_client_sessions_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Client_Sessions_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_client_sessions_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Client_Sessions_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_client_sessions_search`")
     }
     if len(errs) == 0 {
         return nil

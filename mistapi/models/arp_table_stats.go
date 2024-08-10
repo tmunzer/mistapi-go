@@ -35,7 +35,7 @@ func (a ArpTableStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ArpTableStats.
 // It customizes the JSON unmarshaling process for ArpTableStats objects.
 func (a *ArpTableStats) UnmarshalJSON(input []byte) error {
-    var temp arpTableStats
+    var temp tempArpTableStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (a *ArpTableStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// arpTableStats is a temporary struct used for validating the fields of ArpTableStats.
-type arpTableStats  struct {
+// tempArpTableStats is a temporary struct used for validating the fields of ArpTableStats.
+type tempArpTableStats  struct {
     ArpTableCount       *int `json:"arp_table_count,omitempty"`
     MaxEntriesSupported *int `json:"max_entries_supported,omitempty"`
 }

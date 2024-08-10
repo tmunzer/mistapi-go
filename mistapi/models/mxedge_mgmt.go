@@ -49,7 +49,7 @@ func (m MxedgeMgmt) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeMgmt.
 // It customizes the JSON unmarshaling process for MxedgeMgmt objects.
 func (m *MxedgeMgmt) UnmarshalJSON(input []byte) error {
-    var temp mxedgeMgmt
+    var temp tempMxedgeMgmt
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -68,8 +68,8 @@ func (m *MxedgeMgmt) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeMgmt is a temporary struct used for validating the fields of MxedgeMgmt.
-type mxedgeMgmt  struct {
+// tempMxedgeMgmt is a temporary struct used for validating the fields of MxedgeMgmt.
+type tempMxedgeMgmt  struct {
     FipsEnabled  *bool                     `json:"fips_enabled,omitempty"`
     MistPassword *string                   `json:"mist_password,omitempty"`
     OobIpType    *MxedgeMgmtOobIpTypeEnum  `json:"oob_ip_type,omitempty"`

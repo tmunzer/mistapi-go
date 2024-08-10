@@ -20,8 +20,8 @@
   "details": {
     "config_success_count": 166
   },
-  "score": 180,
-  "total_switch_count": 224
+  "score": 170,
+  "total_switch_count": 42
 }
 ```
 

@@ -19,7 +19,7 @@
 {
   "dh_group": "14",
   "enc_algo": "aes256",
-  "auth_algo": "md5"
+  "auth_algo": "sha2"
 }
 ```
 

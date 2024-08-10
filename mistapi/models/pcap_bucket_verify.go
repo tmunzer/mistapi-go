@@ -33,7 +33,7 @@ func (p PcapBucketVerify) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PcapBucketVerify.
 // It customizes the JSON unmarshaling process for PcapBucketVerify objects.
 func (p *PcapBucketVerify) UnmarshalJSON(input []byte) error {
-    var temp pcapBucketVerify
+    var temp tempPcapBucketVerify
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (p *PcapBucketVerify) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// pcapBucketVerify is a temporary struct used for validating the fields of PcapBucketVerify.
-type pcapBucketVerify  struct {
+// tempPcapBucketVerify is a temporary struct used for validating the fields of PcapBucketVerify.
+type tempPcapBucketVerify  struct {
     Bucket      *string `json:"bucket"`
     VerifyToken *string `json:"verify_token"`
 }
 
-func (p *pcapBucketVerify) validate() error {
+func (p *tempPcapBucketVerify) validate() error {
     var errs []string
     if p.Bucket == nil {
-        errs = append(errs, "required field `bucket` is missing for type `Pcap_Bucket_Verify`")
+        errs = append(errs, "required field `bucket` is missing for type `pcap_bucket_verify`")
     }
     if p.VerifyToken == nil {
-        errs = append(errs, "required field `verify_token` is missing for type `Pcap_Bucket_Verify`")
+        errs = append(errs, "required field `verify_token` is missing for type `pcap_bucket_verify`")
     }
     if len(errs) == 0 {
         return nil

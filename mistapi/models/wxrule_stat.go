@@ -50,7 +50,7 @@ func (w WxruleStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WxruleStat.
 // It customizes the JSON unmarshaling process for WxruleStat objects.
 func (w *WxruleStat) UnmarshalJSON(input []byte) error {
-    var temp wxruleStat
+    var temp tempWxruleStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (w *WxruleStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wxruleStat is a temporary struct used for validating the fields of WxruleStat.
-type wxruleStat  struct {
+// tempWxruleStat is a temporary struct used for validating the fields of WxruleStat.
+type tempWxruleStat  struct {
     Action         *WxruleStatsActionEnum                 `json:"action"`
     ClientMac      *[]string                              `json:"client_mac"`
     DstAllowWxtags *[]uuid.UUID                           `json:"dst_allow_wxtags"`
@@ -90,34 +90,34 @@ type wxruleStat  struct {
     Usage          *map[string]WxruleStatsUsageProperties `json:"usage"`
 }
 
-func (w *wxruleStat) validate() error {
+func (w *tempWxruleStat) validate() error {
     var errs []string
     if w.Action == nil {
-        errs = append(errs, "required field `action` is missing for type `Wxrule_Stat`")
+        errs = append(errs, "required field `action` is missing for type `wxrule_stat`")
     }
     if w.ClientMac == nil {
-        errs = append(errs, "required field `client_mac` is missing for type `Wxrule_Stat`")
+        errs = append(errs, "required field `client_mac` is missing for type `wxrule_stat`")
     }
     if w.DstAllowWxtags == nil {
-        errs = append(errs, "required field `dst_allow_wxtags` is missing for type `Wxrule_Stat`")
+        errs = append(errs, "required field `dst_allow_wxtags` is missing for type `wxrule_stat`")
     }
     if w.DstDenyWxtags == nil {
-        errs = append(errs, "required field `dst_deny_wxtags` is missing for type `Wxrule_Stat`")
+        errs = append(errs, "required field `dst_deny_wxtags` is missing for type `wxrule_stat`")
     }
     if w.DstWxtags == nil {
-        errs = append(errs, "required field `dst_wxtags` is missing for type `Wxrule_Stat`")
+        errs = append(errs, "required field `dst_wxtags` is missing for type `wxrule_stat`")
     }
     if w.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Wxrule_Stat`")
+        errs = append(errs, "required field `name` is missing for type `wxrule_stat`")
     }
     if w.Order == nil {
-        errs = append(errs, "required field `order` is missing for type `Wxrule_Stat`")
+        errs = append(errs, "required field `order` is missing for type `wxrule_stat`")
     }
     if w.SrcWxtags == nil {
-        errs = append(errs, "required field `src_wxtags` is missing for type `Wxrule_Stat`")
+        errs = append(errs, "required field `src_wxtags` is missing for type `wxrule_stat`")
     }
     if w.Usage == nil {
-        errs = append(errs, "required field `usage` is missing for type `Wxrule_Stat`")
+        errs = append(errs, "required field `usage` is missing for type `wxrule_stat`")
     }
     if len(errs) == 0 {
         return nil

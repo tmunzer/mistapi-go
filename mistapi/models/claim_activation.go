@@ -40,7 +40,7 @@ func (c ClaimActivation) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClaimActivation.
 // It customizes the JSON unmarshaling process for ClaimActivation objects.
 func (c *ClaimActivation) UnmarshalJSON(input []byte) error {
-    var temp claimActivation
+    var temp tempClaimActivation
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,20 +61,20 @@ func (c *ClaimActivation) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// claimActivation is a temporary struct used for validating the fields of ClaimActivation.
-type claimActivation  struct {
+// tempClaimActivation is a temporary struct used for validating the fields of ClaimActivation.
+type tempClaimActivation  struct {
     Code       *string         `json:"code"`
     DeviceType *DeviceTypeEnum `json:"device_type,omitempty"`
     Type       *ClaimTypeEnum  `json:"type"`
 }
 
-func (c *claimActivation) validate() error {
+func (c *tempClaimActivation) validate() error {
     var errs []string
     if c.Code == nil {
-        errs = append(errs, "required field `code` is missing for type `Claim_Activation`")
+        errs = append(errs, "required field `code` is missing for type `claim_activation`")
     }
     if c.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Claim_Activation`")
+        errs = append(errs, "required field `type` is missing for type `claim_activation`")
     }
     if len(errs) == 0 {
         return nil

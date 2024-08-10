@@ -82,7 +82,7 @@ func (o OrgAutoRules) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for OrgAutoRules.
 // It customizes the JSON unmarshaling process for OrgAutoRules objects.
 func (o *OrgAutoRules) UnmarshalJSON(input []byte) error {
-    var temp orgAutoRules
+    var temp tempOrgAutoRules
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -109,8 +109,8 @@ func (o *OrgAutoRules) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// orgAutoRules is a temporary struct used for validating the fields of OrgAutoRules.
-type orgAutoRules  struct {
+// tempOrgAutoRules is a temporary struct used for validating the fields of OrgAutoRules.
+type tempOrgAutoRules  struct {
     Expression      Optional[string]                 `json:"expression"`
     MatchDeviceType *OrgAutoRulesMatchDeviceTypeEnum `json:"match_device_type,omitempty"`
     MatchModel      *string                          `json:"match_model,omitempty"`
@@ -122,10 +122,10 @@ type orgAutoRules  struct {
     Value           *string                          `json:"value,omitempty"`
 }
 
-func (o *orgAutoRules) validate() error {
+func (o *tempOrgAutoRules) validate() error {
     var errs []string
     if o.Src == nil {
-        errs = append(errs, "required field `src` is missing for type `Org_Auto_Rules`")
+        errs = append(errs, "required field `src` is missing for type `org_auto_rules`")
     }
     if len(errs) == 0 {
         return nil

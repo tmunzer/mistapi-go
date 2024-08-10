@@ -5,12 +5,12 @@ import (
     "github.com/google/uuid"
 )
 
-// ApStatsL2TpStat represents a ApStatsL2TpStat struct.
-type ApStatsL2TpStat struct {
+// ApStatsL2tpStat represents a ApStatsL2tpStat struct.
+type ApStatsL2tpStat struct {
     // list of sessions
-    Sessions             []ApStatsL2TpStatSession `json:"sessions,omitempty"`
+    Sessions             []ApStatsL2tpStatSession `json:"sessions,omitempty"`
     // enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
-    State                *L2TpStateEnum           `json:"state,omitempty"`
+    State                *L2tpStateEnum           `json:"state,omitempty"`
     // uptime
     Uptime               Optional[int]            `json:"uptime"`
     // WxlanTunnel ID
@@ -18,16 +18,16 @@ type ApStatsL2TpStat struct {
     AdditionalProperties map[string]any           `json:"_"`
 }
 
-// MarshalJSON implements the json.Marshaler interface for ApStatsL2TpStat.
-// It customizes the JSON marshaling process for ApStatsL2TpStat objects.
-func (a ApStatsL2TpStat) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for ApStatsL2tpStat.
+// It customizes the JSON marshaling process for ApStatsL2tpStat objects.
+func (a ApStatsL2tpStat) MarshalJSON() (
     []byte,
     error) {
     return json.Marshal(a.toMap())
 }
 
-// toMap converts the ApStatsL2TpStat object to a map representation for JSON marshaling.
-func (a ApStatsL2TpStat) toMap() map[string]any {
+// toMap converts the ApStatsL2tpStat object to a map representation for JSON marshaling.
+func (a ApStatsL2tpStat) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Sessions != nil {
@@ -53,10 +53,10 @@ func (a ApStatsL2TpStat) toMap() map[string]any {
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for ApStatsL2TpStat.
-// It customizes the JSON unmarshaling process for ApStatsL2TpStat objects.
-func (a *ApStatsL2TpStat) UnmarshalJSON(input []byte) error {
-    var temp apStatsL2TpStat
+// UnmarshalJSON implements the json.Unmarshaler interface for ApStatsL2tpStat.
+// It customizes the JSON unmarshaling process for ApStatsL2tpStat objects.
+func (a *ApStatsL2tpStat) UnmarshalJSON(input []byte) error {
+    var temp tempApStatsL2tpStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -74,10 +74,10 @@ func (a *ApStatsL2TpStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStatsL2TpStat is a temporary struct used for validating the fields of ApStatsL2TpStat.
-type apStatsL2TpStat  struct {
-    Sessions   []ApStatsL2TpStatSession `json:"sessions,omitempty"`
-    State      *L2TpStateEnum           `json:"state,omitempty"`
+// tempApStatsL2tpStat is a temporary struct used for validating the fields of ApStatsL2tpStat.
+type tempApStatsL2tpStat  struct {
+    Sessions   []ApStatsL2tpStatSession `json:"sessions,omitempty"`
+    State      *L2tpStateEnum           `json:"state,omitempty"`
     Uptime     Optional[int]            `json:"uptime"`
     WxtunnelId Optional[uuid.UUID]      `json:"wxtunnel_id"`
 }

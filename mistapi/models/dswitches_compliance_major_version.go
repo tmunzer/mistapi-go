@@ -37,7 +37,7 @@ func (d DswitchesComplianceMajorVersion) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DswitchesComplianceMajorVersion.
 // It customizes the JSON unmarshaling process for DswitchesComplianceMajorVersion objects.
 func (d *DswitchesComplianceMajorVersion) UnmarshalJSON(input []byte) error {
-    var temp dswitchesComplianceMajorVersion
+    var temp tempDswitchesComplianceMajorVersion
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,20 +58,20 @@ func (d *DswitchesComplianceMajorVersion) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// dswitchesComplianceMajorVersion is a temporary struct used for validating the fields of DswitchesComplianceMajorVersion.
-type dswitchesComplianceMajorVersion  struct {
+// tempDswitchesComplianceMajorVersion is a temporary struct used for validating the fields of DswitchesComplianceMajorVersion.
+type tempDswitchesComplianceMajorVersion  struct {
     MajorCount  *float64 `json:"major_count"`
     Model       *string  `json:"model"`
     SystemNames []string `json:"system_names,omitempty"`
 }
 
-func (d *dswitchesComplianceMajorVersion) validate() error {
+func (d *tempDswitchesComplianceMajorVersion) validate() error {
     var errs []string
     if d.MajorCount == nil {
-        errs = append(errs, "required field `major_count` is missing for type `Dswitches_Compliance_Major_Version`")
+        errs = append(errs, "required field `major_count` is missing for type `dswitches_compliance_major_version`")
     }
     if d.Model == nil {
-        errs = append(errs, "required field `model` is missing for type `Dswitches_Compliance_Major_Version`")
+        errs = append(errs, "required field `model` is missing for type `dswitches_compliance_major_version`")
     }
     if len(errs) == 0 {
         return nil

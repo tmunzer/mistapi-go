@@ -19,11 +19,11 @@
 
 ```json
 {
-  "band": "band6",
-  "degraded": 26.84,
-  "duration": 155.9,
-  "name": "name4",
-  "total": 54.84
+  "band": "band0",
+  "degraded": 86.18,
+  "duration": 215.24,
+  "name": "name8",
+  "total": 114.18
 }
 ```
 

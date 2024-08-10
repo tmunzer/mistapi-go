@@ -32,7 +32,7 @@ func (u UtilsMonitorTraffic) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsMonitorTraffic.
 // It customizes the JSON unmarshaling process for UtilsMonitorTraffic objects.
 func (u *UtilsMonitorTraffic) UnmarshalJSON(input []byte) error {
-    var temp utilsMonitorTraffic
+    var temp tempUtilsMonitorTraffic
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (u *UtilsMonitorTraffic) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsMonitorTraffic is a temporary struct used for validating the fields of UtilsMonitorTraffic.
-type utilsMonitorTraffic  struct {
+// tempUtilsMonitorTraffic is a temporary struct used for validating the fields of UtilsMonitorTraffic.
+type tempUtilsMonitorTraffic  struct {
     Port *string `json:"port,omitempty"`
 }

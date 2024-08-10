@@ -35,7 +35,7 @@ func (s SiteSettingApMatching) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteSettingApMatching.
 // It customizes the JSON unmarshaling process for SiteSettingApMatching objects.
 func (s *SiteSettingApMatching) UnmarshalJSON(input []byte) error {
-    var temp siteSettingApMatching
+    var temp tempSiteSettingApMatching
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (s *SiteSettingApMatching) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteSettingApMatching is a temporary struct used for validating the fields of SiteSettingApMatching.
-type siteSettingApMatching  struct {
+// tempSiteSettingApMatching is a temporary struct used for validating the fields of SiteSettingApMatching.
+type tempSiteSettingApMatching  struct {
     Enabled *bool                       `json:"enabled,omitempty"`
     Rules   []SiteSettingApMatchingRule `json:"rules,omitempty"`
 }

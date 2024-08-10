@@ -21,8 +21,8 @@
     "active_port_count": 136,
     "total_port_count": 42
   },
-  "score": 112,
-  "total_switch_count": 156
+  "score": 222,
+  "total_switch_count": 10
 }
 ```
 

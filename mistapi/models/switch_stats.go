@@ -47,6 +47,7 @@ type SwitchStats struct {
     // device name if configured
     Name                 *string                        `json:"name,omitempty"`
     OrgId                *uuid.UUID                     `json:"org_id,omitempty"`
+    Ports                []DeviceStatsPort              `json:"ports,omitempty"`
     RouteSummaryStats    *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     Serial               *string                        `json:"serial,omitempty"`
     ServiceStat          map[string]ServiceStatProperty `json:"service_stat,omitempty"`
@@ -177,6 +178,9 @@ func (s SwitchStats) toMap() map[string]any {
     if s.OrgId != nil {
         structMap["org_id"] = s.OrgId
     }
+    if s.Ports != nil {
+        structMap["ports"] = s.Ports
+    }
     if s.RouteSummaryStats != nil {
         structMap["route_summary_stats"] = s.RouteSummaryStats.toMap()
     }
@@ -217,12 +221,12 @@ func (s SwitchStats) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchStats.
 // It customizes the JSON unmarshaling process for SwitchStats objects.
 func (s *SwitchStats) UnmarshalJSON(input []byte) error {
-    var temp switchStats
+    var temp tempSwitchStats
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_redundancy", "arp_table_stats", "cert_expiry", "clients", "clients_stats", "config_status", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd_stat", "evpntopo_id", "fw_versions_outofsync", "fwupdate", "has_pcap", "hostname", "hw_rev", "id", "if_stat", "ip", "ip_stat", "last_seen", "last_trouble", "mac", "mac_table_stats", "map_id", "memory_stat", "model", "modified_time", "module_stat", "name", "org_id", "route_summary_stats", "serial", "service_stat", "site_id", "status", "type", "uptime", "vc_mac", "vc_setup_info", "version")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_redundancy", "arp_table_stats", "cert_expiry", "clients", "clients_stats", "config_status", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd_stat", "evpntopo_id", "fw_versions_outofsync", "fwupdate", "has_pcap", "hostname", "hw_rev", "id", "if_stat", "ip", "ip_stat", "last_seen", "last_trouble", "mac", "mac_table_stats", "map_id", "memory_stat", "model", "modified_time", "module_stat", "name", "org_id", "ports", "route_summary_stats", "serial", "service_stat", "site_id", "status", "type", "uptime", "vc_mac", "vc_setup_info", "version")
     if err != nil {
     	return err
     }
@@ -259,6 +263,7 @@ func (s *SwitchStats) UnmarshalJSON(input []byte) error {
     s.ModuleStat = temp.ModuleStat
     s.Name = temp.Name
     s.OrgId = temp.OrgId
+    s.Ports = temp.Ports
     s.RouteSummaryStats = temp.RouteSummaryStats
     s.Serial = temp.Serial
     s.ServiceStat = temp.ServiceStat
@@ -272,8 +277,8 @@ func (s *SwitchStats) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchStats is a temporary struct used for validating the fields of SwitchStats.
-type switchStats  struct {
+// tempSwitchStats is a temporary struct used for validating the fields of SwitchStats.
+type tempSwitchStats  struct {
     ApRedundancy        *SwitchStatsApRedundancy       `json:"ap_redundancy,omitempty"`
     ArpTableStats       *ArpTableStats                 `json:"arp_table_stats,omitempty"`
     CertExpiry          *int64                         `json:"cert_expiry,omitempty"`
@@ -305,6 +310,7 @@ type switchStats  struct {
     ModuleStat          []ModuleStatItem               `json:"module_stat,omitempty"`
     Name                *string                        `json:"name,omitempty"`
     OrgId               *uuid.UUID                     `json:"org_id,omitempty"`
+    Ports               []DeviceStatsPort              `json:"ports,omitempty"`
     RouteSummaryStats   *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     Serial              *string                        `json:"serial,omitempty"`
     ServiceStat         map[string]ServiceStatProperty `json:"service_stat,omitempty"`

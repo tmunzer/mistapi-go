@@ -21,13 +21,13 @@
 
 ```json
 {
-  "ap": "ap4",
+  "ap": "ap0",
   "band": "2.4",
-  "bssid": "bssid2",
-  "channel": 8,
-  "rssi": 244.1,
-  "ssid": "ssid6",
-  "timestamp": 118.06
+  "bssid": "bssid8",
+  "channel": 26,
+  "rssi": 10.96,
+  "ssid": "ssid2",
+  "timestamp": 140.92
 }
 ```
 

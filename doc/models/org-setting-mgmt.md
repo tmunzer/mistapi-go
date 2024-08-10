@@ -22,7 +22,8 @@ management-related properties
   "use_mxtunnel": false,
   "use_wxtunnel": false,
   "mxtunnel_ids": [
-    "0000014e-0000-0000-0000-000000000000"
+    "000015a6-0000-0000-0000-000000000000",
+    "000015a7-0000-0000-0000-000000000000"
   ]
 }
 ```

@@ -43,7 +43,7 @@ func (s SiteMxtunnelRadsec) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SiteMxtunnelRadsec.
 // It customizes the JSON unmarshaling process for SiteMxtunnelRadsec objects.
 func (s *SiteMxtunnelRadsec) UnmarshalJSON(input []byte) error {
-    var temp siteMxtunnelRadsec
+    var temp tempSiteMxtunnelRadsec
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (s *SiteMxtunnelRadsec) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// siteMxtunnelRadsec is a temporary struct used for validating the fields of SiteMxtunnelRadsec.
-type siteMxtunnelRadsec  struct {
+// tempSiteMxtunnelRadsec is a temporary struct used for validating the fields of SiteMxtunnelRadsec.
+type tempSiteMxtunnelRadsec  struct {
     AcctServers []RadiusAcctServer `json:"acct_servers,omitempty"`
     AuthServers []RadiusAuthServer `json:"auth_servers,omitempty"`
     Enabled     *bool              `json:"enabled,omitempty"`

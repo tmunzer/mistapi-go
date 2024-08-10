@@ -78,11 +78,11 @@ body := models.NetworkTemplate{
     Networks:             map[string]models.SwitchNetwork{
         "property1": models.SwitchNetwork{
             Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(10),
+            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
         },
         "property2": models.SwitchNetwork{
             Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(10),
+            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
         },
     },
     NtpServers:           []string{
@@ -124,7 +124,7 @@ body := models.NetworkTemplate{
             },
             PersistMac:                               models.ToPointer(false),
             PoeDisabled:                              models.ToPointer(false),
-            PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1XEnum("dot1x"))),
+            PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum("dot1x"))),
             PortNetwork:                              models.ToPointer("string"),
             RejectedNetwork:                          models.NewOptional(models.ToPointer("rejected_network4")),
             Speed:                                    models.ToPointer("string"),
@@ -173,12 +173,11 @@ body := models.NetworkTemplate{
         },
     },
     SwitchMgmt:           models.ToPointer(models.SwitchMgmt{
-        ConfigRevert: models.ToPointer(10),
-        ProtectRe:    models.ToPointer(models.ProtectRe{
+        ProtectRe:           models.ToPointer(models.ProtectRe{
             Enabled:         models.ToPointer(false),
         }),
-        RootPassword: models.ToPointer("string"),
-        Tacacs:       models.ToPointer(models.Tacacs{
+        RootPassword:        models.ToPointer("string"),
+        Tacacs:              models.ToPointer(models.Tacacs{
             AcctServers:    []models.TacacsAcctServer{
                 models.TacacsAcctServer{
                     Host:    models.ToPointer("198.51.100.1"),
@@ -450,10 +449,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Delete Org Network Template
@@ -502,10 +501,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Get Org Network Template
@@ -556,10 +555,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # List Org Network Templates
@@ -920,10 +919,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Update Org Network Templates
@@ -999,11 +998,11 @@ body := models.NetworkTemplate{
     Networks:             map[string]models.SwitchNetwork{
         "property1": models.SwitchNetwork{
             Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(10),
+            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
         },
         "property2": models.SwitchNetwork{
             Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          models.SwitchNetworkVlanIdContainer.FromNumber(10),
+            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
         },
     },
     NtpServers:           []string{
@@ -1045,7 +1044,7 @@ body := models.NetworkTemplate{
             },
             PersistMac:                               models.ToPointer(false),
             PoeDisabled:                              models.ToPointer(false),
-            PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1XEnum("dot1x"))),
+            PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum("dot1x"))),
             PortNetwork:                              models.ToPointer("string"),
             RejectedNetwork:                          models.NewOptional(models.ToPointer("rejected_network4")),
             Speed:                                    models.ToPointer("string"),
@@ -1094,12 +1093,11 @@ body := models.NetworkTemplate{
         },
     },
     SwitchMgmt:           models.ToPointer(models.SwitchMgmt{
-        ConfigRevert: models.ToPointer(10),
-        ProtectRe:    models.ToPointer(models.ProtectRe{
+        ProtectRe:           models.ToPointer(models.ProtectRe{
             Enabled:         models.ToPointer(false),
         }),
-        RootPassword: models.ToPointer("string"),
-        Tacacs:       models.ToPointer(models.Tacacs{
+        RootPassword:        models.ToPointer("string"),
+        Tacacs:              models.ToPointer(models.Tacacs{
             AcctServers:    []models.TacacsAcctServer{
                 models.TacacsAcctServer{
                     Host:    models.ToPointer("198.51.100.1"),
@@ -1366,8 +1364,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 

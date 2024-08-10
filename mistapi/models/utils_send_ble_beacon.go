@@ -47,7 +47,7 @@ func (u UtilsSendBleBeacon) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsSendBleBeacon.
 // It customizes the JSON unmarshaling process for UtilsSendBleBeacon objects.
 func (u *UtilsSendBleBeacon) UnmarshalJSON(input []byte) error {
-    var temp utilsSendBleBeacon
+    var temp tempUtilsSendBleBeacon
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (u *UtilsSendBleBeacon) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsSendBleBeacon is a temporary struct used for validating the fields of UtilsSendBleBeacon.
-type utilsSendBleBeacon  struct {
+// tempUtilsSendBleBeacon is a temporary struct used for validating the fields of UtilsSendBleBeacon.
+type tempUtilsSendBleBeacon  struct {
     BeaconFrame *string  `json:"beacon_frame,omitempty"`
     BeaconFreq  *int     `json:"beacon_freq,omitempty"`
     Duration    *int     `json:"duration,omitempty"`

@@ -118,7 +118,7 @@ func (s StatsAsset) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for StatsAsset.
 // It customizes the JSON unmarshaling process for StatsAsset objects.
 func (s *StatsAsset) UnmarshalJSON(input []byte) error {
-    var temp statsAsset
+    var temp tempStatsAsset
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -156,8 +156,8 @@ func (s *StatsAsset) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// statsAsset is a temporary struct used for validating the fields of StatsAsset.
-type statsAsset  struct {
+// tempStatsAsset is a temporary struct used for validating the fields of StatsAsset.
+type tempStatsAsset  struct {
     BatteryVoltage        *float64        `json:"battery_voltage,omitempty"`
     Beam                  *int            `json:"beam,omitempty"`
     DeviceName            *string         `json:"device_name,omitempty"`
@@ -180,10 +180,10 @@ type statsAsset  struct {
     Zones                 []AssetZone     `json:"zones,omitempty"`
 }
 
-func (s *statsAsset) validate() error {
+func (s *tempStatsAsset) validate() error {
     var errs []string
     if s.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Stats_Asset`")
+        errs = append(errs, "required field `mac` is missing for type `stats_asset`")
     }
     if len(errs) == 0 {
         return nil

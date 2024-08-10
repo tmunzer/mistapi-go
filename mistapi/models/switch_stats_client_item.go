@@ -43,7 +43,7 @@ func (s SwitchStatsClientItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchStatsClientItem.
 // It customizes the JSON unmarshaling process for SwitchStatsClientItem objects.
 func (s *SwitchStatsClientItem) UnmarshalJSON(input []byte) error {
-    var temp switchStatsClientItem
+    var temp tempSwitchStatsClientItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (s *SwitchStatsClientItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchStatsClientItem is a temporary struct used for validating the fields of SwitchStatsClientItem.
-type switchStatsClientItem  struct {
+// tempSwitchStatsClientItem is a temporary struct used for validating the fields of SwitchStatsClientItem.
+type tempSwitchStatsClientItem  struct {
     DeviceMac *string `json:"device_mac,omitempty"`
     Hostname  *string `json:"hostname,omitempty"`
     Mac       *string `json:"mac,omitempty"`

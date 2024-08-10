@@ -60,7 +60,7 @@ func (s SsrUpgradeMulti) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SsrUpgradeMulti.
 // It customizes the JSON unmarshaling process for SsrUpgradeMulti objects.
 func (s *SsrUpgradeMulti) UnmarshalJSON(input []byte) error {
-    var temp ssrUpgradeMulti
+    var temp tempSsrUpgradeMulti
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -84,8 +84,8 @@ func (s *SsrUpgradeMulti) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ssrUpgradeMulti is a temporary struct used for validating the fields of SsrUpgradeMulti.
-type ssrUpgradeMulti  struct {
+// tempSsrUpgradeMulti is a temporary struct used for validating the fields of SsrUpgradeMulti.
+type tempSsrUpgradeMulti  struct {
     Channel   *SsrUpgradeChannelEnum  `json:"channel,omitempty"`
     DeviceIds *[]uuid.UUID            `json:"device_ids"`
     RebootAt  *int                    `json:"reboot_at,omitempty"`
@@ -94,10 +94,10 @@ type ssrUpgradeMulti  struct {
     Version   *string                 `json:"version,omitempty"`
 }
 
-func (s *ssrUpgradeMulti) validate() error {
+func (s *tempSsrUpgradeMulti) validate() error {
     var errs []string
     if s.DeviceIds == nil {
-        errs = append(errs, "required field `device_ids` is missing for type `Ssr_Upgrade_Multi`")
+        errs = append(errs, "required field `device_ids` is missing for type `ssr_upgrade_multi`")
     }
     if len(errs) == 0 {
         return nil

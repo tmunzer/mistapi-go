@@ -18,7 +18,7 @@
 {
   "enabled": false,
   "hostnames": [
-    "hostnames8"
+    "hostnames2"
   ]
 }
 ```

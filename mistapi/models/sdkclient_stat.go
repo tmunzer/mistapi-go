@@ -66,7 +66,7 @@ func (s SdkclientStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SdkclientStat.
 // It customizes the JSON unmarshaling process for SdkclientStat objects.
 func (s *SdkclientStat) UnmarshalJSON(input []byte) error {
-    var temp sdkclientStat
+    var temp tempSdkclientStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -92,8 +92,8 @@ func (s *SdkclientStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sdkclientStat is a temporary struct used for validating the fields of SdkclientStat.
-type sdkclientStat  struct {
+// tempSdkclientStat is a temporary struct used for validating the fields of SdkclientStat.
+type tempSdkclientStat  struct {
     Id                *uuid.UUID                      `json:"id"`
     LastSeen          *float64                        `json:"last_seen"`
     MapId             Optional[uuid.UUID]             `json:"map_id"`
@@ -104,19 +104,19 @@ type sdkclientStat  struct {
     Y                 *float64                        `json:"y,omitempty"`
 }
 
-func (s *sdkclientStat) validate() error {
+func (s *tempSdkclientStat) validate() error {
     var errs []string
     if s.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Sdkclient_Stat`")
+        errs = append(errs, "required field `id` is missing for type `sdkclient_stat`")
     }
     if s.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `Sdkclient_Stat`")
+        errs = append(errs, "required field `last_seen` is missing for type `sdkclient_stat`")
     }
     if s.NetworkConnection == nil {
-        errs = append(errs, "required field `network_connection` is missing for type `Sdkclient_Stat`")
+        errs = append(errs, "required field `network_connection` is missing for type `sdkclient_stat`")
     }
     if s.Uuid == nil {
-        errs = append(errs, "required field `uuid` is missing for type `Sdkclient_Stat`")
+        errs = append(errs, "required field `uuid` is missing for type `sdkclient_stat`")
     }
     if len(errs) == 0 {
         return nil

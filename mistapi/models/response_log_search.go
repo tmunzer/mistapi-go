@@ -43,7 +43,7 @@ func (r ResponseLogSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseLogSearch.
 // It customizes the JSON unmarshaling process for ResponseLogSearch objects.
 func (r *ResponseLogSearch) UnmarshalJSON(input []byte) error {
-    var temp responseLogSearch
+    var temp tempResponseLogSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseLogSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseLogSearch is a temporary struct used for validating the fields of ResponseLogSearch.
-type responseLogSearch  struct {
+// tempResponseLogSearch is a temporary struct used for validating the fields of ResponseLogSearch.
+type tempResponseLogSearch  struct {
     End     *int                     `json:"end"`
     Limit   *int                     `json:"limit"`
     Next    *string                  `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type responseLogSearch  struct {
     Total   *int                     `json:"total"`
 }
 
-func (r *responseLogSearch) validate() error {
+func (r *tempResponseLogSearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Log_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_log_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Log_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_log_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Log_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_log_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Log_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_log_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Log_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_log_search`")
     }
     if len(errs) == 0 {
         return nil

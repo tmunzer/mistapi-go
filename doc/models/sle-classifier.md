@@ -26,7 +26,7 @@
     "total_aps": 243.84,
     "total_users": 4.14
   },
-  "interval": 148.94,
+  "interval": 0.34,
   "name": "name8",
   "samples": {
     "degraded": [

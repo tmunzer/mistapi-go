@@ -43,7 +43,7 @@ func (r ResponseAnomalySearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseAnomalySearch.
 // It customizes the JSON unmarshaling process for ResponseAnomalySearch objects.
 func (r *ResponseAnomalySearch) UnmarshalJSON(input []byte) error {
-    var temp responseAnomalySearch
+    var temp tempResponseAnomalySearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseAnomalySearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseAnomalySearch is a temporary struct used for validating the fields of ResponseAnomalySearch.
-type responseAnomalySearch  struct {
+// tempResponseAnomalySearch is a temporary struct used for validating the fields of ResponseAnomalySearch.
+type tempResponseAnomalySearch  struct {
     End     *int       `json:"end"`
     Limit   *int       `json:"limit"`
     Page    *int       `json:"page"`
@@ -77,22 +77,22 @@ type responseAnomalySearch  struct {
     Total   *int       `json:"total,omitempty"`
 }
 
-func (r *responseAnomalySearch) validate() error {
+func (r *tempResponseAnomalySearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Anomaly_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_anomaly_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Anomaly_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_anomaly_search`")
     }
     if r.Page == nil {
-        errs = append(errs, "required field `page` is missing for type `Response_Anomaly_Search`")
+        errs = append(errs, "required field `page` is missing for type `response_anomaly_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Anomaly_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_anomaly_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Anomaly_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_anomaly_search`")
     }
     if len(errs) == 0 {
         return nil

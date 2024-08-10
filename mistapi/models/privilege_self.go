@@ -106,7 +106,7 @@ func (p PrivilegeSelf) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for PrivilegeSelf.
 // It customizes the JSON unmarshaling process for PrivilegeSelf objects.
 func (p *PrivilegeSelf) UnmarshalJSON(input []byte) error {
-    var temp privilegeSelf
+    var temp tempPrivilegeSelf
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -137,8 +137,8 @@ func (p *PrivilegeSelf) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// privilegeSelf is a temporary struct used for validating the fields of PrivilegeSelf.
-type privilegeSelf  struct {
+// tempPrivilegeSelf is a temporary struct used for validating the fields of PrivilegeSelf.
+type tempPrivilegeSelf  struct {
     MspId        *uuid.UUID              `json:"msp_id,omitempty"`
     MspLogoUrl   *string                 `json:"msp_logo_url,omitempty"`
     MspName      Optional[string]        `json:"msp_name"`
@@ -154,13 +154,13 @@ type privilegeSelf  struct {
     Views        *PrivilegeSelfViewsEnum `json:"views,omitempty"`
 }
 
-func (p *privilegeSelf) validate() error {
+func (p *tempPrivilegeSelf) validate() error {
     var errs []string
     if p.Role == nil {
-        errs = append(errs, "required field `role` is missing for type `Privilege_Self`")
+        errs = append(errs, "required field `role` is missing for type `privilege_self`")
     }
     if p.Scope == nil {
-        errs = append(errs, "required field `scope` is missing for type `Privilege_Self`")
+        errs = append(errs, "required field `scope` is missing for type `privilege_self`")
     }
     if len(errs) == 0 {
         return nil

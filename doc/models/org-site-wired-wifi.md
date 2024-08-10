@@ -21,10 +21,10 @@
 
 ```json
 {
-  "end": 201.46,
-  "interval": 88,
-  "limit": 248,
-  "page": 106,
+  "end": 152.44,
+  "interval": 50,
+  "limit": 226,
+  "page": 112,
   "results": [
     {
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
@@ -35,8 +35,8 @@
       "switch_throughput": 20.2
     }
   ],
-  "start": 157.52,
-  "total": 86
+  "start": 108.5,
+  "total": 132
 }
 ```
 

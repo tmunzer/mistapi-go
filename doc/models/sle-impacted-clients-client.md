@@ -20,10 +20,10 @@
 
 ```json
 {
-  "degraded": 100,
-  "duration": 206,
-  "mac": "mac4",
-  "name": "name0",
+  "degraded": 248,
+  "duration": 98,
+  "mac": "mac2",
+  "name": "name8",
   "switches": [
     {
       "interfaces": [

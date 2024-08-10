@@ -51,7 +51,7 @@ func (r RemoteSyslogFileConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RemoteSyslogFileConfig.
 // It customizes the JSON unmarshaling process for RemoteSyslogFileConfig objects.
 func (r *RemoteSyslogFileConfig) UnmarshalJSON(input []byte) error {
-    var temp remoteSyslogFileConfig
+    var temp tempRemoteSyslogFileConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (r *RemoteSyslogFileConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// remoteSyslogFileConfig is a temporary struct used for validating the fields of RemoteSyslogFileConfig.
-type remoteSyslogFileConfig  struct {
+// tempRemoteSyslogFileConfig is a temporary struct used for validating the fields of RemoteSyslogFileConfig.
+type tempRemoteSyslogFileConfig  struct {
     Archive          *RemoteSyslogArchive  `json:"archive,omitempty"`
     Contents         []RemoteSyslogContent `json:"contents,omitempty"`
     ExplicitPriority *bool                 `json:"explicit_priority,omitempty"`

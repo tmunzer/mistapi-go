@@ -39,7 +39,7 @@ func (c ClusterConfigStatsRedundancyGroupInfoItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ClusterConfigStatsRedundancyGroupInfoItem.
 // It customizes the JSON unmarshaling process for ClusterConfigStatsRedundancyGroupInfoItem objects.
 func (c *ClusterConfigStatsRedundancyGroupInfoItem) UnmarshalJSON(input []byte) error {
-    var temp clusterConfigStatsRedundancyGroupInfoItem
+    var temp tempClusterConfigStatsRedundancyGroupInfoItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (c *ClusterConfigStatsRedundancyGroupInfoItem) UnmarshalJSON(input []byte) 
     return nil
 }
 
-// clusterConfigStatsRedundancyGroupInfoItem is a temporary struct used for validating the fields of ClusterConfigStatsRedundancyGroupInfoItem.
-type clusterConfigStatsRedundancyGroupInfoItem  struct {
+// tempClusterConfigStatsRedundancyGroupInfoItem is a temporary struct used for validating the fields of ClusterConfigStatsRedundancyGroupInfoItem.
+type tempClusterConfigStatsRedundancyGroupInfoItem  struct {
     Id                *int    `json:"Id,omitempty"`
     MonitoringFailure *string `json:"MonitoringFailure,omitempty"`
     Threshold         *int    `json:"Threshold,omitempty"`

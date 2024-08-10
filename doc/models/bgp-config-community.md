@@ -18,7 +18,7 @@
 ```json
 {
   "id": "id8",
-  "local_preference": 94,
+  "local_preference": 14,
   "vpn_name": "vpn_name0"
 }
 ```

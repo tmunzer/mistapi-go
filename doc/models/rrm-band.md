@@ -24,9 +24,9 @@
 {
   "bandwidth": 20,
   "curr_bandwidht": 20,
-  "channel": 86,
-  "curr_channel": 206,
-  "curr_power": 110
+  "channel": 56,
+  "curr_channel": 176,
+  "curr_power": 140
 }
 ```
 

@@ -44,7 +44,7 @@ func (s ServicePolicyEwfRule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ServicePolicyEwfRule.
 // It customizes the JSON unmarshaling process for ServicePolicyEwfRule objects.
 func (s *ServicePolicyEwfRule) UnmarshalJSON(input []byte) error {
-    var temp servicePolicyEwfRule
+    var temp tempServicePolicyEwfRule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -62,8 +62,8 @@ func (s *ServicePolicyEwfRule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// servicePolicyEwfRule is a temporary struct used for validating the fields of ServicePolicyEwfRule.
-type servicePolicyEwfRule  struct {
+// tempServicePolicyEwfRule is a temporary struct used for validating the fields of ServicePolicyEwfRule.
+type tempServicePolicyEwfRule  struct {
     AlertOnly    *bool                            `json:"alert_only,omitempty"`
     BlockMessage *string                          `json:"block_message,omitempty"`
     Enabled      *bool                            `json:"enabled,omitempty"`

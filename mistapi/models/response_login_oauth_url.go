@@ -33,7 +33,7 @@ func (r ResponseLoginOauthUrl) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseLoginOauthUrl.
 // It customizes the JSON unmarshaling process for ResponseLoginOauthUrl objects.
 func (r *ResponseLoginOauthUrl) UnmarshalJSON(input []byte) error {
-    var temp responseLoginOauthUrl
+    var temp tempResponseLoginOauthUrl
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,19 +53,19 @@ func (r *ResponseLoginOauthUrl) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseLoginOauthUrl is a temporary struct used for validating the fields of ResponseLoginOauthUrl.
-type responseLoginOauthUrl  struct {
+// tempResponseLoginOauthUrl is a temporary struct used for validating the fields of ResponseLoginOauthUrl.
+type tempResponseLoginOauthUrl  struct {
     AuthorizationUrl *string `json:"authorization_url"`
     ClientId         *string `json:"client_id"`
 }
 
-func (r *responseLoginOauthUrl) validate() error {
+func (r *tempResponseLoginOauthUrl) validate() error {
     var errs []string
     if r.AuthorizationUrl == nil {
-        errs = append(errs, "required field `authorization_url` is missing for type `Response_Login_Oauth_Url`")
+        errs = append(errs, "required field `authorization_url` is missing for type `response_login_oauth_url`")
     }
     if r.ClientId == nil {
-        errs = append(errs, "required field `client_id` is missing for type `Response_Login_Oauth_Url`")
+        errs = append(errs, "required field `client_id` is missing for type `response_login_oauth_url`")
     }
     if len(errs) == 0 {
         return nil

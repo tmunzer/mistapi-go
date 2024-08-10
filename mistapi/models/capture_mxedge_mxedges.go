@@ -5,7 +5,7 @@ import (
 )
 
 // CaptureMxedgeMxedges represents a CaptureMxedgeMxedges struct.
-// Property key is the Mx Edge ID
+// Property key is the Mx Edge ID, currently limited to one mxedge per org capture session
 type CaptureMxedgeMxedges struct {
     Interfaces           map[string]CaptureMxedgeMxedgesInterfaces `json:"interfaces,omitempty"`
     AdditionalProperties map[string]any                            `json:"_"`
@@ -32,7 +32,7 @@ func (c CaptureMxedgeMxedges) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureMxedgeMxedges.
 // It customizes the JSON unmarshaling process for CaptureMxedgeMxedges objects.
 func (c *CaptureMxedgeMxedges) UnmarshalJSON(input []byte) error {
-    var temp captureMxedgeMxedges
+    var temp tempCaptureMxedgeMxedges
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (c *CaptureMxedgeMxedges) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureMxedgeMxedges is a temporary struct used for validating the fields of CaptureMxedgeMxedges.
-type captureMxedgeMxedges  struct {
+// tempCaptureMxedgeMxedges is a temporary struct used for validating the fields of CaptureMxedgeMxedges.
+type tempCaptureMxedgeMxedges  struct {
     Interfaces map[string]CaptureMxedgeMxedgesInterfaces `json:"interfaces,omitempty"`
 }

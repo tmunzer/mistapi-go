@@ -38,11 +38,11 @@
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "wan_name": "wan",
-  "auth_algo": "auth_algo4",
-  "encrypt_algo": "encrypt_algo0",
-  "ike_version": "ike_version0",
-  "ip": "ip0",
-  "last_event": "last_event0"
+  "auth_algo": "auth_algo8",
+  "encrypt_algo": "encrypt_algo8",
+  "ike_version": "ike_version8",
+  "ip": "ip8",
+  "last_event": "last_event8"
 }
 ```
 

@@ -24,7 +24,8 @@
   "enable_ip_source_guard": false,
   "enabled": false,
   "networks": [
-    "networks8"
+    "networks8",
+    "networks9"
   ]
 }
 ```

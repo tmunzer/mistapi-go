@@ -56,7 +56,7 @@ func (w WebhookClientInfoEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookClientInfoEvent.
 // It customizes the JSON unmarshaling process for WebhookClientInfoEvent objects.
 func (w *WebhookClientInfoEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookClientInfoEvent
+    var temp tempWebhookClientInfoEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (w *WebhookClientInfoEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookClientInfoEvent is a temporary struct used for validating the fields of WebhookClientInfoEvent.
-type webhookClientInfoEvent  struct {
+// tempWebhookClientInfoEvent is a temporary struct used for validating the fields of WebhookClientInfoEvent.
+type tempWebhookClientInfoEvent  struct {
     Hostname  *string    `json:"hostname,omitempty"`
     Ip        *string    `json:"ip,omitempty"`
     Mac       *string    `json:"mac,omitempty"`

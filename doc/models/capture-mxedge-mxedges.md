@@ -1,7 +1,7 @@
 
 # Capture Mxedge Mxedges
 
-Property key is the Mx Edge ID
+Property key is the Mx Edge ID, currently limited to one mxedge per org capture session
 
 ## Structure
 
@@ -22,9 +22,6 @@ Property key is the Mx Edge ID
       "tcpdump_expression": "tcpdump_expression4"
     },
     "key1": {
-      "tcpdump_expression": "tcpdump_expression4"
-    },
-    "key2": {
       "tcpdump_expression": "tcpdump_expression4"
     }
   }

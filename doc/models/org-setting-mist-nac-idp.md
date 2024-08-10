@@ -19,11 +19,11 @@
 {
   "id": "4c441a74-d0de-32c4-78a7-a05e00d080ae",
   "exclude_realms": [
-    "exclude_realms5",
-    "exclude_realms4"
+    "exclude_realms9"
   ],
   "user_realms": [
-    "user_realms8"
+    "user_realms2",
+    "user_realms3"
   ]
 }
 ```

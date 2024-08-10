@@ -41,7 +41,7 @@ func (g GatewayMatchingRule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for GatewayMatchingRule.
 // It customizes the JSON unmarshaling process for GatewayMatchingRule objects.
 func (g *GatewayMatchingRule) UnmarshalJSON(input []byte) error {
-    var temp gatewayMatchingRule
+    var temp tempGatewayMatchingRule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,8 +58,8 @@ func (g *GatewayMatchingRule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// gatewayMatchingRule is a temporary struct used for validating the fields of GatewayMatchingRule.
-type gatewayMatchingRule  struct {
+// tempGatewayMatchingRule is a temporary struct used for validating the fields of GatewayMatchingRule.
+type tempGatewayMatchingRule  struct {
     AdditionalConfigCmds []string                   `json:"additional_config_cmds,omitempty"`
     Name                 *string                    `json:"name,omitempty"`
     PortConfig           map[string]JunosPortConfig `json:"port_config,omitempty"`

@@ -29,16 +29,6 @@ a JSON blob for wall definition (same format as wayfinding_path)
         "x": 224.72,
         "y": 100.0
       }
-    },
-    {
-      "edges": {
-        "key0": "edges6"
-      },
-      "name": "name6",
-      "position": {
-        "x": 224.72,
-        "y": 100.0
-      }
     }
   ]
 }

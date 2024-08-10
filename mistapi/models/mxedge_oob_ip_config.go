@@ -79,7 +79,7 @@ func (m MxedgeOobIpConfig) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeOobIpConfig.
 // It customizes the JSON unmarshaling process for MxedgeOobIpConfig objects.
 func (m *MxedgeOobIpConfig) UnmarshalJSON(input []byte) error {
-    var temp mxedgeOobIpConfig
+    var temp tempMxedgeOobIpConfig
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -104,8 +104,8 @@ func (m *MxedgeOobIpConfig) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeOobIpConfig is a temporary struct used for validating the fields of MxedgeOobIpConfig.
-type mxedgeOobIpConfig  struct {
+// tempMxedgeOobIpConfig is a temporary struct used for validating the fields of MxedgeOobIpConfig.
+type tempMxedgeOobIpConfig  struct {
     Autoconf6 *bool       `json:"autoconf6,omitempty"`
     Dhcp6     *bool       `json:"dhcp6,omitempty"`
     Dns       []string    `json:"dns,omitempty"`

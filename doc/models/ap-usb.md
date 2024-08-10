@@ -31,7 +31,7 @@ Note: legacy, new config moved to ESL Config.
   "port": 0,
   "type": "imagotag",
   "vlan_id": 1,
-  "cacert": "cacert8",
+  "cacert": "cacert4",
   "enabled": false
 }
 ```

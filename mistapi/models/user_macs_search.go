@@ -43,7 +43,7 @@ func (u UserMacsSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UserMacsSearch.
 // It customizes the JSON unmarshaling process for UserMacsSearch objects.
 func (u *UserMacsSearch) UnmarshalJSON(input []byte) error {
-    var temp userMacsSearch
+    var temp tempUserMacsSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -61,8 +61,8 @@ func (u *UserMacsSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// userMacsSearch is a temporary struct used for validating the fields of UserMacsSearch.
-type userMacsSearch  struct {
+// tempUserMacsSearch is a temporary struct used for validating the fields of UserMacsSearch.
+type tempUserMacsSearch  struct {
     Limit   *int      `json:"limit,omitempty"`
     Page    *int      `json:"page,omitempty"`
     Results []UserMac `json:"results,omitempty"`

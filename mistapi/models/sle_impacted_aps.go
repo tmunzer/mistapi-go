@@ -47,7 +47,7 @@ func (s SleImpactedAps) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactedAps.
 // It customizes the JSON unmarshaling process for SleImpactedAps objects.
 func (s *SleImpactedAps) UnmarshalJSON(input []byte) error {
-    var temp sleImpactedAps
+    var temp tempSleImpactedAps
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -74,8 +74,8 @@ func (s *SleImpactedAps) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactedAps is a temporary struct used for validating the fields of SleImpactedAps.
-type sleImpactedAps  struct {
+// tempSleImpactedAps is a temporary struct used for validating the fields of SleImpactedAps.
+type tempSleImpactedAps  struct {
     Aps        *[]SleImpactedApsAp `json:"aps"`
     Classifier *string             `json:"classifier"`
     End        *float64            `json:"end"`
@@ -87,34 +87,34 @@ type sleImpactedAps  struct {
     TotalCount *float64            `json:"total_count"`
 }
 
-func (s *sleImpactedAps) validate() error {
+func (s *tempSleImpactedAps) validate() error {
     var errs []string
     if s.Aps == nil {
-        errs = append(errs, "required field `aps` is missing for type `Sle_Impacted_Aps`")
+        errs = append(errs, "required field `aps` is missing for type `sle_impacted_aps`")
     }
     if s.Classifier == nil {
-        errs = append(errs, "required field `classifier` is missing for type `Sle_Impacted_Aps`")
+        errs = append(errs, "required field `classifier` is missing for type `sle_impacted_aps`")
     }
     if s.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Sle_Impacted_Aps`")
+        errs = append(errs, "required field `end` is missing for type `sle_impacted_aps`")
     }
     if s.Failure == nil {
-        errs = append(errs, "required field `failure` is missing for type `Sle_Impacted_Aps`")
+        errs = append(errs, "required field `failure` is missing for type `sle_impacted_aps`")
     }
     if s.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Sle_Impacted_Aps`")
+        errs = append(errs, "required field `limit` is missing for type `sle_impacted_aps`")
     }
     if s.Metric == nil {
-        errs = append(errs, "required field `metric` is missing for type `Sle_Impacted_Aps`")
+        errs = append(errs, "required field `metric` is missing for type `sle_impacted_aps`")
     }
     if s.Page == nil {
-        errs = append(errs, "required field `page` is missing for type `Sle_Impacted_Aps`")
+        errs = append(errs, "required field `page` is missing for type `sle_impacted_aps`")
     }
     if s.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Sle_Impacted_Aps`")
+        errs = append(errs, "required field `start` is missing for type `sle_impacted_aps`")
     }
     if s.TotalCount == nil {
-        errs = append(errs, "required field `total_count` is missing for type `Sle_Impacted_Aps`")
+        errs = append(errs, "required field `total_count` is missing for type `sle_impacted_aps`")
     }
     if len(errs) == 0 {
         return nil

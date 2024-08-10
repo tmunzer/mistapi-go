@@ -43,7 +43,7 @@ func (w WxlanTunnelDmvpn) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WxlanTunnelDmvpn.
 // It customizes the JSON unmarshaling process for WxlanTunnelDmvpn objects.
 func (w *WxlanTunnelDmvpn) UnmarshalJSON(input []byte) error {
-    var temp wxlanTunnelDmvpn
+    var temp tempWxlanTunnelDmvpn
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -60,8 +60,8 @@ func (w *WxlanTunnelDmvpn) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wxlanTunnelDmvpn is a temporary struct used for validating the fields of WxlanTunnelDmvpn.
-type wxlanTunnelDmvpn  struct {
+// tempWxlanTunnelDmvpn is a temporary struct used for validating the fields of WxlanTunnelDmvpn.
+type tempWxlanTunnelDmvpn  struct {
     Enabled     *bool    `json:"enabled,omitempty"`
     HoldingTime *int     `json:"holding_time,omitempty"`
     HostRoutes  []string `json:"host_routes,omitempty"`

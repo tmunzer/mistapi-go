@@ -32,7 +32,7 @@ func (h HaClusterDelete) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for HaClusterDelete.
 // It customizes the JSON unmarshaling process for HaClusterDelete objects.
 func (h *HaClusterDelete) UnmarshalJSON(input []byte) error {
-    var temp haClusterDelete
+    var temp tempHaClusterDelete
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (h *HaClusterDelete) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// haClusterDelete is a temporary struct used for validating the fields of HaClusterDelete.
-type haClusterDelete  struct {
+// tempHaClusterDelete is a temporary struct used for validating the fields of HaClusterDelete.
+type tempHaClusterDelete  struct {
     Mac *string `json:"mac,omitempty"`
 }

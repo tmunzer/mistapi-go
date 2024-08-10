@@ -40,7 +40,7 @@ func (c CallTroubleshootSummary) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CallTroubleshootSummary.
 // It customizes the JSON unmarshaling process for CallTroubleshootSummary objects.
 func (c *CallTroubleshootSummary) UnmarshalJSON(input []byte) error {
-    var temp callTroubleshootSummary
+    var temp tempCallTroubleshootSummary
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (c *CallTroubleshootSummary) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// callTroubleshootSummary is a temporary struct used for validating the fields of CallTroubleshootSummary.
-type callTroubleshootSummary  struct {
+// tempCallTroubleshootSummary is a temporary struct used for validating the fields of CallTroubleshootSummary.
+type tempCallTroubleshootSummary  struct {
     Mac       *string                  `json:"mac,omitempty"`
     MeetingId *uuid.UUID               `json:"meeting_id,omitempty"`
     Results   []CallTroubleshootSummar `json:"results,omitempty"`

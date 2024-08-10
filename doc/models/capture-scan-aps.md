@@ -21,9 +21,9 @@ Property key is the AP MAC address (e.g. "5c5b35000001"). All optionals, parent 
 ```json
 {
   "band": "24",
-  "channel": "channel6",
-  "tcpdump_expression": "tcpdump_expression8",
-  "width": "width2"
+  "channel": "channel2",
+  "tcpdump_expression": "tcpdump_expression2",
+  "width": "width6"
 }
 ```
 

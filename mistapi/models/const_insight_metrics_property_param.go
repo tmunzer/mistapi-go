@@ -31,7 +31,7 @@ func (c ConstInsightMetricsPropertyParam) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstInsightMetricsPropertyParam.
 // It customizes the JSON unmarshaling process for ConstInsightMetricsPropertyParam objects.
 func (c *ConstInsightMetricsPropertyParam) UnmarshalJSON(input []byte) error {
-    var temp constInsightMetricsPropertyParam
+    var temp tempConstInsightMetricsPropertyParam
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -46,7 +46,7 @@ func (c *ConstInsightMetricsPropertyParam) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// constInsightMetricsPropertyParam is a temporary struct used for validating the fields of ConstInsightMetricsPropertyParam.
-type constInsightMetricsPropertyParam  struct {
+// tempConstInsightMetricsPropertyParam is a temporary struct used for validating the fields of ConstInsightMetricsPropertyParam.
+type tempConstInsightMetricsPropertyParam  struct {
     Required *bool `json:"required,omitempty"`
 }

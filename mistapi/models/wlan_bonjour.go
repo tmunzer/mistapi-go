@@ -10,7 +10,7 @@ import (
 // bonjour gateway wlan settings
 type WlanBonjour struct {
     // additional VLAN IDs (on the LAN side or from other WLANs) should we be forwarding bonjour queries/responses
-    AdditionalVlanIds    []WlanBonjourAdditionalVlanIds          `json:"additional_vlan_ids"`
+    AdditionalVlanIds    []VlanIdWithVariable                    `json:"additional_vlan_ids"`
     // whether to enable bonjour for this WLAN. Once enabled, limit_bcast is assumed true, allow_mdns is assumed false
     Enabled              *bool                                   `json:"enabled,omitempty"`
     // what services are allowed. 
@@ -42,7 +42,7 @@ func (w WlanBonjour) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanBonjour.
 // It customizes the JSON unmarshaling process for WlanBonjour objects.
 func (w *WlanBonjour) UnmarshalJSON(input []byte) error {
-    var temp wlanBonjour
+    var temp tempWlanBonjour
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,20 +63,20 @@ func (w *WlanBonjour) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanBonjour is a temporary struct used for validating the fields of WlanBonjour.
-type wlanBonjour  struct {
-    AdditionalVlanIds *[]WlanBonjourAdditionalVlanIds          `json:"additional_vlan_ids"`
+// tempWlanBonjour is a temporary struct used for validating the fields of WlanBonjour.
+type tempWlanBonjour  struct {
+    AdditionalVlanIds *[]VlanIdWithVariable                    `json:"additional_vlan_ids"`
     Enabled           *bool                                    `json:"enabled,omitempty"`
     Services          *map[string]WlanBonjourServiceProperties `json:"services"`
 }
 
-func (w *wlanBonjour) validate() error {
+func (w *tempWlanBonjour) validate() error {
     var errs []string
     if w.AdditionalVlanIds == nil {
-        errs = append(errs, "required field `additional_vlan_ids` is missing for type `Wlan_Bonjour`")
+        errs = append(errs, "required field `additional_vlan_ids` is missing for type `wlan_bonjour`")
     }
     if w.Services == nil {
-        errs = append(errs, "required field `services` is missing for type `Wlan_Bonjour`")
+        errs = append(errs, "required field `services` is missing for type `wlan_bonjour`")
     }
     if len(errs) == 0 {
         return nil

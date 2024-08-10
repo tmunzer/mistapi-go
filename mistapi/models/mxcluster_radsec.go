@@ -63,7 +63,7 @@ func (m MxclusterRadsec) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxclusterRadsec.
 // It customizes the JSON unmarshaling process for MxclusterRadsec objects.
 func (m *MxclusterRadsec) UnmarshalJSON(input []byte) error {
-    var temp mxclusterRadsec
+    var temp tempMxclusterRadsec
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -84,8 +84,8 @@ func (m *MxclusterRadsec) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxclusterRadsec is a temporary struct used for validating the fields of MxclusterRadsec.
-type mxclusterRadsec  struct {
+// tempMxclusterRadsec is a temporary struct used for validating the fields of MxclusterRadsec.
+type tempMxclusterRadsec  struct {
     AcctServers     []MxclusterRadsecAcctServer         `json:"acct_servers,omitempty"`
     AuthServers     []MxclusterRadsecAuthServer         `json:"auth_servers,omitempty"`
     Enabled         *bool                               `json:"enabled,omitempty"`

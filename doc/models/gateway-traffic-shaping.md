@@ -18,9 +18,7 @@
 {
   "enabled": false,
   "class_percentages": [
-    151,
-    150,
-    149
+    201
   ]
 }
 ```

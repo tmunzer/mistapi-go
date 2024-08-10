@@ -45,6 +45,7 @@ type NetworkTemplate struct {
     SnmpConfig           *SnmpConfig                            `json:"snmp_config,omitempty"`
     // Switch template
     SwitchMatching       *SwitchMatching                        `json:"switch_matching,omitempty"`
+    // Switch settings
     SwitchMgmt           *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
     VrfConfig            *VrfConfig                             `json:"vrf_config,omitempty"`
     // Property key is the network name
@@ -148,7 +149,7 @@ func (n NetworkTemplate) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for NetworkTemplate.
 // It customizes the JSON unmarshaling process for NetworkTemplate objects.
 func (n *NetworkTemplate) UnmarshalJSON(input []byte) error {
-    var temp networkTemplate
+    var temp tempNetworkTemplate
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -188,8 +189,8 @@ func (n *NetworkTemplate) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// networkTemplate is a temporary struct used for validating the fields of NetworkTemplate.
-type networkTemplate  struct {
+// tempNetworkTemplate is a temporary struct used for validating the fields of NetworkTemplate.
+type tempNetworkTemplate  struct {
     AclPolicies          []AclPolicy                            `json:"acl_policies,omitempty"`
     AclTags              map[string]AclTag                      `json:"acl_tags,omitempty"`
     AdditionalConfigCmds []string                               `json:"additional_config_cmds,omitempty"`

@@ -37,7 +37,7 @@ func (a AclTagSpec) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for AclTagSpec.
 // It customizes the JSON unmarshaling process for AclTagSpec objects.
 func (a *AclTagSpec) UnmarshalJSON(input []byte) error {
-    var temp aclTagSpec
+    var temp tempAclTagSpec
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,8 +53,8 @@ func (a *AclTagSpec) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// aclTagSpec is a temporary struct used for validating the fields of AclTagSpec.
-type aclTagSpec  struct {
+// tempAclTagSpec is a temporary struct used for validating the fields of AclTagSpec.
+type tempAclTagSpec  struct {
     PortRange *string `json:"port_range,omitempty"`
     Protocol  *string `json:"protocol,omitempty"`
 }

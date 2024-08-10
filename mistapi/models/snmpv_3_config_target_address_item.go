@@ -53,7 +53,7 @@ func (s Snmpv3ConfigTargetAddressItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Snmpv3ConfigTargetAddressItem.
 // It customizes the JSON unmarshaling process for Snmpv3ConfigTargetAddressItem objects.
 func (s *Snmpv3ConfigTargetAddressItem) UnmarshalJSON(input []byte) error {
-    var temp snmpv3ConfigTargetAddressItem
+    var temp tempSnmpv3ConfigTargetAddressItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -73,8 +73,8 @@ func (s *Snmpv3ConfigTargetAddressItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// snmpv3ConfigTargetAddressItem is a temporary struct used for validating the fields of Snmpv3ConfigTargetAddressItem.
-type snmpv3ConfigTargetAddressItem  struct {
+// tempSnmpv3ConfigTargetAddressItem is a temporary struct used for validating the fields of Snmpv3ConfigTargetAddressItem.
+type tempSnmpv3ConfigTargetAddressItem  struct {
     Address           *string `json:"address,omitempty"`
     AddressMask       *string `json:"address_mask,omitempty"`
     Port              *int    `json:"port,omitempty"`

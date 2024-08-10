@@ -51,7 +51,7 @@ func (s SleImpactedApplicationsApp) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactedApplicationsApp.
 // It customizes the JSON unmarshaling process for SleImpactedApplicationsApp objects.
 func (s *SleImpactedApplicationsApp) UnmarshalJSON(input []byte) error {
-    var temp sleImpactedApplicationsApp
+    var temp tempSleImpactedApplicationsApp
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (s *SleImpactedApplicationsApp) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactedApplicationsApp is a temporary struct used for validating the fields of SleImpactedApplicationsApp.
-type sleImpactedApplicationsApp  struct {
+// tempSleImpactedApplicationsApp is a temporary struct used for validating the fields of SleImpactedApplicationsApp.
+type tempSleImpactedApplicationsApp  struct {
     App       *string `json:"app,omitempty"`
     Degraded  *int    `json:"degraded,omitempty"`
     Duration  *int    `json:"duration,omitempty"`

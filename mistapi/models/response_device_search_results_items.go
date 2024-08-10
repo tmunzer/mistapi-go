@@ -180,7 +180,7 @@ func (r ResponseDeviceSearchResultsItems) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseDeviceSearchResultsItems.
 // It customizes the JSON unmarshaling process for ResponseDeviceSearchResultsItems objects.
 func (r *ResponseDeviceSearchResultsItems) UnmarshalJSON(input []byte) error {
-    var temp responseDeviceSearchResultsItems
+    var temp tempResponseDeviceSearchResultsItems
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -228,8 +228,8 @@ func (r *ResponseDeviceSearchResultsItems) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseDeviceSearchResultsItems is a temporary struct used for validating the fields of ResponseDeviceSearchResultsItems.
-type responseDeviceSearchResultsItems  struct {
+// tempResponseDeviceSearchResultsItems is a temporary struct used for validating the fields of ResponseDeviceSearchResultsItems.
+type tempResponseDeviceSearchResultsItems  struct {
     Band24Bandwith     *string    `json:"band_24_bandwith,omitempty"`
     Band24Channel      *int       `json:"band_24_channel,omitempty"`
     Band24Power        *int       `json:"band_24_power,omitempty"`

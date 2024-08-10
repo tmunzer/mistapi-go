@@ -46,10 +46,24 @@
   "model": "EX4300-48P",
   "serial": "PX8716230021",
   "vc_role": "master",
-  "backup_version": "backup_version4",
-  "bios_version": "bios_version0",
-  "cpld_version": "cpld_version0",
+  "backup_version": "backup_version8",
+  "bios_version": "bios_version6",
+  "cpld_version": "cpld_version4",
   "errors": [
+    {
+      "feature": "feature4",
+      "minimum_version": "minimum_version2",
+      "reason": "reason4",
+      "since": 174,
+      "type": "type0"
+    },
+    {
+      "feature": "feature4",
+      "minimum_version": "minimum_version2",
+      "reason": "reason4",
+      "since": 174,
+      "type": "type0"
+    },
     {
       "feature": "feature4",
       "minimum_version": "minimum_version2",
@@ -59,6 +73,16 @@
     }
   ],
   "fans": [
+    {
+      "airflow": "airflow8",
+      "name": "name4",
+      "status": "status4"
+    },
+    {
+      "airflow": "airflow8",
+      "name": "name4",
+      "status": "status4"
+    },
     {
       "airflow": "airflow8",
       "name": "name4",

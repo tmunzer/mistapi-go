@@ -47,7 +47,7 @@ func (r ResponseSearchVar) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseSearchVar.
 // It customizes the JSON unmarshaling process for ResponseSearchVar objects.
 func (r *ResponseSearchVar) UnmarshalJSON(input []byte) error {
-    var temp responseSearchVar
+    var temp tempResponseSearchVar
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (r *ResponseSearchVar) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseSearchVar is a temporary struct used for validating the fields of ResponseSearchVar.
-type responseSearchVar  struct {
+// tempResponseSearchVar is a temporary struct used for validating the fields of ResponseSearchVar.
+type tempResponseSearchVar  struct {
     End     *int                    `json:"end,omitempty"`
     Limit   *int                    `json:"limit,omitempty"`
     Results []ResponseSearchVarItem `json:"results,omitempty"`

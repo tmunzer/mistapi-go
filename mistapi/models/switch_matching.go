@@ -36,7 +36,7 @@ func (s SwitchMatching) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SwitchMatching.
 // It customizes the JSON unmarshaling process for SwitchMatching objects.
 func (s *SwitchMatching) UnmarshalJSON(input []byte) error {
-    var temp switchMatching
+    var temp tempSwitchMatching
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -52,8 +52,8 @@ func (s *SwitchMatching) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// switchMatching is a temporary struct used for validating the fields of SwitchMatching.
-type switchMatching  struct {
+// tempSwitchMatching is a temporary struct used for validating the fields of SwitchMatching.
+type tempSwitchMatching  struct {
     Enable *bool                `json:"enable,omitempty"`
     Rules  []SwitchMatchingRule `json:"rules,omitempty"`
 }

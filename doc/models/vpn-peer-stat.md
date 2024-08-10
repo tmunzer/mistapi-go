@@ -35,10 +35,10 @@
   "peer_site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "is_active": false,
-  "last_seen": 131.36,
-  "latency": 27.94,
-  "mac": "mac0",
-  "mos": 249.96
+  "last_seen": 49.48,
+  "latency": 109.82,
+  "mac": "mac2",
+  "mos": 168.08
 }
 ```
 

@@ -43,7 +43,7 @@ func (r ResponseConfigHistorySearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseConfigHistorySearch.
 // It customizes the JSON unmarshaling process for ResponseConfigHistorySearch objects.
 func (r *ResponseConfigHistorySearch) UnmarshalJSON(input []byte) error {
-    var temp responseConfigHistorySearch
+    var temp tempResponseConfigHistorySearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -67,8 +67,8 @@ func (r *ResponseConfigHistorySearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseConfigHistorySearch is a temporary struct used for validating the fields of ResponseConfigHistorySearch.
-type responseConfigHistorySearch  struct {
+// tempResponseConfigHistorySearch is a temporary struct used for validating the fields of ResponseConfigHistorySearch.
+type tempResponseConfigHistorySearch  struct {
     End     *int                               `json:"end"`
     Limit   *int                               `json:"limit"`
     Next    *string                            `json:"next,omitempty"`
@@ -77,22 +77,22 @@ type responseConfigHistorySearch  struct {
     Total   *int                               `json:"total"`
 }
 
-func (r *responseConfigHistorySearch) validate() error {
+func (r *tempResponseConfigHistorySearch) validate() error {
     var errs []string
     if r.End == nil {
-        errs = append(errs, "required field `end` is missing for type `Response_Config_History_Search`")
+        errs = append(errs, "required field `end` is missing for type `response_config_history_search`")
     }
     if r.Limit == nil {
-        errs = append(errs, "required field `limit` is missing for type `Response_Config_History_Search`")
+        errs = append(errs, "required field `limit` is missing for type `response_config_history_search`")
     }
     if r.Results == nil {
-        errs = append(errs, "required field `results` is missing for type `Response_Config_History_Search`")
+        errs = append(errs, "required field `results` is missing for type `response_config_history_search`")
     }
     if r.Start == nil {
-        errs = append(errs, "required field `start` is missing for type `Response_Config_History_Search`")
+        errs = append(errs, "required field `start` is missing for type `response_config_history_search`")
     }
     if r.Total == nil {
-        errs = append(errs, "required field `total` is missing for type `Response_Config_History_Search`")
+        errs = append(errs, "required field `total` is missing for type `response_config_history_search`")
     }
     if len(errs) == 0 {
         return nil

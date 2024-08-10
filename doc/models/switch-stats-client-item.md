@@ -18,10 +18,10 @@
 
 ```json
 {
-  "device_mac": "device_mac0",
-  "hostname": "hostname8",
-  "mac": "mac0",
-  "port_id": "port_id6"
+  "device_mac": "device_mac6",
+  "hostname": "hostname2",
+  "mac": "mac6",
+  "port_id": "port_id2"
 }
 ```
 

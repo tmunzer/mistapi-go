@@ -30,20 +30,20 @@
 ```json
 {
   "ap": "ap8",
-  "ap_name": "ap_name6",
+  "ap_name": "ap_name4",
   "band": "band8",
   "bssid": "bssid0",
-  "connect": 8,
-  "connect_float": 250.18,
+  "connect": 34,
+  "connect_float": 43.08,
   "mac": "mac0",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "rssi": 177.98,
+  "rssi": 226.88,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "site_name": "site_name2",
   "ssid": "ssid6",
-  "timestamp": 51.94,
-  "version": 135.52,
-  "wlan_id": "00001a84-0000-0000-0000-000000000000"
+  "timestamp": 100.84,
+  "version": 184.42,
+  "wlan_id": "0000068e-0000-0000-0000-000000000000"
 }
 ```
 

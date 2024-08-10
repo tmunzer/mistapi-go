@@ -18,14 +18,15 @@
 ```json
 {
   "attack_name": [
-    "attack_name5"
+    "attack_name7",
+    "attack_name8"
   ],
   "dst_subnet": [
-    "dst_subnet1"
+    "dst_subnet9",
+    "dst_subnet0"
   ],
   "severity": [
-    "critical",
-    "info"
+    "major"
   ]
 }
 ```

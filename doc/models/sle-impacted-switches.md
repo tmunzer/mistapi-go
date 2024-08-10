@@ -24,10 +24,10 @@
 ```json
 {
   "classifier": "classifier8",
-  "end": 232,
-  "failure": "failure0",
-  "limit": 194,
-  "metric": "metric2"
+  "end": 74,
+  "failure": "failure6",
+  "limit": 96,
+  "metric": "metric4"
 }
 ```
 

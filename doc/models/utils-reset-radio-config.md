@@ -17,7 +17,8 @@
 ```json
 {
   "bands": [
-    "bands4"
+    "bands2",
+    "bands3"
   ],
   "force": false
 }

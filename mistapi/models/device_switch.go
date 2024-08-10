@@ -78,6 +78,7 @@ type DeviceSwitch struct {
     SiteId                *uuid.UUID                             `json:"site_id,omitempty"`
     SnmpConfig            *SnmpConfig                            `json:"snmp_config,omitempty"`
     StpConfig             *SwitchStpConfig                       `json:"stp_config,omitempty"`
+    // Switch settings
     SwitchMgmt            *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
     // Device Type. enum: `switch`
     Type                  *DeviceTypeSwitchEnum                  `json:"type,omitempty"`
@@ -288,7 +289,7 @@ func (d DeviceSwitch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for DeviceSwitch.
 // It customizes the JSON unmarshaling process for DeviceSwitch objects.
 func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
-    var temp deviceSwitch
+    var temp tempDeviceSwitch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -355,8 +356,8 @@ func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// deviceSwitch is a temporary struct used for validating the fields of DeviceSwitch.
-type deviceSwitch  struct {
+// tempDeviceSwitch is a temporary struct used for validating the fields of DeviceSwitch.
+type tempDeviceSwitch  struct {
     AclPolicies           []AclPolicy                            `json:"acl_policies,omitempty"`
     AclTags               map[string]AclTag                      `json:"acl_tags,omitempty"`
     AdditionalConfigCmds  []string                               `json:"additional_config_cmds,omitempty"`

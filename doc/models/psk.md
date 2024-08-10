@@ -32,7 +32,7 @@ PSK
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `string` | Required | SSID this PSK should be applicable to |
 | `Usage` | [`*models.PskUsageEnum`](../../doc/models/psk-usage-enum.md) | Optional | enum: `macs`, `multi`, `single`<br>**Default**: `"multi"` |
-| `VlanId` | [`*models.PskVlanId`](../../doc/models/containers/psk-vlan-id.md) | Optional | This is a container for one-of cases. |
+| `VlanId` | [`*models.PskVlanId`](../../doc/models/containers/psk-vlan-id.md) | Optional | VLAN for this PSK key |
 
 ## Example (as JSON)
 
@@ -45,17 +45,17 @@ PSK
     "53"
   ],
   "max_usage": 0,
-  "name": "name2",
+  "name": "name8",
   "notify_expiry": false,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "passphrase": "passphrase2",
+  "passphrase": "passphrase8",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "ssid": "ssid0",
+  "ssid": "ssid6",
   "usage": "multi",
-  "admin_sso_id": "admin_sso_id8",
-  "created_time": 144.92,
-  "email": "email4",
-  "expiry_notification_time": 18
+  "admin_sso_id": "admin_sso_id4",
+  "created_time": 36.88,
+  "email": "email8",
+  "expiry_notification_time": 222
 }
 ```
 

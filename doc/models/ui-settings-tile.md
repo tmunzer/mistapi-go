@@ -47,7 +47,7 @@
   "scopeType": "client",
   "trendType": "line",
   "vizType": "averageTimeSeriesChart",
-  "chartRankBy": "chartRankBy0"
+  "chartRankBy": "chartRankBy8"
 }
 ```
 

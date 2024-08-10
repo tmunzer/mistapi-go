@@ -21,7 +21,7 @@ Coordinates representing a circle where the AP is most likely exists in the even
 {
   "radius": 2.1,
   "x": 17.0,
-  "radius_m": 67.52
+  "radius_m": 61.96
 }
 ```
 

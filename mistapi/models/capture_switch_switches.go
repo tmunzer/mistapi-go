@@ -32,7 +32,7 @@ func (c CaptureSwitchSwitches) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureSwitchSwitches.
 // It customizes the JSON unmarshaling process for CaptureSwitchSwitches objects.
 func (c *CaptureSwitchSwitches) UnmarshalJSON(input []byte) error {
-    var temp captureSwitchSwitches
+    var temp tempCaptureSwitchSwitches
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -47,7 +47,7 @@ func (c *CaptureSwitchSwitches) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// captureSwitchSwitches is a temporary struct used for validating the fields of CaptureSwitchSwitches.
-type captureSwitchSwitches  struct {
+// tempCaptureSwitchSwitches is a temporary struct used for validating the fields of CaptureSwitchSwitches.
+type tempCaptureSwitchSwitches  struct {
     Ports map[string]interface{} `json:"ports,omitempty"`
 }

@@ -6,40 +6,40 @@ import (
 
 // JseInventoryItem represents a JseInventoryItem struct.
 type JseInventoryItem struct {
-    ContractEndTime      *int            `json:"contract_end_time,omitempty"`
-    ContractId           *string         `json:"contract_id,omitempty"`
-    ContractSku          *string         `json:"contract_sku,omitempty"`
-    ContractStartTime    *int            `json:"contract_start_time,omitempty"`
+    ContractEndTime      *int                      `json:"contract_end_time,omitempty"`
+    ContractId           *string                   `json:"contract_id,omitempty"`
+    ContractSku          *string                   `json:"contract_sku,omitempty"`
+    ContractStartTime    *int                      `json:"contract_start_time,omitempty"`
     // Contract type (Maintenance / Subscription / Premium / Gov AdvCare / Gov TAC / High Sec / AdvCare / Gov Premium)
-    ContractType         *string         `json:"contract_type,omitempty"`
+    ContractType         *string                   `json:"contract_type,omitempty"`
     // po number associated with this SKU
-    CustomerPo           *string         `json:"customer_po,omitempty"`
+    CustomerPo           *string                   `json:"customer_po,omitempty"`
     // distributor name
-    Distributor          *string         `json:"distributor,omitempty"`
+    Distributor          *string                   `json:"distributor,omitempty"`
     // end of life time
-    EolTime              *int            `json:"eol_time,omitempty"`
+    EolTime              *int                      `json:"eol_time,omitempty"`
     // end of support time
-    EosTime              *int            `json:"eos_time,omitempty"`
+    EosTime              *int                      `json:"eos_time,omitempty"`
     // address where the device is installed. It is a combination of address , region , country , zip
-    InstalledAddress     *string         `json:"installed_address,omitempty"`
+    InstalledAddress     *string                   `json:"installed_address,omitempty"`
     // model of the install base inventory
-    Model                *string         `json:"model,omitempty"`
+    Model                *string                   `json:"model,omitempty"`
     // order ID associated with this SKU
-    OrderId              *string         `json:"order_id,omitempty"`
+    OrderId              *string                   `json:"order_id,omitempty"`
     // reseller name
-    Reseller             *string         `json:"reseller,omitempty"`
+    Reseller             *string                   `json:"reseller,omitempty"`
     // serial Number of the inventory
-    Serial               *string         `json:"serial,omitempty"`
+    Serial               *string                   `json:"serial,omitempty"`
     // Shipped date
-    ShippedTime          *float64        `json:"shipped_time,omitempty"`
+    ShippedTime          *float64                  `json:"shipped_time,omitempty"`
     // serviceable device stock
-    Sku                  *string         `json:"sku,omitempty"`
+    Sku                  *string                   `json:"sku,omitempty"`
     // enum: `ap`, `gateway`, `switch`
-    Type                 *DeviceTypeEnum `json:"type,omitempty"`
-    WarrantyEndTime      *int            `json:"warranty_end_time,omitempty"`
-    WarrantyStartTime    *int            `json:"warranty_start_time,omitempty"`
-    WarrantyType         *string         `json:"warranty_type,omitempty"`
-    AdditionalProperties map[string]any  `json:"_"`
+    Type                 *JseInventoryItemTypeEnum `json:"type,omitempty"`
+    WarrantyEndTime      *int                      `json:"warranty_end_time,omitempty"`
+    WarrantyStartTime    *int                      `json:"warranty_start_time,omitempty"`
+    WarrantyType         *string                   `json:"warranty_type,omitempty"`
+    AdditionalProperties map[string]any            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for JseInventoryItem.
@@ -120,7 +120,7 @@ func (j JseInventoryItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for JseInventoryItem.
 // It customizes the JSON unmarshaling process for JseInventoryItem objects.
 func (j *JseInventoryItem) UnmarshalJSON(input []byte) error {
-    var temp jseInventoryItem
+    var temp tempJseInventoryItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -154,26 +154,26 @@ func (j *JseInventoryItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// jseInventoryItem is a temporary struct used for validating the fields of JseInventoryItem.
-type jseInventoryItem  struct {
-    ContractEndTime   *int            `json:"contract_end_time,omitempty"`
-    ContractId        *string         `json:"contract_id,omitempty"`
-    ContractSku       *string         `json:"contract_sku,omitempty"`
-    ContractStartTime *int            `json:"contract_start_time,omitempty"`
-    ContractType      *string         `json:"contract_type,omitempty"`
-    CustomerPo        *string         `json:"customer_po,omitempty"`
-    Distributor       *string         `json:"distributor,omitempty"`
-    EolTime           *int            `json:"eol_time,omitempty"`
-    EosTime           *int            `json:"eos_time,omitempty"`
-    InstalledAddress  *string         `json:"installed_address,omitempty"`
-    Model             *string         `json:"model,omitempty"`
-    OrderId           *string         `json:"order_id,omitempty"`
-    Reseller          *string         `json:"reseller,omitempty"`
-    Serial            *string         `json:"serial,omitempty"`
-    ShippedTime       *float64        `json:"shipped_time,omitempty"`
-    Sku               *string         `json:"sku,omitempty"`
-    Type              *DeviceTypeEnum `json:"type,omitempty"`
-    WarrantyEndTime   *int            `json:"warranty_end_time,omitempty"`
-    WarrantyStartTime *int            `json:"warranty_start_time,omitempty"`
-    WarrantyType      *string         `json:"warranty_type,omitempty"`
+// tempJseInventoryItem is a temporary struct used for validating the fields of JseInventoryItem.
+type tempJseInventoryItem  struct {
+    ContractEndTime   *int                      `json:"contract_end_time,omitempty"`
+    ContractId        *string                   `json:"contract_id,omitempty"`
+    ContractSku       *string                   `json:"contract_sku,omitempty"`
+    ContractStartTime *int                      `json:"contract_start_time,omitempty"`
+    ContractType      *string                   `json:"contract_type,omitempty"`
+    CustomerPo        *string                   `json:"customer_po,omitempty"`
+    Distributor       *string                   `json:"distributor,omitempty"`
+    EolTime           *int                      `json:"eol_time,omitempty"`
+    EosTime           *int                      `json:"eos_time,omitempty"`
+    InstalledAddress  *string                   `json:"installed_address,omitempty"`
+    Model             *string                   `json:"model,omitempty"`
+    OrderId           *string                   `json:"order_id,omitempty"`
+    Reseller          *string                   `json:"reseller,omitempty"`
+    Serial            *string                   `json:"serial,omitempty"`
+    ShippedTime       *float64                  `json:"shipped_time,omitempty"`
+    Sku               *string                   `json:"sku,omitempty"`
+    Type              *JseInventoryItemTypeEnum `json:"type,omitempty"`
+    WarrantyEndTime   *int                      `json:"warranty_end_time,omitempty"`
+    WarrantyStartTime *int                      `json:"warranty_start_time,omitempty"`
+    WarrantyType      *string                   `json:"warranty_type,omitempty"`
 }

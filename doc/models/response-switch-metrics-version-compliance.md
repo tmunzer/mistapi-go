@@ -30,8 +30,8 @@
       }
     ]
   },
-  "score": 42,
-  "total_switch_count": 86
+  "score": 228,
+  "total_switch_count": 16
 }
 ```
 

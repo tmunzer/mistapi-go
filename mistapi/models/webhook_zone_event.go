@@ -64,7 +64,7 @@ func (w WebhookZoneEvent) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookZoneEvent.
 // It customizes the JSON unmarshaling process for WebhookZoneEvent objects.
 func (w *WebhookZoneEvent) UnmarshalJSON(input []byte) error {
-    var temp webhookZoneEvent
+    var temp tempWebhookZoneEvent
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -92,8 +92,8 @@ func (w *WebhookZoneEvent) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookZoneEvent is a temporary struct used for validating the fields of WebhookZoneEvent.
-type webhookZoneEvent  struct {
+// tempWebhookZoneEvent is a temporary struct used for validating the fields of WebhookZoneEvent.
+type tempWebhookZoneEvent  struct {
     AssetId   *uuid.UUID                   `json:"asset_id,omitempty"`
     Id        *uuid.UUID                   `json:"id"`
     Mac       *string                      `json:"mac,omitempty"`
@@ -106,28 +106,28 @@ type webhookZoneEvent  struct {
     ZoneId    *uuid.UUID                   `json:"zone_id"`
 }
 
-func (w *webhookZoneEvent) validate() error {
+func (w *tempWebhookZoneEvent) validate() error {
     var errs []string
     if w.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Webhook_Zone_Event`")
+        errs = append(errs, "required field `id` is missing for type `webhook_zone_event`")
     }
     if w.MapId == nil {
-        errs = append(errs, "required field `map_id` is missing for type `Webhook_Zone_Event`")
+        errs = append(errs, "required field `map_id` is missing for type `webhook_zone_event`")
     }
     if w.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `Webhook_Zone_Event`")
+        errs = append(errs, "required field `site_id` is missing for type `webhook_zone_event`")
     }
     if w.Timestamp == nil {
-        errs = append(errs, "required field `timestamp` is missing for type `Webhook_Zone_Event`")
+        errs = append(errs, "required field `timestamp` is missing for type `webhook_zone_event`")
     }
     if w.Trigger == nil {
-        errs = append(errs, "required field `trigger` is missing for type `Webhook_Zone_Event`")
+        errs = append(errs, "required field `trigger` is missing for type `webhook_zone_event`")
     }
     if w.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Webhook_Zone_Event`")
+        errs = append(errs, "required field `type` is missing for type `webhook_zone_event`")
     }
     if w.ZoneId == nil {
-        errs = append(errs, "required field `zone_id` is missing for type `Webhook_Zone_Event`")
+        errs = append(errs, "required field `zone_id` is missing for type `webhook_zone_event`")
     }
     if len(errs) == 0 {
         return nil

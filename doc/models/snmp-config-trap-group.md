@@ -21,12 +21,13 @@
   "group_name": "profiler",
   "version": "v2",
   "categories": [
-    "categories2",
-    "categories3"
+    "categories8",
+    "categories7"
   ],
   "targets": [
-    "targets2",
-    "targets3"
+    "targets0",
+    "targets1",
+    "targets2"
   ]
 }
 ```

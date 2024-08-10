@@ -14,7 +14,7 @@ A network represents a network segment. It can either represent a VLAN (then usu
 | `Isolation` | `*bool` | Optional | whether to stop clients to talk to each other, default is false (when enabled, a unique isolation_vlan_id is required)<br>NOTE: this features requires uplink device to also a be Juniper device and `inter_switch_link` to be set<br>**Default**: `false` |
 | `IsolationVlanId` | `*string` | Optional | - |
 | `Subnet` | `*string` | Optional | optional for pure switching, required when L3 / routing features are used |
-| `VlanId` | [`models.SwitchNetworkVlanId`](../../doc/models/containers/switch-network-vlan-id.md) | Required | This is a container for one-of cases. |
+| `VlanId` | [`models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Required | - |
 
 ## Example (as JSON)
 
@@ -22,8 +22,8 @@ A network represents a network segment. It can either represent a VLAN (then usu
 {
   "isolation": false,
   "isolation_vlan_id": "3070",
-  "vlan_id": "String7",
-  "subnet": "subnet6"
+  "vlan_id": "String9",
+  "subnet": "subnet8"
 }
 ```
 

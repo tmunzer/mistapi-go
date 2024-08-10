@@ -40,7 +40,7 @@ func (a ApTemplateMatchingRule) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApTemplateMatchingRule.
 // It customizes the JSON unmarshaling process for ApTemplateMatchingRule objects.
 func (a *ApTemplateMatchingRule) UnmarshalJSON(input []byte) error {
-    var temp apTemplateMatchingRule
+    var temp tempApTemplateMatchingRule
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -57,8 +57,8 @@ func (a *ApTemplateMatchingRule) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apTemplateMatchingRule is a temporary struct used for validating the fields of ApTemplateMatchingRule.
-type apTemplateMatchingRule  struct {
+// tempApTemplateMatchingRule is a temporary struct used for validating the fields of ApTemplateMatchingRule.
+type tempApTemplateMatchingRule  struct {
     MatchModel *string                 `json:"match_model,omitempty"`
     Name       *string                 `json:"name,omitempty"`
     PortConfig map[string]ApPortConfig `json:"port_config,omitempty"`

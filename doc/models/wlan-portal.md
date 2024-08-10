@@ -55,6 +55,7 @@ portal wlan settings
 | `PassphraseExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using passphrase auth (in minutes), if not provided, uses `expire` |
 | `Password` | `models.Optional[string]` | Optional | passphrase |
 | `PredefinedSponsorsEnabled` | `*bool` | Optional | whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`<br>**Default**: `true` |
+| `PredefinedSponsorsHideEmail` | `*bool` | Optional | whether to hide sponsor’s email from list of sponsors<br>**Default**: `false` |
 | `Privacy` | `*bool` | Optional | **Default**: `true` |
 | `PuzzelPassword` | `*string` | Optional | when `sms_provider`==`puzzel` |
 | `PuzzelServiceId` | `*string` | Optional | when `sms_provider`==`puzzel` |
@@ -89,6 +90,8 @@ portal wlan settings
 ```json
 {
   "amazon_email_domains": [
+    "amazon_email_domains4",
+    "amazon_email_domains5",
     "amazon_email_domains6"
   ],
   "amazon_enabled": false,
@@ -115,6 +118,7 @@ portal wlan settings
   "passphrase_enabled": false,
   "password": "let me in",
   "predefined_sponsors_enabled": true,
+  "predefined_sponsors_hide_email": false,
   "privacy": true,
   "sms_enabled": false,
   "sms_provider": "twilio",
@@ -135,9 +139,9 @@ portal wlan settings
   "twilio_auth_token": "af9dac44c344a875ab5d31cb7abcdefg",
   "twilio_phone_number": "+18548888888",
   "twilio_sid": "AC72ec6ba0ec5af30e6731c5e47abcdefgh",
-  "amazon_client_id": "amazon_client_id0",
-  "amazon_client_secret": "amazon_client_secret6",
-  "amazon_expire": 83.9
+  "amazon_client_id": "amazon_client_id4",
+  "amazon_client_secret": "amazon_client_secret0",
+  "amazon_expire": 137.94
 }
 ```
 

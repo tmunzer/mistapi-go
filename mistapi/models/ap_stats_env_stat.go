@@ -124,7 +124,7 @@ func (a ApStatsEnvStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ApStatsEnvStat.
 // It customizes the JSON unmarshaling process for ApStatsEnvStat objects.
 func (a *ApStatsEnvStat) UnmarshalJSON(input []byte) error {
-    var temp apStatsEnvStat
+    var temp tempApStatsEnvStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -150,8 +150,8 @@ func (a *ApStatsEnvStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// apStatsEnvStat is a temporary struct used for validating the fields of ApStatsEnvStat.
-type apStatsEnvStat  struct {
+// tempApStatsEnvStat is a temporary struct used for validating the fields of ApStatsEnvStat.
+type tempApStatsEnvStat  struct {
     AccelX       Optional[float64] `json:"accel_x"`
     AccelY       Optional[float64] `json:"accel_y"`
     AccelZ       Optional[float64] `json:"accel_z"`

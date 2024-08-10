@@ -46,7 +46,7 @@ func (m MxedgeUpgradeVersion) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeUpgradeVersion.
 // It customizes the JSON unmarshaling process for MxedgeUpgradeVersion objects.
 func (m *MxedgeUpgradeVersion) UnmarshalJSON(input []byte) error {
-    var temp mxedgeUpgradeVersion
+    var temp tempMxedgeUpgradeVersion
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -69,8 +69,8 @@ func (m *MxedgeUpgradeVersion) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeUpgradeVersion is a temporary struct used for validating the fields of MxedgeUpgradeVersion.
-type mxedgeUpgradeVersion  struct {
+// tempMxedgeUpgradeVersion is a temporary struct used for validating the fields of MxedgeUpgradeVersion.
+type tempMxedgeUpgradeVersion  struct {
     Mxagent     *string `json:"mxagent"`
     Mxdas       *string `json:"mxdas,omitempty"`
     Mxocproxy   *string `json:"mxocproxy,omitempty"`
@@ -78,13 +78,13 @@ type mxedgeUpgradeVersion  struct {
     Tunterm     *string `json:"tunterm"`
 }
 
-func (m *mxedgeUpgradeVersion) validate() error {
+func (m *tempMxedgeUpgradeVersion) validate() error {
     var errs []string
     if m.Mxagent == nil {
-        errs = append(errs, "required field `mxagent` is missing for type `Mxedge_Upgrade_Version`")
+        errs = append(errs, "required field `mxagent` is missing for type `mxedge_upgrade_version`")
     }
     if m.Tunterm == nil {
-        errs = append(errs, "required field `tunterm` is missing for type `Mxedge_Upgrade_Version`")
+        errs = append(errs, "required field `tunterm` is missing for type `mxedge_upgrade_version`")
     }
     if len(errs) == 0 {
         return nil

@@ -50,13 +50,13 @@
   "timestamp": 1694689718.612,
   "type": "wireless",
   "cert_cn": [
-    "cert_cn3",
-    "cert_cn2",
-    "cert_cn1"
+    "cert_cn9",
+    "cert_cn0"
   ],
   "cert_issuer": [
-    "cert_issuer8",
-    "cert_issuer9"
+    "cert_issuer4",
+    "cert_issuer3",
+    "cert_issuer2"
   ],
   "idp_id": "idp_id0"
 }

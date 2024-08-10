@@ -47,7 +47,7 @@ func (r ResponseEventsNacClientSearch) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseEventsNacClientSearch.
 // It customizes the JSON unmarshaling process for ResponseEventsNacClientSearch objects.
 func (r *ResponseEventsNacClientSearch) UnmarshalJSON(input []byte) error {
-    var temp responseEventsNacClientSearch
+    var temp tempResponseEventsNacClientSearch
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -66,8 +66,8 @@ func (r *ResponseEventsNacClientSearch) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseEventsNacClientSearch is a temporary struct used for validating the fields of ResponseEventsNacClientSearch.
-type responseEventsNacClientSearch  struct {
+// tempResponseEventsNacClientSearch is a temporary struct used for validating the fields of ResponseEventsNacClientSearch.
+type tempResponseEventsNacClientSearch  struct {
     End     *int             `json:"end,omitempty"`
     Limit   *int             `json:"limit,omitempty"`
     Results []EventNacClient `json:"results,omitempty"`

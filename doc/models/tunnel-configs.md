@@ -17,6 +17,7 @@
 | `IpsecProposals` | [`[]models.GatewayTemplateTunnelIpsecProposal`](../../doc/models/gateway-template-tunnel-ipsec-proposal.md) | Optional | Only if  `provider`== `custom-ipsec` |
 | `LocalId` | `*string` | Optional | Only if:<br><br>* `provider`== `zscaler-ipsec`<br>* `provider`==`jse-ipsec`<br>* `provider`== `custom-ipsec` |
 | `Mode` | [`*models.GatewayTemplateTunnelModeEnum`](../../doc/models/gateway-template-tunnel-mode-enum.md) | Optional | enum: `active-active`, `active-standby`<br>**Default**: `"active-standby"` |
+| `Networks` | `[]string` | Optional | networks reachable via this tunnel |
 | `Primary` | [`*models.GatewayTemplateTunnelNode`](../../doc/models/gateway-template-tunnel-node.md) | Optional | - |
 | `Probe` | [`*models.GatewayTemplateTunnelProbe`](../../doc/models/gateway-template-tunnel-probe.md) | Optional | Only if `provider`== `custom-ipsec` |
 | `Protocol` | [`*models.GatewayTemplateTunnelProtocolEnum`](../../doc/models/gateway-template-tunnel-protocol-enum.md) | Optional | Only if `provider`== `custom-ipsec`. enum: `gre`, `ipsec` |
@@ -52,20 +53,15 @@
       ]
     }
   },
-  "ike_lifetime": 236,
+  "ike_lifetime": 136,
   "ike_proposals": [
-    {
-      "auth_algo": "sha1",
-      "dh_group": "19",
-      "enc_algo": "aes_gcm256"
-    },
     {
       "auth_algo": "sha1",
       "dh_group": "19",
       "enc_algo": "aes_gcm256"
     }
   ],
-  "ipsec_lifetime": 40
+  "ipsec_lifetime": 196
 }
 ```
 

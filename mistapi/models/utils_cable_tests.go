@@ -32,7 +32,7 @@ func (u UtilsCableTests) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsCableTests.
 // It customizes the JSON unmarshaling process for UtilsCableTests objects.
 func (u *UtilsCableTests) UnmarshalJSON(input []byte) error {
-    var temp utilsCableTests
+    var temp tempUtilsCableTests
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,15 +51,15 @@ func (u *UtilsCableTests) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsCableTests is a temporary struct used for validating the fields of UtilsCableTests.
-type utilsCableTests  struct {
+// tempUtilsCableTests is a temporary struct used for validating the fields of UtilsCableTests.
+type tempUtilsCableTests  struct {
     Port *string `json:"port"`
 }
 
-func (u *utilsCableTests) validate() error {
+func (u *tempUtilsCableTests) validate() error {
     var errs []string
     if u.Port == nil {
-        errs = append(errs, "required field `port` is missing for type `Utils_Cable_Tests`")
+        errs = append(errs, "required field `port` is missing for type `utils_cable_tests`")
     }
     if len(errs) == 0 {
         return nil

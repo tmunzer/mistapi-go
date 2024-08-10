@@ -21,11 +21,11 @@
 ```json
 {
   "security_name": "m01620",
-  "message_processing_model": "v2c",
-  "name": "name8",
-  "notify_filter": "notify_filter0",
+  "message_processing_model": "v1",
+  "name": "name0",
+  "notify_filter": "notify_filter2",
   "security_level": "privacy",
-  "security_model": "usm"
+  "security_model": "v2c"
 }
 ```
 

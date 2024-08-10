@@ -16,7 +16,7 @@
 ```json
 {
   "preempted_aps": [
-    "preempted_aps0"
+    "preempted_aps8"
   ]
 }
 ```

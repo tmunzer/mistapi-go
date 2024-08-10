@@ -42,7 +42,7 @@ func (u UtilsRrmOptimize) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UtilsRrmOptimize.
 // It customizes the JSON unmarshaling process for UtilsRrmOptimize objects.
 func (u *UtilsRrmOptimize) UnmarshalJSON(input []byte) error {
-    var temp utilsRrmOptimize
+    var temp tempUtilsRrmOptimize
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -63,17 +63,17 @@ func (u *UtilsRrmOptimize) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// utilsRrmOptimize is a temporary struct used for validating the fields of UtilsRrmOptimize.
-type utilsRrmOptimize  struct {
+// tempUtilsRrmOptimize is a temporary struct used for validating the fields of UtilsRrmOptimize.
+type tempUtilsRrmOptimize  struct {
     Bands       *[]string `json:"bands"`
     Macs        []string  `json:"macs,omitempty"`
     TxpowerOnly *bool     `json:"txpower_only,omitempty"`
 }
 
-func (u *utilsRrmOptimize) validate() error {
+func (u *tempUtilsRrmOptimize) validate() error {
     var errs []string
     if u.Bands == nil {
-        errs = append(errs, "required field `bands` is missing for type `Utils_Rrm_Optimize`")
+        errs = append(errs, "required field `bands` is missing for type `utils_rrm_optimize`")
     }
     if len(errs) == 0 {
         return nil

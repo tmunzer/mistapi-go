@@ -42,7 +42,7 @@ func (u UseAutoApValues) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UseAutoApValues.
 // It customizes the JSON unmarshaling process for UseAutoApValues objects.
 func (u *UseAutoApValues) UnmarshalJSON(input []byte) error {
-    var temp useAutoApValues
+    var temp tempUseAutoApValues
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -59,8 +59,8 @@ func (u *UseAutoApValues) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// useAutoApValues is a temporary struct used for validating the fields of UseAutoApValues.
-type useAutoApValues  struct {
+// tempUseAutoApValues is a temporary struct used for validating the fields of UseAutoApValues.
+type tempUseAutoApValues  struct {
     Accept *bool                   `json:"accept,omitempty"`
     For    *UseAutoApValuesForEnum `json:"for,omitempty"`
     Macs   []string                `json:"macs,omitempty"`

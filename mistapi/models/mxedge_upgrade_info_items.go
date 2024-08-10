@@ -37,7 +37,7 @@ func (m MxedgeUpgradeInfoItems) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeUpgradeInfoItems.
 // It customizes the JSON unmarshaling process for MxedgeUpgradeInfoItems objects.
 func (m *MxedgeUpgradeInfoItems) UnmarshalJSON(input []byte) error {
-    var temp mxedgeUpgradeInfoItems
+    var temp tempMxedgeUpgradeInfoItems
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -58,20 +58,20 @@ func (m *MxedgeUpgradeInfoItems) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// mxedgeUpgradeInfoItems is a temporary struct used for validating the fields of MxedgeUpgradeInfoItems.
-type mxedgeUpgradeInfoItems  struct {
+// tempMxedgeUpgradeInfoItems is a temporary struct used for validating the fields of MxedgeUpgradeInfoItems.
+type tempMxedgeUpgradeInfoItems  struct {
     Default *bool   `json:"default,omitempty"`
     Package *string `json:"package"`
     Version *string `json:"version"`
 }
 
-func (m *mxedgeUpgradeInfoItems) validate() error {
+func (m *tempMxedgeUpgradeInfoItems) validate() error {
     var errs []string
     if m.Package == nil {
-        errs = append(errs, "required field `package` is missing for type `Mxedge_Upgrade_Info_Items`")
+        errs = append(errs, "required field `package` is missing for type `mxedge_upgrade_info_items`")
     }
     if m.Version == nil {
-        errs = append(errs, "required field `version` is missing for type `Mxedge_Upgrade_Info_Items`")
+        errs = append(errs, "required field `version` is missing for type `mxedge_upgrade_info_items`")
     }
     if len(errs) == 0 {
         return nil

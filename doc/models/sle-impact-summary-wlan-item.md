@@ -19,11 +19,11 @@
 
 ```json
 {
-  "degraded": 86.74,
-  "duration": 215.8,
-  "name": "name4",
-  "total": 141.26,
-  "wlan_id": "wlan_id6"
+  "degraded": 245.48,
+  "duration": 118.54,
+  "name": "name8",
+  "total": 238.52,
+  "wlan_id": "wlan_id0"
 }
 ```
 

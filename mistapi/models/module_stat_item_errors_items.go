@@ -45,7 +45,7 @@ func (m ModuleStatItemErrorsItems) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ModuleStatItemErrorsItems.
 // It customizes the JSON unmarshaling process for ModuleStatItemErrorsItems objects.
 func (m *ModuleStatItemErrorsItems) UnmarshalJSON(input []byte) error {
-    var temp moduleStatItemErrorsItems
+    var temp tempModuleStatItemErrorsItems
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -68,8 +68,8 @@ func (m *ModuleStatItemErrorsItems) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// moduleStatItemErrorsItems is a temporary struct used for validating the fields of ModuleStatItemErrorsItems.
-type moduleStatItemErrorsItems  struct {
+// tempModuleStatItemErrorsItems is a temporary struct used for validating the fields of ModuleStatItemErrorsItems.
+type tempModuleStatItemErrorsItems  struct {
     Feature        *string `json:"feature,omitempty"`
     MinimumVersion *string `json:"minimum_version,omitempty"`
     Reason         *string `json:"reason,omitempty"`
@@ -77,13 +77,13 @@ type moduleStatItemErrorsItems  struct {
     Type           *string `json:"type"`
 }
 
-func (m *moduleStatItemErrorsItems) validate() error {
+func (m *tempModuleStatItemErrorsItems) validate() error {
     var errs []string
     if m.Since == nil {
-        errs = append(errs, "required field `since` is missing for type `Module_Stat_Item_Errors_Items`")
+        errs = append(errs, "required field `since` is missing for type `module_stat_item_errors_items`")
     }
     if m.Type == nil {
-        errs = append(errs, "required field `type` is missing for type `Module_Stat_Item_Errors_Items`")
+        errs = append(errs, "required field `type` is missing for type `module_stat_item_errors_items`")
     }
     if len(errs) == 0 {
         return nil

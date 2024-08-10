@@ -35,7 +35,7 @@ func (t TicketCommentImportFile) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for TicketCommentImportFile.
 // It customizes the JSON unmarshaling process for TicketCommentImportFile objects.
 func (t *TicketCommentImportFile) UnmarshalJSON(input []byte) error {
-    var temp ticketCommentImportFile
+    var temp tempTicketCommentImportFile
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -51,8 +51,8 @@ func (t *TicketCommentImportFile) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ticketCommentImportFile is a temporary struct used for validating the fields of TicketCommentImportFile.
-type ticketCommentImportFile  struct {
+// tempTicketCommentImportFile is a temporary struct used for validating the fields of TicketCommentImportFile.
+type tempTicketCommentImportFile  struct {
     Comment *string `json:"comment,omitempty"`
     File    *[]byte `json:"file,omitempty"`
 }

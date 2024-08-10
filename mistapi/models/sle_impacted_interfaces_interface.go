@@ -51,7 +51,7 @@ func (s SleImpactedInterfacesInterface) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SleImpactedInterfacesInterface.
 // It customizes the JSON unmarshaling process for SleImpactedInterfacesInterface objects.
 func (s *SleImpactedInterfacesInterface) UnmarshalJSON(input []byte) error {
-    var temp sleImpactedInterfacesInterface
+    var temp tempSleImpactedInterfacesInterface
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -71,8 +71,8 @@ func (s *SleImpactedInterfacesInterface) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// sleImpactedInterfacesInterface is a temporary struct used for validating the fields of SleImpactedInterfacesInterface.
-type sleImpactedInterfacesInterface  struct {
+// tempSleImpactedInterfacesInterface is a temporary struct used for validating the fields of SleImpactedInterfacesInterface.
+type tempSleImpactedInterfacesInterface  struct {
     Degraded      *float64 `json:"degraded,omitempty"`
     Duration      *float64 `json:"duration,omitempty"`
     InterfaceName *string  `json:"interface_name,omitempty"`

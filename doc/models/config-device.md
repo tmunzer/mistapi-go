@@ -41,7 +41,7 @@
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Orientation` | `*int` | Optional | orientation, 0-359, in degrees, up is 0, right is 90.<br>**Constraints**: `>= 0`, `<= 359` |
 | `PoePassthrough` | `*bool` | Optional | whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br>**Default**: `false` |
-| `PortConfig` | [`*models.PortConfig1`](../../doc/models/port-config-1.md) | Optional | eth0 is not allowed here.<br>Property key is the interface(s) name (e.g. "eth1" or"eth1,eth2") |
+| `PortConfig` | [`*models.PortConfig`](../../doc/models/port-config.md) | Optional | eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`) |
 | `PwrConfig` | [`*models.ApPwrConfig`](../../doc/models/ap-pwr-config.md) | Optional | power related configs |
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `Serial` | `*string` | Optional | device Serial |
@@ -77,7 +77,7 @@
 | `RouterId` | `*string` | Optional | used for OSPF / BGP / EVPN |
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
 | `StpConfig` | [`*models.SwitchStpConfig`](../../doc/models/switch-stp-config.md) | Optional | - |
-| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | - |
+| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
 | `UseRouterIdAsSourceIp` | `*bool` | Optional | whether to use it for snmp / syslog / tacplus / radius<br>**Default**: `false` |
 | `VirtualChassis` | [`*models.SwitchVirtualChassis`](../../doc/models/switch-virtual-chassis.md) | Optional | required for preprovisioned Virtual Chassis |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
@@ -164,7 +164,7 @@
     "enabled": false,
     "ssid": "ssid0"
   },
-  "created_time": 233.98
+  "created_time": 21.48
 }
 ```
 

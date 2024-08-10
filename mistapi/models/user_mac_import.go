@@ -39,7 +39,7 @@ func (u UserMacImport) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UserMacImport.
 // It customizes the JSON unmarshaling process for UserMacImport objects.
 func (u *UserMacImport) UnmarshalJSON(input []byte) error {
-    var temp userMacImport
+    var temp tempUserMacImport
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (u *UserMacImport) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// userMacImport is a temporary struct used for validating the fields of UserMacImport.
-type userMacImport  struct {
+// tempUserMacImport is a temporary struct used for validating the fields of UserMacImport.
+type tempUserMacImport  struct {
     Added   []string `json:"added,omitempty"`
     Errors  []string `json:"errors,omitempty"`
     Updated []string `json:"updated,omitempty"`

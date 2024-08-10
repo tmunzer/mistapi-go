@@ -39,7 +39,7 @@ func (w WebhookSiteSleEventSle) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WebhookSiteSleEventSle.
 // It customizes the JSON unmarshaling process for WebhookSiteSleEventSle objects.
 func (w *WebhookSiteSleEventSle) UnmarshalJSON(input []byte) error {
-    var temp webhookSiteSleEventSle
+    var temp tempWebhookSiteSleEventSle
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -56,8 +56,8 @@ func (w *WebhookSiteSleEventSle) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// webhookSiteSleEventSle is a temporary struct used for validating the fields of WebhookSiteSleEventSle.
-type webhookSiteSleEventSle  struct {
+// tempWebhookSiteSleEventSle is a temporary struct used for validating the fields of WebhookSiteSleEventSle.
+type tempWebhookSiteSleEventSle  struct {
     ApAvailability    *float64 `json:"ap-availability,omitempty"`
     SuccessfulConnect *float64 `json:"successful-connect,omitempty"`
     TimeToConnect     *float64 `json:"time-to-connect,omitempty"`

@@ -42,18 +42,18 @@
   },
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "termination_reason": "default",
-  "timestamp": 83.42,
+  "timestamp": 93.82,
   "type": "type0",
   "url": "url4",
   "ap_macs": [
-    "ap_macs7"
+    "ap_macs7",
+    "ap_macs8",
+    "ap_macs9"
   ],
   "aps": [
-    "aps1",
-    "aps2",
-    "aps3"
+    "aps1"
   ],
-  "id": "0000021c-0000-0000-0000-000000000000"
+  "id": "0000251c-0000-0000-0000-000000000000"
 }
 ```
 

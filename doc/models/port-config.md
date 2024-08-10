@@ -1,7 +1,7 @@
 
 # Port Config
 
-Property key is the interface(s) name (e.g. "eth1,eth2")
+eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`)
 
 ## Structure
 
@@ -11,35 +11,43 @@ Property key is the interface(s) name (e.g. "eth1,eth2")
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `AeDisableLacp` | `*bool` | Optional | To disable LACP support for the AE interface |
+| `AeIdx` | `*int` | Optional | Users could force to use the designated AE name |
+| `AeLacpSlow` | `*bool` | Optional | to use fast timeout<br>**Default**: `true` |
+| `Aggregated` | `*bool` | Optional | **Default**: `false` |
+| `Critical` | `*bool` | Optional | if want to generate port up/down alarm |
 | `Description` | `*string` | Optional | - |
-| `DisableAutoneg` | `*bool` | Optional | **Default**: `false` |
+| `DisableAutoneg` | `*bool` | Optional | if `speed` and `duplex` are specified, whether to disable autonegotiation<br>**Default**: `false` |
+| `Duplex` | [`*models.GatewayPortDuplexEnum`](../../doc/models/gateway-port-duplex-enum.md) | Optional | enum: `auto`, `full`, `half`<br>**Default**: `"auto"` |
+| `DynamicUsage` | `models.Optional[string]` | Optional | Enable dynamic usage for this port. Set to `dynamic` to enable. |
+| `Esilag` | `*bool` | Optional | - |
+| `Mtu` | `*int` | Optional | media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation<br>**Default**: `1514` |
+| `NoLocalOverwrite` | `*bool` | Optional | prevent helpdesk to override the port config |
+| `PoeDisabled` | `*bool` | Optional | **Default**: `false` |
+| `Speed` | [`*models.JunosPortConfigSpeedEnum`](../../doc/models/junos-port-config-speed-enum.md) | Optional | enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `auto`<br>**Default**: `"auto"` |
+| `Usage` | [`models.GatewayPortUsage1Enum`](../../doc/models/gateway-port-usage-1-enum.md) | Required | port usage name.<br><br>If EVPN is used, use `evpn_uplink`or `evpn_downlink` |
 | `Disabled` | `*bool` | Optional | port admin up (true) / down (false)<br>**Default**: `false` |
 | `DslType` | [`*models.GatewayPortDslTypeEnum`](../../doc/models/gateway-port-dsl-type-enum.md) | Optional | if `wan_type`==`lte`. enum: `adsl`, `vdsl`<br>**Default**: `"vdsl"` |
 | `DslVci` | `*int` | Optional | if `wan_type`==`dsl`<br>16 bit int<br>**Default**: `35` |
 | `DslVpi` | `*int` | Optional | if `wan_type`==`dsl`<br>8 bit int<br>**Default**: `0` |
-| `Duplex` | [`*models.GatewayPortDuplexEnum`](../../doc/models/gateway-port-duplex-enum.md) | Optional | enum: `auto`, `full`, `half`<br>**Default**: `"auto"` |
 | `IpConfig` | [`*models.GatewayPortConfigIpConfig`](../../doc/models/gateway-port-config-ip-config.md) | Optional | Junos IP Config |
 | `LteApn` | `*string` | Optional | if `wan_type`==`lte` |
 | `LteAuth` | [`*models.GatewayPortLteAuthEnum`](../../doc/models/gateway-port-lte-auth-enum.md) | Optional | if `wan_type`==`lte`. enum: `chap`, `none`, `pap`<br>**Default**: `"none"` |
 | `LteBackup` | `*bool` | Optional | - |
 | `LtePassword` | `*string` | Optional | if `wan_type`==`lte` |
 | `LteUsername` | `*string` | Optional | if `wan_type`==`lte` |
-| `Mtu` | `*int` | Optional | - |
 | `Name` | `*string` | Optional | name that we'll use to derive config |
 | `Networks` | `[]string` | Optional | if `usage`==`lan` |
 | `OuterVlanId` | `*int` | Optional | for Q-in-Q |
-| `PoeDisabled` | `*bool` | Optional | **Default**: `false` |
 | `PortNetwork` | `*string` | Optional | if `usage`==`lan` |
 | `PreserveDscp` | `*bool` | Optional | whether to preserve dscp when sending traffic over VPN (SSR-only)<br>**Default**: `true` |
 | `Redundant` | `*bool` | Optional | if HA mode |
 | `RethIdx` | `*int` | Optional | if HA mode |
 | `RethNode` | `*string` | Optional | if HA mode |
 | `RethNodes` | `[]string` | Optional | SSR only - supporting vlan-based redundancy (matching the size of `networks`) |
-| `Speed` | `*string` | Optional | **Default**: `"auto"` |
 | `SsrNoVirtualMac` | `*bool` | Optional | when SSR is running as VM, this is required on certain hosting platforms<br>**Default**: `false` |
 | `SvrPortRange` | `*string` | Optional | for SSR only<br>**Default**: `"none"` |
 | `TrafficShaping` | [`*models.GatewayTrafficShaping`](../../doc/models/gateway-traffic-shaping.md) | Optional | - |
-| `Usage` | [`models.GatewayPortUsageEnum`](../../doc/models/gateway-port-usage-enum.md) | Required | port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan` |
 | `VlanId` | `*int` | Optional | if WAN interface is on a VLAN |
 | `VpnPaths` | [`map[string]models.GatewayPortVpnPath`](../../doc/models/gateway-port-vpn-path.md) | Optional | - |
 | `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`<br>**Default**: `"recommended"` |
@@ -51,26 +59,31 @@ Property key is the interface(s) name (e.g. "eth1,eth2")
 
 ```json
 {
+  "ae_lacp_slow": true,
+  "aggregated": false,
   "disable_autoneg": false,
+  "duplex": "full",
+  "mtu": 1514,
+  "poe_disabled": false,
+  "speed": "1g",
+  "usage": "ha_control",
   "disabled": false,
   "dsl_type": "vdsl",
   "dsl_vci": 35,
   "dsl_vpi": 0,
-  "duplex": "full",
   "lte_auth": "none",
-  "poe_disabled": false,
   "preserve_dscp": true,
   "reth_nodes": [
     "node0",
     "node1"
   ],
-  "speed": "1g",
   "ssr_no_virtual_mac": false,
   "svr_port_range": "60000-60005",
-  "usage": "ha_control",
   "wan_arp_policer": "recommended",
   "wan_type": "broadband",
-  "description": "description8"
+  "ae_disable_lacp": false,
+  "ae_idx": 252,
+  "critical": false
 }
 ```
 

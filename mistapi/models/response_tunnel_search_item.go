@@ -181,7 +181,7 @@ func (r ResponseTunnelSearchItem) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseTunnelSearchItem.
 // It customizes the JSON unmarshaling process for ResponseTunnelSearchItem objects.
 func (r *ResponseTunnelSearchItem) UnmarshalJSON(input []byte) error {
-    var temp responseTunnelSearchItem
+    var temp tempResponseTunnelSearchItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -229,8 +229,8 @@ func (r *ResponseTunnelSearchItem) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// responseTunnelSearchItem is a temporary struct used for validating the fields of ResponseTunnelSearchItem.
-type responseTunnelSearchItem  struct {
+// tempResponseTunnelSearchItem is a temporary struct used for validating the fields of ResponseTunnelSearchItem.
+type tempResponseTunnelSearchItem  struct {
     Ap            *string                     `json:"ap,omitempty"`
     ForSite       *bool                       `json:"for_site,omitempty"`
     LastSeen      *float64                    `json:"last_seen,omitempty"`

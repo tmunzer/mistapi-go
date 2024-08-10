@@ -63,7 +63,7 @@ func (u UnconnectedClientStat) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for UnconnectedClientStat.
 // It customizes the JSON unmarshaling process for UnconnectedClientStat objects.
 func (u *UnconnectedClientStat) UnmarshalJSON(input []byte) error {
-    var temp unconnectedClientStat
+    var temp tempUnconnectedClientStat
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -89,8 +89,8 @@ func (u *UnconnectedClientStat) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// unconnectedClientStat is a temporary struct used for validating the fields of UnconnectedClientStat.
-type unconnectedClientStat  struct {
+// tempUnconnectedClientStat is a temporary struct used for validating the fields of UnconnectedClientStat.
+type tempUnconnectedClientStat  struct {
     ApMac       *string             `json:"ap_mac"`
     LastSeen    *float64            `json:"last_seen"`
     Mac         *string             `json:"mac"`
@@ -101,25 +101,25 @@ type unconnectedClientStat  struct {
     Y           *float64            `json:"y"`
 }
 
-func (u *unconnectedClientStat) validate() error {
+func (u *tempUnconnectedClientStat) validate() error {
     var errs []string
     if u.ApMac == nil {
-        errs = append(errs, "required field `ap_mac` is missing for type `Unconnected_Client_Stat`")
+        errs = append(errs, "required field `ap_mac` is missing for type `unconnected_client_stat`")
     }
     if u.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `Unconnected_Client_Stat`")
+        errs = append(errs, "required field `last_seen` is missing for type `unconnected_client_stat`")
     }
     if u.Mac == nil {
-        errs = append(errs, "required field `mac` is missing for type `Unconnected_Client_Stat`")
+        errs = append(errs, "required field `mac` is missing for type `unconnected_client_stat`")
     }
     if u.Manufacture == nil {
-        errs = append(errs, "required field `manufacture` is missing for type `Unconnected_Client_Stat`")
+        errs = append(errs, "required field `manufacture` is missing for type `unconnected_client_stat`")
     }
     if u.Rssi == nil {
-        errs = append(errs, "required field `rssi` is missing for type `Unconnected_Client_Stat`")
+        errs = append(errs, "required field `rssi` is missing for type `unconnected_client_stat`")
     }
     if u.Y == nil {
-        errs = append(errs, "required field `y` is missing for type `Unconnected_Client_Stat`")
+        errs = append(errs, "required field `y` is missing for type `unconnected_client_stat`")
     }
     if len(errs) == 0 {
         return nil

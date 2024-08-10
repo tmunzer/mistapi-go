@@ -87,7 +87,7 @@ func (s StatsSite) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for StatsSite.
 // It customizes the JSON unmarshaling process for StatsSite objects.
 func (s *StatsSite) UnmarshalJSON(input []byte) error {
-    var temp statsSite
+    var temp tempStatsSite
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -132,8 +132,8 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// statsSite is a temporary struct used for validating the fields of StatsSite.
-type statsSite  struct {
+// tempStatsSite is a temporary struct used for validating the fields of StatsSite.
+type tempStatsSite  struct {
     Address             *string      `json:"address"`
     AlarmtemplateId     *uuid.UUID   `json:"alarmtemplate_id"`
     CountryCode         *string      `json:"country_code"`
@@ -163,85 +163,85 @@ type statsSite  struct {
     Tzoffset            *int         `json:"tzoffset"`
 }
 
-func (s *statsSite) validate() error {
+func (s *tempStatsSite) validate() error {
     var errs []string
     if s.Address == nil {
-        errs = append(errs, "required field `address` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `address` is missing for type `stats_site`")
     }
     if s.AlarmtemplateId == nil {
-        errs = append(errs, "required field `alarmtemplate_id` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `alarmtemplate_id` is missing for type `stats_site`")
     }
     if s.CountryCode == nil {
-        errs = append(errs, "required field `country_code` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `country_code` is missing for type `stats_site`")
     }
     if s.CreatedTime == nil {
-        errs = append(errs, "required field `created_time` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `created_time` is missing for type `stats_site`")
     }
     if s.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `id` is missing for type `stats_site`")
     }
     if s.Lat == nil {
-        errs = append(errs, "required field `lat` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `lat` is missing for type `stats_site`")
     }
     if s.Latlng == nil {
-        errs = append(errs, "required field `latlng` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `latlng` is missing for type `stats_site`")
     }
     if s.Lng == nil {
-        errs = append(errs, "required field `lng` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `lng` is missing for type `stats_site`")
     }
     if s.ModifiedTime == nil {
-        errs = append(errs, "required field `modified_time` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `modified_time` is missing for type `stats_site`")
     }
     if s.MspId == nil {
-        errs = append(errs, "required field `msp_id` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `msp_id` is missing for type `stats_site`")
     }
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `name` is missing for type `stats_site`")
     }
     if s.NetworktemplateId == nil {
-        errs = append(errs, "required field `networktemplate_id` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `networktemplate_id` is missing for type `stats_site`")
     }
     if s.NumAp == nil {
-        errs = append(errs, "required field `num_ap` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `num_ap` is missing for type `stats_site`")
     }
     if s.NumApConnected == nil {
-        errs = append(errs, "required field `num_ap_connected` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `num_ap_connected` is missing for type `stats_site`")
     }
     if s.NumClients == nil {
-        errs = append(errs, "required field `num_clients` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `num_clients` is missing for type `stats_site`")
     }
     if s.NumDevices == nil {
-        errs = append(errs, "required field `num_devices` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `num_devices` is missing for type `stats_site`")
     }
     if s.NumDevicesConnected == nil {
-        errs = append(errs, "required field `num_devices_connected` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `num_devices_connected` is missing for type `stats_site`")
     }
     if s.NumGateway == nil {
-        errs = append(errs, "required field `num_gateway` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `num_gateway` is missing for type `stats_site`")
     }
     if s.NumGatewayConnected == nil {
-        errs = append(errs, "required field `num_gateway_connected` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `num_gateway_connected` is missing for type `stats_site`")
     }
     if s.NumSwitch == nil {
-        errs = append(errs, "required field `num_switch` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `num_switch` is missing for type `stats_site`")
     }
     if s.NumSwitchConnected == nil {
-        errs = append(errs, "required field `num_switch_connected` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `num_switch_connected` is missing for type `stats_site`")
     }
     if s.OrgId == nil {
-        errs = append(errs, "required field `org_id` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `org_id` is missing for type `stats_site`")
     }
     if s.RftemplateId == nil {
-        errs = append(errs, "required field `rftemplate_id` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `rftemplate_id` is missing for type `stats_site`")
     }
     if s.SitegroupIds == nil {
-        errs = append(errs, "required field `sitegroup_ids` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `sitegroup_ids` is missing for type `stats_site`")
     }
     if s.Timezone == nil {
-        errs = append(errs, "required field `timezone` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `timezone` is missing for type `stats_site`")
     }
     if s.Tzoffset == nil {
-        errs = append(errs, "required field `tzoffset` is missing for type `Stats_Site`")
+        errs = append(errs, "required field `tzoffset` is missing for type `stats_site`")
     }
     if len(errs) == 0 {
         return nil

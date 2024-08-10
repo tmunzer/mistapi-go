@@ -24,6 +24,20 @@
       "gateway_ip": "gateway_ip0",
       "internet_access": false,
       "name": "name4"
+    },
+    {
+      "cost": 118,
+      "disabled": false,
+      "gateway_ip": "gateway_ip0",
+      "internet_access": false,
+      "name": "name4"
+    },
+    {
+      "cost": 118,
+      "disabled": false,
+      "gateway_ip": "gateway_ip0",
+      "internet_access": false,
+      "name": "name4"
     }
   ]
 }

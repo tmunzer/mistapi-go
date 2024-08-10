@@ -56,7 +56,7 @@ func (s SsoMxedgeProxy) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for SsoMxedgeProxy.
 // It customizes the JSON unmarshaling process for SsoMxedgeProxy objects.
 func (s *SsoMxedgeProxy) UnmarshalJSON(input []byte) error {
-    var temp ssoMxedgeProxy
+    var temp tempSsoMxedgeProxy
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -76,8 +76,8 @@ func (s *SsoMxedgeProxy) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// ssoMxedgeProxy is a temporary struct used for validating the fields of SsoMxedgeProxy.
-type ssoMxedgeProxy  struct {
+// tempSsoMxedgeProxy is a temporary struct used for validating the fields of SsoMxedgeProxy.
+type tempSsoMxedgeProxy  struct {
     AcctServers  []SsoMxedgeProxyAcctServer `json:"acct_servers,omitempty"`
     AuthServers  []SsoMxedgeProxyAuthServer `json:"auth_servers,omitempty"`
     MxclusterId  *uuid.UUID                 `json:"mxcluster_id,omitempty"`

@@ -52,7 +52,7 @@ func (r RrmConsideration) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for RrmConsideration.
 // It customizes the JSON unmarshaling process for RrmConsideration objects.
 func (r *RrmConsideration) UnmarshalJSON(input []byte) error {
-    var temp rrmConsideration
+    var temp tempRrmConsideration
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,8 +77,8 @@ func (r *RrmConsideration) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// rrmConsideration is a temporary struct used for validating the fields of RrmConsideration.
-type rrmConsideration  struct {
+// tempRrmConsideration is a temporary struct used for validating the fields of RrmConsideration.
+type tempRrmConsideration  struct {
     Channel          *int     `json:"channel"`
     Noise            *float64 `json:"noise"`
     OtherRssi        *float64 `json:"other_rssi,omitempty"`
@@ -88,22 +88,22 @@ type rrmConsideration  struct {
     UtilScoreOther   *float64 `json:"util_score_other"`
 }
 
-func (r *rrmConsideration) validate() error {
+func (r *tempRrmConsideration) validate() error {
     var errs []string
     if r.Channel == nil {
-        errs = append(errs, "required field `channel` is missing for type `Rrm_Consideration`")
+        errs = append(errs, "required field `channel` is missing for type `rrm_consideration`")
     }
     if r.Noise == nil {
-        errs = append(errs, "required field `noise` is missing for type `Rrm_Consideration`")
+        errs = append(errs, "required field `noise` is missing for type `rrm_consideration`")
     }
     if r.UtilScore == nil {
-        errs = append(errs, "required field `util_score` is missing for type `Rrm_Consideration`")
+        errs = append(errs, "required field `util_score` is missing for type `rrm_consideration`")
     }
     if r.UtilScoreNonWifi == nil {
-        errs = append(errs, "required field `util_score_non_wifi` is missing for type `Rrm_Consideration`")
+        errs = append(errs, "required field `util_score_non_wifi` is missing for type `rrm_consideration`")
     }
     if r.UtilScoreOther == nil {
-        errs = append(errs, "required field `util_score_other` is missing for type `Rrm_Consideration`")
+        errs = append(errs, "required field `util_score_other` is missing for type `rrm_consideration`")
     }
     if len(errs) == 0 {
         return nil

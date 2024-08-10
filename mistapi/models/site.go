@@ -141,7 +141,7 @@ func (s Site) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Site.
 // It customizes the JSON unmarshaling process for Site objects.
 func (s *Site) UnmarshalJSON(input []byte) error {
-    var temp site
+    var temp tempSite
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -177,8 +177,8 @@ func (s *Site) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// site is a temporary struct used for validating the fields of Site.
-type site  struct {
+// tempSite is a temporary struct used for validating the fields of Site.
+type tempSite  struct {
     Address           *string             `json:"address,omitempty"`
     AlarmtemplateId   Optional[uuid.UUID] `json:"alarmtemplate_id"`
     AptemplateId      Optional[uuid.UUID] `json:"aptemplate_id"`
@@ -199,10 +199,10 @@ type site  struct {
     Timezone          *string             `json:"timezone,omitempty"`
 }
 
-func (s *site) validate() error {
+func (s *tempSite) validate() error {
     var errs []string
     if s.Name == nil {
-        errs = append(errs, "required field `name` is missing for type `Site`")
+        errs = append(errs, "required field `name` is missing for type `site`")
     }
     if len(errs) == 0 {
         return nil

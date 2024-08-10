@@ -38,7 +38,7 @@ func (w WlanMistNac) toMap() map[string]any {
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanMistNac.
 // It customizes the JSON unmarshaling process for WlanMistNac objects.
 func (w *WlanMistNac) UnmarshalJSON(input []byte) error {
-    var temp wlanMistNac
+    var temp tempWlanMistNac
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -53,7 +53,7 @@ func (w *WlanMistNac) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// wlanMistNac is a temporary struct used for validating the fields of WlanMistNac.
-type wlanMistNac  struct {
+// tempWlanMistNac is a temporary struct used for validating the fields of WlanMistNac.
+type tempWlanMistNac  struct {
     Enabled *bool `json:"enabled,omitempty"`
 }

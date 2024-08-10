@@ -145,7 +145,7 @@
     "max_power": 230,
     "min_power": 240
   },
-  "band_24_usages": "24"
+  "band_24_usages": "6"
 }
 ```
 
