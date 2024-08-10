@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
-| `Results` | [`[]models.MxedgeStats`](../../doc/models/mxedge-stats.md) | Optional | - |
+| `Results` | [`[]models.StatsMxedge`](../../doc/models/stats-mxedge.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
 

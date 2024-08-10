@@ -2,36 +2,25 @@ package models
 
 import (
     "encoding/json"
+    "errors"
+    "strings"
 )
 
 // ResponseOauthAppLinkItem represents a ResponseOauthAppLinkItem struct.
 type ResponseOauthAppLinkItem struct {
-    // customer account client id
-    ClientId             *string        `json:"client_id,omitempty"`
-    // This error is provided when the Jamf account fails to fetch token/data
-    Error                *string        `json:"error,omitempty"`
-    // customer account Jamf instance URL
-    InstanceUrl          *string        `json:"instance_url,omitempty"`
-    // Is the last data pull for Jamf account is successful or not
-    LastStatus           *string        `json:"last_status,omitempty"`
-    // Last data pull timestamp, background jobs that pull Jamf account data
-    LastSync             *int64         `json:"last_sync,omitempty"`
-    // First name of the user who linked the Jamf account
-    LinkedBy             *string        `json:"linked_by,omitempty"`
-    // Name of the company whose Jamf account mist has subscribed to
-    Name                 *string        `json:"name,omitempty"`
-    // smart group membership for determining compliance status
-    SmartgroupName       *string        `json:"smartgroup_name,omitempty"`
-    // Linked app(zoom/teams/intune) account id
-    AccountId            *string        `json:"account_id,omitempty"`
-    // Name of the company whose account mist has subscribed to
-    Company              *string        `json:"company,omitempty"`
-    Errors               []string       `json:"errors,omitempty"`
-    // Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/
-    MaxDailyApiRequests  *int           `json:"max_daily_api_requests,omitempty"`
-    // This error is provided when the VMware account fails to fetch token/data
-    LinkedTimestamp      *int64         `json:"linked_timestamp,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    value                    any
+    isAccountJamfInfo        bool
+    isAccountOauthInfo       bool
+    isAccountVmwareInfo      bool
+    isAccountMobicontrolInfo bool
+}
+
+// String converts the ResponseOauthAppLinkItem object to a string representation.
+func (r ResponseOauthAppLinkItem) String() string {
+    if bytes, err := json.Marshal(r.value); err == nil {
+         return strings.Trim(string(bytes), "\"")
+    }
+    return ""
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOauthAppLinkItem.
@@ -39,98 +28,98 @@ type ResponseOauthAppLinkItem struct {
 func (r ResponseOauthAppLinkItem) MarshalJSON() (
     []byte,
     error) {
+    if r.value == nil {
+        return nil, errors.New("No underlying type is set. Please use any of the `models.ResponseOauthAppLinkItemContainer.From*` functions to initialize the ResponseOauthAppLinkItem object.")
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseOauthAppLinkItem object to a map representation for JSON marshaling.
-func (r ResponseOauthAppLinkItem) toMap() map[string]any {
-    structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
-    if r.ClientId != nil {
-        structMap["client_id"] = r.ClientId
+func (r *ResponseOauthAppLinkItem) toMap() any {
+    switch obj := r.value.(type) {
+    case *AccountJamfInfo:
+        return obj.toMap()
+    case *AccountOauthInfo:
+        return obj.toMap()
+    case *AccountVmwareInfo:
+        return obj.toMap()
+    case *AccountMobicontrolInfo:
+        return obj.toMap()
     }
-    if r.Error != nil {
-        structMap["error"] = r.Error
-    }
-    if r.InstanceUrl != nil {
-        structMap["instance_url"] = r.InstanceUrl
-    }
-    if r.LastStatus != nil {
-        structMap["last_status"] = r.LastStatus
-    }
-    if r.LastSync != nil {
-        structMap["last_sync"] = r.LastSync
-    }
-    if r.LinkedBy != nil {
-        structMap["linked_by"] = r.LinkedBy
-    }
-    if r.Name != nil {
-        structMap["name"] = r.Name
-    }
-    if r.SmartgroupName != nil {
-        structMap["smartgroup_name"] = r.SmartgroupName
-    }
-    if r.AccountId != nil {
-        structMap["account_id"] = r.AccountId
-    }
-    if r.Company != nil {
-        structMap["company"] = r.Company
-    }
-    if r.Errors != nil {
-        structMap["errors"] = r.Errors
-    }
-    if r.MaxDailyApiRequests != nil {
-        structMap["max_daily_api_requests"] = r.MaxDailyApiRequests
-    }
-    if r.LinkedTimestamp != nil {
-        structMap["linked_timestamp"] = r.LinkedTimestamp
-    }
-    return structMap
+    return nil
 }
 
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseOauthAppLinkItem.
 // It customizes the JSON unmarshaling process for ResponseOauthAppLinkItem objects.
 func (r *ResponseOauthAppLinkItem) UnmarshalJSON(input []byte) error {
-    var temp tempResponseOauthAppLinkItem
-    err := json.Unmarshal(input, &temp)
-    if err != nil {
-    	return err
-    }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "client_id", "error", "instance_url", "last_status", "last_sync", "linked_by", "name", "smartgroup_name", "account_id", "company", "errors", "max_daily_api_requests", "linked_timestamp")
-    if err != nil {
-    	return err
-    }
+    result, err := UnmarshallOneOf(input,
+        NewTypeHolder(&AccountJamfInfo{}, false, &r.isAccountJamfInfo),
+        NewTypeHolder(&AccountOauthInfo{}, false, &r.isAccountOauthInfo),
+        NewTypeHolder(&AccountVmwareInfo{}, false, &r.isAccountVmwareInfo),
+        NewTypeHolder(&AccountMobicontrolInfo{}, false, &r.isAccountMobicontrolInfo),
+    )
     
-    r.AdditionalProperties = additionalProperties
-    r.ClientId = temp.ClientId
-    r.Error = temp.Error
-    r.InstanceUrl = temp.InstanceUrl
-    r.LastStatus = temp.LastStatus
-    r.LastSync = temp.LastSync
-    r.LinkedBy = temp.LinkedBy
-    r.Name = temp.Name
-    r.SmartgroupName = temp.SmartgroupName
-    r.AccountId = temp.AccountId
-    r.Company = temp.Company
-    r.Errors = temp.Errors
-    r.MaxDailyApiRequests = temp.MaxDailyApiRequests
-    r.LinkedTimestamp = temp.LinkedTimestamp
-    return nil
+    r.value = result
+    return err
 }
 
-// tempResponseOauthAppLinkItem is a temporary struct used for validating the fields of ResponseOauthAppLinkItem.
-type tempResponseOauthAppLinkItem  struct {
-    ClientId            *string  `json:"client_id,omitempty"`
-    Error               *string  `json:"error,omitempty"`
-    InstanceUrl         *string  `json:"instance_url,omitempty"`
-    LastStatus          *string  `json:"last_status,omitempty"`
-    LastSync            *int64   `json:"last_sync,omitempty"`
-    LinkedBy            *string  `json:"linked_by,omitempty"`
-    Name                *string  `json:"name,omitempty"`
-    SmartgroupName      *string  `json:"smartgroup_name,omitempty"`
-    AccountId           *string  `json:"account_id,omitempty"`
-    Company             *string  `json:"company,omitempty"`
-    Errors              []string `json:"errors,omitempty"`
-    MaxDailyApiRequests *int     `json:"max_daily_api_requests,omitempty"`
-    LinkedTimestamp     *int64   `json:"linked_timestamp,omitempty"`
+func (r *ResponseOauthAppLinkItem) AsAccountJamfInfo() (
+    *AccountJamfInfo,
+    bool) {
+    if !r.isAccountJamfInfo {
+        return nil, false
+    }
+    return r.value.(*AccountJamfInfo), true
+}
+
+func (r *ResponseOauthAppLinkItem) AsAccountOauthInfo() (
+    *AccountOauthInfo,
+    bool) {
+    if !r.isAccountOauthInfo {
+        return nil, false
+    }
+    return r.value.(*AccountOauthInfo), true
+}
+
+func (r *ResponseOauthAppLinkItem) AsAccountVmwareInfo() (
+    *AccountVmwareInfo,
+    bool) {
+    if !r.isAccountVmwareInfo {
+        return nil, false
+    }
+    return r.value.(*AccountVmwareInfo), true
+}
+
+func (r *ResponseOauthAppLinkItem) AsAccountMobicontrolInfo() (
+    *AccountMobicontrolInfo,
+    bool) {
+    if !r.isAccountMobicontrolInfo {
+        return nil, false
+    }
+    return r.value.(*AccountMobicontrolInfo), true
+}
+
+// internalResponseOauthAppLinkItem represents a responseOauthAppLinkItem struct.
+type internalResponseOauthAppLinkItem struct {}
+
+var ResponseOauthAppLinkItemContainer internalResponseOauthAppLinkItem
+
+// The internalResponseOauthAppLinkItem instance, wrapping the provided AccountJamfInfo value.
+func (r *internalResponseOauthAppLinkItem) FromAccountJamfInfo(val AccountJamfInfo) ResponseOauthAppLinkItem {
+    return ResponseOauthAppLinkItem{value: &val}
+}
+
+// The internalResponseOauthAppLinkItem instance, wrapping the provided AccountOauthInfo value.
+func (r *internalResponseOauthAppLinkItem) FromAccountOauthInfo(val AccountOauthInfo) ResponseOauthAppLinkItem {
+    return ResponseOauthAppLinkItem{value: &val}
+}
+
+// The internalResponseOauthAppLinkItem instance, wrapping the provided AccountVmwareInfo value.
+func (r *internalResponseOauthAppLinkItem) FromAccountVmwareInfo(val AccountVmwareInfo) ResponseOauthAppLinkItem {
+    return ResponseOauthAppLinkItem{value: &val}
+}
+
+// The internalResponseOauthAppLinkItem instance, wrapping the provided AccountMobicontrolInfo value.
+func (r *internalResponseOauthAppLinkItem) FromAccountMobicontrolInfo(val AccountMobicontrolInfo) ResponseOauthAppLinkItem {
+    return ResponseOauthAppLinkItem{value: &val}
 }

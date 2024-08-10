@@ -23,7 +23,7 @@ func NewSitesStatsBeacons(baseController baseController) *SitesStatsBeacons {
 }
 
 // ListSiteBeaconsStats takes context, siteId, page, limit, start, end, duration as parameters and
-// returns an models.ApiResponse with []models.BeaconStatsItems data and
+// returns an models.ApiResponse with []models.StatsBeacon data and
 // an error if there was an issue with the request or response.
 // Get List of Site Beacons Stats
 func (s *SitesStatsBeacons) ListSiteBeaconsStats(
@@ -34,7 +34,7 @@ func (s *SitesStatsBeacons) ListSiteBeaconsStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[]models.BeaconStatsItems],
+    models.ApiResponse[[]models.StatsBeacon],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -75,12 +75,12 @@ func (s *SitesStatsBeacons) ListSiteBeaconsStats(
         req.QueryParam("duration", *duration)
     }
     
-    var result []models.BeaconStatsItems
+    var result []models.StatsBeacon
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.BeaconStatsItems](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsBeacon](decoder)
     return models.NewApiResponse(result, resp), err
 }

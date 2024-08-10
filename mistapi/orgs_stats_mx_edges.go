@@ -23,7 +23,7 @@ func NewOrgsStatsMxEdges(baseController baseController) *OrgsStatsMxEdges {
 }
 
 // ListOrgMxEdgesStats takes context, orgId, page, limit, start, end, duration, forSite as parameters and
-// returns an models.ApiResponse with []models.MxedgeStats data and
+// returns an models.ApiResponse with []models.StatsMxedge data and
 // an error if there was an issue with the request or response.
 // Get List of Org MxEdge Stats
 func (o *OrgsStatsMxEdges) ListOrgMxEdgesStats(
@@ -35,7 +35,7 @@ func (o *OrgsStatsMxEdges) ListOrgMxEdgesStats(
     end *int,
     duration *string,
     forSite *bool) (
-    models.ApiResponse[[]models.MxedgeStats],
+    models.ApiResponse[[]models.StatsMxedge],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -79,25 +79,25 @@ func (o *OrgsStatsMxEdges) ListOrgMxEdgesStats(
         req.QueryParam("for_site", *forSite)
     }
     
-    var result []models.MxedgeStats
+    var result []models.StatsMxedge
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.MxedgeStats](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsMxedge](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // GetOrgMxEdgeStats takes context, orgId, mxedgeId as parameters and
-// returns an models.ApiResponse with models.MxedgeStats data and
+// returns an models.ApiResponse with models.StatsMxedge data and
 // an error if there was an issue with the request or response.
 // Get Org MxEdge Details Stats
 func (o *OrgsStatsMxEdges) GetOrgMxEdgeStats(
     ctx context.Context,
     orgId uuid.UUID,
     mxedgeId uuid.UUID) (
-    models.ApiResponse[models.MxedgeStats],
+    models.ApiResponse[models.StatsMxedge],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -123,12 +123,12 @@ func (o *OrgsStatsMxEdges) GetOrgMxEdgeStats(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.MxedgeStats
+    var result models.StatsMxedge
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.MxedgeStats](decoder)
+    result, err = utilities.DecodeResults[models.StatsMxedge](decoder)
     return models.NewApiResponse(result, resp), err
 }

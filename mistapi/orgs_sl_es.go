@@ -23,7 +23,7 @@ func NewOrgsSLEs(baseController baseController) *OrgsSLEs {
 }
 
 // GetOrgSitesSle takes context, orgId, sle, start, end, limit, page, duration, interval as parameters and
-// returns an models.ApiResponse with models.ResponseOrgSiteSle2 data and
+// returns an models.ApiResponse with models.ResponseOrgSiteSle data and
 // an error if there was an issue with the request or response.
 // Get Org Sites SLE
 func (o *OrgsSLEs) GetOrgSitesSle(
@@ -36,7 +36,7 @@ func (o *OrgsSLEs) GetOrgSitesSle(
     page *int,
     duration *string,
     interval *string) (
-    models.ApiResponse[models.ResponseOrgSiteSle2],
+    models.ApiResponse[models.ResponseOrgSiteSle],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -83,13 +83,13 @@ func (o *OrgsSLEs) GetOrgSitesSle(
         req.QueryParam("interval", *interval)
     }
     
-    var result models.ResponseOrgSiteSle2
+    var result models.ResponseOrgSiteSle
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.ResponseOrgSiteSle2](decoder)
+    result, err = utilities.DecodeResults[models.ResponseOrgSiteSle](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

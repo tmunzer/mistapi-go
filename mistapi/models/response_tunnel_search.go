@@ -8,13 +8,13 @@ import (
 
 // ResponseTunnelSearch represents a ResponseTunnelSearch struct.
 type ResponseTunnelSearch struct {
-    End                  int                         `json:"end"`
-    Limit                int                         `json:"limit"`
-    Next                 *string                     `json:"next,omitempty"`
-    Results              []ResponseTunnelSearchItem2 `json:"results"`
-    Start                int                         `json:"start"`
-    Total                int                         `json:"total"`
-    AdditionalProperties map[string]any              `json:"_"`
+    End                  int                        `json:"end"`
+    Limit                int                        `json:"limit"`
+    Next                 *string                    `json:"next,omitempty"`
+    Results              []ResponseTunnelSearchItem `json:"results"`
+    Start                int                        `json:"start"`
+    Total                int                        `json:"total"`
+    AdditionalProperties map[string]any             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseTunnelSearch.
@@ -69,12 +69,12 @@ func (r *ResponseTunnelSearch) UnmarshalJSON(input []byte) error {
 
 // tempResponseTunnelSearch is a temporary struct used for validating the fields of ResponseTunnelSearch.
 type tempResponseTunnelSearch  struct {
-    End     *int                         `json:"end"`
-    Limit   *int                         `json:"limit"`
-    Next    *string                      `json:"next,omitempty"`
-    Results *[]ResponseTunnelSearchItem2 `json:"results"`
-    Start   *int                         `json:"start"`
-    Total   *int                         `json:"total"`
+    End     *int                        `json:"end"`
+    Limit   *int                        `json:"limit"`
+    Next    *string                     `json:"next,omitempty"`
+    Results *[]ResponseTunnelSearchItem `json:"results"`
+    Start   *int                        `json:"start"`
+    Total   *int                        `json:"total"`
 }
 
 func (r *tempResponseTunnelSearch) validate() error {

@@ -26,7 +26,7 @@ GetSiteWirelessClientStats(
     siteId uuid.UUID,
     clientMac string,
     wired *bool) (
-    models.ApiResponse[[]models.ClientStats],
+    models.ApiResponse[[]models.StatsClient],
     error)
 ```
 
@@ -40,7 +40,7 @@ GetSiteWirelessClientStats(
 
 ## Response Type
 
-[`[]models.ClientStats`](../../doc/models/containers/client-stats.md)
+[`[]models.StatsClient`](../../doc/models/containers/stats-client.md)
 
 ## Example Usage
 
@@ -60,8 +60,8 @@ if err != nil {
     // Printing the result and response
     responseBody := apiResponse.Data
     for _, item := range responseBody {
-        if i, ok := item.AsArrayOfClientWirelessStats(); ok {
-            fmt.Println("Value narrowed down to []models.ClientWirelessStats: ", *i)
+        if i, ok := item.AsStatsWirelessClient(); ok {
+            fmt.Println("Value narrowed down to models.StatsWirelessClient: ", *i)
         } else if i, ok := item.AsStatsWiredClient(); ok {
             fmt.Println("Value narrowed down to models.StatsWiredClient: ", *i)
         }
@@ -96,7 +96,7 @@ GetSiteWirelessClientsStatsByMap(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[][]models.ClientWirelessStats],
+    models.ApiResponse[[]models.StatsWirelessClient],
     error)
 ```
 
@@ -114,7 +114,7 @@ GetSiteWirelessClientsStatsByMap(
 
 ## Response Type
 
-[`[][]models.ClientWirelessStats`](../../doc/models/client-wireless-stats.md)
+[`[]models.StatsWirelessClient`](../../doc/models/stats-wireless-client.md)
 
 ## Example Usage
 
@@ -165,7 +165,7 @@ ListSiteUnconnectedClientStats(
     ctx context.Context,
     siteId uuid.UUID,
     mapId uuid.UUID) (
-    models.ApiResponse[[]models.UnconnectedClientStat],
+    models.ApiResponse[[]models.StatsUnconnectedClient],
     error)
 ```
 
@@ -178,7 +178,7 @@ ListSiteUnconnectedClientStats(
 
 ## Response Type
 
-[`[]models.UnconnectedClientStat`](../../doc/models/unconnected-client-stat.md)
+[`[]models.StatsUnconnectedClient`](../../doc/models/stats-unconnected-client.md)
 
 ## Example Usage
 
@@ -239,7 +239,7 @@ ListSiteWirelessClientsStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[]models.ClientStats],
+    models.ApiResponse[[]models.StatsClient],
     error)
 ```
 
@@ -256,7 +256,7 @@ ListSiteWirelessClientsStats(
 
 ## Response Type
 
-[`[]models.ClientStats`](../../doc/models/containers/client-stats.md)
+[`[]models.StatsClient`](../../doc/models/containers/stats-client.md)
 
 ## Example Usage
 
@@ -282,8 +282,8 @@ if err != nil {
     // Printing the result and response
     responseBody := apiResponse.Data
     for _, item := range responseBody {
-        if i, ok := item.AsArrayOfClientWirelessStats(); ok {
-            fmt.Println("Value narrowed down to []models.ClientWirelessStats: ", *i)
+        if i, ok := item.AsStatsWirelessClient(); ok {
+            fmt.Println("Value narrowed down to models.StatsWirelessClient: ", *i)
         } else if i, ok := item.AsStatsWiredClient(); ok {
             fmt.Println("Value narrowed down to models.StatsWiredClient: ", *i)
         }

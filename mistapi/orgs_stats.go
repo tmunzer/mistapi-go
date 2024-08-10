@@ -23,7 +23,7 @@ func NewOrgsStats(baseController baseController) *OrgsStats {
 }
 
 // GetOrgStats takes context, orgId, page, limit, start, end, duration as parameters and
-// returns an models.ApiResponse with models.OrgStats data and
+// returns an models.ApiResponse with models.StatsOrg data and
 // an error if there was an issue with the request or response.
 // Get Org Stats
 func (o *OrgsStats) GetOrgStats(
@@ -34,7 +34,7 @@ func (o *OrgsStats) GetOrgStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.OrgStats],
+    models.ApiResponse[models.StatsOrg],
     error) {
     req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/stats", orgId))
     req.Authenticate(
@@ -71,12 +71,12 @@ func (o *OrgsStats) GetOrgStats(
         req.QueryParam("duration", *duration)
     }
     
-    var result models.OrgStats
+    var result models.StatsOrg
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.OrgStats](decoder)
+    result, err = utilities.DecodeResults[models.StatsOrg](decoder)
     return models.NewApiResponse(result, resp), err
 }

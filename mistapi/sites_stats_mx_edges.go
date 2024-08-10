@@ -23,7 +23,7 @@ func NewSitesStatsMxEdges(baseController baseController) *SitesStatsMxEdges {
 }
 
 // ListSiteMxEdgesStats takes context, siteId, page, limit, start, end, duration as parameters and
-// returns an models.ApiResponse with []models.MxedgeStats data and
+// returns an models.ApiResponse with []models.StatsMxedge data and
 // an error if there was an issue with the request or response.
 // Get List of Site MxEdges Stats
 func (s *SitesStatsMxEdges) ListSiteMxEdgesStats(
@@ -34,7 +34,7 @@ func (s *SitesStatsMxEdges) ListSiteMxEdgesStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[]models.MxedgeStats],
+    models.ApiResponse[[]models.StatsMxedge],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -75,18 +75,18 @@ func (s *SitesStatsMxEdges) ListSiteMxEdgesStats(
         req.QueryParam("duration", *duration)
     }
     
-    var result []models.MxedgeStats
+    var result []models.StatsMxedge
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.MxedgeStats](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsMxedge](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // GetSiteMxEdgeStats takes context, siteId, mxedgeId, start, end, duration as parameters and
-// returns an models.ApiResponse with models.MxedgeStats data and
+// returns an models.ApiResponse with models.StatsMxedge data and
 // an error if there was an issue with the request or response.
 // Get One Site MxEdge Stats
 func (s *SitesStatsMxEdges) GetSiteMxEdgeStats(
@@ -96,7 +96,7 @@ func (s *SitesStatsMxEdges) GetSiteMxEdgeStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.MxedgeStats],
+    models.ApiResponse[models.StatsMxedge],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -131,12 +131,12 @@ func (s *SitesStatsMxEdges) GetSiteMxEdgeStats(
         req.QueryParam("duration", *duration)
     }
     
-    var result models.MxedgeStats
+    var result models.StatsMxedge
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.MxedgeStats](decoder)
+    result, err = utilities.DecodeResults[models.StatsMxedge](decoder)
     return models.NewApiResponse(result, resp), err
 }

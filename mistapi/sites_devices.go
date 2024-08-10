@@ -24,7 +24,7 @@ func NewSitesDevices(baseController baseController) *SitesDevices {
 }
 
 // ListSiteDevices takes context, siteId, mType, name, page, limit as parameters and
-// returns an models.ApiResponse with []models.ConfigDevice2 data and
+// returns an models.ApiResponse with []models.ConfigDevice data and
 // an error if there was an issue with the request or response.
 // Get list of devices on the site.
 func (s *SitesDevices) ListSiteDevices(
@@ -34,7 +34,7 @@ func (s *SitesDevices) ListSiteDevices(
     name *string,
     page *int,
     limit *int) (
-    models.ApiResponse[[]models.ConfigDevice2],
+    models.ApiResponse[[]models.ConfigDevice],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -72,13 +72,13 @@ func (s *SitesDevices) ListSiteDevices(
         req.QueryParam("limit", *limit)
     }
     
-    var result []models.ConfigDevice2
+    var result []models.ConfigDevice
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ConfigDevice2](decoder)
+    result, err = utilities.DecodeResults[[]models.ConfigDevice](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -530,7 +530,7 @@ func (s *SitesDevices) ExportSiteDevices(
 }
 
 // ImportSiteDevices takes context, siteId, body as parameters and
-// returns an models.ApiResponse with []models.ConfigDevice2 data and
+// returns an models.ApiResponse with []models.ConfigDevice data and
 // an error if there was an issue with the request or response.
 // Import Information for Multiple Devices
 // CSV format:
@@ -542,7 +542,7 @@ func (s *SitesDevices) ImportSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
     body []models.DeviceAp) (
-    models.ApiResponse[[]models.ConfigDevice2],
+    models.ApiResponse[[]models.ConfigDevice],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -572,13 +572,13 @@ func (s *SitesDevices) ImportSiteDevices(
         req.Json(body)
     }
     
-    var result []models.ConfigDevice2
+    var result []models.ConfigDevice
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ConfigDevice2](decoder)
+    result, err = utilities.DecodeResults[[]models.ConfigDevice](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

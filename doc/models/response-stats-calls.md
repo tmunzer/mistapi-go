@@ -12,7 +12,7 @@
 | `End` | `*float64` | Optional | - |
 | `Limit` | `*int` | Optional | - |
 | `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.CallStats`](../../doc/models/call-stats.md) | Optional | - |
+| `Results` | [`[]models.StatsCall`](../../doc/models/stats-call.md) | Optional | - |
 | `Start` | `*float64` | Optional | - |
 | `Total` | `*int` | Optional | - |
 

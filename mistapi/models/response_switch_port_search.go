@@ -10,7 +10,7 @@ import (
 type ResponseSwitchPortSearch struct {
     End                  int               `json:"end"`
     Limit                int               `json:"limit"`
-    Results              []SwitchPortStats `json:"results"`
+    Results              []StatsSwitchPort `json:"results"`
     Start                int               `json:"start"`
     Total                int               `json:"total"`
     AdditionalProperties map[string]any    `json:"_"`
@@ -66,7 +66,7 @@ func (r *ResponseSwitchPortSearch) UnmarshalJSON(input []byte) error {
 type tempResponseSwitchPortSearch  struct {
     End     *int               `json:"end"`
     Limit   *int               `json:"limit"`
-    Results *[]SwitchPortStats `json:"results"`
+    Results *[]StatsSwitchPort `json:"results"`
     Start   *int               `json:"start"`
     Total   *int               `json:"total"`
 }

@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
-| `Results` | [`[]models.SwitchPortStats`](../../doc/models/switch-port-stats.md) | Required | - |
+| `Results` | [`[]models.StatsSwitchPort`](../../doc/models/stats-switch-port.md) | Required | - |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
 

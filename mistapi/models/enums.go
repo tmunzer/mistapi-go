@@ -1544,18 +1544,6 @@ const (
     MxtunnelProtocolEnum_UDP MxtunnelProtocolEnum = "udp"
 )
 
-// MxtunnelStatsStateEnum is a string enum.
-// enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
-type MxtunnelStatsStateEnum string
-
-const (
-    MxtunnelStatsStateEnum_ESTABLISHED            MxtunnelStatsStateEnum = "established"
-    MxtunnelStatsStateEnum_ESTABLISHEDWITHSESSION MxtunnelStatsStateEnum = "established_with_session"
-    MxtunnelStatsStateEnum_IDLE                   MxtunnelStatsStateEnum = "idle"
-    MxtunnelStatsStateEnum_WAITCTRLCONN           MxtunnelStatsStateEnum = "wait-ctrl-conn"
-    MxtunnelStatsStateEnum_WAITCTRLREPLY          MxtunnelStatsStateEnum = "wait-ctrl-reply"
-)
-
 // NacPortalAccessTypeEnum is a string enum.
 // if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`
 type NacPortalAccessTypeEnum string
@@ -3462,6 +3450,102 @@ const (
     StatDeviceStatusFilterEnum_DISCONNECTED StatDeviceStatusFilterEnum = "disconnected"
 )
 
+// StatsMxtunnelStateEnum is a string enum.
+// enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
+type StatsMxtunnelStateEnum string
+
+const (
+    StatsMxtunnelStateEnum_ESTABLISHED            StatsMxtunnelStateEnum = "established"
+    StatsMxtunnelStateEnum_ESTABLISHEDWITHSESSION StatsMxtunnelStateEnum = "established_with_session"
+    StatsMxtunnelStateEnum_IDLE                   StatsMxtunnelStateEnum = "idle"
+    StatsMxtunnelStateEnum_WAITCTRLCONN           StatsMxtunnelStateEnum = "wait-ctrl-conn"
+    StatsMxtunnelStateEnum_WAITCTRLREPLY          StatsMxtunnelStateEnum = "wait-ctrl-reply"
+)
+
+// StatsSwitchPortAuthStateEnum is a string enum.
+// if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init`
+type StatsSwitchPortAuthStateEnum string
+
+const (
+    StatsSwitchPortAuthStateEnum_AUTHENTICATED  StatsSwitchPortAuthStateEnum = "authenticated"
+    StatsSwitchPortAuthStateEnum_AUTHENTICATING StatsSwitchPortAuthStateEnum = "authenticating"
+    StatsSwitchPortAuthStateEnum_HELD           StatsSwitchPortAuthStateEnum = "held"
+    StatsSwitchPortAuthStateEnum_INIT           StatsSwitchPortAuthStateEnum = "init"
+)
+
+// StatsSwitchPortPoeModeEnum is a string enum.
+// enum: `802.3af`, `802.3at`, `802.3bt`
+type StatsSwitchPortPoeModeEnum string
+
+const (
+    StatsSwitchPortPoeModeEnum_ENUM8023AF StatsSwitchPortPoeModeEnum = "802.3af"
+    StatsSwitchPortPoeModeEnum_ENUM8023AT StatsSwitchPortPoeModeEnum = "802.3at"
+    StatsSwitchPortPoeModeEnum_ENUM8023BT StatsSwitchPortPoeModeEnum = "802.3bt"
+)
+
+// StatsSwitchPortPortUsageEnum is a string enum.
+// gateway port usage. enum: `lan`
+type StatsSwitchPortPortUsageEnum string
+
+const (
+    StatsSwitchPortPortUsageEnum_LAN StatsSwitchPortPortUsageEnum = "lan"
+)
+
+// StatsSwitchPortStpRoleEnum is a string enum.
+// if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
+type StatsSwitchPortStpRoleEnum string
+
+const (
+    StatsSwitchPortStpRoleEnum_ALTERNATE     StatsSwitchPortStpRoleEnum = "alternate"
+    StatsSwitchPortStpRoleEnum_BACKUP        StatsSwitchPortStpRoleEnum = "backup"
+    StatsSwitchPortStpRoleEnum_DESIGNATED    StatsSwitchPortStpRoleEnum = "designated"
+    StatsSwitchPortStpRoleEnum_ROOT          StatsSwitchPortStpRoleEnum = "root"
+    StatsSwitchPortStpRoleEnum_ROOTPREVENTED StatsSwitchPortStpRoleEnum = "root-prevented"
+)
+
+// StatsSwitchPortStpStateEnum is a string enum.
+// if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
+type StatsSwitchPortStpStateEnum string
+
+const (
+    StatsSwitchPortStpStateEnum_BLOCKING   StatsSwitchPortStpStateEnum = "blocking"
+    StatsSwitchPortStpStateEnum_DISABLED   StatsSwitchPortStpStateEnum = "disabled"
+    StatsSwitchPortStpStateEnum_FORWARDING StatsSwitchPortStpStateEnum = "forwarding"
+    StatsSwitchPortStpStateEnum_LEARNING   StatsSwitchPortStpStateEnum = "learning"
+    StatsSwitchPortStpStateEnum_LISTENING  StatsSwitchPortStpStateEnum = "listening"
+)
+
+// StatsSwitchPortTypeEnum is a string enum.
+// device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
+type StatsSwitchPortTypeEnum string
+
+const (
+    StatsSwitchPortTypeEnum_AP         StatsSwitchPortTypeEnum = "ap"
+    StatsSwitchPortTypeEnum_BLE        StatsSwitchPortTypeEnum = "ble"
+    StatsSwitchPortTypeEnum_GATEWAY    StatsSwitchPortTypeEnum = "gateway"
+    StatsSwitchPortTypeEnum_MXEDGE     StatsSwitchPortTypeEnum = "mxedge"
+    StatsSwitchPortTypeEnum_NAC        StatsSwitchPortTypeEnum = "nac"
+    StatsSwitchPortTypeEnum_ENUMSWITCH StatsSwitchPortTypeEnum = "switch"
+)
+
+// StatsWanTunnelPriorityEnum is a string enum.
+// enum: `primary`, `secondary`
+type StatsWanTunnelPriorityEnum string
+
+const (
+    StatsWanTunnelPriorityEnum_PRIMARY   StatsWanTunnelPriorityEnum = "primary"
+    StatsWanTunnelPriorityEnum_SECONDARY StatsWanTunnelPriorityEnum = "secondary"
+)
+
+// StatsWruleActionEnum is a string enum.
+// enum: `allow`, `block`
+type StatsWruleActionEnum string
+
+const (
+    StatsWruleActionEnum_ALLOW StatsWruleActionEnum = "allow"
+    StatsWruleActionEnum_BLOCK StatsWruleActionEnum = "block"
+)
+
 // SuppressedAlarmScopeEnum is a string enum.
 // level of scope. enum: `org`, `site`
 type SuppressedAlarmScopeEnum string
@@ -3486,72 +3570,6 @@ type SwitchMetricTypeEnum string
 
 const (
     SwitchMetricTypeEnum_ACTIVEPORTSSUMMARY SwitchMetricTypeEnum = "active_ports_summary"
-)
-
-// SwitchPortStatsAuthStateEnum is a string enum.
-// if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init`
-type SwitchPortStatsAuthStateEnum string
-
-const (
-    SwitchPortStatsAuthStateEnum_AUTHENTICATED  SwitchPortStatsAuthStateEnum = "authenticated"
-    SwitchPortStatsAuthStateEnum_AUTHENTICATING SwitchPortStatsAuthStateEnum = "authenticating"
-    SwitchPortStatsAuthStateEnum_HELD           SwitchPortStatsAuthStateEnum = "held"
-    SwitchPortStatsAuthStateEnum_INIT           SwitchPortStatsAuthStateEnum = "init"
-)
-
-// SwitchPortStatsPoeModeEnum is a string enum.
-// enum: `802.3af`, `802.3at`, `802.3bt`
-type SwitchPortStatsPoeModeEnum string
-
-const (
-    SwitchPortStatsPoeModeEnum_ENUM8023AF SwitchPortStatsPoeModeEnum = "802.3af"
-    SwitchPortStatsPoeModeEnum_ENUM8023AT SwitchPortStatsPoeModeEnum = "802.3at"
-    SwitchPortStatsPoeModeEnum_ENUM8023BT SwitchPortStatsPoeModeEnum = "802.3bt"
-)
-
-// SwitchPortStatsPortUsageEnum is a string enum.
-// gateway port usage. enum: `lan`
-type SwitchPortStatsPortUsageEnum string
-
-const (
-    SwitchPortStatsPortUsageEnum_LAN SwitchPortStatsPortUsageEnum = "lan"
-)
-
-// SwitchPortStatsStpRoleEnum is a string enum.
-// if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
-type SwitchPortStatsStpRoleEnum string
-
-const (
-    SwitchPortStatsStpRoleEnum_ALTERNATE     SwitchPortStatsStpRoleEnum = "alternate"
-    SwitchPortStatsStpRoleEnum_BACKUP        SwitchPortStatsStpRoleEnum = "backup"
-    SwitchPortStatsStpRoleEnum_DESIGNATED    SwitchPortStatsStpRoleEnum = "designated"
-    SwitchPortStatsStpRoleEnum_ROOT          SwitchPortStatsStpRoleEnum = "root"
-    SwitchPortStatsStpRoleEnum_ROOTPREVENTED SwitchPortStatsStpRoleEnum = "root-prevented"
-)
-
-// SwitchPortStatsStpStateEnum is a string enum.
-// if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
-type SwitchPortStatsStpStateEnum string
-
-const (
-    SwitchPortStatsStpStateEnum_BLOCKING   SwitchPortStatsStpStateEnum = "blocking"
-    SwitchPortStatsStpStateEnum_DISABLED   SwitchPortStatsStpStateEnum = "disabled"
-    SwitchPortStatsStpStateEnum_FORWARDING SwitchPortStatsStpStateEnum = "forwarding"
-    SwitchPortStatsStpStateEnum_LEARNING   SwitchPortStatsStpStateEnum = "learning"
-    SwitchPortStatsStpStateEnum_LISTENING  SwitchPortStatsStpStateEnum = "listening"
-)
-
-// SwitchPortStatsTypeEnum is a string enum.
-// device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
-type SwitchPortStatsTypeEnum string
-
-const (
-    SwitchPortStatsTypeEnum_AP         SwitchPortStatsTypeEnum = "ap"
-    SwitchPortStatsTypeEnum_BLE        SwitchPortStatsTypeEnum = "ble"
-    SwitchPortStatsTypeEnum_GATEWAY    SwitchPortStatsTypeEnum = "gateway"
-    SwitchPortStatsTypeEnum_MXEDGE     SwitchPortStatsTypeEnum = "mxedge"
-    SwitchPortStatsTypeEnum_NAC        SwitchPortStatsTypeEnum = "nac"
-    SwitchPortStatsTypeEnum_ENUMSWITCH SwitchPortStatsTypeEnum = "switch"
 )
 
 // SwitchPortUsageDot1xEnum is a string enum.
@@ -3958,15 +3976,6 @@ type WanTunnelProtocolEnum string
 const (
     WanTunnelProtocolEnum_GRE   WanTunnelProtocolEnum = "gre"
     WanTunnelProtocolEnum_IPSEC WanTunnelProtocolEnum = "ipsec"
-)
-
-// WanTunnelStatsPriorityEnum is a string enum.
-// enum: `primary`, `secondary`
-type WanTunnelStatsPriorityEnum string
-
-const (
-    WanTunnelStatsPriorityEnum_PRIMARY   WanTunnelStatsPriorityEnum = "primary"
-    WanTunnelStatsPriorityEnum_SECONDARY WanTunnelStatsPriorityEnum = "secondary"
 )
 
 // WanUsagesCountDisctinctEnum is a string enum.
@@ -4381,15 +4390,6 @@ const (
     WxlanTunnelSessionEthertypeEnum_VLAN     WxlanTunnelSessionEthertypeEnum = "vlan"
 )
 
-// WxruleStatsActionEnum is a string enum.
-// enum: `allow`, `block`
-type WxruleStatsActionEnum string
-
-const (
-    WxruleStatsActionEnum_ALLOW WxruleStatsActionEnum = "allow"
-    WxruleStatsActionEnum_BLOCK WxruleStatsActionEnum = "block"
-)
-
 // ZoneScopeEnum is a string enum.
 // enum: `map`, `rssizone`, `site`, `zone`
 type ZoneScopeEnum string
@@ -4408,16 +4408,4 @@ type ZoneTypeEnum string
 const (
     ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
     ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
-)
-
-// GatewayPortUsage1Enum is a string enum.
-// port usage name. 
-// If EVPN is used, use `evpn_uplink`or `evpn_downlink`
-type GatewayPortUsage1Enum string
-
-const (
-    GatewayPortUsage1Enum_HACONTROL GatewayPortUsage1Enum = "ha_control"
-    GatewayPortUsage1Enum_HADATA    GatewayPortUsage1Enum = "ha_data"
-    GatewayPortUsage1Enum_LAN       GatewayPortUsage1Enum = "lan"
-    GatewayPortUsage1Enum_WAN       GatewayPortUsage1Enum = "wan"
 )

@@ -108,7 +108,7 @@ GetSiteSdkStatsByMap(
     ctx context.Context,
     siteId uuid.UUID,
     mapId uuid.UUID) (
-    models.ApiResponse[[]models.SdkclientStat],
+    models.ApiResponse[[]models.StatsSdkclient],
     error)
 ```
 
@@ -121,7 +121,7 @@ GetSiteSdkStatsByMap(
 
 ## Response Type
 
-[`[]models.SdkclientStat`](../../doc/models/sdkclient-stat.md)
+[`[]models.StatsSdkclient`](../../doc/models/stats-sdkclient.md)
 
 ## Example Usage
 

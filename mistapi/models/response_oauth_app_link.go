@@ -7,10 +7,10 @@ import (
 // ResponseOauthAppLink represents a ResponseOauthAppLink struct.
 type ResponseOauthAppLink struct {
     // List of linked account details
-    Accounts             []ResponseOauthAppLinkItem2 `json:"accounts,omitempty"`
+    Accounts             []ResponseOauthAppLinkItem `json:"accounts,omitempty"`
     // Basic Auth application linked status in mist portal enabled for VMware
-    Linked               *bool                       `json:"linked,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    Linked               *bool                      `json:"linked,omitempty"`
+    AdditionalProperties map[string]any             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOauthAppLink.
@@ -55,6 +55,6 @@ func (r *ResponseOauthAppLink) UnmarshalJSON(input []byte) error {
 
 // tempResponseOauthAppLink is a temporary struct used for validating the fields of ResponseOauthAppLink.
 type tempResponseOauthAppLink  struct {
-    Accounts []ResponseOauthAppLinkItem2 `json:"accounts,omitempty"`
-    Linked   *bool                       `json:"linked,omitempty"`
+    Accounts []ResponseOauthAppLinkItem `json:"accounts,omitempty"`
+    Linked   *bool                      `json:"linked,omitempty"`
 }

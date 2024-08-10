@@ -234,7 +234,7 @@ ListMspOrgStats(
     mspId uuid.UUID,
     page *int,
     limit *int) (
-    models.ApiResponse[[]models.OrgStats],
+    models.ApiResponse[[]models.StatsOrg],
     error)
 ```
 
@@ -248,7 +248,7 @@ ListMspOrgStats(
 
 ## Response Type
 
-[`[]models.OrgStats`](../../doc/models/org-stats.md)
+[`[]models.StatsOrg`](../../doc/models/stats-org.md)
 
 ## Example Usage
 

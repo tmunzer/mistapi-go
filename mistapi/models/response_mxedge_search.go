@@ -8,7 +8,7 @@ import (
 type ResponseMxedgeSearch struct {
     End                  *int           `json:"end,omitempty"`
     Limit                *int           `json:"limit,omitempty"`
-    Results              []MxedgeStats  `json:"results,omitempty"`
+    Results              []StatsMxedge  `json:"results,omitempty"`
     Start                *int           `json:"start,omitempty"`
     Total                *int           `json:"total,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
@@ -70,7 +70,7 @@ func (r *ResponseMxedgeSearch) UnmarshalJSON(input []byte) error {
 type tempResponseMxedgeSearch  struct {
     End     *int          `json:"end,omitempty"`
     Limit   *int          `json:"limit,omitempty"`
-    Results []MxedgeStats `json:"results,omitempty"`
+    Results []StatsMxedge `json:"results,omitempty"`
     Start   *int          `json:"start,omitempty"`
     Total   *int          `json:"total,omitempty"`
 }

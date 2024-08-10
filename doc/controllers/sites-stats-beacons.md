@@ -22,7 +22,7 @@ ListSiteBeaconsStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[]models.BeaconStatsItems],
+    models.ApiResponse[[]models.StatsBeacon],
     error)
 ```
 
@@ -39,7 +39,7 @@ ListSiteBeaconsStats(
 
 ## Response Type
 
-[`[]models.BeaconStatsItems`](../../doc/models/beacon-stats-items.md)
+[`[]models.StatsBeacon`](../../doc/models/stats-beacon.md)
 
 ## Example Usage
 

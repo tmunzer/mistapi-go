@@ -349,7 +349,7 @@ func (m *MSPsOrgs) UpdateMspOrg(
 }
 
 // ListMspOrgStats takes context, mspId, page, limit as parameters and
-// returns an models.ApiResponse with []models.OrgStats data and
+// returns an models.ApiResponse with []models.StatsOrg data and
 // an error if there was an issue with the request or response.
 // Get List of MSP Orgs Stats
 func (m *MSPsOrgs) ListMspOrgStats(
@@ -357,7 +357,7 @@ func (m *MSPsOrgs) ListMspOrgStats(
     mspId uuid.UUID,
     page *int,
     limit *int) (
-    models.ApiResponse[[]models.OrgStats],
+    models.ApiResponse[[]models.StatsOrg],
     error) {
     req := m.prepareRequest(
       ctx,
@@ -389,12 +389,12 @@ func (m *MSPsOrgs) ListMspOrgStats(
         req.QueryParam("limit", *limit)
     }
     
-    var result []models.OrgStats
+    var result []models.StatsOrg
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.OrgStats](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsOrg](decoder)
     return models.NewApiResponse(result, resp), err
 }

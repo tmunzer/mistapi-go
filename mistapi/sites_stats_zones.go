@@ -23,14 +23,14 @@ func NewSitesStatsZones(baseController baseController) *SitesStatsZones {
 }
 
 // ListSiteZonesStats takes context, siteId, mapId as parameters and
-// returns an models.ApiResponse with []models.ZoneStats data and
+// returns an models.ApiResponse with []models.StatsZone data and
 // an error if there was an issue with the request or response.
 // Get List of Site Zones Stats
 func (s *SitesStatsZones) ListSiteZonesStats(
     ctx context.Context,
     siteId uuid.UUID,
     mapId *string) (
-    models.ApiResponse[[]models.ZoneStats],
+    models.ApiResponse[[]models.StatsZone],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -59,18 +59,18 @@ func (s *SitesStatsZones) ListSiteZonesStats(
         req.QueryParam("map_id", *mapId)
     }
     
-    var result []models.ZoneStats
+    var result []models.StatsZone
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ZoneStats](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsZone](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // GetSiteZoneStats takes context, siteId, zoneType, zoneId as parameters and
-// returns an models.ApiResponse with models.ZoneStatsDetails data and
+// returns an models.ApiResponse with models.StatsZoneDetails data and
 // an error if there was an issue with the request or response.
 // Get Detail Zone Stats
 func (s *SitesStatsZones) GetSiteZoneStats(
@@ -78,7 +78,7 @@ func (s *SitesStatsZones) GetSiteZoneStats(
     siteId uuid.UUID,
     zoneType models.ZoneTypeEnum,
     zoneId uuid.UUID) (
-    models.ApiResponse[models.ZoneStatsDetails],
+    models.ApiResponse[models.StatsZoneDetails],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -104,12 +104,12 @@ func (s *SitesStatsZones) GetSiteZoneStats(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.ZoneStatsDetails
+    var result models.StatsZoneDetails
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.ZoneStatsDetails](decoder)
+    result, err = utilities.DecodeResults[models.StatsZoneDetails](decoder)
     return models.NewApiResponse(result, resp), err
 }

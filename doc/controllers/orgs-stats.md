@@ -22,7 +22,7 @@ GetOrgStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.OrgStats],
+    models.ApiResponse[models.StatsOrg],
     error)
 ```
 
@@ -39,7 +39,7 @@ GetOrgStats(
 
 ## Response Type
 
-[`models.OrgStats`](../../doc/models/org-stats.md)
+[`models.StatsOrg`](../../doc/models/stats-org.md)
 
 ## Example Usage
 

@@ -23,14 +23,14 @@ func NewSitesStatsClientsSDK(baseController baseController) *SitesStatsClientsSD
 }
 
 // GetSiteSdkStatsByMap takes context, siteId, mapId as parameters and
-// returns an models.ApiResponse with []models.SdkclientStat data and
+// returns an models.ApiResponse with []models.StatsSdkclient data and
 // an error if there was an issue with the request or response.
 // Get SdkClient Stats By Map
 func (s *SitesStatsClientsSDK) GetSiteSdkStatsByMap(
     ctx context.Context,
     siteId uuid.UUID,
     mapId uuid.UUID) (
-    models.ApiResponse[[]models.SdkclientStat],
+    models.ApiResponse[[]models.StatsSdkclient],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -56,13 +56,13 @@ func (s *SitesStatsClientsSDK) GetSiteSdkStatsByMap(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result []models.SdkclientStat
+    var result []models.StatsSdkclient
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.SdkclientStat](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsSdkclient](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

@@ -23,7 +23,7 @@ GetOrgMxEdgeStats(
     ctx context.Context,
     orgId uuid.UUID,
     mxedgeId uuid.UUID) (
-    models.ApiResponse[models.MxedgeStats],
+    models.ApiResponse[models.StatsMxedge],
     error)
 ```
 
@@ -36,7 +36,7 @@ GetOrgMxEdgeStats(
 
 ## Response Type
 
-[`models.MxedgeStats`](../../doc/models/mxedge-stats.md)
+[`models.StatsMxedge`](../../doc/models/stats-mxedge.md)
 
 ## Example Usage
 
@@ -253,7 +253,7 @@ ListOrgMxEdgesStats(
     end *int,
     duration *string,
     forSite *bool) (
-    models.ApiResponse[[]models.MxedgeStats],
+    models.ApiResponse[[]models.StatsMxedge],
     error)
 ```
 
@@ -271,7 +271,7 @@ ListOrgMxEdgesStats(
 
 ## Response Type
 
-[`[]models.MxedgeStats`](../../doc/models/mxedge-stats.md)
+[`[]models.StatsMxedge`](../../doc/models/stats-mxedge.md)
 
 ## Example Usage
 

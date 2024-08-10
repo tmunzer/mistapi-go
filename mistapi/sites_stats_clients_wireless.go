@@ -23,7 +23,7 @@ func NewSitesStatsClientsWireless(baseController baseController) *SitesStatsClie
 }
 
 // ListSiteWirelessClientsStats takes context, siteId, wired, limit, start, end, duration as parameters and
-// returns an models.ApiResponse with []models.ClientStats data and
+// returns an models.ApiResponse with []models.StatsClient data and
 // an error if there was an issue with the request or response.
 // Get List of Site All Clients Stats Details
 func (s *SitesStatsClientsWireless) ListSiteWirelessClientsStats(
@@ -34,7 +34,7 @@ func (s *SitesStatsClientsWireless) ListSiteWirelessClientsStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[]models.ClientStats],
+    models.ApiResponse[[]models.StatsClient],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -75,18 +75,18 @@ func (s *SitesStatsClientsWireless) ListSiteWirelessClientsStats(
         req.QueryParam("duration", *duration)
     }
     
-    var result []models.ClientStats
+    var result []models.StatsClient
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ClientStats](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsClient](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // GetSiteWirelessClientStats takes context, siteId, clientMac, wired as parameters and
-// returns an models.ApiResponse with []models.ClientStats data and
+// returns an models.ApiResponse with []models.StatsClient data and
 // an error if there was an issue with the request or response.
 // Get Site Client Stats Details
 func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
@@ -94,7 +94,7 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
     siteId uuid.UUID,
     clientMac string,
     wired *bool) (
-    models.ApiResponse[[]models.ClientStats],
+    models.ApiResponse[[]models.StatsClient],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -123,18 +123,18 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
         req.QueryParam("wired", *wired)
     }
     
-    var result []models.ClientStats
+    var result []models.StatsClient
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ClientStats](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsClient](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // GetSiteWirelessClientsStatsByMap takes context, siteId, mapId, page, limit, start, end, duration as parameters and
-// returns an models.ApiResponse with [][]models.ClientWirelessStats data and
+// returns an models.ApiResponse with []models.StatsWirelessClient data and
 // an error if there was an issue with the request or response.
 // Get Site Clients Stats By Map
 func (s *SitesStatsClientsWireless) GetSiteWirelessClientsStatsByMap(
@@ -146,7 +146,7 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientsStatsByMap(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[][]models.ClientWirelessStats],
+    models.ApiResponse[[]models.StatsWirelessClient],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -187,25 +187,25 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientsStatsByMap(
         req.QueryParam("duration", *duration)
     }
     
-    var result [][]models.ClientWirelessStats
+    var result []models.StatsWirelessClient
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[][]models.ClientWirelessStats](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsWirelessClient](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // ListSiteUnconnectedClientStats takes context, siteId, mapId as parameters and
-// returns an models.ApiResponse with []models.UnconnectedClientStat data and
+// returns an models.ApiResponse with []models.StatsUnconnectedClient data and
 // an error if there was an issue with the request or response.
 // Get List of Site Unconnected Client Location
 func (s *SitesStatsClientsWireless) ListSiteUnconnectedClientStats(
     ctx context.Context,
     siteId uuid.UUID,
     mapId uuid.UUID) (
-    models.ApiResponse[[]models.UnconnectedClientStat],
+    models.ApiResponse[[]models.StatsUnconnectedClient],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -231,12 +231,12 @@ func (s *SitesStatsClientsWireless) ListSiteUnconnectedClientStats(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result []models.UnconnectedClientStat
+    var result []models.StatsUnconnectedClient
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.UnconnectedClientStat](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsUnconnectedClient](decoder)
     return models.NewApiResponse(result, resp), err
 }

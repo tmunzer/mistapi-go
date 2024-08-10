@@ -29,7 +29,7 @@ GetOrgSitesSle(
     page *int,
     duration *string,
     interval *string) (
-    models.ApiResponse[models.ResponseOrgSiteSle2],
+    models.ApiResponse[models.ResponseOrgSiteSle],
     error)
 ```
 
@@ -48,7 +48,7 @@ GetOrgSitesSle(
 
 ## Response Type
 
-[`models.ResponseOrgSiteSle2`](../../doc/models/containers/response-org-site-sle-2.md)
+[`models.ResponseOrgSiteSle`](../../doc/models/containers/response-org-site-sle.md)
 
 ## Example Usage
 
@@ -86,29 +86,6 @@ if err != nil {
     }
 
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "end": 1651323600,
-  "interval": 3600,
-  "limit": 1,
-  "page": 2,
-  "results": [
-    {
-      "application_health": 0.8250000047942866,
-      "gateway-health": 1,
-      "num_clients": 65,
-      "num_gateways": 1,
-      "site_id": "f5fcbee5-1234-5678-9101-1619ede87879",
-      "wan-link-health": 0.9988471089272484
-    }
-  ],
-  "start": 1651269600,
-  "total": 4
 }
 ```
 

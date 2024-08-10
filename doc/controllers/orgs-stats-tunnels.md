@@ -209,41 +209,6 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-{
-  "end": 1531862583,
-  "limit": 10,
-  "results": [
-    {
-      "auth_algo": "hmac-md5-96",
-      "encrypt_algo": "aes-256-cbc",
-      "ike_version": "2",
-      "ip": "192.168.233.0",
-      "last_event": "down reason",
-      "mac": "020001ae9dd5",
-      "node": "node0",
-      "org_id": "78c11da8-f984-4425-bedb-a7ddd7d0f6da",
-      "peer_host": "sunnyvale1-vpn.zscalerbeta.net",
-      "peer_ip": "10.224.8.16",
-      "protocol": "ipsec",
-      "rx_bytes": 150,
-      "rx_pkts": 75,
-      "site_id": "e83e7928-eda1-4e93-82db-df3dd42ab726",
-      "tunnel_name": "Device-ipsec-1",
-      "tx_bytes": 100,
-      "tx_pkts": 50,
-      "up": true,
-      "uptime": 10,
-      "wan_name": "wan"
-    }
-  ],
-  "start": 1531776183,
-  "total": 1
-}
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |

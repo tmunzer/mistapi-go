@@ -18,7 +18,7 @@ ListSiteDeviceProfilesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
-    models.ApiResponse[[]models.Deviceprofile2],
+    models.ApiResponse[[]models.Deviceprofile],
     error)
 ```
 
@@ -31,7 +31,7 @@ ListSiteDeviceProfilesDerived(
 
 ## Response Type
 
-[`[]models.Deviceprofile2`](../../doc/models/containers/deviceprofile-2.md)
+[`[]models.Deviceprofile`](../../doc/models/containers/deviceprofile.md)
 
 ## Example Usage
 
@@ -60,9 +60,9 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
+## Example Response
 
-```json
+```
 [
   {
     "aeroscout": {

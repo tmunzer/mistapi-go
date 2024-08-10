@@ -8,13 +8,13 @@ import (
 
 // ResponseDeviceSearch represents a ResponseDeviceSearch struct.
 type ResponseDeviceSearch struct {
-    End                  int                                 `json:"end"`
-    Limit                int                                 `json:"limit"`
-    Next                 *string                             `json:"next,omitempty"`
-    Results              []ResponseDeviceSearchResultsItems2 `json:"results"`
-    Start                int                                 `json:"start"`
-    Total                int                                 `json:"total"`
-    AdditionalProperties map[string]any                      `json:"_"`
+    End                  int                                `json:"end"`
+    Limit                int                                `json:"limit"`
+    Next                 *string                            `json:"next,omitempty"`
+    Results              []ResponseDeviceSearchResultsItems `json:"results"`
+    Start                int                                `json:"start"`
+    Total                int                                `json:"total"`
+    AdditionalProperties map[string]any                     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceSearch.
@@ -69,12 +69,12 @@ func (r *ResponseDeviceSearch) UnmarshalJSON(input []byte) error {
 
 // tempResponseDeviceSearch is a temporary struct used for validating the fields of ResponseDeviceSearch.
 type tempResponseDeviceSearch  struct {
-    End     *int                                 `json:"end"`
-    Limit   *int                                 `json:"limit"`
-    Next    *string                              `json:"next,omitempty"`
-    Results *[]ResponseDeviceSearchResultsItems2 `json:"results"`
-    Start   *int                                 `json:"start"`
-    Total   *int                                 `json:"total"`
+    End     *int                                `json:"end"`
+    Limit   *int                                `json:"limit"`
+    Next    *string                             `json:"next,omitempty"`
+    Results *[]ResponseDeviceSearchResultsItems `json:"results"`
+    Start   *int                                `json:"start"`
+    Total   *int                                `json:"total"`
 }
 
 func (r *tempResponseDeviceSearch) validate() error {

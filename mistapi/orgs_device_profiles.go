@@ -24,7 +24,7 @@ func NewOrgsDeviceProfiles(baseController baseController) *OrgsDeviceProfiles {
 }
 
 // ListOrgDeviceProfiles takes context, orgId, mType, limit, page as parameters and
-// returns an models.ApiResponse with []models.Deviceprofile2 data and
+// returns an models.ApiResponse with []models.Deviceprofile data and
 // an error if there was an issue with the request or response.
 // Get List of Org Device Profiles
 func (o *OrgsDeviceProfiles) ListOrgDeviceProfiles(
@@ -33,7 +33,7 @@ func (o *OrgsDeviceProfiles) ListOrgDeviceProfiles(
     mType *models.DeviceTypeEnum,
     limit *int,
     page *int) (
-    models.ApiResponse[[]models.Deviceprofile2],
+    models.ApiResponse[[]models.Deviceprofile],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -68,25 +68,25 @@ func (o *OrgsDeviceProfiles) ListOrgDeviceProfiles(
         req.QueryParam("page", *page)
     }
     
-    var result []models.Deviceprofile2
+    var result []models.Deviceprofile
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.Deviceprofile2](decoder)
+    result, err = utilities.DecodeResults[[]models.Deviceprofile](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // CreateOrgDeviceProfiles takes context, orgId, body as parameters and
-// returns an models.ApiResponse with models.Deviceprofile2 data and
+// returns an models.ApiResponse with models.Deviceprofile data and
 // an error if there was an issue with the request or response.
 // Create Device Profile
 func (o *OrgsDeviceProfiles) CreateOrgDeviceProfiles(
     ctx context.Context,
     orgId uuid.UUID,
-    body *models.Deviceprofile2) (
-    models.ApiResponse[models.Deviceprofile2],
+    body *models.Deviceprofile) (
+    models.ApiResponse[models.Deviceprofile],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -116,13 +116,13 @@ func (o *OrgsDeviceProfiles) CreateOrgDeviceProfiles(
         req.Json(body)
     }
     
-    var result models.Deviceprofile2
+    var result models.Deviceprofile
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.Deviceprofile2](decoder)
+    result, err = utilities.DecodeResults[models.Deviceprofile](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -168,14 +168,14 @@ func (o *OrgsDeviceProfiles) DeleteOrgDeviceProfile(
 }
 
 // GetOrgDeviceProfile takes context, orgId, deviceprofileId as parameters and
-// returns an models.ApiResponse with models.Deviceprofile2 data and
+// returns an models.ApiResponse with models.Deviceprofile data and
 // an error if there was an issue with the request or response.
 // Get Org device Profile Details
 func (o *OrgsDeviceProfiles) GetOrgDeviceProfile(
     ctx context.Context,
     orgId uuid.UUID,
     deviceprofileId uuid.UUID) (
-    models.ApiResponse[models.Deviceprofile2],
+    models.ApiResponse[models.Deviceprofile],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -201,26 +201,26 @@ func (o *OrgsDeviceProfiles) GetOrgDeviceProfile(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.Deviceprofile2
+    var result models.Deviceprofile
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.Deviceprofile2](decoder)
+    result, err = utilities.DecodeResults[models.Deviceprofile](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // UpdateOrgDeviceProfile takes context, orgId, deviceprofileId, body as parameters and
-// returns an models.ApiResponse with models.Deviceprofile2 data and
+// returns an models.ApiResponse with models.Deviceprofile data and
 // an error if there was an issue with the request or response.
 // Update Org Device Profile
 func (o *OrgsDeviceProfiles) UpdateOrgDeviceProfile(
     ctx context.Context,
     orgId uuid.UUID,
     deviceprofileId uuid.UUID,
-    body *models.Deviceprofile2) (
-    models.ApiResponse[models.Deviceprofile2],
+    body *models.Deviceprofile) (
+    models.ApiResponse[models.Deviceprofile],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -250,13 +250,13 @@ func (o *OrgsDeviceProfiles) UpdateOrgDeviceProfile(
         req.Json(body)
     }
     
-    var result models.Deviceprofile2
+    var result models.Deviceprofile
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.Deviceprofile2](decoder)
+    result, err = utilities.DecodeResults[models.Deviceprofile](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

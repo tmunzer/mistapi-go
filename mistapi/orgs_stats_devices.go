@@ -23,7 +23,7 @@ func NewOrgsStatsDevices(baseController baseController) *OrgsStatsDevices {
 }
 
 // ListOrgDevicesStats takes context, orgId, mType, status, siteId, mac, evpntopoId, evpnUnused, fields, page, limit, start, end, duration as parameters and
-// returns an models.ApiResponse with []models.StatsDevice2 data and
+// returns an models.ApiResponse with []models.StatsDevice data and
 // an error if there was an issue with the request or response.
 // Get List of Org Devices stats
 // This API renders some high-level device stats, pagination is assumed and returned in response header (as the response is an array)
@@ -42,7 +42,7 @@ func (o *OrgsStatsDevices) ListOrgDevicesStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[]models.StatsDevice2],
+    models.ApiResponse[[]models.StatsDevice],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -104,12 +104,12 @@ func (o *OrgsStatsDevices) ListOrgDevicesStats(
         req.QueryParam("duration", *duration)
     }
     
-    var result []models.StatsDevice2
+    var result []models.StatsDevice
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.StatsDevice2](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsDevice](decoder)
     return models.NewApiResponse(result, resp), err
 }

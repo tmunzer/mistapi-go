@@ -11,7 +11,7 @@ type ResponsePortStatsSearch struct {
     End                  int               `json:"end"`
     Limit                int               `json:"limit"`
     Next                 *string           `json:"next,omitempty"`
-    Results              []SwitchPortStats `json:"results"`
+    Results              []StatsSwitchPort `json:"results"`
     Start                int               `json:"start"`
     Total                int               `json:"total"`
     AdditionalProperties map[string]any    `json:"_"`
@@ -72,7 +72,7 @@ type tempResponsePortStatsSearch  struct {
     End     *int               `json:"end"`
     Limit   *int               `json:"limit"`
     Next    *string            `json:"next,omitempty"`
-    Results *[]SwitchPortStats `json:"results"`
+    Results *[]StatsSwitchPort `json:"results"`
     Start   *int               `json:"start"`
     Total   *int               `json:"total"`
 }

@@ -18,7 +18,7 @@ GetOrgOtherDeviceStats(
     ctx context.Context,
     orgId uuid.UUID,
     deviceMac string) (
-    models.ApiResponse[models.DeviceOtherStats],
+    models.ApiResponse[models.StatsDeviceOther],
     error)
 ```
 
@@ -31,7 +31,7 @@ GetOrgOtherDeviceStats(
 
 ## Response Type
 
-[`models.DeviceOtherStats`](../../doc/models/device-other-stats.md)
+[`models.StatsDeviceOther`](../../doc/models/stats-device-other.md)
 
 ## Example Usage
 

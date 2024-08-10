@@ -23,7 +23,7 @@ func NewSitesStatsDevices(baseController baseController) *SitesStatsDevices {
 }
 
 // ListSiteDevicesStats takes context, siteId, mType, status, page, limit as parameters and
-// returns an models.ApiResponse with []models.StatsDevice2 data and
+// returns an models.ApiResponse with []models.StatsDevice data and
 // an error if there was an issue with the request or response.
 // Get List of Site Devices Stats
 func (s *SitesStatsDevices) ListSiteDevicesStats(
@@ -33,7 +33,7 @@ func (s *SitesStatsDevices) ListSiteDevicesStats(
     status *models.StatDeviceStatusFilterEnum,
     page *int,
     limit *int) (
-    models.ApiResponse[[]models.StatsDevice2],
+    models.ApiResponse[[]models.StatsDevice],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -71,25 +71,25 @@ func (s *SitesStatsDevices) ListSiteDevicesStats(
         req.QueryParam("limit", *limit)
     }
     
-    var result []models.StatsDevice2
+    var result []models.StatsDevice
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.StatsDevice2](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsDevice](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // GetSiteDeviceStats takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with models.StatsDevice2 data and
+// returns an models.ApiResponse with models.StatsDevice data and
 // an error if there was an issue with the request or response.
 // Get Site Device Stats Details
 func (s *SitesStatsDevices) GetSiteDeviceStats(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID) (
-    models.ApiResponse[models.StatsDevice2],
+    models.ApiResponse[models.StatsDevice],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -115,25 +115,25 @@ func (s *SitesStatsDevices) GetSiteDeviceStats(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.StatsDevice2
+    var result models.StatsDevice
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.StatsDevice2](decoder)
+    result, err = utilities.DecodeResults[models.StatsDevice](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // GetSiteAllClientsStatsByDevice takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with [][]models.ClientWirelessStats data and
+// returns an models.ApiResponse with []models.StatsWirelessClient data and
 // an error if there was an issue with the request or response.
 // Get wireless client stat by Device
 func (s *SitesStatsDevices) GetSiteAllClientsStatsByDevice(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID) (
-    models.ApiResponse[[][]models.ClientWirelessStats],
+    models.ApiResponse[[]models.StatsWirelessClient],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -159,13 +159,13 @@ func (s *SitesStatsDevices) GetSiteAllClientsStatsByDevice(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result [][]models.ClientWirelessStats
+    var result []models.StatsWirelessClient
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[][]models.ClientWirelessStats](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsWirelessClient](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

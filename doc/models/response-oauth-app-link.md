@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Accounts` | [`[]models.ResponseOauthAppLinkItem2`](../../doc/models/containers/response-oauth-app-link-item-2.md) | Optional | List of linked account details |
+| `Accounts` | [`[]models.ResponseOauthAppLinkItem`](../../doc/models/containers/response-oauth-app-link-item.md) | Optional | List of linked account details |
 | `Linked` | `*bool` | Optional | Basic Auth application linked status in mist portal enabled for VMware |
 
 ## Example (as JSON)

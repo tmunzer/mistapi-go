@@ -24,7 +24,7 @@ GetSiteZoneStats(
     siteId uuid.UUID,
     zoneType models.ZoneTypeEnum,
     zoneId uuid.UUID) (
-    models.ApiResponse[models.ZoneStatsDetails],
+    models.ApiResponse[models.StatsZoneDetails],
     error)
 ```
 
@@ -38,7 +38,7 @@ GetSiteZoneStats(
 
 ## Response Type
 
-[`models.ZoneStatsDetails`](../../doc/models/zone-stats-details.md)
+[`models.StatsZoneDetails`](../../doc/models/stats-zone-details.md)
 
 ## Example Usage
 
@@ -108,7 +108,7 @@ ListSiteZonesStats(
     ctx context.Context,
     siteId uuid.UUID,
     mapId *string) (
-    models.ApiResponse[[]models.ZoneStats],
+    models.ApiResponse[[]models.StatsZone],
     error)
 ```
 
@@ -121,7 +121,7 @@ ListSiteZonesStats(
 
 ## Response Type
 
-[`[]models.ZoneStats`](../../doc/models/zone-stats.md)
+[`[]models.StatsZone`](../../doc/models/stats-zone.md)
 
 ## Example Usage
 

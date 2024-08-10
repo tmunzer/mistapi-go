@@ -10,26 +10,26 @@ import (
 // SdkstatsWirelessClient represents a SdkstatsWirelessClient struct.
 // SDK Client Details statistics
 type SdkstatsWirelessClient struct {
-    Id                   uuid.UUID                       `json:"id"`
+    Id                   uuid.UUID                        `json:"id"`
     // last seen timestamp
-    LastSeen             float64                         `json:"last_seen"`
+    LastSeen             float64                          `json:"last_seen"`
     // map_id of the sdk client (if known), or null
-    MapId                Optional[uuid.UUID]             `json:"map_id"`
+    MapId                Optional[uuid.UUID]              `json:"map_id"`
     // name of the sdk client (if provided)
-    Name                 *string                         `json:"name,omitempty"`
+    Name                 *string                          `json:"name,omitempty"`
     // various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
-    NetworkConnection    *SdkclientStatNetworkConnection `json:"network_connection,omitempty"`
+    NetworkConnection    *StatsSdkclientNetworkConnection `json:"network_connection,omitempty"`
     // uuid of the sdk client
-    Uuid                 uuid.UUID                       `json:"uuid"`
+    Uuid                 uuid.UUID                        `json:"uuid"`
     // list of beacon_id’s of the sdk client is in and since when (if known)
-    Vbeacons             []SdkclientWirelessStatsVbeacon `json:"vbeacons,omitempty"`
+    Vbeacons             []SdkstatsWirelessClientVbeacon  `json:"vbeacons,omitempty"`
     // x (in pixels) of user location on the map (if known)
-    X                    *float64                        `json:"x,omitempty"`
+    X                    *float64                         `json:"x,omitempty"`
     // y (in pixels) of user location on the map (if known)
-    Y                    *float64                        `json:"y,omitempty"`
+    Y                    *float64                         `json:"y,omitempty"`
     // list of zone_id’s of the sdk client is in and since when (if known)
-    Zones                []SdkclientWirelessStatsZone    `json:"zones,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    Zones                []SdkstatsWirelessClientZone     `json:"zones,omitempty"`
+    AdditionalProperties map[string]any                   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SdkstatsWirelessClient.
@@ -108,16 +108,16 @@ func (s *SdkstatsWirelessClient) UnmarshalJSON(input []byte) error {
 
 // tempSdkstatsWirelessClient is a temporary struct used for validating the fields of SdkstatsWirelessClient.
 type tempSdkstatsWirelessClient  struct {
-    Id                *uuid.UUID                      `json:"id"`
-    LastSeen          *float64                        `json:"last_seen"`
-    MapId             Optional[uuid.UUID]             `json:"map_id"`
-    Name              *string                         `json:"name,omitempty"`
-    NetworkConnection *SdkclientStatNetworkConnection `json:"network_connection,omitempty"`
-    Uuid              *uuid.UUID                      `json:"uuid"`
-    Vbeacons          []SdkclientWirelessStatsVbeacon `json:"vbeacons,omitempty"`
-    X                 *float64                        `json:"x,omitempty"`
-    Y                 *float64                        `json:"y,omitempty"`
-    Zones             []SdkclientWirelessStatsZone    `json:"zones,omitempty"`
+    Id                *uuid.UUID                       `json:"id"`
+    LastSeen          *float64                         `json:"last_seen"`
+    MapId             Optional[uuid.UUID]              `json:"map_id"`
+    Name              *string                          `json:"name,omitempty"`
+    NetworkConnection *StatsSdkclientNetworkConnection `json:"network_connection,omitempty"`
+    Uuid              *uuid.UUID                       `json:"uuid"`
+    Vbeacons          []SdkstatsWirelessClientVbeacon  `json:"vbeacons,omitempty"`
+    X                 *float64                         `json:"x,omitempty"`
+    Y                 *float64                         `json:"y,omitempty"`
+    Zones             []SdkstatsWirelessClientZone     `json:"zones,omitempty"`
 }
 
 func (s *tempSdkstatsWirelessClient) validate() error {

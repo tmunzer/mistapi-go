@@ -17,7 +17,7 @@ Get Wxlan Rule usage
 GetSiteWxRulesUsage(
     ctx context.Context,
     siteId uuid.UUID) (
-    models.ApiResponse[[]models.WxruleStat],
+    models.ApiResponse[[]models.StatsWrule],
     error)
 ```
 
@@ -29,7 +29,7 @@ GetSiteWxRulesUsage(
 
 ## Response Type
 
-[`[]models.WxruleStat`](../../doc/models/wxrule-stat.md)
+[`[]models.StatsWrule`](../../doc/models/stats-wrule.md)
 
 ## Example Usage
 

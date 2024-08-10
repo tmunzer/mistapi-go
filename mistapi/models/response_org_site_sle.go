@@ -2,18 +2,24 @@ package models
 
 import (
     "encoding/json"
+    "errors"
+    "strings"
 )
 
 // ResponseOrgSiteSle represents a ResponseOrgSiteSle struct.
 type ResponseOrgSiteSle struct {
-    End                  *float64                `json:"end,omitempty"`
-    Interval             *int                    `json:"interval,omitempty"`
-    Limit                *int                    `json:"limit,omitempty"`
-    Page                 *int                    `json:"page,omitempty"`
-    Results              []OrgSiteSleWifiResult1 `json:"results,omitempty"`
-    Start                *float64                `json:"start,omitempty"`
-    Total                *int                    `json:"total,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    value              any
+    isOrgSiteSleWifi   bool
+    isOrgSiteWiredWifi bool
+    isOrgSiteWanWifi   bool
+}
+
+// String converts the ResponseOrgSiteSle object to a string representation.
+func (r ResponseOrgSiteSle) String() string {
+    if bytes, err := json.Marshal(r.value); err == nil {
+         return strings.Trim(string(bytes), "\"")
+    }
+    return ""
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOrgSiteSle.
@@ -21,68 +27,81 @@ type ResponseOrgSiteSle struct {
 func (r ResponseOrgSiteSle) MarshalJSON() (
     []byte,
     error) {
+    if r.value == nil {
+        return nil, errors.New("No underlying type is set. Please use any of the `models.ResponseOrgSiteSleContainer.From*` functions to initialize the ResponseOrgSiteSle object.")
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseOrgSiteSle object to a map representation for JSON marshaling.
-func (r ResponseOrgSiteSle) toMap() map[string]any {
-    structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
-    if r.End != nil {
-        structMap["end"] = r.End
+func (r *ResponseOrgSiteSle) toMap() any {
+    switch obj := r.value.(type) {
+    case *OrgSiteSleWifi:
+        return obj.toMap()
+    case *OrgSiteWiredWifi:
+        return obj.toMap()
+    case *OrgSiteWanWifi:
+        return obj.toMap()
     }
-    if r.Interval != nil {
-        structMap["interval"] = r.Interval
-    }
-    if r.Limit != nil {
-        structMap["limit"] = r.Limit
-    }
-    if r.Page != nil {
-        structMap["page"] = r.Page
-    }
-    if r.Results != nil {
-        structMap["results"] = r.Results
-    }
-    if r.Start != nil {
-        structMap["start"] = r.Start
-    }
-    if r.Total != nil {
-        structMap["total"] = r.Total
-    }
-    return structMap
+    return nil
 }
 
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseOrgSiteSle.
 // It customizes the JSON unmarshaling process for ResponseOrgSiteSle objects.
 func (r *ResponseOrgSiteSle) UnmarshalJSON(input []byte) error {
-    var temp tempResponseOrgSiteSle
-    err := json.Unmarshal(input, &temp)
-    if err != nil {
-    	return err
-    }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "interval", "limit", "page", "results", "start", "total")
-    if err != nil {
-    	return err
-    }
+    result, err := UnmarshallOneOf(input,
+        NewTypeHolder(&OrgSiteSleWifi{}, false, &r.isOrgSiteSleWifi),
+        NewTypeHolder(&OrgSiteWiredWifi{}, false, &r.isOrgSiteWiredWifi),
+        NewTypeHolder(&OrgSiteWanWifi{}, false, &r.isOrgSiteWanWifi),
+    )
     
-    r.AdditionalProperties = additionalProperties
-    r.End = temp.End
-    r.Interval = temp.Interval
-    r.Limit = temp.Limit
-    r.Page = temp.Page
-    r.Results = temp.Results
-    r.Start = temp.Start
-    r.Total = temp.Total
-    return nil
+    r.value = result
+    return err
 }
 
-// tempResponseOrgSiteSle is a temporary struct used for validating the fields of ResponseOrgSiteSle.
-type tempResponseOrgSiteSle  struct {
-    End      *float64                `json:"end,omitempty"`
-    Interval *int                    `json:"interval,omitempty"`
-    Limit    *int                    `json:"limit,omitempty"`
-    Page     *int                    `json:"page,omitempty"`
-    Results  []OrgSiteSleWifiResult1 `json:"results,omitempty"`
-    Start    *float64                `json:"start,omitempty"`
-    Total    *int                    `json:"total,omitempty"`
+func (r *ResponseOrgSiteSle) AsOrgSiteSleWifi() (
+    *OrgSiteSleWifi,
+    bool) {
+    if !r.isOrgSiteSleWifi {
+        return nil, false
+    }
+    return r.value.(*OrgSiteSleWifi), true
+}
+
+func (r *ResponseOrgSiteSle) AsOrgSiteWiredWifi() (
+    *OrgSiteWiredWifi,
+    bool) {
+    if !r.isOrgSiteWiredWifi {
+        return nil, false
+    }
+    return r.value.(*OrgSiteWiredWifi), true
+}
+
+func (r *ResponseOrgSiteSle) AsOrgSiteWanWifi() (
+    *OrgSiteWanWifi,
+    bool) {
+    if !r.isOrgSiteWanWifi {
+        return nil, false
+    }
+    return r.value.(*OrgSiteWanWifi), true
+}
+
+// internalResponseOrgSiteSle represents a responseOrgSiteSle struct.
+type internalResponseOrgSiteSle struct {}
+
+var ResponseOrgSiteSleContainer internalResponseOrgSiteSle
+
+// The internalResponseOrgSiteSle instance, wrapping the provided OrgSiteSleWifi value.
+func (r *internalResponseOrgSiteSle) FromOrgSiteSleWifi(val OrgSiteSleWifi) ResponseOrgSiteSle {
+    return ResponseOrgSiteSle{value: &val}
+}
+
+// The internalResponseOrgSiteSle instance, wrapping the provided OrgSiteWiredWifi value.
+func (r *internalResponseOrgSiteSle) FromOrgSiteWiredWifi(val OrgSiteWiredWifi) ResponseOrgSiteSle {
+    return ResponseOrgSiteSle{value: &val}
+}
+
+// The internalResponseOrgSiteSle instance, wrapping the provided OrgSiteWanWifi value.
+func (r *internalResponseOrgSiteSle) FromOrgSiteWanWifi(val OrgSiteWanWifi) ResponseOrgSiteSle {
+    return ResponseOrgSiteSle{value: &val}
 }

@@ -26,7 +26,7 @@ GetSiteMxEdgeStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.MxedgeStats],
+    models.ApiResponse[models.StatsMxedge],
     error)
 ```
 
@@ -42,7 +42,7 @@ GetSiteMxEdgeStats(
 
 ## Response Type
 
-[`models.MxedgeStats`](../../doc/models/mxedge-stats.md)
+[`models.StatsMxedge`](../../doc/models/stats-mxedge.md)
 
 ## Example Usage
 
@@ -264,7 +264,7 @@ ListSiteMxEdgesStats(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[[]models.MxedgeStats],
+    models.ApiResponse[[]models.StatsMxedge],
     error)
 ```
 
@@ -281,7 +281,7 @@ ListSiteMxEdgesStats(
 
 ## Response Type
 
-[`[]models.MxedgeStats`](../../doc/models/mxedge-stats.md)
+[`[]models.StatsMxedge`](../../doc/models/stats-mxedge.md)
 
 ## Example Usage
 

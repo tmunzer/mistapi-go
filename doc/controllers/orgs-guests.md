@@ -457,8 +457,6 @@ guestMac := "0000000000ab"
 
 body := models.Guest{
     Authorized:             models.ToPointer(true),
-    AuthorizedExpiringTime: models.ToPointer(float64(0)),
-    AuthorizedTime:         models.ToPointer(float64(0)),
     Company:                models.ToPointer("string"),
     Email:                  models.ToPointer("user@example.com"),
     Field1:                 models.ToPointer("string"),

@@ -23,13 +23,13 @@ func NewSitesStatsWxRules(baseController baseController) *SitesStatsWxRules {
 }
 
 // GetSiteWxRulesUsage takes context, siteId as parameters and
-// returns an models.ApiResponse with []models.WxruleStat data and
+// returns an models.ApiResponse with []models.StatsWrule data and
 // an error if there was an issue with the request or response.
 // Get Wxlan Rule usage
 func (s *SitesStatsWxRules) GetSiteWxRulesUsage(
     ctx context.Context,
     siteId uuid.UUID) (
-    models.ApiResponse[[]models.WxruleStat],
+    models.ApiResponse[[]models.StatsWrule],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -55,12 +55,12 @@ func (s *SitesStatsWxRules) GetSiteWxRulesUsage(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result []models.WxruleStat
+    var result []models.StatsWrule
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.WxruleStat](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsWrule](decoder)
     return models.NewApiResponse(result, resp), err
 }

@@ -1055,7 +1055,7 @@ ImportSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
     body []models.DeviceAp) (
-    models.ApiResponse[[]models.ConfigDevice2],
+    models.ApiResponse[[]models.ConfigDevice],
     error)
 ```
 
@@ -1068,7 +1068,7 @@ ImportSiteDevices(
 
 ## Response Type
 
-[`[]models.ConfigDevice2`](../../doc/models/containers/config-device-2.md)
+[`[]models.ConfigDevice`](../../doc/models/containers/config-device.md)
 
 ## Example Usage
 
@@ -1144,7 +1144,7 @@ ListSiteDevices(
     name *string,
     page *int,
     limit *int) (
-    models.ApiResponse[[]models.ConfigDevice2],
+    models.ApiResponse[[]models.ConfigDevice],
     error)
 ```
 
@@ -1160,7 +1160,7 @@ ListSiteDevices(
 
 ## Response Type
 
-[`[]models.ConfigDevice2`](../../doc/models/containers/config-device-2.md)
+[`[]models.ConfigDevice`](../../doc/models/containers/config-device.md)
 
 ## Example Usage
 
@@ -1818,44 +1818,6 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "end": 0,
-  "limit": 0,
-  "next": "string",
-  "results": [
-    {
-      "hostname": [
-        "AP41-STB-3E5299-WH-2001",
-        "AP41-STB-3E5299-WH-50",
-        "AP41-STB-3E5299",
-        "5c5b353e5299"
-      ],
-      "ip": "10.2.16.205",
-      "lldp_mgmt_addr": "10.2.10.139",
-      "lldp_port_desc": "GigabitEthernet1/0/1",
-      "lldp_port_id": "Gi1/0/1",
-      "lldp_system_desc": "Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(1)E1, RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2013 by Cisco Systems, Inc.\nCompiled Fri 22-Nov-13 07:10 by prod_rel_team",
-      "lldp_system_name": "ME-DC-1-ACC-SW",
-      "mac": "5c5b353e5299",
-      "model": "AP41",
-      "mxedge_id": "00000000-0000-0000-1000-43a81f238391",
-      "mxtunnel_status": "down",
-      "org_id": "6748cfa6-4e12-11e6-9188-0242ac110007",
-      "site_id": "a8178443-ecb5-461c-b854-f16627619ab3",
-      "sku": "AP41-US",
-      "timestamp": 1596588619.007,
-      "uptime": 85280,
-      "version": "0.7.20216"
-    }
-  ],
-  "start": 0,
-  "total": 0
 }
 ```
 

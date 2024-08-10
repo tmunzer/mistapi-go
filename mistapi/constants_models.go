@@ -21,11 +21,11 @@ func NewConstantsModels(baseController baseController) *ConstantsModels {
 }
 
 // ListDeviceModels takes context as parameters and
-// returns an models.ApiResponse with []models.ConstDeviceModel2 data and
+// returns an models.ApiResponse with []models.ConstDeviceModel data and
 // an error if there was an issue with the request or response.
 // Get list of AP device models for the Mist Site
 func (c *ConstantsModels) ListDeviceModels(ctx context.Context) (
-    models.ApiResponse[[]models.ConstDeviceModel2],
+    models.ApiResponse[[]models.ConstDeviceModel],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/device_models")
     req.Authenticate(
@@ -46,13 +46,13 @@ func (c *ConstantsModels) ListDeviceModels(ctx context.Context) (
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    var result []models.ConstDeviceModel2
+    var result []models.ConstDeviceModel
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ConstDeviceModel2](decoder)
+    result, err = utilities.DecodeResults[[]models.ConstDeviceModel](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

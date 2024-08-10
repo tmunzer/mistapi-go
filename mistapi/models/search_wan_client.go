@@ -8,7 +8,7 @@ import (
 type SearchWanClient struct {
     End                  *int             `json:"end,omitempty"`
     Limit                *int             `json:"limit,omitempty"`
-    Results              *ClientsWanStats `json:"results,omitempty"`
+    Results              []StatsWanClient `json:"results,omitempty"`
     Start                *int             `json:"start,omitempty"`
     Total                *int             `json:"total,omitempty"`
     AdditionalProperties map[string]any   `json:"_"`
@@ -33,7 +33,7 @@ func (s SearchWanClient) toMap() map[string]any {
         structMap["limit"] = s.Limit
     }
     if s.Results != nil {
-        structMap["results"] = s.Results.toMap()
+        structMap["results"] = s.Results
     }
     if s.Start != nil {
         structMap["start"] = s.Start
@@ -70,7 +70,7 @@ func (s *SearchWanClient) UnmarshalJSON(input []byte) error {
 type tempSearchWanClient  struct {
     End     *int             `json:"end,omitempty"`
     Limit   *int             `json:"limit,omitempty"`
-    Results *ClientsWanStats `json:"results,omitempty"`
+    Results []StatsWanClient `json:"results,omitempty"`
     Start   *int             `json:"start,omitempty"`
     Total   *int             `json:"total,omitempty"`
 }

@@ -182,25 +182,6 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-{
-  "accounts": [
-    {
-      "error": "OAuth token refresh failed, please re-link your account",
-      "instance_url": "junipertest.jamfcloud.com",
-      "last_status": "failed",
-      "last_sync": 1665465339000,
-      "linked_by": "Testname1",
-      "name": "Test Compay1 Ltd",
-      "smartgroup_name": "CompliantGroup1"
-    }
-  ],
-  "linked": true
-}
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |

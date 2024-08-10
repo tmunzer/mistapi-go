@@ -23,14 +23,14 @@ func NewSitesDeviceProfiles(baseController baseController) *SitesDeviceProfiles 
 }
 
 // ListSiteDeviceProfilesDerived takes context, siteId, resolve as parameters and
-// returns an models.ApiResponse with []models.Deviceprofile2 data and
+// returns an models.ApiResponse with []models.Deviceprofile data and
 // an error if there was an issue with the request or response.
 // Retrieves the list of Device Profiles available for the Site
 func (s *SitesDeviceProfiles) ListSiteDeviceProfilesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
-    models.ApiResponse[[]models.Deviceprofile2],
+    models.ApiResponse[[]models.Deviceprofile],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -59,12 +59,12 @@ func (s *SitesDeviceProfiles) ListSiteDeviceProfilesDerived(
         req.QueryParam("resolve", *resolve)
     }
     
-    var result []models.Deviceprofile2
+    var result []models.Deviceprofile
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.Deviceprofile2](decoder)
+    result, err = utilities.DecodeResults[[]models.Deviceprofile](decoder)
     return models.NewApiResponse(result, resp), err
 }

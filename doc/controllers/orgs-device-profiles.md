@@ -100,8 +100,8 @@ Create Device Profile
 CreateOrgDeviceProfiles(
     ctx context.Context,
     orgId uuid.UUID,
-    body *models.Deviceprofile2) (
-    models.ApiResponse[models.Deviceprofile2],
+    body *models.Deviceprofile) (
+    models.ApiResponse[models.Deviceprofile],
     error)
 ```
 
@@ -110,11 +110,11 @@ CreateOrgDeviceProfiles(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.Deviceprofile2`](../../doc/models/containers/deviceprofile-2.md) | Body, Optional | Request Body |
+| `body` | [`*models.Deviceprofile`](../../doc/models/containers/deviceprofile.md) | Body, Optional | Request Body |
 
 ## Response Type
 
-[`models.Deviceprofile2`](../../doc/models/containers/deviceprofile-2.md)
+[`models.Deviceprofile`](../../doc/models/containers/deviceprofile.md)
 
 ## Example Usage
 
@@ -166,9 +166,9 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
+## Example Response
 
-```json
+```
 {
   "aeroscout": {
     "enabled": true,
@@ -399,7 +399,7 @@ GetOrgDeviceProfile(
     ctx context.Context,
     orgId uuid.UUID,
     deviceprofileId uuid.UUID) (
-    models.ApiResponse[models.Deviceprofile2],
+    models.ApiResponse[models.Deviceprofile],
     error)
 ```
 
@@ -412,7 +412,7 @@ GetOrgDeviceProfile(
 
 ## Response Type
 
-[`models.Deviceprofile2`](../../doc/models/containers/deviceprofile-2.md)
+[`models.Deviceprofile`](../../doc/models/containers/deviceprofile.md)
 
 ## Example Usage
 
@@ -439,9 +439,9 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
+## Example Response
 
-```json
+```
 {
   "aeroscout": {
     "enabled": true,
@@ -622,7 +622,7 @@ ListOrgDeviceProfiles(
     mType *models.DeviceTypeEnum,
     limit *int,
     page *int) (
-    models.ApiResponse[[]models.Deviceprofile2],
+    models.ApiResponse[[]models.Deviceprofile],
     error)
 ```
 
@@ -637,7 +637,7 @@ ListOrgDeviceProfiles(
 
 ## Response Type
 
-[`[]models.Deviceprofile2`](../../doc/models/containers/deviceprofile-2.md)
+[`[]models.Deviceprofile`](../../doc/models/containers/deviceprofile.md)
 
 ## Example Usage
 
@@ -670,9 +670,9 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
+## Example Response
 
-```json
+```
 [
   {
     "aeroscout": {
@@ -1029,8 +1029,8 @@ UpdateOrgDeviceProfile(
     ctx context.Context,
     orgId uuid.UUID,
     deviceprofileId uuid.UUID,
-    body *models.Deviceprofile2) (
-    models.ApiResponse[models.Deviceprofile2],
+    body *models.Deviceprofile) (
+    models.ApiResponse[models.Deviceprofile],
     error)
 ```
 
@@ -1040,11 +1040,11 @@ UpdateOrgDeviceProfile(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `deviceprofileId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.Deviceprofile2`](../../doc/models/containers/deviceprofile-2.md) | Body, Optional | Request Body |
+| `body` | [`*models.Deviceprofile`](../../doc/models/containers/deviceprofile.md) | Body, Optional | Request Body |
 
 ## Response Type
 
-[`models.Deviceprofile2`](../../doc/models/containers/deviceprofile-2.md)
+[`models.Deviceprofile`](../../doc/models/containers/deviceprofile.md)
 
 ## Example Usage
 
@@ -1075,9 +1075,9 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
+## Example Response
 
-```json
+```
 {
   "aeroscout": {
     "enabled": true,

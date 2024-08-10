@@ -23,14 +23,14 @@ func NewOrgsStatsOtherDevices(baseController baseController) *OrgsStatsOtherDevi
 }
 
 // GetOrgOtherDeviceStats takes context, orgId, deviceMac as parameters and
-// returns an models.ApiResponse with models.DeviceOtherStats data and
+// returns an models.ApiResponse with models.StatsDeviceOther data and
 // an error if there was an issue with the request or response.
 // Get Otherdevice Stats
 func (o *OrgsStatsOtherDevices) GetOrgOtherDeviceStats(
     ctx context.Context,
     orgId uuid.UUID,
     deviceMac string) (
-    models.ApiResponse[models.DeviceOtherStats],
+    models.ApiResponse[models.StatsDeviceOther],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -56,12 +56,12 @@ func (o *OrgsStatsOtherDevices) GetOrgOtherDeviceStats(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.DeviceOtherStats
+    var result models.StatsDeviceOther
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.DeviceOtherStats](decoder)
+    result, err = utilities.DecodeResults[models.StatsDeviceOther](decoder)
     return models.NewApiResponse(result, resp), err
 }

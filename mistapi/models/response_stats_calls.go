@@ -9,7 +9,7 @@ type ResponseStatsCalls struct {
     End                  *float64       `json:"end,omitempty"`
     Limit                *int           `json:"limit,omitempty"`
     Next                 *string        `json:"next,omitempty"`
-    Results              []CallStats    `json:"results,omitempty"`
+    Results              []StatsCall    `json:"results,omitempty"`
     Start                *float64       `json:"start,omitempty"`
     Total                *int           `json:"total,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
@@ -76,7 +76,7 @@ type tempResponseStatsCalls  struct {
     End     *float64    `json:"end,omitempty"`
     Limit   *int        `json:"limit,omitempty"`
     Next    *string     `json:"next,omitempty"`
-    Results []CallStats `json:"results,omitempty"`
+    Results []StatsCall `json:"results,omitempty"`
     Start   *float64    `json:"start,omitempty"`
     Total   *int        `json:"total,omitempty"`
 }
