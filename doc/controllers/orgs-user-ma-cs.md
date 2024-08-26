@@ -14,8 +14,8 @@ orgsUserMACs := client.OrgsUserMACs()
 * [Delete Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#delete-org-user-mac)
 * [Get Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#get-org-user-mac)
 * [Import Org User Macs](../../doc/controllers/orgs-user-ma-cs.md#import-org-user-macs)
-* [List Org User Macs](../../doc/controllers/orgs-user-ma-cs.md#list-org-user-macs)
 * [Search Org User Macs](../../doc/controllers/orgs-user-ma-cs.md#search-org-user-macs)
+* [Update Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#update-org-user-mac)
 
 
 # Create Org User Macs
@@ -63,11 +63,11 @@ body := models.UserMac{
         "byod",
         "flr1",
     },
-    Mac:         models.ToPointer("5684dae9ac8b"),
+    Mac:         "5684dae9ac8b",
     Name:        models.ToPointer("Printer2"),
     Notes:       models.ToPointer("mac address refers to Canon printers"),
     RadiusGroup: models.ToPointer("VIP"),
-    Vlan:        models.ToPointer(30),
+    Vlan:        models.ToPointer("30"),
 }
 
 apiResponse, err := orgsUserMACs.CreateOrgUserMacs(ctx, orgId, &body)
@@ -215,7 +215,7 @@ if err != nil {
   ],
   "mac": "921b638445cd",
   "notes": "mac address refers to Canon printers",
-  "vlan": 30
+  "vlan": "30"
 }
 ```
 
@@ -249,7 +249,7 @@ mac,labels,vlan,notes,name,radius_group
 ImportOrgUserMacs(
     ctx context.Context,
     orgId uuid.UUID,
-    body []models.UserMac) (
+    file models.FileWrapper) (
     http.Response,
     error)
 ```
@@ -259,7 +259,7 @@ ImportOrgUserMacs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`[]models.UserMac`](../../doc/models/user-mac.md) | Body, Optional | - |
+| `file` | `models.FileWrapper` | Form, Required | file to updload |
 
 ## Response Type
 
@@ -272,139 +272,14 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-body := []models.UserMac{
-    models.UserMac{
-        Labels:      []string{
-            "label1",
-        },
-        Mac:         models.ToPointer("921b638445cd"),
-        Vlan:        models.ToPointer(30),
-    },
-    models.UserMac{
-        Labels:      []string{
-            "label2",
-            "label3",
-        },
-        Mac:         models.ToPointer("721b638445ef"),
-        Notes:       models.ToPointer("mac address refers to Canon printers"),
-    },
-    models.UserMac{
-        Labels:      []string{
-            "label4",
-        },
-        Mac:         models.ToPointer("721b638445ee"),
-    },
-    models.UserMac{
-        Labels:      []string{
-            "label5",
-            "label6",
-            "label7",
-        },
-        Mac:         models.ToPointer("921b638445ce"),
-    },
-    models.UserMac{
-        Mac:         models.ToPointer("921b638445cf"),
-        Vlan:        models.ToPointer(100),
-    },
-}
+file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
-resp, err := orgsUserMACs.ImportOrgUserMacs(ctx, orgId, body)
+resp, err := orgsUserMACs.ImportOrgUserMacs(ctx, orgId, file)
 if err != nil {
     log.Fatalln(err)
 } else {
     fmt.Println(resp.StatusCode)
 }
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# List Org User Macs
-
-List Org User MACs
-
-```go
-ListOrgUserMacs(
-    ctx context.Context,
-    orgId uuid.UUID,
-    blacklisted *bool,
-    forGuestWifi *bool,
-    crossSite *bool,
-    siteId *string,
-    page *int,
-    limit *int) (
-    models.ApiResponse[[]models.UserMac],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orgId` | `uuid.UUID` | Template, Required | - |
-| `blacklisted` | `*bool` | Query, Optional | - |
-| `forGuestWifi` | `*bool` | Query, Optional | - |
-| `crossSite` | `*bool` | Query, Optional | - |
-| `siteId` | `*string` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
-
-## Response Type
-
-[`[]models.UserMac`](../../doc/models/user-mac.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
-
-
-
-
-
-page := 1
-
-limit := 100
-
-apiResponse, err := orgsUserMACs.ListOrgUserMacs(ctx, orgId, nil, nil, nil, nil, &page, &limit)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-[
-  {
-    "id": "111cafd2-ba1b-5169-bfcb-9cdf1d473ddb",
-    "labels": [
-      "flor1",
-      "bld4"
-    ],
-    "mac": "921b638445cd",
-    "notes": "mac address refers to Canon printers",
-    "vlan": 30
-  }
-]
 ```
 
 ## Errors
@@ -488,9 +363,92 @@ if err != nil {
       ],
       "mac": "921b638445cd",
       "notes": "mac address refers to Canon printers",
-      "vlan": 30
+      "vlan": "30"
     }
   ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Update Org User Mac
+
+Update Org User MAC
+
+```go
+UpdateOrgUserMac(
+    ctx context.Context,
+    orgId uuid.UUID,
+    usermacId uuid.UUID,
+    body *models.UserMac) (
+    models.ApiResponse[models.UserMac],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `usermacId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UserMac`](../../doc/models/user-mac.md) | Body, Optional | - |
+
+## Response Type
+
+[`models.UserMac`](../../doc/models/user-mac.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+usermacId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UserMac{
+    Labels:      []string{
+        "byod",
+        "flr1",
+    },
+    Mac:         "5684dae9ac8b",
+    Name:        models.ToPointer("Printer2"),
+    Notes:       models.ToPointer("mac address refers to Canon printers"),
+    RadiusGroup: models.ToPointer("VIP"),
+    Vlan:        models.ToPointer("30"),
+}
+
+apiResponse, err := orgsUserMACs.UpdateOrgUserMac(ctx, orgId, usermacId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "id": "111cafd2-ba1b-5169-bfcb-9cdf1d473ddb",
+  "labels": [
+    "flor1",
+    "bld4"
+  ],
+  "mac": "921b638445cd",
+  "notes": "mac address refers to Canon printers",
+  "vlan": "30"
 }
 ```
 

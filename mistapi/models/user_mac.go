@@ -2,7 +2,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
 // UserMac represents a UserMac struct.
@@ -10,11 +12,11 @@ type UserMac struct {
     Id                   *uuid.UUID     `json:"id,omitempty"`
     Labels               []string       `json:"labels,omitempty"`
     // only non-local-admin MAC is accepted
-    Mac                  *string        `json:"mac,omitempty"`
+    Mac                  string         `json:"mac"`
     Name                 *string        `json:"name,omitempty"`
     Notes                *string        `json:"notes,omitempty"`
     RadiusGroup          *string        `json:"radius_group,omitempty"`
-    Vlan                 *int           `json:"vlan,omitempty"`
+    Vlan                 *string        `json:"vlan,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }
 
@@ -36,9 +38,7 @@ func (u UserMac) toMap() map[string]any {
     if u.Labels != nil {
         structMap["labels"] = u.Labels
     }
-    if u.Mac != nil {
-        structMap["mac"] = u.Mac
-    }
+    structMap["mac"] = u.Mac
     if u.Name != nil {
         structMap["name"] = u.Name
     }
@@ -62,6 +62,10 @@ func (u *UserMac) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
     additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "labels", "mac", "name", "notes", "radius_group", "vlan")
     if err != nil {
     	return err
@@ -70,7 +74,7 @@ func (u *UserMac) UnmarshalJSON(input []byte) error {
     u.AdditionalProperties = additionalProperties
     u.Id = temp.Id
     u.Labels = temp.Labels
-    u.Mac = temp.Mac
+    u.Mac = *temp.Mac
     u.Name = temp.Name
     u.Notes = temp.Notes
     u.RadiusGroup = temp.RadiusGroup
@@ -82,9 +86,20 @@ func (u *UserMac) UnmarshalJSON(input []byte) error {
 type tempUserMac  struct {
     Id          *uuid.UUID `json:"id,omitempty"`
     Labels      []string   `json:"labels,omitempty"`
-    Mac         *string    `json:"mac,omitempty"`
+    Mac         *string    `json:"mac"`
     Name        *string    `json:"name,omitempty"`
     Notes       *string    `json:"notes,omitempty"`
     RadiusGroup *string    `json:"radius_group,omitempty"`
-    Vlan        *int       `json:"vlan,omitempty"`
+    Vlan        *string    `json:"vlan,omitempty"`
+}
+
+func (u *tempUserMac) validate() error {
+    var errs []string
+    if u.Mac == nil {
+        errs = append(errs, "required field `mac` is missing for type `user_mac`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

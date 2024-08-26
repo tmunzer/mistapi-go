@@ -8,7 +8,7 @@ import (
 
 // GatewayClusterNode represents a GatewayClusterNode struct.
 type GatewayClusterNode struct {
-    // when replacing a noce, either mac has to remain the same as existing cluster
+    // Gateway MAC Address. Format is `[0-9a-f]{12}` (e.g "5684dae9ac8b")
     Mac                  string         `json:"mac"`
     AdditionalProperties map[string]any `json:"_"`
 }
@@ -64,5 +64,5 @@ func (g *tempGatewayClusterNode) validate() error {
     if len(errs) == 0 {
         return nil
     }
-    return errors.New(strings.Join(errs, "\n"))
+    return errors.New(strings.Join (errs, "\n"))
 }

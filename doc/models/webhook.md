@@ -27,9 +27,9 @@
 | `Secret` | `models.Optional[string]` | Optional | only if `type`=`http-post`<br><br>when `secret` is provided, two  HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SplunkToken` | `models.Optional[string]` | Optional | required if `type`=`splunk`<br>If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.' |
-| `Topics` | [`[]models.WebhookTopicEnum`](../../doc/models/webhook-topic-enum.md) | Optional | N.B. For org webhooks, only device_events/alarms/audits/client-join/client-sessions/nac-sessions/nac_events topics are supported. |
+| `Topics` | [`[]models.WebhookTopicEnum`](../../doc/models/webhook-topic-enum.md) | Optional | N.B. For org webhooks, only alarms/audits/client-info/client-join/client-sessions/device-events/device-updowns/mxedge-events/nac-sessions/nac_events topics are supported. |
 | `Type` | [`*models.WebhookTypeEnum`](../../doc/models/webhook-type-enum.md) | Optional | enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`<br>**Default**: `"http-post"` |
-| `Url` | `models.Optional[string]` | Optional | - |
+| `Url` | `*string` | Optional | - |
 | `VerifyCert` | `*bool` | Optional | when url uses HTTPS, whether to verify the certificate<br>**Default**: `true` |
 
 ## Example (as JSON)

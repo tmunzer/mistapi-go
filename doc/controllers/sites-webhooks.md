@@ -205,7 +205,7 @@ body := models.Webhook{
         models.WebhookTopicEnum("location"),
     },
     Type:               models.ToPointer(models.WebhookTypeEnum("http-post")),
-    Url:                models.NewOptional(models.ToPointer("string")),
+    Url:                models.ToPointer("string"),
     VerifyCert:         models.ToPointer(true),
 }
 
@@ -686,7 +686,7 @@ body := models.Webhook{
         models.WebhookTopicEnum("location"),
     },
     Type:               models.ToPointer(models.WebhookTypeEnum("http-post")),
-    Url:                models.NewOptional(models.ToPointer("string")),
+    Url:                models.ToPointer("string"),
     VerifyCert:         models.ToPointer(true),
 }
 

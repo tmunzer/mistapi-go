@@ -42,11 +42,11 @@ type Webhook struct {
     // required if `type`=`splunk`
     // If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.'
     SplunkToken          Optional[string]            `json:"splunk_token"`
-    // N.B. For org webhooks, only device_events/alarms/audits/client-join/client-sessions/nac-sessions/nac_events topics are supported.
+    // N.B. For org webhooks, only alarms/audits/client-info/client-join/client-sessions/device-events/device-updowns/mxedge-events/nac-sessions/nac_events topics are supported.
     Topics               []WebhookTopicEnum          `json:"topics,omitempty"`
     // enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`
     Type                 *WebhookTypeEnum            `json:"type,omitempty"`
-    Url                  Optional[string]            `json:"url"`
+    Url                  *string                     `json:"url,omitempty"`
     // when url uses HTTPS, whether to verify the certificate
     VerifyCert           *bool                       `json:"verify_cert,omitempty"`
     AdditionalProperties map[string]any              `json:"_"`
@@ -140,12 +140,8 @@ func (w Webhook) toMap() map[string]any {
     if w.Type != nil {
         structMap["type"] = w.Type
     }
-    if w.Url.IsValueSet() {
-        if w.Url.Value() != nil {
-            structMap["url"] = w.Url.Value()
-        } else {
-            structMap["url"] = nil
-        }
+    if w.Url != nil {
+        structMap["url"] = w.Url
     }
     if w.VerifyCert != nil {
         structMap["verify_cert"] = w.VerifyCert
@@ -214,6 +210,6 @@ type tempWebhook  struct {
     SplunkToken        Optional[string]            `json:"splunk_token"`
     Topics             []WebhookTopicEnum          `json:"topics,omitempty"`
     Type               *WebhookTypeEnum            `json:"type,omitempty"`
-    Url                Optional[string]            `json:"url"`
+    Url                *string                     `json:"url,omitempty"`
     VerifyCert         *bool                       `json:"verify_cert,omitempty"`
 }

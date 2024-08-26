@@ -30,7 +30,8 @@
       ],
       "mac": "mac0",
       "name": "name6",
-      "notes": "notes6"
+      "notes": "notes6",
+      "radius_group": "radius_group8"
     },
     {
       "id": "000023ba-0000-0000-0000-000000000000",
@@ -40,7 +41,8 @@
       ],
       "mac": "mac0",
       "name": "name6",
-      "notes": "notes6"
+      "notes": "notes6",
+      "radius_group": "radius_group8"
     },
     {
       "id": "000023ba-0000-0000-0000-000000000000",
@@ -50,7 +52,8 @@
       ],
       "mac": "mac0",
       "name": "name6",
-      "notes": "notes6"
+      "notes": "notes6",
+      "radius_group": "radius_group8"
     }
   ]
 }

@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `DnsServers` | `[]string` | Optional | if `type`==`local` - optional, if not defined, system one will be used |
 | `DnsSuffix` | `[]string` | Optional | if `type`==`local` - optional, if not defined, system one will be used |
-| `FixedBindings` | [`map[string]models.DhcpdConfigFixedBinding`](../../doc/models/dhcpd-config-fixed-binding.md) | Optional | Property key is the MAC Address |
+| `FixedBindings` | [`map[string]models.DhcpdConfigFixedBinding`](../../doc/models/dhcpd-config-fixed-binding.md) | Optional | Property key is the MAC Address. Format is `[0-9a-f]{12}` (e.g "5684dae9ac8b") |
 | `Gateway` | `*string` | Optional | if `type`==`local` - optional, `ip` will be used if not provided |
 | `IpEnd` | `*string` | Optional | if `type`==`local` |
 | `IpEnd6` | `*string` | Optional | if `type6`==`local` |

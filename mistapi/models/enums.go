@@ -4078,7 +4078,7 @@ const (
 )
 
 // WebhookTopicEnum is a string enum.
-// enum: `alarms`, `asset-raw`, `asset-raw-rssi`, `audits`, `client-info`, `client-join`, `client-latency`, `client-sessions`, `device-updowns`, `device_events`, `discovered-raw-rssi`, `location`, `location_asset`, `location_centrak`, `location_client`, `location_sdk`, `location_unclient`, `mxedge_events`, `nac-accounting`, `nac_events`, `occupancy-alerts`, `rssizone`, `sdkclient_scan_data`, `site_sle`, `vbeacon`, `wifi-conn-raw`, `wifi-unconn-raw`, `zone`
+// enum: `alarms`, `asset-raw`, `asset-raw-rssi`, `audits`, `client-info`, `client-join`, `client-latency`, `client-sessions`, `device-updowns`, `device-events`, `discovered-raw-rssi`, `location`, `location_asset`, `location_centrak`, `location_client`, `location_sdk`, `location_unclient`, `mxedge-events`, `nac-accounting`, `nac_events`, `occupancy-alerts`, `rssizone`, `sdkclient_scan_data`, `site_sle`, `vbeacon`, `wifi-conn-raw`, `wifi-unconn-raw`, `zone`
 type WebhookTopicEnum string
 
 const (
@@ -4091,7 +4091,7 @@ const (
     WebhookTopicEnum_CLIENTLATENCY     WebhookTopicEnum = "client-latency"
     WebhookTopicEnum_CLIENTSESSIONS    WebhookTopicEnum = "client-sessions"
     WebhookTopicEnum_DEVICEUPDOWNS     WebhookTopicEnum = "device-updowns"
-    WebhookTopicEnum_DEVICEEVENTS      WebhookTopicEnum = "device_events"
+    WebhookTopicEnum_DEVICEEVENTS      WebhookTopicEnum = "device-events"
     WebhookTopicEnum_DISCOVEREDRAWRSSI WebhookTopicEnum = "discovered-raw-rssi"
     WebhookTopicEnum_LOCATION          WebhookTopicEnum = "location"
     WebhookTopicEnum_LOCATIONASSET     WebhookTopicEnum = "location_asset"
@@ -4099,7 +4099,7 @@ const (
     WebhookTopicEnum_LOCATIONCLIENT    WebhookTopicEnum = "location_client"
     WebhookTopicEnum_LOCATIONSDK       WebhookTopicEnum = "location_sdk"
     WebhookTopicEnum_LOCATIONUNCLIENT  WebhookTopicEnum = "location_unclient"
-    WebhookTopicEnum_MXEDGEEVENTS      WebhookTopicEnum = "mxedge_events"
+    WebhookTopicEnum_MXEDGEEVENTS      WebhookTopicEnum = "mxedge-events"
     WebhookTopicEnum_NACACCOUNTING     WebhookTopicEnum = "nac-accounting"
     WebhookTopicEnum_NACEVENTS         WebhookTopicEnum = "nac_events"
     WebhookTopicEnum_OCCUPANCYALERTS   WebhookTopicEnum = "occupancy-alerts"

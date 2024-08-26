@@ -23,73 +23,6 @@ func NewOrgsUserMACs(baseController baseController) *OrgsUserMACs {
     return &orgsUserMACs
 }
 
-// ListOrgUserMacs takes context, orgId, blacklisted, forGuestWifi, crossSite, siteId, page, limit as parameters and
-// returns an models.ApiResponse with []models.UserMac data and
-// an error if there was an issue with the request or response.
-// List Org User MACs
-func (o *OrgsUserMACs) ListOrgUserMacs(
-    ctx context.Context,
-    orgId uuid.UUID,
-    blacklisted *bool,
-    forGuestWifi *bool,
-    crossSite *bool,
-    siteId *string,
-    page *int,
-    limit *int) (
-    models.ApiResponse[[]models.UserMac],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/usermacs", orgId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
-
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    if blacklisted != nil {
-        req.QueryParam("blacklisted", *blacklisted)
-    }
-    if forGuestWifi != nil {
-        req.QueryParam("for_guest_wifi", *forGuestWifi)
-    }
-    if crossSite != nil {
-        req.QueryParam("cross_site", *crossSite)
-    }
-    if siteId != nil {
-        req.QueryParam("site_id", *siteId)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
-    
-    var result []models.UserMac
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[[]models.UserMac](decoder)
-    return models.NewApiResponse(result, resp), err
-}
-
 // CreateOrgUserMacs takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.UserMacImport data and
 // an error if there was an issue with the request or response.
@@ -145,7 +78,7 @@ func (o *OrgsUserMACs) CreateOrgUserMacs(
     return models.NewApiResponse(result, resp), err
 }
 
-// ImportOrgUserMacs takes context, orgId, body as parameters and
+// ImportOrgUserMacs takes context, orgId, file as parameters and
 // returns an models.ApiResponse with  data and
 // an error if there was an issue with the request or response.
 // Import Org User MACs
@@ -161,7 +94,7 @@ func (o *OrgsUserMACs) CreateOrgUserMacs(
 func (o *OrgsUserMACs) ImportOrgUserMacs(
     ctx context.Context,
     orgId uuid.UUID,
-    body []models.UserMac) (
+    file models.FileWrapper) (
     *http.Response,
     error) {
     req := o.prepareRequest(
@@ -187,10 +120,10 @@ func (o *OrgsUserMACs) ImportOrgUserMacs(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
+    formFields := []https.FormParam{}
+    fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
+    formFields = append(formFields, fileParam)
+    req.FormData(formFields)
     
     context, err := req.Call()
     if err != nil {
@@ -271,7 +204,7 @@ func (o *OrgsUserMACs) DeleteOrgUserMac(
     req := o.prepareRequest(
       ctx,
       "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/usermacs/search/%v", orgId, usermacId),
+      fmt.Sprintf("/api/v1/orgs/%v/usermacs/%v", orgId, usermacId),
     )
     req.Authenticate(
         NewOrAuth(
@@ -312,7 +245,7 @@ func (o *OrgsUserMACs) GetOrgUserMac(
     req := o.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/usermacs/search/%v", orgId, usermacId),
+      fmt.Sprintf("/api/v1/orgs/%v/usermacs/%v", orgId, usermacId),
     )
     req.Authenticate(
         NewOrAuth(
@@ -332,6 +265,55 @@ func (o *OrgsUserMACs) GetOrgUserMac(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    
+    var result models.UserMac
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.UserMac](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// UpdateOrgUserMac takes context, orgId, usermacId, body as parameters and
+// returns an models.ApiResponse with models.UserMac data and
+// an error if there was an issue with the request or response.
+// Update Org User MAC
+func (o *OrgsUserMACs) UpdateOrgUserMac(
+    ctx context.Context,
+    orgId uuid.UUID,
+    usermacId uuid.UUID,
+    body *models.UserMac) (
+    models.ApiResponse[models.UserMac],
+    error) {
+    req := o.prepareRequest(
+      ctx,
+      "PUT",
+      fmt.Sprintf("/api/v1/orgs/%v/usermacs/%v", orgId, usermacId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
     
     var result models.UserMac
     decoder, resp, err := req.CallAsJson()

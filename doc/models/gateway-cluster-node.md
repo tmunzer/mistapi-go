@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `string` | Required | when replacing a noce, either mac has to remain the same as existing cluster<br>**Constraints**: *Minimum Length*: `1` |
+| `Mac` | `string` | Required | Gateway MAC Address. Format is `[0-9a-f]{12}` (e.g "5684dae9ac8b") |
 
 ## Example (as JSON)
 

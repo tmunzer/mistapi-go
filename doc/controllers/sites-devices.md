@@ -1054,7 +1054,7 @@ mac,name,map_id,x,y,height,orientation,labels,band_24.power,band_24.bandwidth,ba
 ImportSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
-    body []models.DeviceAp) (
+    file models.FileWrapper) (
     models.ApiResponse[[]models.ConfigDevice],
     error)
 ```
@@ -1064,7 +1064,7 @@ ImportSiteDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`[]models.DeviceAp`](../../doc/models/device-ap.md) | Body, Optional | - |
+| `file` | `models.FileWrapper` | Form, Required | file to updload |
 
 ## Response Type
 
@@ -1077,31 +1077,9 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-body := []models.DeviceAp{
-    models.DeviceAp{
-        DeviceprofileId:  models.NewOptional(models.ToPointer(uuid.MustParse("6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9"))),
-        DisableEth1:      models.ToPointer(false),
-        DisableEth2:      models.ToPointer(false),
-        DisableEth3:      models.ToPointer(false),
-        DisableModule:    models.ToPointer(false),
-        Height:           models.ToPointer(float64(2.75)),
-        MapId:            models.ToPointer(uuid.MustParse("63eda950-c6da-11e4-a628-60f81dd250cc")),
-        Name:             models.ToPointer("conference room"),
-        Notes:            models.ToPointer("slightly off center"),
-        OrgId:            models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-        Orientation:      models.ToPointer(45),
-        PoePassthrough:   models.ToPointer(false),
-        SiteId:           models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
-        Vars:             map[string]string{
-            "RADIUS_IP1": "172.31.2.5",
-            "RADIUS_SECRET": "11s64632d",
-        },
-        X:                models.ToPointer(float64(53.5)),
-        Y:                models.ToPointer(float64(173.1)),
-    },
-}
+file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
-apiResponse, err := sitesDevices.ImportSiteDevices(ctx, siteId, body)
+apiResponse, err := sitesDevices.ImportSiteDevices(ctx, siteId, file)
 if err != nil {
     log.Fatalln(err)
 } else {

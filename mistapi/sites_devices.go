@@ -529,7 +529,7 @@ func (s *SitesDevices) ExportSiteDevices(
     return models.NewApiResponse(stream, resp), err
 }
 
-// ImportSiteDevices takes context, siteId, body as parameters and
+// ImportSiteDevices takes context, siteId, file as parameters and
 // returns an models.ApiResponse with []models.ConfigDevice data and
 // an error if there was an issue with the request or response.
 // Import Information for Multiple Devices
@@ -541,7 +541,7 @@ func (s *SitesDevices) ExportSiteDevices(
 func (s *SitesDevices) ImportSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
-    body []models.DeviceAp) (
+    file models.FileWrapper) (
     models.ApiResponse[[]models.ConfigDevice],
     error) {
     req := s.prepareRequest(
@@ -567,10 +567,10 @@ func (s *SitesDevices) ImportSiteDevices(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
+    formFields := []https.FormParam{}
+    fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
+    formFields = append(formFields, fileParam)
+    req.FormData(formFields)
     
     var result []models.ConfigDevice
     decoder, resp, err := req.CallAsJson()

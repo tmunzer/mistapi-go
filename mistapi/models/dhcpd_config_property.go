@@ -10,7 +10,7 @@ type DhcpdConfigProperty struct {
     DnsServers           []string                           `json:"dns_servers,omitempty"`
     // if `type`==`local` - optional, if not defined, system one will be used
     DnsSuffix            []string                           `json:"dns_suffix,omitempty"`
-    // Property key is the MAC Address
+    // Property key is the MAC Address. Format is `[0-9a-f]{12}` (e.g "5684dae9ac8b")
     FixedBindings        map[string]DhcpdConfigFixedBinding `json:"fixed_bindings,omitempty"`
     // if `type`==`local` - optional, `ip` will be used if not provided
     Gateway              *string                            `json:"gateway,omitempty"`

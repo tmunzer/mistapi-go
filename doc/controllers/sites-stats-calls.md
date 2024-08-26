@@ -112,7 +112,6 @@ Summary of calls troubleshoot by site
 ListSiteTroubleshootCalls(
     ctx context.Context,
     siteId uuid.UUID,
-    clientMac string,
     ap *string,
     meetingId *string,
     mac *string,
@@ -131,7 +130,6 @@ ListSiteTroubleshootCalls(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `clientMac` | `string` | Template, Required | - |
 | `ap` | `*string` | Query, Optional | AP MAC |
 | `meetingId` | `*string` | Query, Optional | meeting_id |
 | `mac` | `*string` | Query, Optional | device identifier |
@@ -153,8 +151,6 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-clientMac := "0000000000ab"
-
 
 
 
@@ -173,7 +169,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := sitesStatsCalls.ListSiteTroubleshootCalls(ctx, siteId, clientMac, nil, nil, nil, &app, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesStatsCalls.ListSiteTroubleshootCalls(ctx, siteId, nil, nil, nil, &app, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -226,14 +226,13 @@ func (s *SitesStatsCalls) SearchSiteCalls(
     return models.NewApiResponse(result, resp), err
 }
 
-// ListSiteTroubleshootCalls takes context, siteId, clientMac, ap, meetingId, mac, app, start, end, duration, limit, page as parameters and
+// ListSiteTroubleshootCalls takes context, siteId, ap, meetingId, mac, app, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.CallTroubleshootSummary data and
 // an error if there was an issue with the request or response.
 // Summary of calls troubleshoot by site
 func (s *SitesStatsCalls) ListSiteTroubleshootCalls(
     ctx context.Context,
     siteId uuid.UUID,
-    clientMac string,
     ap *string,
     meetingId *string,
     mac *string,

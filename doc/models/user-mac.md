@@ -11,11 +11,11 @@
 |  --- | --- | --- | --- |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `Labels` | `[]string` | Optional | - |
-| `Mac` | `*string` | Optional | only non-local-admin MAC is accepted |
+| `Mac` | `string` | Required | only non-local-admin MAC is accepted |
 | `Name` | `*string` | Optional | - |
 | `Notes` | `*string` | Optional | - |
 | `RadiusGroup` | `*string` | Optional | - |
-| `Vlan` | `*int` | Optional | - |
+| `Vlan` | `*string` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +29,7 @@
   "name": "Printer2",
   "notes": "mac address refers to Canon printers",
   "radius_group": "VIP",
-  "vlan": 30,
+  "vlan": "30",
   "id": "000003ce-0000-0000-0000-000000000000"
 }
 ```
