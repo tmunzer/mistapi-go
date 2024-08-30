@@ -866,7 +866,7 @@ const (
 )
 
 // GatewayPortDslTypeEnum is a string enum.
-// if `wan_type`==`lte`. enum: `adsl`, `vdsl`
+// if `wan_type`==`dsl`. enum: `adsl`, `vdsl`
 type GatewayPortDslTypeEnum string
 
 const (

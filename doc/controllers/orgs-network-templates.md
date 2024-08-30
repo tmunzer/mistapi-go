@@ -49,10 +49,10 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NetworkTemplate{
-    AdditionalConfigCmds: []string{
+    AdditionalConfigCmds:  []string{
         "set snmp community public",
     },
-    DhcpSnooping:         models.ToPointer(models.DhcpSnooping{
+    DhcpSnooping:          models.ToPointer(models.DhcpSnooping{
         AllNetworks:         models.ToPointer(true),
         EnableArpSpoofCheck: models.ToPointer(true),
         EnableIpSourceGuard: models.ToPointer(true),
@@ -61,21 +61,21 @@ body := models.NetworkTemplate{
             "string",
         },
     }),
-    DnsServers:           []string{
+    DnsServers:            []string{
         "string",
     },
-    DnsSuffix:            []string{
+    DnsSuffix:             []string{
         "string",
     },
-    ImportOrgNetworks:    []string{
+    ImportOrgNetworks:     []string{
         "ap",
     },
-    MistNac:              models.ToPointer(models.SwitchMistNac{
+    MistNac:               models.ToPointer(models.SwitchMistNac{
         Enabled: models.ToPointer(true),
         Network: models.ToPointer("string"),
     }),
-    Name:                 models.ToPointer("string"),
-    Networks:             map[string]models.SwitchNetwork{
+    Name:                  models.ToPointer("string"),
+    Networks:              map[string]models.SwitchNetwork{
         "property1": models.SwitchNetwork{
             Subnet:          models.ToPointer("192.168.1.0/24"),
             VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
@@ -85,10 +85,10 @@ body := models.NetworkTemplate{
             VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
         },
     },
-    NtpServers:           []string{
+    NtpServers:            []string{
         "string",
     },
-    PortUsages:           map[string]models.SwitchPortUsage{
+    PortUsages:            map[string]models.SwitchPortUsage{
         "dynamic": models.SwitchPortUsage{
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("dynamic")),
             ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum("link_down")),
@@ -172,7 +172,7 @@ body := models.NetworkTemplate{
             VoipNetwork:                              models.ToPointer("string"),
         },
     },
-    SwitchMgmt:           models.ToPointer(models.SwitchMgmt{
+    SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
         ProtectRe:           models.ToPointer(models.ProtectRe{
             Enabled:         models.ToPointer(false),
         }),
@@ -198,10 +198,10 @@ body := models.NetworkTemplate{
             },
         }),
     }),
-    VrfConfig:            models.ToPointer(models.VrfConfig{
+    VrfConfig:             models.ToPointer(models.VrfConfig{
         Enabled: models.ToPointer(false),
     }),
-    VrfInstances:         map[string]models.SwitchVrfInstance{
+    VrfInstances:          map[string]models.SwitchVrfInstance{
         "property1": models.SwitchVrfInstance{
             ExtraRoutes: map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
@@ -961,10 +961,10 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 networktemplateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NetworkTemplate{
-    AdditionalConfigCmds: []string{
+    AdditionalConfigCmds:  []string{
         "set snmp community public",
     },
-    DhcpSnooping:         models.ToPointer(models.DhcpSnooping{
+    DhcpSnooping:          models.ToPointer(models.DhcpSnooping{
         AllNetworks:         models.ToPointer(true),
         EnableArpSpoofCheck: models.ToPointer(true),
         EnableIpSourceGuard: models.ToPointer(true),
@@ -973,13 +973,13 @@ body := models.NetworkTemplate{
             "string",
         },
     }),
-    DnsServers:           []string{
+    DnsServers:            []string{
         "string",
     },
-    DnsSuffix:            []string{
+    DnsSuffix:             []string{
         "string",
     },
-    ExtraRoutes:          map[string]models.ExtraRoute{
+    ExtraRoutes:           map[string]models.ExtraRoute{
         "property1": models.ExtraRoute{
             Via:           models.ToPointer("string"),
         },
@@ -987,15 +987,15 @@ body := models.NetworkTemplate{
             Via:           models.ToPointer("string"),
         },
     },
-    ImportOrgNetworks:    []string{
+    ImportOrgNetworks:     []string{
         "ap",
     },
-    MistNac:              models.ToPointer(models.SwitchMistNac{
+    MistNac:               models.ToPointer(models.SwitchMistNac{
         Enabled: models.ToPointer(true),
         Network: models.ToPointer("string"),
     }),
-    Name:                 models.ToPointer("string"),
-    Networks:             map[string]models.SwitchNetwork{
+    Name:                  models.ToPointer("string"),
+    Networks:              map[string]models.SwitchNetwork{
         "property1": models.SwitchNetwork{
             Subnet:          models.ToPointer("192.168.1.0/24"),
             VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
@@ -1005,10 +1005,10 @@ body := models.NetworkTemplate{
             VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
         },
     },
-    NtpServers:           []string{
+    NtpServers:            []string{
         "string",
     },
-    PortUsages:           map[string]models.SwitchPortUsage{
+    PortUsages:            map[string]models.SwitchPortUsage{
         "dynamic": models.SwitchPortUsage{
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("dynamic")),
             ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum("link_down")),
@@ -1092,7 +1092,7 @@ body := models.NetworkTemplate{
             VoipNetwork:                              models.ToPointer("string"),
         },
     },
-    SwitchMgmt:           models.ToPointer(models.SwitchMgmt{
+    SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
         ProtectRe:           models.ToPointer(models.ProtectRe{
             Enabled:         models.ToPointer(false),
         }),
@@ -1118,10 +1118,10 @@ body := models.NetworkTemplate{
             },
         }),
     }),
-    VrfConfig:            models.ToPointer(models.VrfConfig{
+    VrfConfig:             models.ToPointer(models.VrfConfig{
         Enabled: models.ToPointer(false),
     }),
-    VrfInstances:         map[string]models.SwitchVrfInstance{
+    VrfInstances:          map[string]models.SwitchVrfInstance{
         "property1": models.SwitchVrfInstance{
             ExtraRoutes: map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{

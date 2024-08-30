@@ -18,7 +18,7 @@ Switch settings
 | `DhcpOptionFqdn` | `*bool` | Optional | Enable to provide the FQDN with DHCP option 81<br>**Default**: `false` |
 | `LocalAccounts` | [`map[string]models.ConfigSwitchLocalAccountsUser`](../../doc/models/config-switch-local-accounts-user.md) | Optional | Property key is the user name. For Local user authentication |
 | `MxedgeProxyHost` | `*string` | Optional | - |
-| `MxedgeProxyPort` | `*int` | Optional | **Default**: `2222` |
+| `MxedgeProxyPort` | `*int` | Optional | **Default**: `2222`<br>**Constraints**: `>= 1`, `<= 65535` |
 | `ProtectRe` | [`*models.ProtectRe`](../../doc/models/protect-re.md) | Optional | restrict inbound-traffic to host<br>when enabled, all traffic that is not essential to our operation will be dropped<br>e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works |
 | `Radius` | [`*models.ConfigSwitchRadius`](../../doc/models/config-switch-radius.md) | Optional | by default, `radius_config` will be used. if a different one has to be used set `use_different_radius |
 | `RootPassword` | `*string` | Optional | - |

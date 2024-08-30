@@ -13,7 +13,7 @@ type GatewayPortConfig struct {
     DisableAutoneg       *bool                         `json:"disable_autoneg,omitempty"`
     // port admin up (true) / down (false)
     Disabled             *bool                         `json:"disabled,omitempty"`
-    // if `wan_type`==`lte`. enum: `adsl`, `vdsl`
+    // if `wan_type`==`dsl`. enum: `adsl`, `vdsl`
     DslType              *GatewayPortDslTypeEnum       `json:"dsl_type,omitempty"`
     // if `wan_type`==`dsl`
     // 16 bit int

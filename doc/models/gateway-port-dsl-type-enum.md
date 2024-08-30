@@ -1,7 +1,7 @@
 
 # Gateway Port Dsl Type Enum
 
-if `wan_type`==`lte`. enum: `adsl`, `vdsl`
+if `wan_type`==`dsl`. enum: `adsl`, `vdsl`
 
 ## Enumeration
 

@@ -28,7 +28,7 @@ portal wlan settings
 | `BypassWhenCloudDown` | `*bool` | Optional | whether to bypass the guest portal when cloud not reachable (and apply the default policies)<br>**Default**: `false` |
 | `ClickatellApiKey` | `*string` | Optional | when `sms_provider`==`clickatell` |
 | `CrossSite` | `*bool` | Optional | whether to allow guest to roam between WLANs (with same `WLAN.ssid`, regardless of variables) of different sites of same org without reauthentication (disable random_mac for seamless roaming)<br>**Default**: `false` |
-| `EmailEnabled` | `*bool` | Optional | whether email (access code verification) is enabled as a login method |
+| `EmailEnabled` | `*bool` | Optional | whether email (access code verification) is enabled as a login method<br>**Default**: `false` |
 | `Enabled` | `*bool` | Optional | whether guest portal is enabled<br>**Default**: `false` |
 | `Expire` | `*float64` | Optional | how long to remain authorized, in minutes<br>**Default**: `1440` |
 | `ExternalPortalUrl` | `*string` | Optional | external portal URL (e.g. https://host/url) where we can append our query parameters to |
@@ -56,11 +56,11 @@ portal wlan settings
 | `Password` | `models.Optional[string]` | Optional | passphrase |
 | `PredefinedSponsorsEnabled` | `*bool` | Optional | whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`<br>**Default**: `true` |
 | `PredefinedSponsorsHideEmail` | `*bool` | Optional | whether to hide sponsor’s email from list of sponsors<br>**Default**: `false` |
-| `Privacy` | `*bool` | Optional | **Default**: `true` |
+| `Privacy` | `*bool` | Optional | **Default**: `false` |
 | `PuzzelPassword` | `*string` | Optional | when `sms_provider`==`puzzel` |
 | `PuzzelServiceId` | `*string` | Optional | when `sms_provider`==`puzzel` |
 | `PuzzelUsername` | `*string` | Optional | when `sms_provider`==`puzzel` |
-| `SmsMessageFormat` | `*string` | Optional | - |
+| `SmsMessageFormat` | `*string` | Optional | **Default**: `"Code {{code}} expires in {{duration}} minutes."` |
 | `SmsEnabled` | `*bool` | Optional | whether sms is enabled as a login method<br>**Default**: `false` |
 | `SmsExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using sms auth (in minutes), if not provided, uses expire` |
 | `SmsProvider` | [`*models.WlanPortalSmsProviderEnum`](../../doc/models/wlan-portal-sms-provider-enum.md) | Optional | enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`<br>**Default**: `"manual"` |
@@ -68,14 +68,14 @@ portal wlan settings
 | `SponsorEmailDomains` | `[]string` | Optional | list of domain allowed for sponsor email. Required if `sponsor_enabled` is `true` and `sponsors` is empty. |
 | `SponsorEnabled` | `*bool` | Optional | whether sponsor is enabled<br>**Default**: `false` |
 | `SponsorExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using sponsor auth (in minutes), if not provided, uses expire` |
-| `SponsorLinkValidityDuration` | `*int` | Optional | how long to remain valid sponsored guest request approve/deny link received in email, in minutes.<br>**Default**: `60` |
+| `SponsorLinkValidityDuration` | `*string` | Optional | how long to remain valid sponsored guest request approve/deny link received in email, in minutes.<br>**Default**: `"60"` |
 | `SponsorNotifyAll` | `*bool` | Optional | whether to notify all sponsors that are mentioned in `sponsors` object. Both `sponsor_notify_all` and `predefined_sponsors_enabled` should be true in order to notify sponsors. If true, email sent to 10 sponsors in no particular order.<br>**Default**: `false` |
 | `SponsorStatusNotify` | `*bool` | Optional | if enabled, guest will get email about sponsor's action (approve/deny)<br>**Default**: `false` |
 | `Sponsors` | `map[string]string` | Optional | object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty.<br>Property key is the sponsor email, Property value is the sponsor name |
 | `SsoDefaultRole` | `*string` | Optional | default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
 | `SsoForcedRole` | `*string` | Optional | - |
 | `SsoIdpCert` | `*string` | Optional | IDP Cert (used to verify the signed response) |
-| `SsoIdpSignAlgo` | `*string` | Optional | signing algorithm for SAML Assertion |
+| `SsoIdpSignAlgo` | `*string` | Optional | signing algorithm for SAML Assertion<br>**Default**: `"sha1"` |
 | `SsoIdpSsoUrl` | `*string` | Optional | IDP Single-Sign-On URL |
 | `SsoIssuer` | `*string` | Optional | IDP issuer URL |
 | `SsoNameidFormat` | [`*models.WlanPortalSsoNameidFormatEnum`](../../doc/models/wlan-portal-sso-nameid-format-enum.md) | Optional | enum: `email`, `unspecified`<br>**Default**: `"email"` |
@@ -102,6 +102,7 @@ portal wlan settings
   "broadnet_user_id": "juniper",
   "bypass_when_cloud_down": false,
   "cross_site": false,
+  "email_enabled": false,
   "enabled": false,
   "expire": 1440,
   "facebook_email_domains": null,
@@ -119,7 +120,8 @@ portal wlan settings
   "password": "let me in",
   "predefined_sponsors_enabled": true,
   "predefined_sponsors_hide_email": false,
-  "privacy": true,
+  "privacy": false,
+  "smsMessageFormat": "Code {{code}} expires in {{duration}} minutes.",
   "sms_enabled": false,
   "sms_provider": "twilio",
   "sponsor_auto_approve": false,
@@ -128,13 +130,14 @@ portal wlan settings
     "reserved.org"
   ],
   "sponsor_enabled": false,
-  "sponsor_link_validity_duration": 30,
+  "sponsor_link_validity_duration": "30",
   "sponsor_notify_all": false,
   "sponsor_status_notify": false,
   "sponsors": {
     "sponsor1@company.com": "FirstName1 LastName1",
     "sponsor2@company.com": "FirstName2 LastName2"
   },
+  "sso_idp_sign_algo": "sha1",
   "sso_nameid_format": "email",
   "twilio_auth_token": "af9dac44c344a875ab5d31cb7abcdefg",
   "twilio_phone_number": "+18548888888",

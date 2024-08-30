@@ -32,6 +32,7 @@ Network Template
 | `PortUsages` | [`map[string]models.SwitchPortUsage`](../../doc/models/switch-port-usage.md) | Optional | - |
 | `RadiusConfig` | [`*models.RadiusConfig`](../../doc/models/radius-config.md) | Optional | Junos Radius config |
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
+| `RemoveExistingConfigs` | `*bool` | Optional | by default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled<br>**Default**: `false` |
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
 | `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | Switch template |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
@@ -48,6 +49,7 @@ Network Template
     }
   },
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+  "remove_existing_configs": false,
   "vrf_instances": {
     "guest": {
       "extra_routes": {

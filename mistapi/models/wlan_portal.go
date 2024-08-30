@@ -125,7 +125,7 @@ type WlanPortal struct {
     // interval for which guest remains authorized using sponsor auth (in minutes), if not provided, uses expire`
     SponsorExpire               Optional[float64]              `json:"sponsor_expire"`
     // how long to remain valid sponsored guest request approve/deny link received in email, in minutes.
-    SponsorLinkValidityDuration *int                           `json:"sponsor_link_validity_duration,omitempty"`
+    SponsorLinkValidityDuration *string                        `json:"sponsor_link_validity_duration,omitempty"`
     // whether to notify all sponsors that are mentioned in `sponsors` object. Both `sponsor_notify_all` and `predefined_sponsors_enabled` should be true in order to notify sponsors. If true, email sent to 10 sponsors in no particular order.
     SponsorNotifyAll            *bool                          `json:"sponsor_notify_all,omitempty"`
     // if enabled, guest will get email about sponsor's action (approve/deny)
@@ -638,7 +638,7 @@ type tempWlanPortal  struct {
     SponsorEmailDomains         []string                       `json:"sponsor_email_domains,omitempty"`
     SponsorEnabled              *bool                          `json:"sponsor_enabled,omitempty"`
     SponsorExpire               Optional[float64]              `json:"sponsor_expire"`
-    SponsorLinkValidityDuration *int                           `json:"sponsor_link_validity_duration,omitempty"`
+    SponsorLinkValidityDuration *string                        `json:"sponsor_link_validity_duration,omitempty"`
     SponsorNotifyAll            *bool                          `json:"sponsor_notify_all,omitempty"`
     SponsorStatusNotify         *bool                          `json:"sponsor_status_notify,omitempty"`
     Sponsors                    map[string]string              `json:"sponsors,omitempty"`
