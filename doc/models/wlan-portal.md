@@ -71,7 +71,7 @@ portal wlan settings
 | `SponsorLinkValidityDuration` | `*string` | Optional | how long to remain valid sponsored guest request approve/deny link received in email, in minutes.<br>**Default**: `"60"` |
 | `SponsorNotifyAll` | `*bool` | Optional | whether to notify all sponsors that are mentioned in `sponsors` object. Both `sponsor_notify_all` and `predefined_sponsors_enabled` should be true in order to notify sponsors. If true, email sent to 10 sponsors in no particular order.<br>**Default**: `false` |
 | `SponsorStatusNotify` | `*bool` | Optional | if enabled, guest will get email about sponsor's action (approve/deny)<br>**Default**: `false` |
-| `Sponsors` | `map[string]string` | Optional | object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty.<br>Property key is the sponsor email, Property value is the sponsor name |
+| `Sponsors` | [`*models.WlanPortalSponsors`](../../doc/models/containers/wlan-portal-sponsors.md) | Optional | - |
 | `SsoDefaultRole` | `*string` | Optional | default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
 | `SsoForcedRole` | `*string` | Optional | - |
 | `SsoIdpCert` | `*string` | Optional | IDP Cert (used to verify the signed response) |
@@ -133,10 +133,6 @@ portal wlan settings
   "sponsor_link_validity_duration": "30",
   "sponsor_notify_all": false,
   "sponsor_status_notify": false,
-  "sponsors": {
-    "sponsor1@company.com": "FirstName1 LastName1",
-    "sponsor2@company.com": "FirstName2 LastName2"
-  },
   "sso_idp_sign_algo": "sha1",
   "sso_nameid_format": "email",
   "twilio_auth_token": "af9dac44c344a875ab5d31cb7abcdefg",

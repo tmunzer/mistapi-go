@@ -130,9 +130,7 @@ type WlanPortal struct {
     SponsorNotifyAll            *bool                          `json:"sponsor_notify_all,omitempty"`
     // if enabled, guest will get email about sponsor's action (approve/deny)
     SponsorStatusNotify         *bool                          `json:"sponsor_status_notify,omitempty"`
-    // object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty.
-    // Property key is the sponsor email, Property value is the sponsor name
-    Sponsors                    map[string]string              `json:"sponsors,omitempty"`
+    Sponsors                    *WlanPortalSponsors            `json:"sponsors,omitempty"`
     // default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
     SsoDefaultRole              *string                        `json:"sso_default_role,omitempty"`
     SsoForcedRole               *string                        `json:"sso_forced_role,omitempty"`
@@ -436,7 +434,7 @@ func (w WlanPortal) toMap() map[string]any {
         structMap["sponsor_status_notify"] = w.SponsorStatusNotify
     }
     if w.Sponsors != nil {
-        structMap["sponsors"] = w.Sponsors
+        structMap["sponsors"] = w.Sponsors.toMap()
     }
     if w.SsoDefaultRole != nil {
         structMap["sso_default_role"] = w.SsoDefaultRole
@@ -641,7 +639,7 @@ type tempWlanPortal  struct {
     SponsorLinkValidityDuration *string                        `json:"sponsor_link_validity_duration,omitempty"`
     SponsorNotifyAll            *bool                          `json:"sponsor_notify_all,omitempty"`
     SponsorStatusNotify         *bool                          `json:"sponsor_status_notify,omitempty"`
-    Sponsors                    map[string]string              `json:"sponsors,omitempty"`
+    Sponsors                    *WlanPortalSponsors            `json:"sponsors,omitempty"`
     SsoDefaultRole              *string                        `json:"sso_default_role,omitempty"`
     SsoForcedRole               *string                        `json:"sso_forced_role,omitempty"`
     SsoIdpCert                  *string                        `json:"sso_idp_cert,omitempty"`
