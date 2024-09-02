@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2406.1.27**
+> Version: **2408.1.7**
 > 
-> Date: **July 12, 2024**
+> Date: **August 30, 2024**
 
 ---
 
@@ -122,7 +122,6 @@ The SDK can be configured to use a different environment for making API calls. A
 | Mist EMEA 02 | - |
 | Mist EMEA 03 | - |
 | Mist APAC 01 | - |
-| AWS Staging | - |
 
 ## Authorization
 
@@ -162,6 +161,7 @@ This API uses the following authentication schemes.
 * [Orgs Admins](doc/controllers/orgs-admins.md)
 * [Orgs Alarms](doc/controllers/orgs-alarms.md)
 * [Orgs Alarm Templates](doc/controllers/orgs-alarm-templates.md)
+* [Orgs Antivirus Profiles](doc/controllers/orgs-antivirus-profiles.md)
 * [Orgs API Tokens](doc/controllers/orgs-api-tokens.md)
 * [Orgs AP Templates](doc/controllers/orgs-ap-templates.md)
 * [Orgs Asset Filters](doc/controllers/orgs-asset-filters.md)
@@ -179,9 +179,6 @@ This API uses the following authentication schemes.
 * [Orgs Devices](doc/controllers/orgs-devices.md)
 * [Orgs Devices-Others](doc/controllers/orgs-devices-others.md)
 * [Orgs Devices-SSR](doc/controllers/orgs-devices-ssr.md)
-* [Orgs Devices Stats](doc/controllers/orgs-devices-stats.md)
-* [Orgs Devices-WAN Cluster](doc/controllers/orgs-devices-wan-cluster.md)
-* [Orgs Devices Zscaler](doc/controllers/orgs-devices-zscaler.md)
 * [Orgs EVPN Topologies](doc/controllers/orgs-evpn-topologies.md)
 * [Orgs Gateway Templates](doc/controllers/orgs-gateway-templates.md)
 * [Orgs Guests](doc/controllers/orgs-guests.md)
@@ -208,21 +205,31 @@ This API uses the following authentication schemes.
 * [Orgs Psk Portals](doc/controllers/orgs-psk-portals.md)
 * [Orgs Psks](doc/controllers/orgs-psks.md)
 * [Orgs RF Templates](doc/controllers/orgs-rf-templates.md)
+* [Orgs SCEP](doc/controllers/orgs-scep.md)
 * [Orgs SDK Invites](doc/controllers/orgs-sdk-invites.md)
 * [Orgs SDK Templates](doc/controllers/orgs-sdk-templates.md)
 * [Orgs Sec Policies](doc/controllers/orgs-sec-policies.md)
 * [Orgs Service Policies](doc/controllers/orgs-service-policies.md)
 * [Orgs Services](doc/controllers/orgs-services.md)
 * [Orgs Setting](doc/controllers/orgs-setting.md)
+* [Orgs Setting Zscaler](doc/controllers/orgs-setting-zscaler.md)
 * [Orgs Sitegroups](doc/controllers/orgs-sitegroups.md)
 * [Orgs Sites](doc/controllers/orgs-sites.md)
 * [Orgs Site Templates](doc/controllers/orgs-site-templates.md)
 * [Orgs SL Es](doc/controllers/orgs-sl-es.md)
 * [Orgs SSO](doc/controllers/orgs-sso.md)
 * [Orgs SSO Roles](doc/controllers/orgs-sso-roles.md)
+* [Orgs Stats](doc/controllers/orgs-stats.md)
+* [Orgs Stats-Assets](doc/controllers/orgs-stats-assets.md)
+* [Orgs Stats-BGP Peers](doc/controllers/orgs-stats-bgp-peers.md)
+* [Orgs Stats-Devices](doc/controllers/orgs-stats-devices.md)
+* [Orgs Stats-Mx Edges](doc/controllers/orgs-stats-mx-edges.md)
+* [Orgs Stats-Other Devices](doc/controllers/orgs-stats-other-devices.md)
+* [Orgs Stats-Ports](doc/controllers/orgs-stats-ports.md)
+* [Orgs Stats-Tunnels](doc/controllers/orgs-stats-tunnels.md)
+* [Orgs Stats-VPN Peers](doc/controllers/orgs-stats-vpn-peers.md)
 * [Orgs Subscriptions](doc/controllers/orgs-subscriptions.md)
 * [Orgs Tickets](doc/controllers/orgs-tickets.md)
-* [Orgs Tunnels](doc/controllers/orgs-tunnels.md)
 * [Orgs User MA Cs](doc/controllers/orgs-user-ma-cs.md)
 * [Orgs Vars](doc/controllers/orgs-vars.md)
 * [Orgs VP Ns](doc/controllers/orgs-vp-ns.md)
@@ -232,7 +239,7 @@ This API uses the following authentication schemes.
 * [Orgs Wx Rules](doc/controllers/orgs-wx-rules.md)
 * [Orgs Wx Tags](doc/controllers/orgs-wx-tags.md)
 * [Orgs Wx Tunnels](doc/controllers/orgs-wx-tunnels.md)
-* [Samples-Webhook](doc/controllers/samples-webhook.md)
+* [Samples Webhooks](doc/controllers/samples-webhooks.md)
 * [Self Account](doc/controllers/self-account.md)
 * [Self Alarms](doc/controllers/self-alarms.md)
 * [Self API Token](doc/controllers/self-api-token.md)
@@ -247,17 +254,13 @@ This API uses the following authentication schemes.
 * [Sites Asset Filters](doc/controllers/sites-asset-filters.md)
 * [Sites Assets](doc/controllers/sites-assets.md)
 * [Sites Beacons](doc/controllers/sites-beacons.md)
-* [Sites Calls](doc/controllers/sites-calls.md)
 * [Sites Clients-NAC](doc/controllers/sites-clients-nac.md)
-* [Sites Clients-SDK](doc/controllers/sites-clients-sdk.md)
 * [Sites Clients-Wan](doc/controllers/sites-clients-wan.md)
 * [Sites Clients-Wired](doc/controllers/sites-clients-wired.md)
 * [Sites Clients-Wireless](doc/controllers/sites-clients-wireless.md)
 * [Sites Device Profiles](doc/controllers/sites-device-profiles.md)
 * [Sites Devices](doc/controllers/sites-devices.md)
-* [Sites Devices-Discovered Switches](doc/controllers/sites-devices-discovered-switches.md)
 * [Sites Devices-Others](doc/controllers/sites-devices-others.md)
-* [Sites Devices Stats](doc/controllers/sites-devices-stats.md)
 * [Sites Devices-WAN Cluster](doc/controllers/sites-devices-wan-cluster.md)
 * [Sites Devices-Wired](doc/controllers/sites-devices-wired.md)
 * [Sites Devices-Wired-Virtual Chassis](doc/controllers/sites-devices-wired-virtual-chassis.md)
@@ -271,7 +274,6 @@ This API uses the following authentication schemes.
 * [Sites Licenses](doc/controllers/sites-licenses.md)
 * [Sites Location](doc/controllers/sites-location.md)
 * [Sites Maps](doc/controllers/sites-maps.md)
-* [Sites Maps-Auto-Orientation](doc/controllers/sites-maps-auto-orientation.md)
 * [Sites Maps-Auto-Placement](doc/controllers/sites-maps-auto-placement.md)
 * [Sites Mx Edges](doc/controllers/sites-mx-edges.md)
 * [Sites Networks](doc/controllers/sites-networks.md)
@@ -288,6 +290,20 @@ This API uses the following authentication schemes.
 * [Sites Site Templates](doc/controllers/sites-site-templates.md)
 * [Sites Skyatp](doc/controllers/sites-skyatp.md)
 * [Sites SL Es](doc/controllers/sites-sl-es.md)
+* [Sites Stats](doc/controllers/sites-stats.md)
+* [Sites Stats-Apps](doc/controllers/sites-stats-apps.md)
+* [Sites Stats-Assets](doc/controllers/sites-stats-assets.md)
+* [Sites Stats-Beacons](doc/controllers/sites-stats-beacons.md)
+* [Sites Stats-BGP Peers](doc/controllers/sites-stats-bgp-peers.md)
+* [Sites Stats-Calls](doc/controllers/sites-stats-calls.md)
+* [Sites Stats-Clients SDK](doc/controllers/sites-stats-clients-sdk.md)
+* [Sites Stats-Clients Wireless](doc/controllers/sites-stats-clients-wireless.md)
+* [Sites Stats-Devices](doc/controllers/sites-stats-devices.md)
+* [Sites Stats-Discovered Switches](doc/controllers/sites-stats-discovered-switches.md)
+* [Sites Stats-Mx Edges](doc/controllers/sites-stats-mx-edges.md)
+* [Sites Stats-Ports](doc/controllers/sites-stats-ports.md)
+* [Sites Stats-Wx Rules](doc/controllers/sites-stats-wx-rules.md)
+* [Sites Stats-Zones](doc/controllers/sites-stats-zones.md)
 * [Sites Synthetic Tests](doc/controllers/sites-synthetic-tests.md)
 * [Sites UI Settings](doc/controllers/sites-ui-settings.md)
 * [Sitesv Beacons](doc/controllers/sitesv-beacons.md)
