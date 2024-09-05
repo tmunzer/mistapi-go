@@ -13,7 +13,7 @@ type WlanBonjour struct {
     AdditionalVlanIds    string                                  `json:"additional_vlan_ids"`
     // whether to enable bonjour for this WLAN. Once enabled, limit_bcast is assumed true, allow_mdns is assumed false
     Enabled              *bool                                   `json:"enabled,omitempty"`
-    // what services are allowed. 
+    // what services are allowed.
     // Property key is the service name
     Services             map[string]WlanBonjourServiceProperties `json:"services"`
     AdditionalProperties map[string]any                          `json:"_"`

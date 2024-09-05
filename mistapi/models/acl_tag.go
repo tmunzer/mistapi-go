@@ -12,27 +12,27 @@ type AclTag struct {
     // - `type`==`dynamic_gbp` (gbp_tag received from RADIUS)
     // - `type`==`static_gbp` (applying gbp tag against matching conditions)
     GbpTag               *int           `json:"gbp_tag,omitempty"`
-    // required if 
+    // required if
     // - `type`==`mac`
     // - `type`==`static_gbp` if from matching mac
     Macs                 []string       `json:"macs,omitempty"`
     // if:
-    //   * `type`==`mac` (optional. default is `any`)
-    //   * `type`==`subnet` (optional. default is `any`)
-    //   * `type`==`network`
-    //   * `type`==`resource` (optional. default is `any`)
-    //   * `type`==`static_gbp` if from matching network (vlan)'
+    // * `type`==`mac` (optional. default is `any`)
+    // * `type`==`subnet` (optional. default is `any`)
+    // * `type`==`network`
+    // * `type`==`resource` (optional. default is `any`)
+    // * `type`==`static_gbp` if from matching network (vlan)'
     Network              *string        `json:"network,omitempty"`
     // required if:
-    //   * `type`==`radius_group`
-    //   * `type`==`static_gbp`
+    // * `type`==`radius_group`
+    // * `type`==`static_gbp`
     // if from matching radius_group
     RadiusGroup          *string        `json:"radius_group,omitempty"`
     // if `type`==`resource`
     // empty means unrestricted, i.e. any
     Specs                []AclTagSpec   `json:"specs,omitempty"`
-    // if 
-    // - `type`==`subnet` 
+    // if
+    // - `type`==`subnet`
     // - `type`==`resource` (optional. default is `any`)
     // - `type`==`static_gbp` if from matching subnet
     Subnets              []string       `json:"subnets,omitempty"`

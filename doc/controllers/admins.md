@@ -1,13 +1,8 @@
 # Admins
 
-Admin API calls can be used to create, manage or authenticate Mist
-administrators.
+Admin API calls can be used to create, manage or authenticate Mist administrators.
 
-To register administrators into an existing MSP account or Organization, please
-check
-
-* [Invite Msp Admin]($e/MSPs%20Admins/inviteMspAdmin)
-* [Invite Org Admin]($e/Orgs%20Admins/inviteOrgAdmin)
+To register administrators into an existing MSP account or Organization, please check: * [Invite Msp Admin]($e/MSPs%20Admins/inviteMspAdmin) * [Invite Org Admin]($e/Orgs%20Admins/inviteOrgAdmin)
 
 ```go
 admins := client.Admins()

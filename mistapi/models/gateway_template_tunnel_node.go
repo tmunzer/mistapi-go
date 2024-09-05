@@ -8,8 +8,8 @@ import (
 type GatewayTemplateTunnelNode struct {
     Hosts                []string       `json:"hosts,omitempty"`
     // Only if:
-    //   * `provider`== `zscaler-gre`
-    //   * `provider`== `custom-gre`
+    // * `provider`== `zscaler-gre`
+    // * `provider`== `custom-gre`
     InternalIps          []string       `json:"internal_ips,omitempty"`
     ProbeIps             []string       `json:"probe_ips,omitempty"`
     // Only if `provider`== `custom-ipsec`

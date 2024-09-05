@@ -12,7 +12,7 @@ type SiteEngagement struct {
     DwellTagNames        *SiteEngagementDwellTagNames `json:"dwell_tag_names,omitempty"`
     // add tags to visits within the duration (in seconds), available tags (passerby, bounce, engaged, stationed)
     DwellTags            *SiteEngagementDwellTags     `json:"dwell_tags,omitempty"`
-    // hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun). 
+    // hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun).
     // **Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59.
     Hours                *Hours                       `json:"hours,omitempty"`
     // max time, default is 43200(12h), max is 68400 (18h)

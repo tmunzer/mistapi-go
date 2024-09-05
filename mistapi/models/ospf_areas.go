@@ -8,7 +8,7 @@ import (
 // Junos OSPF areas
 type OspfAreas struct {
     IncludeLoopback      *bool                       `json:"include_loopback,omitempty"`
-    // Networks to participate in an OSPF area. 
+    // Networks to participate in an OSPF area.
     // Property key is the network name
     Networks             map[string]OspfAreasNetwork `json:"networks,omitempty"`
     // OSPF type. enum: `default`, `nssa`, `stub`

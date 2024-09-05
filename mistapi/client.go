@@ -185,7 +185,6 @@ type ClientInterface interface {
     ConstantsDefinitions() *ConstantsDefinitions
     ConstantsEvents() *ConstantsEvents
     ConstantsModels() *ConstantsModels
-    ConstantsMisc() *ConstantsMisc
     SelfAccount() *SelfAccount
     SelfAPIToken() *SelfAPIToken
     SelfOAuth2() *SelfOAuth2
@@ -382,7 +381,6 @@ type client struct {
     constantsDefinitions            ConstantsDefinitions
     constantsEvents                 ConstantsEvents
     constantsModels                 ConstantsModels
-    constantsMisc                   ConstantsMisc
     selfAccount                     SelfAccount
     selfAPIToken                    SelfAPIToken
     selfOAuth2                      SelfOAuth2
@@ -597,7 +595,6 @@ func NewClient(configuration Configuration) ClientInterface {
     client.constantsDefinitions = *NewConstantsDefinitions(*baseController)
     client.constantsEvents = *NewConstantsEvents(*baseController)
     client.constantsModels = *NewConstantsModels(*baseController)
-    client.constantsMisc = *NewConstantsMisc(*baseController)
     client.selfAccount = *NewSelfAccount(*baseController)
     client.selfAPIToken = *NewSelfAPIToken(*baseController)
     client.selfOAuth2 = *NewSelfOAuth2(*baseController)
@@ -1493,11 +1490,6 @@ func (c *client) ConstantsEvents() *ConstantsEvents {
 // ConstantsModels returns the constantsModels instance of the client.
 func (c *client) ConstantsModels() *ConstantsModels {
     return &c.constantsModels
-}
-
-// ConstantsMisc returns the constantsMisc instance of the client.
-func (c *client) ConstantsMisc() *ConstantsMisc {
-    return &c.constantsMisc
 }
 
 // SelfAccount returns the selfAccount instance of the client.

@@ -15,9 +15,9 @@ type Service struct {
     // when `type`==`app_categories`, list of application categories are available through /api/v1/const/app_subcategories
     AppSubcategories              []string                   `json:"app_subcategories,omitempty"`
     // when `type`==`apps`, list of applications are available through:
-    //   * /api/v1/const/applications
-    //   * /api/v1/const/gateway_applications
-    //   * /insight/top_app_by-bytes?wired=true
+    // * /api/v1/const/applications
+    // * /api/v1/const/gateway_applications
+    // * /insight/top_app_by-bytes?wired=true
     Apps                          []string                   `json:"apps,omitempty"`
     // 0 means unlimited
     ClientLimitDown               *int                       `json:"client_limit_down,omitempty"`

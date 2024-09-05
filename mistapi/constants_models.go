@@ -20,6 +20,49 @@ func NewConstantsModels(baseController baseController) *ConstantsModels {
     return &constantsModels
 }
 
+// GetGatewayDefaultConfig takes context, model, ha as parameters and
+// returns an models.ApiResponse with interface{} data and
+// an error if there was an issue with the request or response.
+// Generate Default Gateway Config
+func (c *ConstantsModels) GetGatewayDefaultConfig(
+    ctx context.Context,
+    model string,
+    ha *string) (
+    models.ApiResponse[interface{}],
+    error) {
+    req := c.prepareRequest(ctx, "GET", "/api/v1/const/default_gateway_config")
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.QueryParam("model", model)
+    if ha != nil {
+        req.QueryParam("ha", *ha)
+    }
+    var result interface{}
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[interface{}](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
 // ListDeviceModels takes context as parameters and
 // returns an models.ApiResponse with []models.ConstDeviceModel data and
 // an error if there was an issue with the request or response.

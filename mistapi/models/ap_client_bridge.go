@@ -8,8 +8,8 @@ import (
 type ApClientBridge struct {
     Auth                 *ApClientBridgeAuth `json:"auth,omitempty"`
     // when acted as client bridge:
-    //   * only 5G radio can be used
-    //   * will not serve as AP on any radios
+    // * only 5G radio can be used
+    // * will not serve as AP on any radios
     Enabled              *bool               `json:"enabled,omitempty"`
     Ssid                 *string             `json:"ssid,omitempty"`
     AdditionalProperties map[string]any      `json:"_"`

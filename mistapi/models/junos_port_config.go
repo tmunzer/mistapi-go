@@ -33,7 +33,7 @@ type JunosPortConfig struct {
     PoeDisabled          *bool                      `json:"poe_disabled,omitempty"`
     // enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `auto`
     Speed                *JunosPortConfigSpeedEnum  `json:"speed,omitempty"`
-    // port usage name. 
+    // port usage name.
     // If EVPN is used, use `evpn_uplink`or `evpn_downlink`
     Usage                string                     `json:"usage"`
     AdditionalProperties map[string]any             `json:"_"`

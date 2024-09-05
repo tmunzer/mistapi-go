@@ -7,7 +7,7 @@ import (
 // WlanAppLimit represents a WlanAppLimit struct.
 // bandwidth limiting for apps (applies to up/down)
 type WlanAppLimit struct {
-    // Map from app key to bandwidth in kbps. 
+    // Map from app key to bandwidth in kbps.
     // Property key is the app key, defined in Get Application List
     Apps                 map[string]int `json:"apps,omitempty"`
     Enabled              *bool          `json:"enabled,omitempty"`

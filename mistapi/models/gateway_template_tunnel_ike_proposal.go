@@ -9,16 +9,16 @@ type GatewayTemplateTunnelIkeProposal struct {
     // enum: `md5`, `sha1`, `sha2`
     AuthAlgo             *TunnelConfigsAuthAlgoEnum           `json:"auth_algo,omitempty"`
     // enum:
-    //   * 1
-    //   * 2 (1024-bit)
-    //   * 5
-    //   * 14 (default, 2048-bit)
-    //   * 15 (3072-bit)
-    //   * 16 (4096-bit)
-    //   * 19 (256-bit ECP)
-    //   * 20 (384-bit ECP)
-    //   * 21 (521-bit ECP)
-    //   * 24 (2048-bit ECP)
+    // * 1
+    // * 2 (1024-bit)
+    // * 5
+    // * 14 (default, 2048-bit)
+    // * 15 (3072-bit)
+    // * 16 (4096-bit)
+    // * 19 (256-bit ECP)
+    // * 20 (384-bit ECP)
+    // * 21 (521-bit ECP)
+    // * 24 (2048-bit ECP)
     DhGroup              *GatewayTemplateTunnelIkeDhGroupEnum `json:"dh_group,omitempty"`
     // enum: `3des`, `aes128`, `aes256`, `aes_gcm128`, `aes_gcm256`
     EncAlgo              Optional[TunnelConfigsEncAlgoEnum]   `json:"enc_algo"`

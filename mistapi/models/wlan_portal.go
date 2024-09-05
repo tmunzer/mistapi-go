@@ -130,6 +130,9 @@ type WlanPortal struct {
     SponsorNotifyAll            *bool                          `json:"sponsor_notify_all,omitempty"`
     // if enabled, guest will get email about sponsor's action (approve/deny)
     SponsorStatusNotify         *bool                          `json:"sponsor_status_notify,omitempty"`
+    // object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty.
+    // Property key is the sponsor email, Property value is the sponsor name
+    // List of email allowed for backward compatibility
     Sponsors                    *WlanPortalSponsors            `json:"sponsors,omitempty"`
     // default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
     SsoDefaultRole              *string                        `json:"sso_default_role,omitempty"`

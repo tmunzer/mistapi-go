@@ -18,8 +18,8 @@ type MxedgeUpgradeMulti struct {
     // list of mxedge IDs to upgrade. If not specified, it means all the org mxedges.
     MxedgeIds            []uuid.UUID                        `json:"mxedge_ids"`
     // enum:
-    //   * `big_bang`: upgrade all at once
-    //   * `serial`: one at a time. enum: `big_bang`, `serial`'
+    // * `big_bang`: upgrade all at once
+    // * `serial`: one at a time. enum: `big_bang`, `serial`'
     Strategy             *MxedgeUpgradeStrategyEnum         `json:"strategy,omitempty"`
     // version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nignored if distro upgrade
     Versions             *MxedgeUpgradeVersion              `json:"versions,omitempty"`

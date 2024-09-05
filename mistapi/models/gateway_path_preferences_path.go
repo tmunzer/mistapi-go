@@ -13,9 +13,9 @@ type GatewayPathPreferencesPath struct {
     GatewayIp            *string              `json:"gateway_ip,omitempty"`
     // only if `type`==`vpn`, if this vpn path can be used for internet
     InternetAccess       *bool                `json:"internet_access,omitempty"`
-    // required when 
-    //   * `type`==`vpn`: the name of the VPN Path to use 
-    //   * `type`==`wan`: the name of the WAN interface to use'
+    // required when
+    // * `type`==`vpn`: the name of the VPN Path to use
+    // * `type`==`wan`: the name of the WAN interface to use'
     Name                 *string              `json:"name,omitempty"`
     // required when `type`==`local`
     Networks             []string             `json:"networks,omitempty"`

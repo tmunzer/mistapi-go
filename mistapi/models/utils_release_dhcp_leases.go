@@ -8,15 +8,15 @@ import (
 
 // UtilsReleaseDhcpLeases represents a UtilsReleaseDhcpLeases struct.
 // Note: 
-//   * valid combinations for Junos: 
-//     * `port_id` 
-//     * `macs` + `network`
-//   * valid combinations for SSR: 
-//     * `port_id` 
-//     * `macs` + `network`
-//     * `port_id` + `network`
-//     * `network`
-//   * if network or port_id is specified and macs is empty, it means all clients under network or port_id
+// * valid combinations for Junos: 
+// * `port_id` 
+// * `macs` + `network`
+// * valid combinations for SSR: 
+// * `port_id` 
+// * `macs` + `network`
+// * `port_id` + `network`
+// * `network`
+// * if network or port_id is specified and macs is empty, it means all clients under network or port_id
 type UtilsReleaseDhcpLeases struct {
     // A list of client macs to be released
     Mac                  []string       `json:"mac,omitempty"`

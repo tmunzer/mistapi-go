@@ -17,10 +17,16 @@
 {
   "portal_template": {
     "accessCodeAlternateEmail": "accessCodeAlternateEmail4",
-    "alignment": "alignment0",
+    "alignment": "right",
+    "ar": {
+      "authButtonAzure": "authButtonAzure4",
+      "authButtonEmail": "authButtonEmail2",
+      "authButtonFacebook": "authButtonFacebook6",
+      "authButtonGoogle": "authButtonGoogle2",
+      "authButtonMicrosoft": "authButtonMicrosoft0"
+    },
     "authButtonAmazon": "authButtonAmazon4",
     "authButtonAzure": "authButtonAzure4",
-    "authButtonEmail": "authButtonEmail2",
     "pageTitle": "pageTitle0"
   }
 }

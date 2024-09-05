@@ -6,7 +6,7 @@ import (
 
 // AutoPlacement represents a AutoPlacement struct.
 type AutoPlacement struct {
-    // * If `force_collection`==`false`: the API Iattempts to start localization with existing data. 
+    // * If `force_collection`==`false`: the API Iattempts to start localization with existing data.
     // * If `force_collection`==`true`: maintenance the API attempts to start orchestration.
     ForceCollection      *bool          `json:"force_collection,omitempty"`
     // list of device macs

@@ -18,9 +18,9 @@ type TunnelConfigs struct {
     // Only if  `provider`== `custom-ipsec`
     IpsecProposals       []GatewayTemplateTunnelIpsecProposal `json:"ipsec_proposals,omitempty"`
     // Only if:
-    //   * `provider`== `zscaler-ipsec`
-    //   * `provider`==`jse-ipsec`
-    //   * `provider`== `custom-ipsec`
+    // * `provider`== `zscaler-ipsec`
+    // * `provider`==`jse-ipsec`
+    // * `provider`== `custom-ipsec`
     LocalId              *string                              `json:"local_id,omitempty"`
     // enum: `active-active`, `active-standby`
     Mode                 *GatewayTemplateTunnelModeEnum       `json:"mode,omitempty"`
@@ -34,9 +34,9 @@ type TunnelConfigs struct {
     // enum: `custom-ipsec`, `customer-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec`
     Provider             *TunnelProviderOptionsNameEnum       `json:"provider,omitempty"`
     // Only if:
-    //   * `provider`== `zscaler-ipsec`
-    //   * `provider`==`jse-ipsec`
-    //   * `provider`== `custom-ipsec`
+    // * `provider`== `zscaler-ipsec`
+    // * `provider`==`jse-ipsec`
+    // * `provider`== `custom-ipsec`
     Psk                  *string                              `json:"psk,omitempty"`
     Secondary            *GatewayTemplateTunnelNode           `json:"secondary,omitempty"`
     // Only if `provider`== `custom-gre` or `provider`== `custom-ipsec`. enum: `1`, `2`

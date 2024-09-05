@@ -220,7 +220,6 @@ func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
 // an error if there was an issue with the request or response.
 // DNS resolutions are performed on the Device.
 // The output will be available through websocket. As there can be multiple command issued against the same SSR at the same time and the output all goes through the same websocket stream, `session` is used for demux.
-// 
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json

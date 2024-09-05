@@ -230,7 +230,6 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | ConstantsDefinitions() | Gets ConstantsDefinitions |
 | ConstantsEvents() | Gets ConstantsEvents |
 | ConstantsModels() | Gets ConstantsModels |
-| ConstantsMisc() | Gets ConstantsMisc |
 | SelfAccount() | Gets SelfAccount |
 | SelfAPIToken() | Gets SelfAPIToken |
 | SelfOAuth2() | Gets SelfOAuth2 |

@@ -9,8 +9,8 @@ import (
 type BgpConfig struct {
     AuthKey                *string                       `json:"auth_key,omitempty"`
     // when bfd_multiplier is configured alone. Default:
-    //   * 1000 if `type`==`external`
-    //   * 350 `type`==`internal`
+    // * 1000 if `type`==`external`
+    // * 350 `type`==`internal`
     BfdMinimumInterval     Optional[int]                 `json:"bfd_minimum_interval"`
     // when bfd_minimum_interval_is_configured alone
     BfdMultiplier          Optional[int]                 `json:"bfd_multiplier"`

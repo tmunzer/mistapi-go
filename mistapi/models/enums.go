@@ -954,16 +954,16 @@ const (
 
 // GatewayTemplateTunnelIkeDhGroupEnum is a string enum.
 // enum:
-//   * 1
-//   * 2 (1024-bit)
-//   * 5
-//   * 14 (default, 2048-bit)
-//   * 15 (3072-bit)
-//   * 16 (4096-bit)
-//   * 19 (256-bit ECP)
-//   * 20 (384-bit ECP)
-//   * 21 (521-bit ECP)
-//   * 24 (2048-bit ECP)
+// * 1
+// * 2 (1024-bit)
+// * 5
+// * 14 (default, 2048-bit)
+// * 15 (3072-bit)
+// * 16 (4096-bit)
+// * 19 (256-bit ECP)
+// * 20 (384-bit ECP)
+// * 21 (521-bit ECP)
+// * 24 (2048-bit ECP)
 type GatewayTemplateTunnelIkeDhGroupEnum string
 
 const (
@@ -1076,9 +1076,9 @@ const (
 
 // IdpProfileActionEnum is a string enum.
 // enum:
-//   * alert (default)
-//   * drop: siliently dropping packets
-//   * close: notify client/server to close connection
+// * alert (default)
+// * drop: siliently dropping packets
+// * close: notify client/server to close connection
 type IdpProfileActionEnum string
 
 const (
@@ -1130,11 +1130,11 @@ const (
 
 // InventoryUpdateOperationEnum is a string enum.
 // enum:
-//   * `upgrade_to_mist`: Upgrade to mist-managed
-//   * `downgrade_to_jsi`: Downgrade to basic monitoring. When downgrading a VC member to jsi, we will move the cloud connection of the VC to jsi-terminator and keep all VC device/inventories intact for pain-free upgrading back to mist.
-//   * `assign`: Assign inventory to a site
-//   * `unassign`: Unassign inventory from a site
-//   * `delete`: Delete multiple inventory from org. If the device is already assigned to a site, it will be unassigned
+// * `upgrade_to_mist`: Upgrade to mist-managed
+// * `downgrade_to_jsi`: Downgrade to basic monitoring. When downgrading a VC member to jsi, we will move the cloud connection of the VC to jsi-terminator and keep all VC device/inventories intact for pain-free upgrading back to mist.
+// * `assign`: Assign inventory to a site
+// * `unassign`: Unassign inventory from a site
+// * `delete`: Delete multiple inventory from org. If the device is already assigned to a site, it will be unassigned
 type InventoryUpdateOperationEnum string
 
 const (
@@ -1434,9 +1434,9 @@ const (
 
 // MxclusterTuntermHostsSelectionEnum is a string enum.
 // Ordering of tunterm_hosts for mxedge within the same mxcluster. enum:
-//   * `shuffle`: the ordering of tunterm_hosts is randomized by the device''s MAC
-//   * `shuffle-by-site`: shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels)
-//   * `ordered`: order decided by tunterm_hosts_order
+// * `shuffle`: the ordering of tunterm_hosts is randomized by the device''s MAC
+// * `shuffle-by-site`: shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels)
+// * `ordered`: order decided by tunterm_hosts_order
 type MxclusterTuntermHostsSelectionEnum string
 
 const (
@@ -1526,8 +1526,8 @@ const (
 
 // MxedgeUpgradeStrategyEnum is a string enum.
 // enum:
-//   * `big_bang`: upgrade all at once
-//   * `serial`: one at a time. enum: `big_bang`, `serial`'
+// * `big_bang`: upgrade all at once
+// * `serial`: one at a time. enum: `big_bang`, `serial`'
 type MxedgeUpgradeStrategyEnum string
 
 const (
@@ -3431,8 +3431,8 @@ const (
 
 // SsrUpgradeStrategyEnum is a string enum.
 // enum:
-//   * `big_bang`: upgrade all at once
-//   * `serial`: one at a time
+// * `big_bang`: upgrade all at once
+// * `serial`: one at a time
 type SsrUpgradeStrategyEnum string
 
 const (
@@ -3693,10 +3693,10 @@ const (
 
 // TicketStatusEnum is a string enum.
 // Ticket status. enum: 
-//   * open: ticket is open, Mist is working on it
-//   * pending: ticket is open and Requester attention is needed (e.g. Mist is asking for some more information)
-//   * solved: ticket is marked as solved / considered by Mist (requester can update it, causing it to re-open; or rate it)
-//   * closed: ticket is archived and cannot be changed.
+// * open: ticket is open, Mist is working on it
+// * pending: ticket is open and Requester attention is needed (e.g. Mist is asking for some more information)
+// * solved: ticket is marked as solved / considered by Mist (requester can update it, causing it to re-open; or rate it)
+// * closed: ticket is archived and cannot be changed.
 type TicketStatusEnum string
 
 const (
@@ -3739,16 +3739,16 @@ const (
 
 // TunnelConfigsDhGroupEnum is a string enum.
 // Only if `provider`== `custom-ipsec`. enum:
-//   * 1
-//   * 2 (1024-bit)
-//   * 5
-//   * 14 (default, 2048-bit)
-//   * 15 (3072-bit)
-//   * 16 (4096-bit)
-//   * 19 (256-bit ECP)
-//   * 20 (384-bit ECP)
-//   * 21 (521-bit ECP)
-//   * 24 (2048-bit ECP)
+// * 1
+// * 2 (1024-bit)
+// * 5
+// * 14 (default, 2048-bit)
+// * 15 (3072-bit)
+// * 16 (4096-bit)
+// * 19 (256-bit ECP)
+// * 20 (384-bit ECP)
+// * 21 (521-bit ECP)
+// * 24 (2048-bit ECP)
 type TunnelConfigsDhGroupEnum string
 
 const (

@@ -18,8 +18,8 @@ type WlanDynamicVlan struct {
     // standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco). enum: `airespace-interface-name`, `standard`
     Type                 *WlanDynamicVlanTypeEnum                `json:"type,omitempty"`
     // map between vlan_id (as string) to airespace interface names (comma-separated) or null for stndard mapping
-    //   * if `dynamic_vlan.type`==`standard`, property key is the Vlan ID and property value is \"\"
-    //   * if `dynamic_vlan.type`==`airespace-interface-name`, property key is the Vlan ID and property value is the Airespace Interface Name
+    // * if `dynamic_vlan.type`==`standard`, property key is the Vlan ID and property value is \"\"
+    // * if `dynamic_vlan.type`==`airespace-interface-name`, property key is the Vlan ID and property value is the Airespace Interface Name
     Vlans                map[string]string                       `json:"vlans,omitempty"`
     AdditionalProperties map[string]any                          `json:"_"`
 }

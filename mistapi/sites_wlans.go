@@ -359,7 +359,7 @@ func (s *SitesWlans) UploadSiteWlanPortalImage(
 }
 
 // UpdateSiteWlanPortalTemplate takes context, siteId, wlanId, body as parameters and
-// returns an models.ApiResponse with models.PortalTemplate data and
+// returns an models.ApiResponse with models.WlanPortalTemplate data and
 // an error if there was an issue with the request or response.
 // Update a Portal Template
 // #### Sponsor Email Template
@@ -380,7 +380,7 @@ func (s *SitesWlans) UpdateSiteWlanPortalTemplate(
     siteId uuid.UUID,
     wlanId uuid.UUID,
     body *models.WlanPortalTemplate) (
-    models.ApiResponse[models.PortalTemplate],
+    models.ApiResponse[models.WlanPortalTemplate],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -410,12 +410,12 @@ func (s *SitesWlans) UpdateSiteWlanPortalTemplate(
         req.Json(body)
     }
     
-    var result models.PortalTemplate
+    var result models.WlanPortalTemplate
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.PortalTemplate](decoder)
+    result, err = utilities.DecodeResults[models.WlanPortalTemplate](decoder)
     return models.NewApiResponse(result, resp), err
 }

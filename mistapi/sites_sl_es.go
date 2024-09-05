@@ -189,7 +189,6 @@ func (s *SitesSLEs) GetSiteSleHistogram(
 // returns an models.ApiResponse with models.SleImpactSummary data and
 // an error if there was an issue with the request or response.
 // Get impact summary counts optionally filtered by classifier and failure type
-// 
 // * Wireless SLE Fields: `wlan`, `device_type`, `device_os` ,`band`, `ap`, `server`, `mxedge`
 // * Wired SLE Fields: `switch`, `client`, `vlan`, `interface`, `chassis`
 // * WAN SLE Fields: `gateway`, `client`, `interface`, `chassis`, `peer_path`, `gateway_zones`

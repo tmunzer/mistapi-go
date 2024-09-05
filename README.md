@@ -141,7 +141,6 @@ This API uses the following authentication schemes.
 * [Admins Recover Password](doc/controllers/admins-recover-password.md)
 * [Constants Definitions](doc/controllers/constants-definitions.md)
 * [Constants Events](doc/controllers/constants-events.md)
-* [Constants Misc](doc/controllers/constants-misc.md)
 * [Constants Models](doc/controllers/constants-models.md)
 * [Installer](doc/controllers/installer.md)
 * [MS Ps](doc/controllers/ms-ps.md)

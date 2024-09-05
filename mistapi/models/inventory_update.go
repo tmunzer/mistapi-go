@@ -18,11 +18,11 @@ type InventoryUpdate struct {
     // if `op`==`assign`, if true, treat site assignment against an already assigned AP as error
     NoReassign           *bool                        `json:"no_reassign,omitempty"`
     // enum:
-    //   * `upgrade_to_mist`: Upgrade to mist-managed
-    //   * `downgrade_to_jsi`: Downgrade to basic monitoring. When downgrading a VC member to jsi, we will move the cloud connection of the VC to jsi-terminator and keep all VC device/inventories intact for pain-free upgrading back to mist.
-    //   * `assign`: Assign inventory to a site
-    //   * `unassign`: Unassign inventory from a site
-    //   * `delete`: Delete multiple inventory from org. If the device is already assigned to a site, it will be unassigned
+    // * `upgrade_to_mist`: Upgrade to mist-managed
+    // * `downgrade_to_jsi`: Downgrade to basic monitoring. When downgrading a VC member to jsi, we will move the cloud connection of the VC to jsi-terminator and keep all VC device/inventories intact for pain-free upgrading back to mist.
+    // * `assign`: Assign inventory to a site
+    // * `unassign`: Unassign inventory from a site
+    // * `delete`: Delete multiple inventory from org. If the device is already assigned to a site, it will be unassigned
     Op                   InventoryUpdateOperationEnum `json:"op"`
     // if `op`==`delete`, list of serial numbers, e.g. ["FXLH2015150025"]
     Serials              []string                     `json:"serials,omitempty"`

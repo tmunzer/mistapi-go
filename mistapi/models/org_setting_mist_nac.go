@@ -27,8 +27,8 @@ type OrgSettingMistNac struct {
     ServerCert                *OrgSettingMistNacServerCert    `json:"server_cert,omitempty"`
     // by default NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4. enum: `v4`, `v6`
     UseIpVersion              *OrgSettingMistNacIpVersionEnum `json:"use_ip_version,omitempty"`
-    // By default NAS devices (switches/aps) and proxies(mxedge) are configured to use port TCP2083(radsec) to reach mist-nac. 
-    // Set `use_ssl_port`==`true` to override that port with TCP43 (ssl), 
+    // By default NAS devices (switches/aps) and proxies(mxedge) are configured to use port TCP2083(radsec) to reach mist-nac.
+    // Set `use_ssl_port`==`true` to override that port with TCP43 (ssl),
     // This is a org level setting that is applicable to wlans, switch_templates, and mxedge_clusters that have mist-nac enabled
     UseSslPort                *bool                           `json:"use_ssl_port,omitempty"`
     AdditionalProperties      map[string]any                  `json:"_"`

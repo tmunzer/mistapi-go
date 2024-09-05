@@ -14,7 +14,7 @@ type ProtectRe struct {
     Custom               []ProtectReCustom `json:"custom,omitempty"`
     // when enabled, all traffic that is not essential to our operation will be dropped
     // e.g. ntp / dns / traffic to mist will be allowed by default
-    //      if dhcpd is enabled, we'll make sure it works
+    // if dhcpd is enabled, we'll make sure it works
     Enabled              *bool             `json:"enabled,omitempty"`
     // host/subnets we'll allow traffic to/from
     TrustedHosts         []string          `json:"trusted_hosts,omitempty"`

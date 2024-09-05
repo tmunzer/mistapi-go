@@ -22,7 +22,7 @@ type SwitchMgmt struct {
     MxedgeProxyHost      *string                                  `json:"mxedge_proxy_host,omitempty"`
     MxedgeProxyPort      *int                                     `json:"mxedge_proxy_port,omitempty"`
     // restrict inbound-traffic to host
-    // when enabled, all traffic that is not essential to our operation will be dropped 
+    // when enabled, all traffic that is not essential to our operation will be dropped
     // e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works
     ProtectRe            *ProtectRe                               `json:"protect_re,omitempty"`
     // by default, `radius_config` will be used. if a different one has to be used set `use_different_radius

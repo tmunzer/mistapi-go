@@ -26,7 +26,7 @@ type DhcpdConfigProperty struct {
     LeaseTime            *int                               `json:"lease_time,omitempty"`
     // Property key is the DHCP option number
     Options              map[string]DhcpdConfigOption       `json:"options,omitempty"`
-    // `server_id_override`==`true` means the device, when acts as DHCP relay and forwards DHCP responses from DHCP server to clients, 
+    // `server_id_override`==`true` means the device, when acts as DHCP relay and forwards DHCP responses from DHCP server to clients,
     // should overwrite the Sever Identifier option (i.e. DHCP option 54) in DHCP responses with its own IP address.
     ServerIdOverride     *bool                              `json:"server_id_override,omitempty"`
     // if `type`==`relay`
@@ -38,8 +38,8 @@ type DhcpdConfigProperty struct {
     // enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)
     Type6                *DhcpdConfigTypeEnum               `json:"type6,omitempty"`
     // Property key is <enterprise number>:<sub option code>, with
-    //   * enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)
-    //   * sub option code: 1-255, sub-option code'
+    // * enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)
+    // * sub option code: 1-255, sub-option code'
     VendorEncapulated    map[string]DhcpdConfigVendorOption `json:"vendor_encapulated,omitempty"`
     AdditionalProperties map[string]any                     `json:"_"`
 }

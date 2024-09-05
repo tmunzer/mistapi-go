@@ -7,12 +7,12 @@ import (
 // WlanMistNac represents a WlanMistNac struct.
 type WlanMistNac struct {
     // when enabled:
-    //   * `auth_servers` is ignored
-    //   * `acct_servers` is ignored
-    //   * `auth_servers_*` are ignored
-    //   * `coa_servers` is ignored
-    //   * `radsec` is ignored
-    //   * `coa_enabled` is assumed'
+    // * `auth_servers` is ignored
+    // * `acct_servers` is ignored
+    // * `auth_servers_*` are ignored
+    // * `coa_servers` is ignored
+    // * `radsec` is ignored
+    // * `coa_enabled` is assumed'
     Enabled              *bool          `json:"enabled,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }

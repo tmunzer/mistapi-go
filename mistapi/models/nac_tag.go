@@ -20,20 +20,20 @@ type NacTag struct {
     // if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `client_mac`, `idp_role`, `mdm_status`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
     Match                *NacTagMatchEnum        `json:"match,omitempty"`
     // This field is applicable only when `type`==`match`
-    //   * `false`: means it is sufficient to match any of the values (i.e., match-any behavior)
-    //   * `true`: means all values should be matched (i.e., match-all behavior)
+    // * `false`: means it is sufficient to match any of the values (i.e., match-any behavior)
+    // * `true`: means all values should be matched (i.e., match-all behavior)
     // Currently it makes sense to set this field to `true` only if the `match`==`idp_role` or `match`==`usermac_label`'
     MatchAll             *bool                   `json:"match_all,omitempty"`
     ModifiedTime         *float64                `json:"modified_time,omitempty"`
     Name                 string                  `json:"name"`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
-    // if `type`==`radius_attrs`, user can specify a list of one or more standard attributes in the field "radius_attrs". 
+    // if `type`==`radius_attrs`, user can specify a list of one or more standard attributes in the field "radius_attrs".
     // It is the responsibility of the user to provide a syntactically correct string, otherwise it may not work as expected.
     // Note that it is allowed to have more than one radius_attrs in the result of a given rule.
     RadiusAttrs          []string                `json:"radius_attrs,omitempty"`
     // if `type`==`radius_group`
     RadiusGroup          *string                 `json:"radius_group,omitempty"`
-    // if `type`==`radius_vendor_attrs`, user can specify a list of one or more vendor-specific attributes in the field "radius_vendor_attrs". 
+    // if `type`==`radius_vendor_attrs`, user can specify a list of one or more vendor-specific attributes in the field "radius_vendor_attrs".
     // It is the responsibility of the user to provide a syntactically correct string, otherwise it may not work as expected.
     // Note that it is allowed to have more than one radius_vendor_attrs in the result of a given rule.
     RadiusVendorAttrs    []string                `json:"radius_vendor_attrs,omitempty"`

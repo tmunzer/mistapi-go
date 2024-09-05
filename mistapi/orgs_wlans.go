@@ -341,7 +341,7 @@ func (o *OrgsWlans) UploadOrgWlanPortalImage(
 }
 
 // UpdateOrgWlanPortalTemplate takes context, orgId, wlanId, body as parameters and
-// returns an models.ApiResponse with models.PortalTemplate data and
+// returns an models.ApiResponse with models.WlanPortalTemplate data and
 // an error if there was an issue with the request or response.
 // Update a Portal Template
 // #### Sponsor Email Template
@@ -362,7 +362,7 @@ func (o *OrgsWlans) UpdateOrgWlanPortalTemplate(
     orgId uuid.UUID,
     wlanId uuid.UUID,
     body *models.WlanPortalTemplate) (
-    models.ApiResponse[models.PortalTemplate],
+    models.ApiResponse[models.WlanPortalTemplate],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -392,12 +392,12 @@ func (o *OrgsWlans) UpdateOrgWlanPortalTemplate(
         req.Json(body)
     }
     
-    var result models.PortalTemplate
+    var result models.WlanPortalTemplate
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.PortalTemplate](decoder)
+    result, err = utilities.DecodeResults[models.WlanPortalTemplate](decoder)
     return models.NewApiResponse(result, resp), err
 }

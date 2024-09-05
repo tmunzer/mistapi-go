@@ -29,8 +29,8 @@ type ApPortConfig struct {
     // Radsec settings
     Radsec               *Radsec                          `json:"radsec,omitempty"`
     // optional to specify the vlan id for a tunnel if forwarding is for `wxtunnel`, `mxtunnel` or `site_mxedge`.
-    //   * if vlan_id is not specified then it will use first one in vlan_ids[] of the mxtunnel.
-    //   * if forwarding == site_mxedge, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
+    // * if vlan_id is not specified then it will use first one in vlan_ids[] of the mxtunnel.
+    // * if forwarding == site_mxedge, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
     VlanId               *int                             `json:"vlan_id,omitempty"`
     // if `forwrding`==`limited`
     VlandIds             []int                            `json:"vland_ids,omitempty"`
