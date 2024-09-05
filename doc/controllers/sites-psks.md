@@ -282,8 +282,8 @@ ListSitePsks(
     ssid *string,
     role *string,
     name *string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.Psk],
     error)
 ```
@@ -296,8 +296,8 @@ ListSitePsks(
 | `ssid` | `*string` | Query, Optional | - |
 | `role` | `*string` | Query, Optional | - |
 | `name` | `*string` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -316,11 +316,11 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-page := 1
-
 limit := 100
 
-apiResponse, err := sitesPsks.ListSitePsks(ctx, siteId, nil, nil, nil, &page, &limit)
+page := 1
+
+apiResponse, err := sitesPsks.ListSitePsks(ctx, siteId, nil, nil, nil, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -303,8 +303,8 @@ SearchOrgUserMacs(
     orgId uuid.UUID,
     mac *string,
     labels []string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[models.UserMacsSearch],
     error)
 ```
@@ -316,8 +316,8 @@ SearchOrgUserMacs(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | mac address |
 | `labels` | `[]string` | Query, Optional | optional, array of strings of labels |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -334,11 +334,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-page := 1
-
 limit := 100
 
-apiResponse, err := orgsUserMACs.SearchOrgUserMacs(ctx, orgId, nil, nil, &page, &limit)
+page := 1
+
+apiResponse, err := orgsUserMACs.SearchOrgUserMacs(ctx, orgId, nil, nil, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

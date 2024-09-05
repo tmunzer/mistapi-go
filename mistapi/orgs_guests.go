@@ -62,7 +62,7 @@ func (o *OrgsGuests) ListOrgGuestAuthorizations(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgGuestAuthorizations takes context, orgId, distinct, page, limit, start, end, duration as parameters and
+// CountOrgGuestAuthorizations takes context, orgId, distinct, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count Org Authorized Guest
@@ -70,11 +70,11 @@ func (o *OrgsGuests) CountOrgGuestAuthorizations(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgGuestsCountDistinctEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := o.prepareRequest(
@@ -103,12 +103,6 @@ func (o *OrgsGuests) CountOrgGuestAuthorizations(
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -117,6 +111,12 @@ func (o *OrgsGuests) CountOrgGuestAuthorizations(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount

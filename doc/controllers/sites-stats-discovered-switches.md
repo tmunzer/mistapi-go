@@ -25,11 +25,11 @@ CountSiteDiscoveredSwitches(
     ctx context.Context,
     siteId uuid.UUID,
     distinct *models.SiteDiscoveredSwitchesCountDistinctEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error)
 ```
@@ -40,11 +40,11 @@ CountSiteDiscoveredSwitches(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteDiscoveredSwitchesCountDistinctEnum`](../../doc/models/site-discovered-switches-count-distinct-enum.md) | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -59,17 +59,17 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteDiscoveredSwitchesCountDistinctEnum("system_name")
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesStatsDiscoveredSwitches.CountSiteDiscoveredSwitches(ctx, siteId, &distinct, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesStatsDiscoveredSwitches.CountSiteDiscoveredSwitches(ctx, siteId, &distinct, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

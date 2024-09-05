@@ -30,11 +30,11 @@ CountSiteWanUsage(
     tenant *string,
     pathType *string,
     distinct *models.WanUsagesCountDisctinctEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error)
 ```
@@ -52,11 +52,11 @@ CountSiteWanUsage(
 | `tenant` | `*string` | Query, Optional | tenant network in which the packet is sent |
 | `pathType` | `*string` | Query, Optional | path_type of the port |
 | `distinct` | [`*models.WanUsagesCountDisctinctEnum`](../../doc/models/wan-usages-count-disctinct-enum.md) | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -85,17 +85,17 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.WanUsagesCountDisctinctEnum("policy")
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesWANUsages.CountSiteWanUsage(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, &distinct, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesWANUsages.CountSiteWanUsage(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, &distinct, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -149,11 +149,11 @@ SearchSiteWanUsage(
     policy *string,
     tenant *string,
     pathType *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.SearchWanUsage],
     error)
 ```
@@ -170,11 +170,11 @@ SearchSiteWanUsage(
 | `policy` | `*string` | Query, Optional | policy for the wan path |
 | `tenant` | `*string` | Query, Optional | tenant network in which the packet is sent |
 | `pathType` | `*string` | Query, Optional | path_type of the port |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -201,17 +201,17 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesWANUsages.SearchSiteWanUsage(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesWANUsages.SearchSiteWanUsage(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

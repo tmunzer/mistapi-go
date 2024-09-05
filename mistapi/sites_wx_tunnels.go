@@ -23,15 +23,15 @@ func NewSitesWxTunnels(baseController baseController) *SitesWxTunnels {
     return &sitesWxTunnels
 }
 
-// ListSiteWxTunnels takes context, siteId, page, limit as parameters and
+// ListSiteWxTunnels takes context, siteId, limit, page as parameters and
 // returns an models.ApiResponse with []models.WxlanTunnel data and
 // an error if there was an issue with the request or response.
 // Get List of Site WxLan Tunnels
 func (s *SitesWxTunnels) ListSiteWxTunnels(
     ctx context.Context,
     siteId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.WxlanTunnel],
     error) {
     req := s.prepareRequest(
@@ -57,11 +57,11 @@ func (s *SitesWxTunnels) ListSiteWxTunnels(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.WxlanTunnel

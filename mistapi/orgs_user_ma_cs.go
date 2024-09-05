@@ -132,7 +132,7 @@ func (o *OrgsUserMACs) ImportOrgUserMacs(
     return context.Response, err
 }
 
-// SearchOrgUserMacs takes context, orgId, mac, labels, page, limit as parameters and
+// SearchOrgUserMacs takes context, orgId, mac, labels, limit, page as parameters and
 // returns an models.ApiResponse with models.UserMacsSearch data and
 // an error if there was an issue with the request or response.
 // Search Org User MACs
@@ -141,8 +141,8 @@ func (o *OrgsUserMACs) SearchOrgUserMacs(
     orgId uuid.UUID,
     mac *string,
     labels []string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[models.UserMacsSearch],
     error) {
     req := o.prepareRequest(
@@ -174,11 +174,11 @@ func (o *OrgsUserMACs) SearchOrgUserMacs(
     if labels != nil {
         req.QueryParam("labels", labels)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.UserMacsSearch

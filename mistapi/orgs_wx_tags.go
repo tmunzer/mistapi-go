@@ -23,15 +23,15 @@ func NewOrgsWxTags(baseController baseController) *OrgsWxTags {
     return &orgsWxTags
 }
 
-// ListOrgWxTags takes context, orgId, page, limit as parameters and
+// ListOrgWxTags takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.WxlanTag data and
 // an error if there was an issue with the request or response.
 // Get List of Org WxLAN Tags
 func (o *OrgsWxTags) ListOrgWxTags(
     ctx context.Context,
     orgId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.WxlanTag],
     error) {
     req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/wxtags", orgId))
@@ -53,11 +53,11 @@ func (o *OrgsWxTags) ListOrgWxTags(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.WxlanTag

@@ -23,7 +23,7 @@ func NewOrgsDevicesOthers(baseController baseController) *OrgsDevicesOthers {
     return &orgsDevicesOthers
 }
 
-// ListOrgOtherDevices takes context, orgId, vendor, mac, serial, model, name, page, limit as parameters and
+// ListOrgOtherDevices takes context, orgId, vendor, mac, serial, model, name, limit, page as parameters and
 // returns an models.ApiResponse with []models.DeviceOther data and
 // an error if there was an issue with the request or response.
 // Get List of Org other devices (3rd party devices)
@@ -35,8 +35,8 @@ func (o *OrgsDevicesOthers) ListOrgOtherDevices(
     serial *string,
     model *string,
     name *string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.DeviceOther],
     error) {
     req := o.prepareRequest(
@@ -77,11 +77,11 @@ func (o *OrgsDevicesOthers) ListOrgOtherDevices(
     if name != nil {
         req.QueryParam("name", *name)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.DeviceOther

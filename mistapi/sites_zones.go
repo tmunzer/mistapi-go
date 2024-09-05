@@ -23,15 +23,15 @@ func NewSitesZones(baseController baseController) *SitesZones {
     return &sitesZones
 }
 
-// ListSiteZones takes context, siteId, page, limit as parameters and
+// ListSiteZones takes context, siteId, limit, page as parameters and
 // returns an models.ApiResponse with []models.Zone data and
 // an error if there was an issue with the request or response.
 // Get List of Site Zones
 func (s *SitesZones) ListSiteZones(
     ctx context.Context,
     siteId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.Zone],
     error) {
     req := s.prepareRequest(
@@ -57,11 +57,11 @@ func (s *SitesZones) ListSiteZones(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.Zone
@@ -256,7 +256,7 @@ func (s *SitesZones) UpdateSiteZone(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteZoneSessions takes context, siteId, zoneType, distinct, userType, user, scopeId, scope, page, limit, start, end, duration as parameters and
+// CountSiteZoneSessions takes context, siteId, zoneType, distinct, userType, user, scopeId, scope, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count Site Zone Sessions
@@ -269,11 +269,11 @@ func (s *SitesZones) CountSiteZoneSessions(
     user *string,
     scopeId *string,
     scope *models.ZoneScopeEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := s.prepareRequest(
@@ -314,12 +314,6 @@ func (s *SitesZones) CountSiteZoneSessions(
     if scope != nil {
         req.QueryParam("scope", *scope)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -328,6 +322,12 @@ func (s *SitesZones) CountSiteZoneSessions(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount
@@ -340,7 +340,7 @@ func (s *SitesZones) CountSiteZoneSessions(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteZoneSessions takes context, siteId, zoneType, userType, user, scopeId, scope, page, limit, start, end, duration as parameters and
+// SearchSiteZoneSessions takes context, siteId, zoneType, userType, user, scopeId, scope, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseZoneSearch data and
 // an error if there was an issue with the request or response.
 // Search Zone Sessions
@@ -352,11 +352,11 @@ func (s *SitesZones) SearchSiteZoneSessions(
     user *string,
     scopeId *string,
     scope *models.VisitsScopeEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponseZoneSearch],
     error) {
     req := s.prepareRequest(
@@ -394,12 +394,6 @@ func (s *SitesZones) SearchSiteZoneSessions(
     if scope != nil {
         req.QueryParam("scope", *scope)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -408,6 +402,12 @@ func (s *SitesZones) SearchSiteZoneSessions(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.ResponseZoneSearch

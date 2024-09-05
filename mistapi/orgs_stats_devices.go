@@ -22,7 +22,7 @@ func NewOrgsStatsDevices(baseController baseController) *OrgsStatsDevices {
     return &orgsStatsDevices
 }
 
-// ListOrgDevicesStats takes context, orgId, mType, status, siteId, mac, evpntopoId, evpnUnused, fields, page, limit, start, end, duration as parameters and
+// ListOrgDevicesStats takes context, orgId, mType, status, siteId, mac, evpntopoId, evpnUnused, fields, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with []models.StatsDevice data and
 // an error if there was an issue with the request or response.
 // Get List of Org Devices stats
@@ -37,11 +37,11 @@ func (o *OrgsStatsDevices) ListOrgDevicesStats(
     evpntopoId *string,
     evpnUnused *string,
     fields *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.StatsDevice],
     error) {
     req := o.prepareRequest(
@@ -88,12 +88,6 @@ func (o *OrgsStatsDevices) ListOrgDevicesStats(
     if fields != nil {
         req.QueryParam("fields", *fields)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -102,6 +96,12 @@ func (o *OrgsStatsDevices) ListOrgDevicesStats(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.StatsDevice

@@ -167,7 +167,7 @@ type Wlan struct {
     // Radsec settings
     Radsec                             *Radsec                        `json:"radsec,omitempty"`
     Rateset                            map[string]WlanDatarates       `json:"rateset,omitempty"`
-    // enum: `11r`, `OKC`, `none`
+    // enum: `11r`, `OKC`, `NONE`
     RoamMode                           *WlanRoamModeEnum              `json:"roam_mode,omitempty"`
     // WLAN operating schedule, default is disabled
     Schedule                           *WlanSchedule                  `json:"schedule,omitempty"`

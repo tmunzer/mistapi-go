@@ -23,15 +23,15 @@ func NewSitesAssetFilters(baseController baseController) *SitesAssetFilters {
     return &sitesAssetFilters
 }
 
-// ListSiteAssetFilters takes context, siteId, page, limit as parameters and
+// ListSiteAssetFilters takes context, siteId, limit, page as parameters and
 // returns an models.ApiResponse with []models.AssetFilter data and
 // an error if there was an issue with the request or response.
 // Get List of Site Asset Filters
 func (s *SitesAssetFilters) ListSiteAssetFilters(
     ctx context.Context,
     siteId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.AssetFilter],
     error) {
     req := s.prepareRequest(
@@ -57,11 +57,11 @@ func (s *SitesAssetFilters) ListSiteAssetFilters(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.AssetFilter

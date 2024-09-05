@@ -25,12 +25,12 @@ GetSiteInsightMetrics(
     ctx context.Context,
     siteId uuid.UUID,
     metric string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
     duration *string,
-    interval *string) (
+    interval *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.InsightMetrics],
     error)
 ```
@@ -41,12 +41,12 @@ GetSiteInsightMetrics(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | see /api/v1/const/insight_metrics for available metrics |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -61,10 +61,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 metric := "metric8"
 
-page := 1
-
-limit := 100
-
 
 
 
@@ -73,7 +69,11 @@ duration := "10m"
 
 interval := "10m"
 
-apiResponse, err := sitesInsights.GetSiteInsightMetrics(ctx, siteId, metric, &page, &limit, nil, nil, &duration, &interval)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesInsights.GetSiteInsightMetrics(ctx, siteId, metric, nil, nil, &duration, &interval, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -118,12 +118,12 @@ GetSiteInsightMetricsForClient(
     siteId uuid.UUID,
     clientMac string,
     metric string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
     duration *string,
-    interval *string) (
+    interval *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.InsightMetrics],
     error)
 ```
@@ -135,12 +135,12 @@ GetSiteInsightMetricsForClient(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `clientMac` | `string` | Template, Required | - |
 | `metric` | `string` | Template, Required | see /api/v1/const/insight_metrics for available metrics |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -157,10 +157,6 @@ clientMac := "0000000000ab"
 
 metric := "metric8"
 
-page := 1
-
-limit := 100
-
 
 
 
@@ -169,7 +165,11 @@ duration := "10m"
 
 interval := "10m"
 
-apiResponse, err := sitesInsights.GetSiteInsightMetricsForClient(ctx, siteId, clientMac, metric, &page, &limit, nil, nil, &duration, &interval)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesInsights.GetSiteInsightMetricsForClient(ctx, siteId, clientMac, metric, nil, nil, &duration, &interval, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -214,12 +214,12 @@ GetSiteInsightMetricsForDevice(
     siteId uuid.UUID,
     metric string,
     deviceMac string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
     duration *string,
-    interval *string) (
+    interval *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponseDeviceMetrics],
     error)
 ```
@@ -231,12 +231,12 @@ GetSiteInsightMetricsForDevice(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | see /api/v1/const/insight_metrics for available metrics |
 | `deviceMac` | `string` | Template, Required | - |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -253,10 +253,6 @@ metric := "metric8"
 
 deviceMac := "0000000000ab"
 
-page := 1
-
-limit := 100
-
 
 
 
@@ -265,7 +261,11 @@ duration := "10m"
 
 interval := "10m"
 
-apiResponse, err := sitesInsights.GetSiteInsightMetricsForDevice(ctx, siteId, metric, deviceMac, &page, &limit, nil, nil, &duration, &interval)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesInsights.GetSiteInsightMetricsForDevice(ctx, siteId, metric, deviceMac, nil, nil, &duration, &interval, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

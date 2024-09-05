@@ -33,11 +33,11 @@ CountSiteZoneSessions(
     user *string,
     scopeId *string,
     scope *models.ZoneScopeEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error)
 ```
@@ -53,11 +53,11 @@ CountSiteZoneSessions(
 | `user` | `*string` | Query, Optional | client MAC / Asset MAC / SDK UUID |
 | `scopeId` | `*string` | Query, Optional | if `scope`==`map`/`zone`/`rssizone`, the scope id |
 | `scope` | [`*models.ZoneScopeEnum`](../../doc/models/zone-scope-enum.md) | Query, Optional | scope |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -82,17 +82,17 @@ distinct := models.SiteZoneCountDistinctEnum("scope_id")
 
 scope := models.ZoneScopeEnum("site")
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesZones.CountSiteZoneSessions(ctx, siteId, zoneType, &distinct, nil, nil, nil, &scope, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesZones.CountSiteZoneSessions(ctx, siteId, zoneType, &distinct, nil, nil, nil, &scope, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -347,8 +347,8 @@ Get List of Site Zones
 ListSiteZones(
     ctx context.Context,
     siteId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.Zone],
     error)
 ```
@@ -358,8 +358,8 @@ ListSiteZones(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -372,11 +372,11 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-page := 1
-
 limit := 100
 
-apiResponse, err := sitesZones.ListSiteZones(ctx, siteId, &page, &limit)
+page := 1
+
+apiResponse, err := sitesZones.ListSiteZones(ctx, siteId, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -432,11 +432,11 @@ SearchSiteZoneSessions(
     user *string,
     scopeId *string,
     scope *models.VisitsScopeEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponseZoneSearch],
     error)
 ```
@@ -451,11 +451,11 @@ SearchSiteZoneSessions(
 | `user` | `*string` | Query, Optional | client MAC / Asset MAC / SDK UUID |
 | `scopeId` | `*string` | Query, Optional | if `scope`==`map`/`zone`/`rssizone`, the scope id |
 | `scope` | [`*models.VisitsScopeEnum`](../../doc/models/visits-scope-enum.md) | Query, Optional | scope |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -478,17 +478,17 @@ zoneType := models.ZoneTypeEnum("rssizones")
 
 scope := models.VisitsScopeEnum("site")
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesZones.SearchSiteZoneSessions(ctx, siteId, zoneType, nil, nil, nil, &scope, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesZones.SearchSiteZoneSessions(ctx, siteId, zoneType, nil, nil, nil, &scope, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -236,8 +236,8 @@ ListOrgNacTags(
     mType *string,
     name *string,
     match *string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.NacTag],
     error)
 ```
@@ -250,8 +250,8 @@ ListOrgNacTags(
 | `mType` | `*string` | Query, Optional | Type of NAC Tag |
 | `name` | `*string` | Query, Optional | Name of NAC Tag |
 | `match` | `*string` | Query, Optional | Type of NAC Tag |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -270,11 +270,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-page := 1
-
 limit := 100
 
-apiResponse, err := orgsNACTags.ListOrgNacTags(ctx, orgId, nil, nil, nil, &page, &limit)
+page := 1
+
+apiResponse, err := orgsNACTags.ListOrgNacTags(ctx, orgId, nil, nil, nil, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

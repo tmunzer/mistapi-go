@@ -197,7 +197,7 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgSwitchPorts takes context, orgId, distinct, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, stpState, stpRole, authState, up, page, limit, start, end, duration as parameters and
+// CountOrgSwitchPorts takes context, orgId, distinct, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, stpState, stpRole, authState, up, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Switch/Gateway Ports
@@ -230,11 +230,11 @@ func (o *OrgsStatsPorts) CountOrgSwitchPorts(
     stpRole *models.CountPortsStpRoleEnum,
     authState *models.CountPortsAuthStateEnum,
     up *bool,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := o.prepareRequest(
@@ -338,12 +338,6 @@ func (o *OrgsStatsPorts) CountOrgSwitchPorts(
     if up != nil {
         req.QueryParam("up", *up)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -352,6 +346,12 @@ func (o *OrgsStatsPorts) CountOrgSwitchPorts(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount

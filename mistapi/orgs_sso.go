@@ -23,15 +23,15 @@ func NewOrgsSSO(baseController baseController) *OrgsSSO {
     return &orgsSSO
 }
 
-// ListOrgSsos takes context, orgId, page, limit as parameters and
+// ListOrgSsos takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.Sso data and
 // an error if there was an issue with the request or response.
 // Get List of Org SSO Configuration
 func (o *OrgsSSO) ListOrgSsos(
     ctx context.Context,
     orgId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.Sso],
     error) {
     req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/ssos", orgId))
@@ -53,11 +53,11 @@ func (o *OrgsSSO) ListOrgSsos(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.Sso
@@ -248,7 +248,7 @@ func (o *OrgsSSO) UpdateOrgSso(
     return models.NewApiResponse(result, resp), err
 }
 
-// ListOrgSsoLatestFailures takes context, orgId, ssoId, page, limit, start, end, duration as parameters and
+// ListOrgSsoLatestFailures takes context, orgId, ssoId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseSsoFailureSearch data and
 // an error if there was an issue with the request or response.
 // Get List of Org SSO Latest Failures
@@ -256,11 +256,11 @@ func (o *OrgsSSO) ListOrgSsoLatestFailures(
     ctx context.Context,
     orgId uuid.UUID,
     ssoId uuid.UUID,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponseSsoFailureSearch],
     error) {
     req := o.prepareRequest(
@@ -286,12 +286,6 @@ func (o *OrgsSSO) ListOrgSsoLatestFailures(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -300,6 +294,12 @@ func (o *OrgsSSO) ListOrgSsoLatestFailures(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.ResponseSsoFailureSearch

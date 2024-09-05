@@ -22,7 +22,7 @@ func NewSitesStatsDevices(baseController baseController) *SitesStatsDevices {
     return &sitesStatsDevices
 }
 
-// ListSiteDevicesStats takes context, siteId, mType, status, page, limit as parameters and
+// ListSiteDevicesStats takes context, siteId, mType, status, limit, page as parameters and
 // returns an models.ApiResponse with []models.StatsDevice data and
 // an error if there was an issue with the request or response.
 // Get List of Site Devices Stats
@@ -31,8 +31,8 @@ func (s *SitesStatsDevices) ListSiteDevicesStats(
     siteId uuid.UUID,
     mType *models.DeviceTypeWithAllEnum,
     status *models.StatDeviceStatusFilterEnum,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.StatsDevice],
     error) {
     req := s.prepareRequest(
@@ -64,11 +64,11 @@ func (s *SitesStatsDevices) ListSiteDevicesStats(
     if status != nil {
         req.QueryParam("status", *status)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.StatsDevice

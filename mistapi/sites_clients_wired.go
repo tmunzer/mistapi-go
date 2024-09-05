@@ -22,7 +22,7 @@ func NewSitesClientsWired(baseController baseController) *SitesClientsWired {
     return &sitesClientsWired
 }
 
-// CountSiteWiredClients takes context, siteId, distinct, mac, deviceMac, portId, vlan, page, limit, start, end, duration as parameters and
+// CountSiteWiredClients takes context, siteId, distinct, mac, deviceMac, portId, vlan, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Clients
@@ -34,11 +34,11 @@ func (s *SitesClientsWired) CountSiteWiredClients(
     deviceMac *string,
     portId *string,
     vlan *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := s.prepareRequest(
@@ -79,12 +79,6 @@ func (s *SitesClientsWired) CountSiteWiredClients(
     if vlan != nil {
         req.QueryParam("vlan", *vlan)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -93,6 +87,12 @@ func (s *SitesClientsWired) CountSiteWiredClients(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount

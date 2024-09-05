@@ -50,11 +50,11 @@ CountSiteSwOrGwPorts(
     stpRole *models.CountPortsStpRoleEnum,
     authState *models.CountPortsAuthStateEnum,
     up *bool,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error)
 ```
@@ -90,11 +90,11 @@ CountSiteSwOrGwPorts(
 | `stpRole` | [`*models.CountPortsStpRoleEnum`](../../doc/models/count-ports-stp-role-enum.md) | Query, Optional | if `up`==`true` |
 | `authState` | [`*models.CountPortsAuthStateEnum`](../../doc/models/count-ports-auth-state-enum.md) | Query, Optional | if `up`==`true` && has Authenticator role |
 | `up` | `*bool` | Query, Optional | indicates if interface is up |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -159,17 +159,17 @@ distinct := models.SitePortsCountDistinctEnum("mac")
 
 
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesStatsPorts.CountSiteSwOrGwPorts(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesStatsPorts.CountSiteSwOrGwPorts(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -242,11 +242,11 @@ CountSiteSwitchPorts(
     stpRole *models.CountPortsStpRoleEnum,
     authState *models.CountPortsAuthStateEnum,
     up *bool,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error)
 ```
@@ -282,11 +282,11 @@ CountSiteSwitchPorts(
 | `stpRole` | [`*models.CountPortsStpRoleEnum`](../../doc/models/count-ports-stp-role-enum.md) | Query, Optional | if `up`==`true` |
 | `authState` | [`*models.CountPortsAuthStateEnum`](../../doc/models/count-ports-auth-state-enum.md) | Query, Optional | if `up`==`true` |
 | `up` | `*bool` | Query, Optional | indicates if interface is up |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -351,17 +351,17 @@ distinct := models.SiteSwitchPortsCountDistinctEnum("mac")
 
 
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesStatsPorts.CountSiteSwitchPorts(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesStatsPorts.CountSiteSwitchPorts(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

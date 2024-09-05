@@ -23,15 +23,15 @@ func NewOrgsSSORoles(baseController baseController) *OrgsSSORoles {
     return &orgsSSORoles
 }
 
-// ListOrgSsoRoles takes context, orgId, page, limit as parameters and
+// ListOrgSsoRoles takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.SsoRoleMsp data and
 // an error if there was an issue with the request or response.
 // Get List of Org SSO Roles
 func (o *OrgsSSORoles) ListOrgSsoRoles(
     ctx context.Context,
     orgId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.SsoRoleMsp],
     error) {
     req := o.prepareRequest(
@@ -57,11 +57,11 @@ func (o *OrgsSSORoles) ListOrgSsoRoles(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.SsoRoleMsp

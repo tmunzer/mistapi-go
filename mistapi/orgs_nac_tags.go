@@ -23,7 +23,7 @@ func NewOrgsNACTags(baseController baseController) *OrgsNACTags {
     return &orgsNACTags
 }
 
-// ListOrgNacTags takes context, orgId, mType, name, match, page, limit as parameters and
+// ListOrgNacTags takes context, orgId, mType, name, match, limit, page as parameters and
 // returns an models.ApiResponse with []models.NacTag data and
 // an error if there was an issue with the request or response.
 // Get List of Org NAC Tags
@@ -33,8 +33,8 @@ func (o *OrgsNACTags) ListOrgNacTags(
     mType *string,
     name *string,
     match *string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.NacTag],
     error) {
     req := o.prepareRequest(
@@ -69,11 +69,11 @@ func (o *OrgsNACTags) ListOrgNacTags(
     if match != nil {
         req.QueryParam("match", *match)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.NacTag

@@ -93,7 +93,7 @@ WLAN
 | `Qos` | [`*models.WlanQos`](../../doc/models/wlan-qos.md) | Optional | - |
 | `Radsec` | [`*models.Radsec`](../../doc/models/radsec.md) | Optional | Radsec settings |
 | `Rateset` | [`map[string]models.WlanDatarates`](../../doc/models/wlan-datarates.md) | Optional | - |
-| `RoamMode` | [`*models.WlanRoamModeEnum`](../../doc/models/wlan-roam-mode-enum.md) | Optional | enum: `11r`, `OKC`, `none`<br>**Default**: `"none"` |
+| `RoamMode` | [`*models.WlanRoamModeEnum`](../../doc/models/wlan-roam-mode-enum.md) | Optional | enum: `11r`, `OKC`, `NONE` |
 | `Schedule` | [`*models.WlanSchedule`](../../doc/models/wlan-schedule.md) | Optional | WLAN operating schedule, default is disabled |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SleExcluded` | `*bool` | Optional | whether to exclude this WLAN from SLE metrics<br>**Default**: `false` |
@@ -169,7 +169,7 @@ WLAN
     "msg.snapchat.com"
   ],
   "portal_image": "https://url/to/image.png",
-  "roam_mode": "none",
+  "roam_mode": "NONE",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "sle_excluded": false,
   "ssid": "corporate",

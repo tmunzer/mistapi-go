@@ -247,11 +247,11 @@ CountOrgDevices(
     lldpSystemDesc *string,
     lldpPortId *string,
     lldpMgmtAddr *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error)
 ```
@@ -275,11 +275,11 @@ CountOrgDevices(
 | `lldpSystemDesc` | `*string` | Query, Optional | LLDP system description |
 | `lldpPortId` | `*string` | Query, Optional | LLDP port id |
 | `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -320,17 +320,17 @@ ipAddress := "192.168.1.1"
 
 
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -444,8 +444,8 @@ Each radio MAC can have 16 BSSIDs (enumerate the last octet from 0-F)
 ListOrgApsMacs(
     ctx context.Context,
     orgId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.ApRadioMac],
     error)
 ```
@@ -455,8 +455,8 @@ ListOrgApsMacs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -469,11 +469,11 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-page := 1
-
 limit := 100
 
-apiResponse, err := orgsDevices.ListOrgApsMacs(ctx, orgId, &page, &limit)
+page := 1
+
+apiResponse, err := orgsDevices.ListOrgApsMacs(ctx, orgId, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

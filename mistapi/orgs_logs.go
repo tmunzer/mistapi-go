@@ -22,7 +22,7 @@ func NewOrgsLogs(baseController baseController) *OrgsLogs {
     return &orgsLogs
 }
 
-// ListOrgAuditLogs takes context, orgId, siteId, adminName, message, sort, start, end, limit, page, duration as parameters and
+// ListOrgAuditLogs takes context, orgId, siteId, adminName, message, sort, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseLogSearch data and
 // an error if there was an issue with the request or response.
 // Get List of change logs for the current Org
@@ -35,9 +35,9 @@ func (o *OrgsLogs) ListOrgAuditLogs(
     sort *models.ListOrgLogsSortEnum,
     start *int,
     end *int,
+    duration *string,
     limit *int,
-    page *int,
-    duration *string) (
+    page *int) (
     models.ApiResponse[models.ResponseLogSearch],
     error) {
     req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/logs", orgId))
@@ -77,14 +77,14 @@ func (o *OrgsLogs) ListOrgAuditLogs(
     if end != nil {
         req.QueryParam("end", *end)
     }
+    if duration != nil {
+        req.QueryParam("duration", *duration)
+    }
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
     if page != nil {
         req.QueryParam("page", *page)
-    }
-    if duration != nil {
-        req.QueryParam("duration", *duration)
     }
     
     var result models.ResponseLogSearch
@@ -97,7 +97,7 @@ func (o *OrgsLogs) ListOrgAuditLogs(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgAuditLogs takes context, orgId, distinct, adminId, adminName, siteId, message, page, limit, start, end, duration as parameters and
+// CountOrgAuditLogs takes context, orgId, distinct, adminId, adminName, siteId, message, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Audit Logs
@@ -109,11 +109,11 @@ func (o *OrgsLogs) CountOrgAuditLogs(
     adminName *string,
     siteId *string,
     message *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := o.prepareRequest(
@@ -154,12 +154,6 @@ func (o *OrgsLogs) CountOrgAuditLogs(
     if message != nil {
         req.QueryParam("message", *message)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -168,6 +162,12 @@ func (o *OrgsLogs) CountOrgAuditLogs(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount

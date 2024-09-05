@@ -411,8 +411,8 @@ ListOrgPsks(
     name *string,
     ssid *string,
     role *string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.Psk],
     error)
 ```
@@ -425,8 +425,8 @@ ListOrgPsks(
 | `name` | `*string` | Query, Optional | - |
 | `ssid` | `*string` | Query, Optional | - |
 | `role` | `*string` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -445,11 +445,11 @@ name := "psk_name"
 
 
 
-page := 1
-
 limit := 100
 
-apiResponse, err := orgsPsks.ListOrgPsks(ctx, orgId, &name, nil, nil, &page, &limit)
+page := 1
+
+apiResponse, err := orgsPsks.ListOrgPsks(ctx, orgId, &name, nil, nil, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

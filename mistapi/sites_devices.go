@@ -23,7 +23,7 @@ func NewSitesDevices(baseController baseController) *SitesDevices {
     return &sitesDevices
 }
 
-// ListSiteDevices takes context, siteId, mType, name, page, limit as parameters and
+// ListSiteDevices takes context, siteId, mType, name, limit, page as parameters and
 // returns an models.ApiResponse with []models.ConfigDevice data and
 // an error if there was an issue with the request or response.
 // Get list of devices on the site.
@@ -32,8 +32,8 @@ func (s *SitesDevices) ListSiteDevices(
     siteId uuid.UUID,
     mType *models.DeviceTypeWithAllEnum,
     name *string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.ConfigDevice],
     error) {
     req := s.prepareRequest(
@@ -65,11 +65,11 @@ func (s *SitesDevices) ListSiteDevices(
     if name != nil {
         req.QueryParam("name", *name)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.ConfigDevice
@@ -82,7 +82,7 @@ func (s *SitesDevices) ListSiteDevices(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteDeviceConfigHistory takes context, siteId, distinct, mac, page, limit, start, end, duration as parameters and
+// CountSiteDeviceConfigHistory takes context, siteId, distinct, mac, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Counts the number of entries in device config history for distinct field with given filters
@@ -91,11 +91,11 @@ func (s *SitesDevices) CountSiteDeviceConfigHistory(
     siteId uuid.UUID,
     distinct *string,
     mac *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := s.prepareRequest(
@@ -127,12 +127,6 @@ func (s *SitesDevices) CountSiteDeviceConfigHistory(
     if mac != nil {
         req.QueryParam("mac", *mac)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -141,6 +135,12 @@ func (s *SitesDevices) CountSiteDeviceConfigHistory(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount
@@ -220,7 +220,7 @@ func (s *SitesDevices) SearchSiteDeviceConfigHistory(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteDevices takes context, siteId, distinct, hostname, model, mac, version, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, mapId, page, limit, start, end, duration as parameters and
+// CountSiteDevices takes context, siteId, distinct, hostname, model, mac, version, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, mapId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Counts the number of entries in ap events history for distinct field with given filters
@@ -239,11 +239,11 @@ func (s *SitesDevices) CountSiteDevices(
     lldpPortId *string,
     lldpMgmtAddr *string,
     mapId *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := s.prepareRequest(
@@ -305,12 +305,6 @@ func (s *SitesDevices) CountSiteDevices(
     if mapId != nil {
         req.QueryParam("map_id", *mapId)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -319,6 +313,12 @@ func (s *SitesDevices) CountSiteDevices(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount
@@ -582,7 +582,7 @@ func (s *SitesDevices) ImportSiteDevices(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteDeviceLastConfig takes context, siteId, distinct, page, limit, start, end, duration as parameters and
+// CountSiteDeviceLastConfig takes context, siteId, distinct, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Counts the number of entries in device config history for distinct field with given filters
@@ -590,11 +590,11 @@ func (s *SitesDevices) CountSiteDeviceLastConfig(
     ctx context.Context,
     siteId uuid.UUID,
     distinct *models.SiteDeviceLastConfigCountDistinctEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := s.prepareRequest(
@@ -623,12 +623,6 @@ func (s *SitesDevices) CountSiteDeviceLastConfig(
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -637,6 +631,12 @@ func (s *SitesDevices) CountSiteDeviceLastConfig(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount

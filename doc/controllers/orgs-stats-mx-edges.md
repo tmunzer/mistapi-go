@@ -247,12 +247,12 @@ Get List of Org MxEdge Stats
 ListOrgMxEdgesStats(
     ctx context.Context,
     orgId uuid.UUID,
-    page *int,
-    limit *int,
+    forSite *bool,
     start *int,
     end *int,
     duration *string,
-    forSite *bool) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.StatsMxedge],
     error)
 ```
@@ -262,12 +262,12 @@ ListOrgMxEdgesStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
+| `forSite` | `*bool` | Query, Optional | filter for site level mist edges |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `forSite` | `*bool` | Query, Optional | filter for site level mist edges |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -280,9 +280,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-page := 1
-
-limit := 100
+forSite := false
 
 
 
@@ -290,9 +288,11 @@ limit := 100
 
 duration := "10m"
 
-forSite := false
+limit := 100
 
-apiResponse, err := orgsStatsMxEdges.ListOrgMxEdgesStats(ctx, orgId, &page, &limit, nil, nil, &duration, &forSite)
+page := 1
+
+apiResponse, err := orgsStatsMxEdges.ListOrgMxEdgesStats(ctx, orgId, &forSite, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

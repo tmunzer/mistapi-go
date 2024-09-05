@@ -25,10 +25,10 @@ GetOrgSitesSle(
     sle *models.OrgSiteSleTypeEnum,
     start *int,
     end *int,
-    limit *int,
-    page *int,
     duration *string,
-    interval *string) (
+    interval *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponseOrgSiteSle],
     error)
 ```
@@ -41,10 +41,10 @@ GetOrgSitesSle(
 | `sle` | [`*models.OrgSiteSleTypeEnum`](../../doc/models/org-site-sle-type-enum.md) | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -63,15 +63,15 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-limit := 100
-
-page := 1
-
 duration := "10m"
 
 interval := "10m"
 
-apiResponse, err := orgsSLEs.GetOrgSitesSle(ctx, orgId, nil, nil, nil, &limit, &page, &duration, &interval)
+limit := 100
+
+page := 1
+
+apiResponse, err := orgsSLEs.GetOrgSitesSle(ctx, orgId, nil, nil, nil, &duration, &interval, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -70,7 +70,7 @@ func (s *SitesGuests) ListSiteAllGuestAuthorizations(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteGuestAuthorizations takes context, siteId, distinct, page, limit, start, end, duration as parameters and
+// CountSiteGuestAuthorizations takes context, siteId, distinct, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count Authorized Guest
@@ -78,11 +78,11 @@ func (s *SitesGuests) CountSiteGuestAuthorizations(
     ctx context.Context,
     siteId uuid.UUID,
     distinct *models.SiteGuestsCountDistinctEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := s.prepareRequest(
@@ -111,12 +111,6 @@ func (s *SitesGuests) CountSiteGuestAuthorizations(
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -125,6 +119,12 @@ func (s *SitesGuests) CountSiteGuestAuthorizations(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount

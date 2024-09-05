@@ -104,7 +104,7 @@ body := models.Wlan{
         "msg.snapchat.com",
     },
     PortalImage:                        models.NewOptional(models.ToPointer("https://url/to/image.png")),
-    RoamMode:                           models.ToPointer(models.WlanRoamModeEnum("none")),
+    RoamMode:                           models.ToPointer(models.WlanRoamModeEnum("NONE")),
     SiteId:                             models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     SleExcluded:                        models.ToPointer(false),
     Ssid:                               "corporate",
@@ -313,8 +313,8 @@ Get List of Site WLANs
 ListSiteWlans(
     ctx context.Context,
     siteId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.Wlan],
     error)
 ```
@@ -324,8 +324,8 @@ ListSiteWlans(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -338,11 +338,11 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-page := 1
-
 limit := 100
 
-apiResponse, err := sitesWlans.ListSiteWlans(ctx, siteId, &page, &limit)
+page := 1
+
+apiResponse, err := sitesWlans.ListSiteWlans(ctx, siteId, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -451,7 +451,7 @@ body := models.Wlan{
         "msg.snapchat.com",
     },
     PortalImage:                        models.NewOptional(models.ToPointer("https://url/to/image.png")),
-    RoamMode:                           models.ToPointer(models.WlanRoamModeEnum("none")),
+    RoamMode:                           models.ToPointer(models.WlanRoamModeEnum("NONE")),
     SiteId:                             models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     SleExcluded:                        models.ToPointer(false),
     Ssid:                               "corporate",

@@ -23,15 +23,15 @@ func NewOrgsIDPProfiles(baseController baseController) *OrgsIDPProfiles {
     return &orgsIDPProfiles
 }
 
-// ListOrgIdpProfiles takes context, orgId, page, limit as parameters and
+// ListOrgIdpProfiles takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.IdpProfile data and
 // an error if there was an issue with the request or response.
 // get the list of Org IDP Profiles
 func (o *OrgsIDPProfiles) ListOrgIdpProfiles(
     ctx context.Context,
     orgId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.IdpProfile],
     error) {
     req := o.prepareRequest(
@@ -57,11 +57,11 @@ func (o *OrgsIDPProfiles) ListOrgIdpProfiles(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.IdpProfile

@@ -496,8 +496,8 @@ Get List of Org Gateway Templates
 ListOrgGatewayTemplates(
     ctx context.Context,
     orgId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.GatewayTemplate],
     error)
 ```
@@ -507,8 +507,8 @@ ListOrgGatewayTemplates(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -521,11 +521,11 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-page := 1
-
 limit := 100
 
-apiResponse, err := orgsGatewayTemplates.ListOrgGatewayTemplates(ctx, orgId, &page, &limit)
+page := 1
+
+apiResponse, err := orgsGatewayTemplates.ListOrgGatewayTemplates(ctx, orgId, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

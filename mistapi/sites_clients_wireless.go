@@ -22,7 +22,7 @@ func NewSitesClientsWireless(baseController baseController) *SitesClientsWireles
     return &sitesClientsWireless
 }
 
-// CountSiteWirelessClients takes context, siteId, distinct, ssid, ap, ipAddress, vlan, hostname, os, model, device, page, limit, start, end, duration as parameters and
+// CountSiteWirelessClients takes context, siteId, distinct, ssid, ap, ipAddress, vlan, hostname, os, model, device, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Clients
@@ -38,11 +38,11 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
     os *string,
     model *string,
     device *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := s.prepareRequest(
@@ -95,12 +95,6 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
     if device != nil {
         req.QueryParam("device", *device)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -109,6 +103,12 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount
@@ -403,7 +403,7 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteWirelessClientSessions takes context, siteId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, page, limit, start, end, duration as parameters and
+// CountSiteWirelessClientSessions takes context, siteId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Client Sessions
@@ -419,11 +419,11 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
     clientOs *string,
     ssid *string,
     wlanId *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := s.prepareRequest(
@@ -476,12 +476,6 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
     if wlanId != nil {
         req.QueryParam("wlan_id", *wlanId)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -490,6 +484,12 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount
@@ -605,7 +605,7 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientSessions(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteEventsForClient takes context, siteId, clientMac, mType, proto, band, channel, wlanId, ssid, start, end, page, limit, duration as parameters and
+// GetSiteEventsForClient takes context, siteId, clientMac, mType, proto, band, channel, wlanId, ssid, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseClientEventsSearch data and
 // an error if there was an issue with the request or response.
 // Get the list of events for a specific client
@@ -621,9 +621,9 @@ func (s *SitesClientsWireless) GetSiteEventsForClient(
     ssid *string,
     start *int,
     end *int,
-    page *int,
+    duration *string,
     limit *int,
-    duration *string) (
+    page *int) (
     models.ApiResponse[models.ResponseClientEventsSearch],
     error) {
     req := s.prepareRequest(
@@ -673,14 +673,14 @@ func (s *SitesClientsWireless) GetSiteEventsForClient(
     if end != nil {
         req.QueryParam("end", *end)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
+    if duration != nil {
+        req.QueryParam("duration", *duration)
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
-    if duration != nil {
-        req.QueryParam("duration", *duration)
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.ResponseClientEventsSearch

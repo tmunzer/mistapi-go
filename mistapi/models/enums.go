@@ -4319,13 +4319,13 @@ const (
 )
 
 // WlanRoamModeEnum is a string enum.
-// enum: `11r`, `OKC`, `none`
+// enum: `11r`, `OKC`, `NONE`
 type WlanRoamModeEnum string
 
 const (
     WlanRoamModeEnum_ENUM11R WlanRoamModeEnum = "11r"
     WlanRoamModeEnum_OKC     WlanRoamModeEnum = "OKC"
-    WlanRoamModeEnum_NONE    WlanRoamModeEnum = "none"
+    WlanRoamModeEnum_NONE    WlanRoamModeEnum = "NONE"
 )
 
 // WxlanRuleActionEnum is a string enum.

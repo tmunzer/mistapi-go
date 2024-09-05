@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2408.1.7**
+> Version: **2408.1.8**
 > 
-> Date: **August 30, 2024**
+> Date: **September 5, 2024**
 
 ---
 

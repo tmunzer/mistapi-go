@@ -22,7 +22,7 @@ func NewOrgsSLEs(baseController baseController) *OrgsSLEs {
     return &orgsSLEs
 }
 
-// GetOrgSitesSle takes context, orgId, sle, start, end, limit, page, duration, interval as parameters and
+// GetOrgSitesSle takes context, orgId, sle, start, end, duration, interval, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseOrgSiteSle data and
 // an error if there was an issue with the request or response.
 // Get Org Sites SLE
@@ -32,10 +32,10 @@ func (o *OrgsSLEs) GetOrgSitesSle(
     sle *models.OrgSiteSleTypeEnum,
     start *int,
     end *int,
-    limit *int,
-    page *int,
     duration *string,
-    interval *string) (
+    interval *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponseOrgSiteSle],
     error) {
     req := o.prepareRequest(
@@ -70,17 +70,17 @@ func (o *OrgsSLEs) GetOrgSitesSle(
     if end != nil {
         req.QueryParam("end", *end)
     }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if duration != nil {
         req.QueryParam("duration", *duration)
     }
     if interval != nil {
         req.QueryParam("interval", *interval)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.ResponseOrgSiteSle

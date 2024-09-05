@@ -396,8 +396,8 @@ Get List of Site WxTags
 ListSiteWxTags(
     ctx context.Context,
     siteId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.WxlanTag],
     error)
 ```
@@ -407,8 +407,8 @@ ListSiteWxTags(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -421,11 +421,11 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-page := 1
-
 limit := 100
 
-apiResponse, err := sitesWxTags.ListSiteWxTags(ctx, siteId, &page, &limit)
+page := 1
+
+apiResponse, err := sitesWxTags.ListSiteWxTags(ctx, siteId, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

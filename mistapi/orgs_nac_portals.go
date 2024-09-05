@@ -23,15 +23,15 @@ func NewOrgsNACPortals(baseController baseController) *OrgsNACPortals {
     return &orgsNACPortals
 }
 
-// ListOrgNacPortals takes context, orgId, page, limit as parameters and
+// ListOrgNacPortals takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.NacPortal data and
 // an error if there was an issue with the request or response.
 // List Org NAC Portals
 func (o *OrgsNACPortals) ListOrgNacPortals(
     ctx context.Context,
     orgId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.NacPortal],
     error) {
     req := o.prepareRequest(
@@ -57,11 +57,11 @@ func (o *OrgsNACPortals) ListOrgNacPortals(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.NacPortal
@@ -256,7 +256,7 @@ func (o *OrgsNACPortals) UpdateOrgNacPortal(
     return models.NewApiResponse(result, resp), err
 }
 
-// ListOrgNacPortalSsoLatestFailures takes context, orgId, nacportalId, page, limit, start, end, duration as parameters and
+// ListOrgNacPortalSsoLatestFailures takes context, orgId, nacportalId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseSsoFailureSearch data and
 // an error if there was an issue with the request or response.
 // Get List of Org NAC Portal SSO Latest Failures
@@ -264,11 +264,11 @@ func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
     ctx context.Context,
     orgId uuid.UUID,
     nacportalId uuid.UUID,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponseSsoFailureSearch],
     error) {
     req := o.prepareRequest(
@@ -294,12 +294,6 @@ func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -308,6 +302,12 @@ func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.ResponseSsoFailureSearch

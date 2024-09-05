@@ -133,7 +133,7 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteWirelessClientsStatsByMap takes context, siteId, mapId, page, limit, start, end, duration as parameters and
+// GetSiteWirelessClientsStatsByMap takes context, siteId, mapId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with []models.StatsWirelessClient data and
 // an error if there was an issue with the request or response.
 // Get Site Clients Stats By Map
@@ -141,11 +141,11 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientsStatsByMap(
     ctx context.Context,
     siteId uuid.UUID,
     mapId uuid.UUID,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.StatsWirelessClient],
     error) {
     req := s.prepareRequest(
@@ -171,12 +171,6 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientsStatsByMap(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -185,6 +179,12 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientsStatsByMap(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.StatsWirelessClient

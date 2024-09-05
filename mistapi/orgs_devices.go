@@ -65,7 +65,7 @@ func (o *OrgsDevices) ListOrgDevices(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgDevices takes context, orgId, distinct, hostname, siteId, model, managed, mac, version, ipAddress, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, page, limit, start, end, duration as parameters and
+// CountOrgDevices takes context, orgId, distinct, hostname, siteId, model, managed, mac, version, ipAddress, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count Org Devices
@@ -86,11 +86,11 @@ func (o *OrgsDevices) CountOrgDevices(
     lldpSystemDesc *string,
     lldpPortId *string,
     lldpMgmtAddr *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := o.prepareRequest(
@@ -158,12 +158,6 @@ func (o *OrgsDevices) CountOrgDevices(
     if lldpMgmtAddr != nil {
         req.QueryParam("lldp_mgmt_addr", *lldpMgmtAddr)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -172,6 +166,12 @@ func (o *OrgsDevices) CountOrgDevices(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount
@@ -500,7 +500,7 @@ func (o *OrgsDevices) SearchOrgDeviceLastConfigs(
     return models.NewApiResponse(result, resp), err
 }
 
-// ListOrgApsMacs takes context, orgId, page, limit as parameters and
+// ListOrgApsMacs takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.ApRadioMac data and
 // an error if there was an issue with the request or response.
 // For some scenarios like E911 or security systems, the BSSIDs are required to identify which AP the client is connecting to. Then the location of the AP can be used as the approximate location of the client.
@@ -508,8 +508,8 @@ func (o *OrgsDevices) SearchOrgDeviceLastConfigs(
 func (o *OrgsDevices) ListOrgApsMacs(
     ctx context.Context,
     orgId uuid.UUID,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.ApRadioMac],
     error) {
     req := o.prepareRequest(
@@ -535,11 +535,11 @@ func (o *OrgsDevices) ListOrgApsMacs(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.ApRadioMac

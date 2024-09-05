@@ -22,7 +22,7 @@ func NewSitesWANUsages(baseController baseController) *SitesWANUsages {
     return &sitesWANUsages
 }
 
-// CountSiteWanUsage takes context, siteId, mac, peerMac, portId, peerPortId, policy, tenant, pathType, distinct, page, limit, start, end, duration as parameters and
+// CountSiteWanUsage takes context, siteId, mac, peerMac, portId, peerPortId, policy, tenant, pathType, distinct, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count Site WAN Uages
@@ -37,11 +37,11 @@ func (s *SitesWANUsages) CountSiteWanUsage(
     tenant *string,
     pathType *string,
     distinct *models.WanUsagesCountDisctinctEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := s.prepareRequest(
@@ -91,12 +91,6 @@ func (s *SitesWANUsages) CountSiteWanUsage(
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -105,6 +99,12 @@ func (s *SitesWANUsages) CountSiteWanUsage(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount
@@ -117,7 +117,7 @@ func (s *SitesWANUsages) CountSiteWanUsage(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteWanUsage takes context, siteId, mac, peerMac, portId, peerPortId, policy, tenant, pathType, page, limit, start, end, duration as parameters and
+// SearchSiteWanUsage takes context, siteId, mac, peerMac, portId, peerPortId, policy, tenant, pathType, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.SearchWanUsage data and
 // an error if there was an issue with the request or response.
 // Search Site WAN Uages
@@ -131,11 +131,11 @@ func (s *SitesWANUsages) SearchSiteWanUsage(
     policy *string,
     tenant *string,
     pathType *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.SearchWanUsage],
     error) {
     req := s.prepareRequest(
@@ -182,12 +182,6 @@ func (s *SitesWANUsages) SearchSiteWanUsage(
     if pathType != nil {
         req.QueryParam("path_type", *pathType)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -196,6 +190,12 @@ func (s *SitesWANUsages) SearchSiteWanUsage(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.SearchWanUsage

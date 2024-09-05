@@ -100,9 +100,9 @@ ListMspAuditLogs(
     sort *models.ListMspLogsSortEnum,
     start *int,
     end *int,
+    duration *string,
     limit *int,
-    page *int,
-    duration *string) (
+    page *int) (
     models.ApiResponse[models.ResponseLogSearch],
     error)
 ```
@@ -118,9 +118,9 @@ ListMspAuditLogs(
 | `sort` | [`*models.ListMspLogsSortEnum`](../../doc/models/list-msp-logs-sort-enum.md) | Query, Optional | sort order |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
 | `limit` | `*int` | Query, Optional | - |
 | `page` | `*int` | Query, Optional | - |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
 
 ## Response Type
 
@@ -145,13 +145,13 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+duration := "10m"
+
 limit := 100
 
 page := 1
 
-duration := "10m"
-
-apiResponse, err := mSPsLogs.ListMspAuditLogs(ctx, mspId, nil, nil, nil, nil, nil, nil, &limit, &page, &duration)
+apiResponse, err := mSPsLogs.ListMspAuditLogs(ctx, mspId, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

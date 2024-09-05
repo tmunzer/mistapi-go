@@ -23,18 +23,18 @@ func NewUtilitiesPCAPs(baseController baseController) *UtilitiesPCAPs {
     return &utilitiesPCAPs
 }
 
-// ListOrgPacketCaptures takes context, orgId, page, limit, start, end, duration as parameters and
+// ListOrgPacketCaptures takes context, orgId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponsePcapSearch data and
 // an error if there was an issue with the request or response.
 // Get List of Org  Packet Captures
 func (u *UtilitiesPCAPs) ListOrgPacketCaptures(
     ctx context.Context,
     orgId uuid.UUID,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponsePcapSearch],
     error) {
     req := u.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/pcaps", orgId))
@@ -56,12 +56,6 @@ func (u *UtilitiesPCAPs) ListOrgPacketCaptures(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -70,6 +64,12 @@ func (u *UtilitiesPCAPs) ListOrgPacketCaptures(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.ResponsePcapSearch
@@ -249,19 +249,19 @@ func (u *UtilitiesPCAPs) StartOrgPacketCapture(
     return models.NewApiResponse(result, resp), err
 }
 
-// ListSitePacketCaptures takes context, siteId, page, limit, start, end, duration, clientMac as parameters and
+// ListSitePacketCaptures takes context, siteId, clientMac, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponsePcapSearch data and
 // an error if there was an issue with the request or response.
 // Get List of Site Packet Captures
 func (u *UtilitiesPCAPs) ListSitePacketCaptures(
     ctx context.Context,
     siteId uuid.UUID,
-    page *int,
-    limit *int,
+    clientMac *string,
     start *int,
     end *int,
     duration *string,
-    clientMac *string) (
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponsePcapSearch],
     error) {
     req := u.prepareRequest(
@@ -287,11 +287,8 @@ func (u *UtilitiesPCAPs) ListSitePacketCaptures(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
+    if clientMac != nil {
+        req.QueryParam("client_mac", *clientMac)
     }
     if start != nil {
         req.QueryParam("start", *start)
@@ -302,8 +299,11 @@ func (u *UtilitiesPCAPs) ListSitePacketCaptures(
     if duration != nil {
         req.QueryParam("duration", *duration)
     }
-    if clientMac != nil {
-        req.QueryParam("client_mac", *clientMac)
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.ResponsePcapSearch

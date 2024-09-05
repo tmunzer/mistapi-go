@@ -22,7 +22,7 @@ func NewMSPsLogs(baseController baseController) *MSPsLogs {
     return &mSPsLogs
 }
 
-// ListMspAuditLogs takes context, mspId, siteId, adminName, message, sort, start, end, limit, page, duration as parameters and
+// ListMspAuditLogs takes context, mspId, siteId, adminName, message, sort, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseLogSearch data and
 // an error if there was an issue with the request or response.
 // Get list of change logs for the current MSP
@@ -35,9 +35,9 @@ func (m *MSPsLogs) ListMspAuditLogs(
     sort *models.ListMspLogsSortEnum,
     start *int,
     end *int,
+    duration *string,
     limit *int,
-    page *int,
-    duration *string) (
+    page *int) (
     models.ApiResponse[models.ResponseLogSearch],
     error) {
     req := m.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/msps/%v/logs", mspId))
@@ -77,14 +77,14 @@ func (m *MSPsLogs) ListMspAuditLogs(
     if end != nil {
         req.QueryParam("end", *end)
     }
+    if duration != nil {
+        req.QueryParam("duration", *duration)
+    }
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
     if page != nil {
         req.QueryParam("page", *page)
-    }
-    if duration != nil {
-        req.QueryParam("duration", *duration)
     }
     
     var result models.ResponseLogSearch

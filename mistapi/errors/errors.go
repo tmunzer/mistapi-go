@@ -21,7 +21,7 @@ func NewErrorDeleteFailed(apiError https.ApiError) error {
 
 // Error implements the Error method for the error interface.
 // It returns a formatted error message for ErrorDeleteFailed.
-func (e *ErrorDeleteFailed) Error() string {
+func (e ErrorDeleteFailed) Error() string {
     return fmt.Sprintf("ErrorDeleteFailed occured: %v", e.Message)
 }
 
@@ -39,7 +39,7 @@ func NewResponseDetailString(apiError https.ApiError) error {
 
 // Error implements the Error method for the error interface.
 // It returns a formatted error message for ResponseDetailString.
-func (r *ResponseDetailString) Error() string {
+func (r ResponseDetailString) Error() string {
     return fmt.Sprintf("ResponseDetailString occured: %v", r.Message)
 }
 
@@ -57,7 +57,7 @@ func NewResponseHttp400(apiError https.ApiError) error {
 
 // Error implements the Error method for the error interface.
 // It returns a formatted error message for ResponseHttp400.
-func (r *ResponseHttp400) Error() string {
+func (r ResponseHttp400) Error() string {
     return fmt.Sprintf("ResponseHttp400 occured: %v", r.Message)
 }
 
@@ -75,7 +75,7 @@ func NewResponseHttp404(apiError https.ApiError) error {
 
 // Error implements the Error method for the error interface.
 // It returns a formatted error message for ResponseHttp404.
-func (r *ResponseHttp404) Error() string {
+func (r ResponseHttp404) Error() string {
     return fmt.Sprintf("ResponseHttp404 occured: %v", r.Message)
 }
 
@@ -94,7 +94,7 @@ func NewResponseLoginFailure(apiError https.ApiError) error {
 
 // Error implements the Error method for the error interface.
 // It returns a formatted error message for ResponseLoginFailure.
-func (r *ResponseLoginFailure) Error() string {
+func (r ResponseLoginFailure) Error() string {
     return fmt.Sprintf("ResponseLoginFailure occured: %v", r.Message)
 }
 
@@ -113,7 +113,7 @@ func NewResponseSelfOauthLinkFailure(apiError https.ApiError) error {
 
 // Error implements the Error method for the error interface.
 // It returns a formatted error message for ResponseSelfOauthLinkFailure.
-func (r *ResponseSelfOauthLinkFailure) Error() string {
+func (r ResponseSelfOauthLinkFailure) Error() string {
     return fmt.Sprintf("ResponseSelfOauthLinkFailure occured: %v", r.Message)
 }
 
@@ -131,7 +131,7 @@ func NewResponseHttp401Error(apiError https.ApiError) error {
 
 // Error implements the Error method for the error interface.
 // It returns a formatted error message for ResponseHttp401Error.
-func (r *ResponseHttp401Error) Error() string {
+func (r ResponseHttp401Error) Error() string {
     return fmt.Sprintf("ResponseHttp401Error occured: %v", r.Message)
 }
 
@@ -149,7 +149,7 @@ func NewResponseHttp403Error(apiError https.ApiError) error {
 
 // Error implements the Error method for the error interface.
 // It returns a formatted error message for ResponseHttp403Error.
-func (r *ResponseHttp403Error) Error() string {
+func (r ResponseHttp403Error) Error() string {
     return fmt.Sprintf("ResponseHttp403Error occured: %v", r.Message)
 }
 
@@ -167,6 +167,6 @@ func NewResponseHttp429Error(apiError https.ApiError) error {
 
 // Error implements the Error method for the error interface.
 // It returns a formatted error message for ResponseHttp429Error.
-func (r *ResponseHttp429Error) Error() string {
+func (r ResponseHttp429Error) Error() string {
     return fmt.Sprintf("ResponseHttp429Error occured: %v", r.Message)
 }

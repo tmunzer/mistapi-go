@@ -114,7 +114,7 @@ func (s *SitesAlarms) AckSiteAllAlarms(
     return context.Response, err
 }
 
-// CountSiteAlarms takes context, siteId, distinct, ackAdminName, acked, mType, severity, group, page, limit, start, end, duration as parameters and
+// CountSiteAlarms takes context, siteId, distinct, ackAdminName, acked, mType, severity, group, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count Site Alarms
@@ -127,11 +127,11 @@ func (s *SitesAlarms) CountSiteAlarms(
     mType *string,
     severity *string,
     group *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := s.prepareRequest(
@@ -175,12 +175,6 @@ func (s *SitesAlarms) CountSiteAlarms(
     if group != nil {
         req.QueryParam("group", *group)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -189,6 +183,12 @@ func (s *SitesAlarms) CountSiteAlarms(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount

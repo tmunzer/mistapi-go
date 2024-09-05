@@ -315,8 +315,8 @@ ListSiteDevicesStats(
     siteId uuid.UUID,
     mType *models.DeviceTypeWithAllEnum,
     status *models.StatDeviceStatusFilterEnum,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.StatsDevice],
     error)
 ```
@@ -328,8 +328,8 @@ ListSiteDevicesStats(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | - |
 | `status` | [`*models.StatDeviceStatusFilterEnum`](../../doc/models/stat-device-status-filter-enum.md) | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -346,11 +346,11 @@ mType := models.DeviceTypeWithAllEnum("ap")
 
 status := models.StatDeviceStatusFilterEnum("all")
 
-page := 1
-
 limit := 100
 
-apiResponse, err := sitesStatsDevices.ListSiteDevicesStats(ctx, siteId, &mType, &status, &page, &limit)
+page := 1
+
+apiResponse, err := sitesStatsDevices.ListSiteDevicesStats(ctx, siteId, &mType, &status, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

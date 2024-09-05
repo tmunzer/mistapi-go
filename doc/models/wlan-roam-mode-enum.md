@@ -1,7 +1,7 @@
 
 # Wlan Roam Mode Enum
 
-enum: `11r`, `OKC`, `none`
+enum: `11r`, `OKC`, `NONE`
 
 ## Enumeration
 
@@ -13,11 +13,11 @@ enum: `11r`, `OKC`, `none`
 |  --- |
 | `11r` |
 | `OKC` |
-| `none` |
+| `NONE` |
 
 ## Example
 
 ```
-none
+NONE
 ```
 

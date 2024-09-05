@@ -23,7 +23,7 @@ func NewOrgsPsks(baseController baseController) *OrgsPsks {
     return &orgsPsks
 }
 
-// ListOrgPsks takes context, orgId, name, ssid, role, page, limit as parameters and
+// ListOrgPsks takes context, orgId, name, ssid, role, limit, page as parameters and
 // returns an models.ApiResponse with []models.Psk data and
 // an error if there was an issue with the request or response.
 // Get List of Org Psks
@@ -33,8 +33,8 @@ func (o *OrgsPsks) ListOrgPsks(
     name *string,
     ssid *string,
     role *string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.Psk],
     error) {
     req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/psks", orgId))
@@ -65,11 +65,11 @@ func (o *OrgsPsks) ListOrgPsks(
     if role != nil {
         req.QueryParam("role", *role)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.Psk

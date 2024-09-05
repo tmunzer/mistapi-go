@@ -22,7 +22,7 @@ func NewOrgsClientsWired(baseController baseController) *OrgsClientsWired {
     return &orgsClientsWired
 }
 
-// CountOrgWiredClients takes context, orgId, distinct, page, limit, start, end, duration as parameters and
+// CountOrgWiredClients takes context, orgId, distinct, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Clients
@@ -31,11 +31,11 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgWiredClientsCountDistinctEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := o.prepareRequest(
@@ -64,12 +64,6 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -78,6 +72,12 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount

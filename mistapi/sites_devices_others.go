@@ -22,7 +22,7 @@ func NewSitesDevicesOthers(baseController baseController) *SitesDevicesOthers {
     return &sitesDevicesOthers
 }
 
-// ListSiteOtherDevices takes context, siteId, vendor, mac, serial, model, name, page, limit as parameters and
+// ListSiteOtherDevices takes context, siteId, vendor, mac, serial, model, name, limit, page as parameters and
 // returns an models.ApiResponse with []models.DeviceOther data and
 // an error if there was an issue with the request or response.
 // Get List of Site other devices (3rd party devices)
@@ -34,8 +34,8 @@ func (s *SitesDevicesOthers) ListSiteOtherDevices(
     serial *string,
     model *string,
     name *string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.DeviceOther],
     error) {
     req := s.prepareRequest(
@@ -76,11 +76,11 @@ func (s *SitesDevicesOthers) ListSiteOtherDevices(
     if name != nil {
         req.QueryParam("name", *name)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.DeviceOther

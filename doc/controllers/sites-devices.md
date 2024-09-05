@@ -102,11 +102,11 @@ CountSiteDeviceConfigHistory(
     siteId uuid.UUID,
     distinct *string,
     mac *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error)
 ```
@@ -118,11 +118,11 @@ CountSiteDeviceConfigHistory(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | `*string` | Query, Optional | - |
 | `mac` | `*string` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -139,17 +139,17 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesDevices.CountSiteDeviceConfigHistory(ctx, siteId, nil, nil, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesDevices.CountSiteDeviceConfigHistory(ctx, siteId, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -297,11 +297,11 @@ CountSiteDeviceLastConfig(
     ctx context.Context,
     siteId uuid.UUID,
     distinct *models.SiteDeviceLastConfigCountDistinctEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error)
 ```
@@ -312,11 +312,11 @@ CountSiteDeviceLastConfig(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteDeviceLastConfigCountDistinctEnum`](../../doc/models/site-device-last-config-count-distinct-enum.md) | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -331,17 +331,17 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteDeviceLastConfigCountDistinctEnum("mac")
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesDevices.CountSiteDeviceLastConfig(ctx, siteId, &distinct, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesDevices.CountSiteDeviceLastConfig(ctx, siteId, &distinct, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -400,11 +400,11 @@ CountSiteDevices(
     lldpPortId *string,
     lldpMgmtAddr *string,
     mapId *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error)
 ```
@@ -426,11 +426,11 @@ CountSiteDevices(
 | `lldpPortId` | `*string` | Query, Optional | - |
 | `lldpMgmtAddr` | `*string` | Query, Optional | - |
 | `mapId` | `*string` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -467,17 +467,17 @@ distinct := models.SiteDevicesCountDistinctEnum("model")
 
 
 
-page := 1
-
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesDevices.CountSiteDevices(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &page, &limit, nil, nil, &duration)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesDevices.CountSiteDevices(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1120,8 +1120,8 @@ ListSiteDevices(
     siteId uuid.UUID,
     mType *models.DeviceTypeWithAllEnum,
     name *string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.ConfigDevice],
     error)
 ```
@@ -1133,8 +1133,8 @@ ListSiteDevices(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | - |
 | `name` | `*string` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | - |
+| `page` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -1151,11 +1151,11 @@ mType := models.DeviceTypeWithAllEnum("ap")
 
 
 
-page := 1
-
 limit := 100
 
-apiResponse, err := sitesDevices.ListSiteDevices(ctx, siteId, &mType, nil, &page, &limit)
+page := 1
+
+apiResponse, err := sitesDevices.ListSiteDevices(ctx, siteId, &mType, nil, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

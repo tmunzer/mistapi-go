@@ -22,18 +22,18 @@ func NewSitesStatsAssets(baseController baseController) *SitesStatsAssets {
     return &sitesStatsAssets
 }
 
-// ListSiteAssetsStats takes context, siteId, page, limit, start, end, duration as parameters and
+// ListSiteAssetsStats takes context, siteId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with []models.StatsAsset data and
 // an error if there was an issue with the request or response.
 // Get List of Site Assets Stats
 func (s *SitesStatsAssets) ListSiteAssetsStats(
     ctx context.Context,
     siteId uuid.UUID,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.StatsAsset],
     error) {
     req := s.prepareRequest(
@@ -59,12 +59,6 @@ func (s *SitesStatsAssets) ListSiteAssetsStats(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -73,6 +67,12 @@ func (s *SitesStatsAssets) ListSiteAssetsStats(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.StatsAsset
@@ -302,18 +302,18 @@ func (s *SitesStatsAssets) SearchSiteAssets(
     return models.NewApiResponse(result, resp), err
 }
 
-// ListSiteDiscoveredAssets takes context, siteId, page, limit, start, end, duration as parameters and
+// ListSiteDiscoveredAssets takes context, siteId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with []models.Asset data and
 // an error if there was an issue with the request or response.
 // Get List of Site Discovered BLE Assets that doesn’t match any of the Asset / Assetfilters
 func (s *SitesStatsAssets) ListSiteDiscoveredAssets(
     ctx context.Context,
     siteId uuid.UUID,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.Asset],
     error) {
     req := s.prepareRequest(
@@ -339,12 +339,6 @@ func (s *SitesStatsAssets) ListSiteDiscoveredAssets(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -353,6 +347,12 @@ func (s *SitesStatsAssets) ListSiteDiscoveredAssets(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.Asset
@@ -365,7 +365,7 @@ func (s *SitesStatsAssets) ListSiteDiscoveredAssets(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteAssetsOfInterest takes context, siteId, duration, start, end, page, limit as parameters and
+// GetSiteAssetsOfInterest takes context, siteId, duration, start, end, limit, page as parameters and
 // returns an models.ApiResponse with []models.AssetOfInterest data and
 // an error if there was an issue with the request or response.
 // Get a list of BLE beacons that matches Asset or AssetFilter
@@ -375,8 +375,8 @@ func (s *SitesStatsAssets) GetSiteAssetsOfInterest(
     duration *string,
     start *int,
     end *int,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.AssetOfInterest],
     error) {
     req := s.prepareRequest(
@@ -411,11 +411,11 @@ func (s *SitesStatsAssets) GetSiteAssetsOfInterest(
     if end != nil {
         req.QueryParam("end", *end)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.AssetOfInterest

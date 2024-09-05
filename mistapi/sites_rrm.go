@@ -110,7 +110,7 @@ func (s *SitesRRM) GetSiteCurrentRrmConsiderations(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteRrmEvents takes context, siteId, band, page, limit, start, end, duration as parameters and
+// GetSiteRrmEvents takes context, siteId, band, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseEventsRrm data and
 // an error if there was an issue with the request or response.
 // Get Site RRM Events
@@ -118,11 +118,11 @@ func (s *SitesRRM) GetSiteRrmEvents(
     ctx context.Context,
     siteId uuid.UUID,
     band *models.Dot11BandEnum,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponseEventsRrm],
     error) {
     req := s.prepareRequest(
@@ -151,12 +151,6 @@ func (s *SitesRRM) GetSiteRrmEvents(
     if band != nil {
         req.QueryParam("band", *band)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -165,6 +159,12 @@ func (s *SitesRRM) GetSiteRrmEvents(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.ResponseEventsRrm
@@ -177,7 +177,7 @@ func (s *SitesRRM) GetSiteRrmEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteCurrentRrmNeighbors takes context, siteId, band, page, limit as parameters and
+// GetSiteCurrentRrmNeighbors takes context, siteId, band, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseRrmNeighbors data and
 // an error if there was an issue with the request or response.
 // Get Current RRM observed neighbors
@@ -185,8 +185,8 @@ func (s *SitesRRM) GetSiteCurrentRrmNeighbors(
     ctx context.Context,
     siteId uuid.UUID,
     band models.Dot11BandEnum,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[models.ResponseRrmNeighbors],
     error) {
     req := s.prepareRequest(
@@ -212,11 +212,11 @@ func (s *SitesRRM) GetSiteCurrentRrmNeighbors(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.ResponseRrmNeighbors

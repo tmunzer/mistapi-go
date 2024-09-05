@@ -22,7 +22,7 @@ func NewOrgsClientsWireless(baseController baseController) *OrgsClientsWireless 
     return &orgsClientsWireless
 }
 
-// CountOrgWirelessClients takes context, orgId, distinct, mac, hostname, device, os, model, ap, vlan, ssid, ipAddress, page, limit, start, end, duration as parameters and
+// CountOrgWirelessClients takes context, orgId, distinct, mac, hostname, device, os, model, ap, vlan, ssid, ipAddress, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count Org Wireless Clients
@@ -39,11 +39,11 @@ func (o *OrgsClientsWireless) CountOrgWirelessClients(
     vlan *string,
     ssid *string,
     ipAddress *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := o.prepareRequest(
@@ -99,12 +99,6 @@ func (o *OrgsClientsWireless) CountOrgWirelessClients(
     if ipAddress != nil {
         req.QueryParam("ip_address", *ipAddress)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -113,6 +107,12 @@ func (o *OrgsClientsWireless) CountOrgWirelessClients(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount
@@ -327,7 +327,7 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgWirelessClientsSessions takes context, orgId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, page, limit, start, end, duration as parameters and
+// CountOrgWirelessClientsSessions takes context, orgId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count Org Wireless Clients Sessions
@@ -343,11 +343,11 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
     clientOs *string,
     ssid *string,
     wlanId *string,
-    page *int,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int,
+    page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
     req := o.prepareRequest(
@@ -400,12 +400,6 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
     if wlanId != nil {
         req.QueryParam("wlan_id", *wlanId)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -414,6 +408,12 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result models.RepsonseCount

@@ -23,7 +23,7 @@ func NewSitesPsks(baseController baseController) *SitesPsks {
     return &sitesPsks
 }
 
-// ListSitePsks takes context, siteId, ssid, role, name, page, limit as parameters and
+// ListSitePsks takes context, siteId, ssid, role, name, limit, page as parameters and
 // returns an models.ApiResponse with []models.Psk data and
 // an error if there was an issue with the request or response.
 // Get List of Site PSKs
@@ -33,8 +33,8 @@ func (s *SitesPsks) ListSitePsks(
     ssid *string,
     role *string,
     name *string,
-    page *int,
-    limit *int) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.Psk],
     error) {
     req := s.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/sites/%v/psks", siteId))
@@ -65,11 +65,11 @@ func (s *SitesPsks) ListSitePsks(
     if name != nil {
         req.QueryParam("name", *name)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     if limit != nil {
         req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
     }
     
     var result []models.Psk
