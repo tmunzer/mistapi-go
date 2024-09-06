@@ -284,11 +284,11 @@ portal template wlan settings
   "tosLink": "Terms of Service",
   "tosText": "<< provide your Terms of Service here >>",
   "ar": {
+    "authButtonAmazon": "authButtonAmazon6",
     "authButtonAzure": "authButtonAzure4",
     "authButtonEmail": "authButtonEmail2",
     "authButtonFacebook": "authButtonFacebook6",
-    "authButtonGoogle": "authButtonGoogle2",
-    "authButtonMicrosoft": "authButtonMicrosoft0"
+    "authButtonGoogle": "authButtonGoogle2"
   }
 }
 ```

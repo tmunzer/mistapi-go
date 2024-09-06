@@ -2,11 +2,6 @@ module github.com/tmunzer/mistapi-go
 
 go 1.18
 
-require (
-	github.com/apimatic/go-core-runtime v0.0.22
-	github.com/google/uuid v1.6.0
-)
-
 retract v0.1.0 // version based on older sdk generation
 
 retract v0.1.3 // version based on older sdk generation
@@ -38,3 +33,8 @@ retract v0.1.18 // version based on older sdk generation
 retract v0.1.19 // version based on older sdk generation
 
 retract v0.1.20 // version based on older sdk generation
+
+require (
+	github.com/apimatic/go-core-runtime v0.0.24
+	github.com/google/uuid v1.6.0
+)

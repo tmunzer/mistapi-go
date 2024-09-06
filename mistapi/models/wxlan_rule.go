@@ -29,7 +29,7 @@ type WxlanRule struct {
     OrgId                *uuid.UUID           `json:"org_id,omitempty"`
     SiteId               *uuid.UUID           `json:"site_id,omitempty"`
     // tag list to determine if this rule would match
-    SrcWxtags            []string             `json:"src_wxtags"`
+    SrcWxtags            []string             `json:"src_wxtags,omitempty"`
     // Only for Org Level WxRule
     TemplateId           *uuid.UUID           `json:"template_id,omitempty"`
     AdditionalProperties map[string]any       `json:"_"`
@@ -84,7 +84,9 @@ func (w WxlanRule) toMap() map[string]any {
     if w.SiteId != nil {
         structMap["site_id"] = w.SiteId
     }
-    structMap["src_wxtags"] = w.SrcWxtags
+    if w.SrcWxtags != nil {
+        structMap["src_wxtags"] = w.SrcWxtags
+    }
     if w.TemplateId != nil {
         structMap["template_id"] = w.TemplateId
     }
@@ -122,7 +124,7 @@ func (w *WxlanRule) UnmarshalJSON(input []byte) error {
     w.Order = *temp.Order
     w.OrgId = temp.OrgId
     w.SiteId = temp.SiteId
-    w.SrcWxtags = *temp.SrcWxtags
+    w.SrcWxtags = temp.SrcWxtags
     w.TemplateId = temp.TemplateId
     return nil
 }
@@ -142,7 +144,7 @@ type tempWxlanRule  struct {
     Order          *int                 `json:"order"`
     OrgId          *uuid.UUID           `json:"org_id,omitempty"`
     SiteId         *uuid.UUID           `json:"site_id,omitempty"`
-    SrcWxtags      *[]string            `json:"src_wxtags"`
+    SrcWxtags      []string             `json:"src_wxtags,omitempty"`
     TemplateId     *uuid.UUID           `json:"template_id,omitempty"`
 }
 
@@ -150,9 +152,6 @@ func (w *tempWxlanRule) validate() error {
     var errs []string
     if w.Order == nil {
         errs = append(errs, "required field `order` is missing for type `wxlan_rule`")
-    }
-    if w.SrcWxtags == nil {
-        errs = append(errs, "required field `src_wxtags` is missing for type `wxlan_rule`")
     }
     if len(errs) == 0 {
         return nil

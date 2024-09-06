@@ -19,11 +19,11 @@
     "accessCodeAlternateEmail": "accessCodeAlternateEmail4",
     "alignment": "right",
     "ar": {
+      "authButtonAmazon": "authButtonAmazon6",
       "authButtonAzure": "authButtonAzure4",
       "authButtonEmail": "authButtonEmail2",
       "authButtonFacebook": "authButtonFacebook6",
-      "authButtonGoogle": "authButtonGoogle2",
-      "authButtonMicrosoft": "authButtonMicrosoft0"
+      "authButtonGoogle": "authButtonGoogle2"
     },
     "authButtonAmazon": "authButtonAmazon4",
     "authButtonAzure": "authButtonAzure4",

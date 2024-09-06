@@ -6,6 +6,8 @@ import (
 
 // WlanPortalTemplateSettingLocale represents a WlanPortalTemplateSettingLocale struct.
 type WlanPortalTemplateSettingLocale struct {
+    // label for Amazon auth button
+    AuthButtonAmazon         *string        `json:"authButtonAmazon,omitempty"`
     // label for Azure auth button
     AuthButtonAzure          *string        `json:"authButtonAzure,omitempty"`
     // label for Email auth button
@@ -159,8 +161,6 @@ type WlanPortalTemplateSettingLocale struct {
     TosLink                  *string        `json:"tosLink,omitempty"`
     // text of the Terms of Service
     TosText                  *string        `json:"tosText,omitempty"`
-    // label for Amazon auth button
-    UthButtonAmazon          *string        `json:"uthButtonAmazon,omitempty"`
     AdditionalProperties     map[string]any `json:"_"`
 }
 
@@ -176,6 +176,9 @@ func (w WlanPortalTemplateSettingLocale) MarshalJSON() (
 func (w WlanPortalTemplateSettingLocale) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, w.AdditionalProperties)
+    if w.AuthButtonAmazon != nil {
+        structMap["authButtonAmazon"] = w.AuthButtonAmazon
+    }
     if w.AuthButtonAzure != nil {
         structMap["authButtonAzure"] = w.AuthButtonAzure
     }
@@ -455,9 +458,6 @@ func (w WlanPortalTemplateSettingLocale) toMap() map[string]any {
     if w.TosText != nil {
         structMap["tosText"] = w.TosText
     }
-    if w.UthButtonAmazon != nil {
-        structMap["uthButtonAmazon"] = w.UthButtonAmazon
-    }
     return structMap
 }
 
@@ -469,12 +469,13 @@ func (w *WlanPortalTemplateSettingLocale) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "companyError", "companyLabel", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "field1Error", "field1Label", "field2Error", "field2Label", "field3Error", "field3Label", "field4Error", "field4Label", "message", "nameError", "nameLabel", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "requiredFieldLabel", "signInLabel", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "tosAcceptLabel", "tosError", "tosLink", "tosText", "uthButtonAmazon")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "authButtonAmazon", "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "companyError", "companyLabel", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "field1Error", "field1Label", "field2Error", "field2Label", "field3Error", "field3Label", "field4Error", "field4Label", "message", "nameError", "nameLabel", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "requiredFieldLabel", "signInLabel", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "tosAcceptLabel", "tosError", "tosLink", "tosText")
     if err != nil {
     	return err
     }
     
     w.AdditionalProperties = additionalProperties
+    w.AuthButtonAmazon = temp.AuthButtonAmazon
     w.AuthButtonAzure = temp.AuthButtonAzure
     w.AuthButtonEmail = temp.AuthButtonEmail
     w.AuthButtonFacebook = temp.AuthButtonFacebook
@@ -568,12 +569,12 @@ func (w *WlanPortalTemplateSettingLocale) UnmarshalJSON(input []byte) error {
     w.TosError = temp.TosError
     w.TosLink = temp.TosLink
     w.TosText = temp.TosText
-    w.UthButtonAmazon = temp.UthButtonAmazon
     return nil
 }
 
 // tempWlanPortalTemplateSettingLocale is a temporary struct used for validating the fields of WlanPortalTemplateSettingLocale.
 type tempWlanPortalTemplateSettingLocale  struct {
+    AuthButtonAmazon         *string `json:"authButtonAmazon,omitempty"`
     AuthButtonAzure          *string `json:"authButtonAzure,omitempty"`
     AuthButtonEmail          *string `json:"authButtonEmail,omitempty"`
     AuthButtonFacebook       *string `json:"authButtonFacebook,omitempty"`
@@ -667,5 +668,4 @@ type tempWlanPortalTemplateSettingLocale  struct {
     TosError                 *string `json:"tosError,omitempty"`
     TosLink                  *string `json:"tosLink,omitempty"`
     TosText                  *string `json:"tosText,omitempty"`
-    UthButtonAmazon          *string `json:"uthButtonAmazon,omitempty"`
 }

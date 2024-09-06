@@ -24,7 +24,7 @@ WXlan
 | `Order` | `int` | Required | the order how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked<br>**Constraints**: `>= 1` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `SrcWxtags` | `[]string` | Required | tag list to determine if this rule would match |
+| `SrcWxtags` | `[]string` | Optional | tag list to determine if this rule would match |
 | `TemplateId` | `*uuid.UUID` | Optional | Only for Org Level WxRule |
 
 ## Example (as JSON)

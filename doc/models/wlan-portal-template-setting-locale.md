@@ -9,6 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `AuthButtonAmazon` | `*string` | Optional | label for Amazon auth button |
 | `AuthButtonAzure` | `*string` | Optional | label for Azure auth button |
 | `AuthButtonEmail` | `*string` | Optional | label for Email auth button |
 | `AuthButtonFacebook` | `*string` | Optional | label for Facebook auth button |
@@ -102,17 +103,16 @@
 | `TosError` | `*string` | Optional | error message when tos not accepted |
 | `TosLink` | `*string` | Optional | label of the link to go to tos |
 | `TosText` | `*string` | Optional | text of the Terms of Service |
-| `UthButtonAmazon` | `*string` | Optional | label for Amazon auth button |
 
 ## Example (as JSON)
 
 ```json
 {
+  "authButtonAmazon": "authButtonAmazon2",
   "authButtonAzure": "authButtonAzure0",
   "authButtonEmail": "authButtonEmail8",
   "authButtonFacebook": "authButtonFacebook2",
-  "authButtonGoogle": "authButtonGoogle8",
-  "authButtonMicrosoft": "authButtonMicrosoft6"
+  "authButtonGoogle": "authButtonGoogle8"
 }
 ```
 
