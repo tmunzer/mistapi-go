@@ -4,6 +4,7 @@ import (
     "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/google/uuid"
+    "mistapi/models"
 )
 
 // ErrorDeleteFailed is a custom error.
@@ -169,4 +170,27 @@ func NewResponseHttp429Error(apiError https.ApiError) error {
 // It returns a formatted error message for ResponseHttp429Error.
 func (r ResponseHttp429Error) Error() string {
     return fmt.Sprintf("ResponseHttp429Error occured: %v", r.Message)
+}
+
+// ResponseInventoryError is a custom error.
+type ResponseInventoryError struct {
+    https.ApiError
+    Added               []string                                           `json:"added,omitempty"`
+    Duplicated          []string                                           `json:"duplicated,omitempty"`
+    MError              []string                                           `json:"error,omitempty"`
+    InventoryAdded      []models.ResponseInventoryInventoryAddedItems      `json:"inventory_added,omitempty"`
+    InventoryDuplicated []models.ResponseInventoryInventoryDuplicatedItems `json:"inventory_duplicated,omitempty"`
+    Reason              []string                                           `json:"reason,omitempty"`
+}
+
+// NewResponseInventoryError is a constructor for ResponseInventoryError.
+// It creates and returns a pointer to a new ResponseInventoryError instance with the given statusCode and body.
+func NewResponseInventoryError(apiError https.ApiError) error {
+    return &ResponseInventoryError{ApiError: apiError}
+}
+
+// Error implements the Error method for the error interface.
+// It returns a formatted error message for ResponseInventoryError.
+func (r ResponseInventoryError) Error() string {
+    return fmt.Sprintf("ResponseInventoryError occured: %v", r.Message)
 }

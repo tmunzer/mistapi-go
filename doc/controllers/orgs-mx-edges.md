@@ -53,7 +53,7 @@ AddOrgMxEdgeImage(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
-| `imageNumber` | `int` | Template, Required | - |
+| `imageNumber` | `int` | Template, Required | **Constraints**: `>= 1`, `<= 3` |
 | `body` | [`*models.ImageImport`](../../doc/models/image-import.md) | Body, Optional | - |
 
 ## Response Type
@@ -378,7 +378,7 @@ CountOrgMxEdges(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgMxedgeCountDistinctEnum`](../../doc/models/org-mxedge-count-distinct-enum.md) | Query, Optional | - |
+| `distinct` | [`*models.OrgMxedgeCountDistinctEnum`](../../doc/models/org-mxedge-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
 | `mxedgeId` | `*string` | Query, Optional | mist edge id |
 | `siteId` | `*string` | Query, Optional | mist edge site id |
 | `mxclusterId` | `*string` | Query, Optional | mist edge cluster id |
@@ -389,9 +389,9 @@ CountOrgMxEdges(
 | `stats` | `*bool` | Query, Optional | whether to return device stats, default is false |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -497,15 +497,15 @@ CountOrgSiteMxEdgeEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgMxedgeEventsCountDistinctEnum`](../../doc/models/org-mxedge-events-count-distinct-enum.md) | Query, Optional | - |
+| `distinct` | [`*models.OrgMxedgeEventsCountDistinctEnum`](../../doc/models/org-mxedge-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mxedge_id"` |
 | `mxedgeId` | `*string` | Query, Optional | mist edge id |
 | `mxclusterId` | `*string` | Query, Optional | mist edge cluster id |
 | `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions]($e/Constants%20Events/listDeviceEventsDefinitions) |
 | `service` | `*string` | Query, Optional | service running on mist edge(mxagent, tunterm etc) |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -794,7 +794,7 @@ DeleteOrgMxEdgeImage(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
-| `imageNumber` | `int` | Template, Required | - |
+| `imageNumber` | `int` | Template, Required | **Constraints**: `>= 1`, `<= 3` |
 
 ## Response Type
 
@@ -958,7 +958,7 @@ GetOrgMxEdgeUpgradeInfo(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `channel` | [`*models.GetOrgMxedgeUpgradeInfoChannelEnum`](../../doc/models/get-org-mxedge-upgrade-info-channel-enum.md) | Query, Optional | upgrade channel to follow, stable (default) / beta / alpha |
+| `channel` | [`*models.GetOrgMxedgeUpgradeInfoChannelEnum`](../../doc/models/get-org-mxedge-upgrade-info-channel-enum.md) | Query, Optional | upgrade channel to follow, stable (default) / beta / alpha<br>**Default**: `"stable"` |
 
 ## Response Type
 
@@ -1030,9 +1030,9 @@ ListOrgMxEdges(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `forSites` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | filter for site level mist edges |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `forSites` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | filter for site level mist edges<br>**Default**: `"any"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -1256,8 +1256,8 @@ SearchOrgMistEdgeEvents(
 | `service` | `*string` | Query, Optional | service running on mist edge(mxagent, tunterm etc) |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -1368,9 +1368,9 @@ SearchOrgMxEdges(
 | `stats` | `*bool` | Query, Optional | whether to return device stats, default is false |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 

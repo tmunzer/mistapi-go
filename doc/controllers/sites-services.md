@@ -47,7 +47,7 @@ CountSiteServicePathEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.SiteServiceEventsCountDistinctEnum`](../../doc/models/site-service-events-count-distinct-enum.md) | Query, Optional | - |
+| `distinct` | [`*models.SiteServiceEventsCountDistinctEnum`](../../doc/models/site-service-events-count-distinct-enum.md) | Query, Optional | **Default**: `"type"` |
 | `mType` | `*string` | Query, Optional | Event type, e.g. GW_SERVICE_PATH_DOWN |
 | `text` | `*string` | Query, Optional | Description of the event including the reason it is triggered |
 | `vpnName` | `*string` | Query, Optional | Peer name |
@@ -60,8 +60,8 @@ CountSiteServicePathEvents(
 | `mac` | `*string` | Query, Optional | MAC address |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -161,7 +161,7 @@ ListSiteServicesDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `resolve` | `*bool` | Query, Optional | whether resolve the site variables |
+| `resolve` | `*bool` | Query, Optional | whether resolve the site variables<br>**Default**: `false` |
 
 ## Response Type
 
@@ -276,8 +276,8 @@ SearchSiteServicePathEvents(
 | `mac` | `*string` | Query, Optional | MAC address |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
 

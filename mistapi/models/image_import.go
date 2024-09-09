@@ -10,7 +10,6 @@ import (
 type ImageImport struct {
     // binary file
     File                 []byte         `json:"file"`
-    // JSON string describing your upload
     Json                 *string        `json:"json,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }

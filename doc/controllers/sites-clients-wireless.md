@@ -56,10 +56,10 @@ CountSiteWirelessClientEvents(
 | `proto` | [`*models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Query, Optional | a / b / g / n / ac / ax |
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
 | `wlanId` | `*string` | Query, Optional | wlan_id |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -166,7 +166,7 @@ CountSiteWirelessClientSessions(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.SiteClientSessionsCountDistinctEnum`](../../doc/models/site-client-sessions-count-distinct-enum.md) | Query, Optional | - |
+| `distinct` | [`*models.SiteClientSessionsCountDistinctEnum`](../../doc/models/site-client-sessions-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
 | `ap` | `*string` | Query, Optional | AP MAC |
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
 | `clientFamily` | `*string` | Query, Optional | E.g. “Mac”, “iPhone”, “Apple watch” |
@@ -177,9 +177,9 @@ CountSiteWirelessClientSessions(
 | `wlanId` | `*string` | Query, Optional | wlan_id |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -290,7 +290,7 @@ CountSiteWirelessClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.SiteClientsCountDistinctEnum`](../../doc/models/site-clients-count-distinct-enum.md) | Query, Optional | - |
+| `distinct` | [`*models.SiteClientsCountDistinctEnum`](../../doc/models/site-clients-count-distinct-enum.md) | Query, Optional | **Default**: `"device"` |
 | `ssid` | `*string` | Query, Optional | - |
 | `ap` | `*string` | Query, Optional | - |
 | `ipAddress` | `*string` | Query, Optional | - |
@@ -301,9 +301,9 @@ CountSiteWirelessClients(
 | `device` | `*string` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -412,7 +412,7 @@ GetSiteEventsForClient(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `clientMac` | `string` | Template, Required | - |
+| `clientMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 | `mType` | `*string` | Query, Optional | e.g. MARVIS_EVENT_CLIENT_DHCP_STUCK |
 | `proto` | [`*models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Query, Optional | a / b / g / n / ac / ax |
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
@@ -421,9 +421,9 @@ GetSiteEventsForClient(
 | `ssid` | `*string` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -544,10 +544,10 @@ SearchSiteWirelessClientEvents(
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
 | `wlanId` | `*string` | Query, Optional | wlan_id |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -674,10 +674,10 @@ SearchSiteWirelessClientSessions(
 | `wlanId` | `*string` | Query, Optional | wlan_id |
 | `pskId` | `*string` | Query, Optional | PSK ID |
 | `pskName` | `*string` | Query, Optional | PSK Name |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -814,10 +814,10 @@ SearchSiteWirelessClients(
 | `ssid` | `*string` | Query, Optional | - |
 | `text` | `*string` | Query, Optional | partial / full MAC address, hostname, username, psk_name or ip |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

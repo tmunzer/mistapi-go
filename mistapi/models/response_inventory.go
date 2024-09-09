@@ -11,6 +11,7 @@ type ResponseInventory struct {
     Error                []string                                    `json:"error,omitempty"`
     InventoryAdded       []ResponseInventoryInventoryAddedItems      `json:"inventory_added,omitempty"`
     InventoryDuplicated  []ResponseInventoryInventoryDuplicatedItems `json:"inventory_duplicated,omitempty"`
+    Reason               []string                                    `json:"reason,omitempty"`
     AdditionalProperties map[string]any                              `json:"_"`
 }
 
@@ -41,6 +42,9 @@ func (r ResponseInventory) toMap() map[string]any {
     if r.InventoryDuplicated != nil {
         structMap["inventory_duplicated"] = r.InventoryDuplicated
     }
+    if r.Reason != nil {
+        structMap["reason"] = r.Reason
+    }
     return structMap
 }
 
@@ -52,7 +56,7 @@ func (r *ResponseInventory) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "added", "duplicated", "error", "inventory_added", "inventory_duplicated")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "added", "duplicated", "error", "inventory_added", "inventory_duplicated", "reason")
     if err != nil {
     	return err
     }
@@ -63,6 +67,7 @@ func (r *ResponseInventory) UnmarshalJSON(input []byte) error {
     r.Error = temp.Error
     r.InventoryAdded = temp.InventoryAdded
     r.InventoryDuplicated = temp.InventoryDuplicated
+    r.Reason = temp.Reason
     return nil
 }
 
@@ -73,4 +78,5 @@ type tempResponseInventory  struct {
     Error               []string                                    `json:"error,omitempty"`
     InventoryAdded      []ResponseInventoryInventoryAddedItems      `json:"inventory_added,omitempty"`
     InventoryDuplicated []ResponseInventoryInventoryDuplicatedItems `json:"inventory_duplicated,omitempty"`
+    Reason              []string                                    `json:"reason,omitempty"`
 }

@@ -43,8 +43,8 @@ CountSiteNacClientEvents(
 | `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions]($e/Constants%20Events/listNacEventsDefinitions) |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -146,7 +146,7 @@ CountSiteNacClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.SiteNacClientsCountDistinctEnum`](../../doc/models/site-nac-clients-count-distinct-enum.md) | Query, Optional | NAC Policy Rule ID, if matched |
+| `distinct` | [`*models.SiteNacClientsCountDistinctEnum`](../../doc/models/site-nac-clients-count-distinct-enum.md) | Query, Optional | NAC Policy Rule ID, if matched<br>**Default**: `"type"` |
 | `lastNacruleId` | `*string` | Query, Optional | NAC Policy Rule ID, if matched |
 | `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
 | `authType` | `*string` | Query, Optional | authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
@@ -164,9 +164,9 @@ CountSiteNacClients(
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg “intune”, “jamf” |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -316,10 +316,10 @@ SearchSiteNacClientEvents(
 | `idpId` | `*uuid.UUID` | Query, Optional | SSO ID, if present and used |
 | `idpRole` | `*string` | Query, Optional | IDP returned roles/groups for the user |
 | `idpUsername` | `*string` | Query, Optional | Username presented to the Identity Provider |
-| `respAttrs` | `[]string` | Query, Optional | Radius attributes returned by NAC to NAS Devive |
+| `respAttrs` | `[]string` | Query, Optional | Radius attributes returned by NAC to NAS Devive<br>**Constraints**: *Unique Items Required* |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `username` | `*string` | Query, Optional | Username presented by the client |
-| `usermacLabels` | `[]string` | Query, Optional | labels derived from usermac entry |
+| `usermacLabels` | `[]string` | Query, Optional | labels derived from usermac entry<br>**Constraints**: *Unique Items Required* |
 | `ap` | `*string` | Query, Optional | AP MAC |
 | `randomMac` | `*bool` | Query, Optional | AP random macMAC |
 | `mac` | `*string` | Query, Optional | MAC address |
@@ -327,8 +327,8 @@ SearchSiteNacClientEvents(
 | `timestamp` | `*float64` | Query, Optional | time, in epoch |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -515,9 +515,9 @@ SearchSiteNacClients(
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg “intune”, “jamf” |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 

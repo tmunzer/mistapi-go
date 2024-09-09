@@ -20,10 +20,10 @@
 
 ```json
 {
-  "end": 1541705289.769911,
+  "end": 1541705289.76991,
   "limit": 1,
   "next": "/api/v1/sites/67970e46-4e12-11e6-9188-0242ac110007/zones/visits/search?limit=2&end=1541705247.000&scope_id=85fbba9e-4e12-11e6-9188-0242ac110007&user_type=asset&start=1541618889.77",
-  "start": 1541618889.769886,
+  "start": 1541618889.76989,
   "total": 5892,
   "results": [
     {

@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2408.1.8**
+> Version: **2408.1.9**
 > 
-> Date: **September 5, 2024**
+> Date: **September 9, 2024**
 
 ---
 
@@ -54,6 +54,14 @@ require mistapi v0.0.0
 ```
 
 - Resolve the dependencies in the updated `go.mod` file, using the `go get` command.
+
+## Test the SDK
+
+`Go Testing` is used as the testing framework. To run the unit tests of the SDK, navigate to the root directory of the SDK and run the following command in the terminal:
+
+```bash
+$ go test
+```
 
 ## Initialize the API Client
 

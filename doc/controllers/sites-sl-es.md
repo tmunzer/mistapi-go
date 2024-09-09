@@ -59,7 +59,7 @@ GetSiteSleClassifierDetails(
 | `classifier` | `string` | Template, Required | - |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -244,7 +244,7 @@ GetSiteSleHistogram(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -422,7 +422,7 @@ GetSiteSleImpactSummary(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `fields` | [`*models.SiteSleImpactSummaryFieldsParameterEnum`](../../doc/models/site-sle-impact-summary-fields-parameter-enum.md) | Query, Optional | - |
 | `classifier` | `*string` | Query, Optional | - |
 
@@ -644,7 +644,7 @@ GetSiteSleImpactedApplications(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -747,7 +747,7 @@ GetSiteSleImpactedAps(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -856,7 +856,7 @@ GetSiteSleImpactedChassis(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -960,7 +960,7 @@ GetSiteSleImpactedGateways(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1064,7 +1064,7 @@ GetSiteSleImpactedInterfaces(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1175,7 +1175,7 @@ GetSiteSleImpactedSwitches(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1283,7 +1283,7 @@ GetSiteSleImpactedWiredClients(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1394,7 +1394,7 @@ GetSiteSleImpactedWirelessClients(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1612,7 +1612,7 @@ GetSiteSleSummary(
 | `metric` | `string` | Template, Required | values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

@@ -92,7 +92,7 @@ CreateOrgJsiDeviceShellSession(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `deviceMac` | `string` | Template, Required | - |
+| `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 
 ## Response Type
 
@@ -150,8 +150,8 @@ ListOrgJsiDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 | `model` | `*string` | Query, Optional | Device model |
 | `serial` | `*string` | Query, Optional | Device serial |
 | `mac` | `*string` | Query, Optional | Device MAC Address |
@@ -233,8 +233,8 @@ ListOrgJsiPastPurchases(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 | `model` | `*string` | Query, Optional | - |
 | `serial` | `*string` | Query, Optional | - |
 

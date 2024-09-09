@@ -29,9 +29,9 @@ CountMspsMarvisActions(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `mspId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.MspMarvisSuggestionsCountDistinctEnum`](../../doc/models/msp-marvis-suggestions-count-distinct-enum.md) | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `distinct` | [`*models.MspMarvisSuggestionsCountDistinctEnum`](../../doc/models/msp-marvis-suggestions-count-distinct-enum.md) | Query, Optional | **Default**: `"org_id"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 

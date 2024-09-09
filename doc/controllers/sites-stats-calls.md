@@ -38,8 +38,8 @@ CountSiteCalls(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distrinct` | [`*models.CountSiteCallsDistrinctEnum`](../../doc/models/count-site-calls-distrinct-enum.md) | Query, Optional | - |
-| `rating` | `*int` | Query, Optional | feedback rating (e.g. "rating=1" or "rating=1,2") |
+| `distrinct` | [`*models.CountSiteCallsDistrinctEnum`](../../doc/models/count-site-calls-distrinct-enum.md) | Query, Optional | **Default**: `"mac"` |
+| `rating` | `*int` | Query, Optional | feedback rating (e.g. "rating=1" or "rating=1,2")<br>**Constraints**: `>= 1`, `<= 5` |
 | `app` | `*string` | Query, Optional | - |
 | `start` | `*string` | Query, Optional | - |
 | `end` | `*string` | Query, Optional | - |
@@ -136,9 +136,9 @@ ListSiteTroubleshootCalls(
 | `app` | `*string` | Query, Optional | Third party app name |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -313,10 +313,10 @@ SearchSiteCalls(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | device identifier |
 | `app` | `*string` | Query, Optional | Third party app name |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -388,15 +388,15 @@ TroubleshootSiteCall(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `clientMac` | `string` | Template, Required | - |
+| `clientMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 | `meetingId` | `string` | Query, Required | meeting_id |
 | `mac` | `*string` | Query, Optional | device identifier |
 | `app` | `*string` | Query, Optional | Third party app name |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 

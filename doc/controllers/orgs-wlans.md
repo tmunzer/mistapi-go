@@ -15,6 +15,7 @@ orgsWlans := client.OrgsWlans()
 * [Delete Org Wlan Portal Image](../../doc/controllers/orgs-wlans.md#delete-org-wlan-portal-image)
 * [Get Org WLAN](../../doc/controllers/orgs-wlans.md#get-org-wlan)
 * [List Org Wlans](../../doc/controllers/orgs-wlans.md#list-org-wlans)
+* [Site Org Wlan Portal Image](../../doc/controllers/orgs-wlans.md#site-org-wlan-portal-image)
 * [Update Org Wlan](../../doc/controllers/orgs-wlans.md#update-org-wlan)
 * [Update Org Wlan Portal Template](../../doc/controllers/orgs-wlans.md#update-org-wlan-portal-template)
 * [Upload Org Wlan Portal Image](../../doc/controllers/orgs-wlans.md#upload-org-wlan-portal-image)
@@ -436,8 +437,8 @@ ListOrgWlans(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -461,6 +462,58 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Site Org Wlan Portal Image
+
+Delete Site WLAN Portal Image
+
+```go
+SiteOrgWlanPortalImage(
+    ctx context.Context,
+    siteId uuid.UUID,
+    wlanId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `wlanId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+``
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+wlanId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := orgsWlans.SiteOrgWlanPortalImage(ctx, siteId, wlanId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
 }
 ```
 
@@ -853,7 +906,7 @@ UploadOrgWlanPortalImage(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `wlanId` | `uuid.UUID` | Template, Required | - |
 | `file` | `models.FileWrapper` | Form, Required | binary file |
-| `json` | `*string` | Form, Optional | JSON string describing your upload |
+| `json` | `*string` | Form, Optional | - |
 
 ## Response Type
 

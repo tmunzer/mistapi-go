@@ -296,8 +296,8 @@ ListSitePsks(
 | `ssid` | `*string` | Query, Optional | - |
 | `role` | `*string` | Query, Optional | - |
 | `name` | `*string` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -379,7 +379,7 @@ UpdateSiteMultiplePsks(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`[]models.Psk`](../../doc/models/psk.md) | Body, Optional | - |
+| `body` | [`[]models.Psk`](../../doc/models/psk.md) | Body, Optional | **Constraints**: *Unique Items Required* |
 
 ## Response Type
 

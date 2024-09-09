@@ -62,7 +62,7 @@ CountOrgSwitchPorts(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgSwitchPortCountDistinctEnum`](../../doc/models/org-switch-port-count-distinct-enum.md) | Query, Optional | - |
+| `distinct` | [`*models.OrgSwitchPortCountDistinctEnum`](../../doc/models/org-switch-port-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
 | `fullDuplex` | `*bool` | Query, Optional | indicates full or half duplex |
 | `mac` | `*string` | Query, Optional | device identifier |
 | `neighborMac` | `*string` | Query, Optional | Chassis identifier of the chassis type listed |
@@ -90,9 +90,9 @@ CountOrgSwitchPorts(
 | `up` | `*bool` | Query, Optional | indicates if interface is up |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -285,10 +285,10 @@ SearchOrgSwOrGwPorts(
 | `stpState` | [`*models.SearchOrgSwOrGwPortsStpStateEnum`](../../doc/models/search-org-sw-or-gw-ports-stp-state-enum.md) | Query, Optional | if `up`==`true` |
 | `stpRole` | [`*models.SearchOrgSwOrGwPortsStpRoleEnum`](../../doc/models/search-org-sw-or-gw-ports-stp-role-enum.md) | Query, Optional | if `up`==`true` |
 | `authState` | [`*models.SearchOrgSwOrGwPortsAuthStateEnum`](../../doc/models/search-org-sw-or-gw-ports-auth-state-enum.md) | Query, Optional | if `up`==`true` && has Authenticator role |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

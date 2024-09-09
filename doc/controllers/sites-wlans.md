@@ -524,7 +524,7 @@ ListSiteWlanDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `resolve` | `*bool` | Query, Optional | whether to resolve SITE_VARS |
+| `resolve` | `*bool` | Query, Optional | whether to resolve SITE_VARS<br>**Default**: `false` |
 | `wlanId` | `*string` | Query, Optional | filter by WLAN ID |
 
 ## Response Type
@@ -582,8 +582,8 @@ ListSiteWlans(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -1154,7 +1154,7 @@ UploadSiteWlanPortalImage(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `wlanId` | `uuid.UUID` | Template, Required | - |
 | `file` | `models.FileWrapper` | Form, Required | binary file |
-| `json` | `*string` | Form, Optional | JSON string describing your upload |
+| `json` | `*string` | Form, Optional | - |
 
 ## Response Type
 

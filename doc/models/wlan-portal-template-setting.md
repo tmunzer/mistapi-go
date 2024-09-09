@@ -123,7 +123,7 @@ portal template wlan settings
 | `SmsCodeSubmit` | `*string` | Optional | Label for confirmation code submit button<br>**Default**: `"Sign In"` |
 | `SmsCodeTitle` | `*string` | Optional | **Default**: `"Access Code"` |
 | `SmsCountryFieldLabel` | `*string` | Optional | **Default**: `"Country Code"` |
-| `SmsCountryFormat` | `*string` | Optional | **Default**: `"1"` |
+| `SmsCountryFormat` | `*string` | Optional | **Default**: `"+1"` |
 | `SmsHaveAccessCode` | `*string` | Optional | Label for checkbox to specify that the user has access code<br>**Default**: `"I have an access code"` |
 | `SmsIsTwilio` | `*bool` | Optional | **Default**: `false` |
 | `SmsMessageFormat` | `*string` | Optional | format of access code sms message. {{code}} and {{duration}} are place holders and should be retained as is. |
@@ -250,7 +250,7 @@ portal template wlan settings
   "smsCodeSubmit": "Sign In",
   "smsCodeTitle": "Access Code",
   "smsCountryFieldLabel": "Country Code",
-  "smsCountryFormat": "1",
+  "smsCountryFormat": "+1",
   "smsHaveAccessCode": "I have an access code",
   "smsIsTwilio": false,
   "smsNumberCancel": "Cancel",

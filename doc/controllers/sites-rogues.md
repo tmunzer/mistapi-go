@@ -45,17 +45,17 @@ CountSiteRogueEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.SiteRogueEventsCountDistinctEnum`](../../doc/models/site-rogue-events-count-distinct-enum.md) | Query, Optional | - |
+| `distinct` | [`*models.SiteRogueEventsCountDistinctEnum`](../../doc/models/site-rogue-events-count-distinct-enum.md) | Query, Optional | **Default**: `"bssid"` |
 | `mType` | [`*models.RogueTypeEnum`](../../doc/models/rogue-type-enum.md) | Query, Optional | - |
 | `ssid` | `*string` | Query, Optional | ssid of the network detected as threat |
 | `bssid` | `*string` | Query, Optional | bssid of the network detected as threat |
 | `apMac` | `*string` | Query, Optional | mac of the device that had strongest signal strength for ssid/bssid pair |
 | `channel` | `*string` | Query, Optional | channel over which ap_mac heard ssid/bssid pair |
 | `seenOnLan` | `*bool` | Query, Optional | whether the reporting AP see a wireless client (on LAN) connecting to it |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -147,7 +147,7 @@ GetSiteRogueAP(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `rogueBssid` | `string` | Template, Required | - |
+| `rogueBssid` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 
 ## Response Type
 
@@ -216,10 +216,10 @@ ListSiteRogueAPs(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.RogueTypeEnum`](../../doc/models/rogue-type-enum.md) | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
 
 ## Response Type
@@ -310,10 +310,10 @@ ListSiteRogueClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
 
 ## Response Type
@@ -413,10 +413,10 @@ SearchSiteRogueEvents(
 | `apMac` | `*string` | Query, Optional | mac of the device that had strongest signal strength for ssid/bssid pair |
 | `channel` | `*int` | Query, Optional | channel over which ap_mac heard ssid/bssid pair |
 | `seenOnLan` | `*bool` | Query, Optional | whether the reporting AP see a wireless client (on LAN) connecting to it |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

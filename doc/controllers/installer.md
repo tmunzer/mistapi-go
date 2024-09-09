@@ -78,7 +78,7 @@ AddInstallerDeviceImage(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `imageName` | `string` | Template, Required | - |
-| `deviceMac` | `string` | Template, Required | - |
+| `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 | `autoDeviceprofileAssignment` | `*bool` | Form, Optional | whether to auto assign device to deviceprofile by name |
 | `csv` | `*models.FileWrapper` | Form, Optional | csv file for ap name mapping, optional |
 | `file` | `*models.FileWrapper` | Form, Optional | ekahau or ibwave file |
@@ -149,7 +149,7 @@ ClaimInstallerDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `body` | `[]string` | Body, Optional | Request Body |
+| `body` | `[]string` | Body, Optional | Request Body<br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
@@ -207,6 +207,9 @@ if err != nil {
       "serial": "FXLH2015150027",
       "type": "ap"
     }
+  ],
+  "reason": [
+    "belongs to another org ('e2f543f7-d6e1-409f-a565-e77a1f098d3b' (other) != '0de5d6fc-219a-414d-a840-67d6b919ad8f' (you))"
   ]
 }
 ```
@@ -215,7 +218,7 @@ if err != nil {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad Request if none of the entries are valid | `ApiError` |
+| 400 | OK - if any of entries are valid or there’s no errors | [`ResponseInventoryErrorException`](../../doc/models/response-inventory-error-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
@@ -562,7 +565,7 @@ DeleteInstallerDeviceImage(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `imageName` | `string` | Template, Required | - |
-| `deviceMac` | `string` | Template, Required | - |
+| `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 
 ## Response Type
 
@@ -915,7 +918,7 @@ ListInstallerDeviceProfiles(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | - |
+| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 
 ## Response Type
 
@@ -987,8 +990,8 @@ ListInstallerListOfRenctlyClaimedDevices(
 | `model` | `*string` | Query, Optional | Device Model |
 | `siteName` | `*string` | Query, Optional | Site Name |
 | `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -1466,7 +1469,7 @@ ProvisionInstallerDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `deviceMac` | `string` | Template, Required | - |
+| `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 | `body` | [`*models.InstallerProvisionDevice`](../../doc/models/installer-provision-device.md) | Body, Optional | Request Body |
 
 ## Response Type
@@ -1530,7 +1533,7 @@ StartInstallerLocateDevice(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `deviceMac` | `string` | Template, Required | - |
+| `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 
 ## Response Type
 
@@ -1582,7 +1585,7 @@ StopInstallerLocateDevice(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `deviceMac` | `string` | Template, Required | - |
+| `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 
 ## Response Type
 
@@ -1634,7 +1637,7 @@ UnassignInstallerRecentlyClaimedDevice(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `deviceMac` | `string` | Template, Required | - |
+| `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 
 ## Response Type
 

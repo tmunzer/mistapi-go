@@ -694,7 +694,7 @@ ListSiteAvailableDeviceVersions(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | - |
+| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `model` | `*string` | Query, Optional | fetch version for device model, use/combine with `type` as needed (for switch and gateway devices) |
 
 ## Response Type
@@ -1024,7 +1024,7 @@ UpgradeOrgJsiDevice(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `deviceMac` | `string` | Template, Required | - |
+| `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 | `body` | [`*models.VersionString`](../../doc/models/version-string.md) | Body, Optional | - |
 
 ## Response Type

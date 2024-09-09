@@ -36,7 +36,7 @@ GetAdminRegistrationInfo(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recaptchaFlavor` | [`*models.RecaptchaFlavorEnum`](../../doc/models/recaptcha-flavor-enum.md) | Query, Optional | - |
+| `recaptchaFlavor` | [`*models.RecaptchaFlavorEnum`](../../doc/models/recaptcha-flavor-enum.md) | Query, Optional | **Default**: `"google"` |
 
 ## Response Type
 

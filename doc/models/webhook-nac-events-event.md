@@ -55,7 +55,7 @@
   ],
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "ssid": "##mist_nac",
-  "timestamp": 1691512031.358188,
+  "timestamp": 1691512031.35819,
   "type": "NAC_CLIENT_PERMIT",
   "username": "user@deaflyz.net",
   "vlan": "750",

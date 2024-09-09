@@ -64,7 +64,7 @@ CountSiteSwOrGwPorts(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.SitePortsCountDistinctEnum`](../../doc/models/site-ports-count-distinct-enum.md) | Query, Optional | - |
+| `distinct` | [`*models.SitePortsCountDistinctEnum`](../../doc/models/site-ports-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
 | `fullDuplex` | `*bool` | Query, Optional | indicates full or half duplex |
 | `mac` | `*string` | Query, Optional | device identifier |
 | `neighborMac` | `*string` | Query, Optional | Chassis identifier of the chassis type listed |
@@ -92,9 +92,9 @@ CountSiteSwOrGwPorts(
 | `up` | `*bool` | Query, Optional | indicates if interface is up |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -256,7 +256,7 @@ CountSiteSwitchPorts(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.SiteSwitchPortsCountDistinctEnum`](../../doc/models/site-switch-ports-count-distinct-enum.md) | Query, Optional | - |
+| `distinct` | [`*models.SiteSwitchPortsCountDistinctEnum`](../../doc/models/site-switch-ports-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
 | `fullDuplex` | `*bool` | Query, Optional | indicates full or half duplex |
 | `mac` | `*string` | Query, Optional | device identifier |
 | `neighborMac` | `*string` | Query, Optional | Chassis identifier of the chassis type listed |
@@ -284,9 +284,9 @@ CountSiteSwitchPorts(
 | `up` | `*bool` | Query, Optional | indicates if interface is up |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -497,10 +497,10 @@ SearchSiteSwOrGwPorts(
 | `lteImsi` | `*string` | Query, Optional | LTE IMSI value, Check for null/empty |
 | `lteIccid` | `*string` | Query, Optional | LTE ICCID value, Check for null/empty |
 | `lteImei` | `*string` | Query, Optional | LTE IMEI value, Check for null/empty |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -747,10 +747,10 @@ SearchSiteSwitchPorts(
 | `stpRole` | [`*models.SearchSiteSwitchPortsStpRoleEnum`](../../doc/models/search-site-switch-ports-stp-role-enum.md) | Query, Optional | if `up`==`true` |
 | `authState` | [`*models.SearchSiteSwitchPortsAuthStateEnum`](../../doc/models/search-site-switch-ports-auth-state-enum.md) | Query, Optional | if `up`==`true` && has Authenticator role |
 | `up` | `*bool` | Query, Optional | indicates if interface is up |
-| `limit` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w |
+| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

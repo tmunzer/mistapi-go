@@ -37,7 +37,7 @@ AddOrgInventory(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `body` | `[]string` | Body, Optional | Request Body |
+| `body` | `[]string` | Body, Optional | Request Body<br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
@@ -95,6 +95,9 @@ if err != nil {
       "serial": "FXLH2015150027",
       "type": "ap"
     }
+  ],
+  "reason": [
+    "belongs to another org ('e2f543f7-d6e1-409f-a565-e77a1f098d3b' (other) != '0de5d6fc-219a-414d-a840-67d6b919ad8f' (you))"
   ]
 }
 ```
@@ -103,7 +106,7 @@ if err != nil {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | if none of the entries are valid | `ApiError` |
+| 400 | OK - if any of entries are valid or there’s no errors | [`ResponseInventoryErrorException`](../../doc/models/response-inventory-error-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
@@ -273,14 +276,14 @@ GetOrgInventory(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `serial` | `*string` | Query, Optional | device serial |
 | `model` | `*string` | Query, Optional | device model |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | - |
+| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | MAC address |
 | `siteId` | `*string` | Query, Optional | site id if assigned, null if not assigned |
 | `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC Address |
-| `vc` | `*bool` | Query, Optional | To display Virtual Chassis members |
-| `unassigned` | `*bool` | Query, Optional | to display Unassigned devices |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `vc` | `*bool` | Query, Optional | To display Virtual Chassis members<br>**Default**: `false` |
+| `unassigned` | `*bool` | Query, Optional | to display Unassigned devices<br>**Default**: `true` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 

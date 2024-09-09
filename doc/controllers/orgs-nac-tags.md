@@ -250,8 +250,8 @@ ListOrgNacTags(
 | `mType` | `*string` | Query, Optional | Type of NAC Tag |
 | `name` | `*string` | Query, Optional | Name of NAC Tag |
 | `match` | `*string` | Query, Optional | Type of NAC Tag |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 

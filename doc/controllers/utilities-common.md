@@ -488,7 +488,7 @@ GetSiteDeviceConfigCmd(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `sort` | `*bool` | Query, Optional | Make output cmds sorted (for better readability) or not. |
+| `sort` | `*bool` | Query, Optional | Make output cmds sorted (for better readability) or not.<br>**Default**: `false` |
 
 ## Response Type
 

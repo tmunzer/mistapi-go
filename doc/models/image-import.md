@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `File` | `[]byte` | Required | binary file |
-| `Json` | `*string` | Optional | JSON string describing your upload |
+| `Json` | `*string` | Optional | - |
 
 ## Example (as JSON)
 

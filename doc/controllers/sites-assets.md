@@ -243,7 +243,7 @@ ImportSiteAssets(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `upsert` | [`*models.ImportSiteAssetsUpsertEnum`](../../doc/models/import-site-assets-upsert-enum.md) | Query, Optional | API will replace the assets with same mac if provided `upsert`==`True`, otherwise will report in errors in response. |
+| `upsert` | [`*models.ImportSiteAssetsUpsertEnum`](../../doc/models/import-site-assets-upsert-enum.md) | Query, Optional | API will replace the assets with same mac if provided `upsert`==`True`, otherwise will report in errors in response.<br>**Default**: `"False"` |
 | `file` | `*models.FileWrapper` | Form, Optional | CSV file |
 
 ## Response Type
@@ -299,8 +299,8 @@ ListSiteAssets(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 

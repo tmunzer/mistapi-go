@@ -96,7 +96,7 @@ ListApChannels(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `countryCode` | `*string` | Query, Optional | country code, in two-character |
+| `countryCode` | `*string` | Query, Optional | country code, in two-character<br>**Constraints**: *Pattern*: `^[a-zA-Z]{2}$` |
 
 ## Response Type
 

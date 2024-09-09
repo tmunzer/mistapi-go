@@ -425,8 +425,8 @@ ListOrgPsks(
 | `name` | `*string` | Query, Optional | - |
 | `ssid` | `*string` | Query, Optional | - |
 | `role` | `*string` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -508,7 +508,7 @@ UpdateOrgMultiplePsks(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`[]models.Psk`](../../doc/models/psk.md) | Body, Optional | - |
+| `body` | [`[]models.Psk`](../../doc/models/psk.md) | Body, Optional | **Constraints**: *Unique Items Required* |
 
 ## Response Type
 

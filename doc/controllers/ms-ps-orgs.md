@@ -243,8 +243,8 @@ ListMspOrgStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `mspId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | - |
-| `page` | `*int` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -436,8 +436,8 @@ SearchMspOrgs(
 | `orgId` | `*uuid.UUID` | Query, Optional | org id |
 | `subInsufficient` | `*bool` | Query, Optional | if this org has sufficient subscription |
 | `trialEnabled` | `*bool` | Query, Optional | if this org is under trial period |
-| `usageTypes` | `[]string` | Query, Optional | a list of types that enabled by usage |
-| `limit` | `*int` | Query, Optional | - |
+| `usageTypes` | `[]string` | Query, Optional | a list of types that enabled by usage<br>**Constraints**: *Unique Items Required* |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
 
