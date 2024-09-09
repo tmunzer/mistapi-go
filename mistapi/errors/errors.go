@@ -4,7 +4,7 @@ import (
     "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/google/uuid"
-    "mistapi/models"
+    "github.com/tmunzer/mistapi-go/mistapi/models"
 )
 
 // ErrorDeleteFailed is a custom error.

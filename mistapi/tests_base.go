@@ -549,7 +549,6 @@ func init() {
     selfMfa = *client.SelfMFA()
     selfAlarms = *client.SelfAlarms()
     selfAuditLogs = *client.SelfAuditLogs()
-    samplesWebhooks = *client.SamplesWebhooks()
     utilitiesCommon = *client.UtilitiesCommon()
     utilitiesWan = *client.UtilitiesWAN()
     utilitiesLan = *client.UtilitiesLAN()
