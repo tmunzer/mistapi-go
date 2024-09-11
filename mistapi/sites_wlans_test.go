@@ -145,6 +145,24 @@ func TestSitesWlansTestUpdateSiteWlan(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestSitesWlansTestDeleteSiteWlanPortalImage tests the behavior of the SitesWlans
+func TestSitesWlansTestDeleteSiteWlanPortalImage(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    wlanId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    resp, err := sitesWlans.DeleteSiteWlanPortalImage(ctx, siteId, wlanId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
 // TestSitesWlansTestUpdateSiteWlanPortalTemplate tests the behavior of the SitesWlans
 func TestSitesWlansTestUpdateSiteWlanPortalTemplate(t *testing.T) {
     ctx := context.Background()

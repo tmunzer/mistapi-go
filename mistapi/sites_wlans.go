@@ -307,6 +307,47 @@ func (s *SitesWlans) UpdateSiteWlan(
     return models.NewApiResponse(result, resp), err
 }
 
+// DeleteSiteWlanPortalImage takes context, siteId, wlanId as parameters and
+// returns an models.ApiResponse with  data and
+// an error if there was an issue with the request or response.
+// Delete Site WLAN Portal Image
+func (s *SitesWlans) DeleteSiteWlanPortalImage(
+    ctx context.Context,
+    siteId uuid.UUID,
+    wlanId uuid.UUID) (
+    *http.Response,
+    error) {
+    req := s.prepareRequest(
+      ctx,
+      "DELETE",
+      fmt.Sprintf("/api/v1/sites/%v/wlans/%v/portal_image", siteId, wlanId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    
+    context, err := req.Call()
+    if err != nil {
+        return context.Response, err
+    }
+    return context.Response, err
+}
+
 // UploadSiteWlanPortalImage takes context, siteId, wlanId, file, json as parameters and
 // returns an models.ApiResponse with  data and
 // an error if there was an issue with the request or response.

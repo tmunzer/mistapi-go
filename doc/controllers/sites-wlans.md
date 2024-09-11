@@ -12,6 +12,7 @@ sitesWlans := client.SitesWlans()
 
 * [Create Site Wlan](../../doc/controllers/sites-wlans.md#create-site-wlan)
 * [Delete Site Wlan](../../doc/controllers/sites-wlans.md#delete-site-wlan)
+* [Delete Site Wlan Portal Image](../../doc/controllers/sites-wlans.md#delete-site-wlan-portal-image)
 * [Get Site Wlan](../../doc/controllers/sites-wlans.md#get-site-wlan)
 * [List Site Wlan Derived](../../doc/controllers/sites-wlans.md#list-site-wlan-derived)
 * [List Site Wlans](../../doc/controllers/sites-wlans.md#list-site-wlans)
@@ -374,6 +375,58 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wlanId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := sitesWlans.DeleteSiteWlan(ctx, siteId, wlanId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Delete Site Wlan Portal Image
+
+Delete Site WLAN Portal Image
+
+```go
+DeleteSiteWlanPortalImage(
+    ctx context.Context,
+    siteId uuid.UUID,
+    wlanId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `wlanId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+``
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+wlanId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := sitesWlans.DeleteSiteWlanPortalImage(ctx, siteId, wlanId)
 if err != nil {
     log.Fatalln(err)
 } else {
