@@ -37,6 +37,6 @@ retract v0.1.20 // version based on older sdk generation
 retract v0.3.9 // import issue
 
 require (
-	github.com/apimatic/go-core-runtime v0.0.24
+	github.com/apimatic/go-core-runtime v0.0.25
 	github.com/google/uuid v1.6.0
 )

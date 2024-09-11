@@ -137,12 +137,12 @@ const (
 )
 
 // AppProbingCustomAppProtocolEnum is a string enum.
-// enum: `http`, `udp`
+// enum: `http`, `icmp`
 type AppProbingCustomAppProtocolEnum string
 
 const (
     AppProbingCustomAppProtocolEnum_HTTP AppProbingCustomAppProtocolEnum = "http"
-    AppProbingCustomAppProtocolEnum_UDP  AppProbingCustomAppProtocolEnum = "udp"
+    AppProbingCustomAppProtocolEnum_ICMP AppProbingCustomAppProtocolEnum = "icmp"
 )
 
 // AutoOrientationStateEnum is a string enum.

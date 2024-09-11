@@ -1,7 +1,7 @@
 
 # App Probing Custom App Protocol Enum
 
-enum: `http`, `udp`
+enum: `http`, `icmp`
 
 ## Enumeration
 
@@ -12,5 +12,5 @@ enum: `http`, `udp`
 | Name |
 |  --- |
 | `http` |
-| `udp` |
+| `icmp` |
 
