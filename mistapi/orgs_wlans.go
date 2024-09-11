@@ -402,11 +402,11 @@ func (o *OrgsWlans) UpdateOrgWlanPortalTemplate(
     return models.NewApiResponse(result, resp), err
 }
 
-// SiteOrgWlanPortalImage takes context, siteId, wlanId as parameters and
+// DeleteSiteWlanPortalImage takes context, siteId, wlanId as parameters and
 // returns an models.ApiResponse with  data and
 // an error if there was an issue with the request or response.
 // Delete Site WLAN Portal Image
-func (o *OrgsWlans) SiteOrgWlanPortalImage(
+func (o *OrgsWlans) DeleteSiteWlanPortalImage(
     ctx context.Context,
     siteId uuid.UUID,
     wlanId uuid.UUID) (

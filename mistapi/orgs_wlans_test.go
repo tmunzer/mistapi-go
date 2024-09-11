@@ -164,8 +164,8 @@ func TestOrgsWlansTestUpdateOrgWlanPortalTemplate(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsWlansTestSiteOrgWlanPortalImage tests the behavior of the OrgsWlans
-func TestOrgsWlansTestSiteOrgWlanPortalImage(t *testing.T) {
+// TestOrgsWlansTestDeleteSiteWlanPortalImage tests the behavior of the OrgsWlans
+func TestOrgsWlansTestDeleteSiteWlanPortalImage(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -175,7 +175,7 @@ func TestOrgsWlansTestSiteOrgWlanPortalImage(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    resp, err := orgsWlans.SiteOrgWlanPortalImage(ctx, siteId, wlanId)
+    resp, err := orgsWlans.DeleteSiteWlanPortalImage(ctx, siteId, wlanId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
