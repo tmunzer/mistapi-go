@@ -116,6 +116,12 @@ type WlanPortalTemplateSetting struct {
     ItIT                     *WlanPortalTemplateSettingLocale `json:"it-IT,omitempty"`
     JaJP                     *WlanPortalTemplateSettingLocale `json:"ja-JP,omitempty"`
     KoKR                     *WlanPortalTemplateSettingLocale `json:"ko-KR,omitempty"`
+    // custom logo with `data:image/png;base64,` format, default null, uses Juniper Mist Logo. File size must be less than 100kB and image dimensions must be less than 500px x 200px (width x height).
+    Logo                     Optional[string]                 `json:"logo"`
+    // height of the logo, in px
+    LogoHeight               *int                             `json:"logoHeight,omitempty"`
+    // width of the logo, in px
+    LogoWidth                *int                             `json:"logoWidth,omitempty"`
     Message                  *string                          `json:"message,omitempty"`
     MsMY                     *WlanPortalTemplateSettingLocale `json:"ms-MY,omitempty"`
     MultiAuth                *bool                            `json:"multiAuth,omitempty"`
@@ -475,6 +481,19 @@ func (w WlanPortalTemplateSetting) toMap() map[string]any {
     if w.KoKR != nil {
         structMap["ko-KR"] = w.KoKR.toMap()
     }
+    if w.Logo.IsValueSet() {
+        if w.Logo.Value() != nil {
+            structMap["logo"] = w.Logo.Value()
+        } else {
+            structMap["logo"] = nil
+        }
+    }
+    if w.LogoHeight != nil {
+        structMap["logoHeight"] = w.LogoHeight
+    }
+    if w.LogoWidth != nil {
+        structMap["logoWidth"] = w.LogoWidth
+    }
     if w.Message != nil {
         structMap["message"] = w.Message
     }
@@ -746,7 +765,7 @@ func (w *WlanPortalTemplateSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "accessCodeAlternateEmail", "alignment", "ar", "authButtonAmazon", "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "ca-ES", "color", "colorDark", "colorLight", "company", "companyError", "companyLabel", "cs-CZ", "da-DK", "de-DE", "el-GR", "email", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "en-GB", "en-US", "es-ES", "fi-FI", "field1", "field1Error", "field1Label", "field1Required", "field2", "field2Error", "field2Label", "field2Required", "field3", "field3Error", "field3Label", "field3Required", "field4", "field4Error", "field4Label", "field4Required", "fr-FR", "he-IL", "hi-IN", "hr-HR", "hu-HU", "id-ID", "it-IT", "ja-JP", "ko-KR", "message", "ms-MY", "multiAuth", "name", "nameError", "nameLabel", "nb-NO", "nl-NL", "optOutDefault", "optout", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "pl-PL", "poweredBy", "privacy", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "pt-BR", "pt-PT", "requiredFieldLabel", "responsiveLayout", "ro-RO", "ru-RU", "signInLabel", "sk-SK", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsIsTwilio", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "smsValidityDuration", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorEmailTemplate", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "sv-SE", "th-TH", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText", "tr-TR", "uk-UA", "vi-VN", "zh-Hans", "zh-Hant")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "accessCodeAlternateEmail", "alignment", "ar", "authButtonAmazon", "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "ca-ES", "color", "colorDark", "colorLight", "company", "companyError", "companyLabel", "cs-CZ", "da-DK", "de-DE", "el-GR", "email", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "en-GB", "en-US", "es-ES", "fi-FI", "field1", "field1Error", "field1Label", "field1Required", "field2", "field2Error", "field2Label", "field2Required", "field3", "field3Error", "field3Label", "field3Required", "field4", "field4Error", "field4Label", "field4Required", "fr-FR", "he-IL", "hi-IN", "hr-HR", "hu-HU", "id-ID", "it-IT", "ja-JP", "ko-KR", "logo", "logoHeight", "logoWidth", "message", "ms-MY", "multiAuth", "name", "nameError", "nameLabel", "nb-NO", "nl-NL", "optOutDefault", "optout", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "pl-PL", "poweredBy", "privacy", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "pt-BR", "pt-PT", "requiredFieldLabel", "responsiveLayout", "ro-RO", "ru-RU", "signInLabel", "sk-SK", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsIsTwilio", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "smsValidityDuration", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorEmailTemplate", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "sv-SE", "th-TH", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText", "tr-TR", "uk-UA", "vi-VN", "zh-Hans", "zh-Hant")
     if err != nil {
     	return err
     }
@@ -821,6 +840,9 @@ func (w *WlanPortalTemplateSetting) UnmarshalJSON(input []byte) error {
     w.ItIT = temp.ItIT
     w.JaJP = temp.JaJP
     w.KoKR = temp.KoKR
+    w.Logo = temp.Logo
+    w.LogoHeight = temp.LogoHeight
+    w.LogoWidth = temp.LogoWidth
     w.Message = temp.Message
     w.MsMY = temp.MsMY
     w.MultiAuth = temp.MultiAuth
@@ -981,6 +1003,9 @@ type tempWlanPortalTemplateSetting  struct {
     ItIT                     *WlanPortalTemplateSettingLocale `json:"it-IT,omitempty"`
     JaJP                     *WlanPortalTemplateSettingLocale `json:"ja-JP,omitempty"`
     KoKR                     *WlanPortalTemplateSettingLocale `json:"ko-KR,omitempty"`
+    Logo                     Optional[string]                 `json:"logo"`
+    LogoHeight               *int                             `json:"logoHeight,omitempty"`
+    LogoWidth                *int                             `json:"logoWidth,omitempty"`
     Message                  *string                          `json:"message,omitempty"`
     MsMY                     *WlanPortalTemplateSettingLocale `json:"ms-MY,omitempty"`
     MultiAuth                *bool                            `json:"multiAuth,omitempty"`

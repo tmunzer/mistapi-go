@@ -31,7 +31,8 @@ type ConstDeviceSwitch struct {
     // Object Key is the PIC number
     Pic                  map[string]string         `json:"pic,omitempty"`
     SubRequired          *string                   `json:"sub_required,omitempty"`
-    Type                 *string                   `json:"type,omitempty"`
+    // Device Type. enum: `switch`
+    Type                 *DeviceTypeSwitchEnum     `json:"type,omitempty"`
     AdditionalProperties map[string]any            `json:"_"`
 }
 
@@ -193,5 +194,5 @@ type tempConstDeviceSwitch  struct {
     PacketActionDropOnly *bool                     `json:"packet_action_drop_only,omitempty"`
     Pic                  map[string]string         `json:"pic,omitempty"`
     SubRequired          *string                   `json:"sub_required,omitempty"`
-    Type                 *string                   `json:"type,omitempty"`
+    Type                 *DeviceTypeSwitchEnum     `json:"type,omitempty"`
 }

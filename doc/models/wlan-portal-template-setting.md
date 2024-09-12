@@ -80,6 +80,9 @@ portal template wlan settings
 | `ItIT` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
 | `JaJP` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
 | `KoKR` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
+| `Logo` | `models.Optional[string]` | Optional | custom logo with `data:image/png;base64,` format, default null, uses Juniper Mist Logo. File size must be less than 100kB and image dimensions must be less than 500px x 200px (width x height). |
+| `LogoHeight` | `*int` | Optional | height of the logo, in px<br>**Constraints**: `>= 0`, `<= 200` |
+| `LogoWidth` | `*int` | Optional | width of the logo, in px<br>**Constraints**: `>= 0`, `<= 500` |
 | `Message` | `*string` | Optional | **Default**: `"Sign in to get online"` |
 | `MsMY` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
 | `MultiAuth` | `*bool` | Optional | **Default**: `false` |
@@ -216,6 +219,9 @@ portal template wlan settings
   "field4": false,
   "field4Error": "Please provide Custom Field 4",
   "field4Label": "Custom Field 4",
+  "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZg…",
+  "logoHeight": 123,
+  "logoWidth": 408,
   "message": "Sign in to get online",
   "multiAuth": false,
   "name": false,

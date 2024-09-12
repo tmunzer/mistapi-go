@@ -23,7 +23,7 @@ type Wlan struct {
     AllowIpv6Ndp                       *bool                          `json:"allow_ipv6_ndp,omitempty"`
     // only applicable when limit_bcast==true, which allows mDNS / Bonjour packets to go through
     AllowMdns                          *bool                          `json:"allow_mdns,omitempty"`
-    // only applicable when `limit_bcast`==`tru`e, which allows SSDP
+    // only applicable when `limit_bcast`==`true`, which allows SSDP
     AllowSsdp                          *bool                          `json:"allow_ssdp,omitempty"`
     // list of device ids
     ApIds                              Optional[[]uuid.UUID]          `json:"ap_ids"`
@@ -55,7 +55,7 @@ type Wlan struct {
     BandSteer                          *bool                          `json:"band_steer,omitempty"`
     // force dual_band capable client to connect to 5G
     BandSteerForceBand5                *bool                          `json:"band_steer_force_band5,omitempty"`
-    // list of radios that the wlan should apply to
+    // list of radios that the wlan should apply to.
     Bands                              []Dot11BandEnum                `json:"bands,omitempty"`
     // whether to block the clients in the blacklist (up to first 256 macs)
     BlockBlacklistClients              *bool                          `json:"block_blacklist_clients,omitempty"`

@@ -19,7 +19,7 @@ WLAN
 | `Airwatch` | [`*models.WlanAirwatch`](../../doc/models/wlan-airwatch.md) | Optional | airwatch wlan settings |
 | `AllowIpv6Ndp` | `*bool` | Optional | only applicable when limit_bcast==true, which allows or disallows ipv6 Neighbor Discovery packets to go through<br>**Default**: `true` |
 | `AllowMdns` | `*bool` | Optional | only applicable when limit_bcast==true, which allows mDNS / Bonjour packets to go through<br>**Default**: `false` |
-| `AllowSsdp` | `*bool` | Optional | only applicable when `limit_bcast`==`tru`e, which allows SSDP<br>**Default**: `false` |
+| `AllowSsdp` | `*bool` | Optional | only applicable when `limit_bcast`==`true`, which allows SSDP<br>**Default**: `false` |
 | `ApIds` | `models.Optional[[]uuid.UUID]` | Optional | list of device ids |
 | `AppLimit` | [`*models.WlanAppLimit`](../../doc/models/wlan-app-limit.md) | Optional | bandwidth limiting for apps (applies to up/down) |
 | `AppQos` | [`*models.WlanAppQos`](../../doc/models/wlan-app-qos.md) | Optional | app qos wlan settings |
@@ -35,7 +35,7 @@ WLAN
 | `Band` | `*string` | Optional | `band` is deprecated and kept for backward compability. Use bands instead |
 | `BandSteer` | `*bool` | Optional | whether to enable band_steering, this works only when band==both<br>**Default**: `false` |
 | `BandSteerForceBand5` | `*bool` | Optional | force dual_band capable client to connect to 5G<br>**Default**: `false` |
-| `Bands` | [`[]models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Optional | list of radios that the wlan should apply to |
+| `Bands` | [`[]models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Optional | list of radios that the wlan should apply to. |
 | `BlockBlacklistClients` | `*bool` | Optional | whether to block the clients in the blacklist (up to first 256 macs)<br>**Default**: `false` |
 | `Bonjour` | [`*models.WlanBonjour`](../../doc/models/wlan-bonjour.md) | Optional | bonjour gateway wlan settings |
 | `CiscoCwa` | [`*models.WlanCiscoCwa`](../../doc/models/wlan-cisco-cwa.md) | Optional | Cisco CWA (central web authentication) required RADIUS with COA in order to work. See CWA: https://www.cisco.com/c/en/us/support/docs/security/identity-services-engine/115732-central-web-auth-00.html |

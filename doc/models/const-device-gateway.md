@@ -30,7 +30,7 @@
 | `Ports` | [`*models.ConstDeviceGatewayPorts`](../../doc/models/const-device-gateway-ports.md) | Optional | Object Key is the interface name (e.g. "ge-0/0/1", ...) |
 | `SubRequired` | `*string` | Optional | - |
 | `T128Device` | `*bool` | Optional | **Default**: `false` |
-| `Type` | `*string` | Optional | **Default**: `"gateway"` |
+| `Type` | [`*models.DeviceTypeGatewayEnum`](../../doc/models/device-type-gateway-enum.md) | Optional | Device Type. enum: `gateway` |
 
 ## Example (as JSON)
 
@@ -48,7 +48,6 @@
   "irb_disabled_by_default": false,
   "oc_device": false,
   "t128_device": false,
-  "type": "gateway",
   "defaults": {
     "key0": "defaults6",
     "key1": "defaults7",

@@ -43,7 +43,8 @@ type ConstDeviceAp struct {
     // Property key is the radio number (e.g. r0, r1, ...). Property value is the RF band (e.g. "24", "5", ...)
     Radios               map[string]string              `json:"radios,omitempty"`
     SharedScanningRadio  *bool                          `json:"shared_scanning_radio,omitempty"`
-    Type                 *string                        `json:"type,omitempty"`
+    // Device Type. enum: `ap`
+    Type                 *DeviceTypeApEnum              `json:"type,omitempty"`
     Unmanaged            *bool                          `json:"unmanaged,omitempty"`
     Vble                 *ConstDeviceApVble             `json:"vble,omitempty"`
     AdditionalProperties map[string]any                 `json:"_"`
@@ -260,7 +261,7 @@ type tempConstDeviceAp  struct {
     Outdoor             *bool                          `json:"outdoor,omitempty"`
     Radios              map[string]string              `json:"radios,omitempty"`
     SharedScanningRadio *bool                          `json:"shared_scanning_radio,omitempty"`
-    Type                *string                        `json:"type,omitempty"`
+    Type                *DeviceTypeApEnum              `json:"type,omitempty"`
     Unmanaged           *bool                          `json:"unmanaged,omitempty"`
     Vble                *ConstDeviceApVble             `json:"vble,omitempty"`
 }

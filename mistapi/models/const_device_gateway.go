@@ -30,7 +30,8 @@ type ConstDeviceGateway struct {
     Ports                *ConstDeviceGatewayPorts `json:"ports,omitempty"`
     SubRequired          *string                  `json:"sub_required,omitempty"`
     T128Device           *bool                    `json:"t128_device,omitempty"`
-    Type                 *string                  `json:"type,omitempty"`
+    // Device Type. enum: `gateway`
+    Type                 *DeviceTypeGatewayEnum   `json:"type,omitempty"`
     AdditionalProperties map[string]any           `json:"_"`
 }
 
@@ -177,5 +178,5 @@ type tempConstDeviceGateway  struct {
     Ports                *ConstDeviceGatewayPorts `json:"ports,omitempty"`
     SubRequired          *string                  `json:"sub_required,omitempty"`
     T128Device           *bool                    `json:"t128_device,omitempty"`
-    Type                 *string                  `json:"type,omitempty"`
+    Type                 *DeviceTypeGatewayEnum   `json:"type,omitempty"`
 }

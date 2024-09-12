@@ -33,7 +33,7 @@
 | `PacketActionDropOnly` | `*bool` | Optional | **Default**: `false` |
 | `Pic` | `map[string]string` | Optional | Object Key is the PIC number |
 | `SubRequired` | `*string` | Optional | - |
-| `Type` | `*string` | Optional | **Default**: `"switch"` |
+| `Type` | [`*models.DeviceTypeSwitchEnum`](../../doc/models/device-type-switch-enum.md) | Optional | Device Type. enum: `switch` |
 
 ## Example (as JSON)
 
@@ -65,7 +65,6 @@
     "1": "qsfp+*4",
     "2": "sfp+*4 (uplink)"
   },
-  "type": "switch",
   "defaults": {
     "_ports": "_ports6"
   }
