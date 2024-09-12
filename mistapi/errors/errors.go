@@ -17,7 +17,9 @@ type ErrorDeleteFailed struct {
 // NewErrorDeleteFailed is a constructor for ErrorDeleteFailed.
 // It creates and returns a pointer to a new ErrorDeleteFailed instance with the given statusCode and body.
 func NewErrorDeleteFailed(apiError https.ApiError) error {
-    return &ErrorDeleteFailed{ApiError: apiError}
+    return &ErrorDeleteFailed{
+		ApiError: apiError,
+    }
 }
 
 // Error implements the Error method for the error interface.
@@ -35,7 +37,9 @@ type ResponseDetailString struct {
 // NewResponseDetailString is a constructor for ResponseDetailString.
 // It creates and returns a pointer to a new ResponseDetailString instance with the given statusCode and body.
 func NewResponseDetailString(apiError https.ApiError) error {
-    return &ResponseDetailString{ApiError: apiError}
+    return &ResponseDetailString{
+		ApiError: apiError,
+    }
 }
 
 // Error implements the Error method for the error interface.
@@ -53,7 +57,9 @@ type ResponseHttp400 struct {
 // NewResponseHttp400 is a constructor for ResponseHttp400.
 // It creates and returns a pointer to a new ResponseHttp400 instance with the given statusCode and body.
 func NewResponseHttp400(apiError https.ApiError) error {
-    return &ResponseHttp400{ApiError: apiError}
+    return &ResponseHttp400{
+		ApiError: apiError,
+    }
 }
 
 // Error implements the Error method for the error interface.
@@ -71,7 +77,9 @@ type ResponseHttp404 struct {
 // NewResponseHttp404 is a constructor for ResponseHttp404.
 // It creates and returns a pointer to a new ResponseHttp404 instance with the given statusCode and body.
 func NewResponseHttp404(apiError https.ApiError) error {
-    return &ResponseHttp404{ApiError: apiError}
+    return &ResponseHttp404{
+		ApiError: apiError,
+    }
 }
 
 // Error implements the Error method for the error interface.
@@ -90,7 +98,9 @@ type ResponseLoginFailure struct {
 // NewResponseLoginFailure is a constructor for ResponseLoginFailure.
 // It creates and returns a pointer to a new ResponseLoginFailure instance with the given statusCode and body.
 func NewResponseLoginFailure(apiError https.ApiError) error {
-    return &ResponseLoginFailure{ApiError: apiError}
+    return &ResponseLoginFailure{
+		ApiError: apiError,
+    }
 }
 
 // Error implements the Error method for the error interface.
@@ -109,7 +119,9 @@ type ResponseSelfOauthLinkFailure struct {
 // NewResponseSelfOauthLinkFailure is a constructor for ResponseSelfOauthLinkFailure.
 // It creates and returns a pointer to a new ResponseSelfOauthLinkFailure instance with the given statusCode and body.
 func NewResponseSelfOauthLinkFailure(apiError https.ApiError) error {
-    return &ResponseSelfOauthLinkFailure{ApiError: apiError}
+    return &ResponseSelfOauthLinkFailure{
+		ApiError: apiError,
+    }
 }
 
 // Error implements the Error method for the error interface.
@@ -127,7 +139,9 @@ type ResponseHttp401Error struct {
 // NewResponseHttp401Error is a constructor for ResponseHttp401Error.
 // It creates and returns a pointer to a new ResponseHttp401Error instance with the given statusCode and body.
 func NewResponseHttp401Error(apiError https.ApiError) error {
-    return &ResponseHttp401Error{ApiError: apiError}
+    return &ResponseHttp401Error{
+		ApiError: apiError,
+    }
 }
 
 // Error implements the Error method for the error interface.
@@ -145,7 +159,9 @@ type ResponseHttp403Error struct {
 // NewResponseHttp403Error is a constructor for ResponseHttp403Error.
 // It creates and returns a pointer to a new ResponseHttp403Error instance with the given statusCode and body.
 func NewResponseHttp403Error(apiError https.ApiError) error {
-    return &ResponseHttp403Error{ApiError: apiError}
+    return &ResponseHttp403Error{
+		ApiError: apiError,
+    }
 }
 
 // Error implements the Error method for the error interface.
@@ -163,7 +179,9 @@ type ResponseHttp429Error struct {
 // NewResponseHttp429Error is a constructor for ResponseHttp429Error.
 // It creates and returns a pointer to a new ResponseHttp429Error instance with the given statusCode and body.
 func NewResponseHttp429Error(apiError https.ApiError) error {
-    return &ResponseHttp429Error{ApiError: apiError}
+    return &ResponseHttp429Error{
+		ApiError: apiError,
+    }
 }
 
 // Error implements the Error method for the error interface.
@@ -186,7 +204,9 @@ type ResponseInventoryError struct {
 // NewResponseInventoryError is a constructor for ResponseInventoryError.
 // It creates and returns a pointer to a new ResponseInventoryError instance with the given statusCode and body.
 func NewResponseInventoryError(apiError https.ApiError) error {
-    return &ResponseInventoryError{ApiError: apiError}
+    return &ResponseInventoryError{
+		ApiError: apiError,
+    }
 }
 
 // Error implements the Error method for the error interface.

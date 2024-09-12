@@ -11,6 +11,11 @@ Gateway port config
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `AeDisableLacp` | `*bool` | Optional | if `aggregated`==`true`. To disable LCP support for the AE interface<br>**Default**: `false` |
+| `AeIdx` | `models.Optional[string]` | Optional | if `aggregated`==`true`. Users could force to use the designated AE name (must be an integer between 0 and 127) |
+| `AeLacpForceUp` | `*bool` | Optional | For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability.\n<br>Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end\n<br>Note: Turning this on will enable force-up on one of the interfaces in the bundle only<br>**Default**: `false` |
+| `Aggregated` | `*bool` | Optional | **Default**: `false` |
+| `Critical` | `*bool` | Optional | if want to generate port up/down alarm, set it to true<br>**Default**: `false` |
 | `Description` | `*string` | Optional | - |
 | `DisableAutoneg` | `*bool` | Optional | **Default**: `false` |
 | `Disabled` | `*bool` | Optional | port admin up (true) / down (false)<br>**Default**: `false` |
@@ -51,6 +56,10 @@ Gateway port config
 
 ```json
 {
+  "ae_disable_lacp": false,
+  "ae_lacp_force_up": false,
+  "aggregated": false,
+  "critical": false,
   "disable_autoneg": false,
   "disabled": false,
   "dsl_type": "vdsl",
@@ -70,7 +79,7 @@ Gateway port config
   "usage": "lan",
   "wan_arp_policer": "recommended",
   "wan_type": "broadband",
-  "description": "description6"
+  "ae_idx": "ae_idx6"
 }
 ```
 

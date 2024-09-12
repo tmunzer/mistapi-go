@@ -133,11 +133,11 @@ body := models.DeviceprofileContainer.FromDeviceprofileAp(models.DeviceprofileAp
         Brightness: models.ToPointer(255),
         Enabled:    models.ToPointer(true),
     }),
-    Name:             models.NewOptional(models.ToPointer("string")),
+    Name:             models.ToPointer("string"),
     NtpServers:       []string{
         "10.10.10.10",
     },
-    Type:             models.ToPointer(models.DeviceTypeApEnum("ap")),
+    Type:             "ap",
     UsbConfig:        models.ToPointer(models.ApUsb{
         Cacert:     models.NewOptional(models.ToPointer("string")),
         Channel:    models.ToPointer(3),
@@ -163,167 +163,6 @@ if err != nil {
     }
 
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response
-
-```
-{
-  "aeroscout": {
-    "enabled": true,
-    "host": "string"
-  },
-  "ble_config": {
-    "beacon_enabled": true,
-    "beacon_rate": 0,
-    "beacon_rate_mode": "default",
-    "beam_disabled": [
-      0
-    ],
-    "eddystone_uid_adv_power": -100,
-    "eddystone_uid_beams": "string",
-    "eddystone_uid_enabled": true,
-    "eddystone_uid_freq_msec": 0,
-    "eddystone_uid_instance": "string",
-    "eddystone_uid_namespace": "string",
-    "eddystone_url_adv_power": 0,
-    "eddystone_url_beams": "string",
-    "eddystone_url_enabled": true,
-    "eddystone_url_freq_msec": 0,
-    "eddystone_url_url": "string",
-    "ibeacon_adv_power": -100,
-    "ibeacon_beams": "string",
-    "ibeacon_enabled": true,
-    "ibeacon_freq_msec": 0,
-    "ibeacon_major": 0,
-    "ibeacon_minor": 0,
-    "ibeacon_uuid": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-    "power": 1,
-    "power_mode": "string"
-  },
-  "created_time": 0,
-  "disable_eth1": true,
-  "disable_module": true,
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "ip_config": {
-    "dns": [
-      "string"
-    ],
-    "dns_suffix": [
-      "string"
-    ],
-    "gateway": "192.168.0.1",
-    "gateway6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
-    "ip": "192.168.0.1",
-    "ip6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
-    "mtu": 0,
-    "netmask": "192.168.0.1",
-    "netmask6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
-    "type": "static",
-    "type6": "static",
-    "vlan_id": 1
-  },
-  "mesh": {
-    "enabled": true,
-    "group": 0,
-    "role": "base"
-  },
-  "modified_time": 0,
-  "name": "string",
-  "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "poe_passthrough": true,
-  "radio_config": {
-    "ant_gain_24": 0,
-    "ant_gain_5": 0,
-    "band_24": {
-      "allow_rrm_disable": true,
-      "antenna_mode": "default",
-      "bandwidth": 20,
-      "channel": 0,
-      "disabled": true,
-      "power": 0,
-      "power_max": 0,
-      "power_min": 0,
-      "preamble": "auto",
-      "usage": "24"
-    },
-    "band_24_usage": "24",
-    "band_5": {
-      "allow_rrm_disable": true,
-      "antenna_mode": "default",
-      "bandwidth": 20,
-      "channel": 0,
-      "disabled": true,
-      "power": 0,
-      "power_max": 0,
-      "power_min": 0,
-      "preamble": "auto",
-      "usage": "24"
-    },
-    "band_5_on_24_radio": {
-      "allow_rrm_disable": true,
-      "antenna_mode": "default",
-      "bandwidth": 20,
-      "channel": 0,
-      "disabled": true,
-      "power": 0,
-      "power_max": 0,
-      "power_min": 0,
-      "preamble": "auto",
-      "usage": "24"
-    },
-    "scanning_enabled": true
-  },
-  "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "switch_config": {
-    "enabled": true,
-    "eth0": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "eth1": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "eth2": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "eth3": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "module": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "wds": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    }
-  },
-  "usb_config": {
-    "cacert": "string",
-    "channel": 0,
-    "enabled": true,
-    "host": "string",
-    "port": 0,
-    "type": "imagotag",
-    "verify_cert": true
-  }
 }
 ```
 
@@ -436,167 +275,6 @@ if err != nil {
     }
 
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response
-
-```
-{
-  "aeroscout": {
-    "enabled": true,
-    "host": "string"
-  },
-  "ble_config": {
-    "beacon_enabled": true,
-    "beacon_rate": 0,
-    "beacon_rate_mode": "default",
-    "beam_disabled": [
-      0
-    ],
-    "eddystone_uid_adv_power": -100,
-    "eddystone_uid_beams": "string",
-    "eddystone_uid_enabled": true,
-    "eddystone_uid_freq_msec": 0,
-    "eddystone_uid_instance": "string",
-    "eddystone_uid_namespace": "string",
-    "eddystone_url_adv_power": 0,
-    "eddystone_url_beams": "string",
-    "eddystone_url_enabled": true,
-    "eddystone_url_freq_msec": 0,
-    "eddystone_url_url": "string",
-    "ibeacon_adv_power": -100,
-    "ibeacon_beams": "string",
-    "ibeacon_enabled": true,
-    "ibeacon_freq_msec": 0,
-    "ibeacon_major": 0,
-    "ibeacon_minor": 0,
-    "ibeacon_uuid": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-    "power": 1,
-    "power_mode": "string"
-  },
-  "created_time": 0,
-  "disable_eth1": true,
-  "disable_module": true,
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "ip_config": {
-    "dns": [
-      "string"
-    ],
-    "dns_suffix": [
-      "string"
-    ],
-    "gateway": "192.168.0.1",
-    "gateway6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
-    "ip": "192.168.0.1",
-    "ip6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
-    "mtu": 0,
-    "netmask": "192.168.0.1",
-    "netmask6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
-    "type": "static",
-    "type6": "static",
-    "vlan_id": 1
-  },
-  "mesh": {
-    "enabled": true,
-    "group": 0,
-    "role": "base"
-  },
-  "modified_time": 0,
-  "name": "string",
-  "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "poe_passthrough": true,
-  "radio_config": {
-    "ant_gain_24": 0,
-    "ant_gain_5": 0,
-    "band_24": {
-      "allow_rrm_disable": true,
-      "antenna_mode": "default",
-      "bandwidth": 20,
-      "channel": 0,
-      "disabled": true,
-      "power": 0,
-      "power_max": 0,
-      "power_min": 0,
-      "preamble": "auto",
-      "usage": "24"
-    },
-    "band_24_usage": "24",
-    "band_5": {
-      "allow_rrm_disable": true,
-      "antenna_mode": "default",
-      "bandwidth": 20,
-      "channel": 0,
-      "disabled": true,
-      "power": 0,
-      "power_max": 0,
-      "power_min": 0,
-      "preamble": "auto",
-      "usage": "24"
-    },
-    "band_5_on_24_radio": {
-      "allow_rrm_disable": true,
-      "antenna_mode": "default",
-      "bandwidth": 20,
-      "channel": 0,
-      "disabled": true,
-      "power": 0,
-      "power_max": 0,
-      "power_min": 0,
-      "preamble": "auto",
-      "usage": "24"
-    },
-    "scanning_enabled": true
-  },
-  "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "switch_config": {
-    "enabled": true,
-    "eth0": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "eth1": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "eth2": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "eth3": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "module": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "wds": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    }
-  },
-  "usb_config": {
-    "cacert": "string",
-    "channel": 0,
-    "enabled": true,
-    "host": "string",
-    "port": 0,
-    "type": "imagotag",
-    "verify_cert": true
-  }
 }
 ```
 
@@ -1056,7 +734,321 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.DeviceprofileContainer.FromDeviceprofileGateway(models.DeviceprofileGateway{
-    Name:                  "string",
+    DhcpdConfig:           models.ToPointer(models.DhcpdConfig{
+    }),
+    DnsOverride:           models.ToPointer(true),
+    DnsServers:            []string{
+        "10.3.20.201",
+        "10.3.51.222",
+        "1.1.1.1",
+    },
+    DnsSuffix:             []string{
+        "example.com",
+    },
+    ExtraRoutes:           map[string]models.GatewayExtraRoute{
+        "10.101.0.0/16": models.GatewayExtraRoute{
+            Via: models.ToPointer("10.3.100.10"),
+        },
+    },
+    IpConfigs:             map[string]models.GatewayIpConfigProperty{
+        "Corp-Core": models.GatewayIpConfigProperty{
+            Ip:           models.ToPointer("10.3.100.9"),
+            Netmask:      models.ToPointer("/24"),
+            Type:         models.ToPointer(models.IpTypeEnum("static")),
+        },
+        "Corp-Mgmt": models.GatewayIpConfigProperty{
+            Ip:           models.ToPointer("10.3.172.9"),
+            Netmask:      models.ToPointer("/24"),
+            Type:         models.ToPointer(models.IpTypeEnum("static")),
+        },
+        "Corp-lan": models.GatewayIpConfigProperty{
+            Ip:           models.ToPointer("10.3.171.9"),
+            Netmask:      models.ToPointer("/24"),
+            Type:         models.ToPointer(models.IpTypeEnum("static")),
+        },
+    },
+    Name:                  "ITParis",
+    NtpOverride:           models.ToPointer(true),
+    NtpServers:            []string{
+        "10.3.51.222",
+    },
+    PathPreferences:       map[string]models.GatewayPathPreferences{
+        "core": models.GatewayPathPreferences{
+            Paths:    []models.GatewayPathPreferencesPath{
+                models.GatewayPathPreferencesPath{
+                    Networks:       []string{
+                        "Corp-Core",
+                    },
+                    Type:           models.ToPointer(models.GatewayPathTypeEnum("local")),
+                },
+            },
+            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+        },
+        "lab": models.GatewayPathPreferences{
+            Paths:    []models.GatewayPathPreferencesPath{
+                models.GatewayPathPreferencesPath{
+                    Networks:       []string{
+                        "Corp-lan",
+                    },
+                    Type:           models.ToPointer(models.GatewayPathTypeEnum("local")),
+                },
+            },
+            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+        },
+        "mgmt": models.GatewayPathPreferences{
+            Paths:    []models.GatewayPathPreferencesPath{
+                models.GatewayPathPreferencesPath{
+                    Networks:       []string{
+                        "Corp-Mgmt",
+                    },
+                    Type:           models.ToPointer(models.GatewayPathTypeEnum("local")),
+                },
+            },
+            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+        },
+        "untrust": models.GatewayPathPreferences{
+            Paths:    []models.GatewayPathPreferencesPath{
+                models.GatewayPathPreferencesPath{
+                    Name:           models.ToPointer("wan"),
+                    Type:           models.ToPointer(models.GatewayPathTypeEnum("wan")),
+                },
+            },
+            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+        },
+    },
+    PortConfig:            map[string]models.GatewayPortConfig{
+        "ge-0/0/0": models.GatewayPortConfig{
+            Aggregated:      models.ToPointer(false),
+            IpConfig:        models.ToPointer(models.GatewayPortConfigIpConfig{
+                Gateway:       models.ToPointer("192.168.1.1"),
+                Ip:            models.ToPointer("192.168.1.9"),
+                Netmask:       models.ToPointer("/24"),
+                Type:          models.ToPointer(models.GatewayWanTypeEnum("static")),
+            }),
+            Name:            models.ToPointer("wan"),
+            Redundant:       models.ToPointer(false),
+            TrafficShaping:  models.ToPointer(models.GatewayTrafficShaping{
+                Enabled:          models.ToPointer(false),
+            }),
+            Usage:           models.GatewayPortUsageEnum("wan"),
+            WanType:         models.ToPointer(models.GatewayPortWanTypeEnum("broadband")),
+        },
+        "ge-0/0/6-7": models.GatewayPortConfig{
+            AeDisableLacp:   models.ToPointer(false),
+            AeIdx:           models.NewOptional(models.ToPointer("0")),
+            AeLacpForceUp:   models.ToPointer(true),
+            Aggregated:      models.ToPointer(true),
+            Networks:        []string{
+                "Corp-lan",
+                "Corp-Mgmt",
+                "Corp-Core",
+            },
+            Usage:           models.GatewayPortUsageEnum("lan"),
+        },
+    },
+    ServicePolicies:       []models.ServicePolicy{
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                Enabled:      models.ToPointer(false),
+            }),
+            Name:            models.ToPointer("ITParis-Internal"),
+            PathPreference:  models.ToPointer("core"),
+            Services:        []string{
+                "internal_dns",
+                "drive",
+            },
+            Tenants:         []string{
+                "ITParis",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                Enabled:      models.ToPointer(false),
+            }),
+            Name:            models.ToPointer("ITParis-internet"),
+            PathPreference:  models.ToPointer("untrust"),
+            Services:        []string{
+                "internet_any",
+            },
+            Tenants:         []string{
+                "ITParis",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                AlertOnly:    models.ToPointer(true),
+                Enabled:      models.ToPointer(true),
+                Profile:      models.ToPointer("standard"),
+            }),
+            Name:            models.ToPointer("mgmt-to-core"),
+            PathPreference:  models.ToPointer("core"),
+            Services:        []string{
+                "internal_dns",
+                "internal_ntp",
+            },
+            Tenants:         []string{
+                "Corp-Mgmt",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                AlertOnly:    models.ToPointer(true),
+                Enabled:      models.ToPointer(true),
+                Profile:      models.ToPointer("standard"),
+            }),
+            Name:            models.ToPointer("mgmt-to-mxe-tt-in"),
+            PathPreference:  models.ToPointer("mxe-in"),
+            Services:        []string{
+                "internal_any",
+            },
+            Tenants:         []string{
+                "Corp-Mgmt",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                AlertOnly:    models.ToPointer(true),
+                Enabled:      models.ToPointer(true),
+                Profile:      models.ToPointer("standard"),
+            }),
+            Name:            models.ToPointer("mgmt-to-untrust"),
+            PathPreference:  models.ToPointer("untrust"),
+            Services:        []string{
+                "mxedge-updates",
+                "radsec",
+                "icmp",
+                "internet_dns",
+                "internet_ntp",
+            },
+            Tenants:         []string{
+                "Corp-Mgmt",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                AlertOnly:    models.ToPointer(true),
+                Enabled:      models.ToPointer(true),
+                Profile:      models.ToPointer("standard"),
+            }),
+            Name:            models.ToPointer("mxe-data-0-to-untrust"),
+            PathPreference:  models.ToPointer("untrust"),
+            Services:        []string{
+                "internet_any",
+            },
+            Tenants:         []string{
+                "ITParis",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                AlertOnly:    models.ToPointer(true),
+                Enabled:      models.ToPointer(true),
+                Profile:      models.ToPointer("standard"),
+            }),
+            Name:            models.ToPointer("core-to-mgt"),
+            PathPreference:  models.ToPointer("mgmt"),
+            Services:        []string{
+                "mgmt",
+            },
+            Tenants:         []string{
+                "domain.Corp-Core",
+                "lan.Corp-Core",
+                "servers.Corp-Core",
+                "Corp-Core",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                AlertOnly:    models.ToPointer(true),
+                Enabled:      models.ToPointer(true),
+                Profile:      models.ToPointer("standard"),
+            }),
+            Name:            models.ToPointer("core-to-edge-in"),
+            PathPreference:  models.ToPointer("mxe-in"),
+            Services:        []string{
+                "internal_any",
+            },
+            Tenants:         []string{
+                "lan.Corp-Core",
+                "Corp-Core",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                AlertOnly:    models.ToPointer(true),
+                Enabled:      models.ToPointer(true),
+                Profile:      models.ToPointer("standard"),
+            }),
+            Name:            models.ToPointer("core-to-iot"),
+            PathPreference:  models.ToPointer("iot"),
+            Services:        []string{
+                "iot",
+            },
+            Tenants:         []string{
+                "lan.Corp-Core",
+                "servers-hassio.Corp-Core",
+                "servers-kubes.Corp-Core",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                Enabled:      models.ToPointer(false),
+            }),
+            Name:            models.ToPointer("tanker-to-cctv"),
+            PathPreference:  models.ToPointer("iot"),
+            Services:        []string{
+                "rtsp",
+            },
+            Tenants:         []string{
+                "servers-tanker.Corp-Core",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                Enabled:      models.ToPointer(false),
+            }),
+            Name:            models.ToPointer("core-to-untrust"),
+            PathPreference:  models.ToPointer("untrust"),
+            Services:        []string{
+                "internet_any",
+            },
+            Tenants:         []string{
+                "lan.Corp-Core",
+                "domain.Corp-Core",
+                "servers.Corp-Core",
+            },
+        },
+        models.ServicePolicy{
+            Action:          models.ToPointer(models.AllowDenyEnum("deny")),
+            Idp:             models.ToPointer(models.IdpConfig{
+                AlertOnly:    models.ToPointer(true),
+                Enabled:      models.ToPointer(true),
+                Profile:      models.ToPointer("standard"),
+            }),
+            Name:            models.ToPointer("iot-upgrade-cctv"),
+            PathPreference:  models.ToPointer("untrust"),
+            Services:        []string{
+                "motioneye",
+                "nodejs",
+                "raspbian",
+            },
+            Tenants:         []string{
+                "printer",
+            },
+        },
+    },
+    Type:                  "gateway",
 })
 
 apiResponse, err := orgsDeviceProfiles.UpdateOrgDeviceProfile(ctx, orgId, deviceprofileId, &body)
@@ -1072,167 +1064,6 @@ if err != nil {
     }
 
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response
-
-```
-{
-  "aeroscout": {
-    "enabled": true,
-    "host": "string"
-  },
-  "ble_config": {
-    "beacon_enabled": true,
-    "beacon_rate": 0,
-    "beacon_rate_mode": "default",
-    "beam_disabled": [
-      0
-    ],
-    "eddystone_uid_adv_power": -100,
-    "eddystone_uid_beams": "string",
-    "eddystone_uid_enabled": true,
-    "eddystone_uid_freq_msec": 0,
-    "eddystone_uid_instance": "string",
-    "eddystone_uid_namespace": "string",
-    "eddystone_url_adv_power": 0,
-    "eddystone_url_beams": "string",
-    "eddystone_url_enabled": true,
-    "eddystone_url_freq_msec": 0,
-    "eddystone_url_url": "string",
-    "ibeacon_adv_power": -100,
-    "ibeacon_beams": "string",
-    "ibeacon_enabled": true,
-    "ibeacon_freq_msec": 0,
-    "ibeacon_major": 0,
-    "ibeacon_minor": 0,
-    "ibeacon_uuid": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-    "power": 1,
-    "power_mode": "string"
-  },
-  "created_time": 0,
-  "disable_eth1": true,
-  "disable_module": true,
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "ip_config": {
-    "dns": [
-      "string"
-    ],
-    "dns_suffix": [
-      "string"
-    ],
-    "gateway": "192.168.0.1",
-    "gateway6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
-    "ip": "192.168.0.1",
-    "ip6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
-    "mtu": 0,
-    "netmask": "192.168.0.1",
-    "netmask6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
-    "type": "static",
-    "type6": "static",
-    "vlan_id": 1
-  },
-  "mesh": {
-    "enabled": true,
-    "group": 0,
-    "role": "base"
-  },
-  "modified_time": 0,
-  "name": "string",
-  "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "poe_passthrough": true,
-  "radio_config": {
-    "ant_gain_24": 0,
-    "ant_gain_5": 0,
-    "band_24": {
-      "allow_rrm_disable": true,
-      "antenna_mode": "default",
-      "bandwidth": 20,
-      "channel": 0,
-      "disabled": true,
-      "power": 0,
-      "power_max": 0,
-      "power_min": 0,
-      "preamble": "auto",
-      "usage": "24"
-    },
-    "band_24_usage": "24",
-    "band_5": {
-      "allow_rrm_disable": true,
-      "antenna_mode": "default",
-      "bandwidth": 20,
-      "channel": 0,
-      "disabled": true,
-      "power": 0,
-      "power_max": 0,
-      "power_min": 0,
-      "preamble": "auto",
-      "usage": "24"
-    },
-    "band_5_on_24_radio": {
-      "allow_rrm_disable": true,
-      "antenna_mode": "default",
-      "bandwidth": 20,
-      "channel": 0,
-      "disabled": true,
-      "power": 0,
-      "power_max": 0,
-      "power_min": 0,
-      "preamble": "auto",
-      "usage": "24"
-    },
-    "scanning_enabled": true
-  },
-  "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "switch_config": {
-    "enabled": true,
-    "eth0": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "eth1": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "eth2": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "eth3": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "module": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    },
-    "wds": {
-      "port_vlan_id": 1,
-      "vlan_ids": [
-        0
-      ]
-    }
-  },
-  "usb_config": {
-    "cacert": "string",
-    "channel": 0,
-    "enabled": true,
-    "host": "string",
-    "port": 0,
-    "type": "imagotag",
-    "verify_cert": true
-  }
 }
 ```
 

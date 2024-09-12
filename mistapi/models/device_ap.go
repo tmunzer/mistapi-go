@@ -2,7 +2,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
 // DeviceAp represents a DeviceAp struct.
@@ -68,7 +70,7 @@ type DeviceAp struct {
     Serial               *string                 `json:"serial,omitempty"`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     // Device Type. enum: `ap`
-    Type                 *DeviceTypeApEnum       `json:"type,omitempty"`
+    Type                 string                  `json:"type"`
     UplinkPortConfig     *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
     // USB AP settings
     // Note: if native imagotag is enabled, BLE will be disabled automatically
@@ -222,9 +224,7 @@ func (d DeviceAp) toMap() map[string]any {
     if d.SiteId != nil {
         structMap["site_id"] = d.SiteId
     }
-    if d.Type != nil {
-        structMap["type"] = d.Type
-    }
+    structMap["type"] = d.Type
     if d.UplinkPortConfig != nil {
         structMap["uplink_port_config"] = d.UplinkPortConfig.toMap()
     }
@@ -248,6 +248,10 @@ func (d DeviceAp) toMap() map[string]any {
 func (d *DeviceAp) UnmarshalJSON(input []byte) error {
     var temp tempDeviceAp
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -294,7 +298,7 @@ func (d *DeviceAp) UnmarshalJSON(input []byte) error {
     d.RadioConfig = temp.RadioConfig
     d.Serial = temp.Serial
     d.SiteId = temp.SiteId
-    d.Type = temp.Type
+    d.Type = *temp.Type
     d.UplinkPortConfig = temp.UplinkPortConfig
     d.UsbConfig = temp.UsbConfig
     d.Vars = temp.Vars
@@ -342,10 +346,21 @@ type tempDeviceAp  struct {
     RadioConfig      *ApRadio                `json:"radio_config,omitempty"`
     Serial           *string                 `json:"serial,omitempty"`
     SiteId           *uuid.UUID              `json:"site_id,omitempty"`
-    Type             *DeviceTypeApEnum       `json:"type,omitempty"`
+    Type             *string                 `json:"type"`
     UplinkPortConfig *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
     UsbConfig        *ApUsb                  `json:"usb_config,omitempty"`
     Vars             map[string]string       `json:"vars,omitempty"`
     X                *float64                `json:"x,omitempty"`
     Y                *float64                `json:"y,omitempty"`
+}
+
+func (d *tempDeviceAp) validate() error {
+    var errs []string
+    if d.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `device_ap`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

@@ -54,7 +54,7 @@ type DeviceprofileGateway struct {
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     // Device Type. enum: `gateway`
-    Type                  *DeviceTypeGatewayEnum             `json:"type,omitempty"`
+    Type                  string                             `json:"type"`
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
     // Property key is the network name
     VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
@@ -152,9 +152,7 @@ func (d DeviceprofileGateway) toMap() map[string]any {
     if d.TunnelProviderOptions != nil {
         structMap["tunnel_provider_options"] = d.TunnelProviderOptions.toMap()
     }
-    if d.Type != nil {
-        structMap["type"] = d.Type
-    }
+    structMap["type"] = d.Type
     if d.VrfConfig != nil {
         structMap["vrf_config"] = d.VrfConfig.toMap()
     }
@@ -209,7 +207,7 @@ func (d *DeviceprofileGateway) UnmarshalJSON(input []byte) error {
     d.ServicePolicies = temp.ServicePolicies
     d.TunnelConfigs = temp.TunnelConfigs
     d.TunnelProviderOptions = temp.TunnelProviderOptions
-    d.Type = temp.Type
+    d.Type = *temp.Type
     d.VrfConfig = temp.VrfConfig
     d.VrfInstances = temp.VrfInstances
     return nil
@@ -244,7 +242,7 @@ type tempDeviceprofileGateway  struct {
     ServicePolicies       []ServicePolicy                    `json:"service_policies,omitempty"`
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
-    Type                  *DeviceTypeGatewayEnum             `json:"type,omitempty"`
+    Type                  *string                            `json:"type"`
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
     VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
 }
@@ -253,6 +251,9 @@ func (d *tempDeviceprofileGateway) validate() error {
     var errs []string
     if d.Name == nil {
         errs = append(errs, "required field `name` is missing for type `deviceprofile_gateway`")
+    }
+    if d.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `deviceprofile_gateway`")
     }
     if len(errs) == 0 {
         return nil

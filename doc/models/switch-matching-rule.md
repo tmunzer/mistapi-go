@@ -12,8 +12,10 @@ property key define the type of matching, value is the string to match. e.g: `ma
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
+| `IpConfig` | [`*models.SwitchMatchingRuleIpConfig`](../../doc/models/switch-matching-rule-ip-config.md) | Optional | In-Band Management interface configuration |
 | `MatchRole` | `*string` | Optional | role to match |
 | `Name` | `*string` | Optional | - |
+| `OobIpConfig` | [`*models.SwitchMatchingRuleOobIpConfig`](../../doc/models/switch-matching-rule-oob-ip-config.md) | Optional | Out-of-Band Management interface configuration |
 | `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | Propery key is the interface name or interface range |
 | `PortMirroring` | [`map[string]models.SwitchPortMirroringProperty`](../../doc/models/switch-port-mirroring-property.md) | Optional | Property key is the port mirroring instance name<br>port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
@@ -27,76 +29,21 @@ property key define the type of matching, value is the string to match. e.g: `ma
   "additional_config_cmds": [
     "additional_config_cmds4"
   ],
+  "ip_config": {
+    "network": "network6",
+    "type": "dhcp"
+  },
   "match_role": "match_role2",
   "name": "name2",
-  "port_config": {
-    "key0": {
-      "ae_disable_lacp": false,
-      "ae_idx": 230,
-      "ae_lacp_slow": false,
-      "aggregated": false,
-      "critical": false,
-      "usage": "usage6"
+  "oob_ip_config": {
+    "type": "dhcp",
+    "use_mgmt_vrf": {
+      "key1": "val1",
+      "key2": "val2"
     },
-    "key1": {
-      "ae_disable_lacp": false,
-      "ae_idx": 230,
-      "ae_lacp_slow": false,
-      "aggregated": false,
-      "critical": false,
-      "usage": "usage6"
-    },
-    "key2": {
-      "ae_disable_lacp": false,
-      "ae_idx": 230,
-      "ae_lacp_slow": false,
-      "aggregated": false,
-      "critical": false,
-      "usage": "usage6"
-    }
-  },
-  "port_mirroring": {
-    "key0": {
-      "input_networks_ingress": [
-        "input_networks_ingress8"
-      ],
-      "input_port_ids_egress": [
-        "input_port_ids_egress4",
-        "input_port_ids_egress5"
-      ],
-      "input_port_ids_ingress": [
-        "input_port_ids_ingress2"
-      ],
-      "output_network": "output_network4",
-      "output_port_id": "output_port_id2"
-    },
-    "key1": {
-      "input_networks_ingress": [
-        "input_networks_ingress8"
-      ],
-      "input_port_ids_egress": [
-        "input_port_ids_egress4",
-        "input_port_ids_egress5"
-      ],
-      "input_port_ids_ingress": [
-        "input_port_ids_ingress2"
-      ],
-      "output_network": "output_network4",
-      "output_port_id": "output_port_id2"
-    },
-    "key2": {
-      "input_networks_ingress": [
-        "input_networks_ingress8"
-      ],
-      "input_port_ids_egress": [
-        "input_port_ids_egress4",
-        "input_port_ids_egress5"
-      ],
-      "input_port_ids_ingress": [
-        "input_port_ids_ingress2"
-      ],
-      "output_network": "output_network4",
-      "output_port_id": "output_port_id2"
+    "use_mgmt_vrf_for_host_out": {
+      "key1": "val1",
+      "key2": "val2"
     }
   }
 }

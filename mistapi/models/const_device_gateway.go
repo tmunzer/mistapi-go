@@ -2,6 +2,8 @@ package models
 
 import (
     "encoding/json"
+    "errors"
+    "strings"
 )
 
 // ConstDeviceGateway represents a ConstDeviceGateway struct.
@@ -31,7 +33,7 @@ type ConstDeviceGateway struct {
     SubRequired          *string                  `json:"sub_required,omitempty"`
     T128Device           *bool                    `json:"t128_device,omitempty"`
     // Device Type. enum: `gateway`
-    Type                 *DeviceTypeGatewayEnum   `json:"type,omitempty"`
+    Type                 string                   `json:"type"`
     AdditionalProperties map[string]any           `json:"_"`
 }
 
@@ -110,9 +112,7 @@ func (c ConstDeviceGateway) toMap() map[string]any {
     if c.T128Device != nil {
         structMap["t128_device"] = c.T128Device
     }
-    if c.Type != nil {
-        structMap["type"] = c.Type
-    }
+    structMap["type"] = c.Type
     return structMap
 }
 
@@ -121,6 +121,10 @@ func (c ConstDeviceGateway) toMap() map[string]any {
 func (c *ConstDeviceGateway) UnmarshalJSON(input []byte) error {
     var temp tempConstDeviceGateway
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -151,7 +155,7 @@ func (c *ConstDeviceGateway) UnmarshalJSON(input []byte) error {
     c.Ports = temp.Ports
     c.SubRequired = temp.SubRequired
     c.T128Device = temp.T128Device
-    c.Type = temp.Type
+    c.Type = *temp.Type
     return nil
 }
 
@@ -178,5 +182,16 @@ type tempConstDeviceGateway  struct {
     Ports                *ConstDeviceGatewayPorts `json:"ports,omitempty"`
     SubRequired          *string                  `json:"sub_required,omitempty"`
     T128Device           *bool                    `json:"t128_device,omitempty"`
-    Type                 *DeviceTypeGatewayEnum   `json:"type,omitempty"`
+    Type                 *string                  `json:"type"`
+}
+
+func (c *tempConstDeviceGateway) validate() error {
+    var errs []string
+    if c.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `const_device_gateway`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

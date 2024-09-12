@@ -1859,6 +1859,7 @@ body := models.MistDeviceContainer.FromDeviceAp(models.DeviceAp{
     Orientation:      models.ToPointer(45),
     PoePassthrough:   models.ToPointer(false),
     SiteId:           models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+    Type:             "ap",
     Vars:             map[string]string{
         "RADIUS_IP1": "172.31.2.5",
         "RADIUS_SECRET": "11s64632d",

@@ -56,7 +56,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
 | `StpConfig` | [`*models.SwitchStpConfig`](../../doc/models/switch-stp-config.md) | Optional | - |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
-| `Type` | [`*models.DeviceTypeSwitchEnum`](../../doc/models/device-type-switch-enum.md) | Optional | Device Type. enum: `switch` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Default**: `"switch"` |
 | `UseRouterIdAsSourceIp` | `*bool` | Optional | whether to use it for snmp / syslog / tacplus / radius<br>**Default**: `false` |
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `VirtualChassis` | [`*models.SwitchVirtualChassis`](../../doc/models/switch-virtual-chassis.md) | Optional | required for preprovisioned Virtual Chassis |
@@ -81,6 +81,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "router_id": "10.2.1.10",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
+  "type": "switch",
   "use_router_id_as_source_ip": false,
   "vars": {
     "RADIUS_IP1": "172.31.2.5",

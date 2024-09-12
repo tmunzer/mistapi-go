@@ -59,7 +59,7 @@ Gateway statistics
 | `Spu2Stat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `SpuStat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `Status` | `*string` | Optional | - |
-| `Type` | `*string` | Optional | - |
+| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Default**: `"gateway"` |
 | `Uptime` | `*float64` | Optional | - |
 | `Version` | `*string` | Optional | - |
 

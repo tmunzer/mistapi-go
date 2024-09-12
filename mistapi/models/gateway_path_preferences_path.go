@@ -23,7 +23,7 @@ type GatewayPathPreferencesPath struct {
     TargetIps            []string             `json:"target_ips,omitempty"`
     // enum: `local`, `tunnel`, `vpn`, `wan`
     Type                 *GatewayPathTypeEnum `json:"type,omitempty"`
-    // required when`type`==`tunnel`, optional if `type`==`vpn` wan
+    // optional if `type`==`vpn`
     WanName              *string              `json:"wan_name,omitempty"`
     AdditionalProperties map[string]any       `json:"_"`
 }

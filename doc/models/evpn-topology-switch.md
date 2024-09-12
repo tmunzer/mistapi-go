@@ -96,7 +96,8 @@
       "additional_config_cmds9"
     ],
     "created_time": 40.26,
-    "deviceprofile_id": "00001f46-0000-0000-0000-000000000000"
+    "deviceprofile_id": "00001f46-0000-0000-0000-000000000000",
+    "type": "type4"
   },
   "downlinks": [
     "downlinks2"

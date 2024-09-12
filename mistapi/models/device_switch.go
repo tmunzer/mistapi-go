@@ -2,7 +2,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
 // DeviceSwitch represents a DeviceSwitch struct.
@@ -81,7 +83,7 @@ type DeviceSwitch struct {
     // Switch settings
     SwitchMgmt            *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
     // Device Type. enum: `switch`
-    Type                  *DeviceTypeSwitchEnum                  `json:"type,omitempty"`
+    Type                  string                                 `json:"type"`
     // whether to use it for snmp / syslog / tacplus / radius
     UseRouterIdAsSourceIp *bool                                  `json:"use_router_id_as_source_ip,omitempty"`
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
@@ -256,9 +258,7 @@ func (d DeviceSwitch) toMap() map[string]any {
     if d.SwitchMgmt != nil {
         structMap["switch_mgmt"] = d.SwitchMgmt.toMap()
     }
-    if d.Type != nil {
-        structMap["type"] = d.Type
-    }
+    structMap["type"] = d.Type
     if d.UseRouterIdAsSourceIp != nil {
         structMap["use_router_id_as_source_ip"] = d.UseRouterIdAsSourceIp
     }
@@ -291,6 +291,10 @@ func (d DeviceSwitch) toMap() map[string]any {
 func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
     var temp tempDeviceSwitch
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -344,7 +348,7 @@ func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
     d.SnmpConfig = temp.SnmpConfig
     d.StpConfig = temp.StpConfig
     d.SwitchMgmt = temp.SwitchMgmt
-    d.Type = temp.Type
+    d.Type = *temp.Type
     d.UseRouterIdAsSourceIp = temp.UseRouterIdAsSourceIp
     d.Vars = temp.Vars
     d.VirtualChassis = temp.VirtualChassis
@@ -402,7 +406,7 @@ type tempDeviceSwitch  struct {
     SnmpConfig            *SnmpConfig                            `json:"snmp_config,omitempty"`
     StpConfig             *SwitchStpConfig                       `json:"stp_config,omitempty"`
     SwitchMgmt            *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
-    Type                  *DeviceTypeSwitchEnum                  `json:"type,omitempty"`
+    Type                  *string                                `json:"type"`
     UseRouterIdAsSourceIp *bool                                  `json:"use_router_id_as_source_ip,omitempty"`
     Vars                  map[string]string                      `json:"vars,omitempty"`
     VirtualChassis        *SwitchVirtualChassis                  `json:"virtual_chassis,omitempty"`
@@ -411,4 +415,15 @@ type tempDeviceSwitch  struct {
     VrrpConfig            *VrrpConfig                            `json:"vrrp_config,omitempty"`
     X                     *float64                               `json:"x,omitempty"`
     Y                     *float64                               `json:"y,omitempty"`
+}
+
+func (d *tempDeviceSwitch) validate() error {
+    var errs []string
+    if d.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `device_switch`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

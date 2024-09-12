@@ -49,7 +49,7 @@ device gateway
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `TunnelConfigs` | [`map[string]models.TunnelConfigs`](../../doc/models/tunnel-configs.md) | Optional | Property key is the tunnel name |
 | `TunnelProviderOptions` | [`*models.TunnelProviderOptions`](../../doc/models/tunnel-provider-options.md) | Optional | - |
-| `Type` | [`*models.DeviceTypeGatewayEnum`](../../doc/models/device-type-gateway-enum.md) | Optional | Device Type. enum: `gateway` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Default**: `"gateway"` |
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
@@ -69,6 +69,7 @@ device gateway
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "router_id": "10.2.1.10",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
+  "type": "gateway",
   "vars": {
     "RADIUS_IP1": "172.31.2.5",
     "RADIUS_SECRET": "11s64632d"

@@ -2,6 +2,8 @@ package models
 
 import (
     "encoding/json"
+    "errors"
+    "strings"
 )
 
 // ConstDeviceSwitch represents a ConstDeviceSwitch struct.
@@ -32,7 +34,7 @@ type ConstDeviceSwitch struct {
     Pic                  map[string]string         `json:"pic,omitempty"`
     SubRequired          *string                   `json:"sub_required,omitempty"`
     // Device Type. enum: `switch`
-    Type                 *DeviceTypeSwitchEnum     `json:"type,omitempty"`
+    Type                 string                    `json:"type"`
     AdditionalProperties map[string]any            `json:"_"`
 }
 
@@ -120,9 +122,7 @@ func (c ConstDeviceSwitch) toMap() map[string]any {
     if c.SubRequired != nil {
         structMap["sub_required"] = c.SubRequired
     }
-    if c.Type != nil {
-        structMap["type"] = c.Type
-    }
+    structMap["type"] = c.Type
     return structMap
 }
 
@@ -131,6 +131,10 @@ func (c ConstDeviceSwitch) toMap() map[string]any {
 func (c *ConstDeviceSwitch) UnmarshalJSON(input []byte) error {
     var temp tempConstDeviceSwitch
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -164,7 +168,7 @@ func (c *ConstDeviceSwitch) UnmarshalJSON(input []byte) error {
     c.PacketActionDropOnly = temp.PacketActionDropOnly
     c.Pic = temp.Pic
     c.SubRequired = temp.SubRequired
-    c.Type = temp.Type
+    c.Type = *temp.Type
     return nil
 }
 
@@ -194,5 +198,16 @@ type tempConstDeviceSwitch  struct {
     PacketActionDropOnly *bool                     `json:"packet_action_drop_only,omitempty"`
     Pic                  map[string]string         `json:"pic,omitempty"`
     SubRequired          *string                   `json:"sub_required,omitempty"`
-    Type                 *DeviceTypeSwitchEnum     `json:"type,omitempty"`
+    Type                 *string                   `json:"type"`
+}
+
+func (c *tempConstDeviceSwitch) validate() error {
+    var errs []string
+    if c.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `const_device_switch`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

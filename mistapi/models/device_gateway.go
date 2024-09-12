@@ -2,7 +2,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
 // DeviceGateway represents a DeviceGateway struct.
@@ -65,7 +67,7 @@ type DeviceGateway struct {
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     // Device Type. enum: `gateway`
-    Type                  *DeviceTypeGatewayEnum             `json:"type,omitempty"`
+    Type                  string                             `json:"type"`
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                  map[string]string                  `json:"vars,omitempty"`
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
@@ -216,9 +218,7 @@ func (d DeviceGateway) toMap() map[string]any {
     if d.TunnelProviderOptions != nil {
         structMap["tunnel_provider_options"] = d.TunnelProviderOptions.toMap()
     }
-    if d.Type != nil {
-        structMap["type"] = d.Type
-    }
+    structMap["type"] = d.Type
     if d.Vars != nil {
         structMap["vars"] = d.Vars
     }
@@ -242,6 +242,10 @@ func (d DeviceGateway) toMap() map[string]any {
 func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
     var temp tempDeviceGateway
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -289,7 +293,7 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
     d.SiteId = temp.SiteId
     d.TunnelConfigs = temp.TunnelConfigs
     d.TunnelProviderOptions = temp.TunnelProviderOptions
-    d.Type = temp.Type
+    d.Type = *temp.Type
     d.Vars = temp.Vars
     d.VrfConfig = temp.VrfConfig
     d.VrfInstances = temp.VrfInstances
@@ -338,10 +342,21 @@ type tempDeviceGateway  struct {
     SiteId                *uuid.UUID                         `json:"site_id,omitempty"`
     TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
-    Type                  *DeviceTypeGatewayEnum             `json:"type,omitempty"`
+    Type                  *string                            `json:"type"`
     Vars                  map[string]string                  `json:"vars,omitempty"`
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
     VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
     X                     *float64                           `json:"x,omitempty"`
     Y                     *float64                           `json:"y,omitempty"`
+}
+
+func (d *tempDeviceGateway) validate() error {
+    var errs []string
+    if d.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `device_gateway`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

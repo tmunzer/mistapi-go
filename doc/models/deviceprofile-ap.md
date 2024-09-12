@@ -26,7 +26,7 @@ Device Profile
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `Mesh` | [`*models.ApMesh`](../../doc/models/ap-mesh.md) | Optional | Mesh AP settings |
 | `ModifiedTime` | `*float64` | Optional | - |
-| `Name` | `models.Optional[string]` | Optional | - |
+| `Name` | `*string` | Required | - |
 | `NtpServers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PoePassthrough` | `*bool` | Optional | whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br>**Default**: `false` |
@@ -35,7 +35,7 @@ Device Profile
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SwitchConfig` | [`*models.ApSwitch`](../../doc/models/ap-switch.md) | Optional | for people who want to fully control the vlans (advanced) |
-| `Type` | [`*models.DeviceTypeApEnum`](../../doc/models/device-type-ap-enum.md) | Optional | Device Type. enum: `ap` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Default**: `"ap"` |
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | - |
 | `UsbConfig` | [`*models.ApUsb`](../../doc/models/ap-usb.md) | Optional | USB AP settings<br>Note: if native imagotag is enabled, BLE will be disabled automatically<br>Note: legacy, new config moved to ESL Config. |
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
@@ -48,9 +48,11 @@ Device Profile
   "disable_eth2": false,
   "disable_eth3": false,
   "disable_module": false,
+  "name": "name0",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "poe_passthrough": false,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
+  "type": "ap",
   "vars": {
     "RADIUS_IP1": "172.31.2.5",
     "RADIUS_SECRET": "11s64632d"

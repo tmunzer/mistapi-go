@@ -38,7 +38,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
 | `ServicePolicies` | [`[]models.ServicePolicy`](../../doc/models/service-policy.md) | Optional | - |
 | `TunnelConfigs` | [`map[string]models.TunnelConfigs`](../../doc/models/tunnel-configs.md) | Optional | Property key is the tunnel name |
 | `TunnelProviderOptions` | [`*models.TunnelProviderOptions`](../../doc/models/tunnel-provider-options.md) | Optional | - |
-| `Type` | [`*models.DeviceTypeGatewayEnum`](../../doc/models/device-type-gateway-enum.md) | Optional | Device Type. enum: `gateway` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Default**: `"gateway"` |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
 
@@ -56,6 +56,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
   "ntpOverride": false,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "router_id": "10.2.1.10",
+  "type": "gateway",
   "vrf_instances": {
     "CORP_VRF": {
       "networks": [

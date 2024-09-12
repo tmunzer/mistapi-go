@@ -77,7 +77,8 @@ type StatsGateway struct {
     Spu2Stat             []StatsGatewaySpuItem          `json:"spu2_stat,omitempty"`
     SpuStat              []StatsGatewaySpuItem          `json:"spu_stat,omitempty"`
     Status               *string                        `json:"status,omitempty"`
-    Type                 *string                        `json:"type,omitempty"`
+    // Device Type. enum: `gateway`
+    Type                 string                         `json:"type"`
     Uptime               *float64                       `json:"uptime,omitempty"`
     Version              *string                        `json:"version,omitempty"`
     AdditionalProperties map[string]any                 `json:"_"`
@@ -265,9 +266,7 @@ func (s StatsGateway) toMap() map[string]any {
     if s.Status != nil {
         structMap["status"] = s.Status
     }
-    if s.Type != nil {
-        structMap["type"] = s.Type
-    }
+    structMap["type"] = s.Type
     if s.Uptime != nil {
         structMap["uptime"] = s.Uptime
     }
@@ -343,7 +342,7 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
     s.Spu2Stat = temp.Spu2Stat
     s.SpuStat = temp.SpuStat
     s.Status = temp.Status
-    s.Type = temp.Type
+    s.Type = *temp.Type
     s.Uptime = temp.Uptime
     s.Version = temp.Version
     return nil
@@ -399,7 +398,7 @@ type tempStatsGateway  struct {
     Spu2Stat          []StatsGatewaySpuItem          `json:"spu2_stat,omitempty"`
     SpuStat           []StatsGatewaySpuItem          `json:"spu_stat,omitempty"`
     Status            *string                        `json:"status,omitempty"`
-    Type              *string                        `json:"type,omitempty"`
+    Type              *string                        `json:"type"`
     Uptime            *float64                       `json:"uptime,omitempty"`
     Version           *string                        `json:"version,omitempty"`
 }
@@ -408,6 +407,9 @@ func (s *tempStatsGateway) validate() error {
     var errs []string
     if s.Mac == nil {
         errs = append(errs, "required field `mac` is missing for type `stats_gateway`")
+    }
+    if s.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `stats_gateway`")
     }
     if len(errs) == 0 {
         return nil

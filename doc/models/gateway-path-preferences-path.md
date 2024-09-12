@@ -17,7 +17,7 @@
 | `Networks` | `[]string` | Optional | required when `type`==`local` |
 | `TargetIps` | `[]string` | Optional | if `type`==`local`, if destination IP is to be replaced |
 | `Type` | [`*models.GatewayPathTypeEnum`](../../doc/models/gateway-path-type-enum.md) | Optional | enum: `local`, `tunnel`, `vpn`, `wan` |
-| `WanName` | `*string` | Optional | required when`type`==`tunnel`, optional if `type`==`vpn` wan |
+| `WanName` | `*string` | Optional | optional if `type`==`vpn` |
 
 ## Example (as JSON)
 

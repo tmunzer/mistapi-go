@@ -2,6 +2,8 @@ package models
 
 import (
     "encoding/json"
+    "errors"
+    "strings"
 )
 
 // ConstDeviceAp represents a ConstDeviceAp struct.
@@ -44,7 +46,7 @@ type ConstDeviceAp struct {
     Radios               map[string]string              `json:"radios,omitempty"`
     SharedScanningRadio  *bool                          `json:"shared_scanning_radio,omitempty"`
     // Device Type. enum: `ap`
-    Type                 *DeviceTypeApEnum              `json:"type,omitempty"`
+    Type                 string                         `json:"type"`
     Unmanaged            *bool                          `json:"unmanaged,omitempty"`
     Vble                 *ConstDeviceApVble             `json:"vble,omitempty"`
     AdditionalProperties map[string]any                 `json:"_"`
@@ -161,9 +163,7 @@ func (c ConstDeviceAp) toMap() map[string]any {
     if c.SharedScanningRadio != nil {
         structMap["shared_scanning_radio"] = c.SharedScanningRadio
     }
-    if c.Type != nil {
-        structMap["type"] = c.Type
-    }
+    structMap["type"] = c.Type
     if c.Unmanaged != nil {
         structMap["unmanaged"] = c.Unmanaged
     }
@@ -178,6 +178,10 @@ func (c ConstDeviceAp) toMap() map[string]any {
 func (c *ConstDeviceAp) UnmarshalJSON(input []byte) error {
     var temp tempConstDeviceAp
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -220,7 +224,7 @@ func (c *ConstDeviceAp) UnmarshalJSON(input []byte) error {
     c.Outdoor = temp.Outdoor
     c.Radios = temp.Radios
     c.SharedScanningRadio = temp.SharedScanningRadio
-    c.Type = temp.Type
+    c.Type = *temp.Type
     c.Unmanaged = temp.Unmanaged
     c.Vble = temp.Vble
     return nil
@@ -261,7 +265,18 @@ type tempConstDeviceAp  struct {
     Outdoor             *bool                          `json:"outdoor,omitempty"`
     Radios              map[string]string              `json:"radios,omitempty"`
     SharedScanningRadio *bool                          `json:"shared_scanning_radio,omitempty"`
-    Type                *DeviceTypeApEnum              `json:"type,omitempty"`
+    Type                *string                        `json:"type"`
     Unmanaged           *bool                          `json:"unmanaged,omitempty"`
     Vble                *ConstDeviceApVble             `json:"vble,omitempty"`
+}
+
+func (c *tempConstDeviceAp) validate() error {
+    var errs []string
+    if c.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `const_device_ap`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

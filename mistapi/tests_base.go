@@ -128,6 +128,8 @@ var orgsStatsAssets OrgsStatsAssets
 
 var orgsStatsBgpPeers OrgsStatsBGPPeers
 
+var orgsStatsDevices OrgsStatsDevices
+
 var orgsStatsMxEdges OrgsStatsMxEdges
 
 var orgsStatsOtherDevices OrgsStatsOtherDevices
@@ -441,6 +443,7 @@ func init() {
     orgsStats = *client.OrgsStats()
     orgsStatsAssets = *client.OrgsStatsAssets()
     orgsStatsBgpPeers = *client.OrgsStatsBGPPeers()
+    orgsStatsDevices = *client.OrgsStatsDevices()
     orgsStatsMxEdges = *client.OrgsStatsMxEdges()
     orgsStatsOtherDevices = *client.OrgsStatsOtherDevices()
     orgsStatsPorts = *client.OrgsStatsPorts()

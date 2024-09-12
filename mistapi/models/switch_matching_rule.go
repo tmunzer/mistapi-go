@@ -10,9 +10,13 @@ type SwitchMatchingRule struct {
     // additional CLI commands to append to the generated Junos config
     // **Note**: no check is done
     AdditionalConfigCmds []string                               `json:"additional_config_cmds,omitempty"`
+    // In-Band Management interface configuration
+    IpConfig             *SwitchMatchingRuleIpConfig            `json:"ip_config,omitempty"`
     // role to match
     MatchRole            *string                                `json:"match_role,omitempty"`
     Name                 *string                                `json:"name,omitempty"`
+    // Out-of-Band Management interface configuration
+    OobIpConfig          *SwitchMatchingRuleOobIpConfig         `json:"oob_ip_config,omitempty"`
     // Propery key is the interface name or interface range
     PortConfig           map[string]JunosPortConfig             `json:"port_config,omitempty"`
     // Property key is the port mirroring instance name
@@ -38,11 +42,17 @@ func (s SwitchMatchingRule) toMap() map[string]any {
     if s.AdditionalConfigCmds != nil {
         structMap["additional_config_cmds"] = s.AdditionalConfigCmds
     }
+    if s.IpConfig != nil {
+        structMap["ip_config"] = s.IpConfig.toMap()
+    }
     if s.MatchRole != nil {
         structMap["match_role"] = s.MatchRole
     }
     if s.Name != nil {
         structMap["name"] = s.Name
+    }
+    if s.OobIpConfig != nil {
+        structMap["oob_ip_config"] = s.OobIpConfig.toMap()
     }
     if s.PortConfig != nil {
         structMap["port_config"] = s.PortConfig
@@ -64,15 +74,17 @@ func (s *SwitchMatchingRule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "match_role", "name", "port_config", "port_mirroring", "switch_mgmt")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "ip_config", "match_role", "name", "oob_ip_config", "port_config", "port_mirroring", "switch_mgmt")
     if err != nil {
     	return err
     }
     
     s.AdditionalProperties = additionalProperties
     s.AdditionalConfigCmds = temp.AdditionalConfigCmds
+    s.IpConfig = temp.IpConfig
     s.MatchRole = temp.MatchRole
     s.Name = temp.Name
+    s.OobIpConfig = temp.OobIpConfig
     s.PortConfig = temp.PortConfig
     s.PortMirroring = temp.PortMirroring
     s.SwitchMgmt = temp.SwitchMgmt
@@ -82,8 +94,10 @@ func (s *SwitchMatchingRule) UnmarshalJSON(input []byte) error {
 // tempSwitchMatchingRule is a temporary struct used for validating the fields of SwitchMatchingRule.
 type tempSwitchMatchingRule  struct {
     AdditionalConfigCmds []string                               `json:"additional_config_cmds,omitempty"`
+    IpConfig             *SwitchMatchingRuleIpConfig            `json:"ip_config,omitempty"`
     MatchRole            *string                                `json:"match_role,omitempty"`
     Name                 *string                                `json:"name,omitempty"`
+    OobIpConfig          *SwitchMatchingRuleOobIpConfig         `json:"oob_ip_config,omitempty"`
     PortConfig           map[string]JunosPortConfig             `json:"port_config,omitempty"`
     PortMirroring        map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     SwitchMgmt           *SwitchMgmt                            `json:"switch_mgmt,omitempty"`

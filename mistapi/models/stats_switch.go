@@ -2,7 +2,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
 // StatsSwitch represents a StatsSwitch struct.
@@ -53,7 +55,8 @@ type StatsSwitch struct {
     ServiceStat          map[string]ServiceStatProperty `json:"service_stat,omitempty"`
     SiteId               *uuid.UUID                     `json:"site_id,omitempty"`
     Status               *string                        `json:"status,omitempty"`
-    Type                 *string                        `json:"type,omitempty"`
+    // Device Type. enum: `switch`
+    Type                 string                         `json:"type"`
     Uptime               *float64                       `json:"uptime,omitempty"`
     VcMac                Optional[string]               `json:"vc_mac"`
     VcSetupInfo          *StatsSwitchVcSetupInfo        `json:"vc_setup_info,omitempty"`
@@ -196,9 +199,7 @@ func (s StatsSwitch) toMap() map[string]any {
     if s.Status != nil {
         structMap["status"] = s.Status
     }
-    if s.Type != nil {
-        structMap["type"] = s.Type
-    }
+    structMap["type"] = s.Type
     if s.Uptime != nil {
         structMap["uptime"] = s.Uptime
     }
@@ -223,6 +224,10 @@ func (s StatsSwitch) toMap() map[string]any {
 func (s *StatsSwitch) UnmarshalJSON(input []byte) error {
     var temp tempStatsSwitch
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -269,7 +274,7 @@ func (s *StatsSwitch) UnmarshalJSON(input []byte) error {
     s.ServiceStat = temp.ServiceStat
     s.SiteId = temp.SiteId
     s.Status = temp.Status
-    s.Type = temp.Type
+    s.Type = *temp.Type
     s.Uptime = temp.Uptime
     s.VcMac = temp.VcMac
     s.VcSetupInfo = temp.VcSetupInfo
@@ -316,9 +321,20 @@ type tempStatsSwitch  struct {
     ServiceStat         map[string]ServiceStatProperty `json:"service_stat,omitempty"`
     SiteId              *uuid.UUID                     `json:"site_id,omitempty"`
     Status              *string                        `json:"status,omitempty"`
-    Type                *string                        `json:"type,omitempty"`
+    Type                *string                        `json:"type"`
     Uptime              *float64                       `json:"uptime,omitempty"`
     VcMac               Optional[string]               `json:"vc_mac"`
     VcSetupInfo         *StatsSwitchVcSetupInfo        `json:"vc_setup_info,omitempty"`
     Version             *string                        `json:"version,omitempty"`
+}
+
+func (s *tempStatsSwitch) validate() error {
+    var errs []string
+    if s.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `stats_switch`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

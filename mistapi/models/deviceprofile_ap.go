@@ -2,7 +2,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
 // DeviceprofileAp represents a DeviceprofileAp struct.
@@ -33,7 +35,7 @@ type DeviceprofileAp struct {
     // Mesh AP settings
     Mesh                 *ApMesh                 `json:"mesh,omitempty"`
     ModifiedTime         *float64                `json:"modified_time,omitempty"`
-    Name                 Optional[string]        `json:"name"`
+    Name                 *string                 `json:"name"`
     NtpServers           []string                `json:"ntp_servers,omitempty"`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
     // whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
@@ -48,7 +50,7 @@ type DeviceprofileAp struct {
     // for people who want to fully control the vlans (advanced)
     SwitchConfig         *ApSwitch               `json:"switch_config,omitempty"`      // Deprecated
     // Device Type. enum: `ap`
-    Type                 *DeviceTypeApEnum       `json:"type,omitempty"`
+    Type                 string                  `json:"type"`
     UplinkPortConfig     *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
     // USB AP settings
     // Note: if native imagotag is enabled, BLE will be disabled automatically
@@ -116,12 +118,10 @@ func (d DeviceprofileAp) toMap() map[string]any {
     if d.ModifiedTime != nil {
         structMap["modified_time"] = d.ModifiedTime
     }
-    if d.Name.IsValueSet() {
-        if d.Name.Value() != nil {
-            structMap["name"] = d.Name.Value()
-        } else {
-            structMap["name"] = nil
-        }
+    if d.Name != nil {
+        structMap["name"] = d.Name
+    } else {
+        structMap["name"] = nil
     }
     if d.NtpServers != nil {
         structMap["ntp_servers"] = d.NtpServers
@@ -147,9 +147,7 @@ func (d DeviceprofileAp) toMap() map[string]any {
     if d.SwitchConfig != nil {
         structMap["switch_config"] = d.SwitchConfig.toMap()
     }
-    if d.Type != nil {
-        structMap["type"] = d.Type
-    }
+    structMap["type"] = d.Type
     if d.UplinkPortConfig != nil {
         structMap["uplink_port_config"] = d.UplinkPortConfig.toMap()
     }
@@ -167,6 +165,10 @@ func (d DeviceprofileAp) toMap() map[string]any {
 func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
     var temp tempDeviceprofileAp
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -200,7 +202,7 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
     d.RadioConfig = temp.RadioConfig
     d.SiteId = temp.SiteId
     d.SwitchConfig = temp.SwitchConfig
-    d.Type = temp.Type
+    d.Type = *temp.Type
     d.UplinkPortConfig = temp.UplinkPortConfig
     d.UsbConfig = temp.UsbConfig
     d.Vars = temp.Vars
@@ -224,7 +226,7 @@ type tempDeviceprofileAp  struct {
     Led              *ApLed                  `json:"led,omitempty"`
     Mesh             *ApMesh                 `json:"mesh,omitempty"`
     ModifiedTime     *float64                `json:"modified_time,omitempty"`
-    Name             Optional[string]        `json:"name"`
+    Name             *string                 `json:"name"`
     NtpServers       []string                `json:"ntp_servers,omitempty"`
     OrgId            *uuid.UUID              `json:"org_id,omitempty"`
     PoePassthrough   *bool                   `json:"poe_passthrough,omitempty"`
@@ -233,8 +235,19 @@ type tempDeviceprofileAp  struct {
     RadioConfig      *ApRadio                `json:"radio_config,omitempty"`
     SiteId           *uuid.UUID              `json:"site_id,omitempty"`
     SwitchConfig     *ApSwitch               `json:"switch_config,omitempty"`
-    Type             *DeviceTypeApEnum       `json:"type,omitempty"`
+    Type             *string                 `json:"type"`
     UplinkPortConfig *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
     UsbConfig        *ApUsb                  `json:"usb_config,omitempty"`
     Vars             map[string]string       `json:"vars,omitempty"`
+}
+
+func (d *tempDeviceprofileAp) validate() error {
+    var errs []string
+    if d.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `deviceprofile_ap`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

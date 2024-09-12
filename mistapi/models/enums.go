@@ -477,6 +477,30 @@ const (
     ConstDeviceApExtiosDefaultDirEnum_OUT ConstDeviceApExtiosDefaultDirEnum = "OUT"
 )
 
+// ConstDeviceTypeApEnum is a string enum.
+// Device Type. enum: `ap`
+type ConstDeviceTypeApEnum string
+
+const (
+    ConstDeviceTypeApEnum_AP ConstDeviceTypeApEnum = "ap"
+)
+
+// ConstDeviceTypeGatewayEnum is a string enum.
+// Device Type. enum: `gateway`
+type ConstDeviceTypeGatewayEnum string
+
+const (
+    ConstDeviceTypeGatewayEnum_GATEWAY ConstDeviceTypeGatewayEnum = "gateway"
+)
+
+// ConstDeviceTypeSwitchEnum is a string enum.
+// Device Type. enum: `switch`
+type ConstDeviceTypeSwitchEnum string
+
+const (
+    ConstDeviceTypeSwitchEnum_ENUMSWITCH ConstDeviceTypeSwitchEnum = "switch"
+)
+
 // ConstInsightMetricsPropertyScopeEnum is a string enum.
 // enum: `ap`, `client`, `device`, `mxedge`, `site`, `switch`
 type ConstInsightMetricsPropertyScopeEnum string

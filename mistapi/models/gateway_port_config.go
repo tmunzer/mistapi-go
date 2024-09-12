@@ -9,6 +9,17 @@ import (
 // GatewayPortConfig represents a GatewayPortConfig struct.
 // Gateway port config
 type GatewayPortConfig struct {
+    // if `aggregated`==`true`. To disable LCP support for the AE interface
+    AeDisableLacp        *bool                         `json:"ae_disable_lacp,omitempty"`
+    // if `aggregated`==`true`. Users could force to use the designated AE name (must be an integer between 0 and 127)
+    AeIdx                Optional[string]              `json:"ae_idx"`
+    // For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability.\n
+    // Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end\n
+    // Note: Turning this on will enable force-up on one of the interfaces in the bundle only
+    AeLacpForceUp        *bool                         `json:"ae_lacp_force_up,omitempty"`
+    Aggregated           *bool                         `json:"aggregated,omitempty"`
+    // if want to generate port up/down alarm, set it to true
+    Critical             *bool                         `json:"critical,omitempty"`
     Description          *string                       `json:"description,omitempty"`
     DisableAutoneg       *bool                         `json:"disable_autoneg,omitempty"`
     // port admin up (true) / down (false)
@@ -88,6 +99,25 @@ func (g GatewayPortConfig) MarshalJSON() (
 func (g GatewayPortConfig) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, g.AdditionalProperties)
+    if g.AeDisableLacp != nil {
+        structMap["ae_disable_lacp"] = g.AeDisableLacp
+    }
+    if g.AeIdx.IsValueSet() {
+        if g.AeIdx.Value() != nil {
+            structMap["ae_idx"] = g.AeIdx.Value()
+        } else {
+            structMap["ae_idx"] = nil
+        }
+    }
+    if g.AeLacpForceUp != nil {
+        structMap["ae_lacp_force_up"] = g.AeLacpForceUp
+    }
+    if g.Aggregated != nil {
+        structMap["aggregated"] = g.Aggregated
+    }
+    if g.Critical != nil {
+        structMap["critical"] = g.Critical
+    }
     if g.Description != nil {
         structMap["description"] = g.Description
     }
@@ -206,12 +236,17 @@ func (g *GatewayPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "description", "disable_autoneg", "disabled", "dsl_type", "dsl_vci", "dsl_vpi", "duplex", "ip_config", "lte_apn", "lte_auth", "lte_backup", "lte_password", "lte_username", "mtu", "name", "networks", "outer_vlan_id", "poe_disabled", "port_network", "preserve_dscp", "redundant", "reth_idx", "reth_node", "reth_nodes", "speed", "ssr_no_virtual_mac", "svr_port_range", "traffic_shaping", "usage", "vlan_id", "vpn_paths", "wan_arp_policer", "wan_ext_ip", "wan_source_nat", "wan_type")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "aggregated", "critical", "description", "disable_autoneg", "disabled", "dsl_type", "dsl_vci", "dsl_vpi", "duplex", "ip_config", "lte_apn", "lte_auth", "lte_backup", "lte_password", "lte_username", "mtu", "name", "networks", "outer_vlan_id", "poe_disabled", "port_network", "preserve_dscp", "redundant", "reth_idx", "reth_node", "reth_nodes", "speed", "ssr_no_virtual_mac", "svr_port_range", "traffic_shaping", "usage", "vlan_id", "vpn_paths", "wan_arp_policer", "wan_ext_ip", "wan_source_nat", "wan_type")
     if err != nil {
     	return err
     }
     
     g.AdditionalProperties = additionalProperties
+    g.AeDisableLacp = temp.AeDisableLacp
+    g.AeIdx = temp.AeIdx
+    g.AeLacpForceUp = temp.AeLacpForceUp
+    g.Aggregated = temp.Aggregated
+    g.Critical = temp.Critical
     g.Description = temp.Description
     g.DisableAutoneg = temp.DisableAutoneg
     g.Disabled = temp.Disabled
@@ -252,6 +287,11 @@ func (g *GatewayPortConfig) UnmarshalJSON(input []byte) error {
 
 // tempGatewayPortConfig is a temporary struct used for validating the fields of GatewayPortConfig.
 type tempGatewayPortConfig  struct {
+    AeDisableLacp   *bool                         `json:"ae_disable_lacp,omitempty"`
+    AeIdx           Optional[string]              `json:"ae_idx"`
+    AeLacpForceUp   *bool                         `json:"ae_lacp_force_up,omitempty"`
+    Aggregated      *bool                         `json:"aggregated,omitempty"`
+    Critical        *bool                         `json:"critical,omitempty"`
     Description     *string                       `json:"description,omitempty"`
     DisableAutoneg  *bool                         `json:"disable_autoneg,omitempty"`
     Disabled        *bool                         `json:"disabled,omitempty"`

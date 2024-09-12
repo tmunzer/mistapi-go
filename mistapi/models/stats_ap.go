@@ -85,8 +85,8 @@ type StatsAp struct {
     TxBps                Optional[float64]                             `json:"tx_bps"`
     TxBytes              Optional[float64]                             `json:"tx_bytes"`
     TxPkts               Optional[float64]                             `json:"tx_pkts"`
-    // device type, ap / ble /switch / gateway
-    Type                 Optional[string]                              `json:"type"`
+    // Device Type. enum: `ap`
+    Type                 string                                        `json:"type"`
     // how long, in seconds, has the device been up (or rebooted)
     Uptime               Optional[float64]                             `json:"uptime"`
     UsbStat              *StatsApUsbStat                               `json:"usb_stat,omitempty"`
@@ -415,13 +415,7 @@ func (s StatsAp) toMap() map[string]any {
             structMap["tx_pkts"] = nil
         }
     }
-    if s.Type.IsValueSet() {
-        if s.Type.Value() != nil {
-            structMap["type"] = s.Type.Value()
-        } else {
-            structMap["type"] = nil
-        }
-    }
+    structMap["type"] = s.Type
     if s.Uptime.IsValueSet() {
         if s.Uptime.Value() != nil {
             structMap["uptime"] = s.Uptime.Value()
@@ -531,7 +525,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
     s.TxBps = temp.TxBps
     s.TxBytes = temp.TxBytes
     s.TxPkts = temp.TxPkts
-    s.Type = temp.Type
+    s.Type = *temp.Type
     s.Uptime = temp.Uptime
     s.UsbStat = temp.UsbStat
     s.Version = temp.Version
@@ -599,7 +593,7 @@ type tempStatsAp  struct {
     TxBps              Optional[float64]                             `json:"tx_bps"`
     TxBytes            Optional[float64]                             `json:"tx_bytes"`
     TxPkts             Optional[float64]                             `json:"tx_pkts"`
-    Type               Optional[string]                              `json:"type"`
+    Type               *string                                       `json:"type"`
     Uptime             Optional[float64]                             `json:"uptime"`
     UsbStat            *StatsApUsbStat                               `json:"usb_stat,omitempty"`
     Version            Optional[string]                              `json:"version"`
@@ -609,6 +603,9 @@ type tempStatsAp  struct {
 
 func (s *tempStatsAp) validate() error {
     var errs []string
+    if s.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `stats_ap`")
+    }
     if len(errs) == 0 {
         return nil
     }
