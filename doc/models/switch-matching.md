@@ -32,14 +32,8 @@ Switch template
       "name": "name8",
       "oob_ip_config": {
         "type": "dhcp",
-        "use_mgmt_vrf": {
-          "key1": "val1",
-          "key2": "val2"
-        },
-        "use_mgmt_vrf_for_host_out": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "use_mgmt_vrf": false,
+        "use_mgmt_vrf_for_host_out": false
       }
     },
     {
@@ -54,14 +48,8 @@ Switch template
       "name": "name8",
       "oob_ip_config": {
         "type": "dhcp",
-        "use_mgmt_vrf": {
-          "key1": "val1",
-          "key2": "val2"
-        },
-        "use_mgmt_vrf_for_host_out": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "use_mgmt_vrf": false,
+        "use_mgmt_vrf_for_host_out": false
       }
     }
   ]

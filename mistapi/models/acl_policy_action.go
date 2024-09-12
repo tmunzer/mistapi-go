@@ -2,13 +2,15 @@ package models
 
 import (
     "encoding/json"
+    "errors"
+    "strings"
 )
 
 // AclPolicyAction represents a AclPolicyAction struct.
 type AclPolicyAction struct {
     // enum: `allow`, `deny`
     Action               *AllowDenyEnum `json:"action,omitempty"`
-    DstTag               *string        `json:"dst_tag,omitempty"`
+    DstTag               string         `json:"dst_tag"`
     AdditionalProperties map[string]any `json:"_"`
 }
 
@@ -27,9 +29,7 @@ func (a AclPolicyAction) toMap() map[string]any {
     if a.Action != nil {
         structMap["action"] = a.Action
     }
-    if a.DstTag != nil {
-        structMap["dst_tag"] = a.DstTag
-    }
+    structMap["dst_tag"] = a.DstTag
     return structMap
 }
 
@@ -41,6 +41,10 @@ func (a *AclPolicyAction) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
     additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "dst_tag")
     if err != nil {
     	return err
@@ -48,12 +52,23 @@ func (a *AclPolicyAction) UnmarshalJSON(input []byte) error {
     
     a.AdditionalProperties = additionalProperties
     a.Action = temp.Action
-    a.DstTag = temp.DstTag
+    a.DstTag = *temp.DstTag
     return nil
 }
 
 // tempAclPolicyAction is a temporary struct used for validating the fields of AclPolicyAction.
 type tempAclPolicyAction  struct {
     Action *AllowDenyEnum `json:"action,omitempty"`
-    DstTag *string        `json:"dst_tag,omitempty"`
+    DstTag *string        `json:"dst_tag"`
+}
+
+func (a *tempAclPolicyAction) validate() error {
+    var errs []string
+    if a.DstTag == nil {
+        errs = append(errs, "required field `dst_tag` is missing for type `acl_policy_action`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

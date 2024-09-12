@@ -18,7 +18,7 @@ type SwitchOobIpConfig struct {
     Type                 *IpTypeEnum    `json:"type,omitempty"`
     // f supported on the platform. If enabled, DNS will be using this routing-instance, too
     UseMgmtVrf           *bool          `json:"use_mgmt_vrf,omitempty"`
-    // for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired,
+    // for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
     UseMgmtVrfForHostOut *bool          `json:"use_mgmt_vrf_for_host_out,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }

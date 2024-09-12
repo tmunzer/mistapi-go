@@ -10,9 +10,9 @@ type SwitchMatchingRuleOobIpConfig struct {
     // enum: `dhcp`, `static`
     Type                 *IpTypeEnum    `json:"type,omitempty"`
     // f supported on the platform. If enabled, DNS will be using this routing-instance, too
-    UseMgmtVrf           *interface{}   `json:"use_mgmt_vrf,omitempty"`
-    // for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired,
-    UseMgmtVrfForHostOut *interface{}   `json:"use_mgmt_vrf_for_host_out,omitempty"`
+    UseMgmtVrf           *bool          `json:"use_mgmt_vrf,omitempty"`
+    // for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
+    UseMgmtVrfForHostOut *bool          `json:"use_mgmt_vrf_for_host_out,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }
 
@@ -62,7 +62,7 @@ func (s *SwitchMatchingRuleOobIpConfig) UnmarshalJSON(input []byte) error {
 
 // tempSwitchMatchingRuleOobIpConfig is a temporary struct used for validating the fields of SwitchMatchingRuleOobIpConfig.
 type tempSwitchMatchingRuleOobIpConfig  struct {
-    Type                 *IpTypeEnum  `json:"type,omitempty"`
-    UseMgmtVrf           *interface{} `json:"use_mgmt_vrf,omitempty"`
-    UseMgmtVrfForHostOut *interface{} `json:"use_mgmt_vrf_for_host_out,omitempty"`
+    Type                 *IpTypeEnum `json:"type,omitempty"`
+    UseMgmtVrf           *bool       `json:"use_mgmt_vrf,omitempty"`
+    UseMgmtVrfForHostOut *bool       `json:"use_mgmt_vrf_for_host_out,omitempty"`
 }

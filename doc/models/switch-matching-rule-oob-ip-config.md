@@ -12,22 +12,16 @@ Out-of-Band Management interface configuration
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
-| `UseMgmtVrf` | `*interface{}` | Optional | f supported on the platform. If enabled, DNS will be using this routing-instance, too |
-| `UseMgmtVrfForHostOut` | `*interface{}` | Optional | for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired, |
+| `UseMgmtVrf` | `*bool` | Optional | f supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
+| `UseMgmtVrfForHostOut` | `*bool` | Optional | for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired<br>**Default**: `false` |
 
 ## Example (as JSON)
 
 ```json
 {
   "type": "static",
-  "use_mgmt_vrf": {
-    "key1": "val1",
-    "key2": "val2"
-  },
-  "use_mgmt_vrf_for_host_out": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "use_mgmt_vrf": false,
+  "use_mgmt_vrf_for_host_out": false
 }
 ```
 
