@@ -6,10 +6,8 @@ import (
 
 // PortChannelization represents a PortChannelization struct.
 type PortChannelization struct {
-    // Property key is the interface name or range (e.g. `et-0/0/47`, `et-0/0/48-49`), Property value is the interface speed (e.g. `25g`, `50g`)
-    AdditionalProperties  *string        `json:"additionalProperties,omitempty"`
-    Enabled               *bool          `json:"enabled,omitempty"`
-    AdditionalProperties2 map[string]any `json:"_"`
+    Enabled              *bool          `json:"enabled,omitempty"`
+    AdditionalProperties map[string]any `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PortChannelization.
@@ -23,10 +21,7 @@ func (p PortChannelization) MarshalJSON() (
 // toMap converts the PortChannelization object to a map representation for JSON marshaling.
 func (p PortChannelization) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties2)
-    if p.AdditionalProperties != nil {
-        structMap["additionalProperties"] = p.AdditionalProperties
-    }
+    MapAdditionalProperties(structMap, p.AdditionalProperties)
     if p.Enabled != nil {
         structMap["enabled"] = p.Enabled
     }
@@ -41,19 +36,17 @@ func (p *PortChannelization) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties2, err := UnmarshalAdditionalProperties(input, "additionalProperties", "enabled")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled")
     if err != nil {
     	return err
     }
     
-    p.AdditionalProperties2 = additionalProperties2
-    p.AdditionalProperties = temp.AdditionalProperties
+    p.AdditionalProperties = additionalProperties
     p.Enabled = temp.Enabled
     return nil
 }
 
 // tempPortChannelization is a temporary struct used for validating the fields of PortChannelization.
 type tempPortChannelization  struct {
-    AdditionalProperties *string `json:"additionalProperties,omitempty"`
-    Enabled              *bool   `json:"enabled,omitempty"`
+    Enabled *bool `json:"enabled,omitempty"`
 }
