@@ -24,10 +24,9 @@
     {
       "address": "address4",
       "app_type": "app_type2",
-      "hostname": [
-        "hostname4",
-        "hostname5",
-        "hostname6"
+      "hostnames": [
+        "hostnames4",
+        "hostnames5"
       ],
       "key": "key8",
       "name": "name8"
@@ -35,10 +34,9 @@
     {
       "address": "address4",
       "app_type": "app_type2",
-      "hostname": [
-        "hostname4",
-        "hostname5",
-        "hostname6"
+      "hostnames": [
+        "hostnames4",
+        "hostnames5"
       ],
       "key": "key8",
       "name": "name8"

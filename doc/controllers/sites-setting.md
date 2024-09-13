@@ -1239,12 +1239,9 @@ body := models.SiteSetting{
             },
             CustomApps: []models.AppProbingCustomApp{
                 models.AppProbingCustomApp{
-                    AppType:  models.ToPointer("string"),
-                    Hostname: []string{
-                        "string",
-                    },
-                    Name:     models.ToPointer("string"),
-                    Protocol: models.ToPointer(models.AppProbingCustomAppProtocolEnum("http")),
+                    AppType:   models.ToPointer("string"),
+                    Name:      models.ToPointer("string"),
+                    Protocol:  models.ToPointer(models.AppProbingCustomAppProtocolEnum("http")),
                 },
             },
             Enabled:    models.ToPointer(true),

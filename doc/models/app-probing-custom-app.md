@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Address` | `*string` | Optional | if `protocol`==`icmp` |
 | `AppType` | `*string` | Optional | - |
-| `Hostname` | `[]string` | Optional | if `protocol`==`http` |
+| `Hostnames` | `[]string` | Optional | if `protocol`==`http` |
 | `Key` | `*string` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Network` | `*string` | Optional | - |
@@ -24,8 +24,8 @@
 ```json
 {
   "address": "192.168.1.1",
-  "hostname": [
-    "www.abc.com"
+  "hostnames": [
+    "http://www.abc.com"
   ],
   "name": "pos_app",
   "network": "lan",

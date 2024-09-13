@@ -10,7 +10,7 @@ type AppProbingCustomApp struct {
     Address              *string                          `json:"address,omitempty"`
     AppType              *string                          `json:"app_type,omitempty"`
     // if `protocol`==`http`
-    Hostname             []string                         `json:"hostname,omitempty"`
+    Hostnames            []string                         `json:"hostnames,omitempty"`
     Key                  *string                          `json:"key,omitempty"`
     Name                 *string                          `json:"name,omitempty"`
     Network              *string                          `json:"network,omitempty"`
@@ -40,8 +40,8 @@ func (a AppProbingCustomApp) toMap() map[string]any {
     if a.AppType != nil {
         structMap["app_type"] = a.AppType
     }
-    if a.Hostname != nil {
-        structMap["hostname"] = a.Hostname
+    if a.Hostnames != nil {
+        structMap["hostnames"] = a.Hostnames
     }
     if a.Key != nil {
         structMap["key"] = a.Key
@@ -72,7 +72,7 @@ func (a *AppProbingCustomApp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "address", "app_type", "hostname", "key", "name", "network", "protocol", "url", "vrf")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "address", "app_type", "hostnames", "key", "name", "network", "protocol", "url", "vrf")
     if err != nil {
     	return err
     }
@@ -80,7 +80,7 @@ func (a *AppProbingCustomApp) UnmarshalJSON(input []byte) error {
     a.AdditionalProperties = additionalProperties
     a.Address = temp.Address
     a.AppType = temp.AppType
-    a.Hostname = temp.Hostname
+    a.Hostnames = temp.Hostnames
     a.Key = temp.Key
     a.Name = temp.Name
     a.Network = temp.Network
@@ -92,13 +92,13 @@ func (a *AppProbingCustomApp) UnmarshalJSON(input []byte) error {
 
 // tempAppProbingCustomApp is a temporary struct used for validating the fields of AppProbingCustomApp.
 type tempAppProbingCustomApp  struct {
-    Address  *string                          `json:"address,omitempty"`
-    AppType  *string                          `json:"app_type,omitempty"`
-    Hostname []string                         `json:"hostname,omitempty"`
-    Key      *string                          `json:"key,omitempty"`
-    Name     *string                          `json:"name,omitempty"`
-    Network  *string                          `json:"network,omitempty"`
-    Protocol *AppProbingCustomAppProtocolEnum `json:"protocol,omitempty"`
-    Url      *string                          `json:"url,omitempty"`
-    Vrf      *string                          `json:"vrf,omitempty"`
+    Address   *string                          `json:"address,omitempty"`
+    AppType   *string                          `json:"app_type,omitempty"`
+    Hostnames []string                         `json:"hostnames,omitempty"`
+    Key       *string                          `json:"key,omitempty"`
+    Name      *string                          `json:"name,omitempty"`
+    Network   *string                          `json:"network,omitempty"`
+    Protocol  *AppProbingCustomAppProtocolEnum `json:"protocol,omitempty"`
+    Url       *string                          `json:"url,omitempty"`
+    Vrf       *string                          `json:"vrf,omitempty"`
 }
