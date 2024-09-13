@@ -12,7 +12,7 @@ site mist edges form a cluster of radsecproxy servers
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `MistDas` | [`*models.MxedgeDas`](../../doc/models/mxedge-das.md) | Optional | configure cloud-assisted dynamic authorization service on this cluster of mist edges |
-| `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | enable mist_nac to use radsec |
+| `MistNac` | [`*models.MxclusterNac`](../../doc/models/mxcluster-nac.md) | Optional | - |
 | `MistNacedge` | [`*models.MistNacedge`](../../doc/models/mist-nacedge.md) | Optional | - |
 | `Radsec` | [`*models.MxclusterRadsec`](../../doc/models/mxcluster-radsec.md) | Optional | MxEdge Radsec Configuration |
 
@@ -40,8 +40,30 @@ site mist edges form a cluster of radsecproxy servers
     "enabled": false
   },
   "mist_nac": {
+    "acct_server_port": 70,
+    "auth_server_port": 34,
+    "client_ips": {
+      "key0": {
+        "require_message_authenticator": false,
+        "secret": "secret4",
+        "site_id": "0000197c-0000-0000-0000-000000000000",
+        "vendor": "cisco-meraki"
+      },
+      "key1": {
+        "require_message_authenticator": false,
+        "secret": "secret4",
+        "site_id": "0000197c-0000-0000-0000-000000000000",
+        "vendor": "cisco-meraki"
+      },
+      "key2": {
+        "require_message_authenticator": false,
+        "secret": "secret4",
+        "site_id": "0000197c-0000-0000-0000-000000000000",
+        "vendor": "cisco-meraki"
+      }
+    },
     "enabled": false,
-    "network": "network6"
+    "secret": "secret6"
   },
   "mist_nacedge": {
     "auth_ttl": 110,

@@ -43,6 +43,7 @@ Site Settings
 | `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
+| `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | enable mist_nac to use radsec |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Mxedge` | [`*models.SiteSettingMxedge`](../../doc/models/site-setting-mxedge.md) | Optional | site mist edges form a cluster of radsecproxy servers |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | - |

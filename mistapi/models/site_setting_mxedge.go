@@ -9,8 +9,7 @@ import (
 type SiteSettingMxedge struct {
     // configure cloud-assisted dynamic authorization service on this cluster of mist edges
     MistDas              *MxedgeDas       `json:"mist_das,omitempty"`
-    // enable mist_nac to use radsec
-    MistNac              *SwitchMistNac   `json:"mist_nac,omitempty"`
+    MistNac              *MxclusterNac    `json:"mist_nac,omitempty"`
     MistNacedge          *MistNacedge     `json:"mist_nacedge,omitempty"`
     // MxEdge Radsec Configuration
     Radsec               *MxclusterRadsec `json:"radsec,omitempty"`
@@ -68,7 +67,7 @@ func (s *SiteSettingMxedge) UnmarshalJSON(input []byte) error {
 // tempSiteSettingMxedge is a temporary struct used for validating the fields of SiteSettingMxedge.
 type tempSiteSettingMxedge  struct {
     MistDas     *MxedgeDas       `json:"mist_das,omitempty"`
-    MistNac     *SwitchMistNac   `json:"mist_nac,omitempty"`
+    MistNac     *MxclusterNac    `json:"mist_nac,omitempty"`
     MistNacedge *MistNacedge     `json:"mist_nacedge,omitempty"`
     Radsec      *MxclusterRadsec `json:"radsec,omitempty"`
 }
