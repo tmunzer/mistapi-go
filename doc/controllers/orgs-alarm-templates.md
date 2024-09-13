@@ -293,7 +293,7 @@ ListOrgSuppressedAlarms(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Query, Optional | **Default**: `"site"` |
+| `scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Query, Optional | returns both scopes if not specified<br>**Default**: `"site"` |
 
 ## Response Type
 
@@ -325,7 +325,17 @@ if err != nil {
   "results": [
     {
       "duration": 48,
+      "expire_time": 1678233080,
+      "scheduled_time": 1678232900,
+      "scope": "site",
       "site_id": "581328b6-e382-f54e-c9dc-9c998d183a34"
+    },
+    {
+      "duration": 48,
+      "expire_time": 1678233080,
+      "scheduled_time": 1678232900,
+      "scope": "org",
+      "site_id": "581328b6-e382-f54e-c9dc-9c998d183a35"
     }
   ]
 }

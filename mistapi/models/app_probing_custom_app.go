@@ -11,6 +11,7 @@ type AppProbingCustomApp struct {
     AppType              *string                          `json:"app_type,omitempty"`
     // if `protocol`==`http`
     Hostname             []string                         `json:"hostname,omitempty"`
+    Key                  *string                          `json:"key,omitempty"`
     Name                 *string                          `json:"name,omitempty"`
     Network              *string                          `json:"network,omitempty"`
     // enum: `http`, `icmp`
@@ -42,6 +43,9 @@ func (a AppProbingCustomApp) toMap() map[string]any {
     if a.Hostname != nil {
         structMap["hostname"] = a.Hostname
     }
+    if a.Key != nil {
+        structMap["key"] = a.Key
+    }
     if a.Name != nil {
         structMap["name"] = a.Name
     }
@@ -68,7 +72,7 @@ func (a *AppProbingCustomApp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "address", "app_type", "hostname", "name", "network", "protocol", "url", "vrf")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "address", "app_type", "hostname", "key", "name", "network", "protocol", "url", "vrf")
     if err != nil {
     	return err
     }
@@ -77,6 +81,7 @@ func (a *AppProbingCustomApp) UnmarshalJSON(input []byte) error {
     a.Address = temp.Address
     a.AppType = temp.AppType
     a.Hostname = temp.Hostname
+    a.Key = temp.Key
     a.Name = temp.Name
     a.Network = temp.Network
     a.Protocol = temp.Protocol
@@ -90,6 +95,7 @@ type tempAppProbingCustomApp  struct {
     Address  *string                          `json:"address,omitempty"`
     AppType  *string                          `json:"app_type,omitempty"`
     Hostname []string                         `json:"hostname,omitempty"`
+    Key      *string                          `json:"key,omitempty"`
     Name     *string                          `json:"name,omitempty"`
     Network  *string                          `json:"network,omitempty"`
     Protocol *AppProbingCustomAppProtocolEnum `json:"protocol,omitempty"`

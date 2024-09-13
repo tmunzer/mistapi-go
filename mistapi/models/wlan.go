@@ -134,6 +134,8 @@ type Wlan struct {
     LimitProbeResponse                 *bool                          `json:"limit_probe_response,omitempty"`
     // max idle time in seconds
     MaxIdletime                        *int                           `json:"max_idletime,omitempty"`
+    // maximum number of client connected to the SSID. `0` means unlimited
+    MaxNumClients                      *int                           `json:"max_num_clients,omitempty"`
     MistNac                            *WlanMistNac                   `json:"mist_nac,omitempty"`
     ModifiedTime                       *float64                       `json:"modified_time,omitempty"`
     MspId                              *uuid.UUID                     `json:"msp_id,omitempty"`
@@ -425,6 +427,9 @@ func (w Wlan) toMap() map[string]any {
     if w.MaxIdletime != nil {
         structMap["max_idletime"] = w.MaxIdletime
     }
+    if w.MaxNumClients != nil {
+        structMap["max_num_clients"] = w.MaxNumClients
+    }
     if w.MistNac != nil {
         structMap["mist_nac"] = w.MistNac.toMap()
     }
@@ -599,7 +604,7 @@ func (w *Wlan) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_immediate_update", "acct_interim_interval", "acct_servers", "airwatch", "allow_ipv6_ndp", "allow_mdns", "allow_ssdp", "ap_ids", "app_limit", "app_qos", "apply_to", "arp_filter", "auth", "auth_server_selection", "auth_servers", "auth_servers_nas_id", "auth_servers_nas_ip", "auth_servers_retries", "auth_servers_timeout", "band", "band_steer", "band_steer_force_band5", "bands", "block_blacklist_clients", "bonjour", "cisco_cwa", "client_limit_down", "client_limit_down_enabled", "client_limit_up", "client_limit_up_enabled", "coa_servers", "created_time", "disable_11ax", "disable_ht_vht_rates", "disable_uapsd", "disable_v1_roam_notify", "disable_v2_roam_notify", "disable_wmm", "dns_server_rewrite", "dtim", "dynamic_psk", "dynamic_vlan", "enable_local_keycaching", "enable_wireless_bridging", "enable_wireless_bridging_dhcp_tracking", "enabled", "fast_dot1x_timers", "for_site", "hide_ssid", "hostname_ie", "hotspot20", "id", "inject_dhcp_option_82", "interface", "isolation", "l2_isolation", "legacy_overds", "limit_bcast", "limit_probe_response", "max_idletime", "mist_nac", "modified_time", "msp_id", "mxtunnel_id", "mxtunnel_ids", "mxtunnel_name", "no_static_dns", "no_static_ip", "org_id", "portal", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_api_secret", "portal_denied_hostnames", "portal_image", "portal_sso_url", "portal_template_url", "qos", "radsec", "rateset", "roam_mode", "schedule", "site_id", "sle_excluded", "ssid", "template_id", "thumbnail", "use_eapol_v1", "vlan_enabled", "vlan_id", "vlan_ids", "vlan_pooling", "wlan_limit_down", "wlan_limit_down_enabled", "wlan_limit_up", "wlan_limit_up_enabled", "wxtag_ids", "wxtunnel_id", "wxtunnel_remote_id")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_immediate_update", "acct_interim_interval", "acct_servers", "airwatch", "allow_ipv6_ndp", "allow_mdns", "allow_ssdp", "ap_ids", "app_limit", "app_qos", "apply_to", "arp_filter", "auth", "auth_server_selection", "auth_servers", "auth_servers_nas_id", "auth_servers_nas_ip", "auth_servers_retries", "auth_servers_timeout", "band", "band_steer", "band_steer_force_band5", "bands", "block_blacklist_clients", "bonjour", "cisco_cwa", "client_limit_down", "client_limit_down_enabled", "client_limit_up", "client_limit_up_enabled", "coa_servers", "created_time", "disable_11ax", "disable_ht_vht_rates", "disable_uapsd", "disable_v1_roam_notify", "disable_v2_roam_notify", "disable_wmm", "dns_server_rewrite", "dtim", "dynamic_psk", "dynamic_vlan", "enable_local_keycaching", "enable_wireless_bridging", "enable_wireless_bridging_dhcp_tracking", "enabled", "fast_dot1x_timers", "for_site", "hide_ssid", "hostname_ie", "hotspot20", "id", "inject_dhcp_option_82", "interface", "isolation", "l2_isolation", "legacy_overds", "limit_bcast", "limit_probe_response", "max_idletime", "max_num_clients", "mist_nac", "modified_time", "msp_id", "mxtunnel_id", "mxtunnel_ids", "mxtunnel_name", "no_static_dns", "no_static_ip", "org_id", "portal", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_api_secret", "portal_denied_hostnames", "portal_image", "portal_sso_url", "portal_template_url", "qos", "radsec", "rateset", "roam_mode", "schedule", "site_id", "sle_excluded", "ssid", "template_id", "thumbnail", "use_eapol_v1", "vlan_enabled", "vlan_id", "vlan_ids", "vlan_pooling", "wlan_limit_down", "wlan_limit_down_enabled", "wlan_limit_up", "wlan_limit_up_enabled", "wxtag_ids", "wxtunnel_id", "wxtunnel_remote_id")
     if err != nil {
     	return err
     }
@@ -665,6 +670,7 @@ func (w *Wlan) UnmarshalJSON(input []byte) error {
     w.LimitBcast = temp.LimitBcast
     w.LimitProbeResponse = temp.LimitProbeResponse
     w.MaxIdletime = temp.MaxIdletime
+    w.MaxNumClients = temp.MaxNumClients
     w.MistNac = temp.MistNac
     w.ModifiedTime = temp.ModifiedTime
     w.MspId = temp.MspId
@@ -769,6 +775,7 @@ type tempWlan  struct {
     LimitBcast                         *bool                          `json:"limit_bcast,omitempty"`
     LimitProbeResponse                 *bool                          `json:"limit_probe_response,omitempty"`
     MaxIdletime                        *int                           `json:"max_idletime,omitempty"`
+    MaxNumClients                      *int                           `json:"max_num_clients,omitempty"`
     MistNac                            *WlanMistNac                   `json:"mist_nac,omitempty"`
     ModifiedTime                       *float64                       `json:"modified_time,omitempty"`
     MspId                              *uuid.UUID                     `json:"msp_id,omitempty"`

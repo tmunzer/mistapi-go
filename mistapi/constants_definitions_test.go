@@ -90,7 +90,8 @@ func TestConstantsDefinitionsTestListApplications(t *testing.T) {
 // TestConstantsDefinitionsTestListCountryCodes tests the behavior of the ConstantsDefinitions
 func TestConstantsDefinitionsTestListCountryCodes(t *testing.T) {
     ctx := context.Background()
-    apiResponse, err := constantsDefinitions.ListCountryCodes(ctx)
+    extend := bool(false)
+    apiResponse, err := constantsDefinitions.ListCountryCodes(ctx, &extend)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

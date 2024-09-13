@@ -205,13 +205,14 @@ const (
 )
 
 // BgpConfigViaEnum is a string enum.
-// network name. enum: `lan`, `vpn`, `wan`
+// network name. enum: `lan`, `tunnel`, `vpn`, `wan`
 type BgpConfigViaEnum string
 
 const (
-    BgpConfigViaEnum_LAN BgpConfigViaEnum = "lan"
-    BgpConfigViaEnum_VPN BgpConfigViaEnum = "vpn"
-    BgpConfigViaEnum_WAN BgpConfigViaEnum = "wan"
+    BgpConfigViaEnum_LAN    BgpConfigViaEnum = "lan"
+    BgpConfigViaEnum_TUNNEL BgpConfigViaEnum = "tunnel"
+    BgpConfigViaEnum_VPN    BgpConfigViaEnum = "vpn"
+    BgpConfigViaEnum_WAN    BgpConfigViaEnum = "wan"
 )
 
 // BgpStatsStateEnum is a string enum.
@@ -270,11 +271,14 @@ const (
 )
 
 // CaptureMxedgeFormatEnum is a string enum.
-// pcap format. enum: `stream`
+// pcap format. enum: 
+// * `stream`: to Mist cloud
+// * `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
 type CaptureMxedgeFormatEnum string
 
 const (
     CaptureMxedgeFormatEnum_STREAM CaptureMxedgeFormatEnum = "stream"
+    CaptureMxedgeFormatEnum_TZSP   CaptureMxedgeFormatEnum = "tzsp"
 )
 
 // CaptureMxedgeTypeEnum is a string enum.
@@ -1435,6 +1439,18 @@ const (
     MxclusterRadAuthServerKeywrapFormatEnum_HEX   MxclusterRadAuthServerKeywrapFormatEnum = "hex"
 )
 
+// MxclusterRadsecNasIpSourceEnum is a string enum.
+// SSpecify NAS-IP-ADDRESS, NAS-IPv6-ADDRESS to use with auth_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
+type MxclusterRadsecNasIpSourceEnum string
+
+const (
+    MxclusterRadsecNasIpSourceEnum_ANY     MxclusterRadsecNasIpSourceEnum = "any"
+    MxclusterRadsecNasIpSourceEnum_OOB     MxclusterRadsecNasIpSourceEnum = "oob"
+    MxclusterRadsecNasIpSourceEnum_OOB6    MxclusterRadsecNasIpSourceEnum = "oob6"
+    MxclusterRadsecNasIpSourceEnum_TUNNEL  MxclusterRadsecNasIpSourceEnum = "tunnel"
+    MxclusterRadsecNasIpSourceEnum_TUNNEL6 MxclusterRadsecNasIpSourceEnum = "tunnel6"
+)
+
 // MxclusterRadsecServerSelectionEnum is a string enum.
 // When ordered, Mist Edge will prefer and go back to the first radius server if possible. enum: `ordered`, `unordered`
 type MxclusterRadsecServerSelectionEnum string
@@ -1444,16 +1460,16 @@ const (
     MxclusterRadsecServerSelectionEnum_UNORDERED MxclusterRadsecServerSelectionEnum = "unordered"
 )
 
-// MxclusterRadsecSourceEnum is a string enum.
-// Specify source address to use when connecting to RADIUS servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
-type MxclusterRadsecSourceEnum string
+// MxclusterRadsecSrcIpSourceEnum is a string enum.
+// Specify IP address to connect to auth_servers and acct_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
+type MxclusterRadsecSrcIpSourceEnum string
 
 const (
-    MxclusterRadsecSourceEnum_ANY     MxclusterRadsecSourceEnum = "any"
-    MxclusterRadsecSourceEnum_OOB     MxclusterRadsecSourceEnum = "oob"
-    MxclusterRadsecSourceEnum_OOB6    MxclusterRadsecSourceEnum = "oob6"
-    MxclusterRadsecSourceEnum_TUNNEL  MxclusterRadsecSourceEnum = "tunnel"
-    MxclusterRadsecSourceEnum_TUNNEL6 MxclusterRadsecSourceEnum = "tunnel6"
+    MxclusterRadsecSrcIpSourceEnum_ANY     MxclusterRadsecSrcIpSourceEnum = "any"
+    MxclusterRadsecSrcIpSourceEnum_OOB     MxclusterRadsecSrcIpSourceEnum = "oob"
+    MxclusterRadsecSrcIpSourceEnum_OOB6    MxclusterRadsecSrcIpSourceEnum = "oob6"
+    MxclusterRadsecSrcIpSourceEnum_TUNNEL  MxclusterRadsecSrcIpSourceEnum = "tunnel"
+    MxclusterRadsecSrcIpSourceEnum_TUNNEL6 MxclusterRadsecSrcIpSourceEnum = "tunnel6"
 )
 
 // MxclusterTuntermHostsSelectionEnum is a string enum.
@@ -1517,6 +1533,7 @@ type MxedgeServiceNameEnum string
 const (
     MxedgeServiceNameEnum_MXAGENT     MxedgeServiceNameEnum = "mxagent"
     MxedgeServiceNameEnum_MXDAS       MxedgeServiceNameEnum = "mxdas"
+    MxedgeServiceNameEnum_MXNACEDGE   MxedgeServiceNameEnum = "mxnacedge"
     MxedgeServiceNameEnum_MXOCPROXY   MxedgeServiceNameEnum = "mxocproxy"
     MxedgeServiceNameEnum_RADSECPROXY MxedgeServiceNameEnum = "radsecproxy"
     MxedgeServiceNameEnum_TUNTERM     MxedgeServiceNameEnum = "tunterm"
@@ -1577,6 +1594,15 @@ const (
     NacPortalAccessTypeEnum_ENUMWIRELESSWIRED NacPortalAccessTypeEnum = "wireless+wired"
 )
 
+// NacPortalEapTypeEnum is a string enum.
+// enum: `wpa2`, `wpa3`
+type NacPortalEapTypeEnum string
+
+const (
+    NacPortalEapTypeEnum_WPA2 NacPortalEapTypeEnum = "wpa2"
+    NacPortalEapTypeEnum_WPA3 NacPortalEapTypeEnum = "wpa3"
+)
+
 // NacPortalTypeEnum is a string enum.
 type NacPortalTypeEnum string
 
@@ -1620,7 +1646,7 @@ const (
 )
 
 // NacTagMatchEnum is a string enum.
-// if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `client_mac`, `idp_role`, `mdm_status`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
+// if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `client_mac`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
 type NacTagMatchEnum string
 
 const (
@@ -1631,7 +1657,9 @@ const (
     NacTagMatchEnum_CERTSUB      NacTagMatchEnum = "cert_sub"
     NacTagMatchEnum_CLIENTMAC    NacTagMatchEnum = "client_mac"
     NacTagMatchEnum_IDPROLE      NacTagMatchEnum = "idp_role"
+    NacTagMatchEnum_INGRESSVLAN  NacTagMatchEnum = "ingress_vlan"
     NacTagMatchEnum_MDMSTATUS    NacTagMatchEnum = "mdm_status"
+    NacTagMatchEnum_NASIP        NacTagMatchEnum = "nas_ip"
     NacTagMatchEnum_RADIUSGROUP  NacTagMatchEnum = "radius_group"
     NacTagMatchEnum_REALM        NacTagMatchEnum = "realm"
     NacTagMatchEnum_SSID         NacTagMatchEnum = "ssid"
@@ -1704,11 +1732,12 @@ const (
 )
 
 // OrgAutoRulesSrcEnum is a string enum.
-// enum: `dns_suffix`, `lldp_port_desc`, `lldp_system_name`, `model`, `name`, `subnet`
+// enum: `dns_suffix`, `geoip`, `lldp_port_desc`, `lldp_system_name`, `model`, `name`, `subnet`
 type OrgAutoRulesSrcEnum string
 
 const (
     OrgAutoRulesSrcEnum_DNSSUFFIX      OrgAutoRulesSrcEnum = "dns_suffix"
+    OrgAutoRulesSrcEnum_GEOIP          OrgAutoRulesSrcEnum = "geoip"
     OrgAutoRulesSrcEnum_LLDPPORTDESC   OrgAutoRulesSrcEnum = "lldp_port_desc"
     OrgAutoRulesSrcEnum_LLDPSYSTEMNAME OrgAutoRulesSrcEnum = "lldp_system_name"
     OrgAutoRulesSrcEnum_MODEL          OrgAutoRulesSrcEnum = "model"
@@ -2684,6 +2713,26 @@ const (
     SearchSiteSwitchPortsStpStateEnum_LISTENING  SearchSiteSwitchPortsStpStateEnum = "listening"
 )
 
+// SecintelProfileProfileActionEnum is a string enum.
+// enum: `default`, `standard`, `strict`
+type SecintelProfileProfileActionEnum string
+
+const (
+    SecintelProfileProfileActionEnum_ENUMDEFAULT SecintelProfileProfileActionEnum = "default"
+    SecintelProfileProfileActionEnum_STANDARD    SecintelProfileProfileActionEnum = "standard"
+    SecintelProfileProfileActionEnum_STRICT      SecintelProfileProfileActionEnum = "strict"
+)
+
+// SecintelProfileProfileCategoryEnum is a string enum.
+// enum: `CC`, `IH` (Infected Host), `DNS`
+type SecintelProfileProfileCategoryEnum string
+
+const (
+    SecintelProfileProfileCategoryEnum_CC  SecintelProfileProfileCategoryEnum = "CC"
+    SecintelProfileProfileCategoryEnum_IH  SecintelProfileProfileCategoryEnum = "IH"
+    SecintelProfileProfileCategoryEnum_DNS SecintelProfileProfileCategoryEnum = "DNS"
+)
+
 // ServiceFailoverPolicyEnum is a string enum.
 // enum: `non_revertable`, `none`, `revertable`
 type ServiceFailoverPolicyEnum string
@@ -2984,6 +3033,16 @@ const (
     SiteServiceEventsCountDistinctEnum_ENUMTYPE SiteServiceEventsCountDistinctEnum = "type"
     SiteServiceEventsCountDistinctEnum_VPNNAME  SiteServiceEventsCountDistinctEnum = "vpn_name"
     SiteServiceEventsCountDistinctEnum_VPNPATH  SiteServiceEventsCountDistinctEnum = "vpn_path"
+)
+
+// SystemDefinedPortUsagesEnum is a string enum.
+// system-default port usages. enum: `ap`, `iot`, `uplink``
+type SystemDefinedPortUsagesEnum string
+
+const (
+    SystemDefinedPortUsagesEnum_AP     SystemDefinedPortUsagesEnum = "ap"
+    SystemDefinedPortUsagesEnum_IOT    SystemDefinedPortUsagesEnum = "iot"
+    SystemDefinedPortUsagesEnum_UPLINK SystemDefinedPortUsagesEnum = "uplink"
 )
 
 // SiteSkyAtpEventsCountDistinctEnum is a string enum.
@@ -3661,15 +3720,6 @@ const (
     SwitchPortUsageModeEnum_TRUNK   SwitchPortUsageModeEnum = "trunk"
 )
 
-// SwitchStpConfigTypeEnum is a string enum.
-// enum: `rstp`, `vstp`
-type SwitchStpConfigTypeEnum string
-
-const (
-    SwitchStpConfigTypeEnum_RSTP SwitchStpConfigTypeEnum = "rstp"
-    SwitchStpConfigTypeEnum_VSTP SwitchStpConfigTypeEnum = "vstp"
-)
-
 // SwitchVirtualChassisMemberVcRoleEnum is a string enum.
 // Both vc_role master and backup will be matched to routing-engine role in Junos preprovisioned VC config. enum: `backup`, `linecard`, `master`
 type SwitchVirtualChassisMemberVcRoleEnum string
@@ -3678,6 +3728,16 @@ const (
     SwitchVirtualChassisMemberVcRoleEnum_BACKUP   SwitchVirtualChassisMemberVcRoleEnum = "backup"
     SwitchVirtualChassisMemberVcRoleEnum_LINECARD SwitchVirtualChassisMemberVcRoleEnum = "linecard"
     SwitchVirtualChassisMemberVcRoleEnum_MASTER   SwitchVirtualChassisMemberVcRoleEnum = "master"
+)
+
+// SynthetictestDeviceProtocolEnum is a string enum.
+// if `type`==`lan_connectivity`. enum: `ping`, `traceroute`, `ping+traceroute`
+type SynthetictestDeviceProtocolEnum string
+
+const (
+    SynthetictestDeviceProtocolEnum_PING               SynthetictestDeviceProtocolEnum = "ping"
+    SynthetictestDeviceProtocolEnum_TRACEROUTE         SynthetictestDeviceProtocolEnum = "traceroute"
+    SynthetictestDeviceProtocolEnum_ENUMPINGTRACEROUTE SynthetictestDeviceProtocolEnum = "ping+traceroute"
 )
 
 // SynthetictestInfoDeviceTypeEnum is a string enum.
@@ -3691,17 +3751,18 @@ const (
 )
 
 // SynthetictestTypeEnum is a string enum.
-// enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `radius`, `speedtest`
+// enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest`
 type SynthetictestTypeEnum string
 
 const (
-    SynthetictestTypeEnum_ARP       SynthetictestTypeEnum = "arp"
-    SynthetictestTypeEnum_CURL      SynthetictestTypeEnum = "curl"
-    SynthetictestTypeEnum_DHCP      SynthetictestTypeEnum = "dhcp"
-    SynthetictestTypeEnum_DHCP6     SynthetictestTypeEnum = "dhcp6"
-    SynthetictestTypeEnum_DNS       SynthetictestTypeEnum = "dns"
-    SynthetictestTypeEnum_RADIUS    SynthetictestTypeEnum = "radius"
-    SynthetictestTypeEnum_SPEEDTEST SynthetictestTypeEnum = "speedtest"
+    SynthetictestTypeEnum_ARP             SynthetictestTypeEnum = "arp"
+    SynthetictestTypeEnum_CURL            SynthetictestTypeEnum = "curl"
+    SynthetictestTypeEnum_DHCP            SynthetictestTypeEnum = "dhcp"
+    SynthetictestTypeEnum_DHCP6           SynthetictestTypeEnum = "dhcp6"
+    SynthetictestTypeEnum_DNS             SynthetictestTypeEnum = "dns"
+    SynthetictestTypeEnum_LANCONNECTIVITY SynthetictestTypeEnum = "lan_connectivity"
+    SynthetictestTypeEnum_RADIUS          SynthetictestTypeEnum = "radius"
+    SynthetictestTypeEnum_SPEEDTEST       SynthetictestTypeEnum = "speedtest"
 )
 
 // TacacsDefaultRoleEnum is a string enum.
@@ -3748,17 +3809,6 @@ const (
     TunnelConfigsAuthAlgoEnum_MD5  TunnelConfigsAuthAlgoEnum = "md5"
     TunnelConfigsAuthAlgoEnum_SHA1 TunnelConfigsAuthAlgoEnum = "sha1"
     TunnelConfigsAuthAlgoEnum_SHA2 TunnelConfigsAuthAlgoEnum = "sha2"
-)
-
-// TunnelConfigsAutoProvisionRegionEnum is a string enum.
-// enum: `APAC`, `Americas`, `EMEA`, `auto`
-type TunnelConfigsAutoProvisionRegionEnum string
-
-const (
-    TunnelConfigsAutoProvisionRegionEnum_APAC     TunnelConfigsAutoProvisionRegionEnum = "APAC"
-    TunnelConfigsAutoProvisionRegionEnum_AMERICAS TunnelConfigsAutoProvisionRegionEnum = "Americas"
-    TunnelConfigsAutoProvisionRegionEnum_EMEA     TunnelConfigsAutoProvisionRegionEnum = "EMEA"
-    TunnelConfigsAutoProvisionRegionEnum_AUTO     TunnelConfigsAutoProvisionRegionEnum = "auto"
 )
 
 // TunnelConfigsDhGroupEnum is a string enum.
@@ -3881,13 +3931,18 @@ const (
 )
 
 // UtilsSendSupportLogsInfoEnum is a string enum.
-// enum: `code-dumps`, `full`, `jma-logs`, `messages`, `outbound-ssh`, `process`, `var-logs`
+// optional, enum: 
+// * `code-dumps`: Upload all core dump files, if any found
+// * `full`: Upload 1 file with output of `request support information`, 1 file that concatenates all `/var/log/outbound-ssh.log*` files, all core dump files, the 5 most recent `/var/log/messages*` files, and Mist agent logs
+// * `messages`: Upload 1 to 10 `/var/log/messages*` files
+// * `outbound-ssh`: Upload 1 file that concatenates all `/var/log/outbound-ssh.log*` files
+// * `process`: Upload 1 file with output of show `system processes extensive``
+// * `var-logs`: Upload all non-empty files in the `/var/log/` directory
 type UtilsSendSupportLogsInfoEnum string
 
 const (
     UtilsSendSupportLogsInfoEnum_CODEDUMPS   UtilsSendSupportLogsInfoEnum = "code-dumps"
     UtilsSendSupportLogsInfoEnum_FULL        UtilsSendSupportLogsInfoEnum = "full"
-    UtilsSendSupportLogsInfoEnum_JMALOGS     UtilsSendSupportLogsInfoEnum = "jma-logs"
     UtilsSendSupportLogsInfoEnum_MESSAGES    UtilsSendSupportLogsInfoEnum = "messages"
     UtilsSendSupportLogsInfoEnum_OUTBOUNDSSH UtilsSendSupportLogsInfoEnum = "outbound-ssh"
     UtilsSendSupportLogsInfoEnum_PROCESS     UtilsSendSupportLogsInfoEnum = "process"
@@ -3908,11 +3963,12 @@ const (
 )
 
 // UtilsTracerouteProtocolEnum is a string enum.
-// enum: `udp`
+// enum: `icmp` (Only suported by AP/MxEdge), `udp`
 type UtilsTracerouteProtocolEnum string
 
 const (
-    UtilsTracerouteProtocolEnum_UDP UtilsTracerouteProtocolEnum = "udp"
+    UtilsTracerouteProtocolEnum_ICMP UtilsTracerouteProtocolEnum = "icmp"
+    UtilsTracerouteProtocolEnum_UDP  UtilsTracerouteProtocolEnum = "udp"
 )
 
 // VarSourceEnum is a string enum.

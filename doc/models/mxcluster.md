@@ -50,14 +50,14 @@ mxCluster
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "secret": "secret2"
+        "require_message_authenticator": false
       },
       {
         "disable_event_timestamp_check": false,
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "secret": "secret2"
+        "require_message_authenticator": false
       }
     ],
     "enabled": false
@@ -67,16 +67,19 @@ mxCluster
     "auth_server_port": 34,
     "client_ips": {
       "key0": {
+        "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
         "vendor": "cisco-meraki"
       },
       "key1": {
+        "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
         "vendor": "cisco-meraki"
       },
       "key2": {
+        "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
         "vendor": "cisco-meraki"

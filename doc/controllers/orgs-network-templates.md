@@ -126,7 +126,6 @@ body := models.NetworkTemplate{
             PoeDisabled:                              models.ToPointer(false),
             PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum("dot1x"))),
             PortNetwork:                              models.ToPointer("string"),
-            RejectedNetwork:                          models.NewOptional(models.ToPointer("rejected_network4")),
             Speed:                                    models.ToPointer("string"),
             StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
@@ -159,7 +158,6 @@ body := models.NetworkTemplate{
             PersistMac:                               models.ToPointer(false),
             PoeDisabled:                              models.ToPointer(false),
             PortNetwork:                              models.ToPointer("string"),
-            RejectedNetwork:                          models.NewOptional(models.ToPointer("rejected_network4")),
             Speed:                                    models.ToPointer("string"),
             StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
@@ -1046,7 +1044,6 @@ body := models.NetworkTemplate{
             PoeDisabled:                              models.ToPointer(false),
             PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum("dot1x"))),
             PortNetwork:                              models.ToPointer("string"),
-            RejectedNetwork:                          models.NewOptional(models.ToPointer("rejected_network4")),
             Speed:                                    models.ToPointer("string"),
             StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
@@ -1079,7 +1076,6 @@ body := models.NetworkTemplate{
             PersistMac:                               models.ToPointer(false),
             PoeDisabled:                              models.ToPointer(false),
             PortNetwork:                              models.ToPointer("string"),
-            RejectedNetwork:                          models.NewOptional(models.ToPointer("rejected_network4")),
             Speed:                                    models.ToPointer("string"),
             StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),

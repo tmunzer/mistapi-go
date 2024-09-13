@@ -6,13 +6,11 @@ import (
 
 // TunnelConfigsAutoProvision represents a TunnelConfigsAutoProvision struct.
 type TunnelConfigsAutoProvision struct {
-    Enable               *bool                                 `json:"enable,omitempty"`
-    Latlng               *LatLng                               `json:"latlng,omitempty"`
-    Primary              *TunnelConfigsAutoProvisionNode       `json:"primary,omitempty"`
-    // enum: `APAC`, `Americas`, `EMEA`, `auto`
-    Region               *TunnelConfigsAutoProvisionRegionEnum `json:"region,omitempty"`
-    Secondary            *TunnelConfigsAutoProvisionNode       `json:"secondary,omitempty"`
-    AdditionalProperties map[string]any                        `json:"_"`
+    Enable               *bool                           `json:"enable,omitempty"`
+    Latlng               *LatLng                         `json:"latlng,omitempty"`
+    Primary              *TunnelConfigsAutoProvisionNode `json:"primary,omitempty"`
+    Secondary            *TunnelConfigsAutoProvisionNode `json:"secondary,omitempty"`
+    AdditionalProperties map[string]any                  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelConfigsAutoProvision.
@@ -36,9 +34,6 @@ func (t TunnelConfigsAutoProvision) toMap() map[string]any {
     if t.Primary != nil {
         structMap["primary"] = t.Primary.toMap()
     }
-    if t.Region != nil {
-        structMap["region"] = t.Region
-    }
     if t.Secondary != nil {
         structMap["secondary"] = t.Secondary.toMap()
     }
@@ -53,7 +48,7 @@ func (t *TunnelConfigsAutoProvision) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enable", "latlng", "primary", "region", "secondary")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "enable", "latlng", "primary", "secondary")
     if err != nil {
     	return err
     }
@@ -62,16 +57,14 @@ func (t *TunnelConfigsAutoProvision) UnmarshalJSON(input []byte) error {
     t.Enable = temp.Enable
     t.Latlng = temp.Latlng
     t.Primary = temp.Primary
-    t.Region = temp.Region
     t.Secondary = temp.Secondary
     return nil
 }
 
 // tempTunnelConfigsAutoProvision is a temporary struct used for validating the fields of TunnelConfigsAutoProvision.
 type tempTunnelConfigsAutoProvision  struct {
-    Enable    *bool                                 `json:"enable,omitempty"`
-    Latlng    *LatLng                               `json:"latlng,omitempty"`
-    Primary   *TunnelConfigsAutoProvisionNode       `json:"primary,omitempty"`
-    Region    *TunnelConfigsAutoProvisionRegionEnum `json:"region,omitempty"`
-    Secondary *TunnelConfigsAutoProvisionNode       `json:"secondary,omitempty"`
+    Enable    *bool                           `json:"enable,omitempty"`
+    Latlng    *LatLng                         `json:"latlng,omitempty"`
+    Primary   *TunnelConfigsAutoProvisionNode `json:"primary,omitempty"`
+    Secondary *TunnelConfigsAutoProvisionNode `json:"secondary,omitempty"`
 }

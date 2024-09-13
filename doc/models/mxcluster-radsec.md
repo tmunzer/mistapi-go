@@ -15,16 +15,18 @@ MxEdge Radsec Configuration
 | `AuthServers` | [`[]models.MxclusterRadsecAuthServer`](../../doc/models/mxcluster-radsec-auth-server.md) | Optional | list of RADIUS authentication servers, order matters where the first one is treated as primary<br>**Constraints**: *Unique Items Required* |
 | `Enabled` | `*bool` | Optional | whether to enable service on Mist Edge i.e. RADIUS proxy over TLS |
 | `MatchSsid` | `*bool` | Optional | whether to match ssid in request message to select from a subset of RADIUS servers |
+| `NasIpSource` | [`*models.MxclusterRadsecNasIpSourceEnum`](../../doc/models/mxcluster-radsec-nas-ip-source-enum.md) | Optional | SSpecify NAS-IP-ADDRESS, NAS-IPv6-ADDRESS to use with auth_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`<br>**Default**: `"any"` |
 | `ProxyHosts` | `[]string` | Optional | hostnames or IPs for Mist AP to use as the TLS Server (i.e. they are reachable from AP) in addition to `tunterm_hosts` |
 | `ServerSelection` | [`*models.MxclusterRadsecServerSelectionEnum`](../../doc/models/mxcluster-radsec-server-selection-enum.md) | Optional | When ordered, Mist Edge will prefer and go back to the first radius server if possible. enum: `ordered`, `unordered`<br>**Default**: `"ordered"` |
-| `Source` | [`*models.MxclusterRadsecSourceEnum`](../../doc/models/mxcluster-radsec-source-enum.md) | Optional | Specify source address to use when connecting to RADIUS servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`<br>**Default**: `"any"` |
+| `SrcIpSource` | [`*models.MxclusterRadsecSrcIpSourceEnum`](../../doc/models/mxcluster-radsec-src-ip-source-enum.md) | Optional | Specify IP address to connect to auth_servers and acct_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`<br>**Default**: `"any"` |
 
 ## Example (as JSON)
 
 ```json
 {
+  "nas_ip_source": "any",
   "server_selection": "ordered",
-  "source": "any",
+  "src_ip_source": "any",
   "acct_servers": [
     {
       "host": "host4",
@@ -78,12 +80,7 @@ MxEdge Radsec Configuration
     }
   ],
   "enabled": false,
-  "match_ssid": false,
-  "proxy_hosts": [
-    "proxy_hosts8",
-    "proxy_hosts9",
-    "proxy_hosts0"
-  ]
+  "match_ssid": false
 }
 ```
 

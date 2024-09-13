@@ -10,6 +10,8 @@ import (
 type UtilsClearBgp struct {
     // neighbor ip-address or 'all'
     Neighbor             string                `json:"neighbor"`
+    // only for HA. enum: `node0`, `node1`
+    Node                 *HaClusterNodeEnum    `json:"node,omitempty"`
     // enum: `hard`, `in`, `out`, `soft`
     Type                 UtilsClearBgpTypeEnum `json:"type"`
     // vrf name
@@ -30,6 +32,9 @@ func (u UtilsClearBgp) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, u.AdditionalProperties)
     structMap["neighbor"] = u.Neighbor
+    if u.Node != nil {
+        structMap["node"] = u.Node
+    }
     structMap["type"] = u.Type
     if u.Vrf != nil {
         structMap["vrf"] = u.Vrf
@@ -49,13 +54,14 @@ func (u *UtilsClearBgp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "neighbor", "type", "vrf")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "neighbor", "node", "type", "vrf")
     if err != nil {
     	return err
     }
     
     u.AdditionalProperties = additionalProperties
     u.Neighbor = *temp.Neighbor
+    u.Node = temp.Node
     u.Type = *temp.Type
     u.Vrf = temp.Vrf
     return nil
@@ -64,6 +70,7 @@ func (u *UtilsClearBgp) UnmarshalJSON(input []byte) error {
 // tempUtilsClearBgp is a temporary struct used for validating the fields of UtilsClearBgp.
 type tempUtilsClearBgp  struct {
     Neighbor *string                `json:"neighbor"`
+    Node     *HaClusterNodeEnum     `json:"node,omitempty"`
     Type     *UtilsClearBgpTypeEnum `json:"type"`
     Vrf      *string                `json:"vrf,omitempty"`
 }

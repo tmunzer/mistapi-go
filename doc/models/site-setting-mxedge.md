@@ -12,6 +12,8 @@ site mist edges form a cluster of radsecproxy servers
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `MistDas` | [`*models.MxedgeDas`](../../doc/models/mxedge-das.md) | Optional | configure cloud-assisted dynamic authorization service on this cluster of mist edges |
+| `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | enable mist_nac to use radsec |
+| `MistNacedge` | [`*models.MistNacedge`](../../doc/models/mist-nacedge.md) | Optional | - |
 | `Radsec` | [`*models.MxclusterRadsec`](../../doc/models/mxcluster-radsec.md) | Optional | MxEdge Radsec Configuration |
 
 ## Example (as JSON)
@@ -25,17 +27,32 @@ site mist edges form a cluster of radsecproxy servers
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "secret": "secret2"
+        "require_message_authenticator": false
       },
       {
         "disable_event_timestamp_check": false,
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "secret": "secret2"
+        "require_message_authenticator": false
       }
     ],
     "enabled": false
+  },
+  "mist_nac": {
+    "enabled": false,
+    "network": "network6"
+  },
+  "mist_nacedge": {
+    "auth_ttl": 110,
+    "default_dot1x_vlan": "default_dot1x_vlan4",
+    "default_vlan": "default_vlan6",
+    "enabled": false,
+    "mxedge_hosts": [
+      "mxedge_hosts7",
+      "mxedge_hosts8",
+      "mxedge_hosts9"
+    ]
   },
   "radsec": {
     "acct_servers": [
@@ -60,9 +77,7 @@ site mist edges form a cluster of radsecproxy servers
     ],
     "enabled": false,
     "match_ssid": false,
-    "proxy_hosts": [
-      "proxy_hosts4"
-    ]
+    "nas_ip_source": "tunnel"
   }
 }
 ```

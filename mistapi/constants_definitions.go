@@ -205,11 +205,13 @@ func (c *ConstantsDefinitions) ListApplications(ctx context.Context) (
     return models.NewApiResponse(result, resp), err
 }
 
-// ListCountryCodes takes context as parameters and
+// ListCountryCodes takes context, extend as parameters and
 // returns an models.ApiResponse with []models.ConstCountry data and
 // an error if there was an issue with the request or response.
-// Get List of List of available Country Codes
-func (c *ConstantsDefinitions) ListCountryCodes(ctx context.Context) (
+// Get List of available Country Codes
+func (c *ConstantsDefinitions) ListCountryCodes(
+    ctx context.Context,
+    extend *bool) (
     models.ApiResponse[[]models.ConstCountry],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/countries")
@@ -231,6 +233,9 @@ func (c *ConstantsDefinitions) ListCountryCodes(ctx context.Context) (
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    if extend != nil {
+        req.QueryParam("extend", *extend)
+    }
     var result []models.ConstCountry
     decoder, resp, err := req.CallAsJson()
     if err != nil {
@@ -382,6 +387,45 @@ func (c *ConstantsDefinitions) GetLicenseTypes(ctx context.Context) (
     }
     
     result, err = utilities.DecodeResults[[]models.ConstLicenseType](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// ListStates takes context, countryCode as parameters and
+// returns an models.ApiResponse with []models.ConstState data and
+// an error if there was an issue with the request or response.
+// Get List of ISO States based on country code
+func (c *ConstantsDefinitions) ListStates(
+    ctx context.Context,
+    countryCode string) (
+    models.ApiResponse[[]models.ConstState],
+    error) {
+    req := c.prepareRequest(ctx, "GET", "/api/v1/const/states")
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.QueryParam("country_code", countryCode)
+    var result []models.ConstState
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[[]models.ConstState](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

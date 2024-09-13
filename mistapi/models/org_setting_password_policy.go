@@ -9,8 +9,8 @@ import (
 type OrgSettingPasswordPolicy struct {
     // whether the policy is enabled
     Enabled               *bool          `json:"enabled,omitempty"`
-    // days, required if password policy is enabled
-    Freshness             *int           `json:"freshness,omitempty"`
+    // password expiry in days
+    ExpiryInDays          *int           `json:"expiry_in_days,omitempty"`
     // required password length
     MinLength             *int           `json:"min_length,omitempty"`
     // whether to require special character
@@ -35,8 +35,8 @@ func (o OrgSettingPasswordPolicy) toMap() map[string]any {
     if o.Enabled != nil {
         structMap["enabled"] = o.Enabled
     }
-    if o.Freshness != nil {
-        structMap["freshness"] = o.Freshness
+    if o.ExpiryInDays != nil {
+        structMap["expiry_in_days"] = o.ExpiryInDays
     }
     if o.MinLength != nil {
         structMap["min_length"] = o.MinLength
@@ -58,14 +58,14 @@ func (o *OrgSettingPasswordPolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "freshness", "min_length", "requires_special_char", "requires_two_factor_auth")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "expiry_in_days", "min_length", "requires_special_char", "requires_two_factor_auth")
     if err != nil {
     	return err
     }
     
     o.AdditionalProperties = additionalProperties
     o.Enabled = temp.Enabled
-    o.Freshness = temp.Freshness
+    o.ExpiryInDays = temp.ExpiryInDays
     o.MinLength = temp.MinLength
     o.RequiresSpecialChar = temp.RequiresSpecialChar
     o.RequiresTwoFactorAuth = temp.RequiresTwoFactorAuth
@@ -75,7 +75,7 @@ func (o *OrgSettingPasswordPolicy) UnmarshalJSON(input []byte) error {
 // tempOrgSettingPasswordPolicy is a temporary struct used for validating the fields of OrgSettingPasswordPolicy.
 type tempOrgSettingPasswordPolicy  struct {
     Enabled               *bool `json:"enabled,omitempty"`
-    Freshness             *int  `json:"freshness,omitempty"`
+    ExpiryInDays          *int  `json:"expiry_in_days,omitempty"`
     MinLength             *int  `json:"min_length,omitempty"`
     RequiresSpecialChar   *bool `json:"requires_special_char,omitempty"`
     RequiresTwoFactorAuth *bool `json:"requires_two_factor_auth,omitempty"`

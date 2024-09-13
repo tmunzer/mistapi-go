@@ -16,6 +16,10 @@ var msPs MSPs
 
 var msPsAdmins MSPsAdmins
 
+var orgsSecIntelProfiles OrgsSecIntelProfiles
+
+var sitesSecIntelProfiles SitesSecIntelProfiles
+
 var msPsInventory MSPsInventory
 
 var msPsLogo MSPsLogo
@@ -387,6 +391,8 @@ func init() {
     installer = *client.Installer()
     msPs = *client.MSPs()
     msPsAdmins = *client.MSPsAdmins()
+    orgsSecIntelProfiles = *client.OrgsSecIntelProfiles()
+    sitesSecIntelProfiles = *client.SitesSecIntelProfiles()
     msPsInventory = *client.MSPsInventory()
     msPsLogo = *client.MSPsLogo()
     msPsLogs = *client.MSPsLogs()

@@ -15,6 +15,7 @@ type BgpStats struct {
     LocalAs              *int               `json:"local_as,omitempty"`
     // router mac address
     Mac                  *string            `json:"mac,omitempty"`
+    Model                *string            `json:"model,omitempty"`
     Neighbor             *string            `json:"neighbor,omitempty"`
     NeighborAs           *int               `json:"neighbor_as,omitempty"`
     // if it's another device in the same org
@@ -60,6 +61,9 @@ func (b BgpStats) toMap() map[string]any {
     }
     if b.Mac != nil {
         structMap["mac"] = b.Mac
+    }
+    if b.Model != nil {
+        structMap["model"] = b.Model
     }
     if b.Neighbor != nil {
         structMap["neighbor"] = b.Neighbor
@@ -117,7 +121,7 @@ func (b *BgpStats) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "evpn_overlay", "for_overlay", "local_as", "mac", "neighbor", "neighbor_as", "neighbor_mac", "node", "org_id", "rx_pkts", "rx_routes", "site_id", "state", "timestamp", "tx_pkts", "tx_routes", "up", "uptime", "vrf_name")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "evpn_overlay", "for_overlay", "local_as", "mac", "model", "neighbor", "neighbor_as", "neighbor_mac", "node", "org_id", "rx_pkts", "rx_routes", "site_id", "state", "timestamp", "tx_pkts", "tx_routes", "up", "uptime", "vrf_name")
     if err != nil {
     	return err
     }
@@ -127,6 +131,7 @@ func (b *BgpStats) UnmarshalJSON(input []byte) error {
     b.ForOverlay = temp.ForOverlay
     b.LocalAs = temp.LocalAs
     b.Mac = temp.Mac
+    b.Model = temp.Model
     b.Neighbor = temp.Neighbor
     b.NeighborAs = temp.NeighborAs
     b.NeighborMac = temp.NeighborMac
@@ -151,6 +156,7 @@ type tempBgpStats  struct {
     ForOverlay  *bool              `json:"for_overlay,omitempty"`
     LocalAs     *int               `json:"local_as,omitempty"`
     Mac         *string            `json:"mac,omitempty"`
+    Model       *string            `json:"model,omitempty"`
     Neighbor    *string            `json:"neighbor,omitempty"`
     NeighborAs  *int               `json:"neighbor_as,omitempty"`
     NeighborMac *string            `json:"neighbor_mac,omitempty"`

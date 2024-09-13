@@ -8,14 +8,16 @@ import (
 
 // UtilsServicePing represents a UtilsServicePing struct.
 type UtilsServicePing struct {
-    Count                *int           `json:"count,omitempty"`
-    Host                 string         `json:"host"`
+    Count                *int               `json:"count,omitempty"`
+    Host                 string             `json:"host"`
+    // only for HA. enum: `node0`, `node1`
+    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     // ping packet takes the same path as the service
-    Service              string         `json:"service"`
-    Size                 *int           `json:"size,omitempty"`
+    Service              string             `json:"service"`
+    Size                 *int               `json:"size,omitempty"`
     // tenant context in which the packet is sent
-    Tenant               *string        `json:"tenant,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Tenant               *string            `json:"tenant,omitempty"`
+    AdditionalProperties map[string]any     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsServicePing.
@@ -34,6 +36,9 @@ func (u UtilsServicePing) toMap() map[string]any {
         structMap["count"] = u.Count
     }
     structMap["host"] = u.Host
+    if u.Node != nil {
+        structMap["node"] = u.Node
+    }
     structMap["service"] = u.Service
     if u.Size != nil {
         structMap["size"] = u.Size
@@ -56,7 +61,7 @@ func (u *UtilsServicePing) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "count", "host", "service", "size", "tenant")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "count", "host", "node", "service", "size", "tenant")
     if err != nil {
     	return err
     }
@@ -64,6 +69,7 @@ func (u *UtilsServicePing) UnmarshalJSON(input []byte) error {
     u.AdditionalProperties = additionalProperties
     u.Count = temp.Count
     u.Host = *temp.Host
+    u.Node = temp.Node
     u.Service = *temp.Service
     u.Size = temp.Size
     u.Tenant = temp.Tenant
@@ -72,11 +78,12 @@ func (u *UtilsServicePing) UnmarshalJSON(input []byte) error {
 
 // tempUtilsServicePing is a temporary struct used for validating the fields of UtilsServicePing.
 type tempUtilsServicePing  struct {
-    Count   *int    `json:"count,omitempty"`
-    Host    *string `json:"host"`
-    Service *string `json:"service"`
-    Size    *int    `json:"size,omitempty"`
-    Tenant  *string `json:"tenant,omitempty"`
+    Count   *int               `json:"count,omitempty"`
+    Host    *string            `json:"host"`
+    Node    *HaClusterNodeEnum `json:"node,omitempty"`
+    Service *string            `json:"service"`
+    Size    *int               `json:"size,omitempty"`
+    Tenant  *string            `json:"tenant,omitempty"`
 }
 
 func (u *tempUtilsServicePing) validate() error {

@@ -9,6 +9,9 @@ import (
 type SiteSettingMxedge struct {
     // configure cloud-assisted dynamic authorization service on this cluster of mist edges
     MistDas              *MxedgeDas       `json:"mist_das,omitempty"`
+    // enable mist_nac to use radsec
+    MistNac              *SwitchMistNac   `json:"mist_nac,omitempty"`
+    MistNacedge          *MistNacedge     `json:"mist_nacedge,omitempty"`
     // MxEdge Radsec Configuration
     Radsec               *MxclusterRadsec `json:"radsec,omitempty"`
     AdditionalProperties map[string]any   `json:"_"`
@@ -29,6 +32,12 @@ func (s SiteSettingMxedge) toMap() map[string]any {
     if s.MistDas != nil {
         structMap["mist_das"] = s.MistDas.toMap()
     }
+    if s.MistNac != nil {
+        structMap["mist_nac"] = s.MistNac.toMap()
+    }
+    if s.MistNacedge != nil {
+        structMap["mist_nacedge"] = s.MistNacedge.toMap()
+    }
     if s.Radsec != nil {
         structMap["radsec"] = s.Radsec.toMap()
     }
@@ -43,19 +52,23 @@ func (s *SiteSettingMxedge) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mist_das", "radsec")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "mist_das", "mist_nac", "mist_nacedge", "radsec")
     if err != nil {
     	return err
     }
     
     s.AdditionalProperties = additionalProperties
     s.MistDas = temp.MistDas
+    s.MistNac = temp.MistNac
+    s.MistNacedge = temp.MistNacedge
     s.Radsec = temp.Radsec
     return nil
 }
 
 // tempSiteSettingMxedge is a temporary struct used for validating the fields of SiteSettingMxedge.
 type tempSiteSettingMxedge  struct {
-    MistDas *MxedgeDas       `json:"mist_das,omitempty"`
-    Radsec  *MxclusterRadsec `json:"radsec,omitempty"`
+    MistDas     *MxedgeDas       `json:"mist_das,omitempty"`
+    MistNac     *SwitchMistNac   `json:"mist_nac,omitempty"`
+    MistNacedge *MistNacedge     `json:"mist_nacedge,omitempty"`
+    Radsec      *MxclusterRadsec `json:"radsec,omitempty"`
 }

@@ -10,17 +10,19 @@ import (
 // Authentication Server
 type RadiusAuthServer struct {
     // ip / hostname of RADIUS server
-    Host                 string                   `json:"host"`
-    KeywrapEnabled       *bool                    `json:"keywrap_enabled,omitempty"`
+    Host                        string                   `json:"host"`
+    KeywrapEnabled              *bool                    `json:"keywrap_enabled,omitempty"`
     // enum: `ascii`, `hex`
-    KeywrapFormat        *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
-    KeywrapKek           *string                  `json:"keywrap_kek,omitempty"`
-    KeywrapMack          *string                  `json:"keywrap_mack,omitempty"`
+    KeywrapFormat               *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
+    KeywrapKek                  *string                  `json:"keywrap_kek,omitempty"`
+    KeywrapMack                 *string                  `json:"keywrap_mack,omitempty"`
     // Auth port of RADIUS server
-    Port                 *int                     `json:"port,omitempty"`
+    Port                        *int                     `json:"port,omitempty"`
+    // whether to require Message-Authenticator in requests
+    RequireMessageAuthenticator *bool                    `json:"require_message_authenticator,omitempty"`
     // secret of RADIUS server
-    Secret               string                   `json:"secret"`
-    AdditionalProperties map[string]any           `json:"_"`
+    Secret                      string                   `json:"secret"`
+    AdditionalProperties        map[string]any           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RadiusAuthServer.
@@ -51,6 +53,9 @@ func (r RadiusAuthServer) toMap() map[string]any {
     if r.Port != nil {
         structMap["port"] = r.Port
     }
+    if r.RequireMessageAuthenticator != nil {
+        structMap["require_message_authenticator"] = r.RequireMessageAuthenticator
+    }
     structMap["secret"] = r.Secret
     return structMap
 }
@@ -67,7 +72,7 @@ func (r *RadiusAuthServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "require_message_authenticator", "secret")
     if err != nil {
     	return err
     }
@@ -79,19 +84,21 @@ func (r *RadiusAuthServer) UnmarshalJSON(input []byte) error {
     r.KeywrapKek = temp.KeywrapKek
     r.KeywrapMack = temp.KeywrapMack
     r.Port = temp.Port
+    r.RequireMessageAuthenticator = temp.RequireMessageAuthenticator
     r.Secret = *temp.Secret
     return nil
 }
 
 // tempRadiusAuthServer is a temporary struct used for validating the fields of RadiusAuthServer.
 type tempRadiusAuthServer  struct {
-    Host           *string                  `json:"host"`
-    KeywrapEnabled *bool                    `json:"keywrap_enabled,omitempty"`
-    KeywrapFormat  *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
-    KeywrapKek     *string                  `json:"keywrap_kek,omitempty"`
-    KeywrapMack    *string                  `json:"keywrap_mack,omitempty"`
-    Port           *int                     `json:"port,omitempty"`
-    Secret         *string                  `json:"secret"`
+    Host                        *string                  `json:"host"`
+    KeywrapEnabled              *bool                    `json:"keywrap_enabled,omitempty"`
+    KeywrapFormat               *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
+    KeywrapKek                  *string                  `json:"keywrap_kek,omitempty"`
+    KeywrapMack                 *string                  `json:"keywrap_mack,omitempty"`
+    Port                        *int                     `json:"port,omitempty"`
+    RequireMessageAuthenticator *bool                    `json:"require_message_authenticator,omitempty"`
+    Secret                      *string                  `json:"secret"`
 }
 
 func (r *tempRadiusAuthServer) validate() error {

@@ -9,12 +9,12 @@ sitesNetworkTemplates := client.SitesNetworkTemplates()
 `SitesNetworkTemplates`
 
 
-# Get Site Network Template Derived
+# List Site Network Template Derived
 
 Get derived Network Templates for Site
 
 ```go
-GetSiteNetworkTemplateDerived(
+ListSiteNetworkTemplateDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
@@ -42,7 +42,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-apiResponse, err := sitesNetworkTemplates.GetSiteNetworkTemplateDerived(ctx, siteId, nil)
+apiResponse, err := sitesNetworkTemplates.ListSiteNetworkTemplateDerived(ctx, siteId, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

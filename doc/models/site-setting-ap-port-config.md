@@ -36,7 +36,7 @@
       },
       "enable_mac_auth": false,
       "forwarding": "wxtunnel",
-      "mac_auth_protocol": "eap-md5"
+      "mac_auth_preferred": false
     }
   }
 }

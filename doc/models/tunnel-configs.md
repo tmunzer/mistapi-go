@@ -45,7 +45,6 @@
         "wan_names8"
       ]
     },
-    "region": "APAC",
     "secondary": {
       "num_hosts": "num_hosts8",
       "wan_names": [

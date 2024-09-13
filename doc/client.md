@@ -65,6 +65,8 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | Installer() | Gets Installer |
 | MSPs() | Gets MSPs |
 | MSPsAdmins() | Gets MSPsAdmins |
+| OrgsSecIntelProfiles() | Gets OrgsSecIntelProfiles |
+| SitesSecIntelProfiles() | Gets SitesSecIntelProfiles |
 | MSPsInventory() | Gets MSPsInventory |
 | MSPsLogo() | Gets MSPsLogo |
 | MSPsLogs() | Gets MSPsLogs |

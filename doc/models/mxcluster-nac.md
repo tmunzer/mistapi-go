@@ -25,11 +25,13 @@
   "secret": "testing123",
   "client_ips": {
     "key0": {
+      "require_message_authenticator": false,
       "secret": "secret4",
       "site_id": "0000197c-0000-0000-0000-000000000000",
       "vendor": "cisco-meraki"
     },
     "key1": {
+      "require_message_authenticator": false,
       "secret": "secret4",
       "site_id": "0000197c-0000-0000-0000-000000000000",
       "vendor": "cisco-meraki"

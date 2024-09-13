@@ -29,8 +29,8 @@
         "hostname5",
         "hostname6"
       ],
-      "name": "name8",
-      "network": "network6"
+      "key": "key8",
+      "name": "name8"
     },
     {
       "address": "address4",
@@ -40,8 +40,8 @@
         "hostname5",
         "hostname6"
       ],
-      "name": "name8",
-      "network": "network6"
+      "key": "key8",
+      "name": "name8"
     }
   ],
   "enabled": false

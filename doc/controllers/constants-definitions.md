@@ -20,6 +20,7 @@ constantsDefinitions := client.ConstantsDefinitions()
 * [List Gateway Applications](../../doc/controllers/constants-definitions.md#list-gateway-applications)
 * [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics)
 * [List Site Languages](../../doc/controllers/constants-definitions.md#list-site-languages)
+* [List States](../../doc/controllers/constants-definitions.md#list-states)
 * [List Traffic Types](../../doc/controllers/constants-definitions.md#list-traffic-types)
 
 
@@ -802,14 +803,21 @@ if err != nil {
 
 # List Country Codes
 
-Get List of List of available Country Codes
+Get List of available Country Codes
 
 ```go
 ListCountryCodes(
-    ctx context.Context) (
+    ctx context.Context,
+    extend *bool) (
     models.ApiResponse[[]models.ConstCountry],
     error)
 ```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `extend` | `*bool` | Query, Optional | will include more country codes if true<br>**Default**: `false` |
 
 ## Response Type
 
@@ -820,7 +828,9 @@ ListCountryCodes(
 ```go
 ctx := context.Background()
 
-apiResponse, err := constantsDefinitions.ListCountryCodes(ctx)
+extend := false
+
+apiResponse, err := constantsDefinitions.ListCountryCodes(ctx, &extend)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1072,6 +1082,83 @@ if err != nil {
     "display": "English (US)",
     "display_native": "English (US)",
     "key": "en-US"
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List States
+
+Get List of ISO States based on country code
+
+```go
+ListStates(
+    ctx context.Context,
+    countryCode string) (
+    models.ApiResponse[[]models.ConstState],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `countryCode` | `string` | Query, Required | country code, in [two-character]($e/Constants%20Definitions/listCountryCodes) |
+
+## Response Type
+
+[`[]models.ConstState`](../../doc/models/const-state.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+countryCode := "country_code0"
+
+apiResponse, err := constantsDefinitions.ListStates(ctx, countryCode)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "iso_code": "AK",
+    "name": "Alaska"
+  },
+  {
+    "iso_code": "AL",
+    "name": "Alabama"
+  },
+  {
+    "iso_code": "AS",
+    "name": "American Samoa"
+  },
+  {
+    "iso_code": "AZ",
+    "name": "Arizona"
+  },
+  {
+    "iso_code": "CA",
+    "name": "California"
   }
 ]
 ```

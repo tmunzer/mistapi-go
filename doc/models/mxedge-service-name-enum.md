@@ -13,6 +13,7 @@ enum: `mxagent`, `mxdas`, `mxocproxy`, `radsecproxy`, `tunterm`
 |  --- |
 | `mxagent` |
 | `mxdas` |
+| `mxnacedge` |
 | `mxocproxy` |
 | `radsecproxy` |
 | `tunterm` |

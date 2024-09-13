@@ -19,7 +19,7 @@ type SynthetictestInfo struct {
     Status               *string                          `json:"status,omitempty"`
     Timestamp            *float64                         `json:"timestamp,omitempty"`
     TxMbps               *int                             `json:"tx_mbps,omitempty"`
-    // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `radius`, `speedtest`
+    // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest`
     Type                 *SynthetictestTypeEnum           `json:"type,omitempty"`
     VlanId               *int                             `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]any                   `json:"_"`

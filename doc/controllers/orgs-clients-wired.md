@@ -127,6 +127,11 @@ SearchOrgWiredClients(
     manufacture *string,
     text *string,
     nacruleId *string,
+    dhcpHostname *string,
+    dhcpFqdn *string,
+    dhcpClientIdentifier *string,
+    dhcpVendorClassIdentifier *string,
+    dhcpRequestParams *string,
     limit *int,
     start *int,
     end *int,
@@ -149,6 +154,11 @@ SearchOrgWiredClients(
 | `manufacture` | `*string` | Query, Optional | client manufacturer |
 | `text` | `*string` | Query, Optional | single entry of hostname/mac |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
+| `dhcpHostname` | `*string` | Query, Optional | DHCP Hostname |
+| `dhcpFqdn` | `*string` | Query, Optional | DHCP FQDN |
+| `dhcpClientIdentifier` | `*string` | Query, Optional | DHCP Client Identifier |
+| `dhcpVendorClassIdentifier` | `*string` | Query, Optional | DHCP Vendor Class Identifier |
+| `dhcpRequestParams` | `*string` | Query, Optional | DHCP Request Parameters |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -183,6 +193,16 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+
+
+
+
+
+
+
+
+
+
 limit := 100
 
 
@@ -191,7 +211,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -212,20 +232,45 @@ if err != nil {
       "device_mac": [
         "001122334455"
       ],
-      "device_mac_port": [
+      "dhcp_client_identifier": "MAC address 00155df6d500",
+      "dhcp_client_options": [
         {
-          "device_mac": "001122334455",
-          "ip": "",
-          "port_id": "et-0/0/1",
-          "port_parent": "",
-          "start": "2020-12-10T00:07:36.262+0000",
-          "vlan": 1,
-          "when": "2022-03-29T04:56:05.172+0000"
+          "code": "DHO_DHCP_MESSAGE_TYPE(53)",
+          "data": "DHCPREQUEST"
+        },
+        {
+          "code": "DHO_DHCP_CLIENT_IDENTIFIER(61)",
+          "data": "MAC address 00155df6d500"
+        },
+        {
+          "code": "DHO_DHCP_REQUESTED_ADDRESS(50)",
+          "data": "172.17.10.255"
+        },
+        {
+          "code": "DHO_DHCP_SERVER_IDENTIFIER(54)",
+          "data": "172.17.8.1"
+        },
+        {
+          "code": "DHO_DHCP_MAX_MESSAGE_SIZE(57)",
+          "data": "1280"
+        },
+        {
+          "code": "DHO_DHCP_PARAMETER_REQUEST_LIST(55)",
+          "data": " 1 3 6 12 15 28 43 180"
+        },
+        {
+          "code": "DHO_VENDOR_CLASS_IDENTIFIER(60)",
+          "data": "MSFT 5.0"
+        },
+        {
+          "code": "DHO_HOST_NAME(12)",
+          "data": "ITS-VMMT0-D1N02"
         }
       ],
-      "ip": [
-        "11.216.202.61"
-      ],
+      "dhcp_fqdn": "ITS-VMMT0-D1N02.mgthub.local",
+      "dhcp_hostname": "ITS-VMMT0-D1N02",
+      "dhcp_request_params": "1 3 6 15 31 33 43 44 46 47 119 121 249 252",
+      "dhcp_vendor_class_identifier": "MSFT 5.0",
       "mac": "112233445566",
       "org_id": "c168ddee-c14c-11e5-8e81-1258369c38a9",
       "port_id": [

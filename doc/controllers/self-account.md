@@ -98,6 +98,7 @@ if err != nil {
   "email": "user@example.com",
   "first_name": "string",
   "last_name": "string",
+  "password_modified_time": 1656353525,
   "privileges": [
     {
       "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
@@ -158,11 +159,11 @@ UpdateSelf(
 ctx := context.Background()
 
 body := models.Admin{
-    Email:             models.ToPointer("john.smith@mycorp.net"),
-    FirstName:         models.ToPointer("John"),
-    LastName:          models.ToPointer("Smith"),
-    Phone:             models.ToPointer("14081112222"),
-    Phone2:            models.ToPointer("14083334444"),
+    Email:                models.ToPointer("john.smith@mycorp.net"),
+    FirstName:            models.ToPointer("John"),
+    LastName:             models.ToPointer("Smith"),
+    Phone:                models.ToPointer("14081112222"),
+    Phone2:               models.ToPointer("14083334444"),
 }
 
 apiResponse, err := selfAccount.UpdateSelf(ctx, &body)
@@ -183,6 +184,7 @@ if err != nil {
   "email": "user@example.com",
   "first_name": "string",
   "last_name": "string",
+  "password_modified_time": 1656353525,
   "privileges": [
     {
       "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",

@@ -10,11 +10,13 @@ type UtilsTraceroute struct {
     Host                 *string                      `json:"host,omitempty"`
     // for SSR, optional, the source to initiate traceroute from
     Network              *string                      `json:"network,omitempty"`
-    // when `protocol`==`udp`, the udp port to use
+    // only for HA. enum: `node0`, `node1`
+    Node                 *HaClusterNodeEnum           `json:"node,omitempty"`
+    // when `protocol`==`udp`, not supported in SSR. The udp port to use
     Port                 *int                         `json:"port,omitempty"`
-    // enum: `udp`
+    // enum: `icmp` (Only suported by AP/MxEdge), `udp`
     Protocol             *UtilsTracerouteProtocolEnum `json:"protocol,omitempty"`
-    // maximum time in seconds to wait for the response
+    // not supported in SSR. Maximum time in seconds to wait for the response
     Timeout              *int                         `json:"timeout,omitempty"`
     // for SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed
     Vrf                  *string                      `json:"vrf,omitempty"`
@@ -39,6 +41,9 @@ func (u UtilsTraceroute) toMap() map[string]any {
     if u.Network != nil {
         structMap["network"] = u.Network
     }
+    if u.Node != nil {
+        structMap["node"] = u.Node
+    }
     if u.Port != nil {
         structMap["port"] = u.Port
     }
@@ -62,7 +67,7 @@ func (u *UtilsTraceroute) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "network", "port", "protocol", "timeout", "vrf")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "network", "node", "port", "protocol", "timeout", "vrf")
     if err != nil {
     	return err
     }
@@ -70,6 +75,7 @@ func (u *UtilsTraceroute) UnmarshalJSON(input []byte) error {
     u.AdditionalProperties = additionalProperties
     u.Host = temp.Host
     u.Network = temp.Network
+    u.Node = temp.Node
     u.Port = temp.Port
     u.Protocol = temp.Protocol
     u.Timeout = temp.Timeout
@@ -81,6 +87,7 @@ func (u *UtilsTraceroute) UnmarshalJSON(input []byte) error {
 type tempUtilsTraceroute  struct {
     Host     *string                      `json:"host,omitempty"`
     Network  *string                      `json:"network,omitempty"`
+    Node     *HaClusterNodeEnum           `json:"node,omitempty"`
     Port     *int                         `json:"port,omitempty"`
     Protocol *UtilsTracerouteProtocolEnum `json:"protocol,omitempty"`
     Timeout  *int                         `json:"timeout,omitempty"`

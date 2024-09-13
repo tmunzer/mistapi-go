@@ -29,6 +29,8 @@ type Admin struct {
     NoTracking           *bool                      `json:"no_tracking,omitempty"`
     // if admin account is not an Org API Token
     OauthGoogle          *bool                      `json:"oauth_google,omitempty"`
+    // password last modified time, in epoch
+    PasswordModifiedTime *float64                   `json:"password_modified_time,omitempty"`
     // if admin account is not an Org API Token
     // phone number (numbers only, including country code)
     Phone                *string                    `json:"phone,omitempty"`
@@ -94,6 +96,9 @@ func (a Admin) toMap() map[string]any {
     if a.OauthGoogle != nil {
         structMap["oauth_google"] = a.OauthGoogle
     }
+    if a.PasswordModifiedTime != nil {
+        structMap["password_modified_time"] = a.PasswordModifiedTime
+    }
     if a.Phone != nil {
         structMap["phone"] = a.Phone
     }
@@ -126,7 +131,7 @@ func (a *Admin) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "admin_id", "compliance_status", "email", "enable_two_factor", "expire_time", "first_name", "hours", "last_name", "name", "no_tracking", "oauth_google", "phone", "phone2", "privileges", "session_expiry", "tags", "two_factor_verified", "via_sso")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "admin_id", "compliance_status", "email", "enable_two_factor", "expire_time", "first_name", "hours", "last_name", "name", "no_tracking", "oauth_google", "password_modified_time", "phone", "phone2", "privileges", "session_expiry", "tags", "two_factor_verified", "via_sso")
     if err != nil {
     	return err
     }
@@ -143,6 +148,7 @@ func (a *Admin) UnmarshalJSON(input []byte) error {
     a.Name = temp.Name
     a.NoTracking = temp.NoTracking
     a.OauthGoogle = temp.OauthGoogle
+    a.PasswordModifiedTime = temp.PasswordModifiedTime
     a.Phone = temp.Phone
     a.Phone2 = temp.Phone2
     a.Privileges = temp.Privileges
@@ -155,22 +161,23 @@ func (a *Admin) UnmarshalJSON(input []byte) error {
 
 // tempAdmin is a temporary struct used for validating the fields of Admin.
 type tempAdmin  struct {
-    AdminId           *uuid.UUID                 `json:"admin_id,omitempty"`
-    ComplianceStatus  *AdminComplianceStatusEnum `json:"compliance_status,omitempty"`
-    Email             *string                    `json:"email,omitempty"`
-    EnableTwoFactor   *bool                      `json:"enable_two_factor,omitempty"`
-    ExpireTime        *int                       `json:"expire_time,omitempty"`
-    FirstName         *string                    `json:"first_name,omitempty"`
-    Hours             *int                       `json:"hours,omitempty"`
-    LastName          *string                    `json:"last_name,omitempty"`
-    Name              *string                    `json:"name,omitempty"`
-    NoTracking        *bool                      `json:"no_tracking,omitempty"`
-    OauthGoogle       *bool                      `json:"oauth_google,omitempty"`
-    Phone             *string                    `json:"phone,omitempty"`
-    Phone2            *string                    `json:"phone2,omitempty"`
-    Privileges        []PrivilegeSelf            `json:"privileges,omitempty"`
-    SessionExpiry     *int64                     `json:"session_expiry,omitempty"`
-    Tags              []string                   `json:"tags,omitempty"`
-    TwoFactorVerified *bool                      `json:"two_factor_verified,omitempty"`
-    ViaSso            *bool                      `json:"via_sso,omitempty"`
+    AdminId              *uuid.UUID                 `json:"admin_id,omitempty"`
+    ComplianceStatus     *AdminComplianceStatusEnum `json:"compliance_status,omitempty"`
+    Email                *string                    `json:"email,omitempty"`
+    EnableTwoFactor      *bool                      `json:"enable_two_factor,omitempty"`
+    ExpireTime           *int                       `json:"expire_time,omitempty"`
+    FirstName            *string                    `json:"first_name,omitempty"`
+    Hours                *int                       `json:"hours,omitempty"`
+    LastName             *string                    `json:"last_name,omitempty"`
+    Name                 *string                    `json:"name,omitempty"`
+    NoTracking           *bool                      `json:"no_tracking,omitempty"`
+    OauthGoogle          *bool                      `json:"oauth_google,omitempty"`
+    PasswordModifiedTime *float64                   `json:"password_modified_time,omitempty"`
+    Phone                *string                    `json:"phone,omitempty"`
+    Phone2               *string                    `json:"phone2,omitempty"`
+    Privileges           []PrivilegeSelf            `json:"privileges,omitempty"`
+    SessionExpiry        *int64                     `json:"session_expiry,omitempty"`
+    Tags                 []string                   `json:"tags,omitempty"`
+    TwoFactorVerified    *bool                      `json:"two_factor_verified,omitempty"`
+    ViaSso               *bool                      `json:"via_sso,omitempty"`
 }

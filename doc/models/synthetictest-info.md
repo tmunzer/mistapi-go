@@ -21,7 +21,7 @@
 | `Status` | `*string` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
 | `TxMbps` | `*int` | Optional | - |
-| `Type` | [`*models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Optional | enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `radius`, `speedtest` |
+| `Type` | [`*models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Optional | enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest` |
 | `VlanId` | `*int` | Optional | - |
 
 ## Example (as JSON)

@@ -275,7 +275,6 @@ SearchSiteNacClientEvents(
     dryrunNacruleMatched *bool,
     authType *string,
     vlan *int,
-    vlanSource *string,
     nasVendor *string,
     bssid *string,
     idpId *uuid.UUID,
@@ -284,12 +283,15 @@ SearchSiteNacClientEvents(
     respAttrs []string,
     ssid *string,
     username *string,
-    usermacLabels []string,
     ap *string,
     randomMac *bool,
     mac *string,
-    lookupTimeTaken *float64,
     timestamp *float64,
+    usermacLabel *string,
+    text *string,
+    nasIp *string,
+    sort *string,
+    ingressVlan *string,
     start *int,
     end *int,
     duration *string,
@@ -310,21 +312,23 @@ SearchSiteNacClientEvents(
 | `dryrunNacruleMatched` | `*bool` | Query, Optional | True - if dryrun rule present and matched with priority, False - if not matched or not present |
 | `authType` | `*string` | Query, Optional | authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
 | `vlan` | `*int` | Query, Optional | Vlan ID |
-| `vlanSource` | `*string` | Query, Optional | Vlan source, e.g. "nactag", "usermac" |
 | `nasVendor` | `*string` | Query, Optional | vendor of NAS device |
-| `bssid` | `*string` | Query, Optional | SSID |
+| `bssid` | `*string` | Query, Optional | BSSID |
 | `idpId` | `*uuid.UUID` | Query, Optional | SSO ID, if present and used |
 | `idpRole` | `*string` | Query, Optional | IDP returned roles/groups for the user |
 | `idpUsername` | `*string` | Query, Optional | Username presented to the Identity Provider |
 | `respAttrs` | `[]string` | Query, Optional | Radius attributes returned by NAC to NAS Devive<br>**Constraints**: *Unique Items Required* |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `username` | `*string` | Query, Optional | Username presented by the client |
-| `usermacLabels` | `[]string` | Query, Optional | labels derived from usermac entry<br>**Constraints**: *Unique Items Required* |
 | `ap` | `*string` | Query, Optional | AP MAC |
 | `randomMac` | `*bool` | Query, Optional | AP random macMAC |
 | `mac` | `*string` | Query, Optional | MAC address |
-| `lookupTimeTaken` | `*float64` | Query, Optional | Lookup(IDP etc.,) time taken in seconds |
 | `timestamp` | `*float64` | Query, Optional | time, in epoch |
+| `usermacLabel` | `*string` | Query, Optional | labels derived from usermac entry |
+| `text` | `*string` | Query, Optional | partial / full MAC address, username, device_mac or ap |
+| `nasIp` | `*string` | Query, Optional | IP address of NAS device |
+| `sort` | `*string` | Query, Optional | sort options, ‘-‘ prefix represents DESC order, default is wcid in ASC order |
+| `ingressVlan` | `*string` | Query, Optional | vendor specific Vlan ID in radius requests |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -389,11 +393,15 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+
+
+
+
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := sitesClientsNAC.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+apiResponse, err := sitesClientsNAC.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -482,6 +490,8 @@ SearchSiteNacClients(
     mType *string,
     mdmCompliance *string,
     mdmProvider *string,
+    sort *string,
+    ingressVlan *string,
     start *int,
     end *int,
     duration *string,
@@ -513,6 +523,8 @@ SearchSiteNacClients(
 | `mType` | `*string` | Query, Optional | Client type i.e. “wireless”, “wired” etc. |
 | `mdmCompliance` | `*string` | Query, Optional | MDM compliancy of client i.e “compliant”, “not compliant” |
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg “intune”, “jamf” |
+| `sort` | `*string` | Query, Optional | sort options, ‘-‘ prefix represents DESC order, default is wcid in ASC order |
+| `ingressVlan` | `*string` | Query, Optional | vendor specific Vlan ID in radius requests |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -568,13 +580,17 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+
+
+
+
 duration := "10m"
 
 limit := 100
 
 page := 1
 
-apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -44,7 +44,8 @@ func TestOrgsStatsMxEdgesTestGetOrgMxEdgeStats(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    apiResponse, err := orgsStatsMxEdges.GetOrgMxEdgeStats(ctx, orgId, mxedgeId)
+    forSite := bool(false)
+    apiResponse, err := orgsStatsMxEdges.GetOrgMxEdgeStats(ctx, orgId, mxedgeId, &forSite)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

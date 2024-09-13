@@ -7,15 +7,15 @@ import (
     "testing"
 )
 
-// TestSitesGatewayTemplatesTestGetSiteGatewayTemplateDerived tests the behavior of the SitesGatewayTemplates
-func TestSitesGatewayTemplatesTestGetSiteGatewayTemplateDerived(t *testing.T) {
+// TestSitesGatewayTemplatesTestListSiteGatewayTemplateDerived tests the behavior of the SitesGatewayTemplates
+func TestSitesGatewayTemplatesTestListSiteGatewayTemplateDerived(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
     
-    apiResponse, err := sitesGatewayTemplates.GetSiteGatewayTemplateDerived(ctx, siteId, nil)
+    apiResponse, err := sitesGatewayTemplates.ListSiteGatewayTemplateDerived(ctx, siteId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

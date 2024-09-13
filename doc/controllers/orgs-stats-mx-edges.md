@@ -22,7 +22,8 @@ Get Org MxEdge Details Stats
 GetOrgMxEdgeStats(
     ctx context.Context,
     orgId uuid.UUID,
-    mxedgeId uuid.UUID) (
+    mxedgeId uuid.UUID,
+    forSite *bool) (
     models.ApiResponse[models.StatsMxedge],
     error)
 ```
@@ -33,6 +34,7 @@ GetOrgMxEdgeStats(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
+| `forSite` | `*bool` | Query, Optional | **Default**: `false` |
 
 ## Response Type
 
@@ -47,7 +49,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsStatsMxEdges.GetOrgMxEdgeStats(ctx, orgId, mxedgeId)
+forSite := false
+
+apiResponse, err := orgsStatsMxEdges.GetOrgMxEdgeStats(ctx, orgId, mxedgeId, &forSite)
 if err != nil {
     log.Fatalln(err)
 } else {

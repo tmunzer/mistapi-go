@@ -13,7 +13,7 @@ sitesUISettings := client.SitesUISettings()
 * [Create Site Ui Settings](../../doc/controllers/sites-ui-settings.md#create-site-ui-settings)
 * [Delete Site Ui Setting](../../doc/controllers/sites-ui-settings.md#delete-site-ui-setting)
 * [Get Site Ui Setting](../../doc/controllers/sites-ui-settings.md#get-site-ui-setting)
-* [Get Site Ui Setting Derived](../../doc/controllers/sites-ui-settings.md#get-site-ui-setting-derived)
+* [List Site Ui Setting Derived](../../doc/controllers/sites-ui-settings.md#list-site-ui-setting-derived)
 * [List Site Ui Settings](../../doc/controllers/sites-ui-settings.md#list-site-ui-settings)
 * [Update Site Ui Setting](../../doc/controllers/sites-ui-settings.md#update-site-ui-setting)
 
@@ -355,12 +355,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Ui Setting Derived
+# List Site Ui Setting Derived
 
 Get both site UI settings(for_site=true) and org UI settings (for_site=false)
 
 ```go
-GetSiteUiSettingDerived(
+ListSiteUiSettingDerived(
     ctx context.Context,
     siteId uuid.UUID) (
     models.ApiResponse[models.UiSettings],
@@ -384,7 +384,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := sitesUISettings.GetSiteUiSettingDerived(ctx, siteId)
+apiResponse, err := sitesUISettings.ListSiteUiSettingDerived(ctx, siteId)
 if err != nil {
     log.Fatalln(err)
 } else {

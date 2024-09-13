@@ -6,8 +6,9 @@ import (
     "strings"
 )
 
-// StatsDevicePort represents a StatsDevicePort struct.
-type StatsDevicePort struct {
+// OptionalStatsPort represents a OptionalStatsPort struct.
+// Port statistics
+type OptionalStatsPort struct {
     // Indicates if interface is active/inactive
     Active               *bool                         `json:"active,omitempty"`
     // if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init`
@@ -95,152 +96,152 @@ type StatsDevicePort struct {
     AdditionalProperties map[string]any                `json:"_"`
 }
 
-// MarshalJSON implements the json.Marshaler interface for StatsDevicePort.
-// It customizes the JSON marshaling process for StatsDevicePort objects.
-func (s StatsDevicePort) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for OptionalStatsPort.
+// It customizes the JSON marshaling process for OptionalStatsPort objects.
+func (o OptionalStatsPort) MarshalJSON() (
     []byte,
     error) {
-    return json.Marshal(s.toMap())
+    return json.Marshal(o.toMap())
 }
 
-// toMap converts the StatsDevicePort object to a map representation for JSON marshaling.
-func (s StatsDevicePort) toMap() map[string]any {
+// toMap converts the OptionalStatsPort object to a map representation for JSON marshaling.
+func (o OptionalStatsPort) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
-    if s.Active != nil {
-        structMap["active"] = s.Active
+    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    if o.Active != nil {
+        structMap["active"] = o.Active
     }
-    if s.AuthState != nil {
-        structMap["auth_state"] = s.AuthState
+    if o.AuthState != nil {
+        structMap["auth_state"] = o.AuthState
     }
-    if s.ForSite != nil {
-        structMap["for_site"] = s.ForSite
+    if o.ForSite != nil {
+        structMap["for_site"] = o.ForSite
     }
-    if s.FullDuplex != nil {
-        structMap["full_duplex"] = s.FullDuplex
+    if o.FullDuplex != nil {
+        structMap["full_duplex"] = o.FullDuplex
     }
-    if s.Jitter != nil {
-        structMap["jitter"] = s.Jitter
+    if o.Jitter != nil {
+        structMap["jitter"] = o.Jitter
     }
-    if s.Latency != nil {
-        structMap["latency"] = s.Latency
+    if o.Latency != nil {
+        structMap["latency"] = o.Latency
     }
-    if s.Loss != nil {
-        structMap["loss"] = s.Loss
+    if o.Loss != nil {
+        structMap["loss"] = o.Loss
     }
-    if s.LteIccid.IsValueSet() {
-        if s.LteIccid.Value() != nil {
-            structMap["lte_iccid"] = s.LteIccid.Value()
+    if o.LteIccid.IsValueSet() {
+        if o.LteIccid.Value() != nil {
+            structMap["lte_iccid"] = o.LteIccid.Value()
         } else {
             structMap["lte_iccid"] = nil
         }
     }
-    if s.LteImei.IsValueSet() {
-        if s.LteImei.Value() != nil {
-            structMap["lte_imei"] = s.LteImei.Value()
+    if o.LteImei.IsValueSet() {
+        if o.LteImei.Value() != nil {
+            structMap["lte_imei"] = o.LteImei.Value()
         } else {
             structMap["lte_imei"] = nil
         }
     }
-    if s.LteImsi.IsValueSet() {
-        if s.LteImsi.Value() != nil {
-            structMap["lte_imsi"] = s.LteImsi.Value()
+    if o.LteImsi.IsValueSet() {
+        if o.LteImsi.Value() != nil {
+            structMap["lte_imsi"] = o.LteImsi.Value()
         } else {
             structMap["lte_imsi"] = nil
         }
     }
-    if s.MacCount != nil {
-        structMap["mac_count"] = s.MacCount
+    if o.MacCount != nil {
+        structMap["mac_count"] = o.MacCount
     }
-    if s.MacLimit != nil {
-        structMap["mac_limit"] = s.MacLimit
+    if o.MacLimit != nil {
+        structMap["mac_limit"] = o.MacLimit
     }
-    structMap["neighbor_mac"] = s.NeighborMac
-    if s.NeighborPortDesc != nil {
-        structMap["neighbor_port_desc"] = s.NeighborPortDesc
+    structMap["neighbor_mac"] = o.NeighborMac
+    if o.NeighborPortDesc != nil {
+        structMap["neighbor_port_desc"] = o.NeighborPortDesc
     }
-    if s.NeighborSystemName != nil {
-        structMap["neighbor_system_name"] = s.NeighborSystemName
+    if o.NeighborSystemName != nil {
+        structMap["neighbor_system_name"] = o.NeighborSystemName
     }
-    if s.PoeDisabled != nil {
-        structMap["poe_disabled"] = s.PoeDisabled
+    if o.PoeDisabled != nil {
+        structMap["poe_disabled"] = o.PoeDisabled
     }
-    if s.PoeMode != nil {
-        structMap["poe_mode"] = s.PoeMode
+    if o.PoeMode != nil {
+        structMap["poe_mode"] = o.PoeMode
     }
-    if s.PoeOn != nil {
-        structMap["poe_on"] = s.PoeOn
+    if o.PoeOn != nil {
+        structMap["poe_on"] = o.PoeOn
     }
-    structMap["port_id"] = s.PortId
-    structMap["port_mac"] = s.PortMac
-    if s.PortUsage != nil {
-        structMap["port_usage"] = s.PortUsage
+    structMap["port_id"] = o.PortId
+    structMap["port_mac"] = o.PortMac
+    if o.PortUsage != nil {
+        structMap["port_usage"] = o.PortUsage
     }
-    if s.PowerDraw != nil {
-        structMap["power_draw"] = s.PowerDraw
+    if o.PowerDraw != nil {
+        structMap["power_draw"] = o.PowerDraw
     }
-    if s.RxBcastPkts != nil {
-        structMap["rx_bcast_pkts"] = s.RxBcastPkts
+    if o.RxBcastPkts != nil {
+        structMap["rx_bcast_pkts"] = o.RxBcastPkts
     }
-    if s.RxBps != nil {
-        structMap["rx_bps"] = s.RxBps
+    if o.RxBps != nil {
+        structMap["rx_bps"] = o.RxBps
     }
-    structMap["rx_bytes"] = s.RxBytes
-    if s.RxErrors != nil {
-        structMap["rx_errors"] = s.RxErrors
+    structMap["rx_bytes"] = o.RxBytes
+    if o.RxErrors != nil {
+        structMap["rx_errors"] = o.RxErrors
     }
-    if s.RxMcastPkts != nil {
-        structMap["rx_mcast_pkts"] = s.RxMcastPkts
+    if o.RxMcastPkts != nil {
+        structMap["rx_mcast_pkts"] = o.RxMcastPkts
     }
-    structMap["rx_pkts"] = s.RxPkts
-    if s.Speed != nil {
-        structMap["speed"] = s.Speed
+    structMap["rx_pkts"] = o.RxPkts
+    if o.Speed != nil {
+        structMap["speed"] = o.Speed
     }
-    if s.StpRole != nil {
-        structMap["stp_role"] = s.StpRole
+    if o.StpRole != nil {
+        structMap["stp_role"] = o.StpRole
     }
-    if s.StpState != nil {
-        structMap["stp_state"] = s.StpState
+    if o.StpState != nil {
+        structMap["stp_state"] = o.StpState
     }
-    if s.TxBcastPkts != nil {
-        structMap["tx_bcast_pkts"] = s.TxBcastPkts
+    if o.TxBcastPkts != nil {
+        structMap["tx_bcast_pkts"] = o.TxBcastPkts
     }
-    if s.TxBps != nil {
-        structMap["tx_bps"] = s.TxBps
+    if o.TxBps != nil {
+        structMap["tx_bps"] = o.TxBps
     }
-    structMap["tx_bytes"] = s.TxBytes
-    if s.TxErrors != nil {
-        structMap["tx_errors"] = s.TxErrors
+    structMap["tx_bytes"] = o.TxBytes
+    if o.TxErrors != nil {
+        structMap["tx_errors"] = o.TxErrors
     }
-    if s.TxMcastPkts != nil {
-        structMap["tx_mcast_pkts"] = s.TxMcastPkts
+    if o.TxMcastPkts != nil {
+        structMap["tx_mcast_pkts"] = o.TxMcastPkts
     }
-    structMap["tx_pkts"] = s.TxPkts
-    if s.Type != nil {
-        structMap["type"] = s.Type
+    structMap["tx_pkts"] = o.TxPkts
+    if o.Type != nil {
+        structMap["type"] = o.Type
     }
-    if s.Unconfigured != nil {
-        structMap["unconfigured"] = s.Unconfigured
+    if o.Unconfigured != nil {
+        structMap["unconfigured"] = o.Unconfigured
     }
-    if s.Up != nil {
-        structMap["up"] = s.Up
+    if o.Up != nil {
+        structMap["up"] = o.Up
     }
-    if s.XcvrModel != nil {
-        structMap["xcvr_model"] = s.XcvrModel
+    if o.XcvrModel != nil {
+        structMap["xcvr_model"] = o.XcvrModel
     }
-    if s.XcvrPartNumber != nil {
-        structMap["xcvr_part_number"] = s.XcvrPartNumber
+    if o.XcvrPartNumber != nil {
+        structMap["xcvr_part_number"] = o.XcvrPartNumber
     }
-    if s.XcvrSerial != nil {
-        structMap["xcvr_serial"] = s.XcvrSerial
+    if o.XcvrSerial != nil {
+        structMap["xcvr_serial"] = o.XcvrSerial
     }
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for StatsDevicePort.
-// It customizes the JSON unmarshaling process for StatsDevicePort objects.
-func (s *StatsDevicePort) UnmarshalJSON(input []byte) error {
-    var temp tempStatsDevicePort
+// UnmarshalJSON implements the json.Unmarshaler interface for OptionalStatsPort.
+// It customizes the JSON unmarshaling process for OptionalStatsPort objects.
+func (o *OptionalStatsPort) UnmarshalJSON(input []byte) error {
+    var temp tempOptionalStatsPort
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -254,55 +255,55 @@ func (s *StatsDevicePort) UnmarshalJSON(input []byte) error {
     	return err
     }
     
-    s.AdditionalProperties = additionalProperties
-    s.Active = temp.Active
-    s.AuthState = temp.AuthState
-    s.ForSite = temp.ForSite
-    s.FullDuplex = temp.FullDuplex
-    s.Jitter = temp.Jitter
-    s.Latency = temp.Latency
-    s.Loss = temp.Loss
-    s.LteIccid = temp.LteIccid
-    s.LteImei = temp.LteImei
-    s.LteImsi = temp.LteImsi
-    s.MacCount = temp.MacCount
-    s.MacLimit = temp.MacLimit
-    s.NeighborMac = *temp.NeighborMac
-    s.NeighborPortDesc = temp.NeighborPortDesc
-    s.NeighborSystemName = temp.NeighborSystemName
-    s.PoeDisabled = temp.PoeDisabled
-    s.PoeMode = temp.PoeMode
-    s.PoeOn = temp.PoeOn
-    s.PortId = *temp.PortId
-    s.PortMac = *temp.PortMac
-    s.PortUsage = temp.PortUsage
-    s.PowerDraw = temp.PowerDraw
-    s.RxBcastPkts = temp.RxBcastPkts
-    s.RxBps = temp.RxBps
-    s.RxBytes = *temp.RxBytes
-    s.RxErrors = temp.RxErrors
-    s.RxMcastPkts = temp.RxMcastPkts
-    s.RxPkts = *temp.RxPkts
-    s.Speed = temp.Speed
-    s.StpRole = temp.StpRole
-    s.StpState = temp.StpState
-    s.TxBcastPkts = temp.TxBcastPkts
-    s.TxBps = temp.TxBps
-    s.TxBytes = *temp.TxBytes
-    s.TxErrors = temp.TxErrors
-    s.TxMcastPkts = temp.TxMcastPkts
-    s.TxPkts = *temp.TxPkts
-    s.Type = temp.Type
-    s.Unconfigured = temp.Unconfigured
-    s.Up = temp.Up
-    s.XcvrModel = temp.XcvrModel
-    s.XcvrPartNumber = temp.XcvrPartNumber
-    s.XcvrSerial = temp.XcvrSerial
+    o.AdditionalProperties = additionalProperties
+    o.Active = temp.Active
+    o.AuthState = temp.AuthState
+    o.ForSite = temp.ForSite
+    o.FullDuplex = temp.FullDuplex
+    o.Jitter = temp.Jitter
+    o.Latency = temp.Latency
+    o.Loss = temp.Loss
+    o.LteIccid = temp.LteIccid
+    o.LteImei = temp.LteImei
+    o.LteImsi = temp.LteImsi
+    o.MacCount = temp.MacCount
+    o.MacLimit = temp.MacLimit
+    o.NeighborMac = *temp.NeighborMac
+    o.NeighborPortDesc = temp.NeighborPortDesc
+    o.NeighborSystemName = temp.NeighborSystemName
+    o.PoeDisabled = temp.PoeDisabled
+    o.PoeMode = temp.PoeMode
+    o.PoeOn = temp.PoeOn
+    o.PortId = *temp.PortId
+    o.PortMac = *temp.PortMac
+    o.PortUsage = temp.PortUsage
+    o.PowerDraw = temp.PowerDraw
+    o.RxBcastPkts = temp.RxBcastPkts
+    o.RxBps = temp.RxBps
+    o.RxBytes = *temp.RxBytes
+    o.RxErrors = temp.RxErrors
+    o.RxMcastPkts = temp.RxMcastPkts
+    o.RxPkts = *temp.RxPkts
+    o.Speed = temp.Speed
+    o.StpRole = temp.StpRole
+    o.StpState = temp.StpState
+    o.TxBcastPkts = temp.TxBcastPkts
+    o.TxBps = temp.TxBps
+    o.TxBytes = *temp.TxBytes
+    o.TxErrors = temp.TxErrors
+    o.TxMcastPkts = temp.TxMcastPkts
+    o.TxPkts = *temp.TxPkts
+    o.Type = temp.Type
+    o.Unconfigured = temp.Unconfigured
+    o.Up = temp.Up
+    o.XcvrModel = temp.XcvrModel
+    o.XcvrPartNumber = temp.XcvrPartNumber
+    o.XcvrSerial = temp.XcvrSerial
     return nil
 }
 
-// tempStatsDevicePort is a temporary struct used for validating the fields of StatsDevicePort.
-type tempStatsDevicePort  struct {
+// tempOptionalStatsPort is a temporary struct used for validating the fields of OptionalStatsPort.
+type tempOptionalStatsPort  struct {
     Active             *bool                         `json:"active,omitempty"`
     AuthState          *StatsSwitchPortAuthStateEnum `json:"auth_state,omitempty"`
     ForSite            *bool                         `json:"for_site,omitempty"`
@@ -348,28 +349,28 @@ type tempStatsDevicePort  struct {
     XcvrSerial         *string                       `json:"xcvr_serial,omitempty"`
 }
 
-func (s *tempStatsDevicePort) validate() error {
+func (o *tempOptionalStatsPort) validate() error {
     var errs []string
-    if s.NeighborMac == nil {
-        errs = append(errs, "required field `neighbor_mac` is missing for type `stats_device_port`")
+    if o.NeighborMac == nil {
+        errs = append(errs, "required field `neighbor_mac` is missing for type `optional_stats_port`")
     }
-    if s.PortId == nil {
-        errs = append(errs, "required field `port_id` is missing for type `stats_device_port`")
+    if o.PortId == nil {
+        errs = append(errs, "required field `port_id` is missing for type `optional_stats_port`")
     }
-    if s.PortMac == nil {
-        errs = append(errs, "required field `port_mac` is missing for type `stats_device_port`")
+    if o.PortMac == nil {
+        errs = append(errs, "required field `port_mac` is missing for type `optional_stats_port`")
     }
-    if s.RxBytes == nil {
-        errs = append(errs, "required field `rx_bytes` is missing for type `stats_device_port`")
+    if o.RxBytes == nil {
+        errs = append(errs, "required field `rx_bytes` is missing for type `optional_stats_port`")
     }
-    if s.RxPkts == nil {
-        errs = append(errs, "required field `rx_pkts` is missing for type `stats_device_port`")
+    if o.RxPkts == nil {
+        errs = append(errs, "required field `rx_pkts` is missing for type `optional_stats_port`")
     }
-    if s.TxBytes == nil {
-        errs = append(errs, "required field `tx_bytes` is missing for type `stats_device_port`")
+    if o.TxBytes == nil {
+        errs = append(errs, "required field `tx_bytes` is missing for type `optional_stats_port`")
     }
-    if s.TxPkts == nil {
-        errs = append(errs, "required field `tx_pkts` is missing for type `stats_device_port`")
+    if o.TxPkts == nil {
+        errs = append(errs, "required field `tx_pkts` is missing for type `optional_stats_port`")
     }
     if len(errs) == 0 {
         return nil

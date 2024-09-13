@@ -16,6 +16,10 @@ type ResponsePcapStatus struct {
     Duration                  *int                      `json:"duration,omitempty"`
     // List of APs where configuration attempt failed
     Failed                    []string                  `json:"failed,omitempty"`
+    // pcap format. enum:
+    // * `stream`: to Mist cloud
+    // * `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
+    Format                    *CaptureMxedgeFormatEnum  `json:"format,omitempty"`
     // Information on gateways to capture packets on if a gateway capture type is specified
     Gateways                  []string                  `json:"gateways,omitempty"`
     // unique id for the capture
@@ -41,6 +45,10 @@ type ResponsePcapStatus struct {
     TcpdumpExpression         *string                   `json:"tcpdump_expression,omitempty"`
     // enum: `client`, `gateway`, `new_assoc`, `radiotap`, `radiotap,wired`, `wired`, `wireless`
     Type                      PcapTypeEnum              `json:"type"`
+    // Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets.
+    TzspHost                  *string                   `json:"tzsp_host,omitempty"`
+    // if `format`==`tzsp`. Port on remote host for receiving the captured packets
+    TzspPort                  *int                      `json:"tzsp_port,omitempty"`
     // when `type`==`wired`, wired_tcpdump_expression provided by the user
     WiredTcpdumpExpression    *string                   `json:"wired_tcpdump_expression,omitempty"`
     // when `type`==`‘wireless’`, wireless_tcpdump_expression provided by the user
@@ -82,6 +90,9 @@ func (r ResponsePcapStatus) toMap() map[string]any {
     }
     if r.Failed != nil {
         structMap["failed"] = r.Failed
+    }
+    if r.Format != nil {
+        structMap["format"] = r.Format
     }
     if r.Gateways != nil {
         structMap["gateways"] = r.Gateways
@@ -128,6 +139,12 @@ func (r ResponsePcapStatus) toMap() map[string]any {
         structMap["tcpdump_expression"] = r.TcpdumpExpression
     }
     structMap["type"] = r.Type
+    if r.TzspHost != nil {
+        structMap["tzsp_host"] = r.TzspHost
+    }
+    if r.TzspPort != nil {
+        structMap["tzsp_port"] = r.TzspPort
+    }
     if r.WiredTcpdumpExpression != nil {
         structMap["wired_tcpdump_expression"] = r.WiredTcpdumpExpression
     }
@@ -149,7 +166,7 @@ func (r *ResponsePcapStatus) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "aps", "client_mac", "duration", "failed", "gateways", "id", "includes_mcast", "max_num_packets", "max_pkt_len", "num_packets", "ok", "pcap_aps", "radiotap_tcpdump_expression", "scan_tcpdump_expression", "ssid", "started_time", "switches", "tcpdump_expression", "type", "wired_tcpdump_expression", "wireless_tcpdump_expression")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "aps", "client_mac", "duration", "failed", "format", "gateways", "id", "includes_mcast", "max_num_packets", "max_pkt_len", "num_packets", "ok", "pcap_aps", "radiotap_tcpdump_expression", "scan_tcpdump_expression", "ssid", "started_time", "switches", "tcpdump_expression", "type", "tzsp_host", "tzsp_port", "wired_tcpdump_expression", "wireless_tcpdump_expression")
     if err != nil {
     	return err
     }
@@ -160,6 +177,7 @@ func (r *ResponsePcapStatus) UnmarshalJSON(input []byte) error {
     r.ClientMac = temp.ClientMac
     r.Duration = temp.Duration
     r.Failed = temp.Failed
+    r.Format = temp.Format
     r.Gateways = temp.Gateways
     r.Id = *temp.Id
     r.IncludesMcast = temp.IncludesMcast
@@ -175,6 +193,8 @@ func (r *ResponsePcapStatus) UnmarshalJSON(input []byte) error {
     r.Switches = temp.Switches
     r.TcpdumpExpression = temp.TcpdumpExpression
     r.Type = *temp.Type
+    r.TzspHost = temp.TzspHost
+    r.TzspPort = temp.TzspPort
     r.WiredTcpdumpExpression = temp.WiredTcpdumpExpression
     r.WirelessTcpdumpExpression = temp.WirelessTcpdumpExpression
     return nil
@@ -187,6 +207,7 @@ type tempResponsePcapStatus  struct {
     ClientMac                 Optional[string]          `json:"client_mac"`
     Duration                  *int                      `json:"duration,omitempty"`
     Failed                    []string                  `json:"failed,omitempty"`
+    Format                    *CaptureMxedgeFormatEnum  `json:"format,omitempty"`
     Gateways                  []string                  `json:"gateways,omitempty"`
     Id                        *uuid.UUID                `json:"id"`
     IncludesMcast             *bool                     `json:"includes_mcast,omitempty"`
@@ -202,6 +223,8 @@ type tempResponsePcapStatus  struct {
     Switches                  []string                  `json:"switches,omitempty"`
     TcpdumpExpression         *string                   `json:"tcpdump_expression,omitempty"`
     Type                      *PcapTypeEnum             `json:"type"`
+    TzspHost                  *string                   `json:"tzsp_host,omitempty"`
+    TzspPort                  *int                      `json:"tzsp_port,omitempty"`
     WiredTcpdumpExpression    *string                   `json:"wired_tcpdump_expression,omitempty"`
     WirelessTcpdumpExpression *string                   `json:"wireless_tcpdump_expression,omitempty"`
 }

@@ -1,7 +1,9 @@
 
 # Capture Mxedge Format Enum
 
-pcap format. enum: `stream`
+pcap format. enum:
+* `stream`: to Mist cloud
+* `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
 
 ## Enumeration
 
@@ -12,4 +14,5 @@ pcap format. enum: `stream`
 | Name |
 |  --- |
 | `stream` |
+| `tzsp` |
 

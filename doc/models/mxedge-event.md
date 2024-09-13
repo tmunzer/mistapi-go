@@ -9,6 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `Component` | `*string` | Optional | component like PS1, PS2 |
 | `MxclusterId` | `*string` | Optional | - |
 | `MxedgeId` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -25,7 +26,8 @@
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "service": "tunterm",
   "timestamp": 1694678225.927,
-  "type": "ME_SERVICE_STOPPED"
+  "type": "ME_SERVICE_STOPPED",
+  "component": "component6"
 }
 ```
 

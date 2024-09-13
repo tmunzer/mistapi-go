@@ -39,7 +39,7 @@ type EventNacClient struct {
     // event type, e.g. NAC_CLIENT_PERMIT
     Type                 *string        `json:"type,omitempty"`
     // labels derived from usermac entry
-    UsermacLabels        []string       `json:"usermac_labels,omitempty"`
+    UsermacLabel         []string       `json:"usermac_label,omitempty"`
     // Username presented by the client
     Username             *string        `json:"username,omitempty"`
     // Vlan ID
@@ -130,8 +130,8 @@ func (e EventNacClient) toMap() map[string]any {
     if e.Type != nil {
         structMap["type"] = e.Type
     }
-    if e.UsermacLabels != nil {
-        structMap["usermac_labels"] = e.UsermacLabels
+    if e.UsermacLabel != nil {
+        structMap["usermac_label"] = e.UsermacLabel
     }
     if e.Username != nil {
         structMap["username"] = e.Username
@@ -153,7 +153,7 @@ func (e *EventNacClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "auth_type", "bssid", "device_mac", "dryrun_nacrule_id", "dryrun_nacrule_matched", "idp_id", "idp_role", "idp_username", "mac", "mxedge_id", "nacrule_id", "nacrule_matched", "nas_vendor", "org_id", "port_id", "port_type", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_labels", "username", "vlan", "vlan_source")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "auth_type", "bssid", "device_mac", "dryrun_nacrule_id", "dryrun_nacrule_matched", "idp_id", "idp_role", "idp_username", "mac", "mxedge_id", "nacrule_id", "nacrule_matched", "nas_vendor", "org_id", "port_id", "port_type", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan", "vlan_source")
     if err != nil {
     	return err
     }
@@ -182,7 +182,7 @@ func (e *EventNacClient) UnmarshalJSON(input []byte) error {
     e.Ssid = temp.Ssid
     e.Timestamp = temp.Timestamp
     e.Type = temp.Type
-    e.UsermacLabels = temp.UsermacLabels
+    e.UsermacLabel = temp.UsermacLabel
     e.Username = temp.Username
     e.Vlan = temp.Vlan
     e.VlanSource = temp.VlanSource
@@ -214,7 +214,7 @@ type tempEventNacClient  struct {
     Ssid                 *string    `json:"ssid,omitempty"`
     Timestamp            *float64   `json:"timestamp,omitempty"`
     Type                 *string    `json:"type,omitempty"`
-    UsermacLabels        []string   `json:"usermac_labels,omitempty"`
+    UsermacLabel         []string   `json:"usermac_label,omitempty"`
     Username             *string    `json:"username,omitempty"`
     Vlan                 *string    `json:"vlan,omitempty"`
     VlanSource           *string    `json:"vlan_source,omitempty"`

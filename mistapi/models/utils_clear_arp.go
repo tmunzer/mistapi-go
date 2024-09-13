@@ -6,13 +6,13 @@ import (
 
 // UtilsClearArp represents a UtilsClearArp struct.
 type UtilsClearArp struct {
-    // The IP address for which to clear an ARP entry. port_id must be specified. Both vlan and ip cannot be specified.
+    // The IP address for which to clear an ARP entry. port_id must be specified.
     Ip                   *string            `json:"ip,omitempty"`
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum `json:"node,omitempty"`
     // The device interface on which to clear the ARP cache.
     PortId               *string            `json:"port_id,omitempty"`
-    // The VLAN on which to clear the ARP cache. port_id must be specified. Both vlan and ip cannot be specified.
+    // The VLAN on which to clear the ARP cache. port_id must be specified.
     Vlan                 *int               `json:"vlan,omitempty"`
     // The vrf for which to clear an ARP entry. applicable for switch.
     Vrf                  *string            `json:"vrf,omitempty"`

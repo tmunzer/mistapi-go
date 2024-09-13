@@ -73,6 +73,7 @@ WLAN
 | `LimitBcast` | `*bool` | Optional | whether to limit broadcast packets going to wireless (i.e. only allow certain bcast packets to go through)<br>**Default**: `false` |
 | `LimitProbeResponse` | `*bool` | Optional | limit probe response base on some heuristic rules<br>**Default**: `false` |
 | `MaxIdletime` | `*int` | Optional | max idle time in seconds<br>**Default**: `1800`<br>**Constraints**: `>= 60`, `<= 86400` |
+| `MaxNumClients` | `*int` | Optional | maximum number of client connected to the SSID. `0` means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 128` |
 | `MistNac` | [`*models.WlanMistNac`](../../doc/models/wlan-mist-nac.md) | Optional | - |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `MspId` | `*uuid.UUID` | Optional | - |
@@ -154,6 +155,7 @@ WLAN
   "limit_bcast": false,
   "limit_probe_response": false,
   "max_idletime": 1800,
+  "max_num_clients": 0,
   "no_static_dns": false,
   "no_static_ip": false,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",

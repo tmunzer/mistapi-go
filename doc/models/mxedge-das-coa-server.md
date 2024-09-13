@@ -13,6 +13,7 @@
 | `Enabled` | `*bool` | Optional | - |
 | `Host` | `*string` | Optional | this server configured to send CoA\|DM to mist edges |
 | `Port` | `*int` | Optional | mist edges will allow this host on this port<br>**Default**: `3799` |
+| `RequireMessageAuthenticator` | `*bool` | Optional | whether to require Message-Authenticator in requests<br>**Default**: `false` |
 | `Secret` | `*string` | Optional | - |
 
 ## Example (as JSON)
@@ -21,9 +22,9 @@
 {
   "disable_event_timestamp_check": false,
   "port": 3799,
+  "require_message_authenticator": false,
   "enabled": false,
-  "host": "host8",
-  "secret": "secret2"
+  "host": "host8"
 }
 ```
 

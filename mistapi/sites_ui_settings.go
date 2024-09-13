@@ -114,11 +114,11 @@ func (s *SitesUISettings) CreateSiteUiSettings(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteUiSettingDerived takes context, siteId as parameters and
+// ListSiteUiSettingDerived takes context, siteId as parameters and
 // returns an models.ApiResponse with models.UiSettings data and
 // an error if there was an issue with the request or response.
 // Get both site UI settings(for_site=true) and org UI settings (for_site=false)
-func (s *SitesUISettings) GetSiteUiSettingDerived(
+func (s *SitesUISettings) ListSiteUiSettingDerived(
     ctx context.Context,
     siteId uuid.UUID) (
     models.ApiResponse[models.UiSettings],

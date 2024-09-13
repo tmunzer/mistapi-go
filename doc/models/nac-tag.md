@@ -14,7 +14,7 @@
 | `EgressVlanNames` | `[]string` | Optional | if `type`==`egress_vlan_names`, list of egress vlans to return |
 | `GbpTag` | `*int` | Optional | if `type`==`gbp_tag` |
 | `Id` | `*uuid.UUID` | Optional | - |
-| `Match` | [`*models.NacTagMatchEnum`](../../doc/models/nac-tag-match-enum.md) | Optional | if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `client_mac`, `idp_role`, `mdm_status`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`<br>**Constraints**: *Minimum Length*: `1` |
+| `Match` | [`*models.NacTagMatchEnum`](../../doc/models/nac-tag-match-enum.md) | Optional | if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `client_mac`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`<br>**Constraints**: *Minimum Length*: `1` |
 | `MatchAll` | `*bool` | Optional | This field is applicable only when `type`==`match`<br><br>* `false`: means it is sufficient to match any of the values (i.e., match-any behavior)<br>* `true`: means all values should be matched (i.e., match-all behavior)<br><br>Currently it makes sense to set this field to `true` only if the `match`==`idp_role` or `match`==`usermac_label`'<br>**Default**: `false` |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `string` | Required | **Constraints**: *Minimum Length*: `1` |

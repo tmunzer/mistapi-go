@@ -518,6 +518,7 @@ SearchSiteMistEdgeEvents(
     mxclusterId *string,
     mType *string,
     service *string,
+    component *string,
     start *int,
     end *int,
     duration *string,
@@ -535,6 +536,7 @@ SearchSiteMistEdgeEvents(
 | `mxclusterId` | `*string` | Query, Optional | mist edge cluster id |
 | `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions]($e/Constants%20Events/listDeviceEventsDefinitions) |
 | `service` | `*string` | Query, Optional | service running on mist edge(mxagent, tunterm etc) |
+| `component` | `*string` | Query, Optional | component like PS1, PS2 |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -563,11 +565,13 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+
+
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := sitesMxEdges.SearchSiteMistEdgeEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, &duration, &limit)
+apiResponse, err := sitesMxEdges.SearchSiteMistEdgeEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {

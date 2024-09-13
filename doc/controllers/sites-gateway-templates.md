@@ -9,16 +9,16 @@ sitesGatewayTemplates := client.SitesGatewayTemplates()
 `SitesGatewayTemplates`
 
 
-# Get Site Gateway Template Derived
+# List Site Gateway Template Derived
 
 Get derived Gateway Templates for Site
 
 ```go
-GetSiteGatewayTemplateDerived(
+ListSiteGatewayTemplateDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
-    models.ApiResponse[models.GatewayTemplate],
+    models.ApiResponse[[]models.GatewayTemplate],
     error)
 ```
 
@@ -31,7 +31,7 @@ GetSiteGatewayTemplateDerived(
 
 ## Response Type
 
-[`models.GatewayTemplate`](../../doc/models/gateway-template.md)
+[`[]models.GatewayTemplate`](../../doc/models/gateway-template.md)
 
 ## Example Usage
 
@@ -42,7 +42,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-apiResponse, err := sitesGatewayTemplates.GetSiteGatewayTemplateDerived(ctx, siteId, nil)
+apiResponse, err := sitesGatewayTemplates.ListSiteGatewayTemplateDerived(ctx, siteId, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

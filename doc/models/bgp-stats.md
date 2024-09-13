@@ -13,6 +13,7 @@
 | `ForOverlay` | `*bool` | Optional | if this is created for overlay |
 | `LocalAs` | `*int` | Optional | AS |
 | `Mac` | `*string` | Optional | router mac address |
+| `Model` | `*string` | Optional | - |
 | `Neighbor` | `*string` | Optional | - |
 | `NeighborAs` | `*int` | Optional | - |
 | `NeighborMac` | `*string` | Optional | if it's another device in the same org |
@@ -50,7 +51,8 @@
   "uptime": 31355,
   "vrf_name": "default",
   "evpn_overlay": false,
-  "for_overlay": false
+  "for_overlay": false,
+  "model": "model8"
 }
 ```
 

@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2408.1.12**
+> Version: **2409.1.0**
 > 
-> Date: **September 12, 2024**
+> Date: **September 13, 2024**
 
 ---
 
@@ -215,6 +215,7 @@ This API uses the following authentication schemes.
 * [Orgs SCEP](doc/controllers/orgs-scep.md)
 * [Orgs SDK Invites](doc/controllers/orgs-sdk-invites.md)
 * [Orgs SDK Templates](doc/controllers/orgs-sdk-templates.md)
+* [Orgs Sec Intel Profiles](doc/controllers/orgs-sec-intel-profiles.md)
 * [Orgs Sec Policies](doc/controllers/orgs-sec-policies.md)
 * [Orgs Service Policies](doc/controllers/orgs-service-policies.md)
 * [Orgs Services](doc/controllers/orgs-services.md)
@@ -291,6 +292,7 @@ This API uses the following authentication schemes.
 * [Sites Rogues](doc/controllers/sites-rogues.md)
 * [Sites RRM](doc/controllers/sites-rrm.md)
 * [Sites RSSI Zones](doc/controllers/sites-rssi-zones.md)
+* [Sites Sec Intel Profiles](doc/controllers/sites-sec-intel-profiles.md)
 * [Sites Service Policies](doc/controllers/sites-service-policies.md)
 * [Sites Services](doc/controllers/sites-services.md)
 * [Sites Setting](doc/controllers/sites-setting.md)

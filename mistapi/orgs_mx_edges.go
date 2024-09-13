@@ -400,7 +400,7 @@ func (o *OrgsMxEdges) CountOrgSiteMxEdgeEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgMistEdgeEvents takes context, orgId, mxedgeId, mxclusterId, mType, service, start, end, duration, limit as parameters and
+// SearchOrgMistEdgeEvents takes context, orgId, mxedgeId, mxclusterId, mType, service, component, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseMxedgeEventsSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Mist Edge Events
@@ -411,6 +411,7 @@ func (o *OrgsMxEdges) SearchOrgMistEdgeEvents(
     mxclusterId *string,
     mType *string,
     service *string,
+    component *string,
     start *int,
     end *int,
     duration *string,
@@ -451,6 +452,9 @@ func (o *OrgsMxEdges) SearchOrgMistEdgeEvents(
     }
     if service != nil {
         req.QueryParam("service", *service)
+    }
+    if component != nil {
+        req.QueryParam("component", *component)
     }
     if start != nil {
         req.QueryParam("start", *start)

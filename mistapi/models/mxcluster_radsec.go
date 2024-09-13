@@ -15,12 +15,14 @@ type MxclusterRadsec struct {
     Enabled              *bool                               `json:"enabled,omitempty"`
     // whether to match ssid in request message to select from a subset of RADIUS servers
     MatchSsid            *bool                               `json:"match_ssid,omitempty"`
+    // SSpecify NAS-IP-ADDRESS, NAS-IPv6-ADDRESS to use with auth_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
+    NasIpSource          *MxclusterRadsecNasIpSourceEnum     `json:"nas_ip_source,omitempty"`
     // hostnames or IPs for Mist AP to use as the TLS Server (i.e. they are reachable from AP) in addition to `tunterm_hosts`
     ProxyHosts           []string                            `json:"proxy_hosts,omitempty"`
     // When ordered, Mist Edge will prefer and go back to the first radius server if possible. enum: `ordered`, `unordered`
     ServerSelection      *MxclusterRadsecServerSelectionEnum `json:"server_selection,omitempty"`
-    // Specify source address to use when connecting to RADIUS servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
-    Source               *MxclusterRadsecSourceEnum          `json:"source,omitempty"`
+    // Specify IP address to connect to auth_servers and acct_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
+    SrcIpSource          *MxclusterRadsecSrcIpSourceEnum     `json:"src_ip_source,omitempty"`
     AdditionalProperties map[string]any                      `json:"_"`
 }
 
@@ -48,14 +50,17 @@ func (m MxclusterRadsec) toMap() map[string]any {
     if m.MatchSsid != nil {
         structMap["match_ssid"] = m.MatchSsid
     }
+    if m.NasIpSource != nil {
+        structMap["nas_ip_source"] = m.NasIpSource
+    }
     if m.ProxyHosts != nil {
         structMap["proxy_hosts"] = m.ProxyHosts
     }
     if m.ServerSelection != nil {
         structMap["server_selection"] = m.ServerSelection
     }
-    if m.Source != nil {
-        structMap["source"] = m.Source
+    if m.SrcIpSource != nil {
+        structMap["src_ip_source"] = m.SrcIpSource
     }
     return structMap
 }
@@ -68,7 +73,7 @@ func (m *MxclusterRadsec) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_servers", "auth_servers", "enabled", "match_ssid", "proxy_hosts", "server_selection", "source")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_servers", "auth_servers", "enabled", "match_ssid", "nas_ip_source", "proxy_hosts", "server_selection", "src_ip_source")
     if err != nil {
     	return err
     }
@@ -78,9 +83,10 @@ func (m *MxclusterRadsec) UnmarshalJSON(input []byte) error {
     m.AuthServers = temp.AuthServers
     m.Enabled = temp.Enabled
     m.MatchSsid = temp.MatchSsid
+    m.NasIpSource = temp.NasIpSource
     m.ProxyHosts = temp.ProxyHosts
     m.ServerSelection = temp.ServerSelection
-    m.Source = temp.Source
+    m.SrcIpSource = temp.SrcIpSource
     return nil
 }
 
@@ -90,7 +96,8 @@ type tempMxclusterRadsec  struct {
     AuthServers     []MxclusterRadsecAuthServer         `json:"auth_servers,omitempty"`
     Enabled         *bool                               `json:"enabled,omitempty"`
     MatchSsid       *bool                               `json:"match_ssid,omitempty"`
+    NasIpSource     *MxclusterRadsecNasIpSourceEnum     `json:"nas_ip_source,omitempty"`
     ProxyHosts      []string                            `json:"proxy_hosts,omitempty"`
     ServerSelection *MxclusterRadsecServerSelectionEnum `json:"server_selection,omitempty"`
-    Source          *MxclusterRadsecSourceEnum          `json:"source,omitempty"`
+    SrcIpSource     *MxclusterRadsecSrcIpSourceEnum     `json:"src_ip_source,omitempty"`
 }

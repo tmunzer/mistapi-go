@@ -7,6 +7,8 @@ import (
 
 // MxedgeEvent represents a MxedgeEvent struct.
 type MxedgeEvent struct {
+    // component like PS1, PS2
+    Component            *string        `json:"component,omitempty"`
     MxclusterId          *string        `json:"mxcluster_id,omitempty"`
     MxedgeId             *string        `json:"mxedge_id,omitempty"`
     OrgId                *uuid.UUID     `json:"org_id,omitempty"`
@@ -28,6 +30,9 @@ func (m MxedgeEvent) MarshalJSON() (
 func (m MxedgeEvent) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, m.AdditionalProperties)
+    if m.Component != nil {
+        structMap["component"] = m.Component
+    }
     if m.MxclusterId != nil {
         structMap["mxcluster_id"] = m.MxclusterId
     }
@@ -57,12 +62,13 @@ func (m *MxedgeEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mxcluster_id", "mxedge_id", "org_id", "service", "timestamp", "type")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "component", "mxcluster_id", "mxedge_id", "org_id", "service", "timestamp", "type")
     if err != nil {
     	return err
     }
     
     m.AdditionalProperties = additionalProperties
+    m.Component = temp.Component
     m.MxclusterId = temp.MxclusterId
     m.MxedgeId = temp.MxedgeId
     m.OrgId = temp.OrgId
@@ -74,6 +80,7 @@ func (m *MxedgeEvent) UnmarshalJSON(input []byte) error {
 
 // tempMxedgeEvent is a temporary struct used for validating the fields of MxedgeEvent.
 type tempMxedgeEvent  struct {
+    Component   *string    `json:"component,omitempty"`
     MxclusterId *string    `json:"mxcluster_id,omitempty"`
     MxedgeId    *string    `json:"mxedge_id,omitempty"`
     OrgId       *uuid.UUID `json:"org_id,omitempty"`

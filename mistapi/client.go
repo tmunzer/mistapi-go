@@ -20,6 +20,8 @@ type ClientInterface interface {
     Installer() *Installer
     MSPs() *MSPs
     MSPsAdmins() *MSPsAdmins
+    OrgsSecIntelProfiles() *OrgsSecIntelProfiles
+    SitesSecIntelProfiles() *SitesSecIntelProfiles
     MSPsInventory() *MSPsInventory
     MSPsLogo() *MSPsLogo
     MSPsLogs() *MSPsLogs
@@ -216,6 +218,8 @@ type client struct {
     installer                       Installer
     mSPs                            MSPs
     mSPsAdmins                      MSPsAdmins
+    orgsSecIntelProfiles            OrgsSecIntelProfiles
+    sitesSecIntelProfiles           SitesSecIntelProfiles
     mSPsInventory                   MSPsInventory
     mSPsLogo                        MSPsLogo
     mSPsLogs                        MSPsLogs
@@ -404,7 +408,7 @@ func NewClient(configuration Configuration) ClientInterface {
         configuration: configuration,
     }
     
-    client.userAgent = utilities.UpdateUserAgent("SDK 2408.1.12")
+    client.userAgent = utilities.UpdateUserAgent("SDK 2409.1.0")
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {
@@ -430,6 +434,8 @@ func NewClient(configuration Configuration) ClientInterface {
     client.installer = *NewInstaller(*baseController)
     client.mSPs = *NewMSPs(*baseController)
     client.mSPsAdmins = *NewMSPsAdmins(*baseController)
+    client.orgsSecIntelProfiles = *NewOrgsSecIntelProfiles(*baseController)
+    client.sitesSecIntelProfiles = *NewSitesSecIntelProfiles(*baseController)
     client.mSPsInventory = *NewMSPsInventory(*baseController)
     client.mSPsLogo = *NewMSPsLogo(*baseController)
     client.mSPsLogs = *NewMSPsLogs(*baseController)
@@ -665,6 +671,16 @@ func (c *client) MSPs() *MSPs {
 // MSPsAdmins returns the mSPsAdmins instance of the client.
 func (c *client) MSPsAdmins() *MSPsAdmins {
     return &c.mSPsAdmins
+}
+
+// OrgsSecIntelProfiles returns the orgsSecIntelProfiles instance of the client.
+func (c *client) OrgsSecIntelProfiles() *OrgsSecIntelProfiles {
+    return &c.orgsSecIntelProfiles
+}
+
+// SitesSecIntelProfiles returns the sitesSecIntelProfiles instance of the client.
+func (c *client) SitesSecIntelProfiles() *SitesSecIntelProfiles {
+    return &c.sitesSecIntelProfiles
 }
 
 // MSPsInventory returns the mSPsInventory instance of the client.

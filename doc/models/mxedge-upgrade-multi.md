@@ -14,7 +14,7 @@
 | `Distro` | `*string` | Optional | distro upgrade, optional, to specific codename (e.g. bullseye) with highest qualified versions |
 | `MxedgeIds` | `[]uuid.UUID` | Required | list of mxedge IDs to upgrade. If not specified, it means all the org mxedges. |
 | `Strategy` | [`*models.MxedgeUpgradeStrategyEnum`](../../doc/models/mxedge-upgrade-strategy-enum.md) | Optional | enum:<br><br>* `big_bang`: upgrade all at once<br>* `serial`: one at a time. enum: `big_bang`, `serial`'<br>**Default**: `"big_bang"` |
-| `Versions` | [`*models.MxedgeUpgradeVersion`](../../doc/models/mxedge-upgrade-version.md) | Optional | version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nignored if distro upgrade |
+| `Versions` | [`*models.MxedgeUpgradeVersion`](../../doc/models/mxedge-upgrade-version.md) | Optional | version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nIgnored if distro upgrade, `tunterm`, `radsecproxy`, `mxagent`, `mxocproxy`, `mxdas` or `mxnacedge` |
 
 ## Example (as JSON)
 

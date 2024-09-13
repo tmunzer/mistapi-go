@@ -7,14 +7,16 @@ import (
 // MxedgeDasCoaServer represents a MxedgeDasCoaServer struct.
 type MxedgeDasCoaServer struct {
     // whether to disable Event-Timestamp Check
-    DisableEventTimestampCheck *bool          `json:"disable_event_timestamp_check,omitempty"`
-    Enabled                    *bool          `json:"enabled,omitempty"`
+    DisableEventTimestampCheck  *bool          `json:"disable_event_timestamp_check,omitempty"`
+    Enabled                     *bool          `json:"enabled,omitempty"`
     // this server configured to send CoA|DM to mist edges
-    Host                       *string        `json:"host,omitempty"`
+    Host                        *string        `json:"host,omitempty"`
     // mist edges will allow this host on this port
-    Port                       *int           `json:"port,omitempty"`
-    Secret                     *string        `json:"secret,omitempty"`
-    AdditionalProperties       map[string]any `json:"_"`
+    Port                        *int           `json:"port,omitempty"`
+    // whether to require Message-Authenticator in requests
+    RequireMessageAuthenticator *bool          `json:"require_message_authenticator,omitempty"`
+    Secret                      *string        `json:"secret,omitempty"`
+    AdditionalProperties        map[string]any `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeDasCoaServer.
@@ -41,6 +43,9 @@ func (m MxedgeDasCoaServer) toMap() map[string]any {
     if m.Port != nil {
         structMap["port"] = m.Port
     }
+    if m.RequireMessageAuthenticator != nil {
+        structMap["require_message_authenticator"] = m.RequireMessageAuthenticator
+    }
     if m.Secret != nil {
         structMap["secret"] = m.Secret
     }
@@ -55,7 +60,7 @@ func (m *MxedgeDasCoaServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disable_event_timestamp_check", "enabled", "host", "port", "secret")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "disable_event_timestamp_check", "enabled", "host", "port", "require_message_authenticator", "secret")
     if err != nil {
     	return err
     }
@@ -65,15 +70,17 @@ func (m *MxedgeDasCoaServer) UnmarshalJSON(input []byte) error {
     m.Enabled = temp.Enabled
     m.Host = temp.Host
     m.Port = temp.Port
+    m.RequireMessageAuthenticator = temp.RequireMessageAuthenticator
     m.Secret = temp.Secret
     return nil
 }
 
 // tempMxedgeDasCoaServer is a temporary struct used for validating the fields of MxedgeDasCoaServer.
 type tempMxedgeDasCoaServer  struct {
-    DisableEventTimestampCheck *bool   `json:"disable_event_timestamp_check,omitempty"`
-    Enabled                    *bool   `json:"enabled,omitempty"`
-    Host                       *string `json:"host,omitempty"`
-    Port                       *int    `json:"port,omitempty"`
-    Secret                     *string `json:"secret,omitempty"`
+    DisableEventTimestampCheck  *bool   `json:"disable_event_timestamp_check,omitempty"`
+    Enabled                     *bool   `json:"enabled,omitempty"`
+    Host                        *string `json:"host,omitempty"`
+    Port                        *int    `json:"port,omitempty"`
+    RequireMessageAuthenticator *bool   `json:"require_message_authenticator,omitempty"`
+    Secret                      *string `json:"secret,omitempty"`
 }

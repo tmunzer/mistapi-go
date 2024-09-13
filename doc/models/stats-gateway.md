@@ -13,6 +13,7 @@ Gateway statistics
 |  --- | --- | --- | --- |
 | `ApRedundancy` | [`*models.ApRedundancy`](../../doc/models/ap-redundancy.md) | Optional | - |
 | `ArpTableStats` | [`*models.ArpTableStats`](../../doc/models/arp-table-stats.md) | Optional | - |
+| `BgpPeers` | [`[]models.OptionalStatsBgp`](../../doc/models/optional-stats-bgp.md) | Optional | only present when `bgp_peers` in `fields` query parameter<br>Each port object is same as `GET /api/v1/sites/:site_id/stats/bgp_peers/search` result object, except that org_id, site_id, mac, model are removed |
 | `CertExpiry` | `*int64` | Optional | - |
 | `ClusterConfig` | [`*models.StatsClusterConfig`](../../doc/models/stats-cluster-config.md) | Optional | - |
 | `ClusterStat` | [`*models.StatsGatewayCluster`](../../doc/models/stats-gateway-cluster.md) | Optional | - |
@@ -48,7 +49,7 @@ Gateway statistics
 | `Name` | `*string` | Optional | device name if configured |
 | `NodeName` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | serial |
-| `Ports` | [`[]models.StatsDevicePort`](../../doc/models/stats-device-port.md) | Optional | - |
+| `Ports` | [`[]models.OptionalStatsPort`](../../doc/models/optional-stats-port.md) | Optional | only present when `ports` in `fields` query parameter<br>Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed |
 | `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
 | `RouterName` | `*string` | Optional | device name if configured |
 | `Serial` | `*string` | Optional | serial |
@@ -59,9 +60,11 @@ Gateway statistics
 | `Spu2Stat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `SpuStat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `Status` | `*string` | Optional | - |
+| `Tunnels` | [`[]models.OptionalStatWanTunnel`](../../doc/models/optional-stat-wan-tunnel.md) | Optional | only present when `tunnels` in `fields` query parameter<br>Each port object is same as `GET /api/v1/sites/:site_id/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed |
 | `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Default**: `"gateway"` |
 | `Uptime` | `*float64` | Optional | - |
 | `Version` | `*string` | Optional | - |
+| `VpnPeers` | [`[]models.OptionalStatVpnPeer`](../../doc/models/optional-stat-vpn-peer.md) | Optional | only present when `vpn_peers` in `fields` query parameter<br>Each port object is same as `GET /api/v1/sites/:site_id/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed |
 
 ## Example (as JSON)
 
@@ -95,6 +98,29 @@ Gateway statistics
     "arp_table_count": 136,
     "max_entries_supported": 8
   },
+  "bgp_peers": [
+    {
+      "evpn_overlay": false,
+      "for_overlay": false,
+      "local_as": 146,
+      "neighbor": "neighbor6",
+      "neighbor_as": 172
+    },
+    {
+      "evpn_overlay": false,
+      "for_overlay": false,
+      "local_as": 146,
+      "neighbor": "neighbor6",
+      "neighbor_as": 172
+    },
+    {
+      "evpn_overlay": false,
+      "for_overlay": false,
+      "local_as": 146,
+      "neighbor": "neighbor6",
+      "neighbor_as": 172
+    }
+  ],
   "cert_expiry": 52,
   "cluster_config": {
     "configuration": "configuration0",
@@ -120,9 +146,6 @@ Gateway statistics
       "Status": "Status0"
     },
     "last_status_change_reason": "last_status_change_reason8"
-  },
-  "cluster_stat": {
-    "state": "state2"
   }
 }
 ```

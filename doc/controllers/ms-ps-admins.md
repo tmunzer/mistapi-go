@@ -70,6 +70,7 @@ if err != nil {
   "email": "user@example.com",
   "first_name": "string",
   "last_name": "string",
+  "password_modified_time": 1656353525,
   "privileges": [
     {
       "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
@@ -136,10 +137,10 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Admin{
-    Email:             models.ToPointer("user@example.com"),
-    FirstName:         models.ToPointer("string"),
-    LastName:          models.ToPointer("string"),
-    Privileges:        []models.PrivilegeSelf{
+    Email:                models.ToPointer("user@example.com"),
+    FirstName:            models.ToPointer("string"),
+    LastName:             models.ToPointer("string"),
+    Privileges:           []models.PrivilegeSelf{
         models.PrivilegeSelf{
             MspId:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             MspName:      models.NewOptional(models.ToPointer("string")),
@@ -177,6 +178,7 @@ if err != nil {
   "email": "user@example.com",
   "first_name": "string",
   "last_name": "string",
+  "password_modified_time": 1656353525,
   "privileges": [
     {
       "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
@@ -430,10 +432,10 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 adminId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Admin{
-    Email:             models.ToPointer("jsnow@abc.com"),
-    FirstName:         models.ToPointer("string"),
-    LastName:          models.ToPointer("string"),
-    Privileges:        []models.PrivilegeSelf{
+    Email:                models.ToPointer("jsnow@abc.com"),
+    FirstName:            models.ToPointer("string"),
+    LastName:             models.ToPointer("string"),
+    Privileges:           []models.PrivilegeSelf{
         models.PrivilegeSelf{
             OrgId:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             Role:         models.PrivilegeSelfRoleEnum("admin"),
@@ -468,6 +470,7 @@ if err != nil {
   "email": "user@example.com",
   "first_name": "string",
   "last_name": "string",
+  "password_modified_time": 1656353525,
   "privileges": [
     {
       "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
@@ -536,10 +539,10 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 inviteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Admin{
-    Email:             models.ToPointer("user@example.com"),
-    FirstName:         models.ToPointer("string"),
-    LastName:          models.ToPointer("string"),
-    Privileges:        []models.PrivilegeSelf{
+    Email:                models.ToPointer("user@example.com"),
+    FirstName:            models.ToPointer("string"),
+    LastName:             models.ToPointer("string"),
+    Privileges:           []models.PrivilegeSelf{
         models.PrivilegeSelf{
             MspId:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             MspName:      models.NewOptional(models.ToPointer("string")),
@@ -577,6 +580,7 @@ if err != nil {
   "email": "user@example.com",
   "first_name": "string",
   "last_name": "string",
+  "password_modified_time": 1656353525,
   "privileges": [
     {
       "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",

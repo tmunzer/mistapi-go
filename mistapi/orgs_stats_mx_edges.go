@@ -89,14 +89,15 @@ func (o *OrgsStatsMxEdges) ListOrgMxEdgesStats(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetOrgMxEdgeStats takes context, orgId, mxedgeId as parameters and
+// GetOrgMxEdgeStats takes context, orgId, mxedgeId, forSite as parameters and
 // returns an models.ApiResponse with models.StatsMxedge data and
 // an error if there was an issue with the request or response.
 // Get Org MxEdge Details Stats
 func (o *OrgsStatsMxEdges) GetOrgMxEdgeStats(
     ctx context.Context,
     orgId uuid.UUID,
-    mxedgeId uuid.UUID) (
+    mxedgeId uuid.UUID,
+    forSite *bool) (
     models.ApiResponse[models.StatsMxedge],
     error) {
     req := o.prepareRequest(
@@ -122,6 +123,9 @@ func (o *OrgsStatsMxEdges) GetOrgMxEdgeStats(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    if forSite != nil {
+        req.QueryParam("for_site", *forSite)
+    }
     
     var result models.StatsMxedge
     decoder, resp, err := req.CallAsJson()

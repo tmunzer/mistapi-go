@@ -5,9 +5,10 @@ import (
 )
 
 // StatsMxedgeIpStat represents a StatsMxedgeIpStat struct.
-// OOBM IP stats
+// IP stats
 type StatsMxedgeIpStat struct {
     Ip                   *string           `json:"ip,omitempty"`
+    Ip6                  *string           `json:"ip6,omitempty"`
     // Property key is the interface name. IPs for each net interface
     Ips                  map[string]string `json:"ips,omitempty"`
     // Property key is the interface name. MAC for each net interface
@@ -30,6 +31,9 @@ func (s StatsMxedgeIpStat) toMap() map[string]any {
     if s.Ip != nil {
         structMap["ip"] = s.Ip
     }
+    if s.Ip6 != nil {
+        structMap["ip6"] = s.Ip6
+    }
     if s.Ips != nil {
         structMap["ips"] = s.Ips
     }
@@ -47,13 +51,14 @@ func (s *StatsMxedgeIpStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ip", "ips", "macs")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ip", "ip6", "ips", "macs")
     if err != nil {
     	return err
     }
     
     s.AdditionalProperties = additionalProperties
     s.Ip = temp.Ip
+    s.Ip6 = temp.Ip6
     s.Ips = temp.Ips
     s.Macs = temp.Macs
     return nil
@@ -62,6 +67,7 @@ func (s *StatsMxedgeIpStat) UnmarshalJSON(input []byte) error {
 // tempStatsMxedgeIpStat is a temporary struct used for validating the fields of StatsMxedgeIpStat.
 type tempStatsMxedgeIpStat  struct {
     Ip   *string           `json:"ip,omitempty"`
+    Ip6  *string           `json:"ip6,omitempty"`
     Ips  map[string]string `json:"ips,omitempty"`
     Macs map[string]string `json:"macs,omitempty"`
 }

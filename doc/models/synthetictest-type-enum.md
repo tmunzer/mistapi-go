@@ -1,7 +1,7 @@
 
 # Synthetictest Type Enum
 
-enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `radius`, `speedtest`
+enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest`
 
 ## Enumeration
 
@@ -16,6 +16,7 @@ enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `radius`, `speedtest`
 | `dhcp` |
 | `dhcp6` |
 | `dns` |
+| `lan_connectivity` |
 | `radius` |
 | `speedtest` |
 

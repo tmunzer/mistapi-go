@@ -61,6 +61,8 @@ type StatsAp struct {
     Notes                Optional[string]                              `json:"notes"`
     // how many wireless clients are currently connected
     NumClients           Optional[int]                                 `json:"num_clients"`
+    // how many WLANs are applied to the device
+    NumWlans             *int                                          `json:"num_wlans,omitempty"`
     OrgId                Optional[uuid.UUID]                           `json:"org_id"`
     // Property key is the port name (e.g. `eth0`)
     PortStat             Optional[map[string]StatsApPortStat]          `json:"port_stat"`
@@ -305,6 +307,9 @@ func (s StatsAp) toMap() map[string]any {
             structMap["num_clients"] = nil
         }
     }
+    if s.NumWlans != nil {
+        structMap["num_wlans"] = s.NumWlans
+    }
     if s.OrgId.IsValueSet() {
         if s.OrgId.Value() != nil {
             structMap["org_id"] = s.OrgId.Value()
@@ -462,7 +467,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "ext_ip", "fwupdate", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "locating", "locked", "mac", "map_id", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "ext_ip", "fwupdate", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "locating", "locked", "mac", "map_id", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y")
     if err != nil {
     	return err
     }
@@ -507,6 +512,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
     s.Name = temp.Name
     s.Notes = temp.Notes
     s.NumClients = temp.NumClients
+    s.NumWlans = temp.NumWlans
     s.OrgId = temp.OrgId
     s.PortStat = temp.PortStat
     s.PowerBudget = temp.PowerBudget
@@ -575,6 +581,7 @@ type tempStatsAp  struct {
     Name               Optional[string]                              `json:"name"`
     Notes              Optional[string]                              `json:"notes"`
     NumClients         Optional[int]                                 `json:"num_clients"`
+    NumWlans           *int                                          `json:"num_wlans,omitempty"`
     OrgId              Optional[uuid.UUID]                           `json:"org_id"`
     PortStat           Optional[map[string]StatsApPortStat]          `json:"port_stat"`
     PowerBudget        Optional[int]                                 `json:"power_budget"`

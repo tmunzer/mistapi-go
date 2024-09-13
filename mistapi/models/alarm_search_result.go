@@ -8,6 +8,8 @@ import (
 
 // AlarmSearchResult represents a AlarmSearchResult struct.
 type AlarmSearchResult struct {
+    // Component of the alarm
+    Component            *string        `json:"component,omitempty"`
     End                  int            `json:"end"`
     Limit                int            `json:"limit"`
     Next                 *string        `json:"next,omitempty"`
@@ -30,6 +32,9 @@ func (a AlarmSearchResult) MarshalJSON() (
 func (a AlarmSearchResult) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, a.AdditionalProperties)
+    if a.Component != nil {
+        structMap["component"] = a.Component
+    }
     structMap["end"] = a.End
     structMap["limit"] = a.Limit
     if a.Next != nil {
@@ -56,12 +61,13 @@ func (a *AlarmSearchResult) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "limit", "next", "page", "results", "start", "total")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "component", "end", "limit", "next", "page", "results", "start", "total")
     if err != nil {
     	return err
     }
     
     a.AdditionalProperties = additionalProperties
+    a.Component = temp.Component
     a.End = *temp.End
     a.Limit = *temp.Limit
     a.Next = temp.Next
@@ -74,13 +80,14 @@ func (a *AlarmSearchResult) UnmarshalJSON(input []byte) error {
 
 // tempAlarmSearchResult is a temporary struct used for validating the fields of AlarmSearchResult.
 type tempAlarmSearchResult  struct {
-    End     *int     `json:"end"`
-    Limit   *int     `json:"limit"`
-    Next    *string  `json:"next,omitempty"`
-    Page    *int     `json:"page,omitempty"`
-    Results *[]Alarm `json:"results"`
-    Start   *int     `json:"start"`
-    Total   *int     `json:"total"`
+    Component *string  `json:"component,omitempty"`
+    End       *int     `json:"end"`
+    Limit     *int     `json:"limit"`
+    Next      *string  `json:"next,omitempty"`
+    Page      *int     `json:"page,omitempty"`
+    Results   *[]Alarm `json:"results"`
+    Start     *int     `json:"start"`
+    Total     *int     `json:"total"`
 }
 
 func (a *tempAlarmSearchResult) validate() error {

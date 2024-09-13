@@ -25,7 +25,7 @@ configure cloud-assisted dynamic authorization service on this cluster of mist e
       "enabled": false,
       "host": "host8",
       "port": 28,
-      "secret": "secret2"
+      "require_message_authenticator": false
     }
   ]
 }

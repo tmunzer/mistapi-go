@@ -22,15 +22,15 @@ func NewSitesRFTemplates(baseController baseController) *SitesRFTemplates {
     return &sitesRFTemplates
 }
 
-// GetSiteRfTemplateDerived takes context, siteId, resolve as parameters and
-// returns an models.ApiResponse with models.RfTemplate data and
+// ListSiteRfTemplateDerived takes context, siteId, resolve as parameters and
+// returns an models.ApiResponse with []models.RfTemplate data and
 // an error if there was an issue with the request or response.
 // Get derived RF Templates for Site
-func (s *SitesRFTemplates) GetSiteRfTemplateDerived(
+func (s *SitesRFTemplates) ListSiteRfTemplateDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
-    models.ApiResponse[models.RfTemplate],
+    models.ApiResponse[[]models.RfTemplate],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -59,12 +59,12 @@ func (s *SitesRFTemplates) GetSiteRfTemplateDerived(
         req.QueryParam("resolve", *resolve)
     }
     
-    var result models.RfTemplate
+    var result []models.RfTemplate
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RfTemplate](decoder)
+    result, err = utilities.DecodeResults[[]models.RfTemplate](decoder)
     return models.NewApiResponse(result, resp), err
 }

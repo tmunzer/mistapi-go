@@ -17,6 +17,8 @@ type ApRadioStat struct {
     Mac                    Optional[string]    `json:"mac"`
     NoiseFloor             Optional[int]       `json:"noise_floor"`
     NumClients             Optional[int]       `json:"num_clients"`
+    // how many WLANs are applied to the radio
+    NumWlans               *int                `json:"num_wlans,omitempty"`
     // transmit power (in dBm)
     Power                  Optional[int]       `json:"power"`
     RxBytes                Optional[int]       `json:"rx_bytes"`
@@ -90,6 +92,9 @@ func (a ApRadioStat) toMap() map[string]any {
         } else {
             structMap["num_clients"] = nil
         }
+    }
+    if a.NumWlans != nil {
+        structMap["num_wlans"] = a.NumWlans
     }
     if a.Power.IsValueSet() {
         if a.Power.Value() != nil {
@@ -193,7 +198,7 @@ func (a *ApRadioStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bandwidth", "channel", "dynamic_chaining_enalbed", "mac", "noise_floor", "num_clients", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "usage", "util_all", "util_non_wifi", "util_rx_in_bss", "util_rx_other_bss", "util_tx", "util_undecodable_wifi", "util_unknown_wifi")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "bandwidth", "channel", "dynamic_chaining_enalbed", "mac", "noise_floor", "num_clients", "num_wlans", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "usage", "util_all", "util_non_wifi", "util_rx_in_bss", "util_rx_other_bss", "util_tx", "util_undecodable_wifi", "util_unknown_wifi")
     if err != nil {
     	return err
     }
@@ -205,6 +210,7 @@ func (a *ApRadioStat) UnmarshalJSON(input []byte) error {
     a.Mac = temp.Mac
     a.NoiseFloor = temp.NoiseFloor
     a.NumClients = temp.NumClients
+    a.NumWlans = temp.NumWlans
     a.Power = temp.Power
     a.RxBytes = temp.RxBytes
     a.RxPkts = temp.RxPkts
@@ -229,6 +235,7 @@ type tempApRadioStat  struct {
     Mac                    Optional[string]    `json:"mac"`
     NoiseFloor             Optional[int]       `json:"noise_floor"`
     NumClients             Optional[int]       `json:"num_clients"`
+    NumWlans               *int                `json:"num_wlans,omitempty"`
     Power                  Optional[int]       `json:"power"`
     RxBytes                Optional[int]       `json:"rx_bytes"`
     RxPkts                 Optional[int]       `json:"rx_pkts"`

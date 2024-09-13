@@ -105,7 +105,7 @@ func (s *SitesClientsWired) CountSiteWiredClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteWiredClients takes context, siteId, deviceMac, mac, ip, portId, vlan, manufacture, text, nacruleId, limit, start, end, duration as parameters and
+// SearchSiteWiredClients takes context, siteId, deviceMac, mac, ip, portId, vlan, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.SearchWiredClient data and
 // an error if there was an issue with the request or response.
 // Search Wired Clients
@@ -120,6 +120,11 @@ func (s *SitesClientsWired) SearchSiteWiredClients(
     manufacture *string,
     text *string,
     nacruleId *string,
+    dhcpHostname *string,
+    dhcpFqdn *string,
+    dhcpClientIdentifier *string,
+    dhcpVendorClassIdentifier *string,
+    dhcpRequestParams *string,
     limit *int,
     start *int,
     end *int,
@@ -172,6 +177,21 @@ func (s *SitesClientsWired) SearchSiteWiredClients(
     }
     if nacruleId != nil {
         req.QueryParam("nacrule_id", *nacruleId)
+    }
+    if dhcpHostname != nil {
+        req.QueryParam("dhcp_hostname", *dhcpHostname)
+    }
+    if dhcpFqdn != nil {
+        req.QueryParam("dhcp_fqdn", *dhcpFqdn)
+    }
+    if dhcpClientIdentifier != nil {
+        req.QueryParam("dhcp_client_identifier", *dhcpClientIdentifier)
+    }
+    if dhcpVendorClassIdentifier != nil {
+        req.QueryParam("dhcp_vendor_class_identifier", *dhcpVendorClassIdentifier)
+    }
+    if dhcpRequestParams != nil {
+        req.QueryParam("dhcp_request_params", *dhcpRequestParams)
     }
     if limit != nil {
         req.QueryParam("limit", *limit)

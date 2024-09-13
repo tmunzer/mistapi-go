@@ -79,7 +79,8 @@ Get Site Device Stats Details
 GetSiteDeviceStats(
     ctx context.Context,
     siteId uuid.UUID,
-    deviceId uuid.UUID) (
+    deviceId uuid.UUID,
+    fields *string) (
     models.ApiResponse[models.StatsDevice],
     error)
 ```
@@ -90,6 +91,7 @@ GetSiteDeviceStats(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
+| `fields` | `*string` | Query, Optional | list of additional fields requests, comma separeted, or `fields=*` for all of them |
 
 ## Response Type
 
@@ -104,7 +106,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := sitesStatsDevices.GetSiteDeviceStats(ctx, siteId, deviceId)
+fields := "field1,field2"
+
+apiResponse, err := sitesStatsDevices.GetSiteDeviceStats(ctx, siteId, deviceId, &fields)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -17,6 +17,7 @@ radio stat
 | `Mac` | `models.Optional[string]` | Optional | radio (base) mac, it can have 16 bssids (e.g. 5c5b350001a0-5c5b350001af) |
 | `NoiseFloor` | `models.Optional[int]` | Optional | - |
 | `NumClients` | `models.Optional[int]` | Optional | - |
+| `NumWlans` | `*int` | Optional | how many WLANs are applied to the radio |
 | `Power` | `models.Optional[int]` | Optional | transmit power (in dBm) |
 | `RxBytes` | `models.Optional[int]` | Optional | - |
 | `RxPkts` | `models.Optional[int]` | Optional | - |

@@ -122,11 +122,11 @@ func (o *OrgsWxRules) CreateOrgWxRule(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetOrgWxRulesDerived takes context, orgId as parameters and
+// ListOrgWxRulesDerived takes context, orgId as parameters and
 // returns an models.ApiResponse with []models.WxlanRule data and
 // an error if there was an issue with the request or response.
 // Get Derived Org WxRule
-func (o *OrgsWxRules) GetOrgWxRulesDerived(
+func (o *OrgsWxRules) ListOrgWxRulesDerived(
     ctx context.Context,
     orgId uuid.UUID) (
     models.ApiResponse[[]models.WxlanRule],

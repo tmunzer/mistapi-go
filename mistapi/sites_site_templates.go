@@ -22,15 +22,15 @@ func NewSitesSiteTemplates(baseController baseController) *SitesSiteTemplates {
     return &sitesSiteTemplates
 }
 
-// GetSiteSiteTemplateDerived takes context, siteId, resolve as parameters and
-// returns an models.ApiResponse with models.SiteTemplate data and
+// ListSiteSiteTemplateDerived takes context, siteId, resolve as parameters and
+// returns an models.ApiResponse with []models.SiteTemplate data and
 // an error if there was an issue with the request or response.
 // Get derived Site Templates for Site
-func (s *SitesSiteTemplates) GetSiteSiteTemplateDerived(
+func (s *SitesSiteTemplates) ListSiteSiteTemplateDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
-    models.ApiResponse[models.SiteTemplate],
+    models.ApiResponse[[]models.SiteTemplate],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -59,12 +59,12 @@ func (s *SitesSiteTemplates) GetSiteSiteTemplateDerived(
         req.QueryParam("resolve", *resolve)
     }
     
-    var result models.SiteTemplate
+    var result []models.SiteTemplate
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.SiteTemplate](decoder)
+    result, err = utilities.DecodeResults[[]models.SiteTemplate](decoder)
     return models.NewApiResponse(result, resp), err
 }

@@ -14,7 +14,7 @@ type StatsMxedge struct {
     FipsEnabled          *bool                             `json:"fips_enabled,omitempty"`
     ForSite              *bool                             `json:"for_site,omitempty"`
     Id                   *uuid.UUID                        `json:"id,omitempty"`
-    // OOBM IP stats
+    // IP stats
     IpStat               *StatsMxedgeIpStat                `json:"ip_stat,omitempty"`
     // Stat for LAG (Link Aggregation Group). Property key is the LAG name
     LagStat              map[string]StatsMxedgeLagStat     `json:"lag_stat,omitempty"`
@@ -31,6 +31,7 @@ type StatsMxedge struct {
     NumTunnels           *int                              `json:"num_tunnels,omitempty"`
     // ip configuration of the Mist Edge out-of_band management interface
     OobIpConfig          *MxedgeOobIpConfig                `json:"oob_ip_config,omitempty"`
+    OobIpStat            *StatsMxedgeOobIpStat             `json:"oob_ip_stat,omitempty"`
     OrgId                *uuid.UUID                        `json:"org_id,omitempty"`
     PortStat             map[string]StatsMxedgePortStat    `json:"port_stat,omitempty"`
     SensorStat           *interface{}                      `json:"sensor_stat,omitempty"`
@@ -113,6 +114,9 @@ func (s StatsMxedge) toMap() map[string]any {
     if s.OobIpConfig != nil {
         structMap["oob_ip_config"] = s.OobIpConfig.toMap()
     }
+    if s.OobIpStat != nil {
+        structMap["oob_ip_stat"] = s.OobIpStat.toMap()
+    }
     if s.OrgId != nil {
         structMap["org_id"] = s.OrgId
     }
@@ -170,7 +174,7 @@ func (s *StatsMxedge) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cpu_stat", "created_time", "fips_enabled", "for_site", "id", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "org_id", "port_stat", "sensor_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "cpu_stat", "created_time", "fips_enabled", "for_site", "id", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "sensor_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type")
     if err != nil {
     	return err
     }
@@ -193,6 +197,7 @@ func (s *StatsMxedge) UnmarshalJSON(input []byte) error {
     s.Name = temp.Name
     s.NumTunnels = temp.NumTunnels
     s.OobIpConfig = temp.OobIpConfig
+    s.OobIpStat = temp.OobIpStat
     s.OrgId = temp.OrgId
     s.PortStat = temp.PortStat
     s.SensorStat = temp.SensorStat
@@ -229,6 +234,7 @@ type tempStatsMxedge  struct {
     Name               *string                           `json:"name,omitempty"`
     NumTunnels         *int                              `json:"num_tunnels,omitempty"`
     OobIpConfig        *MxedgeOobIpConfig                `json:"oob_ip_config,omitempty"`
+    OobIpStat          *StatsMxedgeOobIpStat             `json:"oob_ip_stat,omitempty"`
     OrgId              *uuid.UUID                        `json:"org_id,omitempty"`
     PortStat           map[string]StatsMxedgePortStat    `json:"port_stat,omitempty"`
     SensorStat         *interface{}                      `json:"sensor_stat,omitempty"`

@@ -13,8 +13,8 @@ orgsWxRules := client.OrgsWxRules()
 * [Create Org Wx Rule](../../doc/controllers/orgs-wx-rules.md#create-org-wx-rule)
 * [Delete Org Wx Rule](../../doc/controllers/orgs-wx-rules.md#delete-org-wx-rule)
 * [Get Org Wx Rule](../../doc/controllers/orgs-wx-rules.md#get-org-wx-rule)
-* [Get Org Wx Rules Derived](../../doc/controllers/orgs-wx-rules.md#get-org-wx-rules-derived)
 * [List Org Wx Rules](../../doc/controllers/orgs-wx-rules.md#list-org-wx-rules)
+* [List Org Wx Rules Derived](../../doc/controllers/orgs-wx-rules.md#list-org-wx-rules-derived)
 * [Update Org Wx Rule](../../doc/controllers/orgs-wx-rules.md#update-org-wx-rule)
 
 
@@ -271,14 +271,16 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Org Wx Rules Derived
+# List Org Wx Rules
 
-Get Derived Org WxRule
+Get List of Org WxRules
 
 ```go
-GetOrgWxRulesDerived(
+ListOrgWxRules(
     ctx context.Context,
-    orgId uuid.UUID) (
+    orgId uuid.UUID,
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.WxlanRule],
     error)
 ```
@@ -288,6 +290,8 @@ GetOrgWxRulesDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -300,7 +304,11 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsWxRules.GetOrgWxRulesDerived(ctx, orgId)
+limit := 100
+
+page := 1
+
+apiResponse, err := orgsWxRules.ListOrgWxRules(ctx, orgId, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -358,16 +366,14 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# List Org Wx Rules
+# List Org Wx Rules Derived
 
-Get List of Org WxRules
+Get Derived Org WxRule
 
 ```go
-ListOrgWxRules(
+ListOrgWxRulesDerived(
     ctx context.Context,
-    orgId uuid.UUID,
-    limit *int,
-    page *int) (
+    orgId uuid.UUID) (
     models.ApiResponse[[]models.WxlanRule],
     error)
 ```
@@ -377,8 +383,6 @@ ListOrgWxRules(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -391,11 +395,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-limit := 100
-
-page := 1
-
-apiResponse, err := orgsWxRules.ListOrgWxRules(ctx, orgId, &limit, &page)
+apiResponse, err := orgsWxRules.ListOrgWxRulesDerived(ctx, orgId)
 if err != nil {
     log.Fatalln(err)
 } else {

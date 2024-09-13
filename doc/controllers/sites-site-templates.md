@@ -9,16 +9,16 @@ sitesSiteTemplates := client.SitesSiteTemplates()
 `SitesSiteTemplates`
 
 
-# Get Site Site Template Derived
+# List Site Site Template Derived
 
 Get derived Site Templates for Site
 
 ```go
-GetSiteSiteTemplateDerived(
+ListSiteSiteTemplateDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
-    models.ApiResponse[models.SiteTemplate],
+    models.ApiResponse[[]models.SiteTemplate],
     error)
 ```
 
@@ -31,7 +31,7 @@ GetSiteSiteTemplateDerived(
 
 ## Response Type
 
-[`models.SiteTemplate`](../../doc/models/site-template.md)
+[`[]models.SiteTemplate`](../../doc/models/site-template.md)
 
 ## Example Usage
 
@@ -42,7 +42,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-apiResponse, err := sitesSiteTemplates.GetSiteSiteTemplateDerived(ctx, siteId, nil)
+apiResponse, err := sitesSiteTemplates.ListSiteSiteTemplateDerived(ctx, siteId, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -55,19 +55,21 @@ if err != nil {
 ## Example Response *(as JSON)*
 
 ```json
-{
-  "auto_upgrade": {
-    "day_of_week": "mon",
-    "enabled": true,
-    "time_of_day": "string",
-    "version": "string"
-  },
-  "name": "string",
-  "vars": {
-    "SSID_STR": "string",
-    "VLAN_ID": "string"
+[
+  {
+    "auto_upgrade": {
+      "day_of_week": "mon",
+      "enabled": true,
+      "time_of_day": "string",
+      "version": "string"
+    },
+    "name": "string",
+    "vars": {
+      "SSID_STR": "string",
+      "VLAN_ID": "string"
+    }
   }
-}
+]
 ```
 
 ## Errors

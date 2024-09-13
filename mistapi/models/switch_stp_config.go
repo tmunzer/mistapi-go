@@ -6,9 +6,9 @@ import (
 
 // SwitchStpConfig represents a SwitchStpConfig struct.
 type SwitchStpConfig struct {
-    // enum: `rstp`, `vstp`
-    Type                 *SwitchStpConfigTypeEnum `json:"type,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    // ignored for switches participating in EVPN
+    VstpEnabled          *bool          `json:"vstp_enabled,omitempty"`
+    AdditionalProperties map[string]any `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchStpConfig.
@@ -23,8 +23,8 @@ func (s SwitchStpConfig) MarshalJSON() (
 func (s SwitchStpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, s.AdditionalProperties)
-    if s.Type != nil {
-        structMap["type"] = s.Type
+    if s.VstpEnabled != nil {
+        structMap["vstp_enabled"] = s.VstpEnabled
     }
     return structMap
 }
@@ -37,17 +37,17 @@ func (s *SwitchStpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "type")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "vstp_enabled")
     if err != nil {
     	return err
     }
     
     s.AdditionalProperties = additionalProperties
-    s.Type = temp.Type
+    s.VstpEnabled = temp.VstpEnabled
     return nil
 }
 
 // tempSwitchStpConfig is a temporary struct used for validating the fields of SwitchStpConfig.
 type tempSwitchStpConfig  struct {
-    Type *SwitchStpConfigTypeEnum `json:"type,omitempty"`
+    VstpEnabled *bool `json:"vstp_enabled,omitempty"`
 }

@@ -6,10 +6,12 @@ import (
 
 // SsoMxedgeProxyAuthServer represents a SsoMxedgeProxyAuthServer struct.
 type SsoMxedgeProxyAuthServer struct {
-    Host                 *string        `json:"host,omitempty"`
-    Port                 *int           `json:"port,omitempty"`
-    Secret               *string        `json:"secret,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Host                        *string        `json:"host,omitempty"`
+    Port                        *int           `json:"port,omitempty"`
+    // whether to require Message-Authenticator in requests
+    RequireMessageAuthenticator *bool          `json:"require_message_authenticator,omitempty"`
+    Secret                      *string        `json:"secret,omitempty"`
+    AdditionalProperties        map[string]any `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsoMxedgeProxyAuthServer.
@@ -30,6 +32,9 @@ func (s SsoMxedgeProxyAuthServer) toMap() map[string]any {
     if s.Port != nil {
         structMap["port"] = s.Port
     }
+    if s.RequireMessageAuthenticator != nil {
+        structMap["require_message_authenticator"] = s.RequireMessageAuthenticator
+    }
     if s.Secret != nil {
         structMap["secret"] = s.Secret
     }
@@ -44,7 +49,7 @@ func (s *SsoMxedgeProxyAuthServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "port", "secret")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "port", "require_message_authenticator", "secret")
     if err != nil {
     	return err
     }
@@ -52,13 +57,15 @@ func (s *SsoMxedgeProxyAuthServer) UnmarshalJSON(input []byte) error {
     s.AdditionalProperties = additionalProperties
     s.Host = temp.Host
     s.Port = temp.Port
+    s.RequireMessageAuthenticator = temp.RequireMessageAuthenticator
     s.Secret = temp.Secret
     return nil
 }
 
 // tempSsoMxedgeProxyAuthServer is a temporary struct used for validating the fields of SsoMxedgeProxyAuthServer.
 type tempSsoMxedgeProxyAuthServer  struct {
-    Host   *string `json:"host,omitempty"`
-    Port   *int    `json:"port,omitempty"`
-    Secret *string `json:"secret,omitempty"`
+    Host                        *string `json:"host,omitempty"`
+    Port                        *int    `json:"port,omitempty"`
+    RequireMessageAuthenticator *bool   `json:"require_message_authenticator,omitempty"`
+    Secret                      *string `json:"secret,omitempty"`
 }

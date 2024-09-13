@@ -47,11 +47,20 @@ func TestSitesSyntheticTestsTestGetSiteDeviceSyntheticTest(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    resp, err := sitesSyntheticTests.GetSiteDeviceSyntheticTest(ctx, siteId, deviceId)
+    
+    
+    
+    apiResponse, err := sitesSyntheticTests.GetSiteDeviceSyntheticTest(ctx, siteId, deviceId, nil, nil, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
-    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"device_type":"gateway","mac":"5c5b35584a6f","port_id":"ge-0/0/1.100","start_time":1675718807,"status":"inprogress","type":"speedtest"}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
 // TestSitesSyntheticTestsTestTriggerSiteDeviceSyntheticTest tests the behavior of the SitesSyntheticTests
@@ -131,7 +140,8 @@ func TestSitesSyntheticTestsTestSearchSiteSyntheticTest(t *testing.T) {
     
     
     
-    apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, nil, nil, nil, nil, nil, nil)
+    
+    apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, nil, nil, nil, nil, nil, nil, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

@@ -13,6 +13,8 @@ type ApPortConfig struct {
     EnableMacAuth        *bool                            `json:"enable_mac_auth,omitempty"`
     // enum: `all`, `limited`, `mxtunnel`, `site_mxedge`, `wxtunnel`
     Forwarding           *ApPortConfigForwardingEnum      `json:"forwarding,omitempty"`
+    // when `true`, we'll do dot1x then mac_auth. enable this to prefer mac_auth
+    MacAuthPreferred     *bool                            `json:"mac_auth_preferred,omitempty"`
     // if `enable_mac_auth`==`true`, allows user to select an authentication protocol. enum: `eap-md5`, `eap-peap`, `pap`
     MacAuthProtocol      *ApPortConfigMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
     MistNac              *WlanMistNac                     `json:"mist_nac,omitempty"`
@@ -65,6 +67,9 @@ func (a ApPortConfig) toMap() map[string]any {
     if a.Forwarding != nil {
         structMap["forwarding"] = a.Forwarding
     }
+    if a.MacAuthPreferred != nil {
+        structMap["mac_auth_preferred"] = a.MacAuthPreferred
+    }
     if a.MacAuthProtocol != nil {
         structMap["mac_auth_protocol"] = a.MacAuthProtocol
     }
@@ -112,7 +117,7 @@ func (a *ApPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disabled", "dynamic_vlan", "enable_mac_auth", "forwarding", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "disabled", "dynamic_vlan", "enable_mac_auth", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id")
     if err != nil {
     	return err
     }
@@ -122,6 +127,7 @@ func (a *ApPortConfig) UnmarshalJSON(input []byte) error {
     a.DynamicVlan = temp.DynamicVlan
     a.EnableMacAuth = temp.EnableMacAuth
     a.Forwarding = temp.Forwarding
+    a.MacAuthPreferred = temp.MacAuthPreferred
     a.MacAuthProtocol = temp.MacAuthProtocol
     a.MistNac = temp.MistNac
     a.MxTunnelId = temp.MxTunnelId
@@ -143,6 +149,7 @@ type tempApPortConfig  struct {
     DynamicVlan      *ApPortConfigDynamicVlan         `json:"dynamic_vlan,omitempty"`
     EnableMacAuth    *bool                            `json:"enable_mac_auth,omitempty"`
     Forwarding       *ApPortConfigForwardingEnum      `json:"forwarding,omitempty"`
+    MacAuthPreferred *bool                            `json:"mac_auth_preferred,omitempty"`
     MacAuthProtocol  *ApPortConfigMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
     MistNac          *WlanMistNac                     `json:"mist_nac,omitempty"`
     MxTunnelId       *uuid.UUID                       `json:"mx_tunnel_id,omitempty"`

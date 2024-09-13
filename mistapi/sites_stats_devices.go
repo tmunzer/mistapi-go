@@ -81,14 +81,15 @@ func (s *SitesStatsDevices) ListSiteDevicesStats(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteDeviceStats takes context, siteId, deviceId as parameters and
+// GetSiteDeviceStats takes context, siteId, deviceId, fields as parameters and
 // returns an models.ApiResponse with models.StatsDevice data and
 // an error if there was an issue with the request or response.
 // Get Site Device Stats Details
 func (s *SitesStatsDevices) GetSiteDeviceStats(
     ctx context.Context,
     siteId uuid.UUID,
-    deviceId uuid.UUID) (
+    deviceId uuid.UUID,
+    fields *string) (
     models.ApiResponse[models.StatsDevice],
     error) {
     req := s.prepareRequest(
@@ -114,6 +115,9 @@ func (s *SitesStatsDevices) GetSiteDeviceStats(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    if fields != nil {
+        req.QueryParam("fields", *fields)
+    }
     
     var result models.StatsDevice
     decoder, resp, err := req.CallAsJson()

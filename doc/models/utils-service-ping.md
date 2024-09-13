@@ -11,6 +11,7 @@
 |  --- | --- | --- | --- |
 | `Count` | `*int` | Optional | **Default**: `10` |
 | `Host` | `string` | Required | - |
+| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `Service` | `string` | Required | ping packet takes the same path as the service |
 | `Size` | `*int` | Optional | **Default**: `56`<br>**Constraints**: `>= 56`, `<= 65535` |
 | `Tenant` | `*string` | Optional | tenant context in which the packet is sent |
@@ -23,6 +24,7 @@
   "host": "host0",
   "service": "service8",
   "size": 56,
+  "node": "node0",
   "tenant": "tenant4"
 }
 ```

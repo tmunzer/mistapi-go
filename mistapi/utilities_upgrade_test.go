@@ -74,6 +74,28 @@ func TestUtilitiesUpgradeTestGetOrgDeviceUpgrade(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestUtilitiesUpgradeTestListOrgAvailableDeviceVersions tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestListOrgAvailableDeviceVersions(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    mType := models.DeviceTypeEnum("ap")
+    
+    apiResponse, err := utilitiesUpgrade.ListOrgAvailableDeviceVersions(ctx, orgId, &mType, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `[{"model":"AP41","tag":"stable","version":"v0.1.543"},{"model":"AP21","version":"v0.1.545"}]`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestUtilitiesUpgradeTestUpgradeOrgJsiDevice tests the behavior of the UtilitiesUpgrade
 func TestUtilitiesUpgradeTestUpgradeOrgJsiDevice(t *testing.T) {
     ctx := context.Background()

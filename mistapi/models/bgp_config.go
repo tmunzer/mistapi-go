@@ -37,9 +37,11 @@ type BgpConfig struct {
     Networks               []string                      `json:"networks,omitempty"`
     // by default, we'll re-advertise all learned BGP routers toward overlay
     NoReadvertiseToOverlay *bool                         `json:"no_readvertise_to_overlay,omitempty"`
+    // if `type`==`tunnel`
+    TunnelName             *string                       `json:"tunnel_name,omitempty"`
     // enum: `external`, `internal`
     Type                   *BgpConfigTypeEnum            `json:"type,omitempty"`
-    // network name. enum: `lan`, `vpn`, `wan`
+    // network name. enum: `lan`, `tunnel`, `vpn`, `wan`
     Via                    *BgpConfigViaEnum             `json:"via,omitempty"`
     VpnName                *string                       `json:"vpn_name,omitempty"`
     // if `via`==`wan`
@@ -118,6 +120,9 @@ func (b BgpConfig) toMap() map[string]any {
     if b.NoReadvertiseToOverlay != nil {
         structMap["no_readvertise_to_overlay"] = b.NoReadvertiseToOverlay
     }
+    if b.TunnelName != nil {
+        structMap["tunnel_name"] = b.TunnelName
+    }
     if b.Type != nil {
         structMap["type"] = b.Type
     }
@@ -141,7 +146,7 @@ func (b *BgpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_key", "bfd_minimum_interval", "bfd_multiplier", "communities", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_readvertise_to_overlay", "type", "via", "vpn_name", "wan_name")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_key", "bfd_minimum_interval", "bfd_multiplier", "communities", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_readvertise_to_overlay", "tunnel_name", "type", "via", "vpn_name", "wan_name")
     if err != nil {
     	return err
     }
@@ -164,6 +169,7 @@ func (b *BgpConfig) UnmarshalJSON(input []byte) error {
     b.Neighbors = temp.Neighbors
     b.Networks = temp.Networks
     b.NoReadvertiseToOverlay = temp.NoReadvertiseToOverlay
+    b.TunnelName = temp.TunnelName
     b.Type = temp.Type
     b.Via = temp.Via
     b.VpnName = temp.VpnName
@@ -190,6 +196,7 @@ type tempBgpConfig  struct {
     Neighbors              map[string]BgpConfigNeighbors `json:"neighbors,omitempty"`
     Networks               []string                      `json:"networks,omitempty"`
     NoReadvertiseToOverlay *bool                         `json:"no_readvertise_to_overlay,omitempty"`
+    TunnelName             *string                       `json:"tunnel_name,omitempty"`
     Type                   *BgpConfigTypeEnum            `json:"type,omitempty"`
     Via                    *BgpConfigViaEnum             `json:"via,omitempty"`
     VpnName                *string                       `json:"vpn_name,omitempty"`

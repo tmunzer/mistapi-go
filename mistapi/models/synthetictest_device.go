@@ -8,23 +8,37 @@ import (
 
 // SynthetictestDevice represents a SynthetictestDevice struct.
 type SynthetictestDevice struct {
+    // if `type`==`lan_connectivity`
+    Host                 *string                          `json:"host,omitempty"`
     // if `type`==`dns`
-    Hostname             *string                    `json:"hostname,omitempty"`
+    Hostname             *string                          `json:"hostname,omitempty"`
     // if `type`==`arp`
-    Ip                   *string                    `json:"ip,omitempty"`
+    Ip                   *string                          `json:"ip,omitempty"`
     // if `type`==`radius`
-    Password             *string                    `json:"password,omitempty"`
-    // if `type`==`ssr`
-    PortId               *string                    `json:"port_id,omitempty"`
-    // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `radius`, `speedtest`
-    Type                 SynthetictestTypeEnum      `json:"type"`
+    Password             *string                          `json:"password,omitempty"`
+    // if `type`==`lan_connectivity`
+    PingCount            *int                             `json:"ping_count,omitempty"`
+    // if `type`==`lan_connectivity`
+    PingDetails          *bool                            `json:"ping_details,omitempty"`
+    // if `type`==`lan_connectivity`
+    PingSize             *int                             `json:"ping_size,omitempty"`
+    // if `type`==`speedtest`, required for ssr
+    PortId               *string                          `json:"port_id,omitempty"`
+    // if `type`==`lan_connectivity`. enum: `ping`, `traceroute`, `ping+traceroute`
+    Protocol             *SynthetictestDeviceProtocolEnum `json:"protocol,omitempty"`
+    // if `type`==`lan_connectivity`
+    Tenant               *string                          `json:"tenant,omitempty"`
+    // SRX only, traceroute udp port
+    TracerouteUdpPort    *int                             `json:"traceroute_udp_port,omitempty"`
+    // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest`
+    Type                 SynthetictestTypeEnum            `json:"type"`
     // if `type`==`curl`
-    Url                  *string                    `json:"url,omitempty"`
+    Url                  *string                          `json:"url,omitempty"`
     // if `type`==`radius`
-    Username             *string                    `json:"username,omitempty"`
+    Username             *string                          `json:"username,omitempty"`
     // required for AP
-    VlanId               *SynthetictestDeviceVlanId `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    VlanId               *SynthetictestDeviceVlanId       `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]any                   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestDevice.
@@ -39,6 +53,9 @@ func (s SynthetictestDevice) MarshalJSON() (
 func (s SynthetictestDevice) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, s.AdditionalProperties)
+    if s.Host != nil {
+        structMap["host"] = s.Host
+    }
     if s.Hostname != nil {
         structMap["hostname"] = s.Hostname
     }
@@ -48,8 +65,26 @@ func (s SynthetictestDevice) toMap() map[string]any {
     if s.Password != nil {
         structMap["password"] = s.Password
     }
+    if s.PingCount != nil {
+        structMap["ping_count"] = s.PingCount
+    }
+    if s.PingDetails != nil {
+        structMap["ping_details"] = s.PingDetails
+    }
+    if s.PingSize != nil {
+        structMap["ping_size"] = s.PingSize
+    }
     if s.PortId != nil {
         structMap["port_id"] = s.PortId
+    }
+    if s.Protocol != nil {
+        structMap["protocol"] = s.Protocol
+    }
+    if s.Tenant != nil {
+        structMap["tenant"] = s.Tenant
+    }
+    if s.TracerouteUdpPort != nil {
+        structMap["traceroute_udp_port"] = s.TracerouteUdpPort
     }
     structMap["type"] = s.Type
     if s.Url != nil {
@@ -76,16 +111,23 @@ func (s *SynthetictestDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "hostname", "ip", "password", "port_id", "type", "url", "username", "vlan_id")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "hostname", "ip", "password", "ping_count", "ping_details", "ping_size", "port_id", "protocol", "tenant", "traceroute_udp_port", "type", "url", "username", "vlan_id")
     if err != nil {
     	return err
     }
     
     s.AdditionalProperties = additionalProperties
+    s.Host = temp.Host
     s.Hostname = temp.Hostname
     s.Ip = temp.Ip
     s.Password = temp.Password
+    s.PingCount = temp.PingCount
+    s.PingDetails = temp.PingDetails
+    s.PingSize = temp.PingSize
     s.PortId = temp.PortId
+    s.Protocol = temp.Protocol
+    s.Tenant = temp.Tenant
+    s.TracerouteUdpPort = temp.TracerouteUdpPort
     s.Type = *temp.Type
     s.Url = temp.Url
     s.Username = temp.Username
@@ -95,14 +137,21 @@ func (s *SynthetictestDevice) UnmarshalJSON(input []byte) error {
 
 // tempSynthetictestDevice is a temporary struct used for validating the fields of SynthetictestDevice.
 type tempSynthetictestDevice  struct {
-    Hostname *string                    `json:"hostname,omitempty"`
-    Ip       *string                    `json:"ip,omitempty"`
-    Password *string                    `json:"password,omitempty"`
-    PortId   *string                    `json:"port_id,omitempty"`
-    Type     *SynthetictestTypeEnum     `json:"type"`
-    Url      *string                    `json:"url,omitempty"`
-    Username *string                    `json:"username,omitempty"`
-    VlanId   *SynthetictestDeviceVlanId `json:"vlan_id,omitempty"`
+    Host              *string                          `json:"host,omitempty"`
+    Hostname          *string                          `json:"hostname,omitempty"`
+    Ip                *string                          `json:"ip,omitempty"`
+    Password          *string                          `json:"password,omitempty"`
+    PingCount         *int                             `json:"ping_count,omitempty"`
+    PingDetails       *bool                            `json:"ping_details,omitempty"`
+    PingSize          *int                             `json:"ping_size,omitempty"`
+    PortId            *string                          `json:"port_id,omitempty"`
+    Protocol          *SynthetictestDeviceProtocolEnum `json:"protocol,omitempty"`
+    Tenant            *string                          `json:"tenant,omitempty"`
+    TracerouteUdpPort *int                             `json:"traceroute_udp_port,omitempty"`
+    Type              *SynthetictestTypeEnum           `json:"type"`
+    Url               *string                          `json:"url,omitempty"`
+    Username          *string                          `json:"username,omitempty"`
+    VlanId            *SynthetictestDeviceVlanId       `json:"vlan_id,omitempty"`
 }
 
 func (s *tempSynthetictestDevice) validate() error {

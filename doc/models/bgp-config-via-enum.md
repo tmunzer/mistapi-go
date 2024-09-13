@@ -1,7 +1,7 @@
 
 # Bgp Config Via Enum
 
-network name. enum: `lan`, `vpn`, `wan`
+network name. enum: `lan`, `tunnel`, `vpn`, `wan`
 
 ## Enumeration
 
@@ -12,6 +12,7 @@ network name. enum: `lan`, `vpn`, `wan`
 | Name |
 |  --- |
 | `lan` |
+| `tunnel` |
 | `vpn` |
 | `wan` |
 

@@ -14,7 +14,7 @@ type AdminInvite struct {
     AllowMist            *bool                `json:"allow_mist,omitempty"`
     // city of registering user
     City                 *string              `json:"city,omitempty"`
-    // country/region of registering user
+    // country/region name or ISO code of registering user
     Country              *string              `json:"country,omitempty"`
     Email                string               `json:"email"`
     FirstName            string               `json:"first_name"`
@@ -31,7 +31,7 @@ type AdminInvite struct {
     RefererInviteToken   *string              `json:"referer_invite_token,omitempty"`
     // the url the user should be redirected back to
     ReturnTo             *string              `json:"return_to,omitempty"`
-    // state of registering user, optional (depends on country/region)
+    // state name or ISO code of registering user, optional (depends on country/region)
     State                *string              `json:"state,omitempty"`
     // street address of registering user
     StreetAddress        *string              `json:"street_address,omitempty"`

@@ -54,14 +54,14 @@ func TestSitesUISettingsTestCreateSiteUiSettings(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesUISettingsTestGetSiteUiSettingDerived tests the behavior of the SitesUISettings
-func TestSitesUISettingsTestGetSiteUiSettingDerived(t *testing.T) {
+// TestSitesUISettingsTestListSiteUiSettingDerived tests the behavior of the SitesUISettings
+func TestSitesUISettingsTestListSiteUiSettingDerived(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
-    apiResponse, err := sitesUiSettings.GetSiteUiSettingDerived(ctx, siteId)
+    apiResponse, err := sitesUiSettings.ListSiteUiSettingDerived(ctx, siteId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

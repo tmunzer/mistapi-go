@@ -7,15 +7,15 @@ import (
     "testing"
 )
 
-// TestSitesNetworkTemplatesTestGetSiteNetworkTemplateDerived tests the behavior of the SitesNetworkTemplates
-func TestSitesNetworkTemplatesTestGetSiteNetworkTemplateDerived(t *testing.T) {
+// TestSitesNetworkTemplatesTestListSiteNetworkTemplateDerived tests the behavior of the SitesNetworkTemplates
+func TestSitesNetworkTemplatesTestListSiteNetworkTemplateDerived(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
     
-    apiResponse, err := sitesNetworkTemplates.GetSiteNetworkTemplateDerived(ctx, siteId, nil)
+    apiResponse, err := sitesNetworkTemplates.ListSiteNetworkTemplateDerived(ctx, siteId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

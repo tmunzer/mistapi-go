@@ -12,6 +12,7 @@
 | `Address` | `*string` | Optional | if `protocol`==`icmp` |
 | `AppType` | `*string` | Optional | - |
 | `Hostname` | `[]string` | Optional | if `protocol`==`http` |
+| `Key` | `*string` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Network` | `*string` | Optional | - |
 | `Protocol` | [`*models.AppProbingCustomAppProtocolEnum`](../../doc/models/app-probing-custom-app-protocol-enum.md) | Optional | enum: `http`, `icmp`<br>**Default**: `"http"` |
@@ -31,7 +32,8 @@
   "protocol": "http",
   "url": "www.abc.com",
   "vrf": "lan",
-  "app_type": "app_type8"
+  "app_type": "app_type8",
+  "key": "key4"
 }
 ```
 

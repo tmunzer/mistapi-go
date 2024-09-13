@@ -16,6 +16,7 @@ utilitiesUpgrade := client.UtilitiesUpgrade()
 * [Get Org Mx Edge Upgrade](../../doc/controllers/utilities-upgrade.md#get-org-mx-edge-upgrade)
 * [Get Site Device Upgrade](../../doc/controllers/utilities-upgrade.md#get-site-device-upgrade)
 * [Get Site Ssr Upgrade](../../doc/controllers/utilities-upgrade.md#get-site-ssr-upgrade)
+* [List Org Available Device Versions](../../doc/controllers/utilities-upgrade.md#list-org-available-device-versions)
 * [List Org Available Ssr Versions](../../doc/controllers/utilities-upgrade.md#list-org-available-ssr-versions)
 * [List Org Device Upgrades](../../doc/controllers/utilities-upgrade.md#list-org-device-upgrades)
 * [List Org Mx Edge Upgrades](../../doc/controllers/utilities-upgrade.md#list-org-mx-edge-upgrades)
@@ -410,6 +411,80 @@ if err != nil {
   },
   "versions": {}
 }
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Org Available Device Versions
+
+Get List of Available Device Versions
+
+```go
+ListOrgAvailableDeviceVersions(
+    ctx context.Context,
+    orgId uuid.UUID,
+    mType *models.DeviceTypeEnum,
+    model *string) (
+    models.ApiResponse[[]models.DeviceVersionItem],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `model` | `*string` | Query, Optional | fetch version for device model, use/combine with `type` as needed (for switch and gateway devices) |
+
+## Response Type
+
+[`[]models.DeviceVersionItem`](../../doc/models/device-version-item.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+mType := models.DeviceTypeEnum("ap")
+
+
+
+apiResponse, err := utilitiesUpgrade.ListOrgAvailableDeviceVersions(ctx, orgId, &mType, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "model": "AP41",
+    "tag": "stable",
+    "version": "v0.1.543"
+  },
+  {
+    "model": "AP21",
+    "version": "v0.1.545"
+  }
+]
 ```
 
 ## Errors

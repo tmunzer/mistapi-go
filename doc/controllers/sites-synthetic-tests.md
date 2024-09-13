@@ -26,8 +26,11 @@ Get Device Synthetic Test
 GetSiteDeviceSyntheticTest(
     ctx context.Context,
     siteId uuid.UUID,
-    deviceId uuid.UUID) (
-    http.Response,
+    deviceId uuid.UUID,
+    mType *models.SynthetictestTypeEnum,
+    tenant *string,
+    node *models.HaClusterNodeEnum) (
+    models.ApiResponse[models.SynthetictestInfo],
     error)
 ```
 
@@ -37,10 +40,13 @@ GetSiteDeviceSyntheticTest(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
+| `mType` | [`*models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Query, Optional | synthetic test type |
+| `tenant` | `*string` | Query, Optional | tenant network in which `lan_connectivity` test is run |
+| `node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Query, Optional | tenant network in which `lan_connectivity` test is run |
 
 ## Response Type
 
-``
+[`models.SynthetictestInfo`](../../doc/models/synthetictest-info.md)
 
 ## Example Usage
 
@@ -51,11 +57,32 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-resp, err := sitesSyntheticTests.GetSiteDeviceSyntheticTest(ctx, siteId, deviceId)
+
+
+
+
+
+
+apiResponse, err := sitesSyntheticTests.GetSiteDeviceSyntheticTest(ctx, siteId, deviceId, nil, nil, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
-    fmt.Println(resp.StatusCode)
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "device_type": "gateway",
+  "mac": "5c5b35584a6f",
+  "port_id": "ge-0/0/1.100",
+  "start_time": 1675718807,
+  "status": "inprogress",
+  "type": "speedtest"
 }
 ```
 
@@ -146,7 +173,8 @@ SearchSiteSyntheticTest(
     vlanId *string,
     by *string,
     reason *string,
-    mType *models.SynthetictestTypeEnum) (
+    mType *models.SynthetictestTypeEnum,
+    tenant *string) (
     models.ApiResponse[models.ReponseSynthetictestSearch],
     error)
 ```
@@ -162,6 +190,7 @@ SearchSiteSyntheticTest(
 | `by` | `*string` | Query, Optional | entity who triggers the test |
 | `reason` | `*string` | Query, Optional | test failure reason |
 | `mType` | [`*models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Query, Optional | synthetic test type |
+| `tenant` | `*string` | Query, Optional | tenant network in which lan_connectivity test was run |
 
 ## Response Type
 
@@ -186,7 +215,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, nil, nil, nil, nil, nil, nil)
+
+
+apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, nil, nil, nil, nil, nil, nil, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -345,9 +376,24 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+body := models.SynthetictestDevice{
+    Host:              models.ToPointer("www.example.com"),
+    Hostname:          models.ToPointer("google.com\""),
+    Ip:                models.ToPointer("192.168.3.5"),
+    Password:          models.ToPointer("test123"),
+    PingCount:         models.ToPointer(10),
+    PingDetails:       models.ToPointer(false),
+    PingSize:          models.ToPointer(56),
+    PortId:            models.ToPointer("wan0"),
+    Protocol:          models.ToPointer(models.SynthetictestDeviceProtocolEnum("ping+traceroute")),
+    Tenant:            models.ToPointer("lan_network1"),
+    TracerouteUdpPort: models.ToPointer(33434),
+    Type:              models.SynthetictestTypeEnum("radius"),
+    Url:               models.ToPointer("https://www.example.com"),
+    Username:          models.ToPointer("user"),
+}
 
-
-resp, err := sitesSyntheticTests.TriggerSiteDeviceSyntheticTest(ctx, siteId, deviceId, nil)
+resp, err := sitesSyntheticTests.TriggerSiteDeviceSyntheticTest(ctx, siteId, deviceId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

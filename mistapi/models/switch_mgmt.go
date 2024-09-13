@@ -17,6 +17,7 @@ type SwitchMgmt struct {
     ConfigRevertTimer    *int                                     `json:"config_revert_timer,omitempty"`
     // Enable to provide the FQDN with DHCP option 81
     DhcpOptionFqdn       *bool                                    `json:"dhcp_option_fqdn,omitempty"`
+    DisableOobDownAlarm  *bool                                    `json:"disable_oob_down_alarm,omitempty"`
     // Property key is the user name. For Local user authentication
     LocalAccounts        map[string]ConfigSwitchLocalAccountsUser `json:"local_accounts,omitempty"`
     MxedgeProxyHost      *string                                  `json:"mxedge_proxy_host,omitempty"`
@@ -61,6 +62,9 @@ func (s SwitchMgmt) toMap() map[string]any {
     if s.DhcpOptionFqdn != nil {
         structMap["dhcp_option_fqdn"] = s.DhcpOptionFqdn
     }
+    if s.DisableOobDownAlarm != nil {
+        structMap["disable_oob_down_alarm"] = s.DisableOobDownAlarm
+    }
     if s.LocalAccounts != nil {
         structMap["local_accounts"] = s.LocalAccounts
     }
@@ -96,7 +100,7 @@ func (s *SwitchMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_affinity_threshold", "cli_banner", "cli_idle_timeout", "config_revert_timer", "dhcp_option_fqdn", "local_accounts", "mxedge_proxy_host", "mxedge_proxy_port", "protect_re", "radius", "root_password", "tacacs", "use_mxedge_proxy")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_affinity_threshold", "cli_banner", "cli_idle_timeout", "config_revert_timer", "dhcp_option_fqdn", "disable_oob_down_alarm", "local_accounts", "mxedge_proxy_host", "mxedge_proxy_port", "protect_re", "radius", "root_password", "tacacs", "use_mxedge_proxy")
     if err != nil {
     	return err
     }
@@ -107,6 +111,7 @@ func (s *SwitchMgmt) UnmarshalJSON(input []byte) error {
     s.CliIdleTimeout = temp.CliIdleTimeout
     s.ConfigRevertTimer = temp.ConfigRevertTimer
     s.DhcpOptionFqdn = temp.DhcpOptionFqdn
+    s.DisableOobDownAlarm = temp.DisableOobDownAlarm
     s.LocalAccounts = temp.LocalAccounts
     s.MxedgeProxyHost = temp.MxedgeProxyHost
     s.MxedgeProxyPort = temp.MxedgeProxyPort
@@ -125,6 +130,7 @@ type tempSwitchMgmt  struct {
     CliIdleTimeout      *int                                     `json:"cli_idle_timeout,omitempty"`
     ConfigRevertTimer   *int                                     `json:"config_revert_timer,omitempty"`
     DhcpOptionFqdn      *bool                                    `json:"dhcp_option_fqdn,omitempty"`
+    DisableOobDownAlarm *bool                                    `json:"disable_oob_down_alarm,omitempty"`
     LocalAccounts       map[string]ConfigSwitchLocalAccountsUser `json:"local_accounts,omitempty"`
     MxedgeProxyHost     *string                                  `json:"mxedge_proxy_host,omitempty"`
     MxedgeProxyPort     *int                                     `json:"mxedge_proxy_port,omitempty"`

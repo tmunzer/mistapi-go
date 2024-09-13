@@ -41,7 +41,7 @@
           },
           "enable_mac_auth": false,
           "forwarding": "site_mxedge",
-          "mac_auth_protocol": "eap-md5"
+          "mac_auth_preferred": false
         },
         "key1": {
           "disabled": false,
@@ -55,7 +55,7 @@
           },
           "enable_mac_auth": false,
           "forwarding": "site_mxedge",
-          "mac_auth_protocol": "eap-md5"
+          "mac_auth_preferred": false
         }
       }
     }

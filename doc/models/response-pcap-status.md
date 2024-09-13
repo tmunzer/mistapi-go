@@ -14,6 +14,7 @@
 | `ClientMac` | `models.Optional[string]` | Optional | - |
 | `Duration` | `*int` | Optional | - |
 | `Failed` | `[]string` | Optional | List of APs where configuration attempt failed |
+| `Format` | [`*models.CaptureMxedgeFormatEnum`](../../doc/models/capture-mxedge-format-enum.md) | Optional | pcap format. enum:<br><br>* `stream`: to Mist cloud<br>* `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)<br>**Default**: `"stream"` |
 | `Gateways` | `[]string` | Optional | Information on gateways to capture packets on if a gateway capture type is specified |
 | `Id` | `uuid.UUID` | Required | unique id for the capture |
 | `IncludesMcast` | `*bool` | Optional | - |
@@ -29,6 +30,8 @@
 | `Switches` | `[]string` | Optional | Information on switches to capture packets on if a switch capture type is specified. irb port interface is automatically added to capture as needed to ensure all desired packets are captured. |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression provided by the user (common) |
 | `Type` | [`models.PcapTypeEnum`](../../doc/models/pcap-type-enum.md) | Required | enum: `client`, `gateway`, `new_assoc`, `radiotap`, `radiotap,wired`, `wired`, `wireless` |
+| `TzspHost` | `*string` | Optional | Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets. |
+| `TzspPort` | `*int` | Optional | if `format`==`tzsp`. Port on remote host for receiving the captured packets<br>**Constraints**: `>= 1`, `<= 65535` |
 | `WiredTcpdumpExpression` | `*string` | Optional | when `type`==`wired`, wired_tcpdump_expression provided by the user |
 | `WirelessTcpdumpExpression` | `*string` | Optional | when `type`==`‘wireless’`, wireless_tcpdump_expression provided by the user |
 
@@ -38,6 +41,7 @@
 {
   "client_mac": "60a10a773412",
   "duration": 300,
+  "format": "stream",
   "id": "00001e5c-0000-0000-0000-000000000000",
   "max_num_packets": 1000,
   "max_pkt_len": 128,
@@ -51,6 +55,7 @@
   },
   "started_time": 1435080709,
   "type": "client",
+  "tzsp_host": "192.168.1.2",
   "ap_mac": "ap_mac4",
   "aps": [
     "aps3",

@@ -79,7 +79,7 @@ func TestOrgsAlarmTemplatesTestListOrgSuppressedAlarms(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"results":[{"duration":48,"site_id":"581328b6-e382-f54e-c9dc-9c998d183a34"}]}`
+    expected := `{"results":[{"duration":48,"expire_time":1678233080,"scheduled_time":1678232900,"scope":"site","site_id":"581328b6-e382-f54e-c9dc-9c998d183a34"},{"duration":48,"expire_time":1678233080,"scheduled_time":1678232900,"scope":"org","site_id":"581328b6-e382-f54e-c9dc-9c998d183a35"}]}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

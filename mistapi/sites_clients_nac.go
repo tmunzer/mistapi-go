@@ -216,7 +216,7 @@ func (s *SitesClientsNAC) CountSiteNacClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteNacClientEvents takes context, siteId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, vlanSource, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, usermacLabels, ap, randomMac, mac, lookupTimeTaken, timestamp, start, end, duration, limit as parameters and
+// SearchSiteNacClientEvents takes context, siteId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, ap, randomMac, mac, timestamp, usermacLabel, text, nasIp, sort, ingressVlan, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseEventsNacClientSearch data and
 // an error if there was an issue with the request or response.
 // Search NAC Client Events
@@ -230,7 +230,6 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
     dryrunNacruleMatched *bool,
     authType *string,
     vlan *int,
-    vlanSource *string,
     nasVendor *string,
     bssid *string,
     idpId *uuid.UUID,
@@ -239,12 +238,15 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
     respAttrs []string,
     ssid *string,
     username *string,
-    usermacLabels []string,
     ap *string,
     randomMac *bool,
     mac *string,
-    lookupTimeTaken *float64,
     timestamp *float64,
+    usermacLabel *string,
+    text *string,
+    nasIp *string,
+    sort *string,
+    ingressVlan *string,
     start *int,
     end *int,
     duration *string,
@@ -295,9 +297,6 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
     if vlan != nil {
         req.QueryParam("vlan", *vlan)
     }
-    if vlanSource != nil {
-        req.QueryParam("vlan_source", *vlanSource)
-    }
     if nasVendor != nil {
         req.QueryParam("nas_vendor", *nasVendor)
     }
@@ -322,9 +321,6 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
     if username != nil {
         req.QueryParam("username", *username)
     }
-    if usermacLabels != nil {
-        req.QueryParam("usermac_labels", usermacLabels)
-    }
     if ap != nil {
         req.QueryParam("ap", *ap)
     }
@@ -334,11 +330,23 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
     if mac != nil {
         req.QueryParam("mac", *mac)
     }
-    if lookupTimeTaken != nil {
-        req.QueryParam("lookup_time_taken", *lookupTimeTaken)
-    }
     if timestamp != nil {
         req.QueryParam("timestamp", *timestamp)
+    }
+    if usermacLabel != nil {
+        req.QueryParam("usermac_label", *usermacLabel)
+    }
+    if text != nil {
+        req.QueryParam("text", *text)
+    }
+    if nasIp != nil {
+        req.QueryParam("nas_ip", *nasIp)
+    }
+    if sort != nil {
+        req.QueryParam("sort", *sort)
+    }
+    if ingressVlan != nil {
+        req.QueryParam("ingress_vlan", *ingressVlan)
     }
     if start != nil {
         req.QueryParam("start", *start)
@@ -363,7 +371,7 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteNacClients takes context, siteId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, ap, mac, mxedgeId, nacruleName, status, mType, mdmCompliance, mdmProvider, start, end, duration, limit, page as parameters and
+// SearchSiteNacClients takes context, siteId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, ap, mac, mxedgeId, nacruleName, status, mType, mdmCompliance, mdmProvider, sort, ingressVlan, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Site NAC Clients
@@ -387,6 +395,8 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
     mType *string,
     mdmCompliance *string,
     mdmProvider *string,
+    sort *string,
+    ingressVlan *string,
     start *int,
     end *int,
     duration *string,
@@ -467,6 +477,12 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
     }
     if mdmProvider != nil {
         req.QueryParam("mdm_provider", *mdmProvider)
+    }
+    if sort != nil {
+        req.QueryParam("sort", *sort)
+    }
+    if ingressVlan != nil {
+        req.QueryParam("ingress_vlan", *ingressVlan)
     }
     if start != nil {
         req.QueryParam("start", *start)

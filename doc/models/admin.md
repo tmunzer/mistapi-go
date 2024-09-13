@@ -20,6 +20,7 @@
 | `Name` | `*string` | Optional | for Org API Token Only |
 | `NoTracking` | `*bool` | Optional | when it doesn’t exist, it’s assumed true on EU (i.e. no tracking, the user has to opt-in); otherwise, the user would have to opt-out |
 | `OauthGoogle` | `*bool` | Optional | if admin account is not an Org API Token |
+| `PasswordModifiedTime` | `*float64` | Optional | password last modified time, in epoch |
 | `Phone` | `*string` | Optional | if admin account is not an Org API Token<br>phone number (numbers only, including country code) |
 | `Phone2` | `*string` | Optional | if admin account is not an Org API Token<br>secondary phone number (numbers only, including country code) |
 | `Privileges` | [`[]models.PrivilegeSelf`](../../doc/models/privilege-self.md) | Optional | list of privileges the admin has<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |

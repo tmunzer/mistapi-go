@@ -12,6 +12,9 @@ import (
 type StatsGateway struct {
     ApRedundancy         *ApRedundancy                  `json:"ap_redundancy,omitempty"`
     ArpTableStats        *ArpTableStats                 `json:"arp_table_stats,omitempty"`
+    // only present when `bgp_peers` in `fields` query parameter
+    // Each port object is same as `GET /api/v1/sites/:site_id/stats/bgp_peers/search` result object, except that org_id, site_id, mac, model are removed
+    BgpPeers             []OptionalStatsBgp             `json:"bgp_peers,omitempty"`
     CertExpiry           *int64                         `json:"cert_expiry,omitempty"`
     ClusterConfig        *StatsClusterConfig            `json:"cluster_config,omitempty"`
     ClusterStat          *StatsGatewayCluster           `json:"cluster_stat,omitempty"`
@@ -63,7 +66,9 @@ type StatsGateway struct {
     NodeName             *string                        `json:"node_name,omitempty"`
     // serial
     OrgId                *uuid.UUID                     `json:"org_id,omitempty"`
-    Ports                []StatsDevicePort              `json:"ports,omitempty"`
+    // only present when `ports` in `fields` query parameter
+    // Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
+    Ports                []OptionalStatsPort            `json:"ports,omitempty"`
     RouteSummaryStats    *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     // device name if configured
     RouterName           *string                        `json:"router_name,omitempty"`
@@ -77,10 +82,16 @@ type StatsGateway struct {
     Spu2Stat             []StatsGatewaySpuItem          `json:"spu2_stat,omitempty"`
     SpuStat              []StatsGatewaySpuItem          `json:"spu_stat,omitempty"`
     Status               *string                        `json:"status,omitempty"`
+    // only present when `tunnels` in `fields` query parameter
+    // Each port object is same as `GET /api/v1/sites/:site_id/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed
+    Tunnels              []OptionalStatWanTunnel        `json:"tunnels,omitempty"`
     // Device Type. enum: `gateway`
     Type                 string                         `json:"type"`
     Uptime               *float64                       `json:"uptime,omitempty"`
     Version              *string                        `json:"version,omitempty"`
+    // only present when `vpn_peers` in `fields` query parameter
+    // Each port object is same as `GET /api/v1/sites/:site_id/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed
+    VpnPeers             []OptionalStatVpnPeer          `json:"vpn_peers,omitempty"`
     AdditionalProperties map[string]any                 `json:"_"`
 }
 
@@ -101,6 +112,9 @@ func (s StatsGateway) toMap() map[string]any {
     }
     if s.ArpTableStats != nil {
         structMap["arp_table_stats"] = s.ArpTableStats.toMap()
+    }
+    if s.BgpPeers != nil {
+        structMap["bgp_peers"] = s.BgpPeers
     }
     if s.CertExpiry != nil {
         structMap["cert_expiry"] = s.CertExpiry
@@ -266,12 +280,18 @@ func (s StatsGateway) toMap() map[string]any {
     if s.Status != nil {
         structMap["status"] = s.Status
     }
+    if s.Tunnels != nil {
+        structMap["tunnels"] = s.Tunnels
+    }
     structMap["type"] = s.Type
     if s.Uptime != nil {
         structMap["uptime"] = s.Uptime
     }
     if s.Version != nil {
         structMap["version"] = s.Version
+    }
+    if s.VpnPeers != nil {
+        structMap["vpn_peers"] = s.VpnPeers
     }
     return structMap
 }
@@ -288,7 +308,7 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_redundancy", "arp_table_stats", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "ports", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "type", "uptime", "version")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_redundancy", "arp_table_stats", "bgp_peers", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "ports", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "tunnels", "type", "uptime", "version", "vpn_peers")
     if err != nil {
     	return err
     }
@@ -296,6 +316,7 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
     s.AdditionalProperties = additionalProperties
     s.ApRedundancy = temp.ApRedundancy
     s.ArpTableStats = temp.ArpTableStats
+    s.BgpPeers = temp.BgpPeers
     s.CertExpiry = temp.CertExpiry
     s.ClusterConfig = temp.ClusterConfig
     s.ClusterStat = temp.ClusterStat
@@ -342,9 +363,11 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
     s.Spu2Stat = temp.Spu2Stat
     s.SpuStat = temp.SpuStat
     s.Status = temp.Status
+    s.Tunnels = temp.Tunnels
     s.Type = *temp.Type
     s.Uptime = temp.Uptime
     s.Version = temp.Version
+    s.VpnPeers = temp.VpnPeers
     return nil
 }
 
@@ -352,6 +375,7 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
 type tempStatsGateway  struct {
     ApRedundancy      *ApRedundancy                  `json:"ap_redundancy,omitempty"`
     ArpTableStats     *ArpTableStats                 `json:"arp_table_stats,omitempty"`
+    BgpPeers          []OptionalStatsBgp             `json:"bgp_peers,omitempty"`
     CertExpiry        *int64                         `json:"cert_expiry,omitempty"`
     ClusterConfig     *StatsClusterConfig            `json:"cluster_config,omitempty"`
     ClusterStat       *StatsGatewayCluster           `json:"cluster_stat,omitempty"`
@@ -387,7 +411,7 @@ type tempStatsGateway  struct {
     Name              *string                        `json:"name,omitempty"`
     NodeName          *string                        `json:"node_name,omitempty"`
     OrgId             *uuid.UUID                     `json:"org_id,omitempty"`
-    Ports             []StatsDevicePort              `json:"ports,omitempty"`
+    Ports             []OptionalStatsPort            `json:"ports,omitempty"`
     RouteSummaryStats *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     RouterName        *string                        `json:"router_name,omitempty"`
     Serial            *string                        `json:"serial,omitempty"`
@@ -398,9 +422,11 @@ type tempStatsGateway  struct {
     Spu2Stat          []StatsGatewaySpuItem          `json:"spu2_stat,omitempty"`
     SpuStat           []StatsGatewaySpuItem          `json:"spu_stat,omitempty"`
     Status            *string                        `json:"status,omitempty"`
+    Tunnels           []OptionalStatWanTunnel        `json:"tunnels,omitempty"`
     Type              *string                        `json:"type"`
     Uptime            *float64                       `json:"uptime,omitempty"`
     Version           *string                        `json:"version,omitempty"`
+    VpnPeers          []OptionalStatVpnPeer          `json:"vpn_peers,omitempty"`
 }
 
 func (s *tempStatsGateway) validate() error {

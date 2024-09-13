@@ -17,7 +17,7 @@ type NacTag struct {
     // if `type`==`gbp_tag`
     GbpTag               *int                    `json:"gbp_tag,omitempty"`
     Id                   *uuid.UUID              `json:"id,omitempty"`
-    // if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `client_mac`, `idp_role`, `mdm_status`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
+    // if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `client_mac`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
     Match                *NacTagMatchEnum        `json:"match,omitempty"`
     // This field is applicable only when `type`==`match`
     // * `false`: means it is sufficient to match any of the values (i.e., match-any behavior)

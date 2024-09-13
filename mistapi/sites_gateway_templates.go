@@ -22,15 +22,15 @@ func NewSitesGatewayTemplates(baseController baseController) *SitesGatewayTempla
     return &sitesGatewayTemplates
 }
 
-// GetSiteGatewayTemplateDerived takes context, siteId, resolve as parameters and
-// returns an models.ApiResponse with models.GatewayTemplate data and
+// ListSiteGatewayTemplateDerived takes context, siteId, resolve as parameters and
+// returns an models.ApiResponse with []models.GatewayTemplate data and
 // an error if there was an issue with the request or response.
 // Get derived Gateway Templates for Site
-func (s *SitesGatewayTemplates) GetSiteGatewayTemplateDerived(
+func (s *SitesGatewayTemplates) ListSiteGatewayTemplateDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
-    models.ApiResponse[models.GatewayTemplate],
+    models.ApiResponse[[]models.GatewayTemplate],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -59,12 +59,12 @@ func (s *SitesGatewayTemplates) GetSiteGatewayTemplateDerived(
         req.QueryParam("resolve", *resolve)
     }
     
-    var result models.GatewayTemplate
+    var result []models.GatewayTemplate
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.GatewayTemplate](decoder)
+    result, err = utilities.DecodeResults[[]models.GatewayTemplate](decoder)
     return models.NewApiResponse(result, resp), err
 }

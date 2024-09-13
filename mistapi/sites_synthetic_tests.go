@@ -72,15 +72,18 @@ func (s *SitesSyntheticTests) StartSiteSwitchRadiusSyntheticTest(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteDeviceSyntheticTest takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with  data and
+// GetSiteDeviceSyntheticTest takes context, siteId, deviceId, mType, tenant, node as parameters and
+// returns an models.ApiResponse with models.SynthetictestInfo data and
 // an error if there was an issue with the request or response.
 // Get Device Synthetic Test
 func (s *SitesSyntheticTests) GetSiteDeviceSyntheticTest(
     ctx context.Context,
     siteId uuid.UUID,
-    deviceId uuid.UUID) (
-    *http.Response,
+    deviceId uuid.UUID,
+    mType *models.SynthetictestTypeEnum,
+    tenant *string,
+    node *models.HaClusterNodeEnum) (
+    models.ApiResponse[models.SynthetictestInfo],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -105,12 +108,24 @@ func (s *SitesSyntheticTests) GetSiteDeviceSyntheticTest(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    
-    context, err := req.Call()
-    if err != nil {
-        return context.Response, err
+    if mType != nil {
+        req.QueryParam("type", *mType)
     }
-    return context.Response, err
+    if tenant != nil {
+        req.QueryParam("tenant", *tenant)
+    }
+    if node != nil {
+        req.QueryParam("node", *node)
+    }
+    
+    var result models.SynthetictestInfo
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.SynthetictestInfo](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // TriggerSiteDeviceSyntheticTest takes context, siteId, deviceId, body as parameters and
@@ -250,7 +265,7 @@ func (s *SitesSyntheticTests) TriggerSiteSyntheticTest(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteSyntheticTest takes context, siteId, mac, portId, vlanId, by, reason, mType as parameters and
+// SearchSiteSyntheticTest takes context, siteId, mac, portId, vlanId, by, reason, mType, tenant as parameters and
 // returns an models.ApiResponse with models.ReponseSynthetictestSearch data and
 // an error if there was an issue with the request or response.
 // Search Site Synthetic Testing
@@ -262,7 +277,8 @@ func (s *SitesSyntheticTests) SearchSiteSyntheticTest(
     vlanId *string,
     by *string,
     reason *string,
-    mType *models.SynthetictestTypeEnum) (
+    mType *models.SynthetictestTypeEnum,
+    tenant *string) (
     models.ApiResponse[models.ReponseSynthetictestSearch],
     error) {
     req := s.prepareRequest(
@@ -305,6 +321,9 @@ func (s *SitesSyntheticTests) SearchSiteSyntheticTest(
     }
     if mType != nil {
         req.QueryParam("type", *mType)
+    }
+    if tenant != nil {
+        req.QueryParam("tenant", *tenant)
     }
     
     var result models.ReponseSynthetictestSearch

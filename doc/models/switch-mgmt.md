@@ -16,6 +16,7 @@ Switch settings
 | `CliIdleTimeout` | `*int` | Optional | Sets timeout for switches<br>**Constraints**: `>= 1`, `<= 60` |
 | `ConfigRevertTimer` | `*int` | Optional | the rollback timer for commit confirmed<br>**Default**: `10`<br>**Constraints**: `>= 1`, `<= 30` |
 | `DhcpOptionFqdn` | `*bool` | Optional | Enable to provide the FQDN with DHCP option 81<br>**Default**: `false` |
+| `DisableOobDownAlarm` | `*bool` | Optional | - |
 | `LocalAccounts` | [`map[string]models.ConfigSwitchLocalAccountsUser`](../../doc/models/config-switch-local-accounts-user.md) | Optional | Property key is the user name. For Local user authentication |
 | `MxedgeProxyHost` | `*string` | Optional | - |
 | `MxedgeProxyPort` | `*int` | Optional | **Default**: `2222`<br>**Constraints**: `>= 1`, `<= 65535` |

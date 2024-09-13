@@ -51,16 +51,19 @@ if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
     {
       "host": "host0",
       "port": 114,
+      "require_message_authenticator": false,
       "secret": "secret4"
     },
     {
       "host": "host0",
       "port": 114,
+      "require_message_authenticator": false,
       "secret": "secret4"
     },
     {
       "host": "host0",
       "port": 114,
+      "require_message_authenticator": false,
       "secret": "secret4"
     }
   ],

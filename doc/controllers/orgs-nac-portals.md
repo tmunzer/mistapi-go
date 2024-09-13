@@ -57,6 +57,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.NacPortal{
     AccessType:             models.ToPointer(models.NacPortalAccessTypeEnum("wireless")),
     CertExpireTime:         models.ToPointer(365),
+    EapType:                models.ToPointer(models.NacPortalEapTypeEnum("wpa2")),
     Name:                   models.ToPointer("get-wifi"),
     Ssid:                   models.ToPointer("Corp"),
 }
@@ -649,6 +650,7 @@ nacportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.NacPortal{
     AccessType:             models.ToPointer(models.NacPortalAccessTypeEnum("wireless")),
     CertExpireTime:         models.ToPointer(365),
+    EapType:                models.ToPointer(models.NacPortalEapTypeEnum("wpa2")),
     Name:                   models.ToPointer("get-wifi"),
     Ssid:                   models.ToPointer("Corp"),
 }

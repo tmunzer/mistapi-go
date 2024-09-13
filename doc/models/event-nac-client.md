@@ -32,7 +32,7 @@
 | `Ssid` | `*string` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
 | `Type` | `*string` | Optional | event type, e.g. NAC_CLIENT_PERMIT |
-| `UsermacLabels` | `[]string` | Optional | labels derived from usermac entry |
+| `UsermacLabel` | `[]string` | Optional | labels derived from usermac entry |
 | `Username` | `*string` | Optional | Username presented by the client |
 | `Vlan` | `*string` | Optional | Vlan ID |
 | `VlanSource` | `*string` | Optional | Vlan source, e.g. "nactag", "usermac" |
@@ -67,7 +67,7 @@
   "ssid": "mist_nac",
   "timestamp": 1691512031.35819,
   "type": "NAC_CLIENT_PERMIT",
-  "usermac_labels": [
+  "usermac_label": [
     "bldg5",
     "printer"
   ],

@@ -56,14 +56,14 @@ func TestOrgsWxRulesTestCreateOrgWxRule(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsWxRulesTestGetOrgWxRulesDerived tests the behavior of the OrgsWxRules
-func TestOrgsWxRulesTestGetOrgWxRulesDerived(t *testing.T) {
+// TestOrgsWxRulesTestListOrgWxRulesDerived tests the behavior of the OrgsWxRules
+func TestOrgsWxRulesTestListOrgWxRulesDerived(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
-    apiResponse, err := orgsWxRules.GetOrgWxRulesDerived(ctx, orgId)
+    apiResponse, err := orgsWxRules.ListOrgWxRulesDerived(ctx, orgId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

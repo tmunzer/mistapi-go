@@ -28,7 +28,7 @@ Site Settings
 | `CriticalUrlMonitoring` | [`*models.SiteSettingCriticalUrlMonitoring`](../../doc/models/site-setting-critical-url-monitoring.md) | Optional | you can define some URLs that's critical to site operaitons the latency will be captured and considered for site health |
 | `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | by default, device_updown_thresold, if set, will apply to all devices types if different values for specific device type is desired, use the following<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
-| `DisabledSystemDefinedPortUsages` | `[]string` | Optional | if some system-default port usages are not desired - namely, ap / iot / uplink |
+| `DisabledSystemDefinedPortUsages` | [`[]models.SystemDefinedPortUsagesEnum`](../../doc/models/system-defined-port-usages-enum.md) | Optional | if some system-default port usages are not desired - namely, ap / iot / uplink |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `DnsSuffix` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `Engagement` | [`*models.SiteEngagement`](../../doc/models/site-engagement.md) | Optional | **Note**: if hours does not exist, it’s treated as everyday of the week, 00:00-23:59. Currently we don’t allow multiple ranges for the same day<br><br>**Note**: default values for `dwell_tags`: passerby (1,300) bounce (301, 14400) engaged (14401, 28800) stationed (28801, 42000)<br><br>**Note**: default values for `dwell_tag_names`: passerby = “Passerby”, bounce = “Visitor”, engaged = “Associates”, stationed = “Assets” |
@@ -43,7 +43,6 @@ Site Settings
 | `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
-| `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | enable mist_nac to use radsec |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Mxedge` | [`*models.SiteSettingMxedge`](../../doc/models/site-setting-mxedge.md) | Optional | site mist edges form a cluster of radsecproxy servers |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | - |
@@ -226,7 +225,7 @@ Site Settings
             },
             "enable_mac_auth": false,
             "forwarding": "site_mxedge",
-            "mac_auth_protocol": "eap-md5"
+            "mac_auth_preferred": false
           },
           "key1": {
             "disabled": false,
@@ -240,7 +239,7 @@ Site Settings
             },
             "enable_mac_auth": false,
             "forwarding": "site_mxedge",
-            "mac_auth_protocol": "eap-md5"
+            "mac_auth_preferred": false
           }
         }
       },
@@ -260,7 +259,7 @@ Site Settings
             },
             "enable_mac_auth": false,
             "forwarding": "site_mxedge",
-            "mac_auth_protocol": "eap-md5"
+            "mac_auth_preferred": false
           },
           "key1": {
             "disabled": false,
@@ -274,7 +273,7 @@ Site Settings
             },
             "enable_mac_auth": false,
             "forwarding": "site_mxedge",
-            "mac_auth_protocol": "eap-md5"
+            "mac_auth_preferred": false
           }
         }
       },
@@ -294,7 +293,7 @@ Site Settings
             },
             "enable_mac_auth": false,
             "forwarding": "site_mxedge",
-            "mac_auth_protocol": "eap-md5"
+            "mac_auth_preferred": false
           },
           "key1": {
             "disabled": false,
@@ -308,7 +307,7 @@ Site Settings
             },
             "enable_mac_auth": false,
             "forwarding": "site_mxedge",
-            "mac_auth_protocol": "eap-md5"
+            "mac_auth_preferred": false
           }
         }
       }

@@ -9,13 +9,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Type` | [`*models.SwitchStpConfigTypeEnum`](../../doc/models/switch-stp-config-type-enum.md) | Optional | enum: `rstp`, `vstp`<br>**Default**: `"rstp"` |
+| `VstpEnabled` | `*bool` | Optional | ignored for switches participating in EVPN<br>**Default**: `false` |
 
 ## Example (as JSON)
 
 ```json
 {
-  "type": "rstp"
+  "vstp_enabled": false
 }
 ```
 

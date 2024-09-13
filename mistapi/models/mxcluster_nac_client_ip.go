@@ -7,16 +7,18 @@ import (
 
 // MxclusterNacClientIp represents a MxclusterNacClientIp struct.
 type MxclusterNacClientIp struct {
+    // whether to require Message-Authenticator in requests
+    RequireMessageAuthenticator *bool                         `json:"require_message_authenticator,omitempty"`
     // if different from above
-    Secret               *string                       `json:"secret,omitempty"`
+    Secret                      *string                       `json:"secret,omitempty"`
     // present only for 3rd party clients
-    SiteId               *uuid.UUID                    `json:"site_id,omitempty"`
+    SiteId                      *uuid.UUID                    `json:"site_id,omitempty"`
     // convention to be followed is : "<vendor>-<variant>"
     // <variant> could be an os/platform/model/company
     // for ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, airnonet) etc.
     // enum: `aruba`, `cisco-aironet`, `cisco-ios`, `cisco-meraki`, `generic`, `juniper`, `paloalto`
-    Vendor               *MxclusterNacClientVendorEnum `json:"vendor,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    Vendor                      *MxclusterNacClientVendorEnum `json:"vendor,omitempty"`
+    AdditionalProperties        map[string]any                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterNacClientIp.
@@ -31,6 +33,9 @@ func (m MxclusterNacClientIp) MarshalJSON() (
 func (m MxclusterNacClientIp) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, m.AdditionalProperties)
+    if m.RequireMessageAuthenticator != nil {
+        structMap["require_message_authenticator"] = m.RequireMessageAuthenticator
+    }
     if m.Secret != nil {
         structMap["secret"] = m.Secret
     }
@@ -51,12 +56,13 @@ func (m *MxclusterNacClientIp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "secret", "site_id", "vendor")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "require_message_authenticator", "secret", "site_id", "vendor")
     if err != nil {
     	return err
     }
     
     m.AdditionalProperties = additionalProperties
+    m.RequireMessageAuthenticator = temp.RequireMessageAuthenticator
     m.Secret = temp.Secret
     m.SiteId = temp.SiteId
     m.Vendor = temp.Vendor
@@ -65,7 +71,8 @@ func (m *MxclusterNacClientIp) UnmarshalJSON(input []byte) error {
 
 // tempMxclusterNacClientIp is a temporary struct used for validating the fields of MxclusterNacClientIp.
 type tempMxclusterNacClientIp  struct {
-    Secret *string                       `json:"secret,omitempty"`
-    SiteId *uuid.UUID                    `json:"site_id,omitempty"`
-    Vendor *MxclusterNacClientVendorEnum `json:"vendor,omitempty"`
+    RequireMessageAuthenticator *bool                         `json:"require_message_authenticator,omitempty"`
+    Secret                      *string                       `json:"secret,omitempty"`
+    SiteId                      *uuid.UUID                    `json:"site_id,omitempty"`
+    Vendor                      *MxclusterNacClientVendorEnum `json:"vendor,omitempty"`
 }

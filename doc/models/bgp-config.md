@@ -28,8 +28,9 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 | `Neighbors` | [`map[string]models.BgpConfigNeighbors`](../../doc/models/bgp-config-neighbors.md) | Optional | if per-neighbor as is desired. Property key is the neighbor address |
 | `Networks` | `[]string` | Optional | if `type`!=`external`or `via`==`wan`networks where we expect BGP neighbor to connect to/from |
 | `NoReadvertiseToOverlay` | `*bool` | Optional | by default, we'll re-advertise all learned BGP routers toward overlay<br>**Default**: `false` |
+| `TunnelName` | `*string` | Optional | if `type`==`tunnel` |
 | `Type` | [`*models.BgpConfigTypeEnum`](../../doc/models/bgp-config-type-enum.md) | Optional | enum: `external`, `internal`<br>**Constraints**: *Minimum Length*: `1` |
-| `Via` | [`*models.BgpConfigViaEnum`](../../doc/models/bgp-config-via-enum.md) | Optional | network name. enum: `lan`, `vpn`, `wan`<br>**Default**: `"lan"` |
+| `Via` | [`*models.BgpConfigViaEnum`](../../doc/models/bgp-config-via-enum.md) | Optional | network name. enum: `lan`, `tunnel`, `vpn`, `wan`<br>**Default**: `"lan"` |
 | `VpnName` | `*string` | Optional | - |
 | `WanName` | `*string` | Optional | if `via`==`wan` |
 

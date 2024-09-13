@@ -12,6 +12,8 @@ type NacPortal struct {
     BgImageUrl             *string                  `json:"bg_image_url,omitempty"`
     // in days
     CertExpireTime         *int                     `json:"cert_expire_time,omitempty"`
+    // enum: `wpa2`, `wpa3`
+    EapType                *NacPortalEapTypeEnum    `json:"eap_type,omitempty"`
     // model, version, fingering, events (connecting, disconnect, roaming), which ap
     EnableTelemetry        *bool                    `json:"enable_telemetry,omitempty"`
     // in days
@@ -50,6 +52,9 @@ func (n NacPortal) toMap() map[string]any {
     }
     if n.CertExpireTime != nil {
         structMap["cert_expire_time"] = n.CertExpireTime
+    }
+    if n.EapType != nil {
+        structMap["eap_type"] = n.EapType
     }
     if n.EnableTelemetry != nil {
         structMap["enable_telemetry"] = n.EnableTelemetry
@@ -95,7 +100,7 @@ func (n *NacPortal) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "access_type", "bg_image_url", "cert_expire_time", "enable_telemetry", "expiry_notification_time", "guest_portal_config", "name", "notify_expiry", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "access_type", "bg_image_url", "cert_expire_time", "eap_type", "enable_telemetry", "expiry_notification_time", "guest_portal_config", "name", "notify_expiry", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type")
     if err != nil {
     	return err
     }
@@ -104,6 +109,7 @@ func (n *NacPortal) UnmarshalJSON(input []byte) error {
     n.AccessType = temp.AccessType
     n.BgImageUrl = temp.BgImageUrl
     n.CertExpireTime = temp.CertExpireTime
+    n.EapType = temp.EapType
     n.EnableTelemetry = temp.EnableTelemetry
     n.ExpiryNotificationTime = temp.ExpiryNotificationTime
     n.GuestPortalConfig = temp.GuestPortalConfig
@@ -123,6 +129,7 @@ type tempNacPortal  struct {
     AccessType             *NacPortalAccessTypeEnum `json:"access_type,omitempty"`
     BgImageUrl             *string                  `json:"bg_image_url,omitempty"`
     CertExpireTime         *int                     `json:"cert_expire_time,omitempty"`
+    EapType                *NacPortalEapTypeEnum    `json:"eap_type,omitempty"`
     EnableTelemetry        *bool                    `json:"enable_telemetry,omitempty"`
     ExpiryNotificationTime *int                     `json:"expiry_notification_time,omitempty"`
     GuestPortalConfig      *WlanPortal              `json:"guest_portal_config,omitempty"`

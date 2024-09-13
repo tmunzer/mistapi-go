@@ -27,7 +27,7 @@
       "for_overlay": false,
       "local_as": 18,
       "mac": "mac0",
-      "neighbor": "neighbor6"
+      "model": "model4"
     }
   ],
   "start": 193.42,

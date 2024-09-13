@@ -23,6 +23,7 @@ Note:
 |  --- | --- | --- | --- |
 | `Mac` | `[]string` | Optional | A list of client macs to be released |
 | `Network` | `*string` | Optional | The network for the leases IPs to be released |
+| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `PortId` | `string` | Required | The nework interface on which to release the current DHCP release<br>**Constraints**: *Minimum Length*: `1` |
 
 ## Example (as JSON)
@@ -34,7 +35,8 @@ Note:
     "90ec77aabbdd"
   ],
   "network": "guest",
-  "port_id": "ge-0/0/1.10"
+  "port_id": "ge-0/0/1.10",
+  "node": "node0"
 }
 ```
 

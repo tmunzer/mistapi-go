@@ -21,6 +21,7 @@
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PathPreference` | `*string` | Optional | by default, we derive all paths available and use them<br>optionally, you can customize by using `path_preference` |
+| `Secintel` | [`*models.OrgServicePoliciesSecintel`](../../doc/models/org-service-policies-secintel.md) | Optional | For SRX Only |
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `SslProxy` | [`*models.OrgServicePolicySslProxy`](../../doc/models/org-service-policy-ssl-proxy.md) | Optional | for SRX-only |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |

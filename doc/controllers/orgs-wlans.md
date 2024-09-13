@@ -89,6 +89,7 @@ body := models.Wlan{
     LimitBcast:                         models.ToPointer(false),
     LimitProbeResponse:                 models.ToPointer(false),
     MaxIdletime:                        models.ToPointer(1800),
+    MaxNumClients:                      models.ToPointer(0),
     NoStaticDns:                        models.ToPointer(false),
     NoStaticIp:                         models.ToPointer(false),
     OrgId:                              models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),

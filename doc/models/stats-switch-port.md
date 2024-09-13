@@ -16,6 +16,7 @@ Switch port statistics
 | `ForSite` | `*bool` | Optional | - |
 | `FullDuplex` | `*bool` | Optional | indicates full or half duplex |
 | `Jitter` | `*float64` | Optional | Last sampled jitter of the interface |
+| `LastFlapped` | `*float64` | Optional | indicates when the port was last flapped |
 | `Latency` | `*float64` | Optional | Last sampled latency of the interface |
 | `Loss` | `*float64` | Optional | Last sampled loss of the interface |
 | `LteIccid` | `models.Optional[string]` | Optional | LTE ICCID value, Check for null/empty |

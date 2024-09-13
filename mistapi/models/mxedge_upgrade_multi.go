@@ -21,7 +21,7 @@ type MxedgeUpgradeMulti struct {
     // * `big_bang`: upgrade all at once
     // * `serial`: one at a time. enum: `big_bang`, `serial`'
     Strategy             *MxedgeUpgradeStrategyEnum         `json:"strategy,omitempty"`
-    // version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nignored if distro upgrade
+    // version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nIgnored if distro upgrade, `tunterm`, `radsecproxy`, `mxagent`, `mxocproxy`, `mxdas` or `mxnacedge`
     Versions             *MxedgeUpgradeVersion              `json:"versions,omitempty"`
     AdditionalProperties map[string]any                     `json:"_"`
 }

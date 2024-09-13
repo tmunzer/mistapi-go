@@ -11,7 +11,9 @@ import (
 type CaptureMxedge struct {
     // duration of the capture, in seconds
     Duration             *int                            `json:"duration,omitempty"`
-    // pcap format. enum: `stream`
+    // pcap format. enum:
+    // * `stream`: to Mist cloud
+    // * `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
     Format               *CaptureMxedgeFormatEnum        `json:"format,omitempty"`
     // max_len of each packet to capture
     MaxPktLen            *int                            `json:"max_pkt_len,omitempty"`
@@ -20,6 +22,10 @@ type CaptureMxedge struct {
     NumPackets           *int                            `json:"num_packets,omitempty"`
     // enum: `mxedge`
     Type                 string                          `json:"type"`
+    // Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets.
+    TzspHost             *string                         `json:"tzsp_host,omitempty"`
+    // if `format`==`tzsp`. Port on remote host for receiving the captured packets
+    TzspPort             *int                            `json:"tzsp_port,omitempty"`
     AdditionalProperties map[string]any                  `json:"_"`
 }
 
@@ -51,6 +57,12 @@ func (c CaptureMxedge) toMap() map[string]any {
         structMap["num_packets"] = c.NumPackets
     }
     structMap["type"] = c.Type
+    if c.TzspHost != nil {
+        structMap["tzsp_host"] = c.TzspHost
+    }
+    if c.TzspPort != nil {
+        structMap["tzsp_port"] = c.TzspPort
+    }
     return structMap
 }
 
@@ -66,7 +78,7 @@ func (c *CaptureMxedge) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "duration", "format", "max_pkt_len", "mxedges", "num_packets", "type")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "duration", "format", "max_pkt_len", "mxedges", "num_packets", "type", "tzsp_host", "tzsp_port")
     if err != nil {
     	return err
     }
@@ -78,6 +90,8 @@ func (c *CaptureMxedge) UnmarshalJSON(input []byte) error {
     c.Mxedges = temp.Mxedges
     c.NumPackets = temp.NumPackets
     c.Type = *temp.Type
+    c.TzspHost = temp.TzspHost
+    c.TzspPort = temp.TzspPort
     return nil
 }
 
@@ -89,6 +103,8 @@ type tempCaptureMxedge  struct {
     Mxedges    map[string]CaptureMxedgeMxedges `json:"mxedges,omitempty"`
     NumPackets *int                            `json:"num_packets,omitempty"`
     Type       *string                         `json:"type"`
+    TzspHost   *string                         `json:"tzsp_host,omitempty"`
+    TzspPort   *int                            `json:"tzsp_port,omitempty"`
 }
 
 func (c *tempCaptureMxedge) validate() error {

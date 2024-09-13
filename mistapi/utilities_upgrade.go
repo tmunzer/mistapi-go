@@ -158,6 +158,57 @@ func (u *UtilitiesUpgrade) GetOrgDeviceUpgrade(
     return models.NewApiResponse(result, resp), err
 }
 
+// ListOrgAvailableDeviceVersions takes context, orgId, mType, model as parameters and
+// returns an models.ApiResponse with []models.DeviceVersionItem data and
+// an error if there was an issue with the request or response.
+// Get List of Available Device Versions
+func (u *UtilitiesUpgrade) ListOrgAvailableDeviceVersions(
+    ctx context.Context,
+    orgId uuid.UUID,
+    mType *models.DeviceTypeEnum,
+    model *string) (
+    models.ApiResponse[[]models.DeviceVersionItem],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "GET",
+      fmt.Sprintf("/api/v1/orgs/%v/devices/versions", orgId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    if mType != nil {
+        req.QueryParam("type", *mType)
+    }
+    if model != nil {
+        req.QueryParam("model", *model)
+    }
+    
+    var result []models.DeviceVersionItem
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[[]models.DeviceVersionItem](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
 // UpgradeOrgJsiDevice takes context, orgId, deviceMac, body as parameters and
 // returns an models.ApiResponse with  data and
 // an error if there was an issue with the request or response.

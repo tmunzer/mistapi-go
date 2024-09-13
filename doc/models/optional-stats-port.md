@@ -1,9 +1,11 @@
 
-# Stats Device Port
+# Optional Stats Port
+
+Port statistics
 
 ## Structure
 
-`StatsDevicePort`
+`OptionalStatsPort`
 
 ## Fields
 
@@ -64,7 +66,7 @@
   "port_id": "ge-0/0/0",
   "port_mac": "5c4527a96580",
   "rx_bytes": 4563443626,
-  "rx_pkts": 218,
+  "rx_pkts": 38,
   "speed": 1000,
   "tx_bytes": 11299516780,
   "tx_pkts": 492176,
@@ -75,7 +77,7 @@
   "active": false,
   "auth_state": "authenticated",
   "for_site": false,
-  "jitter": 205.32
+  "jitter": 62.72
 }
 ```
 

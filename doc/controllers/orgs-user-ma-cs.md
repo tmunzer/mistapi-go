@@ -314,7 +314,7 @@ SearchOrgUserMacs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mac` | `*string` | Query, Optional | mac address |
+| `mac` | `*string` | Query, Optional | partial/full MAC addres |
 | `labels` | `[]string` | Query, Optional | optional, array of strings of labels |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |

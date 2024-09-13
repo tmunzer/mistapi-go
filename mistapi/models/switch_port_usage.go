@@ -39,6 +39,8 @@ type SwitchPortUsage struct {
     InterSwitchLink                          *bool                                       `json:"inter_switch_link,omitempty"`
     // Only if `mode`!=`dynamic` and `enable_mac_auth`==`true`
     MacAuthOnly                              *bool                                       `json:"mac_auth_only,omitempty"`
+    // Only if `mode`!=`dynamic` + `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x.
+    MacAuthPreferred                         *bool                                       `json:"mac_auth_preferred,omitempty"`
     // Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
     MacAuthProtocol                          *SwitchPortUsageMacAuthProtocolEnum         `json:"mac_auth_protocol,omitempty"`
     // Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
@@ -59,12 +61,14 @@ type SwitchPortUsage struct {
     PortNetwork                              *string                                     `json:"port_network,omitempty"`
     // Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range
     ReauthInterval                           *int                                        `json:"reauth_interval,omitempty"`
-    // Only if `mode`!=`dynamic` and `port_auth`==`dot1x` when radius server reject / fails
-    RejectedNetwork                          Optional[string]                            `json:"rejected_network"`
     // Only if `mode`==`dynamic` Control when the DPC port should be changed to the default port usage. enum: `link_down`, `none` (let the DPC port keep at the current port usage)
     ResetDefaultWhen                         *SwitchPortUsageDynamicResetDefaultWhenEnum `json:"reset_default_when,omitempty"`
     // Only if `mode`==`dynamic`
     Rules                                    []SwitchPortUsageDynamicRule                `json:"rules,omitempty"`
+    // Only if `mode`!=`dynamic` and `port_auth`==`dot1x` sets server fail fallback vlan
+    ServerFailNetwork                        Optional[string]                            `json:"server_fail_network"`
+    // Only if `mode`!=`dynamic` and `port_auth`==`dot1x` when radius server reject / fails
+    ServerRejectNetwork                      Optional[string]                            `json:"server_reject_network"`
     // Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed
     Speed                                    *string                                     `json:"speed,omitempty"`
     // Switch storm control
@@ -140,6 +144,9 @@ func (s SwitchPortUsage) toMap() map[string]any {
     if s.MacAuthOnly != nil {
         structMap["mac_auth_only"] = s.MacAuthOnly
     }
+    if s.MacAuthPreferred != nil {
+        structMap["mac_auth_preferred"] = s.MacAuthPreferred
+    }
     if s.MacAuthProtocol != nil {
         structMap["mac_auth_protocol"] = s.MacAuthProtocol
     }
@@ -174,18 +181,25 @@ func (s SwitchPortUsage) toMap() map[string]any {
     if s.ReauthInterval != nil {
         structMap["reauth_interval"] = s.ReauthInterval
     }
-    if s.RejectedNetwork.IsValueSet() {
-        if s.RejectedNetwork.Value() != nil {
-            structMap["rejected_network"] = s.RejectedNetwork.Value()
-        } else {
-            structMap["rejected_network"] = nil
-        }
-    }
     if s.ResetDefaultWhen != nil {
         structMap["reset_default_when"] = s.ResetDefaultWhen
     }
     if s.Rules != nil {
         structMap["rules"] = s.Rules
+    }
+    if s.ServerFailNetwork.IsValueSet() {
+        if s.ServerFailNetwork.Value() != nil {
+            structMap["server_fail_network"] = s.ServerFailNetwork.Value()
+        } else {
+            structMap["server_fail_network"] = nil
+        }
+    }
+    if s.ServerRejectNetwork.IsValueSet() {
+        if s.ServerRejectNetwork.Value() != nil {
+            structMap["server_reject_network"] = s.ServerRejectNetwork.Value()
+        } else {
+            structMap["server_reject_network"] = nil
+        }
     }
     if s.Speed != nil {
         structMap["speed"] = s.Speed
@@ -216,7 +230,7 @@ func (s *SwitchPortUsage) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkonwn_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "rejected_network", "reset_default_when", "rules", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "voip_network")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkonwn_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "reset_default_when", "rules", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "voip_network")
     if err != nil {
     	return err
     }
@@ -237,6 +251,7 @@ func (s *SwitchPortUsage) UnmarshalJSON(input []byte) error {
     s.GuestNetwork = temp.GuestNetwork
     s.InterSwitchLink = temp.InterSwitchLink
     s.MacAuthOnly = temp.MacAuthOnly
+    s.MacAuthPreferred = temp.MacAuthPreferred
     s.MacAuthProtocol = temp.MacAuthProtocol
     s.MacLimit = temp.MacLimit
     s.Mode = temp.Mode
@@ -247,9 +262,10 @@ func (s *SwitchPortUsage) UnmarshalJSON(input []byte) error {
     s.PortAuth = temp.PortAuth
     s.PortNetwork = temp.PortNetwork
     s.ReauthInterval = temp.ReauthInterval
-    s.RejectedNetwork = temp.RejectedNetwork
     s.ResetDefaultWhen = temp.ResetDefaultWhen
     s.Rules = temp.Rules
+    s.ServerFailNetwork = temp.ServerFailNetwork
+    s.ServerRejectNetwork = temp.ServerRejectNetwork
     s.Speed = temp.Speed
     s.StormControl = temp.StormControl
     s.StpEdge = temp.StpEdge
@@ -276,6 +292,7 @@ type tempSwitchPortUsage  struct {
     GuestNetwork                             Optional[string]                            `json:"guest_network"`
     InterSwitchLink                          *bool                                       `json:"inter_switch_link,omitempty"`
     MacAuthOnly                              *bool                                       `json:"mac_auth_only,omitempty"`
+    MacAuthPreferred                         *bool                                       `json:"mac_auth_preferred,omitempty"`
     MacAuthProtocol                          *SwitchPortUsageMacAuthProtocolEnum         `json:"mac_auth_protocol,omitempty"`
     MacLimit                                 *int                                        `json:"mac_limit,omitempty"`
     Mode                                     *SwitchPortUsageModeEnum                    `json:"mode,omitempty"`
@@ -286,9 +303,10 @@ type tempSwitchPortUsage  struct {
     PortAuth                                 Optional[SwitchPortUsageDot1xEnum]          `json:"port_auth"`
     PortNetwork                              *string                                     `json:"port_network,omitempty"`
     ReauthInterval                           *int                                        `json:"reauth_interval,omitempty"`
-    RejectedNetwork                          Optional[string]                            `json:"rejected_network"`
     ResetDefaultWhen                         *SwitchPortUsageDynamicResetDefaultWhenEnum `json:"reset_default_when,omitempty"`
     Rules                                    []SwitchPortUsageDynamicRule                `json:"rules,omitempty"`
+    ServerFailNetwork                        Optional[string]                            `json:"server_fail_network"`
+    ServerRejectNetwork                      Optional[string]                            `json:"server_reject_network"`
     Speed                                    *string                                     `json:"speed,omitempty"`
     StormControl                             *SwitchPortUsageStormControl                `json:"storm_control,omitempty"`
     StpEdge                                  *bool                                       `json:"stp_edge,omitempty"`

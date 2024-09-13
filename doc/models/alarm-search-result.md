@@ -9,6 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `Component` | `*string` | Optional | Component of the alarm |
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
 | `Next` | `*string` | Optional | - |
@@ -59,7 +60,8 @@
     }
   ],
   "start": 1710949286,
-  "total": 232
+  "total": 232,
+  "component": "component4"
 }
 ```
 

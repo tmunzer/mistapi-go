@@ -308,7 +308,7 @@ ControlOrgMxEdgeServices(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
-| `name` | [`models.MxedgeServiceNameEnum`](../../doc/models/mxedge-service-name-enum.md) | Template, Required | - |
+| `name` | [`models.MxedgeServiceNameEnum`](../../doc/models/mxedge-service-name-enum.md) | Template, Required | enum: `mxagent`, `mxdas`, `mxnacedge`, `mxocproxy`, `radsecproxy`, `tunterm` |
 | `action` | [`models.MxedgeServiceActionEnum`](../../doc/models/mxedge-service-action-enum.md) | Template, Required | restart or start or stop |
 
 ## Response Type
@@ -324,7 +324,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-name := models.MxedgeServiceNameEnum("mxagent")
+name := models.MxedgeServiceNameEnum("mxnacedge")
 
 action := models.MxedgeServiceActionEnum("restart")
 
@@ -1237,6 +1237,7 @@ SearchOrgMistEdgeEvents(
     mxclusterId *string,
     mType *string,
     service *string,
+    component *string,
     start *int,
     end *int,
     duration *string,
@@ -1254,6 +1255,7 @@ SearchOrgMistEdgeEvents(
 | `mxclusterId` | `*string` | Query, Optional | mist edge cluster id |
 | `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions]($e/Constants%20Events/listDeviceEventsDefinitions) |
 | `service` | `*string` | Query, Optional | service running on mist edge(mxagent, tunterm etc) |
+| `component` | `*string` | Query, Optional | component like PS1, PS2 |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -1282,11 +1284,13 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+
+
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := orgsMxEdges.SearchOrgMistEdgeEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, &duration, &limit)
+apiResponse, err := orgsMxEdges.SearchOrgMistEdgeEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {

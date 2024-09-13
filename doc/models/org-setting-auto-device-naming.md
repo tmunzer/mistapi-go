@@ -19,19 +19,19 @@
   "enable": false,
   "rules": [
     {
+      "create_new_site_if_needed": false,
       "expression": "expression4",
+      "gatewaytemplate_id": "gatewaytemplate_id0",
+      "match_country": "match_country8",
       "match_device_type": "other",
-      "match_model": "match_model0",
-      "model": "model4",
-      "prefix": "prefix6",
       "src": "name"
     },
     {
+      "create_new_site_if_needed": false,
       "expression": "expression4",
+      "gatewaytemplate_id": "gatewaytemplate_id0",
+      "match_country": "match_country8",
       "match_device_type": "other",
-      "match_model": "match_model0",
-      "model": "model4",
-      "prefix": "prefix6",
       "src": "name"
     }
   ]

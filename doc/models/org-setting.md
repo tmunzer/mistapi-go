@@ -43,6 +43,7 @@ Org Settings
 | `PasswordPolicy` | [`*models.OrgSettingPasswordPolicy`](../../doc/models/org-setting-password-policy.md) | Optional | password policy |
 | `Pcap` | [`*models.OrgSettingPcap`](../../doc/models/org-setting-pcap.md) | Optional | - |
 | `PcapBucketVerified` | `*bool` | Optional | - |
+| `PortChannelization` | [`*models.PortChannelization`](../../doc/models/port-channelization.md) | Optional | - |
 | `Security` | [`*models.OrgSettingSecurity`](../../doc/models/org-setting-security.md) | Optional | - |
 | `SimpleAlert` | [`*models.SimpleAlert`](../../doc/models/simple-alert.md) | Optional | Set of heuristic rules will be enabled when marvis subscription is not available.<br>It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures |
 | `SwitchMgmt` | [`*models.OrgSettingSwitchMgmt`](../../doc/models/org-setting-switch-mgmt.md) | Optional | - |
@@ -76,19 +77,19 @@ Org Settings
     "enable": false,
     "rules": [
       {
+        "create_new_site_if_needed": false,
         "expression": "expression4",
+        "gatewaytemplate_id": "gatewaytemplate_id0",
+        "match_country": "match_country8",
         "match_device_type": "other",
-        "match_model": "match_model0",
-        "model": "model4",
-        "prefix": "prefix6",
         "src": "name"
       },
       {
+        "create_new_site_if_needed": false,
         "expression": "expression4",
+        "gatewaytemplate_id": "gatewaytemplate_id0",
+        "match_country": "match_country8",
         "match_device_type": "other",
-        "match_model": "match_model0",
-        "model": "model4",
-        "prefix": "prefix6",
         "src": "name"
       }
     ]
@@ -97,11 +98,11 @@ Org Settings
     "enable": false,
     "rules": [
       {
+        "create_new_site_if_needed": false,
         "expression": "expression4",
+        "gatewaytemplate_id": "gatewaytemplate_id0",
+        "match_country": "match_country8",
         "match_device_type": "other",
-        "match_model": "match_model0",
-        "model": "model4",
-        "prefix": "prefix6",
         "src": "name"
       }
     ]
@@ -110,11 +111,11 @@ Org Settings
     "enable": false,
     "rules": [
       {
+        "create_new_site_if_needed": false,
         "expression": "expression4",
+        "gatewaytemplate_id": "gatewaytemplate_id0",
+        "match_country": "match_country8",
         "match_device_type": "other",
-        "match_model": "match_model0",
-        "model": "model4",
-        "prefix": "prefix6",
         "src": "name"
       }
     ]

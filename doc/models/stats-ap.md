@@ -50,6 +50,7 @@ AP statistics
 | `Name` | `models.Optional[string]` | Optional | - |
 | `Notes` | `models.Optional[string]` | Optional | - |
 | `NumClients` | `models.Optional[int]` | Optional | how many wireless clients are currently connected |
+| `NumWlans` | `*int` | Optional | how many WLANs are applied to the device |
 | `OrgId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `PortStat` | [`models.Optional[map[string]models.StatsApPortStat]`](../../doc/models/stats-ap-port-stat.md) | Optional | Property key is the port name (e.g. `eth0`) |
 | `PowerBudget` | `models.Optional[int]` | Optional | in mW, surplus if positive or deficit if negative |

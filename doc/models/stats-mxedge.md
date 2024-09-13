@@ -14,7 +14,7 @@
 | `FipsEnabled` | `*bool` | Optional | alue indicating fips configuration on the device |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | - |
-| `IpStat` | [`*models.StatsMxedgeIpStat`](../../doc/models/stats-mxedge-ip-stat.md) | Optional | OOBM IP stats |
+| `IpStat` | [`*models.StatsMxedgeIpStat`](../../doc/models/stats-mxedge-ip-stat.md) | Optional | IP stats |
 | `LagStat` | [`map[string]models.StatsMxedgeLagStat`](../../doc/models/stats-mxedge-lag-stat.md) | Optional | Stat for LAG (Link Aggregation Group). Property key is the LAG name |
 | `LastSeen` | `*float64` | Optional | - |
 | `Mac` | `*string` | Optional | - |
@@ -26,6 +26,7 @@
 | `Name` | `*string` | Optional | The name of the tunnel |
 | `NumTunnels` | `*int` | Optional | - |
 | `OobIpConfig` | [`*models.MxedgeOobIpConfig`](../../doc/models/mxedge-oob-ip-config.md) | Optional | ip configuration of the Mist Edge out-of_band management interface |
+| `OobIpStat` | [`*models.StatsMxedgeOobIpStat`](../../doc/models/stats-mxedge-oob-ip-stat.md) | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PortStat` | [`map[string]models.StatsMxedgePortStat`](../../doc/models/stats-mxedge-port-stat.md) | Optional | - |
 | `SensorStat` | `*interface{}` | Optional | - |

@@ -51,6 +51,7 @@ type OrgSetting struct {
     PasswordPolicy              *OrgSettingPasswordPolicy              `json:"password_policy,omitempty"`
     Pcap                        *OrgSettingPcap                        `json:"pcap,omitempty"`
     PcapBucketVerified          *bool                                  `json:"pcap_bucket_verified,omitempty"`
+    PortChannelization          *PortChannelization                    `json:"port_channelization,omitempty"`
     Security                    *OrgSettingSecurity                    `json:"security,omitempty"`
     // Set of heuristic rules will be enabled when marvis subscription is not available.
     // It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
@@ -190,6 +191,9 @@ func (o OrgSetting) toMap() map[string]any {
     if o.PcapBucketVerified != nil {
         structMap["pcap_bucket_verified"] = o.PcapBucketVerified
     }
+    if o.PortChannelization != nil {
+        structMap["port_channelization"] = o.PortChannelization.toMap()
+    }
     if o.Security != nil {
         structMap["security"] = o.Security.toMap()
     }
@@ -238,7 +242,7 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "juniper", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "juniper", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "port_channelization", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
     if err != nil {
     	return err
     }
@@ -276,6 +280,7 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
     o.PasswordPolicy = temp.PasswordPolicy
     o.Pcap = temp.Pcap
     o.PcapBucketVerified = temp.PcapBucketVerified
+    o.PortChannelization = temp.PortChannelization
     o.Security = temp.Security
     o.SimpleAlert = temp.SimpleAlert
     o.SwitchMgmt = temp.SwitchMgmt
@@ -324,6 +329,7 @@ type tempOrgSetting  struct {
     PasswordPolicy              *OrgSettingPasswordPolicy              `json:"password_policy,omitempty"`
     Pcap                        *OrgSettingPcap                        `json:"pcap,omitempty"`
     PcapBucketVerified          *bool                                  `json:"pcap_bucket_verified,omitempty"`
+    PortChannelization          *PortChannelization                    `json:"port_channelization,omitempty"`
     Security                    *OrgSettingSecurity                    `json:"security,omitempty"`
     SimpleAlert                 *SimpleAlert                           `json:"simple_alert,omitempty"`
     SwitchMgmt                  *OrgSettingSwitchMgmt                  `json:"switch_mgmt,omitempty"`

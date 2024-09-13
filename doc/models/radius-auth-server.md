@@ -17,6 +17,7 @@ Authentication Server
 | `KeywrapKek` | `*string` | Optional | - |
 | `KeywrapMack` | `*string` | Optional | - |
 | `Port` | `*int` | Optional | Auth port of RADIUS server<br>**Default**: `1812`<br>**Constraints**: `>= 1`, `<= 65535` |
+| `RequireMessageAuthenticator` | `*bool` | Optional | whether to require Message-Authenticator in requests<br>**Default**: `false` |
 | `Secret` | `string` | Required | secret of RADIUS server |
 
 ## Example (as JSON)
@@ -27,6 +28,7 @@ Authentication Server
   "keywrap_kek": "1122334455",
   "keywrap_mack": "1122334455",
   "port": 1812,
+  "require_message_authenticator": false,
   "secret": "testing123",
   "keywrap_enabled": false,
   "keywrap_format": "ascii"

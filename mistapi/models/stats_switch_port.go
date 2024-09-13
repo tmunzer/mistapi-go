@@ -19,6 +19,8 @@ type StatsSwitchPort struct {
     FullDuplex           *bool                         `json:"full_duplex,omitempty"`
     // Last sampled jitter of the interface
     Jitter               *float64                      `json:"jitter,omitempty"`
+    // indicates when the port was last flapped
+    LastFlapped          *float64                      `json:"last_flapped,omitempty"`
     // Last sampled latency of the interface
     Latency              *float64                      `json:"latency,omitempty"`
     // Last sampled loss of the interface
@@ -126,6 +128,9 @@ func (s StatsSwitchPort) toMap() map[string]any {
     }
     if s.Jitter != nil {
         structMap["jitter"] = s.Jitter
+    }
+    if s.LastFlapped != nil {
+        structMap["last_flapped"] = s.LastFlapped
     }
     if s.Latency != nil {
         structMap["latency"] = s.Latency
@@ -257,7 +262,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "active", "auth_state", "for_site", "full_duplex", "jitter", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "active", "auth_state", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial")
     if err != nil {
     	return err
     }
@@ -268,6 +273,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
     s.ForSite = temp.ForSite
     s.FullDuplex = temp.FullDuplex
     s.Jitter = temp.Jitter
+    s.LastFlapped = temp.LastFlapped
     s.Latency = temp.Latency
     s.Loss = temp.Loss
     s.LteIccid = temp.LteIccid
@@ -319,6 +325,7 @@ type tempStatsSwitchPort  struct {
     ForSite            *bool                         `json:"for_site,omitempty"`
     FullDuplex         *bool                         `json:"full_duplex,omitempty"`
     Jitter             *float64                      `json:"jitter,omitempty"`
+    LastFlapped        *float64                      `json:"last_flapped,omitempty"`
     Latency            *float64                      `json:"latency,omitempty"`
     Loss               *float64                      `json:"loss,omitempty"`
     LteIccid           Optional[string]              `json:"lte_iccid"`

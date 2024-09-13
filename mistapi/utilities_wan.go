@@ -53,7 +53,7 @@ func (u *UtilitiesWAN) ClearSiteSsrArpCache(
         ),
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "port_id must be specified with vlan or ip\nBoth vlan and ip cannot be specified"},
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
@@ -273,6 +273,58 @@ func (u *UtilitiesWAN) TestSiteSsrDnsResolution(
     return models.NewApiResponse(result, resp), err
 }
 
+// RunSiteSrxTopCommand takes context, siteId, deviceId as parameters and
+// returns an models.ApiResponse with models.WebsocketSessionWithUrl data and
+// an error if there was an issue with the request or response.
+// Run top command on switches and SRX. The output will be available through websocket. 
+// As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// #### Subscribe to Device Command outputs
+// `WS /api-ws/v1/stream`
+// ```json
+// {
+// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+// }
+// ```
+func (u *UtilitiesWAN) RunSiteSrxTopCommand(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    models.ApiResponse[models.WebsocketSessionWithUrl],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/run_top", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    
+    var result models.WebsocketSessionWithUrl
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSessionWithUrl](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
 // ServicePingFromSsr takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
@@ -307,6 +359,272 @@ func (u *UtilitiesWAN) ServicePingFromSsr(
       ctx,
       "POST",
       fmt.Sprintf("/api/v1/sites/%v/devices/%v/service_ping", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// GetSiteSsrOspfDatabase takes context, siteId, deviceId, body as parameters and
+// returns an models.ApiResponse with models.WebsocketSession data and
+// an error if there was an issue with the request or response.
+// Get OSPF Database from the Device. The output will be available through websocket. 
+// As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// #### Subscribe to Device Command outputs
+// `WS /api-ws/v1/stream`
+// ```json
+// {
+// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+// }
+// ```
+// #### Example output from ws stream
+// ```
+// ===== ==================== ========== ======= ======== ================ =================== =================
+// Vrf   Neighbor Router ID   Priority   State   Uptime   Dead Timer Due   Interface Address   Interface State
+// ===== ==================== ========== ======= ======== ================ =================== =================
+// 1.0.0.3                     1   Full       852               38   172.16.3.2          Backup
+// 1.0.0.4                     1   Full       811               33   172.16.3.2          DROther
+// 1.0.0.3                     1   Full       852               38   172.16.4.2          Backup
+// 1.0.0.4                     1   Full       811               34   172.16.4.2          DROther
+// ```
+func (u *UtilitiesWAN) GetSiteSsrOspfDatabase(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowOspfDatabase) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_ospf_database", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// GetSiteSsrOspfInterface takes context, siteId, deviceId, body as parameters and
+// returns an models.ApiResponse with models.WebsocketSession data and
+// an error if there was an issue with the request or response.
+// Get OSPF interfaces from the Device. The output will be available through websocket. 
+// As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// #### Subscribe to Device Command outputs
+// `WS /api-ws/v1/stream`
+// ```json
+// {
+// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+// }
+// ```
+// #### Example output from ws stream
+// ```
+// ===== ================== =================== ============== =============== =========== ========= ===========
+// Vrf   Device Interface   Network Interface   Interface Up   IP Address      OSPF Type   Area ID   Area Type
+// ===== ================== =================== ============== =============== =========== ========= ===========
+// net1               g1                          True   172.16.1.2/24   Broadcast   0.0.0.0   default
+// net3               g3                          True   172.16.3.2/24   Broadcast   0.0.0.0   default
+// net4               g4                          True   172.16.4.2/24   Broadcast   0.0.0.4   default
+// ```
+func (u *UtilitiesWAN) GetSiteSsrOspfInterface(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowOspfInterfaces) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_ospf_interfaces", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// GetSiteSsrOspfNeighbors takes context, siteId, deviceId, body as parameters and
+// returns an models.ApiResponse with models.WebsocketSession data and
+// an error if there was an issue with the request or response.
+// Get OSPF Neighbors from the Device. The output will be available through websocket. 
+// As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// #### Subscribe to Device Command outputs
+// `WS /api-ws/v1/stream`
+// ```json
+// {
+// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+// }
+// ```
+// #### Example output from ws stream
+// ```
+// ===== ==================== ========== ======= ======== ================ =================== =================
+// Vrf   Neighbor Router ID   Priority   State   Uptime   Dead Timer Due   Interface Address   Interface State
+// ===== ==================== ========== ======= ======== ================ =================== =================
+// 1.0.0.3                     1   Full       852               38   172.16.3.2          Backup
+// 1.0.0.4                     1   Full       811               33   172.16.3.2          DROther
+// 1.0.0.3                     1   Full       852               38   172.16.4.2          Backup
+// 1.0.0.4                     1   Full       811               34   172.16.4.2          DROther
+// ```
+func (u *UtilitiesWAN) GetSiteSsrOspfNeighbors(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowOspfNeighbors) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_ospf_neighbors", siteId, deviceId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// GetSiteSsrOspfSummary takes context, siteId, deviceId, body as parameters and
+// returns an models.ApiResponse with models.WebsocketSession data and
+// an error if there was an issue with the request or response.
+// Get OSPF summary from the Device. The output will be available through websocket. 
+// As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// #### Subscribe to Device Command outputs
+// `WS /api-ws/v1/stream`
+// ```json
+// {
+// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+// }
+// ```
+// #### Example output from ws stream
+// ```
+// ===== =========== ========== ============= ==================== ========= =========== =============
+// Vrf   Router ID   ABR Type   ASBR Router   External LSA Count   Area ID   Area Type   Area Border
+// Router
+// ===== =========== ========== ============= ==================== ========= =========== =============
+// 1.0.0.2     cisco            False                    0   0.0.0.0
+// 1.0.0.2     cisco            False                    0   0.0.0.4   default
+// ```
+func (u *UtilitiesWAN) GetSiteSsrOspfSummary(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowOspfSummary) (
+    models.ApiResponse[models.WebsocketSession],
+    error) {
+    req := u.prepareRequest(
+      ctx,
+      "POST",
+      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_ospf_summary", siteId, deviceId),
     )
     req.Authenticate(
         NewOrAuth(
