@@ -52,7 +52,7 @@ Site Settings
 | `NtpServers` | `[]string` | Optional | list of NTP servers |
 | `Occupancy` | [`*models.SiteOccupancyAnalytics`](../../doc/models/site-occupancy-analytics.md) | Optional | Occupancy Analytics settings |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `OspfAreas` | [`map[string]models.OspfAreas`](../../doc/models/ospf-areas.md) | Optional | OSPF Areas can be configured both in Site Level (Switch/Gateway Template) or Device (Switch/Gateway) Level |
+| `OspfAreas` | [`map[string]models.OspfArea`](../../doc/models/ospf-area.md) | Optional | Junos OSPF areas |
 | `PaloaltoNetworks` | [`*models.SiteSettingPaloaltoNetworks`](../../doc/models/site-setting-paloalto-networks.md) | Optional | - |
 | `PersistConfigOnDevice` | `*bool` | Optional | whether to store the config on AP<br>**Default**: `false` |
 | `PortMirroring` | [`map[string]models.SwitchPortMirroringProperty`](../../doc/models/switch-port-mirroring-property.md) | Optional | Property key is the port mirroring instance name<br>port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. |

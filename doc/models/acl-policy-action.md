@@ -9,15 +9,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | enum: `allow`, `deny`<br>**Default**: `"allow"` |
+| `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | enum: `allow`, `deny` |
 | `DstTag` | `string` | Required | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "action": "allow",
-  "dst_tag": "corp"
+  "dst_tag": "corp",
+  "action": "allow"
 }
 ```
 

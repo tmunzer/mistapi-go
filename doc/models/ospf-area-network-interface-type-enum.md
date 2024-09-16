@@ -1,11 +1,11 @@
 
-# Ospf Areas Network Interface Type Enum
+# Ospf Area Network Interface Type Enum
 
 interface type (nbma = non-broadcast multi-access). enum: `broadcast`, `nbma`, `p2mp`, `p2p`
 
 ## Enumeration
 
-`OspfAreasNetworkInterfaceTypeEnum`
+`OspfAreaNetworkInterfaceTypeEnum`
 
 ## Fields
 

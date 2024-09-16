@@ -1,11 +1,11 @@
 
-# Ospf Areas Network Auth Type Enum
+# Ospf Area Network Auth Type Enum
 
 auth type. enum: `md5`, `none`, `password`
 
 ## Enumeration
 
-`OspfAreasNetworkAuthTypeEnum`
+`OspfAreaNetworkAuthTypeEnum`
 
 ## Fields
 

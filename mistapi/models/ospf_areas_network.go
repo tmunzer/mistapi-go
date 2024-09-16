@@ -5,26 +5,27 @@ import (
 )
 
 // OspfAreasNetwork represents a OspfAreasNetwork struct.
+// Property key is the network name. Networks to participate in an OSPF area
 type OspfAreasNetwork struct {
-    // if `auth_type`==`md5`. Property key is the key number
-    AuthKeys               map[string]string                  `json:"auth_keys,omitempty"`
-    // if `auth_type`==`password`, the password, max length is 8
-    AuthPassword           *string                            `json:"auth_password,omitempty"`
+    // Required if `auth_type`==`md5`. Property key is the key number
+    AuthKeys               map[string]string                 `json:"auth_keys,omitempty"`
+    // Required if `auth_type`==`password`, the password, max length is 8
+    AuthPassword           *string                           `json:"auth_password,omitempty"`
     // auth type. enum: `md5`, `none`, `password`
-    AuthType               *OspfAreasNetworkAuthTypeEnum      `json:"auth_type,omitempty"`
-    BfdMinimumInterval     *int                               `json:"bfd_minimum_interval,omitempty"`
-    DeadInterval           *int                               `json:"dead_interval,omitempty"`
-    ExportPolicy           *string                            `json:"export_policy,omitempty"`
-    HelloInterval          *int                               `json:"hello_interval,omitempty"`
-    ImportPolicy           *string                            `json:"import_policy,omitempty"`
+    AuthType               *OspfAreaNetworkAuthTypeEnum      `json:"auth_type,omitempty"`
+    BfdMinimumInterval     *int                              `json:"bfd_minimum_interval,omitempty"`
+    DeadInterval           *int                              `json:"dead_interval,omitempty"`
+    ExportPolicy           *string                           `json:"export_policy,omitempty"`
+    HelloInterval          *int                              `json:"hello_interval,omitempty"`
+    ImportPolicy           *string                           `json:"import_policy,omitempty"`
     // interface type (nbma = non-broadcast multi-access). enum: `broadcast`, `nbma`, `p2mp`, `p2p`
-    InterfaceType          *OspfAreasNetworkInterfaceTypeEnum `json:"interface_type,omitempty"`
-    Metric                 Optional[int]                      `json:"metric"`
+    InterfaceType          *OspfAreaNetworkInterfaceTypeEnum `json:"interface_type,omitempty"`
+    Metric                 Optional[int]                     `json:"metric"`
     // by default, we'll re-advertise all learned OSPF routes toward overlay
-    NoReadvertiseToOverlay *bool                              `json:"no_readvertise_to_overlay,omitempty"`
+    NoReadvertiseToOverlay *bool                             `json:"no_readvertise_to_overlay,omitempty"`
     // whether to send OSPF-Hello
-    Passive                *bool                              `json:"passive,omitempty"`
-    AdditionalProperties   map[string]any                     `json:"_"`
+    Passive                *bool                             `json:"passive,omitempty"`
+    AdditionalProperties   map[string]any                    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OspfAreasNetwork.
@@ -113,16 +114,16 @@ func (o *OspfAreasNetwork) UnmarshalJSON(input []byte) error {
 
 // tempOspfAreasNetwork is a temporary struct used for validating the fields of OspfAreasNetwork.
 type tempOspfAreasNetwork  struct {
-    AuthKeys               map[string]string                  `json:"auth_keys,omitempty"`
-    AuthPassword           *string                            `json:"auth_password,omitempty"`
-    AuthType               *OspfAreasNetworkAuthTypeEnum      `json:"auth_type,omitempty"`
-    BfdMinimumInterval     *int                               `json:"bfd_minimum_interval,omitempty"`
-    DeadInterval           *int                               `json:"dead_interval,omitempty"`
-    ExportPolicy           *string                            `json:"export_policy,omitempty"`
-    HelloInterval          *int                               `json:"hello_interval,omitempty"`
-    ImportPolicy           *string                            `json:"import_policy,omitempty"`
-    InterfaceType          *OspfAreasNetworkInterfaceTypeEnum `json:"interface_type,omitempty"`
-    Metric                 Optional[int]                      `json:"metric"`
-    NoReadvertiseToOverlay *bool                              `json:"no_readvertise_to_overlay,omitempty"`
-    Passive                *bool                              `json:"passive,omitempty"`
+    AuthKeys               map[string]string                 `json:"auth_keys,omitempty"`
+    AuthPassword           *string                           `json:"auth_password,omitempty"`
+    AuthType               *OspfAreaNetworkAuthTypeEnum      `json:"auth_type,omitempty"`
+    BfdMinimumInterval     *int                              `json:"bfd_minimum_interval,omitempty"`
+    DeadInterval           *int                              `json:"dead_interval,omitempty"`
+    ExportPolicy           *string                           `json:"export_policy,omitempty"`
+    HelloInterval          *int                              `json:"hello_interval,omitempty"`
+    ImportPolicy           *string                           `json:"import_policy,omitempty"`
+    InterfaceType          *OspfAreaNetworkInterfaceTypeEnum `json:"interface_type,omitempty"`
+    Metric                 Optional[int]                     `json:"metric"`
+    NoReadvertiseToOverlay *bool                             `json:"no_readvertise_to_overlay,omitempty"`
+    Passive                *bool                             `json:"passive,omitempty"`
 }

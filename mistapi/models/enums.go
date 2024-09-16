@@ -2080,35 +2080,35 @@ const (
     OrgWiredClientsCountDistinctEnum_VLAN      OrgWiredClientsCountDistinctEnum = "vlan"
 )
 
-// OspfAreasNetworkAuthTypeEnum is a string enum.
+// OspfAreaNetworkAuthTypeEnum is a string enum.
 // auth type. enum: `md5`, `none`, `password`
-type OspfAreasNetworkAuthTypeEnum string
+type OspfAreaNetworkAuthTypeEnum string
 
 const (
-    OspfAreasNetworkAuthTypeEnum_MD5      OspfAreasNetworkAuthTypeEnum = "md5"
-    OspfAreasNetworkAuthTypeEnum_NONE     OspfAreasNetworkAuthTypeEnum = "none"
-    OspfAreasNetworkAuthTypeEnum_PASSWORD OspfAreasNetworkAuthTypeEnum = "password"
+    OspfAreaNetworkAuthTypeEnum_MD5      OspfAreaNetworkAuthTypeEnum = "md5"
+    OspfAreaNetworkAuthTypeEnum_NONE     OspfAreaNetworkAuthTypeEnum = "none"
+    OspfAreaNetworkAuthTypeEnum_PASSWORD OspfAreaNetworkAuthTypeEnum = "password"
 )
 
-// OspfAreasNetworkInterfaceTypeEnum is a string enum.
+// OspfAreaNetworkInterfaceTypeEnum is a string enum.
 // interface type (nbma = non-broadcast multi-access). enum: `broadcast`, `nbma`, `p2mp`, `p2p`
-type OspfAreasNetworkInterfaceTypeEnum string
+type OspfAreaNetworkInterfaceTypeEnum string
 
 const (
-    OspfAreasNetworkInterfaceTypeEnum_BROADCAST OspfAreasNetworkInterfaceTypeEnum = "broadcast"
-    OspfAreasNetworkInterfaceTypeEnum_NBMA      OspfAreasNetworkInterfaceTypeEnum = "nbma"
-    OspfAreasNetworkInterfaceTypeEnum_P2MP      OspfAreasNetworkInterfaceTypeEnum = "p2mp"
-    OspfAreasNetworkInterfaceTypeEnum_P2P       OspfAreasNetworkInterfaceTypeEnum = "p2p"
+    OspfAreaNetworkInterfaceTypeEnum_BROADCAST OspfAreaNetworkInterfaceTypeEnum = "broadcast"
+    OspfAreaNetworkInterfaceTypeEnum_NBMA      OspfAreaNetworkInterfaceTypeEnum = "nbma"
+    OspfAreaNetworkInterfaceTypeEnum_P2MP      OspfAreaNetworkInterfaceTypeEnum = "p2mp"
+    OspfAreaNetworkInterfaceTypeEnum_P2P       OspfAreaNetworkInterfaceTypeEnum = "p2p"
 )
 
-// OspfAreasTypeEnum is a string enum.
+// OspfAreaTypeEnum is a string enum.
 // OSPF type. enum: `default`, `nssa`, `stub`
-type OspfAreasTypeEnum string
+type OspfAreaTypeEnum string
 
 const (
-    OspfAreasTypeEnum_ENUMDEFAULT OspfAreasTypeEnum = "default"
-    OspfAreasTypeEnum_NSSA        OspfAreasTypeEnum = "nssa"
-    OspfAreasTypeEnum_STUB        OspfAreasTypeEnum = "stub"
+    OspfAreaTypeEnum_ENUMDEFAULT OspfAreaTypeEnum = "default"
+    OspfAreaTypeEnum_NSSA        OspfAreaTypeEnum = "nssa"
+    OspfAreaTypeEnum_STUB        OspfAreaTypeEnum = "stub"
 )
 
 // OtherDeviceUpdateOperationEnum is a string enum.

@@ -59,8 +59,8 @@ type DeviceSwitch struct {
     // - If there are 2 routing engines, re1 mgmt IP has to be set separately (if desired): key parameter = `re1`
     OobIpConfig           *SwitchOobIpConfig                     `json:"oob_ip_config,omitempty"`
     OrgId                 *uuid.UUID                             `json:"org_id,omitempty"`
-    // Junos OSPF config
-    OspfConfig            *OspfConfig                            `json:"ospf_config,omitempty"`
+    // Junos OSPF areas
+    OspfAreas             map[string]OspfArea                    `json:"ospf_areas,omitempty"`
     // Property key is the network name
     OtherIpConfigs        map[string]JunosOtherIpConfig          `json:"other_ip_configs,omitempty"`
     // Property key is the port name or range (e.g. "ge-0/0/0-10")
@@ -216,8 +216,8 @@ func (d DeviceSwitch) toMap() map[string]any {
     if d.OrgId != nil {
         structMap["org_id"] = d.OrgId
     }
-    if d.OspfConfig != nil {
-        structMap["ospf_config"] = d.OspfConfig.toMap()
+    if d.OspfAreas != nil {
+        structMap["ospf_areas"] = d.OspfAreas
     }
     if d.OtherIpConfigs != nil {
         structMap["other_ip_configs"] = d.OtherIpConfigs
@@ -298,7 +298,7 @@ func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "ip_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_config", "other_ip_configs", "port_config", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "ip_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "other_ip_configs", "port_config", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y")
     if err != nil {
     	return err
     }
@@ -334,7 +334,7 @@ func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
     d.NtpServers = temp.NtpServers
     d.OobIpConfig = temp.OobIpConfig
     d.OrgId = temp.OrgId
-    d.OspfConfig = temp.OspfConfig
+    d.OspfAreas = temp.OspfAreas
     d.OtherIpConfigs = temp.OtherIpConfigs
     d.PortConfig = temp.PortConfig
     d.PortMirroring = temp.PortMirroring
@@ -392,7 +392,7 @@ type tempDeviceSwitch  struct {
     NtpServers            []string                               `json:"ntp_servers,omitempty"`
     OobIpConfig           *SwitchOobIpConfig                     `json:"oob_ip_config,omitempty"`
     OrgId                 *uuid.UUID                             `json:"org_id,omitempty"`
-    OspfConfig            *OspfConfig                            `json:"ospf_config,omitempty"`
+    OspfAreas             map[string]OspfArea                    `json:"ospf_areas,omitempty"`
     OtherIpConfigs        map[string]JunosOtherIpConfig          `json:"other_ip_configs,omitempty"`
     PortConfig            map[string]JunosPortConfig             `json:"port_config,omitempty"`
     PortMirroring         map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`

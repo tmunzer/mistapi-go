@@ -81,8 +81,8 @@ type SiteSetting struct {
     // Occupancy Analytics settings
     Occupancy                       *SiteOccupancyAnalytics                `json:"occupancy,omitempty"`
     OrgId                           *uuid.UUID                             `json:"org_id,omitempty"`
-    // OSPF Areas can be configured both in Site Level (Switch/Gateway Template) or Device (Switch/Gateway) Level
-    OspfAreas                       map[string]OspfAreas                   `json:"ospf_areas,omitempty"`
+    // Junos OSPF areas
+    OspfAreas                       map[string]OspfArea                    `json:"ospf_areas,omitempty"`
     PaloaltoNetworks                *SiteSettingPaloaltoNetworks           `json:"paloalto_networks,omitempty"`
     // whether to store the config on AP
     PersistConfigOnDevice           *bool                                  `json:"persist_config_on_device,omitempty"`
@@ -585,7 +585,7 @@ type tempSiteSetting  struct {
     NtpServers                      []string                               `json:"ntp_servers,omitempty"`
     Occupancy                       *SiteOccupancyAnalytics                `json:"occupancy,omitempty"`
     OrgId                           *uuid.UUID                             `json:"org_id,omitempty"`
-    OspfAreas                       map[string]OspfAreas                   `json:"ospf_areas,omitempty"`
+    OspfAreas                       map[string]OspfArea                    `json:"ospf_areas,omitempty"`
     PaloaltoNetworks                *SiteSettingPaloaltoNetworks           `json:"paloalto_networks,omitempty"`
     PersistConfigOnDevice           *bool                                  `json:"persist_config_on_device,omitempty"`
     PortMirroring                   map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`

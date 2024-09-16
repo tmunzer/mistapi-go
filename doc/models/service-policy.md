@@ -9,11 +9,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | enum: `allow`, `deny`<br>**Default**: `"allow"` |
+| `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | enum: `allow`, `deny` |
 | `Appqoe` | [`*models.ServicePolicyAppqoe`](../../doc/models/service-policy-appqoe.md) | Optional | For SRX Only |
 | `Ewf` | [`[]models.ServicePolicyEwfRule`](../../doc/models/service-policy-ewf-rule.md) | Optional | - |
 | `Idp` | [`*models.IdpConfig`](../../doc/models/idp-config.md) | Optional | - |
-| `LocalRouting` | `*bool` | Optional | access within the same VRF<br>**Default**: `false` |
+| `LocalRouting` | `*bool` | Optional | access within the same VRF |
 | `Name` | `*string` | Optional | - |
 | `PathPreference` | `*string` | Optional | by default, we derive all paths available and use them<br>optionally, you can customize by using `path_preference` |
 | `ServicepolicyId` | `*uuid.UUID` | Optional | used to link servicepolicy defined at org level and overwrite some attributes |
@@ -25,7 +25,6 @@
 ```json
 {
   "action": "allow",
-  "local_routing": false,
   "appqoe": {
     "enabled": false
   },
@@ -54,7 +53,8 @@
     "enabled": false,
     "idpprofile_id": "00000e94-0000-0000-0000-000000000000",
     "profile": "profile8"
-  }
+  },
+  "local_routing": false
 }
 ```
 

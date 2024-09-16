@@ -35,6 +35,8 @@ type NetworkTemplate struct {
     // list of NTP servers specific to this device. By default, those in Site Settings will be used
     NtpServers            []string                               `json:"ntp_servers,omitempty"`
     OrgId                 *uuid.UUID                             `json:"org_id,omitempty"`
+    // Junos OSPF areas
+    OspfAreas             map[string]OspfArea                    `json:"ospf_areas,omitempty"`
     // Property key is the port mirroring instance name
     // port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output.
     PortMirroring         map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
@@ -118,6 +120,9 @@ func (n NetworkTemplate) toMap() map[string]any {
     if n.OrgId != nil {
         structMap["org_id"] = n.OrgId
     }
+    if n.OspfAreas != nil {
+        structMap["ospf_areas"] = n.OspfAreas
+    }
     if n.PortMirroring != nil {
         structMap["port_mirroring"] = n.PortMirroring
     }
@@ -159,7 +164,7 @@ func (n *NetworkTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances")
     if err != nil {
     	return err
     }
@@ -182,6 +187,7 @@ func (n *NetworkTemplate) UnmarshalJSON(input []byte) error {
     n.Networks = temp.Networks
     n.NtpServers = temp.NtpServers
     n.OrgId = temp.OrgId
+    n.OspfAreas = temp.OspfAreas
     n.PortMirroring = temp.PortMirroring
     n.PortUsages = temp.PortUsages
     n.RadiusConfig = temp.RadiusConfig
@@ -214,6 +220,7 @@ type tempNetworkTemplate  struct {
     Networks              map[string]SwitchNetwork               `json:"networks,omitempty"`
     NtpServers            []string                               `json:"ntp_servers,omitempty"`
     OrgId                 *uuid.UUID                             `json:"org_id,omitempty"`
+    OspfAreas             map[string]OspfArea                    `json:"ospf_areas,omitempty"`
     PortMirroring         map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     PortUsages            map[string]SwitchPortUsage             `json:"port_usages,omitempty"`
     RadiusConfig          *RadiusConfig                          `json:"radius_config,omitempty"`

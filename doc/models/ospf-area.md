@@ -1,19 +1,19 @@
 
-# Ospf Areas
+# Ospf Area
 
-Junos OSPF areas
+Property key is the OSPF Area (Area should be a number (0-255) / IP address)
 
 ## Structure
 
-`OspfAreas`
+`OspfArea`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `IncludeLoopback` | `*bool` | Optional | **Default**: `false` |
-| `Networks` | [`map[string]models.OspfAreasNetwork`](../../doc/models/ospf-areas-network.md) | Optional | Networks to participate in an OSPF area.<br>Property key is the network name |
-| `Type` | [`*models.OspfAreasTypeEnum`](../../doc/models/ospf-areas-type-enum.md) | Optional | OSPF type. enum: `default`, `nssa`, `stub`<br>**Default**: `"default"` |
+| `Networks` | [`map[string]models.OspfAreasNetwork`](../../doc/models/ospf-areas-network.md) | Optional | - |
+| `Type` | [`*models.OspfAreaTypeEnum`](../../doc/models/ospf-area-type-enum.md) | Optional | OSPF type. enum: `default`, `nssa`, `stub`<br>**Default**: `"default"` |
 
 ## Example (as JSON)
 

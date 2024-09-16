@@ -1239,9 +1239,9 @@ body := models.SiteSetting{
             },
             CustomApps: []models.AppProbingCustomApp{
                 models.AppProbingCustomApp{
-                    AppType:   models.ToPointer("string"),
-                    Name:      models.ToPointer("string"),
-                    Protocol:  models.ToPointer(models.AppProbingCustomAppProtocolEnum("http")),
+                    AppType:    models.ToPointer("string"),
+                    Name:       models.ToPointer("string"),
+                    Protocol:   models.ToPointer(models.AppProbingCustomAppProtocolEnum("http")),
                 },
             },
             Enabled:    models.ToPointer(true),
@@ -1288,46 +1288,46 @@ body := models.SiteSetting{
         SdkclientsEnabled:         models.ToPointer(false),
         UnconnectedClientsEnabled: models.ToPointer(false),
     }),
-    OspfAreas:                       map[string]models.OspfAreas{
-        "property1": models.OspfAreas{
+    OspfAreas:                       map[string]models.OspfArea{
+        "property1": models.OspfArea{
             IncludeLoopback: models.ToPointer(false),
             Networks:        map[string]models.OspfAreasNetwork{
                 "corp": models.OspfAreasNetwork{
                     AuthKeys:               map[string]string{
                         "1": "auth-key-1",
                     },
-                    AuthType:               models.ToPointer(models.OspfAreasNetworkAuthTypeEnum("md5")),
+                    AuthType:               models.ToPointer(models.OspfAreaNetworkAuthTypeEnum("md5")),
                     BfdMinimumInterval:     models.ToPointer(500),
                     DeadInterval:           models.ToPointer(40),
                     HelloInterval:          models.ToPointer(10),
-                    InterfaceType:          models.ToPointer(models.OspfAreasNetworkInterfaceTypeEnum("nbma")),
+                    InterfaceType:          models.ToPointer(models.OspfAreaNetworkInterfaceTypeEnum("nbma")),
                     Metric:                 models.NewOptional(models.ToPointer(10000)),
                 },
                 "guest": models.OspfAreasNetwork{
                     Passive:                models.ToPointer(true),
                 },
             },
-            Type:            models.ToPointer(models.OspfAreasTypeEnum("default")),
+            Type:            models.ToPointer(models.OspfAreaTypeEnum("default")),
         },
-        "property2": models.OspfAreas{
+        "property2": models.OspfArea{
             IncludeLoopback: models.ToPointer(false),
             Networks:        map[string]models.OspfAreasNetwork{
                 "corp": models.OspfAreasNetwork{
                     AuthKeys:               map[string]string{
                         "1": "auth-key-1",
                     },
-                    AuthType:               models.ToPointer(models.OspfAreasNetworkAuthTypeEnum("md5")),
+                    AuthType:               models.ToPointer(models.OspfAreaNetworkAuthTypeEnum("md5")),
                     BfdMinimumInterval:     models.ToPointer(500),
                     DeadInterval:           models.ToPointer(40),
                     HelloInterval:          models.ToPointer(10),
-                    InterfaceType:          models.ToPointer(models.OspfAreasNetworkInterfaceTypeEnum("nbma")),
+                    InterfaceType:          models.ToPointer(models.OspfAreaNetworkInterfaceTypeEnum("nbma")),
                     Metric:                 models.NewOptional(models.ToPointer(10000)),
                 },
                 "guest": models.OspfAreasNetwork{
                     Passive:                models.ToPointer(true),
                 },
             },
-            Type:            models.ToPointer(models.OspfAreasTypeEnum("default")),
+            Type:            models.ToPointer(models.OspfAreaTypeEnum("default")),
         },
     },
     PersistConfigOnDevice:           models.ToPointer(false),

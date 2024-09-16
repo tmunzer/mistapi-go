@@ -1,11 +1,11 @@
 
-# Ospf Areas Type Enum
+# Ospf Area Type Enum
 
 OSPF type. enum: `default`, `nssa`, `stub`
 
 ## Enumeration
 
-`OspfAreasTypeEnum`
+`OspfAreaTypeEnum`
 
 ## Fields
 
