@@ -18,7 +18,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `CreatedTime` | `*float64` | Optional | - |
 | `DeviceprofileId` | `*uuid.UUID` | Optional | - |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
-| `DhcpdConfig` | [`*models.DhcpdConfig`](../../doc/models/dhcpd-config.md) | Optional | - |
+| `DhcpdConfig` | [`*models.SwitchDhcpdConfig`](../../doc/models/switch-dhcpd-config.md) | Optional | - |
 | `DisableAutoConfig` | `*bool` | Optional | for a claimed switch, we control the configs by default. This option (disables the behavior)<br>**Default**: `false` |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `DnsSuffix` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |

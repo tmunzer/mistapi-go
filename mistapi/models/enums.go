@@ -3638,6 +3638,16 @@ const (
     SuppressedAlarmScopeEnum_SITE SuppressedAlarmScopeEnum = "site"
 )
 
+// SwitchDhcpdConfigTypeEnum is a string enum.
+// enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server)
+type SwitchDhcpdConfigTypeEnum string
+
+const (
+    SwitchDhcpdConfigTypeEnum_NONE   SwitchDhcpdConfigTypeEnum = "none"
+    SwitchDhcpdConfigTypeEnum_RELAY  SwitchDhcpdConfigTypeEnum = "relay"
+    SwitchDhcpdConfigTypeEnum_SERVER SwitchDhcpdConfigTypeEnum = "server"
+)
+
 // SwitchMetricScopeEnum is a string enum.
 // enum: `site`, `switch`
 type SwitchMetricScopeEnum string

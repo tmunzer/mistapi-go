@@ -20,7 +20,7 @@ type DeviceSwitch struct {
     CreatedTime           *float64                               `json:"created_time,omitempty"`
     DeviceprofileId       *uuid.UUID                             `json:"deviceprofile_id,omitempty"`
     DhcpSnooping          *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
-    DhcpdConfig           *DhcpdConfig                           `json:"dhcpd_config,omitempty"`
+    DhcpdConfig           *SwitchDhcpdConfig                     `json:"dhcpd_config,omitempty"`
     // for a claimed switch, we control the configs by default. This option (disables the behavior)
     DisableAutoConfig     *bool                                  `json:"disable_auto_config,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
@@ -368,7 +368,7 @@ type tempDeviceSwitch  struct {
     CreatedTime           *float64                               `json:"created_time,omitempty"`
     DeviceprofileId       *uuid.UUID                             `json:"deviceprofile_id,omitempty"`
     DhcpSnooping          *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
-    DhcpdConfig           *DhcpdConfig                           `json:"dhcpd_config,omitempty"`
+    DhcpdConfig           *SwitchDhcpdConfig                     `json:"dhcpd_config,omitempty"`
     DisableAutoConfig     *bool                                  `json:"disable_auto_config,omitempty"`
     DnsServers            []string                               `json:"dns_servers,omitempty"`
     DnsSuffix             []string                               `json:"dns_suffix,omitempty"`
