@@ -10,15 +10,15 @@ import (
 // e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works
 type ProtectRe struct {
     // optionally, services we'll allow
-    AllowedServices      []string          `json:"allowed_services,omitempty"`
-    Custom               []ProtectReCustom `json:"custom,omitempty"`
+    AllowedServices      []ProtectReAllowedServiceEnum `json:"allowed_services,omitempty"`
+    Custom               []ProtectReCustom             `json:"custom,omitempty"`
     // when enabled, all traffic that is not essential to our operation will be dropped
     // e.g. ntp / dns / traffic to mist will be allowed by default
     // if dhcpd is enabled, we'll make sure it works
-    Enabled              *bool             `json:"enabled,omitempty"`
+    Enabled              *bool                         `json:"enabled,omitempty"`
     // host/subnets we'll allow traffic to/from
-    TrustedHosts         []string          `json:"trusted_hosts,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    TrustedHosts         []string                      `json:"trusted_hosts,omitempty"`
+    AdditionalProperties map[string]any                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ProtectRe.
@@ -71,8 +71,8 @@ func (p *ProtectRe) UnmarshalJSON(input []byte) error {
 
 // tempProtectRe is a temporary struct used for validating the fields of ProtectRe.
 type tempProtectRe  struct {
-    AllowedServices []string          `json:"allowed_services,omitempty"`
-    Custom          []ProtectReCustom `json:"custom,omitempty"`
-    Enabled         *bool             `json:"enabled,omitempty"`
-    TrustedHosts    []string          `json:"trusted_hosts,omitempty"`
+    AllowedServices []ProtectReAllowedServiceEnum `json:"allowed_services,omitempty"`
+    Custom          []ProtectReCustom             `json:"custom,omitempty"`
+    Enabled         *bool                         `json:"enabled,omitempty"`
+    TrustedHosts    []string                      `json:"trusted_hosts,omitempty"`
 }

@@ -13,7 +13,7 @@ custom acls
 |  --- | --- | --- | --- |
 | `PortRange` | `*string` | Optional | matched dst port, "0" means any<br>**Default**: `"0"` |
 | `Protocol` | [`*models.ProtectReCustomProtocolEnum`](../../doc/models/protect-re-custom-protocol-enum.md) | Optional | enum: `any`, `icmp`, `tcp`, `udp`<br>**Default**: `"any"` |
-| `Subnet` | `[]string` | Optional | - |
+| `Subnets` | `[]string` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,9 +21,9 @@ custom acls
 {
   "port_range": "80,1035-1040",
   "protocol": "any",
-  "subnet": [
-    "subnet3",
-    "subnet4"
+  "subnets": [
+    "subnets5",
+    "subnets4"
   ]
 }
 ```

@@ -2296,6 +2296,15 @@ const (
     PrivilegeSelfViewsEnum_SWITCHADMIN PrivilegeSelfViewsEnum = "switch_admin"
 )
 
+// ProtectReAllowedServiceEnum is a string enum.
+// enum: `icmp`, `ssh`
+type ProtectReAllowedServiceEnum string
+
+const (
+    ProtectReAllowedServiceEnum_ICMP ProtectReAllowedServiceEnum = "icmp"
+    ProtectReAllowedServiceEnum_SSH  ProtectReAllowedServiceEnum = "ssh"
+)
+
 // ProtectReCustomProtocolEnum is a string enum.
 // enum: `any`, `icmp`, `tcp`, `udp`
 type ProtectReCustomProtocolEnum string

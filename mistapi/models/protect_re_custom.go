@@ -11,7 +11,7 @@ type ProtectReCustom struct {
     PortRange            *string                      `json:"port_range,omitempty"`
     // enum: `any`, `icmp`, `tcp`, `udp`
     Protocol             *ProtectReCustomProtocolEnum `json:"protocol,omitempty"`
-    Subnet               []string                     `json:"subnet,omitempty"`
+    Subnets              []string                     `json:"subnets,omitempty"`
     AdditionalProperties map[string]any               `json:"_"`
 }
 
@@ -33,8 +33,8 @@ func (p ProtectReCustom) toMap() map[string]any {
     if p.Protocol != nil {
         structMap["protocol"] = p.Protocol
     }
-    if p.Subnet != nil {
-        structMap["subnet"] = p.Subnet
+    if p.Subnets != nil {
+        structMap["subnets"] = p.Subnets
     }
     return structMap
 }
@@ -47,7 +47,7 @@ func (p *ProtectReCustom) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "port_range", "protocol", "subnet")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "port_range", "protocol", "subnets")
     if err != nil {
     	return err
     }
@@ -55,7 +55,7 @@ func (p *ProtectReCustom) UnmarshalJSON(input []byte) error {
     p.AdditionalProperties = additionalProperties
     p.PortRange = temp.PortRange
     p.Protocol = temp.Protocol
-    p.Subnet = temp.Subnet
+    p.Subnets = temp.Subnets
     return nil
 }
 
@@ -63,5 +63,5 @@ func (p *ProtectReCustom) UnmarshalJSON(input []byte) error {
 type tempProtectReCustom  struct {
     PortRange *string                      `json:"port_range,omitempty"`
     Protocol  *ProtectReCustomProtocolEnum `json:"protocol,omitempty"`
-    Subnet    []string                     `json:"subnet,omitempty"`
+    Subnets   []string                     `json:"subnets,omitempty"`
 }
