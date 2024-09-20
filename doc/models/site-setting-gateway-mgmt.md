@@ -19,6 +19,7 @@ Gateway Site settings
 | `DisableConsole` | `*bool` | Optional | for both SSR and SRX disable console port<br>**Default**: `false` |
 | `DisableOob` | `*bool` | Optional | for both SSR and SRX disable management interface<br>**Default**: `false` |
 | `ProbeHosts` | `[]string` | Optional | - |
+| `ProtectRe` | [`*models.ProtectRe`](../../doc/models/protect-re.md) | Optional | restrict inbound-traffic to host<br>when enabled, all traffic that is not essential to our operation will be dropped<br>e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works |
 | `RootPassword` | `*string` | Optional | for SRX only |
 | `SecurityLogSourceAddress` | `*string` | Optional | - |
 | `SecurityLogSourceInterface` | `*string` | Optional | - |

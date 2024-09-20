@@ -20,6 +20,10 @@ type SiteSettingGatewayMgmt struct {
     // for both SSR and SRX disable management interface
     DisableOob                 *bool                                      `json:"disable_oob,omitempty"`
     ProbeHosts                 []string                                   `json:"probe_hosts,omitempty"`
+    // restrict inbound-traffic to host
+    // when enabled, all traffic that is not essential to our operation will be dropped
+    // e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works
+    ProtectRe                  *ProtectRe                                 `json:"protect_re,omitempty"`
     // for SRX only
     RootPassword               *string                                    `json:"root_password,omitempty"`
     SecurityLogSourceAddress   *string                                    `json:"security_log_source_address,omitempty"`
@@ -63,6 +67,9 @@ func (s SiteSettingGatewayMgmt) toMap() map[string]any {
     if s.ProbeHosts != nil {
         structMap["probe_hosts"] = s.ProbeHosts
     }
+    if s.ProtectRe != nil {
+        structMap["protect_re"] = s.ProtectRe.toMap()
+    }
     if s.RootPassword != nil {
         structMap["root_password"] = s.RootPassword
     }
@@ -83,7 +90,7 @@ func (s *SiteSettingGatewayMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "probe_hosts", "root_password", "security_log_source_address", "security_log_source_interface")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "probe_hosts", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface")
     if err != nil {
     	return err
     }
@@ -97,6 +104,7 @@ func (s *SiteSettingGatewayMgmt) UnmarshalJSON(input []byte) error {
     s.DisableConsole = temp.DisableConsole
     s.DisableOob = temp.DisableOob
     s.ProbeHosts = temp.ProbeHosts
+    s.ProtectRe = temp.ProtectRe
     s.RootPassword = temp.RootPassword
     s.SecurityLogSourceAddress = temp.SecurityLogSourceAddress
     s.SecurityLogSourceInterface = temp.SecurityLogSourceInterface
@@ -113,6 +121,7 @@ type tempSiteSettingGatewayMgmt  struct {
     DisableConsole             *bool                                      `json:"disable_console,omitempty"`
     DisableOob                 *bool                                      `json:"disable_oob,omitempty"`
     ProbeHosts                 []string                                   `json:"probe_hosts,omitempty"`
+    ProtectRe                  *ProtectRe                                 `json:"protect_re,omitempty"`
     RootPassword               *string                                    `json:"root_password,omitempty"`
     SecurityLogSourceAddress   *string                                    `json:"security_log_source_address,omitempty"`
     SecurityLogSourceInterface *string                                    `json:"security_log_source_interface,omitempty"`
