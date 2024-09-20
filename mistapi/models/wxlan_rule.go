@@ -16,10 +16,12 @@ type WxlanRule struct {
     // blocked apps (always blocking, ignoring action), the key of Get Application List
     BlockedApps          []string             `json:"blocked_apps,omitempty"`
     CreatedTime          *float64             `json:"created_time,omitempty"`
-    // tag list to indicate these tags are allowed access
-    DstAllowWxtags       []string             `json:"dst_allow_wxtags,omitempty"`
-    // tag list to indicate these tags are blocked access
-    DstDenyWxtags        []string             `json:"dst_deny_wxtags,omitempty"`
+    // List of WxTag UUID to indicate these tags are allowed access
+    DstAllowWxtags       []string             `json:"dst_allow_wxtags"`
+    // List of WxTag UUID to indicate these tags are blocked access
+    DstDenyWxtags        []string             `json:"dst_deny_wxtags"`
+    // List of WxTag UUID
+    DstWxtags            []string             `json:"dst_wxtags,omitempty"`
     Enabled              *bool                `json:"enabled,omitempty"`
     ForSite              *bool                `json:"for_site,omitempty"`
     Id                   *uuid.UUID           `json:"id,omitempty"`
@@ -28,8 +30,8 @@ type WxlanRule struct {
     Order                int                  `json:"order"`
     OrgId                *uuid.UUID           `json:"org_id,omitempty"`
     SiteId               *uuid.UUID           `json:"site_id,omitempty"`
-    // tag list to determine if this rule would match
-    SrcWxtags            []string             `json:"src_wxtags,omitempty"`
+    // List of WxTag UUID to determine if this rule would match
+    SrcWxtags            []string             `json:"src_wxtags"`
     // Only for Org Level WxRule
     TemplateId           *uuid.UUID           `json:"template_id,omitempty"`
     AdditionalProperties map[string]any       `json:"_"`
@@ -59,11 +61,10 @@ func (w WxlanRule) toMap() map[string]any {
     if w.CreatedTime != nil {
         structMap["created_time"] = w.CreatedTime
     }
-    if w.DstAllowWxtags != nil {
-        structMap["dst_allow_wxtags"] = w.DstAllowWxtags
-    }
-    if w.DstDenyWxtags != nil {
-        structMap["dst_deny_wxtags"] = w.DstDenyWxtags
+    structMap["dst_allow_wxtags"] = w.DstAllowWxtags
+    structMap["dst_deny_wxtags"] = w.DstDenyWxtags
+    if w.DstWxtags != nil {
+        structMap["dst_wxtags"] = w.DstWxtags
     }
     if w.Enabled != nil {
         structMap["enabled"] = w.Enabled
@@ -84,9 +85,7 @@ func (w WxlanRule) toMap() map[string]any {
     if w.SiteId != nil {
         structMap["site_id"] = w.SiteId
     }
-    if w.SrcWxtags != nil {
-        structMap["src_wxtags"] = w.SrcWxtags
-    }
+    structMap["src_wxtags"] = w.SrcWxtags
     if w.TemplateId != nil {
         structMap["template_id"] = w.TemplateId
     }
@@ -105,7 +104,7 @@ func (w *WxlanRule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "apply_tags", "blocked_apps", "created_time", "dst_allow_wxtags", "dst_deny_wxtags", "enabled", "for_site", "id", "modified_time", "order", "org_id", "site_id", "src_wxtags", "template_id")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "apply_tags", "blocked_apps", "created_time", "dst_allow_wxtags", "dst_deny_wxtags", "dst_wxtags", "enabled", "for_site", "id", "modified_time", "order", "org_id", "site_id", "src_wxtags", "template_id")
     if err != nil {
     	return err
     }
@@ -115,8 +114,9 @@ func (w *WxlanRule) UnmarshalJSON(input []byte) error {
     w.ApplyTags = temp.ApplyTags
     w.BlockedApps = temp.BlockedApps
     w.CreatedTime = temp.CreatedTime
-    w.DstAllowWxtags = temp.DstAllowWxtags
-    w.DstDenyWxtags = temp.DstDenyWxtags
+    w.DstAllowWxtags = *temp.DstAllowWxtags
+    w.DstDenyWxtags = *temp.DstDenyWxtags
+    w.DstWxtags = temp.DstWxtags
     w.Enabled = temp.Enabled
     w.ForSite = temp.ForSite
     w.Id = temp.Id
@@ -124,7 +124,7 @@ func (w *WxlanRule) UnmarshalJSON(input []byte) error {
     w.Order = *temp.Order
     w.OrgId = temp.OrgId
     w.SiteId = temp.SiteId
-    w.SrcWxtags = temp.SrcWxtags
+    w.SrcWxtags = *temp.SrcWxtags
     w.TemplateId = temp.TemplateId
     return nil
 }
@@ -135,8 +135,9 @@ type tempWxlanRule  struct {
     ApplyTags      []string             `json:"apply_tags,omitempty"`
     BlockedApps    []string             `json:"blocked_apps,omitempty"`
     CreatedTime    *float64             `json:"created_time,omitempty"`
-    DstAllowWxtags []string             `json:"dst_allow_wxtags,omitempty"`
-    DstDenyWxtags  []string             `json:"dst_deny_wxtags,omitempty"`
+    DstAllowWxtags *[]string            `json:"dst_allow_wxtags"`
+    DstDenyWxtags  *[]string            `json:"dst_deny_wxtags"`
+    DstWxtags      []string             `json:"dst_wxtags,omitempty"`
     Enabled        *bool                `json:"enabled,omitempty"`
     ForSite        *bool                `json:"for_site,omitempty"`
     Id             *uuid.UUID           `json:"id,omitempty"`
@@ -144,14 +145,23 @@ type tempWxlanRule  struct {
     Order          *int                 `json:"order"`
     OrgId          *uuid.UUID           `json:"org_id,omitempty"`
     SiteId         *uuid.UUID           `json:"site_id,omitempty"`
-    SrcWxtags      []string             `json:"src_wxtags,omitempty"`
+    SrcWxtags      *[]string            `json:"src_wxtags"`
     TemplateId     *uuid.UUID           `json:"template_id,omitempty"`
 }
 
 func (w *tempWxlanRule) validate() error {
     var errs []string
+    if w.DstAllowWxtags == nil {
+        errs = append(errs, "required field `dst_allow_wxtags` is missing for type `wxlan_rule`")
+    }
+    if w.DstDenyWxtags == nil {
+        errs = append(errs, "required field `dst_deny_wxtags` is missing for type `wxlan_rule`")
+    }
     if w.Order == nil {
         errs = append(errs, "required field `order` is missing for type `wxlan_rule`")
+    }
+    if w.SrcWxtags == nil {
+        errs = append(errs, "required field `src_wxtags` is missing for type `wxlan_rule`")
     }
     if len(errs) == 0 {
         return nil

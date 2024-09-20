@@ -66,7 +66,7 @@ type DeviceSwitch struct {
     // Property key is the port name or range (e.g. "ge-0/0/0-10")
     PortConfig            map[string]JunosPortConfig             `json:"port_config,omitempty"`
     // Property key is the port mirroring instance name
-    // port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output.
+    // port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed
     PortMirroring         map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     PortUsages            map[string]SwitchPortUsage             `json:"port_usages,omitempty"`
     // Junos Radius config

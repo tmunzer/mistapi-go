@@ -15,8 +15,9 @@ WXlan
 | `ApplyTags` | `[]string` | Optional | - |
 | `BlockedApps` | `[]string` | Optional | blocked apps (always blocking, ignoring action), the key of Get Application List |
 | `CreatedTime` | `*float64` | Optional | - |
-| `DstAllowWxtags` | `[]string` | Optional | tag list to indicate these tags are allowed access |
-| `DstDenyWxtags` | `[]string` | Optional | tag list to indicate these tags are blocked access |
+| `DstAllowWxtags` | `[]string` | Required | List of WxTag UUID to indicate these tags are allowed access |
+| `DstDenyWxtags` | `[]string` | Required | List of WxTag UUID to indicate these tags are blocked access |
+| `DstWxtags` | `[]string` | Optional | List of WxTag UUID |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | - |
@@ -24,7 +25,7 @@ WXlan
 | `Order` | `int` | Required | the order how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked<br>**Constraints**: `>= 1` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `SrcWxtags` | `[]string` | Optional | tag list to determine if this rule would match |
+| `SrcWxtags` | `[]string` | Required | List of WxTag UUID to determine if this rule would match |
 | `TemplateId` | `*uuid.UUID` | Optional | Only for Org Level WxRule |
 
 ## Example (as JSON)
@@ -41,6 +42,10 @@ WXlan
     "eee2c7b0-d1d0-5a30-f349-e35fa43dc3b3"
   ],
   "dst_deny_wxtags": [
+    "aaa34466-eec0-3756-6765-381c728a6037",
+    "bbb2c7b0-d1d0-5a30-f349-e35fa43dc3b3"
+  ],
+  "dst_wxtags": [
     "aaa34466-eec0-3756-6765-381c728a6037",
     "bbb2c7b0-d1d0-5a30-f349-e35fa43dc3b3"
   ],
