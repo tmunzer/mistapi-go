@@ -27,7 +27,7 @@ CreateOrgApiToken(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.OrgApitoken) (
-    models.ApiResponse[models.OrgApitoken],
+    http.Response,
     error)
 ```
 
@@ -40,7 +40,7 @@ CreateOrgApiToken(
 
 ## Response Type
 
-[`models.OrgApitoken`](../../doc/models/org-apitoken.md)
+``
 
 ## Example Usage
 
@@ -69,34 +69,11 @@ body := models.OrgApitoken{
     },
 }
 
-apiResponse, err := orgsAPITokens.CreateOrgApiToken(ctx, orgId, &body)
+resp, err := orgsAPITokens.CreateOrgApiToken(ctx, orgId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "created_by": "user@mycorp.com",
-  "created_time": 1626875902,
-  "id": "497f6eca-6276-4993-bfeb-53efbbba6f08",
-  "key": "1qkb...QQCL",
-  "last_used": 1690115110,
-  "name": "org_token_xyz",
-  "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
-  "privileges": [
-    {
-      "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
-      "role": "admin",
-      "scope": "org"
-    }
-  ]
+    fmt.Println(resp.StatusCode)
 }
 ```
 

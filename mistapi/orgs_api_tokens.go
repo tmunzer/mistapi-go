@@ -67,7 +67,7 @@ func (o *OrgsAPITokens) ListOrgApiTokens(
 }
 
 // CreateOrgApiToken takes context, orgId, body as parameters and
-// returns an models.ApiResponse with models.OrgApitoken data and
+// returns an models.ApiResponse with  data and
 // an error if there was an issue with the request or response.
 // Create Org API Token
 // Note that the token key is only available during creation time.
@@ -75,7 +75,7 @@ func (o *OrgsAPITokens) CreateOrgApiToken(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.OrgApitoken) (
-    models.ApiResponse[models.OrgApitoken],
+    *http.Response,
     error) {
     req := o.prepareRequest(
       ctx,
@@ -105,14 +105,11 @@ func (o *OrgsAPITokens) CreateOrgApiToken(
         req.Json(body)
     }
     
-    var result models.OrgApitoken
-    decoder, resp, err := req.CallAsJson()
+    context, err := req.Call()
     if err != nil {
-        return models.NewApiResponse(result, resp), err
+        return context.Response, err
     }
-    
-    result, err = utilities.DecodeResults[models.OrgApitoken](decoder)
-    return models.NewApiResponse(result, resp), err
+    return context.Response, err
 }
 
 // DeleteOrgApiToken takes context, orgId, apitokenId as parameters and
