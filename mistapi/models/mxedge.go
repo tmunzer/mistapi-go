@@ -38,7 +38,7 @@ type Mxedge struct {
     TuntermIgmpSnoopingConfig *MxedgeTuntermIgmpSnoopingConfig      `json:"tunterm_igmp_snooping_config,omitempty"`
     // ip configuration of the Mist Tunnel interface
     TuntermIpConfig           *MxedgeTuntermIpConfig                `json:"tunterm_ip_config,omitempty"`
-    TuntermMonitoring         []TuntermMonitoringItem               `json:"tunterm_monitoring,omitempty"`
+    TuntermMonitoring         [][]TuntermMonitoringItem             `json:"tunterm_monitoring,omitempty"`
     TuntermMulticastConfig    *MxedgeTuntermMulticastConfig         `json:"tunterm_multicast_config,omitempty"`
     // ip configs by VLAN ID. Property key is the VLAN ID
     TuntermOtherIpConfigs     map[string]MxedgeTuntermOtherIpConfig `json:"tunterm_other_ip_configs,omitempty"`
@@ -218,7 +218,7 @@ type tempMxedge  struct {
     TuntermExtraRoutes        map[string]MxedgeTuntermExtraRoute    `json:"tunterm_extra_routes,omitempty"`
     TuntermIgmpSnoopingConfig *MxedgeTuntermIgmpSnoopingConfig      `json:"tunterm_igmp_snooping_config,omitempty"`
     TuntermIpConfig           *MxedgeTuntermIpConfig                `json:"tunterm_ip_config,omitempty"`
-    TuntermMonitoring         []TuntermMonitoringItem               `json:"tunterm_monitoring,omitempty"`
+    TuntermMonitoring         [][]TuntermMonitoringItem             `json:"tunterm_monitoring,omitempty"`
     TuntermMulticastConfig    *MxedgeTuntermMulticastConfig         `json:"tunterm_multicast_config,omitempty"`
     TuntermOtherIpConfigs     map[string]MxedgeTuntermOtherIpConfig `json:"tunterm_other_ip_configs,omitempty"`
     TuntermPortConfig         *TuntermPortConfig                    `json:"tunterm_port_config,omitempty"`

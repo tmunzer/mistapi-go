@@ -52,6 +52,7 @@ body := models.SsoRoleOrg{
     Name:         "string",
     Privileges:   []models.PrivilegeOrg{
         models.PrivilegeOrg{
+            OrgId:       models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             Role:        models.PrivilegeOrgRoleEnum("admin"),
             Scope:       models.PrivilegeOrgScopeEnum("org"),
             SiteId:      models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
@@ -325,6 +326,7 @@ body := models.SsoRoleOrg{
     Name:         "string",
     Privileges:   []models.PrivilegeOrg{
         models.PrivilegeOrg{
+            OrgId:       models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             Role:        models.PrivilegeOrgRoleEnum("admin"),
             Scope:       models.PrivilegeOrgScopeEnum("org"),
             SiteId:      models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),

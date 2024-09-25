@@ -39,7 +39,7 @@ type Mxcluster struct {
     // * `shuffle-by-site`: shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels)
     // * `ordered`: order decided by tunterm_hosts_order
     TuntermHostsSelection     *MxclusterTuntermHostsSelectionEnum   `json:"tunterm_hosts_selection,omitempty"`
-    TuntermMonitoring         []TuntermMonitoringItem               `json:"tunterm_monitoring,omitempty"`
+    TuntermMonitoring         [][]TuntermMonitoringItem             `json:"tunterm_monitoring,omitempty"`
     TuntermMonitoringDisabled *bool                                 `json:"tunterm_monitoring_disabled,omitempty"`
     AdditionalProperties      map[string]any                        `json:"_"`
 }
@@ -181,6 +181,6 @@ type tempMxcluster  struct {
     TuntermHosts              []string                              `json:"tunterm_hosts,omitempty"`
     TuntermHostsOrder         []int                                 `json:"tunterm_hosts_order,omitempty"`
     TuntermHostsSelection     *MxclusterTuntermHostsSelectionEnum   `json:"tunterm_hosts_selection,omitempty"`
-    TuntermMonitoring         []TuntermMonitoringItem               `json:"tunterm_monitoring,omitempty"`
+    TuntermMonitoring         [][]TuntermMonitoringItem             `json:"tunterm_monitoring,omitempty"`
     TuntermMonitoringDisabled *bool                                 `json:"tunterm_monitoring_disabled,omitempty"`
 }

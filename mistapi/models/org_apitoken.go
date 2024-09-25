@@ -2,7 +2,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
 // OrgApitoken represents a OrgApitoken struct.
@@ -15,11 +17,11 @@ type OrgApitoken struct {
     Key                  *string           `json:"key,omitempty"`
     LastUsed             Optional[float64] `json:"last_used"`
     // name of the token
-    Name                 Optional[string]  `json:"name"`
+    Name                 string            `json:"name"`
     OrgId                *uuid.UUID        `json:"org_id,omitempty"`
     // list of privileges the token has on the orgs/sites
-    Privileges           []PrivilegeOrg    `json:"privileges,omitempty"`
-    // list of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified
+    Privileges           []PrivilegeOrg    `json:"privileges"`
+    // list of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified, cannot be changed once the API Token is created.
     SrcIps               []string          `json:"src_ips,omitempty"`
     AdditionalProperties map[string]any    `json:"_"`
 }
@@ -59,19 +61,11 @@ func (o OrgApitoken) toMap() map[string]any {
             structMap["last_used"] = nil
         }
     }
-    if o.Name.IsValueSet() {
-        if o.Name.Value() != nil {
-            structMap["name"] = o.Name.Value()
-        } else {
-            structMap["name"] = nil
-        }
-    }
+    structMap["name"] = o.Name
     if o.OrgId != nil {
         structMap["org_id"] = o.OrgId
     }
-    if o.Privileges != nil {
-        structMap["privileges"] = o.Privileges
-    }
+    structMap["privileges"] = o.Privileges
     if o.SrcIps != nil {
         structMap["src_ips"] = o.SrcIps
     }
@@ -86,6 +80,10 @@ func (o *OrgApitoken) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
     additionalProperties, err := UnmarshalAdditionalProperties(input, "created_by", "created_time", "id", "key", "last_used", "name", "org_id", "privileges", "src_ips")
     if err != nil {
     	return err
@@ -97,9 +95,9 @@ func (o *OrgApitoken) UnmarshalJSON(input []byte) error {
     o.Id = temp.Id
     o.Key = temp.Key
     o.LastUsed = temp.LastUsed
-    o.Name = temp.Name
+    o.Name = *temp.Name
     o.OrgId = temp.OrgId
-    o.Privileges = temp.Privileges
+    o.Privileges = *temp.Privileges
     o.SrcIps = temp.SrcIps
     return nil
 }
@@ -111,8 +109,22 @@ type tempOrgApitoken  struct {
     Id          *uuid.UUID        `json:"id,omitempty"`
     Key         *string           `json:"key,omitempty"`
     LastUsed    Optional[float64] `json:"last_used"`
-    Name        Optional[string]  `json:"name"`
+    Name        *string           `json:"name"`
     OrgId       *uuid.UUID        `json:"org_id,omitempty"`
-    Privileges  []PrivilegeOrg    `json:"privileges,omitempty"`
+    Privileges  *[]PrivilegeOrg   `json:"privileges"`
     SrcIps      []string          `json:"src_ips,omitempty"`
+}
+
+func (o *tempOrgApitoken) validate() error {
+    var errs []string
+    if o.Name == nil {
+        errs = append(errs, "required field `name` is missing for type `org_apitoken`")
+    }
+    if o.Privileges == nil {
+        errs = append(errs, "required field `privileges` is missing for type `org_apitoken`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

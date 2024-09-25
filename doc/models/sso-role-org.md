@@ -29,11 +29,11 @@ SSO Role response
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "privileges": [
     {
+      "org_id": "00000cc8-0000-0000-0000-000000000000",
       "role": "admin",
       "scope": "site",
       "site_id": "00002366-0000-0000-0000-000000000000",
-      "sitegroup_id": "000006ce-0000-0000-0000-000000000000",
-      "views": "switch_admin"
+      "sitegroup_id": "000006ce-0000-0000-0000-000000000000"
     }
   ],
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",

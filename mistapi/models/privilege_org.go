@@ -10,31 +10,17 @@ import (
 // PrivilegeOrg represents a PrivilegeOrg struct.
 // Privilieges settings
 type PrivilegeOrg struct {
+    // if `scope`==`org`
+    OrgId                *uuid.UUID            `json:"org_id,omitempty"`
     // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
-    Role                 PrivilegeOrgRoleEnum   `json:"role"`
+    Role                 PrivilegeOrgRoleEnum  `json:"role"`
     // enum: `org`, `site`, `sitegroup`
-    Scope                PrivilegeOrgScopeEnum  `json:"scope"`
+    Scope                PrivilegeOrgScopeEnum `json:"scope"`
     // if `scope`==`site`
-    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    SiteId               *uuid.UUID            `json:"site_id,omitempty"`
     // if `scope`==`sitegroup`
-    SitegroupId          *uuid.UUID             `json:"sitegroup_id,omitempty"`
-    // Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-    // You can invite a new user or update existing users in your Org to this custom role. For this, specify view along with role when assigning privileges.
-    // Below are the list of supported UI views. Note that this is UI only feature
-    // Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-    // You can invite a new user or update existing users in your Org to this custom role. For this, specify `view` along with `role` when assigning privileges.
-    // Below are the list of supported UI views. Note that this is UI only feature
-    // | UI View | Description |
-    // | --- | --- |
-    // | `reporting` | full access to all analytics tools |
-    // | `marketing` | can view analytics and location maps |
-    // | `location` | can view and manage location maps |
-    // | `security` | can view and manage WLAN, rogues and authentication |
-    // | `switch_admin` | can view and manage Switch ports |
-    // | `mxedge_admin` | can view and manage Mist edges and Mist tunnels |
-    // | `lobby_admin` | full access to Org and Site Pre-shared keys |
-    Views                *PrivilegeOrgViewsEnum `json:"views,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    SitegroupId          *uuid.UUID            `json:"sitegroup_id,omitempty"`
+    AdditionalProperties map[string]any        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PrivilegeOrg.
@@ -49,6 +35,9 @@ func (p PrivilegeOrg) MarshalJSON() (
 func (p PrivilegeOrg) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, p.AdditionalProperties)
+    if p.OrgId != nil {
+        structMap["org_id"] = p.OrgId
+    }
     structMap["role"] = p.Role
     structMap["scope"] = p.Scope
     if p.SiteId != nil {
@@ -56,9 +45,6 @@ func (p PrivilegeOrg) toMap() map[string]any {
     }
     if p.SitegroupId != nil {
         structMap["sitegroup_id"] = p.SitegroupId
-    }
-    if p.Views != nil {
-        structMap["views"] = p.Views
     }
     return structMap
 }
@@ -75,27 +61,27 @@ func (p *PrivilegeOrg) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "role", "scope", "site_id", "sitegroup_id", "views")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "org_id", "role", "scope", "site_id", "sitegroup_id")
     if err != nil {
     	return err
     }
     
     p.AdditionalProperties = additionalProperties
+    p.OrgId = temp.OrgId
     p.Role = *temp.Role
     p.Scope = *temp.Scope
     p.SiteId = temp.SiteId
     p.SitegroupId = temp.SitegroupId
-    p.Views = temp.Views
     return nil
 }
 
 // tempPrivilegeOrg is a temporary struct used for validating the fields of PrivilegeOrg.
 type tempPrivilegeOrg  struct {
+    OrgId       *uuid.UUID             `json:"org_id,omitempty"`
     Role        *PrivilegeOrgRoleEnum  `json:"role"`
     Scope       *PrivilegeOrgScopeEnum `json:"scope"`
     SiteId      *uuid.UUID             `json:"site_id,omitempty"`
     SitegroupId *uuid.UUID             `json:"sitegroup_id,omitempty"`
-    Views       *PrivilegeOrgViewsEnum `json:"views,omitempty"`
 }
 
 func (p *tempPrivilegeOrg) validate() error {

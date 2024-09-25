@@ -32,7 +32,7 @@ MxEdge
 | `TuntermExtraRoutes` | [`map[string]models.MxedgeTuntermExtraRoute`](../../doc/models/mxedge-tunterm-extra-route.md) | Optional | Property key is a CIDR |
 | `TuntermIgmpSnoopingConfig` | [`*models.MxedgeTuntermIgmpSnoopingConfig`](../../doc/models/mxedge-tunterm-igmp-snooping-config.md) | Optional | - |
 | `TuntermIpConfig` | [`*models.MxedgeTuntermIpConfig`](../../doc/models/mxedge-tunterm-ip-config.md) | Optional | ip configuration of the Mist Tunnel interface |
-| `TuntermMonitoring` | [`[]models.TuntermMonitoringItem`](../../doc/models/tunterm-monitoring-item.md) | Optional | - |
+| `TuntermMonitoring` | [`[][]models.TuntermMonitoringItem`](../../doc/models/tunterm-monitoring-item.md) | Optional | - |
 | `TuntermMulticastConfig` | [`*models.MxedgeTuntermMulticastConfig`](../../doc/models/mxedge-tunterm-multicast-config.md) | Optional | - |
 | `TuntermOtherIpConfigs` | [`map[string]models.MxedgeTuntermOtherIpConfig`](../../doc/models/mxedge-tunterm-other-ip-config.md) | Optional | ip configs by VLAN ID. Property key is the VLAN ID |
 | `TuntermPortConfig` | [`*models.TuntermPortConfig`](../../doc/models/tunterm-port-config.md) | Optional | ethernet port configurations |

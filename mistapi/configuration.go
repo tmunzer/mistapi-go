@@ -77,27 +77,27 @@ func WithLoggerConfiguration(options ...LoggerOptions) ConfigurationOptions {
     }
 }
 
-// Environment returns the Environment from the Configuration.
+// Environment returns the environment from the Configuration.
 func (c Configuration) Environment() Environment {
     return c.environment
 }
 
-// HttpConfiguration returns the HttpConfiguration from the Configuration.
+// HttpConfiguration returns the httpConfiguration from the Configuration.
 func (c Configuration) HttpConfiguration() HttpConfiguration {
     return c.httpConfiguration
 }
 
-// ApiTokenCredentials returns the ApiTokenCredentials from the Configuration.
+// ApiTokenCredentials returns the apiTokenCredentials from the Configuration.
 func (c Configuration) ApiTokenCredentials() ApiTokenCredentials {
     return c.apiTokenCredentials
 }
 
-// BasicAuthCredentials returns the BasicAuthCredentials from the Configuration.
+// BasicAuthCredentials returns the basicAuthCredentials from the Configuration.
 func (c Configuration) BasicAuthCredentials() BasicAuthCredentials {
     return c.basicAuthCredentials
 }
 
-// CsrfTokenCredentials returns the CsrfTokenCredentials from the Configuration.
+// CsrfTokenCredentials returns the csrfTokenCredentials from the Configuration.
 func (c Configuration) CsrfTokenCredentials() CsrfTokenCredentials {
     return c.csrfTokenCredentials
 }

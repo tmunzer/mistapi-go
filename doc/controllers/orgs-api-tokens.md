@@ -55,10 +55,11 @@ body := models.OrgApitoken{
     Id:          models.ToPointer(uuid.MustParse("497f6eca-6276-4993-bfeb-53ecbbba6f08")),
     Key:         models.ToPointer("1qkb...QQCL"),
     LastUsed:    models.NewOptional(models.ToPointer(float64(1690115110))),
-    Name:        models.NewOptional(models.ToPointer("org_token_xyz")),
+    Name:        "org_token_xyz",
     OrgId:       models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     Privileges:  []models.PrivilegeOrg{
         models.PrivilegeOrg{
+            OrgId:       models.ToPointer(uuid.MustParse("a40f5d1f-d889-42e9-94ea-b9b33585fc6b")),
             Role:        models.PrivilegeOrgRoleEnum("admin"),
             Scope:       models.PrivilegeOrgScopeEnum("org"),
         },
@@ -347,9 +348,10 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 apitokenId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgApitoken{
-    Name:        models.NewOptional(models.ToPointer("org_token_xyz")),
+    Name:        "org_token_xyz",
     Privileges:  []models.PrivilegeOrg{
         models.PrivilegeOrg{
+            OrgId:       models.ToPointer(uuid.MustParse("a40f5d1f-d889-42e9-94ea-b9b33585fc6b")),
             Role:        models.PrivilegeOrgRoleEnum("admin"),
             Scope:       models.PrivilegeOrgScopeEnum("org"),
         },
