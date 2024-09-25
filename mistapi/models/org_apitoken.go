@@ -9,6 +9,9 @@ import (
 
 // OrgApitoken represents a OrgApitoken struct.
 // Org API Token
+// **Note:**
+// `privilege` field is required to create the object, but may not be 
+// returned in the POST API Response (only in the afterward GET)
 type OrgApitoken struct {
     // email of the token creator / null if creator is deleted
     CreatedBy            Optional[string]  `json:"created_by"`
@@ -20,7 +23,7 @@ type OrgApitoken struct {
     Name                 string            `json:"name"`
     OrgId                *uuid.UUID        `json:"org_id,omitempty"`
     // list of privileges the token has on the orgs/sites
-    Privileges           []PrivilegeOrg    `json:"privileges"`
+    Privileges           []PrivilegeOrg    `json:"privileges,omitempty"`
     // list of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified, cannot be changed once the API Token is created.
     SrcIps               []string          `json:"src_ips,omitempty"`
     AdditionalProperties map[string]any    `json:"_"`
@@ -65,7 +68,9 @@ func (o OrgApitoken) toMap() map[string]any {
     if o.OrgId != nil {
         structMap["org_id"] = o.OrgId
     }
-    structMap["privileges"] = o.Privileges
+    if o.Privileges != nil {
+        structMap["privileges"] = o.Privileges
+    }
     if o.SrcIps != nil {
         structMap["src_ips"] = o.SrcIps
     }
@@ -97,7 +102,7 @@ func (o *OrgApitoken) UnmarshalJSON(input []byte) error {
     o.LastUsed = temp.LastUsed
     o.Name = *temp.Name
     o.OrgId = temp.OrgId
-    o.Privileges = *temp.Privileges
+    o.Privileges = temp.Privileges
     o.SrcIps = temp.SrcIps
     return nil
 }
@@ -111,7 +116,7 @@ type tempOrgApitoken  struct {
     LastUsed    Optional[float64] `json:"last_used"`
     Name        *string           `json:"name"`
     OrgId       *uuid.UUID        `json:"org_id,omitempty"`
-    Privileges  *[]PrivilegeOrg   `json:"privileges"`
+    Privileges  []PrivilegeOrg    `json:"privileges,omitempty"`
     SrcIps      []string          `json:"src_ips,omitempty"`
 }
 
@@ -119,9 +124,6 @@ func (o *tempOrgApitoken) validate() error {
     var errs []string
     if o.Name == nil {
         errs = append(errs, "required field `name` is missing for type `org_apitoken`")
-    }
-    if o.Privileges == nil {
-        errs = append(errs, "required field `privileges` is missing for type `org_apitoken`")
     }
     if len(errs) == 0 {
         return nil

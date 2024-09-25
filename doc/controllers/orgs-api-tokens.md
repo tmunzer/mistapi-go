@@ -59,7 +59,6 @@ body := models.OrgApitoken{
     OrgId:       models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     Privileges:  []models.PrivilegeOrg{
         models.PrivilegeOrg{
-            OrgId:       models.ToPointer(uuid.MustParse("a40f5d1f-d889-42e9-94ea-b9b33585fc6b")),
             Role:        models.PrivilegeOrgRoleEnum("admin"),
             Scope:       models.PrivilegeOrgScopeEnum("org"),
         },
