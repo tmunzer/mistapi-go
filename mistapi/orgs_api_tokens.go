@@ -67,7 +67,7 @@ func (o *OrgsAPITokens) ListOrgApiTokens(
 }
 
 // CreateOrgApiToken takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an models.ApiResponse with models.OrgApitoken data and
 // an error if there was an issue with the request or response.
 // Create Org API Token
 // Note that the token key is only available during creation time.
@@ -75,7 +75,7 @@ func (o *OrgsAPITokens) CreateOrgApiToken(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.OrgApitoken) (
-    *http.Response,
+    models.ApiResponse[models.OrgApitoken],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -105,11 +105,14 @@ func (o *OrgsAPITokens) CreateOrgApiToken(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    var result models.OrgApitoken
+    decoder, resp, err := req.CallAsJson()
     if err != nil {
-        return context.Response, err
+        return models.NewApiResponse(result, resp), err
     }
-    return context.Response, err
+    
+    result, err = utilities.DecodeResults[models.OrgApitoken](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // DeleteOrgApiToken takes context, orgId, apitokenId as parameters and
@@ -198,7 +201,7 @@ func (o *OrgsAPITokens) GetOrgApiToken(
 }
 
 // UpdateOrgApiToken takes context, orgId, apitokenId, body as parameters and
-// returns an models.ApiResponse with models.OrgApitoken data and
+// returns an models.ApiResponse with  data and
 // an error if there was an issue with the request or response.
 // Update Org API Token
 func (o *OrgsAPITokens) UpdateOrgApiToken(
@@ -206,7 +209,7 @@ func (o *OrgsAPITokens) UpdateOrgApiToken(
     orgId uuid.UUID,
     apitokenId uuid.UUID,
     body *models.OrgApitoken) (
-    models.ApiResponse[models.OrgApitoken],
+    *http.Response,
     error) {
     req := o.prepareRequest(
       ctx,
@@ -236,12 +239,9 @@ func (o *OrgsAPITokens) UpdateOrgApiToken(
         req.Json(body)
     }
     
-    var result models.OrgApitoken
-    decoder, resp, err := req.CallAsJson()
+    context, err := req.Call()
     if err != nil {
-        return models.NewApiResponse(result, resp), err
+        return context.Response, err
     }
-    
-    result, err = utilities.DecodeResults[models.OrgApitoken](decoder)
-    return models.NewApiResponse(result, resp), err
+    return context.Response, err
 }
