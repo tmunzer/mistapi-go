@@ -2,59 +2,10 @@ package mistapi
 
 import (
     "context"
-    "encoding/json"
     "github.com/apimatic/go-core-runtime/testHelper"
     "github.com/google/uuid"
-    "github.com/tmunzer/mistapi-go/mistapi/models"
     "testing"
 )
-
-// TestOrgsSSOTestListOrgSsos tests the behavior of the OrgsSSO
-func TestOrgsSSOTestListOrgSsos(t *testing.T) {
-    ctx := context.Background()
-    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-    if errUUID != nil {
-        t.Error(errUUID)
-    }
-    limit := int(100)
-    page := int(1)
-    apiResponse, err := orgsSso.ListOrgSsos(ctx, orgId, &limit, &page)
-    if err != nil {
-        t.Errorf("Endpoint call failed: %v", err)
-    }
-    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-    expectedHeaders:= []testHelper.TestHeader{
-        testHelper.NewTestHeader(true,"Content-Type","application/json"),
-    }
-    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"created_time":0,"custom_logout_url":"string","default_role":"string","domain":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","idp_cert":"string","idp_sign_algo":"string","idp_sso_url":"string","ignore_unmatched_roles":true,"issuer":"string","modified_time":0,"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","name":"string","nameid_format":"email","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"string"}]`
-    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
-// TestOrgsSSOTestCreateOrgSso tests the behavior of the OrgsSSO
-func TestOrgsSSOTestCreateOrgSso(t *testing.T) {
-    ctx := context.Background()
-    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-    if errUUID != nil {
-        t.Error(errUUID)
-    }
-    var body models.Sso
-    errBody := json.Unmarshal([]byte(`{"custom_logout_url":"string","idp_cert":"string","idp_sign_algo":"string","idp_sso_url":"string","ignore_unmatched_roles":true,"issuer":"string","name":"string","nameid_format":"email"}`), &body)
-    if errBody != nil {
-        t.Errorf("Cannot parse the model object.")
-    }
-    apiResponse, err := orgsSso.CreateOrgSso(ctx, orgId, &body)
-    if err != nil {
-        t.Errorf("Endpoint call failed: %v", err)
-    }
-    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-    expectedHeaders:= []testHelper.TestHeader{
-        testHelper.NewTestHeader(true,"Content-Type","application/json"),
-    }
-    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"created_time":0,"custom_logout_url":"string","default_role":"string","domain":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","idp_cert":"string","idp_sign_algo":"string","idp_sso_url":"string","ignore_unmatched_roles":true,"issuer":"string","modified_time":0,"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","name":"string","nameid_format":"email","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"string"}`
-    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
 
 // TestOrgsSSOTestDeleteOrgSso tests the behavior of the OrgsSSO
 func TestOrgsSSOTestDeleteOrgSso(t *testing.T) {
@@ -72,55 +23,6 @@ func TestOrgsSSOTestDeleteOrgSso(t *testing.T) {
         t.Errorf("Endpoint call failed: %v", err)
     }
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
-}
-
-// TestOrgsSSOTestGetOrgSso tests the behavior of the OrgsSSO
-func TestOrgsSSOTestGetOrgSso(t *testing.T) {
-    ctx := context.Background()
-    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-    if errUUID != nil {
-        t.Error(errUUID)
-    }
-    ssoId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-    if errUUID != nil {
-        t.Error(errUUID)
-    }
-    apiResponse, err := orgsSso.GetOrgSso(ctx, orgId, ssoId)
-    if err != nil {
-        t.Errorf("Endpoint call failed: %v", err)
-    }
-    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-    expectedHeaders:= []testHelper.TestHeader{
-        testHelper.NewTestHeader(true,"Content-Type","application/json"),
-    }
-    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"created_time":0,"custom_logout_url":"string","default_role":"string","domain":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","idp_cert":"string","idp_sign_algo":"string","idp_sso_url":"string","ignore_unmatched_roles":true,"issuer":"string","modified_time":0,"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","name":"string","nameid_format":"email","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"string"}`
-    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
-// TestOrgsSSOTestUpdateOrgSso tests the behavior of the OrgsSSO
-func TestOrgsSSOTestUpdateOrgSso(t *testing.T) {
-    ctx := context.Background()
-    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-    if errUUID != nil {
-        t.Error(errUUID)
-    }
-    ssoId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-    if errUUID != nil {
-        t.Error(errUUID)
-    }
-    
-    apiResponse, err := orgsSso.UpdateOrgSso(ctx, orgId, ssoId, nil)
-    if err != nil {
-        t.Errorf("Endpoint call failed: %v", err)
-    }
-    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-    expectedHeaders:= []testHelper.TestHeader{
-        testHelper.NewTestHeader(true,"Content-Type","application/json"),
-    }
-    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"created_time":0,"custom_logout_url":"string","default_role":"string","domain":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","idp_cert":"string","idp_sign_algo":"string","idp_sso_url":"string","ignore_unmatched_roles":true,"issuer":"string","modified_time":0,"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","name":"string","nameid_format":"email","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"string"}`
-    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
 // TestOrgsSSOTestListOrgSsoLatestFailures tests the behavior of the OrgsSSO

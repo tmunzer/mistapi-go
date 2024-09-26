@@ -1,7 +1,8 @@
 
 # Sso Idp Type Enum
 
-enum: `ldap`, `mxedge_proxy`, `oauth`, `saml`
+* For Admin SSO, enum: `saml`
+* For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`
 
 ## Enumeration
 

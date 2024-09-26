@@ -3415,7 +3415,8 @@ const (
 )
 
 // SsoIdpTypeEnum is a string enum.
-// enum: `ldap`, `mxedge_proxy`, `oauth`, `saml`
+// * For Admin SSO, enum: `saml`
+// * For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`
 type SsoIdpTypeEnum string
 
 const (

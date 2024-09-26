@@ -52,7 +52,11 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Sso{
-    IdpType:               models.ToPointer(models.SsoIdpTypeEnum("saml")),
+    IdpType:               models.SsoIdpTypeEnum("saml"),
+    LdapBaseDn:            models.ToPointer("DC=mycorp,DC=org"),
+    LdapBindDn:            models.ToPointer("admin@mycorp.org"),
+    LdapBindPassword:      models.ToPointer("secret"),
+    LdapMemberFilter:      models.ToPointer("(CN=%s)"),
     LdapResolveGroups:     models.ToPointer(false),
     LdapType:              models.ToPointer(models.SsoLdapTypeEnum("azure")),
     Name:                  "name6",
@@ -77,30 +81,6 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "created_time": 0,
-  "custom_logout_url": "string",
-  "default_role": "string",
-  "domain": "string",
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "idp_cert": "string",
-  "idp_sign_algo": "string",
-  "idp_sso_url": "string",
-  "ignore_unmatched_roles": true,
-  "issuer": "string",
-  "modified_time": 0,
-  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "name": "string",
-  "nameid_format": "email",
-  "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "type": "string"
 }
 ```
 
@@ -279,30 +259,6 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "created_time": 0,
-  "custom_logout_url": "string",
-  "default_role": "string",
-  "domain": "string",
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "idp_cert": "string",
-  "idp_sign_algo": "string",
-  "idp_sso_url": "string",
-  "ignore_unmatched_roles": true,
-  "issuer": "string",
-  "modified_time": 0,
-  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "name": "string",
-  "nameid_format": "email",
-  "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "type": "string"
 }
 ```
 
@@ -489,32 +445,6 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-[
-  {
-    "created_time": 0,
-    "custom_logout_url": "string",
-    "default_role": "string",
-    "domain": "string",
-    "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-    "idp_cert": "string",
-    "idp_sign_algo": "string",
-    "idp_sso_url": "string",
-    "ignore_unmatched_roles": true,
-    "issuer": "string",
-    "modified_time": 0,
-    "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-    "name": "string",
-    "nameid_format": "email",
-    "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-    "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-    "type": "string"
-  }
-]
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -562,14 +492,26 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 ssoId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Sso{
-    CustomLogoutUrl:       models.ToPointer("string"),
-    IdpCert:               models.ToPointer("string"),
-    IdpSignAlgo:           models.ToPointer("string"),
-    IdpSsoUrl:             models.ToPointer("string"),
-    IgnoreUnmatchedRoles:  models.ToPointer(true),
-    Issuer:                models.ToPointer("string"),
-    Name:                  "string",
+    IdpType:               models.SsoIdpTypeEnum("saml"),
+    LdapBaseDn:            models.ToPointer("DC=mycorp,DC=org"),
+    LdapBindDn:            models.ToPointer("admin@mycorp.org"),
+    LdapBindPassword:      models.ToPointer("secret"),
+    LdapMemberFilter:      models.ToPointer("(CN=%s)"),
+    LdapResolveGroups:     models.ToPointer(false),
+    LdapType:              models.ToPointer(models.SsoLdapTypeEnum("azure")),
+    Name:                  "name6",
     NameidFormat:          models.ToPointer(models.SsoNameidFormatEnum("email")),
+    OauthCcClientId:       models.ToPointer("e60da615-7def-4c5a-8196-43675f45e174"),
+    OauthCcClientSecret:   models.ToPointer("akL8Q~5kWFMVFYl4TFZ3fi~7cMdyDONi6cj01cpH"),
+    OauthRopcClientId:     models.ToPointer("9ce04c97-b5b1-4ec8-af17-f5ed42d2daf7"),
+    OauthRopcClientSecret: models.ToPointer("blM9R~6kWFMVFYl4TFZ3fi~8cMdyDONi6cj01dqI"),
+    OauthTenantId:         models.ToPointer("dev-88336535"),
+    OauthType:             models.ToPointer(models.SsoOauthTypeEnum("azure")),
+    OrgId:                 models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+    RoleAttrFrom:          models.ToPointer("Role"),
+    ScimEnabled:           models.ToPointer(false),
+    ScimSecretToken:       models.ToPointer("secret token"),
+    SiteId:                models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
 }
 
 apiResponse, err := mSPsSSO.UpdateMspSso(ctx, mspId, ssoId, &body)
@@ -579,30 +521,6 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "created_time": 0,
-  "custom_logout_url": "string",
-  "default_role": "string",
-  "domain": "string",
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "idp_cert": "string",
-  "idp_sign_algo": "string",
-  "idp_sso_url": "string",
-  "ignore_unmatched_roles": true,
-  "issuer": "string",
-  "modified_time": 0,
-  "msp_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "name": "string",
-  "nameid_format": "email",
-  "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-  "type": "string"
 }
 ```
 
