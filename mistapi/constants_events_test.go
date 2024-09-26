@@ -6,22 +6,6 @@ import (
     "testing"
 )
 
-// TestConstantsEventsTestListAlarmDefinitions tests the behavior of the ConstantsEvents
-func TestConstantsEventsTestListAlarmDefinitions(t *testing.T) {
-    ctx := context.Background()
-    apiResponse, err := constantsEvents.ListAlarmDefinitions(ctx)
-    if err != nil {
-        t.Errorf("Endpoint call failed: %v", err)
-    }
-    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-    expectedHeaders:= []testHelper.TestHeader{
-        testHelper.NewTestHeader(true,"Content-Type","application/json"),
-    }
-    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"display":"Device offline","example":{"aps":["d420b02000fa"],"count":1,"group":"infrastructure","hostnames":["Vendor_AP2"],"id":"e70c308f-7007-4866-9ecd-0d01842979ea","last_seen":1629753888,"org_id":"09dac91f-6e73-4100-89f7-698e0fafbb1b","severity":"warn","site_id":"dcfb31a1-d615-4361-8c95-b9dde05aa704","timestamp":1629753888,"type":"device_down"},"fields":["aps","hostnames"],"group":"infrastructure","key":"device_down","marvis_suggestion_category":"string","severity":"warn"}]`
-    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
 // TestConstantsEventsTestListClientEventsDefinitions tests the behavior of the ConstantsEvents
 func TestConstantsEventsTestListClientEventsDefinitions(t *testing.T) {
     ctx := context.Background()
