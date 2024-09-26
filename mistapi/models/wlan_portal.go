@@ -134,18 +134,19 @@ type WlanPortal struct {
     // Property key is the sponsor email, Property value is the sponsor name
     // List of email allowed for backward compatibility
     Sponsors                    *WlanPortalSponsors            `json:"sponsors,omitempty"`
-    // default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
+    // if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
     SsoDefaultRole              *string                        `json:"sso_default_role,omitempty"`
+    // if `wlan_portal_auth`==`sso`
     SsoForcedRole               *string                        `json:"sso_forced_role,omitempty"`
-    // IDP Cert (used to verify the signed response)
+    // if `wlan_portal_auth`==`sso`, IDP Cert (used to verify the signed response)
     SsoIdpCert                  *string                        `json:"sso_idp_cert,omitempty"`
-    // signing algorithm for SAML Assertion
-    SsoIdpSignAlgo              *string                        `json:"sso_idp_sign_algo,omitempty"`
-    // IDP Single-Sign-On URL
+    // if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+    SsoIdpSignAlgo              *WlanPortalIdpSignAlgoEnum     `json:"sso_idp_sign_algo,omitempty"`
+    // if `wlan_portal_auth`==`sso`, IDP Single-Sign-On URL
     SsoIdpSsoUrl                *string                        `json:"sso_idp_sso_url,omitempty"`
-    // IDP issuer URL
+    // if `wlan_portal_auth`==`sso`, IDP issuer URL
     SsoIssuer                   *string                        `json:"sso_issuer,omitempty"`
-    // enum: `email`, `unspecified`
+    // if `wlan_portal_auth`==`sso`. enum: `email`, `unspecified`
     SsoNameidFormat             *WlanPortalSsoNameidFormatEnum `json:"sso_nameid_format,omitempty"`
     // when `sms_provider`==`telstra`, Client ID provided by Telstra
     TelstraClientId             *string                        `json:"telstra_client_id,omitempty"`
@@ -646,7 +647,7 @@ type tempWlanPortal  struct {
     SsoDefaultRole              *string                        `json:"sso_default_role,omitempty"`
     SsoForcedRole               *string                        `json:"sso_forced_role,omitempty"`
     SsoIdpCert                  *string                        `json:"sso_idp_cert,omitempty"`
-    SsoIdpSignAlgo              *string                        `json:"sso_idp_sign_algo,omitempty"`
+    SsoIdpSignAlgo              *WlanPortalIdpSignAlgoEnum     `json:"sso_idp_sign_algo,omitempty"`
     SsoIdpSsoUrl                *string                        `json:"sso_idp_sso_url,omitempty"`
     SsoIssuer                   *string                        `json:"sso_issuer,omitempty"`
     SsoNameidFormat             *WlanPortalSsoNameidFormatEnum `json:"sso_nameid_format,omitempty"`

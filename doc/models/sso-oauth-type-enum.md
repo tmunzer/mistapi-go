@@ -1,7 +1,7 @@
 
 # Sso Oauth Type Enum
 
-enum: `azure`, `azure-gov`, `okta`, `ping_identity`
+if `idp_type`==`oauth`. enum: `azure`, `azure-gov`, `okta`, `ping_identity`
 
 ## Enumeration
 

@@ -1657,6 +1657,17 @@ const (
     NacPortalEapTypeEnum_WPA3 NacPortalEapTypeEnum = "wpa3"
 )
 
+// NacPortalSsoIdpSignAlgoEnum is a string enum.
+// Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+type NacPortalSsoIdpSignAlgoEnum string
+
+const (
+    NacPortalSsoIdpSignAlgoEnum_SHA1   NacPortalSsoIdpSignAlgoEnum = "sha1"
+    NacPortalSsoIdpSignAlgoEnum_SHA256 NacPortalSsoIdpSignAlgoEnum = "sha256"
+    NacPortalSsoIdpSignAlgoEnum_SHA384 NacPortalSsoIdpSignAlgoEnum = "sha384"
+    NacPortalSsoIdpSignAlgoEnum_SHA512 NacPortalSsoIdpSignAlgoEnum = "sha512"
+)
+
 // NacPortalTypeEnum is a string enum.
 type NacPortalTypeEnum string
 
@@ -2269,6 +2280,17 @@ type PskPortalAuthEnum string
 const (
     PskPortalAuthEnum_SPONSOR PskPortalAuthEnum = "sponsor"
     PskPortalAuthEnum_SSO     PskPortalAuthEnum = "sso"
+)
+
+// PskPortalSsoIdpSignAlgoEnum is a string enum.
+// Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+type PskPortalSsoIdpSignAlgoEnum string
+
+const (
+    PskPortalSsoIdpSignAlgoEnum_SHA1   PskPortalSsoIdpSignAlgoEnum = "sha1"
+    PskPortalSsoIdpSignAlgoEnum_SHA256 PskPortalSsoIdpSignAlgoEnum = "sha256"
+    PskPortalSsoIdpSignAlgoEnum_SHA384 PskPortalSsoIdpSignAlgoEnum = "sha384"
+    PskPortalSsoIdpSignAlgoEnum_SHA512 PskPortalSsoIdpSignAlgoEnum = "sha512"
 )
 
 // PskPortalTypeEnum is a string enum.
@@ -3414,6 +3436,17 @@ const (
     SslProxyCiphersCatagoryEnum_WEAK   SslProxyCiphersCatagoryEnum = "weak"
 )
 
+// SsoIdpSignAlgoEnum is a string enum.
+// Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+type SsoIdpSignAlgoEnum string
+
+const (
+    SsoIdpSignAlgoEnum_SHA1   SsoIdpSignAlgoEnum = "sha1"
+    SsoIdpSignAlgoEnum_SHA256 SsoIdpSignAlgoEnum = "sha256"
+    SsoIdpSignAlgoEnum_SHA384 SsoIdpSignAlgoEnum = "sha384"
+    SsoIdpSignAlgoEnum_SHA512 SsoIdpSignAlgoEnum = "sha512"
+)
+
 // SsoIdpTypeEnum is a string enum.
 // * For Admin SSO, enum: `saml`
 // * For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`
@@ -3448,7 +3481,7 @@ const (
 )
 
 // SsoOauthTypeEnum is a string enum.
-// enum: `azure`, `azure-gov`, `okta`, `ping_identity`
+// if `idp_type`==`oauth`. enum: `azure`, `azure-gov`, `okta`, `ping_identity`
 type SsoOauthTypeEnum string
 
 const (
@@ -4330,6 +4363,17 @@ const (
     WlanPortalAuthEnum_SSO      WlanPortalAuthEnum = "sso"
 )
 
+// WlanPortalIdpSignAlgoEnum is a string enum.
+// if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+type WlanPortalIdpSignAlgoEnum string
+
+const (
+    WlanPortalIdpSignAlgoEnum_SHA1   WlanPortalIdpSignAlgoEnum = "sha1"
+    WlanPortalIdpSignAlgoEnum_SHA256 WlanPortalIdpSignAlgoEnum = "sha256"
+    WlanPortalIdpSignAlgoEnum_SHA384 WlanPortalIdpSignAlgoEnum = "sha384"
+    WlanPortalIdpSignAlgoEnum_SHA512 WlanPortalIdpSignAlgoEnum = "sha512"
+)
+
 // WlanPortalSmsProviderEnum is a string enum.
 // enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`
 type WlanPortalSmsProviderEnum string
@@ -4345,7 +4389,7 @@ const (
 )
 
 // WlanPortalSsoNameidFormatEnum is a string enum.
-// enum: `email`, `unspecified`
+// if `wlan_portal_auth`==`sso`. enum: `email`, `unspecified`
 type WlanPortalSsoNameidFormatEnum string
 
 const (

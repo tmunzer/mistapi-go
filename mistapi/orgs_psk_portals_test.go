@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "encoding/json"
     "github.com/apimatic/go-core-runtime/testHelper"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/models"
@@ -36,12 +35,8 @@ func TestOrgsPskPortalsTestCreateOrgPskPortal(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    var body models.PskPortal
-    errBody := json.Unmarshal([]byte(`{"auth":"sso","expire":0,"max_usage":0,"name":"string","required_fields":["string"],"role":"string","ssid":"string","sso":{"default_role":"string","forced_role":"string","idp_cert":"string","idp_sign_algo":"string","idp_sso_url":"string","issuer":"string","nameid_format":"string"},"sso_required_role":"string","template_url":"string","type":"byod","vlan_id":10}`), &body)
-    if errBody != nil {
-        t.Errorf("Cannot parse the model object.")
-    }
-    apiResponse, err := orgsPskPortals.CreateOrgPskPortal(ctx, orgId, &body)
+    
+    apiResponse, err := orgsPskPortals.CreateOrgPskPortal(ctx, orgId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -186,12 +181,8 @@ func TestOrgsPskPortalsTestUpdateOrgPskPortal(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    var body models.PskPortal
-    errBody := json.Unmarshal([]byte(`{"auth":"sso","expire":0,"max_usage":0,"name":"string","required_fields":["string"],"role":"string","ssid":"string","sso":{"default_role":"string","forced_role":"string","idp_cert":"string","idp_sign_algo":"string","idp_sso_url":"string","issuer":"string","nameid_format":"string"},"sso_required_role":"string","template_url":"string","type":"byod","vlan_id":10}`), &body)
-    if errBody != nil {
-        t.Errorf("Cannot parse the model object.")
-    }
-    apiResponse, err := orgsPskPortals.UpdateOrgPskPortal(ctx, orgId, pskportalId, &body)
+    
+    apiResponse, err := orgsPskPortals.UpdateOrgPskPortal(ctx, orgId, pskportalId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

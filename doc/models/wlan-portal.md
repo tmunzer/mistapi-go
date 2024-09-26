@@ -72,13 +72,13 @@ portal wlan settings
 | `SponsorNotifyAll` | `*bool` | Optional | whether to notify all sponsors that are mentioned in `sponsors` object. Both `sponsor_notify_all` and `predefined_sponsors_enabled` should be true in order to notify sponsors. If true, email sent to 10 sponsors in no particular order.<br>**Default**: `false` |
 | `SponsorStatusNotify` | `*bool` | Optional | if enabled, guest will get email about sponsor's action (approve/deny)<br>**Default**: `false` |
 | `Sponsors` | [`*models.WlanPortalSponsors`](../../doc/models/containers/wlan-portal-sponsors.md) | Optional | object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty.<br>Property key is the sponsor email, Property value is the sponsor name<br>List of email allowed for backward compatibility |
-| `SsoDefaultRole` | `*string` | Optional | default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
-| `SsoForcedRole` | `*string` | Optional | - |
-| `SsoIdpCert` | `*string` | Optional | IDP Cert (used to verify the signed response) |
-| `SsoIdpSignAlgo` | `*string` | Optional | signing algorithm for SAML Assertion<br>**Default**: `"sha1"` |
-| `SsoIdpSsoUrl` | `*string` | Optional | IDP Single-Sign-On URL |
-| `SsoIssuer` | `*string` | Optional | IDP issuer URL |
-| `SsoNameidFormat` | [`*models.WlanPortalSsoNameidFormatEnum`](../../doc/models/wlan-portal-sso-nameid-format-enum.md) | Optional | enum: `email`, `unspecified`<br>**Default**: `"email"` |
+| `SsoDefaultRole` | `*string` | Optional | if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
+| `SsoForcedRole` | `*string` | Optional | if `wlan_portal_auth`==`sso` |
+| `SsoIdpCert` | `*string` | Optional | if `wlan_portal_auth`==`sso`, IDP Cert (used to verify the signed response) |
+| `SsoIdpSignAlgo` | [`*models.WlanPortalIdpSignAlgoEnum`](../../doc/models/wlan-portal-idp-sign-algo-enum.md) | Optional | if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`<br>**Default**: `"sha1"` |
+| `SsoIdpSsoUrl` | `*string` | Optional | if `wlan_portal_auth`==`sso`, IDP Single-Sign-On URL |
+| `SsoIssuer` | `*string` | Optional | if `wlan_portal_auth`==`sso`, IDP issuer URL |
+| `SsoNameidFormat` | [`*models.WlanPortalSsoNameidFormatEnum`](../../doc/models/wlan-portal-sso-nameid-format-enum.md) | Optional | if `wlan_portal_auth`==`sso`. enum: `email`, `unspecified`<br>**Default**: `"email"` |
 | `TelstraClientId` | `*string` | Optional | when `sms_provider`==`telstra`, Client ID provided by Telstra |
 | `TelstraClientSecret` | `*string` | Optional | when `sms_provider`==`telstra`, Client secret provided by Telstra |
 | `TwilioAuthToken` | `models.Optional[string]` | Optional | when `sms_provider`==`twilio`, Auth token account with twilio account |

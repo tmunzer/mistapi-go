@@ -6,15 +6,16 @@ import (
 
 // NacPortalSso represents a NacPortalSso struct.
 type NacPortalSso struct {
-    IdpCert              *string                    `json:"idp_cert,omitempty"`
-    IdpSignAlgo          *string                    `json:"idp_sign_algo,omitempty"`
-    IdpSsoUrl            *string                    `json:"idp_sso_url,omitempty"`
-    Issuer               *string                    `json:"issuer,omitempty"`
-    NameidFormat         *string                    `json:"nameid_format,omitempty"`
-    SsoRoleMatching      []NacPortalSsoRoleMatching `json:"sso_role_matching,omitempty"`
+    IdpCert              *string                      `json:"idp_cert,omitempty"`
+    // Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+    IdpSignAlgo          *NacPortalSsoIdpSignAlgoEnum `json:"idp_sign_algo,omitempty"`
+    IdpSsoUrl            *string                      `json:"idp_sso_url,omitempty"`
+    Issuer               *string                      `json:"issuer,omitempty"`
+    NameidFormat         *string                      `json:"nameid_format,omitempty"`
+    SsoRoleMatching      []NacPortalSsoRoleMatching   `json:"sso_role_matching,omitempty"`
     // if it's desired to inject a role into Cert's Subject (so it can be used later on in policy)
-    UseSsoRoleForCert    *bool                      `json:"use_sso_role_for_cert,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    UseSsoRoleForCert    *bool                        `json:"use_sso_role_for_cert,omitempty"`
+    AdditionalProperties map[string]any               `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortalSso.
@@ -79,11 +80,11 @@ func (n *NacPortalSso) UnmarshalJSON(input []byte) error {
 
 // tempNacPortalSso is a temporary struct used for validating the fields of NacPortalSso.
 type tempNacPortalSso  struct {
-    IdpCert           *string                    `json:"idp_cert,omitempty"`
-    IdpSignAlgo       *string                    `json:"idp_sign_algo,omitempty"`
-    IdpSsoUrl         *string                    `json:"idp_sso_url,omitempty"`
-    Issuer            *string                    `json:"issuer,omitempty"`
-    NameidFormat      *string                    `json:"nameid_format,omitempty"`
-    SsoRoleMatching   []NacPortalSsoRoleMatching `json:"sso_role_matching,omitempty"`
-    UseSsoRoleForCert *bool                      `json:"use_sso_role_for_cert,omitempty"`
+    IdpCert           *string                      `json:"idp_cert,omitempty"`
+    IdpSignAlgo       *NacPortalSsoIdpSignAlgoEnum `json:"idp_sign_algo,omitempty"`
+    IdpSsoUrl         *string                      `json:"idp_sso_url,omitempty"`
+    Issuer            *string                      `json:"issuer,omitempty"`
+    NameidFormat      *string                      `json:"nameid_format,omitempty"`
+    SsoRoleMatching   []NacPortalSsoRoleMatching   `json:"sso_role_matching,omitempty"`
+    UseSsoRoleForCert *bool                        `json:"use_sso_role_for_cert,omitempty"`
 }

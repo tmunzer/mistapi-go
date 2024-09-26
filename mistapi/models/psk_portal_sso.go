@@ -8,17 +8,18 @@ import (
 // if `auth`==`sso`
 type PskPortalSso struct {
     // // allowed roles for accessing psk portal, if none, any role is permitted
-    AllowedRoles         []string          `json:"allowed_roles,omitempty"`
-    IdpCert              *string           `json:"idp_cert,omitempty"`
-    IdpSignAlgo          *string           `json:"idp_sign_algo,omitempty"`
-    IdpSsoUrl            *string           `json:"idp_sso_url,omitempty"`
-    Issuer               *string           `json:"issuer,omitempty"`
-    NameidFormat         *string           `json:"nameid_format,omitempty"`
+    AllowedRoles         []string                     `json:"allowed_roles,omitempty"`
+    IdpCert              *string                      `json:"idp_cert,omitempty"`
+    // Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+    IdpSignAlgo          *PskPortalSsoIdpSignAlgoEnum `json:"idp_sign_algo,omitempty"`
+    IdpSsoUrl            *string                      `json:"idp_sso_url,omitempty"`
+    Issuer               *string                      `json:"issuer,omitempty"`
+    NameidFormat         *string                      `json:"nameid_format,omitempty"`
     // Property key is the role name, property value is the SSO Attribute
-    RoleMapping          map[string]string `json:"role_mapping,omitempty"`
+    RoleMapping          map[string]string            `json:"role_mapping,omitempty"`
     // if enabled, the `role` above will be ignored
-    UseSsoRoleForPskRole *bool             `json:"use_sso_role_for_psk_role,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    UseSsoRoleForPskRole *bool                        `json:"use_sso_role_for_psk_role,omitempty"`
+    AdditionalProperties map[string]any               `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalSso.
@@ -87,12 +88,12 @@ func (p *PskPortalSso) UnmarshalJSON(input []byte) error {
 
 // tempPskPortalSso is a temporary struct used for validating the fields of PskPortalSso.
 type tempPskPortalSso  struct {
-    AllowedRoles         []string          `json:"allowed_roles,omitempty"`
-    IdpCert              *string           `json:"idp_cert,omitempty"`
-    IdpSignAlgo          *string           `json:"idp_sign_algo,omitempty"`
-    IdpSsoUrl            *string           `json:"idp_sso_url,omitempty"`
-    Issuer               *string           `json:"issuer,omitempty"`
-    NameidFormat         *string           `json:"nameid_format,omitempty"`
-    RoleMapping          map[string]string `json:"role_mapping,omitempty"`
-    UseSsoRoleForPskRole *bool             `json:"use_sso_role_for_psk_role,omitempty"`
+    AllowedRoles         []string                     `json:"allowed_roles,omitempty"`
+    IdpCert              *string                      `json:"idp_cert,omitempty"`
+    IdpSignAlgo          *PskPortalSsoIdpSignAlgoEnum `json:"idp_sign_algo,omitempty"`
+    IdpSsoUrl            *string                      `json:"idp_sso_url,omitempty"`
+    Issuer               *string                      `json:"issuer,omitempty"`
+    NameidFormat         *string                      `json:"nameid_format,omitempty"`
+    RoleMapping          map[string]string            `json:"role_mapping,omitempty"`
+    UseSsoRoleForPskRole *bool                        `json:"use_sso_role_for_psk_role,omitempty"`
 }
