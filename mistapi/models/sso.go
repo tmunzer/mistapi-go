@@ -15,7 +15,9 @@ type Sso struct {
     CustomLogoutUrl       *string              `json:"custom_logout_url,omitempty"`
     // if `idp_type`==`saml`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
     DefaultRole           *string              `json:"default_role,omitempty"`
-    // if `idp_type`==`ldap` or `idp_type`==`oauth`, list of domain names to match to use this IDP profile
+    // random string generated during the SSO creation and used to generate the SAML URLs:
+    // * ACS URL = `/api/v1/saml/{domain}/login` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/login`)
+    // * Single Logout URL = `/api/v1/saml/{domain}/logout` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/logout`)
     Domain                *string              `json:"domain,omitempty"`
     Id                    *uuid.UUID           `json:"id,omitempty"`
     // if `idp_type`==`saml`. IDP Cert (used to verify the signed response)
@@ -26,7 +28,7 @@ type Sso struct {
     IdpSsoUrl             *string              `json:"idp_sso_url,omitempty"`
     // * For Admin SSO, enum: `saml`
     // * For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`
-    IdpType               SsoIdpTypeEnum       `json:"idp_type"`
+    IdpType               *SsoIdpTypeEnum      `json:"idp_type,omitempty"`
     // if `idp_type`==`saml`, ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role
     IgnoreUnmatchedRoles  *bool                `json:"ignore_unmatched_roles,omitempty"`
     // if `idp_type`==`saml`. IDP issuer URL
@@ -132,7 +134,9 @@ func (s Sso) toMap() map[string]any {
     if s.IdpSsoUrl != nil {
         structMap["idp_sso_url"] = s.IdpSsoUrl
     }
-    structMap["idp_type"] = s.IdpType
+    if s.IdpType != nil {
+        structMap["idp_type"] = s.IdpType
+    }
     if s.IgnoreUnmatchedRoles != nil {
         structMap["ignore_unmatched_roles"] = s.IgnoreUnmatchedRoles
     }
@@ -262,7 +266,7 @@ func (s *Sso) UnmarshalJSON(input []byte) error {
     s.IdpCert = temp.IdpCert
     s.IdpSignAlgo = temp.IdpSignAlgo
     s.IdpSsoUrl = temp.IdpSsoUrl
-    s.IdpType = *temp.IdpType
+    s.IdpType = temp.IdpType
     s.IgnoreUnmatchedRoles = temp.IgnoreUnmatchedRoles
     s.Issuer = temp.Issuer
     s.LdapBaseDn = temp.LdapBaseDn
@@ -310,7 +314,7 @@ type tempSso  struct {
     IdpCert               *string              `json:"idp_cert,omitempty"`
     IdpSignAlgo           *SsoIdpSignAlgoEnum  `json:"idp_sign_algo,omitempty"`
     IdpSsoUrl             *string              `json:"idp_sso_url,omitempty"`
-    IdpType               *SsoIdpTypeEnum      `json:"idp_type"`
+    IdpType               *SsoIdpTypeEnum      `json:"idp_type,omitempty"`
     IgnoreUnmatchedRoles  *bool                `json:"ignore_unmatched_roles,omitempty"`
     Issuer                *string              `json:"issuer,omitempty"`
     LdapBaseDn            *string              `json:"ldap_base_dn,omitempty"`
@@ -349,9 +353,6 @@ type tempSso  struct {
 
 func (s *tempSso) validate() error {
     var errs []string
-    if s.IdpType == nil {
-        errs = append(errs, "required field `idp_type` is missing for type `sso`")
-    }
     if s.Name == nil {
         errs = append(errs, "required field `name` is missing for type `sso`")
     }

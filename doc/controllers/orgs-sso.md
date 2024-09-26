@@ -52,7 +52,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Sso{
-    IdpType:               models.SsoIdpTypeEnum("saml"),
+    IdpType:               models.ToPointer(models.SsoIdpTypeEnum("saml")),
     LdapBaseDn:            models.ToPointer("DC=mycorp,DC=org"),
     LdapBindDn:            models.ToPointer("admin@mycorp.org"),
     LdapBindPassword:      models.ToPointer("secret"),
@@ -520,7 +520,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 ssoId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Sso{
-    IdpType:               models.SsoIdpTypeEnum("saml"),
+    IdpType:               models.ToPointer(models.SsoIdpTypeEnum("saml")),
     LdapBaseDn:            models.ToPointer("DC=mycorp,DC=org"),
     LdapBindDn:            models.ToPointer("admin@mycorp.org"),
     LdapBindPassword:      models.ToPointer("secret"),

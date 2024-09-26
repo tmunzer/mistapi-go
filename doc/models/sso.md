@@ -14,12 +14,12 @@ SSO
 | `CreatedTime` | `*float64` | Optional | - |
 | `CustomLogoutUrl` | `*string` | Optional | if `idp_type`==`saml`, a URL we will redirect the user after user logout from Mist (for some IdP which supports a custom logout URL that is different from SP-initiated SLO process) |
 | `DefaultRole` | `*string` | Optional | if `idp_type`==`saml`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
-| `Domain` | `*string` | Optional | if `idp_type`==`ldap` or `idp_type`==`oauth`, list of domain names to match to use this IDP profile |
+| `Domain` | `*string` | Optional | random string generated during the SSO creation and used to generate the SAML URLs:<br><br>* ACS URL = `/api/v1/saml/{domain}/login` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/login`)<br>* Single Logout URL = `/api/v1/saml/{domain}/logout` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/logout`) |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `IdpCert` | `*string` | Optional | if `idp_type`==`saml`. IDP Cert (used to verify the signed response) |
 | `IdpSignAlgo` | [`*models.SsoIdpSignAlgoEnum`](../../doc/models/sso-idp-sign-algo-enum.md) | Optional | Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512` |
 | `IdpSsoUrl` | `*string` | Optional | Required if `idp_type`==`saml`, IDP Single-Sign-On URL |
-| `IdpType` | [`models.SsoIdpTypeEnum`](../../doc/models/sso-idp-type-enum.md) | Required | * For Admin SSO, enum: `saml`<br>* For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`<br>**Default**: `"saml"` |
+| `IdpType` | [`*models.SsoIdpTypeEnum`](../../doc/models/sso-idp-type-enum.md) | Optional | * For Admin SSO, enum: `saml`<br>* For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`<br>**Default**: `"saml"` |
 | `IgnoreUnmatchedRoles` | `*bool` | Optional | if `idp_type`==`saml`, ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role |
 | `Issuer` | `*string` | Optional | if `idp_type`==`saml`. IDP issuer URL |
 | `LdapBaseDn` | `*string` | Optional | Required if `idp_type`==`ldap` |
