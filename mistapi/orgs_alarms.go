@@ -24,7 +24,7 @@ func NewOrgsAlarms(baseController baseController) *OrgsAlarms {
 }
 
 // AckOrgMultipleAlarms takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Ack multiple Org Alarms
 func (o *OrgsAlarms) AckOrgMultipleAlarms(
@@ -61,15 +61,15 @@ func (o *OrgsAlarms) AckOrgMultipleAlarms(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // AckOrgAllAlarms takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Ack all Org Alarms
 // **N.B.**: Batch size for multiple alarm ack and unack has to be less or or equal to 1000.
@@ -107,11 +107,11 @@ func (o *OrgsAlarms) AckOrgAllAlarms(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // CountOrgAlarms takes context, orgId, distinct, start, end, duration, limit, page as parameters and
@@ -249,7 +249,7 @@ func (o *OrgsAlarms) SearchOrgAlarms(
 }
 
 // UnackOrgMultipleAlarms takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Unack multiple Org Alarms
 func (o *OrgsAlarms) UnackOrgMultipleAlarms(
@@ -286,15 +286,15 @@ func (o *OrgsAlarms) UnackOrgMultipleAlarms(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UnackOrgAllArlarms takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Unack all Org Alarms
 // **N.B.**: Batch size for multiple alarm ack and unack has to be less or or equal to 1000.
@@ -332,15 +332,15 @@ func (o *OrgsAlarms) UnackOrgAllArlarms(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // AckOrgAlarm takes context, orgId, alarmId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Ack Org Alarm
 func (o *OrgsAlarms) AckOrgAlarm(
@@ -378,9 +378,9 @@ func (o *OrgsAlarms) AckOrgAlarm(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

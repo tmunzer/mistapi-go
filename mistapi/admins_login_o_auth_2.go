@@ -23,7 +23,7 @@ func NewAdminsLoginOAuth2(baseController baseController) *AdminsLoginOAuth2 {
 }
 
 // UnlinkOauth2Provider takes context, provider as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Unlink OAuth2 Provider
 func (a *AdminsLoginOAuth2) UnlinkOauth2Provider(
@@ -55,11 +55,11 @@ func (a *AdminsLoginOAuth2) UnlinkOauth2Provider(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOauth2AuthorizationUrlForLogin takes context, provider, forward as parameters and
@@ -110,7 +110,7 @@ func (a *AdminsLoginOAuth2) GetOauth2AuthorizationUrlForLogin(
 }
 
 // LoginOauth2 takes context, provider, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Login via OAuth2
 func (a *AdminsLoginOAuth2) LoginOauth2(
@@ -147,9 +147,9 @@ func (a *AdminsLoginOAuth2) LoginOauth2(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

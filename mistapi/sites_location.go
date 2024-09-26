@@ -186,7 +186,7 @@ func (s *SitesLocation) GetSiteDefaultPlfForModels(
 }
 
 // ClearSiteMlOverwriteForDevice takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Clear ML Overwrite for Device
 func (s *SitesLocation) ClearSiteMlOverwriteForDevice(
@@ -219,11 +219,11 @@ func (s *SitesLocation) ClearSiteMlOverwriteForDevice(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // OverwriteSiteMlForDevice takes context, siteId, deviceId, body as parameters and
@@ -276,7 +276,7 @@ func (s *SitesLocation) OverwriteSiteMlForDevice(
 }
 
 // ClearSiteMlOverwriteForMap takes context, siteId, mapId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Clear ML Overwrite for Map
 func (s *SitesLocation) ClearSiteMlOverwriteForMap(
@@ -309,11 +309,11 @@ func (s *SitesLocation) ClearSiteMlOverwriteForMap(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // OverwriteSiteMlForMap takes context, siteId, mapId, body as parameters and
@@ -366,7 +366,7 @@ func (s *SitesLocation) OverwriteSiteMlForMap(
 }
 
 // ResetSiteMlStatsByMap takes context, siteId, mapId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Reset ML Stats by Map
 func (s *SitesLocation) ResetSiteMlStatsByMap(
@@ -399,9 +399,9 @@ func (s *SitesLocation) ResetSiteMlStatsByMap(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

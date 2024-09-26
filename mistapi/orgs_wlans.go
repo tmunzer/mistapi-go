@@ -115,7 +115,7 @@ func (o *OrgsWlans) CreateOrgWlan(
 }
 
 // DeleteOrgWlan takes context, orgId, wlanId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org WLAN
 func (o *OrgsWlans) DeleteOrgWlan(
@@ -148,11 +148,11 @@ func (o *OrgsWlans) DeleteOrgWlan(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgWLAN takes context, orgId, wlanId as parameters and
@@ -249,7 +249,7 @@ func (o *OrgsWlans) UpdateOrgWlan(
 }
 
 // DeleteOrgWlanPortalImage takes context, orgId, wlanId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org WLAN Portal Image
 func (o *OrgsWlans) DeleteOrgWlanPortalImage(
@@ -282,15 +282,15 @@ func (o *OrgsWlans) DeleteOrgWlanPortalImage(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UploadOrgWlanPortalImage takes context, orgId, wlanId, file, json as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Upload Org WLAN Portal Image
 func (o *OrgsWlans) UploadOrgWlanPortalImage(
@@ -333,11 +333,11 @@ func (o *OrgsWlans) UploadOrgWlanPortalImage(
     }
     req.FormData(formFields)
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateOrgWlanPortalTemplate takes context, orgId, wlanId, body as parameters and

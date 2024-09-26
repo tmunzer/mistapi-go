@@ -23,7 +23,7 @@ func NewUtilitiesWiFi(baseController baseController) *UtilitiesWiFi {
 }
 
 // ReauthOrgDot1xWirelessClient takes context, orgId, clientMac as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Trigger a CoA (change of authorization) against a client
 func (u *UtilitiesWiFi) ReauthOrgDot1xWirelessClient(
@@ -56,15 +56,15 @@ func (u *UtilitiesWiFi) ReauthOrgDot1xWirelessClient(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DisconnectSiteMultipleClients takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // To unauthorize multiple clients
 func (u *UtilitiesWiFi) DisconnectSiteMultipleClients(
@@ -101,15 +101,15 @@ func (u *UtilitiesWiFi) DisconnectSiteMultipleClients(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UnauthorizeSiteMultipleClients takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This unauthorize clients (if they are guest) and disconnect them. From the guest’s perspective, they will see the splash page again and go through the flow (e.g. Terms of Use) again.
 func (u *UtilitiesWiFi) UnauthorizeSiteMultipleClients(
@@ -146,15 +146,15 @@ func (u *UtilitiesWiFi) UnauthorizeSiteMultipleClients(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ReauthSiteDot1xWirelessClient takes context, siteId, clientMac as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Trigger a CoA (change of authorization) against a Wireless client
 func (u *UtilitiesWiFi) ReauthSiteDot1xWirelessClient(
@@ -187,15 +187,15 @@ func (u *UtilitiesWiFi) ReauthSiteDot1xWirelessClient(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DisconnectSiteWirelessClient takes context, siteId, clientMac as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This disconnect a client (and it’s likely to connect back)
 func (u *UtilitiesWiFi) DisconnectSiteWirelessClient(
@@ -228,15 +228,15 @@ func (u *UtilitiesWiFi) DisconnectSiteWirelessClient(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UnauthorizeSiteWirelessClient takes context, siteId, clientMac as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This unauthorize a client (if it’s a guest) and disconnect it. From the guest’s perspective, s/he will see the splash page again and go through the flow (e.g. Terms of Use) again.
 func (u *UtilitiesWiFi) UnauthorizeSiteWirelessClient(
@@ -269,15 +269,15 @@ func (u *UtilitiesWiFi) UnauthorizeSiteWirelessClient(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ReprovisionSiteAllAps takes context, siteId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // To force all APs to reprovision itself again.
 func (u *UtilitiesWiFi) ReprovisionSiteAllAps(
@@ -309,15 +309,15 @@ func (u *UtilitiesWiFi) ReprovisionSiteAllAps(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ResetSiteAllApsToUseRrm takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Reset all APs in the Site to use RRM
 func (u *UtilitiesWiFi) ResetSiteAllApsToUseRrm(
@@ -354,15 +354,15 @@ func (u *UtilitiesWiFi) ResetSiteAllApsToUseRrm(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ZeroizeSiteFipsAllAps takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Zeroize all FIPS APs in the Site
 func (u *UtilitiesWiFi) ZeroizeSiteFipsAllAps(
@@ -399,15 +399,15 @@ func (u *UtilitiesWiFi) ZeroizeSiteFipsAllAps(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DeauthSiteWirelessClientsConnectedToARogue takes context, siteId, rogueBssid as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Send Deauth frame to clients connected to a Rogue AP
 func (u *UtilitiesWiFi) DeauthSiteWirelessClientsConnectedToARogue(
@@ -440,15 +440,15 @@ func (u *UtilitiesWiFi) DeauthSiteWirelessClientsConnectedToARogue(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // OptimizeSiteRrm takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Optimize Site RRM
 func (u *UtilitiesWiFi) OptimizeSiteRrm(
@@ -485,15 +485,15 @@ func (u *UtilitiesWiFi) OptimizeSiteRrm(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // TestSiteWlanTelstraSetup takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Allows validation of Telstra sms gateway credentials.
 // In case of success, a text message confirming successful setup should be received. In case of error, telstra error message are returned.
@@ -525,15 +525,15 @@ func (u *UtilitiesWiFi) TestSiteWlanTelstraSetup(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // TestSiteWlanTwilioSetup takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Allows validation of twilio setup
 // In case of success, a text message confirming successful setup should be received. In case of error, twilio error code and message are returned.
@@ -565,9 +565,9 @@ func (u *UtilitiesWiFi) TestSiteWlanTwilioSetup(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

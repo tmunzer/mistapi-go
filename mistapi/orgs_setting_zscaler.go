@@ -24,7 +24,7 @@ func NewOrgsSettingZscaler(baseController baseController) *OrgsSettingZscaler {
 }
 
 // DeleteOrgZscalerCredential takes context, orgId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // To delete Zscaler credential
 func (o *OrgsSettingZscaler) DeleteOrgZscalerCredential(
@@ -56,11 +56,11 @@ func (o *OrgsSettingZscaler) DeleteOrgZscalerCredential(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgZscalerCredential takes context, orgId as parameters and
@@ -107,7 +107,7 @@ func (o *OrgsSettingZscaler) GetOrgZscalerCredential(
 }
 
 // SetupOrgZscalerCredential takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // To setup Zscaler credential
 func (o *OrgsSettingZscaler) SetupOrgZscalerCredential(
@@ -144,9 +144,9 @@ func (o *OrgsSettingZscaler) SetupOrgZscalerCredential(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

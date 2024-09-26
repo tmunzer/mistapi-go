@@ -124,7 +124,7 @@ func (o *OrgsWebhooks) CreateOrgWebhook(
 }
 
 // DeleteOrgWebhook takes context, orgId, webhookId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org Webhook
 func (o *OrgsWebhooks) DeleteOrgWebhook(
@@ -157,11 +157,11 @@ func (o *OrgsWebhooks) DeleteOrgWebhook(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgWebhook takes context, orgId, webhookId as parameters and
@@ -426,7 +426,7 @@ func (o *OrgsWebhooks) SearchOrgWebhooksDeliveries(
 }
 
 // PingOrgWebhook takes context, orgId, webhookId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // send a Ping event to the webhook
 func (o *OrgsWebhooks) PingOrgWebhook(
@@ -459,9 +459,9 @@ func (o *OrgsWebhooks) PingOrgWebhook(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

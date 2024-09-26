@@ -72,7 +72,7 @@ func (o *OrgsLinkedApplications) LinkOrgToJuniperJuniperAccount(
 }
 
 // UnlinkOrgFromJuniperCustomerId takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Unlink Juniper Customer ID
 // `linked_by` field is only required if there are duplicate account_names.
@@ -110,11 +110,11 @@ func (o *OrgsLinkedApplications) UnlinkOrgFromJuniperCustomerId(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgOauthAppLinkedStatus takes context, orgId, appName, forward as parameters and
@@ -164,7 +164,7 @@ func (o *OrgsLinkedApplications) GetOrgOauthAppLinkedStatus(
 }
 
 // AddOrgOauthAppAccounts takes context, orgId, appName, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Add Jamf, VMware Authorization With Mist Portal
 func (o *OrgsLinkedApplications) AddOrgOauthAppAccounts(
@@ -202,15 +202,15 @@ func (o *OrgsLinkedApplications) AddOrgOauthAppAccounts(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateOrgOauthAppAccounts takes context, orgId, appName, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Update Zoom, Teams, Intune Authorization.
 // Request Payload, These Field And Values Will Be Specific To Each Of The Third Party Apps Accounts.
@@ -249,15 +249,15 @@ func (o *OrgsLinkedApplications) UpdateOrgOauthAppAccounts(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DeleteOrgOauthAppAuthorization takes context, orgId, appName, accountId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org Level OAuth Application Authorization With Mist Portal
 func (o *OrgsLinkedApplications) DeleteOrgOauthAppAuthorization(
@@ -291,9 +291,9 @@ func (o *OrgsLinkedApplications) DeleteOrgOauthAppAuthorization(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

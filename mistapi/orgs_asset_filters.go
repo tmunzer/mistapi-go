@@ -125,7 +125,7 @@ func (o *OrgsAssetFilters) CreateOrgAssetFilters(
 }
 
 // DeleteOrgAssetFilter takes context, orgId, assetfilterId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Deletes an existing BLE asset filter for the given site.
 func (o *OrgsAssetFilters) DeleteOrgAssetFilter(
@@ -158,11 +158,11 @@ func (o *OrgsAssetFilters) DeleteOrgAssetFilter(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgAssetFilter takes context, orgId, assetfilterId as parameters and

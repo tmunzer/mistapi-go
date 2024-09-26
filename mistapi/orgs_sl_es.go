@@ -41,7 +41,7 @@ func (o *OrgsSLEs) GetOrgSitesSle(
     req := o.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/insights/sites_sle", orgId),
+      fmt.Sprintf("/api/v1/orgs/%v/insights/sites-sle", orgId),
     )
     req.Authenticate(
         NewOrAuth(

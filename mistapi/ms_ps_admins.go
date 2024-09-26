@@ -63,7 +63,7 @@ func (m *MSPsAdmins) ListMspAdmins(
 }
 
 // RevokeMspAdmin takes context, mspId, adminId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This removes all privileges this admin has against the MSP. This goes deep all the way to the sites
 func (m *MSPsAdmins) RevokeMspAdmin(
@@ -96,11 +96,11 @@ func (m *MSPsAdmins) RevokeMspAdmin(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetMspAdmin takes context, mspId, adminId as parameters and
@@ -246,7 +246,7 @@ func (m *MSPsAdmins) InviteMspAdmin(
 }
 
 // UninviteMspAdmin takes context, mspId, inviteId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete admin invite
 func (m *MSPsAdmins) UninviteMspAdmin(
@@ -279,11 +279,11 @@ func (m *MSPsAdmins) UninviteMspAdmin(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateMspAdminInvite takes context, mspId, inviteId, body as parameters and

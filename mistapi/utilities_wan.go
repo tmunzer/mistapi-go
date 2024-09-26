@@ -124,7 +124,7 @@ func (u *UtilitiesWAN) ClearSiteSsrBgpRoutes(
 }
 
 // ClearSiteDeviceSession takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Clear session
 func (u *UtilitiesWAN) ClearSiteDeviceSession(
@@ -162,15 +162,15 @@ func (u *UtilitiesWAN) ClearSiteDeviceSession(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ReleaseSiteSsrDhcpLease takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Releases an active DHCP lease.
 func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
@@ -208,11 +208,11 @@ func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // TestSiteSsrDnsResolution takes context, siteId, deviceId as parameters and

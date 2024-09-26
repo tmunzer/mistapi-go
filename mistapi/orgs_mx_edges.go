@@ -670,7 +670,7 @@ func (o *OrgsMxEdges) GetOrgMxEdgeUpgradeInfo(
 }
 
 // DeleteOrgMxEdge takes context, orgId, mxedgeId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org MxEdge
 func (o *OrgsMxEdges) DeleteOrgMxEdge(
@@ -703,11 +703,11 @@ func (o *OrgsMxEdges) DeleteOrgMxEdge(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgMxEdge takes context, orgId, mxedgeId as parameters and
@@ -804,7 +804,7 @@ func (o *OrgsMxEdges) UpdateOrgMxEdge(
 }
 
 // DeleteOrgMxEdgeImage takes context, orgId, mxedgeId, imageNumber as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Remove MxEdge Image
 func (o *OrgsMxEdges) DeleteOrgMxEdgeImage(
@@ -838,15 +838,15 @@ func (o *OrgsMxEdges) DeleteOrgMxEdgeImage(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // AddOrgMxEdgeImage takes context, orgId, mxedgeId, imageNumber, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Attach up to 3 images to a mxedge
 func (o *OrgsMxEdges) AddOrgMxEdgeImage(
@@ -885,15 +885,15 @@ func (o *OrgsMxEdges) AddOrgMxEdgeImage(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // RestartOrgMxEdge takes context, orgId, mxedgeId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // In the case where a Mist Edge is replaced, you would need to unregister it. Which disconnects the currently the connected Mist Edge and allow another to register.
 func (o *OrgsMxEdges) RestartOrgMxEdge(
@@ -926,15 +926,15 @@ func (o *OrgsMxEdges) RestartOrgMxEdge(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // BounceOrgMxEdgeDataPorts takes context, orgId, mxedgeId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Bounce TunTerm Data Ports
 func (o *OrgsMxEdges) BounceOrgMxEdgeDataPorts(
@@ -972,15 +972,15 @@ func (o *OrgsMxEdges) BounceOrgMxEdgeDataPorts(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ControlOrgMxEdgeServices takes context, orgId, mxedgeId, name, action as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Control Services on a Mist Edge
 func (o *OrgsMxEdges) ControlOrgMxEdgeServices(
@@ -1015,15 +1015,15 @@ func (o *OrgsMxEdges) ControlOrgMxEdgeServices(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UploadOrgMxEdgeSupportFiles takes context, orgId, mxedgeId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Support / Upload Mist Edge support files
 func (o *OrgsMxEdges) UploadOrgMxEdgeSupportFiles(
@@ -1056,15 +1056,15 @@ func (o *OrgsMxEdges) UploadOrgMxEdgeSupportFiles(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UnregisterOrgMxEdge takes context, orgId, mxedgeId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // In the case where a Mist Edge is replaced, you would need to unregister it. Which disconnects the currently the connected Mist Edge and allow another to register.
 func (o *OrgsMxEdges) UnregisterOrgMxEdge(
@@ -1097,9 +1097,9 @@ func (o *OrgsMxEdges) UnregisterOrgMxEdge(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

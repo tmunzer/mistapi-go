@@ -119,7 +119,7 @@ func (o *OrgsAssets) CreateOrgAsset(
 }
 
 // ImportOrgAssets takes context, orgId, file as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Impert Org Assets. 
 // It can be done via a CSV file or a JSON payload.
@@ -164,15 +164,15 @@ func (o *OrgsAssets) ImportOrgAssets(
     }
     req.FormData(formFields)
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DeleteOrgAsset takes context, orgId, assetId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org Asset
 func (o *OrgsAssets) DeleteOrgAsset(
@@ -205,11 +205,11 @@ func (o *OrgsAssets) DeleteOrgAsset(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgAsset takes context, orgId, assetId as parameters and

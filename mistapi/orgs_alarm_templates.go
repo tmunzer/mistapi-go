@@ -124,7 +124,7 @@ func (o *OrgsAlarmTemplates) CreateOrgAlarmTemplate(
 }
 
 // UnsuppressOrgSuppressedAlarms takes context, orgId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Un-Suppress Suppressed Alarms
 func (o *OrgsAlarmTemplates) UnsuppressOrgSuppressedAlarms(
@@ -156,11 +156,11 @@ func (o *OrgsAlarmTemplates) UnsuppressOrgSuppressedAlarms(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ListOrgSuppressedAlarms takes context, orgId, scope as parameters and
@@ -211,7 +211,7 @@ func (o *OrgsAlarmTemplates) ListOrgSuppressedAlarms(
 }
 
 // SuppressOrgAlarm takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // In certain situations, for example, scheduled maintenance, you may want to suspend alarms to be triggered against Sites for a period of time.
 func (o *OrgsAlarmTemplates) SuppressOrgAlarm(
@@ -248,15 +248,15 @@ func (o *OrgsAlarmTemplates) SuppressOrgAlarm(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DeleteOrgAlarmTemplate takes context, orgId, alarmtemplateId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org Alarm Template
 func (o *OrgsAlarmTemplates) DeleteOrgAlarmTemplate(
@@ -289,11 +289,11 @@ func (o *OrgsAlarmTemplates) DeleteOrgAlarmTemplate(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgAlarmTemplate takes context, orgId, alarmtemplateId as parameters and

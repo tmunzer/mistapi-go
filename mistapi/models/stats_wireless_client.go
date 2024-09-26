@@ -9,8 +9,6 @@ import (
 
 // StatsWirelessClient represents a StatsWirelessClient struct.
 type StatsWirelessClient struct {
-    // TTL of the validity of the stat
-    Ttl                  float64                          `json:"_ttl"`
     // estimated client location accuracy, in meter
     Accuracy             *int                             `json:"accuracy,omitempty"`
     AirespaceIfname      *string                          `json:"airespace_ifname,omitempty"`
@@ -128,7 +126,6 @@ func (s StatsWirelessClient) MarshalJSON() (
 func (s StatsWirelessClient) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, s.AdditionalProperties)
-    structMap["_ttl"] = s.Ttl
     if s.Accuracy != nil {
         structMap["accuracy"] = s.Accuracy
     }
@@ -232,13 +229,12 @@ func (s *StatsWirelessClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "_ttl", "accuracy", "airespace_ifname", "airwatch", "ap_id", "ap_mac", "band", "channel", "dual_band", "family", "guest", "hostname", "idle_time", "ip", "is_guest", "key_mgmt", "last_seen", "mac", "manufacture", "map_id", "model", "num_locating_aps", "os", "power_saving", "proto", "psk_id", "rssi", "rssizones", "rx_bps", "rx_bytes", "rx_packets", "rx_rate", "rx_retries", "snr", "ssid", "tx_bps", "tx_bytes", "tx_packets", "tx_rate", "tx_retries", "type", "uptime", "username", "vbeacons", "vlan_id", "wlan_id", "wxrule_id", "wxrule_usage", "x", "x_m", "y", "y_m", "zones")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "accuracy", "airespace_ifname", "airwatch", "ap_id", "ap_mac", "band", "channel", "dual_band", "family", "guest", "hostname", "idle_time", "ip", "is_guest", "key_mgmt", "last_seen", "mac", "manufacture", "map_id", "model", "num_locating_aps", "os", "power_saving", "proto", "psk_id", "rssi", "rssizones", "rx_bps", "rx_bytes", "rx_packets", "rx_rate", "rx_retries", "snr", "ssid", "tx_bps", "tx_bytes", "tx_packets", "tx_rate", "tx_retries", "type", "uptime", "username", "vbeacons", "vlan_id", "wlan_id", "wxrule_id", "wxrule_usage", "x", "x_m", "y", "y_m", "zones")
     if err != nil {
     	return err
     }
     
     s.AdditionalProperties = additionalProperties
-    s.Ttl = *temp.Ttl
     s.Accuracy = temp.Accuracy
     s.AirespaceIfname = temp.AirespaceIfname
     s.Airwatch = temp.Airwatch
@@ -296,7 +292,6 @@ func (s *StatsWirelessClient) UnmarshalJSON(input []byte) error {
 
 // tempStatsWirelessClient is a temporary struct used for validating the fields of StatsWirelessClient.
 type tempStatsWirelessClient  struct {
-    Ttl             *float64                         `json:"_ttl"`
     Accuracy        *int                             `json:"accuracy,omitempty"`
     AirespaceIfname *string                          `json:"airespace_ifname,omitempty"`
     Airwatch        *StatsWirelessClientAirwatch     `json:"airwatch,omitempty"`
@@ -353,9 +348,6 @@ type tempStatsWirelessClient  struct {
 
 func (s *tempStatsWirelessClient) validate() error {
     var errs []string
-    if s.Ttl == nil {
-        errs = append(errs, "required field `_ttl` is missing for type `stats_wireless_client`")
-    }
     if s.ApId == nil {
         errs = append(errs, "required field `ap_id` is missing for type `stats_wireless_client`")
     }

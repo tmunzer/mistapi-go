@@ -6,11 +6,6 @@ import (
 
 // AssetOfInterest represents a AssetOfInterest struct.
 type AssetOfInterest struct {
-    CheckpointPrep       *float64       `json:"_checkpoint_prep,omitempty"`
-    CheckpointPreparer   *float64       `json:"_checkpoint_preparer,omitempty"`
-    CheckpointScan       *float64       `json:"_checkpoint_scan,omitempty"`
-    Timestamp            *float64       `json:"_timestamp,omitempty"`
-    Ttl                  *float64       `json:"_ttl,omitempty"`
     ApMac                *string        `json:"ap_mac,omitempty"`
     Beam                 *float64       `json:"beam,omitempty"`
     By                   *string        `json:"by,omitempty"`
@@ -38,21 +33,6 @@ func (a AssetOfInterest) MarshalJSON() (
 func (a AssetOfInterest) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, a.AdditionalProperties)
-    if a.CheckpointPrep != nil {
-        structMap["_checkpoint_prep"] = a.CheckpointPrep
-    }
-    if a.CheckpointPreparer != nil {
-        structMap["_checkpoint_preparer"] = a.CheckpointPreparer
-    }
-    if a.CheckpointScan != nil {
-        structMap["_checkpoint_scan"] = a.CheckpointScan
-    }
-    if a.Timestamp != nil {
-        structMap["_timestamp"] = a.Timestamp
-    }
-    if a.Ttl != nil {
-        structMap["_ttl"] = a.Ttl
-    }
     if a.ApMac != nil {
         structMap["ap_mac"] = a.ApMac
     }
@@ -100,17 +80,12 @@ func (a *AssetOfInterest) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "_checkpoint_prep", "_checkpoint_preparer", "_checkpoint_scan", "_timestamp", "_ttl", "ap_mac", "beam", "by", "curr_site", "device_name", "id", "last_seen", "mac", "manufacture", "map_id", "name", "rssi")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "beam", "by", "curr_site", "device_name", "id", "last_seen", "mac", "manufacture", "map_id", "name", "rssi")
     if err != nil {
     	return err
     }
     
     a.AdditionalProperties = additionalProperties
-    a.CheckpointPrep = temp.CheckpointPrep
-    a.CheckpointPreparer = temp.CheckpointPreparer
-    a.CheckpointScan = temp.CheckpointScan
-    a.Timestamp = temp.Timestamp
-    a.Ttl = temp.Ttl
     a.ApMac = temp.ApMac
     a.Beam = temp.Beam
     a.By = temp.By
@@ -128,21 +103,16 @@ func (a *AssetOfInterest) UnmarshalJSON(input []byte) error {
 
 // tempAssetOfInterest is a temporary struct used for validating the fields of AssetOfInterest.
 type tempAssetOfInterest  struct {
-    CheckpointPrep     *float64 `json:"_checkpoint_prep,omitempty"`
-    CheckpointPreparer *float64 `json:"_checkpoint_preparer,omitempty"`
-    CheckpointScan     *float64 `json:"_checkpoint_scan,omitempty"`
-    Timestamp          *float64 `json:"_timestamp,omitempty"`
-    Ttl                *float64 `json:"_ttl,omitempty"`
-    ApMac              *string  `json:"ap_mac,omitempty"`
-    Beam               *float64 `json:"beam,omitempty"`
-    By                 *string  `json:"by,omitempty"`
-    CurrSite           *string  `json:"curr_site,omitempty"`
-    DeviceName         *string  `json:"device_name,omitempty"`
-    Id                 *string  `json:"id,omitempty"`
-    LastSeen           *float64 `json:"last_seen,omitempty"`
-    Mac                *string  `json:"mac,omitempty"`
-    Manufacture        *string  `json:"manufacture,omitempty"`
-    MapId              *string  `json:"map_id,omitempty"`
-    Name               *string  `json:"name,omitempty"`
-    Rssi               *float64 `json:"rssi,omitempty"`
+    ApMac       *string  `json:"ap_mac,omitempty"`
+    Beam        *float64 `json:"beam,omitempty"`
+    By          *string  `json:"by,omitempty"`
+    CurrSite    *string  `json:"curr_site,omitempty"`
+    DeviceName  *string  `json:"device_name,omitempty"`
+    Id          *string  `json:"id,omitempty"`
+    LastSeen    *float64 `json:"last_seen,omitempty"`
+    Mac         *string  `json:"mac,omitempty"`
+    Manufacture *string  `json:"manufacture,omitempty"`
+    MapId       *string  `json:"map_id,omitempty"`
+    Name        *string  `json:"name,omitempty"`
+    Rssi        *float64 `json:"rssi,omitempty"`
 }

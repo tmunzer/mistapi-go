@@ -23,7 +23,7 @@ func NewMSPsLogo(baseController baseController) *MSPsLogo {
 }
 
 // DeleteMspLogo takes context, mspId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete MSP Logo
 func (m *MSPsLogo) DeleteMspLogo(
@@ -55,15 +55,15 @@ func (m *MSPsLogo) DeleteMspLogo(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // PostMspLogo takes context, mspId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Upload Logo (only for advanced msp tier)
 func (m *MSPsLogo) PostMspLogo(
@@ -96,9 +96,9 @@ func (m *MSPsLogo) PostMspLogo(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

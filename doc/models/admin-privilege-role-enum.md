@@ -1,11 +1,11 @@
 
-# Privilege Self Role Enum
+# Admin Privilege Role Enum
 
 access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
 
 ## Enumeration
 
-`PrivilegeSelfRoleEnum`
+`AdminPrivilegeRoleEnum`
 
 ## Fields
 

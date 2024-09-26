@@ -140,8 +140,8 @@ body := models.Admin{
     Email:                models.ToPointer("user@example.com"),
     FirstName:            models.ToPointer("string"),
     LastName:             models.ToPointer("string"),
-    Privileges:           []models.PrivilegeSelf{
-        models.PrivilegeSelf{
+    Privileges:           []models.AdminPrivilege{
+        models.AdminPrivilege{
             MspId:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             MspName:      models.NewOptional(models.ToPointer("string")),
             Name:         models.ToPointer("string"),
@@ -150,8 +150,8 @@ body := models.Admin{
             OrggroupIds:  []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
-            Role:         models.PrivilegeSelfRoleEnum("admin"),
-            Scope:        models.PrivilegeSelfScopeEnum("org"),
+            Role:         models.AdminPrivilegeRoleEnum("admin"),
+            Scope:        models.AdminPrivilegeScopeEnum("org"),
             SiteId:       models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             SitegroupIds: []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
@@ -435,18 +435,18 @@ body := models.Admin{
     Email:                models.ToPointer("jsnow@abc.com"),
     FirstName:            models.ToPointer("string"),
     LastName:             models.ToPointer("string"),
-    Privileges:           []models.PrivilegeSelf{
-        models.PrivilegeSelf{
+    Privileges:           []models.AdminPrivilege{
+        models.AdminPrivilege{
             OrgId:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            Role:         models.PrivilegeSelfRoleEnum("admin"),
-            Scope:        models.PrivilegeSelfScopeEnum("org"),
+            Role:         models.AdminPrivilegeRoleEnum("admin"),
+            Scope:        models.AdminPrivilegeScopeEnum("org"),
             SitegroupIds: []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
         },
-        models.PrivilegeSelf{
-            Role:         models.PrivilegeSelfRoleEnum("admin"),
-            Scope:        models.PrivilegeSelfScopeEnum("site"),
+        models.AdminPrivilege{
+            Role:         models.AdminPrivilegeRoleEnum("admin"),
+            Scope:        models.AdminPrivilegeScopeEnum("site"),
             SiteId:       models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
         },
     },
@@ -542,8 +542,8 @@ body := models.Admin{
     Email:                models.ToPointer("user@example.com"),
     FirstName:            models.ToPointer("string"),
     LastName:             models.ToPointer("string"),
-    Privileges:           []models.PrivilegeSelf{
-        models.PrivilegeSelf{
+    Privileges:           []models.AdminPrivilege{
+        models.AdminPrivilege{
             MspId:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             MspName:      models.NewOptional(models.ToPointer("string")),
             Name:         models.ToPointer("string"),
@@ -552,8 +552,8 @@ body := models.Admin{
             OrggroupIds:  []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
-            Role:         models.PrivilegeSelfRoleEnum("admin"),
-            Scope:        models.PrivilegeSelfScopeEnum("org"),
+            Role:         models.AdminPrivilegeRoleEnum("admin"),
+            Scope:        models.AdminPrivilegeScopeEnum("org"),
             SiteId:       models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             SitegroupIds: []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),

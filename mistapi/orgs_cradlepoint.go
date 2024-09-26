@@ -23,7 +23,7 @@ func NewOrgsCradlepoint(baseController baseController) *OrgsCradlepoint {
 }
 
 // DeleteOrgCradlepointConnection takes context, orgId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This deletes the Cradlepoint integration in Mist
 func (o *OrgsCradlepoint) DeleteOrgCradlepointConnection(
@@ -55,15 +55,15 @@ func (o *OrgsCradlepoint) DeleteOrgCradlepointConnection(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // SetupOrgCradlepointConnectionToMist takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This sets up cradlepoint webhooks to send events to Mist
 func (o *OrgsCradlepoint) SetupOrgCradlepointConnectionToMist(
@@ -100,15 +100,15 @@ func (o *OrgsCradlepoint) SetupOrgCradlepointConnectionToMist(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateOrgCradlepointConnectionToMist takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This updates the Cradlepoint integration settings in Mist
 func (o *OrgsCradlepoint) UpdateOrgCradlepointConnectionToMist(
@@ -145,15 +145,15 @@ func (o *OrgsCradlepoint) UpdateOrgCradlepointConnectionToMist(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // SyncOrgCradlepointRouters takes context, orgId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This syncs cradlepoint devices with Mist. We’ll also attempt to use the LLDP data from cradlepoint to identify the linkage against Mist Site / Device
 func (o *OrgsCradlepoint) SyncOrgCradlepointRouters(
@@ -185,9 +185,9 @@ func (o *OrgsCradlepoint) SyncOrgCradlepointRouters(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

@@ -225,7 +225,7 @@ func (i *Installer) ClaimInstallerDevices(
 }
 
 // UnassignInstallerRecentlyClaimedDevice takes context, orgId, deviceMac as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Unassign recently claimed devices
 func (i *Installer) UnassignInstallerRecentlyClaimedDevice(
@@ -258,15 +258,15 @@ func (i *Installer) UnassignInstallerRecentlyClaimedDevice(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ProvisionInstallerDevices takes context, orgId, deviceMac, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Provision or Replace a device 
 // If replacing_mac is in the request payload, other attributes are ignored, we attempt to replace existing device (with mac replacing_mac) with the inventory device being configured. The replacement device must be in the inventory but not assigned, and the replacing_mac device must be assigned to a site, and satisfy grace period requirements. The Device replaced will become unassigned.
@@ -305,15 +305,15 @@ func (i *Installer) ProvisionInstallerDevices(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // StartInstallerLocateDevice takes context, orgId, deviceMac as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Locate a Device by blinking it’s LED, it’s a persisted state that has to be stopped by calling Stop Locating API
 func (i *Installer) StartInstallerLocateDevice(
@@ -346,15 +346,15 @@ func (i *Installer) StartInstallerLocateDevice(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // StopInstallerLocateDevice takes context, orgId, deviceMac as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Stop it
 func (i *Installer) StopInstallerLocateDevice(
@@ -387,15 +387,15 @@ func (i *Installer) StopInstallerLocateDevice(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DeleteInstallerDeviceImage takes context, orgId, imageName, deviceMac as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // delete image
 func (i *Installer) DeleteInstallerDeviceImage(
@@ -429,15 +429,15 @@ func (i *Installer) DeleteInstallerDeviceImage(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // AddInstallerDeviceImage takes context, orgId, imageName, deviceMac, autoDeviceprofileAssignment, csv, file, json as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Add image
 func (i *Installer) AddInstallerDeviceImage(
@@ -493,11 +493,11 @@ func (i *Installer) AddInstallerDeviceImage(
     }
     req.FormData(formFields)
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetInstallerDeviceVirtualChassis takes context, orgId, fpc0Mac as parameters and
@@ -816,7 +816,7 @@ func (i *Installer) ListInstallerSites(
 }
 
 // CreateOrUpdateInstallerSites takes context, orgId, siteName, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Often the Installers are asked to assign Devices to Sites. The Sites can either be pre-created or created/modified by the Installer. If this is an update, the same grace period also applies.
 func (i *Installer) CreateOrUpdateInstallerSites(
@@ -854,11 +854,11 @@ func (i *Installer) CreateOrUpdateInstallerSites(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ListInstallerMaps takes context, orgId, siteName as parameters and
@@ -972,7 +972,7 @@ func (i *Installer) ImportInstallerMap(
 }
 
 // DeleteInstallerMap takes context, orgId, siteName, mapId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Map
 func (i *Installer) DeleteInstallerMap(
@@ -1006,11 +1006,11 @@ func (i *Installer) DeleteInstallerMap(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // CreateInstallerMap takes context, orgId, siteName, mapId, body as parameters and
@@ -1114,7 +1114,7 @@ func (i *Installer) UpdateInstallerMap(
 }
 
 // OptimizeInstallerRrm takes context, siteName as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // After installation is considered complete (APs are placed on maps, all powered up), you can trigger an optimize operation where RRM will kick in (and maybe other things in the future) before it’s automatically scheduled.
 func (i *Installer) OptimizeInstallerRrm(
@@ -1146,9 +1146,9 @@ func (i *Installer) OptimizeInstallerRrm(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

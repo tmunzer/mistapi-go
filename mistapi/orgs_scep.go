@@ -213,7 +213,7 @@ func (o *OrgsSCEP) GetOrgIssuedClientCertificates(
 }
 
 // RevokeOrgIssuedClientCertificates takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Revoke Issued Client Certificates
 func (o *OrgsSCEP) RevokeOrgIssuedClientCertificates(
@@ -250,9 +250,9 @@ func (o *OrgsSCEP) RevokeOrgIssuedClientCertificates(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

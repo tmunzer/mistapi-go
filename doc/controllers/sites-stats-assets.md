@@ -249,9 +249,6 @@ if err != nil {
 ```json
 [
   {
-    "_checkpoint_prep": 0,
-    "_checkpoint_preparer": 0,
-    "_checkpoint_scan": 0,
     "ap_mac": "string",
     "beam": 0,
     "by": "string",

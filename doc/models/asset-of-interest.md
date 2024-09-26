@@ -9,11 +9,6 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CheckpointPrep` | `*float64` | Optional | - |
-| `CheckpointPreparer` | `*float64` | Optional | - |
-| `CheckpointScan` | `*float64` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
-| `Ttl` | `*float64` | Optional | - |
 | `ApMac` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `Beam` | `*float64` | Optional | - |
 | `By` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
@@ -31,11 +26,11 @@
 
 ```json
 {
-  "_checkpoint_prep": 248.76,
-  "_checkpoint_preparer": 179.56,
-  "_checkpoint_scan": 138.38,
-  "_timestamp": 252.68,
-  "_ttl": 80.84
+  "ap_mac": "ap_mac4",
+  "beam": 115.36,
+  "by": "by4",
+  "curr_site": "curr_site8",
+  "device_name": "device_name0"
 }
 ```
 

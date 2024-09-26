@@ -23,7 +23,7 @@
 | `PasswordModifiedTime` | `*float64` | Optional | password last modified time, in epoch |
 | `Phone` | `*string` | Optional | if admin account is not an Org API Token<br>phone number (numbers only, including country code) |
 | `Phone2` | `*string` | Optional | if admin account is not an Org API Token<br>secondary phone number (numbers only, including country code) |
-| `Privileges` | [`[]models.PrivilegeSelf`](../../doc/models/privilege-self.md) | Optional | list of privileges the admin has<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Privileges` | [`[]models.AdminPrivilege`](../../doc/models/admin-privilege.md) | Optional | list of privileges the admin has<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SessionExpiry` | `*int64` | Optional | **Constraints**: `>= 10`, `<= 20160` |
 | `Tags` | `[]string` | Optional | - |
 | `TwoFactorVerified` | `*bool` | Optional | if admin account is not an Org API Token<br>two factor status |

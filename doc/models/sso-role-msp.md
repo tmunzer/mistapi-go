@@ -34,7 +34,7 @@ SSO Role response
       "orggroup_id": "000010e2-0000-0000-0000-000000000000",
       "role": "admin",
       "scope": "org",
-      "views": "switch_admin"
+      "views": "super_observer"
     }
   ],
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",

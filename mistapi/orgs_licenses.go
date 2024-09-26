@@ -111,7 +111,7 @@ func (o *OrgsLicenses) GetOrgLicencesSummary(
 }
 
 // MoveOrDeleteOrgLicenseToAnotherOrg takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Move, Undo Move or Delete Org License to Another Org
 // If the admin has admin privilege against the `org_id` and `dst_org_id`, he can move some of the licenses to another Org. Given that: 
@@ -152,11 +152,11 @@ func (o *OrgsLicenses) MoveOrDeleteOrgLicenseToAnotherOrg(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgLicencesBySite takes context, orgId as parameters and

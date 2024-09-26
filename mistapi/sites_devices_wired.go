@@ -23,7 +23,7 @@ func NewSitesDevicesWired(baseController baseController) *SitesDevicesWired {
 }
 
 // DeleteSiteLocalSwitchPortConfig takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Sometimes HelpDesk Admin needs to change port configs
 func (s *SitesDevicesWired) DeleteSiteLocalSwitchPortConfig(
@@ -56,15 +56,15 @@ func (s *SitesDevicesWired) DeleteSiteLocalSwitchPortConfig(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateSiteLocalSwitchPortConfig takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Sometimes HelpDesk Admin needs to change port configs
 func (s *SitesDevicesWired) UpdateSiteLocalSwitchPortConfig(
@@ -102,9 +102,9 @@ func (s *SitesDevicesWired) UpdateSiteLocalSwitchPortConfig(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

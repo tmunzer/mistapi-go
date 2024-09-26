@@ -22,7 +22,7 @@ func NewOrgsSubscriptions(baseController baseController) *OrgsSubscriptions {
 }
 
 // UnsubscribeOrgAlarmsReports takes context, orgId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Unsubscribe from Org Alarms/Reports
 // Subscriptions define how Org Alarms/Reports are delivered to whom
@@ -55,15 +55,15 @@ func (o *OrgsSubscriptions) UnsubscribeOrgAlarmsReports(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // SubscribeOrgAlarmsReports takes context, orgId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Subscribe to Org Alarms/Reports
 // Subscriptions define how Org Alarms/Reports are delivered to whom
@@ -96,9 +96,9 @@ func (o *OrgsSubscriptions) SubscribeOrgAlarmsReports(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

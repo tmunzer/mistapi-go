@@ -211,7 +211,7 @@ func (o *OrgsInventory) UpdateOrgInventoryAssignment(
 }
 
 // CreateOrgGatewayHaCluster takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Create HA Cluster from unassigned Gateways
 func (o *OrgsInventory) CreateOrgGatewayHaCluster(
@@ -248,15 +248,15 @@ func (o *OrgsInventory) CreateOrgGatewayHaCluster(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DeleteOrgGatewayHaCluster takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete HA Cluster
 // After HA cluster deleted, both of the nodes will be unassigned.
@@ -294,15 +294,15 @@ func (o *OrgsInventory) DeleteOrgGatewayHaCluster(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ReevaluateOrgAutoAssignment takes context, orgId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Reevaluate Auto Assignment
 func (o *OrgsInventory) ReevaluateOrgAutoAssignment(
@@ -334,11 +334,11 @@ func (o *OrgsInventory) ReevaluateOrgAutoAssignment(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ReplaceOrgDevices takes context, orgId, body as parameters and

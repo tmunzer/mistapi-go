@@ -159,7 +159,7 @@ func TestSitesStatsAssetsTestGetSiteAssetsOfInterest(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"_checkpoint_prep":0,"_checkpoint_preparer":0,"_checkpoint_scan":0,"ap_mac":"string","beam":0,"by":"string","curr_site":"string","device_name":"string","id":"string","last_seen":0,"mac":"string","manufacture":"string","map_id":"string","name":"string","rssi":0}]`
+    expected := `[{"ap_mac":"string","beam":0,"by":"string","curr_site":"string","device_name":"string","id":"string","last_seen":0,"mac":"string","manufacture":"string","map_id":"string","name":"string","rssi":0}]`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

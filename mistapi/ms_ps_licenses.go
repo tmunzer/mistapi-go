@@ -111,7 +111,7 @@ func (m *MSPsLicenses) ListMspLicenses(
 }
 
 // MoveOrDeleteMspLicenseToAnotherOrg takes context, mspId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Move or Delete MSP Licenses
 func (m *MSPsLicenses) MoveOrDeleteMspLicenseToAnotherOrg(
@@ -148,11 +148,11 @@ func (m *MSPsLicenses) MoveOrDeleteMspLicenseToAnotherOrg(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ListMspOrgLicenses takes context, mspId as parameters and

@@ -68,7 +68,7 @@ func (u *UtilitiesLAN) ReauthOrgDot1xWiredClient(
 }
 
 // UpgradeSiteDevicesBios takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Upgrade Bios on Multiple Device
 func (u *UtilitiesLAN) UpgradeSiteDevicesBios(
@@ -105,15 +105,15 @@ func (u *UtilitiesLAN) UpgradeSiteDevicesBios(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpgradeSiteDevicesFpga takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Upgrade Bios on Multiple Device
 func (u *UtilitiesLAN) UpgradeSiteDevicesFpga(
@@ -150,15 +150,15 @@ func (u *UtilitiesLAN) UpgradeSiteDevicesFpga(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // PortsBounceFromSwitch takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Port Bounce can be performed from the Switch.The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 // #### Subscribe to Device Command outputs
@@ -214,11 +214,11 @@ func (u *UtilitiesLAN) PortsBounceFromSwitch(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // CableTestFromSwitch takes context, siteId, deviceId, body as parameters and
@@ -289,7 +289,7 @@ func (u *UtilitiesLAN) CableTestFromSwitch(
 }
 
 // ClearBpduErrosFromPortsOnSwitch takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Clear bridge protocol data unit (BPDU) error condition caused by the detection of a possible bridging loop from Spanning Tree Protocol (STP) operation that renders the port unoperational.
 func (u *UtilitiesLAN) ClearBpduErrosFromPortsOnSwitch(
@@ -327,15 +327,15 @@ func (u *UtilitiesLAN) ClearBpduErrosFromPortsOnSwitch(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ClearAllLearnedMacsFromPortOnSwitch takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Clear all learned MAC addresses, including persistent MAC addresses, on a port.
 func (u *UtilitiesLAN) ClearAllLearnedMacsFromPortOnSwitch(
@@ -373,15 +373,15 @@ func (u *UtilitiesLAN) ClearAllLearnedMacsFromPortOnSwitch(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // PollSiteSwitchStats takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This API can be used to poll statistics from the Switch proactively once. After it is called, the statistics will be pushed back to the cloud within the statistics interval.
 func (u *UtilitiesLAN) PollSiteSwitchStats(
@@ -414,11 +414,11 @@ func (u *UtilitiesLAN) PollSiteSwitchStats(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // CreateSiteDeviceSnapshot takes context, siteId, deviceId as parameters and

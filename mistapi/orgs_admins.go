@@ -63,7 +63,7 @@ func (o *OrgsAdmins) ListOrgAdmins(
 }
 
 // RevokeOrgAdmin takes context, orgId, adminId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This removes all privileges this admin has against the org
 func (o *OrgsAdmins) RevokeOrgAdmin(
@@ -96,11 +96,11 @@ func (o *OrgsAdmins) RevokeOrgAdmin(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateOrgAdmin takes context, orgId, adminId, body as parameters and
@@ -153,7 +153,7 @@ func (o *OrgsAdmins) UpdateOrgAdmin(
 }
 
 // InviteOrgAdmin takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // If the request is successful, an email will also be sent to the user with a link to ```https://manage.mist.com/verify/invite?token=:token&expire=1459632743&org=OrgName```
 func (o *OrgsAdmins) InviteOrgAdmin(
@@ -190,15 +190,15 @@ func (o *OrgsAdmins) InviteOrgAdmin(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UninviteOrgAdmin takes context, orgId, inviteId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Admin Invite
 func (o *OrgsAdmins) UninviteOrgAdmin(
@@ -231,15 +231,15 @@ func (o *OrgsAdmins) UninviteOrgAdmin(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateOrgAdminInvite takes context, orgId, inviteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Update Admin Invite
 func (o *OrgsAdmins) UpdateOrgAdminInvite(
@@ -277,9 +277,9 @@ func (o *OrgsAdmins) UpdateOrgAdminInvite(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

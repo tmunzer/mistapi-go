@@ -210,7 +210,7 @@ func (u *UtilitiesUpgrade) ListOrgAvailableDeviceVersions(
 }
 
 // UpgradeOrgJsiDevice takes context, orgId, deviceMac, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Upgrade
 func (u *UtilitiesUpgrade) UpgradeOrgJsiDevice(
@@ -248,11 +248,11 @@ func (u *UtilitiesUpgrade) UpgradeOrgJsiDevice(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ListOrgMxEdgeUpgrades takes context, orgId as parameters and
@@ -299,7 +299,7 @@ func (u *UtilitiesUpgrade) ListOrgMxEdgeUpgrades(
 }
 
 // UpgradeOrgMxEdges takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Upgrade Mist Edges
 func (u *UtilitiesUpgrade) UpgradeOrgMxEdges(
@@ -336,11 +336,11 @@ func (u *UtilitiesUpgrade) UpgradeOrgMxEdges(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgMxEdgeUpgrade takes context, orgId, upgradeId as parameters and
@@ -479,7 +479,7 @@ func (u *UtilitiesUpgrade) UpgradeOrgSsrs(
 }
 
 // CancelOrgSsrUpgrade takes context, orgId, upgradeId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Best effort to cancel an upgrade. Devices which are already upgraded wont be touched↵
 func (u *UtilitiesUpgrade) CancelOrgSsrUpgrade(
@@ -512,11 +512,11 @@ func (u *UtilitiesUpgrade) CancelOrgSsrUpgrade(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ListOrgAvailableSsrVersions takes context, orgId, channel as parameters and
@@ -707,7 +707,7 @@ func (u *UtilitiesUpgrade) GetSiteDeviceUpgrade(
 }
 
 // CancelSiteDeviceUpgrade takes context, siteId, upgradeId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Best effort to cancel an upgrade. Devices which are already upgraded wont be touched
 func (u *UtilitiesUpgrade) CancelSiteDeviceUpgrade(
@@ -740,11 +740,11 @@ func (u *UtilitiesUpgrade) CancelSiteDeviceUpgrade(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ListSiteAvailableDeviceVersions takes context, siteId, mType, model as parameters and

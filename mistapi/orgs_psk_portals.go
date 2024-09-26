@@ -344,7 +344,7 @@ func (o *OrgsPskPortals) SearchOrgPskPortalLogs(
 }
 
 // DeleteOrgPskPortal takes context, orgId, pskportalId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org Psk Portal
 func (o *OrgsPskPortals) DeleteOrgPskPortal(
@@ -377,11 +377,11 @@ func (o *OrgsPskPortals) DeleteOrgPskPortal(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgPskPortal takes context, orgId, pskportalId as parameters and
@@ -478,7 +478,7 @@ func (o *OrgsPskPortals) UpdateOrgPskPortal(
 }
 
 // DeleteOrgPskPortalImage takes context, orgId, pskportalId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete background image for PskPortal
 // If image is not uploaded or is deleted, PskPortal will use default image.
@@ -512,15 +512,15 @@ func (o *OrgsPskPortals) DeleteOrgPskPortalImage(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UploadOrgPskPortalImage takes context, orgId, pskportalId, file, json as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Upload background image for PskPortal
 func (o *OrgsPskPortals) UploadOrgPskPortalImage(
@@ -565,15 +565,15 @@ func (o *OrgsPskPortals) UploadOrgPskPortalImage(
     }
     req.FormData(formFields)
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateOrgPskPortalTemplate takes context, orgId, pskportalId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Update Org Psk Portal Template
 func (o *OrgsPskPortals) UpdateOrgPskPortalTemplate(
@@ -611,9 +611,9 @@ func (o *OrgsPskPortals) UpdateOrgPskPortalTemplate(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

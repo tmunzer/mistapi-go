@@ -63,7 +63,7 @@ func (a *AdminsLogin) Login(
 }
 
 // TwoFactor takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Send 2FA Code
 func (a *AdminsLogin) TwoFactor(
@@ -94,9 +94,9 @@ func (a *AdminsLogin) TwoFactor(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

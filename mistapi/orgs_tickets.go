@@ -279,7 +279,7 @@ func (o *OrgsTickets) UpdateOrgTicket(
 }
 
 // UploadrgTicketAttachment takes context, orgId, ticketId, file as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Get Org ticket Attachment
 func (o *OrgsTickets) UploadrgTicketAttachment(
@@ -319,11 +319,11 @@ func (o *OrgsTickets) UploadrgTicketAttachment(
     }
     req.FormData(formFields)
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgTicketAttachment takes context, orgId, ticketId, attachmentId, start, end, duration as parameters and

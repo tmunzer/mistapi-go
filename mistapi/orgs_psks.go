@@ -176,7 +176,7 @@ func (o *OrgsPsks) UpdateOrgMultiplePsks(
 }
 
 // DeleteOrgPskList takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org PSK List
 // Delete list of psks on the org. This API accepts single string or list of strings
@@ -214,11 +214,11 @@ func (o *OrgsPsks) DeleteOrgPskList(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ImportOrgPsks takes context, orgId, file as parameters and
@@ -280,7 +280,7 @@ func (o *OrgsPsks) ImportOrgPsks(
 }
 
 // DeleteOrgPsk takes context, orgId, pskId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org PSK
 func (o *OrgsPsks) DeleteOrgPsk(
@@ -313,11 +313,11 @@ func (o *OrgsPsks) DeleteOrgPsk(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgPsk takes context, orgId, pskId as parameters and

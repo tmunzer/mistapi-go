@@ -192,7 +192,7 @@ func (s *SitesMaps) ImportSiteMaps(
 }
 
 // DeleteSiteMap takes context, siteId, mapId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site Map
 func (s *SitesMaps) DeleteSiteMap(
@@ -225,11 +225,11 @@ func (s *SitesMaps) DeleteSiteMap(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSiteMap takes context, siteId, mapId as parameters and
@@ -326,7 +326,7 @@ func (s *SitesMaps) UpdateSiteMap(
 }
 
 // DeleteSiteMapImage takes context, siteId, mapId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site Map Image
 func (s *SitesMaps) DeleteSiteMapImage(
@@ -359,15 +359,15 @@ func (s *SitesMaps) DeleteSiteMapImage(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // AddSiteMapImage takes context, siteId, mapId, file, json as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Add image map is a multipart POST which has an file (Image) and an optional json parameter
 func (s *SitesMaps) AddSiteMapImage(
@@ -410,15 +410,15 @@ func (s *SitesMaps) AddSiteMapImage(
     }
     req.FormData(formFields)
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ReplaceSiteMapImage takes context, siteId, mapId, file, json as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Replace Map Image
 // This works like an PUT where the image will be replaced. If transform is provided, all the locations of the objects on the map (AP, Zone, Vbeacon, Beacon) will be transformed as well (relative to the new Map)
@@ -462,11 +462,11 @@ func (s *SitesMaps) ReplaceSiteMapImage(
     }
     req.FormData(formFields)
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // BulkAssignSiteApsToMap takes context, siteId, mapId, body as parameters and
@@ -522,7 +522,7 @@ func (s *SitesMaps) BulkAssignSiteApsToMap(
 }
 
 // ImportSiteWayfindings takes context, siteId, mapId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // This imports the vendor map meta data into the Map JSON. This is required by the SDK and App in order to access/render the vendor Map properly.
 func (s *SitesMaps) ImportSiteWayfindings(
@@ -560,9 +560,9 @@ func (s *SitesMaps) ImportSiteWayfindings(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

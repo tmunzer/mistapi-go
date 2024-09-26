@@ -23,7 +23,7 @@ func NewAdmins(baseController baseController) *Admins {
 }
 
 // VerifyAdminInvite takes context, token as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // **Note**: another call to ```GET /api/v1/self``` is required to see the new set of privileges
 func (a *Admins) VerifyAdminInvite(
@@ -55,15 +55,15 @@ func (a *Admins) VerifyAdminInvite(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // RegisterNewAdmin takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Register a new admin and his/her org
 // An email will also be sent to the user with a link to `/verify/register?token={token}`
@@ -129,11 +129,11 @@ func (a *Admins) RegisterNewAdmin(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetAdminRegistrationInfo takes context, recaptchaFlavor as parameters and

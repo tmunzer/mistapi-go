@@ -9,7 +9,6 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ttl` | `float64` | Required | TTL of the validity of the stat |
 | `Accuracy` | `*int` | Optional | estimated client location accuracy, in meter |
 | `AirespaceIfname` | `*string` | Optional | - |
 | `Airwatch` | [`*models.StatsWirelessClientAirwatch`](../../doc/models/stats-wireless-client-airwatch.md) | Optional | information if airwatch enabled |
@@ -67,7 +66,6 @@
 
 ```json
 {
-  "_ttl": 110.36,
   "ap_id": "00001902-0000-0000-0000-000000000000",
   "ap_mac": "ap_mac2",
   "band": "5",

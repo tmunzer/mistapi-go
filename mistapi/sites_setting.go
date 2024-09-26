@@ -115,7 +115,7 @@ func (s *SitesSetting) UpdateSiteSettings(
 }
 
 // DeleteSiteWirelessClientsBlocklist takes context, siteId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site Blacklist Station Clients
 func (s *SitesSetting) DeleteSiteWirelessClientsBlocklist(
@@ -147,11 +147,11 @@ func (s *SitesSetting) DeleteSiteWirelessClientsBlocklist(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // CreateSiteWirelessClientsBlocklist takes context, siteId, body as parameters and
@@ -204,7 +204,7 @@ func (s *SitesSetting) CreateSiteWirelessClientsBlocklist(
 }
 
 // DeleteSiteWatchedStations takes context, siteId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site Watched Station Clients
 func (s *SitesSetting) DeleteSiteWatchedStations(
@@ -236,11 +236,11 @@ func (s *SitesSetting) DeleteSiteWatchedStations(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // CreateSiteWatchedStations takes context, siteId, body as parameters and
@@ -293,7 +293,7 @@ func (s *SitesSetting) CreateSiteWatchedStations(
 }
 
 // DeleteSiteWirelessClientsAllowlist takes context, siteId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site Whitelist Station Clients
 func (s *SitesSetting) DeleteSiteWirelessClientsAllowlist(
@@ -325,11 +325,11 @@ func (s *SitesSetting) DeleteSiteWirelessClientsAllowlist(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // CreateSiteWirelessClientsAllowlist takes context, siteId, body as parameters and

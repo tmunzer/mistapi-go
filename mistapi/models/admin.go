@@ -38,7 +38,7 @@ type Admin struct {
     // secondary phone number (numbers only, including country code)
     Phone2               *string                    `json:"phone2,omitempty"`
     // list of privileges the admin has
-    Privileges           []PrivilegeSelf            `json:"privileges,omitempty"`
+    Privileges           []AdminPrivilege           `json:"privileges,omitempty"`
     SessionExpiry        *int64                     `json:"session_expiry,omitempty"`
     Tags                 []string                   `json:"tags,omitempty"`
     // if admin account is not an Org API Token
@@ -175,7 +175,7 @@ type tempAdmin  struct {
     PasswordModifiedTime *float64                   `json:"password_modified_time,omitempty"`
     Phone                *string                    `json:"phone,omitempty"`
     Phone2               *string                    `json:"phone2,omitempty"`
-    Privileges           []PrivilegeSelf            `json:"privileges,omitempty"`
+    Privileges           []AdminPrivilege           `json:"privileges,omitempty"`
     SessionExpiry        *int64                     `json:"session_expiry,omitempty"`
     Tags                 []string                   `json:"tags,omitempty"`
     TwoFactorVerified    *bool                      `json:"two_factor_verified,omitempty"`

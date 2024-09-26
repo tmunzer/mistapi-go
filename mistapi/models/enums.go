@@ -24,6 +24,60 @@ const (
     AdminComplianceStatusEnum_RESTRICTED AdminComplianceStatusEnum = "restricted"
 )
 
+// AdminPrivilegeRoleEnum is a string enum.
+// access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
+type AdminPrivilegeRoleEnum string
+
+const (
+    AdminPrivilegeRoleEnum_ADMIN     AdminPrivilegeRoleEnum = "admin"
+    AdminPrivilegeRoleEnum_HELPDESK  AdminPrivilegeRoleEnum = "helpdesk"
+    AdminPrivilegeRoleEnum_INSTALLER AdminPrivilegeRoleEnum = "installer"
+    AdminPrivilegeRoleEnum_READ      AdminPrivilegeRoleEnum = "read"
+    AdminPrivilegeRoleEnum_WRITE     AdminPrivilegeRoleEnum = "write"
+)
+
+// AdminPrivilegeScopeEnum is a string enum.
+// enum: `msp`, `org`, `orggroup`, `site`, `sitegroup`
+type AdminPrivilegeScopeEnum string
+
+const (
+    AdminPrivilegeScopeEnum_MSP       AdminPrivilegeScopeEnum = "msp"
+    AdminPrivilegeScopeEnum_ORG       AdminPrivilegeScopeEnum = "org"
+    AdminPrivilegeScopeEnum_ORGGROUP  AdminPrivilegeScopeEnum = "orggroup"
+    AdminPrivilegeScopeEnum_SITE      AdminPrivilegeScopeEnum = "site"
+    AdminPrivilegeScopeEnum_SITEGROUP AdminPrivilegeScopeEnum = "sitegroup"
+)
+
+// AdminPrivilegeViewEnum is a string enum.
+// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
+// You can invite a new user or update existing users in your Org to this custom role. For this, specify view along with role when assigning privileges.
+// Below are the list of supported UI views. Note that this is UI only feature
+// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
+// You can invite a new user or update existing users in your Org to this custom role. For this, specify `view` along with `role` when assigning privileges.
+// Below are the list of supported UI views. Note that this is UI only feature
+// | UI View | Required Role | Description |
+// | --- | --- | --- |
+// | `reporting` | `read` | full access to all analytics tools |
+// | `marketing` | `read` | can view analytics and location maps |
+// | `super_observer` | `read` | can view all the organization except the subscription page |
+// | `location` | `write` | can view and manage location maps, can view analytics |
+// | `security` | `write` | can view and manage site labels, policies and security |
+// | `switch_admin` | `helpdesk` | can view and manage Switch ports, can view wired clients |
+// | `mxedge_admin` | `admin` | can view and manage Mist edges and Mist tunnels |
+// | `lobby_admin` | `admin` | full access to Org and Site Pre-shared keys |
+type AdminPrivilegeViewEnum string
+
+const (
+    AdminPrivilegeViewEnum_LOBBYADMIN    AdminPrivilegeViewEnum = "lobby_admin"
+    AdminPrivilegeViewEnum_LOCATION      AdminPrivilegeViewEnum = "location"
+    AdminPrivilegeViewEnum_MARKETING     AdminPrivilegeViewEnum = "marketing"
+    AdminPrivilegeViewEnum_MXEDGEADMIN   AdminPrivilegeViewEnum = "mxedge_admin"
+    AdminPrivilegeViewEnum_REPORTING     AdminPrivilegeViewEnum = "reporting"
+    AdminPrivilegeViewEnum_SECURITY      AdminPrivilegeViewEnum = "security"
+    AdminPrivilegeViewEnum_SUPEROBSERVER AdminPrivilegeViewEnum = "super_observer"
+    AdminPrivilegeViewEnum_SWITCHADMIN   AdminPrivilegeViewEnum = "switch_admin"
+)
+
 // AlarmCountDisctinctEnum is a string enum.
 // enum: `acked`, `group`, `severity`, `type`
 type AlarmCountDisctinctEnum string
@@ -2166,34 +2220,6 @@ const (
     PrivilegeMspScopeEnum_ORGGROUP PrivilegeMspScopeEnum = "orggroup"
 )
 
-// PrivilegeMspViewEnum is a string enum.
-// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-// You can invite a new user or update existing users in your Org to this custom role. For this, specify view along with role when assigning privileges.
-// Below are the list of supported UI views. Note that this is UI only feature
-// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-// You can invite a new user or update existing users in your Org to this custom role. For this, specify `view` along with `role` when assigning privileges.
-// Below are the list of supported UI views. Note that this is UI only feature
-// | UI View | Description |
-// | --- | --- |
-// | `reporting` | full access to all analytics tools |
-// | `marketing` | can view analytics and location maps |
-// | `location` | can view and manage location maps |
-// | `security` | can view and manage WLAN, rogues and authentication |
-// | `switch_admin` | can view and manage Switch ports |
-// | `mxedge_admin` | can view and manage Mist edges and Mist tunnels |
-// | `lobby_admin` | full access to Org and Site Pre-shared keys |
-type PrivilegeMspViewEnum string
-
-const (
-    PrivilegeMspViewEnum_LOBBYADMIN  PrivilegeMspViewEnum = "lobby_admin"
-    PrivilegeMspViewEnum_LOCATION    PrivilegeMspViewEnum = "location"
-    PrivilegeMspViewEnum_MARKETING   PrivilegeMspViewEnum = "marketing"
-    PrivilegeMspViewEnum_MXEDGEADMIN PrivilegeMspViewEnum = "mxedge_admin"
-    PrivilegeMspViewEnum_REPORTING   PrivilegeMspViewEnum = "reporting"
-    PrivilegeMspViewEnum_SECURITY    PrivilegeMspViewEnum = "security"
-    PrivilegeMspViewEnum_SWITCHADMIN PrivilegeMspViewEnum = "switch_admin"
-)
-
 // PrivilegeOrgRoleEnum is a string enum.
 // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
 type PrivilegeOrgRoleEnum string
@@ -2214,86 +2240,6 @@ const (
     PrivilegeOrgScopeEnum_ORG       PrivilegeOrgScopeEnum = "org"
     PrivilegeOrgScopeEnum_SITE      PrivilegeOrgScopeEnum = "site"
     PrivilegeOrgScopeEnum_SITEGROUP PrivilegeOrgScopeEnum = "sitegroup"
-)
-
-// PrivilegeOrgViewsEnum is a string enum.
-// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-// You can invite a new user or update existing users in your Org to this custom role. For this, specify view along with role when assigning privileges.
-// Below are the list of supported UI views. Note that this is UI only feature
-// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-// You can invite a new user or update existing users in your Org to this custom role. For this, specify `view` along with `role` when assigning privileges.
-// Below are the list of supported UI views. Note that this is UI only feature
-// | UI View | Description |
-// | --- | --- |
-// | `reporting` | full access to all analytics tools |
-// | `marketing` | can view analytics and location maps |
-// | `location` | can view and manage location maps |
-// | `security` | can view and manage WLAN, rogues and authentication |
-// | `switch_admin` | can view and manage Switch ports |
-// | `mxedge_admin` | can view and manage Mist edges and Mist tunnels |
-// | `lobby_admin` | full access to Org and Site Pre-shared keys |
-type PrivilegeOrgViewsEnum string
-
-const (
-    PrivilegeOrgViewsEnum_LOBBYADMIN  PrivilegeOrgViewsEnum = "lobby_admin"
-    PrivilegeOrgViewsEnum_LOCATION    PrivilegeOrgViewsEnum = "location"
-    PrivilegeOrgViewsEnum_MARKETING   PrivilegeOrgViewsEnum = "marketing"
-    PrivilegeOrgViewsEnum_MXEDGEADMIN PrivilegeOrgViewsEnum = "mxedge_admin"
-    PrivilegeOrgViewsEnum_REPORTING   PrivilegeOrgViewsEnum = "reporting"
-    PrivilegeOrgViewsEnum_SECURITY    PrivilegeOrgViewsEnum = "security"
-    PrivilegeOrgViewsEnum_SWITCHADMIN PrivilegeOrgViewsEnum = "switch_admin"
-)
-
-// PrivilegeSelfRoleEnum is a string enum.
-// access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
-type PrivilegeSelfRoleEnum string
-
-const (
-    PrivilegeSelfRoleEnum_ADMIN     PrivilegeSelfRoleEnum = "admin"
-    PrivilegeSelfRoleEnum_HELPDESK  PrivilegeSelfRoleEnum = "helpdesk"
-    PrivilegeSelfRoleEnum_INSTALLER PrivilegeSelfRoleEnum = "installer"
-    PrivilegeSelfRoleEnum_READ      PrivilegeSelfRoleEnum = "read"
-    PrivilegeSelfRoleEnum_WRITE     PrivilegeSelfRoleEnum = "write"
-)
-
-// PrivilegeSelfScopeEnum is a string enum.
-// enum: `msp`, `org`, `orggroup`, `site`, `sitegroup`
-type PrivilegeSelfScopeEnum string
-
-const (
-    PrivilegeSelfScopeEnum_MSP       PrivilegeSelfScopeEnum = "msp"
-    PrivilegeSelfScopeEnum_ORG       PrivilegeSelfScopeEnum = "org"
-    PrivilegeSelfScopeEnum_ORGGROUP  PrivilegeSelfScopeEnum = "orggroup"
-    PrivilegeSelfScopeEnum_SITE      PrivilegeSelfScopeEnum = "site"
-    PrivilegeSelfScopeEnum_SITEGROUP PrivilegeSelfScopeEnum = "sitegroup"
-)
-
-// PrivilegeSelfViewsEnum is a string enum.
-// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-// You can invite a new user or update existing users in your Org to this custom role. For this, specify view along with role when assigning privileges.
-// Below are the list of supported UI views. Note that this is UI only feature
-// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-// You can invite a new user or update existing users in your Org to this custom role. For this, specify `view` along with `role` when assigning privileges.
-// Below are the list of supported UI views. Note that this is UI only feature
-// | UI View | Description |
-// | --- | --- |
-// | `reporting` | full access to all analytics tools |
-// | `marketing` | can view analytics and location maps |
-// | `location` | can view and manage location maps |
-// | `security` | can view and manage WLAN, rogues and authentication |
-// | `switch_admin` | can view and manage Switch ports |
-// | `mxedge_admin` | can view and manage Mist edges and Mist tunnels |
-// | `lobby_admin` | full access to Org and Site Pre-shared keys |
-type PrivilegeSelfViewsEnum string
-
-const (
-    PrivilegeSelfViewsEnum_LOBBYADMIN  PrivilegeSelfViewsEnum = "lobby_admin"
-    PrivilegeSelfViewsEnum_LOCATION    PrivilegeSelfViewsEnum = "location"
-    PrivilegeSelfViewsEnum_MARKETING   PrivilegeSelfViewsEnum = "marketing"
-    PrivilegeSelfViewsEnum_MXEDGEADMIN PrivilegeSelfViewsEnum = "mxedge_admin"
-    PrivilegeSelfViewsEnum_REPORTING   PrivilegeSelfViewsEnum = "reporting"
-    PrivilegeSelfViewsEnum_SECURITY    PrivilegeSelfViewsEnum = "security"
-    PrivilegeSelfViewsEnum_SWITCHADMIN PrivilegeSelfViewsEnum = "switch_admin"
 )
 
 // ProtectReAllowedServiceEnum is a string enum.

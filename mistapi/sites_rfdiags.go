@@ -135,7 +135,7 @@ func (s *SitesRfdiags) StartSiteRecording(
 }
 
 // DeleteSiteRfdiagRecording takes context, siteId, rfdiagId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Recording
 func (s *SitesRfdiags) DeleteSiteRfdiagRecording(
@@ -168,11 +168,11 @@ func (s *SitesRfdiags) DeleteSiteRfdiagRecording(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSiteRfdiagRecording takes context, siteId, rfdiagId as parameters and
@@ -311,7 +311,7 @@ func (s *SitesRfdiags) DownloadSiteRfdiagRecording(
 }
 
 // StopSiteRfdiagRecording takes context, siteId, rfdiagId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // If the recording session is active for the given rfdiag_id, it will finish the recording. duration and end_time will be updated to reflect the correct values.
 func (s *SitesRfdiags) StopSiteRfdiagRecording(
@@ -344,9 +344,9 @@ func (s *SitesRfdiags) StopSiteRfdiagRecording(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

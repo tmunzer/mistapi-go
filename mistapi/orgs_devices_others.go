@@ -95,7 +95,7 @@ func (o *OrgsDevicesOthers) ListOrgOtherDevices(
 }
 
 // UpdateOrgOtherDevices takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Assign or unassign OtherDevices to and from a site.
 func (o *OrgsDevicesOthers) UpdateOrgOtherDevices(
@@ -132,11 +132,11 @@ func (o *OrgsDevicesOthers) UpdateOrgOtherDevices(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // CountOrgOtherDeviceEvents takes context, orgId, distinct, mType, start, end, duration, limit as parameters and
@@ -290,7 +290,7 @@ func (o *OrgsDevicesOthers) SearchOrgOtherDeviceEvents(
 }
 
 // DeleteOrgOtherDevice takes context, orgId, deviceMac as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete OtherDevice
 func (o *OrgsDevicesOthers) DeleteOrgOtherDevice(
@@ -323,11 +323,11 @@ func (o *OrgsDevicesOthers) DeleteOrgOtherDevice(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgOtherDevice takes context, orgId, deviceMac as parameters and
@@ -375,7 +375,7 @@ func (o *OrgsDevicesOthers) GetOrgOtherDevice(
 }
 
 // UpdateOrgOtherDevice takes context, orgId, deviceMac, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // If the Site / Device cannot be identified, a manual association can be made
 func (o *OrgsDevicesOthers) UpdateOrgOtherDevice(
@@ -413,15 +413,15 @@ func (o *OrgsDevicesOthers) UpdateOrgOtherDevice(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // RebootOrgOtherDevice takes context, orgId, deviceMac as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Reboot OtherDevice
 func (o *OrgsDevicesOthers) RebootOrgOtherDevice(
@@ -454,9 +454,9 @@ func (o *OrgsDevicesOthers) RebootOrgOtherDevice(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

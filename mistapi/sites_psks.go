@@ -233,7 +233,7 @@ func (s *SitesPsks) ImportSitePsks(
 }
 
 // DeleteSitePsk takes context, siteId, pskId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site PSK
 func (s *SitesPsks) DeleteSitePsk(
@@ -266,11 +266,11 @@ func (s *SitesPsks) DeleteSitePsk(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSitePsk takes context, siteId, pskId as parameters and

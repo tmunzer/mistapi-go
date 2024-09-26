@@ -23,7 +23,7 @@ func NewSelfAccount(baseController baseController) *SelfAccount {
 }
 
 // DeleteSelf takes context as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // To delete ones account and every associated with it. The effects:
 // the account would be deleted
@@ -51,11 +51,11 @@ func (s *SelfAccount) DeleteSelf(ctx context.Context) (
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSelf takes context as parameters and
@@ -137,7 +137,7 @@ func (s *SelfAccount) UpdateSelf(
 }
 
 // UpdateSelfEmail takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Change Email
 // We require the user to verify that they actually own the email address they intend to change it to.
@@ -172,15 +172,15 @@ func (s *SelfAccount) UpdateSelfEmail(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // VerifySelfEmail takes context, token as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Verify Email change
 func (s *SelfAccount) VerifySelfEmail(
@@ -212,9 +212,9 @@ func (s *SelfAccount) VerifySelfEmail(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

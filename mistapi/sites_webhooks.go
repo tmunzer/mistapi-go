@@ -139,7 +139,7 @@ func (s *SitesWebhooks) CreateSiteWebhook(
 }
 
 // DeleteSiteWebhook takes context, siteId, webhookId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site Webhook
 func (s *SitesWebhooks) DeleteSiteWebhook(
@@ -172,11 +172,11 @@ func (s *SitesWebhooks) DeleteSiteWebhook(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSiteWebhook takes context, siteId, webhookId as parameters and
@@ -441,7 +441,7 @@ func (s *SitesWebhooks) SearchSiteWebhooksDeliveries(
 }
 
 // PingSiteWebhook takes context, siteId, webhookId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // send a Ping event to the webhook
 func (s *SitesWebhooks) PingSiteWebhook(
@@ -474,9 +474,9 @@ func (s *SitesWebhooks) PingSiteWebhook(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

@@ -129,7 +129,7 @@ func (s *SitesSyntheticTests) GetSiteDeviceSyntheticTest(
 }
 
 // TriggerSiteDeviceSyntheticTest takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Trigger Device Synthetic Test
 func (s *SitesSyntheticTests) TriggerSiteDeviceSyntheticTest(
@@ -167,11 +167,11 @@ func (s *SitesSyntheticTests) TriggerSiteDeviceSyntheticTest(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSiteSyntheticTestStatus takes context, siteId as parameters and

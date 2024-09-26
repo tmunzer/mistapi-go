@@ -24,7 +24,7 @@ func NewSitesAlarms(baseController baseController) *SitesAlarms {
 }
 
 // AckSiteMultipleAlarms takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Ack multiple Site Alarms
 func (s *SitesAlarms) AckSiteMultipleAlarms(
@@ -61,15 +61,15 @@ func (s *SitesAlarms) AckSiteMultipleAlarms(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // AckSiteAllAlarms takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Ack all Site Alarms
 // **N.B.**: Batch size for multiple alarm ack and unack has to be less or or equal to 1000.
@@ -107,11 +107,11 @@ func (s *SitesAlarms) AckSiteAllAlarms(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // CountSiteAlarms takes context, siteId, distinct, ackAdminName, acked, mType, severity, group, start, end, duration, limit, page as parameters and
@@ -281,7 +281,7 @@ func (s *SitesAlarms) SearchSiteAlarms(
 }
 
 // UnackSiteMultipleAlarms takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Unack multiple Site Alarms
 func (s *SitesAlarms) UnackSiteMultipleAlarms(
@@ -318,15 +318,15 @@ func (s *SitesAlarms) UnackSiteMultipleAlarms(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UnackSiteAllArlarms takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Unack all Site Alarms
 // **N.B.**: Batch size for multiple alarm ack and unack has to be less or or equal to 1000.
@@ -364,15 +364,15 @@ func (s *SitesAlarms) UnackSiteAllArlarms(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // AckSiteAlarm takes context, siteId, alarmId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Ack Site Alarm
 func (s *SitesAlarms) AckSiteAlarm(
@@ -410,15 +410,15 @@ func (s *SitesAlarms) AckSiteAlarm(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UnackSiteAlarm takes context, siteId, alarmId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Unack Site Alarm
 func (s *SitesAlarms) UnackSiteAlarm(
@@ -456,15 +456,15 @@ func (s *SitesAlarms) UnackSiteAlarm(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UnsubscribeSiteAlarms takes context, siteId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Unsubscribe to Site Alarms
 func (s *SitesAlarms) UnsubscribeSiteAlarms(
@@ -496,15 +496,15 @@ func (s *SitesAlarms) UnsubscribeSiteAlarms(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // SubscribeSiteAlarms takes context, siteId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Subscribe to Site Alarms
 func (s *SitesAlarms) SubscribeSiteAlarms(
@@ -536,9 +536,9 @@ func (s *SitesAlarms) SubscribeSiteAlarms(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

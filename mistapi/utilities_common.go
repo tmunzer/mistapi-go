@@ -243,7 +243,7 @@ func (u *UtilitiesCommon) GetSiteDeviceConfigCmd(
 }
 
 // StartSiteLocateDevice takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // ### Access Points
 // Locate an Access Point by blinking it's LED.
@@ -291,11 +291,11 @@ func (u *UtilitiesCommon) StartSiteLocateDevice(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // MonitorSiteDeviceTraffic takes context, siteId, deviceId, body as parameters and
@@ -418,7 +418,7 @@ func (u *UtilitiesCommon) PingFromDevice(
 }
 
 // ReadoptSiteOctermDevice takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // For the octerm devices, the device ID must come from fpc0. However, for a VC, the users may change the original fpc0 from CLI. To fix the issue, the readopt API could be used to trigger the readopt process so the device would get the corret device ID to connect the cloud.
 func (u *UtilitiesCommon) ReadoptSiteOctermDevice(
@@ -451,15 +451,15 @@ func (u *UtilitiesCommon) ReadoptSiteOctermDevice(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ReleaseSiteDeviceDhcpLease takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Releases an active DHCP lease.
 func (u *UtilitiesCommon) ReleaseSiteDeviceDhcpLease(
@@ -497,15 +497,15 @@ func (u *UtilitiesCommon) ReleaseSiteDeviceDhcpLease(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ReprovisionSiteOctermDevice takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // To force one device to reprovision itself again.
 func (u *UtilitiesCommon) ReprovisionSiteOctermDevice(
@@ -538,11 +538,11 @@ func (u *UtilitiesCommon) ReprovisionSiteOctermDevice(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSiteDeviceZtpPassword takes context, siteId, deviceId as parameters and
@@ -590,7 +590,7 @@ func (u *UtilitiesCommon) GetSiteDeviceZtpPassword(
 }
 
 // RestartSiteDevice takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Restart / Reboot a device
 func (u *UtilitiesCommon) RestartSiteDevice(
@@ -628,11 +628,11 @@ func (u *UtilitiesCommon) RestartSiteDevice(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // CreateSiteDeviceShellSession takes context, siteId, deviceId as parameters and
@@ -1023,7 +1023,7 @@ func (u *UtilitiesCommon) GetSiteDeviceMacTable(
 }
 
 // UploadSiteDeviceSupportFile takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Support / Upload device support files
 // #### Info Param
@@ -1071,11 +1071,11 @@ func (u *UtilitiesCommon) UploadSiteDeviceSupportFile(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // TracerouteFromDevice takes context, siteId, deviceId, body as parameters and
@@ -1136,7 +1136,7 @@ func (u *UtilitiesCommon) TracerouteFromDevice(
 }
 
 // StopSiteLocateDevice takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Stop Locate a Device
 func (u *UtilitiesCommon) StopSiteLocateDevice(
@@ -1169,9 +1169,9 @@ func (u *UtilitiesCommon) StopSiteLocateDevice(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

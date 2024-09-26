@@ -106,7 +106,7 @@ func (o *OrgsCert) ClearOrgCertificates(
 }
 
 // TruncateOrgCrlFile takes context, orgId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // By default, all certs used by recently unclaimed devices within 9 month will be included in CRL. If the list grows too big, you can truncate it
 func (o *OrgsCert) TruncateOrgCrlFile(
@@ -143,11 +143,11 @@ func (o *OrgsCert) TruncateOrgCrlFile(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgSslProxyCert takes context, orgId as parameters and

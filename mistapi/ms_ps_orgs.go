@@ -107,7 +107,7 @@ func (m *MSPsOrgs) CreateMspOrg(
 }
 
 // ManageMspOrgs takes context, mspId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Assign or Unassign Orgs to an MSP account
 func (m *MSPsOrgs) ManageMspOrgs(
@@ -140,11 +140,11 @@ func (m *MSPsOrgs) ManageMspOrgs(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // SearchMspOrgs takes context, mspId, name, orgId, subInsufficient, trialEnabled, usageTypes, limit as parameters and
@@ -215,7 +215,7 @@ func (m *MSPsOrgs) SearchMspOrgs(
 }
 
 // DeleteMspOrg takes context, mspId, orgId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // delete MSP Org
 func (m *MSPsOrgs) DeleteMspOrg(
@@ -248,11 +248,11 @@ func (m *MSPsOrgs) DeleteMspOrg(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetMspOrg takes context, mspId, orgId as parameters and

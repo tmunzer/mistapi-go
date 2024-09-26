@@ -166,7 +166,7 @@ func (s *SitesWxTags) GetSiteApplicationList(
 }
 
 // DeleteSiteWxTag takes context, siteId, wxtagId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site WxTag
 func (s *SitesWxTags) DeleteSiteWxTag(
@@ -199,11 +199,11 @@ func (s *SitesWxTags) DeleteSiteWxTag(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSiteWxTag takes context, siteId, wxtagId as parameters and

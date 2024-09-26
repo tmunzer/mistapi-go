@@ -174,7 +174,7 @@ func (s *SitesWlans) ListSiteWlanDerived(
 }
 
 // DeleteSiteWlan takes context, siteId, wlanId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site WLAN
 func (s *SitesWlans) DeleteSiteWlan(
@@ -207,11 +207,11 @@ func (s *SitesWlans) DeleteSiteWlan(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSiteWlan takes context, siteId, wlanId as parameters and
@@ -308,7 +308,7 @@ func (s *SitesWlans) UpdateSiteWlan(
 }
 
 // DeleteSiteWlanPortalImage takes context, siteId, wlanId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site WLAN Portal Image
 func (s *SitesWlans) DeleteSiteWlanPortalImage(
@@ -341,15 +341,15 @@ func (s *SitesWlans) DeleteSiteWlanPortalImage(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UploadSiteWlanPortalImage takes context, siteId, wlanId, file, json as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Wlan Portal Image Upload
 func (s *SitesWlans) UploadSiteWlanPortalImage(
@@ -392,11 +392,11 @@ func (s *SitesWlans) UploadSiteWlanPortalImage(
     }
     req.FormData(formFields)
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateSiteWlanPortalTemplate takes context, siteId, wlanId, body as parameters and

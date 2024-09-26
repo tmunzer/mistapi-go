@@ -115,7 +115,7 @@ func (m *MSPsSSORoles) CreateMspSsoRole(
 }
 
 // DeleteMspSsoRole takes context, mspId, ssoroleId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete MSP SSO Roles
 func (m *MSPsSSORoles) DeleteMspSsoRole(
@@ -148,11 +148,11 @@ func (m *MSPsSSORoles) DeleteMspSsoRole(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateMspSsoRole takes context, mspId, ssoroleId, body as parameters and

@@ -24,7 +24,7 @@ func NewSitesDevicesWiredVirtualChassis(baseController baseController) *SitesDev
 }
 
 // DeleteSiteVirtualChassis takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // When all the member switches of VC are removed and only member ID 0 is left, the cloud would detect this situation and automatically changes the single switch to non-VC role.
 // For some unexpected cases that the VC is gone and disconncted, the API below could be used to change the state of VC’s switches to be standalone. After it is executed, all the switches will be shown as standalone switches under Inventory.
@@ -58,11 +58,11 @@ func (s *SitesDevicesWiredVirtualChassis) DeleteSiteVirtualChassis(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSiteDeviceVirtualChassis takes context, siteId, deviceId as parameters and
@@ -252,7 +252,7 @@ func (s *SitesDevicesWiredVirtualChassis) UpdateSiteVirtualChassisMember(
 }
 
 // SetSiteVcPort takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Set VC port
 func (s *SitesDevicesWiredVirtualChassis) SetSiteVcPort(
@@ -290,9 +290,9 @@ func (s *SitesDevicesWiredVirtualChassis) SetSiteVcPort(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

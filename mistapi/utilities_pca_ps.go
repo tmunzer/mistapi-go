@@ -83,7 +83,7 @@ func (u *UtilitiesPCAPs) ListOrgPacketCaptures(
 }
 
 // StopOrgPacketCapture takes context, orgId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Stop current Org capture
 func (u *UtilitiesPCAPs) StopOrgPacketCapture(
@@ -115,11 +115,11 @@ func (u *UtilitiesPCAPs) StopOrgPacketCapture(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgCapturingStatus takes context, orgId as parameters and
@@ -317,7 +317,7 @@ func (u *UtilitiesPCAPs) ListSitePacketCaptures(
 }
 
 // StopSitePacketCapture takes context, siteId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Stop current capture
 func (u *UtilitiesPCAPs) StopSitePacketCapture(
@@ -349,11 +349,11 @@ func (u *UtilitiesPCAPs) StopSitePacketCapture(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSiteCapturingStatus takes context, siteId as parameters and
@@ -524,7 +524,7 @@ func (u *UtilitiesPCAPs) StartSitePacketCapture(
 }
 
 // UpdateSitePacketCapture takes context, siteId, pcapId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Update or add notes to a completed packet capture
 func (u *UtilitiesPCAPs) UpdateSitePacketCapture(
@@ -562,9 +562,9 @@ func (u *UtilitiesPCAPs) UpdateSitePacketCapture(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

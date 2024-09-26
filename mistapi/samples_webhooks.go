@@ -21,7 +21,7 @@ func NewSamplesWebhooks(baseController baseController) *SamplesWebhooks {
 }
 
 // Alarms takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `alarm` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -46,15 +46,15 @@ func (s *SamplesWebhooks) Alarms(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // AssetRaw takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `asset_raw` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -80,15 +80,15 @@ func (s *SamplesWebhooks) AssetRaw(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // Audits takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `audit` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -113,15 +113,15 @@ func (s *SamplesWebhooks) Audits(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ClientInfo takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `client_info` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -146,15 +146,15 @@ func (s *SamplesWebhooks) ClientInfo(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ClientJoin takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `client_join` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -179,15 +179,15 @@ func (s *SamplesWebhooks) ClientJoin(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ClientLatency takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `client-latency` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -212,15 +212,15 @@ func (s *SamplesWebhooks) ClientLatency(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // ClientSessions takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `client_sessions` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -248,15 +248,15 @@ func (s *SamplesWebhooks) ClientSessions(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DeviceEvents takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `device_events` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -281,15 +281,15 @@ func (s *SamplesWebhooks) DeviceEvents(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DeviceUpDown takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `device_updowns` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -314,15 +314,15 @@ func (s *SamplesWebhooks) DeviceUpDown(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // DiscoveredRawRssi takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `discovered-raw-rssi` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -347,15 +347,15 @@ func (s *SamplesWebhooks) DiscoveredRawRssi(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // Location takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `location` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -380,15 +380,15 @@ func (s *SamplesWebhooks) Location(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // LocationAsset takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `location_asset` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -413,15 +413,15 @@ func (s *SamplesWebhooks) LocationAsset(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // LocationCentrak takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `location_centrak` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -446,15 +446,15 @@ func (s *SamplesWebhooks) LocationCentrak(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // LocationClient takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `location_client` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -479,15 +479,15 @@ func (s *SamplesWebhooks) LocationClient(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // LocationSdk takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `location_sdk` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -512,15 +512,15 @@ func (s *SamplesWebhooks) LocationSdk(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // LocationUnclient takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `location_unclient` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -545,15 +545,15 @@ func (s *SamplesWebhooks) LocationUnclient(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // NacAccounting takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `nac-accounting` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -578,15 +578,15 @@ func (s *SamplesWebhooks) NacAccounting(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // NacEvents takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Example Delivery of nac_events
 func (s *SamplesWebhooks) NacEvents(
@@ -610,15 +610,15 @@ func (s *SamplesWebhooks) NacEvents(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // OccupancyAlerts takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `occupancy_alerts` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -643,15 +643,15 @@ func (s *SamplesWebhooks) OccupancyAlerts(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // Ping takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `ping` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -676,15 +676,15 @@ func (s *SamplesWebhooks) Ping(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // SdkclientScanData takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `sdkclient_scan_data` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -709,15 +709,15 @@ func (s *SamplesWebhooks) SdkclientScanData(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // SiteSle takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `site_sle` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -742,15 +742,15 @@ func (s *SamplesWebhooks) SiteSle(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // Zone takes context, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Webhook sample for `zone` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
@@ -775,9 +775,9 @@ func (s *SamplesWebhooks) Zone(
     if body != nil {
         req.Json(body)
     }
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

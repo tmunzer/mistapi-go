@@ -163,7 +163,7 @@ func (o *OrgsSDKInvites) CreateSdkInvite(
 }
 
 // RevokeSdkInvite takes context, orgId, sdkinviteId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Revoke SDK Invite
 func (o *OrgsSDKInvites) RevokeSdkInvite(
@@ -196,11 +196,11 @@ func (o *OrgsSDKInvites) RevokeSdkInvite(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSdkInvite takes context, orgId, sdkinviteId as parameters and
@@ -297,7 +297,7 @@ func (o *OrgsSDKInvites) UpdateSdkInvite(
 }
 
 // SendSdkInviteEmail takes context, orgId, sdkinviteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Send SDK Invite by Email
 func (o *OrgsSDKInvites) SendSdkInviteEmail(
@@ -335,11 +335,11 @@ func (o *OrgsSDKInvites) SendSdkInviteEmail(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetSdkInviteQrCode takes context, orgId, sdkinviteId as parameters and
@@ -384,7 +384,7 @@ func (o *OrgsSDKInvites) GetSdkInviteQrCode(
 }
 
 // SendSdkInviteSms takes context, orgId, sdkinviteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Send SDK Invite by SMS
 func (o *OrgsSDKInvites) SendSdkInviteSms(
@@ -422,9 +422,9 @@ func (o *OrgsSDKInvites) SendSdkInviteSms(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

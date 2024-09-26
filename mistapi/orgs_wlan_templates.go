@@ -123,7 +123,7 @@ func (o *OrgsWLANTemplates) CreateOrgTemplate(
 }
 
 // DeleteOrgTemplate takes context, orgId, templateId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org Template
 func (o *OrgsWLANTemplates) DeleteOrgTemplate(
@@ -156,11 +156,11 @@ func (o *OrgsWLANTemplates) DeleteOrgTemplate(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgTemplate takes context, orgId, templateId as parameters and

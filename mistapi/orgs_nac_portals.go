@@ -123,7 +123,7 @@ func (o *OrgsNACPortals) CreateOrgNacPortal(
 }
 
 // DeleteOrgNacPortal takes context, orgId, nacportalId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Org NAC Portal
 func (o *OrgsNACPortals) DeleteOrgNacPortal(
@@ -156,11 +156,11 @@ func (o *OrgsNACPortals) DeleteOrgNacPortal(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgNacPortal takes context, orgId, nacportalId as parameters and
@@ -321,7 +321,7 @@ func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
 }
 
 // DeleteOrgNacPortalImage takes context, orgId, nacportalId as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete background image for NAC Portal
 // If image is not uploaded or is deleted, NAC Portal will use default image.
@@ -355,15 +355,15 @@ func (o *OrgsNACPortals) DeleteOrgNacPortalImage(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UploadOrgNacPortalImage takes context, orgId, nacportalId, file, json as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Upload background image for NAC Portal
 func (o *OrgsNACPortals) UploadOrgNacPortalImage(
@@ -408,15 +408,15 @@ func (o *OrgsNACPortals) UploadOrgNacPortalImage(
     }
     req.FormData(formFields)
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // UpdateOrgNacPortalTempalte takes context, orgId, nacportalId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Update Org NAC Portal Template
 func (o *OrgsNACPortals) UpdateOrgNacPortalTempalte(
@@ -454,11 +454,11 @@ func (o *OrgsNACPortals) UpdateOrgNacPortalTempalte(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // GetOrgNacPortalSsoSamlMetadata takes context, orgId, nacportalId as parameters and

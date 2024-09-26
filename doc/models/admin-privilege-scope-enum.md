@@ -1,11 +1,11 @@
 
-# Privilege Self Scope Enum
+# Admin Privilege Scope Enum
 
 enum: `msp`, `org`, `orggroup`, `site`, `sitegroup`
 
 ## Enumeration
 
-`PrivilegeSelfScopeEnum`
+`AdminPrivilegeScopeEnum`
 
 ## Fields
 

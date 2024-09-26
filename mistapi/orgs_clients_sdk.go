@@ -23,7 +23,7 @@ func NewOrgsClientsSDK(baseController baseController) *OrgsClientsSDK {
 }
 
 // UpdateSdkClient takes context, orgId, sdkclientId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Update SDK Client
 func (o *OrgsClientsSDK) UpdateSdkClient(
@@ -61,9 +61,9 @@ func (o *OrgsClientsSDK) UpdateSdkClient(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }

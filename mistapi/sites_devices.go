@@ -725,7 +725,7 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 }
 
 // RestartSiteMultipleDevices takes context, siteId, body as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Note that only the devices that are connected will be restarted.
 func (s *SitesDevices) RestartSiteMultipleDevices(
@@ -762,11 +762,11 @@ func (s *SitesDevices) RestartSiteMultipleDevices(
         req.Json(body)
     }
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // SearchSiteDevices takes context, siteId, hostname, mType, model, mac, version, powerConstrained, ipAddress, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Channel, band5Channel, band6Channel, band24Bandwith, band5Bandwith, band6Bandwith, eth0PortSpeed, sort, descSort, stats, limit, start, end, duration as parameters and
@@ -1014,7 +1014,7 @@ func (s *SitesDevices) UpdateSiteDevice(
 }
 
 // DeleteSiteDeviceImage takes context, siteId, deviceId, imageNumber as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete image from a device
 func (s *SitesDevices) DeleteSiteDeviceImage(
@@ -1048,15 +1048,15 @@ func (s *SitesDevices) DeleteSiteDeviceImage(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
 
 // AddSiteDeviceImage takes context, siteId, deviceId, imageNumber, file, json as parameters and
-// returns an models.ApiResponse with  data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Attach up to 3 images to a device
 func (s *SitesDevices) AddSiteDeviceImage(
@@ -1100,9 +1100,9 @@ func (s *SitesDevices) AddSiteDeviceImage(
     }
     req.FormData(formFields)
     
-    context, err := req.Call()
+    httpCtx, err := req.Call()
     if err != nil {
-        return context.Response, err
+        return httpCtx.Response, err
     }
-    return context.Response, err
+    return httpCtx.Response, err
 }
