@@ -42,7 +42,7 @@
   ],
   "wan_speedtest": {
     "enabled": false,
-    "time_od_fay": "time_od_fay2"
+    "time_of_day": "time_of_day8"
   }
 }
 ```

@@ -3,7 +3,7 @@
 
 ## Introduction
 
-> Version: **2409.1.7**
+> Version: **2409.1.8**
 > 
 > Date: **September 26, 2024**
 
