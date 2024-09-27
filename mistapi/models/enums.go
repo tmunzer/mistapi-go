@@ -3487,6 +3487,7 @@ type SsoOauthTypeEnum string
 const (
     SsoOauthTypeEnum_AZURE        SsoOauthTypeEnum = "azure"
     SsoOauthTypeEnum_AZUREGOV     SsoOauthTypeEnum = "azure-gov"
+    SsoOauthTypeEnum_STANDARDS    SsoOauthTypeEnum = "standards"
     SsoOauthTypeEnum_OKTA         SsoOauthTypeEnum = "okta"
     SsoOauthTypeEnum_PINGIDENTITY SsoOauthTypeEnum = "ping_identity"
 )
