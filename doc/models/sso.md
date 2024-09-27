@@ -15,6 +15,7 @@ SSO
 | `CustomLogoutUrl` | `*string` | Optional | if `idp_type`==`saml`, a URL we will redirect the user after user logout from Mist (for some IdP which supports a custom logout URL that is different from SP-initiated SLO process) |
 | `DefaultRole` | `*string` | Optional | if `idp_type`==`saml`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
 | `Domain` | `*string` | Optional | random string generated during the SSO creation and used to generate the SAML URLs:<br><br>* ACS URL = `/api/v1/saml/{domain}/login` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/login`)<br>* Single Logout URL = `/api/v1/saml/{domain}/logout` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/logout`) |
+| `GroupFilter` | `*string` | Optional | Required if `ldap_type`==`custom`, LDAP filter that will identify the type of group |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `IdpCert` | `*string` | Optional | if `idp_type`==`saml`. IDP Cert (used to verify the signed response) |
 | `IdpSignAlgo` | [`*models.SsoIdpSignAlgoEnum`](../../doc/models/sso-idp-sign-algo-enum.md) | Optional | Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512` |
@@ -30,12 +31,11 @@ SSO
 | `LdapClientKey` | `*string` | Optional | if `idp_type`==`ldap`, Key for the `ldap_client_cert` |
 | `LdapGroupAttr` | `*string` | Optional | if `ldap_type`==`custom`<br>**Default**: `"memberOf"` |
 | `LdapGroupDn` | `*string` | Optional | if `ldap_type`==`custom`<br>**Default**: `"base_dn"` |
-| `LdapGroupFilter` | `*string` | Optional | Required if `ldap_type`==`custom`, LDAP filter that will identify the type of group |
-| `LdapMemberFilter` | `*string` | Optional | Required if `ldap_type`==`custom`,LDAP filter that will identify the type of member |
 | `LdapResolveGroups` | `*bool` | Optional | if `idp_type`==`ldap`, whether to recursively resolve LDAP groups<br>**Default**: `false` |
 | `LdapServerHosts` | `[]string` | Optional | if `idp_type`==`ldap`, list of LDAP/LDAPS server IP Addresses or Hostnames |
 | `LdapType` | [`*models.SsoLdapTypeEnum`](../../doc/models/sso-ldap-type-enum.md) | Optional | if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`, `ping_identity`<br>**Default**: `"azure"` |
 | `LdapUserFilter` | `*string` | Optional | Required if `ldap_type`==`custom`, LDAP filter that will identify the type of user |
+| `MemberFilter` | `*string` | Optional | Required if `ldap_type`==`custom`,LDAP filter that will identify the type of member |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `MxedgeProxy` | [`*models.SsoMxedgeProxy`](../../doc/models/sso-mxedge-proxy.md) | Optional | if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster |
@@ -71,7 +71,6 @@ SSO
   "ldap_client_key": "-----BEGIN PRI...",
   "ldap_group_attr": "memberOf",
   "ldap_group_dn": "base_dn",
-  "ldap_member_filter": "(CN=%s)",
   "ldap_resolve_groups": false,
   "ldap_server_hosts": [
     "hostname",
@@ -79,6 +78,7 @@ SSO
   ],
   "ldap_type": "azure",
   "ldap_user_filter": "(mail=%s)",
+  "member_filter": "(CN=%s)",
   "name": "name6",
   "nameid_format": "email",
   "oauth_cc_client_id": "e60da615-7def-4c5a-8196-43675f45e174",
@@ -96,7 +96,7 @@ SSO
   "custom_logout_url": "custom_logout_url0",
   "default_role": "default_role8",
   "domain": "domain2",
-  "id": "00001dca-0000-0000-0000-000000000000"
+  "group_filter": "group_filter4"
 }
 ```
 

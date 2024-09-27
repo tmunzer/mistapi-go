@@ -64,7 +64,6 @@ body := models.Sso{
     LdapClientKey:         models.ToPointer("-----BEGIN PRI..."),
     LdapGroupAttr:         models.ToPointer("memberOf"),
     LdapGroupDn:           models.ToPointer("base_dn"),
-    LdapMemberFilter:      models.ToPointer("(CN=%s)"),
     LdapResolveGroups:     models.ToPointer(false),
     LdapServerHosts:       []string{
         "hostname",
@@ -72,6 +71,7 @@ body := models.Sso{
     },
     LdapType:              models.ToPointer(models.SsoLdapTypeEnum("azure")),
     LdapUserFilter:        models.ToPointer("(mail=%s)"),
+    MemberFilter:          models.ToPointer("(CN=%s)"),
     Name:                  "name6",
     NameidFormat:          models.ToPointer(models.SsoNameidFormatEnum("email")),
     OauthCcClientId:       models.ToPointer("e60da615-7def-4c5a-8196-43675f45e174"),
@@ -517,7 +517,6 @@ body := models.Sso{
     LdapClientKey:         models.ToPointer("-----BEGIN PRI..."),
     LdapGroupAttr:         models.ToPointer("memberOf"),
     LdapGroupDn:           models.ToPointer("base_dn"),
-    LdapMemberFilter:      models.ToPointer("(CN=%s)"),
     LdapResolveGroups:     models.ToPointer(false),
     LdapServerHosts:       []string{
         "hostname",
@@ -525,6 +524,7 @@ body := models.Sso{
     },
     LdapType:              models.ToPointer(models.SsoLdapTypeEnum("azure")),
     LdapUserFilter:        models.ToPointer("(mail=%s)"),
+    MemberFilter:          models.ToPointer("(CN=%s)"),
     Name:                  "name6",
     NameidFormat:          models.ToPointer(models.SsoNameidFormatEnum("email")),
     OauthCcClientId:       models.ToPointer("e60da615-7def-4c5a-8196-43675f45e174"),

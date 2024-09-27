@@ -19,6 +19,8 @@ type Sso struct {
     // * ACS URL = `/api/v1/saml/{domain}/login` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/login`)
     // * Single Logout URL = `/api/v1/saml/{domain}/logout` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/logout`)
     Domain                *string              `json:"domain,omitempty"`
+    // Required if `ldap_type`==`custom`, LDAP filter that will identify the type of group
+    GroupFilter           *string              `json:"group_filter,omitempty"`
     Id                    *uuid.UUID           `json:"id,omitempty"`
     // if `idp_type`==`saml`. IDP Cert (used to verify the signed response)
     IdpCert               *string              `json:"idp_cert,omitempty"`
@@ -49,10 +51,6 @@ type Sso struct {
     LdapGroupAttr         *string              `json:"ldap_group_attr,omitempty"`
     // if `ldap_type`==`custom`
     LdapGroupDn           *string              `json:"ldap_group_dn,omitempty"`
-    // Required if `ldap_type`==`custom`, LDAP filter that will identify the type of group
-    LdapGroupFilter       *string              `json:"ldap_group_filter,omitempty"`
-    // Required if `ldap_type`==`custom`,LDAP filter that will identify the type of member
-    LdapMemberFilter      *string              `json:"ldap_member_filter,omitempty"`
     // if `idp_type`==`ldap`, whether to recursively resolve LDAP groups
     LdapResolveGroups     *bool                `json:"ldap_resolve_groups,omitempty"`
     // if `idp_type`==`ldap`, list of LDAP/LDAPS server IP Addresses or Hostnames
@@ -61,6 +59,8 @@ type Sso struct {
     LdapType              *SsoLdapTypeEnum     `json:"ldap_type,omitempty"`
     // Required if `ldap_type`==`custom`, LDAP filter that will identify the type of user
     LdapUserFilter        *string              `json:"ldap_user_filter,omitempty"`
+    // Required if `ldap_type`==`custom`,LDAP filter that will identify the type of member
+    MemberFilter          *string              `json:"member_filter,omitempty"`
     ModifiedTime          *float64             `json:"modified_time,omitempty"`
     MspId                 *uuid.UUID           `json:"msp_id,omitempty"`
     // if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
@@ -122,6 +122,9 @@ func (s Sso) toMap() map[string]any {
     if s.Domain != nil {
         structMap["domain"] = s.Domain
     }
+    if s.GroupFilter != nil {
+        structMap["group_filter"] = s.GroupFilter
+    }
     if s.Id != nil {
         structMap["id"] = s.Id
     }
@@ -167,12 +170,6 @@ func (s Sso) toMap() map[string]any {
     if s.LdapGroupDn != nil {
         structMap["ldap_group_dn"] = s.LdapGroupDn
     }
-    if s.LdapGroupFilter != nil {
-        structMap["ldap_group_filter"] = s.LdapGroupFilter
-    }
-    if s.LdapMemberFilter != nil {
-        structMap["ldap_member_filter"] = s.LdapMemberFilter
-    }
     if s.LdapResolveGroups != nil {
         structMap["ldap_resolve_groups"] = s.LdapResolveGroups
     }
@@ -184,6 +181,9 @@ func (s Sso) toMap() map[string]any {
     }
     if s.LdapUserFilter != nil {
         structMap["ldap_user_filter"] = s.LdapUserFilter
+    }
+    if s.MemberFilter != nil {
+        structMap["member_filter"] = s.MemberFilter
     }
     if s.ModifiedTime != nil {
         structMap["modified_time"] = s.ModifiedTime
@@ -252,7 +252,7 @@ func (s *Sso) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "custom_logout_url", "default_role", "domain", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_cacerts", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_group_filter", "ldap_member_filter", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "custom_logout_url", "default_role", "domain", "group_filter", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_cacerts", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "member_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id")
     if err != nil {
     	return err
     }
@@ -262,6 +262,7 @@ func (s *Sso) UnmarshalJSON(input []byte) error {
     s.CustomLogoutUrl = temp.CustomLogoutUrl
     s.DefaultRole = temp.DefaultRole
     s.Domain = temp.Domain
+    s.GroupFilter = temp.GroupFilter
     s.Id = temp.Id
     s.IdpCert = temp.IdpCert
     s.IdpSignAlgo = temp.IdpSignAlgo
@@ -277,12 +278,11 @@ func (s *Sso) UnmarshalJSON(input []byte) error {
     s.LdapClientKey = temp.LdapClientKey
     s.LdapGroupAttr = temp.LdapGroupAttr
     s.LdapGroupDn = temp.LdapGroupDn
-    s.LdapGroupFilter = temp.LdapGroupFilter
-    s.LdapMemberFilter = temp.LdapMemberFilter
     s.LdapResolveGroups = temp.LdapResolveGroups
     s.LdapServerHosts = temp.LdapServerHosts
     s.LdapType = temp.LdapType
     s.LdapUserFilter = temp.LdapUserFilter
+    s.MemberFilter = temp.MemberFilter
     s.ModifiedTime = temp.ModifiedTime
     s.MspId = temp.MspId
     s.MxedgeProxy = temp.MxedgeProxy
@@ -310,6 +310,7 @@ type tempSso  struct {
     CustomLogoutUrl       *string              `json:"custom_logout_url,omitempty"`
     DefaultRole           *string              `json:"default_role,omitempty"`
     Domain                *string              `json:"domain,omitempty"`
+    GroupFilter           *string              `json:"group_filter,omitempty"`
     Id                    *uuid.UUID           `json:"id,omitempty"`
     IdpCert               *string              `json:"idp_cert,omitempty"`
     IdpSignAlgo           *SsoIdpSignAlgoEnum  `json:"idp_sign_algo,omitempty"`
@@ -325,12 +326,11 @@ type tempSso  struct {
     LdapClientKey         *string              `json:"ldap_client_key,omitempty"`
     LdapGroupAttr         *string              `json:"ldap_group_attr,omitempty"`
     LdapGroupDn           *string              `json:"ldap_group_dn,omitempty"`
-    LdapGroupFilter       *string              `json:"ldap_group_filter,omitempty"`
-    LdapMemberFilter      *string              `json:"ldap_member_filter,omitempty"`
     LdapResolveGroups     *bool                `json:"ldap_resolve_groups,omitempty"`
     LdapServerHosts       []string             `json:"ldap_server_hosts,omitempty"`
     LdapType              *SsoLdapTypeEnum     `json:"ldap_type,omitempty"`
     LdapUserFilter        *string              `json:"ldap_user_filter,omitempty"`
+    MemberFilter          *string              `json:"member_filter,omitempty"`
     ModifiedTime          *float64             `json:"modified_time,omitempty"`
     MspId                 *uuid.UUID           `json:"msp_id,omitempty"`
     MxedgeProxy           *SsoMxedgeProxy      `json:"mxedge_proxy,omitempty"`
