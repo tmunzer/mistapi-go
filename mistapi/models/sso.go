@@ -33,33 +33,33 @@ type Sso struct {
     IgnoreUnmatchedRoles  *bool                `json:"ignore_unmatched_roles,omitempty"`
     // if `idp_type`==`saml`. IDP issuer URL
     Issuer                *string              `json:"issuer,omitempty"`
-    // Required if `idp_type`==`ldap`
+    // Required if `idp_type`==`ldap`, whole domain or a specific organization unit (container) in Search base to specify where users and groups are found in the LDAP tree
     LdapBaseDn            *string              `json:"ldap_base_dn,omitempty"`
-    // Required if `idp_type`==`ldap`
+    // Required if `idp_type`==`ldap`, the account used to authenticate against the LDAP
     LdapBindDn            *string              `json:"ldap_bind_dn,omitempty"`
-    // Required if `idp_type`==`ldap`
+    // Required if `idp_type`==`ldap`, the password used to authenticate against the LDAP
     LdapBindPassword      *string              `json:"ldap_bind_password,omitempty"`
-    // if `idp_type`==`ldap`
-    LdapCerts             []string             `json:"ldap_certs,omitempty"`
-    // if `idp_type`==`ldap`
+    // Required if `idp_type`==`ldap`, list of CA certificates to validate the LDAP certificate
+    LdapCacerts           []string             `json:"ldap_cacerts,omitempty"`
+    // if `idp_type`==`ldap`, LDAPS Client certificate
     LdapClientCert        *string              `json:"ldap_client_cert,omitempty"`
-    // if `idp_type`==`ldap`
+    // if `idp_type`==`ldap`, Key for the `ldap_client_cert`
     LdapClientKey         *string              `json:"ldap_client_key,omitempty"`
     // if `ldap_type`==`custom`
     LdapGroupAttr         *string              `json:"ldap_group_attr,omitempty"`
     // if `ldap_type`==`custom`
     LdapGroupDn           *string              `json:"ldap_group_dn,omitempty"`
-    // Required if `ldap_type`==`custom`
+    // Required if `ldap_type`==`custom`, LDAP filter that will identify the type of group
     LdapGroupFilter       *string              `json:"ldap_group_filter,omitempty"`
-    // Required if `ldap_type`==`custom`
+    // Required if `ldap_type`==`custom`,LDAP filter that will identify the type of member
     LdapMemberFilter      *string              `json:"ldap_member_filter,omitempty"`
     // if `idp_type`==`ldap`, whether to recursively resolve LDAP groups
     LdapResolveGroups     *bool                `json:"ldap_resolve_groups,omitempty"`
-    // Required if `idp_type`==`ldap`
+    // if `idp_type`==`ldap`, list of LDAP/LDAPS server IP Addresses or Hostnames
     LdapServerHosts       []string             `json:"ldap_server_hosts,omitempty"`
     // if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`, `ping_identity`
     LdapType              *SsoLdapTypeEnum     `json:"ldap_type,omitempty"`
-    // Required if `ldap_type`==`custom`
+    // Required if `ldap_type`==`custom`, LDAP filter that will identify the type of user
     LdapUserFilter        *string              `json:"ldap_user_filter,omitempty"`
     ModifiedTime          *float64             `json:"modified_time,omitempty"`
     MspId                 *uuid.UUID           `json:"msp_id,omitempty"`
@@ -152,8 +152,8 @@ func (s Sso) toMap() map[string]any {
     if s.LdapBindPassword != nil {
         structMap["ldap_bind_password"] = s.LdapBindPassword
     }
-    if s.LdapCerts != nil {
-        structMap["ldap_certs"] = s.LdapCerts
+    if s.LdapCacerts != nil {
+        structMap["ldap_cacerts"] = s.LdapCacerts
     }
     if s.LdapClientCert != nil {
         structMap["ldap_client_cert"] = s.LdapClientCert
@@ -252,7 +252,7 @@ func (s *Sso) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "custom_logout_url", "default_role", "domain", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_certs", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_group_filter", "ldap_member_filter", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "custom_logout_url", "default_role", "domain", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_cacerts", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_group_filter", "ldap_member_filter", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id")
     if err != nil {
     	return err
     }
@@ -272,7 +272,7 @@ func (s *Sso) UnmarshalJSON(input []byte) error {
     s.LdapBaseDn = temp.LdapBaseDn
     s.LdapBindDn = temp.LdapBindDn
     s.LdapBindPassword = temp.LdapBindPassword
-    s.LdapCerts = temp.LdapCerts
+    s.LdapCacerts = temp.LdapCacerts
     s.LdapClientCert = temp.LdapClientCert
     s.LdapClientKey = temp.LdapClientKey
     s.LdapGroupAttr = temp.LdapGroupAttr
@@ -320,7 +320,7 @@ type tempSso  struct {
     LdapBaseDn            *string              `json:"ldap_base_dn,omitempty"`
     LdapBindDn            *string              `json:"ldap_bind_dn,omitempty"`
     LdapBindPassword      *string              `json:"ldap_bind_password,omitempty"`
-    LdapCerts             []string             `json:"ldap_certs,omitempty"`
+    LdapCacerts           []string             `json:"ldap_cacerts,omitempty"`
     LdapClientCert        *string              `json:"ldap_client_cert,omitempty"`
     LdapClientKey         *string              `json:"ldap_client_key,omitempty"`
     LdapGroupAttr         *string              `json:"ldap_group_attr,omitempty"`

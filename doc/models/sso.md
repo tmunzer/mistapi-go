@@ -22,20 +22,20 @@ SSO
 | `IdpType` | [`*models.SsoIdpTypeEnum`](../../doc/models/sso-idp-type-enum.md) | Optional | * For Admin SSO, enum: `saml`<br>* For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`<br>**Default**: `"saml"` |
 | `IgnoreUnmatchedRoles` | `*bool` | Optional | if `idp_type`==`saml`, ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role |
 | `Issuer` | `*string` | Optional | if `idp_type`==`saml`. IDP issuer URL |
-| `LdapBaseDn` | `*string` | Optional | Required if `idp_type`==`ldap` |
-| `LdapBindDn` | `*string` | Optional | Required if `idp_type`==`ldap` |
-| `LdapBindPassword` | `*string` | Optional | Required if `idp_type`==`ldap` |
-| `LdapCerts` | `[]string` | Optional | if `idp_type`==`ldap` |
-| `LdapClientCert` | `*string` | Optional | if `idp_type`==`ldap` |
-| `LdapClientKey` | `*string` | Optional | if `idp_type`==`ldap` |
-| `LdapGroupAttr` | `*string` | Optional | if `ldap_type`==`custom` |
-| `LdapGroupDn` | `*string` | Optional | if `ldap_type`==`custom` |
-| `LdapGroupFilter` | `*string` | Optional | Required if `ldap_type`==`custom` |
-| `LdapMemberFilter` | `*string` | Optional | Required if `ldap_type`==`custom` |
+| `LdapBaseDn` | `*string` | Optional | Required if `idp_type`==`ldap`, whole domain or a specific organization unit (container) in Search base to specify where users and groups are found in the LDAP tree |
+| `LdapBindDn` | `*string` | Optional | Required if `idp_type`==`ldap`, the account used to authenticate against the LDAP |
+| `LdapBindPassword` | `*string` | Optional | Required if `idp_type`==`ldap`, the password used to authenticate against the LDAP |
+| `LdapCacerts` | `[]string` | Optional | Required if `idp_type`==`ldap`, list of CA certificates to validate the LDAP certificate |
+| `LdapClientCert` | `*string` | Optional | if `idp_type`==`ldap`, LDAPS Client certificate |
+| `LdapClientKey` | `*string` | Optional | if `idp_type`==`ldap`, Key for the `ldap_client_cert` |
+| `LdapGroupAttr` | `*string` | Optional | if `ldap_type`==`custom`<br>**Default**: `"memberOf"` |
+| `LdapGroupDn` | `*string` | Optional | if `ldap_type`==`custom`<br>**Default**: `"base_dn"` |
+| `LdapGroupFilter` | `*string` | Optional | Required if `ldap_type`==`custom`, LDAP filter that will identify the type of group |
+| `LdapMemberFilter` | `*string` | Optional | Required if `ldap_type`==`custom`,LDAP filter that will identify the type of member |
 | `LdapResolveGroups` | `*bool` | Optional | if `idp_type`==`ldap`, whether to recursively resolve LDAP groups<br>**Default**: `false` |
-| `LdapServerHosts` | `[]string` | Optional | Required if `idp_type`==`ldap` |
+| `LdapServerHosts` | `[]string` | Optional | if `idp_type`==`ldap`, list of LDAP/LDAPS server IP Addresses or Hostnames |
 | `LdapType` | [`*models.SsoLdapTypeEnum`](../../doc/models/sso-ldap-type-enum.md) | Optional | if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`, `ping_identity`<br>**Default**: `"azure"` |
-| `LdapUserFilter` | `*string` | Optional | Required if `ldap_type`==`custom` |
+| `LdapUserFilter` | `*string` | Optional | Required if `ldap_type`==`custom`, LDAP filter that will identify the type of user |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `MxedgeProxy` | [`*models.SsoMxedgeProxy`](../../doc/models/sso-mxedge-proxy.md) | Optional | if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster |
@@ -60,12 +60,25 @@ SSO
 ```json
 {
   "idp_type": "saml",
-  "ldap_base_dn": "DC=mycorp,DC=org",
-  "ldap_bind_dn": "admin@mycorp.org",
+  "ldap_base_dn": "DC=abc,DC=com",
+  "ldap_bind_dn": "CN=nas,CN=users,DC=abc,DC=com",
   "ldap_bind_password": "secret",
+  "ldap_cacerts": [
+    "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----",
+    "-----BEGIN CERTIFICATE-----\\nBhMCRVMxFDASBgNVBAoMC1N0YXJ0Q29tIENBMSwwKgYDVn-----END CERTIFICATE-----"
+  ],
+  "ldap_client_cert": "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----",
+  "ldap_client_key": "-----BEGIN PRI...",
+  "ldap_group_attr": "memberOf",
+  "ldap_group_dn": "base_dn",
   "ldap_member_filter": "(CN=%s)",
   "ldap_resolve_groups": false,
+  "ldap_server_hosts": [
+    "hostname",
+    "63.1.3.5"
+  ],
   "ldap_type": "azure",
+  "ldap_user_filter": "(mail=%s)",
   "name": "name6",
   "nameid_format": "email",
   "oauth_cc_client_id": "e60da615-7def-4c5a-8196-43675f45e174",
