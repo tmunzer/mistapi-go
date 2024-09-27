@@ -11,7 +11,7 @@ type SsoSamlMetadata struct {
     AcsUrl               string         `json:"acs_url"`
     EntityId             string         `json:"entity_id"`
     LogoutUrl            string         `json:"logout_url"`
-    MetadataXml          string         `json:"metadata_xml"`
+    Metadata             string         `json:"metadata"`
     AdditionalProperties map[string]any `json:"_"`
 }
 
@@ -30,7 +30,7 @@ func (s SsoSamlMetadata) toMap() map[string]any {
     structMap["acs_url"] = s.AcsUrl
     structMap["entity_id"] = s.EntityId
     structMap["logout_url"] = s.LogoutUrl
-    structMap["metadata_xml"] = s.MetadataXml
+    structMap["metadata"] = s.Metadata
     return structMap
 }
 
@@ -46,7 +46,7 @@ func (s *SsoSamlMetadata) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acs_url", "entity_id", "logout_url", "metadata_xml")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "acs_url", "entity_id", "logout_url", "metadata")
     if err != nil {
     	return err
     }
@@ -55,16 +55,16 @@ func (s *SsoSamlMetadata) UnmarshalJSON(input []byte) error {
     s.AcsUrl = *temp.AcsUrl
     s.EntityId = *temp.EntityId
     s.LogoutUrl = *temp.LogoutUrl
-    s.MetadataXml = *temp.MetadataXml
+    s.Metadata = *temp.Metadata
     return nil
 }
 
 // tempSsoSamlMetadata is a temporary struct used for validating the fields of SsoSamlMetadata.
 type tempSsoSamlMetadata  struct {
-    AcsUrl      *string `json:"acs_url"`
-    EntityId    *string `json:"entity_id"`
-    LogoutUrl   *string `json:"logout_url"`
-    MetadataXml *string `json:"metadata_xml"`
+    AcsUrl    *string `json:"acs_url"`
+    EntityId  *string `json:"entity_id"`
+    LogoutUrl *string `json:"logout_url"`
+    Metadata  *string `json:"metadata"`
 }
 
 func (s *tempSsoSamlMetadata) validate() error {
@@ -78,8 +78,8 @@ func (s *tempSsoSamlMetadata) validate() error {
     if s.LogoutUrl == nil {
         errs = append(errs, "required field `logout_url` is missing for type `sso_saml_metadata`")
     }
-    if s.MetadataXml == nil {
-        errs = append(errs, "required field `metadata_xml` is missing for type `sso_saml_metadata`")
+    if s.Metadata == nil {
+        errs = append(errs, "required field `metadata` is missing for type `sso_saml_metadata`")
     }
     if len(errs) == 0 {
         return nil
