@@ -25,14 +25,14 @@ type ClientWireless struct {
     // latest AP where the client is/was connected to
     LastAp               *string        `json:"last_ap,omitempty"`
     // latest type of device we identified (e.g. iPhone, Mac, …)
-    LastDevuce           *string        `json:"last_devuce,omitempty"`
+    LastDevice           *string        `json:"last_device,omitempty"`
     // only when client has the Marvis Client app running. Same as "firmware"
     LastFirmware         *string        `json:"last_firmware,omitempty"`
-    // lastest hostname we detected for the the client
+    // latest hostname we detected for the client
     LastHostname         *string        `json:"last_hostname,omitempty"`
-    // lastest ip address we detected for the client
+    // latest ip address we detected for the client
     LastIp               *string        `json:"last_ip,omitempty"`
-    // only when client has the Marvis Client app running. lastest client hardware model we detected for the client
+    // only when client has the Marvis Client app running. latest client hardware model we detected for the client
     LastModel            *string        `json:"last_model,omitempty"`
     // only when client has the Marvis Client app running. Latest version of OS Type we detected for the client
     LastOs               *string        `json:"last_os,omitempty"`
@@ -42,9 +42,9 @@ type ClientWireless struct {
     LastPskId            *uuid.UUID     `json:"last_psk_id,omitempty"`
     // only for PPSK authentication. Latest PPSK Name used by the client
     LastPskName          *string        `json:"last_psk_name,omitempty"`
-    // only for PPSK authentication. Latest PPSK Name used by the client
+    // Name of the latest SSID (WLAN) the client is/was connected to client
     LastSsid             *string        `json:"last_ssid,omitempty"`
-    // only for 802.1X authentifcation. Latest username used by the client
+    // only for 802.1X authentication. Latest username used by the client
     LastUsername         *string        `json:"last_username,omitempty"`
     // latest VLAN ID assigned to the client
     LastVlan             *int           `json:"last_vlan,omitempty"`
@@ -62,7 +62,7 @@ type ClientWireless struct {
     Os                   []string       `json:"os,omitempty"`
     // only when client is having the Marvis Client app running. List of OS version detected for the client
     OsVersion            []string       `json:"os_version,omitempty"`
-    // 802.11 amendmant
+    // 802.11 amendment
     Protocol             *string        `json:"protocol,omitempty"`
     // list of IDs of the PPSK used by the client
     PskId                []uuid.UUID    `json:"psk_id,omitempty"`
@@ -80,7 +80,7 @@ type ClientWireless struct {
     Ssid                 []string       `json:"ssid,omitempty"`
     // when the data has been updated
     Timestamp            *float64       `json:"timestamp,omitempty"`
-    // only for 802.1X authentifcation. List of usernames used by the client
+    // only for 802.1X authentication. List of usernames used by the client
     Username             []string       `json:"username,omitempty"`
     // list of vlans that have been assigned to the client
     Vlan                 []int          `json:"vlan,omitempty"`
@@ -128,8 +128,8 @@ func (c ClientWireless) toMap() map[string]any {
     if c.LastAp != nil {
         structMap["last_ap"] = c.LastAp
     }
-    if c.LastDevuce != nil {
-        structMap["last_devuce"] = c.LastDevuce
+    if c.LastDevice != nil {
+        structMap["last_device"] = c.LastDevice
     }
     if c.LastFirmware != nil {
         structMap["last_firmware"] = c.LastFirmware
@@ -232,7 +232,7 @@ func (c *ClientWireless) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "app_version", "band", "device", "ftc", "hardware", "hostname", "ip", "last_ap", "last_devuce", "last_firmware", "last_hostname", "last_ip", "last_model", "last_os", "last_os_version", "last_psk_id", "last_psk_name", "last_ssid", "last_username", "last_vlan", "last_wlan_id", "mac", "mfg", "model", "org_id", "os", "os_version", "protocol", "psk_id", "psk_name", "random_mac", "sdk_version", "site_id", "site_ids", "ssid", "timestamp", "username", "vlan", "wlan_id")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "app_version", "band", "device", "ftc", "hardware", "hostname", "ip", "last_ap", "last_device", "last_firmware", "last_hostname", "last_ip", "last_model", "last_os", "last_os_version", "last_psk_id", "last_psk_name", "last_ssid", "last_username", "last_vlan", "last_wlan_id", "mac", "mfg", "model", "org_id", "os", "os_version", "protocol", "psk_id", "psk_name", "random_mac", "sdk_version", "site_id", "site_ids", "ssid", "timestamp", "username", "vlan", "wlan_id")
     if err != nil {
     	return err
     }
@@ -247,7 +247,7 @@ func (c *ClientWireless) UnmarshalJSON(input []byte) error {
     c.Hostname = temp.Hostname
     c.Ip = temp.Ip
     c.LastAp = temp.LastAp
-    c.LastDevuce = temp.LastDevuce
+    c.LastDevice = temp.LastDevice
     c.LastFirmware = temp.LastFirmware
     c.LastHostname = temp.LastHostname
     c.LastIp = temp.LastIp
@@ -292,7 +292,7 @@ type tempClientWireless  struct {
     Hostname      []string    `json:"hostname,omitempty"`
     Ip            []string    `json:"ip,omitempty"`
     LastAp        *string     `json:"last_ap,omitempty"`
-    LastDevuce    *string     `json:"last_devuce,omitempty"`
+    LastDevice    *string     `json:"last_device,omitempty"`
     LastFirmware  *string     `json:"last_firmware,omitempty"`
     LastHostname  *string     `json:"last_hostname,omitempty"`
     LastIp        *string     `json:"last_ip,omitempty"`

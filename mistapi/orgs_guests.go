@@ -293,7 +293,7 @@ func (o *OrgsGuests) UpdateOrgGuestAuthorization(
     ctx context.Context,
     orgId uuid.UUID,
     guestMac string,
-    body *models.Guest) (
+    body *models.GuestOrg) (
     models.ApiResponse[models.Guest],
     error) {
     req := o.prepareRequest(

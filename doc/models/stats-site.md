@@ -12,7 +12,7 @@ Site statistics
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Address` | `string` | Required | - |
-| `AlarmtemplateId` | `uuid.UUID` | Required | - |
+| `AlarmtemplateId` | `*uuid.UUID` | Required | - |
 | `CountryCode` | `string` | Required | - |
 | `CreatedTime` | `float64` | Required | - |
 | `Id` | `uuid.UUID` | Required | - |
@@ -20,9 +20,9 @@ Site statistics
 | `Latlng` | [`models.LatLng`](../../doc/models/lat-lng.md) | Required | - |
 | `Lng` | `float64` | Required | - |
 | `ModifiedTime` | `float64` | Required | - |
-| `MspId` | `string` | Required | - |
+| `MspId` | `*uuid.UUID` | Required | - |
 | `Name` | `string` | Required | - |
-| `NetworktemplateId` | `uuid.UUID` | Required | - |
+| `NetworktemplateId` | `*uuid.UUID` | Required | - |
 | `NumAp` | `int` | Required | - |
 | `NumApConnected` | `int` | Required | - |
 | `NumClients` | `int` | Required | - |
@@ -33,8 +33,8 @@ Site statistics
 | `NumSwitch` | `int` | Required | - |
 | `NumSwitchConnected` | `int` | Required | - |
 | `OrgId` | `uuid.UUID` | Required | - |
-| `RftemplateId` | `uuid.UUID` | Required | - |
-| `SecpolicyId` | `*interface{}` | Optional | - |
+| `RftemplateId` | `*uuid.UUID` | Required | - |
+| `SecpolicyId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `SitegroupIds` | `[]uuid.UUID` | Required | - |
 | `Timezone` | `string` | Required | - |
 | `Tzoffset` | `int` | Required | - |
@@ -55,7 +55,7 @@ Site statistics
   },
   "lng": 239.82,
   "modified_time": 31.1,
-  "msp_id": "msp_id0",
+  "msp_id": "00000668-0000-0000-0000-000000000000",
   "name": "name6",
   "networktemplate_id": "000001e2-0000-0000-0000-000000000000",
   "num_ap": 224,
@@ -75,10 +75,7 @@ Site statistics
   ],
   "timezone": "timezone6",
   "tzoffset": 240,
-  "secpolicy_id": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "secpolicy_id": "0000247e-0000-0000-0000-000000000000"
 }
 ```
 

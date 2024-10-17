@@ -140,6 +140,8 @@ var orgsStatsOtherDevices OrgsStatsOtherDevices
 
 var orgsStatsPorts OrgsStatsPorts
 
+var orgsStatsSites OrgsStatsSites
+
 var orgsStatsTunnels OrgsStatsTunnels
 
 var orgsStatsVpnPeers OrgsStatsVPNPeers
@@ -453,6 +455,7 @@ func init() {
     orgsStatsMxEdges = *client.OrgsStatsMxEdges()
     orgsStatsOtherDevices = *client.OrgsStatsOtherDevices()
     orgsStatsPorts = *client.OrgsStatsPorts()
+    orgsStatsSites = *client.OrgsStatsSites()
     orgsStatsTunnels = *client.OrgsStatsTunnels()
     orgsStatsVpnPeers = *client.OrgsStatsVPNPeers()
     orgsNacRules = *client.OrgsNACRules()

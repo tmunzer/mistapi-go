@@ -24,7 +24,7 @@ type Sso struct {
     Id                    *uuid.UUID           `json:"id,omitempty"`
     // if `idp_type`==`saml`. IDP Cert (used to verify the signed response)
     IdpCert               *string              `json:"idp_cert,omitempty"`
-    // Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+    // Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
     IdpSignAlgo           *SsoIdpSignAlgoEnum  `json:"idp_sign_algo,omitempty"`
     // Required if `idp_type`==`saml`, IDP Single-Sign-On URL
     IdpSsoUrl             *string              `json:"idp_sso_url,omitempty"`

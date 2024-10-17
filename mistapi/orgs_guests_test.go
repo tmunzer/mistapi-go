@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "encoding/json"
     "github.com/apimatic/go-core-runtime/testHelper"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/models"
@@ -126,12 +125,8 @@ func TestOrgsGuestsTestUpdateOrgGuestAuthorization(t *testing.T) {
         t.Error(errUUID)
     }
     guestMac := "0000000000ab"
-    var body models.Guest
-    errBody := json.Unmarshal([]byte(`{"authorized":true,"company":"string","email":"user@example.com","field1":"string","field2":"string","field3":"string","field4":"string","mac":"string","minutes":0,"name":"string"}`), &body)
-    if errBody != nil {
-        t.Errorf("Cannot parse the model object.")
-    }
-    apiResponse, err := orgsGuests.UpdateOrgGuestAuthorization(ctx, orgId, guestMac, &body)
+    
+    apiResponse, err := orgsGuests.UpdateOrgGuestAuthorization(ctx, orgId, guestMac, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

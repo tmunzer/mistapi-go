@@ -1,6 +1,8 @@
 
 # Nac Portal Type Enum
 
+enum: `guest`, `marvis_client`
+
 ## Enumeration
 
 `NacPortalTypeEnum`
@@ -9,6 +11,6 @@
 
 | Name |
 |  --- |
-| `marvis_client` |
 | `guest` |
+| `marvis_client` |
 

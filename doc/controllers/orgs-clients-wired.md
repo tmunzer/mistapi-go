@@ -123,7 +123,7 @@ SearchOrgWiredClients(
     mac *string,
     portId *string,
     vlan *int,
-    ip *string,
+    ipAddress *string,
     manufacture *string,
     text *string,
     nacruleId *string,
@@ -146,13 +146,13 @@ SearchOrgWiredClients(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `siteId` | `*string` | Query, Optional | Site ID |
-| `deviceMac` | `*string` | Query, Optional | device mac |
-| `mac` | `*string` | Query, Optional | client mac |
-| `portId` | `*string` | Query, Optional | port id |
+| `deviceMac` | `*string` | Query, Optional | device mac (Gateway/Switch) where the client has connected to |
+| `mac` | `*string` | Query, Optional | partial / full MAC address |
+| `portId` | `*string` | Query, Optional | port id where the client has connected to |
 | `vlan` | `*int` | Query, Optional | vlan |
-| `ip` | `*string` | Query, Optional | ip |
+| `ipAddress` | `*string` | Query, Optional | - |
 | `manufacture` | `*string` | Query, Optional | client manufacturer |
-| `text` | `*string` | Query, Optional | single entry of hostname/mac |
+| `text` | `*string` | Query, Optional | partial / full MAC address, hostname or username |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
 | `dhcpHostname` | `*string` | Query, Optional | DHCP Hostname |
 | `dhcpFqdn` | `*string` | Query, Optional | DHCP FQDN |
@@ -185,7 +185,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-
+ipAddress := "192.168.1.1"
 
 
 
@@ -211,7 +211,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

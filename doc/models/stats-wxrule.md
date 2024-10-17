@@ -1,17 +1,17 @@
 
-# Stats Wrule
+# Stats Wxrule
 
 Wxrule statistics
 
 ## Structure
 
-`StatsWrule`
+`StatsWxrule`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`models.StatsWruleActionEnum`](../../doc/models/stats-wrule-action-enum.md) | Required | enum: `allow`, `block` |
+| `Action` | [`models.StatsWxruleActionEnum`](../../doc/models/stats-wxrule-action-enum.md) | Required | enum: `allow`, `block` |
 | `ClientMac` | `[]string` | Required | - |
 | `DstAllowWxtags` | `[]uuid.UUID` | Required | - |
 | `DstDenyWxtags` | `[]uuid.UUID` | Required | - |
@@ -19,7 +19,7 @@ Wxrule statistics
 | `Name` | `string` | Required | - |
 | `Order` | `int` | Required | - |
 | `SrcWxtags` | `[]uuid.UUID` | Required | - |
-| `Usage` | [`map[string]models.StatsWruleUsageProperties`](../../doc/models/stats-wrule-usage-properties.md) | Required | - |
+| `Usage` | [`map[string]models.StatsWxruleUsageProperties`](../../doc/models/stats-wxrule-usage-properties.md) | Required | - |
 
 ## Example (as JSON)
 

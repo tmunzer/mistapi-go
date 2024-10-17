@@ -83,6 +83,7 @@ type ClientInterface interface {
     OrgsStatsMxEdges() *OrgsStatsMxEdges
     OrgsStatsOtherDevices() *OrgsStatsOtherDevices
     OrgsStatsPorts() *OrgsStatsPorts
+    OrgsStatsSites() *OrgsStatsSites
     OrgsStatsTunnels() *OrgsStatsTunnels
     OrgsStatsVPNPeers() *OrgsStatsVPNPeers
     OrgsNACRules() *OrgsNACRules
@@ -281,6 +282,7 @@ type client struct {
     orgsStatsMxEdges                OrgsStatsMxEdges
     orgsStatsOtherDevices           OrgsStatsOtherDevices
     orgsStatsPorts                  OrgsStatsPorts
+    orgsStatsSites                  OrgsStatsSites
     orgsStatsTunnels                OrgsStatsTunnels
     orgsStatsVPNPeers               OrgsStatsVPNPeers
     orgsNACRules                    OrgsNACRules
@@ -408,7 +410,7 @@ func NewClient(configuration Configuration) ClientInterface {
         configuration: configuration,
     }
     
-    client.userAgent = utilities.UpdateUserAgent("SDK 2409.1.9")
+    client.userAgent = utilities.UpdateUserAgent("SDK 2409.1.11")
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {
@@ -497,6 +499,7 @@ func NewClient(configuration Configuration) ClientInterface {
     client.orgsStatsMxEdges = *NewOrgsStatsMxEdges(*baseController)
     client.orgsStatsOtherDevices = *NewOrgsStatsOtherDevices(*baseController)
     client.orgsStatsPorts = *NewOrgsStatsPorts(*baseController)
+    client.orgsStatsSites = *NewOrgsStatsSites(*baseController)
     client.orgsStatsTunnels = *NewOrgsStatsTunnels(*baseController)
     client.orgsStatsVPNPeers = *NewOrgsStatsVPNPeers(*baseController)
     client.orgsNACRules = *NewOrgsNACRules(*baseController)
@@ -986,6 +989,11 @@ func (c *client) OrgsStatsOtherDevices() *OrgsStatsOtherDevices {
 // OrgsStatsPorts returns the orgsStatsPorts instance of the client.
 func (c *client) OrgsStatsPorts() *OrgsStatsPorts {
     return &c.orgsStatsPorts
+}
+
+// OrgsStatsSites returns the orgsStatsSites instance of the client.
+func (c *client) OrgsStatsSites() *OrgsStatsSites {
+    return &c.orgsStatsSites
 }
 
 // OrgsStatsTunnels returns the orgsStatsTunnels instance of the client.

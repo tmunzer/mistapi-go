@@ -13,7 +13,7 @@ if `auth`==`sso`
 |  --- | --- | --- | --- |
 | `AllowedRoles` | `[]string` | Optional | // allowed roles for accessing psk portal, if none, any role is permitted |
 | `IdpCert` | `*string` | Optional | - |
-| `IdpSignAlgo` | [`*models.PskPortalSsoIdpSignAlgoEnum`](../../doc/models/psk-portal-sso-idp-sign-algo-enum.md) | Optional | Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`<br>**Default**: `"sha256"` |
+| `IdpSignAlgo` | [`*models.PskPortalSsoIdpSignAlgoEnum`](../../doc/models/psk-portal-sso-idp-sign-algo-enum.md) | Optional | Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`. enum: `sha1`, `sha256`, `sha384`, `sha512`<br>**Default**: `"sha256"` |
 | `IdpSsoUrl` | `*string` | Optional | - |
 | `Issuer` | `*string` | Optional | - |
 | `NameidFormat` | `*string` | Optional | - |

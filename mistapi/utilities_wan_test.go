@@ -98,11 +98,15 @@ func TestUtilitiesWANTestReleaseSiteSsrDhcpLease(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    resp, err := utilitiesWan.ReleaseSiteSsrDhcpLease(ctx, siteId, deviceId, &body)
+    apiResponse, err := utilitiesWan.ReleaseSiteSsrDhcpLease(ctx, siteId, deviceId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
-    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
 // TestUtilitiesWANTestTestSiteSsrDnsResolution tests the behavior of the UtilitiesWAN
@@ -176,8 +180,8 @@ func TestUtilitiesWANTestServicePingFromSsr(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesWANTestGetSiteSsrOspfDatabase tests the behavior of the UtilitiesWAN
-func TestUtilitiesWANTestGetSiteSsrOspfDatabase(t *testing.T) {
+// TestUtilitiesWANTestShowSiteSsrOspfDatabase tests the behavior of the UtilitiesWAN
+func TestUtilitiesWANTestShowSiteSsrOspfDatabase(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -188,7 +192,7 @@ func TestUtilitiesWANTestGetSiteSsrOspfDatabase(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := utilitiesWan.GetSiteSsrOspfDatabase(ctx, siteId, deviceId, nil)
+    apiResponse, err := utilitiesWan.ShowSiteSsrOspfDatabase(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -199,8 +203,8 @@ func TestUtilitiesWANTestGetSiteSsrOspfDatabase(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesWANTestGetSiteSsrOspfInterface tests the behavior of the UtilitiesWAN
-func TestUtilitiesWANTestGetSiteSsrOspfInterface(t *testing.T) {
+// TestUtilitiesWANTestShowSiteSsrOspfInterfaces tests the behavior of the UtilitiesWAN
+func TestUtilitiesWANTestShowSiteSsrOspfInterfaces(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -211,7 +215,7 @@ func TestUtilitiesWANTestGetSiteSsrOspfInterface(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := utilitiesWan.GetSiteSsrOspfInterface(ctx, siteId, deviceId, nil)
+    apiResponse, err := utilitiesWan.ShowSiteSsrOspfInterfaces(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -222,8 +226,8 @@ func TestUtilitiesWANTestGetSiteSsrOspfInterface(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesWANTestGetSiteSsrOspfNeighbors tests the behavior of the UtilitiesWAN
-func TestUtilitiesWANTestGetSiteSsrOspfNeighbors(t *testing.T) {
+// TestUtilitiesWANTestShowSiteSsrOspfNeighbors tests the behavior of the UtilitiesWAN
+func TestUtilitiesWANTestShowSiteSsrOspfNeighbors(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -234,7 +238,7 @@ func TestUtilitiesWANTestGetSiteSsrOspfNeighbors(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := utilitiesWan.GetSiteSsrOspfNeighbors(ctx, siteId, deviceId, nil)
+    apiResponse, err := utilitiesWan.ShowSiteSsrOspfNeighbors(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -245,8 +249,8 @@ func TestUtilitiesWANTestGetSiteSsrOspfNeighbors(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesWANTestGetSiteSsrOspfSummary tests the behavior of the UtilitiesWAN
-func TestUtilitiesWANTestGetSiteSsrOspfSummary(t *testing.T) {
+// TestUtilitiesWANTestShowSiteSsrOspfSummary tests the behavior of the UtilitiesWAN
+func TestUtilitiesWANTestShowSiteSsrOspfSummary(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -257,7 +261,7 @@ func TestUtilitiesWANTestGetSiteSsrOspfSummary(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := utilitiesWan.GetSiteSsrOspfSummary(ctx, siteId, deviceId, nil)
+    apiResponse, err := utilitiesWan.ShowSiteSsrOspfSummary(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -268,8 +272,8 @@ func TestUtilitiesWANTestGetSiteSsrOspfSummary(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesWANTestGetSiteSsrAndSrxRoutes tests the behavior of the UtilitiesWAN
-func TestUtilitiesWANTestGetSiteSsrAndSrxRoutes(t *testing.T) {
+// TestUtilitiesWANTestShowSiteSsrAndSrxRoutes tests the behavior of the UtilitiesWAN
+func TestUtilitiesWANTestShowSiteSsrAndSrxRoutes(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -280,7 +284,7 @@ func TestUtilitiesWANTestGetSiteSsrAndSrxRoutes(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := utilitiesWan.GetSiteSsrAndSrxRoutes(ctx, siteId, deviceId, nil)
+    apiResponse, err := utilitiesWan.ShowSiteSsrAndSrxRoutes(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -291,8 +295,8 @@ func TestUtilitiesWANTestGetSiteSsrAndSrxRoutes(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesWANTestGetSiteSsrServicePath tests the behavior of the UtilitiesWAN
-func TestUtilitiesWANTestGetSiteSsrServicePath(t *testing.T) {
+// TestUtilitiesWANTestShowSiteSsrServicePath tests the behavior of the UtilitiesWAN
+func TestUtilitiesWANTestShowSiteSsrServicePath(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -307,7 +311,7 @@ func TestUtilitiesWANTestGetSiteSsrServicePath(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    apiResponse, err := utilitiesWan.GetSiteSsrServicePath(ctx, siteId, deviceId, &body)
+    apiResponse, err := utilitiesWan.ShowSiteSsrServicePath(ctx, siteId, deviceId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -318,8 +322,8 @@ func TestUtilitiesWANTestGetSiteSsrServicePath(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesWANTestGetSiteSsrAndSrxSessions tests the behavior of the UtilitiesWAN
-func TestUtilitiesWANTestGetSiteSsrAndSrxSessions(t *testing.T) {
+// TestUtilitiesWANTestShowSiteSsrAndSrxSessions tests the behavior of the UtilitiesWAN
+func TestUtilitiesWANTestShowSiteSsrAndSrxSessions(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -334,7 +338,7 @@ func TestUtilitiesWANTestGetSiteSsrAndSrxSessions(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    apiResponse, err := utilitiesWan.GetSiteSsrAndSrxSessions(ctx, siteId, deviceId, &body)
+    apiResponse, err := utilitiesWan.ShowSiteSsrAndSrxSessions(ctx, siteId, deviceId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

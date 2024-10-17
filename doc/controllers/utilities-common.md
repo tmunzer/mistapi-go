@@ -14,12 +14,7 @@ utilitiesCommon := client.UtilitiesCommon()
 * [Clear Site Device Mac Table](../../doc/controllers/utilities-common.md#clear-site-device-mac-table)
 * [Clear Site Device Policy Hit Count](../../doc/controllers/utilities-common.md#clear-site-device-policy-hit-count)
 * [Create Site Device Shell Session](../../doc/controllers/utilities-common.md#create-site-device-shell-session)
-* [Get Site Device Arp Table](../../doc/controllers/utilities-common.md#get-site-device-arp-table)
-* [Get Site Device Bgp Summary](../../doc/controllers/utilities-common.md#get-site-device-bgp-summary)
 * [Get Site Device Config Cmd](../../doc/controllers/utilities-common.md#get-site-device-config-cmd)
-* [Get Site Device Evpn Database](../../doc/controllers/utilities-common.md#get-site-device-evpn-database)
-* [Get Site Device Forwarding Table](../../doc/controllers/utilities-common.md#get-site-device-forwarding-table)
-* [Get Site Device Mac Table](../../doc/controllers/utilities-common.md#get-site-device-mac-table)
 * [Get Site Device Ztp Password](../../doc/controllers/utilities-common.md#get-site-device-ztp-password)
 * [Monitor Site Device Traffic](../../doc/controllers/utilities-common.md#monitor-site-device-traffic)
 * [Ping From Device](../../doc/controllers/utilities-common.md#ping-from-device)
@@ -27,7 +22,12 @@ utilitiesCommon := client.UtilitiesCommon()
 * [Release Site Device Dhcp Lease](../../doc/controllers/utilities-common.md#release-site-device-dhcp-lease)
 * [Reprovision Site Octerm Device](../../doc/controllers/utilities-common.md#reprovision-site-octerm-device)
 * [Restart Site Device](../../doc/controllers/utilities-common.md#restart-site-device)
+* [Show Site Device Arp Table](../../doc/controllers/utilities-common.md#show-site-device-arp-table)
+* [Show Site Device Bgp Summary](../../doc/controllers/utilities-common.md#show-site-device-bgp-summary)
 * [Show Site Device Dhcp Leases](../../doc/controllers/utilities-common.md#show-site-device-dhcp-leases)
+* [Show Site Device Evpn Database](../../doc/controllers/utilities-common.md#show-site-device-evpn-database)
+* [Show Site Device Forwarding Table](../../doc/controllers/utilities-common.md#show-site-device-forwarding-table)
+* [Show Site Device Mac Table](../../doc/controllers/utilities-common.md#show-site-device-mac-table)
 * [Start Site Locate Device](../../doc/controllers/utilities-common.md#start-site-locate-device)
 * [Stop Site Locate Device](../../doc/controllers/utilities-common.md#stop-site-locate-device)
 * [Traceroute From Device](../../doc/controllers/utilities-common.md#traceroute-from-device)
@@ -300,171 +300,6 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Device Arp Table
-
-Get ARP Table from the Device.
-
-The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
-
-#### Subscribe to Device Command outputs
-
-`WS /api-ws/v1/stream`
-
-```json
-{
-    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-}
-```
-
-```go
-GetSiteDeviceArpTable(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsShowArp) (
-    models.ApiResponse[models.WebsocketSession],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowArp`](../../doc/models/utils-show-arp.md) | Body, Optional | all attributes are optional |
-
-## Response Type
-
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsShowArp{
-    Duration: models.ToPointer(0),
-    Interval: models.ToPointer(0),
-    Ip:       models.ToPointer("192.168.30.7"),
-    PortId:   models.ToPointer("ge-0/0/0.0"),
-    Vrf:      models.ToPointer("guest"),
-}
-
-apiResponse, err := utilitiesCommon.GetSiteDeviceArpTable(ctx, siteId, deviceId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Device Bgp Summary
-
-Get BGP Summary from SSR, SRX and Switch.
-
-The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
-
-#### Subscribe to Device Command outputs
-
-`WS /api-ws/v1/stream`
-
-```json
-{
-    \"subscribe\": \"/sites/{site_id}/devices/{device_id}/cmd\"\
-
-}
-```
-
-##### Example output from ws stream
-
-```
-Tue 2024-04-23 16:36:06 UTC
-Retrieving bgp entries...
-BGP table version is 354, local router ID is 10.224.8.16, vrf id 0
-Default local pref 100, local AS 65000
-Status codes:  s suppressed, d damped, h history, * valid, > best, = multipath,
-              i internal, r RIB_failure, S Stale, R Removed
-Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
-Origin codes:  i - IGP, e - EGP, ? - incomplete
-RPKI validation codes: V valid, I invalid, N Not found
-
-  Network                                      Next Hop                                  Metric LocPrf Weight Path
-*> 161.161.161.0/24
-```"
-```
-
-```go
-GetSiteDeviceBgpSummary(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsShowBgpRummary) (
-    models.ApiResponse[models.WebsocketSession],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowBgpRummary`](../../doc/models/utils-show-bgp-rummary.md) | Body, Optional | all attributes are optional |
-
-## Response Type
-
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-apiResponse, err := utilitiesCommon.GetSiteDeviceBgpSummary(ctx, siteId, deviceId, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
 # Get Site Device Config Cmd
 
 Get Config CLI Commands
@@ -522,226 +357,6 @@ if err != nil {
   "cli": [
     "set system hostname corp-a135"
   ]
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Device Evpn Database
-
-Get EVPN Database from the Device. The output will be available through websocket.
-
-```go
-GetSiteDeviceEvpnDatabase(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsShowEvpnDatabase) (
-    models.ApiResponse[models.WebsocketSession],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowEvpnDatabase`](../../doc/models/utils-show-evpn-database.md) | Body, Optional | all attributes are optional |
-
-## Response Type
-
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsShowEvpnDatabase{
-    Duration: models.ToPointer(0),
-    Interval: models.ToPointer(0),
-    Mac:      models.ToPointer("f8c1165c6400"),
-    PortId:   models.ToPointer("ge-0/0/0.0"),
-}
-
-apiResponse, err := utilitiesCommon.GetSiteDeviceEvpnDatabase(ctx, siteId, deviceId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Device Forwarding Table
-
-Get forwarding table from the Device. The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
-
-#### Subscribe to Device Command outputs
-
-`WS /api-ws/v1/stream`
-
-```json
-{
-    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-}
-```
-
-##### Example output from ws stream
-
-```
-Mon 2024-05-20 16:47:30 UTC Retrieving fib entries… Entry Count: 3268 Capacity:    22668 ==================== ====== ======= ================== ===== ====================== =========== =========== ====== IP Prefix            Port   Proto   Tenant             VRF   Service                Next Hops   Vector      Cost ==================== ====== ======= ================== ===== ====================== =========== =========== ====== 0.0.0.0/0               0   None    Old_Mgmt           -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-Kiosk      -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-MGT        -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 3.1.1.0/24              0   None    Old_Mgmt           -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-Kiosk      -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-MGT        -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10
-
-```
-
-```go
-GetSiteDeviceForwardingTable(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsShowForwardingTable) (
-    models.ApiResponse[models.WebsocketSession],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowForwardingTable`](../../doc/models/utils-show-forwarding-table.md) | Body, Optional | all attributes are optional |
-
-## Response Type
-
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsShowForwardingTable{
-    Prefix:          models.ToPointer("3.1.1.0/24"),
-    ServiceIp:       models.ToPointer("3.1.1.10"),
-    ServiceName:     models.ToPointer("internet-wan_and_lte"),
-    ServicePort:     models.ToPointer(32768),
-    ServiceProtocol: models.ToPointer("udp"),
-    ServiceTenant:   models.ToPointer("branch1-wifi-mgt"),
-    Vrf:             models.ToPointer("guest"),
-}
-
-apiResponse, err := utilitiesCommon.GetSiteDeviceForwardingTable(ctx, siteId, deviceId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Device Mac Table
-
-Get MAC Table from the Device.
-
-The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
-
-#### Subscribe to Device Command outputs
-
-`WS /api-ws/v1/stream`
-
-```json
-{
-    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-}
-```
-
-```go
-GetSiteDeviceMacTable(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsMacTable) (
-    models.ApiResponse[models.WebsocketSession],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsMacTable`](../../doc/models/utils-mac-table.md) | Body, Optional | all attributes are optional |
-
-## Response Type
-
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsMacTable{
-    MacAddress: models.ToPointer("f8c1165c6400"),
-    PortId:     models.ToPointer("ge-0/0/0.0"),
-    VlanId:     models.ToPointer("ge-0/0/0.0"),
-}
-
-apiResponse, err := utilitiesCommon.GetSiteDeviceMacTable(ctx, siteId, deviceId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
 }
 ```
 
@@ -1185,6 +800,171 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# Show Site Device Arp Table
+
+Get ARP Table from the Device.
+
+The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}
+```
+
+```go
+ShowSiteDeviceArpTable(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowArp) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsShowArp`](../../doc/models/utils-show-arp.md) | Body, Optional | all attributes are optional |
+
+## Response Type
+
+[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsShowArp{
+    Duration: models.ToPointer(0),
+    Interval: models.ToPointer(0),
+    Ip:       models.ToPointer("192.168.30.7"),
+    PortId:   models.ToPointer("ge-0/0/0.0"),
+    Vrf:      models.ToPointer("guest"),
+}
+
+apiResponse, err := utilitiesCommon.ShowSiteDeviceArpTable(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Show Site Device Bgp Summary
+
+Get BGP Summary from SSR, SRX and Switch.
+
+The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+
+}
+```
+
+##### Example output from ws stream
+
+```
+Tue 2024-04-23 16:36:06 UTC
+Retrieving bgp entries...
+BGP table version is 354, local router ID is 10.224.8.16, vrf id 0
+Default local pref 100, local AS 65000
+Status codes:  s suppressed, d damped, h history, * valid, > best, = multipath,
+              i internal, r RIB_failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+  Network                                      Next Hop                                  Metric LocPrf Weight Path
+*> 161.161.161.0/24
+```"
+```
+
+```go
+ShowSiteDeviceBgpSummary(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowBgpRummary) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsShowBgpRummary`](../../doc/models/utils-show-bgp-rummary.md) | Body, Optional | all attributes are optional |
+
+## Response Type
+
+[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+apiResponse, err := utilitiesCommon.ShowSiteDeviceBgpSummary(ctx, siteId, deviceId, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # Show Site Device Dhcp Leases
 
 Shows DHCP leases
@@ -1195,7 +975,7 @@ ShowSiteDeviceDhcpLeases(
     siteId uuid.UUID,
     deviceId uuid.UUID,
     body *models.UtilsShowDhcpLeases) (
-    models.ApiResponse[models.WebsocketSessionWithUrl],
+    models.ApiResponse[models.WebsocketSession],
     error)
 ```
 
@@ -1209,7 +989,7 @@ ShowSiteDeviceDhcpLeases(
 
 ## Response Type
 
-[`models.WebsocketSessionWithUrl`](../../doc/models/websocket-session-with-url.md)
+[`models.WebsocketSession`](../../doc/models/websocket-session.md)
 
 ## Example Usage
 
@@ -1221,10 +1001,230 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowDhcpLeases{
-    Network: models.ToPointer("guest"),
+    Network: "guest",
 }
 
 apiResponse, err := utilitiesCommon.ShowSiteDeviceDhcpLeases(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Show Site Device Evpn Database
+
+Get EVPN Database from the Device. The output will be available through websocket.
+
+```go
+ShowSiteDeviceEvpnDatabase(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowEvpnDatabase) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsShowEvpnDatabase`](../../doc/models/utils-show-evpn-database.md) | Body, Optional | all attributes are optional |
+
+## Response Type
+
+[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsShowEvpnDatabase{
+    Duration: models.ToPointer(0),
+    Interval: models.ToPointer(0),
+    Mac:      models.ToPointer("f8c1165c6400"),
+    PortId:   models.ToPointer("ge-0/0/0.0"),
+}
+
+apiResponse, err := utilitiesCommon.ShowSiteDeviceEvpnDatabase(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Show Site Device Forwarding Table
+
+Get forwarding table from the Device. The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}
+```
+
+##### Example output from ws stream
+
+```
+Mon 2024-05-20 16:47:30 UTC Retrieving fib entries… Entry Count: 3268 Capacity:    22668 ==================== ====== ======= ================== ===== ====================== =========== =========== ====== IP Prefix            Port   Proto   Tenant             VRF   Service                Next Hops   Vector      Cost ==================== ====== ======= ================== ===== ====================== =========== =========== ====== 0.0.0.0/0               0   None    Old_Mgmt           -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-Kiosk      -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-MGT        -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 3.1.1.0/24              0   None    Old_Mgmt           -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-Kiosk      -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-MGT        -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10
+
+```
+
+```go
+ShowSiteDeviceForwardingTable(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowForwardingTable) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsShowForwardingTable`](../../doc/models/utils-show-forwarding-table.md) | Body, Optional | all attributes are optional |
+
+## Response Type
+
+[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsShowForwardingTable{
+    Prefix:          models.ToPointer("3.1.1.0/24"),
+    ServiceIp:       models.ToPointer("3.1.1.10"),
+    ServiceName:     models.ToPointer("internet-wan_and_lte"),
+    ServicePort:     models.ToPointer(32768),
+    ServiceProtocol: models.ToPointer("udp"),
+    ServiceTenant:   models.ToPointer("branch1-wifi-mgt"),
+    Vrf:             models.ToPointer("guest"),
+}
+
+apiResponse, err := utilitiesCommon.ShowSiteDeviceForwardingTable(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Show Site Device Mac Table
+
+Get MAC Table from the Device.
+
+The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}
+```
+
+```go
+ShowSiteDeviceMacTable(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsMacTable) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsMacTable`](../../doc/models/utils-mac-table.md) | Body, Optional | all attributes are optional |
+
+## Response Type
+
+[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsMacTable{
+    MacAddress: models.ToPointer("f8c1165c6400"),
+    PortId:     models.ToPointer("ge-0/0/0.0"),
+    VlanId:     models.ToPointer("ge-0/0/0.0"),
+}
+
+apiResponse, err := utilitiesCommon.ShowSiteDeviceMacTable(ctx, siteId, deviceId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1373,7 +1373,7 @@ if err != nil {
 
 Traceroute can be performed from the Device.
 
-The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+The output will be available through websocket. As there can be multiple command issued against the same Device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -1382,8 +1382,24 @@ The output will be available through websocket. As there can be multiple command
 ```json
 {
     "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}```
+
+
+
+#### Example output from ws stream
+
+```json
+{  
+  "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-xxxxxxxxxxxx/devices/00000000-0000-0000-1000-xxxxxxxxxxxx/cmd",
+  "event": "data",
+  "data": {
+    "session": "9106e908-74dc-4a4f-9050-9c2adcaf44a5",
+    "raw": "Running traceroute...\ntraceroute to 8.8.8.8, 64 hops max\n 0  192.168.1.1 1 ms  192.168.1.1 1 ms  192.168.1.1 1 ms\n 1  80.10.236.81 2 ms  80.10.236.81 4 ms  80.10.236.81 2 ms\n 2  193.253.80.250 3 ms  193.253.80.250 2 ms  193.253.80.250 2 ms\n 3  193.252.159.41 2 ms  193.252.159.41 1 ms  193.252.159.41 3 ms\n"
+  }
 }
 ```
+
+"
 
 ```go
 TracerouteFromDevice(
@@ -1449,15 +1465,16 @@ Support / Upload device support files
 
 #### Info Param
 
-**Parameter**|**Description**
-:-------------: |:-------------: |:-------------:
-process|Upload 1 file with output of show system processes extensive
-outbound-ssh|Upload 1 file that concatenates all /var/log/outbound-ssh.log* files
-messages|Upload 1 to 10 /var/log/messages* files
-core-dumps|Upload all core dump files, if any
-full|string|Upload 1 file with output of request support information, 1 file that concatenates all /var/log/outbound-ssh.log files, all core dump files, the 3 most recent /var/log/messages files, and Mist agent logs (for Junos devices running the Mist agent)
-var-logs|Upload all non-empty files in the /var/log/ directory
-jma-logs|Upload Mist agent logs (for Junos devices running the Mist agent only)
+| Name | Type | Description |
+| --- | --- | --- |
+| process | string | Upload 1 file with output of show system processes extensive |
+| outbound-ssh | string | Upload 1 file that concatenates all /var/log/outbound-ssh.log* files |
+| messages | string | Upload 1 to 10 /var/log/messages* files |
+| core-dumps | string | Upload all core dump files, if any |
+| full | string | Upload 1 file with output of request support information, 1 file that concatenates all /var/log/outbound-ssh.log files, all core dump files, the 3 most recent /var/log/messages files, and Mist agent logs (for Junos devices running the Mist agent) |
+| var-logs | string | Upload all non-empty files in the /var/log/ directory |
+| jma-logs | string | Upload Mist agent logs (for Junos devices running the Mist agent only) |
+"
 
 ```go
 UploadSiteDeviceSupportFile(

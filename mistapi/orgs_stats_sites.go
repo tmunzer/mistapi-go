@@ -10,31 +10,36 @@ import (
     "github.com/tmunzer/mistapi-go/mistapi/models"
 )
 
-// SitesStatsWxRules represents a controller struct.
-type SitesStatsWxRules struct {
+// OrgsStatsSites represents a controller struct.
+type OrgsStatsSites struct {
     baseController
 }
 
-// NewSitesStatsWxRules creates a new instance of SitesStatsWxRules.
-// It takes a baseController as a parameter and returns a pointer to the SitesStatsWxRules.
-func NewSitesStatsWxRules(baseController baseController) *SitesStatsWxRules {
-    sitesStatsWxRules := SitesStatsWxRules{baseController: baseController}
-    return &sitesStatsWxRules
+// NewOrgsStatsSites creates a new instance of OrgsStatsSites.
+// It takes a baseController as a parameter and returns a pointer to the OrgsStatsSites.
+func NewOrgsStatsSites(baseController baseController) *OrgsStatsSites {
+    orgsStatsSites := OrgsStatsSites{baseController: baseController}
+    return &orgsStatsSites
 }
 
-// GetSiteWxRulesUsage takes context, siteId as parameters and
-// returns an models.ApiResponse with []models.StatsWxrule data and
+// ListOrgSiteStats takes context, orgId, start, end, duration, limit, page as parameters and
+// returns an models.ApiResponse with []models.StatsSite data and
 // an error if there was an issue with the request or response.
-// Get Wxlan Rule usage
-func (s *SitesStatsWxRules) GetSiteWxRulesUsage(
+// Get List of Org Site Stats
+func (o *OrgsStatsSites) ListOrgSiteStats(
     ctx context.Context,
-    siteId uuid.UUID) (
-    models.ApiResponse[[]models.StatsWxrule],
+    orgId uuid.UUID,
+    start *int,
+    end *int,
+    duration *string,
+    limit *int,
+    page *int) (
+    models.ApiResponse[[]models.StatsSite],
     error) {
-    req := s.prepareRequest(
+    req := o.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/wxrules", siteId),
+      fmt.Sprintf("/api/v1/orgs/%v/stats/sites", orgId),
     )
     req.Authenticate(
         NewOrAuth(
@@ -54,13 +59,28 @@ func (s *SitesStatsWxRules) GetSiteWxRulesUsage(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    if start != nil {
+        req.QueryParam("start", *start)
+    }
+    if end != nil {
+        req.QueryParam("end", *end)
+    }
+    if duration != nil {
+        req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
+    }
     
-    var result []models.StatsWxrule
+    var result []models.StatsSite
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.StatsWxrule](decoder)
+    result, err = utilities.DecodeResults[[]models.StatsSite](decoder)
     return models.NewApiResponse(result, resp), err
 }

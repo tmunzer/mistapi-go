@@ -18,9 +18,10 @@ type OrgSettingMistNac struct {
     // By default NAC POD failover considers all NAC pods available around the globe, i.e. EU, US, or APAC based, failover happens based on geo IP of the originating site.
     // For strict GDPR compliancy NAC POD failover would only happen between the PODs located within the EU environment, and no authentication would take place outside of EU. This is an org setting that is applicable to WLANs, switch templates, mxedge clusters that have mist_nac enabled
     EuOnly                    *bool                           `json:"eu_only,omitempty"`
-    // allow customer to choose the EAP-TLS client certificate's field to use for IDP Machine Groups lookup
+    // allow customer to choose the EAP-TLS client certificate's field to use for IDP Machine Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
     IdpMachineCertLookupField *IdpMachineCertLookupFieldEnum  `json:"idp_machine_cert_lookup_field,omitempty"`
-    // allow customer to choose the EAP-TLS client certificate's field to use for IDP User Groups lookup
+    // allow customer to choose the EAP-TLS client certificate's field
+    // to use for IDP User Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
     IdpUserCertLookupField    *IdpUserCertLookupFieldEnum     `json:"idp_user_cert_lookup_field,omitempty"`
     Idps                      []OrgSettingMistNacIdp          `json:"idps,omitempty"`
     // radius server cert to be presented in EAP TLS

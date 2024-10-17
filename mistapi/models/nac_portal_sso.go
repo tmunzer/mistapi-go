@@ -7,7 +7,7 @@ import (
 // NacPortalSso represents a NacPortalSso struct.
 type NacPortalSso struct {
     IdpCert              *string                      `json:"idp_cert,omitempty"`
-    // Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+    // Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`.
     IdpSignAlgo          *NacPortalSsoIdpSignAlgoEnum `json:"idp_sign_algo,omitempty"`
     IdpSsoUrl            *string                      `json:"idp_sso_url,omitempty"`
     Issuer               *string                      `json:"issuer,omitempty"`

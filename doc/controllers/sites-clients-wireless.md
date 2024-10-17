@@ -899,7 +899,7 @@ if err != nil {
         "192.168.0.2"
       ],
       "last_ap": "a83a79a947ee",
-      "last_devuce": "Mac",
+      "last_device": "Mac",
       "last_firmware": "wl0: Jan 20 2024 04:08:41 version 20.103.12.0.8.7.171 FWID 01-e09d2675",
       "last_hostname": "hostname-a",
       "last_ip": "10.5.23.43",

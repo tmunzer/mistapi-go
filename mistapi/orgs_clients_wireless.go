@@ -216,7 +216,7 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWirelessClients takes context, orgId, siteId, mac, ipAddress, hostname, device, os, model, ap, pskId, pskName, vlan, ssid, text, limit, start, end, duration as parameters and
+// SearchOrgWirelessClients takes context, orgId, siteId, mac, ipAddress, hostname, band, device, os, model, ap, pskId, pskName, username, vlan, ssid, text, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseClientSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Wireless Clients
@@ -227,12 +227,14 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
     mac *string,
     ipAddress *string,
     hostname *string,
+    band *string,
     device *string,
     os *string,
     model *string,
     ap *string,
     pskId *string,
     pskName *string,
+    username *string,
     vlan *string,
     ssid *string,
     text *string,
@@ -277,6 +279,9 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
     if hostname != nil {
         req.QueryParam("hostname", *hostname)
     }
+    if band != nil {
+        req.QueryParam("band", *band)
+    }
     if device != nil {
         req.QueryParam("device", *device)
     }
@@ -294,6 +299,9 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
     }
     if pskName != nil {
         req.QueryParam("psk_name", *pskName)
+    }
+    if username != nil {
+        req.QueryParam("username", *username)
     }
     if vlan != nil {
         req.QueryParam("vlan", *vlan)

@@ -679,7 +679,7 @@ func (u *UtilitiesCommon) CreateSiteDeviceShellSession(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteDeviceArpTable takes context, siteId, deviceId, body as parameters and
+// ShowSiteDeviceArpTable takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get ARP Table from the Device.
@@ -691,7 +691,7 @@ func (u *UtilitiesCommon) CreateSiteDeviceShellSession(
 // "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
 // }
 // ```
-func (u *UtilitiesCommon) GetSiteDeviceArpTable(
+func (u *UtilitiesCommon) ShowSiteDeviceArpTable(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -736,7 +736,7 @@ func (u *UtilitiesCommon) GetSiteDeviceArpTable(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteDeviceBgpSummary takes context, siteId, deviceId, body as parameters and
+// ShowSiteDeviceBgpSummary takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get BGP Summary from SSR, SRX and Switch.
@@ -745,7 +745,7 @@ func (u *UtilitiesCommon) GetSiteDeviceArpTable(
 // `WS /api-ws/v1/stream`
 // ```json
 // {
-// \"subscribe\": \"/sites/{site_id}/devices/{device_id}/cmd\"\
+// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
 // }
 // ```
 // ##### Example output from ws stream
@@ -762,7 +762,7 @@ func (u *UtilitiesCommon) GetSiteDeviceArpTable(
 // Network                                      Next Hop                                  Metric LocPrf Weight Path
 // *> 161.161.161.0/24
 // ```"
-func (u *UtilitiesCommon) GetSiteDeviceBgpSummary(
+func (u *UtilitiesCommon) ShowSiteDeviceBgpSummary(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -808,7 +808,7 @@ func (u *UtilitiesCommon) GetSiteDeviceBgpSummary(
 }
 
 // ShowSiteDeviceDhcpLeases takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with models.WebsocketSessionWithUrl data and
+// returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Shows DHCP leases
 func (u *UtilitiesCommon) ShowSiteDeviceDhcpLeases(
@@ -816,7 +816,7 @@ func (u *UtilitiesCommon) ShowSiteDeviceDhcpLeases(
     siteId uuid.UUID,
     deviceId uuid.UUID,
     body *models.UtilsShowDhcpLeases) (
-    models.ApiResponse[models.WebsocketSessionWithUrl],
+    models.ApiResponse[models.WebsocketSession],
     error) {
     req := u.prepareRequest(
       ctx,
@@ -846,21 +846,21 @@ func (u *UtilitiesCommon) ShowSiteDeviceDhcpLeases(
         req.Json(body)
     }
     
-    var result models.WebsocketSessionWithUrl
+    var result models.WebsocketSession
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.WebsocketSessionWithUrl](decoder)
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteDeviceEvpnDatabase takes context, siteId, deviceId, body as parameters and
+// ShowSiteDeviceEvpnDatabase takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get EVPN Database from the Device. The output will be available through websocket.
-func (u *UtilitiesCommon) GetSiteDeviceEvpnDatabase(
+func (u *UtilitiesCommon) ShowSiteDeviceEvpnDatabase(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -905,7 +905,7 @@ func (u *UtilitiesCommon) GetSiteDeviceEvpnDatabase(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteDeviceForwardingTable takes context, siteId, deviceId, body as parameters and
+// ShowSiteDeviceForwardingTable takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get forwarding table from the Device. The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
@@ -920,7 +920,7 @@ func (u *UtilitiesCommon) GetSiteDeviceEvpnDatabase(
 // ```
 // Mon 2024-05-20 16:47:30 UTC Retrieving fib entries… Entry Count: 3268 Capacity:    22668 ==================== ====== ======= ================== ===== ====================== =========== =========== ====== IP Prefix            Port   Proto   Tenant             VRF   Service                Next Hops   Vector      Cost ==================== ====== ======= ================== ===== ====================== =========== =========== ====== 0.0.0.0/0               0   None    Old_Mgmt           -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-Kiosk      -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-MGT        -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 3.1.1.0/24              0   None    Old_Mgmt           -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-Kiosk      -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10 branch1-MGT        -     internet-wan_and_lte   1-2.0       broadband      1 1-4.0       lte           10
 // ```
-func (u *UtilitiesCommon) GetSiteDeviceForwardingTable(
+func (u *UtilitiesCommon) ShowSiteDeviceForwardingTable(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -965,7 +965,7 @@ func (u *UtilitiesCommon) GetSiteDeviceForwardingTable(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteDeviceMacTable takes context, siteId, deviceId, body as parameters and
+// ShowSiteDeviceMacTable takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get MAC Table from the Device.
@@ -977,7 +977,7 @@ func (u *UtilitiesCommon) GetSiteDeviceForwardingTable(
 // "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
 // }
 // ```
-func (u *UtilitiesCommon) GetSiteDeviceMacTable(
+func (u *UtilitiesCommon) ShowSiteDeviceMacTable(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -1027,15 +1027,16 @@ func (u *UtilitiesCommon) GetSiteDeviceMacTable(
 // an error if there was an issue with the request or response.
 // Support / Upload device support files
 // #### Info Param
-// **Parameter**|**Description** 
-// :-------------: |:-------------: |:-------------: 
-// process|Upload 1 file with output of show system processes extensive
-// outbound-ssh|Upload 1 file that concatenates all /var/log/outbound-ssh.log* files
-// messages|Upload 1 to 10 /var/log/messages* files
-// core-dumps|Upload all core dump files, if any
-// full|string|Upload 1 file with output of request support information, 1 file that concatenates all /var/log/outbound-ssh.log files, all core dump files, the 3 most recent /var/log/messages files, and Mist agent logs (for Junos devices running the Mist agent)
-// var-logs|Upload all non-empty files in the /var/log/ directory
-// jma-logs|Upload Mist agent logs (for Junos devices running the Mist agent only)
+// | Name | Type | Description |
+// | --- | --- | --- |
+// | process | string | Upload 1 file with output of show system processes extensive |
+// | outbound-ssh | string | Upload 1 file that concatenates all /var/log/outbound-ssh.log* files |
+// | messages | string | Upload 1 to 10 /var/log/messages* files |
+// | core-dumps | string | Upload all core dump files, if any |
+// | full | string | Upload 1 file with output of request support information, 1 file that concatenates all /var/log/outbound-ssh.log files, all core dump files, the 3 most recent /var/log/messages files, and Mist agent logs (for Junos devices running the Mist agent) |
+// | var-logs | string | Upload all non-empty files in the /var/log/ directory |
+// | jma-logs | string | Upload Mist agent logs (for Junos devices running the Mist agent only) |
+// "
 func (u *UtilitiesCommon) UploadSiteDeviceSupportFile(
     ctx context.Context,
     siteId uuid.UUID,
@@ -1082,14 +1083,25 @@ func (u *UtilitiesCommon) UploadSiteDeviceSupportFile(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Traceroute can be performed from the Device.
-// The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+// The output will be available through websocket. As there can be multiple command issued against the same Device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
 // {
 // "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+// }```
+// #### Example output from ws stream
+// ```json
+// {  
+// "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-xxxxxxxxxxxx/devices/00000000-0000-0000-1000-xxxxxxxxxxxx/cmd",
+// "event": "data",
+// "data": {
+// "session": "9106e908-74dc-4a4f-9050-9c2adcaf44a5",
+// "raw": "Running traceroute...\ntraceroute to 8.8.8.8, 64 hops max\n 0  192.168.1.1 1 ms  192.168.1.1 1 ms  192.168.1.1 1 ms\n 1  80.10.236.81 2 ms  80.10.236.81 4 ms  80.10.236.81 2 ms\n 2  193.253.80.250 3 ms  193.253.80.250 2 ms  193.253.80.250 2 ms\n 3  193.252.159.41 2 ms  193.252.159.41 1 ms  193.252.159.41 3 ms\n"
+// }
 // }
 // ```
+// "
 func (u *UtilitiesCommon) TracerouteFromDevice(
     ctx context.Context,
     siteId uuid.UUID,

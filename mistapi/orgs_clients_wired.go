@@ -90,7 +90,7 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWiredClients takes context, orgId, siteId, deviceMac, mac, portId, vlan, ip, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration as parameters and
+// SearchOrgWiredClients takes context, orgId, siteId, deviceMac, mac, portId, vlan, ipAddress, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.SearchWiredClient data and
 // an error if there was an issue with the request or response.
 // Search for Wired Clients in org
@@ -103,7 +103,7 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
     mac *string,
     portId *string,
     vlan *int,
-    ip *string,
+    ipAddress *string,
     manufacture *string,
     text *string,
     nacruleId *string,
@@ -156,8 +156,8 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
     if vlan != nil {
         req.QueryParam("vlan", *vlan)
     }
-    if ip != nil {
-        req.QueryParam("ip", *ip)
+    if ipAddress != nil {
+        req.QueryParam("ip_address", *ipAddress)
     }
     if manufacture != nil {
         req.QueryParam("manufacture", *manufacture)

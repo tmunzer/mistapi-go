@@ -1,11 +1,11 @@
 
-# Stats Wrule Action Enum
+# Stats Wxrule Action Enum
 
 enum: `allow`, `block`
 
 ## Enumeration
 
-`StatsWruleActionEnum`
+`StatsWxruleActionEnum`
 
 ## Fields
 

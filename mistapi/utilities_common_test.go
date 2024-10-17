@@ -299,8 +299,8 @@ func TestUtilitiesCommonTestCreateSiteDeviceShellSession(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesCommonTestGetSiteDeviceArpTable tests the behavior of the UtilitiesCommon
-func TestUtilitiesCommonTestGetSiteDeviceArpTable(t *testing.T) {
+// TestUtilitiesCommonTestShowSiteDeviceArpTable tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceArpTable(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -311,7 +311,7 @@ func TestUtilitiesCommonTestGetSiteDeviceArpTable(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := utilitiesCommon.GetSiteDeviceArpTable(ctx, siteId, deviceId, nil)
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceArpTable(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -322,8 +322,8 @@ func TestUtilitiesCommonTestGetSiteDeviceArpTable(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesCommonTestGetSiteDeviceBgpSummary tests the behavior of the UtilitiesCommon
-func TestUtilitiesCommonTestGetSiteDeviceBgpSummary(t *testing.T) {
+// TestUtilitiesCommonTestShowSiteDeviceBgpSummary tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceBgpSummary(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -334,7 +334,7 @@ func TestUtilitiesCommonTestGetSiteDeviceBgpSummary(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := utilitiesCommon.GetSiteDeviceBgpSummary(ctx, siteId, deviceId, nil)
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceBgpSummary(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -368,8 +368,8 @@ func TestUtilitiesCommonTestShowSiteDeviceDhcpLeases(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesCommonTestGetSiteDeviceEvpnDatabase tests the behavior of the UtilitiesCommon
-func TestUtilitiesCommonTestGetSiteDeviceEvpnDatabase(t *testing.T) {
+// TestUtilitiesCommonTestShowSiteDeviceEvpnDatabase tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceEvpnDatabase(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -380,7 +380,7 @@ func TestUtilitiesCommonTestGetSiteDeviceEvpnDatabase(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := utilitiesCommon.GetSiteDeviceEvpnDatabase(ctx, siteId, deviceId, nil)
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceEvpnDatabase(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -391,8 +391,8 @@ func TestUtilitiesCommonTestGetSiteDeviceEvpnDatabase(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesCommonTestGetSiteDeviceForwardingTable tests the behavior of the UtilitiesCommon
-func TestUtilitiesCommonTestGetSiteDeviceForwardingTable(t *testing.T) {
+// TestUtilitiesCommonTestShowSiteDeviceForwardingTable tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceForwardingTable(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -403,7 +403,7 @@ func TestUtilitiesCommonTestGetSiteDeviceForwardingTable(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := utilitiesCommon.GetSiteDeviceForwardingTable(ctx, siteId, deviceId, nil)
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceForwardingTable(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -414,8 +414,8 @@ func TestUtilitiesCommonTestGetSiteDeviceForwardingTable(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesCommonTestGetSiteDeviceMacTable tests the behavior of the UtilitiesCommon
-func TestUtilitiesCommonTestGetSiteDeviceMacTable(t *testing.T) {
+// TestUtilitiesCommonTestShowSiteDeviceMacTable tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceMacTable(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -426,7 +426,7 @@ func TestUtilitiesCommonTestGetSiteDeviceMacTable(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := utilitiesCommon.GetSiteDeviceMacTable(ctx, siteId, deviceId, nil)
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceMacTable(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

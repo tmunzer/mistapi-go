@@ -12,8 +12,8 @@ enum: `11r`, `OKC`, `NONE`
 | Name |
 |  --- |
 | `11r` |
-| `OKC` |
 | `NONE` |
+| `OKC` |
 
 ## Example
 

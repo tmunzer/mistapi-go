@@ -174,7 +174,7 @@ func (u *UtilitiesPCAPs) GetOrgCapturingStatus(
 // `WS /api-ws/v1/stream`
 // ```json
 // {
-// subscribe: "/sites/{site_id}/pcaps"
+// "subscribe": "/sites/{site_id}/pcaps"
 // }
 // ```
 // #### Response (Wireless/RadioTap)
@@ -408,7 +408,7 @@ func (u *UtilitiesPCAPs) GetSiteCapturingStatus(
 // `WS /api-ws/v1/stream`
 // ```json
 // {
-// subscribe: "/sites/{site_id}/pcaps"
+// "subscribe": "/sites/{site_id}/pcaps"
 // }
 // ```
 // #### Response (MxEdge)
@@ -440,7 +440,7 @@ func (u *UtilitiesPCAPs) GetSiteCapturingStatus(
 // "pcap_raw": "1MOyoQIABAAAAAAAAAAAAP//AAABAAAAEEh7Yh5VBwCgAQAAoAEAAAAAKwBvCADAAQAAAIw7reCS2VNkAAAAABACbAmABLWuAAEAEBgAAwACAABQADoBeL28ygsKGLgfTJHAGLgfTJHAcIZ2WDlBJQAAAGQAERUACkFUVEttc1dpVlMBCIKEi5YkMEhsAwECBwZVUyABCx4gAQAjAhkAKgEEMgQMEhhgMBQBAAAPrAQBAAAPrAQBAAAPrAIMAAsFAQAbAABGBTIIAQAALRqtCR////8AAAAAAAAAAAAAAAAAAAAAAAAAAD0WAggVAAAAAAAAAAAAAAAAAAAAAAAAAH8IBAAIAAAAAEDdkwBQ8gQQSgABEBBEAAECEDsAAQMQRwAQn2481frn3KT+uGod2ERx+RAhAAtBcnJpcywgSW5jLhAjAApCR1cyMTAtNzAwECQACkJHVzIxMC03MDAQQgAKQkdXMjEwLTcwMBBUAAgABgBQ8gQAARARAA5BcnJpcyBXaXJlbGVzcxAIAAIgCBA8AAEBEEkABgA3KgABIN0JABAYAgEQHAAA3RgAUPICAQGEAAOkAAAnpAAAQkNeAGIyLwAzjakr"
 // }
 // ```
-// #### vResponse (Wired)
+// #### Response (Wired)
 // ```json
 // {
 // "event": "data"

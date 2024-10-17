@@ -41,6 +41,7 @@ type NacTag struct {
     SessionTimeout       *int                    `json:"session_timeout,omitempty"`
     // enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `session_timeout`, `username_attr`, `vlan`
     Type                 NacTagTypeEnum          `json:"type"`
+    // enum: `automatic`, `cn`, `dns`, `email`, `upn`
     UsernameAttr         *NacTagUsernameAttrEnum `json:"username_attr,omitempty"`
     // if `type`==`match`
     Values               []string                `json:"values,omitempty"`

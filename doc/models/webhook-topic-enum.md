@@ -19,8 +19,8 @@ enum: `alarms`, `asset-raw`, `asset-raw-rssi`, `audits`, `client-info`, `client-
 | `client-join` |
 | `client-latency` |
 | `client-sessions` |
-| `device-updowns` |
 | `device-events` |
+| `device-updowns` |
 | `discovered-raw-rssi` |
 | `location` |
 | `location_asset` |

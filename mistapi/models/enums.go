@@ -221,14 +221,16 @@ const (
 )
 
 // AvprofileFallbackActionEnum is a string enum.
+// enum: `block`, `permit`
 type AvprofileFallbackActionEnum string
 
 const (
-    AvprofileFallbackActionEnum_PERMIT AvprofileFallbackActionEnum = "permit"
     AvprofileFallbackActionEnum_BLOCK  AvprofileFallbackActionEnum = "block"
+    AvprofileFallbackActionEnum_PERMIT AvprofileFallbackActionEnum = "permit"
 )
 
 // AvprofileProtocolsEnum is a string enum.
+// enum: `ftp`, `http`, `imap`, `pop3`, `smtp`
 type AvprofileProtocolsEnum string
 
 const (
@@ -1146,14 +1148,14 @@ const (
 )
 
 // IdpMachineCertLookupFieldEnum is a string enum.
-// allow customer to choose the EAP-TLS client certificate's field to use for IDP Machine Groups lookup
+// allow customer to choose the EAP-TLS client certificate's field to use for IDP Machine Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
 type IdpMachineCertLookupFieldEnum string
 
 const (
     IdpMachineCertLookupFieldEnum_AUTOMATIC IdpMachineCertLookupFieldEnum = "automatic"
+    IdpMachineCertLookupFieldEnum_CN        IdpMachineCertLookupFieldEnum = "cn"
     IdpMachineCertLookupFieldEnum_EMAIL     IdpMachineCertLookupFieldEnum = "email"
     IdpMachineCertLookupFieldEnum_UPN       IdpMachineCertLookupFieldEnum = "upn"
-    IdpMachineCertLookupFieldEnum_CN        IdpMachineCertLookupFieldEnum = "cn"
 )
 
 // IdpProfileActionEnum is a string enum.
@@ -1191,14 +1193,15 @@ const (
 )
 
 // IdpUserCertLookupFieldEnum is a string enum.
-// allow customer to choose the EAP-TLS client certificate's field to use for IDP User Groups lookup
+// allow customer to choose the EAP-TLS client certificate's field
+// to use for IDP User Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
 type IdpUserCertLookupFieldEnum string
 
 const (
     IdpUserCertLookupFieldEnum_AUTOMATIC IdpUserCertLookupFieldEnum = "automatic"
+    IdpUserCertLookupFieldEnum_CN        IdpUserCertLookupFieldEnum = "cn"
     IdpUserCertLookupFieldEnum_EMAIL     IdpUserCertLookupFieldEnum = "email"
     IdpUserCertLookupFieldEnum_UPN       IdpUserCertLookupFieldEnum = "upn"
-    IdpUserCertLookupFieldEnum_CN        IdpUserCertLookupFieldEnum = "cn"
 )
 
 // ImportSiteAssetsUpsertEnum is a string enum.
@@ -1658,7 +1661,7 @@ const (
 )
 
 // NacPortalSsoIdpSignAlgoEnum is a string enum.
-// Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+// Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`.
 type NacPortalSsoIdpSignAlgoEnum string
 
 const (
@@ -1669,11 +1672,12 @@ const (
 )
 
 // NacPortalTypeEnum is a string enum.
+// enum: `guest`, `marvis_client`
 type NacPortalTypeEnum string
 
 const (
-    NacPortalTypeEnum_MARVISCLIENT NacPortalTypeEnum = "marvis_client"
     NacPortalTypeEnum_GUEST        NacPortalTypeEnum = "guest"
+    NacPortalTypeEnum_MARVISCLIENT NacPortalTypeEnum = "marvis_client"
 )
 
 // NacRuleActionEnum is a string enum.
@@ -1749,14 +1753,15 @@ const (
 )
 
 // NacTagUsernameAttrEnum is a string enum.
+// enum: `automatic`, `cn`, `dns`, `email`, `upn`
 type NacTagUsernameAttrEnum string
 
 const (
     NacTagUsernameAttrEnum_AUTOMATIC NacTagUsernameAttrEnum = "automatic"
     NacTagUsernameAttrEnum_CN        NacTagUsernameAttrEnum = "cn"
-    NacTagUsernameAttrEnum_UPN       NacTagUsernameAttrEnum = "upn"
-    NacTagUsernameAttrEnum_EMAIL     NacTagUsernameAttrEnum = "email"
     NacTagUsernameAttrEnum_DNS       NacTagUsernameAttrEnum = "dns"
+    NacTagUsernameAttrEnum_EMAIL     NacTagUsernameAttrEnum = "email"
+    NacTagUsernameAttrEnum_UPN       NacTagUsernameAttrEnum = "upn"
 )
 
 // OauthAppNameEnum is a string enum.
@@ -2283,7 +2288,7 @@ const (
 )
 
 // PskPortalSsoIdpSignAlgoEnum is a string enum.
-// Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+// Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`. enum: `sha1`, `sha256`, `sha384`, `sha512`
 type PskPortalSsoIdpSignAlgoEnum string
 
 const (
@@ -2706,8 +2711,8 @@ type SecintelProfileProfileCategoryEnum string
 
 const (
     SecintelProfileProfileCategoryEnum_CC  SecintelProfileProfileCategoryEnum = "CC"
-    SecintelProfileProfileCategoryEnum_IH  SecintelProfileProfileCategoryEnum = "IH"
     SecintelProfileProfileCategoryEnum_DNS SecintelProfileProfileCategoryEnum = "DNS"
+    SecintelProfileProfileCategoryEnum_IH  SecintelProfileProfileCategoryEnum = "IH"
 )
 
 // ServiceFailoverPolicyEnum is a string enum.
@@ -3428,16 +3433,17 @@ const (
 )
 
 // SslProxyCiphersCatagoryEnum is a string enum.
+// enum: `medium`, `strong`, `weak`
 type SslProxyCiphersCatagoryEnum string
 
 const (
-    SslProxyCiphersCatagoryEnum_STRONG SslProxyCiphersCatagoryEnum = "strong"
     SslProxyCiphersCatagoryEnum_MEDIUM SslProxyCiphersCatagoryEnum = "medium"
+    SslProxyCiphersCatagoryEnum_STRONG SslProxyCiphersCatagoryEnum = "strong"
     SslProxyCiphersCatagoryEnum_WEAK   SslProxyCiphersCatagoryEnum = "weak"
 )
 
 // SsoIdpSignAlgoEnum is a string enum.
-// Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+// Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
 type SsoIdpSignAlgoEnum string
 
 const (
@@ -3610,13 +3616,13 @@ const (
     StatsWanTunnelPriorityEnum_SECONDARY StatsWanTunnelPriorityEnum = "secondary"
 )
 
-// StatsWruleActionEnum is a string enum.
+// StatsWxruleActionEnum is a string enum.
 // enum: `allow`, `block`
-type StatsWruleActionEnum string
+type StatsWxruleActionEnum string
 
 const (
-    StatsWruleActionEnum_ALLOW StatsWruleActionEnum = "allow"
-    StatsWruleActionEnum_BLOCK StatsWruleActionEnum = "block"
+    StatsWxruleActionEnum_ALLOW StatsWxruleActionEnum = "allow"
+    StatsWxruleActionEnum_BLOCK StatsWxruleActionEnum = "block"
 )
 
 // SuppressedAlarmScopeEnum is a string enum.
@@ -3736,8 +3742,8 @@ type SynthetictestDeviceProtocolEnum string
 
 const (
     SynthetictestDeviceProtocolEnum_PING               SynthetictestDeviceProtocolEnum = "ping"
-    SynthetictestDeviceProtocolEnum_TRACEROUTE         SynthetictestDeviceProtocolEnum = "traceroute"
     SynthetictestDeviceProtocolEnum_ENUMPINGTRACEROUTE SynthetictestDeviceProtocolEnum = "ping+traceroute"
+    SynthetictestDeviceProtocolEnum_TRACEROUTE         SynthetictestDeviceProtocolEnum = "traceroute"
 )
 
 // SynthetictestInfoDeviceTypeEnum is a string enum.
@@ -3827,15 +3833,15 @@ type TunnelConfigsDhGroupEnum string
 
 const (
     TunnelConfigsDhGroupEnum_ENUM1  TunnelConfigsDhGroupEnum = "1"
-    TunnelConfigsDhGroupEnum_ENUM2  TunnelConfigsDhGroupEnum = "2"
-    TunnelConfigsDhGroupEnum_ENUM5  TunnelConfigsDhGroupEnum = "5"
     TunnelConfigsDhGroupEnum_ENUM14 TunnelConfigsDhGroupEnum = "14"
     TunnelConfigsDhGroupEnum_ENUM15 TunnelConfigsDhGroupEnum = "15"
     TunnelConfigsDhGroupEnum_ENUM16 TunnelConfigsDhGroupEnum = "16"
     TunnelConfigsDhGroupEnum_ENUM19 TunnelConfigsDhGroupEnum = "19"
+    TunnelConfigsDhGroupEnum_ENUM2  TunnelConfigsDhGroupEnum = "2"
     TunnelConfigsDhGroupEnum_ENUM20 TunnelConfigsDhGroupEnum = "20"
     TunnelConfigsDhGroupEnum_ENUM21 TunnelConfigsDhGroupEnum = "21"
     TunnelConfigsDhGroupEnum_ENUM24 TunnelConfigsDhGroupEnum = "24"
+    TunnelConfigsDhGroupEnum_ENUM5  TunnelConfigsDhGroupEnum = "5"
 )
 
 // TunnelConfigsEncAlgoEnum is a string enum.
@@ -4170,8 +4176,8 @@ const (
     WebhookTopicEnum_CLIENTJOIN        WebhookTopicEnum = "client-join"
     WebhookTopicEnum_CLIENTLATENCY     WebhookTopicEnum = "client-latency"
     WebhookTopicEnum_CLIENTSESSIONS    WebhookTopicEnum = "client-sessions"
-    WebhookTopicEnum_DEVICEUPDOWNS     WebhookTopicEnum = "device-updowns"
     WebhookTopicEnum_DEVICEEVENTS      WebhookTopicEnum = "device-events"
+    WebhookTopicEnum_DEVICEUPDOWNS     WebhookTopicEnum = "device-updowns"
     WebhookTopicEnum_DISCOVEREDRAWRSSI WebhookTopicEnum = "discovered-raw-rssi"
     WebhookTopicEnum_LOCATION          WebhookTopicEnum = "location"
     WebhookTopicEnum_LOCATIONASSET     WebhookTopicEnum = "location_asset"
@@ -4365,7 +4371,7 @@ const (
 )
 
 // WlanPortalIdpSignAlgoEnum is a string enum.
-// if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`
+// if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
 type WlanPortalIdpSignAlgoEnum string
 
 const (
@@ -4415,8 +4421,8 @@ type WlanRoamModeEnum string
 
 const (
     WlanRoamModeEnum_ENUM11R WlanRoamModeEnum = "11r"
-    WlanRoamModeEnum_OKC     WlanRoamModeEnum = "OKC"
     WlanRoamModeEnum_NONE    WlanRoamModeEnum = "NONE"
+    WlanRoamModeEnum_OKC     WlanRoamModeEnum = "OKC"
 )
 
 // WxlanRuleActionEnum is a string enum.

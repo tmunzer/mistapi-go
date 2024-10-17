@@ -1,6 +1,8 @@
 
 # Nac Tag Username Attr Enum
 
+enum: `automatic`, `cn`, `dns`, `email`, `upn`
+
 ## Enumeration
 
 `NacTagUsernameAttrEnum`
@@ -11,7 +13,7 @@
 |  --- |
 | `automatic` |
 | `cn` |
-| `upn` |
-| `email` |
 | `dns` |
+| `email` |
+| `upn` |
 

@@ -20,11 +20,11 @@
   "profiles": [
     {
       "action": "strict",
-      "category": "DNS"
+      "category": "IH"
     },
     {
       "action": "strict",
-      "category": "DNS"
+      "category": "IH"
     }
   ]
 }

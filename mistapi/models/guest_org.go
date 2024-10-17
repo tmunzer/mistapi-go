@@ -2,14 +2,18 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
-// Guest represents a Guest struct.
+// GuestOrg represents a GuestOrg struct.
 // Guest
-type Guest struct {
+type GuestOrg struct {
     // if `auth_method`==`email`, the email address where the authorization code has been sent to
     AccessCodeEmail        *string        `json:"access_code_email,omitempty"`
+    // based on the WLAN portal configuration (field `allow_wlan_id_roam`), if the user is also authorized on other Guest WLANs of the same Org without reauthentication
+    AllowWlanIdRoam        *bool          `json:"allow_wlan_id_roam,omitempty"`
     // the MAC Address of the AP the guest was connected to during the registration process
     ApMac                  *string        `json:"ap_mac,omitempty"`
     // type of guest authorization
@@ -22,6 +26,8 @@ type Guest struct {
     AuthorizedTime         *float64       `json:"authorized_time,omitempty"`
     // optional, the info provided by user
     Company                *string        `json:"company,omitempty"`
+    // based on the WLAN portal configuration (field `cross_site`), if the user is also authorized on other sites (same `wlan.ssid`) of the same Org without reauthentication
+    CrossSite              *bool          `json:"cross_site,omitempty"`
     // optional, the info provided by user
     Email                  *string        `json:"email,omitempty"`
     // optional, the info provided by user
@@ -39,25 +45,28 @@ type Guest struct {
     RandomMac              *bool          `json:"random_mac,omitempty"`
     // name of the SSID
     Ssid                   *string        `json:"ssid,omitempty"`
-    // ID of the SSID
-    WlanId                 *uuid.UUID     `json:"wlan_id,omitempty"`
+    // ID of the WLAN
+    WlanId                 uuid.UUID      `json:"wlan_id"`
     AdditionalProperties   map[string]any `json:"_"`
 }
 
-// MarshalJSON implements the json.Marshaler interface for Guest.
-// It customizes the JSON marshaling process for Guest objects.
-func (g Guest) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for GuestOrg.
+// It customizes the JSON marshaling process for GuestOrg objects.
+func (g GuestOrg) MarshalJSON() (
     []byte,
     error) {
     return json.Marshal(g.toMap())
 }
 
-// toMap converts the Guest object to a map representation for JSON marshaling.
-func (g Guest) toMap() map[string]any {
+// toMap converts the GuestOrg object to a map representation for JSON marshaling.
+func (g GuestOrg) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, g.AdditionalProperties)
     if g.AccessCodeEmail != nil {
         structMap["access_code_email"] = g.AccessCodeEmail
+    }
+    if g.AllowWlanIdRoam != nil {
+        structMap["allow_wlan_id_roam"] = g.AllowWlanIdRoam
     }
     if g.ApMac != nil {
         structMap["ap_mac"] = g.ApMac
@@ -76,6 +85,9 @@ func (g Guest) toMap() map[string]any {
     }
     if g.Company != nil {
         structMap["company"] = g.Company
+    }
+    if g.CrossSite != nil {
+        structMap["cross_site"] = g.CrossSite
     }
     if g.Email != nil {
         structMap["email"] = g.Email
@@ -107,33 +119,37 @@ func (g Guest) toMap() map[string]any {
     if g.Ssid != nil {
         structMap["ssid"] = g.Ssid
     }
-    if g.WlanId != nil {
-        structMap["wlan_id"] = g.WlanId
-    }
+    structMap["wlan_id"] = g.WlanId
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for Guest.
-// It customizes the JSON unmarshaling process for Guest objects.
-func (g *Guest) UnmarshalJSON(input []byte) error {
-    var temp tempGuest
+// UnmarshalJSON implements the json.Unmarshaler interface for GuestOrg.
+// It customizes the JSON unmarshaling process for GuestOrg objects.
+func (g *GuestOrg) UnmarshalJSON(input []byte) error {
+    var temp tempGuestOrg
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "access_code_email", "ap_mac", "auth_method", "authorized", "authorized_expiring_time", "authorized_time", "company", "email", "field1", "field2", "field3", "field4", "mac", "minutes", "name", "random_mac", "ssid", "wlan_id")
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "access_code_email", "allow_wlan_id_roam", "ap_mac", "auth_method", "authorized", "authorized_expiring_time", "authorized_time", "company", "cross_site", "email", "field1", "field2", "field3", "field4", "mac", "minutes", "name", "random_mac", "ssid", "wlan_id")
     if err != nil {
     	return err
     }
     
     g.AdditionalProperties = additionalProperties
     g.AccessCodeEmail = temp.AccessCodeEmail
+    g.AllowWlanIdRoam = temp.AllowWlanIdRoam
     g.ApMac = temp.ApMac
     g.AuthMethod = temp.AuthMethod
     g.Authorized = temp.Authorized
     g.AuthorizedExpiringTime = temp.AuthorizedExpiringTime
     g.AuthorizedTime = temp.AuthorizedTime
     g.Company = temp.Company
+    g.CrossSite = temp.CrossSite
     g.Email = temp.Email
     g.Field1 = temp.Field1
     g.Field2 = temp.Field2
@@ -144,19 +160,21 @@ func (g *Guest) UnmarshalJSON(input []byte) error {
     g.Name = temp.Name
     g.RandomMac = temp.RandomMac
     g.Ssid = temp.Ssid
-    g.WlanId = temp.WlanId
+    g.WlanId = *temp.WlanId
     return nil
 }
 
-// tempGuest is a temporary struct used for validating the fields of Guest.
-type tempGuest  struct {
+// tempGuestOrg is a temporary struct used for validating the fields of GuestOrg.
+type tempGuestOrg  struct {
     AccessCodeEmail        *string    `json:"access_code_email,omitempty"`
+    AllowWlanIdRoam        *bool      `json:"allow_wlan_id_roam,omitempty"`
     ApMac                  *string    `json:"ap_mac,omitempty"`
     AuthMethod             *string    `json:"auth_method,omitempty"`
     Authorized             *bool      `json:"authorized,omitempty"`
     AuthorizedExpiringTime *float64   `json:"authorized_expiring_time,omitempty"`
     AuthorizedTime         *float64   `json:"authorized_time,omitempty"`
     Company                *string    `json:"company,omitempty"`
+    CrossSite              *bool      `json:"cross_site,omitempty"`
     Email                  *string    `json:"email,omitempty"`
     Field1                 *string    `json:"field1,omitempty"`
     Field2                 *string    `json:"field2,omitempty"`
@@ -167,5 +185,16 @@ type tempGuest  struct {
     Name                   *string    `json:"name,omitempty"`
     RandomMac              *bool      `json:"random_mac,omitempty"`
     Ssid                   *string    `json:"ssid,omitempty"`
-    WlanId                 *uuid.UUID `json:"wlan_id,omitempty"`
+    WlanId                 *uuid.UUID `json:"wlan_id"`
+}
+
+func (g *tempGuestOrg) validate() error {
+    var errs []string
+    if g.WlanId == nil {
+        errs = append(errs, "required field `wlan_id` is missing for type `guest_org`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

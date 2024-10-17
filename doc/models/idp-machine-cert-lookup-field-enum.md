@@ -1,7 +1,7 @@
 
 # Idp Machine Cert Lookup Field Enum
 
-allow customer to choose the EAP-TLS client certificate's field to use for IDP Machine Groups lookup
+allow customer to choose the EAP-TLS client certificate's field to use for IDP Machine Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
 
 ## Enumeration
 
@@ -12,7 +12,7 @@ allow customer to choose the EAP-TLS client certificate's field to use for IDP M
 | Name |
 |  --- |
 | `automatic` |
+| `cn` |
 | `email` |
 | `upn` |
-| `cn` |
 

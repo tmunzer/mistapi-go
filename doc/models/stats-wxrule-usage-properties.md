@@ -1,9 +1,9 @@
 
-# Stats Wrule Usage Properties
+# Stats Wxrule Usage Properties
 
 ## Structure
 
-`StatsWruleUsageProperties`
+`StatsWxruleUsageProperties`
 
 ## Fields
 
@@ -15,7 +15,7 @@
 
 ```json
 {
-  "num_flows": 54
+  "num_flows": 210
 }
 ```
 

@@ -12,6 +12,6 @@ enum: `CC`, `IH` (Infected Host), `DNS`
 | Name |
 |  --- |
 | `CC` |
-| `IH` |
 | `DNS` |
+| `IH` |
 

@@ -10,34 +10,34 @@ import (
 // StatsSite represents a StatsSite struct.
 // Site statistics
 type StatsSite struct {
-    Address              string         `json:"address"`
-    AlarmtemplateId      uuid.UUID      `json:"alarmtemplate_id"`
-    CountryCode          string         `json:"country_code"`
-    CreatedTime          float64        `json:"created_time"`
-    Id                   uuid.UUID      `json:"id"`
-    Lat                  float64        `json:"lat"`
-    Latlng               LatLng         `json:"latlng"`
-    Lng                  float64        `json:"lng"`
-    ModifiedTime         float64        `json:"modified_time"`
-    MspId                string         `json:"msp_id"`
-    Name                 string         `json:"name"`
-    NetworktemplateId    uuid.UUID      `json:"networktemplate_id"`
-    NumAp                int            `json:"num_ap"`
-    NumApConnected       int            `json:"num_ap_connected"`
-    NumClients           int            `json:"num_clients"`
-    NumDevices           int            `json:"num_devices"`
-    NumDevicesConnected  int            `json:"num_devices_connected"`
-    NumGateway           int            `json:"num_gateway"`
-    NumGatewayConnected  int            `json:"num_gateway_connected"`
-    NumSwitch            int            `json:"num_switch"`
-    NumSwitchConnected   int            `json:"num_switch_connected"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    RftemplateId         uuid.UUID      `json:"rftemplate_id"`
-    SecpolicyId          *interface{}   `json:"secpolicy_id,omitempty"`
-    SitegroupIds         []uuid.UUID    `json:"sitegroup_ids"`
-    Timezone             string         `json:"timezone"`
-    Tzoffset             int            `json:"tzoffset"`
-    AdditionalProperties map[string]any `json:"_"`
+    Address              string              `json:"address"`
+    AlarmtemplateId      *uuid.UUID          `json:"alarmtemplate_id"`
+    CountryCode          string              `json:"country_code"`
+    CreatedTime          float64             `json:"created_time"`
+    Id                   uuid.UUID           `json:"id"`
+    Lat                  float64             `json:"lat"`
+    Latlng               LatLng              `json:"latlng"`
+    Lng                  float64             `json:"lng"`
+    ModifiedTime         float64             `json:"modified_time"`
+    MspId                *uuid.UUID          `json:"msp_id"`
+    Name                 string              `json:"name"`
+    NetworktemplateId    *uuid.UUID          `json:"networktemplate_id"`
+    NumAp                int                 `json:"num_ap"`
+    NumApConnected       int                 `json:"num_ap_connected"`
+    NumClients           int                 `json:"num_clients"`
+    NumDevices           int                 `json:"num_devices"`
+    NumDevicesConnected  int                 `json:"num_devices_connected"`
+    NumGateway           int                 `json:"num_gateway"`
+    NumGatewayConnected  int                 `json:"num_gateway_connected"`
+    NumSwitch            int                 `json:"num_switch"`
+    NumSwitchConnected   int                 `json:"num_switch_connected"`
+    OrgId                uuid.UUID           `json:"org_id"`
+    RftemplateId         *uuid.UUID          `json:"rftemplate_id"`
+    SecpolicyId          Optional[uuid.UUID] `json:"secpolicy_id"`
+    SitegroupIds         []uuid.UUID         `json:"sitegroup_ids"`
+    Timezone             string              `json:"timezone"`
+    Tzoffset             int                 `json:"tzoffset"`
+    AdditionalProperties map[string]any      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSite.
@@ -53,7 +53,11 @@ func (s StatsSite) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["address"] = s.Address
-    structMap["alarmtemplate_id"] = s.AlarmtemplateId
+    if s.AlarmtemplateId != nil {
+        structMap["alarmtemplate_id"] = s.AlarmtemplateId
+    } else {
+        structMap["alarmtemplate_id"] = nil
+    }
     structMap["country_code"] = s.CountryCode
     structMap["created_time"] = s.CreatedTime
     structMap["id"] = s.Id
@@ -61,9 +65,17 @@ func (s StatsSite) toMap() map[string]any {
     structMap["latlng"] = s.Latlng.toMap()
     structMap["lng"] = s.Lng
     structMap["modified_time"] = s.ModifiedTime
-    structMap["msp_id"] = s.MspId
+    if s.MspId != nil {
+        structMap["msp_id"] = s.MspId
+    } else {
+        structMap["msp_id"] = nil
+    }
     structMap["name"] = s.Name
-    structMap["networktemplate_id"] = s.NetworktemplateId
+    if s.NetworktemplateId != nil {
+        structMap["networktemplate_id"] = s.NetworktemplateId
+    } else {
+        structMap["networktemplate_id"] = nil
+    }
     structMap["num_ap"] = s.NumAp
     structMap["num_ap_connected"] = s.NumApConnected
     structMap["num_clients"] = s.NumClients
@@ -74,9 +86,17 @@ func (s StatsSite) toMap() map[string]any {
     structMap["num_switch"] = s.NumSwitch
     structMap["num_switch_connected"] = s.NumSwitchConnected
     structMap["org_id"] = s.OrgId
-    structMap["rftemplate_id"] = s.RftemplateId
-    if s.SecpolicyId != nil {
-        structMap["secpolicy_id"] = s.SecpolicyId
+    if s.RftemplateId != nil {
+        structMap["rftemplate_id"] = s.RftemplateId
+    } else {
+        structMap["rftemplate_id"] = nil
+    }
+    if s.SecpolicyId.IsValueSet() {
+        if s.SecpolicyId.Value() != nil {
+            structMap["secpolicy_id"] = s.SecpolicyId.Value()
+        } else {
+            structMap["secpolicy_id"] = nil
+        }
     }
     structMap["sitegroup_ids"] = s.SitegroupIds
     structMap["timezone"] = s.Timezone
@@ -103,7 +123,7 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
     
     s.AdditionalProperties = additionalProperties
     s.Address = *temp.Address
-    s.AlarmtemplateId = *temp.AlarmtemplateId
+    s.AlarmtemplateId = temp.AlarmtemplateId
     s.CountryCode = *temp.CountryCode
     s.CreatedTime = *temp.CreatedTime
     s.Id = *temp.Id
@@ -111,9 +131,9 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
     s.Latlng = *temp.Latlng
     s.Lng = *temp.Lng
     s.ModifiedTime = *temp.ModifiedTime
-    s.MspId = *temp.MspId
+    s.MspId = temp.MspId
     s.Name = *temp.Name
-    s.NetworktemplateId = *temp.NetworktemplateId
+    s.NetworktemplateId = temp.NetworktemplateId
     s.NumAp = *temp.NumAp
     s.NumApConnected = *temp.NumApConnected
     s.NumClients = *temp.NumClients
@@ -124,7 +144,7 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
     s.NumSwitch = *temp.NumSwitch
     s.NumSwitchConnected = *temp.NumSwitchConnected
     s.OrgId = *temp.OrgId
-    s.RftemplateId = *temp.RftemplateId
+    s.RftemplateId = temp.RftemplateId
     s.SecpolicyId = temp.SecpolicyId
     s.SitegroupIds = *temp.SitegroupIds
     s.Timezone = *temp.Timezone
@@ -134,42 +154,39 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
 
 // tempStatsSite is a temporary struct used for validating the fields of StatsSite.
 type tempStatsSite  struct {
-    Address             *string      `json:"address"`
-    AlarmtemplateId     *uuid.UUID   `json:"alarmtemplate_id"`
-    CountryCode         *string      `json:"country_code"`
-    CreatedTime         *float64     `json:"created_time"`
-    Id                  *uuid.UUID   `json:"id"`
-    Lat                 *float64     `json:"lat"`
-    Latlng              *LatLng      `json:"latlng"`
-    Lng                 *float64     `json:"lng"`
-    ModifiedTime        *float64     `json:"modified_time"`
-    MspId               *string      `json:"msp_id"`
-    Name                *string      `json:"name"`
-    NetworktemplateId   *uuid.UUID   `json:"networktemplate_id"`
-    NumAp               *int         `json:"num_ap"`
-    NumApConnected      *int         `json:"num_ap_connected"`
-    NumClients          *int         `json:"num_clients"`
-    NumDevices          *int         `json:"num_devices"`
-    NumDevicesConnected *int         `json:"num_devices_connected"`
-    NumGateway          *int         `json:"num_gateway"`
-    NumGatewayConnected *int         `json:"num_gateway_connected"`
-    NumSwitch           *int         `json:"num_switch"`
-    NumSwitchConnected  *int         `json:"num_switch_connected"`
-    OrgId               *uuid.UUID   `json:"org_id"`
-    RftemplateId        *uuid.UUID   `json:"rftemplate_id"`
-    SecpolicyId         *interface{} `json:"secpolicy_id,omitempty"`
-    SitegroupIds        *[]uuid.UUID `json:"sitegroup_ids"`
-    Timezone            *string      `json:"timezone"`
-    Tzoffset            *int         `json:"tzoffset"`
+    Address             *string             `json:"address"`
+    AlarmtemplateId     *uuid.UUID          `json:"alarmtemplate_id"`
+    CountryCode         *string             `json:"country_code"`
+    CreatedTime         *float64            `json:"created_time"`
+    Id                  *uuid.UUID          `json:"id"`
+    Lat                 *float64            `json:"lat"`
+    Latlng              *LatLng             `json:"latlng"`
+    Lng                 *float64            `json:"lng"`
+    ModifiedTime        *float64            `json:"modified_time"`
+    MspId               *uuid.UUID          `json:"msp_id"`
+    Name                *string             `json:"name"`
+    NetworktemplateId   *uuid.UUID          `json:"networktemplate_id"`
+    NumAp               *int                `json:"num_ap"`
+    NumApConnected      *int                `json:"num_ap_connected"`
+    NumClients          *int                `json:"num_clients"`
+    NumDevices          *int                `json:"num_devices"`
+    NumDevicesConnected *int                `json:"num_devices_connected"`
+    NumGateway          *int                `json:"num_gateway"`
+    NumGatewayConnected *int                `json:"num_gateway_connected"`
+    NumSwitch           *int                `json:"num_switch"`
+    NumSwitchConnected  *int                `json:"num_switch_connected"`
+    OrgId               *uuid.UUID          `json:"org_id"`
+    RftemplateId        *uuid.UUID          `json:"rftemplate_id"`
+    SecpolicyId         Optional[uuid.UUID] `json:"secpolicy_id"`
+    SitegroupIds        *[]uuid.UUID        `json:"sitegroup_ids"`
+    Timezone            *string             `json:"timezone"`
+    Tzoffset            *int                `json:"tzoffset"`
 }
 
 func (s *tempStatsSite) validate() error {
     var errs []string
     if s.Address == nil {
         errs = append(errs, "required field `address` is missing for type `stats_site`")
-    }
-    if s.AlarmtemplateId == nil {
-        errs = append(errs, "required field `alarmtemplate_id` is missing for type `stats_site`")
     }
     if s.CountryCode == nil {
         errs = append(errs, "required field `country_code` is missing for type `stats_site`")
@@ -192,14 +209,8 @@ func (s *tempStatsSite) validate() error {
     if s.ModifiedTime == nil {
         errs = append(errs, "required field `modified_time` is missing for type `stats_site`")
     }
-    if s.MspId == nil {
-        errs = append(errs, "required field `msp_id` is missing for type `stats_site`")
-    }
     if s.Name == nil {
         errs = append(errs, "required field `name` is missing for type `stats_site`")
-    }
-    if s.NetworktemplateId == nil {
-        errs = append(errs, "required field `networktemplate_id` is missing for type `stats_site`")
     }
     if s.NumAp == nil {
         errs = append(errs, "required field `num_ap` is missing for type `stats_site`")
@@ -230,9 +241,6 @@ func (s *tempStatsSite) validate() error {
     }
     if s.OrgId == nil {
         errs = append(errs, "required field `org_id` is missing for type `stats_site`")
-    }
-    if s.RftemplateId == nil {
-        errs = append(errs, "required field `rftemplate_id` is missing for type `stats_site`")
     }
     if s.SitegroupIds == nil {
         errs = append(errs, "required field `sitegroup_ids` is missing for type `stats_site`")

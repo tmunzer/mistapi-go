@@ -1,6 +1,8 @@
 
 # Ssl Proxy Ciphers Catagory Enum
 
+enum: `medium`, `strong`, `weak`
+
 ## Enumeration
 
 `SslProxyCiphersCatagoryEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `strong` |
 | `medium` |
+| `strong` |
 | `weak` |
 

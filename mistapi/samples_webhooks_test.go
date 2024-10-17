@@ -57,7 +57,7 @@ func TestSamplesWebhooksTestAudits(t *testing.T) {
 func TestSamplesWebhooksTestClientInfo(t *testing.T) {
     ctx := context.Background()
     var body models.WebhookClientInfo
-    errBody := json.Unmarshal([]byte(`{"events":[{"ap":"string","ap_name":"string","band":"string","bssid":"string","connect":0,"connect_float":0,"mac":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rssi":0,"site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","site_name":"string","ssid":"string","timestamp":0,"version":0,"wlan_id":"5028e92b-fc59-4056-91d1-ea4b4ca1617a"}],"topic":"client-info"}`), &body)
+    errBody := json.Unmarshal([]byte(`{"events":[{"hostname":"service.company.net","ip":"21.0.128.151","mac":"6ebaa47a3fd4","org_id":"0c160b7f-1027-4cd1-923b-744534c4b070","site_id":"6e77a2ea-d579-471c-9056-5ff5b4ed70ed","timestamp":1703003296}],"topic":"client-info"}`), &body)
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }

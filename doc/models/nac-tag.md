@@ -24,7 +24,7 @@
 | `RadiusVendorAttrs` | `[]string` | Optional | if `type`==`radius_vendor_attrs`, user can specify a list of one or more vendor-specific attributes in the field "radius_vendor_attrs".<br>It is the responsibility of the user to provide a syntactically correct string, otherwise it may not work as expected.<br>Note that it is allowed to have more than one radius_vendor_attrs in the result of a given rule. |
 | `SessionTimeout` | `*int` | Optional | if `type`==`session_timeout, in seconds |
 | `Type` | [`models.NacTagTypeEnum`](../../doc/models/nac-tag-type-enum.md) | Required | enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `session_timeout`, `username_attr`, `vlan`<br>**Constraints**: *Minimum Length*: `1` |
-| `UsernameAttr` | [`*models.NacTagUsernameAttrEnum`](../../doc/models/nac-tag-username-attr-enum.md) | Optional | - |
+| `UsernameAttr` | [`*models.NacTagUsernameAttrEnum`](../../doc/models/nac-tag-username-attr-enum.md) | Optional | enum: `automatic`, `cn`, `dns`, `email`, `upn` |
 | `Values` | `[]string` | Optional | if `type`==`match` |
 | `Vlan` | `*string` | Optional | if `type`==`vlan` |
 

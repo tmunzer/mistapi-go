@@ -10,6 +10,7 @@ import (
 // Avprofile represents a Avprofile struct.
 type Avprofile struct {
     CreatedTime          *float64                     `json:"created_time,omitempty"`
+    // enum: `block`, `permit`
     FallbackAction       *AvprofileFallbackActionEnum `json:"fallback_action,omitempty"`
     Id                   *uuid.UUID                   `json:"id,omitempty"`
     // in KB

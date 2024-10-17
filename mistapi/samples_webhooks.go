@@ -123,7 +123,7 @@ func (s *SamplesWebhooks) Audits(
 // ClientInfo takes context, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Webhook sample for `client_info` topic
+// Webhook sample for `client-info` topic
 // **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
 func (s *SamplesWebhooks) ClientInfo(
     ctx context.Context,

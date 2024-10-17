@@ -367,7 +367,7 @@ The output will be available through websocket. As there can be multiple command
 
 ```json
 {
-    subscribe: "/sites/{site_id}/pcaps"
+    "subscribe": "/sites/{site_id}/pcaps"
 }
 ```
 
@@ -501,7 +501,7 @@ The output will be available through websocket. As there can be multiple command
 
 ```json
 {
-    subscribe: "/sites/{site_id}/pcaps"
+    "subscribe": "/sites/{site_id}/pcaps"
 }
 ```
 
@@ -536,7 +536,7 @@ The output will be available through websocket. As there can be multiple command
 }
 ```
 
-#### vResponse (Wired)
+#### Response (Wired)
 
 ```json
 {

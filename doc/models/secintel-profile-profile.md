@@ -17,7 +17,7 @@
 ```json
 {
   "action": "default",
-  "category": "DNS"
+  "category": "IH"
 }
 ```
 

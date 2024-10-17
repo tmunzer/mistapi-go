@@ -429,7 +429,7 @@ UpdateOrgGuestAuthorization(
     ctx context.Context,
     orgId uuid.UUID,
     guestMac string,
-    body *models.Guest) (
+    body *models.GuestOrg) (
     models.ApiResponse[models.Guest],
     error)
 ```
@@ -440,7 +440,7 @@ UpdateOrgGuestAuthorization(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `guestMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
-| `body` | [`*models.Guest`](../../doc/models/guest.md) | Body, Optional | - |
+| `body` | [`*models.GuestOrg`](../../doc/models/guest-org.md) | Body, Optional | - |
 
 ## Response Type
 
@@ -455,17 +455,16 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 guestMac := "0000000000ab"
 
-body := models.Guest{
+body := models.GuestOrg{
     Authorized:             models.ToPointer(true),
-    Company:                models.ToPointer("string"),
-    Email:                  models.ToPointer("user@example.com"),
-    Field1:                 models.ToPointer("string"),
-    Field2:                 models.ToPointer("string"),
-    Field3:                 models.ToPointer("string"),
-    Field4:                 models.ToPointer("string"),
-    Mac:                    models.ToPointer("string"),
-    Minutes:                models.ToPointer(0),
-    Name:                   models.ToPointer("string"),
+    AuthorizedExpiringTime: models.ToPointer(float64(1480704955)),
+    AuthorizedTime:         models.ToPointer(float64(1480704355)),
+    Company:                models.ToPointer("abc"),
+    Email:                  models.ToPointer("john@abc.com"),
+    Minutes:                models.ToPointer(1440),
+    Name:                   models.ToPointer("John Smith"),
+    Ssid:                   models.ToPointer("Guest-SSID"),
+    WlanId:                 uuid.MustParse("6748cfa6-4e12-11e6-9188-0242ac110007"),
 }
 
 apiResponse, err := orgsGuests.UpdateOrgGuestAuthorization(ctx, orgId, guestMac, &body)

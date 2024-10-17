@@ -23,7 +23,7 @@
 | `TemplateUrl` | `*string` | Optional | - |
 | `ThumbnailUrl` | `*string` | Optional | - |
 | `Tos` | `*string` | Optional | - |
-| `Type` | [`*models.NacPortalTypeEnum`](../../doc/models/nac-portal-type-enum.md) | Optional | - |
+| `Type` | [`*models.NacPortalTypeEnum`](../../doc/models/nac-portal-type-enum.md) | Optional | enum: `guest`, `marvis_client` |
 
 ## Example (as JSON)
 

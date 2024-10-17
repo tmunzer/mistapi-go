@@ -28,6 +28,7 @@ type NacPortal struct {
     TemplateUrl            *string                  `json:"template_url,omitempty"`
     ThumbnailUrl           *string                  `json:"thumbnail_url,omitempty"`
     Tos                    *string                  `json:"tos,omitempty"`
+    // enum: `guest`, `marvis_client`
     Type                   *NacPortalTypeEnum       `json:"type,omitempty"`
     AdditionalProperties   map[string]any           `json:"_"`
 }

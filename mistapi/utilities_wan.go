@@ -170,15 +170,34 @@ func (u *UtilitiesWAN) ClearSiteDeviceSession(
 }
 
 // ReleaseSiteSsrDhcpLease takes context, siteId, deviceId, body as parameters and
-// returns an *Response and
+// returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Releases an active DHCP lease.
+// The output will be available through websocket. As there can be multiple command issued  against the same Device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+// #### Subscribe to Device Command outputs
+// `WS /api-ws/v1/stream`
+// ```json
+// {
+// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+// }```
+// #### Example output from ws stream
+// ```json
+// {  
+// "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-xxxxxxxxxxxx/devices/00000000-0000-0000-1000-xxxxxxxxxxxx/cmd",
+// "event": "data",
+// "data": {
+// "session": "9106e908-74dc-4a4f-9050-9c2adcaf44a5",
+// "raw": "Running traceroute...\ntraceroute to 8.8.8.8, 64 hops max\n 0  192.168.1.1 1 ms  192.168.1.1 1 ms  192.168.1.1 1 ms\n 1  80.10.236.81 2 ms  80.10.236.81 4 ms  80.10.236.81 2 ms\n 2  193.253.80.250 3 ms  193.253.80.250 2 ms  193.253.80.250 2 ms\n 3  193.252.159.41 2 ms  193.252.159.41 1 ms  193.252.159.41 3 ms\n"
+// }
+// }
+// ```
+// "
 func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
     body *models.UtilsReleaseDhcp) (
-    *http.Response,
+    models.ApiResponse[models.WebsocketSession],
     error) {
     req := u.prepareRequest(
       ctx,
@@ -208,11 +227,14 @@ func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
         req.Json(body)
     }
     
-    httpCtx, err := req.Call()
+    var result models.WebsocketSession
+    decoder, resp, err := req.CallAsJson()
     if err != nil {
-        return httpCtx.Response, err
+        return models.NewApiResponse(result, resp), err
     }
-    return httpCtx.Response, err
+    
+    result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // TestSiteSsrDnsResolution takes context, siteId, deviceId as parameters and
@@ -393,7 +415,7 @@ func (u *UtilitiesWAN) ServicePingFromSsr(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSsrOspfDatabase takes context, siteId, deviceId, body as parameters and
+// ShowSiteSsrOspfDatabase takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get OSPF Database from the Device. The output will be available through websocket. 
@@ -415,7 +437,7 @@ func (u *UtilitiesWAN) ServicePingFromSsr(
 // 1.0.0.3                     1   Full       852               38   172.16.4.2          Backup
 // 1.0.0.4                     1   Full       811               34   172.16.4.2          DROther
 // ```
-func (u *UtilitiesWAN) GetSiteSsrOspfDatabase(
+func (u *UtilitiesWAN) ShowSiteSsrOspfDatabase(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -460,7 +482,7 @@ func (u *UtilitiesWAN) GetSiteSsrOspfDatabase(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSsrOspfInterface takes context, siteId, deviceId, body as parameters and
+// ShowSiteSsrOspfInterfaces takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get OSPF interfaces from the Device. The output will be available through websocket. 
@@ -481,7 +503,7 @@ func (u *UtilitiesWAN) GetSiteSsrOspfDatabase(
 // net3               g3                          True   172.16.3.2/24   Broadcast   0.0.0.0   default
 // net4               g4                          True   172.16.4.2/24   Broadcast   0.0.0.4   default
 // ```
-func (u *UtilitiesWAN) GetSiteSsrOspfInterface(
+func (u *UtilitiesWAN) ShowSiteSsrOspfInterfaces(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -526,7 +548,7 @@ func (u *UtilitiesWAN) GetSiteSsrOspfInterface(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSsrOspfNeighbors takes context, siteId, deviceId, body as parameters and
+// ShowSiteSsrOspfNeighbors takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get OSPF Neighbors from the Device. The output will be available through websocket. 
@@ -548,7 +570,7 @@ func (u *UtilitiesWAN) GetSiteSsrOspfInterface(
 // 1.0.0.3                     1   Full       852               38   172.16.4.2          Backup
 // 1.0.0.4                     1   Full       811               34   172.16.4.2          DROther
 // ```
-func (u *UtilitiesWAN) GetSiteSsrOspfNeighbors(
+func (u *UtilitiesWAN) ShowSiteSsrOspfNeighbors(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -593,7 +615,7 @@ func (u *UtilitiesWAN) GetSiteSsrOspfNeighbors(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSsrOspfSummary takes context, siteId, deviceId, body as parameters and
+// ShowSiteSsrOspfSummary takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get OSPF summary from the Device. The output will be available through websocket. 
@@ -614,7 +636,7 @@ func (u *UtilitiesWAN) GetSiteSsrOspfNeighbors(
 // 1.0.0.2     cisco            False                    0   0.0.0.0
 // 1.0.0.2     cisco            False                    0   0.0.0.4   default
 // ```
-func (u *UtilitiesWAN) GetSiteSsrOspfSummary(
+func (u *UtilitiesWAN) ShowSiteSsrOspfSummary(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -659,7 +681,7 @@ func (u *UtilitiesWAN) GetSiteSsrOspfSummary(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSsrAndSrxRoutes takes context, siteId, deviceId, body as parameters and
+// ShowSiteSsrAndSrxRoutes takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get routes from SSR, SRX and Switch. 
@@ -690,7 +712,7 @@ func (u *UtilitiesWAN) GetSiteSsrOspfSummary(
 // none
 // ...
 // ```
-func (u *UtilitiesWAN) GetSiteSsrAndSrxRoutes(
+func (u *UtilitiesWAN) ShowSiteSsrAndSrxRoutes(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -735,31 +757,17 @@ func (u *UtilitiesWAN) GetSiteSsrAndSrxRoutes(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSsrServicePath takes context, siteId, deviceId, body as parameters and
+// ShowSiteSsrServicePath takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get service path information of the Device.
 // The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
-// ```json
-// {
-// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-// }
-// ```
-// ##### Example output from ws stream
-// ```
-// show service_path
-// Service    Service-route     Type              Destination  Next-Hop  Interface  Vector  Cost  Rate  Capacity        State
-// Web        web-route1        service_agent     4.4.4.4      1.1.1.2     lan        red     10    1    200/3000       Up*
-// Web        web-route1        service_agent     4.4.4.4      1.1.1.3     lan        red     10    1    200/3000       Up
-// Web        web-route2        service_agent     5.5.5.5      2.2.2.2     lan       blue     20    2    50/unlimited   Down
-// Login      <None>            BgpOverSVR        10.1.1.1     1.2.3.4     wan        red     10    3        -          Up
-// Login      <None>            BgpOverSVR        11.1.1.1     1.2.3.4     wan        red     10    1        -          Up
-// App1       <None>            Routed                -           -         -          -      -     -        -          -
-// App1       learned-routed    Routed                -           -         -          -      -     -        -          -
-// ```
-func (u *UtilitiesWAN) GetSiteSsrServicePath(
+// ```json { "subscribe": "/sites/{site_id}/devices/{device_id}/cmd" } ```
+// #### Example output from ws stream
+// ```json { "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-xxxxxxxxxxxx/devices/00000000-0000-0000-1000-xxxxxxxxxxxx/cmd", "event": "data", "data": { "session":"5cb8a6db-d11a-42cd-bed7-19e9f29e637", "raw":"{\"status\":\"SUCCESS\",\"finished\":true,\"rows\":[{\"service\":\"management\",\"type\":\"service-agent\",\"network_interface\":\"ge-0/0/0\",\"destination\":\"\",\"gateway_ip\":\"192.168.1.1\",\"vector\":\"\",\"cost\":0,\"rate\":0,\"state\":\"Up\",\"capacity\":\"0/unlimited\",\"meetsSLA\":\"Yes\"},{\"service\":\"management\",\"type\":\"service-agent\",\"network_interface\":\"ge-0/0/1\",\"destination\":\"\",\"gateway_ip\":\"192.168.0.1\",\"vector\":\"\",\"cost\":0,\"rate\":0,\"state\":\"Up\",\"capacity\":\"0/unlimited\",\"meetsSLA\":\"Yes\"}]}" } } ```
+func (u *UtilitiesWAN) ShowSiteSsrServicePath(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -804,55 +812,17 @@ func (u *UtilitiesWAN) GetSiteSsrServicePath(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSsrAndSrxSessions takes context, siteId, deviceId, body as parameters and
+// ShowSiteSsrAndSrxSessions takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get active sessions passing through the Device.
 // The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
-// ```json
-// {
-// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-// }
-// ```
-// ##### Example output from ws stream
-// ```console
-// admin@ssr.node# show sessions
-// Fri 2020-04-17 16:55:34 UTC
-// Node: node1
-// ====================================== ===== ============= =========== ========== ====== ======= ================= ========== ================= =========== ================= ========== =================== ========= =================
-// Session Id                             Dir   Service       Tenant      Dev Name   VLAN   Proto   Src IP            Src Port   Dest IP           Dest Port   NAT IP            NAT Port   Payload Encrypted   Timeout   Uptime
-// ====================================== ===== ============= =========== ========== ====== ======= ================= ========== ================= =========== ================= ========== =================== ========= =================
-// 01187fb8-765a-45e5-ae90-37d77f15e292   fwd   Internet      lanSubnet   lan           0   udp     192.168.0.28         44674   35.166.173.18          9930   96.230.191.130       19569   false                   154   0 days  0:00:28
-// 01187fb8-765a-45e5-ae90-37d77f15e292   rev   Internet      lanSubnet   wan           0   udp     35.166.173.18         9930   96.230.191.130        19569   0.0.0.0                  0   false                   154   0 days  0:00:28
-// 0859a4ae-bcff-4aa6-b812-79a5236a6c13   fwd   Internet      lanSubnet   lan           0   tcp     192.168.0.41         60843   17.249.171.246          443   96.230.191.130       51941   false                     2   0 days  0:00:10
-// admin@node0.90ec7732e327# show sessions by-id 262900cd-bca8-443a-8aab-e5c93d147ab5
-// Wed 2024-06-26 20:37:48 UTC
-// Retrieving session information...
-// =======================================================================================================================================================================================
-// 90ec7732e327.node0    Session ID: 262900cd-bca8-443a-8aab-e5c93d147ab5
-// =======================================================================================================================================================================================
-// Service Name:                      Internet
-// Service Route Name:                Internet-sr-local-breakout-1-node0
-// Session Source:                    SourceType: PUBLIC
-// Session Type:                      HTTPS
-// Service Class:                     service-class-0-low
-// Source Tenant:                     LAN
-// Peer Name:                         N/A
-// Inter Node:                        N/A
-// Inter Router:                      N/A
-// Ingress Source Nat:                N/A
-// Payload Security Policy:           internal
-// Payload Encrypted:                 True
-// Common Name Info:                  N/A
-// Tcp Time To Establish:             76
-// Tls Time To Establish:             76
-// Domain Name:                       N/A
-// Uri:                               N/A
-// Category:                          N/A
-// ```"
-func (u *UtilitiesWAN) GetSiteSsrAndSrxSessions(
+// ```json { "subscribe": "/sites/{site_id}/devices/{device_id}/cmd" }```
+// #### Example output from ws stream
+// ```json { "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-xxxxxxxxxxxx/devices/00000000-0000-0000-1000-xxxxxxxxxxxx/cmd", "event": "data", "data": { "session": "f517bf29-1141-41ae-a084-17cacb0ccb57", "raw": "{\"status\":\"SUCCESS\",\"finished\":true,\"rows\":[{\"session_id\":\"a04b1cc7-dcc1-40a6-a010-0fe46ca38551\",\"direction\":\"forward\",\"service\":\"internet\",\"tenant\":\"SRV.PRD-Core\",\"device_interface\":\"ge-0/0/3\",\"network_interface\":\"ge-0/0/3.100\",\"protocol\":\"TCP\",\"source_ip\":\"10.3.20.101\",\"source_port\":45733,\"destination_ip\":\"13.38.46.35\",\"destination_port\":443,\"nat_ip\":\"192.168.1.115\",\"nat_port\":45256,\"payload_encrypted\":false,\"timeout\":1581,\"uptime\":319},{\"session_id\":\"a04b1cc7-dcc1-40a6-a010-0fe46ca38551\",\"direction\":\"reverse\",\"service\":\"internet\",\"tenant\":\"SRV.PRD-Core\",\"device_interface\":\"ge-0/0/0\",\"network_interface\":\"ge-0/0/0\",\"protocol\":\"TCP\",\"source_ip\":\"13.38.46.35\",\"source_port\":443,\"destination_ip\":\"192.168.1.115\",\"destination_port\":45256,\"nat_ip\":\"0.0.0.0\",\"nat_port\":0,\"payload_encrypted\":false,\"timeout\":1581,\"uptime\":319}]}\n" } } ```
+func (u *UtilitiesWAN) ShowSiteSsrAndSrxSessions(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,

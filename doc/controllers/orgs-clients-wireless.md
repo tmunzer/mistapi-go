@@ -545,12 +545,14 @@ SearchOrgWirelessClients(
     mac *string,
     ipAddress *string,
     hostname *string,
+    band *string,
     device *string,
     os *string,
     model *string,
     ap *string,
     pskId *string,
     pskName *string,
+    username *string,
     vlan *string,
     ssid *string,
     text *string,
@@ -571,12 +573,14 @@ SearchOrgWirelessClients(
 | `mac` | `*string` | Query, Optional | partial / full MAC address |
 | `ipAddress` | `*string` | Query, Optional | - |
 | `hostname` | `*string` | Query, Optional | partial / full hostname |
+| `band` | `*string` | Query, Optional | Radio band. enum: `24`, `5`, `6` |
 | `device` | `*string` | Query, Optional | device type, e.g. Mac, Nvidia, iPhone |
-| `os` | `*string` | Query, Optional | os, e.g. Sierra, Yosemite, Windows 10 |
-| `model` | `*string` | Query, Optional | model, e.g. “MBP 15 late 2013”, 6, 6s, “8+ GSM” |
+| `os` | `*string` | Query, Optional | only available for clients running the Marvis Client app, os, e.g. Sierra, Yosemite, Windows 10 |
+| `model` | `*string` | Query, Optional | only available for clients running the Marvis Client app, model, e.g. “MBP 15 late 2013”, 6, 6s, “8+ GSM” |
 | `ap` | `*string` | Query, Optional | AP mac where the client has connected to |
 | `pskId` | `*string` | Query, Optional | PSK ID |
-| `pskName` | `*string` | Query, Optional | PSK Name |
+| `pskName` | `*string` | Query, Optional | only available for clients using PPSK authentication, the Name of the PSK |
+| `username` | `*string` | Query, Optional | only available for clients using 802.1X authentication, partial / full username |
 | `vlan` | `*string` | Query, Optional | vlan |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `text` | `*string` | Query, Optional | partial / full MAC address, hostname, username, psk_name or ip |
@@ -612,7 +616,11 @@ ipAddress := "192.168.1.1"
 
 
 
+
+
 pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
+
+
 
 
 
@@ -630,7 +638,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, nil, nil, &ipAddress, nil, nil, nil, nil, nil, &pskId, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, &pskId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -671,7 +679,7 @@ if err != nil {
         "192.168.0.2"
       ],
       "last_ap": "a83a79a947ee",
-      "last_devuce": "Mac",
+      "last_device": "Mac",
       "last_firmware": "wl0: Jan 20 2024 04:08:41 version 20.103.12.0.8.7.171 FWID 01-e09d2675",
       "last_hostname": "hostname-a",
       "last_ip": "10.5.23.43",

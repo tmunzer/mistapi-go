@@ -18,7 +18,7 @@ SSO
 | `GroupFilter` | `*string` | Optional | Required if `ldap_type`==`custom`, LDAP filter that will identify the type of group |
 | `Id` | `*uuid.UUID` | Optional | - |
 | `IdpCert` | `*string` | Optional | if `idp_type`==`saml`. IDP Cert (used to verify the signed response) |
-| `IdpSignAlgo` | [`*models.SsoIdpSignAlgoEnum`](../../doc/models/sso-idp-sign-algo-enum.md) | Optional | Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512` |
+| `IdpSignAlgo` | [`*models.SsoIdpSignAlgoEnum`](../../doc/models/sso-idp-sign-algo-enum.md) | Optional | Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512` |
 | `IdpSsoUrl` | `*string` | Optional | Required if `idp_type`==`saml`, IDP Single-Sign-On URL |
 | `IdpType` | [`*models.SsoIdpTypeEnum`](../../doc/models/sso-idp-type-enum.md) | Optional | * For Admin SSO, enum: `saml`<br>* For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`<br>**Default**: `"saml"` |
 | `IgnoreUnmatchedRoles` | `*bool` | Optional | if `idp_type`==`saml`, ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role |

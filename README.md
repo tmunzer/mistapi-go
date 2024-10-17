@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2409.1.9**
+> Version: **2409.1.11**
 > 
-> Date: **September 27, 2024**
+> Date: **October 17, 2024**
 
 ---
 
@@ -14,7 +14,7 @@
 
 * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html)
 * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html)
-* [Mist Product Updates](https://www.mist.com/documentation/category/product-updates/)
+* [Mist Product Updates](https://www.juniper.net/documentation/us/en/software/mist/product-updates/)
 
 ---
 
@@ -234,6 +234,7 @@ This API uses the following authentication schemes.
 * [Orgs Stats-Mx Edges](doc/controllers/orgs-stats-mx-edges.md)
 * [Orgs Stats-Other Devices](doc/controllers/orgs-stats-other-devices.md)
 * [Orgs Stats-Ports](doc/controllers/orgs-stats-ports.md)
+* [Orgs Stats-Sites](doc/controllers/orgs-stats-sites.md)
 * [Orgs Stats-Tunnels](doc/controllers/orgs-stats-tunnels.md)
 * [Orgs Stats-VPN Peers](doc/controllers/orgs-stats-vpn-peers.md)
 * [Orgs Subscriptions](doc/controllers/orgs-subscriptions.md)

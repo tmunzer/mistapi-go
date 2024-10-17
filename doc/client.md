@@ -128,6 +128,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsStatsMxEdges() | Gets OrgsStatsMxEdges |
 | OrgsStatsOtherDevices() | Gets OrgsStatsOtherDevices |
 | OrgsStatsPorts() | Gets OrgsStatsPorts |
+| OrgsStatsSites() | Gets OrgsStatsSites |
 | OrgsStatsTunnels() | Gets OrgsStatsTunnels |
 | OrgsStatsVPNPeers() | Gets OrgsStatsVPNPeers |
 | OrgsNACRules() | Gets OrgsNACRules |

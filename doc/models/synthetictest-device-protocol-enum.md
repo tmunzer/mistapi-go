@@ -12,6 +12,6 @@ if `type`==`lan_connectivity`. enum: `ping`, `traceroute`, `ping+traceroute`
 | Name |
 |  --- |
 | `ping` |
-| `traceroute` |
 | `ping+traceroute` |
+| `traceroute` |
 

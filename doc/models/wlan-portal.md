@@ -11,6 +11,7 @@ portal wlan settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `AllowWlanIdRoam` | `*bool` | Optional | whether to allow guest to connect to other Guest WLANs (with different `WLAN.ssid`) of same org without reauthentication (disable random_mac for seamless roaming)<br>**Default**: `false` |
 | `AmazonClientId` | `models.Optional[string]` | Optional | amazon OAuth2 client id. This is optional. If not provided, it will use a default one. |
 | `AmazonClientSecret` | `models.Optional[string]` | Optional | amazon OAuth2 client secret. If amazon_client_id was provided, provide a correspoinding value. Else leave blank. |
 | `AmazonEmailDomains` | `[]string` | Optional | Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
@@ -75,7 +76,7 @@ portal wlan settings
 | `SsoDefaultRole` | `*string` | Optional | if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
 | `SsoForcedRole` | `*string` | Optional | if `wlan_portal_auth`==`sso` |
 | `SsoIdpCert` | `*string` | Optional | if `wlan_portal_auth`==`sso`, IDP Cert (used to verify the signed response) |
-| `SsoIdpSignAlgo` | [`*models.WlanPortalIdpSignAlgoEnum`](../../doc/models/wlan-portal-idp-sign-algo-enum.md) | Optional | if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum `sha1`, `sha256`, `sha384`, `sha512`<br>**Default**: `"sha1"` |
+| `SsoIdpSignAlgo` | [`*models.WlanPortalIdpSignAlgoEnum`](../../doc/models/wlan-portal-idp-sign-algo-enum.md) | Optional | if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`<br>**Default**: `"sha1"` |
 | `SsoIdpSsoUrl` | `*string` | Optional | if `wlan_portal_auth`==`sso`, IDP Single-Sign-On URL |
 | `SsoIssuer` | `*string` | Optional | if `wlan_portal_auth`==`sso`, IDP issuer URL |
 | `SsoNameidFormat` | [`*models.WlanPortalSsoNameidFormatEnum`](../../doc/models/wlan-portal-sso-nameid-format-enum.md) | Optional | if `wlan_portal_auth`==`sso`. enum: `email`, `unspecified`<br>**Default**: `"email"` |
@@ -89,6 +90,7 @@ portal wlan settings
 
 ```json
 {
+  "allow_wlan_id_roam": false,
   "amazon_email_domains": [
     "amazon_email_domains4",
     "amazon_email_domains5",
@@ -139,8 +141,7 @@ portal wlan settings
   "twilio_phone_number": "+18548888888",
   "twilio_sid": "AC72ec6ba0ec5af30e6731c5e47abcdefgh",
   "amazon_client_id": "amazon_client_id4",
-  "amazon_client_secret": "amazon_client_secret0",
-  "amazon_expire": 137.94
+  "amazon_client_secret": "amazon_client_secret0"
 }
 ```
 

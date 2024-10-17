@@ -217,7 +217,7 @@ if err != nil {
 
 # Client Info
 
-Webhook sample for `client_info` topic
+Webhook sample for `client-info` topic
 
 **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
 
@@ -247,10 +247,12 @@ ctx := context.Background()
 body := models.WebhookClientInfo{
     Events: []models.WebhookClientInfoEvent{
         models.WebhookClientInfoEvent{
-            Mac:       models.ToPointer("string"),
-            OrgId:     models.ToPointer(uuid.MustParse("a40f5d1f-d889-42e9-94ea-b9b33585fc6b")),
-            SiteId:    models.ToPointer(uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")),
-            Timestamp: models.ToPointer(float64(0)),
+            Hostname:  models.ToPointer("service.company.net"),
+            Ip:        models.ToPointer("21.0.128.151"),
+            Mac:       models.ToPointer("6ebaa47a3fd4"),
+            OrgId:     models.ToPointer(uuid.MustParse("0c160b7f-1027-4cd1-923b-744534c4b070")),
+            SiteId:    models.ToPointer(uuid.MustParse("6e77a2ea-d579-471c-9056-5ff5b4ed70ed")),
+            Timestamp: models.ToPointer(float64(1703003296)),
         },
     },
     Topic:  models.ToPointer(models.WebhookClientInfoTopicEnum("client-info")),

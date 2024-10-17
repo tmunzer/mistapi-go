@@ -41,7 +41,7 @@ type Inventory struct {
     Sku                  *string          `json:"sku,omitempty"`
     // enum: `ap`, `gateway`, `switch`
     Type                 *DeviceTypeEnum  `json:"type,omitempty"`
-    // only if `type`==`switch`, MAC Address of the Virtual Chassis
+    // if `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Clust, MAC Address of the Cluster
     VcMac                *string          `json:"vc_mac,omitempty"`
     AdditionalProperties map[string]any   `json:"_"`
 }
