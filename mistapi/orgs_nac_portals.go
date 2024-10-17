@@ -1,26 +1,26 @@
 package mistapi
 
 import (
-    "context"
-    "fmt"
-    "github.com/apimatic/go-core-runtime/https"
-    "github.com/apimatic/go-core-runtime/utilities"
-    "github.com/google/uuid"
-    "github.com/tmunzer/mistapi-go/mistapi/errors"
-    "github.com/tmunzer/mistapi-go/mistapi/models"
-    "net/http"
+	"context"
+	"fmt"
+	"github.com/apimatic/go-core-runtime/https"
+	"github.com/apimatic/go-core-runtime/utilities"
+	"github.com/google/uuid"
+	"github.com/tmunzer/mistapi-go/mistapi/errors"
+	"github.com/tmunzer/mistapi-go/mistapi/models"
+	"net/http"
 )
 
 // OrgsNACPortals represents a controller struct.
 type OrgsNACPortals struct {
-    baseController
+	baseController
 }
 
 // NewOrgsNACPortals creates a new instance of OrgsNACPortals.
 // It takes a baseController as a parameter and returns a pointer to the OrgsNACPortals.
 func NewOrgsNACPortals(baseController baseController) *OrgsNACPortals {
-    orgsNACPortals := OrgsNACPortals{baseController: baseController}
-    return &orgsNACPortals
+	orgsNACPortals := OrgsNACPortals{baseController: baseController}
+	return &orgsNACPortals
 }
 
 // ListOrgNacPortals takes context, orgId, limit, page as parameters and
@@ -28,50 +28,49 @@ func NewOrgsNACPortals(baseController baseController) *OrgsNACPortals {
 // an error if there was an issue with the request or response.
 // List Org NAC Portals
 func (o *OrgsNACPortals) ListOrgNacPortals(
-    ctx context.Context,
-    orgId uuid.UUID,
-    limit *int,
-    page *int) (
-    models.ApiResponse[[]models.NacPortal],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals", orgId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	limit *int,
+	page *int) (
+	models.ApiResponse[[]models.NacPortal],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals", orgId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    
-    var result []models.NacPortal
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[[]models.NacPortal](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result []models.NacPortal
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[[]models.NacPortal](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // CreateOrgNacPortal takes context, orgId, body as parameters and
@@ -79,47 +78,46 @@ func (o *OrgsNACPortals) ListOrgNacPortals(
 // an error if there was an issue with the request or response.
 // Create Org NAC Portal
 func (o *OrgsNACPortals) CreateOrgNacPortal(
-    ctx context.Context,
-    orgId uuid.UUID,
-    body *models.NacPortal) (
-    models.ApiResponse[models.NacPortal],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals", orgId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	body *models.NacPortal) (
+	models.ApiResponse[models.NacPortal],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"POST",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals", orgId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    
-    var result models.NacPortal
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.NacPortal](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.NacPortal
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.NacPortal](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // DeleteOrgNacPortal takes context, orgId, nacportalId as parameters and
@@ -127,40 +125,39 @@ func (o *OrgsNACPortals) CreateOrgNacPortal(
 // an error if there was an issue with the request or response.
 // Delete Org NAC Portal
 func (o *OrgsNACPortals) DeleteOrgNacPortal(
-    ctx context.Context,
-    orgId uuid.UUID,
-    nacportalId uuid.UUID) (
-    *http.Response,
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v", orgId, nacportalId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	nacportalId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"DELETE",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v", orgId, nacportalId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // GetOrgNacPortal takes context, orgId, nacportalId as parameters and
@@ -168,43 +165,42 @@ func (o *OrgsNACPortals) DeleteOrgNacPortal(
 // an error if there was an issue with the request or response.
 // Get Org NAC Portal
 func (o *OrgsNACPortals) GetOrgNacPortal(
-    ctx context.Context,
-    orgId uuid.UUID,
-    nacportalId uuid.UUID) (
-    models.ApiResponse[models.NacPortal],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v", orgId, nacportalId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	nacportalId uuid.UUID) (
+	models.ApiResponse[models.NacPortal],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v", orgId, nacportalId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    var result models.NacPortal
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.NacPortal](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.NacPortal
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.NacPortal](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // UpdateOrgNacPortal takes context, orgId, nacportalId, body as parameters and
@@ -212,48 +208,47 @@ func (o *OrgsNACPortals) GetOrgNacPortal(
 // an error if there was an issue with the request or response.
 // Update Org NAC Portal
 func (o *OrgsNACPortals) UpdateOrgNacPortal(
-    ctx context.Context,
-    orgId uuid.UUID,
-    nacportalId uuid.UUID,
-    body *models.NacPortal) (
-    models.ApiResponse[models.NacPortal],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v", orgId, nacportalId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	nacportalId uuid.UUID,
+	body *models.NacPortal) (
+	models.ApiResponse[models.NacPortal],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"PUT",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v", orgId, nacportalId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    
-    var result models.NacPortal
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.NacPortal](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.NacPortal
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.NacPortal](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // ListOrgNacPortalSsoLatestFailures takes context, orgId, nacportalId, start, end, duration, limit, page as parameters and
@@ -261,63 +256,62 @@ func (o *OrgsNACPortals) UpdateOrgNacPortal(
 // an error if there was an issue with the request or response.
 // Get List of Org NAC Portal SSO Latest Failures
 func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
-    ctx context.Context,
-    orgId uuid.UUID,
-    nacportalId uuid.UUID,
-    start *int,
-    end *int,
-    duration *string,
-    limit *int,
-    page *int) (
-    models.ApiResponse[models.ResponseSsoFailureSearch],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/failures", orgId, nacportalId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	nacportalId uuid.UUID,
+	start *int,
+	end *int,
+	duration *string,
+	limit *int,
+	page *int) (
+	models.ApiResponse[models.ResponseSsoFailureSearch],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/failures", orgId, nacportalId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    if start != nil {
-        req.QueryParam("start", *start)
-    }
-    if end != nil {
-        req.QueryParam("end", *end)
-    }
-    if duration != nil {
-        req.QueryParam("duration", *duration)
-    }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
-    
-    var result models.ResponseSsoFailureSearch
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.ResponseSsoFailureSearch](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.ResponseSsoFailureSearch
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseSsoFailureSearch](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // DeleteOrgNacPortalImage takes context, orgId, nacportalId as parameters and
@@ -326,40 +320,39 @@ func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
 // Delete background image for NAC Portal
 // If image is not uploaded or is deleted, NAC Portal will use default image.
 func (o *OrgsNACPortals) DeleteOrgNacPortalImage(
-    ctx context.Context,
-    orgId uuid.UUID,
-    nacportalId uuid.UUID) (
-    *http.Response,
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/portal_image", orgId, nacportalId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	nacportalId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"DELETE",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/portal_image", orgId, nacportalId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // UploadOrgNacPortalImage takes context, orgId, nacportalId, file, json as parameters and
@@ -367,52 +360,51 @@ func (o *OrgsNACPortals) DeleteOrgNacPortalImage(
 // an error if there was an issue with the request or response.
 // Upload background image for NAC Portal
 func (o *OrgsNACPortals) UploadOrgNacPortalImage(
-    ctx context.Context,
-    orgId uuid.UUID,
-    nacportalId uuid.UUID,
-    file *models.FileWrapper,
-    json *string) (
-    *http.Response,
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/portal_image", orgId, nacportalId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	nacportalId uuid.UUID,
+	file *models.FileWrapper,
+	json *string) (
+	*http.Response,
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"POST",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/portal_image", orgId, nacportalId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	formFields := []https.FormParam{}
+	if file != nil {
+		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
+		formFields = append(formFields, fileParam)
+	}
+	if json != nil {
+		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
+		formFields = append(formFields, jsonParam)
+	}
+	req.FormData(formFields)
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    formFields := []https.FormParam{}
-    if file != nil {
-        fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
-        formFields = append(formFields, fileParam)
-    }
-    if json != nil {
-        jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
-        formFields = append(formFields, jsonParam)
-    }
-    req.FormData(formFields)
-    
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // UpdateOrgNacPortalTempalte takes context, orgId, nacportalId, body as parameters and
@@ -420,45 +412,44 @@ func (o *OrgsNACPortals) UploadOrgNacPortalImage(
 // an error if there was an issue with the request or response.
 // Update Org NAC Portal Template
 func (o *OrgsNACPortals) UpdateOrgNacPortalTempalte(
-    ctx context.Context,
-    orgId uuid.UUID,
-    nacportalId uuid.UUID,
-    body *models.NacPortalTemplate) (
-    *http.Response,
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/portal_template", orgId, nacportalId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	nacportalId uuid.UUID,
+	body *models.NacPortalTemplate) (
+	*http.Response,
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"PUT",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/portal_template", orgId, nacportalId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // GetOrgNacPortalSsoSamlMetadata takes context, orgId, nacportalId as parameters and
@@ -466,43 +457,42 @@ func (o *OrgsNACPortals) UpdateOrgNacPortalTempalte(
 // an error if there was an issue with the request or response.
 // Get Org NAC Portal SSO SAML Metadata
 func (o *OrgsNACPortals) GetOrgNacPortalSsoSamlMetadata(
-    ctx context.Context,
-    orgId uuid.UUID,
-    nacportalId uuid.UUID) (
-    models.ApiResponse[models.SsoSamlMetadata],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/saml_metadata", orgId, nacportalId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	nacportalId uuid.UUID) (
+	models.ApiResponse[models.SsoSamlMetadata],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/saml_metadata", orgId, nacportalId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    var result models.SsoSamlMetadata
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.SsoSamlMetadata](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.SsoSamlMetadata
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.SsoSamlMetadata](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // DownloadOrgNacPortalSsoSamlMetadata takes context, orgId, nacportalId as parameters and
@@ -526,38 +516,37 @@ func (o *OrgsNACPortals) GetOrgNacPortalSsoSamlMetadata(
 // </md:EntityDescriptor>
 // ```
 func (o *OrgsNACPortals) DownloadOrgNacPortalSsoSamlMetadata(
-    ctx context.Context,
-    orgId uuid.UUID,
-    nacportalId uuid.UUID) (
-    models.ApiResponse[[]byte],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/saml_metadata.xml", orgId, nacportalId),
-    )
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	orgId uuid.UUID,
+	nacportalId uuid.UUID) (
+	models.ApiResponse[[]byte],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/saml_metadata.xml", orgId, nacportalId),
+	)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    stream, resp, err := req.CallAsStream()
-    if err != nil {
-        return models.NewApiResponse(stream, resp), err
-    }
-    return models.NewApiResponse(stream, resp), err
+	stream, resp, err := req.CallAsStream()
+	if err != nil {
+		return models.NewApiResponse(stream, resp), err
+	}
+	return models.NewApiResponse(stream, resp), err
 }

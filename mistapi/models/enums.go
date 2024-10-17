@@ -5,14 +5,14 @@ package models
 type AclTagTypeEnum string
 
 const (
-    AclTagTypeEnum_ANY         AclTagTypeEnum = "any"
-    AclTagTypeEnum_DYNAMICGBP  AclTagTypeEnum = "dynamic_gbp"
-    AclTagTypeEnum_MAC         AclTagTypeEnum = "mac"
-    AclTagTypeEnum_NETWORK     AclTagTypeEnum = "network"
-    AclTagTypeEnum_RADIUSGROUP AclTagTypeEnum = "radius_group"
-    AclTagTypeEnum_RESOURCE    AclTagTypeEnum = "resource"
-    AclTagTypeEnum_STATICGBP   AclTagTypeEnum = "static_gbp"
-    AclTagTypeEnum_SUBNET      AclTagTypeEnum = "subnet"
+	AclTagTypeEnum_ANY         AclTagTypeEnum = "any"
+	AclTagTypeEnum_DYNAMICGBP  AclTagTypeEnum = "dynamic_gbp"
+	AclTagTypeEnum_MAC         AclTagTypeEnum = "mac"
+	AclTagTypeEnum_NETWORK     AclTagTypeEnum = "network"
+	AclTagTypeEnum_RADIUSGROUP AclTagTypeEnum = "radius_group"
+	AclTagTypeEnum_RESOURCE    AclTagTypeEnum = "resource"
+	AclTagTypeEnum_STATICGBP   AclTagTypeEnum = "static_gbp"
+	AclTagTypeEnum_SUBNET      AclTagTypeEnum = "subnet"
 )
 
 // AdminComplianceStatusEnum is a string enum.
@@ -20,8 +20,8 @@ const (
 type AdminComplianceStatusEnum string
 
 const (
-    AdminComplianceStatusEnum_BLOCKED    AdminComplianceStatusEnum = "blocked"
-    AdminComplianceStatusEnum_RESTRICTED AdminComplianceStatusEnum = "restricted"
+	AdminComplianceStatusEnum_BLOCKED    AdminComplianceStatusEnum = "blocked"
+	AdminComplianceStatusEnum_RESTRICTED AdminComplianceStatusEnum = "restricted"
 )
 
 // AdminPrivilegeRoleEnum is a string enum.
@@ -29,11 +29,11 @@ const (
 type AdminPrivilegeRoleEnum string
 
 const (
-    AdminPrivilegeRoleEnum_ADMIN     AdminPrivilegeRoleEnum = "admin"
-    AdminPrivilegeRoleEnum_HELPDESK  AdminPrivilegeRoleEnum = "helpdesk"
-    AdminPrivilegeRoleEnum_INSTALLER AdminPrivilegeRoleEnum = "installer"
-    AdminPrivilegeRoleEnum_READ      AdminPrivilegeRoleEnum = "read"
-    AdminPrivilegeRoleEnum_WRITE     AdminPrivilegeRoleEnum = "write"
+	AdminPrivilegeRoleEnum_ADMIN     AdminPrivilegeRoleEnum = "admin"
+	AdminPrivilegeRoleEnum_HELPDESK  AdminPrivilegeRoleEnum = "helpdesk"
+	AdminPrivilegeRoleEnum_INSTALLER AdminPrivilegeRoleEnum = "installer"
+	AdminPrivilegeRoleEnum_READ      AdminPrivilegeRoleEnum = "read"
+	AdminPrivilegeRoleEnum_WRITE     AdminPrivilegeRoleEnum = "write"
 )
 
 // AdminPrivilegeScopeEnum is a string enum.
@@ -41,11 +41,11 @@ const (
 type AdminPrivilegeScopeEnum string
 
 const (
-    AdminPrivilegeScopeEnum_MSP       AdminPrivilegeScopeEnum = "msp"
-    AdminPrivilegeScopeEnum_ORG       AdminPrivilegeScopeEnum = "org"
-    AdminPrivilegeScopeEnum_ORGGROUP  AdminPrivilegeScopeEnum = "orggroup"
-    AdminPrivilegeScopeEnum_SITE      AdminPrivilegeScopeEnum = "site"
-    AdminPrivilegeScopeEnum_SITEGROUP AdminPrivilegeScopeEnum = "sitegroup"
+	AdminPrivilegeScopeEnum_MSP       AdminPrivilegeScopeEnum = "msp"
+	AdminPrivilegeScopeEnum_ORG       AdminPrivilegeScopeEnum = "org"
+	AdminPrivilegeScopeEnum_ORGGROUP  AdminPrivilegeScopeEnum = "orggroup"
+	AdminPrivilegeScopeEnum_SITE      AdminPrivilegeScopeEnum = "site"
+	AdminPrivilegeScopeEnum_SITEGROUP AdminPrivilegeScopeEnum = "sitegroup"
 )
 
 // AdminPrivilegeViewEnum is a string enum.
@@ -68,14 +68,14 @@ const (
 type AdminPrivilegeViewEnum string
 
 const (
-    AdminPrivilegeViewEnum_LOBBYADMIN    AdminPrivilegeViewEnum = "lobby_admin"
-    AdminPrivilegeViewEnum_LOCATION      AdminPrivilegeViewEnum = "location"
-    AdminPrivilegeViewEnum_MARKETING     AdminPrivilegeViewEnum = "marketing"
-    AdminPrivilegeViewEnum_MXEDGEADMIN   AdminPrivilegeViewEnum = "mxedge_admin"
-    AdminPrivilegeViewEnum_REPORTING     AdminPrivilegeViewEnum = "reporting"
-    AdminPrivilegeViewEnum_SECURITY      AdminPrivilegeViewEnum = "security"
-    AdminPrivilegeViewEnum_SUPEROBSERVER AdminPrivilegeViewEnum = "super_observer"
-    AdminPrivilegeViewEnum_SWITCHADMIN   AdminPrivilegeViewEnum = "switch_admin"
+	AdminPrivilegeViewEnum_LOBBYADMIN    AdminPrivilegeViewEnum = "lobby_admin"
+	AdminPrivilegeViewEnum_LOCATION      AdminPrivilegeViewEnum = "location"
+	AdminPrivilegeViewEnum_MARKETING     AdminPrivilegeViewEnum = "marketing"
+	AdminPrivilegeViewEnum_MXEDGEADMIN   AdminPrivilegeViewEnum = "mxedge_admin"
+	AdminPrivilegeViewEnum_REPORTING     AdminPrivilegeViewEnum = "reporting"
+	AdminPrivilegeViewEnum_SECURITY      AdminPrivilegeViewEnum = "security"
+	AdminPrivilegeViewEnum_SUPEROBSERVER AdminPrivilegeViewEnum = "super_observer"
+	AdminPrivilegeViewEnum_SWITCHADMIN   AdminPrivilegeViewEnum = "switch_admin"
 )
 
 // AlarmCountDisctinctEnum is a string enum.
@@ -83,10 +83,10 @@ const (
 type AlarmCountDisctinctEnum string
 
 const (
-    AlarmCountDisctinctEnum_ACKED    AlarmCountDisctinctEnum = "acked"
-    AlarmCountDisctinctEnum_GROUP    AlarmCountDisctinctEnum = "group"
-    AlarmCountDisctinctEnum_SEVERITY AlarmCountDisctinctEnum = "severity"
-    AlarmCountDisctinctEnum_ENUMTYPE AlarmCountDisctinctEnum = "type"
+	AlarmCountDisctinctEnum_ACKED    AlarmCountDisctinctEnum = "acked"
+	AlarmCountDisctinctEnum_GROUP    AlarmCountDisctinctEnum = "group"
+	AlarmCountDisctinctEnum_SEVERITY AlarmCountDisctinctEnum = "severity"
+	AlarmCountDisctinctEnum_ENUMTYPE AlarmCountDisctinctEnum = "type"
 )
 
 // AllowDenyEnum is a string enum.
@@ -94,8 +94,8 @@ const (
 type AllowDenyEnum string
 
 const (
-    AllowDenyEnum_ALLOW AllowDenyEnum = "allow"
-    AllowDenyEnum_DENY  AllowDenyEnum = "deny"
+	AllowDenyEnum_ALLOW AllowDenyEnum = "allow"
+	AllowDenyEnum_DENY  AllowDenyEnum = "deny"
 )
 
 // ApClientBridgeAuthTypeEnum is a string enum.
@@ -103,8 +103,8 @@ const (
 type ApClientBridgeAuthTypeEnum string
 
 const (
-    ApClientBridgeAuthTypeEnum_OPEN ApClientBridgeAuthTypeEnum = "open"
-    ApClientBridgeAuthTypeEnum_PSK  ApClientBridgeAuthTypeEnum = "psk"
+	ApClientBridgeAuthTypeEnum_OPEN ApClientBridgeAuthTypeEnum = "open"
+	ApClientBridgeAuthTypeEnum_PSK  ApClientBridgeAuthTypeEnum = "psk"
 )
 
 // ApEslTypeEnum is a string enum.
@@ -112,10 +112,10 @@ const (
 type ApEslTypeEnum string
 
 const (
-    ApEslTypeEnum_HANSHOW  ApEslTypeEnum = "hanshow"
-    ApEslTypeEnum_IMAGOTAG ApEslTypeEnum = "imagotag"
-    ApEslTypeEnum_NATIVE   ApEslTypeEnum = "native"
-    ApEslTypeEnum_SOLUM    ApEslTypeEnum = "solum"
+	ApEslTypeEnum_HANSHOW  ApEslTypeEnum = "hanshow"
+	ApEslTypeEnum_IMAGOTAG ApEslTypeEnum = "imagotag"
+	ApEslTypeEnum_NATIVE   ApEslTypeEnum = "native"
+	ApEslTypeEnum_SOLUM    ApEslTypeEnum = "solum"
 )
 
 // ApIotPullupEnum is a string enum.
@@ -123,9 +123,9 @@ const (
 type ApIotPullupEnum string
 
 const (
-    ApIotPullupEnum_EXTERNAL ApIotPullupEnum = "external"
-    ApIotPullupEnum_INTERNAL ApIotPullupEnum = "internal"
-    ApIotPullupEnum_NONE     ApIotPullupEnum = "none"
+	ApIotPullupEnum_EXTERNAL ApIotPullupEnum = "external"
+	ApIotPullupEnum_INTERNAL ApIotPullupEnum = "internal"
+	ApIotPullupEnum_NONE     ApIotPullupEnum = "none"
 )
 
 // ApMeshRoleEnum is a string enum.
@@ -133,8 +133,8 @@ const (
 type ApMeshRoleEnum string
 
 const (
-    ApMeshRoleEnum_BASE   ApMeshRoleEnum = "base"
-    ApMeshRoleEnum_REMOTE ApMeshRoleEnum = "remote"
+	ApMeshRoleEnum_BASE   ApMeshRoleEnum = "base"
+	ApMeshRoleEnum_REMOTE ApMeshRoleEnum = "remote"
 )
 
 // ApPortConfigForwardingEnum is a string enum.
@@ -142,11 +142,11 @@ const (
 type ApPortConfigForwardingEnum string
 
 const (
-    ApPortConfigForwardingEnum_ALL        ApPortConfigForwardingEnum = "all"
-    ApPortConfigForwardingEnum_LIMITED    ApPortConfigForwardingEnum = "limited"
-    ApPortConfigForwardingEnum_MXTUNNEL   ApPortConfigForwardingEnum = "mxtunnel"
-    ApPortConfigForwardingEnum_SITEMXEDGE ApPortConfigForwardingEnum = "site_mxedge"
-    ApPortConfigForwardingEnum_WXTUNNEL   ApPortConfigForwardingEnum = "wxtunnel"
+	ApPortConfigForwardingEnum_ALL        ApPortConfigForwardingEnum = "all"
+	ApPortConfigForwardingEnum_LIMITED    ApPortConfigForwardingEnum = "limited"
+	ApPortConfigForwardingEnum_MXTUNNEL   ApPortConfigForwardingEnum = "mxtunnel"
+	ApPortConfigForwardingEnum_SITEMXEDGE ApPortConfigForwardingEnum = "site_mxedge"
+	ApPortConfigForwardingEnum_WXTUNNEL   ApPortConfigForwardingEnum = "wxtunnel"
 )
 
 // ApPortConfigMacAuthProtocolEnum is a string enum.
@@ -154,9 +154,9 @@ const (
 type ApPortConfigMacAuthProtocolEnum string
 
 const (
-    ApPortConfigMacAuthProtocolEnum_EAPMD5  ApPortConfigMacAuthProtocolEnum = "eap-md5"
-    ApPortConfigMacAuthProtocolEnum_EAPPEAP ApPortConfigMacAuthProtocolEnum = "eap-peap"
-    ApPortConfigMacAuthProtocolEnum_PAP     ApPortConfigMacAuthProtocolEnum = "pap"
+	ApPortConfigMacAuthProtocolEnum_EAPMD5  ApPortConfigMacAuthProtocolEnum = "eap-md5"
+	ApPortConfigMacAuthProtocolEnum_EAPPEAP ApPortConfigMacAuthProtocolEnum = "eap-peap"
+	ApPortConfigMacAuthProtocolEnum_PAP     ApPortConfigMacAuthProtocolEnum = "pap"
 )
 
 // ApPortConfigPortAuthEnum is a string enum.
@@ -164,8 +164,8 @@ const (
 type ApPortConfigPortAuthEnum string
 
 const (
-    ApPortConfigPortAuthEnum_DOT1X ApPortConfigPortAuthEnum = "dot1x"
-    ApPortConfigPortAuthEnum_NONE  ApPortConfigPortAuthEnum = "none"
+	ApPortConfigPortAuthEnum_DOT1X ApPortConfigPortAuthEnum = "dot1x"
+	ApPortConfigPortAuthEnum_NONE  ApPortConfigPortAuthEnum = "none"
 )
 
 // ApRadioAntennaModeEnum is a string enum.
@@ -173,11 +173,11 @@ const (
 type ApRadioAntennaModeEnum string
 
 const (
-    ApRadioAntennaModeEnum_ENUM1X1     ApRadioAntennaModeEnum = "1x1"
-    ApRadioAntennaModeEnum_ENUM2X2     ApRadioAntennaModeEnum = "2x2"
-    ApRadioAntennaModeEnum_ENUM3X3     ApRadioAntennaModeEnum = "3x3"
-    ApRadioAntennaModeEnum_ENUM4X4     ApRadioAntennaModeEnum = "4x4"
-    ApRadioAntennaModeEnum_ENUMDEFAULT ApRadioAntennaModeEnum = "default"
+	ApRadioAntennaModeEnum_ENUM1X1     ApRadioAntennaModeEnum = "1x1"
+	ApRadioAntennaModeEnum_ENUM2X2     ApRadioAntennaModeEnum = "2x2"
+	ApRadioAntennaModeEnum_ENUM3X3     ApRadioAntennaModeEnum = "3x3"
+	ApRadioAntennaModeEnum_ENUM4X4     ApRadioAntennaModeEnum = "4x4"
+	ApRadioAntennaModeEnum_ENUMDEFAULT ApRadioAntennaModeEnum = "default"
 )
 
 // ApUsbTypeEnum is a string enum.
@@ -185,9 +185,9 @@ const (
 type ApUsbTypeEnum string
 
 const (
-    ApUsbTypeEnum_HANSHOW  ApUsbTypeEnum = "hanshow"
-    ApUsbTypeEnum_IMAGOTAG ApUsbTypeEnum = "imagotag"
-    ApUsbTypeEnum_SOLUM    ApUsbTypeEnum = "solum"
+	ApUsbTypeEnum_HANSHOW  ApUsbTypeEnum = "hanshow"
+	ApUsbTypeEnum_IMAGOTAG ApUsbTypeEnum = "imagotag"
+	ApUsbTypeEnum_SOLUM    ApUsbTypeEnum = "solum"
 )
 
 // AppProbingCustomAppProtocolEnum is a string enum.
@@ -195,8 +195,8 @@ const (
 type AppProbingCustomAppProtocolEnum string
 
 const (
-    AppProbingCustomAppProtocolEnum_HTTP AppProbingCustomAppProtocolEnum = "http"
-    AppProbingCustomAppProtocolEnum_ICMP AppProbingCustomAppProtocolEnum = "icmp"
+	AppProbingCustomAppProtocolEnum_HTTP AppProbingCustomAppProtocolEnum = "http"
+	AppProbingCustomAppProtocolEnum_ICMP AppProbingCustomAppProtocolEnum = "icmp"
 )
 
 // AutoOrientationStateEnum is a string enum.
@@ -204,9 +204,9 @@ const (
 type AutoOrientationStateEnum string
 
 const (
-    AutoOrientationStateEnum_ENQUEUED       AutoOrientationStateEnum = "Enqueued"
-    AutoOrientationStateEnum_ENUMNOTSTARTED AutoOrientationStateEnum = "Not Started"
-    AutoOrientationStateEnum_ORIENTED       AutoOrientationStateEnum = "Oriented"
+	AutoOrientationStateEnum_ENQUEUED       AutoOrientationStateEnum = "Enqueued"
+	AutoOrientationStateEnum_ENUMNOTSTARTED AutoOrientationStateEnum = "Not Started"
+	AutoOrientationStateEnum_ORIENTED       AutoOrientationStateEnum = "Oriented"
 )
 
 // AutoPlacementInfoStatusEnum is a string enum.
@@ -214,10 +214,10 @@ const (
 type AutoPlacementInfoStatusEnum string
 
 const (
-    AutoPlacementInfoStatusEnum_DONE       AutoPlacementInfoStatusEnum = "done"
-    AutoPlacementInfoStatusEnum_ENUMERROR  AutoPlacementInfoStatusEnum = "error"
-    AutoPlacementInfoStatusEnum_INPROGRESS AutoPlacementInfoStatusEnum = "inprogress"
-    AutoPlacementInfoStatusEnum_PENDING    AutoPlacementInfoStatusEnum = "pending"
+	AutoPlacementInfoStatusEnum_DONE       AutoPlacementInfoStatusEnum = "done"
+	AutoPlacementInfoStatusEnum_ENUMERROR  AutoPlacementInfoStatusEnum = "error"
+	AutoPlacementInfoStatusEnum_INPROGRESS AutoPlacementInfoStatusEnum = "inprogress"
+	AutoPlacementInfoStatusEnum_PENDING    AutoPlacementInfoStatusEnum = "pending"
 )
 
 // AvprofileFallbackActionEnum is a string enum.
@@ -225,8 +225,8 @@ const (
 type AvprofileFallbackActionEnum string
 
 const (
-    AvprofileFallbackActionEnum_BLOCK  AvprofileFallbackActionEnum = "block"
-    AvprofileFallbackActionEnum_PERMIT AvprofileFallbackActionEnum = "permit"
+	AvprofileFallbackActionEnum_BLOCK  AvprofileFallbackActionEnum = "block"
+	AvprofileFallbackActionEnum_PERMIT AvprofileFallbackActionEnum = "permit"
 )
 
 // AvprofileProtocolsEnum is a string enum.
@@ -234,11 +234,11 @@ const (
 type AvprofileProtocolsEnum string
 
 const (
-    AvprofileProtocolsEnum_FTP  AvprofileProtocolsEnum = "ftp"
-    AvprofileProtocolsEnum_HTTP AvprofileProtocolsEnum = "http"
-    AvprofileProtocolsEnum_IMAP AvprofileProtocolsEnum = "imap"
-    AvprofileProtocolsEnum_POP3 AvprofileProtocolsEnum = "pop3"
-    AvprofileProtocolsEnum_SMTP AvprofileProtocolsEnum = "smtp"
+	AvprofileProtocolsEnum_FTP  AvprofileProtocolsEnum = "ftp"
+	AvprofileProtocolsEnum_HTTP AvprofileProtocolsEnum = "http"
+	AvprofileProtocolsEnum_IMAP AvprofileProtocolsEnum = "imap"
+	AvprofileProtocolsEnum_POP3 AvprofileProtocolsEnum = "pop3"
+	AvprofileProtocolsEnum_SMTP AvprofileProtocolsEnum = "smtp"
 )
 
 // BeaconTypeEnum is a string enum.
@@ -246,9 +246,9 @@ const (
 type BeaconTypeEnum string
 
 const (
-    BeaconTypeEnum_EDDYSTONEUID BeaconTypeEnum = "eddystone-uid"
-    BeaconTypeEnum_EDDYSTONEURL BeaconTypeEnum = "eddystone-url"
-    BeaconTypeEnum_IBEACON      BeaconTypeEnum = "ibeacon"
+	BeaconTypeEnum_EDDYSTONEUID BeaconTypeEnum = "eddystone-uid"
+	BeaconTypeEnum_EDDYSTONEURL BeaconTypeEnum = "eddystone-url"
+	BeaconTypeEnum_IBEACON      BeaconTypeEnum = "ibeacon"
 )
 
 // BgpConfigTypeEnum is a string enum.
@@ -256,8 +256,8 @@ const (
 type BgpConfigTypeEnum string
 
 const (
-    BgpConfigTypeEnum_EXTERNAL BgpConfigTypeEnum = "external"
-    BgpConfigTypeEnum_INTERNAL BgpConfigTypeEnum = "internal"
+	BgpConfigTypeEnum_EXTERNAL BgpConfigTypeEnum = "external"
+	BgpConfigTypeEnum_INTERNAL BgpConfigTypeEnum = "internal"
 )
 
 // BgpConfigViaEnum is a string enum.
@@ -265,10 +265,10 @@ const (
 type BgpConfigViaEnum string
 
 const (
-    BgpConfigViaEnum_LAN    BgpConfigViaEnum = "lan"
-    BgpConfigViaEnum_TUNNEL BgpConfigViaEnum = "tunnel"
-    BgpConfigViaEnum_VPN    BgpConfigViaEnum = "vpn"
-    BgpConfigViaEnum_WAN    BgpConfigViaEnum = "wan"
+	BgpConfigViaEnum_LAN    BgpConfigViaEnum = "lan"
+	BgpConfigViaEnum_TUNNEL BgpConfigViaEnum = "tunnel"
+	BgpConfigViaEnum_VPN    BgpConfigViaEnum = "vpn"
+	BgpConfigViaEnum_WAN    BgpConfigViaEnum = "wan"
 )
 
 // BgpStatsStateEnum is a string enum.
@@ -276,12 +276,12 @@ const (
 type BgpStatsStateEnum string
 
 const (
-    BgpStatsStateEnum_ACTIVE      BgpStatsStateEnum = "active"
-    BgpStatsStateEnum_CONNECT     BgpStatsStateEnum = "connect"
-    BgpStatsStateEnum_ESTABLISHED BgpStatsStateEnum = "established"
-    BgpStatsStateEnum_IDLE        BgpStatsStateEnum = "idle"
-    BgpStatsStateEnum_OPENCONFIG  BgpStatsStateEnum = "open_config"
-    BgpStatsStateEnum_OPENSENT    BgpStatsStateEnum = "open_sent"
+	BgpStatsStateEnum_ACTIVE      BgpStatsStateEnum = "active"
+	BgpStatsStateEnum_CONNECT     BgpStatsStateEnum = "connect"
+	BgpStatsStateEnum_ESTABLISHED BgpStatsStateEnum = "established"
+	BgpStatsStateEnum_IDLE        BgpStatsStateEnum = "idle"
+	BgpStatsStateEnum_OPENCONFIG  BgpStatsStateEnum = "open_config"
+	BgpStatsStateEnum_OPENSENT    BgpStatsStateEnum = "open_sent"
 )
 
 // BleConfigBeaconRateModeEnum is a string enum.
@@ -289,8 +289,8 @@ const (
 type BleConfigBeaconRateModeEnum string
 
 const (
-    BleConfigBeaconRateModeEnum_CUSTOM      BleConfigBeaconRateModeEnum = "custom"
-    BleConfigBeaconRateModeEnum_ENUMDEFAULT BleConfigBeaconRateModeEnum = "default"
+	BleConfigBeaconRateModeEnum_CUSTOM      BleConfigBeaconRateModeEnum = "custom"
+	BleConfigBeaconRateModeEnum_ENUMDEFAULT BleConfigBeaconRateModeEnum = "default"
 )
 
 // BleConfigPowerModeEnum is a string enum.
@@ -298,8 +298,8 @@ const (
 type BleConfigPowerModeEnum string
 
 const (
-    BleConfigPowerModeEnum_CUSTOM      BleConfigPowerModeEnum = "custom"
-    BleConfigPowerModeEnum_ENUMDEFAULT BleConfigPowerModeEnum = "default"
+	BleConfigPowerModeEnum_CUSTOM      BleConfigPowerModeEnum = "custom"
+	BleConfigPowerModeEnum_ENUMDEFAULT BleConfigPowerModeEnum = "default"
 )
 
 // CaptureClientTypeEnum is a string enum.
@@ -307,7 +307,7 @@ const (
 type CaptureClientTypeEnum string
 
 const (
-    CaptureClientTypeEnum_CLIENT CaptureClientTypeEnum = "client"
+	CaptureClientTypeEnum_CLIENT CaptureClientTypeEnum = "client"
 )
 
 // CaptureGatewayFormatEnum is a string enum.
@@ -315,7 +315,7 @@ const (
 type CaptureGatewayFormatEnum string
 
 const (
-    CaptureGatewayFormatEnum_STREAM CaptureGatewayFormatEnum = "stream"
+	CaptureGatewayFormatEnum_STREAM CaptureGatewayFormatEnum = "stream"
 )
 
 // CaptureGatewayTypeEnum is a string enum.
@@ -323,18 +323,18 @@ const (
 type CaptureGatewayTypeEnum string
 
 const (
-    CaptureGatewayTypeEnum_GATEWAY CaptureGatewayTypeEnum = "gateway"
+	CaptureGatewayTypeEnum_GATEWAY CaptureGatewayTypeEnum = "gateway"
 )
 
 // CaptureMxedgeFormatEnum is a string enum.
-// pcap format. enum: 
+// pcap format. enum:
 // * `stream`: to Mist cloud
 // * `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
 type CaptureMxedgeFormatEnum string
 
 const (
-    CaptureMxedgeFormatEnum_STREAM CaptureMxedgeFormatEnum = "stream"
-    CaptureMxedgeFormatEnum_TZSP   CaptureMxedgeFormatEnum = "tzsp"
+	CaptureMxedgeFormatEnum_STREAM CaptureMxedgeFormatEnum = "stream"
+	CaptureMxedgeFormatEnum_TZSP   CaptureMxedgeFormatEnum = "tzsp"
 )
 
 // CaptureMxedgeTypeEnum is a string enum.
@@ -342,7 +342,7 @@ const (
 type CaptureMxedgeTypeEnum string
 
 const (
-    CaptureMxedgeTypeEnum_MXEDGE CaptureMxedgeTypeEnum = "mxedge"
+	CaptureMxedgeTypeEnum_MXEDGE CaptureMxedgeTypeEnum = "mxedge"
 )
 
 // CaptureNewAssocTypeEnum is a string enum.
@@ -350,7 +350,7 @@ const (
 type CaptureNewAssocTypeEnum string
 
 const (
-    CaptureNewAssocTypeEnum_NEWASSOC CaptureNewAssocTypeEnum = "new_assoc"
+	CaptureNewAssocTypeEnum_NEWASSOC CaptureNewAssocTypeEnum = "new_assoc"
 )
 
 // CaptureRadiotapBandEnum is a string enum.
@@ -358,10 +358,10 @@ const (
 type CaptureRadiotapBandEnum string
 
 const (
-    CaptureRadiotapBandEnum_ENUM24   CaptureRadiotapBandEnum = "24"
-    CaptureRadiotapBandEnum_ENUM2456 CaptureRadiotapBandEnum = "24,5,6"
-    CaptureRadiotapBandEnum_ENUM5    CaptureRadiotapBandEnum = "5"
-    CaptureRadiotapBandEnum_ENUM6    CaptureRadiotapBandEnum = "6"
+	CaptureRadiotapBandEnum_ENUM24   CaptureRadiotapBandEnum = "24"
+	CaptureRadiotapBandEnum_ENUM2456 CaptureRadiotapBandEnum = "24,5,6"
+	CaptureRadiotapBandEnum_ENUM5    CaptureRadiotapBandEnum = "5"
+	CaptureRadiotapBandEnum_ENUM6    CaptureRadiotapBandEnum = "6"
 )
 
 // CaptureRadiotapFormatEnum is a string enum.
@@ -369,8 +369,8 @@ const (
 type CaptureRadiotapFormatEnum string
 
 const (
-    CaptureRadiotapFormatEnum_PCAP   CaptureRadiotapFormatEnum = "pcap"
-    CaptureRadiotapFormatEnum_STREAM CaptureRadiotapFormatEnum = "stream"
+	CaptureRadiotapFormatEnum_PCAP   CaptureRadiotapFormatEnum = "pcap"
+	CaptureRadiotapFormatEnum_STREAM CaptureRadiotapFormatEnum = "stream"
 )
 
 // CaptureRadiotapTypeEnum is a string enum.
@@ -378,7 +378,7 @@ const (
 type CaptureRadiotapTypeEnum string
 
 const (
-    CaptureRadiotapTypeEnum_RADIOTAP CaptureRadiotapTypeEnum = "radiotap"
+	CaptureRadiotapTypeEnum_RADIOTAP CaptureRadiotapTypeEnum = "radiotap"
 )
 
 // CaptureRadiotapwiredBandEnum is a string enum.
@@ -386,10 +386,10 @@ const (
 type CaptureRadiotapwiredBandEnum string
 
 const (
-    CaptureRadiotapwiredBandEnum_ENUM24   CaptureRadiotapwiredBandEnum = "24"
-    CaptureRadiotapwiredBandEnum_ENUM2456 CaptureRadiotapwiredBandEnum = "24,5,6"
-    CaptureRadiotapwiredBandEnum_ENUM5    CaptureRadiotapwiredBandEnum = "5"
-    CaptureRadiotapwiredBandEnum_ENUM6    CaptureRadiotapwiredBandEnum = "6"
+	CaptureRadiotapwiredBandEnum_ENUM24   CaptureRadiotapwiredBandEnum = "24"
+	CaptureRadiotapwiredBandEnum_ENUM2456 CaptureRadiotapwiredBandEnum = "24,5,6"
+	CaptureRadiotapwiredBandEnum_ENUM5    CaptureRadiotapwiredBandEnum = "5"
+	CaptureRadiotapwiredBandEnum_ENUM6    CaptureRadiotapwiredBandEnum = "6"
 )
 
 // CaptureRadiotapwiredFormatEnum is a string enum.
@@ -397,8 +397,8 @@ const (
 type CaptureRadiotapwiredFormatEnum string
 
 const (
-    CaptureRadiotapwiredFormatEnum_PCAP   CaptureRadiotapwiredFormatEnum = "pcap"
-    CaptureRadiotapwiredFormatEnum_STREAM CaptureRadiotapwiredFormatEnum = "stream"
+	CaptureRadiotapwiredFormatEnum_PCAP   CaptureRadiotapwiredFormatEnum = "pcap"
+	CaptureRadiotapwiredFormatEnum_STREAM CaptureRadiotapwiredFormatEnum = "stream"
 )
 
 // CaptureRadiotapwiredTypeEnum is a string enum.
@@ -406,7 +406,7 @@ const (
 type CaptureRadiotapwiredTypeEnum string
 
 const (
-    CaptureRadiotapwiredTypeEnum_ENUMRADIOTAPWIRED CaptureRadiotapwiredTypeEnum = "radiotap,wired"
+	CaptureRadiotapwiredTypeEnum_ENUMRADIOTAPWIRED CaptureRadiotapwiredTypeEnum = "radiotap,wired"
 )
 
 // CaptureScanApsBandEnum is a string enum.
@@ -414,9 +414,9 @@ const (
 type CaptureScanApsBandEnum string
 
 const (
-    CaptureScanApsBandEnum_ENUM24 CaptureScanApsBandEnum = "24"
-    CaptureScanApsBandEnum_ENUM5  CaptureScanApsBandEnum = "5"
-    CaptureScanApsBandEnum_ENUM6  CaptureScanApsBandEnum = "6"
+	CaptureScanApsBandEnum_ENUM24 CaptureScanApsBandEnum = "24"
+	CaptureScanApsBandEnum_ENUM5  CaptureScanApsBandEnum = "5"
+	CaptureScanApsBandEnum_ENUM6  CaptureScanApsBandEnum = "6"
 )
 
 // CaptureScanBandEnum is a string enum.
@@ -424,9 +424,9 @@ const (
 type CaptureScanBandEnum string
 
 const (
-    CaptureScanBandEnum_ENUM24 CaptureScanBandEnum = "24"
-    CaptureScanBandEnum_ENUM5  CaptureScanBandEnum = "5"
-    CaptureScanBandEnum_ENUM6  CaptureScanBandEnum = "6"
+	CaptureScanBandEnum_ENUM24 CaptureScanBandEnum = "24"
+	CaptureScanBandEnum_ENUM5  CaptureScanBandEnum = "5"
+	CaptureScanBandEnum_ENUM6  CaptureScanBandEnum = "6"
 )
 
 // CaptureScanFormatEnum is a string enum.
@@ -434,8 +434,8 @@ const (
 type CaptureScanFormatEnum string
 
 const (
-    CaptureScanFormatEnum_PCAP   CaptureScanFormatEnum = "pcap"
-    CaptureScanFormatEnum_STREAM CaptureScanFormatEnum = "stream"
+	CaptureScanFormatEnum_PCAP   CaptureScanFormatEnum = "pcap"
+	CaptureScanFormatEnum_STREAM CaptureScanFormatEnum = "stream"
 )
 
 // CaptureScanTypeEnum is a string enum.
@@ -443,7 +443,7 @@ const (
 type CaptureScanTypeEnum string
 
 const (
-    CaptureScanTypeEnum_SCAN CaptureScanTypeEnum = "scan"
+	CaptureScanTypeEnum_SCAN CaptureScanTypeEnum = "scan"
 )
 
 // CaptureSwitchFormatEnum is a string enum.
@@ -451,7 +451,7 @@ const (
 type CaptureSwitchFormatEnum string
 
 const (
-    CaptureSwitchFormatEnum_STREAM CaptureSwitchFormatEnum = "stream"
+	CaptureSwitchFormatEnum_STREAM CaptureSwitchFormatEnum = "stream"
 )
 
 // CaptureSwitchTypeEnum is a string enum.
@@ -459,7 +459,7 @@ const (
 type CaptureSwitchTypeEnum string
 
 const (
-    CaptureSwitchTypeEnum_ENUMSWITCH CaptureSwitchTypeEnum = "switch"
+	CaptureSwitchTypeEnum_ENUMSWITCH CaptureSwitchTypeEnum = "switch"
 )
 
 // CaptureWiredFormatEnum is a string enum.
@@ -467,8 +467,8 @@ const (
 type CaptureWiredFormatEnum string
 
 const (
-    CaptureWiredFormatEnum_PCAP   CaptureWiredFormatEnum = "pcap"
-    CaptureWiredFormatEnum_STREAM CaptureWiredFormatEnum = "stream"
+	CaptureWiredFormatEnum_PCAP   CaptureWiredFormatEnum = "pcap"
+	CaptureWiredFormatEnum_STREAM CaptureWiredFormatEnum = "stream"
 )
 
 // CaptureWiredTypeEnum is a string enum.
@@ -476,7 +476,7 @@ const (
 type CaptureWiredTypeEnum string
 
 const (
-    CaptureWiredTypeEnum_WIRED CaptureWiredTypeEnum = "wired"
+	CaptureWiredTypeEnum_WIRED CaptureWiredTypeEnum = "wired"
 )
 
 // CaptureWirelessBandEnum is a string enum.
@@ -484,10 +484,10 @@ const (
 type CaptureWirelessBandEnum string
 
 const (
-    CaptureWirelessBandEnum_ENUM24   CaptureWirelessBandEnum = "24"
-    CaptureWirelessBandEnum_ENUM2456 CaptureWirelessBandEnum = "24,5,6"
-    CaptureWirelessBandEnum_ENUM5    CaptureWirelessBandEnum = "5"
-    CaptureWirelessBandEnum_ENUM6    CaptureWirelessBandEnum = "6"
+	CaptureWirelessBandEnum_ENUM24   CaptureWirelessBandEnum = "24"
+	CaptureWirelessBandEnum_ENUM2456 CaptureWirelessBandEnum = "24,5,6"
+	CaptureWirelessBandEnum_ENUM5    CaptureWirelessBandEnum = "5"
+	CaptureWirelessBandEnum_ENUM6    CaptureWirelessBandEnum = "6"
 )
 
 // CaptureWirelessFormatEnum is a string enum.
@@ -495,8 +495,8 @@ const (
 type CaptureWirelessFormatEnum string
 
 const (
-    CaptureWirelessFormatEnum_PCAP   CaptureWirelessFormatEnum = "pcap"
-    CaptureWirelessFormatEnum_STREAM CaptureWirelessFormatEnum = "stream"
+	CaptureWirelessFormatEnum_PCAP   CaptureWirelessFormatEnum = "pcap"
+	CaptureWirelessFormatEnum_STREAM CaptureWirelessFormatEnum = "stream"
 )
 
 // CaptureWirelessTypeEnum is a string enum.
@@ -504,7 +504,7 @@ const (
 type CaptureWirelessTypeEnum string
 
 const (
-    CaptureWirelessTypeEnum_WIRELESS CaptureWirelessTypeEnum = "wireless"
+	CaptureWirelessTypeEnum_WIRELESS CaptureWirelessTypeEnum = "wireless"
 )
 
 // ClaimTypeEnum is a string enum.
@@ -512,9 +512,9 @@ const (
 type ClaimTypeEnum string
 
 const (
-    ClaimTypeEnum_ALL       ClaimTypeEnum = "all"
-    ClaimTypeEnum_INVENTORY ClaimTypeEnum = "inventory"
-    ClaimTypeEnum_LICENSE   ClaimTypeEnum = "license"
+	ClaimTypeEnum_ALL       ClaimTypeEnum = "all"
+	ClaimTypeEnum_INVENTORY ClaimTypeEnum = "inventory"
+	ClaimTypeEnum_LICENSE   ClaimTypeEnum = "license"
 )
 
 // ConfigSwitchLocalAccountsUserRoleEnum is a string enum.
@@ -522,10 +522,10 @@ const (
 type ConfigSwitchLocalAccountsUserRoleEnum string
 
 const (
-    ConfigSwitchLocalAccountsUserRoleEnum_ADMIN    ConfigSwitchLocalAccountsUserRoleEnum = "admin"
-    ConfigSwitchLocalAccountsUserRoleEnum_HELPDESK ConfigSwitchLocalAccountsUserRoleEnum = "helpdesk"
-    ConfigSwitchLocalAccountsUserRoleEnum_NONE     ConfigSwitchLocalAccountsUserRoleEnum = "none"
-    ConfigSwitchLocalAccountsUserRoleEnum_READ     ConfigSwitchLocalAccountsUserRoleEnum = "read"
+	ConfigSwitchLocalAccountsUserRoleEnum_ADMIN    ConfigSwitchLocalAccountsUserRoleEnum = "admin"
+	ConfigSwitchLocalAccountsUserRoleEnum_HELPDESK ConfigSwitchLocalAccountsUserRoleEnum = "helpdesk"
+	ConfigSwitchLocalAccountsUserRoleEnum_NONE     ConfigSwitchLocalAccountsUserRoleEnum = "none"
+	ConfigSwitchLocalAccountsUserRoleEnum_READ     ConfigSwitchLocalAccountsUserRoleEnum = "read"
 )
 
 // ConstDeviceApExtiosDefaultDirEnum is a string enum.
@@ -533,8 +533,8 @@ const (
 type ConstDeviceApExtiosDefaultDirEnum string
 
 const (
-    ConstDeviceApExtiosDefaultDirEnum_IN  ConstDeviceApExtiosDefaultDirEnum = "IN"
-    ConstDeviceApExtiosDefaultDirEnum_OUT ConstDeviceApExtiosDefaultDirEnum = "OUT"
+	ConstDeviceApExtiosDefaultDirEnum_IN  ConstDeviceApExtiosDefaultDirEnum = "IN"
+	ConstDeviceApExtiosDefaultDirEnum_OUT ConstDeviceApExtiosDefaultDirEnum = "OUT"
 )
 
 // ConstDeviceTypeApEnum is a string enum.
@@ -542,7 +542,7 @@ const (
 type ConstDeviceTypeApEnum string
 
 const (
-    ConstDeviceTypeApEnum_AP ConstDeviceTypeApEnum = "ap"
+	ConstDeviceTypeApEnum_AP ConstDeviceTypeApEnum = "ap"
 )
 
 // ConstDeviceTypeGatewayEnum is a string enum.
@@ -550,7 +550,7 @@ const (
 type ConstDeviceTypeGatewayEnum string
 
 const (
-    ConstDeviceTypeGatewayEnum_GATEWAY ConstDeviceTypeGatewayEnum = "gateway"
+	ConstDeviceTypeGatewayEnum_GATEWAY ConstDeviceTypeGatewayEnum = "gateway"
 )
 
 // ConstDeviceTypeSwitchEnum is a string enum.
@@ -558,7 +558,7 @@ const (
 type ConstDeviceTypeSwitchEnum string
 
 const (
-    ConstDeviceTypeSwitchEnum_ENUMSWITCH ConstDeviceTypeSwitchEnum = "switch"
+	ConstDeviceTypeSwitchEnum_ENUMSWITCH ConstDeviceTypeSwitchEnum = "switch"
 )
 
 // ConstInsightMetricsPropertyScopeEnum is a string enum.
@@ -566,12 +566,12 @@ const (
 type ConstInsightMetricsPropertyScopeEnum string
 
 const (
-    ConstInsightMetricsPropertyScopeEnum_AP         ConstInsightMetricsPropertyScopeEnum = "ap"
-    ConstInsightMetricsPropertyScopeEnum_CLIENT     ConstInsightMetricsPropertyScopeEnum = "client"
-    ConstInsightMetricsPropertyScopeEnum_DEVICE     ConstInsightMetricsPropertyScopeEnum = "device"
-    ConstInsightMetricsPropertyScopeEnum_MXEDGE     ConstInsightMetricsPropertyScopeEnum = "mxedge"
-    ConstInsightMetricsPropertyScopeEnum_SITE       ConstInsightMetricsPropertyScopeEnum = "site"
-    ConstInsightMetricsPropertyScopeEnum_ENUMSWITCH ConstInsightMetricsPropertyScopeEnum = "switch"
+	ConstInsightMetricsPropertyScopeEnum_AP         ConstInsightMetricsPropertyScopeEnum = "ap"
+	ConstInsightMetricsPropertyScopeEnum_CLIENT     ConstInsightMetricsPropertyScopeEnum = "client"
+	ConstInsightMetricsPropertyScopeEnum_DEVICE     ConstInsightMetricsPropertyScopeEnum = "device"
+	ConstInsightMetricsPropertyScopeEnum_MXEDGE     ConstInsightMetricsPropertyScopeEnum = "mxedge"
+	ConstInsightMetricsPropertyScopeEnum_SITE       ConstInsightMetricsPropertyScopeEnum = "site"
+	ConstInsightMetricsPropertyScopeEnum_ENUMSWITCH ConstInsightMetricsPropertyScopeEnum = "switch"
 )
 
 // CountOrgDevicesMxtunnelStatusEnum is a string enum.
@@ -579,8 +579,8 @@ const (
 type CountOrgDevicesMxtunnelStatusEnum string
 
 const (
-    CountOrgDevicesMxtunnelStatusEnum_DOWN CountOrgDevicesMxtunnelStatusEnum = "down"
-    CountOrgDevicesMxtunnelStatusEnum_UP   CountOrgDevicesMxtunnelStatusEnum = "up"
+	CountOrgDevicesMxtunnelStatusEnum_DOWN CountOrgDevicesMxtunnelStatusEnum = "down"
+	CountOrgDevicesMxtunnelStatusEnum_UP   CountOrgDevicesMxtunnelStatusEnum = "up"
 )
 
 // CountPortsAuthStateEnum is a string enum.
@@ -588,10 +588,10 @@ const (
 type CountPortsAuthStateEnum string
 
 const (
-    CountPortsAuthStateEnum_AUTHENTICATED  CountPortsAuthStateEnum = "authenticated"
-    CountPortsAuthStateEnum_AUTHENTICATING CountPortsAuthStateEnum = "authenticating"
-    CountPortsAuthStateEnum_HELD           CountPortsAuthStateEnum = "held"
-    CountPortsAuthStateEnum_INIT           CountPortsAuthStateEnum = "init"
+	CountPortsAuthStateEnum_AUTHENTICATED  CountPortsAuthStateEnum = "authenticated"
+	CountPortsAuthStateEnum_AUTHENTICATING CountPortsAuthStateEnum = "authenticating"
+	CountPortsAuthStateEnum_HELD           CountPortsAuthStateEnum = "held"
+	CountPortsAuthStateEnum_INIT           CountPortsAuthStateEnum = "init"
 )
 
 // CountPortsStpRoleEnum is a string enum.
@@ -599,11 +599,11 @@ const (
 type CountPortsStpRoleEnum string
 
 const (
-    CountPortsStpRoleEnum_ALTERNATE     CountPortsStpRoleEnum = "alternate"
-    CountPortsStpRoleEnum_BACKUP        CountPortsStpRoleEnum = "backup"
-    CountPortsStpRoleEnum_DESIGNATED    CountPortsStpRoleEnum = "designated"
-    CountPortsStpRoleEnum_ROOT          CountPortsStpRoleEnum = "root"
-    CountPortsStpRoleEnum_ROOTPREVENTED CountPortsStpRoleEnum = "root-prevented"
+	CountPortsStpRoleEnum_ALTERNATE     CountPortsStpRoleEnum = "alternate"
+	CountPortsStpRoleEnum_BACKUP        CountPortsStpRoleEnum = "backup"
+	CountPortsStpRoleEnum_DESIGNATED    CountPortsStpRoleEnum = "designated"
+	CountPortsStpRoleEnum_ROOT          CountPortsStpRoleEnum = "root"
+	CountPortsStpRoleEnum_ROOTPREVENTED CountPortsStpRoleEnum = "root-prevented"
 )
 
 // CountPortsStpStateEnum is a string enum.
@@ -611,11 +611,11 @@ const (
 type CountPortsStpStateEnum string
 
 const (
-    CountPortsStpStateEnum_BLOCKING   CountPortsStpStateEnum = "blocking"
-    CountPortsStpStateEnum_DISABLED   CountPortsStpStateEnum = "disabled"
-    CountPortsStpStateEnum_FORWARDING CountPortsStpStateEnum = "forwarding"
-    CountPortsStpStateEnum_LEARNING   CountPortsStpStateEnum = "learning"
-    CountPortsStpStateEnum_LISTENING  CountPortsStpStateEnum = "listening"
+	CountPortsStpStateEnum_BLOCKING   CountPortsStpStateEnum = "blocking"
+	CountPortsStpStateEnum_DISABLED   CountPortsStpStateEnum = "disabled"
+	CountPortsStpStateEnum_FORWARDING CountPortsStpStateEnum = "forwarding"
+	CountPortsStpStateEnum_LEARNING   CountPortsStpStateEnum = "learning"
+	CountPortsStpStateEnum_LISTENING  CountPortsStpStateEnum = "listening"
 )
 
 // CountSiteCallsDistrinctEnum is a string enum.
@@ -623,7 +623,7 @@ const (
 type CountSiteCallsDistrinctEnum string
 
 const (
-    CountSiteCallsDistrinctEnum_MAC CountSiteCallsDistrinctEnum = "mac"
+	CountSiteCallsDistrinctEnum_MAC CountSiteCallsDistrinctEnum = "mac"
 )
 
 // DayOfWeekEnum is a string enum.
@@ -631,14 +631,14 @@ const (
 type DayOfWeekEnum string
 
 const (
-    DayOfWeekEnum_ANY DayOfWeekEnum = "any"
-    DayOfWeekEnum_FRI DayOfWeekEnum = "fri"
-    DayOfWeekEnum_MON DayOfWeekEnum = "mon"
-    DayOfWeekEnum_SAT DayOfWeekEnum = "sat"
-    DayOfWeekEnum_SUN DayOfWeekEnum = "sun"
-    DayOfWeekEnum_THU DayOfWeekEnum = "thu"
-    DayOfWeekEnum_TUE DayOfWeekEnum = "tue"
-    DayOfWeekEnum_WED DayOfWeekEnum = "wed"
+	DayOfWeekEnum_ANY DayOfWeekEnum = "any"
+	DayOfWeekEnum_FRI DayOfWeekEnum = "fri"
+	DayOfWeekEnum_MON DayOfWeekEnum = "mon"
+	DayOfWeekEnum_SAT DayOfWeekEnum = "sat"
+	DayOfWeekEnum_SUN DayOfWeekEnum = "sun"
+	DayOfWeekEnum_THU DayOfWeekEnum = "thu"
+	DayOfWeekEnum_TUE DayOfWeekEnum = "tue"
+	DayOfWeekEnum_WED DayOfWeekEnum = "wed"
 )
 
 // DeviceStatusEnum is a string enum.
@@ -646,9 +646,9 @@ const (
 type DeviceStatusEnum string
 
 const (
-    DeviceStatusEnum_ALL          DeviceStatusEnum = "all"
-    DeviceStatusEnum_CONNECTED    DeviceStatusEnum = "connected"
-    DeviceStatusEnum_DISCONNECTED DeviceStatusEnum = "disconnected"
+	DeviceStatusEnum_ALL          DeviceStatusEnum = "all"
+	DeviceStatusEnum_CONNECTED    DeviceStatusEnum = "connected"
+	DeviceStatusEnum_DISCONNECTED DeviceStatusEnum = "disconnected"
 )
 
 // DeviceTypeEnum is a string enum.
@@ -656,9 +656,9 @@ const (
 type DeviceTypeEnum string
 
 const (
-    DeviceTypeEnum_AP         DeviceTypeEnum = "ap"
-    DeviceTypeEnum_GATEWAY    DeviceTypeEnum = "gateway"
-    DeviceTypeEnum_ENUMSWITCH DeviceTypeEnum = "switch"
+	DeviceTypeEnum_AP         DeviceTypeEnum = "ap"
+	DeviceTypeEnum_GATEWAY    DeviceTypeEnum = "gateway"
+	DeviceTypeEnum_ENUMSWITCH DeviceTypeEnum = "switch"
 )
 
 // DeviceTypeApEnum is a string enum.
@@ -666,7 +666,7 @@ const (
 type DeviceTypeApEnum string
 
 const (
-    DeviceTypeApEnum_AP DeviceTypeApEnum = "ap"
+	DeviceTypeApEnum_AP DeviceTypeApEnum = "ap"
 )
 
 // DeviceTypeGatewayEnum is a string enum.
@@ -674,7 +674,7 @@ const (
 type DeviceTypeGatewayEnum string
 
 const (
-    DeviceTypeGatewayEnum_GATEWAY DeviceTypeGatewayEnum = "gateway"
+	DeviceTypeGatewayEnum_GATEWAY DeviceTypeGatewayEnum = "gateway"
 )
 
 // DeviceTypeSwitchEnum is a string enum.
@@ -682,7 +682,7 @@ const (
 type DeviceTypeSwitchEnum string
 
 const (
-    DeviceTypeSwitchEnum_ENUMSWITCH DeviceTypeSwitchEnum = "switch"
+	DeviceTypeSwitchEnum_ENUMSWITCH DeviceTypeSwitchEnum = "switch"
 )
 
 // DeviceTypeWithAllEnum is a string enum.
@@ -690,10 +690,10 @@ const (
 type DeviceTypeWithAllEnum string
 
 const (
-    DeviceTypeWithAllEnum_ALL        DeviceTypeWithAllEnum = "all"
-    DeviceTypeWithAllEnum_AP         DeviceTypeWithAllEnum = "ap"
-    DeviceTypeWithAllEnum_GATEWAY    DeviceTypeWithAllEnum = "gateway"
-    DeviceTypeWithAllEnum_ENUMSWITCH DeviceTypeWithAllEnum = "switch"
+	DeviceTypeWithAllEnum_ALL        DeviceTypeWithAllEnum = "all"
+	DeviceTypeWithAllEnum_AP         DeviceTypeWithAllEnum = "ap"
+	DeviceTypeWithAllEnum_GATEWAY    DeviceTypeWithAllEnum = "gateway"
+	DeviceTypeWithAllEnum_ENUMSWITCH DeviceTypeWithAllEnum = "switch"
 )
 
 // DeviceUpgradeRrmMeshUpgradeEnum is a string enum.
@@ -701,8 +701,8 @@ const (
 type DeviceUpgradeRrmMeshUpgradeEnum string
 
 const (
-    DeviceUpgradeRrmMeshUpgradeEnum_PARALLEL   DeviceUpgradeRrmMeshUpgradeEnum = "parallel"
-    DeviceUpgradeRrmMeshUpgradeEnum_SEQUENTIAL DeviceUpgradeRrmMeshUpgradeEnum = "sequential"
+	DeviceUpgradeRrmMeshUpgradeEnum_PARALLEL   DeviceUpgradeRrmMeshUpgradeEnum = "parallel"
+	DeviceUpgradeRrmMeshUpgradeEnum_SEQUENTIAL DeviceUpgradeRrmMeshUpgradeEnum = "sequential"
 )
 
 // DeviceUpgradeRrmNodeOrderEnum is a string enum.
@@ -710,8 +710,8 @@ const (
 type DeviceUpgradeRrmNodeOrderEnum string
 
 const (
-    DeviceUpgradeRrmNodeOrderEnum_CENTERTOFRINGE DeviceUpgradeRrmNodeOrderEnum = "center_to_fringe"
-    DeviceUpgradeRrmNodeOrderEnum_FRINGETOCENTER DeviceUpgradeRrmNodeOrderEnum = "fringe_to_center"
+	DeviceUpgradeRrmNodeOrderEnum_CENTERTOFRINGE DeviceUpgradeRrmNodeOrderEnum = "center_to_fringe"
+	DeviceUpgradeRrmNodeOrderEnum_FRINGETOCENTER DeviceUpgradeRrmNodeOrderEnum = "fringe_to_center"
 )
 
 // DeviceUpgradeStatusEnum is a string enum.
@@ -719,13 +719,13 @@ const (
 type DeviceUpgradeStatusEnum string
 
 const (
-    DeviceUpgradeStatusEnum_CANCELLED   DeviceUpgradeStatusEnum = "cancelled"
-    DeviceUpgradeStatusEnum_COMPLETED   DeviceUpgradeStatusEnum = "completed"
-    DeviceUpgradeStatusEnum_CREATED     DeviceUpgradeStatusEnum = "created"
-    DeviceUpgradeStatusEnum_DOWNLOADED  DeviceUpgradeStatusEnum = "downloaded"
-    DeviceUpgradeStatusEnum_DOWNLOADING DeviceUpgradeStatusEnum = "downloading"
-    DeviceUpgradeStatusEnum_FAILED      DeviceUpgradeStatusEnum = "failed"
-    DeviceUpgradeStatusEnum_UPGRADING   DeviceUpgradeStatusEnum = "upgrading"
+	DeviceUpgradeStatusEnum_CANCELLED   DeviceUpgradeStatusEnum = "cancelled"
+	DeviceUpgradeStatusEnum_COMPLETED   DeviceUpgradeStatusEnum = "completed"
+	DeviceUpgradeStatusEnum_CREATED     DeviceUpgradeStatusEnum = "created"
+	DeviceUpgradeStatusEnum_DOWNLOADED  DeviceUpgradeStatusEnum = "downloaded"
+	DeviceUpgradeStatusEnum_DOWNLOADING DeviceUpgradeStatusEnum = "downloading"
+	DeviceUpgradeStatusEnum_FAILED      DeviceUpgradeStatusEnum = "failed"
+	DeviceUpgradeStatusEnum_UPGRADING   DeviceUpgradeStatusEnum = "upgrading"
 )
 
 // DeviceUpgradeStrategyEnum is a string enum.
@@ -733,10 +733,10 @@ const (
 type DeviceUpgradeStrategyEnum string
 
 const (
-    DeviceUpgradeStrategyEnum_BIGBANG DeviceUpgradeStrategyEnum = "big_bang"
-    DeviceUpgradeStrategyEnum_CANARY  DeviceUpgradeStrategyEnum = "canary"
-    DeviceUpgradeStrategyEnum_RRM     DeviceUpgradeStrategyEnum = "rrm"
-    DeviceUpgradeStrategyEnum_SERIAL  DeviceUpgradeStrategyEnum = "serial"
+	DeviceUpgradeStrategyEnum_BIGBANG DeviceUpgradeStrategyEnum = "big_bang"
+	DeviceUpgradeStrategyEnum_CANARY  DeviceUpgradeStrategyEnum = "canary"
+	DeviceUpgradeStrategyEnum_RRM     DeviceUpgradeStrategyEnum = "rrm"
+	DeviceUpgradeStrategyEnum_SERIAL  DeviceUpgradeStrategyEnum = "serial"
 )
 
 // DhcpdConfigOptionTypeEnum is a string enum.
@@ -744,14 +744,14 @@ const (
 type DhcpdConfigOptionTypeEnum string
 
 const (
-    DhcpdConfigOptionTypeEnum_BOOLEAN    DhcpdConfigOptionTypeEnum = "boolean"
-    DhcpdConfigOptionTypeEnum_HEX        DhcpdConfigOptionTypeEnum = "hex"
-    DhcpdConfigOptionTypeEnum_ENUMINT16  DhcpdConfigOptionTypeEnum = "int16"
-    DhcpdConfigOptionTypeEnum_ENUMINT32  DhcpdConfigOptionTypeEnum = "int32"
-    DhcpdConfigOptionTypeEnum_IP         DhcpdConfigOptionTypeEnum = "ip"
-    DhcpdConfigOptionTypeEnum_ENUMSTRING DhcpdConfigOptionTypeEnum = "string"
-    DhcpdConfigOptionTypeEnum_ENUMUINT16 DhcpdConfigOptionTypeEnum = "uint16"
-    DhcpdConfigOptionTypeEnum_ENUMUINT32 DhcpdConfigOptionTypeEnum = "uint32"
+	DhcpdConfigOptionTypeEnum_BOOLEAN    DhcpdConfigOptionTypeEnum = "boolean"
+	DhcpdConfigOptionTypeEnum_HEX        DhcpdConfigOptionTypeEnum = "hex"
+	DhcpdConfigOptionTypeEnum_ENUMINT16  DhcpdConfigOptionTypeEnum = "int16"
+	DhcpdConfigOptionTypeEnum_ENUMINT32  DhcpdConfigOptionTypeEnum = "int32"
+	DhcpdConfigOptionTypeEnum_IP         DhcpdConfigOptionTypeEnum = "ip"
+	DhcpdConfigOptionTypeEnum_ENUMSTRING DhcpdConfigOptionTypeEnum = "string"
+	DhcpdConfigOptionTypeEnum_ENUMUINT16 DhcpdConfigOptionTypeEnum = "uint16"
+	DhcpdConfigOptionTypeEnum_ENUMUINT32 DhcpdConfigOptionTypeEnum = "uint32"
 )
 
 // DhcpdConfigTypeEnum is a string enum.
@@ -759,9 +759,9 @@ const (
 type DhcpdConfigTypeEnum string
 
 const (
-    DhcpdConfigTypeEnum_LOCAL DhcpdConfigTypeEnum = "local"
-    DhcpdConfigTypeEnum_NONE  DhcpdConfigTypeEnum = "none"
-    DhcpdConfigTypeEnum_RELAY DhcpdConfigTypeEnum = "relay"
+	DhcpdConfigTypeEnum_LOCAL DhcpdConfigTypeEnum = "local"
+	DhcpdConfigTypeEnum_NONE  DhcpdConfigTypeEnum = "none"
+	DhcpdConfigTypeEnum_RELAY DhcpdConfigTypeEnum = "relay"
 )
 
 // DhcpdConfigVendorOptionTypeEnum is a string enum.
@@ -769,14 +769,14 @@ const (
 type DhcpdConfigVendorOptionTypeEnum string
 
 const (
-    DhcpdConfigVendorOptionTypeEnum_BOOLEAN    DhcpdConfigVendorOptionTypeEnum = "boolean"
-    DhcpdConfigVendorOptionTypeEnum_HEX        DhcpdConfigVendorOptionTypeEnum = "hex"
-    DhcpdConfigVendorOptionTypeEnum_ENUMINT16  DhcpdConfigVendorOptionTypeEnum = "int16"
-    DhcpdConfigVendorOptionTypeEnum_ENUMINT32  DhcpdConfigVendorOptionTypeEnum = "int32"
-    DhcpdConfigVendorOptionTypeEnum_IP         DhcpdConfigVendorOptionTypeEnum = "ip"
-    DhcpdConfigVendorOptionTypeEnum_ENUMSTRING DhcpdConfigVendorOptionTypeEnum = "string"
-    DhcpdConfigVendorOptionTypeEnum_ENUMUINT16 DhcpdConfigVendorOptionTypeEnum = "uint16"
-    DhcpdConfigVendorOptionTypeEnum_ENUMUINT32 DhcpdConfigVendorOptionTypeEnum = "uint32"
+	DhcpdConfigVendorOptionTypeEnum_BOOLEAN    DhcpdConfigVendorOptionTypeEnum = "boolean"
+	DhcpdConfigVendorOptionTypeEnum_HEX        DhcpdConfigVendorOptionTypeEnum = "hex"
+	DhcpdConfigVendorOptionTypeEnum_ENUMINT16  DhcpdConfigVendorOptionTypeEnum = "int16"
+	DhcpdConfigVendorOptionTypeEnum_ENUMINT32  DhcpdConfigVendorOptionTypeEnum = "int32"
+	DhcpdConfigVendorOptionTypeEnum_IP         DhcpdConfigVendorOptionTypeEnum = "ip"
+	DhcpdConfigVendorOptionTypeEnum_ENUMSTRING DhcpdConfigVendorOptionTypeEnum = "string"
+	DhcpdConfigVendorOptionTypeEnum_ENUMUINT16 DhcpdConfigVendorOptionTypeEnum = "uint16"
+	DhcpdConfigVendorOptionTypeEnum_ENUMUINT32 DhcpdConfigVendorOptionTypeEnum = "uint32"
 )
 
 // DiscoveredSwitchMetricTypeEnum is a string enum.
@@ -784,10 +784,10 @@ const (
 type DiscoveredSwitchMetricTypeEnum string
 
 const (
-    DiscoveredSwitchMetricTypeEnum_INACTIVEWIREDVLANS DiscoveredSwitchMetricTypeEnum = "inactive_wired_vlans"
-    DiscoveredSwitchMetricTypeEnum_POECOMPLIANCE      DiscoveredSwitchMetricTypeEnum = "poe_compliance"
-    DiscoveredSwitchMetricTypeEnum_SWITCHAPAFFINITY   DiscoveredSwitchMetricTypeEnum = "switch_ap_affinity"
-    DiscoveredSwitchMetricTypeEnum_VERSIONCOMPLIANCE  DiscoveredSwitchMetricTypeEnum = "version_compliance"
+	DiscoveredSwitchMetricTypeEnum_INACTIVEWIREDVLANS DiscoveredSwitchMetricTypeEnum = "inactive_wired_vlans"
+	DiscoveredSwitchMetricTypeEnum_POECOMPLIANCE      DiscoveredSwitchMetricTypeEnum = "poe_compliance"
+	DiscoveredSwitchMetricTypeEnum_SWITCHAPAFFINITY   DiscoveredSwitchMetricTypeEnum = "switch_ap_affinity"
+	DiscoveredSwitchMetricTypeEnum_VERSIONCOMPLIANCE  DiscoveredSwitchMetricTypeEnum = "version_compliance"
 )
 
 // DiscoveredSwitchesMetricScopeEnum is a string enum.
@@ -795,8 +795,8 @@ const (
 type DiscoveredSwitchesMetricScopeEnum string
 
 const (
-    DiscoveredSwitchesMetricScopeEnum_SITE       DiscoveredSwitchesMetricScopeEnum = "site"
-    DiscoveredSwitchesMetricScopeEnum_ENUMSWITCH DiscoveredSwitchesMetricScopeEnum = "switch"
+	DiscoveredSwitchesMetricScopeEnum_SITE       DiscoveredSwitchesMetricScopeEnum = "site"
+	DiscoveredSwitchesMetricScopeEnum_ENUMSWITCH DiscoveredSwitchesMetricScopeEnum = "switch"
 )
 
 // Dot11BandEnum is a string enum.
@@ -804,9 +804,9 @@ const (
 type Dot11BandEnum string
 
 const (
-    Dot11BandEnum_ENUM24 Dot11BandEnum = "24"
-    Dot11BandEnum_ENUM5  Dot11BandEnum = "5"
-    Dot11BandEnum_ENUM6  Dot11BandEnum = "6"
+	Dot11BandEnum_ENUM24 Dot11BandEnum = "24"
+	Dot11BandEnum_ENUM5  Dot11BandEnum = "5"
+	Dot11BandEnum_ENUM6  Dot11BandEnum = "6"
 )
 
 // Dot11BandwidthEnum is a int enum.
@@ -814,10 +814,10 @@ const (
 type Dot11BandwidthEnum int
 
 const (
-    Dot11BandwidthEnum_ENUM20  Dot11BandwidthEnum = 20
-    Dot11BandwidthEnum_ENUM40  Dot11BandwidthEnum = 40
-    Dot11BandwidthEnum_ENUM80  Dot11BandwidthEnum = 80
-    Dot11BandwidthEnum_ENUM160 Dot11BandwidthEnum = 160
+	Dot11BandwidthEnum_ENUM20  Dot11BandwidthEnum = 20
+	Dot11BandwidthEnum_ENUM40  Dot11BandwidthEnum = 40
+	Dot11BandwidthEnum_ENUM80  Dot11BandwidthEnum = 80
+	Dot11BandwidthEnum_ENUM160 Dot11BandwidthEnum = 160
 )
 
 // Dot11Bandwidth24Enum is a int enum.
@@ -825,8 +825,8 @@ const (
 type Dot11Bandwidth24Enum int
 
 const (
-    Dot11Bandwidth24Enum_ENUM20 Dot11Bandwidth24Enum = 20
-    Dot11Bandwidth24Enum_ENUM40 Dot11Bandwidth24Enum = 40
+	Dot11Bandwidth24Enum_ENUM20 Dot11Bandwidth24Enum = 20
+	Dot11Bandwidth24Enum_ENUM40 Dot11Bandwidth24Enum = 40
 )
 
 // Dot11Bandwidth5Enum is a int enum.
@@ -834,9 +834,9 @@ const (
 type Dot11Bandwidth5Enum int
 
 const (
-    Dot11Bandwidth5Enum_ENUM20 Dot11Bandwidth5Enum = 20
-    Dot11Bandwidth5Enum_ENUM40 Dot11Bandwidth5Enum = 40
-    Dot11Bandwidth5Enum_ENUM80 Dot11Bandwidth5Enum = 80
+	Dot11Bandwidth5Enum_ENUM20 Dot11Bandwidth5Enum = 20
+	Dot11Bandwidth5Enum_ENUM40 Dot11Bandwidth5Enum = 40
+	Dot11Bandwidth5Enum_ENUM80 Dot11Bandwidth5Enum = 80
 )
 
 // Dot11Bandwidth6Enum is a int enum.
@@ -844,10 +844,10 @@ const (
 type Dot11Bandwidth6Enum int
 
 const (
-    Dot11Bandwidth6Enum_ENUM20  Dot11Bandwidth6Enum = 20
-    Dot11Bandwidth6Enum_ENUM40  Dot11Bandwidth6Enum = 40
-    Dot11Bandwidth6Enum_ENUM80  Dot11Bandwidth6Enum = 80
-    Dot11Bandwidth6Enum_ENUM160 Dot11Bandwidth6Enum = 160
+	Dot11Bandwidth6Enum_ENUM20  Dot11Bandwidth6Enum = 20
+	Dot11Bandwidth6Enum_ENUM40  Dot11Bandwidth6Enum = 40
+	Dot11Bandwidth6Enum_ENUM80  Dot11Bandwidth6Enum = 80
+	Dot11Bandwidth6Enum_ENUM160 Dot11Bandwidth6Enum = 160
 )
 
 // Dot11ProtoEnum is a string enum.
@@ -855,12 +855,12 @@ const (
 type Dot11ProtoEnum string
 
 const (
-    Dot11ProtoEnum_A  Dot11ProtoEnum = "a"
-    Dot11ProtoEnum_AC Dot11ProtoEnum = "ac"
-    Dot11ProtoEnum_AX Dot11ProtoEnum = "ax"
-    Dot11ProtoEnum_B  Dot11ProtoEnum = "b"
-    Dot11ProtoEnum_G  Dot11ProtoEnum = "g"
-    Dot11ProtoEnum_N  Dot11ProtoEnum = "n"
+	Dot11ProtoEnum_A  Dot11ProtoEnum = "a"
+	Dot11ProtoEnum_AC Dot11ProtoEnum = "ac"
+	Dot11ProtoEnum_AX Dot11ProtoEnum = "ax"
+	Dot11ProtoEnum_B  Dot11ProtoEnum = "b"
+	Dot11ProtoEnum_G  Dot11ProtoEnum = "g"
+	Dot11ProtoEnum_N  Dot11ProtoEnum = "n"
 )
 
 // DynamicPskSourceEnum is a string enum.
@@ -868,8 +868,8 @@ const (
 type DynamicPskSourceEnum string
 
 const (
-    DynamicPskSourceEnum_CLOUDPSKS DynamicPskSourceEnum = "cloud_psks"
-    DynamicPskSourceEnum_RADIUS    DynamicPskSourceEnum = "radius"
+	DynamicPskSourceEnum_CLOUDPSKS DynamicPskSourceEnum = "cloud_psks"
+	DynamicPskSourceEnum_RADIUS    DynamicPskSourceEnum = "radius"
 )
 
 // EventFastroamTypeEnum is a string enum.
@@ -877,12 +877,12 @@ const (
 type EventFastroamTypeEnum string
 
 const (
-    EventFastroamTypeEnum_FAIL     EventFastroamTypeEnum = "fail"
-    EventFastroamTypeEnum_NONE     EventFastroamTypeEnum = "none"
-    EventFastroamTypeEnum_PINGPONG EventFastroamTypeEnum = "pingpong"
-    EventFastroamTypeEnum_POOR     EventFastroamTypeEnum = "poor"
-    EventFastroamTypeEnum_SLOW     EventFastroamTypeEnum = "slow"
-    EventFastroamTypeEnum_SUCCESS  EventFastroamTypeEnum = "success"
+	EventFastroamTypeEnum_FAIL     EventFastroamTypeEnum = "fail"
+	EventFastroamTypeEnum_NONE     EventFastroamTypeEnum = "none"
+	EventFastroamTypeEnum_PINGPONG EventFastroamTypeEnum = "pingpong"
+	EventFastroamTypeEnum_POOR     EventFastroamTypeEnum = "poor"
+	EventFastroamTypeEnum_SLOW     EventFastroamTypeEnum = "slow"
+	EventFastroamTypeEnum_SUCCESS  EventFastroamTypeEnum = "success"
 )
 
 // EvpnConfigRoleEnum is a string enum.
@@ -890,9 +890,9 @@ const (
 type EvpnConfigRoleEnum string
 
 const (
-    EvpnConfigRoleEnum_ACCESS       EvpnConfigRoleEnum = "access"
-    EvpnConfigRoleEnum_CORE         EvpnConfigRoleEnum = "core"
-    EvpnConfigRoleEnum_DISTRIBUTION EvpnConfigRoleEnum = "distribution"
+	EvpnConfigRoleEnum_ACCESS       EvpnConfigRoleEnum = "access"
+	EvpnConfigRoleEnum_CORE         EvpnConfigRoleEnum = "core"
+	EvpnConfigRoleEnum_DISTRIBUTION EvpnConfigRoleEnum = "distribution"
 )
 
 // EvpnOptionsRoutedAtEnum is a string enum.
@@ -900,9 +900,9 @@ const (
 type EvpnOptionsRoutedAtEnum string
 
 const (
-    EvpnOptionsRoutedAtEnum_CORE         EvpnOptionsRoutedAtEnum = "core"
-    EvpnOptionsRoutedAtEnum_DISTRIBUTION EvpnOptionsRoutedAtEnum = "distribution"
-    EvpnOptionsRoutedAtEnum_EDGE         EvpnOptionsRoutedAtEnum = "edge"
+	EvpnOptionsRoutedAtEnum_CORE         EvpnOptionsRoutedAtEnum = "core"
+	EvpnOptionsRoutedAtEnum_DISTRIBUTION EvpnOptionsRoutedAtEnum = "distribution"
+	EvpnOptionsRoutedAtEnum_EDGE         EvpnOptionsRoutedAtEnum = "edge"
 )
 
 // EvpnTopologySwitchRoleEnum is a string enum.
@@ -910,12 +910,12 @@ const (
 type EvpnTopologySwitchRoleEnum string
 
 const (
-    EvpnTopologySwitchRoleEnum_ACCESS        EvpnTopologySwitchRoleEnum = "access"
-    EvpnTopologySwitchRoleEnum_COLLAPSEDCORE EvpnTopologySwitchRoleEnum = "collapsed-core"
-    EvpnTopologySwitchRoleEnum_CORE          EvpnTopologySwitchRoleEnum = "core"
-    EvpnTopologySwitchRoleEnum_DISTRIBUTION  EvpnTopologySwitchRoleEnum = "distribution"
-    EvpnTopologySwitchRoleEnum_ESILAGACCESS  EvpnTopologySwitchRoleEnum = "esilag-access"
-    EvpnTopologySwitchRoleEnum_NONE          EvpnTopologySwitchRoleEnum = "none"
+	EvpnTopologySwitchRoleEnum_ACCESS        EvpnTopologySwitchRoleEnum = "access"
+	EvpnTopologySwitchRoleEnum_COLLAPSEDCORE EvpnTopologySwitchRoleEnum = "collapsed-core"
+	EvpnTopologySwitchRoleEnum_CORE          EvpnTopologySwitchRoleEnum = "core"
+	EvpnTopologySwitchRoleEnum_DISTRIBUTION  EvpnTopologySwitchRoleEnum = "distribution"
+	EvpnTopologySwitchRoleEnum_ESILAGACCESS  EvpnTopologySwitchRoleEnum = "esilag-access"
+	EvpnTopologySwitchRoleEnum_NONE          EvpnTopologySwitchRoleEnum = "none"
 )
 
 // FastRoamResultEnum is a string enum.
@@ -923,9 +923,9 @@ const (
 type FastRoamResultEnum string
 
 const (
-    FastRoamResultEnum_FAIL    FastRoamResultEnum = "fail"
-    FastRoamResultEnum_NONE    FastRoamResultEnum = "none"
-    FastRoamResultEnum_SUCCESS FastRoamResultEnum = "success"
+	FastRoamResultEnum_FAIL    FastRoamResultEnum = "fail"
+	FastRoamResultEnum_NONE    FastRoamResultEnum = "none"
+	FastRoamResultEnum_SUCCESS FastRoamResultEnum = "success"
 )
 
 // GatewayPathStrategyEnum is a string enum.
@@ -933,9 +933,9 @@ const (
 type GatewayPathStrategyEnum string
 
 const (
-    GatewayPathStrategyEnum_ECMP     GatewayPathStrategyEnum = "ecmp"
-    GatewayPathStrategyEnum_ORDERED  GatewayPathStrategyEnum = "ordered"
-    GatewayPathStrategyEnum_WEIGHTED GatewayPathStrategyEnum = "weighted"
+	GatewayPathStrategyEnum_ECMP     GatewayPathStrategyEnum = "ecmp"
+	GatewayPathStrategyEnum_ORDERED  GatewayPathStrategyEnum = "ordered"
+	GatewayPathStrategyEnum_WEIGHTED GatewayPathStrategyEnum = "weighted"
 )
 
 // GatewayPathTypeEnum is a string enum.
@@ -943,10 +943,10 @@ const (
 type GatewayPathTypeEnum string
 
 const (
-    GatewayPathTypeEnum_LOCAL  GatewayPathTypeEnum = "local"
-    GatewayPathTypeEnum_TUNNEL GatewayPathTypeEnum = "tunnel"
-    GatewayPathTypeEnum_VPN    GatewayPathTypeEnum = "vpn"
-    GatewayPathTypeEnum_WAN    GatewayPathTypeEnum = "wan"
+	GatewayPathTypeEnum_LOCAL  GatewayPathTypeEnum = "local"
+	GatewayPathTypeEnum_TUNNEL GatewayPathTypeEnum = "tunnel"
+	GatewayPathTypeEnum_VPN    GatewayPathTypeEnum = "vpn"
+	GatewayPathTypeEnum_WAN    GatewayPathTypeEnum = "wan"
 )
 
 // GatewayPortDslTypeEnum is a string enum.
@@ -954,8 +954,8 @@ const (
 type GatewayPortDslTypeEnum string
 
 const (
-    GatewayPortDslTypeEnum_ADSL GatewayPortDslTypeEnum = "adsl"
-    GatewayPortDslTypeEnum_VDSL GatewayPortDslTypeEnum = "vdsl"
+	GatewayPortDslTypeEnum_ADSL GatewayPortDslTypeEnum = "adsl"
+	GatewayPortDslTypeEnum_VDSL GatewayPortDslTypeEnum = "vdsl"
 )
 
 // GatewayPortDuplexEnum is a string enum.
@@ -963,9 +963,9 @@ const (
 type GatewayPortDuplexEnum string
 
 const (
-    GatewayPortDuplexEnum_AUTO GatewayPortDuplexEnum = "auto"
-    GatewayPortDuplexEnum_FULL GatewayPortDuplexEnum = "full"
-    GatewayPortDuplexEnum_HALF GatewayPortDuplexEnum = "half"
+	GatewayPortDuplexEnum_AUTO GatewayPortDuplexEnum = "auto"
+	GatewayPortDuplexEnum_FULL GatewayPortDuplexEnum = "full"
+	GatewayPortDuplexEnum_HALF GatewayPortDuplexEnum = "half"
 )
 
 // GatewayPortLteAuthEnum is a string enum.
@@ -973,9 +973,9 @@ const (
 type GatewayPortLteAuthEnum string
 
 const (
-    GatewayPortLteAuthEnum_CHAP GatewayPortLteAuthEnum = "chap"
-    GatewayPortLteAuthEnum_NONE GatewayPortLteAuthEnum = "none"
-    GatewayPortLteAuthEnum_PAP  GatewayPortLteAuthEnum = "pap"
+	GatewayPortLteAuthEnum_CHAP GatewayPortLteAuthEnum = "chap"
+	GatewayPortLteAuthEnum_NONE GatewayPortLteAuthEnum = "none"
+	GatewayPortLteAuthEnum_PAP  GatewayPortLteAuthEnum = "pap"
 )
 
 // GatewayPortUsageEnum is a string enum.
@@ -983,10 +983,10 @@ const (
 type GatewayPortUsageEnum string
 
 const (
-    GatewayPortUsageEnum_HACONTROL GatewayPortUsageEnum = "ha_control"
-    GatewayPortUsageEnum_HADATA    GatewayPortUsageEnum = "ha_data"
-    GatewayPortUsageEnum_LAN       GatewayPortUsageEnum = "lan"
-    GatewayPortUsageEnum_WAN       GatewayPortUsageEnum = "wan"
+	GatewayPortUsageEnum_HACONTROL GatewayPortUsageEnum = "ha_control"
+	GatewayPortUsageEnum_HADATA    GatewayPortUsageEnum = "ha_data"
+	GatewayPortUsageEnum_LAN       GatewayPortUsageEnum = "lan"
+	GatewayPortUsageEnum_WAN       GatewayPortUsageEnum = "wan"
 )
 
 // GatewayPortVpnPathBfdProfileEnum is a string enum.
@@ -994,8 +994,8 @@ const (
 type GatewayPortVpnPathBfdProfileEnum string
 
 const (
-    GatewayPortVpnPathBfdProfileEnum_BROADBAND GatewayPortVpnPathBfdProfileEnum = "broadband"
-    GatewayPortVpnPathBfdProfileEnum_LTE       GatewayPortVpnPathBfdProfileEnum = "lte"
+	GatewayPortVpnPathBfdProfileEnum_BROADBAND GatewayPortVpnPathBfdProfileEnum = "broadband"
+	GatewayPortVpnPathBfdProfileEnum_LTE       GatewayPortVpnPathBfdProfileEnum = "lte"
 )
 
 // GatewayPortVpnPathRoleEnum is a string enum.
@@ -1003,8 +1003,8 @@ const (
 type GatewayPortVpnPathRoleEnum string
 
 const (
-    GatewayPortVpnPathRoleEnum_HUB   GatewayPortVpnPathRoleEnum = "hub"
-    GatewayPortVpnPathRoleEnum_SPOKE GatewayPortVpnPathRoleEnum = "spoke"
+	GatewayPortVpnPathRoleEnum_HUB   GatewayPortVpnPathRoleEnum = "hub"
+	GatewayPortVpnPathRoleEnum_SPOKE GatewayPortVpnPathRoleEnum = "spoke"
 )
 
 // GatewayPortWanArpPolicerEnum is a string enum.
@@ -1012,9 +1012,9 @@ const (
 type GatewayPortWanArpPolicerEnum string
 
 const (
-    GatewayPortWanArpPolicerEnum_ENUMDEFAULT GatewayPortWanArpPolicerEnum = "default"
-    GatewayPortWanArpPolicerEnum_MAX         GatewayPortWanArpPolicerEnum = "max"
-    GatewayPortWanArpPolicerEnum_RECOMMENDED GatewayPortWanArpPolicerEnum = "recommended"
+	GatewayPortWanArpPolicerEnum_ENUMDEFAULT GatewayPortWanArpPolicerEnum = "default"
+	GatewayPortWanArpPolicerEnum_MAX         GatewayPortWanArpPolicerEnum = "max"
+	GatewayPortWanArpPolicerEnum_RECOMMENDED GatewayPortWanArpPolicerEnum = "recommended"
 )
 
 // GatewayPortWanTypeEnum is a string enum.
@@ -1022,9 +1022,9 @@ const (
 type GatewayPortWanTypeEnum string
 
 const (
-    GatewayPortWanTypeEnum_BROADBAND GatewayPortWanTypeEnum = "broadband"
-    GatewayPortWanTypeEnum_DSL       GatewayPortWanTypeEnum = "dsl"
-    GatewayPortWanTypeEnum_LTE       GatewayPortWanTypeEnum = "lte"
+	GatewayPortWanTypeEnum_BROADBAND GatewayPortWanTypeEnum = "broadband"
+	GatewayPortWanTypeEnum_DSL       GatewayPortWanTypeEnum = "dsl"
+	GatewayPortWanTypeEnum_LTE       GatewayPortWanTypeEnum = "lte"
 )
 
 // GatewayTemplateProbeTypeEnum is a string enum.
@@ -1032,8 +1032,8 @@ const (
 type GatewayTemplateProbeTypeEnum string
 
 const (
-    GatewayTemplateProbeTypeEnum_HTTP GatewayTemplateProbeTypeEnum = "http"
-    GatewayTemplateProbeTypeEnum_ICMP GatewayTemplateProbeTypeEnum = "icmp"
+	GatewayTemplateProbeTypeEnum_HTTP GatewayTemplateProbeTypeEnum = "http"
+	GatewayTemplateProbeTypeEnum_ICMP GatewayTemplateProbeTypeEnum = "icmp"
 )
 
 // GatewayTemplateTunnelIkeDhGroupEnum is a string enum.
@@ -1051,16 +1051,16 @@ const (
 type GatewayTemplateTunnelIkeDhGroupEnum string
 
 const (
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM1  GatewayTemplateTunnelIkeDhGroupEnum = "1"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM14 GatewayTemplateTunnelIkeDhGroupEnum = "14"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM15 GatewayTemplateTunnelIkeDhGroupEnum = "15"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM16 GatewayTemplateTunnelIkeDhGroupEnum = "16"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM19 GatewayTemplateTunnelIkeDhGroupEnum = "19"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM2  GatewayTemplateTunnelIkeDhGroupEnum = "2"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM20 GatewayTemplateTunnelIkeDhGroupEnum = "20"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM21 GatewayTemplateTunnelIkeDhGroupEnum = "21"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM24 GatewayTemplateTunnelIkeDhGroupEnum = "24"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM5  GatewayTemplateTunnelIkeDhGroupEnum = "5"
+	GatewayTemplateTunnelIkeDhGroupEnum_ENUM1  GatewayTemplateTunnelIkeDhGroupEnum = "1"
+	GatewayTemplateTunnelIkeDhGroupEnum_ENUM14 GatewayTemplateTunnelIkeDhGroupEnum = "14"
+	GatewayTemplateTunnelIkeDhGroupEnum_ENUM15 GatewayTemplateTunnelIkeDhGroupEnum = "15"
+	GatewayTemplateTunnelIkeDhGroupEnum_ENUM16 GatewayTemplateTunnelIkeDhGroupEnum = "16"
+	GatewayTemplateTunnelIkeDhGroupEnum_ENUM19 GatewayTemplateTunnelIkeDhGroupEnum = "19"
+	GatewayTemplateTunnelIkeDhGroupEnum_ENUM2  GatewayTemplateTunnelIkeDhGroupEnum = "2"
+	GatewayTemplateTunnelIkeDhGroupEnum_ENUM20 GatewayTemplateTunnelIkeDhGroupEnum = "20"
+	GatewayTemplateTunnelIkeDhGroupEnum_ENUM21 GatewayTemplateTunnelIkeDhGroupEnum = "21"
+	GatewayTemplateTunnelIkeDhGroupEnum_ENUM24 GatewayTemplateTunnelIkeDhGroupEnum = "24"
+	GatewayTemplateTunnelIkeDhGroupEnum_ENUM5  GatewayTemplateTunnelIkeDhGroupEnum = "5"
 )
 
 // GatewayTemplateTunnelIkeModeEnum is a string enum.
@@ -1068,8 +1068,8 @@ const (
 type GatewayTemplateTunnelIkeModeEnum string
 
 const (
-    GatewayTemplateTunnelIkeModeEnum_AGGRESSIVE GatewayTemplateTunnelIkeModeEnum = "aggressive"
-    GatewayTemplateTunnelIkeModeEnum_MAIN       GatewayTemplateTunnelIkeModeEnum = "main"
+	GatewayTemplateTunnelIkeModeEnum_AGGRESSIVE GatewayTemplateTunnelIkeModeEnum = "aggressive"
+	GatewayTemplateTunnelIkeModeEnum_MAIN       GatewayTemplateTunnelIkeModeEnum = "main"
 )
 
 // GatewayTemplateTunnelModeEnum is a string enum.
@@ -1077,8 +1077,8 @@ const (
 type GatewayTemplateTunnelModeEnum string
 
 const (
-    GatewayTemplateTunnelModeEnum_ACTIVEACTIVE  GatewayTemplateTunnelModeEnum = "active-active"
-    GatewayTemplateTunnelModeEnum_ACTIVESTANDBY GatewayTemplateTunnelModeEnum = "active-standby"
+	GatewayTemplateTunnelModeEnum_ACTIVEACTIVE  GatewayTemplateTunnelModeEnum = "active-active"
+	GatewayTemplateTunnelModeEnum_ACTIVESTANDBY GatewayTemplateTunnelModeEnum = "active-standby"
 )
 
 // GatewayTemplateTunnelProtocolEnum is a string enum.
@@ -1086,8 +1086,8 @@ const (
 type GatewayTemplateTunnelProtocolEnum string
 
 const (
-    GatewayTemplateTunnelProtocolEnum_GRE   GatewayTemplateTunnelProtocolEnum = "gre"
-    GatewayTemplateTunnelProtocolEnum_IPSEC GatewayTemplateTunnelProtocolEnum = "ipsec"
+	GatewayTemplateTunnelProtocolEnum_GRE   GatewayTemplateTunnelProtocolEnum = "gre"
+	GatewayTemplateTunnelProtocolEnum_IPSEC GatewayTemplateTunnelProtocolEnum = "ipsec"
 )
 
 // GatewayTemplateTunnelVersionEnum is a string enum.
@@ -1095,8 +1095,8 @@ const (
 type GatewayTemplateTunnelVersionEnum string
 
 const (
-    GatewayTemplateTunnelVersionEnum_ENUM1 GatewayTemplateTunnelVersionEnum = "1"
-    GatewayTemplateTunnelVersionEnum_ENUM2 GatewayTemplateTunnelVersionEnum = "2"
+	GatewayTemplateTunnelVersionEnum_ENUM1 GatewayTemplateTunnelVersionEnum = "1"
+	GatewayTemplateTunnelVersionEnum_ENUM2 GatewayTemplateTunnelVersionEnum = "2"
 )
 
 // GatewayTemplateTypeEnum is a string enum.
@@ -1104,8 +1104,8 @@ const (
 type GatewayTemplateTypeEnum string
 
 const (
-    GatewayTemplateTypeEnum_SPOKE      GatewayTemplateTypeEnum = "spoke"
-    GatewayTemplateTypeEnum_STANDALONE GatewayTemplateTypeEnum = "standalone"
+	GatewayTemplateTypeEnum_SPOKE      GatewayTemplateTypeEnum = "spoke"
+	GatewayTemplateTypeEnum_STANDALONE GatewayTemplateTypeEnum = "standalone"
 )
 
 // GatewayWanPpoeAuthEnum is a string enum.
@@ -1113,9 +1113,9 @@ const (
 type GatewayWanPpoeAuthEnum string
 
 const (
-    GatewayWanPpoeAuthEnum_CHAP GatewayWanPpoeAuthEnum = "chap"
-    GatewayWanPpoeAuthEnum_NONE GatewayWanPpoeAuthEnum = "none"
-    GatewayWanPpoeAuthEnum_PAP  GatewayWanPpoeAuthEnum = "pap"
+	GatewayWanPpoeAuthEnum_CHAP GatewayWanPpoeAuthEnum = "chap"
+	GatewayWanPpoeAuthEnum_NONE GatewayWanPpoeAuthEnum = "none"
+	GatewayWanPpoeAuthEnum_PAP  GatewayWanPpoeAuthEnum = "pap"
 )
 
 // GatewayWanTypeEnum is a string enum.
@@ -1123,9 +1123,9 @@ const (
 type GatewayWanTypeEnum string
 
 const (
-    GatewayWanTypeEnum_DHCP   GatewayWanTypeEnum = "dhcp"
-    GatewayWanTypeEnum_PPPOE  GatewayWanTypeEnum = "pppoe"
-    GatewayWanTypeEnum_STATIC GatewayWanTypeEnum = "static"
+	GatewayWanTypeEnum_DHCP   GatewayWanTypeEnum = "dhcp"
+	GatewayWanTypeEnum_PPPOE  GatewayWanTypeEnum = "pppoe"
+	GatewayWanTypeEnum_STATIC GatewayWanTypeEnum = "static"
 )
 
 // GetOrgMxedgeUpgradeInfoChannelEnum is a string enum.
@@ -1133,9 +1133,9 @@ const (
 type GetOrgMxedgeUpgradeInfoChannelEnum string
 
 const (
-    GetOrgMxedgeUpgradeInfoChannelEnum_ALPHA  GetOrgMxedgeUpgradeInfoChannelEnum = "alpha"
-    GetOrgMxedgeUpgradeInfoChannelEnum_BETA   GetOrgMxedgeUpgradeInfoChannelEnum = "beta"
-    GetOrgMxedgeUpgradeInfoChannelEnum_STABLE GetOrgMxedgeUpgradeInfoChannelEnum = "stable"
+	GetOrgMxedgeUpgradeInfoChannelEnum_ALPHA  GetOrgMxedgeUpgradeInfoChannelEnum = "alpha"
+	GetOrgMxedgeUpgradeInfoChannelEnum_BETA   GetOrgMxedgeUpgradeInfoChannelEnum = "beta"
+	GetOrgMxedgeUpgradeInfoChannelEnum_STABLE GetOrgMxedgeUpgradeInfoChannelEnum = "stable"
 )
 
 // HaClusterNodeEnum is a string enum.
@@ -1143,8 +1143,8 @@ const (
 type HaClusterNodeEnum string
 
 const (
-    HaClusterNodeEnum_NODE0 HaClusterNodeEnum = "node0"
-    HaClusterNodeEnum_NODE1 HaClusterNodeEnum = "node1"
+	HaClusterNodeEnum_NODE0 HaClusterNodeEnum = "node0"
+	HaClusterNodeEnum_NODE1 HaClusterNodeEnum = "node1"
 )
 
 // IdpMachineCertLookupFieldEnum is a string enum.
@@ -1152,10 +1152,10 @@ const (
 type IdpMachineCertLookupFieldEnum string
 
 const (
-    IdpMachineCertLookupFieldEnum_AUTOMATIC IdpMachineCertLookupFieldEnum = "automatic"
-    IdpMachineCertLookupFieldEnum_CN        IdpMachineCertLookupFieldEnum = "cn"
-    IdpMachineCertLookupFieldEnum_EMAIL     IdpMachineCertLookupFieldEnum = "email"
-    IdpMachineCertLookupFieldEnum_UPN       IdpMachineCertLookupFieldEnum = "upn"
+	IdpMachineCertLookupFieldEnum_AUTOMATIC IdpMachineCertLookupFieldEnum = "automatic"
+	IdpMachineCertLookupFieldEnum_CN        IdpMachineCertLookupFieldEnum = "cn"
+	IdpMachineCertLookupFieldEnum_EMAIL     IdpMachineCertLookupFieldEnum = "email"
+	IdpMachineCertLookupFieldEnum_UPN       IdpMachineCertLookupFieldEnum = "upn"
 )
 
 // IdpProfileActionEnum is a string enum.
@@ -1166,9 +1166,9 @@ const (
 type IdpProfileActionEnum string
 
 const (
-    IdpProfileActionEnum_ALERT IdpProfileActionEnum = "alert"
-    IdpProfileActionEnum_CLOSE IdpProfileActionEnum = "close"
-    IdpProfileActionEnum_DROP  IdpProfileActionEnum = "drop"
+	IdpProfileActionEnum_ALERT IdpProfileActionEnum = "alert"
+	IdpProfileActionEnum_CLOSE IdpProfileActionEnum = "close"
+	IdpProfileActionEnum_DROP  IdpProfileActionEnum = "drop"
 )
 
 // IdpProfileBaseProfileEnum is a string enum.
@@ -1176,9 +1176,9 @@ const (
 type IdpProfileBaseProfileEnum string
 
 const (
-    IdpProfileBaseProfileEnum_CRITICAL IdpProfileBaseProfileEnum = "critical"
-    IdpProfileBaseProfileEnum_STANDARD IdpProfileBaseProfileEnum = "standard"
-    IdpProfileBaseProfileEnum_STRICT   IdpProfileBaseProfileEnum = "strict"
+	IdpProfileBaseProfileEnum_CRITICAL IdpProfileBaseProfileEnum = "critical"
+	IdpProfileBaseProfileEnum_STANDARD IdpProfileBaseProfileEnum = "standard"
+	IdpProfileBaseProfileEnum_STRICT   IdpProfileBaseProfileEnum = "strict"
 )
 
 // IdpProfileMatchingSeverityValueEnum is a string enum.
@@ -1186,10 +1186,10 @@ const (
 type IdpProfileMatchingSeverityValueEnum string
 
 const (
-    IdpProfileMatchingSeverityValueEnum_CRITICAL IdpProfileMatchingSeverityValueEnum = "critical"
-    IdpProfileMatchingSeverityValueEnum_INFO     IdpProfileMatchingSeverityValueEnum = "info"
-    IdpProfileMatchingSeverityValueEnum_MAJOR    IdpProfileMatchingSeverityValueEnum = "major"
-    IdpProfileMatchingSeverityValueEnum_MINOR    IdpProfileMatchingSeverityValueEnum = "minor"
+	IdpProfileMatchingSeverityValueEnum_CRITICAL IdpProfileMatchingSeverityValueEnum = "critical"
+	IdpProfileMatchingSeverityValueEnum_INFO     IdpProfileMatchingSeverityValueEnum = "info"
+	IdpProfileMatchingSeverityValueEnum_MAJOR    IdpProfileMatchingSeverityValueEnum = "major"
+	IdpProfileMatchingSeverityValueEnum_MINOR    IdpProfileMatchingSeverityValueEnum = "minor"
 )
 
 // IdpUserCertLookupFieldEnum is a string enum.
@@ -1198,10 +1198,10 @@ const (
 type IdpUserCertLookupFieldEnum string
 
 const (
-    IdpUserCertLookupFieldEnum_AUTOMATIC IdpUserCertLookupFieldEnum = "automatic"
-    IdpUserCertLookupFieldEnum_CN        IdpUserCertLookupFieldEnum = "cn"
-    IdpUserCertLookupFieldEnum_EMAIL     IdpUserCertLookupFieldEnum = "email"
-    IdpUserCertLookupFieldEnum_UPN       IdpUserCertLookupFieldEnum = "upn"
+	IdpUserCertLookupFieldEnum_AUTOMATIC IdpUserCertLookupFieldEnum = "automatic"
+	IdpUserCertLookupFieldEnum_CN        IdpUserCertLookupFieldEnum = "cn"
+	IdpUserCertLookupFieldEnum_EMAIL     IdpUserCertLookupFieldEnum = "email"
+	IdpUserCertLookupFieldEnum_UPN       IdpUserCertLookupFieldEnum = "upn"
 )
 
 // ImportSiteAssetsUpsertEnum is a string enum.
@@ -1209,8 +1209,8 @@ const (
 type ImportSiteAssetsUpsertEnum string
 
 const (
-    ImportSiteAssetsUpsertEnum_FALSE ImportSiteAssetsUpsertEnum = "False"
-    ImportSiteAssetsUpsertEnum_TRUE  ImportSiteAssetsUpsertEnum = "True"
+	ImportSiteAssetsUpsertEnum_FALSE ImportSiteAssetsUpsertEnum = "False"
+	ImportSiteAssetsUpsertEnum_TRUE  ImportSiteAssetsUpsertEnum = "True"
 )
 
 // InventoryUpdateOperationEnum is a string enum.
@@ -1223,11 +1223,11 @@ const (
 type InventoryUpdateOperationEnum string
 
 const (
-    InventoryUpdateOperationEnum_ASSIGN         InventoryUpdateOperationEnum = "assign"
-    InventoryUpdateOperationEnum_DELETE         InventoryUpdateOperationEnum = "delete"
-    InventoryUpdateOperationEnum_DOWNGRADETOJSI InventoryUpdateOperationEnum = "downgrade_to_jsi"
-    InventoryUpdateOperationEnum_UNASSIGN       InventoryUpdateOperationEnum = "unassign"
-    InventoryUpdateOperationEnum_UPGRADETOMIST  InventoryUpdateOperationEnum = "upgrade_to_mist"
+	InventoryUpdateOperationEnum_ASSIGN         InventoryUpdateOperationEnum = "assign"
+	InventoryUpdateOperationEnum_DELETE         InventoryUpdateOperationEnum = "delete"
+	InventoryUpdateOperationEnum_DOWNGRADETOJSI InventoryUpdateOperationEnum = "downgrade_to_jsi"
+	InventoryUpdateOperationEnum_UNASSIGN       InventoryUpdateOperationEnum = "unassign"
+	InventoryUpdateOperationEnum_UPGRADETOMIST  InventoryUpdateOperationEnum = "upgrade_to_mist"
 )
 
 // IpTypeEnum is a string enum.
@@ -1235,8 +1235,8 @@ const (
 type IpTypeEnum string
 
 const (
-    IpTypeEnum_DHCP   IpTypeEnum = "dhcp"
-    IpTypeEnum_STATIC IpTypeEnum = "static"
+	IpTypeEnum_DHCP   IpTypeEnum = "dhcp"
+	IpTypeEnum_STATIC IpTypeEnum = "static"
 )
 
 // IpType6Enum is a string enum.
@@ -1244,10 +1244,10 @@ const (
 type IpType6Enum string
 
 const (
-    IpType6Enum_AUTOCONF IpType6Enum = "autoconf"
-    IpType6Enum_DHCP     IpType6Enum = "dhcp"
-    IpType6Enum_DISABLED IpType6Enum = "disabled"
-    IpType6Enum_STATIC   IpType6Enum = "static"
+	IpType6Enum_AUTOCONF IpType6Enum = "autoconf"
+	IpType6Enum_DHCP     IpType6Enum = "dhcp"
+	IpType6Enum_DISABLED IpType6Enum = "disabled"
+	IpType6Enum_STATIC   IpType6Enum = "static"
 )
 
 // JseInventoryItemTypeEnum is a string enum.
@@ -1255,9 +1255,9 @@ const (
 type JseInventoryItemTypeEnum string
 
 const (
-    JseInventoryItemTypeEnum_AP         JseInventoryItemTypeEnum = "ap"
-    JseInventoryItemTypeEnum_GATEWAY    JseInventoryItemTypeEnum = "gateway"
-    JseInventoryItemTypeEnum_ENUMSWITCH JseInventoryItemTypeEnum = "switch"
+	JseInventoryItemTypeEnum_AP         JseInventoryItemTypeEnum = "ap"
+	JseInventoryItemTypeEnum_GATEWAY    JseInventoryItemTypeEnum = "gateway"
+	JseInventoryItemTypeEnum_ENUMSWITCH JseInventoryItemTypeEnum = "switch"
 )
 
 // JunosPortConfigDuplexEnum is a string enum.
@@ -1265,9 +1265,9 @@ const (
 type JunosPortConfigDuplexEnum string
 
 const (
-    JunosPortConfigDuplexEnum_AUTO JunosPortConfigDuplexEnum = "auto"
-    JunosPortConfigDuplexEnum_FULL JunosPortConfigDuplexEnum = "full"
-    JunosPortConfigDuplexEnum_HALF JunosPortConfigDuplexEnum = "half"
+	JunosPortConfigDuplexEnum_AUTO JunosPortConfigDuplexEnum = "auto"
+	JunosPortConfigDuplexEnum_FULL JunosPortConfigDuplexEnum = "full"
+	JunosPortConfigDuplexEnum_HALF JunosPortConfigDuplexEnum = "half"
 )
 
 // JunosPortConfigSpeedEnum is a string enum.
@@ -1275,12 +1275,12 @@ const (
 type JunosPortConfigSpeedEnum string
 
 const (
-    JunosPortConfigSpeedEnum_ENUM100M JunosPortConfigSpeedEnum = "100m"
-    JunosPortConfigSpeedEnum_ENUM10M  JunosPortConfigSpeedEnum = "10m"
-    JunosPortConfigSpeedEnum_ENUM1G   JunosPortConfigSpeedEnum = "1g"
-    JunosPortConfigSpeedEnum_ENUM25G  JunosPortConfigSpeedEnum = "2.5g"
-    JunosPortConfigSpeedEnum_ENUM5G   JunosPortConfigSpeedEnum = "5g"
-    JunosPortConfigSpeedEnum_AUTO     JunosPortConfigSpeedEnum = "auto"
+	JunosPortConfigSpeedEnum_ENUM100M JunosPortConfigSpeedEnum = "100m"
+	JunosPortConfigSpeedEnum_ENUM10M  JunosPortConfigSpeedEnum = "10m"
+	JunosPortConfigSpeedEnum_ENUM1G   JunosPortConfigSpeedEnum = "1g"
+	JunosPortConfigSpeedEnum_ENUM25G  JunosPortConfigSpeedEnum = "2.5g"
+	JunosPortConfigSpeedEnum_ENUM5G   JunosPortConfigSpeedEnum = "5g"
+	JunosPortConfigSpeedEnum_AUTO     JunosPortConfigSpeedEnum = "auto"
 )
 
 // L2tpStateEnum is a string enum.
@@ -1288,11 +1288,11 @@ const (
 type L2tpStateEnum string
 
 const (
-    L2tpStateEnum_ESTABLISHED            L2tpStateEnum = "established"
-    L2tpStateEnum_ESTABLISHEDWITHSESSION L2tpStateEnum = "established_with_session"
-    L2tpStateEnum_IDLE                   L2tpStateEnum = "idle"
-    L2tpStateEnum_WAITCTRLCONN           L2tpStateEnum = "wait-ctrl-conn"
-    L2tpStateEnum_WAITCTRLREPLY          L2tpStateEnum = "wait-ctrl-reply"
+	L2tpStateEnum_ESTABLISHED            L2tpStateEnum = "established"
+	L2tpStateEnum_ESTABLISHEDWITHSESSION L2tpStateEnum = "established_with_session"
+	L2tpStateEnum_IDLE                   L2tpStateEnum = "idle"
+	L2tpStateEnum_WAITCTRLCONN           L2tpStateEnum = "wait-ctrl-conn"
+	L2tpStateEnum_WAITCTRLREPLY          L2tpStateEnum = "wait-ctrl-reply"
 )
 
 // LicenseTypeEnum is a string enum.
@@ -1300,23 +1300,23 @@ const (
 type LicenseTypeEnum string
 
 const (
-    LicenseTypeEnum_SUBAST   LicenseTypeEnum = "SUB-AST"
-    LicenseTypeEnum_SUBDATA  LicenseTypeEnum = "SUB-DATA"
-    LicenseTypeEnum_SUBENG   LicenseTypeEnum = "SUB-ENG"
-    LicenseTypeEnum_SUBEX12  LicenseTypeEnum = "SUB-EX12"
-    LicenseTypeEnum_SUBEX24  LicenseTypeEnum = "SUB-EX24"
-    LicenseTypeEnum_SUBEX48  LicenseTypeEnum = "SUB-EX48"
-    LicenseTypeEnum_SUBMAN   LicenseTypeEnum = "SUB-MAN"
-    LicenseTypeEnum_SUBME    LicenseTypeEnum = "SUB-ME"
-    LicenseTypeEnum_SUBPMA   LicenseTypeEnum = "SUB-PMA"
-    LicenseTypeEnum_SUBSRX1  LicenseTypeEnum = "SUB-SRX1"
-    LicenseTypeEnum_SUBSRX2  LicenseTypeEnum = "SUB-SRX2"
-    LicenseTypeEnum_SUBSVNA  LicenseTypeEnum = "SUB-SVNA"
-    LicenseTypeEnum_SUBVNA   LicenseTypeEnum = "SUB-VNA"
-    LicenseTypeEnum_SUBWAN1  LicenseTypeEnum = "SUB-WAN1"
-    LicenseTypeEnum_SUBWAN2  LicenseTypeEnum = "SUB-WAN2"
-    LicenseTypeEnum_SUBWVNA1 LicenseTypeEnum = "SUB-WVNA1"
-    LicenseTypeEnum_SUBWVNA2 LicenseTypeEnum = "SUB-WVNA2"
+	LicenseTypeEnum_SUBAST   LicenseTypeEnum = "SUB-AST"
+	LicenseTypeEnum_SUBDATA  LicenseTypeEnum = "SUB-DATA"
+	LicenseTypeEnum_SUBENG   LicenseTypeEnum = "SUB-ENG"
+	LicenseTypeEnum_SUBEX12  LicenseTypeEnum = "SUB-EX12"
+	LicenseTypeEnum_SUBEX24  LicenseTypeEnum = "SUB-EX24"
+	LicenseTypeEnum_SUBEX48  LicenseTypeEnum = "SUB-EX48"
+	LicenseTypeEnum_SUBMAN   LicenseTypeEnum = "SUB-MAN"
+	LicenseTypeEnum_SUBME    LicenseTypeEnum = "SUB-ME"
+	LicenseTypeEnum_SUBPMA   LicenseTypeEnum = "SUB-PMA"
+	LicenseTypeEnum_SUBSRX1  LicenseTypeEnum = "SUB-SRX1"
+	LicenseTypeEnum_SUBSRX2  LicenseTypeEnum = "SUB-SRX2"
+	LicenseTypeEnum_SUBSVNA  LicenseTypeEnum = "SUB-SVNA"
+	LicenseTypeEnum_SUBVNA   LicenseTypeEnum = "SUB-VNA"
+	LicenseTypeEnum_SUBWAN1  LicenseTypeEnum = "SUB-WAN1"
+	LicenseTypeEnum_SUBWAN2  LicenseTypeEnum = "SUB-WAN2"
+	LicenseTypeEnum_SUBWVNA1 LicenseTypeEnum = "SUB-WVNA1"
+	LicenseTypeEnum_SUBWVNA2 LicenseTypeEnum = "SUB-WVNA2"
 )
 
 // ListMspLogsSortEnum is a string enum.
@@ -1324,10 +1324,10 @@ const (
 type ListMspLogsSortEnum string
 
 const (
-    ListMspLogsSortEnum_ENUMTIMESTAMP ListMspLogsSortEnum = "-timestamp"
-    ListMspLogsSortEnum_ADMINID       ListMspLogsSortEnum = "admin_id"
-    ListMspLogsSortEnum_SITEID        ListMspLogsSortEnum = "site_id"
-    ListMspLogsSortEnum_TIMESTAMP     ListMspLogsSortEnum = "timestamp"
+	ListMspLogsSortEnum_ENUMTIMESTAMP ListMspLogsSortEnum = "-timestamp"
+	ListMspLogsSortEnum_ADMINID       ListMspLogsSortEnum = "admin_id"
+	ListMspLogsSortEnum_SITEID        ListMspLogsSortEnum = "site_id"
+	ListMspLogsSortEnum_TIMESTAMP     ListMspLogsSortEnum = "timestamp"
 )
 
 // ListOrgLogsSortEnum is a string enum.
@@ -1335,10 +1335,10 @@ const (
 type ListOrgLogsSortEnum string
 
 const (
-    ListOrgLogsSortEnum_ENUMTIMESTAMP ListOrgLogsSortEnum = "-timestamp"
-    ListOrgLogsSortEnum_ADMINID       ListOrgLogsSortEnum = "admin_id"
-    ListOrgLogsSortEnum_SITEID        ListOrgLogsSortEnum = "site_id"
-    ListOrgLogsSortEnum_TIMESTAMP     ListOrgLogsSortEnum = "timestamp"
+	ListOrgLogsSortEnum_ENUMTIMESTAMP ListOrgLogsSortEnum = "-timestamp"
+	ListOrgLogsSortEnum_ADMINID       ListOrgLogsSortEnum = "admin_id"
+	ListOrgLogsSortEnum_SITEID        ListOrgLogsSortEnum = "site_id"
+	ListOrgLogsSortEnum_TIMESTAMP     ListOrgLogsSortEnum = "timestamp"
 )
 
 // MapImportJsonVendorNameEnum is a string enum.
@@ -1346,8 +1346,8 @@ const (
 type MapImportJsonVendorNameEnum string
 
 const (
-    MapImportJsonVendorNameEnum_EKAHAU MapImportJsonVendorNameEnum = "ekahau"
-    MapImportJsonVendorNameEnum_IBWAVE MapImportJsonVendorNameEnum = "ibwave"
+	MapImportJsonVendorNameEnum_EKAHAU MapImportJsonVendorNameEnum = "ekahau"
+	MapImportJsonVendorNameEnum_IBWAVE MapImportJsonVendorNameEnum = "ibwave"
 )
 
 // MapJibestreamVendorNameEnum is a string enum.
@@ -1355,7 +1355,7 @@ const (
 type MapJibestreamVendorNameEnum string
 
 const (
-    MapJibestreamVendorNameEnum_JIBESTREAM MapJibestreamVendorNameEnum = "jibestream"
+	MapJibestreamVendorNameEnum_JIBESTREAM MapJibestreamVendorNameEnum = "jibestream"
 )
 
 // MapMicelloVendorNameEnum is a string enum.
@@ -1363,7 +1363,7 @@ const (
 type MapMicelloVendorNameEnum string
 
 const (
-    MapMicelloVendorNameEnum_MICELLO MapMicelloVendorNameEnum = "micello"
+	MapMicelloVendorNameEnum_MICELLO MapMicelloVendorNameEnum = "micello"
 )
 
 // MapOrgImportFileJsonVendorNameEnum is a string enum.
@@ -1371,8 +1371,8 @@ const (
 type MapOrgImportFileJsonVendorNameEnum string
 
 const (
-    MapOrgImportFileJsonVendorNameEnum_EKAHAU MapOrgImportFileJsonVendorNameEnum = "ekahau"
-    MapOrgImportFileJsonVendorNameEnum_IBWAVE MapOrgImportFileJsonVendorNameEnum = "ibwave"
+	MapOrgImportFileJsonVendorNameEnum_EKAHAU MapOrgImportFileJsonVendorNameEnum = "ekahau"
+	MapOrgImportFileJsonVendorNameEnum_IBWAVE MapOrgImportFileJsonVendorNameEnum = "ibwave"
 )
 
 // MapTypeEnum is a string enum.
@@ -1380,8 +1380,8 @@ const (
 type MapTypeEnum string
 
 const (
-    MapTypeEnum_GOOGLE MapTypeEnum = "google"
-    MapTypeEnum_IMAGE  MapTypeEnum = "image"
+	MapTypeEnum_GOOGLE MapTypeEnum = "google"
+	MapTypeEnum_IMAGE  MapTypeEnum = "image"
 )
 
 // MapViewEnum is a string enum.
@@ -1389,10 +1389,10 @@ const (
 type MapViewEnum string
 
 const (
-    MapViewEnum_HYBRID    MapViewEnum = "hybrid"
-    MapViewEnum_ROADMAP   MapViewEnum = "roadmap"
-    MapViewEnum_SATELLITE MapViewEnum = "satellite"
-    MapViewEnum_TERRAIN   MapViewEnum = "terrain"
+	MapViewEnum_HYBRID    MapViewEnum = "hybrid"
+	MapViewEnum_ROADMAP   MapViewEnum = "roadmap"
+	MapViewEnum_SATELLITE MapViewEnum = "satellite"
+	MapViewEnum_TERRAIN   MapViewEnum = "terrain"
 )
 
 // MfaSecretTypeEnum is a string enum.
@@ -1400,7 +1400,7 @@ const (
 type MfaSecretTypeEnum string
 
 const (
-    MfaSecretTypeEnum_QRCODE MfaSecretTypeEnum = "qrcode"
+	MfaSecretTypeEnum_QRCODE MfaSecretTypeEnum = "qrcode"
 )
 
 // MspLicenseActionOperationEnum is a string enum.
@@ -1408,10 +1408,10 @@ const (
 type MspLicenseActionOperationEnum string
 
 const (
-    MspLicenseActionOperationEnum_AMEND    MspLicenseActionOperationEnum = "amend"
-    MspLicenseActionOperationEnum_ANNOTATE MspLicenseActionOperationEnum = "annotate"
-    MspLicenseActionOperationEnum_DELETE   MspLicenseActionOperationEnum = "delete"
-    MspLicenseActionOperationEnum_UNAMEND  MspLicenseActionOperationEnum = "unamend"
+	MspLicenseActionOperationEnum_AMEND    MspLicenseActionOperationEnum = "amend"
+	MspLicenseActionOperationEnum_ANNOTATE MspLicenseActionOperationEnum = "annotate"
+	MspLicenseActionOperationEnum_DELETE   MspLicenseActionOperationEnum = "delete"
+	MspLicenseActionOperationEnum_UNAMEND  MspLicenseActionOperationEnum = "unamend"
 )
 
 // MspLogsCountDistinctEnum is a string enum.
@@ -1419,10 +1419,10 @@ const (
 type MspLogsCountDistinctEnum string
 
 const (
-    MspLogsCountDistinctEnum_ADMINID   MspLogsCountDistinctEnum = "admin_id"
-    MspLogsCountDistinctEnum_ADMINNAME MspLogsCountDistinctEnum = "admin_name"
-    MspLogsCountDistinctEnum_MESSAGE   MspLogsCountDistinctEnum = "message"
-    MspLogsCountDistinctEnum_ORGID     MspLogsCountDistinctEnum = "org_id"
+	MspLogsCountDistinctEnum_ADMINID   MspLogsCountDistinctEnum = "admin_id"
+	MspLogsCountDistinctEnum_ADMINNAME MspLogsCountDistinctEnum = "admin_name"
+	MspLogsCountDistinctEnum_MESSAGE   MspLogsCountDistinctEnum = "message"
+	MspLogsCountDistinctEnum_ORGID     MspLogsCountDistinctEnum = "org_id"
 )
 
 // MspMarvisSuggestionsCountDistinctEnum is a string enum.
@@ -1430,8 +1430,8 @@ const (
 type MspMarvisSuggestionsCountDistinctEnum string
 
 const (
-    MspMarvisSuggestionsCountDistinctEnum_ORGID  MspMarvisSuggestionsCountDistinctEnum = "org_id"
-    MspMarvisSuggestionsCountDistinctEnum_STATUS MspMarvisSuggestionsCountDistinctEnum = "status"
+	MspMarvisSuggestionsCountDistinctEnum_ORGID  MspMarvisSuggestionsCountDistinctEnum = "org_id"
+	MspMarvisSuggestionsCountDistinctEnum_STATUS MspMarvisSuggestionsCountDistinctEnum = "status"
 )
 
 // MspOrgChangeOperationEnum is a string enum.
@@ -1439,8 +1439,8 @@ const (
 type MspOrgChangeOperationEnum string
 
 const (
-    MspOrgChangeOperationEnum_ASSIGN   MspOrgChangeOperationEnum = "assign"
-    MspOrgChangeOperationEnum_UNASSIGN MspOrgChangeOperationEnum = "unassign"
+	MspOrgChangeOperationEnum_ASSIGN   MspOrgChangeOperationEnum = "assign"
+	MspOrgChangeOperationEnum_UNASSIGN MspOrgChangeOperationEnum = "unassign"
 )
 
 // MspSearchTypeEnum is a string enum.
@@ -1448,7 +1448,7 @@ const (
 type MspSearchTypeEnum string
 
 const (
-    MspSearchTypeEnum_ORGS MspSearchTypeEnum = "orgs"
+	MspSearchTypeEnum_ORGS MspSearchTypeEnum = "orgs"
 )
 
 // MspTicketsCountDistinctEnum is a string enum.
@@ -1456,9 +1456,9 @@ const (
 type MspTicketsCountDistinctEnum string
 
 const (
-    MspTicketsCountDistinctEnum_ORGID    MspTicketsCountDistinctEnum = "org_id"
-    MspTicketsCountDistinctEnum_STATUS   MspTicketsCountDistinctEnum = "status"
-    MspTicketsCountDistinctEnum_ENUMTYPE MspTicketsCountDistinctEnum = "type"
+	MspTicketsCountDistinctEnum_ORGID    MspTicketsCountDistinctEnum = "org_id"
+	MspTicketsCountDistinctEnum_STATUS   MspTicketsCountDistinctEnum = "status"
+	MspTicketsCountDistinctEnum_ENUMTYPE MspTicketsCountDistinctEnum = "type"
 )
 
 // MspTierEnum is a string enum.
@@ -1466,8 +1466,8 @@ const (
 type MspTierEnum string
 
 const (
-    MspTierEnum_ADVANCED MspTierEnum = "advanced"
-    MspTierEnum_BASE     MspTierEnum = "base"
+	MspTierEnum_ADVANCED MspTierEnum = "advanced"
+	MspTierEnum_BASE     MspTierEnum = "base"
 )
 
 // MxclusterNacClientVendorEnum is a string enum.
@@ -1478,13 +1478,13 @@ const (
 type MxclusterNacClientVendorEnum string
 
 const (
-    MxclusterNacClientVendorEnum_ARUBA        MxclusterNacClientVendorEnum = "aruba"
-    MxclusterNacClientVendorEnum_CISCOAIRONET MxclusterNacClientVendorEnum = "cisco-aironet"
-    MxclusterNacClientVendorEnum_CISCOIOS     MxclusterNacClientVendorEnum = "cisco-ios"
-    MxclusterNacClientVendorEnum_CISCOMERAKI  MxclusterNacClientVendorEnum = "cisco-meraki"
-    MxclusterNacClientVendorEnum_GENERIC      MxclusterNacClientVendorEnum = "generic"
-    MxclusterNacClientVendorEnum_JUNIPER      MxclusterNacClientVendorEnum = "juniper"
-    MxclusterNacClientVendorEnum_PALOALTO     MxclusterNacClientVendorEnum = "paloalto"
+	MxclusterNacClientVendorEnum_ARUBA        MxclusterNacClientVendorEnum = "aruba"
+	MxclusterNacClientVendorEnum_CISCOAIRONET MxclusterNacClientVendorEnum = "cisco-aironet"
+	MxclusterNacClientVendorEnum_CISCOIOS     MxclusterNacClientVendorEnum = "cisco-ios"
+	MxclusterNacClientVendorEnum_CISCOMERAKI  MxclusterNacClientVendorEnum = "cisco-meraki"
+	MxclusterNacClientVendorEnum_GENERIC      MxclusterNacClientVendorEnum = "generic"
+	MxclusterNacClientVendorEnum_JUNIPER      MxclusterNacClientVendorEnum = "juniper"
+	MxclusterNacClientVendorEnum_PALOALTO     MxclusterNacClientVendorEnum = "paloalto"
 )
 
 // MxclusterRadAuthServerKeywrapFormatEnum is a string enum.
@@ -1492,8 +1492,8 @@ const (
 type MxclusterRadAuthServerKeywrapFormatEnum string
 
 const (
-    MxclusterRadAuthServerKeywrapFormatEnum_ASCII MxclusterRadAuthServerKeywrapFormatEnum = "ascii"
-    MxclusterRadAuthServerKeywrapFormatEnum_HEX   MxclusterRadAuthServerKeywrapFormatEnum = "hex"
+	MxclusterRadAuthServerKeywrapFormatEnum_ASCII MxclusterRadAuthServerKeywrapFormatEnum = "ascii"
+	MxclusterRadAuthServerKeywrapFormatEnum_HEX   MxclusterRadAuthServerKeywrapFormatEnum = "hex"
 )
 
 // MxclusterRadsecNasIpSourceEnum is a string enum.
@@ -1501,11 +1501,11 @@ const (
 type MxclusterRadsecNasIpSourceEnum string
 
 const (
-    MxclusterRadsecNasIpSourceEnum_ANY     MxclusterRadsecNasIpSourceEnum = "any"
-    MxclusterRadsecNasIpSourceEnum_OOB     MxclusterRadsecNasIpSourceEnum = "oob"
-    MxclusterRadsecNasIpSourceEnum_OOB6    MxclusterRadsecNasIpSourceEnum = "oob6"
-    MxclusterRadsecNasIpSourceEnum_TUNNEL  MxclusterRadsecNasIpSourceEnum = "tunnel"
-    MxclusterRadsecNasIpSourceEnum_TUNNEL6 MxclusterRadsecNasIpSourceEnum = "tunnel6"
+	MxclusterRadsecNasIpSourceEnum_ANY     MxclusterRadsecNasIpSourceEnum = "any"
+	MxclusterRadsecNasIpSourceEnum_OOB     MxclusterRadsecNasIpSourceEnum = "oob"
+	MxclusterRadsecNasIpSourceEnum_OOB6    MxclusterRadsecNasIpSourceEnum = "oob6"
+	MxclusterRadsecNasIpSourceEnum_TUNNEL  MxclusterRadsecNasIpSourceEnum = "tunnel"
+	MxclusterRadsecNasIpSourceEnum_TUNNEL6 MxclusterRadsecNasIpSourceEnum = "tunnel6"
 )
 
 // MxclusterRadsecServerSelectionEnum is a string enum.
@@ -1513,8 +1513,8 @@ const (
 type MxclusterRadsecServerSelectionEnum string
 
 const (
-    MxclusterRadsecServerSelectionEnum_ORDERED   MxclusterRadsecServerSelectionEnum = "ordered"
-    MxclusterRadsecServerSelectionEnum_UNORDERED MxclusterRadsecServerSelectionEnum = "unordered"
+	MxclusterRadsecServerSelectionEnum_ORDERED   MxclusterRadsecServerSelectionEnum = "ordered"
+	MxclusterRadsecServerSelectionEnum_UNORDERED MxclusterRadsecServerSelectionEnum = "unordered"
 )
 
 // MxclusterRadsecSrcIpSourceEnum is a string enum.
@@ -1522,24 +1522,24 @@ const (
 type MxclusterRadsecSrcIpSourceEnum string
 
 const (
-    MxclusterRadsecSrcIpSourceEnum_ANY     MxclusterRadsecSrcIpSourceEnum = "any"
-    MxclusterRadsecSrcIpSourceEnum_OOB     MxclusterRadsecSrcIpSourceEnum = "oob"
-    MxclusterRadsecSrcIpSourceEnum_OOB6    MxclusterRadsecSrcIpSourceEnum = "oob6"
-    MxclusterRadsecSrcIpSourceEnum_TUNNEL  MxclusterRadsecSrcIpSourceEnum = "tunnel"
-    MxclusterRadsecSrcIpSourceEnum_TUNNEL6 MxclusterRadsecSrcIpSourceEnum = "tunnel6"
+	MxclusterRadsecSrcIpSourceEnum_ANY     MxclusterRadsecSrcIpSourceEnum = "any"
+	MxclusterRadsecSrcIpSourceEnum_OOB     MxclusterRadsecSrcIpSourceEnum = "oob"
+	MxclusterRadsecSrcIpSourceEnum_OOB6    MxclusterRadsecSrcIpSourceEnum = "oob6"
+	MxclusterRadsecSrcIpSourceEnum_TUNNEL  MxclusterRadsecSrcIpSourceEnum = "tunnel"
+	MxclusterRadsecSrcIpSourceEnum_TUNNEL6 MxclusterRadsecSrcIpSourceEnum = "tunnel6"
 )
 
 // MxclusterTuntermHostsSelectionEnum is a string enum.
 // Ordering of tunterm_hosts for mxedge within the same mxcluster. enum:
-// * `shuffle`: the ordering of tunterm_hosts is randomized by the device''s MAC
+// * `shuffle`: the ordering of tunterm_hosts is randomized by the device”s MAC
 // * `shuffle-by-site`: shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels)
 // * `ordered`: order decided by tunterm_hosts_order
 type MxclusterTuntermHostsSelectionEnum string
 
 const (
-    MxclusterTuntermHostsSelectionEnum_ORDERED       MxclusterTuntermHostsSelectionEnum = "ordered"
-    MxclusterTuntermHostsSelectionEnum_SHUFFLE       MxclusterTuntermHostsSelectionEnum = "shuffle"
-    MxclusterTuntermHostsSelectionEnum_SHUFFLEBYSITE MxclusterTuntermHostsSelectionEnum = "shuffle-by-site"
+	MxclusterTuntermHostsSelectionEnum_ORDERED       MxclusterTuntermHostsSelectionEnum = "ordered"
+	MxclusterTuntermHostsSelectionEnum_SHUFFLE       MxclusterTuntermHostsSelectionEnum = "shuffle"
+	MxclusterTuntermHostsSelectionEnum_SHUFFLEBYSITE MxclusterTuntermHostsSelectionEnum = "shuffle-by-site"
 )
 
 // MxedgeForSiteEnum is a string enum.
@@ -1547,9 +1547,9 @@ const (
 type MxedgeForSiteEnum string
 
 const (
-    MxedgeForSiteEnum_ANY   MxedgeForSiteEnum = "any"
-    MxedgeForSiteEnum_FALSE MxedgeForSiteEnum = "false"
-    MxedgeForSiteEnum_TRUE  MxedgeForSiteEnum = "true"
+	MxedgeForSiteEnum_ANY   MxedgeForSiteEnum = "any"
+	MxedgeForSiteEnum_FALSE MxedgeForSiteEnum = "false"
+	MxedgeForSiteEnum_TRUE  MxedgeForSiteEnum = "true"
 )
 
 // MxedgeMgmtOobIpTypeEnum is a string enum.
@@ -1557,9 +1557,9 @@ const (
 type MxedgeMgmtOobIpTypeEnum string
 
 const (
-    MxedgeMgmtOobIpTypeEnum_DHCP     MxedgeMgmtOobIpTypeEnum = "dhcp"
-    MxedgeMgmtOobIpTypeEnum_DISABLED MxedgeMgmtOobIpTypeEnum = "disabled"
-    MxedgeMgmtOobIpTypeEnum_STATIC   MxedgeMgmtOobIpTypeEnum = "static"
+	MxedgeMgmtOobIpTypeEnum_DHCP     MxedgeMgmtOobIpTypeEnum = "dhcp"
+	MxedgeMgmtOobIpTypeEnum_DISABLED MxedgeMgmtOobIpTypeEnum = "disabled"
+	MxedgeMgmtOobIpTypeEnum_STATIC   MxedgeMgmtOobIpTypeEnum = "static"
 )
 
 // MxedgeMgmtOobIpType6Enum is a string enum.
@@ -1567,10 +1567,10 @@ const (
 type MxedgeMgmtOobIpType6Enum string
 
 const (
-    MxedgeMgmtOobIpType6Enum_AUTOCONF MxedgeMgmtOobIpType6Enum = "autoconf"
-    MxedgeMgmtOobIpType6Enum_DHCP     MxedgeMgmtOobIpType6Enum = "dhcp"
-    MxedgeMgmtOobIpType6Enum_DISABLED MxedgeMgmtOobIpType6Enum = "disabled"
-    MxedgeMgmtOobIpType6Enum_STATIC   MxedgeMgmtOobIpType6Enum = "static"
+	MxedgeMgmtOobIpType6Enum_AUTOCONF MxedgeMgmtOobIpType6Enum = "autoconf"
+	MxedgeMgmtOobIpType6Enum_DHCP     MxedgeMgmtOobIpType6Enum = "dhcp"
+	MxedgeMgmtOobIpType6Enum_DISABLED MxedgeMgmtOobIpType6Enum = "disabled"
+	MxedgeMgmtOobIpType6Enum_STATIC   MxedgeMgmtOobIpType6Enum = "static"
 )
 
 // MxedgeServiceActionEnum is a string enum.
@@ -1578,9 +1578,9 @@ const (
 type MxedgeServiceActionEnum string
 
 const (
-    MxedgeServiceActionEnum_RESTART MxedgeServiceActionEnum = "restart"
-    MxedgeServiceActionEnum_START   MxedgeServiceActionEnum = "start"
-    MxedgeServiceActionEnum_STOP    MxedgeServiceActionEnum = "stop"
+	MxedgeServiceActionEnum_RESTART MxedgeServiceActionEnum = "restart"
+	MxedgeServiceActionEnum_START   MxedgeServiceActionEnum = "start"
+	MxedgeServiceActionEnum_STOP    MxedgeServiceActionEnum = "stop"
 )
 
 // MxedgeServiceNameEnum is a string enum.
@@ -1588,12 +1588,12 @@ const (
 type MxedgeServiceNameEnum string
 
 const (
-    MxedgeServiceNameEnum_MXAGENT     MxedgeServiceNameEnum = "mxagent"
-    MxedgeServiceNameEnum_MXDAS       MxedgeServiceNameEnum = "mxdas"
-    MxedgeServiceNameEnum_MXNACEDGE   MxedgeServiceNameEnum = "mxnacedge"
-    MxedgeServiceNameEnum_MXOCPROXY   MxedgeServiceNameEnum = "mxocproxy"
-    MxedgeServiceNameEnum_RADSECPROXY MxedgeServiceNameEnum = "radsecproxy"
-    MxedgeServiceNameEnum_TUNTERM     MxedgeServiceNameEnum = "tunterm"
+	MxedgeServiceNameEnum_MXAGENT     MxedgeServiceNameEnum = "mxagent"
+	MxedgeServiceNameEnum_MXDAS       MxedgeServiceNameEnum = "mxdas"
+	MxedgeServiceNameEnum_MXNACEDGE   MxedgeServiceNameEnum = "mxnacedge"
+	MxedgeServiceNameEnum_MXOCPROXY   MxedgeServiceNameEnum = "mxocproxy"
+	MxedgeServiceNameEnum_RADSECPROXY MxedgeServiceNameEnum = "radsecproxy"
+	MxedgeServiceNameEnum_TUNTERM     MxedgeServiceNameEnum = "tunterm"
 )
 
 // MxedgeTuntermDhcpdConfigTypeEnum is a string enum.
@@ -1601,7 +1601,7 @@ const (
 type MxedgeTuntermDhcpdConfigTypeEnum string
 
 const (
-    MxedgeTuntermDhcpdConfigTypeEnum_RELAY MxedgeTuntermDhcpdConfigTypeEnum = "relay"
+	MxedgeTuntermDhcpdConfigTypeEnum_RELAY MxedgeTuntermDhcpdConfigTypeEnum = "relay"
 )
 
 // MxedgeTuntermDhcpdTypeEnum is a string enum.
@@ -1609,7 +1609,7 @@ const (
 type MxedgeTuntermDhcpdTypeEnum string
 
 const (
-    MxedgeTuntermDhcpdTypeEnum_RELAY MxedgeTuntermDhcpdTypeEnum = "relay"
+	MxedgeTuntermDhcpdTypeEnum_RELAY MxedgeTuntermDhcpdTypeEnum = "relay"
 )
 
 // MxedgeUpgradeChannelEnum is a string enum.
@@ -1617,9 +1617,9 @@ const (
 type MxedgeUpgradeChannelEnum string
 
 const (
-    MxedgeUpgradeChannelEnum_ALPHA  MxedgeUpgradeChannelEnum = "alpha"
-    MxedgeUpgradeChannelEnum_BETA   MxedgeUpgradeChannelEnum = "beta"
-    MxedgeUpgradeChannelEnum_STABLE MxedgeUpgradeChannelEnum = "stable"
+	MxedgeUpgradeChannelEnum_ALPHA  MxedgeUpgradeChannelEnum = "alpha"
+	MxedgeUpgradeChannelEnum_BETA   MxedgeUpgradeChannelEnum = "beta"
+	MxedgeUpgradeChannelEnum_STABLE MxedgeUpgradeChannelEnum = "stable"
 )
 
 // MxedgeUpgradeStrategyEnum is a string enum.
@@ -1629,8 +1629,8 @@ const (
 type MxedgeUpgradeStrategyEnum string
 
 const (
-    MxedgeUpgradeStrategyEnum_BIGBANG MxedgeUpgradeStrategyEnum = "big_bang"
-    MxedgeUpgradeStrategyEnum_SERIAL  MxedgeUpgradeStrategyEnum = "serial"
+	MxedgeUpgradeStrategyEnum_BIGBANG MxedgeUpgradeStrategyEnum = "big_bang"
+	MxedgeUpgradeStrategyEnum_SERIAL  MxedgeUpgradeStrategyEnum = "serial"
 )
 
 // MxtunnelProtocolEnum is a string enum.
@@ -1638,8 +1638,8 @@ const (
 type MxtunnelProtocolEnum string
 
 const (
-    MxtunnelProtocolEnum_IP  MxtunnelProtocolEnum = "ip"
-    MxtunnelProtocolEnum_UDP MxtunnelProtocolEnum = "udp"
+	MxtunnelProtocolEnum_IP  MxtunnelProtocolEnum = "ip"
+	MxtunnelProtocolEnum_UDP MxtunnelProtocolEnum = "udp"
 )
 
 // NacPortalAccessTypeEnum is a string enum.
@@ -1647,8 +1647,8 @@ const (
 type NacPortalAccessTypeEnum string
 
 const (
-    NacPortalAccessTypeEnum_WIRELESS          NacPortalAccessTypeEnum = "wireless"
-    NacPortalAccessTypeEnum_ENUMWIRELESSWIRED NacPortalAccessTypeEnum = "wireless+wired"
+	NacPortalAccessTypeEnum_WIRELESS          NacPortalAccessTypeEnum = "wireless"
+	NacPortalAccessTypeEnum_ENUMWIRELESSWIRED NacPortalAccessTypeEnum = "wireless+wired"
 )
 
 // NacPortalEapTypeEnum is a string enum.
@@ -1656,8 +1656,8 @@ const (
 type NacPortalEapTypeEnum string
 
 const (
-    NacPortalEapTypeEnum_WPA2 NacPortalEapTypeEnum = "wpa2"
-    NacPortalEapTypeEnum_WPA3 NacPortalEapTypeEnum = "wpa3"
+	NacPortalEapTypeEnum_WPA2 NacPortalEapTypeEnum = "wpa2"
+	NacPortalEapTypeEnum_WPA3 NacPortalEapTypeEnum = "wpa3"
 )
 
 // NacPortalSsoIdpSignAlgoEnum is a string enum.
@@ -1665,10 +1665,10 @@ const (
 type NacPortalSsoIdpSignAlgoEnum string
 
 const (
-    NacPortalSsoIdpSignAlgoEnum_SHA1   NacPortalSsoIdpSignAlgoEnum = "sha1"
-    NacPortalSsoIdpSignAlgoEnum_SHA256 NacPortalSsoIdpSignAlgoEnum = "sha256"
-    NacPortalSsoIdpSignAlgoEnum_SHA384 NacPortalSsoIdpSignAlgoEnum = "sha384"
-    NacPortalSsoIdpSignAlgoEnum_SHA512 NacPortalSsoIdpSignAlgoEnum = "sha512"
+	NacPortalSsoIdpSignAlgoEnum_SHA1   NacPortalSsoIdpSignAlgoEnum = "sha1"
+	NacPortalSsoIdpSignAlgoEnum_SHA256 NacPortalSsoIdpSignAlgoEnum = "sha256"
+	NacPortalSsoIdpSignAlgoEnum_SHA384 NacPortalSsoIdpSignAlgoEnum = "sha384"
+	NacPortalSsoIdpSignAlgoEnum_SHA512 NacPortalSsoIdpSignAlgoEnum = "sha512"
 )
 
 // NacPortalTypeEnum is a string enum.
@@ -1676,8 +1676,8 @@ const (
 type NacPortalTypeEnum string
 
 const (
-    NacPortalTypeEnum_GUEST        NacPortalTypeEnum = "guest"
-    NacPortalTypeEnum_MARVISCLIENT NacPortalTypeEnum = "marvis_client"
+	NacPortalTypeEnum_GUEST        NacPortalTypeEnum = "guest"
+	NacPortalTypeEnum_MARVISCLIENT NacPortalTypeEnum = "marvis_client"
 )
 
 // NacRuleActionEnum is a string enum.
@@ -1685,8 +1685,8 @@ const (
 type NacRuleActionEnum string
 
 const (
-    NacRuleActionEnum_ALLOW NacRuleActionEnum = "allow"
-    NacRuleActionEnum_BLOCK NacRuleActionEnum = "block"
+	NacRuleActionEnum_ALLOW NacRuleActionEnum = "allow"
+	NacRuleActionEnum_BLOCK NacRuleActionEnum = "block"
 )
 
 // NacRuleMatchingAuthTypeEnum is a string enum.
@@ -1694,15 +1694,15 @@ const (
 type NacRuleMatchingAuthTypeEnum string
 
 const (
-    NacRuleMatchingAuthTypeEnum_CERT       NacRuleMatchingAuthTypeEnum = "cert"
-    NacRuleMatchingAuthTypeEnum_DEVICEAUTH NacRuleMatchingAuthTypeEnum = "device-auth"
-    NacRuleMatchingAuthTypeEnum_EAPTEAP    NacRuleMatchingAuthTypeEnum = "eap-teap"
-    NacRuleMatchingAuthTypeEnum_EAPTLS     NacRuleMatchingAuthTypeEnum = "eap-tls"
-    NacRuleMatchingAuthTypeEnum_EAPTTLS    NacRuleMatchingAuthTypeEnum = "eap-ttls"
-    NacRuleMatchingAuthTypeEnum_IDP        NacRuleMatchingAuthTypeEnum = "idp"
-    NacRuleMatchingAuthTypeEnum_MAB        NacRuleMatchingAuthTypeEnum = "mab"
-    NacRuleMatchingAuthTypeEnum_PEAPTLS    NacRuleMatchingAuthTypeEnum = "peap-tls"
-    NacRuleMatchingAuthTypeEnum_PSK        NacRuleMatchingAuthTypeEnum = "psk"
+	NacRuleMatchingAuthTypeEnum_CERT       NacRuleMatchingAuthTypeEnum = "cert"
+	NacRuleMatchingAuthTypeEnum_DEVICEAUTH NacRuleMatchingAuthTypeEnum = "device-auth"
+	NacRuleMatchingAuthTypeEnum_EAPTEAP    NacRuleMatchingAuthTypeEnum = "eap-teap"
+	NacRuleMatchingAuthTypeEnum_EAPTLS     NacRuleMatchingAuthTypeEnum = "eap-tls"
+	NacRuleMatchingAuthTypeEnum_EAPTTLS    NacRuleMatchingAuthTypeEnum = "eap-ttls"
+	NacRuleMatchingAuthTypeEnum_IDP        NacRuleMatchingAuthTypeEnum = "idp"
+	NacRuleMatchingAuthTypeEnum_MAB        NacRuleMatchingAuthTypeEnum = "mab"
+	NacRuleMatchingAuthTypeEnum_PEAPTLS    NacRuleMatchingAuthTypeEnum = "peap-tls"
+	NacRuleMatchingAuthTypeEnum_PSK        NacRuleMatchingAuthTypeEnum = "psk"
 )
 
 // NacRuleMatchingPortTypeEnum is a string enum.
@@ -1710,8 +1710,8 @@ const (
 type NacRuleMatchingPortTypeEnum string
 
 const (
-    NacRuleMatchingPortTypeEnum_WIRED    NacRuleMatchingPortTypeEnum = "wired"
-    NacRuleMatchingPortTypeEnum_WIRELESS NacRuleMatchingPortTypeEnum = "wireless"
+	NacRuleMatchingPortTypeEnum_WIRED    NacRuleMatchingPortTypeEnum = "wired"
+	NacRuleMatchingPortTypeEnum_WIRELESS NacRuleMatchingPortTypeEnum = "wireless"
 )
 
 // NacTagMatchEnum is a string enum.
@@ -1719,21 +1719,21 @@ const (
 type NacTagMatchEnum string
 
 const (
-    NacTagMatchEnum_CERTCN       NacTagMatchEnum = "cert_cn"
-    NacTagMatchEnum_CERTISSUER   NacTagMatchEnum = "cert_issuer"
-    NacTagMatchEnum_CERTSAN      NacTagMatchEnum = "cert_san"
-    NacTagMatchEnum_CERTSERIAL   NacTagMatchEnum = "cert_serial"
-    NacTagMatchEnum_CERTSUB      NacTagMatchEnum = "cert_sub"
-    NacTagMatchEnum_CLIENTMAC    NacTagMatchEnum = "client_mac"
-    NacTagMatchEnum_IDPROLE      NacTagMatchEnum = "idp_role"
-    NacTagMatchEnum_INGRESSVLAN  NacTagMatchEnum = "ingress_vlan"
-    NacTagMatchEnum_MDMSTATUS    NacTagMatchEnum = "mdm_status"
-    NacTagMatchEnum_NASIP        NacTagMatchEnum = "nas_ip"
-    NacTagMatchEnum_RADIUSGROUP  NacTagMatchEnum = "radius_group"
-    NacTagMatchEnum_REALM        NacTagMatchEnum = "realm"
-    NacTagMatchEnum_SSID         NacTagMatchEnum = "ssid"
-    NacTagMatchEnum_USERNAME     NacTagMatchEnum = "user_name"
-    NacTagMatchEnum_USERMACLABEL NacTagMatchEnum = "usermac_label"
+	NacTagMatchEnum_CERTCN       NacTagMatchEnum = "cert_cn"
+	NacTagMatchEnum_CERTISSUER   NacTagMatchEnum = "cert_issuer"
+	NacTagMatchEnum_CERTSAN      NacTagMatchEnum = "cert_san"
+	NacTagMatchEnum_CERTSERIAL   NacTagMatchEnum = "cert_serial"
+	NacTagMatchEnum_CERTSUB      NacTagMatchEnum = "cert_sub"
+	NacTagMatchEnum_CLIENTMAC    NacTagMatchEnum = "client_mac"
+	NacTagMatchEnum_IDPROLE      NacTagMatchEnum = "idp_role"
+	NacTagMatchEnum_INGRESSVLAN  NacTagMatchEnum = "ingress_vlan"
+	NacTagMatchEnum_MDMSTATUS    NacTagMatchEnum = "mdm_status"
+	NacTagMatchEnum_NASIP        NacTagMatchEnum = "nas_ip"
+	NacTagMatchEnum_RADIUSGROUP  NacTagMatchEnum = "radius_group"
+	NacTagMatchEnum_REALM        NacTagMatchEnum = "realm"
+	NacTagMatchEnum_SSID         NacTagMatchEnum = "ssid"
+	NacTagMatchEnum_USERNAME     NacTagMatchEnum = "user_name"
+	NacTagMatchEnum_USERMACLABEL NacTagMatchEnum = "usermac_label"
 )
 
 // NacTagTypeEnum is a string enum.
@@ -1741,15 +1741,15 @@ const (
 type NacTagTypeEnum string
 
 const (
-    NacTagTypeEnum_EGRESSVLANNAMES   NacTagTypeEnum = "egress_vlan_names"
-    NacTagTypeEnum_GBPTAG            NacTagTypeEnum = "gbp_tag"
-    NacTagTypeEnum_MATCH             NacTagTypeEnum = "match"
-    NacTagTypeEnum_RADIUSATTRS       NacTagTypeEnum = "radius_attrs"
-    NacTagTypeEnum_RADIUSGROUP       NacTagTypeEnum = "radius_group"
-    NacTagTypeEnum_RADIUSVENDORATTRS NacTagTypeEnum = "radius_vendor_attrs"
-    NacTagTypeEnum_SESSIONTIMEOUT    NacTagTypeEnum = "session_timeout"
-    NacTagTypeEnum_USERNAMEATTR      NacTagTypeEnum = "username_attr"
-    NacTagTypeEnum_VLAN              NacTagTypeEnum = "vlan"
+	NacTagTypeEnum_EGRESSVLANNAMES   NacTagTypeEnum = "egress_vlan_names"
+	NacTagTypeEnum_GBPTAG            NacTagTypeEnum = "gbp_tag"
+	NacTagTypeEnum_MATCH             NacTagTypeEnum = "match"
+	NacTagTypeEnum_RADIUSATTRS       NacTagTypeEnum = "radius_attrs"
+	NacTagTypeEnum_RADIUSGROUP       NacTagTypeEnum = "radius_group"
+	NacTagTypeEnum_RADIUSVENDORATTRS NacTagTypeEnum = "radius_vendor_attrs"
+	NacTagTypeEnum_SESSIONTIMEOUT    NacTagTypeEnum = "session_timeout"
+	NacTagTypeEnum_USERNAMEATTR      NacTagTypeEnum = "username_attr"
+	NacTagTypeEnum_VLAN              NacTagTypeEnum = "vlan"
 )
 
 // NacTagUsernameAttrEnum is a string enum.
@@ -1757,11 +1757,11 @@ const (
 type NacTagUsernameAttrEnum string
 
 const (
-    NacTagUsernameAttrEnum_AUTOMATIC NacTagUsernameAttrEnum = "automatic"
-    NacTagUsernameAttrEnum_CN        NacTagUsernameAttrEnum = "cn"
-    NacTagUsernameAttrEnum_DNS       NacTagUsernameAttrEnum = "dns"
-    NacTagUsernameAttrEnum_EMAIL     NacTagUsernameAttrEnum = "email"
-    NacTagUsernameAttrEnum_UPN       NacTagUsernameAttrEnum = "upn"
+	NacTagUsernameAttrEnum_AUTOMATIC NacTagUsernameAttrEnum = "automatic"
+	NacTagUsernameAttrEnum_CN        NacTagUsernameAttrEnum = "cn"
+	NacTagUsernameAttrEnum_DNS       NacTagUsernameAttrEnum = "dns"
+	NacTagUsernameAttrEnum_EMAIL     NacTagUsernameAttrEnum = "email"
+	NacTagUsernameAttrEnum_UPN       NacTagUsernameAttrEnum = "upn"
 )
 
 // OauthAppNameEnum is a string enum.
@@ -1769,12 +1769,12 @@ const (
 type OauthAppNameEnum string
 
 const (
-    OauthAppNameEnum_INTUNE      OauthAppNameEnum = "intune"
-    OauthAppNameEnum_JAMF        OauthAppNameEnum = "jamf"
-    OauthAppNameEnum_MOBICONTROL OauthAppNameEnum = "mobicontrol"
-    OauthAppNameEnum_TEAMS       OauthAppNameEnum = "teams"
-    OauthAppNameEnum_VMWARE      OauthAppNameEnum = "vmware"
-    OauthAppNameEnum_ZOOM        OauthAppNameEnum = "zoom"
+	OauthAppNameEnum_INTUNE      OauthAppNameEnum = "intune"
+	OauthAppNameEnum_JAMF        OauthAppNameEnum = "jamf"
+	OauthAppNameEnum_MOBICONTROL OauthAppNameEnum = "mobicontrol"
+	OauthAppNameEnum_TEAMS       OauthAppNameEnum = "teams"
+	OauthAppNameEnum_VMWARE      OauthAppNameEnum = "vmware"
+	OauthAppNameEnum_ZOOM        OauthAppNameEnum = "zoom"
 )
 
 // OrgAssetCountDistinctEnum is a string enum.
@@ -1782,12 +1782,12 @@ const (
 type OrgAssetCountDistinctEnum string
 
 const (
-    OrgAssetCountDistinctEnum_IBEACONMAJOR OrgAssetCountDistinctEnum = "ibeacon_major"
-    OrgAssetCountDistinctEnum_IBEACONMINOR OrgAssetCountDistinctEnum = "ibeacon_minor"
-    OrgAssetCountDistinctEnum_IBEACONUUID  OrgAssetCountDistinctEnum = "ibeacon_uuid"
-    OrgAssetCountDistinctEnum_MAC          OrgAssetCountDistinctEnum = "mac"
-    OrgAssetCountDistinctEnum_MAPID        OrgAssetCountDistinctEnum = "map_id"
-    OrgAssetCountDistinctEnum_SITEID       OrgAssetCountDistinctEnum = "site_id"
+	OrgAssetCountDistinctEnum_IBEACONMAJOR OrgAssetCountDistinctEnum = "ibeacon_major"
+	OrgAssetCountDistinctEnum_IBEACONMINOR OrgAssetCountDistinctEnum = "ibeacon_minor"
+	OrgAssetCountDistinctEnum_IBEACONUUID  OrgAssetCountDistinctEnum = "ibeacon_uuid"
+	OrgAssetCountDistinctEnum_MAC          OrgAssetCountDistinctEnum = "mac"
+	OrgAssetCountDistinctEnum_MAPID        OrgAssetCountDistinctEnum = "map_id"
+	OrgAssetCountDistinctEnum_SITEID       OrgAssetCountDistinctEnum = "site_id"
 )
 
 // OrgAutoRulesMatchDeviceTypeEnum is a string enum.
@@ -1795,10 +1795,10 @@ const (
 type OrgAutoRulesMatchDeviceTypeEnum string
 
 const (
-    OrgAutoRulesMatchDeviceTypeEnum_AP         OrgAutoRulesMatchDeviceTypeEnum = "ap"
-    OrgAutoRulesMatchDeviceTypeEnum_GATEWAY    OrgAutoRulesMatchDeviceTypeEnum = "gateway"
-    OrgAutoRulesMatchDeviceTypeEnum_OTHER      OrgAutoRulesMatchDeviceTypeEnum = "other"
-    OrgAutoRulesMatchDeviceTypeEnum_ENUMSWITCH OrgAutoRulesMatchDeviceTypeEnum = "switch"
+	OrgAutoRulesMatchDeviceTypeEnum_AP         OrgAutoRulesMatchDeviceTypeEnum = "ap"
+	OrgAutoRulesMatchDeviceTypeEnum_GATEWAY    OrgAutoRulesMatchDeviceTypeEnum = "gateway"
+	OrgAutoRulesMatchDeviceTypeEnum_OTHER      OrgAutoRulesMatchDeviceTypeEnum = "other"
+	OrgAutoRulesMatchDeviceTypeEnum_ENUMSWITCH OrgAutoRulesMatchDeviceTypeEnum = "switch"
 )
 
 // OrgAutoRulesSrcEnum is a string enum.
@@ -1806,13 +1806,13 @@ const (
 type OrgAutoRulesSrcEnum string
 
 const (
-    OrgAutoRulesSrcEnum_DNSSUFFIX      OrgAutoRulesSrcEnum = "dns_suffix"
-    OrgAutoRulesSrcEnum_GEOIP          OrgAutoRulesSrcEnum = "geoip"
-    OrgAutoRulesSrcEnum_LLDPPORTDESC   OrgAutoRulesSrcEnum = "lldp_port_desc"
-    OrgAutoRulesSrcEnum_LLDPSYSTEMNAME OrgAutoRulesSrcEnum = "lldp_system_name"
-    OrgAutoRulesSrcEnum_MODEL          OrgAutoRulesSrcEnum = "model"
-    OrgAutoRulesSrcEnum_NAME           OrgAutoRulesSrcEnum = "name"
-    OrgAutoRulesSrcEnum_SUBNET         OrgAutoRulesSrcEnum = "subnet"
+	OrgAutoRulesSrcEnum_DNSSUFFIX      OrgAutoRulesSrcEnum = "dns_suffix"
+	OrgAutoRulesSrcEnum_GEOIP          OrgAutoRulesSrcEnum = "geoip"
+	OrgAutoRulesSrcEnum_LLDPPORTDESC   OrgAutoRulesSrcEnum = "lldp_port_desc"
+	OrgAutoRulesSrcEnum_LLDPSYSTEMNAME OrgAutoRulesSrcEnum = "lldp_system_name"
+	OrgAutoRulesSrcEnum_MODEL          OrgAutoRulesSrcEnum = "model"
+	OrgAutoRulesSrcEnum_NAME           OrgAutoRulesSrcEnum = "name"
+	OrgAutoRulesSrcEnum_SUBNET         OrgAutoRulesSrcEnum = "subnet"
 )
 
 // OrgClientSessionsCountDistinctEnum is a string enum.
@@ -1820,14 +1820,14 @@ const (
 type OrgClientSessionsCountDistinctEnum string
 
 const (
-    OrgClientSessionsCountDistinctEnum_AP       OrgClientSessionsCountDistinctEnum = "ap"
-    OrgClientSessionsCountDistinctEnum_DEVICE   OrgClientSessionsCountDistinctEnum = "device"
-    OrgClientSessionsCountDistinctEnum_HOSTNAME OrgClientSessionsCountDistinctEnum = "hostname"
-    OrgClientSessionsCountDistinctEnum_IP       OrgClientSessionsCountDistinctEnum = "ip"
-    OrgClientSessionsCountDistinctEnum_MODEL    OrgClientSessionsCountDistinctEnum = "model"
-    OrgClientSessionsCountDistinctEnum_OS       OrgClientSessionsCountDistinctEnum = "os"
-    OrgClientSessionsCountDistinctEnum_SSID     OrgClientSessionsCountDistinctEnum = "ssid"
-    OrgClientSessionsCountDistinctEnum_VLAN     OrgClientSessionsCountDistinctEnum = "vlan"
+	OrgClientSessionsCountDistinctEnum_AP       OrgClientSessionsCountDistinctEnum = "ap"
+	OrgClientSessionsCountDistinctEnum_DEVICE   OrgClientSessionsCountDistinctEnum = "device"
+	OrgClientSessionsCountDistinctEnum_HOSTNAME OrgClientSessionsCountDistinctEnum = "hostname"
+	OrgClientSessionsCountDistinctEnum_IP       OrgClientSessionsCountDistinctEnum = "ip"
+	OrgClientSessionsCountDistinctEnum_MODEL    OrgClientSessionsCountDistinctEnum = "model"
+	OrgClientSessionsCountDistinctEnum_OS       OrgClientSessionsCountDistinctEnum = "os"
+	OrgClientSessionsCountDistinctEnum_SSID     OrgClientSessionsCountDistinctEnum = "ssid"
+	OrgClientSessionsCountDistinctEnum_VLAN     OrgClientSessionsCountDistinctEnum = "vlan"
 )
 
 // OrgClientsCountDistinctEnum is a string enum.
@@ -1835,15 +1835,15 @@ const (
 type OrgClientsCountDistinctEnum string
 
 const (
-    OrgClientsCountDistinctEnum_AP       OrgClientsCountDistinctEnum = "ap"
-    OrgClientsCountDistinctEnum_DEVICE   OrgClientsCountDistinctEnum = "device"
-    OrgClientsCountDistinctEnum_HOSTNAME OrgClientsCountDistinctEnum = "hostname"
-    OrgClientsCountDistinctEnum_IP       OrgClientsCountDistinctEnum = "ip"
-    OrgClientsCountDistinctEnum_MAC      OrgClientsCountDistinctEnum = "mac"
-    OrgClientsCountDistinctEnum_MODEL    OrgClientsCountDistinctEnum = "model"
-    OrgClientsCountDistinctEnum_OS       OrgClientsCountDistinctEnum = "os"
-    OrgClientsCountDistinctEnum_SSID     OrgClientsCountDistinctEnum = "ssid"
-    OrgClientsCountDistinctEnum_VLAN     OrgClientsCountDistinctEnum = "vlan"
+	OrgClientsCountDistinctEnum_AP       OrgClientsCountDistinctEnum = "ap"
+	OrgClientsCountDistinctEnum_DEVICE   OrgClientsCountDistinctEnum = "device"
+	OrgClientsCountDistinctEnum_HOSTNAME OrgClientsCountDistinctEnum = "hostname"
+	OrgClientsCountDistinctEnum_IP       OrgClientsCountDistinctEnum = "ip"
+	OrgClientsCountDistinctEnum_MAC      OrgClientsCountDistinctEnum = "mac"
+	OrgClientsCountDistinctEnum_MODEL    OrgClientsCountDistinctEnum = "model"
+	OrgClientsCountDistinctEnum_OS       OrgClientsCountDistinctEnum = "os"
+	OrgClientsCountDistinctEnum_SSID     OrgClientsCountDistinctEnum = "ssid"
+	OrgClientsCountDistinctEnum_VLAN     OrgClientsCountDistinctEnum = "vlan"
 )
 
 // OrgDevicesCountDistinctEnum is a string enum.
@@ -1851,18 +1851,18 @@ const (
 type OrgDevicesCountDistinctEnum string
 
 const (
-    OrgDevicesCountDistinctEnum_HOSTNAME       OrgDevicesCountDistinctEnum = "hostname"
-    OrgDevicesCountDistinctEnum_IP             OrgDevicesCountDistinctEnum = "ip"
-    OrgDevicesCountDistinctEnum_LLDPMGMTADDR   OrgDevicesCountDistinctEnum = "lldp_mgmt_addr"
-    OrgDevicesCountDistinctEnum_LLDPPORTID     OrgDevicesCountDistinctEnum = "lldp_port_id"
-    OrgDevicesCountDistinctEnum_LLDPSYSTEMDESC OrgDevicesCountDistinctEnum = "lldp_system_desc"
-    OrgDevicesCountDistinctEnum_LLDPSYSTEMNAME OrgDevicesCountDistinctEnum = "lldp_system_name"
-    OrgDevicesCountDistinctEnum_MAC            OrgDevicesCountDistinctEnum = "mac"
-    OrgDevicesCountDistinctEnum_MODEL          OrgDevicesCountDistinctEnum = "model"
-    OrgDevicesCountDistinctEnum_MXEDGEID       OrgDevicesCountDistinctEnum = "mxedge_id"
-    OrgDevicesCountDistinctEnum_MXTUNNELSTATUS OrgDevicesCountDistinctEnum = "mxtunnel_status"
-    OrgDevicesCountDistinctEnum_SITEID         OrgDevicesCountDistinctEnum = "site_id"
-    OrgDevicesCountDistinctEnum_VERSION        OrgDevicesCountDistinctEnum = "version"
+	OrgDevicesCountDistinctEnum_HOSTNAME       OrgDevicesCountDistinctEnum = "hostname"
+	OrgDevicesCountDistinctEnum_IP             OrgDevicesCountDistinctEnum = "ip"
+	OrgDevicesCountDistinctEnum_LLDPMGMTADDR   OrgDevicesCountDistinctEnum = "lldp_mgmt_addr"
+	OrgDevicesCountDistinctEnum_LLDPPORTID     OrgDevicesCountDistinctEnum = "lldp_port_id"
+	OrgDevicesCountDistinctEnum_LLDPSYSTEMDESC OrgDevicesCountDistinctEnum = "lldp_system_desc"
+	OrgDevicesCountDistinctEnum_LLDPSYSTEMNAME OrgDevicesCountDistinctEnum = "lldp_system_name"
+	OrgDevicesCountDistinctEnum_MAC            OrgDevicesCountDistinctEnum = "mac"
+	OrgDevicesCountDistinctEnum_MODEL          OrgDevicesCountDistinctEnum = "model"
+	OrgDevicesCountDistinctEnum_MXEDGEID       OrgDevicesCountDistinctEnum = "mxedge_id"
+	OrgDevicesCountDistinctEnum_MXTUNNELSTATUS OrgDevicesCountDistinctEnum = "mxtunnel_status"
+	OrgDevicesCountDistinctEnum_SITEID         OrgDevicesCountDistinctEnum = "site_id"
+	OrgDevicesCountDistinctEnum_VERSION        OrgDevicesCountDistinctEnum = "version"
 )
 
 // OrgDevicesEventsCountDistinctEnum is a string enum.
@@ -1870,14 +1870,14 @@ const (
 type OrgDevicesEventsCountDistinctEnum string
 
 const (
-    OrgDevicesEventsCountDistinctEnum_AP        OrgDevicesEventsCountDistinctEnum = "ap"
-    OrgDevicesEventsCountDistinctEnum_APFW      OrgDevicesEventsCountDistinctEnum = "apfw"
-    OrgDevicesEventsCountDistinctEnum_MODEL     OrgDevicesEventsCountDistinctEnum = "model"
-    OrgDevicesEventsCountDistinctEnum_ORGID     OrgDevicesEventsCountDistinctEnum = "org_id"
-    OrgDevicesEventsCountDistinctEnum_SITEID    OrgDevicesEventsCountDistinctEnum = "site_id"
-    OrgDevicesEventsCountDistinctEnum_TEXT      OrgDevicesEventsCountDistinctEnum = "text"
-    OrgDevicesEventsCountDistinctEnum_TIMESTAMP OrgDevicesEventsCountDistinctEnum = "timestamp"
-    OrgDevicesEventsCountDistinctEnum_ENUMTYPE  OrgDevicesEventsCountDistinctEnum = "type"
+	OrgDevicesEventsCountDistinctEnum_AP        OrgDevicesEventsCountDistinctEnum = "ap"
+	OrgDevicesEventsCountDistinctEnum_APFW      OrgDevicesEventsCountDistinctEnum = "apfw"
+	OrgDevicesEventsCountDistinctEnum_MODEL     OrgDevicesEventsCountDistinctEnum = "model"
+	OrgDevicesEventsCountDistinctEnum_ORGID     OrgDevicesEventsCountDistinctEnum = "org_id"
+	OrgDevicesEventsCountDistinctEnum_SITEID    OrgDevicesEventsCountDistinctEnum = "site_id"
+	OrgDevicesEventsCountDistinctEnum_TEXT      OrgDevicesEventsCountDistinctEnum = "text"
+	OrgDevicesEventsCountDistinctEnum_TIMESTAMP OrgDevicesEventsCountDistinctEnum = "timestamp"
+	OrgDevicesEventsCountDistinctEnum_ENUMTYPE  OrgDevicesEventsCountDistinctEnum = "type"
 )
 
 // OrgDevicesLastConfigsCountDistinctEnum is a string enum.
@@ -1885,10 +1885,10 @@ const (
 type OrgDevicesLastConfigsCountDistinctEnum string
 
 const (
-    OrgDevicesLastConfigsCountDistinctEnum_MAC     OrgDevicesLastConfigsCountDistinctEnum = "mac"
-    OrgDevicesLastConfigsCountDistinctEnum_NAME    OrgDevicesLastConfigsCountDistinctEnum = "name"
-    OrgDevicesLastConfigsCountDistinctEnum_SITEID  OrgDevicesLastConfigsCountDistinctEnum = "site_id"
-    OrgDevicesLastConfigsCountDistinctEnum_VERSION OrgDevicesLastConfigsCountDistinctEnum = "version"
+	OrgDevicesLastConfigsCountDistinctEnum_MAC     OrgDevicesLastConfigsCountDistinctEnum = "mac"
+	OrgDevicesLastConfigsCountDistinctEnum_NAME    OrgDevicesLastConfigsCountDistinctEnum = "name"
+	OrgDevicesLastConfigsCountDistinctEnum_SITEID  OrgDevicesLastConfigsCountDistinctEnum = "site_id"
+	OrgDevicesLastConfigsCountDistinctEnum_VERSION OrgDevicesLastConfigsCountDistinctEnum = "version"
 )
 
 // OrgGuestsCountDistinctEnum is a string enum.
@@ -1896,9 +1896,9 @@ const (
 type OrgGuestsCountDistinctEnum string
 
 const (
-    OrgGuestsCountDistinctEnum_AUTHMETHOD OrgGuestsCountDistinctEnum = "auth_method"
-    OrgGuestsCountDistinctEnum_COMPANY    OrgGuestsCountDistinctEnum = "company"
-    OrgGuestsCountDistinctEnum_SSID       OrgGuestsCountDistinctEnum = "ssid"
+	OrgGuestsCountDistinctEnum_AUTHMETHOD OrgGuestsCountDistinctEnum = "auth_method"
+	OrgGuestsCountDistinctEnum_COMPANY    OrgGuestsCountDistinctEnum = "company"
+	OrgGuestsCountDistinctEnum_SSID       OrgGuestsCountDistinctEnum = "ssid"
 )
 
 // OrgLicenseActionOperationEnum is a string enum.
@@ -1906,10 +1906,10 @@ const (
 type OrgLicenseActionOperationEnum string
 
 const (
-    OrgLicenseActionOperationEnum_AMEND    OrgLicenseActionOperationEnum = "amend"
-    OrgLicenseActionOperationEnum_ANNOTATE OrgLicenseActionOperationEnum = "annotate"
-    OrgLicenseActionOperationEnum_DELETE   OrgLicenseActionOperationEnum = "delete"
-    OrgLicenseActionOperationEnum_UNAMEND  OrgLicenseActionOperationEnum = "unamend"
+	OrgLicenseActionOperationEnum_AMEND    OrgLicenseActionOperationEnum = "amend"
+	OrgLicenseActionOperationEnum_ANNOTATE OrgLicenseActionOperationEnum = "annotate"
+	OrgLicenseActionOperationEnum_DELETE   OrgLicenseActionOperationEnum = "delete"
+	OrgLicenseActionOperationEnum_UNAMEND  OrgLicenseActionOperationEnum = "unamend"
 )
 
 // OrgLogsCountDistinctEnum is a string enum.
@@ -1917,10 +1917,10 @@ const (
 type OrgLogsCountDistinctEnum string
 
 const (
-    OrgLogsCountDistinctEnum_ADMINID   OrgLogsCountDistinctEnum = "admin_id"
-    OrgLogsCountDistinctEnum_ADMINNAME OrgLogsCountDistinctEnum = "admin_name"
-    OrgLogsCountDistinctEnum_MESSAGE   OrgLogsCountDistinctEnum = "message"
-    OrgLogsCountDistinctEnum_SITEID    OrgLogsCountDistinctEnum = "site_id"
+	OrgLogsCountDistinctEnum_ADMINID   OrgLogsCountDistinctEnum = "admin_id"
+	OrgLogsCountDistinctEnum_ADMINNAME OrgLogsCountDistinctEnum = "admin_name"
+	OrgLogsCountDistinctEnum_MESSAGE   OrgLogsCountDistinctEnum = "message"
+	OrgLogsCountDistinctEnum_SITEID    OrgLogsCountDistinctEnum = "site_id"
 )
 
 // OrgMxedgeCountDistinctEnum is a string enum.
@@ -1928,11 +1928,11 @@ const (
 type OrgMxedgeCountDistinctEnum string
 
 const (
-    OrgMxedgeCountDistinctEnum_DISTRO         OrgMxedgeCountDistinctEnum = "distro"
-    OrgMxedgeCountDistinctEnum_MODEL          OrgMxedgeCountDistinctEnum = "model"
-    OrgMxedgeCountDistinctEnum_MXCLUSTERID    OrgMxedgeCountDistinctEnum = "mxcluster_id"
-    OrgMxedgeCountDistinctEnum_SITEID         OrgMxedgeCountDistinctEnum = "site_id"
-    OrgMxedgeCountDistinctEnum_TUNTERMVERSION OrgMxedgeCountDistinctEnum = "tunterm_version"
+	OrgMxedgeCountDistinctEnum_DISTRO         OrgMxedgeCountDistinctEnum = "distro"
+	OrgMxedgeCountDistinctEnum_MODEL          OrgMxedgeCountDistinctEnum = "model"
+	OrgMxedgeCountDistinctEnum_MXCLUSTERID    OrgMxedgeCountDistinctEnum = "mxcluster_id"
+	OrgMxedgeCountDistinctEnum_SITEID         OrgMxedgeCountDistinctEnum = "site_id"
+	OrgMxedgeCountDistinctEnum_TUNTERMVERSION OrgMxedgeCountDistinctEnum = "tunterm_version"
 )
 
 // OrgMxedgeEventsCountDistinctEnum is a string enum.
@@ -1940,10 +1940,10 @@ const (
 type OrgMxedgeEventsCountDistinctEnum string
 
 const (
-    OrgMxedgeEventsCountDistinctEnum_MXCLUSTERID OrgMxedgeEventsCountDistinctEnum = "mxcluster_id"
-    OrgMxedgeEventsCountDistinctEnum_MXEDGEID    OrgMxedgeEventsCountDistinctEnum = "mxedge_id"
-    OrgMxedgeEventsCountDistinctEnum_ENUMPACKAGE OrgMxedgeEventsCountDistinctEnum = "package"
-    OrgMxedgeEventsCountDistinctEnum_ENUMTYPE    OrgMxedgeEventsCountDistinctEnum = "type"
+	OrgMxedgeEventsCountDistinctEnum_MXCLUSTERID OrgMxedgeEventsCountDistinctEnum = "mxcluster_id"
+	OrgMxedgeEventsCountDistinctEnum_MXEDGEID    OrgMxedgeEventsCountDistinctEnum = "mxedge_id"
+	OrgMxedgeEventsCountDistinctEnum_ENUMPACKAGE OrgMxedgeEventsCountDistinctEnum = "package"
+	OrgMxedgeEventsCountDistinctEnum_ENUMTYPE    OrgMxedgeEventsCountDistinctEnum = "type"
 )
 
 // OrgNacClientEventsCountDistinctEnum is a string enum.
@@ -1951,16 +1951,16 @@ const (
 type OrgNacClientEventsCountDistinctEnum string
 
 const (
-    OrgNacClientEventsCountDistinctEnum_AP              OrgNacClientEventsCountDistinctEnum = "ap"
-    OrgNacClientEventsCountDistinctEnum_AUTHTYPE        OrgNacClientEventsCountDistinctEnum = "auth_type"
-    OrgNacClientEventsCountDistinctEnum_DRYRUNNACRULEID OrgNacClientEventsCountDistinctEnum = "dryrun_nacrule_id"
-    OrgNacClientEventsCountDistinctEnum_MAC             OrgNacClientEventsCountDistinctEnum = "mac"
-    OrgNacClientEventsCountDistinctEnum_NACRULEID       OrgNacClientEventsCountDistinctEnum = "nacrule_id"
-    OrgNacClientEventsCountDistinctEnum_NASVENDOR       OrgNacClientEventsCountDistinctEnum = "nas_vendor"
-    OrgNacClientEventsCountDistinctEnum_SSID            OrgNacClientEventsCountDistinctEnum = "ssid"
-    OrgNacClientEventsCountDistinctEnum_ENUMTYPE        OrgNacClientEventsCountDistinctEnum = "type"
-    OrgNacClientEventsCountDistinctEnum_USERNAME        OrgNacClientEventsCountDistinctEnum = "username"
-    OrgNacClientEventsCountDistinctEnum_VLAN            OrgNacClientEventsCountDistinctEnum = "vlan"
+	OrgNacClientEventsCountDistinctEnum_AP              OrgNacClientEventsCountDistinctEnum = "ap"
+	OrgNacClientEventsCountDistinctEnum_AUTHTYPE        OrgNacClientEventsCountDistinctEnum = "auth_type"
+	OrgNacClientEventsCountDistinctEnum_DRYRUNNACRULEID OrgNacClientEventsCountDistinctEnum = "dryrun_nacrule_id"
+	OrgNacClientEventsCountDistinctEnum_MAC             OrgNacClientEventsCountDistinctEnum = "mac"
+	OrgNacClientEventsCountDistinctEnum_NACRULEID       OrgNacClientEventsCountDistinctEnum = "nacrule_id"
+	OrgNacClientEventsCountDistinctEnum_NASVENDOR       OrgNacClientEventsCountDistinctEnum = "nas_vendor"
+	OrgNacClientEventsCountDistinctEnum_SSID            OrgNacClientEventsCountDistinctEnum = "ssid"
+	OrgNacClientEventsCountDistinctEnum_ENUMTYPE        OrgNacClientEventsCountDistinctEnum = "type"
+	OrgNacClientEventsCountDistinctEnum_USERNAME        OrgNacClientEventsCountDistinctEnum = "username"
+	OrgNacClientEventsCountDistinctEnum_VLAN            OrgNacClientEventsCountDistinctEnum = "vlan"
 )
 
 // OrgNacClientsCountDistinctEnum is a string enum.
@@ -1968,18 +1968,18 @@ const (
 type OrgNacClientsCountDistinctEnum string
 
 const (
-    OrgNacClientsCountDistinctEnum_AUTHTYPE      OrgNacClientsCountDistinctEnum = "auth_type"
-    OrgNacClientsCountDistinctEnum_LASTAP        OrgNacClientsCountDistinctEnum = "last_ap"
-    OrgNacClientsCountDistinctEnum_LASTNACRULEID OrgNacClientsCountDistinctEnum = "last_nacrule_id"
-    OrgNacClientsCountDistinctEnum_LASTNASVENDOR OrgNacClientsCountDistinctEnum = "last_nas_vendor"
-    OrgNacClientsCountDistinctEnum_LASTSSID      OrgNacClientsCountDistinctEnum = "last_ssid"
-    OrgNacClientsCountDistinctEnum_LASTSTATUS    OrgNacClientsCountDistinctEnum = "last_status"
-    OrgNacClientsCountDistinctEnum_LASTUSERNAME  OrgNacClientsCountDistinctEnum = "last_username"
-    OrgNacClientsCountDistinctEnum_LASTVLAN      OrgNacClientsCountDistinctEnum = "last_vlan"
-    OrgNacClientsCountDistinctEnum_MAC           OrgNacClientsCountDistinctEnum = "mac"
-    OrgNacClientsCountDistinctEnum_MDMCOMPLIANCE OrgNacClientsCountDistinctEnum = "mdm_compliance"
-    OrgNacClientsCountDistinctEnum_MDMPROVIDER   OrgNacClientsCountDistinctEnum = "mdm_provider"
-    OrgNacClientsCountDistinctEnum_ENUMTYPE      OrgNacClientsCountDistinctEnum = "type"
+	OrgNacClientsCountDistinctEnum_AUTHTYPE      OrgNacClientsCountDistinctEnum = "auth_type"
+	OrgNacClientsCountDistinctEnum_LASTAP        OrgNacClientsCountDistinctEnum = "last_ap"
+	OrgNacClientsCountDistinctEnum_LASTNACRULEID OrgNacClientsCountDistinctEnum = "last_nacrule_id"
+	OrgNacClientsCountDistinctEnum_LASTNASVENDOR OrgNacClientsCountDistinctEnum = "last_nas_vendor"
+	OrgNacClientsCountDistinctEnum_LASTSSID      OrgNacClientsCountDistinctEnum = "last_ssid"
+	OrgNacClientsCountDistinctEnum_LASTSTATUS    OrgNacClientsCountDistinctEnum = "last_status"
+	OrgNacClientsCountDistinctEnum_LASTUSERNAME  OrgNacClientsCountDistinctEnum = "last_username"
+	OrgNacClientsCountDistinctEnum_LASTVLAN      OrgNacClientsCountDistinctEnum = "last_vlan"
+	OrgNacClientsCountDistinctEnum_MAC           OrgNacClientsCountDistinctEnum = "mac"
+	OrgNacClientsCountDistinctEnum_MDMCOMPLIANCE OrgNacClientsCountDistinctEnum = "mdm_compliance"
+	OrgNacClientsCountDistinctEnum_MDMPROVIDER   OrgNacClientsCountDistinctEnum = "mdm_provider"
+	OrgNacClientsCountDistinctEnum_ENUMTYPE      OrgNacClientsCountDistinctEnum = "type"
 )
 
 // OrgOtherdevicesEventsCountDistinctEnum is a string enum.
@@ -1987,10 +1987,10 @@ const (
 type OrgOtherdevicesEventsCountDistinctEnum string
 
 const (
-    OrgOtherdevicesEventsCountDistinctEnum_MAC      OrgOtherdevicesEventsCountDistinctEnum = "mac"
-    OrgOtherdevicesEventsCountDistinctEnum_SITEID   OrgOtherdevicesEventsCountDistinctEnum = "site_id"
-    OrgOtherdevicesEventsCountDistinctEnum_ENUMTYPE OrgOtherdevicesEventsCountDistinctEnum = "type"
-    OrgOtherdevicesEventsCountDistinctEnum_VENDOR   OrgOtherdevicesEventsCountDistinctEnum = "vendor"
+	OrgOtherdevicesEventsCountDistinctEnum_MAC      OrgOtherdevicesEventsCountDistinctEnum = "mac"
+	OrgOtherdevicesEventsCountDistinctEnum_SITEID   OrgOtherdevicesEventsCountDistinctEnum = "site_id"
+	OrgOtherdevicesEventsCountDistinctEnum_ENUMTYPE OrgOtherdevicesEventsCountDistinctEnum = "type"
+	OrgOtherdevicesEventsCountDistinctEnum_VENDOR   OrgOtherdevicesEventsCountDistinctEnum = "vendor"
 )
 
 // OrgPskPortalLogsCountDistinctEnum is a string enum.
@@ -1998,12 +1998,12 @@ const (
 type OrgPskPortalLogsCountDistinctEnum string
 
 const (
-    OrgPskPortalLogsCountDistinctEnum_ADMINID     OrgPskPortalLogsCountDistinctEnum = "admin_id"
-    OrgPskPortalLogsCountDistinctEnum_ADMINNAME   OrgPskPortalLogsCountDistinctEnum = "admin_name"
-    OrgPskPortalLogsCountDistinctEnum_PSKID       OrgPskPortalLogsCountDistinctEnum = "psk_id"
-    OrgPskPortalLogsCountDistinctEnum_PSKNAME     OrgPskPortalLogsCountDistinctEnum = "psk_name"
-    OrgPskPortalLogsCountDistinctEnum_PSKPORTALID OrgPskPortalLogsCountDistinctEnum = "pskportal_id"
-    OrgPskPortalLogsCountDistinctEnum_USERID      OrgPskPortalLogsCountDistinctEnum = "user_id"
+	OrgPskPortalLogsCountDistinctEnum_ADMINID     OrgPskPortalLogsCountDistinctEnum = "admin_id"
+	OrgPskPortalLogsCountDistinctEnum_ADMINNAME   OrgPskPortalLogsCountDistinctEnum = "admin_name"
+	OrgPskPortalLogsCountDistinctEnum_PSKID       OrgPskPortalLogsCountDistinctEnum = "psk_id"
+	OrgPskPortalLogsCountDistinctEnum_PSKNAME     OrgPskPortalLogsCountDistinctEnum = "psk_name"
+	OrgPskPortalLogsCountDistinctEnum_PSKPORTALID OrgPskPortalLogsCountDistinctEnum = "pskportal_id"
+	OrgPskPortalLogsCountDistinctEnum_USERID      OrgPskPortalLogsCountDistinctEnum = "user_id"
 )
 
 // OrgSettingMistNacIpVersionEnum is a string enum.
@@ -2011,8 +2011,8 @@ const (
 type OrgSettingMistNacIpVersionEnum string
 
 const (
-    OrgSettingMistNacIpVersionEnum_V4 OrgSettingMistNacIpVersionEnum = "v4"
-    OrgSettingMistNacIpVersionEnum_V6 OrgSettingMistNacIpVersionEnum = "v6"
+	OrgSettingMistNacIpVersionEnum_V4 OrgSettingMistNacIpVersionEnum = "v4"
+	OrgSettingMistNacIpVersionEnum_V6 OrgSettingMistNacIpVersionEnum = "v6"
 )
 
 // OrgSiteSleTypeEnum is a string enum.
@@ -2020,9 +2020,9 @@ const (
 type OrgSiteSleTypeEnum string
 
 const (
-    OrgSiteSleTypeEnum_WAN   OrgSiteSleTypeEnum = "wan"
-    OrgSiteSleTypeEnum_WIFI  OrgSiteSleTypeEnum = "wifi"
-    OrgSiteSleTypeEnum_WIRED OrgSiteSleTypeEnum = "wired"
+	OrgSiteSleTypeEnum_WAN   OrgSiteSleTypeEnum = "wan"
+	OrgSiteSleTypeEnum_WIFI  OrgSiteSleTypeEnum = "wifi"
+	OrgSiteSleTypeEnum_WIRED OrgSiteSleTypeEnum = "wired"
 )
 
 // OrgSitesCountDistinctEnum is a string enum.
@@ -2030,22 +2030,22 @@ const (
 type OrgSitesCountDistinctEnum string
 
 const (
-    OrgSitesCountDistinctEnum_ANALYTICENABLED     OrgSitesCountDistinctEnum = "analytic_enabled"
-    OrgSitesCountDistinctEnum_APPWAKING           OrgSitesCountDistinctEnum = "app_waking"
-    OrgSitesCountDistinctEnum_ASSETENABLED        OrgSitesCountDistinctEnum = "asset_enabled"
-    OrgSitesCountDistinctEnum_AUTOUPGRADEENABLED  OrgSitesCountDistinctEnum = "auto_upgrade_enabled"
-    OrgSitesCountDistinctEnum_AUTOUPGRADEVERSION  OrgSitesCountDistinctEnum = "auto_upgrade_version"
-    OrgSitesCountDistinctEnum_COUNTRYCODE         OrgSitesCountDistinctEnum = "country_code"
-    OrgSitesCountDistinctEnum_HONEYPOTENABLED     OrgSitesCountDistinctEnum = "honeypot_enabled"
-    OrgSitesCountDistinctEnum_ID                  OrgSitesCountDistinctEnum = "id"
-    OrgSitesCountDistinctEnum_LOCATEUNCONNECTED   OrgSitesCountDistinctEnum = "locate_unconnected"
-    OrgSitesCountDistinctEnum_MESHENABLED         OrgSitesCountDistinctEnum = "mesh_enabled"
-    OrgSitesCountDistinctEnum_NAME                OrgSitesCountDistinctEnum = "name"
-    OrgSitesCountDistinctEnum_REMOTESYSLOGENABLED OrgSitesCountDistinctEnum = "remote_syslog_enabled"
-    OrgSitesCountDistinctEnum_ROGUEENABLED        OrgSitesCountDistinctEnum = "rogue_enabled"
-    OrgSitesCountDistinctEnum_RTSAENABLED         OrgSitesCountDistinctEnum = "rtsa_enabled"
-    OrgSitesCountDistinctEnum_VNAENABLED          OrgSitesCountDistinctEnum = "vna_enabled"
-    OrgSitesCountDistinctEnum_WIFIENABLED         OrgSitesCountDistinctEnum = "wifi_enabled"
+	OrgSitesCountDistinctEnum_ANALYTICENABLED     OrgSitesCountDistinctEnum = "analytic_enabled"
+	OrgSitesCountDistinctEnum_APPWAKING           OrgSitesCountDistinctEnum = "app_waking"
+	OrgSitesCountDistinctEnum_ASSETENABLED        OrgSitesCountDistinctEnum = "asset_enabled"
+	OrgSitesCountDistinctEnum_AUTOUPGRADEENABLED  OrgSitesCountDistinctEnum = "auto_upgrade_enabled"
+	OrgSitesCountDistinctEnum_AUTOUPGRADEVERSION  OrgSitesCountDistinctEnum = "auto_upgrade_version"
+	OrgSitesCountDistinctEnum_COUNTRYCODE         OrgSitesCountDistinctEnum = "country_code"
+	OrgSitesCountDistinctEnum_HONEYPOTENABLED     OrgSitesCountDistinctEnum = "honeypot_enabled"
+	OrgSitesCountDistinctEnum_ID                  OrgSitesCountDistinctEnum = "id"
+	OrgSitesCountDistinctEnum_LOCATEUNCONNECTED   OrgSitesCountDistinctEnum = "locate_unconnected"
+	OrgSitesCountDistinctEnum_MESHENABLED         OrgSitesCountDistinctEnum = "mesh_enabled"
+	OrgSitesCountDistinctEnum_NAME                OrgSitesCountDistinctEnum = "name"
+	OrgSitesCountDistinctEnum_REMOTESYSLOGENABLED OrgSitesCountDistinctEnum = "remote_syslog_enabled"
+	OrgSitesCountDistinctEnum_ROGUEENABLED        OrgSitesCountDistinctEnum = "rogue_enabled"
+	OrgSitesCountDistinctEnum_RTSAENABLED         OrgSitesCountDistinctEnum = "rtsa_enabled"
+	OrgSitesCountDistinctEnum_VNAENABLED          OrgSitesCountDistinctEnum = "vna_enabled"
+	OrgSitesCountDistinctEnum_WIFIENABLED         OrgSitesCountDistinctEnum = "wifi_enabled"
 )
 
 // OrgSwitchPortCountDistinctEnum is a string enum.
@@ -2053,18 +2053,18 @@ const (
 type OrgSwitchPortCountDistinctEnum string
 
 const (
-    OrgSwitchPortCountDistinctEnum_FULLDUPLEX         OrgSwitchPortCountDistinctEnum = "full_duplex"
-    OrgSwitchPortCountDistinctEnum_MAC                OrgSwitchPortCountDistinctEnum = "mac"
-    OrgSwitchPortCountDistinctEnum_NEIGHBORMAC        OrgSwitchPortCountDistinctEnum = "neighbor_mac"
-    OrgSwitchPortCountDistinctEnum_NEIGHBORPORTDESC   OrgSwitchPortCountDistinctEnum = "neighbor_port_desc"
-    OrgSwitchPortCountDistinctEnum_NEIGHBORSYSTEMNAME OrgSwitchPortCountDistinctEnum = "neighbor_system_name"
-    OrgSwitchPortCountDistinctEnum_POEDISABLED        OrgSwitchPortCountDistinctEnum = "poe_disabled"
-    OrgSwitchPortCountDistinctEnum_POEMODE            OrgSwitchPortCountDistinctEnum = "poe_mode"
-    OrgSwitchPortCountDistinctEnum_POEON              OrgSwitchPortCountDistinctEnum = "poe_on"
-    OrgSwitchPortCountDistinctEnum_PORTID             OrgSwitchPortCountDistinctEnum = "port_id"
-    OrgSwitchPortCountDistinctEnum_PORTMAC            OrgSwitchPortCountDistinctEnum = "port_mac"
-    OrgSwitchPortCountDistinctEnum_SPEED              OrgSwitchPortCountDistinctEnum = "speed"
-    OrgSwitchPortCountDistinctEnum_UP                 OrgSwitchPortCountDistinctEnum = "up"
+	OrgSwitchPortCountDistinctEnum_FULLDUPLEX         OrgSwitchPortCountDistinctEnum = "full_duplex"
+	OrgSwitchPortCountDistinctEnum_MAC                OrgSwitchPortCountDistinctEnum = "mac"
+	OrgSwitchPortCountDistinctEnum_NEIGHBORMAC        OrgSwitchPortCountDistinctEnum = "neighbor_mac"
+	OrgSwitchPortCountDistinctEnum_NEIGHBORPORTDESC   OrgSwitchPortCountDistinctEnum = "neighbor_port_desc"
+	OrgSwitchPortCountDistinctEnum_NEIGHBORSYSTEMNAME OrgSwitchPortCountDistinctEnum = "neighbor_system_name"
+	OrgSwitchPortCountDistinctEnum_POEDISABLED        OrgSwitchPortCountDistinctEnum = "poe_disabled"
+	OrgSwitchPortCountDistinctEnum_POEMODE            OrgSwitchPortCountDistinctEnum = "poe_mode"
+	OrgSwitchPortCountDistinctEnum_POEON              OrgSwitchPortCountDistinctEnum = "poe_on"
+	OrgSwitchPortCountDistinctEnum_PORTID             OrgSwitchPortCountDistinctEnum = "port_id"
+	OrgSwitchPortCountDistinctEnum_PORTMAC            OrgSwitchPortCountDistinctEnum = "port_mac"
+	OrgSwitchPortCountDistinctEnum_SPEED              OrgSwitchPortCountDistinctEnum = "speed"
+	OrgSwitchPortCountDistinctEnum_UP                 OrgSwitchPortCountDistinctEnum = "up"
 )
 
 // OrgTicketsCountDistinctEnum is a string enum.
@@ -2072,8 +2072,8 @@ const (
 type OrgTicketsCountDistinctEnum string
 
 const (
-    OrgTicketsCountDistinctEnum_STATUS   OrgTicketsCountDistinctEnum = "status"
-    OrgTicketsCountDistinctEnum_ENUMTYPE OrgTicketsCountDistinctEnum = "type"
+	OrgTicketsCountDistinctEnum_STATUS   OrgTicketsCountDistinctEnum = "status"
+	OrgTicketsCountDistinctEnum_ENUMTYPE OrgTicketsCountDistinctEnum = "type"
 )
 
 // OrgTunnelCountDistinctEnum is a string enum.
@@ -2081,27 +2081,27 @@ const (
 type OrgTunnelCountDistinctEnum string
 
 const (
-    OrgTunnelCountDistinctEnum_AP           OrgTunnelCountDistinctEnum = "ap"
-    OrgTunnelCountDistinctEnum_AUTHALGO     OrgTunnelCountDistinctEnum = "auth_algo"
-    OrgTunnelCountDistinctEnum_ENCRYPTALGO  OrgTunnelCountDistinctEnum = "encrypt_algo"
-    OrgTunnelCountDistinctEnum_IKEVERSION   OrgTunnelCountDistinctEnum = "ike_version"
-    OrgTunnelCountDistinctEnum_IP           OrgTunnelCountDistinctEnum = "ip"
-    OrgTunnelCountDistinctEnum_LASTEVENT    OrgTunnelCountDistinctEnum = "last_event"
-    OrgTunnelCountDistinctEnum_MAC          OrgTunnelCountDistinctEnum = "mac"
-    OrgTunnelCountDistinctEnum_MXCLUSTERID  OrgTunnelCountDistinctEnum = "mxcluster_id"
-    OrgTunnelCountDistinctEnum_MXEDGEID     OrgTunnelCountDistinctEnum = "mxedge_id"
-    OrgTunnelCountDistinctEnum_NODE         OrgTunnelCountDistinctEnum = "node"
-    OrgTunnelCountDistinctEnum_PEERHOST     OrgTunnelCountDistinctEnum = "peer_host"
-    OrgTunnelCountDistinctEnum_PEERIP       OrgTunnelCountDistinctEnum = "peer_ip"
-    OrgTunnelCountDistinctEnum_PEERMXEDGEID OrgTunnelCountDistinctEnum = "peer_mxedge_id"
-    OrgTunnelCountDistinctEnum_PROTOCOL     OrgTunnelCountDistinctEnum = "protocol"
-    OrgTunnelCountDistinctEnum_REMOTEIP     OrgTunnelCountDistinctEnum = "remote_ip"
-    OrgTunnelCountDistinctEnum_REMOTEPORT   OrgTunnelCountDistinctEnum = "remote_port"
-    OrgTunnelCountDistinctEnum_SITEID       OrgTunnelCountDistinctEnum = "site_id"
-    OrgTunnelCountDistinctEnum_STATE        OrgTunnelCountDistinctEnum = "state"
-    OrgTunnelCountDistinctEnum_TUNNELNAME   OrgTunnelCountDistinctEnum = "tunnel_name"
-    OrgTunnelCountDistinctEnum_UP           OrgTunnelCountDistinctEnum = "up"
-    OrgTunnelCountDistinctEnum_WXTUNNELID   OrgTunnelCountDistinctEnum = "wxtunnel_id"
+	OrgTunnelCountDistinctEnum_AP           OrgTunnelCountDistinctEnum = "ap"
+	OrgTunnelCountDistinctEnum_AUTHALGO     OrgTunnelCountDistinctEnum = "auth_algo"
+	OrgTunnelCountDistinctEnum_ENCRYPTALGO  OrgTunnelCountDistinctEnum = "encrypt_algo"
+	OrgTunnelCountDistinctEnum_IKEVERSION   OrgTunnelCountDistinctEnum = "ike_version"
+	OrgTunnelCountDistinctEnum_IP           OrgTunnelCountDistinctEnum = "ip"
+	OrgTunnelCountDistinctEnum_LASTEVENT    OrgTunnelCountDistinctEnum = "last_event"
+	OrgTunnelCountDistinctEnum_MAC          OrgTunnelCountDistinctEnum = "mac"
+	OrgTunnelCountDistinctEnum_MXCLUSTERID  OrgTunnelCountDistinctEnum = "mxcluster_id"
+	OrgTunnelCountDistinctEnum_MXEDGEID     OrgTunnelCountDistinctEnum = "mxedge_id"
+	OrgTunnelCountDistinctEnum_NODE         OrgTunnelCountDistinctEnum = "node"
+	OrgTunnelCountDistinctEnum_PEERHOST     OrgTunnelCountDistinctEnum = "peer_host"
+	OrgTunnelCountDistinctEnum_PEERIP       OrgTunnelCountDistinctEnum = "peer_ip"
+	OrgTunnelCountDistinctEnum_PEERMXEDGEID OrgTunnelCountDistinctEnum = "peer_mxedge_id"
+	OrgTunnelCountDistinctEnum_PROTOCOL     OrgTunnelCountDistinctEnum = "protocol"
+	OrgTunnelCountDistinctEnum_REMOTEIP     OrgTunnelCountDistinctEnum = "remote_ip"
+	OrgTunnelCountDistinctEnum_REMOTEPORT   OrgTunnelCountDistinctEnum = "remote_port"
+	OrgTunnelCountDistinctEnum_SITEID       OrgTunnelCountDistinctEnum = "site_id"
+	OrgTunnelCountDistinctEnum_STATE        OrgTunnelCountDistinctEnum = "state"
+	OrgTunnelCountDistinctEnum_TUNNELNAME   OrgTunnelCountDistinctEnum = "tunnel_name"
+	OrgTunnelCountDistinctEnum_UP           OrgTunnelCountDistinctEnum = "up"
+	OrgTunnelCountDistinctEnum_WXTUNNELID   OrgTunnelCountDistinctEnum = "wxtunnel_id"
 )
 
 // OrgTunnelTypeCountEnum is a string enum.
@@ -2109,8 +2109,8 @@ const (
 type OrgTunnelTypeCountEnum string
 
 const (
-    OrgTunnelTypeCountEnum_WAN      OrgTunnelTypeCountEnum = "wan"
-    OrgTunnelTypeCountEnum_WXTUNNEL OrgTunnelTypeCountEnum = "wxtunnel"
+	OrgTunnelTypeCountEnum_WAN      OrgTunnelTypeCountEnum = "wan"
+	OrgTunnelTypeCountEnum_WXTUNNEL OrgTunnelTypeCountEnum = "wxtunnel"
 )
 
 // OrgWanClientsCountDistinctEnum is a string enum.
@@ -2118,11 +2118,11 @@ const (
 type OrgWanClientsCountDistinctEnum string
 
 const (
-    OrgWanClientsCountDistinctEnum_HOSTNAME OrgWanClientsCountDistinctEnum = "hostname"
-    OrgWanClientsCountDistinctEnum_IP       OrgWanClientsCountDistinctEnum = "ip"
-    OrgWanClientsCountDistinctEnum_MAC      OrgWanClientsCountDistinctEnum = "mac"
-    OrgWanClientsCountDistinctEnum_MFG      OrgWanClientsCountDistinctEnum = "mfg"
-    OrgWanClientsCountDistinctEnum_NETWORK  OrgWanClientsCountDistinctEnum = "network"
+	OrgWanClientsCountDistinctEnum_HOSTNAME OrgWanClientsCountDistinctEnum = "hostname"
+	OrgWanClientsCountDistinctEnum_IP       OrgWanClientsCountDistinctEnum = "ip"
+	OrgWanClientsCountDistinctEnum_MAC      OrgWanClientsCountDistinctEnum = "mac"
+	OrgWanClientsCountDistinctEnum_MFG      OrgWanClientsCountDistinctEnum = "mfg"
+	OrgWanClientsCountDistinctEnum_NETWORK  OrgWanClientsCountDistinctEnum = "network"
 )
 
 // OrgWanClientsEventsCountDistinctEnum is a string enum.
@@ -2130,11 +2130,11 @@ const (
 type OrgWanClientsEventsCountDistinctEnum string
 
 const (
-    OrgWanClientsEventsCountDistinctEnum_HOSTNAME OrgWanClientsEventsCountDistinctEnum = "hostname"
-    OrgWanClientsEventsCountDistinctEnum_IP       OrgWanClientsEventsCountDistinctEnum = "ip"
-    OrgWanClientsEventsCountDistinctEnum_MAC      OrgWanClientsEventsCountDistinctEnum = "mac"
-    OrgWanClientsEventsCountDistinctEnum_MFG      OrgWanClientsEventsCountDistinctEnum = "mfg"
-    OrgWanClientsEventsCountDistinctEnum_ENUMTYPE OrgWanClientsEventsCountDistinctEnum = "type"
+	OrgWanClientsEventsCountDistinctEnum_HOSTNAME OrgWanClientsEventsCountDistinctEnum = "hostname"
+	OrgWanClientsEventsCountDistinctEnum_IP       OrgWanClientsEventsCountDistinctEnum = "ip"
+	OrgWanClientsEventsCountDistinctEnum_MAC      OrgWanClientsEventsCountDistinctEnum = "mac"
+	OrgWanClientsEventsCountDistinctEnum_MFG      OrgWanClientsEventsCountDistinctEnum = "mfg"
+	OrgWanClientsEventsCountDistinctEnum_ENUMTYPE OrgWanClientsEventsCountDistinctEnum = "type"
 )
 
 // OrgWiredClientsCountDistinctEnum is a string enum.
@@ -2142,12 +2142,12 @@ const (
 type OrgWiredClientsCountDistinctEnum string
 
 const (
-    OrgWiredClientsCountDistinctEnum_DEVICEMAC OrgWiredClientsCountDistinctEnum = "device_mac"
-    OrgWiredClientsCountDistinctEnum_MAC       OrgWiredClientsCountDistinctEnum = "mac"
-    OrgWiredClientsCountDistinctEnum_PORTID    OrgWiredClientsCountDistinctEnum = "port_id"
-    OrgWiredClientsCountDistinctEnum_SITEID    OrgWiredClientsCountDistinctEnum = "site_id"
-    OrgWiredClientsCountDistinctEnum_ENUMTYPE  OrgWiredClientsCountDistinctEnum = "type"
-    OrgWiredClientsCountDistinctEnum_VLAN      OrgWiredClientsCountDistinctEnum = "vlan"
+	OrgWiredClientsCountDistinctEnum_DEVICEMAC OrgWiredClientsCountDistinctEnum = "device_mac"
+	OrgWiredClientsCountDistinctEnum_MAC       OrgWiredClientsCountDistinctEnum = "mac"
+	OrgWiredClientsCountDistinctEnum_PORTID    OrgWiredClientsCountDistinctEnum = "port_id"
+	OrgWiredClientsCountDistinctEnum_SITEID    OrgWiredClientsCountDistinctEnum = "site_id"
+	OrgWiredClientsCountDistinctEnum_ENUMTYPE  OrgWiredClientsCountDistinctEnum = "type"
+	OrgWiredClientsCountDistinctEnum_VLAN      OrgWiredClientsCountDistinctEnum = "vlan"
 )
 
 // OspfAreaNetworkAuthTypeEnum is a string enum.
@@ -2155,9 +2155,9 @@ const (
 type OspfAreaNetworkAuthTypeEnum string
 
 const (
-    OspfAreaNetworkAuthTypeEnum_MD5      OspfAreaNetworkAuthTypeEnum = "md5"
-    OspfAreaNetworkAuthTypeEnum_NONE     OspfAreaNetworkAuthTypeEnum = "none"
-    OspfAreaNetworkAuthTypeEnum_PASSWORD OspfAreaNetworkAuthTypeEnum = "password"
+	OspfAreaNetworkAuthTypeEnum_MD5      OspfAreaNetworkAuthTypeEnum = "md5"
+	OspfAreaNetworkAuthTypeEnum_NONE     OspfAreaNetworkAuthTypeEnum = "none"
+	OspfAreaNetworkAuthTypeEnum_PASSWORD OspfAreaNetworkAuthTypeEnum = "password"
 )
 
 // OspfAreaNetworkInterfaceTypeEnum is a string enum.
@@ -2165,10 +2165,10 @@ const (
 type OspfAreaNetworkInterfaceTypeEnum string
 
 const (
-    OspfAreaNetworkInterfaceTypeEnum_BROADCAST OspfAreaNetworkInterfaceTypeEnum = "broadcast"
-    OspfAreaNetworkInterfaceTypeEnum_NBMA      OspfAreaNetworkInterfaceTypeEnum = "nbma"
-    OspfAreaNetworkInterfaceTypeEnum_P2MP      OspfAreaNetworkInterfaceTypeEnum = "p2mp"
-    OspfAreaNetworkInterfaceTypeEnum_P2P       OspfAreaNetworkInterfaceTypeEnum = "p2p"
+	OspfAreaNetworkInterfaceTypeEnum_BROADCAST OspfAreaNetworkInterfaceTypeEnum = "broadcast"
+	OspfAreaNetworkInterfaceTypeEnum_NBMA      OspfAreaNetworkInterfaceTypeEnum = "nbma"
+	OspfAreaNetworkInterfaceTypeEnum_P2MP      OspfAreaNetworkInterfaceTypeEnum = "p2mp"
+	OspfAreaNetworkInterfaceTypeEnum_P2P       OspfAreaNetworkInterfaceTypeEnum = "p2p"
 )
 
 // OspfAreaTypeEnum is a string enum.
@@ -2176,9 +2176,9 @@ const (
 type OspfAreaTypeEnum string
 
 const (
-    OspfAreaTypeEnum_ENUMDEFAULT OspfAreaTypeEnum = "default"
-    OspfAreaTypeEnum_NSSA        OspfAreaTypeEnum = "nssa"
-    OspfAreaTypeEnum_STUB        OspfAreaTypeEnum = "stub"
+	OspfAreaTypeEnum_ENUMDEFAULT OspfAreaTypeEnum = "default"
+	OspfAreaTypeEnum_NSSA        OspfAreaTypeEnum = "nssa"
+	OspfAreaTypeEnum_STUB        OspfAreaTypeEnum = "stub"
 )
 
 // OtherDeviceUpdateOperationEnum is a string enum.
@@ -2186,8 +2186,8 @@ const (
 type OtherDeviceUpdateOperationEnum string
 
 const (
-    OtherDeviceUpdateOperationEnum_ASSIGN   OtherDeviceUpdateOperationEnum = "assign"
-    OtherDeviceUpdateOperationEnum_UNASSIGN OtherDeviceUpdateOperationEnum = "unassign"
+	OtherDeviceUpdateOperationEnum_ASSIGN   OtherDeviceUpdateOperationEnum = "assign"
+	OtherDeviceUpdateOperationEnum_UNASSIGN OtherDeviceUpdateOperationEnum = "unassign"
 )
 
 // PcapTypeEnum is a string enum.
@@ -2195,13 +2195,13 @@ const (
 type PcapTypeEnum string
 
 const (
-    PcapTypeEnum_CLIENT            PcapTypeEnum = "client"
-    PcapTypeEnum_GATEWAY           PcapTypeEnum = "gateway"
-    PcapTypeEnum_NEWASSOC          PcapTypeEnum = "new_assoc"
-    PcapTypeEnum_RADIOTAP          PcapTypeEnum = "radiotap"
-    PcapTypeEnum_ENUMRADIOTAPWIRED PcapTypeEnum = "radiotap,wired"
-    PcapTypeEnum_WIRED             PcapTypeEnum = "wired"
-    PcapTypeEnum_WIRELESS          PcapTypeEnum = "wireless"
+	PcapTypeEnum_CLIENT            PcapTypeEnum = "client"
+	PcapTypeEnum_GATEWAY           PcapTypeEnum = "gateway"
+	PcapTypeEnum_NEWASSOC          PcapTypeEnum = "new_assoc"
+	PcapTypeEnum_RADIOTAP          PcapTypeEnum = "radiotap"
+	PcapTypeEnum_ENUMRADIOTAPWIRED PcapTypeEnum = "radiotap,wired"
+	PcapTypeEnum_WIRED             PcapTypeEnum = "wired"
+	PcapTypeEnum_WIRELESS          PcapTypeEnum = "wireless"
 )
 
 // PortalTemplateAlignmentEnum is a string enum.
@@ -2209,9 +2209,9 @@ const (
 type PortalTemplateAlignmentEnum string
 
 const (
-    PortalTemplateAlignmentEnum_CENTER PortalTemplateAlignmentEnum = "center"
-    PortalTemplateAlignmentEnum_LEFT   PortalTemplateAlignmentEnum = "left"
-    PortalTemplateAlignmentEnum_RIGHT  PortalTemplateAlignmentEnum = "right"
+	PortalTemplateAlignmentEnum_CENTER PortalTemplateAlignmentEnum = "center"
+	PortalTemplateAlignmentEnum_LEFT   PortalTemplateAlignmentEnum = "left"
+	PortalTemplateAlignmentEnum_RIGHT  PortalTemplateAlignmentEnum = "right"
 )
 
 // PrivilegeMspRoleEnum is a string enum.
@@ -2219,11 +2219,11 @@ const (
 type PrivilegeMspRoleEnum string
 
 const (
-    PrivilegeMspRoleEnum_ADMIN     PrivilegeMspRoleEnum = "admin"
-    PrivilegeMspRoleEnum_HELPDESK  PrivilegeMspRoleEnum = "helpdesk"
-    PrivilegeMspRoleEnum_INSTALLER PrivilegeMspRoleEnum = "installer"
-    PrivilegeMspRoleEnum_READ      PrivilegeMspRoleEnum = "read"
-    PrivilegeMspRoleEnum_WRITE     PrivilegeMspRoleEnum = "write"
+	PrivilegeMspRoleEnum_ADMIN     PrivilegeMspRoleEnum = "admin"
+	PrivilegeMspRoleEnum_HELPDESK  PrivilegeMspRoleEnum = "helpdesk"
+	PrivilegeMspRoleEnum_INSTALLER PrivilegeMspRoleEnum = "installer"
+	PrivilegeMspRoleEnum_READ      PrivilegeMspRoleEnum = "read"
+	PrivilegeMspRoleEnum_WRITE     PrivilegeMspRoleEnum = "write"
 )
 
 // PrivilegeMspScopeEnum is a string enum.
@@ -2231,9 +2231,9 @@ const (
 type PrivilegeMspScopeEnum string
 
 const (
-    PrivilegeMspScopeEnum_MSP      PrivilegeMspScopeEnum = "msp"
-    PrivilegeMspScopeEnum_ORG      PrivilegeMspScopeEnum = "org"
-    PrivilegeMspScopeEnum_ORGGROUP PrivilegeMspScopeEnum = "orggroup"
+	PrivilegeMspScopeEnum_MSP      PrivilegeMspScopeEnum = "msp"
+	PrivilegeMspScopeEnum_ORG      PrivilegeMspScopeEnum = "org"
+	PrivilegeMspScopeEnum_ORGGROUP PrivilegeMspScopeEnum = "orggroup"
 )
 
 // PrivilegeOrgRoleEnum is a string enum.
@@ -2241,11 +2241,11 @@ const (
 type PrivilegeOrgRoleEnum string
 
 const (
-    PrivilegeOrgRoleEnum_ADMIN     PrivilegeOrgRoleEnum = "admin"
-    PrivilegeOrgRoleEnum_HELPDESK  PrivilegeOrgRoleEnum = "helpdesk"
-    PrivilegeOrgRoleEnum_INSTALLER PrivilegeOrgRoleEnum = "installer"
-    PrivilegeOrgRoleEnum_READ      PrivilegeOrgRoleEnum = "read"
-    PrivilegeOrgRoleEnum_WRITE     PrivilegeOrgRoleEnum = "write"
+	PrivilegeOrgRoleEnum_ADMIN     PrivilegeOrgRoleEnum = "admin"
+	PrivilegeOrgRoleEnum_HELPDESK  PrivilegeOrgRoleEnum = "helpdesk"
+	PrivilegeOrgRoleEnum_INSTALLER PrivilegeOrgRoleEnum = "installer"
+	PrivilegeOrgRoleEnum_READ      PrivilegeOrgRoleEnum = "read"
+	PrivilegeOrgRoleEnum_WRITE     PrivilegeOrgRoleEnum = "write"
 )
 
 // PrivilegeOrgScopeEnum is a string enum.
@@ -2253,9 +2253,9 @@ const (
 type PrivilegeOrgScopeEnum string
 
 const (
-    PrivilegeOrgScopeEnum_ORG       PrivilegeOrgScopeEnum = "org"
-    PrivilegeOrgScopeEnum_SITE      PrivilegeOrgScopeEnum = "site"
-    PrivilegeOrgScopeEnum_SITEGROUP PrivilegeOrgScopeEnum = "sitegroup"
+	PrivilegeOrgScopeEnum_ORG       PrivilegeOrgScopeEnum = "org"
+	PrivilegeOrgScopeEnum_SITE      PrivilegeOrgScopeEnum = "site"
+	PrivilegeOrgScopeEnum_SITEGROUP PrivilegeOrgScopeEnum = "sitegroup"
 )
 
 // ProtectReAllowedServiceEnum is a string enum.
@@ -2263,8 +2263,8 @@ const (
 type ProtectReAllowedServiceEnum string
 
 const (
-    ProtectReAllowedServiceEnum_ICMP ProtectReAllowedServiceEnum = "icmp"
-    ProtectReAllowedServiceEnum_SSH  ProtectReAllowedServiceEnum = "ssh"
+	ProtectReAllowedServiceEnum_ICMP ProtectReAllowedServiceEnum = "icmp"
+	ProtectReAllowedServiceEnum_SSH  ProtectReAllowedServiceEnum = "ssh"
 )
 
 // ProtectReCustomProtocolEnum is a string enum.
@@ -2272,10 +2272,10 @@ const (
 type ProtectReCustomProtocolEnum string
 
 const (
-    ProtectReCustomProtocolEnum_ANY  ProtectReCustomProtocolEnum = "any"
-    ProtectReCustomProtocolEnum_ICMP ProtectReCustomProtocolEnum = "icmp"
-    ProtectReCustomProtocolEnum_TCP  ProtectReCustomProtocolEnum = "tcp"
-    ProtectReCustomProtocolEnum_UDP  ProtectReCustomProtocolEnum = "udp"
+	ProtectReCustomProtocolEnum_ANY  ProtectReCustomProtocolEnum = "any"
+	ProtectReCustomProtocolEnum_ICMP ProtectReCustomProtocolEnum = "icmp"
+	ProtectReCustomProtocolEnum_TCP  ProtectReCustomProtocolEnum = "tcp"
+	ProtectReCustomProtocolEnum_UDP  ProtectReCustomProtocolEnum = "udp"
 )
 
 // PskPortalAuthEnum is a string enum.
@@ -2283,8 +2283,8 @@ const (
 type PskPortalAuthEnum string
 
 const (
-    PskPortalAuthEnum_SPONSOR PskPortalAuthEnum = "sponsor"
-    PskPortalAuthEnum_SSO     PskPortalAuthEnum = "sso"
+	PskPortalAuthEnum_SPONSOR PskPortalAuthEnum = "sponsor"
+	PskPortalAuthEnum_SSO     PskPortalAuthEnum = "sso"
 )
 
 // PskPortalSsoIdpSignAlgoEnum is a string enum.
@@ -2292,10 +2292,10 @@ const (
 type PskPortalSsoIdpSignAlgoEnum string
 
 const (
-    PskPortalSsoIdpSignAlgoEnum_SHA1   PskPortalSsoIdpSignAlgoEnum = "sha1"
-    PskPortalSsoIdpSignAlgoEnum_SHA256 PskPortalSsoIdpSignAlgoEnum = "sha256"
-    PskPortalSsoIdpSignAlgoEnum_SHA384 PskPortalSsoIdpSignAlgoEnum = "sha384"
-    PskPortalSsoIdpSignAlgoEnum_SHA512 PskPortalSsoIdpSignAlgoEnum = "sha512"
+	PskPortalSsoIdpSignAlgoEnum_SHA1   PskPortalSsoIdpSignAlgoEnum = "sha1"
+	PskPortalSsoIdpSignAlgoEnum_SHA256 PskPortalSsoIdpSignAlgoEnum = "sha256"
+	PskPortalSsoIdpSignAlgoEnum_SHA384 PskPortalSsoIdpSignAlgoEnum = "sha384"
+	PskPortalSsoIdpSignAlgoEnum_SHA512 PskPortalSsoIdpSignAlgoEnum = "sha512"
 )
 
 // PskPortalTypeEnum is a string enum.
@@ -2303,8 +2303,8 @@ const (
 type PskPortalTypeEnum string
 
 const (
-    PskPortalTypeEnum_ADMIN PskPortalTypeEnum = "admin"
-    PskPortalTypeEnum_BYOD  PskPortalTypeEnum = "byod"
+	PskPortalTypeEnum_ADMIN PskPortalTypeEnum = "admin"
+	PskPortalTypeEnum_BYOD  PskPortalTypeEnum = "byod"
 )
 
 // PskUsageEnum is a string enum.
@@ -2312,9 +2312,9 @@ const (
 type PskUsageEnum string
 
 const (
-    PskUsageEnum_MACS   PskUsageEnum = "macs"
-    PskUsageEnum_MULTI  PskUsageEnum = "multi"
-    PskUsageEnum_SINGLE PskUsageEnum = "single"
+	PskUsageEnum_MACS   PskUsageEnum = "macs"
+	PskUsageEnum_MULTI  PskUsageEnum = "multi"
+	PskUsageEnum_SINGLE PskUsageEnum = "single"
 )
 
 // RadioBand24UsageEnum is a string enum.
@@ -2322,10 +2322,10 @@ const (
 type RadioBand24UsageEnum string
 
 const (
-    RadioBand24UsageEnum_ENUM24 RadioBand24UsageEnum = "24"
-    RadioBand24UsageEnum_ENUM5  RadioBand24UsageEnum = "5"
-    RadioBand24UsageEnum_ENUM6  RadioBand24UsageEnum = "6"
-    RadioBand24UsageEnum_AUTO   RadioBand24UsageEnum = "auto"
+	RadioBand24UsageEnum_ENUM24 RadioBand24UsageEnum = "24"
+	RadioBand24UsageEnum_ENUM5  RadioBand24UsageEnum = "5"
+	RadioBand24UsageEnum_ENUM6  RadioBand24UsageEnum = "6"
+	RadioBand24UsageEnum_AUTO   RadioBand24UsageEnum = "auto"
 )
 
 // RadioBandAntennaModeEnum is a string enum.
@@ -2333,11 +2333,11 @@ const (
 type RadioBandAntennaModeEnum string
 
 const (
-    RadioBandAntennaModeEnum_ENUM1X1     RadioBandAntennaModeEnum = "1x1"
-    RadioBandAntennaModeEnum_ENUM2X2     RadioBandAntennaModeEnum = "2x2"
-    RadioBandAntennaModeEnum_ENUM3X3     RadioBandAntennaModeEnum = "3x3"
-    RadioBandAntennaModeEnum_ENUM4X4     RadioBandAntennaModeEnum = "4x4"
-    RadioBandAntennaModeEnum_ENUMDEFAULT RadioBandAntennaModeEnum = "default"
+	RadioBandAntennaModeEnum_ENUM1X1     RadioBandAntennaModeEnum = "1x1"
+	RadioBandAntennaModeEnum_ENUM2X2     RadioBandAntennaModeEnum = "2x2"
+	RadioBandAntennaModeEnum_ENUM3X3     RadioBandAntennaModeEnum = "3x3"
+	RadioBandAntennaModeEnum_ENUM4X4     RadioBandAntennaModeEnum = "4x4"
+	RadioBandAntennaModeEnum_ENUMDEFAULT RadioBandAntennaModeEnum = "default"
 )
 
 // RadioBandPreambleEnum is a string enum.
@@ -2345,9 +2345,9 @@ const (
 type RadioBandPreambleEnum string
 
 const (
-    RadioBandPreambleEnum_AUTO  RadioBandPreambleEnum = "auto"
-    RadioBandPreambleEnum_LONG  RadioBandPreambleEnum = "long"
-    RadioBandPreambleEnum_SHORT RadioBandPreambleEnum = "short"
+	RadioBandPreambleEnum_AUTO  RadioBandPreambleEnum = "auto"
+	RadioBandPreambleEnum_LONG  RadioBandPreambleEnum = "long"
+	RadioBandPreambleEnum_SHORT RadioBandPreambleEnum = "short"
 )
 
 // RadiusKeywrapFormatEnum is a string enum.
@@ -2355,8 +2355,8 @@ const (
 type RadiusKeywrapFormatEnum string
 
 const (
-    RadiusKeywrapFormatEnum_ASCII RadiusKeywrapFormatEnum = "ascii"
-    RadiusKeywrapFormatEnum_HEX   RadiusKeywrapFormatEnum = "hex"
+	RadiusKeywrapFormatEnum_ASCII RadiusKeywrapFormatEnum = "ascii"
+	RadiusKeywrapFormatEnum_HEX   RadiusKeywrapFormatEnum = "hex"
 )
 
 // RecaptchaFlavorEnum is a string enum.
@@ -2364,8 +2364,8 @@ const (
 type RecaptchaFlavorEnum string
 
 const (
-    RecaptchaFlavorEnum_GOOGLE   RecaptchaFlavorEnum = "google"
-    RecaptchaFlavorEnum_HCAPTCHA RecaptchaFlavorEnum = "hcaptcha"
+	RecaptchaFlavorEnum_GOOGLE   RecaptchaFlavorEnum = "google"
+	RecaptchaFlavorEnum_HCAPTCHA RecaptchaFlavorEnum = "hcaptcha"
 )
 
 // RemoteSyslogFacilityEnum is a string enum.
@@ -2373,22 +2373,22 @@ const (
 type RemoteSyslogFacilityEnum string
 
 const (
-    RemoteSyslogFacilityEnum_ANY                 RemoteSyslogFacilityEnum = "any"
-    RemoteSyslogFacilityEnum_AUTHORIZATION       RemoteSyslogFacilityEnum = "authorization"
-    RemoteSyslogFacilityEnum_CHANGELOG           RemoteSyslogFacilityEnum = "change-log"
-    RemoteSyslogFacilityEnum_CONFIG              RemoteSyslogFacilityEnum = "config"
-    RemoteSyslogFacilityEnum_CONFLICTLOG         RemoteSyslogFacilityEnum = "conflict-log"
-    RemoteSyslogFacilityEnum_DAEMON              RemoteSyslogFacilityEnum = "daemon"
-    RemoteSyslogFacilityEnum_DFC                 RemoteSyslogFacilityEnum = "dfc"
-    RemoteSyslogFacilityEnum_EXTERNAL            RemoteSyslogFacilityEnum = "external"
-    RemoteSyslogFacilityEnum_FIREWALL            RemoteSyslogFacilityEnum = "firewall"
-    RemoteSyslogFacilityEnum_FTP                 RemoteSyslogFacilityEnum = "ftp"
-    RemoteSyslogFacilityEnum_INTERACTIVECOMMANDS RemoteSyslogFacilityEnum = "interactive-commands"
-    RemoteSyslogFacilityEnum_KERNEL              RemoteSyslogFacilityEnum = "kernel"
-    RemoteSyslogFacilityEnum_NTP                 RemoteSyslogFacilityEnum = "ntp"
-    RemoteSyslogFacilityEnum_PFE                 RemoteSyslogFacilityEnum = "pfe"
-    RemoteSyslogFacilityEnum_SECURITY            RemoteSyslogFacilityEnum = "security"
-    RemoteSyslogFacilityEnum_USER                RemoteSyslogFacilityEnum = "user"
+	RemoteSyslogFacilityEnum_ANY                 RemoteSyslogFacilityEnum = "any"
+	RemoteSyslogFacilityEnum_AUTHORIZATION       RemoteSyslogFacilityEnum = "authorization"
+	RemoteSyslogFacilityEnum_CHANGELOG           RemoteSyslogFacilityEnum = "change-log"
+	RemoteSyslogFacilityEnum_CONFIG              RemoteSyslogFacilityEnum = "config"
+	RemoteSyslogFacilityEnum_CONFLICTLOG         RemoteSyslogFacilityEnum = "conflict-log"
+	RemoteSyslogFacilityEnum_DAEMON              RemoteSyslogFacilityEnum = "daemon"
+	RemoteSyslogFacilityEnum_DFC                 RemoteSyslogFacilityEnum = "dfc"
+	RemoteSyslogFacilityEnum_EXTERNAL            RemoteSyslogFacilityEnum = "external"
+	RemoteSyslogFacilityEnum_FIREWALL            RemoteSyslogFacilityEnum = "firewall"
+	RemoteSyslogFacilityEnum_FTP                 RemoteSyslogFacilityEnum = "ftp"
+	RemoteSyslogFacilityEnum_INTERACTIVECOMMANDS RemoteSyslogFacilityEnum = "interactive-commands"
+	RemoteSyslogFacilityEnum_KERNEL              RemoteSyslogFacilityEnum = "kernel"
+	RemoteSyslogFacilityEnum_NTP                 RemoteSyslogFacilityEnum = "ntp"
+	RemoteSyslogFacilityEnum_PFE                 RemoteSyslogFacilityEnum = "pfe"
+	RemoteSyslogFacilityEnum_SECURITY            RemoteSyslogFacilityEnum = "security"
+	RemoteSyslogFacilityEnum_USER                RemoteSyslogFacilityEnum = "user"
 )
 
 // RemoteSyslogServerProtocolEnum is a string enum.
@@ -2396,8 +2396,8 @@ const (
 type RemoteSyslogServerProtocolEnum string
 
 const (
-    RemoteSyslogServerProtocolEnum_TCP RemoteSyslogServerProtocolEnum = "tcp"
-    RemoteSyslogServerProtocolEnum_UDP RemoteSyslogServerProtocolEnum = "udp"
+	RemoteSyslogServerProtocolEnum_TCP RemoteSyslogServerProtocolEnum = "tcp"
+	RemoteSyslogServerProtocolEnum_UDP RemoteSyslogServerProtocolEnum = "udp"
 )
 
 // RemoteSyslogSeverityEnum is a string enum.
@@ -2405,14 +2405,14 @@ const (
 type RemoteSyslogSeverityEnum string
 
 const (
-    RemoteSyslogSeverityEnum_ALERT     RemoteSyslogSeverityEnum = "alert"
-    RemoteSyslogSeverityEnum_ANY       RemoteSyslogSeverityEnum = "any"
-    RemoteSyslogSeverityEnum_CRITICAL  RemoteSyslogSeverityEnum = "critical"
-    RemoteSyslogSeverityEnum_EMERGENCY RemoteSyslogSeverityEnum = "emergency"
-    RemoteSyslogSeverityEnum_ENUMERROR RemoteSyslogSeverityEnum = "error"
-    RemoteSyslogSeverityEnum_INFO      RemoteSyslogSeverityEnum = "info"
-    RemoteSyslogSeverityEnum_NOTICE    RemoteSyslogSeverityEnum = "notice"
-    RemoteSyslogSeverityEnum_WARNING   RemoteSyslogSeverityEnum = "warning"
+	RemoteSyslogSeverityEnum_ALERT     RemoteSyslogSeverityEnum = "alert"
+	RemoteSyslogSeverityEnum_ANY       RemoteSyslogSeverityEnum = "any"
+	RemoteSyslogSeverityEnum_CRITICAL  RemoteSyslogSeverityEnum = "critical"
+	RemoteSyslogSeverityEnum_EMERGENCY RemoteSyslogSeverityEnum = "emergency"
+	RemoteSyslogSeverityEnum_ENUMERROR RemoteSyslogSeverityEnum = "error"
+	RemoteSyslogSeverityEnum_INFO      RemoteSyslogSeverityEnum = "info"
+	RemoteSyslogSeverityEnum_NOTICE    RemoteSyslogSeverityEnum = "notice"
+	RemoteSyslogSeverityEnum_WARNING   RemoteSyslogSeverityEnum = "warning"
 )
 
 // RemoteSyslogTimeFormatEnum is a string enum.
@@ -2420,9 +2420,9 @@ const (
 type RemoteSyslogTimeFormatEnum string
 
 const (
-    RemoteSyslogTimeFormatEnum_MILLISECOND         RemoteSyslogTimeFormatEnum = "millisecond"
-    RemoteSyslogTimeFormatEnum_YEAR                RemoteSyslogTimeFormatEnum = "year"
-    RemoteSyslogTimeFormatEnum_ENUMYEARMILLISECOND RemoteSyslogTimeFormatEnum = "year millisecond"
+	RemoteSyslogTimeFormatEnum_MILLISECOND         RemoteSyslogTimeFormatEnum = "millisecond"
+	RemoteSyslogTimeFormatEnum_YEAR                RemoteSyslogTimeFormatEnum = "year"
+	RemoteSyslogTimeFormatEnum_ENUMYEARMILLISECOND RemoteSyslogTimeFormatEnum = "year millisecond"
 )
 
 // ResolutionEnum is a string enum.
@@ -2430,8 +2430,8 @@ const (
 type ResolutionEnum string
 
 const (
-    ResolutionEnum_ENUMDEFAULT ResolutionEnum = "default"
-    ResolutionEnum_FINE        ResolutionEnum = "fine"
+	ResolutionEnum_ENUMDEFAULT ResolutionEnum = "default"
+	ResolutionEnum_FINE        ResolutionEnum = "fine"
 )
 
 // ResponseDeviceSnapshotStatusEnum is a string enum.
@@ -2439,11 +2439,11 @@ const (
 type ResponseDeviceSnapshotStatusEnum string
 
 const (
-    ResponseDeviceSnapshotStatusEnum_ENUMERROR  ResponseDeviceSnapshotStatusEnum = "error"
-    ResponseDeviceSnapshotStatusEnum_INPROGRESS ResponseDeviceSnapshotStatusEnum = "inprogress"
-    ResponseDeviceSnapshotStatusEnum_SCHEDULED  ResponseDeviceSnapshotStatusEnum = "scheduled"
-    ResponseDeviceSnapshotStatusEnum_STARTING   ResponseDeviceSnapshotStatusEnum = "starting"
-    ResponseDeviceSnapshotStatusEnum_SUCCESS    ResponseDeviceSnapshotStatusEnum = "success"
+	ResponseDeviceSnapshotStatusEnum_ENUMERROR  ResponseDeviceSnapshotStatusEnum = "error"
+	ResponseDeviceSnapshotStatusEnum_INPROGRESS ResponseDeviceSnapshotStatusEnum = "inprogress"
+	ResponseDeviceSnapshotStatusEnum_SCHEDULED  ResponseDeviceSnapshotStatusEnum = "scheduled"
+	ResponseDeviceSnapshotStatusEnum_STARTING   ResponseDeviceSnapshotStatusEnum = "starting"
+	ResponseDeviceSnapshotStatusEnum_SUCCESS    ResponseDeviceSnapshotStatusEnum = "success"
 )
 
 // ResponseMapImportApActionEnum is a string enum.
@@ -2451,11 +2451,11 @@ const (
 type ResponseMapImportApActionEnum string
 
 const (
-    ResponseMapImportApActionEnum_ASSIGNEDNAMEDPLACED ResponseMapImportApActionEnum = "assigned-named-placed"
-    ResponseMapImportApActionEnum_ASSIGNEDPLACED      ResponseMapImportApActionEnum = "assigned-placed"
-    ResponseMapImportApActionEnum_IGNORED             ResponseMapImportApActionEnum = "ignored"
-    ResponseMapImportApActionEnum_NAMEDPLACED         ResponseMapImportApActionEnum = "named-placed"
-    ResponseMapImportApActionEnum_PLACED              ResponseMapImportApActionEnum = "placed"
+	ResponseMapImportApActionEnum_ASSIGNEDNAMEDPLACED ResponseMapImportApActionEnum = "assigned-named-placed"
+	ResponseMapImportApActionEnum_ASSIGNEDPLACED      ResponseMapImportApActionEnum = "assigned-placed"
+	ResponseMapImportApActionEnum_IGNORED             ResponseMapImportApActionEnum = "ignored"
+	ResponseMapImportApActionEnum_NAMEDPLACED         ResponseMapImportApActionEnum = "named-placed"
+	ResponseMapImportApActionEnum_PLACED              ResponseMapImportApActionEnum = "placed"
 )
 
 // ResponseOrgInventoryChangeOpEnum is a string enum.
@@ -2463,11 +2463,11 @@ const (
 type ResponseOrgInventoryChangeOpEnum string
 
 const (
-    ResponseOrgInventoryChangeOpEnum_ASSIGN         ResponseOrgInventoryChangeOpEnum = "assign"
-    ResponseOrgInventoryChangeOpEnum_DELETE         ResponseOrgInventoryChangeOpEnum = "delete"
-    ResponseOrgInventoryChangeOpEnum_DOWNGRADETOJSI ResponseOrgInventoryChangeOpEnum = "downgrade_to_jsi"
-    ResponseOrgInventoryChangeOpEnum_UNASSIGN       ResponseOrgInventoryChangeOpEnum = "unassign"
-    ResponseOrgInventoryChangeOpEnum_UPGRADETOMIST  ResponseOrgInventoryChangeOpEnum = "upgrade_to_mist"
+	ResponseOrgInventoryChangeOpEnum_ASSIGN         ResponseOrgInventoryChangeOpEnum = "assign"
+	ResponseOrgInventoryChangeOpEnum_DELETE         ResponseOrgInventoryChangeOpEnum = "delete"
+	ResponseOrgInventoryChangeOpEnum_DOWNGRADETOJSI ResponseOrgInventoryChangeOpEnum = "downgrade_to_jsi"
+	ResponseOrgInventoryChangeOpEnum_UNASSIGN       ResponseOrgInventoryChangeOpEnum = "unassign"
+	ResponseOrgInventoryChangeOpEnum_UPGRADETOMIST  ResponseOrgInventoryChangeOpEnum = "upgrade_to_mist"
 )
 
 // RfClientTypeEnum is a string enum.
@@ -2475,9 +2475,9 @@ const (
 type RfClientTypeEnum string
 
 const (
-    RfClientTypeEnum_ASSET     RfClientTypeEnum = "asset"
-    RfClientTypeEnum_CLIENT    RfClientTypeEnum = "client"
-    RfClientTypeEnum_SDKCLIENT RfClientTypeEnum = "sdkclient"
+	RfClientTypeEnum_ASSET     RfClientTypeEnum = "asset"
+	RfClientTypeEnum_CLIENT    RfClientTypeEnum = "client"
+	RfClientTypeEnum_SDKCLIENT RfClientTypeEnum = "sdkclient"
 )
 
 // RogueTypeEnum is a string enum.
@@ -2485,10 +2485,10 @@ const (
 type RogueTypeEnum string
 
 const (
-    RogueTypeEnum_HONEYPOT RogueTypeEnum = "honeypot"
-    RogueTypeEnum_LAN      RogueTypeEnum = "lan"
-    RogueTypeEnum_OTHERS   RogueTypeEnum = "others"
-    RogueTypeEnum_SPOOF    RogueTypeEnum = "spoof"
+	RogueTypeEnum_HONEYPOT RogueTypeEnum = "honeypot"
+	RogueTypeEnum_LAN      RogueTypeEnum = "lan"
+	RogueTypeEnum_OTHERS   RogueTypeEnum = "others"
+	RogueTypeEnum_SPOOF    RogueTypeEnum = "spoof"
 )
 
 // RrmEventPreBandwidthEnum is a int enum.
@@ -2496,11 +2496,11 @@ const (
 type RrmEventPreBandwidthEnum int
 
 const (
-    RrmEventPreBandwidthEnum_ENUM0   RrmEventPreBandwidthEnum = 0
-    RrmEventPreBandwidthEnum_ENUM20  RrmEventPreBandwidthEnum = 20
-    RrmEventPreBandwidthEnum_ENUM40  RrmEventPreBandwidthEnum = 40
-    RrmEventPreBandwidthEnum_ENUM80  RrmEventPreBandwidthEnum = 80
-    RrmEventPreBandwidthEnum_ENUM160 RrmEventPreBandwidthEnum = 160
+	RrmEventPreBandwidthEnum_ENUM0   RrmEventPreBandwidthEnum = 0
+	RrmEventPreBandwidthEnum_ENUM20  RrmEventPreBandwidthEnum = 20
+	RrmEventPreBandwidthEnum_ENUM40  RrmEventPreBandwidthEnum = 40
+	RrmEventPreBandwidthEnum_ENUM80  RrmEventPreBandwidthEnum = 80
+	RrmEventPreBandwidthEnum_ENUM160 RrmEventPreBandwidthEnum = 160
 )
 
 // RrmEventTypeEnum is a string enum.
@@ -2508,14 +2508,14 @@ const (
 type RrmEventTypeEnum string
 
 const (
-    RrmEventTypeEnum_INTERFERENCEAPCOCHANNEL RrmEventTypeEnum = "interference-ap-co-channel"
-    RrmEventTypeEnum_INTERFERENCEAPNONWIFI   RrmEventTypeEnum = "interference-ap-non-wifi"
-    RrmEventTypeEnum_NEIGHBORAPDOWN          RrmEventTypeEnum = "neighbor-ap-down"
-    RrmEventTypeEnum_NEIGHBORAPRECOVERED     RrmEventTypeEnum = "neighbor-ap-recovered"
-    RrmEventTypeEnum_RADARDETECTED           RrmEventTypeEnum = "radar-detected"
-    RrmEventTypeEnum_RRMRADAR                RrmEventTypeEnum = "rrm-radar"
-    RrmEventTypeEnum_SCHEDULEDSITERRM        RrmEventTypeEnum = "scheduled-site_rrm"
-    RrmEventTypeEnum_TRIGGEREDSITERRM        RrmEventTypeEnum = "triggered-site_rrm"
+	RrmEventTypeEnum_INTERFERENCEAPCOCHANNEL RrmEventTypeEnum = "interference-ap-co-channel"
+	RrmEventTypeEnum_INTERFERENCEAPNONWIFI   RrmEventTypeEnum = "interference-ap-non-wifi"
+	RrmEventTypeEnum_NEIGHBORAPDOWN          RrmEventTypeEnum = "neighbor-ap-down"
+	RrmEventTypeEnum_NEIGHBORAPRECOVERED     RrmEventTypeEnum = "neighbor-ap-recovered"
+	RrmEventTypeEnum_RADARDETECTED           RrmEventTypeEnum = "radar-detected"
+	RrmEventTypeEnum_RRMRADAR                RrmEventTypeEnum = "rrm-radar"
+	RrmEventTypeEnum_SCHEDULEDSITERRM        RrmEventTypeEnum = "scheduled-site_rrm"
+	RrmEventTypeEnum_TRIGGEREDSITERRM        RrmEventTypeEnum = "triggered-site_rrm"
 )
 
 // RrmStatusEnum is a string enum.
@@ -2523,9 +2523,9 @@ const (
 type RrmStatusEnum string
 
 const (
-    RrmStatusEnum_READY    RrmStatusEnum = "ready"
-    RrmStatusEnum_UNKNOWN  RrmStatusEnum = "unknown"
-    RrmStatusEnum_UPDATING RrmStatusEnum = "updating"
+	RrmStatusEnum_READY    RrmStatusEnum = "ready"
+	RrmStatusEnum_UNKNOWN  RrmStatusEnum = "unknown"
+	RrmStatusEnum_UPDATING RrmStatusEnum = "updating"
 )
 
 // ScanDataItemBandEnum is a string enum.
@@ -2533,8 +2533,8 @@ const (
 type ScanDataItemBandEnum string
 
 const (
-    ScanDataItemBandEnum_ENUM24 ScanDataItemBandEnum = "2.4"
-    ScanDataItemBandEnum_ENUM5  ScanDataItemBandEnum = "5"
+	ScanDataItemBandEnum_ENUM24 ScanDataItemBandEnum = "2.4"
+	ScanDataItemBandEnum_ENUM5  ScanDataItemBandEnum = "5"
 )
 
 // SearchOrgDevicesMxtunnelStatusEnum is a string enum.
@@ -2542,8 +2542,8 @@ const (
 type SearchOrgDevicesMxtunnelStatusEnum string
 
 const (
-    SearchOrgDevicesMxtunnelStatusEnum_DOWN SearchOrgDevicesMxtunnelStatusEnum = "down"
-    SearchOrgDevicesMxtunnelStatusEnum_UP   SearchOrgDevicesMxtunnelStatusEnum = "up"
+	SearchOrgDevicesMxtunnelStatusEnum_DOWN SearchOrgDevicesMxtunnelStatusEnum = "down"
+	SearchOrgDevicesMxtunnelStatusEnum_UP   SearchOrgDevicesMxtunnelStatusEnum = "up"
 )
 
 // SearchOrgSwOrGwPortsAuthStateEnum is a string enum.
@@ -2551,10 +2551,10 @@ const (
 type SearchOrgSwOrGwPortsAuthStateEnum string
 
 const (
-    SearchOrgSwOrGwPortsAuthStateEnum_AUTHENTICATED  SearchOrgSwOrGwPortsAuthStateEnum = "authenticated"
-    SearchOrgSwOrGwPortsAuthStateEnum_AUTHENTICATING SearchOrgSwOrGwPortsAuthStateEnum = "authenticating"
-    SearchOrgSwOrGwPortsAuthStateEnum_HELD           SearchOrgSwOrGwPortsAuthStateEnum = "held"
-    SearchOrgSwOrGwPortsAuthStateEnum_INIT           SearchOrgSwOrGwPortsAuthStateEnum = "init"
+	SearchOrgSwOrGwPortsAuthStateEnum_AUTHENTICATED  SearchOrgSwOrGwPortsAuthStateEnum = "authenticated"
+	SearchOrgSwOrGwPortsAuthStateEnum_AUTHENTICATING SearchOrgSwOrGwPortsAuthStateEnum = "authenticating"
+	SearchOrgSwOrGwPortsAuthStateEnum_HELD           SearchOrgSwOrGwPortsAuthStateEnum = "held"
+	SearchOrgSwOrGwPortsAuthStateEnum_INIT           SearchOrgSwOrGwPortsAuthStateEnum = "init"
 )
 
 // SearchOrgSwOrGwPortsStpRoleEnum is a string enum.
@@ -2562,11 +2562,11 @@ const (
 type SearchOrgSwOrGwPortsStpRoleEnum string
 
 const (
-    SearchOrgSwOrGwPortsStpRoleEnum_ALTERNATE     SearchOrgSwOrGwPortsStpRoleEnum = "alternate"
-    SearchOrgSwOrGwPortsStpRoleEnum_BACKUP        SearchOrgSwOrGwPortsStpRoleEnum = "backup"
-    SearchOrgSwOrGwPortsStpRoleEnum_DESIGNATED    SearchOrgSwOrGwPortsStpRoleEnum = "designated"
-    SearchOrgSwOrGwPortsStpRoleEnum_ROOT          SearchOrgSwOrGwPortsStpRoleEnum = "root"
-    SearchOrgSwOrGwPortsStpRoleEnum_ROOTPREVENTED SearchOrgSwOrGwPortsStpRoleEnum = "root-prevented"
+	SearchOrgSwOrGwPortsStpRoleEnum_ALTERNATE     SearchOrgSwOrGwPortsStpRoleEnum = "alternate"
+	SearchOrgSwOrGwPortsStpRoleEnum_BACKUP        SearchOrgSwOrGwPortsStpRoleEnum = "backup"
+	SearchOrgSwOrGwPortsStpRoleEnum_DESIGNATED    SearchOrgSwOrGwPortsStpRoleEnum = "designated"
+	SearchOrgSwOrGwPortsStpRoleEnum_ROOT          SearchOrgSwOrGwPortsStpRoleEnum = "root"
+	SearchOrgSwOrGwPortsStpRoleEnum_ROOTPREVENTED SearchOrgSwOrGwPortsStpRoleEnum = "root-prevented"
 )
 
 // SearchOrgSwOrGwPortsStpStateEnum is a string enum.
@@ -2574,11 +2574,11 @@ const (
 type SearchOrgSwOrGwPortsStpStateEnum string
 
 const (
-    SearchOrgSwOrGwPortsStpStateEnum_BLOCKING   SearchOrgSwOrGwPortsStpStateEnum = "blocking"
-    SearchOrgSwOrGwPortsStpStateEnum_DISABLED   SearchOrgSwOrGwPortsStpStateEnum = "disabled"
-    SearchOrgSwOrGwPortsStpStateEnum_FORWARDING SearchOrgSwOrGwPortsStpStateEnum = "forwarding"
-    SearchOrgSwOrGwPortsStpStateEnum_LEARNING   SearchOrgSwOrGwPortsStpStateEnum = "learning"
-    SearchOrgSwOrGwPortsStpStateEnum_LISTENING  SearchOrgSwOrGwPortsStpStateEnum = "listening"
+	SearchOrgSwOrGwPortsStpStateEnum_BLOCKING   SearchOrgSwOrGwPortsStpStateEnum = "blocking"
+	SearchOrgSwOrGwPortsStpStateEnum_DISABLED   SearchOrgSwOrGwPortsStpStateEnum = "disabled"
+	SearchOrgSwOrGwPortsStpStateEnum_FORWARDING SearchOrgSwOrGwPortsStpStateEnum = "forwarding"
+	SearchOrgSwOrGwPortsStpStateEnum_LEARNING   SearchOrgSwOrGwPortsStpStateEnum = "learning"
+	SearchOrgSwOrGwPortsStpStateEnum_LISTENING  SearchOrgSwOrGwPortsStpStateEnum = "listening"
 )
 
 // SearchSiteDevicesDescSortEnum is a string enum.
@@ -2586,10 +2586,10 @@ const (
 type SearchSiteDevicesDescSortEnum string
 
 const (
-    SearchSiteDevicesDescSortEnum_MAC       SearchSiteDevicesDescSortEnum = "mac"
-    SearchSiteDevicesDescSortEnum_MODEL     SearchSiteDevicesDescSortEnum = "model"
-    SearchSiteDevicesDescSortEnum_SKU       SearchSiteDevicesDescSortEnum = "sku"
-    SearchSiteDevicesDescSortEnum_TIMESTAMP SearchSiteDevicesDescSortEnum = "timestamp"
+	SearchSiteDevicesDescSortEnum_MAC       SearchSiteDevicesDescSortEnum = "mac"
+	SearchSiteDevicesDescSortEnum_MODEL     SearchSiteDevicesDescSortEnum = "model"
+	SearchSiteDevicesDescSortEnum_SKU       SearchSiteDevicesDescSortEnum = "sku"
+	SearchSiteDevicesDescSortEnum_TIMESTAMP SearchSiteDevicesDescSortEnum = "timestamp"
 )
 
 // SearchSiteDevicesMxtunnelStatusEnum is a string enum.
@@ -2597,8 +2597,8 @@ const (
 type SearchSiteDevicesMxtunnelStatusEnum string
 
 const (
-    SearchSiteDevicesMxtunnelStatusEnum_DOWN SearchSiteDevicesMxtunnelStatusEnum = "down"
-    SearchSiteDevicesMxtunnelStatusEnum_UP   SearchSiteDevicesMxtunnelStatusEnum = "up"
+	SearchSiteDevicesMxtunnelStatusEnum_DOWN SearchSiteDevicesMxtunnelStatusEnum = "down"
+	SearchSiteDevicesMxtunnelStatusEnum_UP   SearchSiteDevicesMxtunnelStatusEnum = "up"
 )
 
 // SearchSiteDevicesSortEnum is a string enum.
@@ -2606,10 +2606,10 @@ const (
 type SearchSiteDevicesSortEnum string
 
 const (
-    SearchSiteDevicesSortEnum_MAC       SearchSiteDevicesSortEnum = "mac"
-    SearchSiteDevicesSortEnum_MODEL     SearchSiteDevicesSortEnum = "model"
-    SearchSiteDevicesSortEnum_SKU       SearchSiteDevicesSortEnum = "sku"
-    SearchSiteDevicesSortEnum_TIMESTAMP SearchSiteDevicesSortEnum = "timestamp"
+	SearchSiteDevicesSortEnum_MAC       SearchSiteDevicesSortEnum = "mac"
+	SearchSiteDevicesSortEnum_MODEL     SearchSiteDevicesSortEnum = "model"
+	SearchSiteDevicesSortEnum_SKU       SearchSiteDevicesSortEnum = "sku"
+	SearchSiteDevicesSortEnum_TIMESTAMP SearchSiteDevicesSortEnum = "timestamp"
 )
 
 // SearchSiteSwOrGwPortsAuthStateEnum is a string enum.
@@ -2617,10 +2617,10 @@ const (
 type SearchSiteSwOrGwPortsAuthStateEnum string
 
 const (
-    SearchSiteSwOrGwPortsAuthStateEnum_AUTHENTICATED  SearchSiteSwOrGwPortsAuthStateEnum = "authenticated"
-    SearchSiteSwOrGwPortsAuthStateEnum_AUTHENTICATING SearchSiteSwOrGwPortsAuthStateEnum = "authenticating"
-    SearchSiteSwOrGwPortsAuthStateEnum_HELD           SearchSiteSwOrGwPortsAuthStateEnum = "held"
-    SearchSiteSwOrGwPortsAuthStateEnum_INIT           SearchSiteSwOrGwPortsAuthStateEnum = "init"
+	SearchSiteSwOrGwPortsAuthStateEnum_AUTHENTICATED  SearchSiteSwOrGwPortsAuthStateEnum = "authenticated"
+	SearchSiteSwOrGwPortsAuthStateEnum_AUTHENTICATING SearchSiteSwOrGwPortsAuthStateEnum = "authenticating"
+	SearchSiteSwOrGwPortsAuthStateEnum_HELD           SearchSiteSwOrGwPortsAuthStateEnum = "held"
+	SearchSiteSwOrGwPortsAuthStateEnum_INIT           SearchSiteSwOrGwPortsAuthStateEnum = "init"
 )
 
 // SearchSiteSwOrGwPortsDeviceTypeEnum is a string enum.
@@ -2628,12 +2628,12 @@ const (
 type SearchSiteSwOrGwPortsDeviceTypeEnum string
 
 const (
-    SearchSiteSwOrGwPortsDeviceTypeEnum_AP         SearchSiteSwOrGwPortsDeviceTypeEnum = "ap"
-    SearchSiteSwOrGwPortsDeviceTypeEnum_BLE        SearchSiteSwOrGwPortsDeviceTypeEnum = "ble"
-    SearchSiteSwOrGwPortsDeviceTypeEnum_GATEWAY    SearchSiteSwOrGwPortsDeviceTypeEnum = "gateway"
-    SearchSiteSwOrGwPortsDeviceTypeEnum_MXEDGE     SearchSiteSwOrGwPortsDeviceTypeEnum = "mxedge"
-    SearchSiteSwOrGwPortsDeviceTypeEnum_NAC        SearchSiteSwOrGwPortsDeviceTypeEnum = "nac"
-    SearchSiteSwOrGwPortsDeviceTypeEnum_ENUMSWITCH SearchSiteSwOrGwPortsDeviceTypeEnum = "switch"
+	SearchSiteSwOrGwPortsDeviceTypeEnum_AP         SearchSiteSwOrGwPortsDeviceTypeEnum = "ap"
+	SearchSiteSwOrGwPortsDeviceTypeEnum_BLE        SearchSiteSwOrGwPortsDeviceTypeEnum = "ble"
+	SearchSiteSwOrGwPortsDeviceTypeEnum_GATEWAY    SearchSiteSwOrGwPortsDeviceTypeEnum = "gateway"
+	SearchSiteSwOrGwPortsDeviceTypeEnum_MXEDGE     SearchSiteSwOrGwPortsDeviceTypeEnum = "mxedge"
+	SearchSiteSwOrGwPortsDeviceTypeEnum_NAC        SearchSiteSwOrGwPortsDeviceTypeEnum = "nac"
+	SearchSiteSwOrGwPortsDeviceTypeEnum_ENUMSWITCH SearchSiteSwOrGwPortsDeviceTypeEnum = "switch"
 )
 
 // SearchSiteSwOrGwPortsStpRoleEnum is a string enum.
@@ -2641,11 +2641,11 @@ const (
 type SearchSiteSwOrGwPortsStpRoleEnum string
 
 const (
-    SearchSiteSwOrGwPortsStpRoleEnum_ALTERNATE     SearchSiteSwOrGwPortsStpRoleEnum = "alternate"
-    SearchSiteSwOrGwPortsStpRoleEnum_BACKUP        SearchSiteSwOrGwPortsStpRoleEnum = "backup"
-    SearchSiteSwOrGwPortsStpRoleEnum_DESIGNATED    SearchSiteSwOrGwPortsStpRoleEnum = "designated"
-    SearchSiteSwOrGwPortsStpRoleEnum_ROOT          SearchSiteSwOrGwPortsStpRoleEnum = "root"
-    SearchSiteSwOrGwPortsStpRoleEnum_ROOTPREVENTED SearchSiteSwOrGwPortsStpRoleEnum = "root-prevented"
+	SearchSiteSwOrGwPortsStpRoleEnum_ALTERNATE     SearchSiteSwOrGwPortsStpRoleEnum = "alternate"
+	SearchSiteSwOrGwPortsStpRoleEnum_BACKUP        SearchSiteSwOrGwPortsStpRoleEnum = "backup"
+	SearchSiteSwOrGwPortsStpRoleEnum_DESIGNATED    SearchSiteSwOrGwPortsStpRoleEnum = "designated"
+	SearchSiteSwOrGwPortsStpRoleEnum_ROOT          SearchSiteSwOrGwPortsStpRoleEnum = "root"
+	SearchSiteSwOrGwPortsStpRoleEnum_ROOTPREVENTED SearchSiteSwOrGwPortsStpRoleEnum = "root-prevented"
 )
 
 // SearchSiteSwOrGwPortsStpStateEnum is a string enum.
@@ -2653,11 +2653,11 @@ const (
 type SearchSiteSwOrGwPortsStpStateEnum string
 
 const (
-    SearchSiteSwOrGwPortsStpStateEnum_BLOCKING   SearchSiteSwOrGwPortsStpStateEnum = "blocking"
-    SearchSiteSwOrGwPortsStpStateEnum_DISABLED   SearchSiteSwOrGwPortsStpStateEnum = "disabled"
-    SearchSiteSwOrGwPortsStpStateEnum_FORWARDING SearchSiteSwOrGwPortsStpStateEnum = "forwarding"
-    SearchSiteSwOrGwPortsStpStateEnum_LEARNING   SearchSiteSwOrGwPortsStpStateEnum = "learning"
-    SearchSiteSwOrGwPortsStpStateEnum_LISTENING  SearchSiteSwOrGwPortsStpStateEnum = "listening"
+	SearchSiteSwOrGwPortsStpStateEnum_BLOCKING   SearchSiteSwOrGwPortsStpStateEnum = "blocking"
+	SearchSiteSwOrGwPortsStpStateEnum_DISABLED   SearchSiteSwOrGwPortsStpStateEnum = "disabled"
+	SearchSiteSwOrGwPortsStpStateEnum_FORWARDING SearchSiteSwOrGwPortsStpStateEnum = "forwarding"
+	SearchSiteSwOrGwPortsStpStateEnum_LEARNING   SearchSiteSwOrGwPortsStpStateEnum = "learning"
+	SearchSiteSwOrGwPortsStpStateEnum_LISTENING  SearchSiteSwOrGwPortsStpStateEnum = "listening"
 )
 
 // SearchSiteSwitchPortsAuthStateEnum is a string enum.
@@ -2665,10 +2665,10 @@ const (
 type SearchSiteSwitchPortsAuthStateEnum string
 
 const (
-    SearchSiteSwitchPortsAuthStateEnum_AUTHENTICATED  SearchSiteSwitchPortsAuthStateEnum = "authenticated"
-    SearchSiteSwitchPortsAuthStateEnum_AUTHENTICATING SearchSiteSwitchPortsAuthStateEnum = "authenticating"
-    SearchSiteSwitchPortsAuthStateEnum_HELD           SearchSiteSwitchPortsAuthStateEnum = "held"
-    SearchSiteSwitchPortsAuthStateEnum_INIT           SearchSiteSwitchPortsAuthStateEnum = "init"
+	SearchSiteSwitchPortsAuthStateEnum_AUTHENTICATED  SearchSiteSwitchPortsAuthStateEnum = "authenticated"
+	SearchSiteSwitchPortsAuthStateEnum_AUTHENTICATING SearchSiteSwitchPortsAuthStateEnum = "authenticating"
+	SearchSiteSwitchPortsAuthStateEnum_HELD           SearchSiteSwitchPortsAuthStateEnum = "held"
+	SearchSiteSwitchPortsAuthStateEnum_INIT           SearchSiteSwitchPortsAuthStateEnum = "init"
 )
 
 // SearchSiteSwitchPortsStpRoleEnum is a string enum.
@@ -2676,11 +2676,11 @@ const (
 type SearchSiteSwitchPortsStpRoleEnum string
 
 const (
-    SearchSiteSwitchPortsStpRoleEnum_ALTERNATE     SearchSiteSwitchPortsStpRoleEnum = "alternate"
-    SearchSiteSwitchPortsStpRoleEnum_BACKUP        SearchSiteSwitchPortsStpRoleEnum = "backup"
-    SearchSiteSwitchPortsStpRoleEnum_DESIGNATED    SearchSiteSwitchPortsStpRoleEnum = "designated"
-    SearchSiteSwitchPortsStpRoleEnum_ROOT          SearchSiteSwitchPortsStpRoleEnum = "root"
-    SearchSiteSwitchPortsStpRoleEnum_ROOTPREVENTED SearchSiteSwitchPortsStpRoleEnum = "root-prevented"
+	SearchSiteSwitchPortsStpRoleEnum_ALTERNATE     SearchSiteSwitchPortsStpRoleEnum = "alternate"
+	SearchSiteSwitchPortsStpRoleEnum_BACKUP        SearchSiteSwitchPortsStpRoleEnum = "backup"
+	SearchSiteSwitchPortsStpRoleEnum_DESIGNATED    SearchSiteSwitchPortsStpRoleEnum = "designated"
+	SearchSiteSwitchPortsStpRoleEnum_ROOT          SearchSiteSwitchPortsStpRoleEnum = "root"
+	SearchSiteSwitchPortsStpRoleEnum_ROOTPREVENTED SearchSiteSwitchPortsStpRoleEnum = "root-prevented"
 )
 
 // SearchSiteSwitchPortsStpStateEnum is a string enum.
@@ -2688,11 +2688,11 @@ const (
 type SearchSiteSwitchPortsStpStateEnum string
 
 const (
-    SearchSiteSwitchPortsStpStateEnum_BLOCKING   SearchSiteSwitchPortsStpStateEnum = "blocking"
-    SearchSiteSwitchPortsStpStateEnum_DISABLED   SearchSiteSwitchPortsStpStateEnum = "disabled"
-    SearchSiteSwitchPortsStpStateEnum_FORWARDING SearchSiteSwitchPortsStpStateEnum = "forwarding"
-    SearchSiteSwitchPortsStpStateEnum_LEARNING   SearchSiteSwitchPortsStpStateEnum = "learning"
-    SearchSiteSwitchPortsStpStateEnum_LISTENING  SearchSiteSwitchPortsStpStateEnum = "listening"
+	SearchSiteSwitchPortsStpStateEnum_BLOCKING   SearchSiteSwitchPortsStpStateEnum = "blocking"
+	SearchSiteSwitchPortsStpStateEnum_DISABLED   SearchSiteSwitchPortsStpStateEnum = "disabled"
+	SearchSiteSwitchPortsStpStateEnum_FORWARDING SearchSiteSwitchPortsStpStateEnum = "forwarding"
+	SearchSiteSwitchPortsStpStateEnum_LEARNING   SearchSiteSwitchPortsStpStateEnum = "learning"
+	SearchSiteSwitchPortsStpStateEnum_LISTENING  SearchSiteSwitchPortsStpStateEnum = "listening"
 )
 
 // SecintelProfileProfileActionEnum is a string enum.
@@ -2700,9 +2700,9 @@ const (
 type SecintelProfileProfileActionEnum string
 
 const (
-    SecintelProfileProfileActionEnum_ENUMDEFAULT SecintelProfileProfileActionEnum = "default"
-    SecintelProfileProfileActionEnum_STANDARD    SecintelProfileProfileActionEnum = "standard"
-    SecintelProfileProfileActionEnum_STRICT      SecintelProfileProfileActionEnum = "strict"
+	SecintelProfileProfileActionEnum_ENUMDEFAULT SecintelProfileProfileActionEnum = "default"
+	SecintelProfileProfileActionEnum_STANDARD    SecintelProfileProfileActionEnum = "standard"
+	SecintelProfileProfileActionEnum_STRICT      SecintelProfileProfileActionEnum = "strict"
 )
 
 // SecintelProfileProfileCategoryEnum is a string enum.
@@ -2710,9 +2710,9 @@ const (
 type SecintelProfileProfileCategoryEnum string
 
 const (
-    SecintelProfileProfileCategoryEnum_CC  SecintelProfileProfileCategoryEnum = "CC"
-    SecintelProfileProfileCategoryEnum_DNS SecintelProfileProfileCategoryEnum = "DNS"
-    SecintelProfileProfileCategoryEnum_IH  SecintelProfileProfileCategoryEnum = "IH"
+	SecintelProfileProfileCategoryEnum_CC  SecintelProfileProfileCategoryEnum = "CC"
+	SecintelProfileProfileCategoryEnum_DNS SecintelProfileProfileCategoryEnum = "DNS"
+	SecintelProfileProfileCategoryEnum_IH  SecintelProfileProfileCategoryEnum = "IH"
 )
 
 // ServiceFailoverPolicyEnum is a string enum.
@@ -2720,9 +2720,9 @@ const (
 type ServiceFailoverPolicyEnum string
 
 const (
-    ServiceFailoverPolicyEnum_NONREVERTABLE ServiceFailoverPolicyEnum = "non_revertable"
-    ServiceFailoverPolicyEnum_NONE          ServiceFailoverPolicyEnum = "none"
-    ServiceFailoverPolicyEnum_REVERTABLE    ServiceFailoverPolicyEnum = "revertable"
+	ServiceFailoverPolicyEnum_NONREVERTABLE ServiceFailoverPolicyEnum = "non_revertable"
+	ServiceFailoverPolicyEnum_NONE          ServiceFailoverPolicyEnum = "none"
+	ServiceFailoverPolicyEnum_REVERTABLE    ServiceFailoverPolicyEnum = "revertable"
 )
 
 // ServicePolicyEwfRuleProfileEnum is a string enum.
@@ -2730,9 +2730,9 @@ const (
 type ServicePolicyEwfRuleProfileEnum string
 
 const (
-    ServicePolicyEwfRuleProfileEnum_CRITICAL ServicePolicyEwfRuleProfileEnum = "critical"
-    ServicePolicyEwfRuleProfileEnum_STANDARD ServicePolicyEwfRuleProfileEnum = "standard"
-    ServicePolicyEwfRuleProfileEnum_STRICT   ServicePolicyEwfRuleProfileEnum = "strict"
+	ServicePolicyEwfRuleProfileEnum_CRITICAL ServicePolicyEwfRuleProfileEnum = "critical"
+	ServicePolicyEwfRuleProfileEnum_STANDARD ServicePolicyEwfRuleProfileEnum = "standard"
+	ServicePolicyEwfRuleProfileEnum_STRICT   ServicePolicyEwfRuleProfileEnum = "strict"
 )
 
 // ServiceTrafficClassEnum is a string enum.
@@ -2740,10 +2740,10 @@ const (
 type ServiceTrafficClassEnum string
 
 const (
-    ServiceTrafficClassEnum_BESTEFFORT ServiceTrafficClassEnum = "best_effort"
-    ServiceTrafficClassEnum_HIGH       ServiceTrafficClassEnum = "high"
-    ServiceTrafficClassEnum_LOW        ServiceTrafficClassEnum = "low"
-    ServiceTrafficClassEnum_MEDIUM     ServiceTrafficClassEnum = "medium"
+	ServiceTrafficClassEnum_BESTEFFORT ServiceTrafficClassEnum = "best_effort"
+	ServiceTrafficClassEnum_HIGH       ServiceTrafficClassEnum = "high"
+	ServiceTrafficClassEnum_LOW        ServiceTrafficClassEnum = "low"
+	ServiceTrafficClassEnum_MEDIUM     ServiceTrafficClassEnum = "medium"
 )
 
 // ServiceTypeEnum is a string enum.
@@ -2751,10 +2751,10 @@ const (
 type ServiceTypeEnum string
 
 const (
-    ServiceTypeEnum_APPCATEGORIES ServiceTypeEnum = "app_categories"
-    ServiceTypeEnum_APPS          ServiceTypeEnum = "apps"
-    ServiceTypeEnum_CUSTOM        ServiceTypeEnum = "custom"
-    ServiceTypeEnum_URLS          ServiceTypeEnum = "urls"
+	ServiceTypeEnum_APPCATEGORIES ServiceTypeEnum = "app_categories"
+	ServiceTypeEnum_APPS          ServiceTypeEnum = "apps"
+	ServiceTypeEnum_CUSTOM        ServiceTypeEnum = "custom"
+	ServiceTypeEnum_URLS          ServiceTypeEnum = "urls"
 )
 
 // SiteAppsCountDistinctEnum is a string enum.
@@ -2762,16 +2762,16 @@ const (
 type SiteAppsCountDistinctEnum string
 
 const (
-    SiteAppsCountDistinctEnum_AP            SiteAppsCountDistinctEnum = "ap"
-    SiteAppsCountDistinctEnum_APP           SiteAppsCountDistinctEnum = "app"
-    SiteAppsCountDistinctEnum_CATEGORY      SiteAppsCountDistinctEnum = "category"
-    SiteAppsCountDistinctEnum_DEVICEMAC     SiteAppsCountDistinctEnum = "device_mac"
-    SiteAppsCountDistinctEnum_PORTID        SiteAppsCountDistinctEnum = "port_id"
-    SiteAppsCountDistinctEnum_SERVICE       SiteAppsCountDistinctEnum = "service"
-    SiteAppsCountDistinctEnum_SRCIP         SiteAppsCountDistinctEnum = "src_ip"
-    SiteAppsCountDistinctEnum_SSID          SiteAppsCountDistinctEnum = "ssid"
-    SiteAppsCountDistinctEnum_WCID          SiteAppsCountDistinctEnum = "wcid"
-    SiteAppsCountDistinctEnum_ENUMWLANIDAPP SiteAppsCountDistinctEnum = "wlan_id app"
+	SiteAppsCountDistinctEnum_AP            SiteAppsCountDistinctEnum = "ap"
+	SiteAppsCountDistinctEnum_APP           SiteAppsCountDistinctEnum = "app"
+	SiteAppsCountDistinctEnum_CATEGORY      SiteAppsCountDistinctEnum = "category"
+	SiteAppsCountDistinctEnum_DEVICEMAC     SiteAppsCountDistinctEnum = "device_mac"
+	SiteAppsCountDistinctEnum_PORTID        SiteAppsCountDistinctEnum = "port_id"
+	SiteAppsCountDistinctEnum_SERVICE       SiteAppsCountDistinctEnum = "service"
+	SiteAppsCountDistinctEnum_SRCIP         SiteAppsCountDistinctEnum = "src_ip"
+	SiteAppsCountDistinctEnum_SSID          SiteAppsCountDistinctEnum = "ssid"
+	SiteAppsCountDistinctEnum_WCID          SiteAppsCountDistinctEnum = "wcid"
+	SiteAppsCountDistinctEnum_ENUMWLANIDAPP SiteAppsCountDistinctEnum = "wlan_id app"
 )
 
 // SiteAssetsCountDistinctEnum is a string enum.
@@ -2779,17 +2779,17 @@ const (
 type SiteAssetsCountDistinctEnum string
 
 const (
-    SiteAssetsCountDistinctEnum_BY                    SiteAssetsCountDistinctEnum = "by"
-    SiteAssetsCountDistinctEnum_DEVICENAME            SiteAssetsCountDistinctEnum = "device_name"
-    SiteAssetsCountDistinctEnum_EDDYSTONEUIDINSTANCE  SiteAssetsCountDistinctEnum = "eddystone_uid_instance"
-    SiteAssetsCountDistinctEnum_EDDYSTONEUIDNAMESPACE SiteAssetsCountDistinctEnum = "eddystone_uid_namespace"
-    SiteAssetsCountDistinctEnum_EDDYSTONEURL          SiteAssetsCountDistinctEnum = "eddystone_url"
-    SiteAssetsCountDistinctEnum_IBEACONMAJOR          SiteAssetsCountDistinctEnum = "ibeacon_major"
-    SiteAssetsCountDistinctEnum_IBEACONMINOR          SiteAssetsCountDistinctEnum = "ibeacon_minor"
-    SiteAssetsCountDistinctEnum_IBEACONUUID           SiteAssetsCountDistinctEnum = "ibeacon_uuid"
-    SiteAssetsCountDistinctEnum_MAC                   SiteAssetsCountDistinctEnum = "mac"
-    SiteAssetsCountDistinctEnum_MAPID                 SiteAssetsCountDistinctEnum = "map_id"
-    SiteAssetsCountDistinctEnum_NAME                  SiteAssetsCountDistinctEnum = "name"
+	SiteAssetsCountDistinctEnum_BY                    SiteAssetsCountDistinctEnum = "by"
+	SiteAssetsCountDistinctEnum_DEVICENAME            SiteAssetsCountDistinctEnum = "device_name"
+	SiteAssetsCountDistinctEnum_EDDYSTONEUIDINSTANCE  SiteAssetsCountDistinctEnum = "eddystone_uid_instance"
+	SiteAssetsCountDistinctEnum_EDDYSTONEUIDNAMESPACE SiteAssetsCountDistinctEnum = "eddystone_uid_namespace"
+	SiteAssetsCountDistinctEnum_EDDYSTONEURL          SiteAssetsCountDistinctEnum = "eddystone_url"
+	SiteAssetsCountDistinctEnum_IBEACONMAJOR          SiteAssetsCountDistinctEnum = "ibeacon_major"
+	SiteAssetsCountDistinctEnum_IBEACONMINOR          SiteAssetsCountDistinctEnum = "ibeacon_minor"
+	SiteAssetsCountDistinctEnum_IBEACONUUID           SiteAssetsCountDistinctEnum = "ibeacon_uuid"
+	SiteAssetsCountDistinctEnum_MAC                   SiteAssetsCountDistinctEnum = "mac"
+	SiteAssetsCountDistinctEnum_MAPID                 SiteAssetsCountDistinctEnum = "map_id"
+	SiteAssetsCountDistinctEnum_NAME                  SiteAssetsCountDistinctEnum = "name"
 )
 
 // SiteAutoUpgradeVersionEnum is a string enum.
@@ -2797,9 +2797,9 @@ const (
 type SiteAutoUpgradeVersionEnum string
 
 const (
-    SiteAutoUpgradeVersionEnum_BETA   SiteAutoUpgradeVersionEnum = "beta"
-    SiteAutoUpgradeVersionEnum_CUSTOM SiteAutoUpgradeVersionEnum = "custom"
-    SiteAutoUpgradeVersionEnum_STABLE SiteAutoUpgradeVersionEnum = "stable"
+	SiteAutoUpgradeVersionEnum_BETA   SiteAutoUpgradeVersionEnum = "beta"
+	SiteAutoUpgradeVersionEnum_CUSTOM SiteAutoUpgradeVersionEnum = "custom"
+	SiteAutoUpgradeVersionEnum_STABLE SiteAutoUpgradeVersionEnum = "stable"
 )
 
 // SiteClientEventsCountDistinctEnum is a string enum.
@@ -2807,12 +2807,12 @@ const (
 type SiteClientEventsCountDistinctEnum string
 
 const (
-    SiteClientEventsCountDistinctEnum_BAND     SiteClientEventsCountDistinctEnum = "band"
-    SiteClientEventsCountDistinctEnum_CHANNEL  SiteClientEventsCountDistinctEnum = "channel"
-    SiteClientEventsCountDistinctEnum_PROTO    SiteClientEventsCountDistinctEnum = "proto"
-    SiteClientEventsCountDistinctEnum_SSID     SiteClientEventsCountDistinctEnum = "ssid"
-    SiteClientEventsCountDistinctEnum_ENUMTYPE SiteClientEventsCountDistinctEnum = "type"
-    SiteClientEventsCountDistinctEnum_WLANID   SiteClientEventsCountDistinctEnum = "wlan_id"
+	SiteClientEventsCountDistinctEnum_BAND     SiteClientEventsCountDistinctEnum = "band"
+	SiteClientEventsCountDistinctEnum_CHANNEL  SiteClientEventsCountDistinctEnum = "channel"
+	SiteClientEventsCountDistinctEnum_PROTO    SiteClientEventsCountDistinctEnum = "proto"
+	SiteClientEventsCountDistinctEnum_SSID     SiteClientEventsCountDistinctEnum = "ssid"
+	SiteClientEventsCountDistinctEnum_ENUMTYPE SiteClientEventsCountDistinctEnum = "type"
+	SiteClientEventsCountDistinctEnum_WLANID   SiteClientEventsCountDistinctEnum = "wlan_id"
 )
 
 // SiteClientSessionsCountDistinctEnum is a string enum.
@@ -2820,14 +2820,14 @@ const (
 type SiteClientSessionsCountDistinctEnum string
 
 const (
-    SiteClientSessionsCountDistinctEnum_AP                SiteClientSessionsCountDistinctEnum = "ap"
-    SiteClientSessionsCountDistinctEnum_CLIENTFAMILY      SiteClientSessionsCountDistinctEnum = "client_family"
-    SiteClientSessionsCountDistinctEnum_CLIENTMANUFACTURE SiteClientSessionsCountDistinctEnum = "client_manufacture"
-    SiteClientSessionsCountDistinctEnum_CLIENTMODEL       SiteClientSessionsCountDistinctEnum = "client_model"
-    SiteClientSessionsCountDistinctEnum_CLIENTOS          SiteClientSessionsCountDistinctEnum = "client_os"
-    SiteClientSessionsCountDistinctEnum_MAC               SiteClientSessionsCountDistinctEnum = "mac"
-    SiteClientSessionsCountDistinctEnum_SSID              SiteClientSessionsCountDistinctEnum = "ssid"
-    SiteClientSessionsCountDistinctEnum_WLANID            SiteClientSessionsCountDistinctEnum = "wlan_id"
+	SiteClientSessionsCountDistinctEnum_AP                SiteClientSessionsCountDistinctEnum = "ap"
+	SiteClientSessionsCountDistinctEnum_CLIENTFAMILY      SiteClientSessionsCountDistinctEnum = "client_family"
+	SiteClientSessionsCountDistinctEnum_CLIENTMANUFACTURE SiteClientSessionsCountDistinctEnum = "client_manufacture"
+	SiteClientSessionsCountDistinctEnum_CLIENTMODEL       SiteClientSessionsCountDistinctEnum = "client_model"
+	SiteClientSessionsCountDistinctEnum_CLIENTOS          SiteClientSessionsCountDistinctEnum = "client_os"
+	SiteClientSessionsCountDistinctEnum_MAC               SiteClientSessionsCountDistinctEnum = "mac"
+	SiteClientSessionsCountDistinctEnum_SSID              SiteClientSessionsCountDistinctEnum = "ssid"
+	SiteClientSessionsCountDistinctEnum_WLANID            SiteClientSessionsCountDistinctEnum = "wlan_id"
 )
 
 // SiteClientsCountDistinctEnum is a string enum.
@@ -2835,14 +2835,14 @@ const (
 type SiteClientsCountDistinctEnum string
 
 const (
-    SiteClientsCountDistinctEnum_AP       SiteClientsCountDistinctEnum = "ap"
-    SiteClientsCountDistinctEnum_DEVICE   SiteClientsCountDistinctEnum = "device"
-    SiteClientsCountDistinctEnum_HOSTNAME SiteClientsCountDistinctEnum = "hostname"
-    SiteClientsCountDistinctEnum_IP       SiteClientsCountDistinctEnum = "ip"
-    SiteClientsCountDistinctEnum_MODEL    SiteClientsCountDistinctEnum = "model"
-    SiteClientsCountDistinctEnum_OS       SiteClientsCountDistinctEnum = "os"
-    SiteClientsCountDistinctEnum_SSID     SiteClientsCountDistinctEnum = "ssid"
-    SiteClientsCountDistinctEnum_VLAN     SiteClientsCountDistinctEnum = "vlan"
+	SiteClientsCountDistinctEnum_AP       SiteClientsCountDistinctEnum = "ap"
+	SiteClientsCountDistinctEnum_DEVICE   SiteClientsCountDistinctEnum = "device"
+	SiteClientsCountDistinctEnum_HOSTNAME SiteClientsCountDistinctEnum = "hostname"
+	SiteClientsCountDistinctEnum_IP       SiteClientsCountDistinctEnum = "ip"
+	SiteClientsCountDistinctEnum_MODEL    SiteClientsCountDistinctEnum = "model"
+	SiteClientsCountDistinctEnum_OS       SiteClientsCountDistinctEnum = "os"
+	SiteClientsCountDistinctEnum_SSID     SiteClientsCountDistinctEnum = "ssid"
+	SiteClientsCountDistinctEnum_VLAN     SiteClientsCountDistinctEnum = "vlan"
 )
 
 // SiteDeviceEventsCountDistinctEnum is a string enum.
@@ -2850,10 +2850,10 @@ const (
 type SiteDeviceEventsCountDistinctEnum string
 
 const (
-    SiteDeviceEventsCountDistinctEnum_MAC      SiteDeviceEventsCountDistinctEnum = "mac"
-    SiteDeviceEventsCountDistinctEnum_MODEL    SiteDeviceEventsCountDistinctEnum = "model"
-    SiteDeviceEventsCountDistinctEnum_ENUMTYPE SiteDeviceEventsCountDistinctEnum = "type"
-    SiteDeviceEventsCountDistinctEnum_TYPECODE SiteDeviceEventsCountDistinctEnum = "type_code"
+	SiteDeviceEventsCountDistinctEnum_MAC      SiteDeviceEventsCountDistinctEnum = "mac"
+	SiteDeviceEventsCountDistinctEnum_MODEL    SiteDeviceEventsCountDistinctEnum = "model"
+	SiteDeviceEventsCountDistinctEnum_ENUMTYPE SiteDeviceEventsCountDistinctEnum = "type"
+	SiteDeviceEventsCountDistinctEnum_TYPECODE SiteDeviceEventsCountDistinctEnum = "type_code"
 )
 
 // SiteDeviceLastConfigCountDistinctEnum is a string enum.
@@ -2861,10 +2861,10 @@ const (
 type SiteDeviceLastConfigCountDistinctEnum string
 
 const (
-    SiteDeviceLastConfigCountDistinctEnum_MAC     SiteDeviceLastConfigCountDistinctEnum = "mac"
-    SiteDeviceLastConfigCountDistinctEnum_NAME    SiteDeviceLastConfigCountDistinctEnum = "name"
-    SiteDeviceLastConfigCountDistinctEnum_SITEID  SiteDeviceLastConfigCountDistinctEnum = "site_id"
-    SiteDeviceLastConfigCountDistinctEnum_VERSION SiteDeviceLastConfigCountDistinctEnum = "version"
+	SiteDeviceLastConfigCountDistinctEnum_MAC     SiteDeviceLastConfigCountDistinctEnum = "mac"
+	SiteDeviceLastConfigCountDistinctEnum_NAME    SiteDeviceLastConfigCountDistinctEnum = "name"
+	SiteDeviceLastConfigCountDistinctEnum_SITEID  SiteDeviceLastConfigCountDistinctEnum = "site_id"
+	SiteDeviceLastConfigCountDistinctEnum_VERSION SiteDeviceLastConfigCountDistinctEnum = "version"
 )
 
 // SiteDevicesCountDistinctEnum is a string enum.
@@ -2872,16 +2872,16 @@ const (
 type SiteDevicesCountDistinctEnum string
 
 const (
-    SiteDevicesCountDistinctEnum_HOSTNAME       SiteDevicesCountDistinctEnum = "hostname"
-    SiteDevicesCountDistinctEnum_LLDPMGMTADDR   SiteDevicesCountDistinctEnum = "lldp_mgmt_addr"
-    SiteDevicesCountDistinctEnum_LLDPPORTID     SiteDevicesCountDistinctEnum = "lldp_port_id"
-    SiteDevicesCountDistinctEnum_LLDPSYSTEMDESC SiteDevicesCountDistinctEnum = "lldp_system_desc"
-    SiteDevicesCountDistinctEnum_LLDPSYSTEMNAME SiteDevicesCountDistinctEnum = "lldp_system_name"
-    SiteDevicesCountDistinctEnum_MAPID          SiteDevicesCountDistinctEnum = "map_id"
-    SiteDevicesCountDistinctEnum_MODEL          SiteDevicesCountDistinctEnum = "model"
-    SiteDevicesCountDistinctEnum_MXEDGEID       SiteDevicesCountDistinctEnum = "mxedge_id"
-    SiteDevicesCountDistinctEnum_MXTUNNELSTATUS SiteDevicesCountDistinctEnum = "mxtunnel_status"
-    SiteDevicesCountDistinctEnum_VERSION        SiteDevicesCountDistinctEnum = "version"
+	SiteDevicesCountDistinctEnum_HOSTNAME       SiteDevicesCountDistinctEnum = "hostname"
+	SiteDevicesCountDistinctEnum_LLDPMGMTADDR   SiteDevicesCountDistinctEnum = "lldp_mgmt_addr"
+	SiteDevicesCountDistinctEnum_LLDPPORTID     SiteDevicesCountDistinctEnum = "lldp_port_id"
+	SiteDevicesCountDistinctEnum_LLDPSYSTEMDESC SiteDevicesCountDistinctEnum = "lldp_system_desc"
+	SiteDevicesCountDistinctEnum_LLDPSYSTEMNAME SiteDevicesCountDistinctEnum = "lldp_system_name"
+	SiteDevicesCountDistinctEnum_MAPID          SiteDevicesCountDistinctEnum = "map_id"
+	SiteDevicesCountDistinctEnum_MODEL          SiteDevicesCountDistinctEnum = "model"
+	SiteDevicesCountDistinctEnum_MXEDGEID       SiteDevicesCountDistinctEnum = "mxedge_id"
+	SiteDevicesCountDistinctEnum_MXTUNNELSTATUS SiteDevicesCountDistinctEnum = "mxtunnel_status"
+	SiteDevicesCountDistinctEnum_VERSION        SiteDevicesCountDistinctEnum = "version"
 )
 
 // SiteDiscoveredSwitchesCountDistinctEnum is a string enum.
@@ -2889,10 +2889,10 @@ const (
 type SiteDiscoveredSwitchesCountDistinctEnum string
 
 const (
-    SiteDiscoveredSwitchesCountDistinctEnum_MGMTADDR   SiteDiscoveredSwitchesCountDistinctEnum = "mgmt_addr"
-    SiteDiscoveredSwitchesCountDistinctEnum_MODEL      SiteDiscoveredSwitchesCountDistinctEnum = "model"
-    SiteDiscoveredSwitchesCountDistinctEnum_SYSTEMNAME SiteDiscoveredSwitchesCountDistinctEnum = "system_name"
-    SiteDiscoveredSwitchesCountDistinctEnum_VERSION    SiteDiscoveredSwitchesCountDistinctEnum = "version"
+	SiteDiscoveredSwitchesCountDistinctEnum_MGMTADDR   SiteDiscoveredSwitchesCountDistinctEnum = "mgmt_addr"
+	SiteDiscoveredSwitchesCountDistinctEnum_MODEL      SiteDiscoveredSwitchesCountDistinctEnum = "model"
+	SiteDiscoveredSwitchesCountDistinctEnum_SYSTEMNAME SiteDiscoveredSwitchesCountDistinctEnum = "system_name"
+	SiteDiscoveredSwitchesCountDistinctEnum_VERSION    SiteDiscoveredSwitchesCountDistinctEnum = "version"
 )
 
 // SiteGuestsCountDistinctEnum is a string enum.
@@ -2900,9 +2900,9 @@ const (
 type SiteGuestsCountDistinctEnum string
 
 const (
-    SiteGuestsCountDistinctEnum_AUTHMETHOD SiteGuestsCountDistinctEnum = "auth_method"
-    SiteGuestsCountDistinctEnum_COMPANY    SiteGuestsCountDistinctEnum = "company"
-    SiteGuestsCountDistinctEnum_SSID       SiteGuestsCountDistinctEnum = "ssid"
+	SiteGuestsCountDistinctEnum_AUTHMETHOD SiteGuestsCountDistinctEnum = "auth_method"
+	SiteGuestsCountDistinctEnum_COMPANY    SiteGuestsCountDistinctEnum = "company"
+	SiteGuestsCountDistinctEnum_SSID       SiteGuestsCountDistinctEnum = "ssid"
 )
 
 // SiteMxedgeEventsCountDistinctEnum is a string enum.
@@ -2910,10 +2910,10 @@ const (
 type SiteMxedgeEventsCountDistinctEnum string
 
 const (
-    SiteMxedgeEventsCountDistinctEnum_MXCLUSTERID SiteMxedgeEventsCountDistinctEnum = "mxcluster_id"
-    SiteMxedgeEventsCountDistinctEnum_MXEDGEID    SiteMxedgeEventsCountDistinctEnum = "mxedge_id"
-    SiteMxedgeEventsCountDistinctEnum_ENUMPACKAGE SiteMxedgeEventsCountDistinctEnum = "package"
-    SiteMxedgeEventsCountDistinctEnum_ENUMTYPE    SiteMxedgeEventsCountDistinctEnum = "type"
+	SiteMxedgeEventsCountDistinctEnum_MXCLUSTERID SiteMxedgeEventsCountDistinctEnum = "mxcluster_id"
+	SiteMxedgeEventsCountDistinctEnum_MXEDGEID    SiteMxedgeEventsCountDistinctEnum = "mxedge_id"
+	SiteMxedgeEventsCountDistinctEnum_ENUMPACKAGE SiteMxedgeEventsCountDistinctEnum = "package"
+	SiteMxedgeEventsCountDistinctEnum_ENUMTYPE    SiteMxedgeEventsCountDistinctEnum = "type"
 )
 
 // SiteMxtunnelProtocolEnum is a string enum.
@@ -2921,8 +2921,8 @@ const (
 type SiteMxtunnelProtocolEnum string
 
 const (
-    SiteMxtunnelProtocolEnum_IP  SiteMxtunnelProtocolEnum = "ip"
-    SiteMxtunnelProtocolEnum_UDP SiteMxtunnelProtocolEnum = "udp"
+	SiteMxtunnelProtocolEnum_IP  SiteMxtunnelProtocolEnum = "ip"
+	SiteMxtunnelProtocolEnum_UDP SiteMxtunnelProtocolEnum = "udp"
 )
 
 // SiteNacClientEventsCountDistinctEnum is a string enum.
@@ -2930,16 +2930,16 @@ const (
 type SiteNacClientEventsCountDistinctEnum string
 
 const (
-    SiteNacClientEventsCountDistinctEnum_AP              SiteNacClientEventsCountDistinctEnum = "ap"
-    SiteNacClientEventsCountDistinctEnum_AUTHTYPE        SiteNacClientEventsCountDistinctEnum = "auth_type"
-    SiteNacClientEventsCountDistinctEnum_DRYRUNNACRULEID SiteNacClientEventsCountDistinctEnum = "dryrun_nacrule_id"
-    SiteNacClientEventsCountDistinctEnum_MAC             SiteNacClientEventsCountDistinctEnum = "mac"
-    SiteNacClientEventsCountDistinctEnum_NACRULEID       SiteNacClientEventsCountDistinctEnum = "nacrule_id"
-    SiteNacClientEventsCountDistinctEnum_NASVENDOR       SiteNacClientEventsCountDistinctEnum = "nas_vendor"
-    SiteNacClientEventsCountDistinctEnum_SSID            SiteNacClientEventsCountDistinctEnum = "ssid"
-    SiteNacClientEventsCountDistinctEnum_ENUMTYPE        SiteNacClientEventsCountDistinctEnum = "type"
-    SiteNacClientEventsCountDistinctEnum_USERNAME        SiteNacClientEventsCountDistinctEnum = "username"
-    SiteNacClientEventsCountDistinctEnum_VLAN            SiteNacClientEventsCountDistinctEnum = "vlan"
+	SiteNacClientEventsCountDistinctEnum_AP              SiteNacClientEventsCountDistinctEnum = "ap"
+	SiteNacClientEventsCountDistinctEnum_AUTHTYPE        SiteNacClientEventsCountDistinctEnum = "auth_type"
+	SiteNacClientEventsCountDistinctEnum_DRYRUNNACRULEID SiteNacClientEventsCountDistinctEnum = "dryrun_nacrule_id"
+	SiteNacClientEventsCountDistinctEnum_MAC             SiteNacClientEventsCountDistinctEnum = "mac"
+	SiteNacClientEventsCountDistinctEnum_NACRULEID       SiteNacClientEventsCountDistinctEnum = "nacrule_id"
+	SiteNacClientEventsCountDistinctEnum_NASVENDOR       SiteNacClientEventsCountDistinctEnum = "nas_vendor"
+	SiteNacClientEventsCountDistinctEnum_SSID            SiteNacClientEventsCountDistinctEnum = "ssid"
+	SiteNacClientEventsCountDistinctEnum_ENUMTYPE        SiteNacClientEventsCountDistinctEnum = "type"
+	SiteNacClientEventsCountDistinctEnum_USERNAME        SiteNacClientEventsCountDistinctEnum = "username"
+	SiteNacClientEventsCountDistinctEnum_VLAN            SiteNacClientEventsCountDistinctEnum = "vlan"
 )
 
 // SiteNacClientsCountDistinctEnum is a string enum.
@@ -2947,18 +2947,18 @@ const (
 type SiteNacClientsCountDistinctEnum string
 
 const (
-    SiteNacClientsCountDistinctEnum_AUTHTYPE      SiteNacClientsCountDistinctEnum = "auth_type"
-    SiteNacClientsCountDistinctEnum_LASTAP        SiteNacClientsCountDistinctEnum = "last_ap"
-    SiteNacClientsCountDistinctEnum_LASTNACRULEID SiteNacClientsCountDistinctEnum = "last_nacrule_id"
-    SiteNacClientsCountDistinctEnum_LASTNASVENDOR SiteNacClientsCountDistinctEnum = "last_nas_vendor"
-    SiteNacClientsCountDistinctEnum_LASTSSID      SiteNacClientsCountDistinctEnum = "last_ssid"
-    SiteNacClientsCountDistinctEnum_LASTSTATUS    SiteNacClientsCountDistinctEnum = "last_status"
-    SiteNacClientsCountDistinctEnum_LASTUSERNAME  SiteNacClientsCountDistinctEnum = "last_username"
-    SiteNacClientsCountDistinctEnum_LASTVLAN      SiteNacClientsCountDistinctEnum = "last_vlan"
-    SiteNacClientsCountDistinctEnum_MAC           SiteNacClientsCountDistinctEnum = "mac"
-    SiteNacClientsCountDistinctEnum_MDMCOMPLIANCE SiteNacClientsCountDistinctEnum = "mdm_compliance"
-    SiteNacClientsCountDistinctEnum_MDMPROVIDER   SiteNacClientsCountDistinctEnum = "mdm_provider"
-    SiteNacClientsCountDistinctEnum_ENUMTYPE      SiteNacClientsCountDistinctEnum = "type"
+	SiteNacClientsCountDistinctEnum_AUTHTYPE      SiteNacClientsCountDistinctEnum = "auth_type"
+	SiteNacClientsCountDistinctEnum_LASTAP        SiteNacClientsCountDistinctEnum = "last_ap"
+	SiteNacClientsCountDistinctEnum_LASTNACRULEID SiteNacClientsCountDistinctEnum = "last_nacrule_id"
+	SiteNacClientsCountDistinctEnum_LASTNASVENDOR SiteNacClientsCountDistinctEnum = "last_nas_vendor"
+	SiteNacClientsCountDistinctEnum_LASTSSID      SiteNacClientsCountDistinctEnum = "last_ssid"
+	SiteNacClientsCountDistinctEnum_LASTSTATUS    SiteNacClientsCountDistinctEnum = "last_status"
+	SiteNacClientsCountDistinctEnum_LASTUSERNAME  SiteNacClientsCountDistinctEnum = "last_username"
+	SiteNacClientsCountDistinctEnum_LASTVLAN      SiteNacClientsCountDistinctEnum = "last_vlan"
+	SiteNacClientsCountDistinctEnum_MAC           SiteNacClientsCountDistinctEnum = "mac"
+	SiteNacClientsCountDistinctEnum_MDMCOMPLIANCE SiteNacClientsCountDistinctEnum = "mdm_compliance"
+	SiteNacClientsCountDistinctEnum_MDMPROVIDER   SiteNacClientsCountDistinctEnum = "mdm_provider"
+	SiteNacClientsCountDistinctEnum_ENUMTYPE      SiteNacClientsCountDistinctEnum = "type"
 )
 
 // SiteOtherDeviceEventsCountDistinctEnum is a string enum.
@@ -2966,10 +2966,10 @@ const (
 type SiteOtherDeviceEventsCountDistinctEnum string
 
 const (
-    SiteOtherDeviceEventsCountDistinctEnum_MAC      SiteOtherDeviceEventsCountDistinctEnum = "mac"
-    SiteOtherDeviceEventsCountDistinctEnum_SITEID   SiteOtherDeviceEventsCountDistinctEnum = "site_id"
-    SiteOtherDeviceEventsCountDistinctEnum_ENUMTYPE SiteOtherDeviceEventsCountDistinctEnum = "type"
-    SiteOtherDeviceEventsCountDistinctEnum_VENDOR   SiteOtherDeviceEventsCountDistinctEnum = "vendor"
+	SiteOtherDeviceEventsCountDistinctEnum_MAC      SiteOtherDeviceEventsCountDistinctEnum = "mac"
+	SiteOtherDeviceEventsCountDistinctEnum_SITEID   SiteOtherDeviceEventsCountDistinctEnum = "site_id"
+	SiteOtherDeviceEventsCountDistinctEnum_ENUMTYPE SiteOtherDeviceEventsCountDistinctEnum = "type"
+	SiteOtherDeviceEventsCountDistinctEnum_VENDOR   SiteOtherDeviceEventsCountDistinctEnum = "vendor"
 )
 
 // SitePortsCountDistinctEnum is a string enum.
@@ -2977,18 +2977,18 @@ const (
 type SitePortsCountDistinctEnum string
 
 const (
-    SitePortsCountDistinctEnum_FULLDUPLEX         SitePortsCountDistinctEnum = "full_duplex"
-    SitePortsCountDistinctEnum_MAC                SitePortsCountDistinctEnum = "mac"
-    SitePortsCountDistinctEnum_NEIGHBORMAC        SitePortsCountDistinctEnum = "neighbor_mac"
-    SitePortsCountDistinctEnum_NEIGHBORPORTDESC   SitePortsCountDistinctEnum = "neighbor_port_desc"
-    SitePortsCountDistinctEnum_NEIGHBORSYSTEMNAME SitePortsCountDistinctEnum = "neighbor_system_name"
-    SitePortsCountDistinctEnum_POEDISABLED        SitePortsCountDistinctEnum = "poe_disabled"
-    SitePortsCountDistinctEnum_POEMODE            SitePortsCountDistinctEnum = "poe_mode"
-    SitePortsCountDistinctEnum_POEON              SitePortsCountDistinctEnum = "poe_on"
-    SitePortsCountDistinctEnum_PORTID             SitePortsCountDistinctEnum = "port_id"
-    SitePortsCountDistinctEnum_PORTMAC            SitePortsCountDistinctEnum = "port_mac"
-    SitePortsCountDistinctEnum_SPEED              SitePortsCountDistinctEnum = "speed"
-    SitePortsCountDistinctEnum_UP                 SitePortsCountDistinctEnum = "up"
+	SitePortsCountDistinctEnum_FULLDUPLEX         SitePortsCountDistinctEnum = "full_duplex"
+	SitePortsCountDistinctEnum_MAC                SitePortsCountDistinctEnum = "mac"
+	SitePortsCountDistinctEnum_NEIGHBORMAC        SitePortsCountDistinctEnum = "neighbor_mac"
+	SitePortsCountDistinctEnum_NEIGHBORPORTDESC   SitePortsCountDistinctEnum = "neighbor_port_desc"
+	SitePortsCountDistinctEnum_NEIGHBORSYSTEMNAME SitePortsCountDistinctEnum = "neighbor_system_name"
+	SitePortsCountDistinctEnum_POEDISABLED        SitePortsCountDistinctEnum = "poe_disabled"
+	SitePortsCountDistinctEnum_POEMODE            SitePortsCountDistinctEnum = "poe_mode"
+	SitePortsCountDistinctEnum_POEON              SitePortsCountDistinctEnum = "poe_on"
+	SitePortsCountDistinctEnum_PORTID             SitePortsCountDistinctEnum = "port_id"
+	SitePortsCountDistinctEnum_PORTMAC            SitePortsCountDistinctEnum = "port_mac"
+	SitePortsCountDistinctEnum_SPEED              SitePortsCountDistinctEnum = "speed"
+	SitePortsCountDistinctEnum_UP                 SitePortsCountDistinctEnum = "up"
 )
 
 // SiteRogueEventsCountDistinctEnum is a string enum.
@@ -2996,10 +2996,10 @@ const (
 type SiteRogueEventsCountDistinctEnum string
 
 const (
-    SiteRogueEventsCountDistinctEnum_AP       SiteRogueEventsCountDistinctEnum = "ap"
-    SiteRogueEventsCountDistinctEnum_BSSID    SiteRogueEventsCountDistinctEnum = "bssid"
-    SiteRogueEventsCountDistinctEnum_SSID     SiteRogueEventsCountDistinctEnum = "ssid"
-    SiteRogueEventsCountDistinctEnum_ENUMTYPE SiteRogueEventsCountDistinctEnum = "type"
+	SiteRogueEventsCountDistinctEnum_AP       SiteRogueEventsCountDistinctEnum = "ap"
+	SiteRogueEventsCountDistinctEnum_BSSID    SiteRogueEventsCountDistinctEnum = "bssid"
+	SiteRogueEventsCountDistinctEnum_SSID     SiteRogueEventsCountDistinctEnum = "ssid"
+	SiteRogueEventsCountDistinctEnum_ENUMTYPE SiteRogueEventsCountDistinctEnum = "type"
 )
 
 // SiteServiceEventsCountDistinctEnum is a string enum.
@@ -3007,24 +3007,24 @@ const (
 type SiteServiceEventsCountDistinctEnum string
 
 const (
-    SiteServiceEventsCountDistinctEnum_MAC      SiteServiceEventsCountDistinctEnum = "mac"
-    SiteServiceEventsCountDistinctEnum_MODEL    SiteServiceEventsCountDistinctEnum = "model"
-    SiteServiceEventsCountDistinctEnum_POLICY   SiteServiceEventsCountDistinctEnum = "policy"
-    SiteServiceEventsCountDistinctEnum_PORTID   SiteServiceEventsCountDistinctEnum = "port_id"
-    SiteServiceEventsCountDistinctEnum_SITEID   SiteServiceEventsCountDistinctEnum = "site_id"
-    SiteServiceEventsCountDistinctEnum_ENUMTYPE SiteServiceEventsCountDistinctEnum = "type"
-    SiteServiceEventsCountDistinctEnum_VPNNAME  SiteServiceEventsCountDistinctEnum = "vpn_name"
-    SiteServiceEventsCountDistinctEnum_VPNPATH  SiteServiceEventsCountDistinctEnum = "vpn_path"
+	SiteServiceEventsCountDistinctEnum_MAC      SiteServiceEventsCountDistinctEnum = "mac"
+	SiteServiceEventsCountDistinctEnum_MODEL    SiteServiceEventsCountDistinctEnum = "model"
+	SiteServiceEventsCountDistinctEnum_POLICY   SiteServiceEventsCountDistinctEnum = "policy"
+	SiteServiceEventsCountDistinctEnum_PORTID   SiteServiceEventsCountDistinctEnum = "port_id"
+	SiteServiceEventsCountDistinctEnum_SITEID   SiteServiceEventsCountDistinctEnum = "site_id"
+	SiteServiceEventsCountDistinctEnum_ENUMTYPE SiteServiceEventsCountDistinctEnum = "type"
+	SiteServiceEventsCountDistinctEnum_VPNNAME  SiteServiceEventsCountDistinctEnum = "vpn_name"
+	SiteServiceEventsCountDistinctEnum_VPNPATH  SiteServiceEventsCountDistinctEnum = "vpn_path"
 )
 
 // SystemDefinedPortUsagesEnum is a string enum.
-// system-default port usages. enum: `ap`, `iot`, `uplink``
+// system-default port usages. enum: `ap`, `iot`, `uplink“
 type SystemDefinedPortUsagesEnum string
 
 const (
-    SystemDefinedPortUsagesEnum_AP     SystemDefinedPortUsagesEnum = "ap"
-    SystemDefinedPortUsagesEnum_IOT    SystemDefinedPortUsagesEnum = "iot"
-    SystemDefinedPortUsagesEnum_UPLINK SystemDefinedPortUsagesEnum = "uplink"
+	SystemDefinedPortUsagesEnum_AP     SystemDefinedPortUsagesEnum = "ap"
+	SystemDefinedPortUsagesEnum_IOT    SystemDefinedPortUsagesEnum = "iot"
+	SystemDefinedPortUsagesEnum_UPLINK SystemDefinedPortUsagesEnum = "uplink"
 )
 
 // SiteSkyAtpEventsCountDistinctEnum is a string enum.
@@ -3032,10 +3032,10 @@ const (
 type SiteSkyAtpEventsCountDistinctEnum string
 
 const (
-    SiteSkyAtpEventsCountDistinctEnum_DEVICEMAC   SiteSkyAtpEventsCountDistinctEnum = "device_mac"
-    SiteSkyAtpEventsCountDistinctEnum_MAC         SiteSkyAtpEventsCountDistinctEnum = "mac"
-    SiteSkyAtpEventsCountDistinctEnum_THREATLEVEL SiteSkyAtpEventsCountDistinctEnum = "threat_level"
-    SiteSkyAtpEventsCountDistinctEnum_ENUMTYPE    SiteSkyAtpEventsCountDistinctEnum = "type"
+	SiteSkyAtpEventsCountDistinctEnum_DEVICEMAC   SiteSkyAtpEventsCountDistinctEnum = "device_mac"
+	SiteSkyAtpEventsCountDistinctEnum_MAC         SiteSkyAtpEventsCountDistinctEnum = "mac"
+	SiteSkyAtpEventsCountDistinctEnum_THREATLEVEL SiteSkyAtpEventsCountDistinctEnum = "threat_level"
+	SiteSkyAtpEventsCountDistinctEnum_ENUMTYPE    SiteSkyAtpEventsCountDistinctEnum = "type"
 )
 
 // SiteSleHistogramScopeParametersEnum is a string enum.
@@ -3043,11 +3043,11 @@ const (
 type SiteSleHistogramScopeParametersEnum string
 
 const (
-    SiteSleHistogramScopeParametersEnum_AP         SiteSleHistogramScopeParametersEnum = "ap"
-    SiteSleHistogramScopeParametersEnum_CLIENT     SiteSleHistogramScopeParametersEnum = "client"
-    SiteSleHistogramScopeParametersEnum_GATEWAY    SiteSleHistogramScopeParametersEnum = "gateway"
-    SiteSleHistogramScopeParametersEnum_SITE       SiteSleHistogramScopeParametersEnum = "site"
-    SiteSleHistogramScopeParametersEnum_ENUMSWITCH SiteSleHistogramScopeParametersEnum = "switch"
+	SiteSleHistogramScopeParametersEnum_AP         SiteSleHistogramScopeParametersEnum = "ap"
+	SiteSleHistogramScopeParametersEnum_CLIENT     SiteSleHistogramScopeParametersEnum = "client"
+	SiteSleHistogramScopeParametersEnum_GATEWAY    SiteSleHistogramScopeParametersEnum = "gateway"
+	SiteSleHistogramScopeParametersEnum_SITE       SiteSleHistogramScopeParametersEnum = "site"
+	SiteSleHistogramScopeParametersEnum_ENUMSWITCH SiteSleHistogramScopeParametersEnum = "switch"
 )
 
 // SiteSleImpactSummaryFieldsParameterEnum is a string enum.
@@ -3055,21 +3055,21 @@ const (
 type SiteSleImpactSummaryFieldsParameterEnum string
 
 const (
-    SiteSleImpactSummaryFieldsParameterEnum_AP            SiteSleImpactSummaryFieldsParameterEnum = "ap"
-    SiteSleImpactSummaryFieldsParameterEnum_BAND          SiteSleImpactSummaryFieldsParameterEnum = "band"
-    SiteSleImpactSummaryFieldsParameterEnum_CHASSIS       SiteSleImpactSummaryFieldsParameterEnum = "chassis"
-    SiteSleImpactSummaryFieldsParameterEnum_CLIENT        SiteSleImpactSummaryFieldsParameterEnum = "client"
-    SiteSleImpactSummaryFieldsParameterEnum_DEVICEOS      SiteSleImpactSummaryFieldsParameterEnum = "device_os"
-    SiteSleImpactSummaryFieldsParameterEnum_DEVICETYPE    SiteSleImpactSummaryFieldsParameterEnum = "device_type"
-    SiteSleImpactSummaryFieldsParameterEnum_GATEWAY       SiteSleImpactSummaryFieldsParameterEnum = "gateway"
-    SiteSleImpactSummaryFieldsParameterEnum_GATEWAYZONES  SiteSleImpactSummaryFieldsParameterEnum = "gateway_zones"
-    SiteSleImpactSummaryFieldsParameterEnum_ENUMINTERFACE SiteSleImpactSummaryFieldsParameterEnum = "interface"
-    SiteSleImpactSummaryFieldsParameterEnum_MXEDGE        SiteSleImpactSummaryFieldsParameterEnum = "mxedge"
-    SiteSleImpactSummaryFieldsParameterEnum_PEERPATH      SiteSleImpactSummaryFieldsParameterEnum = "peer_path"
-    SiteSleImpactSummaryFieldsParameterEnum_SERVER        SiteSleImpactSummaryFieldsParameterEnum = "server"
-    SiteSleImpactSummaryFieldsParameterEnum_ENUMSWITCH    SiteSleImpactSummaryFieldsParameterEnum = "switch"
-    SiteSleImpactSummaryFieldsParameterEnum_VLAN          SiteSleImpactSummaryFieldsParameterEnum = "vlan"
-    SiteSleImpactSummaryFieldsParameterEnum_WLAN          SiteSleImpactSummaryFieldsParameterEnum = "wlan"
+	SiteSleImpactSummaryFieldsParameterEnum_AP            SiteSleImpactSummaryFieldsParameterEnum = "ap"
+	SiteSleImpactSummaryFieldsParameterEnum_BAND          SiteSleImpactSummaryFieldsParameterEnum = "band"
+	SiteSleImpactSummaryFieldsParameterEnum_CHASSIS       SiteSleImpactSummaryFieldsParameterEnum = "chassis"
+	SiteSleImpactSummaryFieldsParameterEnum_CLIENT        SiteSleImpactSummaryFieldsParameterEnum = "client"
+	SiteSleImpactSummaryFieldsParameterEnum_DEVICEOS      SiteSleImpactSummaryFieldsParameterEnum = "device_os"
+	SiteSleImpactSummaryFieldsParameterEnum_DEVICETYPE    SiteSleImpactSummaryFieldsParameterEnum = "device_type"
+	SiteSleImpactSummaryFieldsParameterEnum_GATEWAY       SiteSleImpactSummaryFieldsParameterEnum = "gateway"
+	SiteSleImpactSummaryFieldsParameterEnum_GATEWAYZONES  SiteSleImpactSummaryFieldsParameterEnum = "gateway_zones"
+	SiteSleImpactSummaryFieldsParameterEnum_ENUMINTERFACE SiteSleImpactSummaryFieldsParameterEnum = "interface"
+	SiteSleImpactSummaryFieldsParameterEnum_MXEDGE        SiteSleImpactSummaryFieldsParameterEnum = "mxedge"
+	SiteSleImpactSummaryFieldsParameterEnum_PEERPATH      SiteSleImpactSummaryFieldsParameterEnum = "peer_path"
+	SiteSleImpactSummaryFieldsParameterEnum_SERVER        SiteSleImpactSummaryFieldsParameterEnum = "server"
+	SiteSleImpactSummaryFieldsParameterEnum_ENUMSWITCH    SiteSleImpactSummaryFieldsParameterEnum = "switch"
+	SiteSleImpactSummaryFieldsParameterEnum_VLAN          SiteSleImpactSummaryFieldsParameterEnum = "vlan"
+	SiteSleImpactSummaryFieldsParameterEnum_WLAN          SiteSleImpactSummaryFieldsParameterEnum = "wlan"
 )
 
 // SiteSleImpactSummaryScopeParametersEnum is a string enum.
@@ -3077,11 +3077,11 @@ const (
 type SiteSleImpactSummaryScopeParametersEnum string
 
 const (
-    SiteSleImpactSummaryScopeParametersEnum_AP         SiteSleImpactSummaryScopeParametersEnum = "ap"
-    SiteSleImpactSummaryScopeParametersEnum_CLIENT     SiteSleImpactSummaryScopeParametersEnum = "client"
-    SiteSleImpactSummaryScopeParametersEnum_GATEWAY    SiteSleImpactSummaryScopeParametersEnum = "gateway"
-    SiteSleImpactSummaryScopeParametersEnum_SITE       SiteSleImpactSummaryScopeParametersEnum = "site"
-    SiteSleImpactSummaryScopeParametersEnum_ENUMSWITCH SiteSleImpactSummaryScopeParametersEnum = "switch"
+	SiteSleImpactSummaryScopeParametersEnum_AP         SiteSleImpactSummaryScopeParametersEnum = "ap"
+	SiteSleImpactSummaryScopeParametersEnum_CLIENT     SiteSleImpactSummaryScopeParametersEnum = "client"
+	SiteSleImpactSummaryScopeParametersEnum_GATEWAY    SiteSleImpactSummaryScopeParametersEnum = "gateway"
+	SiteSleImpactSummaryScopeParametersEnum_SITE       SiteSleImpactSummaryScopeParametersEnum = "site"
+	SiteSleImpactSummaryScopeParametersEnum_ENUMSWITCH SiteSleImpactSummaryScopeParametersEnum = "switch"
 )
 
 // SiteSleImpactedApsScopeParametersEnum is a string enum.
@@ -3089,7 +3089,7 @@ const (
 type SiteSleImpactedApsScopeParametersEnum string
 
 const (
-    SiteSleImpactedApsScopeParametersEnum_SITE SiteSleImpactedApsScopeParametersEnum = "site"
+	SiteSleImpactedApsScopeParametersEnum_SITE SiteSleImpactedApsScopeParametersEnum = "site"
 )
 
 // SiteSleImpactedChassisScopeParametersEnum is a string enum.
@@ -3097,9 +3097,9 @@ const (
 type SiteSleImpactedChassisScopeParametersEnum string
 
 const (
-    SiteSleImpactedChassisScopeParametersEnum_GATEWAY    SiteSleImpactedChassisScopeParametersEnum = "gateway"
-    SiteSleImpactedChassisScopeParametersEnum_SITE       SiteSleImpactedChassisScopeParametersEnum = "site"
-    SiteSleImpactedChassisScopeParametersEnum_ENUMSWITCH SiteSleImpactedChassisScopeParametersEnum = "switch"
+	SiteSleImpactedChassisScopeParametersEnum_GATEWAY    SiteSleImpactedChassisScopeParametersEnum = "gateway"
+	SiteSleImpactedChassisScopeParametersEnum_SITE       SiteSleImpactedChassisScopeParametersEnum = "site"
+	SiteSleImpactedChassisScopeParametersEnum_ENUMSWITCH SiteSleImpactedChassisScopeParametersEnum = "switch"
 )
 
 // SiteSleImpactedClientsScopeParametersEnum is a string enum.
@@ -3107,9 +3107,9 @@ const (
 type SiteSleImpactedClientsScopeParametersEnum string
 
 const (
-    SiteSleImpactedClientsScopeParametersEnum_GATEWAY    SiteSleImpactedClientsScopeParametersEnum = "gateway"
-    SiteSleImpactedClientsScopeParametersEnum_SITE       SiteSleImpactedClientsScopeParametersEnum = "site"
-    SiteSleImpactedClientsScopeParametersEnum_ENUMSWITCH SiteSleImpactedClientsScopeParametersEnum = "switch"
+	SiteSleImpactedClientsScopeParametersEnum_GATEWAY    SiteSleImpactedClientsScopeParametersEnum = "gateway"
+	SiteSleImpactedClientsScopeParametersEnum_SITE       SiteSleImpactedClientsScopeParametersEnum = "site"
+	SiteSleImpactedClientsScopeParametersEnum_ENUMSWITCH SiteSleImpactedClientsScopeParametersEnum = "switch"
 )
 
 // SiteSleImpactedGatewaysScopeParametersEnum is a string enum.
@@ -3117,7 +3117,7 @@ const (
 type SiteSleImpactedGatewaysScopeParametersEnum string
 
 const (
-    SiteSleImpactedGatewaysScopeParametersEnum_SITE SiteSleImpactedGatewaysScopeParametersEnum = "site"
+	SiteSleImpactedGatewaysScopeParametersEnum_SITE SiteSleImpactedGatewaysScopeParametersEnum = "site"
 )
 
 // SiteSleImpactedInterfacesScopeParametersEnum is a string enum.
@@ -3125,9 +3125,9 @@ const (
 type SiteSleImpactedInterfacesScopeParametersEnum string
 
 const (
-    SiteSleImpactedInterfacesScopeParametersEnum_GATEWAY    SiteSleImpactedInterfacesScopeParametersEnum = "gateway"
-    SiteSleImpactedInterfacesScopeParametersEnum_SITE       SiteSleImpactedInterfacesScopeParametersEnum = "site"
-    SiteSleImpactedInterfacesScopeParametersEnum_ENUMSWITCH SiteSleImpactedInterfacesScopeParametersEnum = "switch"
+	SiteSleImpactedInterfacesScopeParametersEnum_GATEWAY    SiteSleImpactedInterfacesScopeParametersEnum = "gateway"
+	SiteSleImpactedInterfacesScopeParametersEnum_SITE       SiteSleImpactedInterfacesScopeParametersEnum = "site"
+	SiteSleImpactedInterfacesScopeParametersEnum_ENUMSWITCH SiteSleImpactedInterfacesScopeParametersEnum = "switch"
 )
 
 // SiteSleImpactedSwitchesScopeParametersEnum is a string enum.
@@ -3135,7 +3135,7 @@ const (
 type SiteSleImpactedSwitchesScopeParametersEnum string
 
 const (
-    SiteSleImpactedSwitchesScopeParametersEnum_SITE SiteSleImpactedSwitchesScopeParametersEnum = "site"
+	SiteSleImpactedSwitchesScopeParametersEnum_SITE SiteSleImpactedSwitchesScopeParametersEnum = "site"
 )
 
 // SiteSleImpactedUsersScopeParameterEnum is a string enum.
@@ -3143,8 +3143,8 @@ const (
 type SiteSleImpactedUsersScopeParameterEnum string
 
 const (
-    SiteSleImpactedUsersScopeParameterEnum_AP   SiteSleImpactedUsersScopeParameterEnum = "ap"
-    SiteSleImpactedUsersScopeParameterEnum_SITE SiteSleImpactedUsersScopeParameterEnum = "site"
+	SiteSleImpactedUsersScopeParameterEnum_AP   SiteSleImpactedUsersScopeParameterEnum = "ap"
+	SiteSleImpactedUsersScopeParameterEnum_SITE SiteSleImpactedUsersScopeParameterEnum = "site"
 )
 
 // SiteSleMetricClassifiersScopeParametersEnum is a string enum.
@@ -3152,11 +3152,11 @@ const (
 type SiteSleMetricClassifiersScopeParametersEnum string
 
 const (
-    SiteSleMetricClassifiersScopeParametersEnum_AP         SiteSleMetricClassifiersScopeParametersEnum = "ap"
-    SiteSleMetricClassifiersScopeParametersEnum_CLIENT     SiteSleMetricClassifiersScopeParametersEnum = "client"
-    SiteSleMetricClassifiersScopeParametersEnum_GATEWAY    SiteSleMetricClassifiersScopeParametersEnum = "gateway"
-    SiteSleMetricClassifiersScopeParametersEnum_SITE       SiteSleMetricClassifiersScopeParametersEnum = "site"
-    SiteSleMetricClassifiersScopeParametersEnum_ENUMSWITCH SiteSleMetricClassifiersScopeParametersEnum = "switch"
+	SiteSleMetricClassifiersScopeParametersEnum_AP         SiteSleMetricClassifiersScopeParametersEnum = "ap"
+	SiteSleMetricClassifiersScopeParametersEnum_CLIENT     SiteSleMetricClassifiersScopeParametersEnum = "client"
+	SiteSleMetricClassifiersScopeParametersEnum_GATEWAY    SiteSleMetricClassifiersScopeParametersEnum = "gateway"
+	SiteSleMetricClassifiersScopeParametersEnum_SITE       SiteSleMetricClassifiersScopeParametersEnum = "site"
+	SiteSleMetricClassifiersScopeParametersEnum_ENUMSWITCH SiteSleMetricClassifiersScopeParametersEnum = "switch"
 )
 
 // SiteSleMetricSummaryScopeParametersEnum is a string enum.
@@ -3164,11 +3164,11 @@ const (
 type SiteSleMetricSummaryScopeParametersEnum string
 
 const (
-    SiteSleMetricSummaryScopeParametersEnum_AP         SiteSleMetricSummaryScopeParametersEnum = "ap"
-    SiteSleMetricSummaryScopeParametersEnum_CLIENT     SiteSleMetricSummaryScopeParametersEnum = "client"
-    SiteSleMetricSummaryScopeParametersEnum_GATEWAY    SiteSleMetricSummaryScopeParametersEnum = "gateway"
-    SiteSleMetricSummaryScopeParametersEnum_SITE       SiteSleMetricSummaryScopeParametersEnum = "site"
-    SiteSleMetricSummaryScopeParametersEnum_ENUMSWITCH SiteSleMetricSummaryScopeParametersEnum = "switch"
+	SiteSleMetricSummaryScopeParametersEnum_AP         SiteSleMetricSummaryScopeParametersEnum = "ap"
+	SiteSleMetricSummaryScopeParametersEnum_CLIENT     SiteSleMetricSummaryScopeParametersEnum = "client"
+	SiteSleMetricSummaryScopeParametersEnum_GATEWAY    SiteSleMetricSummaryScopeParametersEnum = "gateway"
+	SiteSleMetricSummaryScopeParametersEnum_SITE       SiteSleMetricSummaryScopeParametersEnum = "site"
+	SiteSleMetricSummaryScopeParametersEnum_ENUMSWITCH SiteSleMetricSummaryScopeParametersEnum = "switch"
 )
 
 // SiteSleMetricsScopeParametersEnum is a string enum.
@@ -3176,11 +3176,11 @@ const (
 type SiteSleMetricsScopeParametersEnum string
 
 const (
-    SiteSleMetricsScopeParametersEnum_AP         SiteSleMetricsScopeParametersEnum = "ap"
-    SiteSleMetricsScopeParametersEnum_CLIENT     SiteSleMetricsScopeParametersEnum = "client"
-    SiteSleMetricsScopeParametersEnum_GATEWAY    SiteSleMetricsScopeParametersEnum = "gateway"
-    SiteSleMetricsScopeParametersEnum_SITE       SiteSleMetricsScopeParametersEnum = "site"
-    SiteSleMetricsScopeParametersEnum_ENUMSWITCH SiteSleMetricsScopeParametersEnum = "switch"
+	SiteSleMetricsScopeParametersEnum_AP         SiteSleMetricsScopeParametersEnum = "ap"
+	SiteSleMetricsScopeParametersEnum_CLIENT     SiteSleMetricsScopeParametersEnum = "client"
+	SiteSleMetricsScopeParametersEnum_GATEWAY    SiteSleMetricsScopeParametersEnum = "gateway"
+	SiteSleMetricsScopeParametersEnum_SITE       SiteSleMetricsScopeParametersEnum = "site"
+	SiteSleMetricsScopeParametersEnum_ENUMSWITCH SiteSleMetricsScopeParametersEnum = "switch"
 )
 
 // SiteSleScopeEnum is a string enum.
@@ -3188,9 +3188,9 @@ const (
 type SiteSleScopeEnum string
 
 const (
-    SiteSleScopeEnum_GATEWAY    SiteSleScopeEnum = "gateway"
-    SiteSleScopeEnum_SITE       SiteSleScopeEnum = "site"
-    SiteSleScopeEnum_ENUMSWITCH SiteSleScopeEnum = "switch"
+	SiteSleScopeEnum_GATEWAY    SiteSleScopeEnum = "gateway"
+	SiteSleScopeEnum_SITE       SiteSleScopeEnum = "site"
+	SiteSleScopeEnum_ENUMSWITCH SiteSleScopeEnum = "switch"
 )
 
 // SiteSleThresholdScopeParameterEnum is a string enum.
@@ -3198,11 +3198,11 @@ const (
 type SiteSleThresholdScopeParameterEnum string
 
 const (
-    SiteSleThresholdScopeParameterEnum_AP         SiteSleThresholdScopeParameterEnum = "ap"
-    SiteSleThresholdScopeParameterEnum_CLIENT     SiteSleThresholdScopeParameterEnum = "client"
-    SiteSleThresholdScopeParameterEnum_GATEWAY    SiteSleThresholdScopeParameterEnum = "gateway"
-    SiteSleThresholdScopeParameterEnum_SITE       SiteSleThresholdScopeParameterEnum = "site"
-    SiteSleThresholdScopeParameterEnum_ENUMSWITCH SiteSleThresholdScopeParameterEnum = "switch"
+	SiteSleThresholdScopeParameterEnum_AP         SiteSleThresholdScopeParameterEnum = "ap"
+	SiteSleThresholdScopeParameterEnum_CLIENT     SiteSleThresholdScopeParameterEnum = "client"
+	SiteSleThresholdScopeParameterEnum_GATEWAY    SiteSleThresholdScopeParameterEnum = "gateway"
+	SiteSleThresholdScopeParameterEnum_SITE       SiteSleThresholdScopeParameterEnum = "site"
+	SiteSleThresholdScopeParameterEnum_ENUMSWITCH SiteSleThresholdScopeParameterEnum = "switch"
 )
 
 // SiteSwitchPortsCountDistinctEnum is a string enum.
@@ -3210,18 +3210,18 @@ const (
 type SiteSwitchPortsCountDistinctEnum string
 
 const (
-    SiteSwitchPortsCountDistinctEnum_FULLDUPLEX         SiteSwitchPortsCountDistinctEnum = "full_duplex"
-    SiteSwitchPortsCountDistinctEnum_MAC                SiteSwitchPortsCountDistinctEnum = "mac"
-    SiteSwitchPortsCountDistinctEnum_NEIGHBORMAC        SiteSwitchPortsCountDistinctEnum = "neighbor_mac"
-    SiteSwitchPortsCountDistinctEnum_NEIGHBORPORTDESC   SiteSwitchPortsCountDistinctEnum = "neighbor_port_desc"
-    SiteSwitchPortsCountDistinctEnum_NEIGHBORSYSTEMNAME SiteSwitchPortsCountDistinctEnum = "neighbor_system_name"
-    SiteSwitchPortsCountDistinctEnum_POEDISABLED        SiteSwitchPortsCountDistinctEnum = "poe_disabled"
-    SiteSwitchPortsCountDistinctEnum_POEMODE            SiteSwitchPortsCountDistinctEnum = "poe_mode"
-    SiteSwitchPortsCountDistinctEnum_POEON              SiteSwitchPortsCountDistinctEnum = "poe_on"
-    SiteSwitchPortsCountDistinctEnum_PORTID             SiteSwitchPortsCountDistinctEnum = "port_id"
-    SiteSwitchPortsCountDistinctEnum_PORTMAC            SiteSwitchPortsCountDistinctEnum = "port_mac"
-    SiteSwitchPortsCountDistinctEnum_SPEED              SiteSwitchPortsCountDistinctEnum = "speed"
-    SiteSwitchPortsCountDistinctEnum_UP                 SiteSwitchPortsCountDistinctEnum = "up"
+	SiteSwitchPortsCountDistinctEnum_FULLDUPLEX         SiteSwitchPortsCountDistinctEnum = "full_duplex"
+	SiteSwitchPortsCountDistinctEnum_MAC                SiteSwitchPortsCountDistinctEnum = "mac"
+	SiteSwitchPortsCountDistinctEnum_NEIGHBORMAC        SiteSwitchPortsCountDistinctEnum = "neighbor_mac"
+	SiteSwitchPortsCountDistinctEnum_NEIGHBORPORTDESC   SiteSwitchPortsCountDistinctEnum = "neighbor_port_desc"
+	SiteSwitchPortsCountDistinctEnum_NEIGHBORSYSTEMNAME SiteSwitchPortsCountDistinctEnum = "neighbor_system_name"
+	SiteSwitchPortsCountDistinctEnum_POEDISABLED        SiteSwitchPortsCountDistinctEnum = "poe_disabled"
+	SiteSwitchPortsCountDistinctEnum_POEMODE            SiteSwitchPortsCountDistinctEnum = "poe_mode"
+	SiteSwitchPortsCountDistinctEnum_POEON              SiteSwitchPortsCountDistinctEnum = "poe_on"
+	SiteSwitchPortsCountDistinctEnum_PORTID             SiteSwitchPortsCountDistinctEnum = "port_id"
+	SiteSwitchPortsCountDistinctEnum_PORTMAC            SiteSwitchPortsCountDistinctEnum = "port_mac"
+	SiteSwitchPortsCountDistinctEnum_SPEED              SiteSwitchPortsCountDistinctEnum = "speed"
+	SiteSwitchPortsCountDistinctEnum_UP                 SiteSwitchPortsCountDistinctEnum = "up"
 )
 
 // SiteSystemEventsCountDistinctEnum is a string enum.
@@ -3229,7 +3229,7 @@ const (
 type SiteSystemEventsCountDistinctEnum string
 
 const (
-    SiteSystemEventsCountDistinctEnum_ENUMTYPE SiteSystemEventsCountDistinctEnum = "type"
+	SiteSystemEventsCountDistinctEnum_ENUMTYPE SiteSystemEventsCountDistinctEnum = "type"
 )
 
 // SiteWanClientEventsDistinctEnum is a string enum.
@@ -3237,11 +3237,11 @@ const (
 type SiteWanClientEventsDistinctEnum string
 
 const (
-    SiteWanClientEventsDistinctEnum_HOSTNAME SiteWanClientEventsDistinctEnum = "hostname"
-    SiteWanClientEventsDistinctEnum_IP       SiteWanClientEventsDistinctEnum = "ip"
-    SiteWanClientEventsDistinctEnum_MAC      SiteWanClientEventsDistinctEnum = "mac"
-    SiteWanClientEventsDistinctEnum_MFG      SiteWanClientEventsDistinctEnum = "mfg"
-    SiteWanClientEventsDistinctEnum_ENUMTYPE SiteWanClientEventsDistinctEnum = "type"
+	SiteWanClientEventsDistinctEnum_HOSTNAME SiteWanClientEventsDistinctEnum = "hostname"
+	SiteWanClientEventsDistinctEnum_IP       SiteWanClientEventsDistinctEnum = "ip"
+	SiteWanClientEventsDistinctEnum_MAC      SiteWanClientEventsDistinctEnum = "mac"
+	SiteWanClientEventsDistinctEnum_MFG      SiteWanClientEventsDistinctEnum = "mfg"
+	SiteWanClientEventsDistinctEnum_ENUMTYPE SiteWanClientEventsDistinctEnum = "type"
 )
 
 // SiteWanClientsCountDistinctEnum is a string enum.
@@ -3249,10 +3249,10 @@ const (
 type SiteWanClientsCountDistinctEnum string
 
 const (
-    SiteWanClientsCountDistinctEnum_HOSTNAME SiteWanClientsCountDistinctEnum = "hostname"
-    SiteWanClientsCountDistinctEnum_IP       SiteWanClientsCountDistinctEnum = "ip"
-    SiteWanClientsCountDistinctEnum_MAC      SiteWanClientsCountDistinctEnum = "mac"
-    SiteWanClientsCountDistinctEnum_MFG      SiteWanClientsCountDistinctEnum = "mfg"
+	SiteWanClientsCountDistinctEnum_HOSTNAME SiteWanClientsCountDistinctEnum = "hostname"
+	SiteWanClientsCountDistinctEnum_IP       SiteWanClientsCountDistinctEnum = "ip"
+	SiteWanClientsCountDistinctEnum_MAC      SiteWanClientsCountDistinctEnum = "mac"
+	SiteWanClientsCountDistinctEnum_MFG      SiteWanClientsCountDistinctEnum = "mfg"
 )
 
 // SiteWifiProxyArpEnum is a string enum.
@@ -3260,9 +3260,9 @@ const (
 type SiteWifiProxyArpEnum string
 
 const (
-    SiteWifiProxyArpEnum_ENUMDEFAULT SiteWifiProxyArpEnum = "default"
-    SiteWifiProxyArpEnum_DISABLED    SiteWifiProxyArpEnum = "disabled"
-    SiteWifiProxyArpEnum_ENABLED     SiteWifiProxyArpEnum = "enabled"
+	SiteWifiProxyArpEnum_ENUMDEFAULT SiteWifiProxyArpEnum = "default"
+	SiteWifiProxyArpEnum_DISABLED    SiteWifiProxyArpEnum = "disabled"
+	SiteWifiProxyArpEnum_ENABLED     SiteWifiProxyArpEnum = "enabled"
 )
 
 // SiteWiredClientsCountDistinctEnum is a string enum.
@@ -3270,9 +3270,9 @@ const (
 type SiteWiredClientsCountDistinctEnum string
 
 const (
-    SiteWiredClientsCountDistinctEnum_MAC    SiteWiredClientsCountDistinctEnum = "mac"
-    SiteWiredClientsCountDistinctEnum_PORTID SiteWiredClientsCountDistinctEnum = "port_id"
-    SiteWiredClientsCountDistinctEnum_VLAN   SiteWiredClientsCountDistinctEnum = "vlan"
+	SiteWiredClientsCountDistinctEnum_MAC    SiteWiredClientsCountDistinctEnum = "mac"
+	SiteWiredClientsCountDistinctEnum_PORTID SiteWiredClientsCountDistinctEnum = "port_id"
+	SiteWiredClientsCountDistinctEnum_VLAN   SiteWiredClientsCountDistinctEnum = "vlan"
 )
 
 // SiteZoneCountDistinctEnum is a string enum.
@@ -3280,10 +3280,10 @@ const (
 type SiteZoneCountDistinctEnum string
 
 const (
-    SiteZoneCountDistinctEnum_SCOPE    SiteZoneCountDistinctEnum = "scope"
-    SiteZoneCountDistinctEnum_SCOPEID  SiteZoneCountDistinctEnum = "scope_id"
-    SiteZoneCountDistinctEnum_USER     SiteZoneCountDistinctEnum = "user"
-    SiteZoneCountDistinctEnum_USERTYPE SiteZoneCountDistinctEnum = "user_type"
+	SiteZoneCountDistinctEnum_SCOPE    SiteZoneCountDistinctEnum = "scope"
+	SiteZoneCountDistinctEnum_SCOPEID  SiteZoneCountDistinctEnum = "scope_id"
+	SiteZoneCountDistinctEnum_USER     SiteZoneCountDistinctEnum = "user"
+	SiteZoneCountDistinctEnum_USERTYPE SiteZoneCountDistinctEnum = "user_type"
 )
 
 // SleSummaryScopeEnum is a string enum.
@@ -3291,11 +3291,11 @@ const (
 type SleSummaryScopeEnum string
 
 const (
-    SleSummaryScopeEnum_AP         SleSummaryScopeEnum = "ap"
-    SleSummaryScopeEnum_CLIENT     SleSummaryScopeEnum = "client"
-    SleSummaryScopeEnum_GATEWAY    SleSummaryScopeEnum = "gateway"
-    SleSummaryScopeEnum_SITE       SleSummaryScopeEnum = "site"
-    SleSummaryScopeEnum_ENUMSWITCH SleSummaryScopeEnum = "switch"
+	SleSummaryScopeEnum_AP         SleSummaryScopeEnum = "ap"
+	SleSummaryScopeEnum_CLIENT     SleSummaryScopeEnum = "client"
+	SleSummaryScopeEnum_GATEWAY    SleSummaryScopeEnum = "gateway"
+	SleSummaryScopeEnum_SITE       SleSummaryScopeEnum = "site"
+	SleSummaryScopeEnum_ENUMSWITCH SleSummaryScopeEnum = "switch"
 )
 
 // SnmpConfigEngineIdEnum is a string enum.
@@ -3303,10 +3303,10 @@ const (
 type SnmpConfigEngineIdEnum string
 
 const (
-    SnmpConfigEngineIdEnum_ENGINEIDSUFFIX      SnmpConfigEngineIdEnum = "engine-id-suffix"
-    SnmpConfigEngineIdEnum_LOCAL               SnmpConfigEngineIdEnum = "local"
-    SnmpConfigEngineIdEnum_USEDEFAULTIPADDRESS SnmpConfigEngineIdEnum = "use-default-ip-address"
-    SnmpConfigEngineIdEnum_USEMACADDRESS       SnmpConfigEngineIdEnum = "use_mac-address"
+	SnmpConfigEngineIdEnum_ENGINEIDSUFFIX      SnmpConfigEngineIdEnum = "engine-id-suffix"
+	SnmpConfigEngineIdEnum_LOCAL               SnmpConfigEngineIdEnum = "local"
+	SnmpConfigEngineIdEnum_USEDEFAULTIPADDRESS SnmpConfigEngineIdEnum = "use-default-ip-address"
+	SnmpConfigEngineIdEnum_USEMACADDRESS       SnmpConfigEngineIdEnum = "use_mac-address"
 )
 
 // SnmpConfigTrapVerionEnum is a string enum.
@@ -3314,9 +3314,9 @@ const (
 type SnmpConfigTrapVerionEnum string
 
 const (
-    SnmpConfigTrapVerionEnum_ALL SnmpConfigTrapVerionEnum = "all"
-    SnmpConfigTrapVerionEnum_V1  SnmpConfigTrapVerionEnum = "v1"
-    SnmpConfigTrapVerionEnum_V2  SnmpConfigTrapVerionEnum = "v2"
+	SnmpConfigTrapVerionEnum_ALL SnmpConfigTrapVerionEnum = "all"
+	SnmpConfigTrapVerionEnum_V1  SnmpConfigTrapVerionEnum = "v1"
+	SnmpConfigTrapVerionEnum_V2  SnmpConfigTrapVerionEnum = "v2"
 )
 
 // SnmpUsmEngineTypeEnum is a string enum.
@@ -3324,8 +3324,8 @@ const (
 type SnmpUsmEngineTypeEnum string
 
 const (
-    SnmpUsmEngineTypeEnum_LOCALENGINE  SnmpUsmEngineTypeEnum = "local_engine"
-    SnmpUsmEngineTypeEnum_REMOTEENGINE SnmpUsmEngineTypeEnum = "remote_engine"
+	SnmpUsmEngineTypeEnum_LOCALENGINE  SnmpUsmEngineTypeEnum = "local_engine"
+	SnmpUsmEngineTypeEnum_REMOTEENGINE SnmpUsmEngineTypeEnum = "remote_engine"
 )
 
 // SnmpUsmpUserAuthenticationTypeEnum is a string enum.
@@ -3333,13 +3333,13 @@ const (
 type SnmpUsmpUserAuthenticationTypeEnum string
 
 const (
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONMD5    SnmpUsmpUserAuthenticationTypeEnum = "authentication_md5"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONNONE   SnmpUsmpUserAuthenticationTypeEnum = "authentication_none"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA    SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA224 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha224"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA256 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha256"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA384 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha384"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA512 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha512"
+	SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONMD5    SnmpUsmpUserAuthenticationTypeEnum = "authentication_md5"
+	SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONNONE   SnmpUsmpUserAuthenticationTypeEnum = "authentication_none"
+	SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA    SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha"
+	SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA224 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha224"
+	SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA256 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha256"
+	SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA384 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha384"
+	SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA512 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha512"
 )
 
 // SnmpUsmpUserEncryptionTypeEnum is a string enum.
@@ -3347,10 +3347,10 @@ const (
 type SnmpUsmpUserEncryptionTypeEnum string
 
 const (
-    SnmpUsmpUserEncryptionTypeEnum_PRIVACY3DES   SnmpUsmpUserEncryptionTypeEnum = "privacy-3des"
-    SnmpUsmpUserEncryptionTypeEnum_PRIVACYAES128 SnmpUsmpUserEncryptionTypeEnum = "privacy-aes128"
-    SnmpUsmpUserEncryptionTypeEnum_PRIVACYDES    SnmpUsmpUserEncryptionTypeEnum = "privacy-des"
-    SnmpUsmpUserEncryptionTypeEnum_PRIVACYNONE   SnmpUsmpUserEncryptionTypeEnum = "privacy-none"
+	SnmpUsmpUserEncryptionTypeEnum_PRIVACY3DES   SnmpUsmpUserEncryptionTypeEnum = "privacy-3des"
+	SnmpUsmpUserEncryptionTypeEnum_PRIVACYAES128 SnmpUsmpUserEncryptionTypeEnum = "privacy-aes128"
+	SnmpUsmpUserEncryptionTypeEnum_PRIVACYDES    SnmpUsmpUserEncryptionTypeEnum = "privacy-des"
+	SnmpUsmpUserEncryptionTypeEnum_PRIVACYNONE   SnmpUsmpUserEncryptionTypeEnum = "privacy-none"
 )
 
 // SnmpVacmAccessItemPrefixListItemLevelEnum is a string enum.
@@ -3358,9 +3358,9 @@ const (
 type SnmpVacmAccessItemPrefixListItemLevelEnum string
 
 const (
-    SnmpVacmAccessItemPrefixListItemLevelEnum_AUTHENTICATION SnmpVacmAccessItemPrefixListItemLevelEnum = "authentication"
-    SnmpVacmAccessItemPrefixListItemLevelEnum_NONE           SnmpVacmAccessItemPrefixListItemLevelEnum = "none"
-    SnmpVacmAccessItemPrefixListItemLevelEnum_PRIVACY        SnmpVacmAccessItemPrefixListItemLevelEnum = "privacy"
+	SnmpVacmAccessItemPrefixListItemLevelEnum_AUTHENTICATION SnmpVacmAccessItemPrefixListItemLevelEnum = "authentication"
+	SnmpVacmAccessItemPrefixListItemLevelEnum_NONE           SnmpVacmAccessItemPrefixListItemLevelEnum = "none"
+	SnmpVacmAccessItemPrefixListItemLevelEnum_PRIVACY        SnmpVacmAccessItemPrefixListItemLevelEnum = "privacy"
 )
 
 // SnmpVacmAccessItemPrefixListItemModelEnum is a string enum.
@@ -3368,10 +3368,10 @@ const (
 type SnmpVacmAccessItemPrefixListItemModelEnum string
 
 const (
-    SnmpVacmAccessItemPrefixListItemModelEnum_ANY SnmpVacmAccessItemPrefixListItemModelEnum = "any"
-    SnmpVacmAccessItemPrefixListItemModelEnum_USM SnmpVacmAccessItemPrefixListItemModelEnum = "usm"
-    SnmpVacmAccessItemPrefixListItemModelEnum_V1  SnmpVacmAccessItemPrefixListItemModelEnum = "v1"
-    SnmpVacmAccessItemPrefixListItemModelEnum_V2C SnmpVacmAccessItemPrefixListItemModelEnum = "v2c"
+	SnmpVacmAccessItemPrefixListItemModelEnum_ANY SnmpVacmAccessItemPrefixListItemModelEnum = "any"
+	SnmpVacmAccessItemPrefixListItemModelEnum_USM SnmpVacmAccessItemPrefixListItemModelEnum = "usm"
+	SnmpVacmAccessItemPrefixListItemModelEnum_V1  SnmpVacmAccessItemPrefixListItemModelEnum = "v1"
+	SnmpVacmAccessItemPrefixListItemModelEnum_V2C SnmpVacmAccessItemPrefixListItemModelEnum = "v2c"
 )
 
 // SnmpVacmAccessItemTypeEnum is a string enum.
@@ -3379,8 +3379,8 @@ const (
 type SnmpVacmAccessItemTypeEnum string
 
 const (
-    SnmpVacmAccessItemTypeEnum_CONTEXTPREFIX        SnmpVacmAccessItemTypeEnum = "context_prefix"
-    SnmpVacmAccessItemTypeEnum_DEFAULTCONTEXTPREFIX SnmpVacmAccessItemTypeEnum = "default_context_prefix"
+	SnmpVacmAccessItemTypeEnum_CONTEXTPREFIX        SnmpVacmAccessItemTypeEnum = "context_prefix"
+	SnmpVacmAccessItemTypeEnum_DEFAULTCONTEXTPREFIX SnmpVacmAccessItemTypeEnum = "default_context_prefix"
 )
 
 // SnmpVacmSecurityModelEnum is a string enum.
@@ -3388,9 +3388,9 @@ const (
 type SnmpVacmSecurityModelEnum string
 
 const (
-    SnmpVacmSecurityModelEnum_USM SnmpVacmSecurityModelEnum = "usm"
-    SnmpVacmSecurityModelEnum_V1  SnmpVacmSecurityModelEnum = "v1"
-    SnmpVacmSecurityModelEnum_V2C SnmpVacmSecurityModelEnum = "v2c"
+	SnmpVacmSecurityModelEnum_USM SnmpVacmSecurityModelEnum = "usm"
+	SnmpVacmSecurityModelEnum_V1  SnmpVacmSecurityModelEnum = "v1"
+	SnmpVacmSecurityModelEnum_V2C SnmpVacmSecurityModelEnum = "v2c"
 )
 
 // Snmpv3ConfigNotifyTypeEnum is a string enum.
@@ -3398,8 +3398,8 @@ const (
 type Snmpv3ConfigNotifyTypeEnum string
 
 const (
-    Snmpv3ConfigNotifyTypeEnum_INFORM Snmpv3ConfigNotifyTypeEnum = "inform"
-    Snmpv3ConfigNotifyTypeEnum_TRAP   Snmpv3ConfigNotifyTypeEnum = "trap"
+	Snmpv3ConfigNotifyTypeEnum_INFORM Snmpv3ConfigNotifyTypeEnum = "inform"
+	Snmpv3ConfigNotifyTypeEnum_TRAP   Snmpv3ConfigNotifyTypeEnum = "trap"
 )
 
 // Snmpv3ConfigTargetParamMessProcessModelEnum is a string enum.
@@ -3407,9 +3407,9 @@ const (
 type Snmpv3ConfigTargetParamMessProcessModelEnum string
 
 const (
-    Snmpv3ConfigTargetParamMessProcessModelEnum_V1  Snmpv3ConfigTargetParamMessProcessModelEnum = "v1"
-    Snmpv3ConfigTargetParamMessProcessModelEnum_V2C Snmpv3ConfigTargetParamMessProcessModelEnum = "v2c"
-    Snmpv3ConfigTargetParamMessProcessModelEnum_V3  Snmpv3ConfigTargetParamMessProcessModelEnum = "v3"
+	Snmpv3ConfigTargetParamMessProcessModelEnum_V1  Snmpv3ConfigTargetParamMessProcessModelEnum = "v1"
+	Snmpv3ConfigTargetParamMessProcessModelEnum_V2C Snmpv3ConfigTargetParamMessProcessModelEnum = "v2c"
+	Snmpv3ConfigTargetParamMessProcessModelEnum_V3  Snmpv3ConfigTargetParamMessProcessModelEnum = "v3"
 )
 
 // Snmpv3ConfigTargetParamSecurityLevelEnum is a string enum.
@@ -3417,9 +3417,9 @@ const (
 type Snmpv3ConfigTargetParamSecurityLevelEnum string
 
 const (
-    Snmpv3ConfigTargetParamSecurityLevelEnum_AUTHENTICATION Snmpv3ConfigTargetParamSecurityLevelEnum = "authentication"
-    Snmpv3ConfigTargetParamSecurityLevelEnum_NONE           Snmpv3ConfigTargetParamSecurityLevelEnum = "none"
-    Snmpv3ConfigTargetParamSecurityLevelEnum_PRIVACY        Snmpv3ConfigTargetParamSecurityLevelEnum = "privacy"
+	Snmpv3ConfigTargetParamSecurityLevelEnum_AUTHENTICATION Snmpv3ConfigTargetParamSecurityLevelEnum = "authentication"
+	Snmpv3ConfigTargetParamSecurityLevelEnum_NONE           Snmpv3ConfigTargetParamSecurityLevelEnum = "none"
+	Snmpv3ConfigTargetParamSecurityLevelEnum_PRIVACY        Snmpv3ConfigTargetParamSecurityLevelEnum = "privacy"
 )
 
 // Snmpv3ConfigTargetParamSecurityModelEnum is a string enum.
@@ -3427,9 +3427,9 @@ const (
 type Snmpv3ConfigTargetParamSecurityModelEnum string
 
 const (
-    Snmpv3ConfigTargetParamSecurityModelEnum_USM Snmpv3ConfigTargetParamSecurityModelEnum = "usm"
-    Snmpv3ConfigTargetParamSecurityModelEnum_V1  Snmpv3ConfigTargetParamSecurityModelEnum = "v1"
-    Snmpv3ConfigTargetParamSecurityModelEnum_V2C Snmpv3ConfigTargetParamSecurityModelEnum = "v2c"
+	Snmpv3ConfigTargetParamSecurityModelEnum_USM Snmpv3ConfigTargetParamSecurityModelEnum = "usm"
+	Snmpv3ConfigTargetParamSecurityModelEnum_V1  Snmpv3ConfigTargetParamSecurityModelEnum = "v1"
+	Snmpv3ConfigTargetParamSecurityModelEnum_V2C Snmpv3ConfigTargetParamSecurityModelEnum = "v2c"
 )
 
 // SslProxyCiphersCatagoryEnum is a string enum.
@@ -3437,9 +3437,9 @@ const (
 type SslProxyCiphersCatagoryEnum string
 
 const (
-    SslProxyCiphersCatagoryEnum_MEDIUM SslProxyCiphersCatagoryEnum = "medium"
-    SslProxyCiphersCatagoryEnum_STRONG SslProxyCiphersCatagoryEnum = "strong"
-    SslProxyCiphersCatagoryEnum_WEAK   SslProxyCiphersCatagoryEnum = "weak"
+	SslProxyCiphersCatagoryEnum_MEDIUM SslProxyCiphersCatagoryEnum = "medium"
+	SslProxyCiphersCatagoryEnum_STRONG SslProxyCiphersCatagoryEnum = "strong"
+	SslProxyCiphersCatagoryEnum_WEAK   SslProxyCiphersCatagoryEnum = "weak"
 )
 
 // SsoIdpSignAlgoEnum is a string enum.
@@ -3447,10 +3447,10 @@ const (
 type SsoIdpSignAlgoEnum string
 
 const (
-    SsoIdpSignAlgoEnum_SHA1   SsoIdpSignAlgoEnum = "sha1"
-    SsoIdpSignAlgoEnum_SHA256 SsoIdpSignAlgoEnum = "sha256"
-    SsoIdpSignAlgoEnum_SHA384 SsoIdpSignAlgoEnum = "sha384"
-    SsoIdpSignAlgoEnum_SHA512 SsoIdpSignAlgoEnum = "sha512"
+	SsoIdpSignAlgoEnum_SHA1   SsoIdpSignAlgoEnum = "sha1"
+	SsoIdpSignAlgoEnum_SHA256 SsoIdpSignAlgoEnum = "sha256"
+	SsoIdpSignAlgoEnum_SHA384 SsoIdpSignAlgoEnum = "sha384"
+	SsoIdpSignAlgoEnum_SHA512 SsoIdpSignAlgoEnum = "sha512"
 )
 
 // SsoIdpTypeEnum is a string enum.
@@ -3459,10 +3459,10 @@ const (
 type SsoIdpTypeEnum string
 
 const (
-    SsoIdpTypeEnum_LDAP        SsoIdpTypeEnum = "ldap"
-    SsoIdpTypeEnum_MXEDGEPROXY SsoIdpTypeEnum = "mxedge_proxy"
-    SsoIdpTypeEnum_OAUTH       SsoIdpTypeEnum = "oauth"
-    SsoIdpTypeEnum_SAML        SsoIdpTypeEnum = "saml"
+	SsoIdpTypeEnum_LDAP        SsoIdpTypeEnum = "ldap"
+	SsoIdpTypeEnum_MXEDGEPROXY SsoIdpTypeEnum = "mxedge_proxy"
+	SsoIdpTypeEnum_OAUTH       SsoIdpTypeEnum = "oauth"
+	SsoIdpTypeEnum_SAML        SsoIdpTypeEnum = "saml"
 )
 
 // SsoLdapTypeEnum is a string enum.
@@ -3470,11 +3470,11 @@ const (
 type SsoLdapTypeEnum string
 
 const (
-    SsoLdapTypeEnum_AZURE        SsoLdapTypeEnum = "azure"
-    SsoLdapTypeEnum_CUSTOM       SsoLdapTypeEnum = "custom"
-    SsoLdapTypeEnum_GOOGLE       SsoLdapTypeEnum = "google"
-    SsoLdapTypeEnum_OKTA         SsoLdapTypeEnum = "okta"
-    SsoLdapTypeEnum_PINGIDENTITY SsoLdapTypeEnum = "ping_identity"
+	SsoLdapTypeEnum_AZURE        SsoLdapTypeEnum = "azure"
+	SsoLdapTypeEnum_CUSTOM       SsoLdapTypeEnum = "custom"
+	SsoLdapTypeEnum_GOOGLE       SsoLdapTypeEnum = "google"
+	SsoLdapTypeEnum_OKTA         SsoLdapTypeEnum = "okta"
+	SsoLdapTypeEnum_PINGIDENTITY SsoLdapTypeEnum = "ping_identity"
 )
 
 // SsoNameidFormatEnum is a string enum.
@@ -3482,8 +3482,8 @@ const (
 type SsoNameidFormatEnum string
 
 const (
-    SsoNameidFormatEnum_EMAIL       SsoNameidFormatEnum = "email"
-    SsoNameidFormatEnum_UNSPECIFIED SsoNameidFormatEnum = "unspecified"
+	SsoNameidFormatEnum_EMAIL       SsoNameidFormatEnum = "email"
+	SsoNameidFormatEnum_UNSPECIFIED SsoNameidFormatEnum = "unspecified"
 )
 
 // SsoOauthTypeEnum is a string enum.
@@ -3491,11 +3491,11 @@ const (
 type SsoOauthTypeEnum string
 
 const (
-    SsoOauthTypeEnum_AZURE        SsoOauthTypeEnum = "azure"
-    SsoOauthTypeEnum_AZUREGOV     SsoOauthTypeEnum = "azure-gov"
-    SsoOauthTypeEnum_STANDARDS    SsoOauthTypeEnum = "standards"
-    SsoOauthTypeEnum_OKTA         SsoOauthTypeEnum = "okta"
-    SsoOauthTypeEnum_PINGIDENTITY SsoOauthTypeEnum = "ping_identity"
+	SsoOauthTypeEnum_AZURE        SsoOauthTypeEnum = "azure"
+	SsoOauthTypeEnum_AZUREGOV     SsoOauthTypeEnum = "azure-gov"
+	SsoOauthTypeEnum_STANDARDS    SsoOauthTypeEnum = "standards"
+	SsoOauthTypeEnum_OKTA         SsoOauthTypeEnum = "okta"
+	SsoOauthTypeEnum_PINGIDENTITY SsoOauthTypeEnum = "ping_identity"
 )
 
 // SsrUpgradeChannelEnum is a string enum.
@@ -3503,9 +3503,9 @@ const (
 type SsrUpgradeChannelEnum string
 
 const (
-    SsrUpgradeChannelEnum_ALPHA  SsrUpgradeChannelEnum = "alpha"
-    SsrUpgradeChannelEnum_BETA   SsrUpgradeChannelEnum = "beta"
-    SsrUpgradeChannelEnum_STABLE SsrUpgradeChannelEnum = "stable"
+	SsrUpgradeChannelEnum_ALPHA  SsrUpgradeChannelEnum = "alpha"
+	SsrUpgradeChannelEnum_BETA   SsrUpgradeChannelEnum = "beta"
+	SsrUpgradeChannelEnum_STABLE SsrUpgradeChannelEnum = "stable"
 )
 
 // SsrUpgradeStrategyEnum is a string enum.
@@ -3515,8 +3515,8 @@ const (
 type SsrUpgradeStrategyEnum string
 
 const (
-    SsrUpgradeStrategyEnum_BIGBANG SsrUpgradeStrategyEnum = "big_bang"
-    SsrUpgradeStrategyEnum_SERIAL  SsrUpgradeStrategyEnum = "serial"
+	SsrUpgradeStrategyEnum_BIGBANG SsrUpgradeStrategyEnum = "big_bang"
+	SsrUpgradeStrategyEnum_SERIAL  SsrUpgradeStrategyEnum = "serial"
 )
 
 // StatDeviceStatusFilterEnum is a string enum.
@@ -3524,9 +3524,9 @@ const (
 type StatDeviceStatusFilterEnum string
 
 const (
-    StatDeviceStatusFilterEnum_ALL          StatDeviceStatusFilterEnum = "all"
-    StatDeviceStatusFilterEnum_CONNECTED    StatDeviceStatusFilterEnum = "connected"
-    StatDeviceStatusFilterEnum_DISCONNECTED StatDeviceStatusFilterEnum = "disconnected"
+	StatDeviceStatusFilterEnum_ALL          StatDeviceStatusFilterEnum = "all"
+	StatDeviceStatusFilterEnum_CONNECTED    StatDeviceStatusFilterEnum = "connected"
+	StatDeviceStatusFilterEnum_DISCONNECTED StatDeviceStatusFilterEnum = "disconnected"
 )
 
 // StatsMxtunnelStateEnum is a string enum.
@@ -3534,11 +3534,11 @@ const (
 type StatsMxtunnelStateEnum string
 
 const (
-    StatsMxtunnelStateEnum_ESTABLISHED            StatsMxtunnelStateEnum = "established"
-    StatsMxtunnelStateEnum_ESTABLISHEDWITHSESSION StatsMxtunnelStateEnum = "established_with_session"
-    StatsMxtunnelStateEnum_IDLE                   StatsMxtunnelStateEnum = "idle"
-    StatsMxtunnelStateEnum_WAITCTRLCONN           StatsMxtunnelStateEnum = "wait-ctrl-conn"
-    StatsMxtunnelStateEnum_WAITCTRLREPLY          StatsMxtunnelStateEnum = "wait-ctrl-reply"
+	StatsMxtunnelStateEnum_ESTABLISHED            StatsMxtunnelStateEnum = "established"
+	StatsMxtunnelStateEnum_ESTABLISHEDWITHSESSION StatsMxtunnelStateEnum = "established_with_session"
+	StatsMxtunnelStateEnum_IDLE                   StatsMxtunnelStateEnum = "idle"
+	StatsMxtunnelStateEnum_WAITCTRLCONN           StatsMxtunnelStateEnum = "wait-ctrl-conn"
+	StatsMxtunnelStateEnum_WAITCTRLREPLY          StatsMxtunnelStateEnum = "wait-ctrl-reply"
 )
 
 // StatsSwitchPortAuthStateEnum is a string enum.
@@ -3546,10 +3546,10 @@ const (
 type StatsSwitchPortAuthStateEnum string
 
 const (
-    StatsSwitchPortAuthStateEnum_AUTHENTICATED  StatsSwitchPortAuthStateEnum = "authenticated"
-    StatsSwitchPortAuthStateEnum_AUTHENTICATING StatsSwitchPortAuthStateEnum = "authenticating"
-    StatsSwitchPortAuthStateEnum_HELD           StatsSwitchPortAuthStateEnum = "held"
-    StatsSwitchPortAuthStateEnum_INIT           StatsSwitchPortAuthStateEnum = "init"
+	StatsSwitchPortAuthStateEnum_AUTHENTICATED  StatsSwitchPortAuthStateEnum = "authenticated"
+	StatsSwitchPortAuthStateEnum_AUTHENTICATING StatsSwitchPortAuthStateEnum = "authenticating"
+	StatsSwitchPortAuthStateEnum_HELD           StatsSwitchPortAuthStateEnum = "held"
+	StatsSwitchPortAuthStateEnum_INIT           StatsSwitchPortAuthStateEnum = "init"
 )
 
 // StatsSwitchPortPoeModeEnum is a string enum.
@@ -3557,9 +3557,9 @@ const (
 type StatsSwitchPortPoeModeEnum string
 
 const (
-    StatsSwitchPortPoeModeEnum_ENUM8023AF StatsSwitchPortPoeModeEnum = "802.3af"
-    StatsSwitchPortPoeModeEnum_ENUM8023AT StatsSwitchPortPoeModeEnum = "802.3at"
-    StatsSwitchPortPoeModeEnum_ENUM8023BT StatsSwitchPortPoeModeEnum = "802.3bt"
+	StatsSwitchPortPoeModeEnum_ENUM8023AF StatsSwitchPortPoeModeEnum = "802.3af"
+	StatsSwitchPortPoeModeEnum_ENUM8023AT StatsSwitchPortPoeModeEnum = "802.3at"
+	StatsSwitchPortPoeModeEnum_ENUM8023BT StatsSwitchPortPoeModeEnum = "802.3bt"
 )
 
 // StatsSwitchPortPortUsageEnum is a string enum.
@@ -3567,7 +3567,7 @@ const (
 type StatsSwitchPortPortUsageEnum string
 
 const (
-    StatsSwitchPortPortUsageEnum_LAN StatsSwitchPortPortUsageEnum = "lan"
+	StatsSwitchPortPortUsageEnum_LAN StatsSwitchPortPortUsageEnum = "lan"
 )
 
 // StatsSwitchPortStpRoleEnum is a string enum.
@@ -3575,11 +3575,11 @@ const (
 type StatsSwitchPortStpRoleEnum string
 
 const (
-    StatsSwitchPortStpRoleEnum_ALTERNATE     StatsSwitchPortStpRoleEnum = "alternate"
-    StatsSwitchPortStpRoleEnum_BACKUP        StatsSwitchPortStpRoleEnum = "backup"
-    StatsSwitchPortStpRoleEnum_DESIGNATED    StatsSwitchPortStpRoleEnum = "designated"
-    StatsSwitchPortStpRoleEnum_ROOT          StatsSwitchPortStpRoleEnum = "root"
-    StatsSwitchPortStpRoleEnum_ROOTPREVENTED StatsSwitchPortStpRoleEnum = "root-prevented"
+	StatsSwitchPortStpRoleEnum_ALTERNATE     StatsSwitchPortStpRoleEnum = "alternate"
+	StatsSwitchPortStpRoleEnum_BACKUP        StatsSwitchPortStpRoleEnum = "backup"
+	StatsSwitchPortStpRoleEnum_DESIGNATED    StatsSwitchPortStpRoleEnum = "designated"
+	StatsSwitchPortStpRoleEnum_ROOT          StatsSwitchPortStpRoleEnum = "root"
+	StatsSwitchPortStpRoleEnum_ROOTPREVENTED StatsSwitchPortStpRoleEnum = "root-prevented"
 )
 
 // StatsSwitchPortStpStateEnum is a string enum.
@@ -3587,11 +3587,11 @@ const (
 type StatsSwitchPortStpStateEnum string
 
 const (
-    StatsSwitchPortStpStateEnum_BLOCKING   StatsSwitchPortStpStateEnum = "blocking"
-    StatsSwitchPortStpStateEnum_DISABLED   StatsSwitchPortStpStateEnum = "disabled"
-    StatsSwitchPortStpStateEnum_FORWARDING StatsSwitchPortStpStateEnum = "forwarding"
-    StatsSwitchPortStpStateEnum_LEARNING   StatsSwitchPortStpStateEnum = "learning"
-    StatsSwitchPortStpStateEnum_LISTENING  StatsSwitchPortStpStateEnum = "listening"
+	StatsSwitchPortStpStateEnum_BLOCKING   StatsSwitchPortStpStateEnum = "blocking"
+	StatsSwitchPortStpStateEnum_DISABLED   StatsSwitchPortStpStateEnum = "disabled"
+	StatsSwitchPortStpStateEnum_FORWARDING StatsSwitchPortStpStateEnum = "forwarding"
+	StatsSwitchPortStpStateEnum_LEARNING   StatsSwitchPortStpStateEnum = "learning"
+	StatsSwitchPortStpStateEnum_LISTENING  StatsSwitchPortStpStateEnum = "listening"
 )
 
 // StatsSwitchPortTypeEnum is a string enum.
@@ -3599,12 +3599,12 @@ const (
 type StatsSwitchPortTypeEnum string
 
 const (
-    StatsSwitchPortTypeEnum_AP         StatsSwitchPortTypeEnum = "ap"
-    StatsSwitchPortTypeEnum_BLE        StatsSwitchPortTypeEnum = "ble"
-    StatsSwitchPortTypeEnum_GATEWAY    StatsSwitchPortTypeEnum = "gateway"
-    StatsSwitchPortTypeEnum_MXEDGE     StatsSwitchPortTypeEnum = "mxedge"
-    StatsSwitchPortTypeEnum_NAC        StatsSwitchPortTypeEnum = "nac"
-    StatsSwitchPortTypeEnum_ENUMSWITCH StatsSwitchPortTypeEnum = "switch"
+	StatsSwitchPortTypeEnum_AP         StatsSwitchPortTypeEnum = "ap"
+	StatsSwitchPortTypeEnum_BLE        StatsSwitchPortTypeEnum = "ble"
+	StatsSwitchPortTypeEnum_GATEWAY    StatsSwitchPortTypeEnum = "gateway"
+	StatsSwitchPortTypeEnum_MXEDGE     StatsSwitchPortTypeEnum = "mxedge"
+	StatsSwitchPortTypeEnum_NAC        StatsSwitchPortTypeEnum = "nac"
+	StatsSwitchPortTypeEnum_ENUMSWITCH StatsSwitchPortTypeEnum = "switch"
 )
 
 // StatsWanTunnelPriorityEnum is a string enum.
@@ -3612,8 +3612,8 @@ const (
 type StatsWanTunnelPriorityEnum string
 
 const (
-    StatsWanTunnelPriorityEnum_PRIMARY   StatsWanTunnelPriorityEnum = "primary"
-    StatsWanTunnelPriorityEnum_SECONDARY StatsWanTunnelPriorityEnum = "secondary"
+	StatsWanTunnelPriorityEnum_PRIMARY   StatsWanTunnelPriorityEnum = "primary"
+	StatsWanTunnelPriorityEnum_SECONDARY StatsWanTunnelPriorityEnum = "secondary"
 )
 
 // StatsWxruleActionEnum is a string enum.
@@ -3621,8 +3621,8 @@ const (
 type StatsWxruleActionEnum string
 
 const (
-    StatsWxruleActionEnum_ALLOW StatsWxruleActionEnum = "allow"
-    StatsWxruleActionEnum_BLOCK StatsWxruleActionEnum = "block"
+	StatsWxruleActionEnum_ALLOW StatsWxruleActionEnum = "allow"
+	StatsWxruleActionEnum_BLOCK StatsWxruleActionEnum = "block"
 )
 
 // SuppressedAlarmScopeEnum is a string enum.
@@ -3630,8 +3630,8 @@ const (
 type SuppressedAlarmScopeEnum string
 
 const (
-    SuppressedAlarmScopeEnum_ORG  SuppressedAlarmScopeEnum = "org"
-    SuppressedAlarmScopeEnum_SITE SuppressedAlarmScopeEnum = "site"
+	SuppressedAlarmScopeEnum_ORG  SuppressedAlarmScopeEnum = "org"
+	SuppressedAlarmScopeEnum_SITE SuppressedAlarmScopeEnum = "site"
 )
 
 // SwitchDhcpdConfigTypeEnum is a string enum.
@@ -3639,9 +3639,9 @@ const (
 type SwitchDhcpdConfigTypeEnum string
 
 const (
-    SwitchDhcpdConfigTypeEnum_NONE   SwitchDhcpdConfigTypeEnum = "none"
-    SwitchDhcpdConfigTypeEnum_RELAY  SwitchDhcpdConfigTypeEnum = "relay"
-    SwitchDhcpdConfigTypeEnum_SERVER SwitchDhcpdConfigTypeEnum = "server"
+	SwitchDhcpdConfigTypeEnum_NONE   SwitchDhcpdConfigTypeEnum = "none"
+	SwitchDhcpdConfigTypeEnum_RELAY  SwitchDhcpdConfigTypeEnum = "relay"
+	SwitchDhcpdConfigTypeEnum_SERVER SwitchDhcpdConfigTypeEnum = "server"
 )
 
 // SwitchMetricScopeEnum is a string enum.
@@ -3649,8 +3649,8 @@ const (
 type SwitchMetricScopeEnum string
 
 const (
-    SwitchMetricScopeEnum_SITE       SwitchMetricScopeEnum = "site"
-    SwitchMetricScopeEnum_ENUMSWITCH SwitchMetricScopeEnum = "switch"
+	SwitchMetricScopeEnum_SITE       SwitchMetricScopeEnum = "site"
+	SwitchMetricScopeEnum_ENUMSWITCH SwitchMetricScopeEnum = "switch"
 )
 
 // SwitchMetricTypeEnum is a string enum.
@@ -3658,7 +3658,7 @@ const (
 type SwitchMetricTypeEnum string
 
 const (
-    SwitchMetricTypeEnum_ACTIVEPORTSSUMMARY SwitchMetricTypeEnum = "active_ports_summary"
+	SwitchMetricTypeEnum_ACTIVEPORTSSUMMARY SwitchMetricTypeEnum = "active_ports_summary"
 )
 
 // SwitchPortUsageDot1xEnum is a string enum.
@@ -3666,7 +3666,7 @@ const (
 type SwitchPortUsageDot1xEnum string
 
 const (
-    SwitchPortUsageDot1xEnum_DOT1X SwitchPortUsageDot1xEnum = "dot1x"
+	SwitchPortUsageDot1xEnum_DOT1X SwitchPortUsageDot1xEnum = "dot1x"
 )
 
 // SwitchPortUsageDuplexEnum is a string enum.
@@ -3674,9 +3674,9 @@ const (
 type SwitchPortUsageDuplexEnum string
 
 const (
-    SwitchPortUsageDuplexEnum_AUTO SwitchPortUsageDuplexEnum = "auto"
-    SwitchPortUsageDuplexEnum_FULL SwitchPortUsageDuplexEnum = "full"
-    SwitchPortUsageDuplexEnum_HALF SwitchPortUsageDuplexEnum = "half"
+	SwitchPortUsageDuplexEnum_AUTO SwitchPortUsageDuplexEnum = "auto"
+	SwitchPortUsageDuplexEnum_FULL SwitchPortUsageDuplexEnum = "full"
+	SwitchPortUsageDuplexEnum_HALF SwitchPortUsageDuplexEnum = "half"
 )
 
 // SwitchPortUsageDynamicResetDefaultWhenEnum is a string enum.
@@ -3684,8 +3684,8 @@ const (
 type SwitchPortUsageDynamicResetDefaultWhenEnum string
 
 const (
-    SwitchPortUsageDynamicResetDefaultWhenEnum_LINKDOWN SwitchPortUsageDynamicResetDefaultWhenEnum = "link_down"
-    SwitchPortUsageDynamicResetDefaultWhenEnum_NONE     SwitchPortUsageDynamicResetDefaultWhenEnum = "none"
+	SwitchPortUsageDynamicResetDefaultWhenEnum_LINKDOWN SwitchPortUsageDynamicResetDefaultWhenEnum = "link_down"
+	SwitchPortUsageDynamicResetDefaultWhenEnum_NONE     SwitchPortUsageDynamicResetDefaultWhenEnum = "none"
 )
 
 // SwitchPortUsageDynamicRuleSrcEnum is a string enum.
@@ -3693,16 +3693,16 @@ const (
 type SwitchPortUsageDynamicRuleSrcEnum string
 
 const (
-    SwitchPortUsageDynamicRuleSrcEnum_LINKPEERMAC          SwitchPortUsageDynamicRuleSrcEnum = "link_peermac"
-    SwitchPortUsageDynamicRuleSrcEnum_LLDPCHASSISID        SwitchPortUsageDynamicRuleSrcEnum = "lldp_chassis_id"
-    SwitchPortUsageDynamicRuleSrcEnum_LLDPHARDWAREREVISION SwitchPortUsageDynamicRuleSrcEnum = "lldp_hardware_revision"
-    SwitchPortUsageDynamicRuleSrcEnum_LLDPMANUFACTURERNAME SwitchPortUsageDynamicRuleSrcEnum = "lldp_manufacturer_name"
-    SwitchPortUsageDynamicRuleSrcEnum_LLDPOUI              SwitchPortUsageDynamicRuleSrcEnum = "lldp_oui"
-    SwitchPortUsageDynamicRuleSrcEnum_LLDPSERIALNUMBER     SwitchPortUsageDynamicRuleSrcEnum = "lldp_serial_number"
-    SwitchPortUsageDynamicRuleSrcEnum_LLDPSYSTEMNAME       SwitchPortUsageDynamicRuleSrcEnum = "lldp_system_name"
-    SwitchPortUsageDynamicRuleSrcEnum_RADIUSDYNAMICFILTER  SwitchPortUsageDynamicRuleSrcEnum = "radius_dynamicfilter"
-    SwitchPortUsageDynamicRuleSrcEnum_RADIUSUSERMAC        SwitchPortUsageDynamicRuleSrcEnum = "radius_usermac"
-    SwitchPortUsageDynamicRuleSrcEnum_RADIUSUSERNAME       SwitchPortUsageDynamicRuleSrcEnum = "radius_username"
+	SwitchPortUsageDynamicRuleSrcEnum_LINKPEERMAC          SwitchPortUsageDynamicRuleSrcEnum = "link_peermac"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPCHASSISID        SwitchPortUsageDynamicRuleSrcEnum = "lldp_chassis_id"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPHARDWAREREVISION SwitchPortUsageDynamicRuleSrcEnum = "lldp_hardware_revision"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPMANUFACTURERNAME SwitchPortUsageDynamicRuleSrcEnum = "lldp_manufacturer_name"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPOUI              SwitchPortUsageDynamicRuleSrcEnum = "lldp_oui"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPSERIALNUMBER     SwitchPortUsageDynamicRuleSrcEnum = "lldp_serial_number"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPSYSTEMNAME       SwitchPortUsageDynamicRuleSrcEnum = "lldp_system_name"
+	SwitchPortUsageDynamicRuleSrcEnum_RADIUSDYNAMICFILTER  SwitchPortUsageDynamicRuleSrcEnum = "radius_dynamicfilter"
+	SwitchPortUsageDynamicRuleSrcEnum_RADIUSUSERMAC        SwitchPortUsageDynamicRuleSrcEnum = "radius_usermac"
+	SwitchPortUsageDynamicRuleSrcEnum_RADIUSUSERNAME       SwitchPortUsageDynamicRuleSrcEnum = "radius_username"
 )
 
 // SwitchPortUsageMacAuthProtocolEnum is a string enum.
@@ -3710,9 +3710,9 @@ const (
 type SwitchPortUsageMacAuthProtocolEnum string
 
 const (
-    SwitchPortUsageMacAuthProtocolEnum_EAPMD5  SwitchPortUsageMacAuthProtocolEnum = "eap-md5"
-    SwitchPortUsageMacAuthProtocolEnum_EAPPEAP SwitchPortUsageMacAuthProtocolEnum = "eap-peap"
-    SwitchPortUsageMacAuthProtocolEnum_PAP     SwitchPortUsageMacAuthProtocolEnum = "pap"
+	SwitchPortUsageMacAuthProtocolEnum_EAPMD5  SwitchPortUsageMacAuthProtocolEnum = "eap-md5"
+	SwitchPortUsageMacAuthProtocolEnum_EAPPEAP SwitchPortUsageMacAuthProtocolEnum = "eap-peap"
+	SwitchPortUsageMacAuthProtocolEnum_PAP     SwitchPortUsageMacAuthProtocolEnum = "pap"
 )
 
 // SwitchPortUsageModeEnum is a string enum.
@@ -3720,10 +3720,10 @@ const (
 type SwitchPortUsageModeEnum string
 
 const (
-    SwitchPortUsageModeEnum_ACCESS  SwitchPortUsageModeEnum = "access"
-    SwitchPortUsageModeEnum_DYNAMIC SwitchPortUsageModeEnum = "dynamic"
-    SwitchPortUsageModeEnum_INET    SwitchPortUsageModeEnum = "inet"
-    SwitchPortUsageModeEnum_TRUNK   SwitchPortUsageModeEnum = "trunk"
+	SwitchPortUsageModeEnum_ACCESS  SwitchPortUsageModeEnum = "access"
+	SwitchPortUsageModeEnum_DYNAMIC SwitchPortUsageModeEnum = "dynamic"
+	SwitchPortUsageModeEnum_INET    SwitchPortUsageModeEnum = "inet"
+	SwitchPortUsageModeEnum_TRUNK   SwitchPortUsageModeEnum = "trunk"
 )
 
 // SwitchVirtualChassisMemberVcRoleEnum is a string enum.
@@ -3731,9 +3731,9 @@ const (
 type SwitchVirtualChassisMemberVcRoleEnum string
 
 const (
-    SwitchVirtualChassisMemberVcRoleEnum_BACKUP   SwitchVirtualChassisMemberVcRoleEnum = "backup"
-    SwitchVirtualChassisMemberVcRoleEnum_LINECARD SwitchVirtualChassisMemberVcRoleEnum = "linecard"
-    SwitchVirtualChassisMemberVcRoleEnum_MASTER   SwitchVirtualChassisMemberVcRoleEnum = "master"
+	SwitchVirtualChassisMemberVcRoleEnum_BACKUP   SwitchVirtualChassisMemberVcRoleEnum = "backup"
+	SwitchVirtualChassisMemberVcRoleEnum_LINECARD SwitchVirtualChassisMemberVcRoleEnum = "linecard"
+	SwitchVirtualChassisMemberVcRoleEnum_MASTER   SwitchVirtualChassisMemberVcRoleEnum = "master"
 )
 
 // SynthetictestDeviceProtocolEnum is a string enum.
@@ -3741,9 +3741,9 @@ const (
 type SynthetictestDeviceProtocolEnum string
 
 const (
-    SynthetictestDeviceProtocolEnum_PING               SynthetictestDeviceProtocolEnum = "ping"
-    SynthetictestDeviceProtocolEnum_ENUMPINGTRACEROUTE SynthetictestDeviceProtocolEnum = "ping+traceroute"
-    SynthetictestDeviceProtocolEnum_TRACEROUTE         SynthetictestDeviceProtocolEnum = "traceroute"
+	SynthetictestDeviceProtocolEnum_PING               SynthetictestDeviceProtocolEnum = "ping"
+	SynthetictestDeviceProtocolEnum_ENUMPINGTRACEROUTE SynthetictestDeviceProtocolEnum = "ping+traceroute"
+	SynthetictestDeviceProtocolEnum_TRACEROUTE         SynthetictestDeviceProtocolEnum = "traceroute"
 )
 
 // SynthetictestInfoDeviceTypeEnum is a string enum.
@@ -3751,9 +3751,9 @@ const (
 type SynthetictestInfoDeviceTypeEnum string
 
 const (
-    SynthetictestInfoDeviceTypeEnum_AP         SynthetictestInfoDeviceTypeEnum = "ap"
-    SynthetictestInfoDeviceTypeEnum_GATEWAY    SynthetictestInfoDeviceTypeEnum = "gateway"
-    SynthetictestInfoDeviceTypeEnum_ENUMSWITCH SynthetictestInfoDeviceTypeEnum = "switch"
+	SynthetictestInfoDeviceTypeEnum_AP         SynthetictestInfoDeviceTypeEnum = "ap"
+	SynthetictestInfoDeviceTypeEnum_GATEWAY    SynthetictestInfoDeviceTypeEnum = "gateway"
+	SynthetictestInfoDeviceTypeEnum_ENUMSWITCH SynthetictestInfoDeviceTypeEnum = "switch"
 )
 
 // SynthetictestTypeEnum is a string enum.
@@ -3761,14 +3761,14 @@ const (
 type SynthetictestTypeEnum string
 
 const (
-    SynthetictestTypeEnum_ARP             SynthetictestTypeEnum = "arp"
-    SynthetictestTypeEnum_CURL            SynthetictestTypeEnum = "curl"
-    SynthetictestTypeEnum_DHCP            SynthetictestTypeEnum = "dhcp"
-    SynthetictestTypeEnum_DHCP6           SynthetictestTypeEnum = "dhcp6"
-    SynthetictestTypeEnum_DNS             SynthetictestTypeEnum = "dns"
-    SynthetictestTypeEnum_LANCONNECTIVITY SynthetictestTypeEnum = "lan_connectivity"
-    SynthetictestTypeEnum_RADIUS          SynthetictestTypeEnum = "radius"
-    SynthetictestTypeEnum_SPEEDTEST       SynthetictestTypeEnum = "speedtest"
+	SynthetictestTypeEnum_ARP             SynthetictestTypeEnum = "arp"
+	SynthetictestTypeEnum_CURL            SynthetictestTypeEnum = "curl"
+	SynthetictestTypeEnum_DHCP            SynthetictestTypeEnum = "dhcp"
+	SynthetictestTypeEnum_DHCP6           SynthetictestTypeEnum = "dhcp6"
+	SynthetictestTypeEnum_DNS             SynthetictestTypeEnum = "dns"
+	SynthetictestTypeEnum_LANCONNECTIVITY SynthetictestTypeEnum = "lan_connectivity"
+	SynthetictestTypeEnum_RADIUS          SynthetictestTypeEnum = "radius"
+	SynthetictestTypeEnum_SPEEDTEST       SynthetictestTypeEnum = "speedtest"
 )
 
 // TacacsDefaultRoleEnum is a string enum.
@@ -3776,14 +3776,14 @@ const (
 type TacacsDefaultRoleEnum string
 
 const (
-    TacacsDefaultRoleEnum_ADMIN    TacacsDefaultRoleEnum = "admin"
-    TacacsDefaultRoleEnum_HELPDESK TacacsDefaultRoleEnum = "helpdesk"
-    TacacsDefaultRoleEnum_NONE     TacacsDefaultRoleEnum = "none"
-    TacacsDefaultRoleEnum_READ     TacacsDefaultRoleEnum = "read"
+	TacacsDefaultRoleEnum_ADMIN    TacacsDefaultRoleEnum = "admin"
+	TacacsDefaultRoleEnum_HELPDESK TacacsDefaultRoleEnum = "helpdesk"
+	TacacsDefaultRoleEnum_NONE     TacacsDefaultRoleEnum = "none"
+	TacacsDefaultRoleEnum_READ     TacacsDefaultRoleEnum = "read"
 )
 
 // TicketStatusEnum is a string enum.
-// Ticket status. enum: 
+// Ticket status. enum:
 // * open: ticket is open, Mist is working on it
 // * pending: ticket is open and Requester attention is needed (e.g. Mist is asking for some more information)
 // * solved: ticket is marked as solved / considered by Mist (requester can update it, causing it to re-open; or rate it)
@@ -3791,10 +3791,10 @@ const (
 type TicketStatusEnum string
 
 const (
-    TicketStatusEnum_CLOSED  TicketStatusEnum = "closed"
-    TicketStatusEnum_OPEN    TicketStatusEnum = "open"
-    TicketStatusEnum_PENDING TicketStatusEnum = "pending"
-    TicketStatusEnum_SOLVED  TicketStatusEnum = "solved"
+	TicketStatusEnum_CLOSED  TicketStatusEnum = "closed"
+	TicketStatusEnum_OPEN    TicketStatusEnum = "open"
+	TicketStatusEnum_PENDING TicketStatusEnum = "pending"
+	TicketStatusEnum_SOLVED  TicketStatusEnum = "solved"
 )
 
 // TroubleshootTypeEnum is a string enum.
@@ -3802,9 +3802,9 @@ const (
 type TroubleshootTypeEnum string
 
 const (
-    TroubleshootTypeEnum_WAN      TroubleshootTypeEnum = "wan"
-    TroubleshootTypeEnum_WIRED    TroubleshootTypeEnum = "wired"
-    TroubleshootTypeEnum_WIRELESS TroubleshootTypeEnum = "wireless"
+	TroubleshootTypeEnum_WAN      TroubleshootTypeEnum = "wan"
+	TroubleshootTypeEnum_WIRED    TroubleshootTypeEnum = "wired"
+	TroubleshootTypeEnum_WIRELESS TroubleshootTypeEnum = "wireless"
 )
 
 // TunnelConfigsAuthAlgoEnum is a string enum.
@@ -3812,9 +3812,9 @@ const (
 type TunnelConfigsAuthAlgoEnum string
 
 const (
-    TunnelConfigsAuthAlgoEnum_MD5  TunnelConfigsAuthAlgoEnum = "md5"
-    TunnelConfigsAuthAlgoEnum_SHA1 TunnelConfigsAuthAlgoEnum = "sha1"
-    TunnelConfigsAuthAlgoEnum_SHA2 TunnelConfigsAuthAlgoEnum = "sha2"
+	TunnelConfigsAuthAlgoEnum_MD5  TunnelConfigsAuthAlgoEnum = "md5"
+	TunnelConfigsAuthAlgoEnum_SHA1 TunnelConfigsAuthAlgoEnum = "sha1"
+	TunnelConfigsAuthAlgoEnum_SHA2 TunnelConfigsAuthAlgoEnum = "sha2"
 )
 
 // TunnelConfigsDhGroupEnum is a string enum.
@@ -3832,16 +3832,16 @@ const (
 type TunnelConfigsDhGroupEnum string
 
 const (
-    TunnelConfigsDhGroupEnum_ENUM1  TunnelConfigsDhGroupEnum = "1"
-    TunnelConfigsDhGroupEnum_ENUM14 TunnelConfigsDhGroupEnum = "14"
-    TunnelConfigsDhGroupEnum_ENUM15 TunnelConfigsDhGroupEnum = "15"
-    TunnelConfigsDhGroupEnum_ENUM16 TunnelConfigsDhGroupEnum = "16"
-    TunnelConfigsDhGroupEnum_ENUM19 TunnelConfigsDhGroupEnum = "19"
-    TunnelConfigsDhGroupEnum_ENUM2  TunnelConfigsDhGroupEnum = "2"
-    TunnelConfigsDhGroupEnum_ENUM20 TunnelConfigsDhGroupEnum = "20"
-    TunnelConfigsDhGroupEnum_ENUM21 TunnelConfigsDhGroupEnum = "21"
-    TunnelConfigsDhGroupEnum_ENUM24 TunnelConfigsDhGroupEnum = "24"
-    TunnelConfigsDhGroupEnum_ENUM5  TunnelConfigsDhGroupEnum = "5"
+	TunnelConfigsDhGroupEnum_ENUM1  TunnelConfigsDhGroupEnum = "1"
+	TunnelConfigsDhGroupEnum_ENUM14 TunnelConfigsDhGroupEnum = "14"
+	TunnelConfigsDhGroupEnum_ENUM15 TunnelConfigsDhGroupEnum = "15"
+	TunnelConfigsDhGroupEnum_ENUM16 TunnelConfigsDhGroupEnum = "16"
+	TunnelConfigsDhGroupEnum_ENUM19 TunnelConfigsDhGroupEnum = "19"
+	TunnelConfigsDhGroupEnum_ENUM2  TunnelConfigsDhGroupEnum = "2"
+	TunnelConfigsDhGroupEnum_ENUM20 TunnelConfigsDhGroupEnum = "20"
+	TunnelConfigsDhGroupEnum_ENUM21 TunnelConfigsDhGroupEnum = "21"
+	TunnelConfigsDhGroupEnum_ENUM24 TunnelConfigsDhGroupEnum = "24"
+	TunnelConfigsDhGroupEnum_ENUM5  TunnelConfigsDhGroupEnum = "5"
 )
 
 // TunnelConfigsEncAlgoEnum is a string enum.
@@ -3849,11 +3849,11 @@ const (
 type TunnelConfigsEncAlgoEnum string
 
 const (
-    TunnelConfigsEncAlgoEnum_ENUM3DES  TunnelConfigsEncAlgoEnum = "3des"
-    TunnelConfigsEncAlgoEnum_AES128    TunnelConfigsEncAlgoEnum = "aes128"
-    TunnelConfigsEncAlgoEnum_AES256    TunnelConfigsEncAlgoEnum = "aes256"
-    TunnelConfigsEncAlgoEnum_AESGCM128 TunnelConfigsEncAlgoEnum = "aes_gcm128"
-    TunnelConfigsEncAlgoEnum_AESGCM256 TunnelConfigsEncAlgoEnum = "aes_gcm256"
+	TunnelConfigsEncAlgoEnum_ENUM3DES  TunnelConfigsEncAlgoEnum = "3des"
+	TunnelConfigsEncAlgoEnum_AES128    TunnelConfigsEncAlgoEnum = "aes128"
+	TunnelConfigsEncAlgoEnum_AES256    TunnelConfigsEncAlgoEnum = "aes256"
+	TunnelConfigsEncAlgoEnum_AESGCM128 TunnelConfigsEncAlgoEnum = "aes_gcm128"
+	TunnelConfigsEncAlgoEnum_AESGCM256 TunnelConfigsEncAlgoEnum = "aes_gcm256"
 )
 
 // TunnelProviderOptionsNameEnum is a string enum.
@@ -3861,11 +3861,11 @@ const (
 type TunnelProviderOptionsNameEnum string
 
 const (
-    TunnelProviderOptionsNameEnum_CUSTOMIPSEC  TunnelProviderOptionsNameEnum = "custom-ipsec"
-    TunnelProviderOptionsNameEnum_CUSTOMERGRE  TunnelProviderOptionsNameEnum = "customer-gre"
-    TunnelProviderOptionsNameEnum_JSEIPSEC     TunnelProviderOptionsNameEnum = "jse-ipsec"
-    TunnelProviderOptionsNameEnum_ZSCALERGRE   TunnelProviderOptionsNameEnum = "zscaler-gre"
-    TunnelProviderOptionsNameEnum_ZSCALERIPSEC TunnelProviderOptionsNameEnum = "zscaler-ipsec"
+	TunnelProviderOptionsNameEnum_CUSTOMIPSEC  TunnelProviderOptionsNameEnum = "custom-ipsec"
+	TunnelProviderOptionsNameEnum_CUSTOMERGRE  TunnelProviderOptionsNameEnum = "customer-gre"
+	TunnelProviderOptionsNameEnum_JSEIPSEC     TunnelProviderOptionsNameEnum = "jse-ipsec"
+	TunnelProviderOptionsNameEnum_ZSCALERGRE   TunnelProviderOptionsNameEnum = "zscaler-gre"
+	TunnelProviderOptionsNameEnum_ZSCALERIPSEC TunnelProviderOptionsNameEnum = "zscaler-ipsec"
 )
 
 // TunnelTypeEnum is a string enum.
@@ -3873,8 +3873,8 @@ const (
 type TunnelTypeEnum string
 
 const (
-    TunnelTypeEnum_WAN      TunnelTypeEnum = "wan"
-    TunnelTypeEnum_WXTUNNEL TunnelTypeEnum = "wxtunnel"
+	TunnelTypeEnum_WAN      TunnelTypeEnum = "wan"
+	TunnelTypeEnum_WXTUNNEL TunnelTypeEnum = "wxtunnel"
 )
 
 // TuntermDhcpdTypeEnum is a string enum.
@@ -3882,7 +3882,7 @@ const (
 type TuntermDhcpdTypeEnum string
 
 const (
-    TuntermDhcpdTypeEnum_RELAY TuntermDhcpdTypeEnum = "relay"
+	TuntermDhcpdTypeEnum_RELAY TuntermDhcpdTypeEnum = "relay"
 )
 
 // TunternMonitoringProtocolEnum is a string enum.
@@ -3890,9 +3890,9 @@ const (
 type TunternMonitoringProtocolEnum string
 
 const (
-    TunternMonitoringProtocolEnum_ARP  TunternMonitoringProtocolEnum = "arp"
-    TunternMonitoringProtocolEnum_PING TunternMonitoringProtocolEnum = "ping"
-    TunternMonitoringProtocolEnum_TCP  TunternMonitoringProtocolEnum = "tcp"
+	TunternMonitoringProtocolEnum_ARP  TunternMonitoringProtocolEnum = "arp"
+	TunternMonitoringProtocolEnum_PING TunternMonitoringProtocolEnum = "ping"
+	TunternMonitoringProtocolEnum_TCP  TunternMonitoringProtocolEnum = "tcp"
 )
 
 // UpgradeInfoStatusEnum is a string enum.
@@ -3900,11 +3900,11 @@ const (
 type UpgradeInfoStatusEnum string
 
 const (
-    UpgradeInfoStatusEnum_ENUMERROR  UpgradeInfoStatusEnum = "error"
-    UpgradeInfoStatusEnum_INPROGRESS UpgradeInfoStatusEnum = "inprogress"
-    UpgradeInfoStatusEnum_SCHEDULED  UpgradeInfoStatusEnum = "scheduled"
-    UpgradeInfoStatusEnum_STARTING   UpgradeInfoStatusEnum = "starting"
-    UpgradeInfoStatusEnum_SUCCESS    UpgradeInfoStatusEnum = "success"
+	UpgradeInfoStatusEnum_ENUMERROR  UpgradeInfoStatusEnum = "error"
+	UpgradeInfoStatusEnum_INPROGRESS UpgradeInfoStatusEnum = "inprogress"
+	UpgradeInfoStatusEnum_SCHEDULED  UpgradeInfoStatusEnum = "scheduled"
+	UpgradeInfoStatusEnum_STARTING   UpgradeInfoStatusEnum = "starting"
+	UpgradeInfoStatusEnum_SUCCESS    UpgradeInfoStatusEnum = "success"
 )
 
 // UpgradeSiteDevicesRrmNodeOrderEnum is a string enum.
@@ -3912,8 +3912,8 @@ const (
 type UpgradeSiteDevicesRrmNodeOrderEnum string
 
 const (
-    UpgradeSiteDevicesRrmNodeOrderEnum_CENTERTOFRINGE UpgradeSiteDevicesRrmNodeOrderEnum = "center_to_fringe"
-    UpgradeSiteDevicesRrmNodeOrderEnum_FRINGETOCENTER UpgradeSiteDevicesRrmNodeOrderEnum = "fringe_to_center"
+	UpgradeSiteDevicesRrmNodeOrderEnum_CENTERTOFRINGE UpgradeSiteDevicesRrmNodeOrderEnum = "center_to_fringe"
+	UpgradeSiteDevicesRrmNodeOrderEnum_FRINGETOCENTER UpgradeSiteDevicesRrmNodeOrderEnum = "fringe_to_center"
 )
 
 // UseAutoApValuesForEnum is a string enum.
@@ -3921,8 +3921,8 @@ const (
 type UseAutoApValuesForEnum string
 
 const (
-    UseAutoApValuesForEnum_ORIENTATION UseAutoApValuesForEnum = "orientation"
-    UseAutoApValuesForEnum_PLACEMENT   UseAutoApValuesForEnum = "placement"
+	UseAutoApValuesForEnum_ORIENTATION UseAutoApValuesForEnum = "orientation"
+	UseAutoApValuesForEnum_PLACEMENT   UseAutoApValuesForEnum = "placement"
 )
 
 // UtilsClearBgpTypeEnum is a string enum.
@@ -3930,29 +3930,29 @@ const (
 type UtilsClearBgpTypeEnum string
 
 const (
-    UtilsClearBgpTypeEnum_HARD UtilsClearBgpTypeEnum = "hard"
-    UtilsClearBgpTypeEnum_IN   UtilsClearBgpTypeEnum = "in"
-    UtilsClearBgpTypeEnum_OUT  UtilsClearBgpTypeEnum = "out"
-    UtilsClearBgpTypeEnum_SOFT UtilsClearBgpTypeEnum = "soft"
+	UtilsClearBgpTypeEnum_HARD UtilsClearBgpTypeEnum = "hard"
+	UtilsClearBgpTypeEnum_IN   UtilsClearBgpTypeEnum = "in"
+	UtilsClearBgpTypeEnum_OUT  UtilsClearBgpTypeEnum = "out"
+	UtilsClearBgpTypeEnum_SOFT UtilsClearBgpTypeEnum = "soft"
 )
 
 // UtilsSendSupportLogsInfoEnum is a string enum.
-// optional, enum: 
+// optional, enum:
 // * `code-dumps`: Upload all core dump files, if any found
 // * `full`: Upload 1 file with output of `request support information`, 1 file that concatenates all `/var/log/outbound-ssh.log*` files, all core dump files, the 5 most recent `/var/log/messages*` files, and Mist agent logs
 // * `messages`: Upload 1 to 10 `/var/log/messages*` files
 // * `outbound-ssh`: Upload 1 file that concatenates all `/var/log/outbound-ssh.log*` files
-// * `process`: Upload 1 file with output of show `system processes extensive``
+// * `process`: Upload 1 file with output of show `system processes extensive“
 // * `var-logs`: Upload all non-empty files in the `/var/log/` directory
 type UtilsSendSupportLogsInfoEnum string
 
 const (
-    UtilsSendSupportLogsInfoEnum_CODEDUMPS   UtilsSendSupportLogsInfoEnum = "code-dumps"
-    UtilsSendSupportLogsInfoEnum_FULL        UtilsSendSupportLogsInfoEnum = "full"
-    UtilsSendSupportLogsInfoEnum_MESSAGES    UtilsSendSupportLogsInfoEnum = "messages"
-    UtilsSendSupportLogsInfoEnum_OUTBOUNDSSH UtilsSendSupportLogsInfoEnum = "outbound-ssh"
-    UtilsSendSupportLogsInfoEnum_PROCESS     UtilsSendSupportLogsInfoEnum = "process"
-    UtilsSendSupportLogsInfoEnum_VARLOGS     UtilsSendSupportLogsInfoEnum = "var-logs"
+	UtilsSendSupportLogsInfoEnum_CODEDUMPS   UtilsSendSupportLogsInfoEnum = "code-dumps"
+	UtilsSendSupportLogsInfoEnum_FULL        UtilsSendSupportLogsInfoEnum = "full"
+	UtilsSendSupportLogsInfoEnum_MESSAGES    UtilsSendSupportLogsInfoEnum = "messages"
+	UtilsSendSupportLogsInfoEnum_OUTBOUNDSSH UtilsSendSupportLogsInfoEnum = "outbound-ssh"
+	UtilsSendSupportLogsInfoEnum_PROCESS     UtilsSendSupportLogsInfoEnum = "process"
+	UtilsSendSupportLogsInfoEnum_VARLOGS     UtilsSendSupportLogsInfoEnum = "var-logs"
 )
 
 // UtilsShowRouteProtocolEnum is a string enum.
@@ -3960,12 +3960,12 @@ const (
 type UtilsShowRouteProtocolEnum string
 
 const (
-    UtilsShowRouteProtocolEnum_ANY    UtilsShowRouteProtocolEnum = "any"
-    UtilsShowRouteProtocolEnum_BGP    UtilsShowRouteProtocolEnum = "bgp"
-    UtilsShowRouteProtocolEnum_DIRECT UtilsShowRouteProtocolEnum = "direct"
-    UtilsShowRouteProtocolEnum_EVPN   UtilsShowRouteProtocolEnum = "evpn"
-    UtilsShowRouteProtocolEnum_OSPF   UtilsShowRouteProtocolEnum = "ospf"
-    UtilsShowRouteProtocolEnum_STATIC UtilsShowRouteProtocolEnum = "static"
+	UtilsShowRouteProtocolEnum_ANY    UtilsShowRouteProtocolEnum = "any"
+	UtilsShowRouteProtocolEnum_BGP    UtilsShowRouteProtocolEnum = "bgp"
+	UtilsShowRouteProtocolEnum_DIRECT UtilsShowRouteProtocolEnum = "direct"
+	UtilsShowRouteProtocolEnum_EVPN   UtilsShowRouteProtocolEnum = "evpn"
+	UtilsShowRouteProtocolEnum_OSPF   UtilsShowRouteProtocolEnum = "ospf"
+	UtilsShowRouteProtocolEnum_STATIC UtilsShowRouteProtocolEnum = "static"
 )
 
 // UtilsTracerouteProtocolEnum is a string enum.
@@ -3973,8 +3973,8 @@ const (
 type UtilsTracerouteProtocolEnum string
 
 const (
-    UtilsTracerouteProtocolEnum_ICMP UtilsTracerouteProtocolEnum = "icmp"
-    UtilsTracerouteProtocolEnum_UDP  UtilsTracerouteProtocolEnum = "udp"
+	UtilsTracerouteProtocolEnum_ICMP UtilsTracerouteProtocolEnum = "icmp"
+	UtilsTracerouteProtocolEnum_UDP  UtilsTracerouteProtocolEnum = "udp"
 )
 
 // VarSourceEnum is a string enum.
@@ -3982,8 +3982,8 @@ const (
 type VarSourceEnum string
 
 const (
-    VarSourceEnum_DEVICEPROFILE VarSourceEnum = "deviceprofile"
-    VarSourceEnum_SITE          VarSourceEnum = "site"
+	VarSourceEnum_DEVICEPROFILE VarSourceEnum = "deviceprofile"
+	VarSourceEnum_SITE          VarSourceEnum = "site"
 )
 
 // VirtualChassisConfigMemberVcRoleEnum is a string enum.
@@ -3991,9 +3991,9 @@ const (
 type VirtualChassisConfigMemberVcRoleEnum string
 
 const (
-    VirtualChassisConfigMemberVcRoleEnum_BACKUP   VirtualChassisConfigMemberVcRoleEnum = "backup"
-    VirtualChassisConfigMemberVcRoleEnum_LINECARD VirtualChassisConfigMemberVcRoleEnum = "linecard"
-    VirtualChassisConfigMemberVcRoleEnum_MASTER   VirtualChassisConfigMemberVcRoleEnum = "master"
+	VirtualChassisConfigMemberVcRoleEnum_BACKUP   VirtualChassisConfigMemberVcRoleEnum = "backup"
+	VirtualChassisConfigMemberVcRoleEnum_LINECARD VirtualChassisConfigMemberVcRoleEnum = "linecard"
+	VirtualChassisConfigMemberVcRoleEnum_MASTER   VirtualChassisConfigMemberVcRoleEnum = "master"
 )
 
 // VirtualChassisMemberUpdateVcRoleEnum is a string enum.
@@ -4001,9 +4001,9 @@ const (
 type VirtualChassisMemberUpdateVcRoleEnum string
 
 const (
-    VirtualChassisMemberUpdateVcRoleEnum_BACKUP   VirtualChassisMemberUpdateVcRoleEnum = "backup"
-    VirtualChassisMemberUpdateVcRoleEnum_LINECARD VirtualChassisMemberUpdateVcRoleEnum = "linecard"
-    VirtualChassisMemberUpdateVcRoleEnum_MASTER   VirtualChassisMemberUpdateVcRoleEnum = "master"
+	VirtualChassisMemberUpdateVcRoleEnum_BACKUP   VirtualChassisMemberUpdateVcRoleEnum = "backup"
+	VirtualChassisMemberUpdateVcRoleEnum_LINECARD VirtualChassisMemberUpdateVcRoleEnum = "linecard"
+	VirtualChassisMemberUpdateVcRoleEnum_MASTER   VirtualChassisMemberUpdateVcRoleEnum = "master"
 )
 
 // VirtualChassisPortOperationEnum is a string enum.
@@ -4011,8 +4011,8 @@ const (
 type VirtualChassisPortOperationEnum string
 
 const (
-    VirtualChassisPortOperationEnum_DELETE VirtualChassisPortOperationEnum = "delete"
-    VirtualChassisPortOperationEnum_SET    VirtualChassisPortOperationEnum = "set"
+	VirtualChassisPortOperationEnum_DELETE VirtualChassisPortOperationEnum = "delete"
+	VirtualChassisPortOperationEnum_SET    VirtualChassisPortOperationEnum = "set"
 )
 
 // VirtualChassisUpdateOpEnum is a string enum.
@@ -4020,10 +4020,10 @@ const (
 type VirtualChassisUpdateOpEnum string
 
 const (
-    VirtualChassisUpdateOpEnum_ADD          VirtualChassisUpdateOpEnum = "add"
-    VirtualChassisUpdateOpEnum_PREPROVISION VirtualChassisUpdateOpEnum = "preprovision"
-    VirtualChassisUpdateOpEnum_REMOVE       VirtualChassisUpdateOpEnum = "remove"
-    VirtualChassisUpdateOpEnum_RENUMBER     VirtualChassisUpdateOpEnum = "renumber"
+	VirtualChassisUpdateOpEnum_ADD          VirtualChassisUpdateOpEnum = "add"
+	VirtualChassisUpdateOpEnum_PREPROVISION VirtualChassisUpdateOpEnum = "preprovision"
+	VirtualChassisUpdateOpEnum_REMOVE       VirtualChassisUpdateOpEnum = "remove"
+	VirtualChassisUpdateOpEnum_RENUMBER     VirtualChassisUpdateOpEnum = "renumber"
 )
 
 // VisitsScopeEnum is a string enum.
@@ -4031,10 +4031,10 @@ const (
 type VisitsScopeEnum string
 
 const (
-    VisitsScopeEnum_ENUMMAP  VisitsScopeEnum = "map"
-    VisitsScopeEnum_RSSIZONE VisitsScopeEnum = "rssizone"
-    VisitsScopeEnum_SITE     VisitsScopeEnum = "site"
-    VisitsScopeEnum_ZONE     VisitsScopeEnum = "zone"
+	VisitsScopeEnum_ENUMMAP  VisitsScopeEnum = "map"
+	VisitsScopeEnum_RSSIZONE VisitsScopeEnum = "rssizone"
+	VisitsScopeEnum_SITE     VisitsScopeEnum = "site"
+	VisitsScopeEnum_ZONE     VisitsScopeEnum = "zone"
 )
 
 // VpnPathBfdProfileEnum is a string enum.
@@ -4042,8 +4042,8 @@ const (
 type VpnPathBfdProfileEnum string
 
 const (
-    VpnPathBfdProfileEnum_BROADBAND VpnPathBfdProfileEnum = "broadband"
-    VpnPathBfdProfileEnum_LTE       VpnPathBfdProfileEnum = "lte"
+	VpnPathBfdProfileEnum_BROADBAND VpnPathBfdProfileEnum = "broadband"
+	VpnPathBfdProfileEnum_LTE       VpnPathBfdProfileEnum = "lte"
 )
 
 // VrrpGroupAuthTypeEnum is a string enum.
@@ -4051,8 +4051,8 @@ const (
 type VrrpGroupAuthTypeEnum string
 
 const (
-    VrrpGroupAuthTypeEnum_MD5    VrrpGroupAuthTypeEnum = "md5"
-    VrrpGroupAuthTypeEnum_SIMPLE VrrpGroupAuthTypeEnum = "simple"
+	VrrpGroupAuthTypeEnum_MD5    VrrpGroupAuthTypeEnum = "md5"
+	VrrpGroupAuthTypeEnum_SIMPLE VrrpGroupAuthTypeEnum = "simple"
 )
 
 // WanTunnelProtocolEnum is a string enum.
@@ -4060,8 +4060,8 @@ const (
 type WanTunnelProtocolEnum string
 
 const (
-    WanTunnelProtocolEnum_GRE   WanTunnelProtocolEnum = "gre"
-    WanTunnelProtocolEnum_IPSEC WanTunnelProtocolEnum = "ipsec"
+	WanTunnelProtocolEnum_GRE   WanTunnelProtocolEnum = "gre"
+	WanTunnelProtocolEnum_IPSEC WanTunnelProtocolEnum = "ipsec"
 )
 
 // WanUsagesCountDisctinctEnum is a string enum.
@@ -4069,13 +4069,13 @@ const (
 type WanUsagesCountDisctinctEnum string
 
 const (
-    WanUsagesCountDisctinctEnum_MAC        WanUsagesCountDisctinctEnum = "mac"
-    WanUsagesCountDisctinctEnum_PATHTYPE   WanUsagesCountDisctinctEnum = "path_type"
-    WanUsagesCountDisctinctEnum_PEERMAC    WanUsagesCountDisctinctEnum = "peer_mac"
-    WanUsagesCountDisctinctEnum_PEERPORTID WanUsagesCountDisctinctEnum = "peer_port_id"
-    WanUsagesCountDisctinctEnum_POLICY     WanUsagesCountDisctinctEnum = "policy"
-    WanUsagesCountDisctinctEnum_PORTID     WanUsagesCountDisctinctEnum = "port_id"
-    WanUsagesCountDisctinctEnum_TENANT     WanUsagesCountDisctinctEnum = "tenant"
+	WanUsagesCountDisctinctEnum_MAC        WanUsagesCountDisctinctEnum = "mac"
+	WanUsagesCountDisctinctEnum_PATHTYPE   WanUsagesCountDisctinctEnum = "path_type"
+	WanUsagesCountDisctinctEnum_PEERMAC    WanUsagesCountDisctinctEnum = "peer_mac"
+	WanUsagesCountDisctinctEnum_PEERPORTID WanUsagesCountDisctinctEnum = "peer_port_id"
+	WanUsagesCountDisctinctEnum_POLICY     WanUsagesCountDisctinctEnum = "policy"
+	WanUsagesCountDisctinctEnum_PORTID     WanUsagesCountDisctinctEnum = "port_id"
+	WanUsagesCountDisctinctEnum_TENANT     WanUsagesCountDisctinctEnum = "tenant"
 )
 
 // WebhookClientInfoTopicEnum is a string enum.
@@ -4083,7 +4083,7 @@ const (
 type WebhookClientInfoTopicEnum string
 
 const (
-    WebhookClientInfoTopicEnum_CLIENTINFO WebhookClientInfoTopicEnum = "client-info"
+	WebhookClientInfoTopicEnum_CLIENTINFO WebhookClientInfoTopicEnum = "client-info"
 )
 
 // WebhookDeliveryDistinctEnum is a string enum.
@@ -4091,10 +4091,10 @@ const (
 type WebhookDeliveryDistinctEnum string
 
 const (
-    WebhookDeliveryDistinctEnum_STATUS     WebhookDeliveryDistinctEnum = "status"
-    WebhookDeliveryDistinctEnum_STATUSCODE WebhookDeliveryDistinctEnum = "status_code"
-    WebhookDeliveryDistinctEnum_TOPIC      WebhookDeliveryDistinctEnum = "topic"
-    WebhookDeliveryDistinctEnum_WEBHOOKID  WebhookDeliveryDistinctEnum = "webhook_id"
+	WebhookDeliveryDistinctEnum_STATUS     WebhookDeliveryDistinctEnum = "status"
+	WebhookDeliveryDistinctEnum_STATUSCODE WebhookDeliveryDistinctEnum = "status_code"
+	WebhookDeliveryDistinctEnum_TOPIC      WebhookDeliveryDistinctEnum = "topic"
+	WebhookDeliveryDistinctEnum_WEBHOOKID  WebhookDeliveryDistinctEnum = "webhook_id"
 )
 
 // WebhookDeliveryStatusEnum is a string enum.
@@ -4102,8 +4102,8 @@ const (
 type WebhookDeliveryStatusEnum string
 
 const (
-    WebhookDeliveryStatusEnum_FAILURE WebhookDeliveryStatusEnum = "failure"
-    WebhookDeliveryStatusEnum_SUCCESS WebhookDeliveryStatusEnum = "success"
+	WebhookDeliveryStatusEnum_FAILURE WebhookDeliveryStatusEnum = "failure"
+	WebhookDeliveryStatusEnum_SUCCESS WebhookDeliveryStatusEnum = "success"
 )
 
 // WebhookDeliveryTopicEnum is a string enum.
@@ -4111,11 +4111,11 @@ const (
 type WebhookDeliveryTopicEnum string
 
 const (
-    WebhookDeliveryTopicEnum_ALARMS          WebhookDeliveryTopicEnum = "alarms"
-    WebhookDeliveryTopicEnum_AUDITS          WebhookDeliveryTopicEnum = "audits"
-    WebhookDeliveryTopicEnum_DEVICEUPDOWNS   WebhookDeliveryTopicEnum = "device-updowns"
-    WebhookDeliveryTopicEnum_OCCUPANCYALERTS WebhookDeliveryTopicEnum = "occupancy-alerts"
-    WebhookDeliveryTopicEnum_PING            WebhookDeliveryTopicEnum = "ping"
+	WebhookDeliveryTopicEnum_ALARMS          WebhookDeliveryTopicEnum = "alarms"
+	WebhookDeliveryTopicEnum_AUDITS          WebhookDeliveryTopicEnum = "audits"
+	WebhookDeliveryTopicEnum_DEVICEUPDOWNS   WebhookDeliveryTopicEnum = "device-updowns"
+	WebhookDeliveryTopicEnum_OCCUPANCYALERTS WebhookDeliveryTopicEnum = "occupancy-alerts"
+	WebhookDeliveryTopicEnum_PING            WebhookDeliveryTopicEnum = "ping"
 )
 
 // WebhookDeviceEventsEventDeviceTypeEnum is a string enum.
@@ -4123,9 +4123,9 @@ const (
 type WebhookDeviceEventsEventDeviceTypeEnum string
 
 const (
-    WebhookDeviceEventsEventDeviceTypeEnum_AP         WebhookDeviceEventsEventDeviceTypeEnum = "ap"
-    WebhookDeviceEventsEventDeviceTypeEnum_GATEWAY    WebhookDeviceEventsEventDeviceTypeEnum = "gateway"
-    WebhookDeviceEventsEventDeviceTypeEnum_ENUMSWITCH WebhookDeviceEventsEventDeviceTypeEnum = "switch"
+	WebhookDeviceEventsEventDeviceTypeEnum_AP         WebhookDeviceEventsEventDeviceTypeEnum = "ap"
+	WebhookDeviceEventsEventDeviceTypeEnum_GATEWAY    WebhookDeviceEventsEventDeviceTypeEnum = "gateway"
+	WebhookDeviceEventsEventDeviceTypeEnum_ENUMSWITCH WebhookDeviceEventsEventDeviceTypeEnum = "switch"
 )
 
 // WebhookDeviceEventsEventEvTypeEnum is a string enum.
@@ -4133,8 +4133,8 @@ const (
 type WebhookDeviceEventsEventEvTypeEnum string
 
 const (
-    WebhookDeviceEventsEventEvTypeEnum_NOTICE WebhookDeviceEventsEventEvTypeEnum = "notice"
-    WebhookDeviceEventsEventEvTypeEnum_WARN   WebhookDeviceEventsEventEvTypeEnum = "warn"
+	WebhookDeviceEventsEventEvTypeEnum_NOTICE WebhookDeviceEventsEventEvTypeEnum = "notice"
+	WebhookDeviceEventsEventEvTypeEnum_WARN   WebhookDeviceEventsEventEvTypeEnum = "warn"
 )
 
 // WebhookOauth2GrantTypeEnum is a string enum.
@@ -4142,8 +4142,8 @@ const (
 type WebhookOauth2GrantTypeEnum string
 
 const (
-    WebhookOauth2GrantTypeEnum_CLIENTCREDENTIALS WebhookOauth2GrantTypeEnum = "client_credentials"
-    WebhookOauth2GrantTypeEnum_PASSWORD          WebhookOauth2GrantTypeEnum = "password"
+	WebhookOauth2GrantTypeEnum_CLIENTCREDENTIALS WebhookOauth2GrantTypeEnum = "client_credentials"
+	WebhookOauth2GrantTypeEnum_PASSWORD          WebhookOauth2GrantTypeEnum = "password"
 )
 
 // WebhookOccupancyAlertTypeEnum is a string enum.
@@ -4151,8 +4151,8 @@ const (
 type WebhookOccupancyAlertTypeEnum string
 
 const (
-    WebhookOccupancyAlertTypeEnum_COMPLIANCEOK        WebhookOccupancyAlertTypeEnum = "COMPLIANCE-OK"
-    WebhookOccupancyAlertTypeEnum_COMPLIANCEVIOLATION WebhookOccupancyAlertTypeEnum = "COMPLIANCE-VIOLATION"
+	WebhookOccupancyAlertTypeEnum_COMPLIANCEOK        WebhookOccupancyAlertTypeEnum = "COMPLIANCE-OK"
+	WebhookOccupancyAlertTypeEnum_COMPLIANCEVIOLATION WebhookOccupancyAlertTypeEnum = "COMPLIANCE-VIOLATION"
 )
 
 // WebhookSdkclientScanDataTopicEnum is a string enum.
@@ -4160,7 +4160,7 @@ const (
 type WebhookSdkclientScanDataTopicEnum string
 
 const (
-    WebhookSdkclientScanDataTopicEnum_SDKCLIENTSCANDATA WebhookSdkclientScanDataTopicEnum = "sdkclient_scan_data"
+	WebhookSdkclientScanDataTopicEnum_SDKCLIENTSCANDATA WebhookSdkclientScanDataTopicEnum = "sdkclient_scan_data"
 )
 
 // WebhookTopicEnum is a string enum.
@@ -4168,34 +4168,34 @@ const (
 type WebhookTopicEnum string
 
 const (
-    WebhookTopicEnum_ALARMS            WebhookTopicEnum = "alarms"
-    WebhookTopicEnum_ASSETRAW          WebhookTopicEnum = "asset-raw"
-    WebhookTopicEnum_ASSETRAWRSSI      WebhookTopicEnum = "asset-raw-rssi"
-    WebhookTopicEnum_AUDITS            WebhookTopicEnum = "audits"
-    WebhookTopicEnum_CLIENTINFO        WebhookTopicEnum = "client-info"
-    WebhookTopicEnum_CLIENTJOIN        WebhookTopicEnum = "client-join"
-    WebhookTopicEnum_CLIENTLATENCY     WebhookTopicEnum = "client-latency"
-    WebhookTopicEnum_CLIENTSESSIONS    WebhookTopicEnum = "client-sessions"
-    WebhookTopicEnum_DEVICEEVENTS      WebhookTopicEnum = "device-events"
-    WebhookTopicEnum_DEVICEUPDOWNS     WebhookTopicEnum = "device-updowns"
-    WebhookTopicEnum_DISCOVEREDRAWRSSI WebhookTopicEnum = "discovered-raw-rssi"
-    WebhookTopicEnum_LOCATION          WebhookTopicEnum = "location"
-    WebhookTopicEnum_LOCATIONASSET     WebhookTopicEnum = "location_asset"
-    WebhookTopicEnum_LOCATIONCENTRAK   WebhookTopicEnum = "location_centrak"
-    WebhookTopicEnum_LOCATIONCLIENT    WebhookTopicEnum = "location_client"
-    WebhookTopicEnum_LOCATIONSDK       WebhookTopicEnum = "location_sdk"
-    WebhookTopicEnum_LOCATIONUNCLIENT  WebhookTopicEnum = "location_unclient"
-    WebhookTopicEnum_MXEDGEEVENTS      WebhookTopicEnum = "mxedge-events"
-    WebhookTopicEnum_NACACCOUNTING     WebhookTopicEnum = "nac-accounting"
-    WebhookTopicEnum_NACEVENTS         WebhookTopicEnum = "nac_events"
-    WebhookTopicEnum_OCCUPANCYALERTS   WebhookTopicEnum = "occupancy-alerts"
-    WebhookTopicEnum_RSSIZONE          WebhookTopicEnum = "rssizone"
-    WebhookTopicEnum_SDKCLIENTSCANDATA WebhookTopicEnum = "sdkclient_scan_data"
-    WebhookTopicEnum_SITESLE           WebhookTopicEnum = "site_sle"
-    WebhookTopicEnum_VBEACON           WebhookTopicEnum = "vbeacon"
-    WebhookTopicEnum_WIFICONNRAW       WebhookTopicEnum = "wifi-conn-raw"
-    WebhookTopicEnum_WIFIUNCONNRAW     WebhookTopicEnum = "wifi-unconn-raw"
-    WebhookTopicEnum_ZONE              WebhookTopicEnum = "zone"
+	WebhookTopicEnum_ALARMS            WebhookTopicEnum = "alarms"
+	WebhookTopicEnum_ASSETRAW          WebhookTopicEnum = "asset-raw"
+	WebhookTopicEnum_ASSETRAWRSSI      WebhookTopicEnum = "asset-raw-rssi"
+	WebhookTopicEnum_AUDITS            WebhookTopicEnum = "audits"
+	WebhookTopicEnum_CLIENTINFO        WebhookTopicEnum = "client-info"
+	WebhookTopicEnum_CLIENTJOIN        WebhookTopicEnum = "client-join"
+	WebhookTopicEnum_CLIENTLATENCY     WebhookTopicEnum = "client-latency"
+	WebhookTopicEnum_CLIENTSESSIONS    WebhookTopicEnum = "client-sessions"
+	WebhookTopicEnum_DEVICEEVENTS      WebhookTopicEnum = "device-events"
+	WebhookTopicEnum_DEVICEUPDOWNS     WebhookTopicEnum = "device-updowns"
+	WebhookTopicEnum_DISCOVEREDRAWRSSI WebhookTopicEnum = "discovered-raw-rssi"
+	WebhookTopicEnum_LOCATION          WebhookTopicEnum = "location"
+	WebhookTopicEnum_LOCATIONASSET     WebhookTopicEnum = "location_asset"
+	WebhookTopicEnum_LOCATIONCENTRAK   WebhookTopicEnum = "location_centrak"
+	WebhookTopicEnum_LOCATIONCLIENT    WebhookTopicEnum = "location_client"
+	WebhookTopicEnum_LOCATIONSDK       WebhookTopicEnum = "location_sdk"
+	WebhookTopicEnum_LOCATIONUNCLIENT  WebhookTopicEnum = "location_unclient"
+	WebhookTopicEnum_MXEDGEEVENTS      WebhookTopicEnum = "mxedge-events"
+	WebhookTopicEnum_NACACCOUNTING     WebhookTopicEnum = "nac-accounting"
+	WebhookTopicEnum_NACEVENTS         WebhookTopicEnum = "nac_events"
+	WebhookTopicEnum_OCCUPANCYALERTS   WebhookTopicEnum = "occupancy-alerts"
+	WebhookTopicEnum_RSSIZONE          WebhookTopicEnum = "rssizone"
+	WebhookTopicEnum_SDKCLIENTSCANDATA WebhookTopicEnum = "sdkclient_scan_data"
+	WebhookTopicEnum_SITESLE           WebhookTopicEnum = "site_sle"
+	WebhookTopicEnum_VBEACON           WebhookTopicEnum = "vbeacon"
+	WebhookTopicEnum_WIFICONNRAW       WebhookTopicEnum = "wifi-conn-raw"
+	WebhookTopicEnum_WIFIUNCONNRAW     WebhookTopicEnum = "wifi-unconn-raw"
+	WebhookTopicEnum_ZONE              WebhookTopicEnum = "zone"
 )
 
 // WebhookTypeEnum is a string enum.
@@ -4203,11 +4203,11 @@ const (
 type WebhookTypeEnum string
 
 const (
-    WebhookTypeEnum_AWSSNS       WebhookTypeEnum = "aws-sns"
-    WebhookTypeEnum_GOOGLEPUBSUB WebhookTypeEnum = "google-pubsub"
-    WebhookTypeEnum_HTTPPOST     WebhookTypeEnum = "http-post"
-    WebhookTypeEnum_OAUTH2       WebhookTypeEnum = "oauth2"
-    WebhookTypeEnum_SPLUNK       WebhookTypeEnum = "splunk"
+	WebhookTypeEnum_AWSSNS       WebhookTypeEnum = "aws-sns"
+	WebhookTypeEnum_GOOGLEPUBSUB WebhookTypeEnum = "google-pubsub"
+	WebhookTypeEnum_HTTPPOST     WebhookTypeEnum = "http-post"
+	WebhookTypeEnum_OAUTH2       WebhookTypeEnum = "oauth2"
+	WebhookTypeEnum_SPLUNK       WebhookTypeEnum = "splunk"
 )
 
 // WebhookZoneEventTriggerEnum is a string enum.
@@ -4215,8 +4215,8 @@ const (
 type WebhookZoneEventTriggerEnum string
 
 const (
-    WebhookZoneEventTriggerEnum_ENTER WebhookZoneEventTriggerEnum = "enter"
-    WebhookZoneEventTriggerEnum_EXIT  WebhookZoneEventTriggerEnum = "exit"
+	WebhookZoneEventTriggerEnum_ENTER WebhookZoneEventTriggerEnum = "enter"
+	WebhookZoneEventTriggerEnum_EXIT  WebhookZoneEventTriggerEnum = "exit"
 )
 
 // WlanApplyToEnum is a string enum.
@@ -4224,9 +4224,9 @@ const (
 type WlanApplyToEnum string
 
 const (
-    WlanApplyToEnum_APS    WlanApplyToEnum = "aps"
-    WlanApplyToEnum_SITE   WlanApplyToEnum = "site"
-    WlanApplyToEnum_WXTAGS WlanApplyToEnum = "wxtags"
+	WlanApplyToEnum_APS    WlanApplyToEnum = "aps"
+	WlanApplyToEnum_SITE   WlanApplyToEnum = "site"
+	WlanApplyToEnum_WXTAGS WlanApplyToEnum = "wxtags"
 )
 
 // WlanAuthOweEnum is a string enum.
@@ -4234,9 +4234,9 @@ const (
 type WlanAuthOweEnum string
 
 const (
-    WlanAuthOweEnum_DISABLED WlanAuthOweEnum = "disabled"
-    WlanAuthOweEnum_ENABLED  WlanAuthOweEnum = "enabled"
-    WlanAuthOweEnum_REQUIRED WlanAuthOweEnum = "required"
+	WlanAuthOweEnum_DISABLED WlanAuthOweEnum = "disabled"
+	WlanAuthOweEnum_ENABLED  WlanAuthOweEnum = "enabled"
+	WlanAuthOweEnum_REQUIRED WlanAuthOweEnum = "required"
 )
 
 // WlanAuthPairwiseItemEnum is a string enum.
@@ -4244,11 +4244,11 @@ const (
 type WlanAuthPairwiseItemEnum string
 
 const (
-    WlanAuthPairwiseItemEnum_WPA1CCMP WlanAuthPairwiseItemEnum = "wpa1-ccmp"
-    WlanAuthPairwiseItemEnum_WPA1TKIP WlanAuthPairwiseItemEnum = "wpa1-tkip"
-    WlanAuthPairwiseItemEnum_WPA2CCMP WlanAuthPairwiseItemEnum = "wpa2-ccmp"
-    WlanAuthPairwiseItemEnum_WPA2TKIP WlanAuthPairwiseItemEnum = "wpa2-tkip"
-    WlanAuthPairwiseItemEnum_WPA3     WlanAuthPairwiseItemEnum = "wpa3"
+	WlanAuthPairwiseItemEnum_WPA1CCMP WlanAuthPairwiseItemEnum = "wpa1-ccmp"
+	WlanAuthPairwiseItemEnum_WPA1TKIP WlanAuthPairwiseItemEnum = "wpa1-tkip"
+	WlanAuthPairwiseItemEnum_WPA2CCMP WlanAuthPairwiseItemEnum = "wpa2-ccmp"
+	WlanAuthPairwiseItemEnum_WPA2TKIP WlanAuthPairwiseItemEnum = "wpa2-tkip"
+	WlanAuthPairwiseItemEnum_WPA3     WlanAuthPairwiseItemEnum = "wpa3"
 )
 
 // WlanAuthServerSelectionEnum is a string enum.
@@ -4256,8 +4256,8 @@ const (
 type WlanAuthServerSelectionEnum string
 
 const (
-    WlanAuthServerSelectionEnum_ORDERED   WlanAuthServerSelectionEnum = "ordered"
-    WlanAuthServerSelectionEnum_UNORDERED WlanAuthServerSelectionEnum = "unordered"
+	WlanAuthServerSelectionEnum_ORDERED   WlanAuthServerSelectionEnum = "ordered"
+	WlanAuthServerSelectionEnum_UNORDERED WlanAuthServerSelectionEnum = "unordered"
 )
 
 // WlanAuthTypeEnum is a string enum.
@@ -4265,13 +4265,13 @@ const (
 type WlanAuthTypeEnum string
 
 const (
-    WlanAuthTypeEnum_EAP         WlanAuthTypeEnum = "eap"
-    WlanAuthTypeEnum_EAP192      WlanAuthTypeEnum = "eap192"
-    WlanAuthTypeEnum_OPEN        WlanAuthTypeEnum = "open"
-    WlanAuthTypeEnum_PSK         WlanAuthTypeEnum = "psk"
-    WlanAuthTypeEnum_PSKTKIP     WlanAuthTypeEnum = "psk-tkip"
-    WlanAuthTypeEnum_PSKWPA2TKIP WlanAuthTypeEnum = "psk-wpa2-tkip"
-    WlanAuthTypeEnum_WEP         WlanAuthTypeEnum = "wep"
+	WlanAuthTypeEnum_EAP         WlanAuthTypeEnum = "eap"
+	WlanAuthTypeEnum_EAP192      WlanAuthTypeEnum = "eap192"
+	WlanAuthTypeEnum_OPEN        WlanAuthTypeEnum = "open"
+	WlanAuthTypeEnum_PSK         WlanAuthTypeEnum = "psk"
+	WlanAuthTypeEnum_PSKTKIP     WlanAuthTypeEnum = "psk-tkip"
+	WlanAuthTypeEnum_PSKWPA2TKIP WlanAuthTypeEnum = "psk-wpa2-tkip"
+	WlanAuthTypeEnum_WEP         WlanAuthTypeEnum = "wep"
 )
 
 // WlanBonjourServicePropertiesScopeEnum is a string enum.
@@ -4279,9 +4279,9 @@ const (
 type WlanBonjourServicePropertiesScopeEnum string
 
 const (
-    WlanBonjourServicePropertiesScopeEnum_SAMEAP   WlanBonjourServicePropertiesScopeEnum = "same_ap"
-    WlanBonjourServicePropertiesScopeEnum_SAMEMAP  WlanBonjourServicePropertiesScopeEnum = "same_map"
-    WlanBonjourServicePropertiesScopeEnum_SAMESITE WlanBonjourServicePropertiesScopeEnum = "same_site"
+	WlanBonjourServicePropertiesScopeEnum_SAMEAP   WlanBonjourServicePropertiesScopeEnum = "same_ap"
+	WlanBonjourServicePropertiesScopeEnum_SAMEMAP  WlanBonjourServicePropertiesScopeEnum = "same_map"
+	WlanBonjourServicePropertiesScopeEnum_SAMESITE WlanBonjourServicePropertiesScopeEnum = "same_site"
 )
 
 // WlanDataratesLegacyItemEnum is a string enum.
@@ -4289,30 +4289,30 @@ const (
 type WlanDataratesLegacyItemEnum string
 
 const (
-    WlanDataratesLegacyItemEnum_ENUM1   WlanDataratesLegacyItemEnum = "1"
-    WlanDataratesLegacyItemEnum_ENUM11  WlanDataratesLegacyItemEnum = "11"
-    WlanDataratesLegacyItemEnum_ENUM11B WlanDataratesLegacyItemEnum = "11b"
-    WlanDataratesLegacyItemEnum_ENUM12  WlanDataratesLegacyItemEnum = "12"
-    WlanDataratesLegacyItemEnum_ENUM12B WlanDataratesLegacyItemEnum = "12b"
-    WlanDataratesLegacyItemEnum_ENUM18  WlanDataratesLegacyItemEnum = "18"
-    WlanDataratesLegacyItemEnum_ENUM18B WlanDataratesLegacyItemEnum = "18b"
-    WlanDataratesLegacyItemEnum_ENUM1B  WlanDataratesLegacyItemEnum = "1b"
-    WlanDataratesLegacyItemEnum_ENUM2   WlanDataratesLegacyItemEnum = "2"
-    WlanDataratesLegacyItemEnum_ENUM24  WlanDataratesLegacyItemEnum = "24"
-    WlanDataratesLegacyItemEnum_ENUM24B WlanDataratesLegacyItemEnum = "24b"
-    WlanDataratesLegacyItemEnum_ENUM2B  WlanDataratesLegacyItemEnum = "2b"
-    WlanDataratesLegacyItemEnum_ENUM36  WlanDataratesLegacyItemEnum = "36"
-    WlanDataratesLegacyItemEnum_ENUM36B WlanDataratesLegacyItemEnum = "36b"
-    WlanDataratesLegacyItemEnum_ENUM48  WlanDataratesLegacyItemEnum = "48"
-    WlanDataratesLegacyItemEnum_ENUM48B WlanDataratesLegacyItemEnum = "48b"
-    WlanDataratesLegacyItemEnum_ENUM55  WlanDataratesLegacyItemEnum = "5.5"
-    WlanDataratesLegacyItemEnum_ENUM55B WlanDataratesLegacyItemEnum = "5.5b"
-    WlanDataratesLegacyItemEnum_ENUM54  WlanDataratesLegacyItemEnum = "54"
-    WlanDataratesLegacyItemEnum_ENUM54B WlanDataratesLegacyItemEnum = "54b"
-    WlanDataratesLegacyItemEnum_ENUM6   WlanDataratesLegacyItemEnum = "6"
-    WlanDataratesLegacyItemEnum_ENUM6B  WlanDataratesLegacyItemEnum = "6b"
-    WlanDataratesLegacyItemEnum_ENUM9   WlanDataratesLegacyItemEnum = "9"
-    WlanDataratesLegacyItemEnum_ENUM9B  WlanDataratesLegacyItemEnum = "9b"
+	WlanDataratesLegacyItemEnum_ENUM1   WlanDataratesLegacyItemEnum = "1"
+	WlanDataratesLegacyItemEnum_ENUM11  WlanDataratesLegacyItemEnum = "11"
+	WlanDataratesLegacyItemEnum_ENUM11B WlanDataratesLegacyItemEnum = "11b"
+	WlanDataratesLegacyItemEnum_ENUM12  WlanDataratesLegacyItemEnum = "12"
+	WlanDataratesLegacyItemEnum_ENUM12B WlanDataratesLegacyItemEnum = "12b"
+	WlanDataratesLegacyItemEnum_ENUM18  WlanDataratesLegacyItemEnum = "18"
+	WlanDataratesLegacyItemEnum_ENUM18B WlanDataratesLegacyItemEnum = "18b"
+	WlanDataratesLegacyItemEnum_ENUM1B  WlanDataratesLegacyItemEnum = "1b"
+	WlanDataratesLegacyItemEnum_ENUM2   WlanDataratesLegacyItemEnum = "2"
+	WlanDataratesLegacyItemEnum_ENUM24  WlanDataratesLegacyItemEnum = "24"
+	WlanDataratesLegacyItemEnum_ENUM24B WlanDataratesLegacyItemEnum = "24b"
+	WlanDataratesLegacyItemEnum_ENUM2B  WlanDataratesLegacyItemEnum = "2b"
+	WlanDataratesLegacyItemEnum_ENUM36  WlanDataratesLegacyItemEnum = "36"
+	WlanDataratesLegacyItemEnum_ENUM36B WlanDataratesLegacyItemEnum = "36b"
+	WlanDataratesLegacyItemEnum_ENUM48  WlanDataratesLegacyItemEnum = "48"
+	WlanDataratesLegacyItemEnum_ENUM48B WlanDataratesLegacyItemEnum = "48b"
+	WlanDataratesLegacyItemEnum_ENUM55  WlanDataratesLegacyItemEnum = "5.5"
+	WlanDataratesLegacyItemEnum_ENUM55B WlanDataratesLegacyItemEnum = "5.5b"
+	WlanDataratesLegacyItemEnum_ENUM54  WlanDataratesLegacyItemEnum = "54"
+	WlanDataratesLegacyItemEnum_ENUM54B WlanDataratesLegacyItemEnum = "54b"
+	WlanDataratesLegacyItemEnum_ENUM6   WlanDataratesLegacyItemEnum = "6"
+	WlanDataratesLegacyItemEnum_ENUM6B  WlanDataratesLegacyItemEnum = "6b"
+	WlanDataratesLegacyItemEnum_ENUM9   WlanDataratesLegacyItemEnum = "9"
+	WlanDataratesLegacyItemEnum_ENUM9B  WlanDataratesLegacyItemEnum = "9b"
 )
 
 // WlanDynamicVlanTypeEnum is a string enum.
@@ -4320,8 +4320,8 @@ const (
 type WlanDynamicVlanTypeEnum string
 
 const (
-    WlanDynamicVlanTypeEnum_AIRESPACEINTERFACENAME WlanDynamicVlanTypeEnum = "airespace-interface-name"
-    WlanDynamicVlanTypeEnum_STANDARD               WlanDynamicVlanTypeEnum = "standard"
+	WlanDynamicVlanTypeEnum_AIRESPACEINTERFACENAME WlanDynamicVlanTypeEnum = "airespace-interface-name"
+	WlanDynamicVlanTypeEnum_STANDARD               WlanDynamicVlanTypeEnum = "standard"
 )
 
 // WlanHotspot20OperatorsItemEnum is a string enum.
@@ -4329,20 +4329,20 @@ const (
 type WlanHotspot20OperatorsItemEnum string
 
 const (
-    WlanHotspot20OperatorsItemEnum_AMERIBAND                 WlanHotspot20OperatorsItemEnum = "ameriband"
-    WlanHotspot20OperatorsItemEnum_ATT                       WlanHotspot20OperatorsItemEnum = "att"
-    WlanHotspot20OperatorsItemEnum_BOINGO                    WlanHotspot20OperatorsItemEnum = "boingo"
-    WlanHotspot20OperatorsItemEnum_CHARTER                   WlanHotspot20OperatorsItemEnum = "charter"
-    WlanHotspot20OperatorsItemEnum_EDUROAM                   WlanHotspot20OperatorsItemEnum = "eduroam"
-    WlanHotspot20OperatorsItemEnum_GLOBALREACH               WlanHotspot20OperatorsItemEnum = "global_reach"
-    WlanHotspot20OperatorsItemEnum_GOOGLE                    WlanHotspot20OperatorsItemEnum = "google"
-    WlanHotspot20OperatorsItemEnum_HUGHESSYSTIQUE            WlanHotspot20OperatorsItemEnum = "hughes_systique"
-    WlanHotspot20OperatorsItemEnum_OPENROAMINGLEGACY         WlanHotspot20OperatorsItemEnum = "openroaming_legacy"
-    WlanHotspot20OperatorsItemEnum_OPENROAMINGSETTLED        WlanHotspot20OperatorsItemEnum = "openroaming_settled"
-    WlanHotspot20OperatorsItemEnum_OPENROAMINGSETTLEMENTFREE WlanHotspot20OperatorsItemEnum = "openroaming_settlement_free"
-    WlanHotspot20OperatorsItemEnum_SINGLEDIGITS              WlanHotspot20OperatorsItemEnum = "single_digits"
-    WlanHotspot20OperatorsItemEnum_TMOBILE                   WlanHotspot20OperatorsItemEnum = "tmobile"
-    WlanHotspot20OperatorsItemEnum_VERIZON                   WlanHotspot20OperatorsItemEnum = "verizon"
+	WlanHotspot20OperatorsItemEnum_AMERIBAND                 WlanHotspot20OperatorsItemEnum = "ameriband"
+	WlanHotspot20OperatorsItemEnum_ATT                       WlanHotspot20OperatorsItemEnum = "att"
+	WlanHotspot20OperatorsItemEnum_BOINGO                    WlanHotspot20OperatorsItemEnum = "boingo"
+	WlanHotspot20OperatorsItemEnum_CHARTER                   WlanHotspot20OperatorsItemEnum = "charter"
+	WlanHotspot20OperatorsItemEnum_EDUROAM                   WlanHotspot20OperatorsItemEnum = "eduroam"
+	WlanHotspot20OperatorsItemEnum_GLOBALREACH               WlanHotspot20OperatorsItemEnum = "global_reach"
+	WlanHotspot20OperatorsItemEnum_GOOGLE                    WlanHotspot20OperatorsItemEnum = "google"
+	WlanHotspot20OperatorsItemEnum_HUGHESSYSTIQUE            WlanHotspot20OperatorsItemEnum = "hughes_systique"
+	WlanHotspot20OperatorsItemEnum_OPENROAMINGLEGACY         WlanHotspot20OperatorsItemEnum = "openroaming_legacy"
+	WlanHotspot20OperatorsItemEnum_OPENROAMINGSETTLED        WlanHotspot20OperatorsItemEnum = "openroaming_settled"
+	WlanHotspot20OperatorsItemEnum_OPENROAMINGSETTLEMENTFREE WlanHotspot20OperatorsItemEnum = "openroaming_settlement_free"
+	WlanHotspot20OperatorsItemEnum_SINGLEDIGITS              WlanHotspot20OperatorsItemEnum = "single_digits"
+	WlanHotspot20OperatorsItemEnum_TMOBILE                   WlanHotspot20OperatorsItemEnum = "tmobile"
+	WlanHotspot20OperatorsItemEnum_VERIZON                   WlanHotspot20OperatorsItemEnum = "verizon"
 )
 
 // WlanInterfaceEnum is a string enum.
@@ -4350,14 +4350,14 @@ const (
 type WlanInterfaceEnum string
 
 const (
-    WlanInterfaceEnum_ALL        WlanInterfaceEnum = "all"
-    WlanInterfaceEnum_ETH0       WlanInterfaceEnum = "eth0"
-    WlanInterfaceEnum_ETH1       WlanInterfaceEnum = "eth1"
-    WlanInterfaceEnum_ETH2       WlanInterfaceEnum = "eth2"
-    WlanInterfaceEnum_ETH3       WlanInterfaceEnum = "eth3"
-    WlanInterfaceEnum_MXTUNNEL   WlanInterfaceEnum = "mxtunnel"
-    WlanInterfaceEnum_SITEMXEDGE WlanInterfaceEnum = "site_mxedge"
-    WlanInterfaceEnum_WXTUNNEL   WlanInterfaceEnum = "wxtunnel"
+	WlanInterfaceEnum_ALL        WlanInterfaceEnum = "all"
+	WlanInterfaceEnum_ETH0       WlanInterfaceEnum = "eth0"
+	WlanInterfaceEnum_ETH1       WlanInterfaceEnum = "eth1"
+	WlanInterfaceEnum_ETH2       WlanInterfaceEnum = "eth2"
+	WlanInterfaceEnum_ETH3       WlanInterfaceEnum = "eth3"
+	WlanInterfaceEnum_MXTUNNEL   WlanInterfaceEnum = "mxtunnel"
+	WlanInterfaceEnum_SITEMXEDGE WlanInterfaceEnum = "site_mxedge"
+	WlanInterfaceEnum_WXTUNNEL   WlanInterfaceEnum = "wxtunnel"
 )
 
 // WlanPortalAuthEnum is a string enum.
@@ -4365,9 +4365,9 @@ const (
 type WlanPortalAuthEnum string
 
 const (
-    WlanPortalAuthEnum_EXTERNAL WlanPortalAuthEnum = "external"
-    WlanPortalAuthEnum_NONE     WlanPortalAuthEnum = "none"
-    WlanPortalAuthEnum_SSO      WlanPortalAuthEnum = "sso"
+	WlanPortalAuthEnum_EXTERNAL WlanPortalAuthEnum = "external"
+	WlanPortalAuthEnum_NONE     WlanPortalAuthEnum = "none"
+	WlanPortalAuthEnum_SSO      WlanPortalAuthEnum = "sso"
 )
 
 // WlanPortalIdpSignAlgoEnum is a string enum.
@@ -4375,10 +4375,10 @@ const (
 type WlanPortalIdpSignAlgoEnum string
 
 const (
-    WlanPortalIdpSignAlgoEnum_SHA1   WlanPortalIdpSignAlgoEnum = "sha1"
-    WlanPortalIdpSignAlgoEnum_SHA256 WlanPortalIdpSignAlgoEnum = "sha256"
-    WlanPortalIdpSignAlgoEnum_SHA384 WlanPortalIdpSignAlgoEnum = "sha384"
-    WlanPortalIdpSignAlgoEnum_SHA512 WlanPortalIdpSignAlgoEnum = "sha512"
+	WlanPortalIdpSignAlgoEnum_SHA1   WlanPortalIdpSignAlgoEnum = "sha1"
+	WlanPortalIdpSignAlgoEnum_SHA256 WlanPortalIdpSignAlgoEnum = "sha256"
+	WlanPortalIdpSignAlgoEnum_SHA384 WlanPortalIdpSignAlgoEnum = "sha384"
+	WlanPortalIdpSignAlgoEnum_SHA512 WlanPortalIdpSignAlgoEnum = "sha512"
 )
 
 // WlanPortalSmsProviderEnum is a string enum.
@@ -4386,13 +4386,13 @@ const (
 type WlanPortalSmsProviderEnum string
 
 const (
-    WlanPortalSmsProviderEnum_BROADNET   WlanPortalSmsProviderEnum = "broadnet"
-    WlanPortalSmsProviderEnum_CLICKATELL WlanPortalSmsProviderEnum = "clickatell"
-    WlanPortalSmsProviderEnum_GUPSHUP    WlanPortalSmsProviderEnum = "gupshup"
-    WlanPortalSmsProviderEnum_MANUAL     WlanPortalSmsProviderEnum = "manual"
-    WlanPortalSmsProviderEnum_PUZZEL     WlanPortalSmsProviderEnum = "puzzel"
-    WlanPortalSmsProviderEnum_TELSTRA    WlanPortalSmsProviderEnum = "telstra"
-    WlanPortalSmsProviderEnum_TWILIO     WlanPortalSmsProviderEnum = "twilio"
+	WlanPortalSmsProviderEnum_BROADNET   WlanPortalSmsProviderEnum = "broadnet"
+	WlanPortalSmsProviderEnum_CLICKATELL WlanPortalSmsProviderEnum = "clickatell"
+	WlanPortalSmsProviderEnum_GUPSHUP    WlanPortalSmsProviderEnum = "gupshup"
+	WlanPortalSmsProviderEnum_MANUAL     WlanPortalSmsProviderEnum = "manual"
+	WlanPortalSmsProviderEnum_PUZZEL     WlanPortalSmsProviderEnum = "puzzel"
+	WlanPortalSmsProviderEnum_TELSTRA    WlanPortalSmsProviderEnum = "telstra"
+	WlanPortalSmsProviderEnum_TWILIO     WlanPortalSmsProviderEnum = "twilio"
 )
 
 // WlanPortalSsoNameidFormatEnum is a string enum.
@@ -4400,8 +4400,8 @@ const (
 type WlanPortalSsoNameidFormatEnum string
 
 const (
-    WlanPortalSsoNameidFormatEnum_EMAIL       WlanPortalSsoNameidFormatEnum = "email"
-    WlanPortalSsoNameidFormatEnum_UNSPECIFIED WlanPortalSsoNameidFormatEnum = "unspecified"
+	WlanPortalSsoNameidFormatEnum_EMAIL       WlanPortalSsoNameidFormatEnum = "email"
+	WlanPortalSsoNameidFormatEnum_UNSPECIFIED WlanPortalSsoNameidFormatEnum = "unspecified"
 )
 
 // WlanQosClassEnum is a string enum.
@@ -4409,10 +4409,10 @@ const (
 type WlanQosClassEnum string
 
 const (
-    WlanQosClassEnum_BACKGROUND WlanQosClassEnum = "background"
-    WlanQosClassEnum_BESTEFFORT WlanQosClassEnum = "best_effort"
-    WlanQosClassEnum_VIDEO      WlanQosClassEnum = "video"
-    WlanQosClassEnum_VOICE      WlanQosClassEnum = "voice"
+	WlanQosClassEnum_BACKGROUND WlanQosClassEnum = "background"
+	WlanQosClassEnum_BESTEFFORT WlanQosClassEnum = "best_effort"
+	WlanQosClassEnum_VIDEO      WlanQosClassEnum = "video"
+	WlanQosClassEnum_VOICE      WlanQosClassEnum = "voice"
 )
 
 // WlanRoamModeEnum is a string enum.
@@ -4420,9 +4420,9 @@ const (
 type WlanRoamModeEnum string
 
 const (
-    WlanRoamModeEnum_ENUM11R WlanRoamModeEnum = "11r"
-    WlanRoamModeEnum_NONE    WlanRoamModeEnum = "NONE"
-    WlanRoamModeEnum_OKC     WlanRoamModeEnum = "OKC"
+	WlanRoamModeEnum_ENUM11R WlanRoamModeEnum = "11r"
+	WlanRoamModeEnum_NONE    WlanRoamModeEnum = "NONE"
+	WlanRoamModeEnum_OKC     WlanRoamModeEnum = "OKC"
 )
 
 // WxlanRuleActionEnum is a string enum.
@@ -4430,8 +4430,8 @@ const (
 type WxlanRuleActionEnum string
 
 const (
-    WxlanRuleActionEnum_ALLOW WxlanRuleActionEnum = "allow"
-    WxlanRuleActionEnum_BLOCK WxlanRuleActionEnum = "block"
+	WxlanRuleActionEnum_ALLOW WxlanRuleActionEnum = "allow"
+	WxlanRuleActionEnum_BLOCK WxlanRuleActionEnum = "block"
 )
 
 // WxlanTagMatchEnum is a string enum.
@@ -4439,21 +4439,21 @@ const (
 type WxlanTagMatchEnum string
 
 const (
-    WxlanTagMatchEnum_APID           WxlanTagMatchEnum = "ap_id"
-    WxlanTagMatchEnum_APP            WxlanTagMatchEnum = "app"
-    WxlanTagMatchEnum_ASSETMAC       WxlanTagMatchEnum = "asset_mac"
-    WxlanTagMatchEnum_CLIENTMAC      WxlanTagMatchEnum = "client_mac"
-    WxlanTagMatchEnum_HOSTNAME       WxlanTagMatchEnum = "hostname"
-    WxlanTagMatchEnum_IPRANGESUBNET  WxlanTagMatchEnum = "ip_range_subnet"
-    WxlanTagMatchEnum_PORT           WxlanTagMatchEnum = "port"
-    WxlanTagMatchEnum_PSKNAME        WxlanTagMatchEnum = "psk_name"
-    WxlanTagMatchEnum_PSKROLE        WxlanTagMatchEnum = "psk_role"
-    WxlanTagMatchEnum_RADIUSATTR     WxlanTagMatchEnum = "radius_attr"
-    WxlanTagMatchEnum_RADIUSCLASS    WxlanTagMatchEnum = "radius_class"
-    WxlanTagMatchEnum_RADIUSGROUP    WxlanTagMatchEnum = "radius_group"
-    WxlanTagMatchEnum_RADIUSUSERNAME WxlanTagMatchEnum = "radius_username"
-    WxlanTagMatchEnum_SDKCLIENTUUID  WxlanTagMatchEnum = "sdkclient_uuid"
-    WxlanTagMatchEnum_WLANID         WxlanTagMatchEnum = "wlan_id"
+	WxlanTagMatchEnum_APID           WxlanTagMatchEnum = "ap_id"
+	WxlanTagMatchEnum_APP            WxlanTagMatchEnum = "app"
+	WxlanTagMatchEnum_ASSETMAC       WxlanTagMatchEnum = "asset_mac"
+	WxlanTagMatchEnum_CLIENTMAC      WxlanTagMatchEnum = "client_mac"
+	WxlanTagMatchEnum_HOSTNAME       WxlanTagMatchEnum = "hostname"
+	WxlanTagMatchEnum_IPRANGESUBNET  WxlanTagMatchEnum = "ip_range_subnet"
+	WxlanTagMatchEnum_PORT           WxlanTagMatchEnum = "port"
+	WxlanTagMatchEnum_PSKNAME        WxlanTagMatchEnum = "psk_name"
+	WxlanTagMatchEnum_PSKROLE        WxlanTagMatchEnum = "psk_role"
+	WxlanTagMatchEnum_RADIUSATTR     WxlanTagMatchEnum = "radius_attr"
+	WxlanTagMatchEnum_RADIUSCLASS    WxlanTagMatchEnum = "radius_class"
+	WxlanTagMatchEnum_RADIUSGROUP    WxlanTagMatchEnum = "radius_group"
+	WxlanTagMatchEnum_RADIUSUSERNAME WxlanTagMatchEnum = "radius_username"
+	WxlanTagMatchEnum_SDKCLIENTUUID  WxlanTagMatchEnum = "sdkclient_uuid"
+	WxlanTagMatchEnum_WLANID         WxlanTagMatchEnum = "wlan_id"
 )
 
 // WxlanTagOperationEnum is a string enum.
@@ -4461,8 +4461,8 @@ const (
 type WxlanTagOperationEnum string
 
 const (
-    WxlanTagOperationEnum_IN    WxlanTagOperationEnum = "in"
-    WxlanTagOperationEnum_NOTIN WxlanTagOperationEnum = "not_in"
+	WxlanTagOperationEnum_IN    WxlanTagOperationEnum = "in"
+	WxlanTagOperationEnum_NOTIN WxlanTagOperationEnum = "not_in"
 )
 
 // WxlanTagTypeEnum is a string enum.
@@ -4470,12 +4470,12 @@ const (
 type WxlanTagTypeEnum string
 
 const (
-    WxlanTagTypeEnum_CLIENT   WxlanTagTypeEnum = "client"
-    WxlanTagTypeEnum_MATCH    WxlanTagTypeEnum = "match"
-    WxlanTagTypeEnum_RESOURCE WxlanTagTypeEnum = "resource"
-    WxlanTagTypeEnum_SPEC     WxlanTagTypeEnum = "spec"
-    WxlanTagTypeEnum_SUBNET   WxlanTagTypeEnum = "subnet"
-    WxlanTagTypeEnum_VLAN     WxlanTagTypeEnum = "vlan"
+	WxlanTagTypeEnum_CLIENT   WxlanTagTypeEnum = "client"
+	WxlanTagTypeEnum_MATCH    WxlanTagTypeEnum = "match"
+	WxlanTagTypeEnum_RESOURCE WxlanTagTypeEnum = "resource"
+	WxlanTagTypeEnum_SPEC     WxlanTagTypeEnum = "spec"
+	WxlanTagTypeEnum_SUBNET   WxlanTagTypeEnum = "subnet"
+	WxlanTagTypeEnum_VLAN     WxlanTagTypeEnum = "vlan"
 )
 
 // WxlanTunnelSessionEthertypeEnum is a string enum.
@@ -4483,8 +4483,8 @@ const (
 type WxlanTunnelSessionEthertypeEnum string
 
 const (
-    WxlanTunnelSessionEthertypeEnum_ETHERNET WxlanTunnelSessionEthertypeEnum = "ethernet"
-    WxlanTunnelSessionEthertypeEnum_VLAN     WxlanTunnelSessionEthertypeEnum = "vlan"
+	WxlanTunnelSessionEthertypeEnum_ETHERNET WxlanTunnelSessionEthertypeEnum = "ethernet"
+	WxlanTunnelSessionEthertypeEnum_VLAN     WxlanTunnelSessionEthertypeEnum = "vlan"
 )
 
 // ZoneScopeEnum is a string enum.
@@ -4492,10 +4492,10 @@ const (
 type ZoneScopeEnum string
 
 const (
-    ZoneScopeEnum_ENUMMAP  ZoneScopeEnum = "map"
-    ZoneScopeEnum_RSSIZONE ZoneScopeEnum = "rssizone"
-    ZoneScopeEnum_SITE     ZoneScopeEnum = "site"
-    ZoneScopeEnum_ZONE     ZoneScopeEnum = "zone"
+	ZoneScopeEnum_ENUMMAP  ZoneScopeEnum = "map"
+	ZoneScopeEnum_RSSIZONE ZoneScopeEnum = "rssizone"
+	ZoneScopeEnum_SITE     ZoneScopeEnum = "site"
+	ZoneScopeEnum_ZONE     ZoneScopeEnum = "zone"
 )
 
 // ZoneTypeEnum is a string enum.
@@ -4503,6 +4503,6 @@ const (
 type ZoneTypeEnum string
 
 const (
-    ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
-    ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
+	ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
+	ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
 )
