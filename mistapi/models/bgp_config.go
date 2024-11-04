@@ -14,7 +14,6 @@ type BgpConfig struct {
     BfdMinimumInterval     Optional[int]                 `json:"bfd_minimum_interval"`
     // when bfd_minimum_interval_is_configured alone
     BfdMultiplier          Optional[int]                 `json:"bfd_multiplier"`
-    Communities            []BgpConfigCommunity          `json:"communities,omitempty"`
     // BFD provides faster path failure detection and is enabled by default
     DisableBfd             *bool                         `json:"disable_bfd,omitempty"`
     Export                 *string                       `json:"export,omitempty"`
@@ -77,9 +76,6 @@ func (b BgpConfig) toMap() map[string]any {
         } else {
             structMap["bfd_multiplier"] = nil
         }
-    }
-    if b.Communities != nil {
-        structMap["communities"] = b.Communities
     }
     if b.DisableBfd != nil {
         structMap["disable_bfd"] = b.DisableBfd
@@ -146,7 +142,7 @@ func (b *BgpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_key", "bfd_minimum_interval", "bfd_multiplier", "communities", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_readvertise_to_overlay", "tunnel_name", "type", "via", "vpn_name", "wan_name")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_key", "bfd_minimum_interval", "bfd_multiplier", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_readvertise_to_overlay", "tunnel_name", "type", "via", "vpn_name", "wan_name")
     if err != nil {
     	return err
     }
@@ -155,7 +151,6 @@ func (b *BgpConfig) UnmarshalJSON(input []byte) error {
     b.AuthKey = temp.AuthKey
     b.BfdMinimumInterval = temp.BfdMinimumInterval
     b.BfdMultiplier = temp.BfdMultiplier
-    b.Communities = temp.Communities
     b.DisableBfd = temp.DisableBfd
     b.Export = temp.Export
     b.ExportPolicy = temp.ExportPolicy
@@ -182,7 +177,6 @@ type tempBgpConfig  struct {
     AuthKey                *string                       `json:"auth_key,omitempty"`
     BfdMinimumInterval     Optional[int]                 `json:"bfd_minimum_interval"`
     BfdMultiplier          Optional[int]                 `json:"bfd_multiplier"`
-    Communities            []BgpConfigCommunity          `json:"communities,omitempty"`
     DisableBfd             *bool                         `json:"disable_bfd,omitempty"`
     Export                 *string                       `json:"export,omitempty"`
     ExportPolicy           *string                       `json:"export_policy,omitempty"`

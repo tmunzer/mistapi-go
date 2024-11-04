@@ -14,7 +14,6 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 | `AuthKey` | `*string` | Optional | - |
 | `BfdMinimumInterval` | `models.Optional[int]` | Optional | when bfd_multiplier is configured alone. Default:<br><br>* 1000 if `type`==`external`<br>* 350 `type`==`internal`<br>**Default**: `350`<br>**Constraints**: `>= 1`, `<= 255000` |
 | `BfdMultiplier` | `models.Optional[int]` | Optional | when bfd_minimum_interval_is_configured alone<br>**Default**: `3`<br>**Constraints**: `>= 1`, `<= 255` |
-| `Communities` | [`[]models.BgpConfigCommunity`](../../doc/models/bgp-config-community.md) | Optional | - |
 | `DisableBfd` | `*bool` | Optional | BFD provides faster path failure detection and is enabled by default<br>**Default**: `false` |
 | `Export` | `*string` | Optional | - |
 | `ExportPolicy` | `*string` | Optional | default export policies if no per-neighbor policies defined |
@@ -46,13 +45,7 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
   "no_readvertise_to_overlay": false,
   "via": "lan",
   "auth_key": "auth_key8",
-  "communities": [
-    {
-      "id": "00001b06-0000-0000-0000-000000000000",
-      "local_preference": 56,
-      "vpn_name": "vpn_name0"
-    }
-  ]
+  "export": "export6"
 }
 ```
 

@@ -94,14 +94,8 @@ device gateway
       "auth_key": "auth_key8",
       "bfd_minimum_interval": 212,
       "bfd_multiplier": 90,
-      "communities": [
-        {
-          "id": "00001b06-0000-0000-0000-000000000000",
-          "local_preference": 56,
-          "vpn_name": "vpn_name0"
-        }
-      ],
-      "disable_bfd": false
+      "disable_bfd": false,
+      "export": "export6"
     }
   },
   "created_time": 176.02,
