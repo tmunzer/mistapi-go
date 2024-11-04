@@ -181,7 +181,6 @@ json := models.MapOrgImportFileJson{
     ImportAllFloorplans: models.ToPointer(false),
     ImportHeight:        models.ToPointer(true),
     ImportOrientation:   models.ToPointer(true),
-    SiteId:              models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     VendorName:          models.MapOrgImportFileJsonVendorNameEnum("ekahau"),
 }
 

@@ -30,6 +30,7 @@
   "connection_rssi": 55.12,
   "last_seen": 116.26,
   "mac": "mac0",
+  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "scan_data": [
     {
       "ap": "ap6",
@@ -58,8 +59,7 @@
       "ssid": "ssid4",
       "timestamp": 102.06
     }
-  ],
-  "site_id": "000005b6-0000-0000-0000-000000000000"
+  ]
 }
 ```
 

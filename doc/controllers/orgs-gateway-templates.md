@@ -133,32 +133,32 @@ body := models.GatewayTemplate{
     },
     PortConfig:            map[string]models.GatewayPortConfig{
         "ge-0/0/0": models.GatewayPortConfig{
-            Aggregated:      models.ToPointer(false),
-            IpConfig:        models.ToPointer(models.GatewayPortConfigIpConfig{
+            Aggregated:       models.ToPointer(false),
+            IpConfig:         models.ToPointer(models.GatewayPortConfigIpConfig{
                 Gateway:       models.ToPointer("192.168.1.1"),
                 Ip:            models.ToPointer("192.168.1.9"),
                 Netmask:       models.ToPointer("/24"),
                 Type:          models.ToPointer(models.GatewayWanTypeEnum("static")),
             }),
-            Name:            models.ToPointer("wan"),
-            Redundant:       models.ToPointer(false),
-            TrafficShaping:  models.ToPointer(models.GatewayTrafficShaping{
+            Name:             models.ToPointer("wan"),
+            Redundant:        models.ToPointer(false),
+            TrafficShaping:   models.ToPointer(models.GatewayTrafficShaping{
                 Enabled:          models.ToPointer(false),
             }),
-            Usage:           models.GatewayPortUsageEnum("wan"),
-            WanType:         models.ToPointer(models.GatewayPortWanTypeEnum("broadband")),
+            Usage:            models.GatewayPortUsageEnum("wan"),
+            WanType:          models.ToPointer(models.GatewayPortWanTypeEnum("broadband")),
         },
         "ge-0/0/6-7": models.GatewayPortConfig{
-            AeDisableLacp:   models.ToPointer(false),
-            AeIdx:           models.NewOptional(models.ToPointer("0")),
-            AeLacpForceUp:   models.ToPointer(true),
-            Aggregated:      models.ToPointer(true),
-            Networks:        []string{
+            AeDisableLacp:    models.ToPointer(false),
+            AeIdx:            models.NewOptional(models.ToPointer("0")),
+            AeLacpForceUp:    models.ToPointer(true),
+            Aggregated:       models.ToPointer(true),
+            Networks:         []string{
                 "Corp-lan",
                 "Corp-Mgmt",
                 "Corp-Core",
             },
-            Usage:           models.GatewayPortUsageEnum("lan"),
+            Usage:            models.GatewayPortUsageEnum("lan"),
         },
     },
     ServicePolicies:       []models.ServicePolicy{
@@ -178,7 +178,7 @@ body := models.GatewayTemplate{
             },
         },
         models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Action:          models.ToPointer(models.AllowDenyEnum("deny")),
             Idp:             models.ToPointer(models.IdpConfig{
                 Enabled:      models.ToPointer(false),
             }),
@@ -189,177 +189,6 @@ body := models.GatewayTemplate{
             },
             Tenants:         []string{
                 "ITParis",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("mgmt-to-core"),
-            PathPreference:  models.ToPointer("core"),
-            Services:        []string{
-                "internal_dns",
-                "internal_ntp",
-            },
-            Tenants:         []string{
-                "Corp-Mgmt",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("mgmt-to-mxe-tt-in"),
-            PathPreference:  models.ToPointer("mxe-in"),
-            Services:        []string{
-                "internal_any",
-            },
-            Tenants:         []string{
-                "Corp-Mgmt",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("mgmt-to-untrust"),
-            PathPreference:  models.ToPointer("untrust"),
-            Services:        []string{
-                "mxedge-updates",
-                "radsec",
-                "icmp",
-                "internet_dns",
-                "internet_ntp",
-            },
-            Tenants:         []string{
-                "Corp-Mgmt",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("mxe-data-0-to-untrust"),
-            PathPreference:  models.ToPointer("untrust"),
-            Services:        []string{
-                "internet_any",
-            },
-            Tenants:         []string{
-                "ITParis",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("core-to-mgt"),
-            PathPreference:  models.ToPointer("mgmt"),
-            Services:        []string{
-                "mgmt",
-            },
-            Tenants:         []string{
-                "domain.Corp-Core",
-                "lan.Corp-Core",
-                "servers.Corp-Core",
-                "Corp-Core",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("core-to-edge-in"),
-            PathPreference:  models.ToPointer("mxe-in"),
-            Services:        []string{
-                "internal_any",
-            },
-            Tenants:         []string{
-                "lan.Corp-Core",
-                "Corp-Core",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("core-to-iot"),
-            PathPreference:  models.ToPointer("iot"),
-            Services:        []string{
-                "iot",
-            },
-            Tenants:         []string{
-                "lan.Corp-Core",
-                "servers-hassio.Corp-Core",
-                "servers-kubes.Corp-Core",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                Enabled:      models.ToPointer(false),
-            }),
-            Name:            models.ToPointer("tanker-to-cctv"),
-            PathPreference:  models.ToPointer("iot"),
-            Services:        []string{
-                "rtsp",
-            },
-            Tenants:         []string{
-                "servers-tanker.Corp-Core",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                Enabled:      models.ToPointer(false),
-            }),
-            Name:            models.ToPointer("core-to-untrust"),
-            PathPreference:  models.ToPointer("untrust"),
-            Services:        []string{
-                "internet_any",
-            },
-            Tenants:         []string{
-                "lan.Corp-Core",
-                "domain.Corp-Core",
-                "servers.Corp-Core",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("deny")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("iot-upgrade-cctv"),
-            PathPreference:  models.ToPointer("untrust"),
-            Services:        []string{
-                "motioneye",
-                "nodejs",
-                "raspbian",
-            },
-            Tenants:         []string{
-                "printer",
             },
         },
     },
@@ -671,32 +500,32 @@ body := models.GatewayTemplate{
     },
     PortConfig:            map[string]models.GatewayPortConfig{
         "ge-0/0/0": models.GatewayPortConfig{
-            Aggregated:      models.ToPointer(false),
-            IpConfig:        models.ToPointer(models.GatewayPortConfigIpConfig{
+            Aggregated:       models.ToPointer(false),
+            IpConfig:         models.ToPointer(models.GatewayPortConfigIpConfig{
                 Gateway:       models.ToPointer("192.168.1.1"),
                 Ip:            models.ToPointer("192.168.1.9"),
                 Netmask:       models.ToPointer("/24"),
                 Type:          models.ToPointer(models.GatewayWanTypeEnum("static")),
             }),
-            Name:            models.ToPointer("wan"),
-            Redundant:       models.ToPointer(false),
-            TrafficShaping:  models.ToPointer(models.GatewayTrafficShaping{
+            Name:             models.ToPointer("wan"),
+            Redundant:        models.ToPointer(false),
+            TrafficShaping:   models.ToPointer(models.GatewayTrafficShaping{
                 Enabled:          models.ToPointer(false),
             }),
-            Usage:           models.GatewayPortUsageEnum("wan"),
-            WanType:         models.ToPointer(models.GatewayPortWanTypeEnum("broadband")),
+            Usage:            models.GatewayPortUsageEnum("wan"),
+            WanType:          models.ToPointer(models.GatewayPortWanTypeEnum("broadband")),
         },
         "ge-0/0/6-7": models.GatewayPortConfig{
-            AeDisableLacp:   models.ToPointer(false),
-            AeIdx:           models.NewOptional(models.ToPointer("0")),
-            AeLacpForceUp:   models.ToPointer(true),
-            Aggregated:      models.ToPointer(true),
-            Networks:        []string{
+            AeDisableLacp:    models.ToPointer(false),
+            AeIdx:            models.NewOptional(models.ToPointer("0")),
+            AeLacpForceUp:    models.ToPointer(true),
+            Aggregated:       models.ToPointer(true),
+            Networks:         []string{
                 "Corp-lan",
                 "Corp-Mgmt",
                 "Corp-Core",
             },
-            Usage:           models.GatewayPortUsageEnum("lan"),
+            Usage:            models.GatewayPortUsageEnum("lan"),
         },
     },
     ServicePolicies:       []models.ServicePolicy{
@@ -716,7 +545,7 @@ body := models.GatewayTemplate{
             },
         },
         models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
+            Action:          models.ToPointer(models.AllowDenyEnum("deny")),
             Idp:             models.ToPointer(models.IdpConfig{
                 Enabled:      models.ToPointer(false),
             }),
@@ -727,177 +556,6 @@ body := models.GatewayTemplate{
             },
             Tenants:         []string{
                 "ITParis",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("mgmt-to-core"),
-            PathPreference:  models.ToPointer("core"),
-            Services:        []string{
-                "internal_dns",
-                "internal_ntp",
-            },
-            Tenants:         []string{
-                "Corp-Mgmt",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("mgmt-to-mxe-tt-in"),
-            PathPreference:  models.ToPointer("mxe-in"),
-            Services:        []string{
-                "internal_any",
-            },
-            Tenants:         []string{
-                "Corp-Mgmt",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("mgmt-to-untrust"),
-            PathPreference:  models.ToPointer("untrust"),
-            Services:        []string{
-                "mxedge-updates",
-                "radsec",
-                "icmp",
-                "internet_dns",
-                "internet_ntp",
-            },
-            Tenants:         []string{
-                "Corp-Mgmt",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("mxe-data-0-to-untrust"),
-            PathPreference:  models.ToPointer("untrust"),
-            Services:        []string{
-                "internet_any",
-            },
-            Tenants:         []string{
-                "ITParis",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("core-to-mgt"),
-            PathPreference:  models.ToPointer("mgmt"),
-            Services:        []string{
-                "mgmt",
-            },
-            Tenants:         []string{
-                "domain.Corp-Core",
-                "lan.Corp-Core",
-                "servers.Corp-Core",
-                "Corp-Core",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("core-to-edge-in"),
-            PathPreference:  models.ToPointer("mxe-in"),
-            Services:        []string{
-                "internal_any",
-            },
-            Tenants:         []string{
-                "lan.Corp-Core",
-                "Corp-Core",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("core-to-iot"),
-            PathPreference:  models.ToPointer("iot"),
-            Services:        []string{
-                "iot",
-            },
-            Tenants:         []string{
-                "lan.Corp-Core",
-                "servers-hassio.Corp-Core",
-                "servers-kubes.Corp-Core",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                Enabled:      models.ToPointer(false),
-            }),
-            Name:            models.ToPointer("tanker-to-cctv"),
-            PathPreference:  models.ToPointer("iot"),
-            Services:        []string{
-                "rtsp",
-            },
-            Tenants:         []string{
-                "servers-tanker.Corp-Core",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                Enabled:      models.ToPointer(false),
-            }),
-            Name:            models.ToPointer("core-to-untrust"),
-            PathPreference:  models.ToPointer("untrust"),
-            Services:        []string{
-                "internet_any",
-            },
-            Tenants:         []string{
-                "lan.Corp-Core",
-                "domain.Corp-Core",
-                "servers.Corp-Core",
-            },
-        },
-        models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("deny")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                AlertOnly:    models.ToPointer(true),
-                Enabled:      models.ToPointer(true),
-                Profile:      models.ToPointer("standard"),
-            }),
-            Name:            models.ToPointer("iot-upgrade-cctv"),
-            PathPreference:  models.ToPointer("untrust"),
-            Services:        []string{
-                "motioneye",
-                "nodejs",
-                "raspbian",
-            },
-            Tenants:         []string{
-                "printer",
             },
         },
     },

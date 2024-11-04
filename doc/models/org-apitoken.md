@@ -16,8 +16,8 @@ returned in the POST API Response (only in the afterward GET)
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CreatedBy` | `models.Optional[string]` | Optional | email of the token creator / null if creator is deleted |
-| `CreatedTime` | `*float64` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Key` | `*string` | Optional | - |
 | `LastUsed` | `models.Optional[float64]` | Optional | - |
 | `Name` | `string` | Required | name of the token |
@@ -30,8 +30,7 @@ returned in the POST API Response (only in the afterward GET)
 ```json
 {
   "created_by": "user@mycorp.com",
-  "created_time": 1626875902.0,
-  "id": "497f6eca-6276-4993-bfeb-53ecbbba6f08",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "key": "1qkb...QQCL",
   "last_used": 1690115110.0,
   "name": "org_token_xyz",
@@ -45,7 +44,8 @@ returned in the POST API Response (only in the afterward GET)
   "src_ips": [
     "63.3.56.0/24",
     "63.3.55.4"
-  ]
+  ],
+  "created_time": 254.8
 }
 ```
 

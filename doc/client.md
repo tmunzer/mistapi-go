@@ -190,6 +190,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | SitesLocation() | Gets SitesLocation |
 | SitesMaps() | Gets SitesMaps |
 | SitesMapsAutoPlacement() | Gets SitesMapsAutoPlacement |
+| SitesMapsAutoZone() | Gets SitesMapsAutoZone |
 | SitesMxEdges() | Gets SitesMxEdges |
 | SitesNetworkTemplates() | Gets SitesNetworkTemplates |
 | SitesNetworks() | Gets SitesNetworks |

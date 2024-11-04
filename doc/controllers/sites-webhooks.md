@@ -201,8 +201,8 @@ body := models.Webhook{
     Name:               models.NewOptional(models.ToPointer("string")),
     Secret:             models.NewOptional(models.ToPointer("string")),
     SplunkToken:        models.NewOptional(models.ToPointer("string")),
-    Topics:             []models.WebhookTopicEnum{
-        models.WebhookTopicEnum("location"),
+    Topics:             []string{
+        "location",
     },
     Type:               models.ToPointer(models.WebhookTypeEnum("http-post")),
     Url:                models.ToPointer("string"),
@@ -682,8 +682,8 @@ body := models.Webhook{
     Name:               models.NewOptional(models.ToPointer("string")),
     Secret:             models.NewOptional(models.ToPointer("string")),
     SplunkToken:        models.NewOptional(models.ToPointer("string")),
-    Topics:             []models.WebhookTopicEnum{
-        models.WebhookTopicEnum("location"),
+    Topics:             []string{
+        "location",
     },
     Type:               models.ToPointer(models.WebhookTypeEnum("http-post")),
     Url:                models.ToPointer("string"),

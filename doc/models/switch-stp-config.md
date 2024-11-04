@@ -9,13 +9,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `VstpEnabled` | `*bool` | Optional | ignored for switches participating in EVPN<br>**Default**: `false` |
+| `BridgePriority` | `*string` | Optional | Switch STP priority: from `0k` to `15k`<br>**Default**: `"8k"` |
 
 ## Example (as JSON)
 
 ```json
 {
-  "vstp_enabled": false
+  "bridge_priority": "40k"
 }
 ```
 

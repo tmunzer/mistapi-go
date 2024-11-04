@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Config` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Name` | `*string` | Optional | - |
 | `Overwrite` | `*bool` | Optional | - |
 | `PodNames` | `map[string]string` | Optional | Property key is the pod number |
@@ -20,7 +20,7 @@
 
 ```json
 {
-  "id": "9197ec96-4c8d-529f-c595-035895e688b2",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "CC",
   "switches": [
     {
@@ -83,7 +83,7 @@
                 "protocol": "protocol6"
               }
             ],
-            "type": "radius_group"
+            "type": "dynamic_gbp"
           }
         },
         "additional_config_cmds": [

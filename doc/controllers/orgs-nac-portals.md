@@ -13,9 +13,9 @@ orgsNACPortals := client.OrgsNACPortals()
 * [Create Org Nac Portal](../../doc/controllers/orgs-nac-portals.md#create-org-nac-portal)
 * [Delete Org Nac Portal](../../doc/controllers/orgs-nac-portals.md#delete-org-nac-portal)
 * [Delete Org Nac Portal Image](../../doc/controllers/orgs-nac-portals.md#delete-org-nac-portal-image)
-* [Download Org Nac Portal Sso Saml Metadata](../../doc/controllers/orgs-nac-portals.md#download-org-nac-portal-sso-saml-metadata)
+* [Download Org Nac Portal Saml Metadata](../../doc/controllers/orgs-nac-portals.md#download-org-nac-portal-saml-metadata)
 * [Get Org Nac Portal](../../doc/controllers/orgs-nac-portals.md#get-org-nac-portal)
-* [Get Org Nac Portal Sso Saml Metadata](../../doc/controllers/orgs-nac-portals.md#get-org-nac-portal-sso-saml-metadata)
+* [Get Org Nac Portal Saml Metadata](../../doc/controllers/orgs-nac-portals.md#get-org-nac-portal-saml-metadata)
 * [List Org Nac Portal Sso Latest Failures](../../doc/controllers/orgs-nac-portals.md#list-org-nac-portal-sso-latest-failures)
 * [List Org Nac Portals](../../doc/controllers/orgs-nac-portals.md#list-org-nac-portals)
 * [Update Org Nac Portal](../../doc/controllers/orgs-nac-portals.md#update-org-nac-portal)
@@ -217,9 +217,9 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Download Org Nac Portal Sso Saml Metadata
+# Download Org Nac Portal Saml Metadata
 
-Download Org NAC Portal SSO SAML Metdata
+Download Org NAC Portal SAML Metdata
 
 Example of metadata.xml:
 
@@ -240,7 +240,7 @@ Example of metadata.xml:
 ```
 
 ```go
-DownloadOrgNacPortalSsoSamlMetadata(
+DownloadOrgNacPortalSamlMetadata(
     ctx context.Context,
     orgId uuid.UUID,
     nacportalId uuid.UUID) (
@@ -268,7 +268,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 nacportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsNACPortals.DownloadOrgNacPortalSsoSamlMetadata(ctx, orgId, nacportalId)
+apiResponse, err := orgsNACPortals.DownloadOrgNacPortalSamlMetadata(ctx, orgId, nacportalId)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -371,16 +371,16 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Org Nac Portal Sso Saml Metadata
+# Get Org Nac Portal Saml Metadata
 
-Get Org NAC Portal SSO SAML Metadata
+Get Org NAC Portal SAML Metadata
 
 ```go
-GetOrgNacPortalSsoSamlMetadata(
+GetOrgNacPortalSamlMetadata(
     ctx context.Context,
     orgId uuid.UUID,
     nacportalId uuid.UUID) (
-    models.ApiResponse[models.SsoSamlMetadata],
+    models.ApiResponse[models.SamlMetadata],
     error)
 ```
 
@@ -393,7 +393,7 @@ GetOrgNacPortalSsoSamlMetadata(
 
 ## Response Type
 
-[`models.SsoSamlMetadata`](../../doc/models/sso-saml-metadata.md)
+[`models.SamlMetadata`](../../doc/models/saml-metadata.md)
 
 ## Example Usage
 
@@ -404,7 +404,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 nacportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsNACPortals.GetOrgNacPortalSsoSamlMetadata(ctx, orgId, nacportalId)
+apiResponse, err := orgsNACPortals.GetOrgNacPortalSamlMetadata(ctx, orgId, nacportalId)
 if err != nil {
     log.Fatalln(err)
 } else {

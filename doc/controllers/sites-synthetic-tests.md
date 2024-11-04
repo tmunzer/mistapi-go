@@ -26,10 +26,7 @@ Get Device Synthetic Test
 GetSiteDeviceSyntheticTest(
     ctx context.Context,
     siteId uuid.UUID,
-    deviceId uuid.UUID,
-    mType *models.SynthetictestTypeEnum,
-    tenant *string,
-    node *models.HaClusterNodeEnum) (
+    deviceId uuid.UUID) (
     models.ApiResponse[models.SynthetictestInfo],
     error)
 ```
@@ -40,9 +37,6 @@ GetSiteDeviceSyntheticTest(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Query, Optional | synthetic test type |
-| `tenant` | `*string` | Query, Optional | tenant network in which `lan_connectivity` test is run |
-| `node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Query, Optional | tenant network in which `lan_connectivity` test is run |
 
 ## Response Type
 
@@ -57,13 +51,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-apiResponse, err := sitesSyntheticTests.GetSiteDeviceSyntheticTest(ctx, siteId, deviceId, nil, nil, nil)
+apiResponse, err := sitesSyntheticTests.GetSiteDeviceSyntheticTest(ctx, siteId, deviceId)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -174,6 +162,7 @@ SearchSiteSyntheticTest(
     by *string,
     reason *string,
     mType *models.SynthetictestTypeEnum,
+    protocol *models.SynthetictestProtocolEnum,
     tenant *string) (
     models.ApiResponse[models.ReponseSynthetictestSearch],
     error)
@@ -190,6 +179,7 @@ SearchSiteSyntheticTest(
 | `by` | `*string` | Query, Optional | entity who triggers the test |
 | `reason` | `*string` | Query, Optional | test failure reason |
 | `mType` | [`*models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Query, Optional | synthetic test type |
+| `protocol` | [`*models.SynthetictestProtocolEnum`](../../doc/models/synthetictest-protocol-enum.md) | Query, Optional | connectivity protocol |
 | `tenant` | `*string` | Query, Optional | tenant network in which lan_connectivity test was run |
 
 ## Response Type
@@ -217,7 +207,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, nil, nil, nil, nil, nil, nil, nil)
+
+
+apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

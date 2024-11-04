@@ -35,8 +35,8 @@
         }
       },
       "enable_mac_auth": false,
-      "forwarding": "wxtunnel",
-      "mac_auth_preferred": false
+      "flow_control": false,
+      "forwarding": "wxtunnel"
     }
   }
 }

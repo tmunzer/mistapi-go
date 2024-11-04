@@ -24,7 +24,7 @@ Site Settings
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
 | `ConfigAutoRevert` | `*bool` | Optional | whether to enable ap auto config revert<br>**Default**: `false` |
 | `ConfigPushPolicy` | [`*models.SiteSettingConfigPushPolicy`](../../doc/models/site-setting-config-push-policy.md) | Optional | mist also uses some heuristic rules to prevent destructive configs from being pushed |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `CriticalUrlMonitoring` | [`*models.SiteSettingCriticalUrlMonitoring`](../../doc/models/site-setting-critical-url-monitoring.md) | Optional | you can define some URLs that's critical to site operaitons the latency will be captured and considered for site health |
 | `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | by default, device_updown_thresold, if set, will apply to all devices types if different values for specific device type is desired, use the following<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
@@ -41,10 +41,10 @@ Site Settings
 | `GatewayAdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
 | `GatewayMgmt` | [`*models.SiteSettingGatewayMgmt`](../../doc/models/site-setting-gateway-mgmt.md) | Optional | Gateway Site settings |
 | `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | enable mist_nac to use radsec |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Mxedge` | [`*models.SiteSettingMxedge`](../../doc/models/site-setting-mxedge.md) | Optional | site mist edges form a cluster of radsecproxy servers |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | - |
 | `Mxtunnels` | [`*models.SiteMxtunnel`](../../doc/models/site-mxtunnel.md) | Optional | Site MxTunnel |
@@ -59,7 +59,7 @@ Site Settings
 | `PortUsages` | [`map[string]models.SwitchPortUsage`](../../doc/models/switch-port-usage.md) | Optional | - |
 | `Proxy` | [`*models.Proxy`](../../doc/models/proxy.md) | Optional | Proxy Configuration to talk to Mist |
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
-| `RadiusConfig` | [`*models.RadiusConfig`](../../doc/models/radius-config.md) | Optional | Junos Radius config |
+| `RadiusConfig` | [`*models.SwitchRadiusConfig`](../../doc/models/switch-radius-config.md) | Optional | Junos Radius config |
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
 | `RemoveExistingConfigs` | `*bool` | Optional | by default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled<br>**Default**: `false` |
 | `ReportGatt` | `*bool` | Optional | whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)<br>**Default**: `false` |
@@ -111,6 +111,7 @@ Site Settings
     }
   },
   "gateway_updown_threshold": 0,
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "persist_config_on_device": false,
   "remove_existing_configs": false,
@@ -166,7 +167,7 @@ Site Settings
           "protocol": "protocol6"
         }
       ],
-      "type": "radius_group"
+      "type": "dynamic_gbp"
     },
     "key1": {
       "gbp_tag": 14,
@@ -181,7 +182,7 @@ Site Settings
           "protocol": "protocol6"
         }
       ],
-      "type": "radius_group"
+      "type": "dynamic_gbp"
     },
     "key2": {
       "gbp_tag": 14,
@@ -196,7 +197,7 @@ Site Settings
           "protocol": "protocol6"
         }
       ],
-      "type": "radius_group"
+      "type": "dynamic_gbp"
     }
   },
   "additional_config_cmds": [
@@ -225,8 +226,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
+            "flow_control": false,
+            "forwarding": "site_mxedge"
           },
           "key1": {
             "disabled": false,
@@ -239,8 +240,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
+            "flow_control": false,
+            "forwarding": "site_mxedge"
           }
         }
       },
@@ -259,8 +260,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
+            "flow_control": false,
+            "forwarding": "site_mxedge"
           },
           "key1": {
             "disabled": false,
@@ -273,8 +274,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
+            "flow_control": false,
+            "forwarding": "site_mxedge"
           }
         }
       },
@@ -293,8 +294,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
+            "flow_control": false,
+            "forwarding": "site_mxedge"
           },
           "key1": {
             "disabled": false,
@@ -307,8 +308,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
+            "flow_control": false,
+            "forwarding": "site_mxedge"
           }
         }
       }

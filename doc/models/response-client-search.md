@@ -61,7 +61,7 @@
       "mac": "bcd074000000",
       "mfg": "Apple",
       "model": "MBP 16\\\" M1 2021",
-      "org_id": "1abff1aa-4571-4c1f-a409-153a1e7a7a24",
+      "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
       "os": [
         "Sonoma"
       ],

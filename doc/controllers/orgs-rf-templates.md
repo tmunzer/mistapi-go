@@ -50,7 +50,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.RfTemplate{
     Name:            "name6",
-    OrgId:           models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
 }
 
 apiResponse, err := orgsRFTemplates.CreateOrgRfTemplate(ctx, orgId, &body)
@@ -445,7 +444,6 @@ rftemplateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.RfTemplate{
     Name:            "name6",
-    OrgId:           models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
 }
 
 apiResponse, err := orgsRFTemplates.UpdateOrgRfTemplate(ctx, orgId, rftemplateId, &body)

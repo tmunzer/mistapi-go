@@ -15,11 +15,11 @@ Site
 | `AlarmtemplateId` | `models.Optional[uuid.UUID]` | Optional | Alarm Template ID, this takes precedence over the Org-level alarmtemplate_id |
 | `AptemplateId` | `models.Optional[uuid.UUID]` | Optional | AP Template ID, used by APs |
 | `CountryCode` | `*string` | Optional | country code for the site (for AP config generation), in two-character |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `GatewaytemplateId` | `models.Optional[uuid.UUID]` | Optional | Gateway Template ID, used by gateways |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Latlng` | [`*models.LatLng`](../../doc/models/lat-lng.md) | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `NetworktemplateId` | `models.Optional[uuid.UUID]` | Optional | Network Template ID, this takes precedence over Site Settings |
 | `Notes` | `*string` | Optional | optional, any notes about the site |
@@ -39,6 +39,7 @@ Site
   "aptemplate_id": "16bdf952-ade2-4491-80b0-85ce506c760b",
   "country_code": "US",
   "gatewaytemplate_id": "6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "Mist Office",
   "networktemplate_id": "12ae9bd2-e0ab-107b-72e8-a7a005565ec2",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",

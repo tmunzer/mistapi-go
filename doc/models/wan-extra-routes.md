@@ -1,21 +1,21 @@
 
-# Port Channelization
+# Wan Extra Routes
 
 ## Structure
 
-`PortChannelization`
+`WanExtraRoutes`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
+| `Via` | `*string` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "enabled": false
+  "via": "via8"
 }
 ```
 

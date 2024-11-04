@@ -13,9 +13,9 @@ Org statistics
 |  --- | --- | --- | --- |
 | `AlarmtemplateId` | `uuid.UUID` | Required | - |
 | `AllowMist` | `bool` | Required | - |
-| `CreatedTime` | `float64` | Required | - |
-| `Id` | `uuid.UUID` | Required | - |
-| `ModifiedTime` | `float64` | Required | - |
+| `CreatedTime` | `float64` | Required | when the object has been created, in epoch |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `ModifiedTime` | `float64` | Required | when the object has been modified for the last time, in epoch |
 | `MspId` | `uuid.UUID` | Required | - |
 | `Name` | `string` | Required | - |
 | `NumDevices` | `int` | Required | - |
@@ -34,9 +34,9 @@ Org statistics
   "alarmtemplate_id": "00001c2c-0000-0000-0000-000000000000",
   "allow_mist": false,
   "created_time": 91.72,
-  "id": "0000198e-0000-0000-0000-000000000000",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "modified_time": 243.24,
-  "msp_id": "0000178a-0000-0000-0000-000000000000",
+  "msp_id": "b9d42c2e-88ee-41f8-b798-f009ce7fe909",
   "name": "name2",
   "num_devices": 220,
   "num_devices_connected": 180,

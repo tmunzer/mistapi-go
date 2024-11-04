@@ -412,13 +412,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgSetting{
     ApUpdownThreshold:           models.NewOptional(models.ToPointer(0)),
-    BlacklistUrl:                models.ToPointer("https://papi.s3.amazonaws.com/blacklist/xxx..."),
     DeviceUpdownThreshold:       models.NewOptional(models.ToPointer(0)),
     DisablePcap:                 models.ToPointer(false),
     DisableRemoteShell:          models.ToPointer(false),
     GatewayUpdownThreshold:      models.NewOptional(models.ToPointer(10)),
     MxedgeFipsEnabled:           models.ToPointer(false),
-    OrgId:                       models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     SwitchUpdownThreshold:       models.NewOptional(models.ToPointer(0)),
     UiIdleTimeout:               models.ToPointer(10),
 }

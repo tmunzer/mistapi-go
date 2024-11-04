@@ -1,18 +1,18 @@
 
-# Config Switch Radius
+# Switch Radius
 
 by default, `radius_config` will be used. if a different one has to be used set `use_different_radius
 
 ## Structure
 
-`ConfigSwitchRadius`
+`SwitchRadius`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | - |
-| `RadiusConfig` | [`*models.RadiusConfig`](../../doc/models/radius-config.md) | Optional | Junos Radius config |
+| `RadiusConfig` | [`*models.SwitchRadiusConfig`](../../doc/models/switch-radius-config.md) | Optional | Junos Radius config |
 | `UseDifferentRadius` | `*string` | Optional | - |
 
 ## Example (as JSON)

@@ -9,10 +9,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `EndTime` | `*int` | Optional | - |
-| `Id` | `*string` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Quantity` | `*int` | Optional | - |
 | `StartTime` | `*int` | Optional | - |
 | `SubscriptionId` | `*string` | Optional | - |
@@ -22,9 +22,9 @@
 
 ```json
 {
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "created_time": 222.36,
   "end_time": 198,
-  "id": "id6",
   "modified_time": 112.6,
   "quantity": 170
 }

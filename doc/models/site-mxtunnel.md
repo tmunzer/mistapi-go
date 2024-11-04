@@ -15,14 +15,14 @@ Site MxTunnel
 | `ApSubnets` | `[]string` | Optional | list of subnets where we allow AP to establish Mist Tunnels from |
 | `AutoPreemption` | [`*models.AutoPreemption`](../../doc/models/auto-preemption.md) | Optional | schedule to preempt ap’s which are not connected to preferred peer |
 | `Clusters` | [`[]models.SiteMxtunnelCluster`](../../doc/models/site-mxtunnel-cluster.md) | Optional | for AP, how to connect to tunterm or radsecproxy |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `Enabled` | `*bool` | Optional | - |
 | `ForSite` | `*bool` | Optional | - |
 | `HelloInterval` | `*int` | Optional | in seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries<br>**Default**: `60`<br>**Constraints**: `>= 1`, `<= 300` |
 | `HelloRetries` | `*int` | Optional | **Default**: `7`<br>**Constraints**: `>= 2`, `<= 30` |
 | `Hosts` | `[]string` | Optional | hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP) |
-| `Id` | `*uuid.UUID` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Mtu` | `*int` | Optional | 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 1500` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Protocol` | [`*models.MxtunnelProtocolEnum`](../../doc/models/mxtunnel-protocol-enum.md) | Optional | enum: `ip`, `udp`<br>**Default**: `"udp"` |
@@ -36,6 +36,7 @@ Site MxTunnel
 {
   "hello_interval": 60,
   "hello_retries": 3,
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "mtu": 1100,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "protocol": "udp",

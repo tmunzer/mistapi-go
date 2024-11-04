@@ -13,7 +13,7 @@ Asset Filter
 |  --- | --- | --- | --- |
 | `ApMac` | `*string` | Optional | - |
 | `Beam` | `*int` | Optional | - |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `Disabled` | `*bool` | Optional | **Default**: `false` |
 | `Disasbled` | `*bool` | Optional | whether the asset filter is disabled |
 | `EddystoneUidNamespace` | `*string` | Optional | eddystone uid namespace used to filter assets |
@@ -21,7 +21,7 @@ Asset Filter
 | `ForSite` | `*bool` | Optional | - |
 | `IbeaconMajor` | `*int` | Optional | ibeacon major value used to filter assets |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | ibeacon uuid used to filter assets |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `MfgCompanyId` | `*int` | Optional | ble manufacturing-specific company-id used to filter assets |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `string` | Required | - |
@@ -39,6 +39,7 @@ Asset Filter
   "eddystone_url": "https://www.abc.com",
   "ibeacon_major": 13,
   "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "mfg_company_id": 935,
   "name": "Visitor Tags",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",

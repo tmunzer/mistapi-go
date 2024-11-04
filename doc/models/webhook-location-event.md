@@ -16,7 +16,7 @@
 | `IbeaconMajor` | `*int` | Optional | - |
 | `IbeaconMinor` | `*int` | Optional | - |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | - |
-| `Id` | `uuid.UUID` | Required | unique id of the client (a client would have different id for different org) |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `Mac` | `*string` | Optional | - |
 | `MapId` | `uuid.UUID` | Required | map id |
 | `MfgCompanyId` | `*int` | Optional | optional, BLE manufacturing company ID |
@@ -33,7 +33,7 @@
 
 ```json
 {
-  "id": "000025fe-0000-0000-0000-000000000000",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "map_id": "00001f3e-0000-0000-0000-000000000000",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "timestamp": 76,

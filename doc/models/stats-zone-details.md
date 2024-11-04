@@ -14,7 +14,7 @@ Zone details statistics
 | `Assets` | `[]string` | Optional | list of ble assets currently in the zone and when they entered |
 | `ClientWaits` | [`models.StatsZoneDetailsClientWaits`](../../doc/models/stats-zone-details-client-waits.md) | Required | client wait time right now |
 | `Clients` | `[]string` | Optional | list of clients currently in the zone and when they entered |
-| `Id` | `uuid.UUID` | Required | id of the zone |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `MapId` | `uuid.UUID` | Required | map_id of the zone |
 | `Name` | `string` | Required | name of the zone |
 | `NumClients` | `int` | Required | - |
@@ -31,7 +31,7 @@ Zone details statistics
     "min": 600,
     "p95": 2800
   },
-  "id": "8ac84899-32db-6327-334c-9b6d58544cfe",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "map_id": "63eda950-c6da-11e4-a628-60f81dd250cc",
   "name": "Board Room",
   "num_clients": 80,

@@ -13,7 +13,7 @@ device gateway
 |  --- | --- | --- | --- |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
 | `BgpConfig` | [`map[string]models.BgpConfig`](../../doc/models/bgp-config.md) | Optional | - |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DeviceprofileId` | `*uuid.UUID` | Optional | - |
 | `DhcpdConfig` | [`*models.DhcpdConfig`](../../doc/models/dhcpd-config.md) | Optional | - |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
@@ -21,7 +21,7 @@ device gateway
 | `ExtraRoutes` | [`map[string]models.GatewayExtraRoute`](../../doc/models/gateway-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "10.0.0.0/8") |
 | `ExtraRoutes6` | [`map[string]models.GatewayExtraRoute`](../../doc/models/gateway-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `IdpProfiles` | [`map[string]models.IdpProfile`](../../doc/models/idp-profile.md) | Optional | Property key is the profile name |
 | `Image1Url` | `models.Optional[string]` | Optional | - |
 | `Image2Url` | `models.Optional[string]` | Optional | - |
@@ -31,7 +31,7 @@ device gateway
 | `Managed` | `*bool` | Optional | - |
 | `MapId` | `*uuid.UUID` | Optional | map where the device belongs to |
 | `Model` | `*string` | Optional | device Model |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Networks` | [`[]models.Network`](../../doc/models/network.md) | Optional | - |
@@ -65,7 +65,9 @@ device gateway
       "via": "2a02:1234:200a::100"
     }
   },
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "map_id": "63eda950-c6da-11e4-a628-60f81dd250cc",
+  "msp_id": "b9d42c2e-88ee-41f8-b798-f009ce7fe909",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "router_id": "10.2.1.10",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
@@ -94,7 +96,7 @@ device gateway
       "bfd_multiplier": 90,
       "communities": [
         {
-          "id": "id8",
+          "id": "00001b06-0000-0000-0000-000000000000",
           "local_preference": 56,
           "vpn_name": "vpn_name0"
         }

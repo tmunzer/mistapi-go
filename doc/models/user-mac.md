@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Labels` | `[]string` | Optional | - |
 | `Mac` | `string` | Required | only non-local-admin MAC is accepted |
 | `Name` | `*string` | Optional | - |
@@ -21,6 +21,7 @@
 
 ```json
 {
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "labels": [
     "byod",
     "flr1"
@@ -29,8 +30,7 @@
   "name": "Printer2",
   "notes": "mac address refers to Canon printers",
   "radius_group": "VIP",
-  "vlan": "30",
-  "id": "000003ce-0000-0000-0000-000000000000"
+  "vlan": "30"
 }
 ```
 

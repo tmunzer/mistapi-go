@@ -55,8 +55,6 @@ body := models.WxlanTunnel{
     IsStatic:      models.ToPointer(false),
     Mtu:           models.ToPointer(0),
     Name:          "name6",
-    OrgId:         models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    SiteId:        models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     UseUdp:        models.ToPointer(false),
 }
 
@@ -439,8 +437,6 @@ body := models.WxlanTunnel{
     IsStatic:      models.ToPointer(false),
     Mtu:           models.ToPointer(0),
     Name:          "name6",
-    OrgId:         models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    SiteId:        models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     UseUdp:        models.ToPointer(false),
 }
 

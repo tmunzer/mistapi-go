@@ -56,9 +56,7 @@ body := models.AssetFilter{
     IbeaconUuid:           models.ToPointer(uuid.MustParse("f3f17139-704a-f03a-2786-0400279e37c3")),
     MfgCompanyId:          models.ToPointer(935),
     Name:                  "Visitor Tags",
-    OrgId:                 models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     ServiceUuid:           models.ToPointer(uuid.MustParse("0000fe6a-0000-1000-8000-0030459b3cfb")),
-    SiteId:                models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
 }
 
 apiResponse, err := sitesAssetFilters.CreateSiteAssetFilters(ctx, siteId, &body)
@@ -329,9 +327,7 @@ body := models.AssetFilter{
     IbeaconUuid:           models.ToPointer(uuid.MustParse("f3f17139-704a-f03a-2786-0400279e37c3")),
     MfgCompanyId:          models.ToPointer(935),
     Name:                  "Visitor Tags",
-    OrgId:                 models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     ServiceUuid:           models.ToPointer(uuid.MustParse("0000fe6a-0000-1000-8000-0030459b3cfb")),
-    SiteId:                models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
 }
 
 apiResponse, err := sitesAssetFilters.UpdateSiteAssetFilter(ctx, siteId, assetfilterId, &body)

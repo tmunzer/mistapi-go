@@ -11,6 +11,7 @@ sitesStatsCalls := client.SitesStatsCalls()
 ## Methods
 
 * [Count Site Calls](../../doc/controllers/sites-stats-calls.md#count-site-calls)
+* [Get Site Calls Summary](../../doc/controllers/sites-stats-calls.md#get-site-calls-summary)
 * [List Site Troubleshoot Calls](../../doc/controllers/sites-stats-calls.md#list-site-troubleshoot-calls)
 * [Search Site Calls](../../doc/controllers/sites-stats-calls.md#search-site-calls)
 * [Troubleshoot Site Call](../../doc/controllers/sites-stats-calls.md#troubleshoot-site-call)
@@ -90,6 +91,86 @@ if err != nil {
   ],
   "start": 0,
   "total": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Get Site Calls Summary
+
+Summarized, aggregated stats for the site calls
+
+```go
+GetSiteCallsSummary(
+    ctx context.Context,
+    siteId uuid.UUID,
+    apMac *string,
+    app *string,
+    start *int,
+    end *int) (
+    models.ApiResponse[models.ResponseStatsCallsSummary],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `apMac` | `*string` | Query, Optional | AP MAC, optional |
+| `app` | `*string` | Query, Optional | app name (`zoom` or `teams`). default is both. Optional |
+| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+
+## Response Type
+
+[`models.ResponseStatsCallsSummary`](../../doc/models/response-stats-calls-summary.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+app := "zoom"
+
+
+
+
+
+apiResponse, err := sitesStatsCalls.GetSiteCallsSummary(ctx, siteId, nil, &app, nil, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "bad_minutes": 5566,
+  "bad_minutes_client": 526,
+  "bad_minutes_site_wan": 3612,
+  "bad_minutes_wireless": 1428,
+  "num_aps": 1,
+  "num_users": 3,
+  "total_minutes": 575217
 }
 ```
 

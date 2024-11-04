@@ -354,7 +354,6 @@ body := models.NacRule{
     Enabled:      models.ToPointer(true),
     Name:         "name6",
     Order:        models.ToPointer(1),
-    OrgId:        models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
 }
 
 apiResponse, err := orgsNACRules.UpdateOrgNacRule(ctx, orgId, nacruleId, &body)

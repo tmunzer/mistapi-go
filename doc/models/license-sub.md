@@ -9,10 +9,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `EndTime` | `*int` | Optional | end date of the license term |
-| `Id` | `*uuid.UUID` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `OrderId` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Quantity` | `*int` | Optional | number of devices entitled for this license |
@@ -25,10 +25,10 @@
 
 ```json
 {
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "created_time": 46.48,
   "end_time": 18,
-  "id": "00001912-0000-0000-0000-000000000000",
   "modified_time": 32.48,
   "order_id": "order_id8"
 }

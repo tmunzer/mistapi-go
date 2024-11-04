@@ -15,7 +15,7 @@ AP
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
 | `Centrak` | [`*models.ApCentrak`](../../doc/models/ap-centrak.md) | Optional | - |
 | `ClientBridge` | [`*models.ApClientBridge`](../../doc/models/ap-client-bridge.md) | Optional | - |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `DisableEth1` | `*bool` | Optional | whether to disable eth1 port<br>**Default**: `false` |
 | `DisableEth2` | `*bool` | Optional | whether to disable eth2 port<br>**Default**: `false` |
@@ -24,7 +24,7 @@ AP
 | `EslConfig` | [`*models.ApEslConfig`](../../doc/models/ap-esl-config.md) | Optional | - |
 | `ForSite` | `*bool` | Optional | - |
 | `Height` | `*float64` | Optional | height, in meters, optional |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Image1Url` | `models.Optional[string]` | Optional | - |
 | `Image2Url` | `models.Optional[string]` | Optional | - |
 | `Image3Url` | `models.Optional[string]` | Optional | - |
@@ -36,7 +36,7 @@ AP
 | `MapId` | `*uuid.UUID` | Optional | map where the device belongs to |
 | `Mesh` | [`*models.ApMesh`](../../doc/models/ap-mesh.md) | Optional | Mesh AP settings |
 | `Model` | `*string` | Optional | device Model |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |
 | `Notes` | `*string` | Optional | any notes about this AP |
 | `NtpServers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
@@ -65,6 +65,7 @@ AP
   "disable_eth3": false,
   "disable_module": false,
   "height": 2.75,
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "map_id": "63eda950-c6da-11e4-a628-60f81dd250cc",
   "name": "conference room",
   "notes": "slightly off center",

@@ -36,7 +36,7 @@ BLE AP settings
 | `IbeaconMajor` | `*int` | Optional | Major number for iBeacon<br>**Constraints**: `>= 1`, `<= 65535` |
 | `IbeaconMinor` | `*int` | Optional | Minor number for iBeacon<br>**Constraints**: `>= 1`, `<= 65535` |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | optional, if not specified, the same UUID as the beacon will be used |
-| `Power` | `*int` | Optional | required if `power_mode`==`custom`<br>**Default**: `9`<br>**Constraints**: `>= 1`, `<= 10` |
+| `Power` | `*int` | Optional | required if `power_mode`==`custom`; else use `power_mode` as default<br>**Constraints**: `>= 2`, `<= 7` |
 | `PowerMode` | [`*models.BleConfigPowerModeEnum`](../../doc/models/ble-config-power-mode-enum.md) | Optional | enum: `custom`, `default`<br>**Default**: `"default"` |
 
 ## Example (as JSON)
@@ -72,7 +72,6 @@ BLE AP settings
   "ibeacon_major": 13,
   "ibeacon_minor": 138,
   "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
-  "power": 10,
   "power_mode": "custom"
 }
 ```

@@ -95,6 +95,7 @@ RRM
     "noise": 86.52
   },
   "rftemplate": {
+    "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
     "name": "name6",
     "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
     "ant_gain_24": 220,

@@ -175,8 +175,6 @@ body := models.Webhook{
         "x-custom-1": "your_custom_header_value1",
         "x-custom-2": "your_custom_header_value2",
     })),
-    OrgId:              models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    SiteId:             models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     Type:               models.ToPointer(models.WebhookTypeEnum("http-post")),
     VerifyCert:         models.ToPointer(true),
 }
@@ -653,8 +651,6 @@ body := models.Webhook{
         "x-custom-1": "your_custom_header_value1",
         "x-custom-2": "your_custom_header_value2",
     })),
-    OrgId:              models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    SiteId:             models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     Type:               models.ToPointer(models.WebhookTypeEnum("http-post")),
     VerifyCert:         models.ToPointer(true),
 }

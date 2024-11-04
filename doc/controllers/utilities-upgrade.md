@@ -1170,11 +1170,11 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MxedgeUpgradeMulti{
-    Channel:         models.ToPointer(models.MxedgeUpgradeChannelEnum("stable")),
-    MxedgeIds:       []uuid.UUID{
+    Channel:              models.ToPointer(models.MxedgeUpgradeChannelEnum("stable")),
+    MxedgeIds:            []uuid.UUID{
         uuid.MustParse("387804a7-3474-85ce-15a2-f9a9684c9c90"),
     },
-    Versions:        models.ToPointer(models.MxedgeUpgradeVersion{
+    Versions:             models.ToPointer(models.MxedgeUpgradeVersion{
         Mxagent:     "current",
         Tunterm:     "default",
     }),

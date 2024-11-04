@@ -11,7 +11,7 @@ SDK Client statistics
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `uuid.UUID` | Required | - |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `LastSeen` | `float64` | Required | last seen timestamp |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | map_id of the sdk client (if known), or null |
 | `Name` | `*string` | Optional | name of the sdk client (if provided) |
@@ -24,7 +24,7 @@ SDK Client statistics
 
 ```json
 {
-  "id": "de87bf9d-183f-e383-cc68-6ba43947d403",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "last_seen": 1428939600.0,
   "map_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
   "name": "John's iPhone",

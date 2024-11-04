@@ -9,14 +9,14 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Since` | `*float64` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "000013e4-0000-0000-0000-000000000000",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "since": 236.52
 }
 ```

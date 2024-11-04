@@ -13,7 +13,7 @@
 | `BytesOut` | `*int` | Optional | - |
 | `HealthCategory` | `*string` | Optional | - |
 | `HealthScore` | `*int` | Optional | - |
-| `Id` | `*string` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Mode` | `*string` | Optional | - |
 | `Model` | `*string` | Optional | - |
 | `State` | `*string` | Optional | - |
@@ -24,11 +24,11 @@
 
 ```json
 {
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "bytes_in": 190,
   "bytes_out": 182,
   "health_category": "health_category2",
-  "health_score": 184,
-  "id": "id2"
+  "health_score": 184
 }
 ```
 

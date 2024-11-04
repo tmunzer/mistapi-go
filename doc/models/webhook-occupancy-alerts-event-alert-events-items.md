@@ -25,7 +25,7 @@
   "current_occupancy": 80,
   "map_id": "00002274-0000-0000-0000-000000000000",
   "occupancy_limit": 188,
-  "org_id": "52b50564-8821-4c3e-97be-5061c7760002",
+  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "timestamp": 144.22,
   "type": "COMPLIANCE-OK",
   "zone_id": "00002544-0000-0000-0000-000000000000",

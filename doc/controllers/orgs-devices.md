@@ -866,13 +866,14 @@ SearchOrgDevices(
     ipAddress *string,
     mxtunnelStatus *models.SearchOrgDevicesMxtunnelStatusEnum,
     mxedgeId *string,
+    mxedgeIds *string,
     lldpSystemName *string,
     lldpSystemDesc *string,
     lldpPortId *string,
     lldpMgmtAddr *string,
-    band24Bandwith *int,
-    band5Bandwith *int,
-    band6Bandwith *int,
+    band24Bandwidth *int,
+    band5Bandwidth *int,
+    band6Bandwidth *int,
     band24Channel *int,
     band5Channel *int,
     band6Channel *int,
@@ -899,13 +900,14 @@ SearchOrgDevices(
 | `ipAddress` | `*string` | Query, Optional | - |
 | `mxtunnelStatus` | [`*models.SearchOrgDevicesMxtunnelStatusEnum`](../../doc/models/search-org-devices-mxtunnel-status-enum.md) | Query, Optional | MxTunnel status, up / down |
 | `mxedgeId` | `*string` | Query, Optional | Mist Edge id, if AP is connecting to a Mist Edge |
+| `mxedgeIds` | `*string` | Query, Optional | comma separated list of Mist Edge ids, if AP is connecting to a Mist Edge |
 | `lldpSystemName` | `*string` | Query, Optional | LLDP system name |
 | `lldpSystemDesc` | `*string` | Query, Optional | LLDP system description |
 | `lldpPortId` | `*string` | Query, Optional | LLDP port id |
 | `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
-| `band24Bandwith` | `*int` | Query, Optional | Bandwith of band_24 |
-| `band5Bandwith` | `*int` | Query, Optional | Bandwith of band_5 |
-| `band6Bandwith` | `*int` | Query, Optional | Bandwith of band_6 |
+| `band24Bandwidth` | `*int` | Query, Optional | bandwidth of band_24 |
+| `band5Bandwidth` | `*int` | Query, Optional | bandwidth of band_5 |
+| `band6Bandwidth` | `*int` | Query, Optional | bandwidth of band_6 |
 | `band24Channel` | `*int` | Query, Optional | Channel of band_24 |
 | `band5Channel` | `*int` | Query, Optional | Channel of band_5 |
 | `band6Channel` | `*int` | Query, Optional | Channel of band_6 |
@@ -966,6 +968,8 @@ ipAddress := "192.168.1.1"
 
 
 
+
+
 limit := 100
 
 
@@ -974,7 +978,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

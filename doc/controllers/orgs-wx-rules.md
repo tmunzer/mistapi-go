@@ -14,7 +14,6 @@ orgsWxRules := client.OrgsWxRules()
 * [Delete Org Wx Rule](../../doc/controllers/orgs-wx-rules.md#delete-org-wx-rule)
 * [Get Org Wx Rule](../../doc/controllers/orgs-wx-rules.md#get-org-wx-rule)
 * [List Org Wx Rules](../../doc/controllers/orgs-wx-rules.md#list-org-wx-rules)
-* [List Org Wx Rules Derived](../../doc/controllers/orgs-wx-rules.md#list-org-wx-rules-derived)
 * [Update Org Wx Rule](../../doc/controllers/orgs-wx-rules.md#update-org-wx-rule)
 
 
@@ -309,93 +308,6 @@ limit := 100
 page := 1
 
 apiResponse, err := orgsWxRules.ListOrgWxRules(ctx, orgId, &limit, &page)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-[
-  {
-    "action": "allow",
-    "apply_tags": [
-      "c049dfcd-0c73-5014-1c64-062e9903f1e5"
-    ],
-    "blocked_apps": [
-      "mist",
-      "all-videos"
-    ],
-    "created_time": 0,
-    "dst_allow_wxtags": [
-      "fff34466-eec0-3756-6765-381c728a6037",
-      "eee2c7b0-d1d0-5a30-f349-e35fa43dc3b3"
-    ],
-    "dst_deny_wxtags": [
-      "aaa34466-eec0-3756-6765-381c728a6037",
-      "bbb2c7b0-d1d0-5a30-f349-e35fa43dc3b3"
-    ],
-    "enabled": true,
-    "for_site": true,
-    "id": "497f6eca-6276-4993-bfeb-53ebbbba6f08",
-    "modified_time": 0,
-    "order": 1,
-    "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
-    "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
-    "src_wxtags": [
-      "8bfc2490-d726-3587-038d-cb2e71bd2330",
-      "3aa8e73f-9f46-d827-8d6a-567bb7e67fc9"
-    ]
-  }
-]
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# List Org Wx Rules Derived
-
-Get Derived Org WxRule
-
-```go
-ListOrgWxRulesDerived(
-    ctx context.Context,
-    orgId uuid.UUID) (
-    models.ApiResponse[[]models.WxlanRule],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orgId` | `uuid.UUID` | Template, Required | - |
-
-## Response Type
-
-[`[]models.WxlanRule`](../../doc/models/wxlan-rule.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-apiResponse, err := orgsWxRules.ListOrgWxRulesDerived(ctx, orgId)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -10,17 +10,17 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CpuStat` | [`*models.StatsMxedgeCpuStat`](../../doc/models/stats-mxedge-cpu-stat.md) | Optional | CPU/core stats list |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `FipsEnabled` | `*bool` | Optional | alue indicating fips configuration on the device |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `IpStat` | [`*models.StatsMxedgeIpStat`](../../doc/models/stats-mxedge-ip-stat.md) | Optional | IP stats |
 | `LagStat` | [`map[string]models.StatsMxedgeLagStat`](../../doc/models/stats-mxedge-lag-stat.md) | Optional | Stat for LAG (Link Aggregation Group). Property key is the LAG name |
 | `LastSeen` | `*float64` | Optional | - |
 | `Mac` | `*string` | Optional | - |
 | `MemoryStat` | [`*models.StatsMxedgeMemoryStat`](../../doc/models/stats-mxedge-memory-stat.md) | Optional | Memory usage |
 | `Model` | `*string` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `MxagentRegistered` | `*bool` | Optional | - |
 | `MxclusterId` | `*uuid.UUID` | Optional | - |
 | `Name` | `*string` | Optional | The name of the tunnel |
@@ -29,7 +29,6 @@
 | `OobIpStat` | [`*models.StatsMxedgeOobIpStat`](../../doc/models/stats-mxedge-oob-ip-stat.md) | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PortStat` | [`map[string]models.StatsMxedgePortStat`](../../doc/models/stats-mxedge-port-stat.md) | Optional | - |
-| `SensorStat` | `*interface{}` | Optional | - |
 | `Serial` | `models.Optional[string]` | Optional | - |
 | `ServiceStat` | [`map[string]models.StatsMxedgeServiceStat`](../../doc/models/stats-mxedge-service-stat.md) | Optional | stat for each services |
 | `Services` | `[]string` | Optional | - |
@@ -46,9 +45,8 @@
 
 ```json
 {
-  "created_time": 1632684398.0,
   "for_site": false,
-  "id": "00000000-0000-0000-1000-020000a80cb4",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "lag_stat": {
     "lacp0": {
       "active_ports": [
@@ -60,7 +58,6 @@
   "last_seen": 1633721215,
   "mac": "020000a80cb4",
   "model": "ME-VM",
-  "modified_time": 1633643629,
   "mxagent_registered": true,
   "mxcluster_id": "678bc339-7635-4556-bbc0-e77ad493ef8b",
   "name": "me-vm-1",
@@ -137,6 +134,7 @@
     "system": 80,
     "usage": 46
   },
+  "created_time": 71.86,
   "fips_enabled": false
 }
 ```

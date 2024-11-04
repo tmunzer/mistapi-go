@@ -15,7 +15,6 @@ utilitiesLAN := client.UtilitiesLAN()
 * [Clear Bpdu Erros From Ports on Switch](../../doc/controllers/utilities-lan.md#clear-bpdu-erros-from-ports-on-switch)
 * [Create Site Device Snapshot](../../doc/controllers/utilities-lan.md#create-site-device-snapshot)
 * [Poll Site Switch Stats](../../doc/controllers/utilities-lan.md#poll-site-switch-stats)
-* [Ports Bounce From Switch](../../doc/controllers/utilities-lan.md#ports-bounce-from-switch)
 * [Reauth Org Dot 1 X Wired Client](../../doc/controllers/utilities-lan.md#reauth-org-dot-1-x-wired-client)
 * [Reauth Site Dot 1 X Wired Client](../../doc/controllers/utilities-lan.md#reauth-site-dot-1-x-wired-client)
 * [Upgrade Device Bios](../../doc/controllers/utilities-lan.md#upgrade-device-bios)
@@ -321,90 +320,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := utilitiesLAN.PollSiteSwitchStats(ctx, siteId, deviceId)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    fmt.Println(resp.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Ports Bounce From Switch
-
-Port Bounce can be performed from the Switch.The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
-
-#### Subscribe to Device Command outputs
-
-`WS /api-ws/v1/stream`
-
-```json
-{
-    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-}
-```
-
-##### Example output from ws stream
-
-```json
-{
-    "event": "data",
-    "channel": "/sites/4ac1dcf4-9d8b-7211-65c4-057819f0862b/devices/00000000-0000-0000-1000-5c5b350e0060/cmd",
-    "data": {
-        "session": "session_id",
-        "raw": "Port bounce complete."
-    }
-}
-```
-
-```go
-PortsBounceFromSwitch(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsBouncePort) (
-    http.Response,
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsBouncePort`](../../doc/models/utils-bounce-port.md) | Body, Optional | Request Body |
-
-## Response Type
-
-``
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsBouncePort{
-    Ports: []string{
-        "ge-0/0/0",
-        "ge-0/0/1",
-    },
-}
-
-resp, err := utilitiesLAN.PortsBounceFromSwitch(ctx, siteId, deviceId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

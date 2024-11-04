@@ -44,7 +44,7 @@ WLAN
 | `ClientLimitUp` | `*int` | Optional | kbps |
 | `ClientLimitUpEnabled` | `*bool` | Optional | if uplink limiting per-client is enabled<br>**Default**: `false` |
 | `CoaServers` | [`models.Optional[[]models.CoaServer]`](../../doc/models/coa-server.md) | Optional | list of COA (change of authorization) servers, optional |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `Disable11ax` | `*bool` | Optional | some old WLAN drivers may not be compatible<br>**Default**: `false` |
 | `DisableHtVhtRates` | `*bool` | Optional | to disable ht or vht rates<br>**Default**: `false` |
 | `DisableUapsd` | `*bool` | Optional | whether to disable U-APSD<br>**Default**: `false` |
@@ -64,7 +64,7 @@ WLAN
 | `HideSsid` | `*bool` | Optional | whether to hide SSID in beacon<br>**Default**: `false` |
 | `HostnameIe` | `*bool` | Optional | include hostname inside IE in AP beacons / probe responses<br>**Default**: `false` |
 | `Hotspot20` | [`*models.WlanHotspot20`](../../doc/models/wlan-hotspot-20.md) | Optional | hostspot 2.0 wlan settings |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `InjectDhcpOption82` | [`*models.WlanInjectDhcpOption82`](../../doc/models/wlan-inject-dhcp-option-82.md) | Optional | - |
 | `Interface` | [`*models.WlanInterfaceEnum`](../../doc/models/wlan-interface-enum.md) | Optional | where this WLAN will be connected to. enum: `all`, `eth0`, `eth1`, `eth2`, `eth3`, `mxtunnel`, `site_mxedge`, `wxtunnel`<br>**Default**: `"all"` |
 | `Isolation` | `*bool` | Optional | whether to stop clients to talk to each other<br>**Default**: `false` |
@@ -75,7 +75,7 @@ WLAN
 | `MaxIdletime` | `*int` | Optional | max idle time in seconds<br>**Default**: `1800`<br>**Constraints**: `>= 60`, `<= 86400` |
 | `MaxNumClients` | `*int` | Optional | maximum number of client connected to the SSID. `0` means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 128` |
 | `MistNac` | [`*models.WlanMistNac`](../../doc/models/wlan-mist-nac.md) | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `MxtunnelId` | `*uuid.UUID` | Optional | (deprecated, use mxtunnel_ids instead) when `interface`==`mxtunnel`, id of the Mist Tunnel |
 | `MxtunnelIds` | `[]string` | Optional | when `interface`=`mxtunnel`, id of the Mist Tunnel |
@@ -148,6 +148,7 @@ WLAN
   "fast_dot1x_timers": false,
   "hide_ssid": false,
   "hostname_ie": false,
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "interface": "all",
   "isolation": false,
   "l2_isolation": false,
@@ -156,6 +157,7 @@ WLAN
   "limit_probe_response": false,
   "max_idletime": 1800,
   "max_num_clients": 0,
+  "msp_id": "b9d42c2e-88ee-41f8-b798-f009ce7fe909",
   "no_static_dns": false,
   "no_static_ip": false,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",

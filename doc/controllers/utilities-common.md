@@ -11,6 +11,7 @@ utilitiesCommon := client.UtilitiesCommon()
 ## Methods
 
 * [Arp From Device](../../doc/controllers/utilities-common.md#arp-from-device)
+* [Bounce Device Port](../../doc/controllers/utilities-common.md#bounce-device-port)
 * [Clear Site Device Mac Table](../../doc/controllers/utilities-common.md#clear-site-device-mac-table)
 * [Clear Site Device Policy Hit Count](../../doc/controllers/utilities-common.md#clear-site-device-policy-hit-count)
 * [Create Site Device Shell Session](../../doc/controllers/utilities-common.md#create-site-device-shell-session)
@@ -104,6 +105,94 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Bounce Device Port
+
+Port Bounce can be performed from Switch/Gateway.
+
+**Note:** Ports starting with vme, ae, irb, and HA control ports (for SSR only) are not supported
+
+The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}
+```
+
+##### Example output from ws stream
+
+```json
+{
+    "event": "data",
+    "channel": "/sites/4ac1dcf4-9d8b-7211-65c4-057819f0862b/devices/00000000-0000-0000-1000-5c5b350e0060/cmd",
+    "data": {
+        "session": "session_id",
+        "raw": "Port bounce complete."
+    }
+}
+```
+
+```go
+BounceDevicePort(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsBouncePort) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsBouncePort`](../../doc/models/utils-bounce-port.md) | Body, Optional | Request Body |
+
+## Response Type
+
+``
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsBouncePort{
+    Ports: []string{
+        "ge-0/0/0",
+        "ge-0/0/1",
+    },
+}
+
+resp, err := utilitiesCommon.BounceDevicePort(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
 }
 ```
 

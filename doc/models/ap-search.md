@@ -9,13 +9,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Band24Bandwith` | `*string` | Optional | Bandwith of band_24 |
+| `Band24Bandwidth` | `*string` | Optional | bandwidth of band_24 |
 | `Band24Channel` | `*int` | Optional | Channel of band_24 |
 | `Band24Power` | `*int` | Optional | - |
-| `Band5Bandwith` | `*string` | Optional | Bandwith of band_5 |
+| `Band5Bandwidth` | `*string` | Optional | bandwidth of band_5 |
 | `Band5Channel` | `*int` | Optional | Channel of band_5 |
 | `Band5Power` | `*int` | Optional | - |
-| `Band6Bandwith` | `*string` | Optional | - |
+| `Band6Bandwidth` | `*string` | Optional | - |
 | `Band6Channel` | `*int` | Optional | Channel of band_6 |
 | `Band6Power` | `*int` | Optional | - |
 | `Eth0PortSpeed` | `*int` | Optional | Port speed of eth0 |
@@ -32,6 +32,7 @@
 | `Mac` | `*string` | Optional | device model |
 | `Model` | `*string` | Optional | - |
 | `MxedgeId` | `*string` | Optional | Mist Edge id, if AP is connecting to a Mist Edge |
+| `MxedgeIds` | `*string` | Optional | Comma separated list of Mist Edge ids, if AP is connecting to a Mist Edge |
 | `MxtunnelStatus` | `*string` | Optional | MxTunnel status |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PowerConstrained` | `*bool` | Optional | - |
@@ -47,10 +48,10 @@
 {
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "band_24_bandwith": "band_24_bandwith8",
+  "band_24_bandwidth": "band_24_bandwidth2",
   "band_24_channel": 200,
   "band_24_power": 154,
-  "band_5_bandwith": "band_5_bandwith6",
+  "band_5_bandwidth": "band_5_bandwidth0",
   "band_5_channel": 132
 }
 ```

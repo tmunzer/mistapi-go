@@ -33,8 +33,8 @@
             }
           },
           "enable_mac_auth": false,
-          "forwarding": "site_mxedge",
-          "mac_auth_preferred": false
+          "flow_control": false,
+          "forwarding": "site_mxedge"
         },
         "key1": {
           "disabled": false,
@@ -47,8 +47,8 @@
             }
           },
           "enable_mac_auth": false,
-          "forwarding": "site_mxedge",
-          "mac_auth_preferred": false
+          "flow_control": false,
+          "forwarding": "site_mxedge"
         }
       }
     }

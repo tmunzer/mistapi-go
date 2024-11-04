@@ -568,12 +568,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Org{
     AllowMist:       models.ToPointer(true),
-    CreatedTime:     models.ToPointer(float64(1652905706)),
-    Id:              models.ToPointer(uuid.MustParse("2818e386-8dec-2562-9ede-5b8a0fbbdc71")),
-    ModifiedTime:    models.ToPointer(float64(1652905706)),
-    MspId:           models.ToPointer(uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909")),
-    MspLogoUrl:      models.ToPointer("https://example.com/logo/b9d42c2e-88ee-41f8-b798-f009ce7fe909.jpeg"),
-    MspName:         models.ToPointer("MSP"),
     Name:            "Org",
     SessionExpiry:   models.ToPointer(1440),
 }

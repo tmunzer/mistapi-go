@@ -15,5 +15,4 @@ if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`, `ping_identity
 | `custom` |
 | `google` |
 | `okta` |
-| `ping_identity` |
 

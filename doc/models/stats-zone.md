@@ -13,10 +13,10 @@ Zone statistics
 |  --- | --- | --- | --- |
 | `AssetsWaits` | [`*models.StatsZoneAssetsWaits`](../../doc/models/stats-zone-assets-waits.md) | Optional | ble asset wait time right now |
 | `ClientsWaits` | [`*models.StatsZoneClientsWaits`](../../doc/models/stats-zone-clients-waits.md) | Optional | client wait time right now |
-| `CreatedTime` | `*float64` | Optional | - |
-| `Id` | `uuid.UUID` | Required | id of the zone |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `MapId` | `uuid.UUID` | Required | map_id of the zone |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | name of the zone |
 | `NumAssets` | `*int` | Optional | number of assets |
 | `NumClients` | `*int` | Optional | number of wifi clients (unconnected + connected) |
@@ -32,10 +32,8 @@ Zone statistics
 
 ```json
 {
-  "created_time": 1616625211.0,
-  "id": "123470c7-5d9d-424a-8475-8b344c621234",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "map_id": "123449d4-d12f-4feb-b40f-5be0e2ae1234",
-  "modified_time": 1616625211.0,
   "name": "Zone A",
   "num_assets": 0,
   "num_clients": 80,
@@ -90,7 +88,9 @@ Zone statistics
     "max": 141.12,
     "min": 188.3,
     "p95": 39.22
-  }
+  },
+  "created_time": 13.1,
+  "modified_time": 65.86
 }
 ```
 

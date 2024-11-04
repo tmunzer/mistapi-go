@@ -265,8 +265,6 @@ siteName := "site_name8"
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Map{
-    Flags:              map[string]int{
-    },
     Height:             models.ToPointer(0),
     LatlngBr:           models.ToPointer(models.LatlngBr{
         Lat: models.ToPointer("string"),
@@ -1711,22 +1709,14 @@ siteName := "site_name8"
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Map{
-    Flags:              map[string]int{
-        "assetHoldTime": 5,
-        "storeTime": 10,
-    },
     Height:             models.ToPointer(1500),
     Locked:             models.ToPointer(false),
     Name:               models.ToPointer("Mist Office"),
-    OrgId:              models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     Orientation:        models.ToPointer(30),
     OriginX:            models.ToPointer(35),
     OriginY:            models.ToPointer(60),
     Ppm:                models.ToPointer(float64(40.94)),
-    SiteId:             models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
-    ThumbnailUrl:       models.ToPointer("https://url/to/image.png"),
     Type:               models.ToPointer(models.MapTypeEnum("image")),
-    Url:                models.ToPointer("https://url/to/image.png"),
     UseAutoOrientation: models.ToPointer(false),
     UseAutoPlacement:   models.ToPointer(false),
     Width:              models.ToPointer(1250),

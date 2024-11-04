@@ -11,7 +11,6 @@ sitesMxEdges := client.SitesMxEdges()
 ## Methods
 
 * [Count Site Mx Edge Events](../../doc/controllers/sites-mx-edges.md#count-site-mx-edge-events)
-* [Create Site Mx Edge](../../doc/controllers/sites-mx-edges.md#create-site-mx-edge)
 * [Delete Site Mx Edge](../../doc/controllers/sites-mx-edges.md#delete-site-mx-edge)
 * [Get Site Mx Edge](../../doc/controllers/sites-mx-edges.md#get-site-mx-edge)
 * [List Site Mx Edges](../../doc/controllers/sites-mx-edges.md#list-site-mx-edges)
@@ -110,125 +109,6 @@ if err != nil {
   ],
   "start": 0,
   "total": 0
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Create Site Mx Edge
-
-Create Site Mist Edge
-
-```go
-CreateSiteMxEdge(
-    ctx context.Context,
-    siteId uuid.UUID,
-    body *models.Mxedge) (
-    models.ApiResponse[models.Mxedge],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.Mxedge`](../../doc/models/mxedge.md) | Body, Optional | - |
-
-## Response Type
-
-[`models.Mxedge`](../../doc/models/mxedge.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.Mxedge{
-    Id:                        models.ToPointer(uuid.MustParse("95ddd29a-6a3c-929e-a431-51a5b09f36a6")),
-    Magic:                     models.ToPointer("L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD"),
-    Model:                     "ME-100",
-    MxclusterId:               models.ToPointer(uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4")),
-    Name:                      "Guest",
-    Note:                      models.ToPointer("note for mxedge"),
-    OrgId:                     models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    SiteId:                    models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
-}
-
-apiResponse, err := sitesMxEdges.CreateSiteMxEdge(ctx, siteId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "id": "95ddd29a-6a3c-929e-a431-51a5b09f36a6",
-  "magic": "L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD",
-  "model": "ME-100",
-  "mxagent_registered": true,
-  "mxcluster_id": "572586b7-f97b-a22b-526c-8b97a3f609c4",
-  "mxedge_mgmt": {
-    "mist_password": "MIST_PASSWORD",
-    "root_password": "ROOT_PASSWORD"
-  },
-  "name": "Guest",
-  "ntp_servers": [],
-  "oob_ip_config": {
-    "dns": [
-      "8.8.8.8",
-      "4.4.4.4"
-    ],
-    "gateway": "10.2.1.254",
-    "ip": "10.2.1.10",
-    "netmask": "255.255.255.0",
-    "type": "static"
-  },
-  "tunterm_dhcpd_config": {
-    "2": {
-      "enabled": true,
-      "servers": [
-        "11.2.3.44"
-      ]
-    },
-    "enabled": false,
-    "servers": [
-      "11.2.3.4"
-    ]
-  },
-  "tunterm_extra_routes": {
-    "11.0.0.0/8": {
-      "via": "10.3.3.1"
-    }
-  },
-  "tunterm_ip_config": {
-    "dns": [
-      "8.8.8.8"
-    ],
-    "dns_suffix": [
-      ".mist.local"
-    ],
-    "gateway": "10.2.1.254",
-    "ip": "10.2.1.1",
-    "netmask": "255.255.255.0"
-  }
 }
 ```
 
@@ -649,14 +529,10 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Mxedge{
-    Id:                        models.ToPointer(uuid.MustParse("95ddd29a-6a3c-929e-a431-51a5b09f36a6")),
-    Magic:                     models.ToPointer("L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD"),
     Model:                     "ME-100",
     MxclusterId:               models.ToPointer(uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4")),
     Name:                      "Guest",
     Note:                      models.ToPointer("note for mxedge"),
-    OrgId:                     models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    SiteId:                    models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
 }
 
 apiResponse, err := sitesMxEdges.UpdateSiteMxEdge(ctx, siteId, mxedgeId, &body)

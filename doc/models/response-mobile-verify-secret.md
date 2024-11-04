@@ -18,7 +18,7 @@
 ```json
 {
   "name": "name2",
-  "org_id": "00000a76-0000-0000-0000-000000000000",
+  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "secret": "secret2"
 }
 ```

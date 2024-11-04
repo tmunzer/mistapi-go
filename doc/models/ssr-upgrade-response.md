@@ -12,7 +12,7 @@
 | `Channel` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Counts` | [`models.SsrUpgradeResponseCounts`](../../doc/models/ssr-upgrade-response-counts.md) | Required | - |
 | `DeviceType` | `string` | Required | - |
-| `Id` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `Status` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Strategy` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Versions` | `map[string]string` | Required | - |
@@ -29,7 +29,7 @@
     "upgrading": 112
   },
   "device_type": "device_type0",
-  "id": "id0",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "status": "status2",
   "strategy": "strategy0",
   "versions": {

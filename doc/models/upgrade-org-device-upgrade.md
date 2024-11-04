@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `StartTime` | `*float64` | Optional | - |
 | `Status` | [`*models.DeviceUpgradeStatusEnum`](../../doc/models/device-upgrade-status-enum.md) | Optional | status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading` |
 | `Targets` | [`*models.UpgradeOrgDeviceTargets`](../../doc/models/upgrade-org-device-targets.md) | Optional | - |
@@ -18,7 +18,7 @@
 
 ```json
 {
-  "id": "473f6eca-6276-4993-bfeb-53cbbbba6f18",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "start_time": 1717658765.0,
   "status": "created",
   "targets": {

@@ -456,14 +456,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 guestMac := "0000000000ab"
 
 body := models.GuestOrg{
-    Authorized:             models.ToPointer(true),
-    AuthorizedExpiringTime: models.ToPointer(float64(1480704955)),
-    AuthorizedTime:         models.ToPointer(float64(1480704355)),
-    Company:                models.ToPointer("abc"),
-    Email:                  models.ToPointer("john@abc.com"),
+    Company:                models.ToPointer("string"),
+    Email:                  models.ToPointer("user@example.com"),
+    Mac:                    models.ToPointer("string"),
     Minutes:                models.ToPointer(1440),
     Name:                   models.ToPointer("John Smith"),
-    Ssid:                   models.ToPointer("Guest-SSID"),
     WlanId:                 uuid.MustParse("6748cfa6-4e12-11e6-9188-0242ac110007"),
 }
 

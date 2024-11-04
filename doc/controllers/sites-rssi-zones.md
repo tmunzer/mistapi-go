@@ -51,7 +51,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.RssiZone{
     Devices:      []models.RssiZoneDevice{
         models.RssiZoneDevice{
-            DeviceId: uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             Rssi:     0,
         },
     },
@@ -317,7 +316,6 @@ rssizoneId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.RssiZone{
     Devices:      []models.RssiZoneDevice{
         models.RssiZoneDevice{
-            DeviceId: uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             Rssi:     0,
         },
     },

@@ -16,7 +16,8 @@ sitesDevicesWired := client.SitesDevicesWired()
 
 # Delete Site Local Switch Port Config
 
-Sometimes HelpDesk Admin needs to change port configs
+API Calls delete all the existing port config local overrides, and reapply the configured planed at the device level
+(with site / template heritance).
 
 ```go
 DeleteSiteLocalSwitchPortConfig(
@@ -68,14 +69,23 @@ if err != nil {
 
 # Update Site Local Switch Port Config
 
-Sometimes HelpDesk Admin needs to change port configs
+API Calls to add port config local overrides. This can be used by Switch Port Operators or Helpdesk administrators
+to change a Switch Port configuration without having to change the switch configuration.
+
+The local overrides configured for the switchports with `no_local_overwrite`==`true` won't be applied to the switch configuration.
+
+> NOTE:
+> 
+> When using the API Call, it is required to put send all overrides in the PUT request Payload, even the existing once.
+> 
+> The current overrides can be retrieved with the API Call [Get Site Device]($e/Sites%20Devices/getSiteDevice). The local overrides will show up separately from the `port_config` in the `local_port_config` so it can be easily identified (and cleared)
 
 ```go
 UpdateSiteLocalSwitchPortConfig(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
-    body *models.JunosPortConfig) (
+    body map[string]models.JunosLocalPortConfig) (
     http.Response,
     error)
 ```
@@ -86,7 +96,7 @@ UpdateSiteLocalSwitchPortConfig(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Body, Optional | - |
+| `body` | [`map[string]models.JunosLocalPortConfig`](../../doc/models/junos-local-port-config.md) | Body, Optional | - |
 
 ## Response Type
 
@@ -101,21 +111,23 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-body := models.JunosPortConfig{
-    AeDisableLacp:    models.ToPointer(true),
-    AeIdx:            models.ToPointer(0),
-    Aggregated:       models.ToPointer(false),
-    Description:      models.ToPointer("string"),
-    DisableAutoneg:   models.ToPointer(true),
-    Duplex:           models.ToPointer(models.JunosPortConfigDuplexEnum("auto")),
-    DynamicUsage:     models.NewOptional(models.ToPointer("string")),
-    Esilag:           models.ToPointer(true),
-    PoeDisabled:      models.ToPointer(true),
-    Speed:            models.ToPointer(models.JunosPortConfigSpeedEnum("auto")),
-    Usage:            "string",
+body := map[string]models.JunosLocalPortConfig{
+    "ge-0/0/0-1": models.JunosLocalPortConfig{
+        AeDisableLacp:  models.ToPointer(true),
+        AeIdx:          models.ToPointer(0),
+        Aggregated:     models.ToPointer(false),
+        Description:    models.ToPointer("string"),
+        DisableAutoneg: models.ToPointer(true),
+        Duplex:         models.ToPointer(models.JunosPortConfigDuplexEnum("auto")),
+        DynamicUsage:   models.NewOptional(models.ToPointer("string")),
+        Esilag:         models.ToPointer(true),
+        PoeDisabled:    models.ToPointer(true),
+        Speed:          models.ToPointer(models.JunosPortConfigSpeedEnum("auto")),
+        Usage:          "string",
+    },
 }
 
-resp, err := sitesDevicesWired.UpdateSiteLocalSwitchPortConfig(ctx, siteId, deviceId, &body)
+resp, err := sitesDevicesWired.UpdateSiteLocalSwitchPortConfig(ctx, siteId, deviceId, body)
 if err != nil {
     log.Fatalln(err)
 } else {

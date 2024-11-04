@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2409.1.11**
+> Version: **2410.1.1**
 > 
-> Date: **October 17, 2024**
+> Date: **November 4, 2024**
 
 ---
 
@@ -284,6 +284,7 @@ This API uses the following authentication schemes.
 * [Sites Location](doc/controllers/sites-location.md)
 * [Sites Maps](doc/controllers/sites-maps.md)
 * [Sites Maps-Auto-Placement](doc/controllers/sites-maps-auto-placement.md)
+* [Sites Maps-Auto-Zone](doc/controllers/sites-maps-auto-zone.md)
 * [Sites Mx Edges](doc/controllers/sites-mx-edges.md)
 * [Sites Networks](doc/controllers/sites-networks.md)
 * [Sites Network Templates](doc/controllers/sites-network-templates.md)

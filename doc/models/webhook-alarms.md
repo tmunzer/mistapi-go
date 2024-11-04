@@ -22,7 +22,7 @@ Events specific fields for other alarm event type can be found with API https://
 {
   "events": [
     {
-      "id": "00000ce4-0000-0000-0000-000000000000",
+      "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
       "last_seen": 94.7,
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",

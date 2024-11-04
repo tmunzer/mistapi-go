@@ -14,7 +14,7 @@
 | `By` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `CurrSite` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `DeviceName` | `*string` | Optional | - |
-| `Id` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `LastSeen` | `*float64` | Optional | - |
 | `Mac` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `Manufacture` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
@@ -26,6 +26,7 @@
 
 ```json
 {
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "ap_mac": "ap_mac4",
   "beam": 115.36,
   "by": "by4",

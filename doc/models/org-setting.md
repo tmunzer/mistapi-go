@@ -21,7 +21,7 @@ Org Settings
 | `Celona` | [`*models.OrgSettingCelona`](../../doc/models/org-setting-celona.md) | Optional | - |
 | `Cloudshark` | [`*models.OrgSettingCloudshark`](../../doc/models/org-setting-cloudshark.md) | Optional | - |
 | `Cradlepoint` | [`*models.OrgSettingCradlepoint`](../../doc/models/org-setting-cradlepoint.md) | Optional | - |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DeviceCert` | [`*models.OrgSettingDeviceCert`](../../doc/models/org-setting-device-cert.md) | Optional | common device cert, optional |
 | `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery via<br><br>* device-updowns webhooks topic,<br>* Mist Alert Framework; e.g. send AP/SW/GW down event only if AP/SW/GW Up is not seen within the threshold in minutes; 0 - 240, default is 0 (trigger immediate)<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `DisablePcap` | `*bool` | Optional | whether to disallow Mist to analyze pcap files (this is required for marvis pcap)<br>**Default**: `false` |
@@ -29,21 +29,22 @@ Org Settings
 | `ForSite` | `*bool` | Optional | - |
 | `GatewayMgmt` | [`*models.OrgSettingGatewayMgmt`](../../doc/models/org-setting-gateway-mgmt.md) | Optional | - |
 | `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Installer` | [`*models.OrgSettingInstaller`](../../doc/models/org-setting-installer.md) | Optional | - |
 | `Jcloud` | [`*models.OrgSettingJcloud`](../../doc/models/org-setting-jcloud.md) | Optional | - |
+| `JcloudRa` | [`*models.OrgSettingJcloudRa`](../../doc/models/org-setting-jcloud-ra.md) | Optional | JCloud Routing Assurance connexion |
 | `Juniper` | [`*models.AccountJuniperInfo`](../../doc/models/account-juniper-info.md) | Optional | - |
 | `Mgmt` | [`*models.OrgSettingMgmt`](../../doc/models/org-setting-mgmt.md) | Optional | management-related properties |
 | `MistNac` | [`*models.OrgSettingMistNac`](../../doc/models/org-setting-mist-nac.md) | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `MxedgeFipsEnabled` | `*bool` | Optional | **Default**: `false` |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | - |
+| `OpticPortConfig` | [`map[string]models.OpticPortConfigPort`](../../doc/models/optic-port-config-port.md) | Optional | Property key is the interface name or range (e.g. `et-0/0/47`, `et-0/0/48-49`) |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PasswordPolicy` | [`*models.OrgSettingPasswordPolicy`](../../doc/models/org-setting-password-policy.md) | Optional | password policy |
 | `Pcap` | [`*models.OrgSettingPcap`](../../doc/models/org-setting-pcap.md) | Optional | - |
 | `PcapBucketVerified` | `*bool` | Optional | - |
-| `PortChannelization` | [`*models.PortChannelization`](../../doc/models/port-channelization.md) | Optional | - |
 | `Security` | [`*models.OrgSettingSecurity`](../../doc/models/org-setting-security.md) | Optional | - |
 | `SimpleAlert` | [`*models.SimpleAlert`](../../doc/models/simple-alert.md) | Optional | Set of heuristic rules will be enabled when marvis subscription is not available.<br>It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures |
 | `SwitchMgmt` | [`*models.OrgSettingSwitchMgmt`](../../doc/models/org-setting-switch-mgmt.md) | Optional | - |
@@ -66,6 +67,8 @@ Org Settings
   "disable_pcap": false,
   "disable_remote_shell": false,
   "gateway_updown_threshold": 10,
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
+  "msp_id": "b9d42c2e-88ee-41f8-b798-f009ce7fe909",
   "mxedge_fips_enabled": false,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "switch_updown_threshold": 0,

@@ -27,6 +27,7 @@
     {
       "duration": 600.0,
       "format": "stream",
+      "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
       "max_num_packets": 1024,
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
       "pcap_aps": {
@@ -49,8 +50,7 @@
       "aps": [
         "aps7",
         "aps8"
-      ],
-      "id": "000023ba-0000-0000-0000-000000000000"
+      ]
     }
   ],
   "start": 154,

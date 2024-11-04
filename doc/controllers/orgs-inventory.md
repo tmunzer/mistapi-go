@@ -11,11 +11,13 @@ orgsInventory := client.OrgsInventory()
 ## Methods
 
 * [Add Org Inventory](../../doc/controllers/orgs-inventory.md#add-org-inventory)
+* [Count Org Inventory](../../doc/controllers/orgs-inventory.md#count-org-inventory)
 * [Create Org Gateway Ha Cluster](../../doc/controllers/orgs-inventory.md#create-org-gateway-ha-cluster)
 * [Delete Org Gateway Ha Cluster](../../doc/controllers/orgs-inventory.md#delete-org-gateway-ha-cluster)
 * [Get Org Inventory](../../doc/controllers/orgs-inventory.md#get-org-inventory)
 * [Reevaluate Org Auto Assignment](../../doc/controllers/orgs-inventory.md#reevaluate-org-auto-assignment)
 * [Replace Org Devices](../../doc/controllers/orgs-inventory.md#replace-org-devices)
+* [Search Org Inventory](../../doc/controllers/orgs-inventory.md#search-org-inventory)
 * [Update Org Inventory Assignment](../../doc/controllers/orgs-inventory.md#update-org-inventory-assignment)
 
 
@@ -107,6 +109,90 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | OK - if any of entries are valid or there’s no errors | [`ResponseInventoryErrorException`](../../doc/models/response-inventory-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Count Org Inventory
+
+Count in the Org Inventory
+
+```go
+CountOrgInventory(
+    ctx context.Context,
+    orgId uuid.UUID,
+    mType *models.DeviceTypeEnum,
+    distinct *models.InventoryCountDistinctEnum,
+    limit *int,
+    page *int) (
+    models.ApiResponse[models.RepsonseCount],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `distinct` | [`*models.InventoryCountDistinctEnum`](../../doc/models/inventory-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+
+## Response Type
+
+[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+mType := models.DeviceTypeEnum("ap")
+
+distinct := models.InventoryCountDistinctEnum("model")
+
+limit := 100
+
+page := 1
+
+apiResponse, err := orgsInventory.CountOrgInventory(ctx, orgId, &mType, &distinct, &limit, &page)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "distinct": "string",
+  "end": 0,
+  "limit": 0,
+  "results": [
+    {
+      "count": 0,
+      "property": "string"
+    }
+  ],
+  "start": 0,
+  "total": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
@@ -470,6 +556,140 @@ if err != nil {
   "success": [
     "5c5b350e0001"
   ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Search Org Inventory
+
+Search in the Org Inventory
+
+```go
+SearchOrgInventory(
+    ctx context.Context,
+    orgId uuid.UUID,
+    mType *models.DeviceTypeEnum,
+    mac *string,
+    vcMac *string,
+    masterMac *string,
+    siteId *string,
+    serial *string,
+    master *string,
+    sku *string,
+    version *string,
+    status *string,
+    text *string,
+    limit *int,
+    page *int) (
+    models.ApiResponse[models.InventorySearch],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mac` | `*string` | Query, Optional | MAC address |
+| `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC Address |
+| `masterMac` | `*string` | Query, Optional | master device mac for virtual mac cluster |
+| `siteId` | `*string` | Query, Optional | site id if assigned, null if not assigned |
+| `serial` | `*string` | Query, Optional | device serial |
+| `master` | `*string` | Query, Optional | true / false |
+| `sku` | `*string` | Query, Optional | device sku |
+| `version` | `*string` | Query, Optional | device version |
+| `status` | `*string` | Query, Optional | device status |
+| `text` | `*string` | Query, Optional | wildcards for name, mac, serial |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+
+## Response Type
+
+[`models.InventorySearch`](../../doc/models/inventory-search.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+mType := models.DeviceTypeEnum("ap")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+limit := 100
+
+page := 1
+
+apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, &page)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "limit": 1000,
+  "results": [
+    {
+      "mac": "f01c2df166e0",
+      "master": true,
+      "members": [
+        {
+          "mac": "f01c2df166e0",
+          "model": "EX4300-48P",
+          "serial": "PD3714460200"
+        }
+      ],
+      "model": "EX4300-48P",
+      "name": "mist-wa-ex4300-VC",
+      "org_id": "9b853544-51e4-45fb-81ac-a442e4a111d0",
+      "serial": "PD3714460200",
+      "site_id": "01dc141d-b6af-4baa-b00f-0e31ef954c4f",
+      "sku": "EX4300-48P",
+      "status": "disconnected",
+      "type": "switch",
+      "vc_mac": "f01c2df166e0",
+      "version": "21.4R3.5"
+    }
+  ],
+  "total": 1
 }
 ```
 

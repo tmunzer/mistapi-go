@@ -17,16 +17,16 @@ Applications used for the Gateway configurations
 | `Apps` | `[]string` | Optional | when `type`==`apps`, list of applications are available through:<br><br>* /api/v1/const/applications<br>* /api/v1/const/gateway_applications<br>* /insight/top_app_by-bytes?wired=true |
 | `ClientLimitDown` | `*int` | Optional | 0 means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 107374182` |
 | `ClientLimitUp` | `*int` | Optional | 0 means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 107374182` |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `Description` | `*string` | Optional | - |
 | `Dscp` | [`*models.ServiceDscp`](../../doc/models/containers/service-dscp.md) | Optional | for SSR only, when `traffic_type`==`custom`. 0-63 or variable |
 | `FailoverPolicy` | [`*models.ServiceFailoverPolicyEnum`](../../doc/models/service-failover-policy-enum.md) | Optional | enum: `non_revertable`, `none`, `revertable`<br>**Default**: `"revertable"` |
 | `Hostnames` | `[]string` | Optional | if `type`==`custom`, web filtering |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `MaxJitter` | [`*models.ServiceMaxJitter`](../../doc/models/containers/service-max-jitter.md) | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable |
 | `MaxLatency` | [`*models.ServiceMaxLatency`](../../doc/models/containers/service-max-latency.md) | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable |
 | `MaxLoss` | [`*models.ServiceMaxLoss`](../../doc/models/containers/service-max-loss.md) | Optional | for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `ServiceLimitDown` | `*int` | Optional | 0 means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 107374182` |
@@ -56,6 +56,7 @@ Applications used for the Gateway configurations
   "client_limit_down": 300000,
   "client_limit_up": 300000,
   "failover_policy": "revertable",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "service_limit_down": 300000,
   "service_limit_up": 300000,

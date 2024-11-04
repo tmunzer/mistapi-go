@@ -49,14 +49,12 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsoRoleMsp{
     Name:         "name6",
-    OrgId:        models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     Privileges:   []models.PrivilegeMsp{
         models.PrivilegeMsp{
             Role:       models.PrivilegeMspRoleEnum("admin"),
             Scope:      models.PrivilegeMspScopeEnum("org"),
         },
     },
-    SiteId:       models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
 }
 
 apiResponse, err := mSPsSSORoles.CreateMspSsoRole(ctx, mspId, &body)
@@ -240,14 +238,12 @@ ssoroleId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsoRoleMsp{
     Name:         "name6",
-    OrgId:        models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     Privileges:   []models.PrivilegeMsp{
         models.PrivilegeMsp{
             Role:       models.PrivilegeMspRoleEnum("admin"),
             Scope:      models.PrivilegeMspScopeEnum("org"),
         },
     },
-    SiteId:       models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
 }
 
 apiResponse, err := mSPsSSORoles.UpdateMspSsoRole(ctx, mspId, ssoroleId, &body)

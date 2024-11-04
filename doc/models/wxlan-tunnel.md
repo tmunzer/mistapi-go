@@ -11,17 +11,17 @@ WxLAn Tunnel
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `Dmvpn` | [`*models.WxlanTunnelDmvpn`](../../doc/models/wxlan-tunnel-dmvpn.md) | Optional | Dynamic Multipoint VPN configurations |
 | `ForMgmt` | `*bool` | Optional | determined during creation time and cannot be toggled. A management tunnel cannot be used by wxlan rule or by wlan<br>**Default**: `false` |
 | `ForSite` | `*bool` | Optional | - |
 | `HelloInterval` | `*int` | Optional | in seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries.<br>**Default**: `60`<br>**Constraints**: `>= 1`, `<= 300` |
 | `HelloRetries` | `*int` | Optional | **Default**: `7`<br>**Constraints**: `>= 2`, `<= 30` |
 | `Hostname` | `*string` | Optional | optional, overwrite the hostname in SCCRQ control message, default is \u201C\u201D or null, %H and %M can be used, which will be replace with corresponding values:<br><br>* %H: name of the ap if provided (and will be stripped so it can be used for hostname) and fallbacks to MAC<br>* %M: MAC (e.g. 5c5b350e0060) |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Ipsec` | [`*models.WxlanTunnelIpsec`](../../doc/models/wxlan-tunnel-ipsec.md) | Optional | IPSec-related configurations; requires DMVPN be enabled |
 | `IsStatic` | `*bool` | Optional | whether it’s static/unmanaged (i.e. no control session). As the session configurations are not compatible, cannot be toggled.<br>**Default**: `false` |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Mtu` | `*int` | Optional | 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 1500` |
 | `Name` | `string` | Required | The name of the tunnel |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -40,6 +40,7 @@ WxLAn Tunnel
   "for_mgmt": false,
   "hello_interval": 60,
   "hello_retries": 7,
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "is_static": false,
   "mtu": 0,
   "name": "name0",

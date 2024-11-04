@@ -13,7 +13,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
 |  --- | --- | --- | --- |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
 | `BgpConfig` | [`map[string]models.BgpConfig`](../../doc/models/bgp-config.md) | Optional | - |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DhcpdConfig` | [`*models.DhcpdConfig`](../../doc/models/dhcpd-config.md) | Optional | - |
 | `DnsOverride` | `*bool` | Optional | **Default**: `false` |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
@@ -21,10 +21,10 @@ Gateway Template is applied to a site for gateway(s) in a site.
 | `ExtraRoutes` | [`map[string]models.GatewayExtraRoute`](../../doc/models/gateway-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "10.0.0.0/8") |
 | `ExtraRoutes6` | [`map[string]models.GatewayExtraRoute`](../../doc/models/gateway-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `GatewayMatching` | [`*models.GatewayMatching`](../../doc/models/gateway-matching.md) | Optional | Gateway matching |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `IdpProfiles` | [`map[string]models.IdpProfile`](../../doc/models/idp-profile.md) | Optional | Property key is the profile name |
 | `IpConfigs` | [`map[string]models.GatewayIpConfigProperty`](../../doc/models/gateway-ip-config-property.md) | Optional | Property key is the network name |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `Networks` | [`[]models.Network`](../../doc/models/network.md) | Optional | - |
 | `NtpOverride` | `*bool` | Optional | **Default**: `false` |
@@ -52,6 +52,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
       "via": "2a02:1234:200a::100"
     }
   },
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "gw_template",
   "ntpOverride": false,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
@@ -76,7 +77,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
       "bfd_multiplier": 90,
       "communities": [
         {
-          "id": "id8",
+          "id": "00001b06-0000-0000-0000-000000000000",
           "local_preference": 56,
           "vpn_name": "vpn_name0"
         }
@@ -89,7 +90,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
       "bfd_multiplier": 90,
       "communities": [
         {
-          "id": "id8",
+          "id": "00001b06-0000-0000-0000-000000000000",
           "local_preference": 56,
           "vpn_name": "vpn_name0"
         }
@@ -102,7 +103,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
       "bfd_multiplier": 90,
       "communities": [
         {
-          "id": "id8",
+          "id": "00001b06-0000-0000-0000-000000000000",
           "local_preference": 56,
           "vpn_name": "vpn_name0"
         }

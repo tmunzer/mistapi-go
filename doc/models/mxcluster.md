@@ -11,12 +11,12 @@ mxCluster
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `MistDas` | [`*models.MxedgeDas`](../../doc/models/mxedge-das.md) | Optional | configure cloud-assisted dynamic authorization service on this cluster of mist edges |
 | `MistNac` | [`*models.MxclusterNac`](../../doc/models/mxcluster-nac.md) | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -37,12 +37,12 @@ mxCluster
 
 ```json
 {
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "tunterm_hosts_selection": "shuffle",
   "created_time": 209.42,
   "for_site": false,
-  "id": "00002078-0000-0000-0000-000000000000",
   "mist_das": {
     "coa_servers": [
       {

@@ -11,11 +11,11 @@ RSSI Zone
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `Devices` | [`[]models.RssiZoneDevice`](../../doc/models/rssi-zone-device.md) | Required | List of devices and the respective RSSI values to be considered in the zone<br>**Constraints**: *Unique Items Required* |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | The name of the zone |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
@@ -26,11 +26,11 @@ RSSI Zone
 {
   "devices": [
     {
-      "device_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+      "device_id": "00000000-0000-0000-1000-d8695a0f9e61",
       "rssi": 0
     }
   ],
-  "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "zone name",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",

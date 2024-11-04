@@ -12,12 +12,12 @@ Template
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Applies` | [`*models.TemplateApplies`](../../doc/models/template-applies.md) | Optional | where this template should be applied to, can be org_id, site_ids, sitegroup_ids |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DeviceprofileIds` | `[]uuid.UUID` | Optional | list of Device Profile ids |
 | `Exceptions` | [`*models.TemplateExceptions`](../../doc/models/template-exceptions.md) | Optional | where this template should not be applied to (takes precedence) |
 | `FilterByDeviceprofile` | `*bool` | Optional | whether to further filter by Device Profile |
-| `Id` | `*uuid.UUID` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 
@@ -25,6 +25,7 @@ Template
 
 ```json
 {
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "name6",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "applies": {

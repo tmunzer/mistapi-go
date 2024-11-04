@@ -24,8 +24,8 @@
   "limit": 108,
   "results": [
     {
+      "msp_id": "b9d42c2e-88ee-41f8-b798-f009ce7fe909",
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-      "msp_id": "000021b6-0000-0000-0000-000000000000",
       "name": "name6",
       "num_aps": 140,
       "num_gateways": 112,

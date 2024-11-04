@@ -17,7 +17,7 @@
 | `Colspan` | `*int` | Optional | - |
 | `Column` | `*int` | Optional | - |
 | `HideEmptyRows` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Metric` | [`*models.UiSettingsTileMetric`](../../doc/models/ui-settings-tile-metric.md) | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Row` | `*int` | Optional | - |
@@ -39,7 +39,7 @@
   "chartType": "timeSeries",
   "colspan": 5,
   "column": 1,
-  "id": "7a9ab38c-cfc3-483d-b51a-0aec571fadc0",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "New Analysis",
   "row": 1,
   "rowspan": 2,

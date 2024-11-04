@@ -24,17 +24,17 @@
   "limit": 116,
   "results": [
     {
-      "band_24_bandwith": "band_24_bandwith8",
+      "band_24_bandwidth": "band_24_bandwidth2",
       "band_24_channel": 200,
       "band_24_power": 154,
-      "band_5_bandwith": "band_5_bandwith6",
+      "band_5_bandwidth": "band_5_bandwidth0",
       "band_5_channel": 132
     },
     {
-      "band_24_bandwith": "band_24_bandwith8",
+      "band_24_bandwidth": "band_24_bandwidth2",
       "band_24_channel": 200,
       "band_24_power": 154,
-      "band_5_bandwith": "band_5_bandwith6",
+      "band_5_bandwidth": "band_5_bandwidth0",
       "band_5_channel": 132
     }
   ],

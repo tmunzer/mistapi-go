@@ -119,7 +119,7 @@ if err != nil {
 
 # Import Org Nac Crl
 
-Import NAC Org CRL file is a multipart POST which has a .crl file to allow user to manually upload a Certificate Revocation List file. We support one file upload per Issuer. Re-uploads for the same issuer will overwrite the existing file.
+The Import NAC Org CRL File endpoint allows users to manually upload a Certificate Revocation List (CRL) file in either PEM or DER format. This is a multipart POST request. We support one file upload per issuer, and re-uploads for the same issuer will overwrite the existing file.
 
 ```go
 ImportOrgNacCrl(
@@ -136,8 +136,8 @@ ImportOrgNacCrl(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `file` | `*models.FileWrapper` | Form, Optional | a binary .crl file |
-| `json` | `*string` | Form, Optional | json string with name for .crl file (optional) |
+| `file` | `*models.FileWrapper` | Form, Optional | a PEM or DER formatted CRL file |
+| `json` | `*string` | Form, Optional | a JSON string with "name" field for CRL file issuer (optional) |
 
 ## Response Type
 

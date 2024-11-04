@@ -57,7 +57,6 @@ body := models.NacTag{
     },
     MatchAll:             models.ToPointer(false),
     Name:                 "name6",
-    OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     RadiusAttrs:          []string{
         "Idle-Timeout=600",
         "Termination-Action=RADIUS-Request",
@@ -339,7 +338,6 @@ body := models.NacTag{
     },
     MatchAll:             models.ToPointer(false),
     Name:                 "name6",
-    OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     RadiusAttrs:          []string{
         "Idle-Timeout=600",
         "Termination-Action=RADIUS-Request",

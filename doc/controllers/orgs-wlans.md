@@ -92,7 +92,6 @@ body := models.Wlan{
     MaxNumClients:                      models.ToPointer(0),
     NoStaticDns:                        models.ToPointer(false),
     NoStaticIp:                         models.ToPointer(false),
-    OrgId:                              models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     PortalAllowedHostnames:             []string{
         "snapchat.com",
         "ibm.com",
@@ -104,9 +103,7 @@ body := models.Wlan{
     PortalDeniedHostnames:              []string{
         "msg.snapchat.com",
     },
-    PortalImage:                        models.NewOptional(models.ToPointer("https://url/to/image.png")),
     RoamMode:                           models.ToPointer(models.WlanRoamModeEnum("NONE")),
-    SiteId:                             models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     SleExcluded:                        models.ToPointer(false),
     Ssid:                               "corporate",
     UseEapolV1:                         models.ToPointer(false),

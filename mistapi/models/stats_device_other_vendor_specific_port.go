@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "github.com/google/uuid"
 )
 
 // StatsDeviceOtherVendorSpecificPort represents a StatsDeviceOtherVendorSpecificPort struct.
@@ -10,7 +11,8 @@ type StatsDeviceOtherVendorSpecificPort struct {
     BytesOut             *int           `json:"bytes_out,omitempty"`
     HealthCategory       *string        `json:"health_category,omitempty"`
     HealthScore          *int           `json:"health_score,omitempty"`
-    Id                   *string        `json:"id,omitempty"`
+    // Unique ID of the object instance in the Mist Organnization
+    Id                   *uuid.UUID     `json:"id,omitempty"`
     Mode                 *string        `json:"mode,omitempty"`
     Model                *string        `json:"model,omitempty"`
     State                *string        `json:"state,omitempty"`
@@ -93,14 +95,14 @@ func (s *StatsDeviceOtherVendorSpecificPort) UnmarshalJSON(input []byte) error {
 
 // tempStatsDeviceOtherVendorSpecificPort is a temporary struct used for validating the fields of StatsDeviceOtherVendorSpecificPort.
 type tempStatsDeviceOtherVendorSpecificPort  struct {
-    BytesIn        *int     `json:"bytes_in,omitempty"`
-    BytesOut       *int     `json:"bytes_out,omitempty"`
-    HealthCategory *string  `json:"health_category,omitempty"`
-    HealthScore    *int     `json:"health_score,omitempty"`
-    Id             *string  `json:"id,omitempty"`
-    Mode           *string  `json:"mode,omitempty"`
-    Model          *string  `json:"model,omitempty"`
-    State          *string  `json:"state,omitempty"`
-    Type           *string  `json:"type,omitempty"`
-    Uptime         *float64 `json:"uptime,omitempty"`
+    BytesIn        *int       `json:"bytes_in,omitempty"`
+    BytesOut       *int       `json:"bytes_out,omitempty"`
+    HealthCategory *string    `json:"health_category,omitempty"`
+    HealthScore    *int       `json:"health_score,omitempty"`
+    Id             *uuid.UUID `json:"id,omitempty"`
+    Mode           *string    `json:"mode,omitempty"`
+    Model          *string    `json:"model,omitempty"`
+    State          *string    `json:"state,omitempty"`
+    Type           *string    `json:"type,omitempty"`
+    Uptime         *float64   `json:"uptime,omitempty"`
 }

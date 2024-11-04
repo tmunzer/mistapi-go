@@ -14,13 +14,13 @@ Site statistics
 | `Address` | `string` | Required | - |
 | `AlarmtemplateId` | `*uuid.UUID` | Required | - |
 | `CountryCode` | `string` | Required | - |
-| `CreatedTime` | `float64` | Required | - |
-| `Id` | `uuid.UUID` | Required | - |
+| `CreatedTime` | `float64` | Required | when the object has been created, in epoch |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `Lat` | `float64` | Required | - |
 | `Latlng` | [`models.LatLng`](../../doc/models/lat-lng.md) | Required | - |
 | `Lng` | `float64` | Required | - |
-| `ModifiedTime` | `float64` | Required | - |
-| `MspId` | `*uuid.UUID` | Required | - |
+| `ModifiedTime` | `float64` | Required | when the object has been modified for the last time, in epoch |
+| `MspId` | `uuid.UUID` | Required | - |
 | `Name` | `string` | Required | - |
 | `NetworktemplateId` | `*uuid.UUID` | Required | - |
 | `NumAp` | `int` | Required | - |
@@ -47,7 +47,7 @@ Site statistics
   "alarmtemplate_id": "00000b0a-0000-0000-0000-000000000000",
   "country_code": "country_code6",
   "created_time": 47.86,
-  "id": "0000086c-0000-0000-0000-000000000000",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "lat": 183.64,
   "latlng": {
     "lat": 37.295833,
@@ -55,7 +55,7 @@ Site statistics
   },
   "lng": 239.82,
   "modified_time": 31.1,
-  "msp_id": "00000668-0000-0000-0000-000000000000",
+  "msp_id": "b9d42c2e-88ee-41f8-b798-f009ce7fe909",
   "name": "name6",
   "networktemplate_id": "000001e2-0000-0000-0000-000000000000",
   "num_ap": 224,

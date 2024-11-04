@@ -21,7 +21,7 @@ Switch settings
 | `MxedgeProxyHost` | `*string` | Optional | - |
 | `MxedgeProxyPort` | `*int` | Optional | **Default**: `2222`<br>**Constraints**: `>= 1`, `<= 65535` |
 | `ProtectRe` | [`*models.ProtectRe`](../../doc/models/protect-re.md) | Optional | restrict inbound-traffic to host<br>when enabled, all traffic that is not essential to our operation will be dropped<br>e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works |
-| `Radius` | [`*models.ConfigSwitchRadius`](../../doc/models/config-switch-radius.md) | Optional | by default, `radius_config` will be used. if a different one has to be used set `use_different_radius |
+| `Radius` | [`*models.SwitchRadius`](../../doc/models/switch-radius.md) | Optional | by default, `radius_config` will be used. if a different one has to be used set `use_different_radius |
 | `RootPassword` | `*string` | Optional | - |
 | `Tacacs` | [`*models.Tacacs`](../../doc/models/tacacs.md) | Optional | - |
 | `UseMxedgeProxy` | `*bool` | Optional | to use mxedge as proxy |

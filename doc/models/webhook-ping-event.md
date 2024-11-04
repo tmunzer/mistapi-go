@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `uuid.UUID` | Required | - |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `Name` | `string` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `float64` | Required | - |
@@ -18,9 +18,9 @@
 
 ```json
 {
-  "id": "0000207c-0000-0000-0000-000000000000",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "name6",
-  "site_id": "43e9c864-a7e4-4310-8031-d9817d2c5a43",
+  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "timestamp": 38.34
 }
 ```

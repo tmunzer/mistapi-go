@@ -13,19 +13,19 @@ Device Profile
 |  --- | --- | --- | --- |
 | `Aeroscout` | [`*models.ApAeroscout`](../../doc/models/ap-aeroscout.md) | Optional | Aeroscout AP settings |
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DisableEth1` | `*bool` | Optional | whether to disable eth1 port<br>**Default**: `false` |
 | `DisableEth2` | `*bool` | Optional | whether to disable eth2 port<br>**Default**: `false` |
 | `DisableEth3` | `*bool` | Optional | whether to disable eth3 port<br>**Default**: `false` |
 | `DisableModule` | `*bool` | Optional | whether to disable module port<br>**Default**: `false` |
 | `EslConfig` | [`*models.ApEslConfig`](../../doc/models/ap-esl-config.md) | Optional | - |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `IotConfig` | [`*models.ApIot`](../../doc/models/ap-iot.md) | Optional | IoT AP settings |
 | `IpConfig` | [`*models.ApIpConfig`](../../doc/models/ap-ip-config.md) | Optional | IP AP settings |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `Mesh` | [`*models.ApMesh`](../../doc/models/ap-mesh.md) | Optional | Mesh AP settings |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Required | - |
 | `NtpServers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -48,6 +48,7 @@ Device Profile
   "disable_eth2": false,
   "disable_eth3": false,
   "disable_module": false,
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "name0",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "poe_passthrough": false,

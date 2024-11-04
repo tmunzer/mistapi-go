@@ -12,15 +12,15 @@ PSK
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AdminSsoId` | `*string` | Optional | sso id for psk created from psk portal |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `Email` | `*string` | Optional | email to send psk expiring notifications to |
 | `ExpireTime` | `models.Optional[int]` | Optional | Expire time for this PSK key (epoch time in seconds). Default `null` (as no expiration) |
 | `ExpiryNotificationTime` | `*int` | Optional | Number of days before psk is expired. Used as to when to start sending reminder notification when the psk is about to expire |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Mac` | `*string` | Optional | if `usage`==`single`, the mac that this PSK ties to, empty if `auto-binding` |
 | `Macs` | `[]string` | Optional | if `usage`==`macs`, this list contains N number of client mac addresses or mac patterns(11:22:*) or both. This list is capped at 5000 |
 | `MaxUsage` | `*int` | Optional | For Org PSK Only. Max concurrent users for this PSK key. Default is 0 (unlimited)<br>**Default**: `0` |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `Note` | `*string` | Optional | - |
 | `NotifyExpiry` | `*bool` | Optional | If set to true, reminder notification will be sent when psk is about to expire<br>**Default**: `false` |
@@ -39,6 +39,7 @@ PSK
 ```json
 {
   "expire_time": 1614990263,
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "macs": [
     "11:22:33:44:55:66",
     "aa:bb:",

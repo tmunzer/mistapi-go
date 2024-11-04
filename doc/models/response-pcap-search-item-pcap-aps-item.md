@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Band` | `*string` | Optional | - |
-| `Bandwith` | `*string` | Optional | - |
+| `Bandwidth` | `*string` | Optional | - |
 | `Channel` | `*int` | Optional | - |
 | `TcpdumpExpression` | `models.Optional[string]` | Optional | - |
 
@@ -19,7 +19,7 @@
 ```json
 {
   "band": "band4",
-  "bandwith": "bandwith6",
+  "bandwidth": "bandwidth6",
   "channel": 16,
   "tcpdump_expression": "tcpdump_expression2"
 }

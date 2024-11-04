@@ -144,7 +144,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Template{
     Name:                  "name6",
-    OrgId:                 models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
 }
 
 apiResponse, err := orgsWLANTemplates.CreateOrgTemplate(ctx, orgId, &body)
@@ -470,7 +469,6 @@ templateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Template{
     Name:                  "name6",
-    OrgId:                 models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
 }
 
 apiResponse, err := orgsWLANTemplates.UpdateOrgTemplate(ctx, orgId, templateId, &body)

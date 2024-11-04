@@ -195,8 +195,6 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Map{
-    Flags:              map[string]int{
-    },
     Height:             models.ToPointer(0),
     HeightM:            models.ToPointer(float64(0)),
     LatlngBr:           models.ToPointer(models.LatlngBr{
@@ -885,8 +883,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Map{
-    Flags:              map[string]int{
-    },
     Height:             models.ToPointer(0),
     HeightM:            models.ToPointer(float64(0)),
     LatlngBr:           models.ToPointer(models.LatlngBr{

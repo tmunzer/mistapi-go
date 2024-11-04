@@ -25,6 +25,7 @@
       "connection_rssi": 33.56,
       "last_seen": 94.7,
       "mac": "mac4",
+      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "scan_data": [
         {
           "ap": "ap6",
@@ -35,8 +36,7 @@
           "ssid": "ssid4",
           "timestamp": 102.06
         }
-      ],
-      "site_id": "0000245a-0000-0000-0000-000000000000"
+      ]
     }
   ],
   "topic": "sdkclient_scan_data"

@@ -21,7 +21,7 @@ additional information per alarm type
 | `Gateways` | `[]string` | Optional | additional information: List of MACs of the gateways |
 | `Group` | `string` | Required | Group of the alarm |
 | `Hostnames` | `[]string` | Optional | additional information: List of Hostnames of the devices (AP/Switch/Gateway) |
-| `Id` | `uuid.UUID` | Required | UUID of the alarm |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `LastSeen` | `float64` | Required | Epoch (seconds) of the last incident/alarm within an alarm window |
 | `Note` | `*string` | Optional | Text describing the alarm |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -36,7 +36,7 @@ additional information per alarm type
 
 ```json
 {
-  "ack_admin_id": "6603c94c-eaf9-4014-9edf-b9f8eed6b183",
+  "ack_admin_id": "456b7016-a916-a4b1-78dd-72b947c152b7",
   "ack_admin_name": "Joe",
   "acked": true,
   "acked_time": 1711031352,
@@ -54,7 +54,7 @@ additional information per alarm type
     "MC_DavidL",
     "MCM_AP_33_Nishant"
   ],
-  "id": "483f6eca-6276-4993-bfeb-56cbbbba7f08",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "last_seen": 1711031774.0,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "severity": "critical",

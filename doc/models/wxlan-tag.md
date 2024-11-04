@@ -24,13 +24,13 @@ WxLAN Tag
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `LastIps` | `[]string` | Optional | - |
 | `Mac` | `models.Optional[string]` | Optional | if `type`==`client`, Client MAC Address |
 | `Match` | [`*models.WxlanTagMatchEnum`](../../doc/models/wxlan-tag-match-enum.md) | Optional | required if `type`==`match`. enum: `ap_id`, `app`, `asset_mac`, `client_mac`, `hostname`, `ip_range_subnet`, `port`, `psk_name`, `psk_role`, `radius_attr`, `radius_class`, `radius_group`, `radius_username`, `sdkclient_uuid`, `wlan_id` |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | The name |
 | `Op` | [`*models.WxlanTagOperationEnum`](../../doc/models/wxlan-tag-operation-enum.md) | Optional | required if `type`==`match`, type of tag (inclusive/exclusive). enum: `in`, `not_in`<br>**Default**: `"in"` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -47,6 +47,7 @@ WxLAN Tag
 
 ```json
 {
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "name6",
   "op": "in",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
@@ -55,7 +56,6 @@ WxLAN Tag
   "vlan_id": 1055,
   "created_time": 251.96,
   "for_site": false,
-  "id": "00001b36-0000-0000-0000-000000000000",
   "last_ips": [
     "last_ips0"
   ],

@@ -12,13 +12,13 @@
 | `Auth` | [`*models.PskPortalAuthEnum`](../../doc/models/psk-portal-auth-enum.md) | Optional | enum: `sponsor`, `sso`<br>**Default**: `"sso"` |
 | `BgImageUrl` | `*string` | Optional | - |
 | `CleanupPsk` | `*bool` | Optional | used to cleanup exited psk when portal delete or ssid changed<br>**Default**: `false` |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `ExpireTime` | `*int` | Optional | unit min |
 | `ExpiryNotificationTime` | `*int` | Optional | Number of days before psk is expired. Used as to when to start sending reminder notification when the psk is about to expire |
 | `HidePsksCreatedByOtherAdmins` | `*bool` | Optional | only if `type`==`admin`<br>**Default**: `false` |
-| `Id` | `*string` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `MaxUsage` | `*int` | Optional | `max_usage`==`0` means unlimited<br>**Default**: `0` |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `NotificationRenewUrl` | `*string` | Optional | optional, will include the link in the notification email the customer can either provide their own url or use the one generate from mist, or do a url shorterner against either |
 | `NotifyExpiry` | `*bool` | Optional | If set to true, reminder notification will be sent when psk is about to expire |
@@ -41,6 +41,7 @@
   "auth": "sso",
   "cleanup_psk": false,
   "hide_psks_created_by_other_admins": false,
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "max_usage": 0,
   "name": "name0",
   "notification_renew_url": "https://custom-sso/url",

@@ -20,10 +20,10 @@ Location SDK sample
 {
   "events": [
     {
-      "id": "de87bf9d-183f-e383-cc68-6ba43947d403",
+      "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
       "map_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
       "name": "optional",
-      "site_id": "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
+      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "timestamp": 1461220784,
       "type": "sdk",
       "x": 13.5,

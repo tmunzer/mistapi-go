@@ -9,13 +9,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | if set to `true`, enable the DHCP server<br>**Default**: `false` |
+| `Enabled` | `*bool` | Optional | if set to `false`, disable the DHCP server<br>**Default**: `true` |
 
 ## Example (as JSON)
 
 ```json
 {
-  "enabled": false
+  "enabled": true
 }
 ```
 

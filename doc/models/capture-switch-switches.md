@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ports` | `map[string]interface{}` | Optional | Property key is the interface name |
+| `Ports` | [`map[string]models.CaptureSwitchPortsTcpdumpExpression`](../../doc/models/capture-switch-ports-tcpdump-expression.md) | Optional | Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request |
 
 ## Example (as JSON)
 
@@ -17,16 +17,13 @@
 {
   "ports": {
     "key0": {
-      "key1": "val1",
-      "key2": "val2"
+      "tcpdump_expression": "tcpdump_expression0"
     },
     "key1": {
-      "key1": "val1",
-      "key2": "val2"
+      "tcpdump_expression": "tcpdump_expression0"
     },
     "key2": {
-      "key1": "val1",
-      "key2": "val2"
+      "tcpdump_expression": "tcpdump_expression0"
     }
   }
 }

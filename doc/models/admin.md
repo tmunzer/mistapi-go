@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AdminId` | `*uuid.UUID` | Optional | - |
+| `AdminId` | `*uuid.UUID` | Optional | ID of the administrator |
 | `ComplianceStatus` | [`*models.AdminComplianceStatusEnum`](../../doc/models/admin-compliance-status-enum.md) | Optional | trade compliance status. enum: `blocked`, `restricted` |
 | `Email` | `*string` | Optional | if admin account is not an Org API Token |
 | `EnableTwoFactor` | `*bool` | Optional | if admin account is not an Org API Token |

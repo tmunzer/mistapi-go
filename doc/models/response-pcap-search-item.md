@@ -13,7 +13,7 @@
 | `Aps` | `[]string` | Optional | - |
 | `Duration` | `*float64` | Optional | - |
 | `Format` | `*string` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `MaxNumPackets` | `*float64` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PcapAps` | [`map[string]models.ResponsePcapSearchItemPcapApsItem`](../../doc/models/response-pcap-search-item-pcap-aps-item.md) | Optional | - |
@@ -30,6 +30,7 @@
 {
   "duration": 600.0,
   "format": "stream",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "max_num_packets": 1024,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "pcap_aps": {
@@ -52,8 +53,7 @@
   ],
   "aps": [
     "aps1"
-  ],
-  "id": "0000251c-0000-0000-0000-000000000000"
+  ]
 }
 ```
 

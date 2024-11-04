@@ -52,8 +52,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.Asset{
     Mac:          "mac0",
     Name:         "name6",
-    OrgId:        models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    SiteId:       models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
 }
 
 apiResponse, err := orgsAssets.CreateOrgAsset(ctx, orgId, &body)
@@ -372,8 +370,6 @@ assetId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.Asset{
     Mac:          "mac0",
     Name:         "name6",
-    OrgId:        models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-    SiteId:       models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
 }
 
 apiResponse, err := orgsAssets.UpdateOrgAsset(ctx, orgId, assetId, &body)

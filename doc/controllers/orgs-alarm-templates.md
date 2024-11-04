@@ -54,16 +54,12 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AlarmTemplate{
-    CreatedTime:  models.ToPointer(float64(1711001253)),
     Delivery:     models.Delivery{
         Enabled:          true,
         ToOrgAdmins:      models.ToPointer(true),
         ToSiteAdmins:     models.ToPointer(false),
     },
-    Id:           models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-    ModifiedTime: models.ToPointer(float64(1711038102)),
     Name:         models.ToPointer("default"),
-    OrgId:        models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     Rules:        map[string]models.AlarmTemplateRule{
         "ap_offline": models.AlarmTemplateRule{
             Delivery: models.ToPointer(models.Delivery{

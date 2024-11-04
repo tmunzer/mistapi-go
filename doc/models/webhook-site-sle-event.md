@@ -18,9 +18,9 @@
 
 ```json
 {
-  "org_id": "52b50564-8821-4c3e-97be-5061c7760002",
+  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "timestamp": 1694620800,
-  "site_id": "00001adc-0000-0000-0000-000000000000",
   "sle": {
     "ap-availability": 199.22,
     "successful-connect": 14.8,

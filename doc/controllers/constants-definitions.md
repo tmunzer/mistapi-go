@@ -20,9 +20,11 @@ constantsDefinitions := client.ConstantsDefinitions()
 * [List Country Codes](../../doc/controllers/constants-definitions.md#list-country-codes)
 * [List Gateway Applications](../../doc/controllers/constants-definitions.md#list-gateway-applications)
 * [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics)
+* [List Marvis Client Versions](../../doc/controllers/constants-definitions.md#list-marvis-client-versions)
 * [List Site Languages](../../doc/controllers/constants-definitions.md#list-site-languages)
 * [List States](../../doc/controllers/constants-definitions.md#list-states)
 * [List Traffic Types](../../doc/controllers/constants-definitions.md#list-traffic-types)
+* [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics)
 
 
 # Get License Types
@@ -1125,6 +1127,75 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# List Marvis Client Versions
+
+Get List of the available Marvis Client Versions.
+
+```go
+ListMarvisClientVersions(
+    ctx context.Context) (
+    models.ApiResponse[[]models.ConstMarvisClientVersion],
+    error)
+```
+
+## Response Type
+
+[`[]models.ConstMarvisClientVersion`](../../doc/models/const-marvis-client-version.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := constantsDefinitions.ListMarvisClientVersions(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "label": "default",
+    "notes": "",
+    "os": "android",
+    "url": "https://mobile.mist.com/installers/marvisclient/android/1.1.9/marvisclient-installer.apk",
+    "version": "1.1.9"
+  },
+  {
+    "label": "default",
+    "notes": "",
+    "os": "macos",
+    "url": "https://mobile.mist.com/installers/marvisclient/macos/0.100.29/marvisclient-installer.dmg",
+    "version": "0.100.29"
+  },
+  {
+    "label": "default",
+    "notes": "",
+    "os": "windows",
+    "url": "https://mobile.mist.com/installers/marvisclient/windows/0.100.26/marvisclient-installer.zip",
+    "version": "0.100.26"
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # List Site Languages
 
 Get List of Languages
@@ -1298,6 +1369,94 @@ if err != nil {
     "max_loss": 35,
     "name": "voip_video",
     "traffic_class": "medium"
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Webhook Topics
+
+Get List of the available Webhook Topics.
+
+```go
+ListWebhookTopics(
+    ctx context.Context) (
+    models.ApiResponse[[]models.ConstWebhookTopic],
+    error)
+```
+
+## Response Type
+
+[`[]models.ConstWebhookTopic`](../../doc/models/const-webhook-topic.md)
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := constantsDefinitions.ListWebhookTopics(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "for_org": true,
+    "has_delivery_results": true,
+    "key": "alarms"
+  },
+  {
+    "key": "asset-raw"
+  },
+  {
+    "key": "asset-raw-rssi"
+  },
+  {
+    "for_org": true,
+    "has_delivery_results": true,
+    "key": "audits"
+  },
+  {
+    "for_org": true,
+    "key": "client-info"
+  },
+  {
+    "for_org": true,
+    "key": "client-join"
+  },
+  {
+    "key": "client-latency"
+  },
+  {
+    "for_org": true,
+    "key": "client-sessions"
+  },
+  {
+    "for_org": true,
+    "key": "device-events"
+  },
+  {
+    "for_org": true,
+    "has_delivery_results": true,
+    "key": "device-updowns"
   }
 ]
 ```

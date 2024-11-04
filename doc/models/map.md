@@ -11,16 +11,16 @@ Map
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `Flags` | `map[string]int` | Optional | name/val pair objects for location engine to use |
 | `ForSite` | `*bool` | Optional | - |
 | `Height` | `*int` | Optional | when type=image, height of the image map |
 | `HeightM` | `*float64` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `LatlngBr` | [`*models.LatlngBr`](../../doc/models/latlng-br.md) | Optional | when type=google, latitude / longitude of the bottom-right corner |
 | `LatlngTl` | [`*models.LatlngTl`](../../doc/models/latlng-tl.md) | Optional | when type=google, latitude / longitude of the top-left corner |
 | `Locked` | `*bool` | Optional | whether this map is considered locked down<br>**Default**: `false` |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | The name of the map |
 | `OccupancyLimit` | `*int` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -51,6 +51,7 @@ Map
     "storeTime": 10
   },
   "height": 1500,
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "locked": false,
   "name": "Mist Office",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",

@@ -9,8 +9,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `*[]byte` | Optional | a binary .crl file |
-| `Json` | `*string` | Optional | json string with name for .crl file (optional) |
+| `File` | `*[]byte` | Optional | a PEM or DER formatted CRL file |
+| `Json` | `*string` | Optional | a JSON string with "name" field for CRL file issuer (optional) |
 
 ## Example (as JSON)
 

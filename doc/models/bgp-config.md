@@ -48,7 +48,7 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
   "auth_key": "auth_key8",
   "communities": [
     {
-      "id": "id8",
+      "id": "00001b06-0000-0000-0000-000000000000",
       "local_preference": 56,
       "vpn_name": "vpn_name0"
     }

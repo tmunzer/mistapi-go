@@ -1,7 +1,7 @@
 
 # Gateway Port Vpn Path Bfd Profile Enum
 
-enum: `broadband`, `lte`
+Only if the VPN `type`==`hub_spoke`. enum: `broadband`, `lte`
 
 ## Enumeration
 

@@ -314,9 +314,11 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 orggroupId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+body := models.Orggroup{
+    Name:         "name6",
+}
 
-
-apiResponse, err := mSPsOrgGroups.UpdateMspOrgGroup(ctx, mspId, orggroupId, nil)
+apiResponse, err := mSPsOrgGroups.UpdateMspOrgGroup(ctx, mspId, orggroupId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

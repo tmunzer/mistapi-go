@@ -18,7 +18,7 @@ Switch statistics
 | `ClientsStats` | [`*models.StatsSwitchClientsStats`](../../doc/models/stats-switch-clients-stats.md) | Optional | - |
 | `ConfigStatus` | `*string` | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `DhcpdStat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
 | `EvpntopoId` | `models.Optional[uuid.UUID]` | Optional | - |
@@ -27,7 +27,7 @@ Switch statistics
 | `HasPcap` | `*bool` | Optional | whether the switch supports packet capture |
 | `Hostname` | `*string` | Optional | hostname reported by the device |
 | `HwRev` | `*string` | Optional | device hardware revision number |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `IfStat` | [`map[string]models.IfStatProperty`](../../doc/models/if-stat-property.md) | Optional | Property key is the interface name |
 | `Ip` | `*string` | Optional | - |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
@@ -38,7 +38,7 @@ Switch statistics
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
 | `Model` | `*string` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Name` | `*string` | Optional | device name if configured |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -60,11 +60,14 @@ Switch statistics
 {
   "has_pcap": false,
   "hostname": "sj-sw1",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "ip": "10.2.11.137",
   "last_seen": 1553203563,
   "model": "EX4600",
   "name": "sj-sw1",
+  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "serial": "TC3714190003",
+  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "status": "connected",
   "type": "switch",
   "uptime": 13501,

@@ -17,7 +17,7 @@
 ```json
 {
   "detail": "inventory not empty",
-  "org_id": "0000214c-0000-0000-0000-000000000000"
+  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"
 }
 ```
 

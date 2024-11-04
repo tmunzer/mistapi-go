@@ -13,8 +13,8 @@ sitesWxRules := client.SitesWxRules()
 * [Create Site Wx Rule](../../doc/controllers/sites-wx-rules.md#create-site-wx-rule)
 * [Delete Site Wx Rule](../../doc/controllers/sites-wx-rules.md#delete-site-wx-rule)
 * [Get Site Wx Rule](../../doc/controllers/sites-wx-rules.md#get-site-wx-rule)
-* [Get Site Wx Rules Derived](../../doc/controllers/sites-wx-rules.md#get-site-wx-rules-derived)
 * [List Site Wx Rules](../../doc/controllers/sites-wx-rules.md#list-site-wx-rules)
+* [List Site Wx Rules Derived](../../doc/controllers/sites-wx-rules.md#list-site-wx-rules-derived)
 * [Update Site Wx Rule](../../doc/controllers/sites-wx-rules.md#update-site-wx-rule)
 
 
@@ -271,14 +271,16 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Wx Rules Derived
+# List Site Wx Rules
 
-Get Site WxLan Rule Derived
+Get List of Site WxLan Rules
 
 ```go
-GetSiteWxRulesDerived(
+ListSiteWxRules(
     ctx context.Context,
-    siteId uuid.UUID) (
+    siteId uuid.UUID,
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.WxlanRule],
     error)
 ```
@@ -288,6 +290,8 @@ GetSiteWxRulesDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -300,7 +304,11 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := sitesWxRules.GetSiteWxRulesDerived(ctx, siteId)
+limit := 100
+
+page := 1
+
+apiResponse, err := sitesWxRules.ListSiteWxRules(ctx, siteId, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -358,16 +366,14 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# List Site Wx Rules
+# List Site Wx Rules Derived
 
-Get List of Site WxLan Rules
+Get Site WxLan Rule Derived
 
 ```go
-ListSiteWxRules(
+ListSiteWxRulesDerived(
     ctx context.Context,
-    siteId uuid.UUID,
-    limit *int,
-    page *int) (
+    siteId uuid.UUID) (
     models.ApiResponse[[]models.WxlanRule],
     error)
 ```
@@ -377,8 +383,6 @@ ListSiteWxRules(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -391,11 +395,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-limit := 100
-
-page := 1
-
-apiResponse, err := sitesWxRules.ListSiteWxRules(ctx, siteId, &limit, &page)
+apiResponse, err := sitesWxRules.ListSiteWxRulesDerived(ctx, siteId)
 if err != nil {
     log.Fatalln(err)
 } else {

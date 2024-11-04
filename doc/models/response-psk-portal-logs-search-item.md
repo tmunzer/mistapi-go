@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Message` | `*string` | Optional | - |
 | `NameId` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -22,7 +22,7 @@
 
 ```json
 {
-  "id": "8a3dcaa7-80e3-4bb0-a75b-7bc6322cfd09",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "message": "Rotate PSK test@mist.com",
   "name_id": "test@mist.com",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",

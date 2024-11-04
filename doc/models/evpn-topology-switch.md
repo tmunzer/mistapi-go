@@ -88,7 +88,7 @@
             "protocol": "protocol6"
           }
         ],
-        "type": "radius_group"
+        "type": "dynamic_gbp"
       }
     },
     "additional_config_cmds": [

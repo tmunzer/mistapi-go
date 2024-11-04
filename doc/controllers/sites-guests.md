@@ -541,14 +541,9 @@ guestMac := "0000000000ab"
 
 body := models.Guest{
     Authorized:             models.ToPointer(true),
-    AuthorizedExpiringTime: models.ToPointer(float64(1480704955)),
-    AuthorizedTime:         models.ToPointer(float64(1480704355)),
     Company:                models.ToPointer("abc"),
     Email:                  models.ToPointer("john@abc.com"),
     Minutes:                models.ToPointer(1440),
-    Name:                   models.ToPointer("John Smith"),
-    Ssid:                   models.ToPointer("Guest-SSID"),
-    WlanId:                 models.ToPointer(uuid.MustParse("6748cfa6-4e12-11e6-9188-0242ac110007")),
 }
 
 apiResponse, err := sitesGuests.UpdateSiteGuestAuthorization(ctx, siteId, guestMac, &body)

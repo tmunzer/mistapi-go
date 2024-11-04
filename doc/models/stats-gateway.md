@@ -21,7 +21,7 @@ Gateway statistics
 | `ConfigStatus` | `*string` | Optional | - |
 | `Cpu2Stat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `Dhcpd2Stat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
 | `DhcpdStat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
@@ -30,7 +30,7 @@ Gateway statistics
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
 | `HasPcap` | `models.Optional[bool]` | Optional | - |
 | `Hostname` | `*string` | Optional | hostname reported by the device |
-| `Id` | `*uuid.UUID` | Optional | serial |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `If2Stat` | [`map[string]models.IfStatProperty`](../../doc/models/if-stat-property.md) | Optional | Property key is the interface name |
 | `IfStat` | [`map[string]models.IfStatProperty`](../../doc/models/if-stat-property.md) | Optional | Property key is the interface name |
 | `Ip` | `models.Optional[string]` | Optional | IP address |
@@ -43,12 +43,12 @@ Gateway statistics
 | `Memory2Stat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
 | `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
 | `Model` | `*string` | Optional | device model |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Module2Stat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Name` | `*string` | Optional | device name if configured |
 | `NodeName` | `*string` | Optional | - |
-| `OrgId` | `*uuid.UUID` | Optional | serial |
+| `OrgId` | `*uuid.UUID` | Optional | - |
 | `Ports` | [`[]models.OptionalStatsPort`](../../doc/models/optional-stats-port.md) | Optional | only present when `ports` in `fields` query parameter<br>Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed |
 | `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
 | `RouterName` | `*string` | Optional | device name if configured |
@@ -56,7 +56,7 @@ Gateway statistics
 | `Service2Stat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
 | `ServiceStat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
 | `ServiceStatus` | [`*models.StatsGatewayServiceStatus`](../../doc/models/stats-gateway-service-status.md) | Optional | - |
-| `SiteId` | `*uuid.UUID` | Optional | serial |
+| `SiteId` | `*uuid.UUID` | Optional | - |
 | `Spu2Stat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `SpuStat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `Status` | `*string` | Optional | - |
@@ -72,14 +72,17 @@ Gateway statistics
 {
   "ext_ip": "66.129.234.224",
   "hostname": "sj1",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "ip": "10.2.11.137",
   "last_seen": 1553203563,
   "mac": "dc38e1dbf3cd",
   "model": "SRX320",
   "name": "sj1",
   "node_name": "node0",
+  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "router_name": "sj1",
   "serial": "TC3714190003",
+  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "status": "connected",
   "type": "gateway",
   "uptime": 3671219,

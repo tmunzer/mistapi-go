@@ -3,8 +3,9 @@
 
 enum:
 
-* `big_bang`: upgrade all at once
-* `serial`: one at a time. enum: `big_bang`, `serial`'
+* `big_bang`: upgrade all at once, no orchestration
+* `serial`: one at a time'
+* `canary`: upgrade in phases
 
 ## Enumeration
 
@@ -14,6 +15,7 @@ enum:
 
 | Name |
 |  --- |
+| `canary` |
 | `big_bang` |
 | `serial` |
 

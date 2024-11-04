@@ -34,7 +34,7 @@
 | `Mac` | `*string` | Optional | Client MAC Address |
 | `Mfg` | `*string` | Optional | manufacturer of the client hardware (MAC OUI based) |
 | `Model` | `*string` | Optional | only when client has the Marvis Client app running. Client hardware model |
-| `OrgId` | `*uuid.UUID` | Optional | Mist Org ID |
+| `OrgId` | `*uuid.UUID` | Optional | - |
 | `Os` | `[]string` | Optional | only when client is having the Marvis Client app running. List of OS detected for the client |
 | `OsVersion` | `[]string` | Optional | only when client is having the Marvis Client app running. List of OS version detected for the client |
 | `Protocol` | `*string` | Optional | 802.11 amendment |
@@ -91,7 +91,7 @@
   "mac": "bcd074000000",
   "mfg": "Apple",
   "model": "MBP 16\\\" M1 2021",
-  "org_id": "1abff1aa-4571-4c1f-a409-153a1e7a7a24",
+  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "os": [
     "Sonoma"
   ],

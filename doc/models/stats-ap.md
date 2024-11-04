@@ -18,15 +18,16 @@ AP statistics
 | `ConfigReverted` | `models.Optional[bool]` | Optional | - |
 | `CpuSystem` | `models.Optional[int64]` | Optional | - |
 | `CpuUtil` | `models.Optional[int]` | Optional | - |
-| `CreatedTime` | `*float64` | Optional | - |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `EnvStat` | [`*models.StatsApEnvStat`](../../doc/models/stats-ap-env-stat.md) | Optional | device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage |
 | `EslStat` | [`models.Optional[models.StatsApEslStat]`](../../doc/models/stats-ap-esl-stat.md) | Optional | - |
 | `EvpntopoId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `ExtIp` | `models.Optional[string]` | Optional | - |
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
+| `Gps` | [`*models.StatsApGpsStat`](../../doc/models/stats-ap-gps-stat.md) | Optional | - |
 | `HwRev` | `models.Optional[string]` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `InactiveWiredVlans` | `[]int` | Optional | - |
 | `IotStat` | [`map[string]models.StatsApIotStatAdditionalProperties`](../../doc/models/stats-ap-iot-stat-additional-properties.md) | Optional | - |
 | `Ip` | `models.Optional[string]` | Optional | - |
@@ -45,13 +46,13 @@ AP statistics
 | `MeshDownlinks` | [`map[string]models.ApStatMeshDownlink`](../../doc/models/ap-stat-mesh-downlink.md) | Optional | Property key is the mesh downlink id (e.g `00000000-0000-0000-1000-5c5b35000010`) |
 | `MeshUplink` | [`*models.ApStatMeshUplink`](../../doc/models/ap-stat-mesh-uplink.md) | Optional | - |
 | `Model` | `*string` | Required | device model |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Mount` | `models.Optional[string]` | Optional | - |
 | `Name` | `models.Optional[string]` | Optional | - |
 | `Notes` | `models.Optional[string]` | Optional | - |
 | `NumClients` | `models.Optional[int]` | Optional | how many wireless clients are currently connected |
 | `NumWlans` | `*int` | Optional | how many WLANs are applied to the device |
-| `OrgId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `OrgId` | `*uuid.UUID` | Optional | - |
 | `PortStat` | [`models.Optional[map[string]models.StatsApPortStat]`](../../doc/models/stats-ap-port-stat.md) | Optional | Property key is the port name (e.g. `eth0`) |
 | `PowerBudget` | `models.Optional[int]` | Optional | in mW, surplus if positive or deficit if negative |
 | `PowerConstrained` | `models.Optional[bool]` | Optional | whether insufficient power |
@@ -82,6 +83,7 @@ AP statistics
 {
   "cert_expiry": 1534534392.0,
   "ext_ip": "73.92.124.103",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "iot_stat": {
     "DI2": {
       "value": 0
@@ -96,6 +98,7 @@ AP statistics
   "model": "AP200",
   "mount": "faceup",
   "name": "conference room",
+  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "power_budget": 1000,
   "power_constrained": false,
   "power_opmode": "[20] 6GHz(2x2) 5GHz(4x4) 2.4GHz(2x2).",
@@ -104,6 +107,7 @@ AP statistics
   "rx_bytes": 8515104416,
   "rx_pkts": 57770567,
   "serial": "FXLH2015170017",
+  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "tx_bps": 634301,
   "tx_bytes": 211217389682,
   "tx_pkts": 812204062,

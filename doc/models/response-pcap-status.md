@@ -16,10 +16,11 @@
 | `Failed` | `[]string` | Optional | List of APs where configuration attempt failed |
 | `Format` | [`*models.CaptureMxedgeFormatEnum`](../../doc/models/capture-mxedge-format-enum.md) | Optional | pcap format. enum:<br><br>* `stream`: to Mist cloud<br>* `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)<br>**Default**: `"stream"` |
 | `Gateways` | `[]string` | Optional | Information on gateways to capture packets on if a gateway capture type is specified |
-| `Id` | `uuid.UUID` | Required | unique id for the capture |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `IncludesMcast` | `*bool` | Optional | - |
 | `MaxNumPackets` | `*int` | Optional | max number of packets configured by user |
 | `MaxPktLen` | `*int` | Optional | - |
+| `Mxedges` | `[]string` | Optional | nformation on mxedges to capture packets on if a mxedge capture type is specified |
 | `NumPackets` | `*int` | Optional | total number of packets captured by all AP, not applicable for type [client, new_assoc] |
 | `Ok` | `[]string` | Optional | List of target APs successfully configured to capture packets |
 | `PcapAps` | [`map[string]models.ResponsePcapAp`](../../doc/models/response-pcap-ap.md) | Optional | - |
@@ -42,7 +43,7 @@
   "client_mac": "60a10a773412",
   "duration": 300,
   "format": "stream",
-  "id": "00001e5c-0000-0000-0000-000000000000",
+  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "max_num_packets": 1000,
   "max_pkt_len": 128,
   "pcap_aps": {

@@ -1,7 +1,17 @@
 
 # Acl Tag Type Enum
 
-enum: `any`, `dynamic_gbp`, `mac`, `network`, `radius_group`, `resource`, `static_gbp`, `subnet`
+enum:
+
+* `any`: matching anything not identified
+* `dynamic_gbp`: from the gbp_tag received from RADIUS
+* `gbp_resource`: can only be used in `dst_tags`
+* `mac`
+* `network`
+* `radius_group`
+* `resource`: can only be used in `dst_tags`
+* `static_gbp`: applying gbp tag against matching conditions
+* `subnet`'
 
 ## Enumeration
 
@@ -13,6 +23,7 @@ enum: `any`, `dynamic_gbp`, `mac`, `network`, `radius_group`, `resource`, `stati
 |  --- |
 | `any` |
 | `dynamic_gbp` |
+| `gbp_resource` |
 | `mac` |
 | `network` |
 | `radius_group` |
