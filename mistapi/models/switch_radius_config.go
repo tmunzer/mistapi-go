@@ -15,8 +15,6 @@ type SwitchRadiusConfig struct {
     AuthServersRetries   *int               `json:"auth_servers_retries,omitempty"`
     // radius auth session timeout
     AuthServersTimeout   *int               `json:"auth_servers_timeout,omitempty"`
-    CoaEnabled           *bool              `json:"coa_enabled,omitempty"`
-    CoaPort              *int               `json:"coa_port,omitempty"`
     // use `network`or `source_ip`
     // which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip
     Network              *string            `json:"network,omitempty"`
@@ -52,12 +50,6 @@ func (s SwitchRadiusConfig) toMap() map[string]any {
     if s.AuthServersTimeout != nil {
         structMap["auth_servers_timeout"] = s.AuthServersTimeout
     }
-    if s.CoaEnabled != nil {
-        structMap["coa_enabled"] = s.CoaEnabled
-    }
-    if s.CoaPort != nil {
-        structMap["coa_port"] = s.CoaPort
-    }
     if s.Network != nil {
         structMap["network"] = s.Network
     }
@@ -75,7 +67,7 @@ func (s *SwitchRadiusConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_interim_interval", "acct_servers", "auth_servers", "auth_servers_retries", "auth_servers_timeout", "coa_enabled", "coa_port", "network", "source_ip")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_interim_interval", "acct_servers", "auth_servers", "auth_servers_retries", "auth_servers_timeout", "network", "source_ip")
     if err != nil {
     	return err
     }
@@ -86,8 +78,6 @@ func (s *SwitchRadiusConfig) UnmarshalJSON(input []byte) error {
     s.AuthServers = temp.AuthServers
     s.AuthServersRetries = temp.AuthServersRetries
     s.AuthServersTimeout = temp.AuthServersTimeout
-    s.CoaEnabled = temp.CoaEnabled
-    s.CoaPort = temp.CoaPort
     s.Network = temp.Network
     s.SourceIp = temp.SourceIp
     return nil
@@ -100,8 +90,6 @@ type tempSwitchRadiusConfig  struct {
     AuthServers         []RadiusAuthServer `json:"auth_servers,omitempty"`
     AuthServersRetries  *int               `json:"auth_servers_retries,omitempty"`
     AuthServersTimeout  *int               `json:"auth_servers_timeout,omitempty"`
-    CoaEnabled          *bool              `json:"coa_enabled,omitempty"`
-    CoaPort             *int               `json:"coa_port,omitempty"`
     Network             *string            `json:"network,omitempty"`
     SourceIp            *string            `json:"source_ip,omitempty"`
 }
