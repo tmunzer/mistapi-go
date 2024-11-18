@@ -12,7 +12,7 @@ A list of suggested zones to review and accept for a given map
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Name` | `*string` | Optional | The name of the suggested zone |
-| `Vertices` | [`[]models.ResponseAutoZoneZoneVertices`](../../doc/models/response-auto-zone-zone-vertices.md) | Optional | A list of of points comprising the zones map location in pixels |
+| `Vertices` | [`[]models.ResponseAutoZoneZoneVertex`](../../doc/models/response-auto-zone-zone-vertex.md) | Optional | A list of of points comprising the zones map location in pixels |
 
 ## Example (as JSON)
 

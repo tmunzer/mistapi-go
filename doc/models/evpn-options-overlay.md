@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `As` | `*int` | Optional | optional, these are defaults<br>**Default**: `65000` |
+| `As` | `*int` | Optional | Overlay BGP Local AS Number<br>**Default**: `65000`<br>**Constraints**: `>= 1`, `<= 65535` |
 
 ## Example (as JSON)
 

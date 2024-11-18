@@ -9,8 +9,8 @@ import (
 
 // EvpnTopology represents a EvpnTopology struct.
 type EvpnTopology struct {
-    // Switch settings
-    Config               *SwitchMgmt          `json:"config,omitempty"`
+    // EVPN Options
+    EvpnOptions          *EvpnOptions         `json:"evpn_options,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID           `json:"id,omitempty"`
     Name                 *string              `json:"name,omitempty"`
@@ -33,8 +33,8 @@ func (e EvpnTopology) MarshalJSON() (
 func (e EvpnTopology) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, e.AdditionalProperties)
-    if e.Config != nil {
-        structMap["config"] = e.Config.toMap()
+    if e.EvpnOptions != nil {
+        structMap["evpn_options"] = e.EvpnOptions.toMap()
     }
     if e.Id != nil {
         structMap["id"] = e.Id
@@ -64,13 +64,13 @@ func (e *EvpnTopology) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "config", "id", "name", "overwrite", "pod_names", "switches")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "evpn_options", "id", "name", "overwrite", "pod_names", "switches")
     if err != nil {
     	return err
     }
     
     e.AdditionalProperties = additionalProperties
-    e.Config = temp.Config
+    e.EvpnOptions = temp.EvpnOptions
     e.Id = temp.Id
     e.Name = temp.Name
     e.Overwrite = temp.Overwrite
@@ -81,12 +81,12 @@ func (e *EvpnTopology) UnmarshalJSON(input []byte) error {
 
 // tempEvpnTopology is a temporary struct used for validating the fields of EvpnTopology.
 type tempEvpnTopology  struct {
-    Config    *SwitchMgmt           `json:"config,omitempty"`
-    Id        *uuid.UUID            `json:"id,omitempty"`
-    Name      *string               `json:"name,omitempty"`
-    Overwrite *bool                 `json:"overwrite,omitempty"`
-    PodNames  map[string]string     `json:"pod_names,omitempty"`
-    Switches  *[]EvpnTopologySwitch `json:"switches"`
+    EvpnOptions *EvpnOptions          `json:"evpn_options,omitempty"`
+    Id          *uuid.UUID            `json:"id,omitempty"`
+    Name        *string               `json:"name,omitempty"`
+    Overwrite   *bool                 `json:"overwrite,omitempty"`
+    PodNames    map[string]string     `json:"pod_names,omitempty"`
+    Switches    *[]EvpnTopologySwitch `json:"switches"`
 }
 
 func (e *tempEvpnTopology) validate() error {

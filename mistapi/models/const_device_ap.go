@@ -8,7 +8,7 @@ import (
 
 // ConstDeviceAp represents a ConstDeviceAp struct.
 type ConstDeviceAp struct {
-    ApType               *string                        `json:"ap_type,omitempty"`
+    ApType               string                         `json:"ap_type"`
     Band24               *ConstDeviceApBand24           `json:"band24,omitempty"`
     Band5                *ConstDeviceApBand5            `json:"band5,omitempty"`
     Band6                *ConstDeviceApBand5            `json:"band6,omitempty"`
@@ -64,9 +64,7 @@ func (c ConstDeviceAp) MarshalJSON() (
 func (c ConstDeviceAp) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, c.AdditionalProperties)
-    if c.ApType != nil {
-        structMap["ap_type"] = c.ApType
-    }
+    structMap["ap_type"] = c.ApType
     if c.Band24 != nil {
         structMap["band24"] = c.Band24.toMap()
     }
@@ -191,7 +189,7 @@ func (c *ConstDeviceAp) UnmarshalJSON(input []byte) error {
     }
     
     c.AdditionalProperties = additionalProperties
-    c.ApType = temp.ApType
+    c.ApType = *temp.ApType
     c.Band24 = temp.Band24
     c.Band5 = temp.Band5
     c.Band6 = temp.Band6
@@ -232,7 +230,7 @@ func (c *ConstDeviceAp) UnmarshalJSON(input []byte) error {
 
 // tempConstDeviceAp is a temporary struct used for validating the fields of ConstDeviceAp.
 type tempConstDeviceAp  struct {
-    ApType              *string                        `json:"ap_type,omitempty"`
+    ApType              *string                        `json:"ap_type"`
     Band24              *ConstDeviceApBand24           `json:"band24,omitempty"`
     Band5               *ConstDeviceApBand5            `json:"band5,omitempty"`
     Band6               *ConstDeviceApBand5            `json:"band6,omitempty"`
@@ -272,6 +270,9 @@ type tempConstDeviceAp  struct {
 
 func (c *tempConstDeviceAp) validate() error {
     var errs []string
+    if c.ApType == nil {
+        errs = append(errs, "required field `ap_type` is missing for type `const_device_ap`")
+    }
     if c.Type == nil {
         errs = append(errs, "required field `type` is missing for type `const_device_ap`")
     }

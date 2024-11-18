@@ -24,7 +24,8 @@
   "bad_minutes_site_wan": 3612.0,
   "bad_minutes_wireless": 1428.0,
   "num_aps": 1,
-  "num_users": 3
+  "num_users": 3,
+  "total_minutes": 5566
 }
 ```
 

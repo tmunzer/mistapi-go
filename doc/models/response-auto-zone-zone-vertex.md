@@ -1,9 +1,9 @@
 
-# Response Auto Zone Zone Vertices
+# Response Auto Zone Zone Vertex
 
 ## Structure
 
-`ResponseAutoZoneZoneVertices`
+`ResponseAutoZoneZoneVertex`
 
 ## Fields
 

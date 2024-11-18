@@ -45,7 +45,7 @@ type SwitchPortUsage struct {
     MacAuthProtocol                          *SwitchPortUsageMacAuthProtocolEnum         `json:"mac_auth_protocol,omitempty"`
     // Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
     MacLimit                                 *int                                        `json:"mac_limit,omitempty"`
-    // `mode`==`dynamic` must only be used with the port usage with the name `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk`
+    // `mode`==`dynamic` must only be used if the port usage name is `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk`
     Mode                                     *SwitchPortUsageModeEnum                    `json:"mode,omitempty"`
     // Only if `mode`!=`dynamic` media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514.
     Mtu                                      *int                                        `json:"mtu,omitempty"`

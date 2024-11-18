@@ -11,7 +11,7 @@ if `usage`==`wan`
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ips` | `[]string` | Optional | - |
+| `Ips` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `ProbeProfile` | [`*models.GatewayWanProbeOverrideProbeProfileEnum`](../../doc/models/gateway-wan-probe-override-probe-profile-enum.md) | Optional | enum: `broadband`, `lte`<br>**Default**: `"broadband"` |
 
 ## Example (as JSON)

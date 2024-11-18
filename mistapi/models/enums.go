@@ -1301,15 +1301,19 @@ const (
 )
 
 // JunosPortConfigSpeedEnum is a string enum.
-// enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `auto`
+// enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
 type JunosPortConfigSpeedEnum string
 
 const (
-    JunosPortConfigSpeedEnum_ENUM100M JunosPortConfigSpeedEnum = "100m"
     JunosPortConfigSpeedEnum_ENUM10M  JunosPortConfigSpeedEnum = "10m"
+    JunosPortConfigSpeedEnum_ENUM100M JunosPortConfigSpeedEnum = "100m"
     JunosPortConfigSpeedEnum_ENUM1G   JunosPortConfigSpeedEnum = "1g"
     JunosPortConfigSpeedEnum_ENUM25G  JunosPortConfigSpeedEnum = "2.5g"
     JunosPortConfigSpeedEnum_ENUM5G   JunosPortConfigSpeedEnum = "5g"
+    JunosPortConfigSpeedEnum_ENUM10G  JunosPortConfigSpeedEnum = "10g"
+    JunosPortConfigSpeedEnum_ENUM25G1 JunosPortConfigSpeedEnum = "25g"
+    JunosPortConfigSpeedEnum_ENUM40G  JunosPortConfigSpeedEnum = "40g"
+    JunosPortConfigSpeedEnum_ENUM100G JunosPortConfigSpeedEnum = "100g"
     JunosPortConfigSpeedEnum_AUTO     JunosPortConfigSpeedEnum = "auto"
 )
 
@@ -3731,6 +3735,44 @@ const (
     SwitchMetricTypeEnum_ACTIVEPORTSSUMMARY SwitchMetricTypeEnum = "active_ports_summary"
 )
 
+// SwitchPortLocalUsageDot1xEnum is a string enum.
+// if dot1x is desired, set to dot1x. enum: `dot1x`
+type SwitchPortLocalUsageDot1xEnum string
+
+const (
+    SwitchPortLocalUsageDot1xEnum_DOT1X SwitchPortLocalUsageDot1xEnum = "dot1x"
+)
+
+// SwitchPortLocalUsageDuplexEnum is a string enum.
+// link connection mode. enum: `auto`, `full`, `half`
+type SwitchPortLocalUsageDuplexEnum string
+
+const (
+    SwitchPortLocalUsageDuplexEnum_AUTO SwitchPortLocalUsageDuplexEnum = "auto"
+    SwitchPortLocalUsageDuplexEnum_FULL SwitchPortLocalUsageDuplexEnum = "full"
+    SwitchPortLocalUsageDuplexEnum_HALF SwitchPortLocalUsageDuplexEnum = "half"
+)
+
+// SwitchPortLocalUsageMacAuthProtocolEnum is a string enum.
+// Only if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
+type SwitchPortLocalUsageMacAuthProtocolEnum string
+
+const (
+    SwitchPortLocalUsageMacAuthProtocolEnum_EAPMD5  SwitchPortLocalUsageMacAuthProtocolEnum = "eap-md5"
+    SwitchPortLocalUsageMacAuthProtocolEnum_EAPPEAP SwitchPortLocalUsageMacAuthProtocolEnum = "eap-peap"
+    SwitchPortLocalUsageMacAuthProtocolEnum_PAP     SwitchPortLocalUsageMacAuthProtocolEnum = "pap"
+)
+
+// SwitchPortLocalUsageModeEnum is a string enum.
+// enum: `access`, `inet`, `trunk`
+type SwitchPortLocalUsageModeEnum string
+
+const (
+    SwitchPortLocalUsageModeEnum_ACCESS SwitchPortLocalUsageModeEnum = "access"
+    SwitchPortLocalUsageModeEnum_INET   SwitchPortLocalUsageModeEnum = "inet"
+    SwitchPortLocalUsageModeEnum_TRUNK  SwitchPortLocalUsageModeEnum = "trunk"
+)
+
 // SwitchPortUsageDot1xEnum is a string enum.
 // Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x. enum: `dot1x`
 type SwitchPortUsageDot1xEnum string
@@ -3786,7 +3828,7 @@ const (
 )
 
 // SwitchPortUsageModeEnum is a string enum.
-// `mode`==`dynamic` must only be used with the port usage with the name `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk`
+// `mode`==`dynamic` must only be used if the port usage name is `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk`
 type SwitchPortUsageModeEnum string
 
 const (

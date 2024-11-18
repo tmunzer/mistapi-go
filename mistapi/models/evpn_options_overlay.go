@@ -6,7 +6,7 @@ import (
 
 // EvpnOptionsOverlay represents a EvpnOptionsOverlay struct.
 type EvpnOptionsOverlay struct {
-    // optional, these are defaults
+    // Overlay BGP Local AS Number
     As                   *int           `json:"as,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }

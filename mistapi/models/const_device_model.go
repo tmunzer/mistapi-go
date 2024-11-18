@@ -12,7 +12,6 @@ type ConstDeviceModel struct {
     isConstDeviceAp      bool
     isConstDeviceSwitch  bool
     isConstDeviceGateway bool
-    isConstDeviceUnknown bool
 }
 
 // String converts the ConstDeviceModel object to a string representation.
@@ -43,8 +42,6 @@ func (c *ConstDeviceModel) toMap() any {
         return obj.toMap()
     case *ConstDeviceGateway:
         return obj.toMap()
-    case *ConstDeviceUnknown:
-        return obj.toMap()
     }
     return nil
 }
@@ -56,7 +53,6 @@ func (c *ConstDeviceModel) UnmarshalJSON(input []byte) error {
         NewTypeHolder(&ConstDeviceAp{}, false, &c.isConstDeviceAp),
         NewTypeHolder(&ConstDeviceSwitch{}, false, &c.isConstDeviceSwitch),
         NewTypeHolder(&ConstDeviceGateway{}, false, &c.isConstDeviceGateway),
-        NewTypeHolder(&ConstDeviceUnknown{}, false, &c.isConstDeviceUnknown),
     )
     
     c.value = result
@@ -90,15 +86,6 @@ func (c *ConstDeviceModel) AsConstDeviceGateway() (
     return c.value.(*ConstDeviceGateway), true
 }
 
-func (c *ConstDeviceModel) AsConstDeviceUnknown() (
-    *ConstDeviceUnknown,
-    bool) {
-    if !c.isConstDeviceUnknown {
-        return nil, false
-    }
-    return c.value.(*ConstDeviceUnknown), true
-}
-
 // internalConstDeviceModel represents a constDeviceModel struct.
 type internalConstDeviceModel struct {}
 
@@ -116,10 +103,5 @@ func (c *internalConstDeviceModel) FromConstDeviceSwitch(val ConstDeviceSwitch) 
 
 // The internalConstDeviceModel instance, wrapping the provided ConstDeviceGateway value.
 func (c *internalConstDeviceModel) FromConstDeviceGateway(val ConstDeviceGateway) ConstDeviceModel {
-    return ConstDeviceModel{value: &val}
-}
-
-// The internalConstDeviceModel instance, wrapping the provided ConstDeviceUnknown value.
-func (c *internalConstDeviceModel) FromConstDeviceUnknown(val ConstDeviceUnknown) ConstDeviceModel {
     return ConstDeviceModel{value: &val}
 }

@@ -8,10 +8,10 @@ import (
 // A list of suggested zones to review and accept for a given map
 type ResponseAutoZoneZone struct {
     // The name of the suggested zone
-    Name                 *string                        `json:"name,omitempty"`
+    Name                 *string                      `json:"name,omitempty"`
     // A list of of points comprising the zones map location in pixels
-    Vertices             []ResponseAutoZoneZoneVertices `json:"vertices,omitempty"`
-    AdditionalProperties map[string]any                 `json:"_"`
+    Vertices             []ResponseAutoZoneZoneVertex `json:"vertices,omitempty"`
+    AdditionalProperties map[string]any               `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAutoZoneZone.
@@ -56,6 +56,6 @@ func (r *ResponseAutoZoneZone) UnmarshalJSON(input []byte) error {
 
 // tempResponseAutoZoneZone is a temporary struct used for validating the fields of ResponseAutoZoneZone.
 type tempResponseAutoZoneZone  struct {
-    Name     *string                        `json:"name,omitempty"`
-    Vertices []ResponseAutoZoneZoneVertices `json:"vertices,omitempty"`
+    Name     *string                      `json:"name,omitempty"`
+    Vertices []ResponseAutoZoneZoneVertex `json:"vertices,omitempty"`
 }

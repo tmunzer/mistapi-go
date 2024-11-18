@@ -38,7 +38,9 @@
       "cert_issuer": [
         "cert_issuer2"
       ],
-      "idp_id": "idp_id6"
+      "cert_serial": [
+        "cert_serial8"
+      ]
     }
   ]
 }

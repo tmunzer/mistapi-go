@@ -2,36 +2,37 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
 // EvpnTopologySwitch represents a EvpnTopologySwitch struct.
 type EvpnTopologySwitch struct {
-    // Switch Configuration.
-    // You can configure `port_usages` and `networks` settings at the device level, but most of the time it's better use the Site Setting to achieve better consistency and be able to re-use the same settings across switches entries defined here will "replace" those defined in Site Setting/Network Template
-    Config               *DeviceSwitch               `json:"config,omitempty"`
-    DeviceprofileId      *uuid.UUID                  `json:"deviceprofile_id,omitempty"`
-    Downlinks            []string                    `json:"downlinks,omitempty"`
-    Esilaglinks          []string                    `json:"esilaglinks,omitempty"`
-    EvpnId               *int                        `json:"evpn_id,omitempty"`
-    Mac                  *string                     `json:"mac,omitempty"`
-    Model                *string                     `json:"model,omitempty"`
+    Config               *EvpnTopologySwitchConfig  `json:"config,omitempty"`
+    DeviceprofileId      *uuid.UUID                 `json:"deviceprofile_id,omitempty"`
+    DownlinkIps          []string                   `json:"downlink_ips,omitempty"`
+    Downlinks            []string                   `json:"downlinks,omitempty"`
+    Esilaglinks          []string                   `json:"esilaglinks,omitempty"`
+    EvpnId               *int                       `json:"evpn_id,omitempty"`
+    Mac                  string                     `json:"mac"`
+    Model                *string                    `json:"model,omitempty"`
     // optionally, for distribution / access / esilag-access, they can be placed into different pods. e.g.
     // * for CLOS, to group dist / access switches into pods
     // * for ERB/CRB, to group dist / esilag-access into pods
-    Pod                  *int                        `json:"pod,omitempty"`
+    Pod                  *int                       `json:"pod,omitempty"`
     // by default, core switches are assumed to be connecting all pods.
     // if you want to limit the pods, you can specify pods.
-    Pods                 []int                       `json:"pods,omitempty"`
+    Pods                 []int                      `json:"pods,omitempty"`
     // use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
-    Role                 *EvpnTopologySwitchRoleEnum `json:"role,omitempty"`
-    SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
-    SuggestedDownlinks   []string                    `json:"suggested_downlinks,omitempty"`
-    SuggestedEsilaglinks []string                    `json:"suggested_esilaglinks,omitempty"`
-    SuggestedUplinks     []string                    `json:"suggested_uplinks,omitempty"`
-    // if not specified in the request, suggested ones will be used
-    Uplinks              []string                    `json:"uplinks,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    Role                 EvpnTopologySwitchRoleEnum `json:"role"`
+    RouterId             *string                    `json:"router_id,omitempty"`
+    SiteId               *uuid.UUID                 `json:"site_id,omitempty"`
+    SuggestedDownlinks   []string                   `json:"suggested_downlinks,omitempty"`
+    SuggestedEsilaglinks []string                   `json:"suggested_esilaglinks,omitempty"`
+    SuggestedUplinks     []string                   `json:"suggested_uplinks,omitempty"`
+    Uplinks              []string                   `json:"uplinks,omitempty"`
+    AdditionalProperties map[string]any             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopologySwitch.
@@ -52,6 +53,9 @@ func (e EvpnTopologySwitch) toMap() map[string]any {
     if e.DeviceprofileId != nil {
         structMap["deviceprofile_id"] = e.DeviceprofileId
     }
+    if e.DownlinkIps != nil {
+        structMap["downlink_ips"] = e.DownlinkIps
+    }
     if e.Downlinks != nil {
         structMap["downlinks"] = e.Downlinks
     }
@@ -61,9 +65,7 @@ func (e EvpnTopologySwitch) toMap() map[string]any {
     if e.EvpnId != nil {
         structMap["evpn_id"] = e.EvpnId
     }
-    if e.Mac != nil {
-        structMap["mac"] = e.Mac
-    }
+    structMap["mac"] = e.Mac
     if e.Model != nil {
         structMap["model"] = e.Model
     }
@@ -73,8 +75,9 @@ func (e EvpnTopologySwitch) toMap() map[string]any {
     if e.Pods != nil {
         structMap["pods"] = e.Pods
     }
-    if e.Role != nil {
-        structMap["role"] = e.Role
+    structMap["role"] = e.Role
+    if e.RouterId != nil {
+        structMap["router_id"] = e.RouterId
     }
     if e.SiteId != nil {
         structMap["site_id"] = e.SiteId
@@ -102,7 +105,11 @@ func (e *EvpnTopologySwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "config", "deviceprofile_id", "downlinks", "esilaglinks", "evpn_id", "mac", "model", "pod", "pods", "role", "site_id", "suggested_downlinks", "suggested_esilaglinks", "suggested_uplinks", "uplinks")
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "config", "deviceprofile_id", "downlink_ips", "downlinks", "esilaglinks", "evpn_id", "mac", "model", "pod", "pods", "role", "router_id", "site_id", "suggested_downlinks", "suggested_esilaglinks", "suggested_uplinks", "uplinks")
     if err != nil {
     	return err
     }
@@ -110,14 +117,16 @@ func (e *EvpnTopologySwitch) UnmarshalJSON(input []byte) error {
     e.AdditionalProperties = additionalProperties
     e.Config = temp.Config
     e.DeviceprofileId = temp.DeviceprofileId
+    e.DownlinkIps = temp.DownlinkIps
     e.Downlinks = temp.Downlinks
     e.Esilaglinks = temp.Esilaglinks
     e.EvpnId = temp.EvpnId
-    e.Mac = temp.Mac
+    e.Mac = *temp.Mac
     e.Model = temp.Model
     e.Pod = temp.Pod
     e.Pods = temp.Pods
-    e.Role = temp.Role
+    e.Role = *temp.Role
+    e.RouterId = temp.RouterId
     e.SiteId = temp.SiteId
     e.SuggestedDownlinks = temp.SuggestedDownlinks
     e.SuggestedEsilaglinks = temp.SuggestedEsilaglinks
@@ -128,19 +137,35 @@ func (e *EvpnTopologySwitch) UnmarshalJSON(input []byte) error {
 
 // tempEvpnTopologySwitch is a temporary struct used for validating the fields of EvpnTopologySwitch.
 type tempEvpnTopologySwitch  struct {
-    Config               *DeviceSwitch               `json:"config,omitempty"`
+    Config               *EvpnTopologySwitchConfig   `json:"config,omitempty"`
     DeviceprofileId      *uuid.UUID                  `json:"deviceprofile_id,omitempty"`
+    DownlinkIps          []string                    `json:"downlink_ips,omitempty"`
     Downlinks            []string                    `json:"downlinks,omitempty"`
     Esilaglinks          []string                    `json:"esilaglinks,omitempty"`
     EvpnId               *int                        `json:"evpn_id,omitempty"`
-    Mac                  *string                     `json:"mac,omitempty"`
+    Mac                  *string                     `json:"mac"`
     Model                *string                     `json:"model,omitempty"`
     Pod                  *int                        `json:"pod,omitempty"`
     Pods                 []int                       `json:"pods,omitempty"`
-    Role                 *EvpnTopologySwitchRoleEnum `json:"role,omitempty"`
+    Role                 *EvpnTopologySwitchRoleEnum `json:"role"`
+    RouterId             *string                     `json:"router_id,omitempty"`
     SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
     SuggestedDownlinks   []string                    `json:"suggested_downlinks,omitempty"`
     SuggestedEsilaglinks []string                    `json:"suggested_esilaglinks,omitempty"`
     SuggestedUplinks     []string                    `json:"suggested_uplinks,omitempty"`
     Uplinks              []string                    `json:"uplinks,omitempty"`
+}
+
+func (e *tempEvpnTopologySwitch) validate() error {
+    var errs []string
+    if e.Mac == nil {
+        errs = append(errs, "required field `mac` is missing for type `evpn_topology_switch`")
+    }
+    if e.Role == nil {
+        errs = append(errs, "required field `role` is missing for type `evpn_topology_switch`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ApType` | `*string` | Optional | - |
+| `ApType` | `string` | Required | - |
 | `Band24` | [`*models.ConstDeviceApBand24`](../../doc/models/const-device-ap-band-24.md) | Optional | - |
 | `Band5` | [`*models.ConstDeviceApBand5`](../../doc/models/const-device-ap-band-5.md) | Optional | - |
 | `Band6` | [`*models.ConstDeviceApBand5`](../../doc/models/const-device-ap-band-5.md) | Optional | - |

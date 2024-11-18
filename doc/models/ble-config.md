@@ -72,6 +72,7 @@ BLE AP settings
   "ibeacon_major": 13,
   "ibeacon_minor": 138,
   "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
+  "power": 6,
   "power_mode": "custom"
 }
 ```

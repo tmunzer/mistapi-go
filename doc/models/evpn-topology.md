@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Config` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
+| `EvpnOptions` | [`*models.EvpnOptions`](../../doc/models/evpn-options.md) | Optional | EVPN Options |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Name` | `*string` | Optional | - |
 | `Overwrite` | `*bool` | Optional | - |
@@ -25,8 +25,19 @@
   "switches": [
     {
       "deviceprofile_id": "6a1deab1-96df-4fa2-8455-d5253f943d06",
+      "downlinks": [
+        "5c5b35000005",
+        "5c5b35000006"
+      ],
+      "esilaglinks": [
+        "5c5b35000005",
+        "5c5b35000006"
+      ],
       "mac": "5c5b35000003",
+      "model": "QFX10002-36Q",
       "pod": 1,
+      "role": "esilag-access",
+      "router_id": "172.16.254.4",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "suggested_downlinks": [
         "5c5b35000005",
@@ -40,77 +51,41 @@
         "5c5b35000005",
         "5c5b35000006"
       ],
+      "uplinks": [
+        "5c5b35000005",
+        "5c5b35000006"
+      ],
       "config": {
-        "acl_policies": [
-          {
-            "actions": [
-              {
-                "action": "allow",
-                "dst_tag": "dst_tag0"
-              }
-            ],
-            "name": "name2",
-            "src_tags": [
-              "src_tags1",
-              "src_tags0"
-            ]
-          },
-          {
-            "actions": [
-              {
-                "action": "allow",
-                "dst_tag": "dst_tag0"
-              }
-            ],
-            "name": "name2",
-            "src_tags": [
-              "src_tags1",
-              "src_tags0"
-            ]
-          }
-        ],
-        "acl_tags": {
+        "port_config": {
           "key0": {
-            "gbp_tag": 14,
-            "macs": [
-              "macs1"
-            ],
-            "network": "network2",
-            "radius_group": "radius_group8",
-            "specs": [
-              {
-                "port_range": "port_range8",
-                "protocol": "protocol6"
-              }
-            ],
-            "type": "dynamic_gbp"
+            "ae_disable_lacp": false,
+            "ae_idx": 230,
+            "ae_lacp_slow": false,
+            "aggregated": false,
+            "critical": false,
+            "usage": "usage6"
+          },
+          "key1": {
+            "ae_disable_lacp": false,
+            "ae_idx": 230,
+            "ae_lacp_slow": false,
+            "aggregated": false,
+            "critical": false,
+            "usage": "usage6"
           }
-        },
-        "additional_config_cmds": [
-          "additional_config_cmds0",
-          "additional_config_cmds9"
-        ],
-        "created_time": 40.26,
-        "deviceprofile_id": "00001f46-0000-0000-0000-000000000000",
-        "type": "type4"
+        }
       },
-      "downlinks": [
-        "downlinks6",
-        "downlinks7"
-      ],
-      "esilaglinks": [
-        "esilaglinks4",
-        "esilaglinks3"
-      ],
-      "evpn_id": 192
+      "downlink_ips": [
+        "downlink_ips6"
+      ]
     }
   ],
-  "config": {
-    "ap_affinity_threshold": 164,
-    "cli_banner": "cli_banner4",
-    "cli_idle_timeout": 76,
-    "config_revert_timer": 122,
-    "dhcp_option_fqdn": false
+  "evpn_options": {
+    "auto_loopback_subnet": "auto_loopback_subnet4",
+    "auto_loopback_subnet6": "auto_loopback_subnet60",
+    "auto_router_id_subnet": "auto_router_id_subnet8",
+    "auto_router_id_subnet6": "auto_router_id_subnet60",
+    "core_as_border": false
   },
   "overwrite": false,
   "pod_names": {

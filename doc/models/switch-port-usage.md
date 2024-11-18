@@ -29,7 +29,7 @@ Junos port usages
 | `MacAuthPreferred` | `*bool` | Optional | Only if `mode`!=`dynamic` + `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x. |
 | `MacAuthProtocol` | [`*models.SwitchPortUsageMacAuthProtocolEnum`](../../doc/models/switch-port-usage-mac-auth-protocol-enum.md) | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`<br>**Default**: `"eap-md5"` |
 | `MacLimit` | `*int` | Optional | Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform<br>**Default**: `0`<br>**Constraints**: `>= 0` |
-| `Mode` | [`*models.SwitchPortUsageModeEnum`](../../doc/models/switch-port-usage-mode-enum.md) | Optional | `mode`==`dynamic` must only be used with the port usage with the name `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk` |
+| `Mode` | [`*models.SwitchPortUsageModeEnum`](../../doc/models/switch-port-usage-mode-enum.md) | Optional | `mode`==`dynamic` must only be used if the port usage name is `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk` |
 | `Mtu` | `*int` | Optional | Only if `mode`!=`dynamic` media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514. |
 | `Networks` | `[]string` | Optional | Only if `mode`==`trunk`, the list of network/vlans |
 | `PersistMac` | `*bool` | Optional | Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses<br>**Default**: `false` |

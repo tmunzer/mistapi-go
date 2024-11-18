@@ -9,29 +9,42 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Config` | [`*models.DeviceSwitch`](../../doc/models/device-switch.md) | Optional | Switch Configuration.<br>You can configure `port_usages` and `networks` settings at the device level, but most of the time it's better use the Site Setting to achieve better consistency and be able to re-use the same settings across switches entries defined here will "replace" those defined in Site Setting/Network Template |
+| `Config` | [`*models.EvpnTopologySwitchConfig`](../../doc/models/evpn-topology-switch-config.md) | Optional | - |
 | `DeviceprofileId` | `*uuid.UUID` | Optional | - |
+| `DownlinkIps` | `[]string` | Optional | - |
 | `Downlinks` | `[]string` | Optional | - |
 | `Esilaglinks` | `[]string` | Optional | - |
 | `EvpnId` | `*int` | Optional | **Constraints**: `>= 1` |
-| `Mac` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
+| `Mac` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Model` | `*string` | Optional | - |
 | `Pod` | `*int` | Optional | optionally, for distribution / access / esilag-access, they can be placed into different pods. e.g.<br><br>* for CLOS, to group dist / access switches into pods<br>* for ERB/CRB, to group dist / esilag-access into pods<br>**Default**: `1`<br>**Constraints**: `>= 1`, `<= 255` |
 | `Pods` | `[]int` | Optional | by default, core switches are assumed to be connecting all pods.<br>if you want to limit the pods, you can specify pods. |
-| `Role` | [`*models.EvpnTopologySwitchRoleEnum`](../../doc/models/evpn-topology-switch-role-enum.md) | Optional | use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`<br>**Constraints**: *Minimum Length*: `1` |
+| `Role` | [`models.EvpnTopologySwitchRoleEnum`](../../doc/models/evpn-topology-switch-role-enum.md) | Required | use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`<br>**Constraints**: *Minimum Length*: `1` |
+| `RouterId` | `*string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SuggestedDownlinks` | `[]string` | Optional | - |
 | `SuggestedEsilaglinks` | `[]string` | Optional | - |
 | `SuggestedUplinks` | `[]string` | Optional | - |
-| `Uplinks` | `[]string` | Optional | if not specified in the request, suggested ones will be used |
+| `Uplinks` | `[]string` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
   "deviceprofile_id": "6a1deab1-96df-4fa2-8455-d5253f943d06",
+  "downlinks": [
+    "5c5b35000005",
+    "5c5b35000006"
+  ],
+  "esilaglinks": [
+    "5c5b35000005",
+    "5c5b35000006"
+  ],
   "mac": "5c5b35000003",
+  "model": "QFX10002-36Q",
   "pod": 1,
+  "role": "access",
+  "router_id": "172.16.254.4",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "suggested_downlinks": [
     "5c5b35000005",
@@ -45,67 +58,34 @@
     "5c5b35000005",
     "5c5b35000006"
   ],
+  "uplinks": [
+    "5c5b35000005",
+    "5c5b35000006"
+  ],
   "config": {
-    "acl_policies": [
-      {
-        "actions": [
-          {
-            "action": "allow",
-            "dst_tag": "dst_tag0"
-          }
-        ],
-        "name": "name2",
-        "src_tags": [
-          "src_tags1",
-          "src_tags0"
-        ]
-      },
-      {
-        "actions": [
-          {
-            "action": "allow",
-            "dst_tag": "dst_tag0"
-          }
-        ],
-        "name": "name2",
-        "src_tags": [
-          "src_tags1",
-          "src_tags0"
-        ]
-      }
-    ],
-    "acl_tags": {
+    "port_config": {
       "key0": {
-        "gbp_tag": 14,
-        "macs": [
-          "macs1"
-        ],
-        "network": "network2",
-        "radius_group": "radius_group8",
-        "specs": [
-          {
-            "port_range": "port_range8",
-            "protocol": "protocol6"
-          }
-        ],
-        "type": "dynamic_gbp"
+        "ae_disable_lacp": false,
+        "ae_idx": 230,
+        "ae_lacp_slow": false,
+        "aggregated": false,
+        "critical": false,
+        "usage": "usage6"
+      },
+      "key1": {
+        "ae_disable_lacp": false,
+        "ae_idx": 230,
+        "ae_lacp_slow": false,
+        "aggregated": false,
+        "critical": false,
+        "usage": "usage6"
       }
-    },
-    "additional_config_cmds": [
-      "additional_config_cmds0",
-      "additional_config_cmds9"
-    ],
-    "created_time": 40.26,
-    "deviceprofile_id": "00001f46-0000-0000-0000-000000000000",
-    "type": "type4"
+    }
   },
-  "downlinks": [
-    "downlinks2"
-  ],
-  "esilaglinks": [
-    "esilaglinks2"
-  ],
-  "evpn_id": 104
+  "downlink_ips": [
+    "downlink_ips0",
+    "downlink_ips1"
+  ]
 }
 ```
 
