@@ -3838,6 +3838,23 @@ const (
     SwitchPortUsageModeEnum_TRUNK   SwitchPortUsageModeEnum = "trunk"
 )
 
+// SwitchPortUsageSpeedEnum is a string enum.
+// Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
+type SwitchPortUsageSpeedEnum string
+
+const (
+    SwitchPortUsageSpeedEnum_ENUM10M  SwitchPortUsageSpeedEnum = "10m"
+    SwitchPortUsageSpeedEnum_ENUM100M SwitchPortUsageSpeedEnum = "100m"
+    SwitchPortUsageSpeedEnum_ENUM1G   SwitchPortUsageSpeedEnum = "1g"
+    SwitchPortUsageSpeedEnum_ENUM25G  SwitchPortUsageSpeedEnum = "2.5g"
+    SwitchPortUsageSpeedEnum_ENUM5G   SwitchPortUsageSpeedEnum = "5g"
+    SwitchPortUsageSpeedEnum_ENUM10G  SwitchPortUsageSpeedEnum = "10g"
+    SwitchPortUsageSpeedEnum_ENUM25G1 SwitchPortUsageSpeedEnum = "25g"
+    SwitchPortUsageSpeedEnum_ENUM40G  SwitchPortUsageSpeedEnum = "40g"
+    SwitchPortUsageSpeedEnum_ENUM100G SwitchPortUsageSpeedEnum = "100g"
+    SwitchPortUsageSpeedEnum_AUTO     SwitchPortUsageSpeedEnum = "auto"
+)
+
 // SwitchVirtualChassisMemberVcRoleEnum is a string enum.
 // Both vc_role master and backup will be matched to routing-engine role in Junos preprovisioned VC config. enum: `backup`, `linecard`, `master`
 type SwitchVirtualChassisMemberVcRoleEnum string

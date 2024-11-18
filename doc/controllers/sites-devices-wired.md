@@ -114,6 +114,7 @@ deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := map[string]models.JunosLocalPortConfig{
     "ge-0/0/0-1": models.JunosLocalPortConfig{
         Description:                              models.ToPointer("string"),
+        DisableAutoneg:                           models.ToPointer(true),
         Duplex:                                   models.ToPointer(models.SwitchPortLocalUsageDuplexEnum("auto")),
         PoeDisabled:                              models.ToPointer(true),
         Speed:                                    models.ToPointer(models.JunosPortConfigSpeedEnum("auto")),

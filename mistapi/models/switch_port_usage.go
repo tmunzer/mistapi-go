@@ -69,8 +69,8 @@ type SwitchPortUsage struct {
     ServerFailNetwork                        Optional[string]                            `json:"server_fail_network"`
     // Only if `mode`!=`dynamic` and `port_auth`==`dot1x` when radius server reject / fails
     ServerRejectNetwork                      Optional[string]                            `json:"server_reject_network"`
-    // Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed
-    Speed                                    *string                                     `json:"speed,omitempty"`
+    // Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
+    Speed                                    *SwitchPortUsageSpeedEnum                   `json:"speed,omitempty"`
     // Switch storm control
     // Only if `mode`!=`dynamic`
     StormControl                             *SwitchPortUsageStormControl                `json:"storm_control,omitempty"`
@@ -313,7 +313,7 @@ type tempSwitchPortUsage  struct {
     Rules                                    []SwitchPortUsageDynamicRule                `json:"rules,omitempty"`
     ServerFailNetwork                        Optional[string]                            `json:"server_fail_network"`
     ServerRejectNetwork                      Optional[string]                            `json:"server_reject_network"`
-    Speed                                    *string                                     `json:"speed,omitempty"`
+    Speed                                    *SwitchPortUsageSpeedEnum                   `json:"speed,omitempty"`
     StormControl                             *SwitchPortUsageStormControl                `json:"storm_control,omitempty"`
     StpEdge                                  *bool                                       `json:"stp_edge,omitempty"`
     StpNoRootPort                            *bool                                       `json:"stp_no_root_port,omitempty"`

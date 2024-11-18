@@ -17,6 +17,7 @@ Switch port config
 | `BypassAuthWhenServerDown` | `*bool` | Optional | Only if `port_auth`==`dot1x` bypass auth for known clients if set to true when RADIUS server is down<br>**Default**: `false` |
 | `BypassAuthWhenServerDownForUnkonwnClient` | `*bool` | Optional | Only if `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down<br>**Default**: `false` |
 | `Description` | `*string` | Optional | - |
+| `DisableAutoneg` | `*bool` | Optional | Only if `mode`!=`dynamic` if speed and duplex are specified, whether to disable autonegotiation<br>**Default**: `false` |
 | `Disabled` | `*bool` | Optional | whether the port is disabled<br>**Default**: `false` |
 | `Duplex` | [`*models.SwitchPortLocalUsageDuplexEnum`](../../doc/models/switch-port-local-usage-duplex-enum.md) | Optional | link connection mode. enum: `auto`, `full`, `half`<br>**Default**: `"auto"` |
 | `DynamicVlanNetworks` | `[]string` | Optional | Only if `port_auth`==`dot1x`, if dynamic vlan is used, specify the possible networks/vlans RADIUS can return |
@@ -55,6 +56,7 @@ Switch port config
   "allow_multiple_supplicants": false,
   "bypass_auth_when_server_down": false,
   "bypass_auth_when_server_down_for_unkonwn_client": false,
+  "disable_autoneg": false,
   "disabled": false,
   "duplex": "auto",
   "dynamic_vlan_networks": [

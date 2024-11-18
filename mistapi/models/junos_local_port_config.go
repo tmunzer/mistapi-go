@@ -20,6 +20,8 @@ type JunosLocalPortConfig struct {
     // Only if `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down
     BypassAuthWhenServerDownForUnkonwnClient *bool                                    `json:"bypass_auth_when_server_down_for_unkonwn_client,omitempty"`
     Description                              *string                                  `json:"description,omitempty"`
+    // Only if `mode`!=`dynamic` if speed and duplex are specified, whether to disable autonegotiation
+    DisableAutoneg                           *bool                                    `json:"disable_autoneg,omitempty"`
     // whether the port is disabled
     Disabled                                 *bool                                    `json:"disabled,omitempty"`
     // link connection mode. enum: `auto`, `full`, `half`
@@ -109,6 +111,9 @@ func (j JunosLocalPortConfig) toMap() map[string]any {
     }
     if j.Description != nil {
         structMap["description"] = j.Description
+    }
+    if j.DisableAutoneg != nil {
+        structMap["disable_autoneg"] = j.DisableAutoneg
     }
     if j.Disabled != nil {
         structMap["disabled"] = j.Disabled
@@ -226,7 +231,7 @@ func (j *JunosLocalPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkonwn_client", "description", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "usage", "use_vstp", "voip_network")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkonwn_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "usage", "use_vstp", "voip_network")
     if err != nil {
     	return err
     }
@@ -238,6 +243,7 @@ func (j *JunosLocalPortConfig) UnmarshalJSON(input []byte) error {
     j.BypassAuthWhenServerDown = temp.BypassAuthWhenServerDown
     j.BypassAuthWhenServerDownForUnkonwnClient = temp.BypassAuthWhenServerDownForUnkonwnClient
     j.Description = temp.Description
+    j.DisableAutoneg = temp.DisableAutoneg
     j.Disabled = temp.Disabled
     j.Duplex = temp.Duplex
     j.DynamicVlanNetworks = temp.DynamicVlanNetworks
@@ -278,6 +284,7 @@ type tempJunosLocalPortConfig  struct {
     BypassAuthWhenServerDown                 *bool                                    `json:"bypass_auth_when_server_down,omitempty"`
     BypassAuthWhenServerDownForUnkonwnClient *bool                                    `json:"bypass_auth_when_server_down_for_unkonwn_client,omitempty"`
     Description                              *string                                  `json:"description,omitempty"`
+    DisableAutoneg                           *bool                                    `json:"disable_autoneg,omitempty"`
     Disabled                                 *bool                                    `json:"disabled,omitempty"`
     Duplex                                   *SwitchPortLocalUsageDuplexEnum          `json:"duplex,omitempty"`
     DynamicVlanNetworks                      []string                                 `json:"dynamic_vlan_networks,omitempty"`

@@ -260,8 +260,6 @@ var sitesMapsAutoZone SitesMapsAutoZone
 
 var sitesMxEdges SitesMxEdges
 
-var sitesNetworkTemplates SitesNetworkTemplates
-
 var sitesNetworks SitesNetworks
 
 var sitesPsks SitesPsks
@@ -515,7 +513,6 @@ func init() {
     sitesMapsAutoPlacement = *client.SitesMapsAutoPlacement()
     sitesMapsAutoZone = *client.SitesMapsAutoZone()
     sitesMxEdges = *client.SitesMxEdges()
-    sitesNetworkTemplates = *client.SitesNetworkTemplates()
     sitesNetworks = *client.SitesNetworks()
     sitesPsks = *client.SitesPsks()
     sitesRfTemplates = *client.SitesRFTemplates()

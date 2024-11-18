@@ -41,7 +41,7 @@ Junos port usages
 | `Rules` | [`[]models.SwitchPortUsageDynamicRule`](../../doc/models/switch-port-usage-dynamic-rule.md) | Optional | Only if `mode`==`dynamic` |
 | `ServerFailNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` sets server fail fallback vlan |
 | `ServerRejectNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` when radius server reject / fails |
-| `Speed` | `*string` | Optional | Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed |
+| `Speed` | [`*models.SwitchPortUsageSpeedEnum`](../../doc/models/switch-port-usage-speed-enum.md) | Optional | Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`<br>**Default**: `"auto"` |
 | `StormControl` | [`*models.SwitchPortUsageStormControl`](../../doc/models/switch-port-usage-storm-control.md) | Optional | Switch storm control<br>Only if `mode`!=`dynamic` |
 | `StpEdge` | `*bool` | Optional | Only if `mode`!=`dynamic` when enabled, the port is not expected to receive BPDU frames<br>**Default**: `false` |
 | `StpNoRootPort` | `*bool` | Optional | **Default**: `false` |
@@ -73,6 +73,7 @@ Junos port usages
   "poe_disabled": false,
   "reauth_interval": 3600,
   "reset_default_when": "link_down",
+  "speed": "auto",
   "stp_edge": false,
   "stp_no_root_port": false,
   "stp_p2p": false,
