@@ -12,7 +12,7 @@ Switch port config
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AllNetworks` | `*bool` | Optional | Only if `mode`==`trunk` whether to trunk all network/vlans<br>**Default**: `false` |
-| `AllowDhcpd` | `*bool` | Optional | if DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state.<br><br>When it is not defined, it means using the system’s default setting which depends on whether the port is a access or trunk port. |
+| `AllowDhcpd` | `*bool` | Optional | If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with.<br>All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state.<br>When it is not defined, it means using the system's default setting which depends on whether the port is a access or trunk port. |
 | `AllowMultipleSupplicants` | `*bool` | Optional | **Default**: `false` |
 | `BypassAuthWhenServerDown` | `*bool` | Optional | Only if `port_auth`==`dot1x` bypass auth for known clients if set to true when RADIUS server is down<br>**Default**: `false` |
 | `BypassAuthWhenServerDownForUnkonwnClient` | `*bool` | Optional | Only if `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down<br>**Default**: `false` |
@@ -44,7 +44,7 @@ Switch port config
 | `StpEdge` | `*bool` | Optional | when enabled, the port is not expected to receive BPDU frames<br>**Default**: `false` |
 | `StpNoRootPort` | `*bool` | Optional | **Default**: `false` |
 | `StpP2p` | `*bool` | Optional | **Default**: `false` |
-| `Usage` | `string` | Required | port usage name.<br><br>If EVPN is used, use `evpn_uplink`or `evpn_downlink` |
+| `Usage` | `string` | Required | port usage name. |
 | `UseVstp` | `*bool` | Optional | if this is connected to a vstp network<br>**Default**: `false` |
 | `VoipNetwork` | `*string` | Optional | network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth |
 

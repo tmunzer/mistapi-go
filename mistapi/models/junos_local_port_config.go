@@ -11,8 +11,9 @@ import (
 type JunosLocalPortConfig struct {
     // Only if `mode`==`trunk` whether to trunk all network/vlans
     AllNetworks                              *bool                                    `json:"all_networks,omitempty"`
-    // if DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state.
-    // When it is not defined, it means using the system’s default setting which depends on whether the port is a access or trunk port.
+    // If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with.
+    // All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state.
+    // When it is not defined, it means using the system's default setting which depends on whether the port is a access or trunk port.
     AllowDhcpd                               *bool                                    `json:"allow_dhcpd,omitempty"`
     AllowMultipleSupplicants                 *bool                                    `json:"allow_multiple_supplicants,omitempty"`
     // Only if `port_auth`==`dot1x` bypass auth for known clients if set to true when RADIUS server is down
@@ -73,7 +74,6 @@ type JunosLocalPortConfig struct {
     StpNoRootPort                            *bool                                    `json:"stp_no_root_port,omitempty"`
     StpP2p                                   *bool                                    `json:"stp_p2p,omitempty"`
     // port usage name.
-    // If EVPN is used, use `evpn_uplink`or `evpn_downlink`
     Usage                                    string                                   `json:"usage"`
     // if this is connected to a vstp network
     UseVstp                                  *bool                                    `json:"use_vstp,omitempty"`

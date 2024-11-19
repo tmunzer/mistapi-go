@@ -66,13 +66,14 @@ type DeviceSwitch struct {
     OrgId                 *uuid.UUID                             `json:"org_id,omitempty"`
     // Junos OSPF areas
     OspfAreas             map[string]OspfArea                    `json:"ospf_areas,omitempty"`
-    // Property key is the network name
+    // Property key is the network name. Defines the additional IP Addresses configured on the device.
     OtherIpConfigs        map[string]JunosOtherIpConfig          `json:"other_ip_configs,omitempty"`
     // Property key is the port name or range (e.g. "ge-0/0/0-10")
     PortConfig            map[string]JunosPortConfig             `json:"port_config,omitempty"`
     // Property key is the port mirroring instance name
     // port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed
     PortMirroring         map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
+    // Property key is the port usage name. Defines the profiles of port configuration configured on the switch
     PortUsages            map[string]SwitchPortUsage             `json:"port_usages,omitempty"`
     // Junos Radius config
     RadiusConfig          *SwitchRadiusConfig                    `json:"radius_config,omitempty"`

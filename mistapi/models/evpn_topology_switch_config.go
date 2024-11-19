@@ -6,9 +6,19 @@ import (
 
 // EvpnTopologySwitchConfig represents a EvpnTopologySwitchConfig struct.
 type EvpnTopologySwitchConfig struct {
+    DhcpdConfig          *EvpnTopologySwitchConfigDhcpdConfig `json:"dhcpd_config,omitempty"`
+    // Property key is network name
+    Networks             map[string]SwitchNetwork             `json:"networks,omitempty"`
+    // additional IP Addresses configured on the switch. Property key is the port network name
+    OtherIpConfigs       map[string]JunosOtherIpConfig        `json:"other_ip_configs,omitempty"`
     // Property key is the port name or range (e.g. "ge-0/0/0-10")
-    PortConfig           map[string]JunosPortConfig `json:"port_config,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    PortConfig           map[string]JunosPortConfig           `json:"port_config,omitempty"`
+    // Property key is the port usage name. Defines the profiles of port configuration configured on the switch
+    PortUsages           map[string]SwitchPortUsage           `json:"port_usages,omitempty"`
+    // used for OSPF / BGP / EVPN
+    RouterId             *string                              `json:"router_id,omitempty"`
+    VrfConfig            *EvpnTopologySwitchConfigVrfConfig   `json:"vrf_config,omitempty"`
+    AdditionalProperties map[string]any                       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopologySwitchConfig.
@@ -23,8 +33,26 @@ func (e EvpnTopologySwitchConfig) MarshalJSON() (
 func (e EvpnTopologySwitchConfig) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, e.AdditionalProperties)
+    if e.DhcpdConfig != nil {
+        structMap["dhcpd_config"] = e.DhcpdConfig.toMap()
+    }
+    if e.Networks != nil {
+        structMap["networks"] = e.Networks
+    }
+    if e.OtherIpConfigs != nil {
+        structMap["other_ip_configs"] = e.OtherIpConfigs
+    }
     if e.PortConfig != nil {
         structMap["port_config"] = e.PortConfig
+    }
+    if e.PortUsages != nil {
+        structMap["port_usages"] = e.PortUsages
+    }
+    if e.RouterId != nil {
+        structMap["router_id"] = e.RouterId
+    }
+    if e.VrfConfig != nil {
+        structMap["vrf_config"] = e.VrfConfig.toMap()
     }
     return structMap
 }
@@ -37,17 +65,29 @@ func (e *EvpnTopologySwitchConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "port_config")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "dhcpd_config", "networks", "other_ip_configs", "port_config", "port_usages", "router_id", "vrf_config")
     if err != nil {
     	return err
     }
     
     e.AdditionalProperties = additionalProperties
+    e.DhcpdConfig = temp.DhcpdConfig
+    e.Networks = temp.Networks
+    e.OtherIpConfigs = temp.OtherIpConfigs
     e.PortConfig = temp.PortConfig
+    e.PortUsages = temp.PortUsages
+    e.RouterId = temp.RouterId
+    e.VrfConfig = temp.VrfConfig
     return nil
 }
 
 // tempEvpnTopologySwitchConfig is a temporary struct used for validating the fields of EvpnTopologySwitchConfig.
 type tempEvpnTopologySwitchConfig  struct {
-    PortConfig map[string]JunosPortConfig `json:"port_config,omitempty"`
+    DhcpdConfig    *EvpnTopologySwitchConfigDhcpdConfig `json:"dhcpd_config,omitempty"`
+    Networks       map[string]SwitchNetwork             `json:"networks,omitempty"`
+    OtherIpConfigs map[string]JunosOtherIpConfig        `json:"other_ip_configs,omitempty"`
+    PortConfig     map[string]JunosPortConfig           `json:"port_config,omitempty"`
+    PortUsages     map[string]SwitchPortUsage           `json:"port_usages,omitempty"`
+    RouterId       *string                              `json:"router_id,omitempty"`
+    VrfConfig      *EvpnTopologySwitchConfigVrfConfig   `json:"vrf_config,omitempty"`
 }

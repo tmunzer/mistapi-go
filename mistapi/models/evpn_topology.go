@@ -14,9 +14,11 @@ type EvpnTopology struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID           `json:"id,omitempty"`
     Name                 *string              `json:"name,omitempty"`
+    OrgId                *uuid.UUID           `json:"org_id,omitempty"`
     Overwrite            *bool                `json:"overwrite,omitempty"`
     // Property key is the pod number
     PodNames             map[string]string    `json:"pod_names,omitempty"`
+    SiteId               *uuid.UUID           `json:"site_id,omitempty"`
     Switches             []EvpnTopologySwitch `json:"switches"`
     AdditionalProperties map[string]any       `json:"_"`
 }
@@ -42,11 +44,17 @@ func (e EvpnTopology) toMap() map[string]any {
     if e.Name != nil {
         structMap["name"] = e.Name
     }
+    if e.OrgId != nil {
+        structMap["org_id"] = e.OrgId
+    }
     if e.Overwrite != nil {
         structMap["overwrite"] = e.Overwrite
     }
     if e.PodNames != nil {
         structMap["pod_names"] = e.PodNames
+    }
+    if e.SiteId != nil {
+        structMap["site_id"] = e.SiteId
     }
     structMap["switches"] = e.Switches
     return structMap
@@ -64,7 +72,7 @@ func (e *EvpnTopology) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "evpn_options", "id", "name", "overwrite", "pod_names", "switches")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "evpn_options", "id", "name", "org_id", "overwrite", "pod_names", "site_id", "switches")
     if err != nil {
     	return err
     }
@@ -73,8 +81,10 @@ func (e *EvpnTopology) UnmarshalJSON(input []byte) error {
     e.EvpnOptions = temp.EvpnOptions
     e.Id = temp.Id
     e.Name = temp.Name
+    e.OrgId = temp.OrgId
     e.Overwrite = temp.Overwrite
     e.PodNames = temp.PodNames
+    e.SiteId = temp.SiteId
     e.Switches = *temp.Switches
     return nil
 }
@@ -84,8 +94,10 @@ type tempEvpnTopology  struct {
     EvpnOptions *EvpnOptions          `json:"evpn_options,omitempty"`
     Id          *uuid.UUID            `json:"id,omitempty"`
     Name        *string               `json:"name,omitempty"`
+    OrgId       *uuid.UUID            `json:"org_id,omitempty"`
     Overwrite   *bool                 `json:"overwrite,omitempty"`
     PodNames    map[string]string     `json:"pod_names,omitempty"`
+    SiteId      *uuid.UUID            `json:"site_id,omitempty"`
     Switches    *[]EvpnTopologySwitch `json:"switches"`
 }
 

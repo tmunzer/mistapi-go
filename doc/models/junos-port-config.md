@@ -25,7 +25,7 @@ Switch port config
 | `NoLocalOverwrite` | `*bool` | Optional | prevent helpdesk to override the port config |
 | `PoeDisabled` | `*bool` | Optional | **Default**: `false` |
 | `Speed` | [`*models.JunosPortConfigSpeedEnum`](../../doc/models/junos-port-config-speed-enum.md) | Optional | enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`<br>**Default**: `"auto"` |
-| `Usage` | `string` | Required | port usage name.<br><br>If EVPN is used, use `evpn_uplink`or `evpn_downlink` |
+| `Usage` | `string` | Required | port usage name. If EVPN is used, use `evpn_uplink`or `evpn_downlink` |
 
 ## Example (as JSON)
 

@@ -12,8 +12,10 @@
 | `EvpnOptions` | [`*models.EvpnOptions`](../../doc/models/evpn-options.md) | Optional | EVPN Options |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Name` | `*string` | Optional | - |
+| `OrgId` | `*uuid.UUID` | Optional | - |
 | `Overwrite` | `*bool` | Optional | - |
 | `PodNames` | `map[string]string` | Optional | Property key is the pod number |
+| `SiteId` | `*uuid.UUID` | Optional | - |
 | `Switches` | [`[]models.EvpnTopologySwitch`](../../doc/models/evpn-topology-switch.md) | Required | **Constraints**: *Unique Items Required* |
 
 ## Example (as JSON)
@@ -22,6 +24,8 @@
 {
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "CC",
+  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "switches": [
     {
       "deviceprofile_id": "6a1deab1-96df-4fa2-8455-d5253f943d06",
@@ -56,6 +60,46 @@
         "5c5b35000006"
       ],
       "config": {
+        "dhcpd_config": {
+          "enabled": false
+        },
+        "networks": {
+          "key0": {
+            "isolation": false,
+            "isolation_vlan_id": "isolation_vlan_id8",
+            "subnet": "subnet6",
+            "vlan_id": "String7"
+          },
+          "key1": {
+            "isolation": false,
+            "isolation_vlan_id": "isolation_vlan_id8",
+            "subnet": "subnet6",
+            "vlan_id": "String7"
+          }
+        },
+        "other_ip_configs": {
+          "key0": {
+            "evpn_anycast": false,
+            "ip": "ip4",
+            "ip6": "ip60",
+            "netmask": "netmask0",
+            "netmask6": "netmask60"
+          },
+          "key1": {
+            "evpn_anycast": false,
+            "ip": "ip4",
+            "ip6": "ip60",
+            "netmask": "netmask0",
+            "netmask6": "netmask60"
+          },
+          "key2": {
+            "evpn_anycast": false,
+            "ip": "ip4",
+            "ip6": "ip60",
+            "netmask": "netmask0",
+            "netmask6": "netmask60"
+          }
+        },
         "port_config": {
           "key0": {
             "ae_disable_lacp": false,
@@ -73,6 +117,29 @@
             "critical": false,
             "usage": "usage6"
           }
+        },
+        "port_usages": {
+          "key0": {
+            "all_networks": false,
+            "allow_dhcpd": false,
+            "allow_multiple_supplicants": false,
+            "bypass_auth_when_server_down": false,
+            "bypass_auth_when_server_down_for_unkonwn_client": false
+          },
+          "key1": {
+            "all_networks": false,
+            "allow_dhcpd": false,
+            "allow_multiple_supplicants": false,
+            "bypass_auth_when_server_down": false,
+            "bypass_auth_when_server_down_for_unkonwn_client": false
+          },
+          "key2": {
+            "all_networks": false,
+            "allow_dhcpd": false,
+            "allow_multiple_supplicants": false,
+            "bypass_auth_when_server_down": false,
+            "bypass_auth_when_server_down_for_unkonwn_client": false
+          }
         }
       },
       "downlink_ips": [
@@ -87,10 +154,7 @@
     "auto_router_id_subnet6": "auto_router_id_subnet60",
     "core_as_border": false
   },
-  "overwrite": false,
-  "pod_names": {
-    "key0": "pod_names2"
-  }
+  "overwrite": false
 }
 ```
 

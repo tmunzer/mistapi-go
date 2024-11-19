@@ -9,8 +9,9 @@ import (
 type SwitchPortUsage struct {
     // Only if `mode`==`trunk` whether to trunk all network/vlans
     AllNetworks                              *bool                                       `json:"all_networks,omitempty"`
-    // Only if `mode`!=`dynamic` if DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state.
-    // When it is not defined, it means using the system’s default setting which depends on whether the port is a access or trunk port.
+    // Only if `mode`!=`dynamic`. If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with.
+    // All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state.
+    // When it is not defined, it means using the system's default setting which depends on whether the port is a access or trunk port.
     AllowDhcpd                               *bool                                       `json:"allow_dhcpd,omitempty"`
     // Only if `mode`!=`dynamic`
     AllowMultipleSupplicants                 *bool                                       `json:"allow_multiple_supplicants,omitempty"`
