@@ -12,7 +12,7 @@ orgsEVPNTopologies := client.OrgsEVPNTopologies()
 
 * [Create Org Evpn Topology](../../doc/controllers/orgs-evpn-topologies.md#create-org-evpn-topology)
 * [Delete Org Evpn Topology](../../doc/controllers/orgs-evpn-topologies.md#delete-org-evpn-topology)
-* [Get Org Evpn Tolopogy](../../doc/controllers/orgs-evpn-topologies.md#get-org-evpn-tolopogy)
+* [Get Org Evpn Topology](../../doc/controllers/orgs-evpn-topologies.md#get-org-evpn-topology)
 * [List Org Evpn Topologies](../../doc/controllers/orgs-evpn-topologies.md#list-org-evpn-topologies)
 * [Update Org Evpn Topology](../../doc/controllers/orgs-evpn-topologies.md#update-org-evpn-topology)
 
@@ -197,12 +197,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Org Evpn Tolopogy
+# Get Org Evpn Topology
 
 Get One EVPN Topology Detail
 
 ```go
-GetOrgEvpnTolopogy(
+GetOrgEvpnTopology(
     ctx context.Context,
     orgId uuid.UUID,
     evpnTopologyId uuid.UUID) (
@@ -230,7 +230,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 evpnTopologyId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsEVPNTopologies.GetOrgEvpnTolopogy(ctx, orgId, evpnTopologyId)
+apiResponse, err := orgsEVPNTopologies.GetOrgEvpnTopology(ctx, orgId, evpnTopologyId)
 if err != nil {
     log.Fatalln(err)
 } else {

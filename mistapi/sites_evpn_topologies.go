@@ -167,14 +167,14 @@ func (s *SitesEVPNTopologies) DeleteSiteEvpnTopology(
 }
 
 // GetSiteEvpnTopology takes context, siteId, evpnTopologyId as parameters and
-// returns an *Response and
+// returns an models.ApiResponse with models.EvpnTopology data and
 // an error if there was an issue with the request or response.
 // Get One EVPN Topology Detail
 func (s *SitesEVPNTopologies) GetSiteEvpnTopology(
     ctx context.Context,
     siteId uuid.UUID,
     evpnTopologyId uuid.UUID) (
-    *http.Response,
+    models.ApiResponse[models.EvpnTopology],
     error) {
     req := s.prepareRequest(
       ctx,
@@ -200,11 +200,14 @@ func (s *SitesEVPNTopologies) GetSiteEvpnTopology(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    httpCtx, err := req.Call()
+    var result models.EvpnTopology
+    decoder, resp, err := req.CallAsJson()
     if err != nil {
-        return httpCtx.Response, err
+        return models.NewApiResponse(result, resp), err
     }
-    return httpCtx.Response, err
+    
+    result, err = utilities.DecodeResults[models.EvpnTopology](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // UpdateSiteEvpnTopology takes context, siteId, evpnTopologyId, body as parameters and

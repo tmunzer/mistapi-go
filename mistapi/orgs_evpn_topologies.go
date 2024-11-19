@@ -174,11 +174,11 @@ func (o *OrgsEVPNTopologies) DeleteOrgEvpnTopology(
     return httpCtx.Response, err
 }
 
-// GetOrgEvpnTolopogy takes context, orgId, evpnTopologyId as parameters and
+// GetOrgEvpnTopology takes context, orgId, evpnTopologyId as parameters and
 // returns an models.ApiResponse with models.EvpnTopology data and
 // an error if there was an issue with the request or response.
 // Get One EVPN Topology Detail
-func (o *OrgsEVPNTopologies) GetOrgEvpnTolopogy(
+func (o *OrgsEVPNTopologies) GetOrgEvpnTopology(
     ctx context.Context,
     orgId uuid.UUID,
     evpnTopologyId uuid.UUID) (

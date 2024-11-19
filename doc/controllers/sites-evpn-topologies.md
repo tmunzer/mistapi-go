@@ -207,7 +207,7 @@ GetSiteEvpnTopology(
     ctx context.Context,
     siteId uuid.UUID,
     evpnTopologyId uuid.UUID) (
-    http.Response,
+    models.ApiResponse[models.EvpnTopology],
     error)
 ```
 
@@ -220,7 +220,7 @@ GetSiteEvpnTopology(
 
 ## Response Type
 
-``
+[`models.EvpnTopology`](../../doc/models/evpn-topology.md)
 
 ## Example Usage
 
@@ -231,11 +231,52 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 evpnTopologyId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-resp, err := sitesEVPNTopologies.GetSiteEvpnTopology(ctx, siteId, evpnTopologyId)
+apiResponse, err := sitesEVPNTopologies.GetSiteEvpnTopology(ctx, siteId, evpnTopologyId)
 if err != nil {
     log.Fatalln(err)
 } else {
-    fmt.Println(resp.StatusCode)
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "id": "9197ec96-4c8d-529f-c595-035895e688b2",
+  "name": "CC",
+  "overwrite": true,
+  "pod_names": {
+    "1": "default",
+    "2": "default"
+  },
+  "switches": [
+    {
+      "deviceprofile_id": "6a1deab1-96df-4fa2-8455-d5253f943d06",
+      "downlink_ips": [
+        "10.255.240.6",
+        "10.255.240.8"
+      ],
+      "downlinks": [
+        "5c5b35000007",
+        "5c5b35000008"
+      ],
+      "esilaglinks": [
+        "5c5b3500000f"
+      ],
+      "evpn_id": 1,
+      "mac": "5c5b35000003",
+      "model": "QFX10002-36Q",
+      "role": "collapsed-core",
+      "site_id": "1916d52a-4a90-11e5-8b45-1258369c38a9",
+      "uplinks": [
+        "5c5b35000005",
+        "5c5b35000006"
+      ]
+    }
+  ]
 }
 ```
 

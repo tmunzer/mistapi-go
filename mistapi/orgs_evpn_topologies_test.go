@@ -74,8 +74,8 @@ func TestOrgsEVPNTopologiesTestDeleteOrgEvpnTopology(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
-// TestOrgsEVPNTopologiesTestGetOrgEvpnTolopogy tests the behavior of the OrgsEVPNTopologies
-func TestOrgsEVPNTopologiesTestGetOrgEvpnTolopogy(t *testing.T) {
+// TestOrgsEVPNTopologiesTestGetOrgEvpnTopology tests the behavior of the OrgsEVPNTopologies
+func TestOrgsEVPNTopologiesTestGetOrgEvpnTopology(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -85,7 +85,7 @@ func TestOrgsEVPNTopologiesTestGetOrgEvpnTolopogy(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    apiResponse, err := orgsEvpnTopologies.GetOrgEvpnTolopogy(ctx, orgId, evpnTopologyId)
+    apiResponse, err := orgsEvpnTopologies.GetOrgEvpnTopology(ctx, orgId, evpnTopologyId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

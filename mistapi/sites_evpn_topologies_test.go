@@ -83,11 +83,17 @@ func TestSitesEVPNTopologiesTestGetSiteEvpnTopology(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    resp, err := sitesEvpnTopologies.GetSiteEvpnTopology(ctx, siteId, evpnTopologyId)
+    apiResponse, err := sitesEvpnTopologies.GetSiteEvpnTopology(ctx, siteId, evpnTopologyId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
-    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"id":"9197ec96-4c8d-529f-c595-035895e688b2","name":"CC","overwrite":true,"pod_names":{"1":"default","2":"default"},"switches":[{"deviceprofile_id":"6a1deab1-96df-4fa2-8455-d5253f943d06","downlink_ips":["10.255.240.6","10.255.240.8"],"downlinks":["5c5b35000007","5c5b35000008"],"esilaglinks":["5c5b3500000f"],"evpn_id":1,"mac":"5c5b35000003","model":"QFX10002-36Q","role":"collapsed-core","site_id":"1916d52a-4a90-11e5-8b45-1258369c38a9","uplinks":["5c5b35000005","5c5b35000006"]}]}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
 // TestSitesEVPNTopologiesTestUpdateSiteEvpnTopology tests the behavior of the SitesEVPNTopologies
