@@ -27,18 +27,24 @@
   },
   "networks": {
     "key0": {
+      "gateway": "gateway8",
+      "gateway6": "gateway64",
       "isolation": false,
       "isolation_vlan_id": "isolation_vlan_id8",
       "subnet": "subnet6",
       "vlan_id": "String7"
     },
     "key1": {
+      "gateway": "gateway8",
+      "gateway6": "gateway64",
       "isolation": false,
       "isolation_vlan_id": "isolation_vlan_id8",
       "subnet": "subnet6",
       "vlan_id": "String7"
     },
     "key2": {
+      "gateway": "gateway8",
+      "gateway6": "gateway64",
       "isolation": false,
       "isolation_vlan_id": "isolation_vlan_id8",
       "subnet": "subnet6",

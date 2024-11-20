@@ -9,12 +9,18 @@ import (
 // SwitchNetwork represents a SwitchNetwork struct.
 // A network represents a network segment. It can either represent a VLAN (then usually ties to a L3 subnet), optionally associate it with a subnet which can later be used to create addition routes. Used for ports doing `family ethernet-switching`. It can also be a pure L3-subnet that can then be used against a port that with `family inet`.
 type SwitchNetwork struct {
+    // only required for EVPN-VXLAN networks, IPv4 Virtual Gateway
+    Gateway              *string            `json:"gateway,omitempty"`
+    // only required for EVPN-VXLAN networks, IPv6 Virtual Gateway
+    Gateway6             *string            `json:"gateway6,omitempty"`
     // whether to stop clients to talk to each other, default is false (when enabled, a unique isolation_vlan_id is required)
     // NOTE: this features requires uplink device to also a be Juniper device and `inter_switch_link` to be set
     Isolation            *bool              `json:"isolation,omitempty"`
     IsolationVlanId      *string            `json:"isolation_vlan_id,omitempty"`
     // optional for pure switching, required when L3 / routing features are used
     Subnet               *string            `json:"subnet,omitempty"`
+    // optional for pure switching, required when L3 / routing features are used
+    Subnet6              *string            `json:"subnet6,omitempty"`
     VlanId               VlanIdWithVariable `json:"vlan_id"`
     AdditionalProperties map[string]any     `json:"_"`
 }
@@ -31,6 +37,12 @@ func (s SwitchNetwork) MarshalJSON() (
 func (s SwitchNetwork) toMap() map[string]any {
     structMap := make(map[string]any)
     MapAdditionalProperties(structMap, s.AdditionalProperties)
+    if s.Gateway != nil {
+        structMap["gateway"] = s.Gateway
+    }
+    if s.Gateway6 != nil {
+        structMap["gateway6"] = s.Gateway6
+    }
     if s.Isolation != nil {
         structMap["isolation"] = s.Isolation
     }
@@ -39,6 +51,9 @@ func (s SwitchNetwork) toMap() map[string]any {
     }
     if s.Subnet != nil {
         structMap["subnet"] = s.Subnet
+    }
+    if s.Subnet6 != nil {
+        structMap["subnet6"] = s.Subnet6
     }
     structMap["vlan_id"] = s.VlanId.toMap()
     return structMap
@@ -56,24 +71,30 @@ func (s *SwitchNetwork) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "isolation", "isolation_vlan_id", "subnet", "vlan_id")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "gateway6", "isolation", "isolation_vlan_id", "subnet", "subnet6", "vlan_id")
     if err != nil {
     	return err
     }
     
     s.AdditionalProperties = additionalProperties
+    s.Gateway = temp.Gateway
+    s.Gateway6 = temp.Gateway6
     s.Isolation = temp.Isolation
     s.IsolationVlanId = temp.IsolationVlanId
     s.Subnet = temp.Subnet
+    s.Subnet6 = temp.Subnet6
     s.VlanId = *temp.VlanId
     return nil
 }
 
 // tempSwitchNetwork is a temporary struct used for validating the fields of SwitchNetwork.
 type tempSwitchNetwork  struct {
+    Gateway         *string             `json:"gateway,omitempty"`
+    Gateway6        *string             `json:"gateway6,omitempty"`
     Isolation       *bool               `json:"isolation,omitempty"`
     IsolationVlanId *string             `json:"isolation_vlan_id,omitempty"`
     Subnet          *string             `json:"subnet,omitempty"`
+    Subnet6         *string             `json:"subnet6,omitempty"`
     VlanId          *VlanIdWithVariable `json:"vlan_id"`
 }
 
