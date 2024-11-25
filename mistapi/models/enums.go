@@ -4440,6 +4440,22 @@ const (
     WlanDataratesLegacyItemEnum_ENUM9B  WlanDataratesLegacyItemEnum = "9b"
 )
 
+// WlanDataratesTemplateEnum is a string enum.
+// Data Rates template to apply. enum: 
+// * `no-legacy`: no 11b
+// * `compatible`: all, like before, default setting that Broadcom/Atheros used
+// * `legacy-only`: disable 802.11n and 802.11ac
+// * `high-density`: no 11b, no low rates
+// * `custom`: user defined
+type WlanDataratesTemplateEnum string
+
+const (
+    WlanDataratesTemplateEnum_COMPATIBLE WlanDataratesTemplateEnum = "compatible"
+    WlanDataratesTemplateEnum_LEGACYONLY WlanDataratesTemplateEnum = "legacy-only"
+    WlanDataratesTemplateEnum_CUSTOM     WlanDataratesTemplateEnum = "custom"
+    WlanDataratesTemplateEnum_NOLEGACY   WlanDataratesTemplateEnum = "no-legacy"
+)
+
 // WlanDynamicVlanTypeEnum is a string enum.
 // standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco). enum: `airespace-interface-name`, `standard`
 type WlanDynamicVlanTypeEnum string

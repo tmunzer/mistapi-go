@@ -19,8 +19,8 @@ type EvpnOptions struct {
     // when `routed_at` != `core`, whether to do virtual-gateway at core as well
     CoreAsBorder         *bool                            `json:"core_as_border,omitempty"`
     Overlay              *EvpnOptionsOverlay              `json:"overlay,omitempty"`
-    // by default, JUNOS uses 00-00-5e-00-01-01 as the virtual-gateway-address's v4_mac
-    // if enabled, 00-00-5e-00-XX-YY will be used (where XX=vlan_id/256, YY=vlan_id%256)
+    // only for by Core-Distribution architecture when `evpn_options.routed_at`==`core`. By default, JUNOS uses 00-00-5e-00-01-01 as the virtual-gateway-address's
+    // v4_mac. If enabled, 00-00-5e-00-XX-YY will be used (where XX=vlan_id/256, YY=vlan_id%256)'
     PerVlanVgaV4Mac      *bool                            `json:"per_vlan_vga_v4_mac,omitempty"`
     // optional, where virtual-gateway should reside. enum: `core`, `distribution`, `edge`
     RoutedAt             *EvpnOptionsRoutedAtEnum         `json:"routed_at,omitempty"`

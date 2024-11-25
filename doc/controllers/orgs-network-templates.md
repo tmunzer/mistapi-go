@@ -49,21 +49,181 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NetworkTemplate{
-    ExtraRoutes6:          map[string]models.ExtraRoute6{
-        "2a02:1234:420a:10c9::/64": models.ExtraRoute6{
-            Via:           models.ToPointer("2a02:1234:200a::100"),
+    AdditionalConfigCmds:  []string{
+        "set snmp community public",
+    },
+    DhcpSnooping:          models.ToPointer(models.DhcpSnooping{
+        AllNetworks:         models.ToPointer(true),
+        EnableArpSpoofCheck: models.ToPointer(true),
+        EnableIpSourceGuard: models.ToPointer(true),
+        Enabled:             models.ToPointer(true),
+        Networks:            []string{
+            "string",
+        },
+    }),
+    DnsServers:            []string{
+        "string",
+    },
+    DnsSuffix:             []string{
+        "string",
+    },
+    ImportOrgNetworks:     []string{
+        "ap",
+    },
+    MistNac:               models.ToPointer(models.SwitchMistNac{
+        Enabled: models.ToPointer(true),
+        Network: models.ToPointer("string"),
+    }),
+    Name:                  models.ToPointer("string"),
+    Networks:              map[string]models.SwitchNetwork{
+        "property1": models.SwitchNetwork{
+            Subnet:          models.ToPointer("192.168.1.0/24"),
+            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
+        },
+        "property2": models.SwitchNetwork{
+            Subnet:          models.ToPointer("192.168.1.0/24"),
+            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
         },
     },
-    RemoveExistingConfigs: models.ToPointer(false),
+    NtpServers:            []string{
+        "string",
+    },
+    PortUsages:            map[string]models.SwitchPortUsage{
+        "dynamic": models.SwitchPortUsage{
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("dynamic")),
+            ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum("link_down")),
+            Rules:                                    []models.SwitchPortUsageDynamicRule{
+                models.SwitchPortUsageDynamicRule{
+                    Equals:     models.ToPointer("string"),
+                    EqualsAny:  []string{
+                        "string",
+                    },
+                    Expression: models.ToPointer("string"),
+                    Src:        models.SwitchPortUsageDynamicRuleSrcEnum("lldp_chassis_id"),
+                    Usage:      models.ToPointer("string"),
+                },
+            },
+        },
+        "property1": models.SwitchPortUsage{
+            AllNetworks:                              models.ToPointer(false),
+            AllowDhcpd:                               models.ToPointer(true),
+            BypassAuthWhenServerDown:                 models.ToPointer(true),
+            Description:                              models.ToPointer("string"),
+            DisableAutoneg:                           models.ToPointer(false),
+            Disabled:                                 models.ToPointer(false),
+            Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum("auto")),
+            EnableMacAuth:                            models.ToPointer(true),
+            EnableQos:                                models.ToPointer(true),
+            GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
+            MacAuthOnly:                              models.ToPointer(true),
+            MacLimit:                                 models.ToPointer(0),
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("access")),
+            Mtu:                                      models.ToPointer(0),
+            Networks:                                 []string{
+                "string",
+            },
+            PersistMac:                               models.ToPointer(false),
+            PoeDisabled:                              models.ToPointer(false),
+            PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum("dot1x"))),
+            PortNetwork:                              models.ToPointer("string"),
+            Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum("auto")),
+            StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
+                NoBroadcast:           models.ToPointer(false),
+                NoMulticast:           models.ToPointer(false),
+                NoRegisteredMulticast: models.ToPointer(false),
+                NoUnknownUnicast:      models.ToPointer(false),
+                Percentage:            models.ToPointer(80),
+            }),
+            StpEdge:                                  models.ToPointer(true),
+            VoipNetwork:                              models.ToPointer("string"),
+        },
+        "property2": models.SwitchPortUsage{
+            AllNetworks:                              models.ToPointer(false),
+            AllowDhcpd:                               models.ToPointer(true),
+            BypassAuthWhenServerDown:                 models.ToPointer(true),
+            Description:                              models.ToPointer("string"),
+            DisableAutoneg:                           models.ToPointer(false),
+            Disabled:                                 models.ToPointer(false),
+            Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum("auto")),
+            EnableMacAuth:                            models.ToPointer(true),
+            EnableQos:                                models.ToPointer(true),
+            GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
+            MacAuthOnly:                              models.ToPointer(true),
+            MacLimit:                                 models.ToPointer(0),
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("access")),
+            Mtu:                                      models.ToPointer(0),
+            Networks:                                 []string{
+                "string",
+            },
+            PersistMac:                               models.ToPointer(false),
+            PoeDisabled:                              models.ToPointer(false),
+            PortNetwork:                              models.ToPointer("string"),
+            Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum("auto")),
+            StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
+                NoBroadcast:           models.ToPointer(false),
+                NoMulticast:           models.ToPointer(false),
+                NoRegisteredMulticast: models.ToPointer(false),
+                NoUnknownUnicast:      models.ToPointer(false),
+                Percentage:            models.ToPointer(80),
+            }),
+            StpEdge:                                  models.ToPointer(true),
+            VoipNetwork:                              models.ToPointer("string"),
+        },
+    },
+    SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
+        ProtectRe:           models.ToPointer(models.ProtectRe{
+            Enabled:         models.ToPointer(false),
+        }),
+        RootPassword:        models.ToPointer("string"),
+        Tacacs:              models.ToPointer(models.Tacacs{
+            AcctServers:    []models.TacacsAcctServer{
+                models.TacacsAcctServer{
+                    Host:    models.ToPointer("198.51.100.1"),
+                    Port:    models.ToPointer("49"),
+                    Secret:  models.ToPointer("string"),
+                    Timeout: models.ToPointer(10),
+                },
+            },
+            Enabled:        models.ToPointer(true),
+            Network:        models.ToPointer("string"),
+            TacplusServers: []models.TacacsAuthServer{
+                models.TacacsAuthServer{
+                    Host:    models.ToPointer("198.51.100.1"),
+                    Port:    models.ToPointer("49"),
+                    Secret:  models.ToPointer("string"),
+                    Timeout: models.ToPointer(10),
+                },
+            },
+        }),
+    }),
+    VrfConfig:             models.ToPointer(models.VrfConfig{
+        Enabled: models.ToPointer(false),
+    }),
     VrfInstances:          map[string]models.SwitchVrfInstance{
-        "guest": models.SwitchVrfInstance{
+        "property1": models.SwitchVrfInstance{
             ExtraRoutes: map[string]models.VrfExtraRoute{
-                "0.0.0.0/0": models.VrfExtraRoute{
-                    Via: models.ToPointer("192.168.31.1"),
+                "property1": models.VrfExtraRoute{
+                    Via: models.ToPointer("192.0.2.10"),
+                },
+                "property2": models.VrfExtraRoute{
+                    Via: models.ToPointer("198.51.100.1"),
                 },
             },
             Networks:    []string{
-                "guest",
+                "string",
+            },
+        },
+        "property2": models.SwitchVrfInstance{
+            ExtraRoutes: map[string]models.VrfExtraRoute{
+                "property1": models.VrfExtraRoute{
+                    Via: models.ToPointer("198.51.100.1"),
+                },
+                "property2": models.VrfExtraRoute{
+                    Via: models.ToPointer("198.51.100.10"),
+                },
+            },
+            Networks:    []string{
+                "string",
             },
         },
     },
@@ -76,6 +236,209 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "additional_config_cmds": [
+    "set snmp community public"
+  ],
+  "created_time": 0,
+  "dhcp_snooping": {
+    "all_networks": true,
+    "enable_arp_spoof_check": true,
+    "enable_ip_source_guard": true,
+    "enabled": true,
+    "networks": [
+      "string"
+    ]
+  },
+  "dns_servers": [
+    "string"
+  ],
+  "dns_suffix": [
+    "string"
+  ],
+  "extra_routes": {
+    "property1": {
+      "via": "string"
+    },
+    "property2": {
+      "via": "string"
+    }
+  },
+  "group_tags": {},
+  "id": "497f6eca-6276-4993-bfeb-53cbbbba6708",
+  "import_org_networks": [
+    "ap"
+  ],
+  "mist_nac": {
+    "enabled": true,
+    "network": "string"
+  },
+  "modified_time": 0,
+  "name": "string",
+  "networks": {
+    "property1": {
+      "subnet": "192.168.1.0/24",
+      "vlan_id": 10
+    },
+    "property2": {
+      "subnet": "192.168.1.0/24",
+      "vlan_id": 10
+    }
+  },
+  "ntp_servers": [
+    "string"
+  ],
+  "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
+  "port_usages": {
+    "dynamic": {
+      "mode": "dynamic",
+      "reset_default_when": "link_down",
+      "rules": [
+        {
+          "equals": "string",
+          "equals_any": [
+            "string"
+          ],
+          "expression": "string",
+          "src": "lldp_chassis_id",
+          "usage": "string"
+        }
+      ]
+    },
+    "property1": {
+      "all_networks": false,
+      "allow_dhcpd": true,
+      "authentication_protocol": "pap",
+      "bypass_auth_when_server_down": true,
+      "description": "string",
+      "disable_autoneg": false,
+      "disabled": false,
+      "duplex": "auto",
+      "enable_mac_auth": true,
+      "enable_qos": true,
+      "guest_network": "string",
+      "mac_auth_only": true,
+      "mac_limit": 0,
+      "mode": "access",
+      "mtu": 0,
+      "networks": [
+        "string"
+      ],
+      "persist_mac": false,
+      "poe_disabled": false,
+      "port_auth": "dot1x",
+      "port_network": "string",
+      "rejected_network": null,
+      "speed": "auto",
+      "storm_control": {
+        "no_broadcast": false,
+        "no_multicast": false,
+        "no_registered_multicast": false,
+        "no_unknown_unicast": false,
+        "percentage": 80
+      },
+      "stp_edge": true,
+      "voip_network": "string"
+    },
+    "property2": {
+      "all_networks": false,
+      "allow_dhcpd": true,
+      "authentication_protocol": "pap",
+      "bypass_auth_when_server_down": true,
+      "description": "string",
+      "disable_autoneg": false,
+      "disabled": false,
+      "duplex": "auto",
+      "enable_mac_auth": true,
+      "enable_qos": true,
+      "guest_network": "string",
+      "mac_auth_only": true,
+      "mac_limit": 0,
+      "mode": "access",
+      "mtu": 0,
+      "networks": [
+        "string"
+      ],
+      "persist_mac": false,
+      "poe_disabled": false,
+      "port_network": "string",
+      "rejected_network": null,
+      "speed": "auto",
+      "storm_control": {
+        "no_broadcast": false,
+        "no_multicast": false,
+        "no_registered_multicast": false,
+        "no_unknown_unicast": false,
+        "percentage": 80
+      },
+      "stp_edge": true,
+      "voip_network": "string"
+    }
+  },
+  "switch_mgmt": {
+    "config_revert": 10,
+    "protect_re": {
+      "enabled": false
+    },
+    "root_password": "string",
+    "tacacs": {
+      "acct_servers": [
+        {
+          "host": "198.51.100.1",
+          "port": "49",
+          "secret": "string",
+          "timeout": 10
+        }
+      ],
+      "enabled": true,
+      "network": "string",
+      "tacplus_servers": [
+        {
+          "host": "198.51.100.1",
+          "port": "49",
+          "secret": "string",
+          "timeout": 10
+        }
+      ]
+    }
+  },
+  "vrf_config": {
+    "enabled": false
+  },
+  "vrf_instances": {
+    "property1": {
+      "extra_routes": {
+        "property1": {
+          "via": "198.51.100.1"
+        },
+        "property2": {
+          "via": "198.51.100.10"
+        }
+      },
+      "networks": [
+        "string"
+      ]
+    },
+    "property2": {
+      "extra_routes": {
+        "property1": {
+          "via": "198.51.100.1"
+        },
+        "property2": {
+          "via": "198.51.100.10"
+        }
+      },
+      "networks": [
+        "string"
+      ]
+    }
+  }
 }
 ```
 
@@ -596,21 +959,189 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 networktemplateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NetworkTemplate{
-    ExtraRoutes6:          map[string]models.ExtraRoute6{
-        "2a02:1234:420a:10c9::/64": models.ExtraRoute6{
-            Via:           models.ToPointer("2a02:1234:200a::100"),
+    AdditionalConfigCmds:  []string{
+        "set snmp community public",
+    },
+    DhcpSnooping:          models.ToPointer(models.DhcpSnooping{
+        AllNetworks:         models.ToPointer(true),
+        EnableArpSpoofCheck: models.ToPointer(true),
+        EnableIpSourceGuard: models.ToPointer(true),
+        Enabled:             models.ToPointer(true),
+        Networks:            []string{
+            "string",
+        },
+    }),
+    DnsServers:            []string{
+        "string",
+    },
+    DnsSuffix:             []string{
+        "string",
+    },
+    ExtraRoutes:           map[string]models.ExtraRoute{
+        "property1": models.ExtraRoute{
+            Via:           models.ToPointer("string"),
+        },
+        "property2": models.ExtraRoute{
+            Via:           models.ToPointer("string"),
         },
     },
-    RemoveExistingConfigs: models.ToPointer(false),
+    ImportOrgNetworks:     []string{
+        "ap",
+    },
+    MistNac:               models.ToPointer(models.SwitchMistNac{
+        Enabled: models.ToPointer(true),
+        Network: models.ToPointer("string"),
+    }),
+    Name:                  models.ToPointer("string"),
+    Networks:              map[string]models.SwitchNetwork{
+        "property1": models.SwitchNetwork{
+            Subnet:          models.ToPointer("192.168.1.0/24"),
+            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
+        },
+        "property2": models.SwitchNetwork{
+            Subnet:          models.ToPointer("192.168.1.0/24"),
+            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
+        },
+    },
+    NtpServers:            []string{
+        "string",
+    },
+    PortUsages:            map[string]models.SwitchPortUsage{
+        "dynamic": models.SwitchPortUsage{
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("dynamic")),
+            ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum("link_down")),
+            Rules:                                    []models.SwitchPortUsageDynamicRule{
+                models.SwitchPortUsageDynamicRule{
+                    Equals:     models.ToPointer("string"),
+                    EqualsAny:  []string{
+                        "string",
+                    },
+                    Expression: models.ToPointer("string"),
+                    Src:        models.SwitchPortUsageDynamicRuleSrcEnum("lldp_chassis_id"),
+                    Usage:      models.ToPointer("string"),
+                },
+            },
+        },
+        "property1": models.SwitchPortUsage{
+            AllNetworks:                              models.ToPointer(false),
+            AllowDhcpd:                               models.ToPointer(true),
+            BypassAuthWhenServerDown:                 models.ToPointer(true),
+            Description:                              models.ToPointer("string"),
+            DisableAutoneg:                           models.ToPointer(false),
+            Disabled:                                 models.ToPointer(false),
+            Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum("auto")),
+            EnableMacAuth:                            models.ToPointer(true),
+            EnableQos:                                models.ToPointer(true),
+            GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
+            MacAuthOnly:                              models.ToPointer(true),
+            MacLimit:                                 models.ToPointer(0),
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("access")),
+            Mtu:                                      models.ToPointer(0),
+            Networks:                                 []string{
+                "string",
+            },
+            PersistMac:                               models.ToPointer(false),
+            PoeDisabled:                              models.ToPointer(false),
+            PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum("dot1x"))),
+            PortNetwork:                              models.ToPointer("string"),
+            Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum("auto")),
+            StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
+                NoBroadcast:           models.ToPointer(false),
+                NoMulticast:           models.ToPointer(false),
+                NoRegisteredMulticast: models.ToPointer(false),
+                NoUnknownUnicast:      models.ToPointer(false),
+                Percentage:            models.ToPointer(80),
+            }),
+            StpEdge:                                  models.ToPointer(true),
+            VoipNetwork:                              models.ToPointer("string"),
+        },
+        "property2": models.SwitchPortUsage{
+            AllNetworks:                              models.ToPointer(false),
+            AllowDhcpd:                               models.ToPointer(true),
+            BypassAuthWhenServerDown:                 models.ToPointer(true),
+            Description:                              models.ToPointer("string"),
+            DisableAutoneg:                           models.ToPointer(false),
+            Disabled:                                 models.ToPointer(false),
+            Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum("auto")),
+            EnableMacAuth:                            models.ToPointer(true),
+            EnableQos:                                models.ToPointer(true),
+            GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
+            MacAuthOnly:                              models.ToPointer(true),
+            MacLimit:                                 models.ToPointer(0),
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum("access")),
+            Mtu:                                      models.ToPointer(0),
+            Networks:                                 []string{
+                "string",
+            },
+            PersistMac:                               models.ToPointer(false),
+            PoeDisabled:                              models.ToPointer(false),
+            PortNetwork:                              models.ToPointer("string"),
+            Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum("auto")),
+            StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
+                NoBroadcast:           models.ToPointer(false),
+                NoMulticast:           models.ToPointer(false),
+                NoRegisteredMulticast: models.ToPointer(false),
+                NoUnknownUnicast:      models.ToPointer(false),
+                Percentage:            models.ToPointer(80),
+            }),
+            StpEdge:                                  models.ToPointer(true),
+            VoipNetwork:                              models.ToPointer("string"),
+        },
+    },
+    SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
+        ProtectRe:           models.ToPointer(models.ProtectRe{
+            Enabled:         models.ToPointer(false),
+        }),
+        RootPassword:        models.ToPointer("string"),
+        Tacacs:              models.ToPointer(models.Tacacs{
+            AcctServers:    []models.TacacsAcctServer{
+                models.TacacsAcctServer{
+                    Host:    models.ToPointer("198.51.100.1"),
+                    Port:    models.ToPointer("49"),
+                    Secret:  models.ToPointer("string"),
+                    Timeout: models.ToPointer(10),
+                },
+            },
+            Enabled:        models.ToPointer(true),
+            Network:        models.ToPointer("string"),
+            TacplusServers: []models.TacacsAuthServer{
+                models.TacacsAuthServer{
+                    Host:    models.ToPointer("198.51.100.1"),
+                    Port:    models.ToPointer("49"),
+                    Secret:  models.ToPointer("string"),
+                    Timeout: models.ToPointer(10),
+                },
+            },
+        }),
+    }),
+    VrfConfig:             models.ToPointer(models.VrfConfig{
+        Enabled: models.ToPointer(false),
+    }),
     VrfInstances:          map[string]models.SwitchVrfInstance{
-        "guest": models.SwitchVrfInstance{
+        "property1": models.SwitchVrfInstance{
             ExtraRoutes: map[string]models.VrfExtraRoute{
-                "0.0.0.0/0": models.VrfExtraRoute{
-                    Via: models.ToPointer("192.168.31.1"),
+                "property1": models.VrfExtraRoute{
+                    Via: models.ToPointer("198.51.100.1"),
+                },
+                "property2": models.VrfExtraRoute{
+                    Via: models.ToPointer("198.51.100.2"),
                 },
             },
             Networks:    []string{
-                "guest",
+                "string",
+            },
+        },
+        "property2": models.SwitchVrfInstance{
+            ExtraRoutes: map[string]models.VrfExtraRoute{
+                "property1": models.VrfExtraRoute{
+                    Via: models.ToPointer("198.51.100.1"),
+                },
+                "property2": models.VrfExtraRoute{
+                    Via: models.ToPointer("198.51.100.2"),
+                },
+            },
+            Networks:    []string{
+                "string",
             },
         },
     },
@@ -623,6 +1154,204 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "additional_config_cmds": [
+    "set snmp community public"
+  ],
+  "dhcp_snooping": {
+    "all_networks": true,
+    "enable_arp_spoof_check": true,
+    "enable_ip_source_guard": true,
+    "enabled": true,
+    "networks": [
+      "string"
+    ]
+  },
+  "dns_servers": [
+    "string"
+  ],
+  "dns_suffix": [
+    "string"
+  ],
+  "extra_routes": {
+    "property1": {
+      "via": "string"
+    },
+    "property2": {
+      "via": "string"
+    }
+  },
+  "import_org_networks": [
+    "ap"
+  ],
+  "mist_nac": {
+    "enabled": true,
+    "network": "string"
+  },
+  "name": "string",
+  "networks": {
+    "property1": {
+      "subnet": "192.168.1.0/24",
+      "vlan_id": 10
+    },
+    "property2": {
+      "subnet": "192.168.1.0/24",
+      "vlan_id": 10
+    }
+  },
+  "ntp_servers": [
+    "string"
+  ],
+  "port_usages": {
+    "dynamic": {
+      "mode": "dynamic",
+      "reset_default_when": "link_down",
+      "rules": [
+        {
+          "equals": "string",
+          "equals_any": [
+            "string"
+          ],
+          "expression": "string",
+          "src": "lldp_chassis_id",
+          "usage": "string"
+        }
+      ]
+    },
+    "property1": {
+      "all_networks": false,
+      "allow_dhcpd": true,
+      "authentication_protocol": "pap",
+      "bypass_auth_when_server_down": true,
+      "description": "string",
+      "disable_autoneg": false,
+      "disabled": false,
+      "duplex": "auto",
+      "enable_mac_auth": true,
+      "enable_qos": true,
+      "guest_network": "string",
+      "mac_auth_only": true,
+      "mac_limit": 0,
+      "mode": "access",
+      "mtu": 0,
+      "networks": [
+        "string"
+      ],
+      "persist_mac": false,
+      "poe_disabled": false,
+      "port_auth": "dot1x",
+      "port_network": "string",
+      "rejected_network": null,
+      "speed": "auto",
+      "storm_control": {
+        "no_broadcast": false,
+        "no_multicast": false,
+        "no_registered_multicast": false,
+        "no_unknown_unicast": false,
+        "percentage": 80
+      },
+      "stp_edge": true,
+      "voip_network": "string"
+    },
+    "property2": {
+      "all_networks": false,
+      "allow_dhcpd": true,
+      "authentication_protocol": "pap",
+      "bypass_auth_when_server_down": true,
+      "description": "string",
+      "disable_autoneg": false,
+      "disabled": false,
+      "duplex": "auto",
+      "enable_mac_auth": true,
+      "enable_qos": true,
+      "guest_network": "string",
+      "mac_auth_only": true,
+      "mac_limit": 0,
+      "mode": "access",
+      "mtu": 0,
+      "networks": [
+        "string"
+      ],
+      "persist_mac": false,
+      "poe_disabled": false,
+      "port_network": "string",
+      "rejected_network": null,
+      "speed": "auto",
+      "storm_control": {
+        "no_broadcast": false,
+        "no_multicast": false,
+        "no_registered_multicast": false,
+        "no_unknown_unicast": false,
+        "percentage": 80
+      },
+      "stp_edge": true,
+      "voip_network": "string"
+    }
+  },
+  "switch_mgmt": {
+    "config_revert": 10,
+    "protect_re": {
+      "enabled": false
+    },
+    "root_password": "string",
+    "tacacs": {
+      "acct_servers": [
+        {
+          "host": "198.51.100.1",
+          "port": "49",
+          "secret": "string",
+          "timeout": 10
+        }
+      ],
+      "enabled": true,
+      "network": "string",
+      "tacplus_servers": [
+        {
+          "host": "198.51.100.1",
+          "port": "49",
+          "secret": "string",
+          "timeout": 10
+        }
+      ]
+    }
+  },
+  "vrf_config": {
+    "enabled": false
+  },
+  "vrf_instances": {
+    "property1": {
+      "extra_routes": {
+        "property1": {
+          "via": "198.51.100.1"
+        },
+        "property2": {
+          "via": "198.51.100.2"
+        }
+      },
+      "networks": [
+        "string"
+      ]
+    },
+    "property2": {
+      "extra_routes": {
+        "property1": {
+          "via": "198.51.100.1"
+        },
+        "property2": {
+          "via": "198.51.100.2"
+        }
+      },
+      "networks": [
+        "string"
+      ]
+    }
+  }
 }
 ```
 
