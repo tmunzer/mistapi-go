@@ -13,7 +13,7 @@ Switch port config
 |  --- | --- | --- | --- |
 | `AeDisableLacp` | `*bool` | Optional | To disable LACP support for the AE interface |
 | `AeIdx` | `*int` | Optional | Users could force to use the designated AE name |
-| `AeLacpSlow` | `*bool` | Optional | to use fast timeout<br>**Default**: `true` |
+| `AeLacpSlow` | `*bool` | Optional | to use fast timeout |
 | `Aggregated` | `*bool` | Optional | **Default**: `false` |
 | `Critical` | `*bool` | Optional | if want to generate port up/down alarm |
 | `Description` | `*string` | Optional | - |
@@ -31,7 +31,6 @@ Switch port config
 
 ```json
 {
-  "ae_lacp_slow": true,
   "aggregated": false,
   "disable_autoneg": false,
   "duplex": "auto",
@@ -41,6 +40,7 @@ Switch port config
   "usage": "usage6",
   "ae_disable_lacp": false,
   "ae_idx": 244,
+  "ae_lacp_slow": false,
   "critical": false
 }
 ```

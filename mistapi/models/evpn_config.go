@@ -8,7 +8,7 @@ import (
 // EVPN Junos settings
 type EvpnConfig struct {
     Enabled              *bool               `json:"enabled,omitempty"`
-    // enum: `access`, `core`, `distribution`
+    // enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
     Role                 *EvpnConfigRoleEnum `json:"role,omitempty"`
     AdditionalProperties map[string]any      `json:"_"`
 }

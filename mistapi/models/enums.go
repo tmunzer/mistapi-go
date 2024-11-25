@@ -896,13 +896,16 @@ const (
 )
 
 // EvpnConfigRoleEnum is a string enum.
-// enum: `access`, `core`, `distribution`
+// enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
 type EvpnConfigRoleEnum string
 
 const (
-    EvpnConfigRoleEnum_ACCESS       EvpnConfigRoleEnum = "access"
-    EvpnConfigRoleEnum_CORE         EvpnConfigRoleEnum = "core"
-    EvpnConfigRoleEnum_DISTRIBUTION EvpnConfigRoleEnum = "distribution"
+    EvpnConfigRoleEnum_ACCESS        EvpnConfigRoleEnum = "access"
+    EvpnConfigRoleEnum_COLLAPSEDCORE EvpnConfigRoleEnum = "collapsed-core"
+    EvpnConfigRoleEnum_CORE          EvpnConfigRoleEnum = "core"
+    EvpnConfigRoleEnum_DISTRIBUTION  EvpnConfigRoleEnum = "distribution"
+    EvpnConfigRoleEnum_ESILAGACCESS  EvpnConfigRoleEnum = "esilag-access"
+    EvpnConfigRoleEnum_NONE          EvpnConfigRoleEnum = "none"
 )
 
 // EvpnOptionsRoutedAtEnum is a string enum.
