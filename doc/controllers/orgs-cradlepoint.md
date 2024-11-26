@@ -96,10 +96,10 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AccountCradlepointConfig{
-    CpApiId:   models.ToPointer("84446d61-2206-4ea5-855a-0043f980be54"),
-    CpApiKey:  models.ToPointer("79c329da9893e34099c7d8ad5cb9c941"),
-    EcmApiId:  models.ToPointer("73446d61-2206-4ea5-855a-0043f980be62"),
-    EcmApiKey: models.ToPointer("68b329da9893e34099c7d8ad5cb9c9405"),
+    CpApiId:    models.ToPointer("84446d61-2206-4ea5-855a-0043f980be54"),
+    CpApiKey:   models.ToPointer("79c329da9893e34099c7d8ad5cb9c941"),
+    EcmApiId:   models.ToPointer("73446d61-2206-4ea5-855a-0043f980be62"),
+    EcmApiKey:  models.ToPointer("68b329da9893e34099c7d8ad5cb9c9405"),
 }
 
 resp, err := orgsCradlepoint.SetupOrgCradlepointConnectionToMist(ctx, orgId, &body)
@@ -201,10 +201,10 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AccountCradlepointConfig{
-    CpApiId:   models.ToPointer("84446d61-2206-4ea5-855a-0043f980be54"),
-    CpApiKey:  models.ToPointer("79c329da9893e34099c7d8ad5cb9c941"),
-    EcmApiId:  models.ToPointer("73446d61-2206-4ea5-855a-0043f980be62"),
-    EcmApiKey: models.ToPointer("68b329da9893e34099c7d8ad5cb9c9405"),
+    CpApiId:    models.ToPointer("84446d61-2206-4ea5-855a-0043f980be54"),
+    CpApiKey:   models.ToPointer("79c329da9893e34099c7d8ad5cb9c941"),
+    EcmApiId:   models.ToPointer("73446d61-2206-4ea5-855a-0043f980be62"),
+    EcmApiKey:  models.ToPointer("68b329da9893e34099c7d8ad5cb9c9405"),
 }
 
 resp, err := orgsCradlepoint.UpdateOrgCradlepointConnectionToMist(ctx, orgId, &body)

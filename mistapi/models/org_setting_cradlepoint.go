@@ -10,6 +10,7 @@ type OrgSettingCradlepoint struct {
     CpApiKey             *string        `json:"cp_api_key,omitempty"`
     EcmApiId             *string        `json:"ecm_api_id,omitempty"`
     EcmApiKey            *string        `json:"ecm_api_key,omitempty"`
+    EnableLldp           *bool          `json:"enable_lldp,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }
 
@@ -37,6 +38,9 @@ func (o OrgSettingCradlepoint) toMap() map[string]any {
     if o.EcmApiKey != nil {
         structMap["ecm_api_key"] = o.EcmApiKey
     }
+    if o.EnableLldp != nil {
+        structMap["enable_lldp"] = o.EnableLldp
+    }
     return structMap
 }
 
@@ -48,7 +52,7 @@ func (o *OrgSettingCradlepoint) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cp_api_id", "cp_api_key", "ecm_api_id", "ecm_api_key")
+    additionalProperties, err := UnmarshalAdditionalProperties(input, "cp_api_id", "cp_api_key", "ecm_api_id", "ecm_api_key", "enable_lldp")
     if err != nil {
     	return err
     }
@@ -58,13 +62,15 @@ func (o *OrgSettingCradlepoint) UnmarshalJSON(input []byte) error {
     o.CpApiKey = temp.CpApiKey
     o.EcmApiId = temp.EcmApiId
     o.EcmApiKey = temp.EcmApiKey
+    o.EnableLldp = temp.EnableLldp
     return nil
 }
 
 // tempOrgSettingCradlepoint is a temporary struct used for validating the fields of OrgSettingCradlepoint.
 type tempOrgSettingCradlepoint  struct {
-    CpApiId   *string `json:"cp_api_id,omitempty"`
-    CpApiKey  *string `json:"cp_api_key,omitempty"`
-    EcmApiId  *string `json:"ecm_api_id,omitempty"`
-    EcmApiKey *string `json:"ecm_api_key,omitempty"`
+    CpApiId    *string `json:"cp_api_id,omitempty"`
+    CpApiKey   *string `json:"cp_api_key,omitempty"`
+    EcmApiId   *string `json:"ecm_api_id,omitempty"`
+    EcmApiKey  *string `json:"ecm_api_key,omitempty"`
+    EnableLldp *bool   `json:"enable_lldp,omitempty"`
 }
