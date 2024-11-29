@@ -11,7 +11,7 @@ type IdpConfig struct {
     Enabled              *bool          `json:"enabled,omitempty"`
     // org_level IDP Profile can be used, this takes precedence over `profile`
     IdpprofileId         *uuid.UUID     `json:"idpprofile_id,omitempty"`
-    // `strict` (default) / `standard` / or keys from from idp_profiles
+    // enum: `Custom`, `strict` (default), `standard` or keys from from idp_profiles
     Profile              *string        `json:"profile,omitempty"`
     AdditionalProperties map[string]any `json:"_"`
 }

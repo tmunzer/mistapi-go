@@ -1,7 +1,12 @@
 
 # Switch Matching Rule
 
-property key defines the type of matching, value is the string to match. e.g: `match_name[0:3]`, `match_name[2:6]`, `match_model`,  `match_model[0-6]`
+property key defines the type of matching, value is the string to match. e.g:
+
+* `match_name[0:3]`: switch name must match the first 3 letters of the property value
+* `match_name[2:6]`: switch name must match the property value from the 2nd to the 6th letter
+* `match_model[0-8]`: switch model must match the first 8 letters of the property value
+* `match_role`: switch role must match the property value
 
 ## Structure
 
@@ -13,7 +18,6 @@ property key defines the type of matching, value is the string to match. e.g: `m
 |  --- | --- | --- | --- |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
 | `IpConfig` | [`*models.SwitchMatchingRuleIpConfig`](../../doc/models/switch-matching-rule-ip-config.md) | Optional | In-Band Management interface configuration |
-| `MatchRole` | `*string` | Optional | role to match |
 | `Name` | `*string` | Optional | - |
 | `OobIpConfig` | [`*models.SwitchMatchingRuleOobIpConfig`](../../doc/models/switch-matching-rule-oob-ip-config.md) | Optional | Out-of-Band Management interface configuration |
 | `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | Propery key is the interface name or interface range |
@@ -33,12 +37,37 @@ property key defines the type of matching, value is the string to match. e.g: `m
     "network": "network6",
     "type": "dhcp"
   },
-  "match_role": "match_role2",
   "name": "name2",
   "oob_ip_config": {
     "type": "dhcp",
     "use_mgmt_vrf": false,
     "use_mgmt_vrf_for_host_out": false
+  },
+  "port_config": {
+    "key0": {
+      "ae_disable_lacp": false,
+      "ae_idx": 230,
+      "ae_lacp_slow": false,
+      "aggregated": false,
+      "critical": false,
+      "usage": "usage6"
+    },
+    "key1": {
+      "ae_disable_lacp": false,
+      "ae_idx": 230,
+      "ae_lacp_slow": false,
+      "aggregated": false,
+      "critical": false,
+      "usage": "usage6"
+    },
+    "key2": {
+      "ae_disable_lacp": false,
+      "ae_idx": 230,
+      "ae_lacp_slow": false,
+      "aggregated": false,
+      "critical": false,
+      "usage": "usage6"
+    }
   }
 }
 ```
