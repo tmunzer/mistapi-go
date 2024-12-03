@@ -95,7 +95,7 @@ WLAN
 | `PortalTemplateUrl` | `models.Optional[string]` | Optional | N.B portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template. |
 | `Qos` | [`*models.WlanQos`](../../doc/models/wlan-qos.md) | Optional | - |
 | `Radsec` | [`*models.Radsec`](../../doc/models/radsec.md) | Optional | Radsec settings |
-| `Rateset` | [`map[string]models.WlanDatarates`](../../doc/models/wlan-datarates.md) | Optional | - |
+| `Rateset` | [`map[string]models.WlanDatarates`](../../doc/models/wlan-datarates.md) | Optional | Property key is the RF band. enum: `24`, `5`, `6` |
 | `RoamMode` | [`*models.WlanRoamModeEnum`](../../doc/models/wlan-roam-mode-enum.md) | Optional | enum: `11r`, `OKC`, `NONE`<br>**Default**: `"NONE"` |
 | `Schedule` | [`*models.WlanSchedule`](../../doc/models/wlan-schedule.md) | Optional | WLAN operating schedule, default is disabled |
 | `SiteId` | `*uuid.UUID` | Optional | - |

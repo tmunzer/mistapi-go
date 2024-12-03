@@ -171,6 +171,7 @@ type Wlan struct {
     Qos                                *WlanQos                       `json:"qos,omitempty"`
     // Radsec settings
     Radsec                             *Radsec                        `json:"radsec,omitempty"`
+    // Property key is the RF band. enum: `24`, `5`, `6`
     Rateset                            map[string]WlanDatarates       `json:"rateset,omitempty"`
     // enum: `11r`, `OKC`, `NONE`
     RoamMode                           *WlanRoamModeEnum              `json:"roam_mode,omitempty"`

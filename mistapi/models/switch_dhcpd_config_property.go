@@ -40,7 +40,7 @@ type SwitchDhcpdConfigProperty struct {
     // if `type`==`server` or `type6`==`server`. Property key is <enterprise number>:<sub option code>, with
     // * enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)
     // * sub option code: 1-255, sub-option code'
-    VendorEncapulated    map[string]DhcpdConfigVendorOption `json:"vendor_encapulated,omitempty"`
+    VendorEncapsulated   map[string]DhcpdConfigVendorOption `json:"vendor_encapsulated,omitempty"`
     AdditionalProperties map[string]interface{}             `json:"_"`
 }
 
@@ -50,7 +50,7 @@ func (s SwitchDhcpdConfigProperty) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "dns_servers", "dns_suffix", "fixed_bindings", "gateway", "ip_end", "ip_end6", "ip_start", "ip_start6", "lease_time", "options", "server_id_override", "servers", "servers6", "type", "type6", "vendor_encapulated"); err != nil {
+        "dns_servers", "dns_suffix", "fixed_bindings", "gateway", "ip_end", "ip_end6", "ip_start", "ip_start6", "lease_time", "options", "server_id_override", "servers", "servers6", "type", "type6", "vendor_encapsulated"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -105,8 +105,8 @@ func (s SwitchDhcpdConfigProperty) toMap() map[string]any {
     if s.Type6 != nil {
         structMap["type6"] = s.Type6
     }
-    if s.VendorEncapulated != nil {
-        structMap["vendor_encapulated"] = s.VendorEncapulated
+    if s.VendorEncapsulated != nil {
+        structMap["vendor_encapsulated"] = s.VendorEncapsulated
     }
     return structMap
 }
@@ -119,7 +119,7 @@ func (s *SwitchDhcpdConfigProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns_servers", "dns_suffix", "fixed_bindings", "gateway", "ip_end", "ip_end6", "ip_start", "ip_start6", "lease_time", "options", "server_id_override", "servers", "servers6", "type", "type6", "vendor_encapulated")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns_servers", "dns_suffix", "fixed_bindings", "gateway", "ip_end", "ip_end6", "ip_start", "ip_start6", "lease_time", "options", "server_id_override", "servers", "servers6", "type", "type6", "vendor_encapsulated")
     if err != nil {
     	return err
     }
@@ -140,26 +140,26 @@ func (s *SwitchDhcpdConfigProperty) UnmarshalJSON(input []byte) error {
     s.Servers6 = temp.Servers6
     s.Type = temp.Type
     s.Type6 = temp.Type6
-    s.VendorEncapulated = temp.VendorEncapulated
+    s.VendorEncapsulated = temp.VendorEncapsulated
     return nil
 }
 
 // tempSwitchDhcpdConfigProperty is a temporary struct used for validating the fields of SwitchDhcpdConfigProperty.
 type tempSwitchDhcpdConfigProperty  struct {
-    DnsServers        []string                           `json:"dns_servers,omitempty"`
-    DnsSuffix         []string                           `json:"dns_suffix,omitempty"`
-    FixedBindings     map[string]DhcpdConfigFixedBinding `json:"fixed_bindings,omitempty"`
-    Gateway           *string                            `json:"gateway,omitempty"`
-    IpEnd             *string                            `json:"ip_end,omitempty"`
-    IpEnd6            *string                            `json:"ip_end6,omitempty"`
-    IpStart           *string                            `json:"ip_start,omitempty"`
-    IpStart6          *string                            `json:"ip_start6,omitempty"`
-    LeaseTime         *int                               `json:"lease_time,omitempty"`
-    Options           map[string]DhcpdConfigOption       `json:"options,omitempty"`
-    ServerIdOverride  *bool                              `json:"server_id_override,omitempty"`
-    Servers           []string                           `json:"servers,omitempty"`
-    Servers6          []string                           `json:"servers6,omitempty"`
-    Type              *SwitchDhcpdConfigTypeEnum         `json:"type,omitempty"`
-    Type6             *SwitchDhcpdConfigTypeEnum         `json:"type6,omitempty"`
-    VendorEncapulated map[string]DhcpdConfigVendorOption `json:"vendor_encapulated,omitempty"`
+    DnsServers         []string                           `json:"dns_servers,omitempty"`
+    DnsSuffix          []string                           `json:"dns_suffix,omitempty"`
+    FixedBindings      map[string]DhcpdConfigFixedBinding `json:"fixed_bindings,omitempty"`
+    Gateway            *string                            `json:"gateway,omitempty"`
+    IpEnd              *string                            `json:"ip_end,omitempty"`
+    IpEnd6             *string                            `json:"ip_end6,omitempty"`
+    IpStart            *string                            `json:"ip_start,omitempty"`
+    IpStart6           *string                            `json:"ip_start6,omitempty"`
+    LeaseTime          *int                               `json:"lease_time,omitempty"`
+    Options            map[string]DhcpdConfigOption       `json:"options,omitempty"`
+    ServerIdOverride   *bool                              `json:"server_id_override,omitempty"`
+    Servers            []string                           `json:"servers,omitempty"`
+    Servers6           []string                           `json:"servers6,omitempty"`
+    Type               *SwitchDhcpdConfigTypeEnum         `json:"type,omitempty"`
+    Type6              *SwitchDhcpdConfigTypeEnum         `json:"type6,omitempty"`
+    VendorEncapsulated map[string]DhcpdConfigVendorOption `json:"vendor_encapsulated,omitempty"`
 }
