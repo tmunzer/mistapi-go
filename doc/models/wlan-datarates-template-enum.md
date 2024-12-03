@@ -21,4 +21,5 @@ Data Rates template to apply. enum:
 | `legacy-only` |
 | `custom` |
 | `no-legacy` |
+| `high-density` |
 

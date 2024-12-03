@@ -37,7 +37,7 @@ data rates wlan settings
   ],
   "min_rssi": -70,
   "vht": "03ff03ff03ff01ff",
-  "template": "compatible",
+  "template": "high-density",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

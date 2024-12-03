@@ -4450,10 +4450,11 @@ const (
 type WlanDataratesTemplateEnum string
 
 const (
-    WlanDataratesTemplateEnum_COMPATIBLE WlanDataratesTemplateEnum = "compatible"
-    WlanDataratesTemplateEnum_LEGACYONLY WlanDataratesTemplateEnum = "legacy-only"
-    WlanDataratesTemplateEnum_CUSTOM     WlanDataratesTemplateEnum = "custom"
-    WlanDataratesTemplateEnum_NOLEGACY   WlanDataratesTemplateEnum = "no-legacy"
+    WlanDataratesTemplateEnum_COMPATIBLE  WlanDataratesTemplateEnum = "compatible"
+    WlanDataratesTemplateEnum_LEGACYONLY  WlanDataratesTemplateEnum = "legacy-only"
+    WlanDataratesTemplateEnum_CUSTOM      WlanDataratesTemplateEnum = "custom"
+    WlanDataratesTemplateEnum_NOLEGACY    WlanDataratesTemplateEnum = "no-legacy"
+    WlanDataratesTemplateEnum_HIGHDENSITY WlanDataratesTemplateEnum = "high-density"
 )
 
 // WlanDynamicVlanTypeEnum is a string enum.
