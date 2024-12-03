@@ -1,6 +1,8 @@
 
 # Ui Settings Tile
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UiSettingsTile`
@@ -28,6 +30,7 @@
 | `TimeRange` | [`*models.UiSettingsTileTimeRange`](../../doc/models/ui-settings-tile-time-range.md) | Optional | - |
 | `TrendType` | `*string` | Optional | - |
 | `VizType` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -47,7 +50,11 @@
   "scopeType": "client",
   "trendType": "line",
   "vizType": "averageTimeSeriesChart",
-  "chartRankBy": "chartRankBy8"
+  "chartRankBy": "chartRankBy8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

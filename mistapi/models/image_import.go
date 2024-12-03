@@ -9,9 +9,9 @@ import (
 // ImageImport represents a ImageImport struct.
 type ImageImport struct {
     // binary file
-    File                 []byte         `json:"file"`
-    Json                 *string        `json:"json,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    File                 []byte                 `json:"file"`
+    Json                 *string                `json:"json,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ImageImport.
@@ -19,13 +19,17 @@ type ImageImport struct {
 func (i ImageImport) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "file", "json"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the ImageImport object to a map representation for JSON marshaling.
 func (i ImageImport) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     structMap["file"] = i.File
     if i.Json != nil {
         structMap["json"] = i.Json
@@ -45,12 +49,12 @@ func (i *ImageImport) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "file", "json")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "file", "json")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.File = *temp.File
     i.Json = temp.Json
     return nil

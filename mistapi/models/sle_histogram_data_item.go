@@ -8,9 +8,9 @@ import (
 
 // SleHistogramDataItem represents a SleHistogramDataItem struct.
 type SleHistogramDataItem struct {
-    Range                []float64      `json:"range,omitempty"`
-    Value                float64        `json:"value"`
-    AdditionalProperties map[string]any `json:"_"`
+    Range                []float64              `json:"range,omitempty"`
+    Value                float64                `json:"value"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleHistogramDataItem.
@@ -18,13 +18,17 @@ type SleHistogramDataItem struct {
 func (s SleHistogramDataItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "range", "value"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleHistogramDataItem object to a map representation for JSON marshaling.
 func (s SleHistogramDataItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Range != nil {
         structMap["range"] = s.Range
     }
@@ -44,12 +48,12 @@ func (s *SleHistogramDataItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "range", "value")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "range", "value")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Range = temp.Range
     s.Value = *temp.Value
     return nil

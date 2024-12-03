@@ -23,7 +23,7 @@ type ServicePolicy struct {
     ServicepolicyId      *uuid.UUID             `json:"servicepolicy_id,omitempty"`
     Services             []string               `json:"services,omitempty"`
     Tenants              []string               `json:"tenants,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServicePolicy.
@@ -31,13 +31,17 @@ type ServicePolicy struct {
 func (s ServicePolicy) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "action", "appqoe", "ewf", "idp", "local_routing", "name", "path_preference", "servicepolicy_id", "services", "tenants"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the ServicePolicy object to a map representation for JSON marshaling.
 func (s ServicePolicy) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Action != nil {
         structMap["action"] = s.Action
     }
@@ -79,12 +83,12 @@ func (s *ServicePolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "appqoe", "ewf", "idp", "local_routing", "name", "path_preference", "servicepolicy_id", "services", "tenants")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "appqoe", "ewf", "idp", "local_routing", "name", "path_preference", "servicepolicy_id", "services", "tenants")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Action = temp.Action
     s.Appqoe = temp.Appqoe
     s.Ewf = temp.Ewf

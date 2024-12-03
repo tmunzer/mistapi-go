@@ -6,13 +6,13 @@ import (
 
 // SleImpactedInterfacesInterface represents a SleImpactedInterfacesInterface struct.
 type SleImpactedInterfacesInterface struct {
-    Degraded             *float64       `json:"degraded,omitempty"`
-    Duration             *float64       `json:"duration,omitempty"`
-    InterfaceName        *string        `json:"interface_name,omitempty"`
-    SwitchMac            *string        `json:"switch_mac,omitempty"`
-    SwitchName           *string        `json:"switch_name,omitempty"`
-    Total                *float64       `json:"total,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Degraded             *float64               `json:"degraded,omitempty"`
+    Duration             *float64               `json:"duration,omitempty"`
+    InterfaceName        *string                `json:"interface_name,omitempty"`
+    SwitchMac            *string                `json:"switch_mac,omitempty"`
+    SwitchName           *string                `json:"switch_name,omitempty"`
+    Total                *float64               `json:"total,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedInterfacesInterface.
@@ -20,13 +20,17 @@ type SleImpactedInterfacesInterface struct {
 func (s SleImpactedInterfacesInterface) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "degraded", "duration", "interface_name", "switch_mac", "switch_name", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedInterfacesInterface object to a map representation for JSON marshaling.
 func (s SleImpactedInterfacesInterface) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Degraded != nil {
         structMap["degraded"] = s.Degraded
     }
@@ -56,12 +60,12 @@ func (s *SleImpactedInterfacesInterface) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "degraded", "duration", "interface_name", "switch_mac", "switch_name", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "degraded", "duration", "interface_name", "switch_mac", "switch_name", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Degraded = temp.Degraded
     s.Duration = temp.Duration
     s.InterfaceName = temp.InterfaceName

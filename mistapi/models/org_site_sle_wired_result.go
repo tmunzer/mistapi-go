@@ -9,13 +9,13 @@ import (
 
 // OrgSiteSleWiredResult represents a OrgSiteSleWiredResult struct.
 type OrgSiteSleWiredResult struct {
-    NumClients           *float64       `json:"num_clients,omitempty"`
-    NumSwitches          *float64       `json:"num_switches,omitempty"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    SwitchHealth         *float64       `json:"switch_health,omitempty"`
-    SwitchStc            *float64       `json:"switch_stc,omitempty"`
-    SwitchThroughput     *float64       `json:"switch_throughput,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    NumClients           *float64               `json:"num_clients,omitempty"`
+    NumSwitches          *float64               `json:"num_switches,omitempty"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    SwitchHealth         *float64               `json:"switch_health,omitempty"`
+    SwitchStc            *float64               `json:"switch_stc,omitempty"`
+    SwitchThroughput     *float64               `json:"switch_throughput,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSiteSleWiredResult.
@@ -23,13 +23,17 @@ type OrgSiteSleWiredResult struct {
 func (o OrgSiteSleWiredResult) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "num_clients", "num_switches", "site_id", "switch_health", "switch_stc", "switch_throughput"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSiteSleWiredResult object to a map representation for JSON marshaling.
 func (o OrgSiteSleWiredResult) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.NumClients != nil {
         structMap["num_clients"] = o.NumClients
     }
@@ -61,12 +65,12 @@ func (o *OrgSiteSleWiredResult) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "num_clients", "num_switches", "site_id", "switch_health", "switch_stc", "switch_throughput")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "num_clients", "num_switches", "site_id", "switch_health", "switch_stc", "switch_throughput")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.NumClients = temp.NumClients
     o.NumSwitches = temp.NumSwitches
     o.SiteId = *temp.SiteId

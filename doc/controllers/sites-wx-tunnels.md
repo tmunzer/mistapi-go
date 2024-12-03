@@ -49,44 +49,44 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanTunnel{
-    Dmvpn:         models.ToPointer(models.WxlanTunnelDmvpn{
-        Enabled:     models.ToPointer(true),
-        HoldingTime: models.ToPointer(0),
-        HostRoutes:  []string{
+    Dmvpn:                models.ToPointer(models.WxlanTunnelDmvpn{
+        Enabled:              models.ToPointer(true),
+        HoldingTime:          models.ToPointer(0),
+        HostRoutes:           []string{
             "string",
         },
     }),
-    ForMgmt:       models.ToPointer(true),
-    HelloInterval: models.ToPointer(1),
-    HelloRetries:  models.ToPointer(3),
-    Hostname:      models.ToPointer("string"),
-    Ipsec:         models.ToPointer(models.WxlanTunnelIpsec{
-        Enabled: models.ToPointer(true),
-        Psk:     "string123",
+    ForMgmt:              models.ToPointer(true),
+    HelloInterval:        models.ToPointer(1),
+    HelloRetries:         models.ToPointer(3),
+    Hostname:             models.ToPointer("string"),
+    Ipsec:                models.ToPointer(models.WxlanTunnelIpsec{
+        Enabled:              models.ToPointer(true),
+        Psk:                  "string123",
     }),
-    IsStatic:      models.ToPointer(true),
-    Mtu:           models.ToPointer(0),
-    Name:          "string",
-    Peers:         []string{
+    IsStatic:             models.ToPointer(true),
+    Mtu:                  models.ToPointer(0),
+    Name:                 "string",
+    Peers:                []string{
         "string",
     },
-    RouterId:      models.ToPointer("string"),
-    Secret:        models.ToPointer("string"),
-    Sessions:      []models.WxlanTunnelSession{
+    RouterId:             models.ToPointer("string"),
+    Secret:               models.ToPointer("string"),
+    Sessions:             []models.WxlanTunnelSession{
         models.WxlanTunnelSession{
-            ApAsSessionId:       models.ToPointer("string"),
-            Comment:             models.ToPointer("string"),
-            EnableCookie:        models.ToPointer(true),
-            Ethertype:           models.ToPointer(models.WxlanTunnelSessionEthertypeEnum("ethernet")),
-            LocalSessionId:      models.ToPointer(1),
-            Pseudo8021adEnabled: models.ToPointer(true),
-            RemoteId:            models.ToPointer("string"),
-            RemoteSessionId:     models.ToPointer(1),
-            UseApAsSessionIds:   models.ToPointer(true),
+            ApAsSessionId:        models.ToPointer("string"),
+            Comment:              models.ToPointer("string"),
+            EnableCookie:         models.ToPointer(true),
+            Ethertype:            models.ToPointer(models.WxlanTunnelSessionEthertypeEnum("ethernet")),
+            LocalSessionId:       models.ToPointer(1),
+            Pseudo8021adEnabled:  models.ToPointer(true),
+            RemoteId:             models.ToPointer("string"),
+            RemoteSessionId:      models.ToPointer(1),
+            UseApAsSessionIds:    models.ToPointer(true),
         },
     },
-    UdpPort:       models.ToPointer(0),
-    UseUdp:        models.ToPointer(true),
+    UdpPort:              models.ToPointer(0),
+    UseUdp:               models.ToPointer(true),
 }
 
 apiResponse, err := sitesWxTunnels.CreateSiteWxTunnel(ctx, siteId, &body)
@@ -462,44 +462,44 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wxtunnelId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanTunnel{
-    Dmvpn:         models.ToPointer(models.WxlanTunnelDmvpn{
-        Enabled:     models.ToPointer(true),
-        HoldingTime: models.ToPointer(0),
-        HostRoutes:  []string{
+    Dmvpn:                models.ToPointer(models.WxlanTunnelDmvpn{
+        Enabled:              models.ToPointer(true),
+        HoldingTime:          models.ToPointer(0),
+        HostRoutes:           []string{
             "string",
         },
     }),
-    ForMgmt:       models.ToPointer(true),
-    HelloInterval: models.ToPointer(1),
-    HelloRetries:  models.ToPointer(3),
-    Hostname:      models.ToPointer("string"),
-    Ipsec:         models.ToPointer(models.WxlanTunnelIpsec{
-        Enabled: models.ToPointer(true),
-        Psk:     "string123",
+    ForMgmt:              models.ToPointer(true),
+    HelloInterval:        models.ToPointer(1),
+    HelloRetries:         models.ToPointer(3),
+    Hostname:             models.ToPointer("string"),
+    Ipsec:                models.ToPointer(models.WxlanTunnelIpsec{
+        Enabled:              models.ToPointer(true),
+        Psk:                  "string123",
     }),
-    IsStatic:      models.ToPointer(true),
-    Mtu:           models.ToPointer(0),
-    Name:          "string",
-    Peers:         []string{
+    IsStatic:             models.ToPointer(true),
+    Mtu:                  models.ToPointer(0),
+    Name:                 "string",
+    Peers:                []string{
         "string",
     },
-    RouterId:      models.ToPointer("string"),
-    Secret:        models.ToPointer("string"),
-    Sessions:      []models.WxlanTunnelSession{
+    RouterId:             models.ToPointer("string"),
+    Secret:               models.ToPointer("string"),
+    Sessions:             []models.WxlanTunnelSession{
         models.WxlanTunnelSession{
-            ApAsSessionId:       models.ToPointer("string"),
-            Comment:             models.ToPointer("string"),
-            EnableCookie:        models.ToPointer(true),
-            Ethertype:           models.ToPointer(models.WxlanTunnelSessionEthertypeEnum("ethernet")),
-            LocalSessionId:      models.ToPointer(1),
-            Pseudo8021adEnabled: models.ToPointer(true),
-            RemoteId:            models.ToPointer("string"),
-            RemoteSessionId:     models.ToPointer(1),
-            UseApAsSessionIds:   models.ToPointer(true),
+            ApAsSessionId:        models.ToPointer("string"),
+            Comment:              models.ToPointer("string"),
+            EnableCookie:         models.ToPointer(true),
+            Ethertype:            models.ToPointer(models.WxlanTunnelSessionEthertypeEnum("ethernet")),
+            LocalSessionId:       models.ToPointer(1),
+            Pseudo8021adEnabled:  models.ToPointer(true),
+            RemoteId:             models.ToPointer("string"),
+            RemoteSessionId:      models.ToPointer(1),
+            UseApAsSessionIds:    models.ToPointer(true),
         },
     },
-    UdpPort:       models.ToPointer(0),
-    UseUdp:        models.ToPointer(true),
+    UdpPort:              models.ToPointer(0),
+    UseUdp:               models.ToPointer(true),
 }
 
 apiResponse, err := sitesWxTunnels.UpdateSiteWxTunnel(ctx, siteId, wxtunnelId, &body)

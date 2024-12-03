@@ -7,16 +7,16 @@ import (
 // CpuStat represents a CpuStat struct.
 type CpuStat struct {
     // Percentage of CPU time that is idle
-    Idle                 Optional[float64] `json:"idle"`
+    Idle                 Optional[float64]      `json:"idle"`
     // Percentage of CPU time being used by interrupts
-    Interrupt            Optional[float64] `json:"interrupt"`
+    Interrupt            Optional[float64]      `json:"interrupt"`
     // Load averages for the last 1, 5, and 15 minutes
-    LoadAvg              []float64         `json:"load_avg,omitempty"`
+    LoadAvg              []float64              `json:"load_avg,omitempty"`
     // Percentage of CPU time being used by system processes
-    System               Optional[float64] `json:"system"`
+    System               Optional[float64]      `json:"system"`
     // Percentage of CPU time being used by user processe
-    User                 Optional[float64] `json:"user"`
-    AdditionalProperties map[string]any    `json:"_"`
+    User                 Optional[float64]      `json:"user"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CpuStat.
@@ -24,13 +24,17 @@ type CpuStat struct {
 func (c CpuStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "idle", "interrupt", "load_avg", "system", "user"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CpuStat object to a map representation for JSON marshaling.
 func (c CpuStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Idle.IsValueSet() {
         if c.Idle.Value() != nil {
             structMap["idle"] = c.Idle.Value()
@@ -73,12 +77,12 @@ func (c *CpuStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "idle", "interrupt", "load_avg", "system", "user")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "idle", "interrupt", "load_avg", "system", "user")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Idle = temp.Idle
     c.Interrupt = temp.Interrupt
     c.LoadAvg = temp.LoadAvg

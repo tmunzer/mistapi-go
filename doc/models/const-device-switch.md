@@ -1,6 +1,8 @@
 
 # Const Device Switch
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ConstDeviceSwitch`
@@ -34,6 +36,7 @@
 | `Pic` | `map[string]string` | Optional | Object Key is the PIC number |
 | `SubRequired` | `*string` | Optional | - |
 | `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Default**: `"switch"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -67,7 +70,15 @@
   },
   "type": "switch",
   "defaults": {
-    "_ports": "_ports6"
+    "_ports": "_ports6",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

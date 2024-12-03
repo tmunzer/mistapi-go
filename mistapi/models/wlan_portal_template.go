@@ -8,7 +8,7 @@ import (
 type WlanPortalTemplate struct {
     // portal template wlan settings
     PortalTemplate       *WlanPortalTemplateSetting `json:"portal_template,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanPortalTemplate.
@@ -16,13 +16,17 @@ type WlanPortalTemplate struct {
 func (w WlanPortalTemplate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "portal_template"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanPortalTemplate object to a map representation for JSON marshaling.
 func (w WlanPortalTemplate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.PortalTemplate != nil {
         structMap["portal_template"] = w.PortalTemplate.toMap()
     }
@@ -37,12 +41,12 @@ func (w *WlanPortalTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "portal_template")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "portal_template")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.PortalTemplate = temp.PortalTemplate
     return nil
 }

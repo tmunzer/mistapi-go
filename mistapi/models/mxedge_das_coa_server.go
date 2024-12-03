@@ -7,16 +7,16 @@ import (
 // MxedgeDasCoaServer represents a MxedgeDasCoaServer struct.
 type MxedgeDasCoaServer struct {
     // whether to disable Event-Timestamp Check
-    DisableEventTimestampCheck  *bool          `json:"disable_event_timestamp_check,omitempty"`
-    Enabled                     *bool          `json:"enabled,omitempty"`
+    DisableEventTimestampCheck  *bool                  `json:"disable_event_timestamp_check,omitempty"`
+    Enabled                     *bool                  `json:"enabled,omitempty"`
     // this server configured to send CoA|DM to mist edges
-    Host                        *string        `json:"host,omitempty"`
+    Host                        *string                `json:"host,omitempty"`
     // mist edges will allow this host on this port
-    Port                        *int           `json:"port,omitempty"`
+    Port                        *int                   `json:"port,omitempty"`
     // whether to require Message-Authenticator in requests
-    RequireMessageAuthenticator *bool          `json:"require_message_authenticator,omitempty"`
-    Secret                      *string        `json:"secret,omitempty"`
-    AdditionalProperties        map[string]any `json:"_"`
+    RequireMessageAuthenticator *bool                  `json:"require_message_authenticator,omitempty"`
+    Secret                      *string                `json:"secret,omitempty"`
+    AdditionalProperties        map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeDasCoaServer.
@@ -24,13 +24,17 @@ type MxedgeDasCoaServer struct {
 func (m MxedgeDasCoaServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "disable_event_timestamp_check", "enabled", "host", "port", "require_message_authenticator", "secret"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeDasCoaServer object to a map representation for JSON marshaling.
 func (m MxedgeDasCoaServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.DisableEventTimestampCheck != nil {
         structMap["disable_event_timestamp_check"] = m.DisableEventTimestampCheck
     }
@@ -60,12 +64,12 @@ func (m *MxedgeDasCoaServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disable_event_timestamp_check", "enabled", "host", "port", "require_message_authenticator", "secret")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_event_timestamp_check", "enabled", "host", "port", "require_message_authenticator", "secret")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.DisableEventTimestampCheck = temp.DisableEventTimestampCheck
     m.Enabled = temp.Enabled
     m.Host = temp.Host

@@ -6,15 +6,15 @@ import (
 
 // Snmpv3ConfigTargetAddressItem represents a Snmpv3ConfigTargetAddressItem struct.
 type Snmpv3ConfigTargetAddressItem struct {
-    Address              *string        `json:"address,omitempty"`
-    AddressMask          *string        `json:"address_mask,omitempty"`
-    Port                 *int           `json:"port,omitempty"`
+    Address              *string                `json:"address,omitempty"`
+    AddressMask          *string                `json:"address_mask,omitempty"`
+    Port                 *int                   `json:"port,omitempty"`
     // <refer to notify tag, can be multiple with blank
-    TagList              *string        `json:"tag_list,omitempty"`
-    TargetAddressName    *string        `json:"target_address_name,omitempty"`
+    TagList              *string                `json:"tag_list,omitempty"`
+    TargetAddressName    *string                `json:"target_address_name,omitempty"`
     // refer to notify target parameters name
-    TargetParameters     *string        `json:"target_parameters,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TargetParameters     *string                `json:"target_parameters,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Snmpv3ConfigTargetAddressItem.
@@ -22,13 +22,17 @@ type Snmpv3ConfigTargetAddressItem struct {
 func (s Snmpv3ConfigTargetAddressItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "address", "address_mask", "port", "tag_list", "target_address_name", "target_parameters"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Snmpv3ConfigTargetAddressItem object to a map representation for JSON marshaling.
 func (s Snmpv3ConfigTargetAddressItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Address != nil {
         structMap["address"] = s.Address
     }
@@ -58,12 +62,12 @@ func (s *Snmpv3ConfigTargetAddressItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "address", "address_mask", "port", "tag_list", "target_address_name", "target_parameters")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "address_mask", "port", "tag_list", "target_address_name", "target_parameters")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Address = temp.Address
     s.AddressMask = temp.AddressMask
     s.Port = temp.Port

@@ -1,6 +1,8 @@
 
 # Extra Route 6
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ExtraRoute6`
@@ -15,6 +17,7 @@
 | `NoResolve` | `*bool` | Optional | **Default**: `false` |
 | `Preference` | `models.Optional[int]` | Optional | **Constraints**: `>= 0`, `<= 2147483647` |
 | `Via` | `*string` | Optional | next-hop IP Address |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,13 +27,21 @@
   "next_qualified": {
     "2a02:1234:200a::100": {
       "metric": 170,
-      "preference": 40
+      "preference": 40,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "no_resolve": false,
   "preference": 30,
   "via": "2a02:1234:200a::100",
-  "metric": 10
+  "metric": 10,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

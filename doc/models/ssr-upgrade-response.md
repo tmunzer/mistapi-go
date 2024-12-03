@@ -1,6 +1,8 @@
 
 # Ssr Upgrade Response
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SsrUpgradeResponse`
@@ -16,6 +18,7 @@
 | `Status` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Strategy` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Versions` | `map[string]string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,7 +29,11 @@
     "failed": 166,
     "queued": 234,
     "success": 90,
-    "upgrading": 112
+    "upgrading": 112,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "device_type": "device_type0",
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
@@ -36,6 +43,10 @@
     "key0": "versions5",
     "key1": "versions6",
     "key2": "versions7"
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

@@ -1,6 +1,8 @@
 
 # Const Alarm Definition
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ConstAlarmDefinition`
@@ -16,6 +18,7 @@
 | `Key` | `string` | Required | Key name of the alarm type |
 | `MarvisSuggestionCategory` | `*string` | Optional | Marvis defined category to which the alarm belongs |
 | `Severity` | `string` | Required | Severity of the alarm |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,7 +49,11 @@
   "group": "infrastructure",
   "key": "device_down",
   "severity": "warn",
-  "marvis_suggestion_category": "marvis_suggestion_category4"
+  "marvis_suggestion_category": "marvis_suggestion_category4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

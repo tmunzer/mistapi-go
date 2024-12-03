@@ -58,7 +58,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 alarmId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NoteString{
-    Note: models.ToPointer("maintenance window"),
+    Note:                 models.ToPointer("maintenance window"),
 }
 
 resp, err := sitesAlarms.AckSiteAlarm(ctx, siteId, alarmId, &body)
@@ -114,7 +114,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NoteString{
-    Note: models.ToPointer("maintenance window"),
+    Note:                 models.ToPointer("maintenance window"),
 }
 
 resp, err := sitesAlarms.AckSiteAllAlarms(ctx, siteId, &body)
@@ -168,11 +168,11 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AlarmAck{
-    AlarmIds: []uuid.UUID{
+    AlarmIds:             []uuid.UUID{
         uuid.MustParse("ccb8c94d-ca56-4075-932f-1f2ab444ff2c"),
         uuid.MustParse("98ff4a3d-ec9b-4138-a42e-54fc3335179d"),
     },
-    Note:     models.ToPointer("maintenance window"),
+    Note:                 models.ToPointer("maintenance window"),
 }
 
 resp, err := sitesAlarms.AckSiteMultipleAlarms(ctx, siteId, &body)
@@ -476,7 +476,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 alarmId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NoteString{
-    Note: models.ToPointer("maintenance window"),
+    Note:                 models.ToPointer("maintenance window"),
 }
 
 resp, err := sitesAlarms.UnackSiteAlarm(ctx, siteId, alarmId, &body)
@@ -532,7 +532,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NoteString{
-    Note: models.ToPointer("maintenance window"),
+    Note:                 models.ToPointer("maintenance window"),
 }
 
 resp, err := sitesAlarms.UnackSiteAllArlarms(ctx, siteId, &body)
@@ -586,11 +586,11 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AlarmAck{
-    AlarmIds: []uuid.UUID{
+    AlarmIds:             []uuid.UUID{
         uuid.MustParse("ccb8c94d-ca56-4075-932f-1f2ab444ff2c"),
         uuid.MustParse("98ff4a3d-ec9b-4138-a42e-54fc3335179d"),
     },
-    Note:     models.ToPointer("maintenance window"),
+    Note:                 models.ToPointer("maintenance window"),
 }
 
 resp, err := sitesAlarms.UnackSiteMultipleAlarms(ctx, siteId, &body)

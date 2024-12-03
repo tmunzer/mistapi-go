@@ -20,7 +20,7 @@ type StatsApGpsStat struct {
     Src                  *StatsApGpsStatSrcEnum `json:"src,omitempty"`
     // The unix timestamp when the GPS data was recorded.
     Timestamp            *float64               `json:"timestamp,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApGpsStat.
@@ -28,13 +28,17 @@ type StatsApGpsStat struct {
 func (s StatsApGpsStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "accuracy", "altitude", "latitude", "longitude", "src", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApGpsStat object to a map representation for JSON marshaling.
 func (s StatsApGpsStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Accuracy != nil {
         structMap["accuracy"] = s.Accuracy
     }
@@ -64,12 +68,12 @@ func (s *StatsApGpsStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "accuracy", "altitude", "latitude", "longitude", "src", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accuracy", "altitude", "latitude", "longitude", "src", "timestamp")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Accuracy = temp.Accuracy
     s.Altitude = temp.Altitude
     s.Latitude = temp.Latitude

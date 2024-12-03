@@ -6,13 +6,13 @@ import (
 
 // RemoteSyslogFileConfig represents a RemoteSyslogFileConfig struct.
 type RemoteSyslogFileConfig struct {
-    Archive              *RemoteSyslogArchive  `json:"archive,omitempty"`
-    Contents             []RemoteSyslogContent `json:"contents,omitempty"`
-    ExplicitPriority     *bool                 `json:"explicit_priority,omitempty"`
-    File                 *string               `json:"file,omitempty"`
-    Match                *string               `json:"match,omitempty"`
-    StructuredData       *bool                 `json:"structured_data,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Archive              *RemoteSyslogArchive   `json:"archive,omitempty"`
+    Contents             []RemoteSyslogContent  `json:"contents,omitempty"`
+    ExplicitPriority     *bool                  `json:"explicit_priority,omitempty"`
+    File                 *string                `json:"file,omitempty"`
+    Match                *string                `json:"match,omitempty"`
+    StructuredData       *bool                  `json:"structured_data,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogFileConfig.
@@ -20,13 +20,17 @@ type RemoteSyslogFileConfig struct {
 func (r RemoteSyslogFileConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "archive", "contents", "explicit_priority", "file", "match", "structured_data"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RemoteSyslogFileConfig object to a map representation for JSON marshaling.
 func (r RemoteSyslogFileConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Archive != nil {
         structMap["archive"] = r.Archive.toMap()
     }
@@ -56,12 +60,12 @@ func (r *RemoteSyslogFileConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "archive", "contents", "explicit_priority", "file", "match", "structured_data")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "archive", "contents", "explicit_priority", "file", "match", "structured_data")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Archive = temp.Archive
     r.Contents = temp.Contents
     r.ExplicitPriority = temp.ExplicitPriority

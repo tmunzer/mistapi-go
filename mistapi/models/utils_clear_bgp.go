@@ -9,14 +9,14 @@ import (
 // UtilsClearBgp represents a UtilsClearBgp struct.
 type UtilsClearBgp struct {
     // neighbor ip-address or 'all'
-    Neighbor             string                `json:"neighbor"`
+    Neighbor             string                 `json:"neighbor"`
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum    `json:"node,omitempty"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // enum: `hard`, `in`, `out`, `soft`
-    Type                 UtilsClearBgpTypeEnum `json:"type"`
+    Type                 UtilsClearBgpTypeEnum  `json:"type"`
     // vrf name
-    Vrf                  *string               `json:"vrf,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Vrf                  *string                `json:"vrf,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsClearBgp.
@@ -24,13 +24,17 @@ type UtilsClearBgp struct {
 func (u UtilsClearBgp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "neighbor", "node", "type", "vrf"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsClearBgp object to a map representation for JSON marshaling.
 func (u UtilsClearBgp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     structMap["neighbor"] = u.Neighbor
     if u.Node != nil {
         structMap["node"] = u.Node
@@ -54,12 +58,12 @@ func (u *UtilsClearBgp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "neighbor", "node", "type", "vrf")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "neighbor", "node", "type", "vrf")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Neighbor = *temp.Neighbor
     u.Node = temp.Node
     u.Type = *temp.Type

@@ -19,14 +19,14 @@ import (
 // * if network or port_id is specified and macs is empty, it means all clients under network or port_id
 type UtilsReleaseDhcpLeases struct {
     // A list of client macs to be released
-    Mac                  []string           `json:"mac,omitempty"`
+    Mac                  []string               `json:"mac,omitempty"`
     // The network for the leases IPs to be released
-    Network              *string            `json:"network,omitempty"`
+    Network              *string                `json:"network,omitempty"`
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // The nework interface on which to release the current DHCP release
-    PortId               string             `json:"port_id"`
-    AdditionalProperties map[string]any     `json:"_"`
+    PortId               string                 `json:"port_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsReleaseDhcpLeases.
@@ -34,13 +34,17 @@ type UtilsReleaseDhcpLeases struct {
 func (u UtilsReleaseDhcpLeases) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "mac", "network", "node", "port_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsReleaseDhcpLeases object to a map representation for JSON marshaling.
 func (u UtilsReleaseDhcpLeases) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Mac != nil {
         structMap["mac"] = u.Mac
     }
@@ -66,12 +70,12 @@ func (u *UtilsReleaseDhcpLeases) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "network", "node", "port_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "network", "node", "port_id")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Mac = temp.Mac
     u.Network = temp.Network
     u.Node = temp.Node

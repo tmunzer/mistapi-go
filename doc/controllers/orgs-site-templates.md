@@ -49,7 +49,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SiteTemplate{
-    Vars:        map[string]string{
+    Vars:                 map[string]string{
         "RADIUS_IP1": "172.31.2.5",
         "RADIUS_SECRET": "11s64632d",
     },
@@ -332,7 +332,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 sitetemplateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SiteTemplate{
-    Vars:        map[string]string{
+    Vars:                 map[string]string{
         "RADIUS_IP1": "172.31.2.5",
         "RADIUS_SECRET": "11s64632d",
     },

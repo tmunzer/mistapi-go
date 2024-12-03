@@ -1,6 +1,8 @@
 
 # Tacacs Auth Server
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `TacacsAuthServer`
@@ -13,6 +15,7 @@
 | `Port` | `*string` | Optional | - |
 | `Secret` | `*string` | Optional | - |
 | `Timeout` | `*int` | Optional | **Default**: `10` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,11 @@
   "timeout": 10,
   "host": "host6",
   "port": "port2",
-  "secret": "secret2"
+  "secret": "secret2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

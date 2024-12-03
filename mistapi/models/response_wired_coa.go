@@ -7,10 +7,10 @@ import (
 
 // ResponseWiredCoa represents a ResponseWiredCoa struct.
 type ResponseWiredCoa struct {
-    DeviceMac            *string        `json:"device_mac,omitempty"`
-    PortId               *string        `json:"port_id,omitempty"`
-    Session              *uuid.UUID     `json:"session,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    DeviceMac            *string                `json:"device_mac,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
+    Session              *uuid.UUID             `json:"session,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseWiredCoa.
@@ -18,13 +18,17 @@ type ResponseWiredCoa struct {
 func (r ResponseWiredCoa) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "device_mac", "port_id", "session"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseWiredCoa object to a map representation for JSON marshaling.
 func (r ResponseWiredCoa) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.DeviceMac != nil {
         structMap["device_mac"] = r.DeviceMac
     }
@@ -45,12 +49,12 @@ func (r *ResponseWiredCoa) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "device_mac", "port_id", "session")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "device_mac", "port_id", "session")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.DeviceMac = temp.DeviceMac
     r.PortId = temp.PortId
     r.Session = temp.Session

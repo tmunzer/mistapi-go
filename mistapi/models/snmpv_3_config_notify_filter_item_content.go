@@ -6,9 +6,9 @@ import (
 
 // Snmpv3ConfigNotifyFilterItemContent represents a Snmpv3ConfigNotifyFilterItemContent struct.
 type Snmpv3ConfigNotifyFilterItemContent struct {
-    Include              *bool          `json:"include,omitempty"`
-    Oid                  *string        `json:"oid,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Include              *bool                  `json:"include,omitempty"`
+    Oid                  *string                `json:"oid,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Snmpv3ConfigNotifyFilterItemContent.
@@ -16,13 +16,17 @@ type Snmpv3ConfigNotifyFilterItemContent struct {
 func (s Snmpv3ConfigNotifyFilterItemContent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "include", "oid"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Snmpv3ConfigNotifyFilterItemContent object to a map representation for JSON marshaling.
 func (s Snmpv3ConfigNotifyFilterItemContent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Include != nil {
         structMap["include"] = s.Include
     }
@@ -40,12 +44,12 @@ func (s *Snmpv3ConfigNotifyFilterItemContent) UnmarshalJSON(input []byte) error 
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "include", "oid")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "include", "oid")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Include = temp.Include
     s.Oid = temp.Oid
     return nil

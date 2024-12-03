@@ -8,12 +8,12 @@ import (
 
 // ModuleStatItemErrorsItems represents a ModuleStatItemErrorsItems struct.
 type ModuleStatItemErrorsItems struct {
-    Feature              *string        `json:"feature,omitempty"`
-    MinimumVersion       *string        `json:"minimum_version,omitempty"`
-    Reason               *string        `json:"reason,omitempty"`
-    Since                int            `json:"since"`
-    Type                 string         `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    Feature              *string                `json:"feature,omitempty"`
+    MinimumVersion       *string                `json:"minimum_version,omitempty"`
+    Reason               *string                `json:"reason,omitempty"`
+    Since                int                    `json:"since"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemErrorsItems.
@@ -21,13 +21,17 @@ type ModuleStatItemErrorsItems struct {
 func (m ModuleStatItemErrorsItems) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "feature", "minimum_version", "reason", "since", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the ModuleStatItemErrorsItems object to a map representation for JSON marshaling.
 func (m ModuleStatItemErrorsItems) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Feature != nil {
         structMap["feature"] = m.Feature
     }
@@ -54,12 +58,12 @@ func (m *ModuleStatItemErrorsItems) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "feature", "minimum_version", "reason", "since", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "feature", "minimum_version", "reason", "since", "type")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Feature = temp.Feature
     m.MinimumVersion = temp.MinimumVersion
     m.Reason = temp.Reason

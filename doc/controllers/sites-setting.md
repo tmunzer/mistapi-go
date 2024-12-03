@@ -55,7 +55,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "18-65-90-de-f4-c6",
         "84-89-ad-5d-69-0d",
     },
@@ -127,7 +127,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "683b679ac024",
     },
 }
@@ -198,7 +198,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "18-65-90-de-f4-c6",
         "84-89-ad-5d-69-0d",
     },
@@ -517,7 +517,7 @@ body := models.SiteSetting{
     DeviceUpdownThreshold:           models.NewOptional(models.ToPointer(0)),
     ExtraRoutes6:                    map[string]models.ExtraRoute6{
         "2a02:1234:420a:10c9::/64": models.ExtraRoute6{
-            Via:           models.ToPointer("2a02:1234:200a::100"),
+            Via:                  models.ToPointer("2a02:1234:200a::100"),
         },
     },
     GatewayUpdownThreshold:          models.NewOptional(models.ToPointer(0)),
@@ -533,12 +533,12 @@ body := models.SiteSetting{
     },
     VrfInstances:                    map[string]models.SwitchVrfInstance{
         "guest": models.SwitchVrfInstance{
-            ExtraRoutes: map[string]models.VrfExtraRoute{
+            ExtraRoutes:          map[string]models.VrfExtraRoute{
                 "0.0.0.0/0": models.VrfExtraRoute{
-                    Via: models.ToPointer("192.168.31.1"),
+                    Via:                  models.ToPointer("192.168.31.1"),
                 },
             },
-            Networks:    []string{
+            Networks:             []string{
                 "guest",
             },
         },

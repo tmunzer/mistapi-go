@@ -8,20 +8,20 @@ import (
 // IoT AP settings
 type ApIot struct {
     // IoT output AP settings
-    A1                   *ApIotOutput   `json:"A1,omitempty"`
+    A1                   *ApIotOutput           `json:"A1,omitempty"`
     // IoT output AP settings
-    A2                   *ApIotOutput   `json:"A2,omitempty"`
+    A2                   *ApIotOutput           `json:"A2,omitempty"`
     // IoT output AP settings
-    A3                   *ApIotOutput   `json:"A3,omitempty"`
+    A3                   *ApIotOutput           `json:"A3,omitempty"`
     // IoT output AP settings
-    A4                   *ApIotOutput   `json:"A4,omitempty"`
+    A4                   *ApIotOutput           `json:"A4,omitempty"`
     // IoT Input AP settings
-    DI1                  *ApIotInput    `json:"DI1,omitempty"`
+    DI1                  *ApIotInput            `json:"DI1,omitempty"`
     // IoT Input AP settings
-    DI2                  *ApIotInput    `json:"DI2,omitempty"`
+    DI2                  *ApIotInput            `json:"DI2,omitempty"`
     // IoT output AP settings
-    DO                   *ApIotOutput   `json:"DO,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    DO                   *ApIotOutput           `json:"DO,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApIot.
@@ -29,13 +29,17 @@ type ApIot struct {
 func (a ApIot) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "A1", "A2", "A3", "A4", "DI1", "DI2", "DO"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApIot object to a map representation for JSON marshaling.
 func (a ApIot) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.A1 != nil {
         structMap["A1"] = a.A1.toMap()
     }
@@ -68,12 +72,12 @@ func (a *ApIot) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "A1", "A2", "A3", "A4", "DI1", "DI2", "DO")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "A1", "A2", "A3", "A4", "DI1", "DI2", "DO")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.A1 = temp.A1
     a.A2 = temp.A2
     a.A3 = temp.A3

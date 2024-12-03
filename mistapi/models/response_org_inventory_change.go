@@ -13,7 +13,7 @@ type ResponseOrgInventoryChange struct {
     Op                   ResponseOrgInventoryChangeOpEnum `json:"op"`
     Reason               []string                         `json:"reason"`
     Success              []string                         `json:"success"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOrgInventoryChange.
@@ -21,13 +21,17 @@ type ResponseOrgInventoryChange struct {
 func (r ResponseOrgInventoryChange) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "error", "op", "reason", "success"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseOrgInventoryChange object to a map representation for JSON marshaling.
 func (r ResponseOrgInventoryChange) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["error"] = r.Error
     structMap["op"] = r.Op
     structMap["reason"] = r.Reason
@@ -47,12 +51,12 @@ func (r *ResponseOrgInventoryChange) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "error", "op", "reason", "success")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "error", "op", "reason", "success")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Error = *temp.Error
     r.Op = *temp.Op
     r.Reason = *temp.Reason

@@ -8,13 +8,13 @@ import (
 // IssuedClientCertificate represents a IssuedClientCertificate struct.
 type IssuedClientCertificate struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
-    DeviceId             *uuid.UUID     `json:"device_id,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
+    DeviceId             *uuid.UUID             `json:"device_id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64       `json:"modified_time,omitempty"`
-    SerialNumber         *string        `json:"serial_number,omitempty"`
-    SsoNameId            *string        `json:"sso_name_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    SerialNumber         *string                `json:"serial_number,omitempty"`
+    SsoNameId            *string                `json:"sso_name_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for IssuedClientCertificate.
@@ -22,13 +22,17 @@ type IssuedClientCertificate struct {
 func (i IssuedClientCertificate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "created_time", "device_id", "modified_time", "serial_number", "sso_name_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the IssuedClientCertificate object to a map representation for JSON marshaling.
 func (i IssuedClientCertificate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.CreatedTime != nil {
         structMap["created_time"] = i.CreatedTime
     }
@@ -55,12 +59,12 @@ func (i *IssuedClientCertificate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "device_id", "modified_time", "serial_number", "sso_name_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "device_id", "modified_time", "serial_number", "sso_name_id")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.CreatedTime = temp.CreatedTime
     i.DeviceId = temp.DeviceId
     i.ModifiedTime = temp.ModifiedTime

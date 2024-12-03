@@ -49,15 +49,15 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Vpn{
-    Name:          "string",
-    Paths:         map[string]models.VpnPath{
+    Name:                 "string",
+    Paths:                map[string]models.VpnPath{
         "property1": models.VpnPath{
-            BfdProfile: models.ToPointer(models.VpnPathBfdProfileEnum("broadband")),
-            Ip:         models.ToPointer("string"),
+            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum("broadband")),
+            Ip:                   models.ToPointer("string"),
         },
         "property2": models.VpnPath{
-            BfdProfile: models.ToPointer(models.VpnPathBfdProfileEnum("lte")),
-            Ip:         models.ToPointer("string"),
+            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum("lte")),
+            Ip:                   models.ToPointer("string"),
         },
     },
 }
@@ -347,15 +347,15 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 vpnId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Vpn{
-    Name:          "string",
-    Paths:         map[string]models.VpnPath{
+    Name:                 "string",
+    Paths:                map[string]models.VpnPath{
         "property1": models.VpnPath{
-            BfdProfile: models.ToPointer(models.VpnPathBfdProfileEnum("broadband")),
-            Ip:         models.ToPointer("string"),
+            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum("broadband")),
+            Ip:                   models.ToPointer("string"),
         },
         "property2": models.VpnPath{
-            BfdProfile: models.ToPointer(models.VpnPathBfdProfileEnum("broadband")),
-            Ip:         models.ToPointer("string"),
+            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum("broadband")),
+            Ip:                   models.ToPointer("string"),
         },
     },
 }

@@ -37,7 +37,7 @@ type WebhookLocationEvent struct {
     X                      float64                       `json:"x"`
     // y, in meter
     Y                      float64                       `json:"y"`
-    AdditionalProperties   map[string]any                `json:"_"`
+    AdditionalProperties   map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookLocationEvent.
@@ -45,13 +45,17 @@ type WebhookLocationEvent struct {
 func (w WebhookLocationEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "battery_voltage", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "id", "mac", "map_id", "mfg_company_id", "mfg_data", "name", "site_id", "timestamp", "type", "wifi_beacon_extended_info", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookLocationEvent object to a map representation for JSON marshaling.
 func (w WebhookLocationEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.BatteryVoltage != nil {
         structMap["battery_voltage"] = w.BatteryVoltage
     }
@@ -110,12 +114,12 @@ func (w *WebhookLocationEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "battery_voltage", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "id", "mac", "map_id", "mfg_company_id", "mfg_data", "name", "site_id", "timestamp", "type", "wifi_beacon_extended_info", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "battery_voltage", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "id", "mac", "map_id", "mfg_company_id", "mfg_data", "name", "site_id", "timestamp", "type", "wifi_beacon_extended_info", "x", "y")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.BatteryVoltage = temp.BatteryVoltage
     w.EddystoneUidInstance = temp.EddystoneUidInstance
     w.EddystoneUidNamespace = temp.EddystoneUidNamespace

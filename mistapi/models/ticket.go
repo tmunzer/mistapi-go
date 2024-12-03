@@ -10,25 +10,25 @@ import (
 // Ticket represents a Ticket struct.
 // Support Ticket
 type Ticket struct {
-    CaseNumber           *string           `json:"case_number,omitempty"`
-    Comments             []TicketComment   `json:"comments,omitempty"`
-    CreatedAt            *int              `json:"created_at,omitempty"`
+    CaseNumber           *string                `json:"case_number,omitempty"`
+    Comments             []TicketComment        `json:"comments,omitempty"`
+    CreatedAt            *int                   `json:"created_at,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID        `json:"id,omitempty"`
-    Requester            *string           `json:"requester,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Requester            *string                `json:"requester,omitempty"`
     // email of the requester
-    RequesterEmail       *string           `json:"requester_email,omitempty"`
+    RequesterEmail       *string                `json:"requester_email,omitempty"`
     // Ticket status. enum:
     // * open: ticket is open, Mist is working on it
     // * pending: ticket is open and Requester attention is needed (e.g. Mist is asking for some more information)
     // * solved: ticket is marked as solved / considered by Mist (requester can update it, causing it to re-open; or rate it)
     // * closed: ticket is archived and cannot be changed.
-    Status               *TicketStatusEnum `json:"status,omitempty"`
-    Subject              string            `json:"subject"`
+    Status               *TicketStatusEnum      `json:"status,omitempty"`
+    Subject              string                 `json:"subject"`
     // question (default) / bug / critical
-    Type                 string            `json:"type"`
-    UpdatedAt            *int              `json:"updated_at,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    Type                 string                 `json:"type"`
+    UpdatedAt            *int                   `json:"updated_at,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Ticket.
@@ -36,13 +36,17 @@ type Ticket struct {
 func (t Ticket) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "case_number", "comments", "created_at", "id", "requester", "requester_email", "status", "subject", "type", "updated_at"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the Ticket object to a map representation for JSON marshaling.
 func (t Ticket) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.CaseNumber != nil {
         structMap["case_number"] = t.CaseNumber
     }
@@ -84,12 +88,12 @@ func (t *Ticket) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "case_number", "comments", "created_at", "id", "requester", "requester_email", "status", "subject", "type", "updated_at")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "case_number", "comments", "created_at", "id", "requester", "requester_email", "status", "subject", "type", "updated_at")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.CaseNumber = temp.CaseNumber
     t.Comments = temp.Comments
     t.CreatedAt = temp.CreatedAt

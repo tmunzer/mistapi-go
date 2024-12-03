@@ -1,6 +1,8 @@
 
 # Mxedge Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MxedgeEvent`
@@ -16,6 +18,7 @@
 | `Service` | `*string` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
 | `Type` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "service": "tunterm",
   "timestamp": 1694678225.927,
   "type": "ME_SERVICE_STOPPED",
-  "component": "component6"
+  "component": "component6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

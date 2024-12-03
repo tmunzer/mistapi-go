@@ -5,6 +5,8 @@
 
 Events specific fields for other alarm event type can be found with API https://api.mist.com/api/v1/const/alarm_defs, under “fields” array of /alarm_defs response object.
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookAlarms`
@@ -15,6 +17,7 @@ Events specific fields for other alarm event type can be found with API https://
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookAlarmEvent`](../../doc/models/webhook-alarm-event.md) | Required | list of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"alarms"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,10 +40,18 @@ Events specific fields for other alarm event type can be found with API https://
       ],
       "count": 152,
       "event_id": "000015dc-0000-0000-0000-000000000000",
-      "for_site": false
+      "for_site": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "alarms"
+  "topic": "alarms",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -8,8 +8,8 @@ import (
 
 // ResponseCertificate represents a ResponseCertificate struct.
 type ResponseCertificate struct {
-    Cert                 string         `json:"cert"`
-    AdditionalProperties map[string]any `json:"_"`
+    Cert                 string                 `json:"cert"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseCertificate.
@@ -17,13 +17,17 @@ type ResponseCertificate struct {
 func (r ResponseCertificate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "cert"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseCertificate object to a map representation for JSON marshaling.
 func (r ResponseCertificate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["cert"] = r.Cert
     return structMap
 }
@@ -40,12 +44,12 @@ func (r *ResponseCertificate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cert")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cert")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Cert = *temp.Cert
     return nil
 }

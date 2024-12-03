@@ -49,7 +49,7 @@ type Admin struct {
     // an admin login via_sso is more restircted. (password and email
     // cannot be changed)
     ViaSso               *bool                      `json:"via_sso,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Admin.
@@ -57,13 +57,17 @@ type Admin struct {
 func (a Admin) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "admin_id", "compliance_status", "email", "enable_two_factor", "expire_time", "first_name", "hours", "last_name", "name", "no_tracking", "oauth_google", "password_modified_time", "phone", "phone2", "privileges", "session_expiry", "tags", "two_factor_verified", "via_sso"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the Admin object to a map representation for JSON marshaling.
 func (a Admin) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.AdminId != nil {
         structMap["admin_id"] = a.AdminId
     }
@@ -132,12 +136,12 @@ func (a *Admin) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "admin_id", "compliance_status", "email", "enable_two_factor", "expire_time", "first_name", "hours", "last_name", "name", "no_tracking", "oauth_google", "password_modified_time", "phone", "phone2", "privileges", "session_expiry", "tags", "two_factor_verified", "via_sso")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_id", "compliance_status", "email", "enable_two_factor", "expire_time", "first_name", "hours", "last_name", "name", "no_tracking", "oauth_google", "password_modified_time", "phone", "phone2", "privileges", "session_expiry", "tags", "two_factor_verified", "via_sso")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.AdminId = temp.AdminId
     a.ComplianceStatus = temp.ComplianceStatus
     a.Email = temp.Email

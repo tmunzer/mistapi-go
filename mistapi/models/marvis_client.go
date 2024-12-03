@@ -7,13 +7,13 @@ import (
 
 // MarvisClient represents a MarvisClient struct.
 type MarvisClient struct {
-    Diabled              *bool          `json:"diabled,omitempty"`
+    Diabled              *bool                  `json:"diabled,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
     // in MDM, add `--provision_url <provision_url>` to the instlal command
-    ProvisionUrl         *string        `json:"provision_url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ProvisionUrl         *string                `json:"provision_url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MarvisClient.
@@ -21,13 +21,17 @@ type MarvisClient struct {
 func (m MarvisClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "diabled", "id", "name", "provision_url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MarvisClient object to a map representation for JSON marshaling.
 func (m MarvisClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Diabled != nil {
         structMap["diabled"] = m.Diabled
     }
@@ -51,12 +55,12 @@ func (m *MarvisClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "diabled", "id", "name", "provision_url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "diabled", "id", "name", "provision_url")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Diabled = temp.Diabled
     m.Id = temp.Id
     m.Name = temp.Name

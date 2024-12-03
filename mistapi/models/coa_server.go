@@ -10,12 +10,12 @@ import (
 // CoA Server
 type CoaServer struct {
     // whether to disable Event-Timestamp Check
-    DisableEventTimestampCheck *bool          `json:"disable_event_timestamp_check,omitempty"`
-    Enabled                    *bool          `json:"enabled,omitempty"`
-    Ip                         string         `json:"ip"`
-    Port                       *int           `json:"port,omitempty"`
-    Secret                     string         `json:"secret"`
-    AdditionalProperties       map[string]any `json:"_"`
+    DisableEventTimestampCheck *bool                  `json:"disable_event_timestamp_check,omitempty"`
+    Enabled                    *bool                  `json:"enabled,omitempty"`
+    Ip                         string                 `json:"ip"`
+    Port                       *int                   `json:"port,omitempty"`
+    Secret                     string                 `json:"secret"`
+    AdditionalProperties       map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CoaServer.
@@ -23,13 +23,17 @@ type CoaServer struct {
 func (c CoaServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "disable_event_timestamp_check", "enabled", "ip", "port", "secret"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CoaServer object to a map representation for JSON marshaling.
 func (c CoaServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.DisableEventTimestampCheck != nil {
         structMap["disable_event_timestamp_check"] = c.DisableEventTimestampCheck
     }
@@ -56,12 +60,12 @@ func (c *CoaServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disable_event_timestamp_check", "enabled", "ip", "port", "secret")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_event_timestamp_check", "enabled", "ip", "port", "secret")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.DisableEventTimestampCheck = temp.DisableEventTimestampCheck
     c.Enabled = temp.Enabled
     c.Ip = *temp.Ip

@@ -18,7 +18,7 @@ type ProtectRe struct {
     Enabled              *bool                         `json:"enabled,omitempty"`
     // host/subnets we'll allow traffic to/from
     TrustedHosts         []string                      `json:"trusted_hosts,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ProtectRe.
@@ -26,13 +26,17 @@ type ProtectRe struct {
 func (p ProtectRe) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "allowed_services", "custom", "enabled", "trusted_hosts"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the ProtectRe object to a map representation for JSON marshaling.
 func (p ProtectRe) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.AllowedServices != nil {
         structMap["allowed_services"] = p.AllowedServices
     }
@@ -56,12 +60,12 @@ func (p *ProtectRe) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "allowed_services", "custom", "enabled", "trusted_hosts")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allowed_services", "custom", "enabled", "trusted_hosts")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.AllowedServices = temp.AllowedServices
     p.Custom = temp.Custom
     p.Enabled = temp.Enabled

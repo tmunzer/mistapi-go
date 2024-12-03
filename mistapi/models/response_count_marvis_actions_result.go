@@ -6,8 +6,8 @@ import (
 
 // ResponseCountMarvisActionsResult represents a ResponseCountMarvisActionsResult struct.
 type ResponseCountMarvisActionsResult struct {
-    Count                *int           `json:"count,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Count                *int              `json:"count,omitempty"`
+    AdditionalProperties map[string]string `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseCountMarvisActionsResult.
@@ -15,13 +15,17 @@ type ResponseCountMarvisActionsResult struct {
 func (r ResponseCountMarvisActionsResult) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "count"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseCountMarvisActionsResult object to a map representation for JSON marshaling.
 func (r ResponseCountMarvisActionsResult) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Count != nil {
         structMap["count"] = r.Count
     }
@@ -36,12 +40,12 @@ func (r *ResponseCountMarvisActionsResult) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "count")
+    additionalProperties, err := ExtractAdditionalProperties[string](input, "count")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Count = temp.Count
     return nil
 }

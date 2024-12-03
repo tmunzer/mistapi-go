@@ -7,8 +7,8 @@ import (
 // ResponseVirtualChassisConfig represents a ResponseVirtualChassisConfig struct.
 type ResponseVirtualChassisConfig struct {
     // Virtual Chassis
-    Id                   *VirtualChassisConfig `json:"id,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Id                   *VirtualChassisConfig  `json:"id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseVirtualChassisConfig.
@@ -16,13 +16,17 @@ type ResponseVirtualChassisConfig struct {
 func (r ResponseVirtualChassisConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseVirtualChassisConfig object to a map representation for JSON marshaling.
 func (r ResponseVirtualChassisConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Id != nil {
         structMap["id"] = r.Id.toMap()
     }
@@ -37,12 +41,12 @@ func (r *ResponseVirtualChassisConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Id = temp.Id
     return nil
 }

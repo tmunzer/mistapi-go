@@ -6,11 +6,11 @@ import (
 
 // SynthetictestProperties represents a SynthetictestProperties struct.
 type SynthetictestProperties struct {
-    CustomTestUrls       []string             `json:"custom_test_urls,omitempty"`
+    CustomTestUrls       []string               `json:"custom_test_urls,omitempty"`
     // for some vlans where we don't want this to run
-    Disabled             *bool                `json:"disabled,omitempty"`
-    VlanIds              []VlanIdWithVariable `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any       `json:"_"`
+    Disabled             *bool                  `json:"disabled,omitempty"`
+    VlanIds              []VlanIdWithVariable   `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestProperties.
@@ -18,13 +18,17 @@ type SynthetictestProperties struct {
 func (s SynthetictestProperties) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "custom_test_urls", "disabled", "vlan_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SynthetictestProperties object to a map representation for JSON marshaling.
 func (s SynthetictestProperties) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.CustomTestUrls != nil {
         structMap["custom_test_urls"] = s.CustomTestUrls
     }
@@ -45,12 +49,12 @@ func (s *SynthetictestProperties) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "custom_test_urls", "disabled", "vlan_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "custom_test_urls", "disabled", "vlan_ids")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.CustomTestUrls = temp.CustomTestUrls
     s.Disabled = temp.Disabled
     s.VlanIds = temp.VlanIds

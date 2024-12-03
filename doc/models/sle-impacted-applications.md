@@ -1,6 +1,8 @@
 
 # Sle Impacted Applications
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SleImpactedApplications`
@@ -18,6 +20,7 @@
 | `Page` | `*int` | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `TotalCount` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,27 +32,43 @@
       "degraded": 58,
       "duration": 164,
       "name": "name6",
-      "threshold": 20
+      "threshold": 20,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "app": "app4",
       "degraded": 58,
       "duration": 164,
       "name": "name6",
-      "threshold": 20
+      "threshold": 20,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "app": "app4",
       "degraded": 58,
       "duration": 164,
       "name": "name6",
-      "threshold": 20
+      "threshold": 20,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "classifier": "classifier2",
   "end": 220,
   "failure": "failure4",
-  "limit": "limit2"
+  "limit": "limit2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

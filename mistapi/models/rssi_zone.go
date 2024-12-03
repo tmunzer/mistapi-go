@@ -11,19 +11,19 @@ import (
 // RSSI Zone
 type RssiZone struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64         `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // List of devices and the respective RSSI values to be considered in the zone
-    Devices              []RssiZoneDevice `json:"devices"`
-    ForSite              *bool            `json:"for_site,omitempty"`
+    Devices              []RssiZoneDevice       `json:"devices"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID       `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64         `json:"modified_time,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // The name of the zone
-    Name                 *string          `json:"name,omitempty"`
-    OrgId                *uuid.UUID       `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID       `json:"site_id,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Name                 *string                `json:"name,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RssiZone.
@@ -31,13 +31,17 @@ type RssiZone struct {
 func (r RssiZone) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "created_time", "devices", "for_site", "id", "modified_time", "name", "org_id", "site_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RssiZone object to a map representation for JSON marshaling.
 func (r RssiZone) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.CreatedTime != nil {
         structMap["created_time"] = r.CreatedTime
     }
@@ -75,12 +79,12 @@ func (r *RssiZone) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "devices", "for_site", "id", "modified_time", "name", "org_id", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "devices", "for_site", "id", "modified_time", "name", "org_id", "site_id")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.CreatedTime = temp.CreatedTime
     r.Devices = *temp.Devices
     r.ForSite = temp.ForSite

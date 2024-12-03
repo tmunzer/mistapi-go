@@ -3,6 +3,8 @@
 
 CPU/core stats list
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsMxedgeCpuStat`
@@ -17,6 +19,7 @@ CPU/core stats list
 | `System` | `*int` | Optional | percentage of System, System/(Idle + Busy) since last sampling |
 | `Usage` | `*int` | Optional | percentage of load, Busy/(Idle + Busy) since last sampling |
 | `User` | `*int` | Optional | percentage of User, User/(Idle + Busy) since last sampling |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -68,7 +71,11 @@ CPU/core stats list
   "interrupt": 0,
   "system": 17,
   "usage": 37,
-  "user": 19
+  "user": 19,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -8,14 +8,14 @@ import (
 // sdkclient wait time right now
 type StatsZoneSdkclientsWaits struct {
     // average wait time in seconds
-    Avg                  *float64       `json:"avg,omitempty"`
+    Avg                  *float64               `json:"avg,omitempty"`
     // longest wait time in seconds
-    Max                  *float64       `json:"max,omitempty"`
+    Max                  *float64               `json:"max,omitempty"`
     // shortest wait time in seconds
-    Min                  *float64       `json:"min,omitempty"`
+    Min                  *float64               `json:"min,omitempty"`
     // 95th percentile of all the wait time(s)
-    P95                  *float64       `json:"p95,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    P95                  *float64               `json:"p95,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsZoneSdkclientsWaits.
@@ -23,13 +23,17 @@ type StatsZoneSdkclientsWaits struct {
 func (s StatsZoneSdkclientsWaits) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "avg", "max", "min", "p95"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsZoneSdkclientsWaits object to a map representation for JSON marshaling.
 func (s StatsZoneSdkclientsWaits) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Avg != nil {
         structMap["avg"] = s.Avg
     }
@@ -53,12 +57,12 @@ func (s *StatsZoneSdkclientsWaits) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "avg", "max", "min", "p95")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "avg", "max", "min", "p95")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Avg = temp.Avg
     s.Max = temp.Max
     s.Min = temp.Min

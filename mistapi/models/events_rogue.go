@@ -9,13 +9,13 @@ import (
 // EventsRogue represents a EventsRogue struct.
 // rogue events
 type EventsRogue struct {
-    Ap                   string         `json:"ap"`
-    Bssid                string         `json:"bssid"`
-    Channel              int            `json:"channel"`
-    Rssi                 int            `json:"rssi"`
-    Ssid                 string         `json:"ssid"`
-    Timestamp            float64        `json:"timestamp"`
-    AdditionalProperties map[string]any `json:"_"`
+    Ap                   string                 `json:"ap"`
+    Bssid                string                 `json:"bssid"`
+    Channel              int                    `json:"channel"`
+    Rssi                 int                    `json:"rssi"`
+    Ssid                 string                 `json:"ssid"`
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventsRogue.
@@ -23,13 +23,17 @@ type EventsRogue struct {
 func (e EventsRogue) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "ap", "bssid", "channel", "rssi", "ssid", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EventsRogue object to a map representation for JSON marshaling.
 func (e EventsRogue) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     structMap["ap"] = e.Ap
     structMap["bssid"] = e.Bssid
     structMap["channel"] = e.Channel
@@ -51,12 +55,12 @@ func (e *EventsRogue) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "bssid", "channel", "rssi", "ssid", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "bssid", "channel", "rssi", "ssid", "timestamp")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Ap = *temp.Ap
     e.Bssid = *temp.Bssid
     e.Channel = *temp.Channel

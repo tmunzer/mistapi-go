@@ -3,6 +3,8 @@
 
 Dynamic Multipoint VPN configurations
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WxlanTunnelDmvpn`
@@ -14,6 +16,7 @@ Dynamic Multipoint VPN configurations
 | `Enabled` | `*bool` | Optional | whether DMVPN is enabled<br>**Default**: `false` |
 | `HoldingTime` | `*int` | Optional | optional; the holding time for NHRP ‘registration requests’  and ‘resolution replies’ sent from the Mist AP (in seconds); default 600 |
 | `HostRoutes` | `[]string` | Optional | optional; list of IPv4 DMVPN peer host ip-addresses to which traffic is forwarded |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,11 @@ Dynamic Multipoint VPN configurations
   "host_routes": [
     "host_routes8",
     "host_routes9"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

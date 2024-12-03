@@ -1,6 +1,8 @@
 
 # Stats Beacon
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsBeacon`
@@ -20,6 +22,7 @@
 | `Type` | `string` | Required | - |
 | `X` | `float64` | Required | - |
 | `Y` | `float64` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,7 +38,11 @@
   "power": 220,
   "type": "type0",
   "x": 146.94,
-  "y": 240.34
+  "y": 240.34,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

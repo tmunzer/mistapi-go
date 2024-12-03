@@ -7,15 +7,15 @@ import (
 // MistNacedge represents a MistNacedge struct.
 type MistNacedge struct {
     // cache of last auth result; in seconds
-    AuthTtl              *int           `json:"auth_ttl,omitempty"`
+    AuthTtl              *int                   `json:"auth_ttl,omitempty"`
     // default vlan for all dot1x devices, if different from default_vlan
-    DefaultDot1xVlan     *string        `json:"default_dot1x_vlan,omitempty"`
+    DefaultDot1xVlan     *string                `json:"default_dot1x_vlan,omitempty"`
     // Default vlan to assign for devices not in the cache
-    DefaultVlan          *string        `json:"default_vlan,omitempty"`
-    Enabled              *bool          `json:"enabled,omitempty"`
+    DefaultVlan          *string                `json:"default_vlan,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // list of NAC Edges in this site
-    MxedgeHosts          []string       `json:"mxedge_hosts,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    MxedgeHosts          []string               `json:"mxedge_hosts,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MistNacedge.
@@ -23,13 +23,17 @@ type MistNacedge struct {
 func (m MistNacedge) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "auth_ttl", "default_dot1x_vlan", "default_vlan", "enabled", "mxedge_hosts"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MistNacedge object to a map representation for JSON marshaling.
 func (m MistNacedge) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.AuthTtl != nil {
         structMap["auth_ttl"] = m.AuthTtl
     }
@@ -56,12 +60,12 @@ func (m *MistNacedge) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_ttl", "default_dot1x_vlan", "default_vlan", "enabled", "mxedge_hosts")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_ttl", "default_dot1x_vlan", "default_vlan", "enabled", "mxedge_hosts")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.AuthTtl = temp.AuthTtl
     m.DefaultDot1xVlan = temp.DefaultDot1xVlan
     m.DefaultVlan = temp.DefaultVlan

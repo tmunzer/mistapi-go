@@ -1,6 +1,8 @@
 
 # Test Twilio
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `TestTwilio`
@@ -13,6 +15,7 @@
 | `To` | `string` | Required | Phone number of the recipient of SMS |
 | `TwilioAuthToken` | `string` | Required | Auth Token associated with twilio account |
 | `TwilioSid` | `string` | Required | Twilio Account SID |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,11 @@
   "from": "+185051234567",
   "to": "+19999999999",
   "twilio_auth_token": "2135be04736a1a0a314bce432d61721a",
-  "twilio_sid": "AC5f4366878d193fb4865ab151739999eb"
+  "twilio_sid": "AC5f4366878d193fb4865ab151739999eb",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

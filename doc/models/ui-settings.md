@@ -3,6 +3,8 @@
 
 UI Settings
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UiSettings`
@@ -27,6 +29,7 @@ UI Settings
 | `Purpose` | `string` | Required | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Tiles` | [`[]models.UiSettingsTile`](../../doc/models/ui-settings-tile.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -47,7 +50,15 @@ UI Settings
     "endDate": "endDate8",
     "interval": "interval4",
     "name": "name6",
-    "shortName": "shortName4"
+    "shortName": "shortName4",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

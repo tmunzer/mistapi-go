@@ -1,6 +1,8 @@
 
 # Stats Ap L2 Tp Stat
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsApL2tpStat`
@@ -13,6 +15,7 @@
 | `State` | [`*models.L2tpStateEnum`](../../doc/models/l2-tp-state-enum.md) | Optional | enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
 | `Uptime` | `models.Optional[int]` | Optional | uptime |
 | `WxtunnelId` | `models.Optional[uuid.UUID]` | Optional | WxlanTunnel ID |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,9 +29,17 @@
       "local_sid": 84,
       "remote_id": "remote_id6",
       "remote_sid": 208,
-      "state": "established_with_session"
+      "state": "established_with_session",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

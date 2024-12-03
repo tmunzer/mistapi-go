@@ -22,7 +22,7 @@ type WiredClientResponse struct {
     SiteId                    *uuid.UUID                             `json:"site_id,omitempty"`
     Timestamp                 *float64                               `json:"timestamp,omitempty"`
     Vlan                      []int                                  `json:"vlan,omitempty"`
-    AdditionalProperties      map[string]any                         `json:"_"`
+    AdditionalProperties      map[string]interface{}                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WiredClientResponse.
@@ -30,13 +30,17 @@ type WiredClientResponse struct {
 func (w WiredClientResponse) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "device_mac", "device_mac_port", "dhcp_client_identifier", "dhcp_client_options", "dhcp_fqdn", "dhcp_hostname", "dhcp_request_params", "dhcp_vendor_class_identifier", "ip", "mac", "org_id", "port_id", "site_id", "timestamp", "vlan"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WiredClientResponse object to a map representation for JSON marshaling.
 func (w WiredClientResponse) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.DeviceMac != nil {
         structMap["device_mac"] = w.DeviceMac
     }
@@ -93,12 +97,12 @@ func (w *WiredClientResponse) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "device_mac", "device_mac_port", "dhcp_client_identifier", "dhcp_client_options", "dhcp_fqdn", "dhcp_hostname", "dhcp_request_params", "dhcp_vendor_class_identifier", "ip", "mac", "org_id", "port_id", "site_id", "timestamp", "vlan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "device_mac", "device_mac_port", "dhcp_client_identifier", "dhcp_client_options", "dhcp_fqdn", "dhcp_hostname", "dhcp_request_params", "dhcp_vendor_class_identifier", "ip", "mac", "org_id", "port_id", "site_id", "timestamp", "vlan")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.DeviceMac = temp.DeviceMac
     w.DeviceMacPort = temp.DeviceMacPort
     w.DhcpClientIdentifier = temp.DhcpClientIdentifier

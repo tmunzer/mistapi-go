@@ -9,7 +9,7 @@ type GatewayPathPreferences struct {
     Paths                []GatewayPathPreferencesPath `json:"paths,omitempty"`
     // enum: `ecmp`, `ordered`, `weighted`
     Strategy             *GatewayPathStrategyEnum     `json:"strategy,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPathPreferences.
@@ -17,13 +17,17 @@ type GatewayPathPreferences struct {
 func (g GatewayPathPreferences) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "paths", "strategy"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayPathPreferences object to a map representation for JSON marshaling.
 func (g GatewayPathPreferences) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Paths != nil {
         structMap["paths"] = g.Paths
     }
@@ -41,12 +45,12 @@ func (g *GatewayPathPreferences) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "paths", "strategy")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "paths", "strategy")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Paths = temp.Paths
     g.Strategy = temp.Strategy
     return nil

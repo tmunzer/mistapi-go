@@ -6,9 +6,9 @@ import (
 
 // SwitchMetricsActivePortsSummaryDetails represents a SwitchMetricsActivePortsSummaryDetails struct.
 type SwitchMetricsActivePortsSummaryDetails struct {
-    ActivePortCount      *int           `json:"active_port_count,omitempty"`
-    TotalPortCount       *int           `json:"total_port_count,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ActivePortCount      *int                   `json:"active_port_count,omitempty"`
+    TotalPortCount       *int                   `json:"total_port_count,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMetricsActivePortsSummaryDetails.
@@ -16,13 +16,17 @@ type SwitchMetricsActivePortsSummaryDetails struct {
 func (s SwitchMetricsActivePortsSummaryDetails) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "active_port_count", "total_port_count"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchMetricsActivePortsSummaryDetails object to a map representation for JSON marshaling.
 func (s SwitchMetricsActivePortsSummaryDetails) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ActivePortCount != nil {
         structMap["active_port_count"] = s.ActivePortCount
     }
@@ -40,12 +44,12 @@ func (s *SwitchMetricsActivePortsSummaryDetails) UnmarshalJSON(input []byte) err
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "active_port_count", "total_port_count")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "active_port_count", "total_port_count")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ActivePortCount = temp.ActivePortCount
     s.TotalPortCount = temp.TotalPortCount
     return nil

@@ -23,7 +23,7 @@ type SsrUpgradeMulti struct {
     Strategy             *SsrUpgradeStrategyEnum `json:"strategy,omitempty"`
     // 128T firmware version to upgrade (e.g. 5.3.0-93)
     Version              *string                 `json:"version,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrUpgradeMulti.
@@ -31,13 +31,17 @@ type SsrUpgradeMulti struct {
 func (s SsrUpgradeMulti) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "channel", "device_ids", "reboot_at", "start_time", "strategy", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SsrUpgradeMulti object to a map representation for JSON marshaling.
 func (s SsrUpgradeMulti) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Channel != nil {
         structMap["channel"] = s.Channel
     }
@@ -69,12 +73,12 @@ func (s *SsrUpgradeMulti) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "channel", "device_ids", "reboot_at", "start_time", "strategy", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "device_ids", "reboot_at", "start_time", "strategy", "version")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Channel = temp.Channel
     s.DeviceIds = *temp.DeviceIds
     s.RebootAt = temp.RebootAt

@@ -24,7 +24,7 @@ type ConstApChannel struct {
     Key                  *string                `json:"key,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     Uses                 *string                `json:"uses,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstApChannel.
@@ -32,13 +32,17 @@ type ConstApChannel struct {
 func (c ConstApChannel) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "band24_40mhz_allowed", "band24_channels", "band24_enabled", "band5_channels", "band5_enabled", "band6_channels", "band6_enabled", "certified", "code", "dfs_ok", "key", "name", "uses"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstApChannel object to a map representation for JSON marshaling.
 func (c ConstApChannel) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Band2440mhzAllowed != nil {
         structMap["band24_40mhz_allowed"] = c.Band2440mhzAllowed
     }
@@ -89,12 +93,12 @@ func (c *ConstApChannel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band24_40mhz_allowed", "band24_channels", "band24_enabled", "band5_channels", "band5_enabled", "band6_channels", "band6_enabled", "certified", "code", "dfs_ok", "key", "name", "uses")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band24_40mhz_allowed", "band24_channels", "band24_enabled", "band5_channels", "band5_enabled", "band6_channels", "band6_enabled", "certified", "code", "dfs_ok", "key", "name", "uses")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Band2440mhzAllowed = temp.Band2440mhzAllowed
     c.Band24Channels = temp.Band24Channels
     c.Band24Enabled = temp.Band24Enabled

@@ -6,10 +6,10 @@ import (
 
 // ResponseLoginSuccess represents a ResponseLoginSuccess struct.
 type ResponseLoginSuccess struct {
-    Email                *string        `json:"email,omitempty"`
-    TwoFactorPassed      *bool          `json:"two_factor_passed,omitempty"`
-    TwoFactorRequired    *bool          `json:"two_factor_required,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Email                *string                `json:"email,omitempty"`
+    TwoFactorPassed      *bool                  `json:"two_factor_passed,omitempty"`
+    TwoFactorRequired    *bool                  `json:"two_factor_required,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseLoginSuccess.
@@ -17,13 +17,17 @@ type ResponseLoginSuccess struct {
 func (r ResponseLoginSuccess) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "email", "two_factor_passed", "two_factor_required"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseLoginSuccess object to a map representation for JSON marshaling.
 func (r ResponseLoginSuccess) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Email != nil {
         structMap["email"] = r.Email
     }
@@ -44,12 +48,12 @@ func (r *ResponseLoginSuccess) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "email", "two_factor_passed", "two_factor_required")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "email", "two_factor_passed", "two_factor_required")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Email = temp.Email
     r.TwoFactorPassed = temp.TwoFactorPassed
     r.TwoFactorRequired = temp.TwoFactorRequired

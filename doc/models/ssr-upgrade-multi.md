@@ -1,6 +1,8 @@
 
 # Ssr Upgrade Multi
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SsrUpgradeMulti`
@@ -15,6 +17,7 @@
 | `StartTime` | `*int` | Optional | 128T firmware download start time in epoch seconds, default is now, -1 disables download |
 | `Strategy` | [`*models.SsrUpgradeStrategyEnum`](../../doc/models/ssr-upgrade-strategy-enum.md) | Optional | enum:<br><br>* `big_bang`: upgrade all at once<br>* `serial`: one at a time<br>**Default**: `"big_bang"` |
 | `Version` | `*string` | Optional | 128T firmware version to upgrade (e.g. 5.3.0-93)<br>**Constraints**: *Minimum Length*: `1` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,7 +31,11 @@
   "strategy": "big_bang",
   "reboot_at": 78,
   "start_time": 148,
-  "version": "version6"
+  "version": "version6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

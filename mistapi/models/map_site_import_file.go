@@ -7,13 +7,13 @@ import (
 // MapSiteImportFile represents a MapSiteImportFile struct.
 type MapSiteImportFile struct {
     // whether to auto assign device to deviceprofile by name
-    AutoDeviceprofileAssignment *bool          `json:"auto_deviceprofile_assignment,omitempty"`
+    AutoDeviceprofileAssignment *bool                  `json:"auto_deviceprofile_assignment,omitempty"`
     // csv file for ap name mapping, optional
-    Csv                         *[]byte        `json:"csv,omitempty"`
+    Csv                         *[]byte                `json:"csv,omitempty"`
     // ekahau or ibwave file
-    File                        *[]byte        `json:"file,omitempty"`
-    Json                        *MapImportJson `json:"json,omitempty"`
-    AdditionalProperties        map[string]any `json:"_"`
+    File                        *[]byte                `json:"file,omitempty"`
+    Json                        *MapImportJson         `json:"json,omitempty"`
+    AdditionalProperties        map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapSiteImportFile.
@@ -21,13 +21,17 @@ type MapSiteImportFile struct {
 func (m MapSiteImportFile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "auto_deviceprofile_assignment", "csv", "file", "json"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MapSiteImportFile object to a map representation for JSON marshaling.
 func (m MapSiteImportFile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.AutoDeviceprofileAssignment != nil {
         structMap["auto_deviceprofile_assignment"] = m.AutoDeviceprofileAssignment
     }
@@ -51,12 +55,12 @@ func (m *MapSiteImportFile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_deviceprofile_assignment", "csv", "file", "json")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_deviceprofile_assignment", "csv", "file", "json")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.AutoDeviceprofileAssignment = temp.AutoDeviceprofileAssignment
     m.Csv = temp.Csv
     m.File = temp.File

@@ -9,26 +9,26 @@ import (
 
 // ResponsePcapStart represents a ResponsePcapStart struct.
 type ResponsePcapStart struct {
-    ApCount                 *int             `json:"ap_count,omitempty"`
-    Aps                     []string         `json:"aps,omitempty"`
-    ClientMac               Optional[string] `json:"client_mac"`
-    Duration                *float64         `json:"duration,omitempty"`
-    Enabled                 *bool            `json:"enabled,omitempty"`
-    Expiry                  *float64         `json:"expiry,omitempty"`
-    Format                  *string          `json:"format,omitempty"`
+    ApCount                 *int                   `json:"ap_count,omitempty"`
+    Aps                     []string               `json:"aps,omitempty"`
+    ClientMac               Optional[string]       `json:"client_mac"`
+    Duration                *float64               `json:"duration,omitempty"`
+    Enabled                 *bool                  `json:"enabled,omitempty"`
+    Expiry                  *float64               `json:"expiry,omitempty"`
+    Format                  *string                `json:"format,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                      uuid.UUID        `json:"id"`
-    IncludeMcast            *bool            `json:"include_mcast,omitempty"`
-    MaxPktLen               *int             `json:"max_pkt_len,omitempty"`
-    NumPackets              *int             `json:"num_packets,omitempty"`
-    OrgId                   uuid.UUID        `json:"org_id"`
-    Raw                     *bool            `json:"raw,omitempty"`
-    SiteId                  uuid.UUID        `json:"site_id"`
-    Ssid                    Optional[string] `json:"ssid"`
-    TcpdumpParserExpression Optional[string] `json:"tcpdump_parser_expression"`
-    Timestamp               float64          `json:"timestamp"`
-    Type                    string           `json:"type"`
-    AdditionalProperties    map[string]any   `json:"_"`
+    Id                      uuid.UUID              `json:"id"`
+    IncludeMcast            *bool                  `json:"include_mcast,omitempty"`
+    MaxPktLen               *int                   `json:"max_pkt_len,omitempty"`
+    NumPackets              *int                   `json:"num_packets,omitempty"`
+    OrgId                   uuid.UUID              `json:"org_id"`
+    Raw                     *bool                  `json:"raw,omitempty"`
+    SiteId                  uuid.UUID              `json:"site_id"`
+    Ssid                    Optional[string]       `json:"ssid"`
+    TcpdumpParserExpression Optional[string]       `json:"tcpdump_parser_expression"`
+    Timestamp               float64                `json:"timestamp"`
+    Type                    string                 `json:"type"`
+    AdditionalProperties    map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapStart.
@@ -36,13 +36,17 @@ type ResponsePcapStart struct {
 func (r ResponsePcapStart) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "ap_count", "aps", "client_mac", "duration", "enabled", "expiry", "format", "id", "include_mcast", "max_pkt_len", "num_packets", "org_id", "raw", "site_id", "ssid", "tcpdump_parser_expression", "timestamp", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponsePcapStart object to a map representation for JSON marshaling.
 func (r ResponsePcapStart) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.ApCount != nil {
         structMap["ap_count"] = r.ApCount
     }
@@ -114,12 +118,12 @@ func (r *ResponsePcapStart) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_count", "aps", "client_mac", "duration", "enabled", "expiry", "format", "id", "include_mcast", "max_pkt_len", "num_packets", "org_id", "raw", "site_id", "ssid", "tcpdump_parser_expression", "timestamp", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_count", "aps", "client_mac", "duration", "enabled", "expiry", "format", "id", "include_mcast", "max_pkt_len", "num_packets", "org_id", "raw", "site_id", "ssid", "tcpdump_parser_expression", "timestamp", "type")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.ApCount = temp.ApCount
     r.Aps = temp.Aps
     r.ClientMac = temp.ClientMac

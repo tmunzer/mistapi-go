@@ -14,7 +14,7 @@ type OtherDeviceUpdateMulti struct {
     // The operation being performed. enum: `assign`, `unassign`
     Op                   OtherDeviceUpdateOperationEnum `json:"op"`
     SiteId               *uuid.UUID                     `json:"site_id,omitempty"`
-    AdditionalProperties map[string]any                 `json:"_"`
+    AdditionalProperties map[string]interface{}         `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OtherDeviceUpdateMulti.
@@ -22,13 +22,17 @@ type OtherDeviceUpdateMulti struct {
 func (o OtherDeviceUpdateMulti) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "macs", "op", "site_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OtherDeviceUpdateMulti object to a map representation for JSON marshaling.
 func (o OtherDeviceUpdateMulti) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Macs != nil {
         structMap["macs"] = o.Macs
     }
@@ -51,12 +55,12 @@ func (o *OtherDeviceUpdateMulti) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "macs", "op", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "macs", "op", "site_id")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Macs = temp.Macs
     o.Op = *temp.Op
     o.SiteId = temp.SiteId

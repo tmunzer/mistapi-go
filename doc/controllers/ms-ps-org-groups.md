@@ -49,8 +49,8 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Orggroup{
-    Name:         "string",
-    OrgIds:       []uuid.UUID{
+    Name:                 "string",
+    OrgIds:               []uuid.UUID{
         uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
     },
 }
@@ -315,7 +315,7 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 orggroupId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Orggroup{
-    Name:         "name6",
+    Name:                 "name6",
 }
 
 apiResponse, err := mSPsOrgGroups.UpdateMspOrgGroup(ctx, mspId, orggroupId, &body)

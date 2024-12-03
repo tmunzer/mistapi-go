@@ -10,7 +10,7 @@ type WlanAppQos struct {
     Apps                 map[string]WlanAppQosAppsProperties `json:"apps,omitempty"`
     Enabled              *bool                               `json:"enabled,omitempty"`
     Others               []WlanAppQosOthersItem              `json:"others,omitempty"`
-    AdditionalProperties map[string]any                      `json:"_"`
+    AdditionalProperties map[string]interface{}              `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAppQos.
@@ -18,13 +18,17 @@ type WlanAppQos struct {
 func (w WlanAppQos) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "apps", "enabled", "others"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanAppQos object to a map representation for JSON marshaling.
 func (w WlanAppQos) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Apps != nil {
         structMap["apps"] = w.Apps
     }
@@ -45,12 +49,12 @@ func (w *WlanAppQos) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "apps", "enabled", "others")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "apps", "enabled", "others")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Apps = temp.Apps
     w.Enabled = temp.Enabled
     w.Others = temp.Others

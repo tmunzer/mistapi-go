@@ -8,11 +8,11 @@ import (
 
 // MxedgeUpgradeResponseCounts represents a MxedgeUpgradeResponseCounts struct.
 type MxedgeUpgradeResponseCounts struct {
-    Failed               int            `json:"failed"`
-    Queued               int            `json:"queued"`
-    Success              int            `json:"success"`
-    Upgrading            int            `json:"upgrading"`
-    AdditionalProperties map[string]any `json:"_"`
+    Failed               int                    `json:"failed"`
+    Queued               int                    `json:"queued"`
+    Success              int                    `json:"success"`
+    Upgrading            int                    `json:"upgrading"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeUpgradeResponseCounts.
@@ -20,13 +20,17 @@ type MxedgeUpgradeResponseCounts struct {
 func (m MxedgeUpgradeResponseCounts) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "failed", "queued", "success", "upgrading"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeUpgradeResponseCounts object to a map representation for JSON marshaling.
 func (m MxedgeUpgradeResponseCounts) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["failed"] = m.Failed
     structMap["queued"] = m.Queued
     structMap["success"] = m.Success
@@ -46,12 +50,12 @@ func (m *MxedgeUpgradeResponseCounts) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "failed", "queued", "success", "upgrading")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "failed", "queued", "success", "upgrading")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Failed = *temp.Failed
     m.Queued = *temp.Queued
     m.Success = *temp.Success

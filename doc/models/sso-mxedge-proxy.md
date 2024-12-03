@@ -3,6 +3,8 @@
 
 if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SsoMxedgeProxy`
@@ -17,6 +19,7 @@ if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
 | `OperatorName` | `*string` | Optional | Operator name as Radius attribute while proxying |
 | `ProxyHosts` | `[]string` | Optional | public hostname/IPs |
 | `Ssids` | `[]string` | Optional | SSIDs that support eduroam |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,17 +37,29 @@ if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
     {
       "host": "host4",
       "port": 254,
-      "secret": "secret0"
+      "secret": "secret0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "host": "host4",
       "port": 254,
-      "secret": "secret0"
+      "secret": "secret0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "host": "host4",
       "port": 254,
-      "secret": "secret0"
+      "secret": "secret0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "auth_servers": [
@@ -52,22 +67,38 @@ if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
       "host": "host0",
       "port": 114,
       "require_message_authenticator": false,
-      "secret": "secret4"
+      "secret": "secret4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "host": "host0",
       "port": 114,
       "require_message_authenticator": false,
-      "secret": "secret4"
+      "secret": "secret4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "host": "host0",
       "port": 114,
       "require_message_authenticator": false,
-      "secret": "secret4"
+      "secret": "secret4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "operator_name": "operator_name2"
+  "operator_name": "operator_name2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

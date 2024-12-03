@@ -6,11 +6,11 @@ import (
 
 // ConstGatewayApplicationsDefinition represents a ConstGatewayApplicationsDefinition struct.
 type ConstGatewayApplicationsDefinition struct {
-    AppId                *bool          `json:"app_id,omitempty"`
-    Key                  *string        `json:"key,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    SsrAppId             *bool          `json:"ssr_app_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    AppId                *bool                  `json:"app_id,omitempty"`
+    Key                  *string                `json:"key,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    SsrAppId             *bool                  `json:"ssr_app_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstGatewayApplicationsDefinition.
@@ -18,13 +18,17 @@ type ConstGatewayApplicationsDefinition struct {
 func (c ConstGatewayApplicationsDefinition) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "app_id", "key", "name", "ssr_app_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstGatewayApplicationsDefinition object to a map representation for JSON marshaling.
 func (c ConstGatewayApplicationsDefinition) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.AppId != nil {
         structMap["app_id"] = c.AppId
     }
@@ -48,12 +52,12 @@ func (c *ConstGatewayApplicationsDefinition) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "app_id", "key", "name", "ssr_app_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "app_id", "key", "name", "ssr_app_id")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.AppId = temp.AppId
     c.Key = temp.Key
     c.Name = temp.Name

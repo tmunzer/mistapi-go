@@ -9,12 +9,12 @@ import (
 // ConstAppSubcategoryDefinition represents a ConstAppSubcategoryDefinition struct.
 type ConstAppSubcategoryDefinition struct {
     // Description of the app subcategory
-    Display              string         `json:"display"`
+    Display              string                 `json:"display"`
     // Key name of the app subcategory
-    Key                  string         `json:"key"`
+    Key                  string                 `json:"key"`
     // Type of traffic (QoS) of the app subcategory
-    TrafficType          string         `json:"traffic_type"`
-    AdditionalProperties map[string]any `json:"_"`
+    TrafficType          string                 `json:"traffic_type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstAppSubcategoryDefinition.
@@ -22,13 +22,17 @@ type ConstAppSubcategoryDefinition struct {
 func (c ConstAppSubcategoryDefinition) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "display", "key", "traffic_type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstAppSubcategoryDefinition object to a map representation for JSON marshaling.
 func (c ConstAppSubcategoryDefinition) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     structMap["display"] = c.Display
     structMap["key"] = c.Key
     structMap["traffic_type"] = c.TrafficType
@@ -47,12 +51,12 @@ func (c *ConstAppSubcategoryDefinition) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "display", "key", "traffic_type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "display", "key", "traffic_type")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Display = *temp.Display
     c.Key = *temp.Key
     c.TrafficType = *temp.TrafficType

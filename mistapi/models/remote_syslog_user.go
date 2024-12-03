@@ -6,10 +6,10 @@ import (
 
 // RemoteSyslogUser represents a RemoteSyslogUser struct.
 type RemoteSyslogUser struct {
-    Contents             []RemoteSyslogContent `json:"contents,omitempty"`
-    Match                *string               `json:"match,omitempty"`
-    User                 *string               `json:"user,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Contents             []RemoteSyslogContent  `json:"contents,omitempty"`
+    Match                *string                `json:"match,omitempty"`
+    User                 *string                `json:"user,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogUser.
@@ -17,13 +17,17 @@ type RemoteSyslogUser struct {
 func (r RemoteSyslogUser) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "contents", "match", "user"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RemoteSyslogUser object to a map representation for JSON marshaling.
 func (r RemoteSyslogUser) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Contents != nil {
         structMap["contents"] = r.Contents
     }
@@ -44,12 +48,12 @@ func (r *RemoteSyslogUser) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "contents", "match", "user")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "contents", "match", "user")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Contents = temp.Contents
     r.Match = temp.Match
     r.User = temp.User

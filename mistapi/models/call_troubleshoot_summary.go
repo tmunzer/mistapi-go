@@ -10,7 +10,7 @@ type CallTroubleshootSummary struct {
     Mac                  *string                  `json:"mac,omitempty"`
     MeetingId            *uuid.UUID               `json:"meeting_id,omitempty"`
     Results              []CallTroubleshootSummar `json:"results,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CallTroubleshootSummary.
@@ -18,13 +18,17 @@ type CallTroubleshootSummary struct {
 func (c CallTroubleshootSummary) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "mac", "meeting_id", "results"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CallTroubleshootSummary object to a map representation for JSON marshaling.
 func (c CallTroubleshootSummary) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Mac != nil {
         structMap["mac"] = c.Mac
     }
@@ -45,12 +49,12 @@ func (c *CallTroubleshootSummary) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "meeting_id", "results")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "meeting_id", "results")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Mac = temp.Mac
     c.MeetingId = temp.MeetingId
     c.Results = temp.Results

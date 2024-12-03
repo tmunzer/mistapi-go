@@ -3,6 +3,8 @@
 
 MxEdge
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Mxedge`
@@ -39,6 +41,7 @@ MxEdge
 | `TuntermRegistered` | `*bool` | Optional | - |
 | `TuntermSwitchConfig` | [`*models.MxedgeTuntermSwitchConfigs`](../../doc/models/mxedge-tunterm-switch-configs.md) | Optional | if custom vlan settings are desired |
 | `Versions` | [`*models.MxedgeVersions`](../../doc/models/mxedge-versions.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -54,7 +57,11 @@ MxEdge
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "created_time": 184.84,
   "for_site": false,
-  "modified_time": 150.12
+  "modified_time": 150.12,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -10,20 +10,20 @@ import (
 // AuditLog represents a AuditLog struct.
 type AuditLog struct {
     // ID of the administrator
-    AdminId              uuid.UUID      `json:"admin_id"`
-    AdminName            string         `json:"admin_name"`
+    AdminId              uuid.UUID              `json:"admin_id"`
+    AdminName            string                 `json:"admin_name"`
     // field values after the change
-    After                *interface{}   `json:"after,omitempty"`
+    After                *interface{}           `json:"after,omitempty"`
     // field values prior to the change
-    Before               *interface{}   `json:"before,omitempty"`
-    ForSite              *bool          `json:"for_site,omitempty"`
+    Before               *interface{}           `json:"before,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID      `json:"id"`
-    Message              string         `json:"message"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    Timestamp            float64        `json:"timestamp"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   uuid.UUID              `json:"id"`
+    Message              string                 `json:"message"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AuditLog.
@@ -31,13 +31,17 @@ type AuditLog struct {
 func (a AuditLog) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AuditLog object to a map representation for JSON marshaling.
 func (a AuditLog) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     structMap["admin_id"] = a.AdminId
     structMap["admin_name"] = a.AdminName
     if a.After != nil {
@@ -69,12 +73,12 @@ func (a *AuditLog) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "timestamp")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.AdminId = *temp.AdminId
     a.AdminName = *temp.AdminName
     a.After = temp.After

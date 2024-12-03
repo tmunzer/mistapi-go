@@ -1,6 +1,8 @@
 
 # Issued Client Certificates Results
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `IssuedClientCertificatesResults`
@@ -10,6 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Results` | [`[]models.IssuedClientCertificate`](../../doc/models/issued-client-certificate.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,9 +24,17 @@
       "device_id": "00001510-0000-0000-0000-000000000000",
       "modified_time": 5.2,
       "serial_number": "serial_number0",
-      "sso_name_id": "sso_name_id0"
+      "sso_name_id": "sso_name_id0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

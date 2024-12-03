@@ -30,7 +30,7 @@ type WebhookDelivery struct {
     // webhook topic. enum: `alarms`, `audits`, `device-updowns`, `occupancy-alerts`, `ping`
     Topic                *WebhookDeliveryTopicEnum  `json:"topic,omitempty"`
     WebhookId            *uuid.UUID                 `json:"webhook_id,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookDelivery.
@@ -38,13 +38,17 @@ type WebhookDelivery struct {
 func (w WebhookDelivery) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "error", "id", "org_id", "req_headers", "req_payload", "req_url", "resp_body", "resp_headers", "site_id", "status", "status_code", "timestamp", "topic", "webhook_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookDelivery object to a map representation for JSON marshaling.
 func (w WebhookDelivery) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Error != nil {
         structMap["error"] = w.Error
     }
@@ -98,12 +102,12 @@ func (w *WebhookDelivery) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "error", "id", "org_id", "req_headers", "req_payload", "req_url", "resp_body", "resp_headers", "site_id", "status", "status_code", "timestamp", "topic", "webhook_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "error", "id", "org_id", "req_headers", "req_payload", "req_url", "resp_body", "resp_headers", "site_id", "status", "status_code", "timestamp", "topic", "webhook_id")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Error = temp.Error
     w.Id = temp.Id
     w.OrgId = temp.OrgId

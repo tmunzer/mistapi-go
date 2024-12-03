@@ -9,19 +9,19 @@ import (
 // LicenseUsageSite represents a LicenseUsageSite struct.
 type LicenseUsageSite struct {
     // license entitlement for the entire org
-    OrgEntitled          map[string]int `json:"org_entitled"`
+    OrgEntitled          map[string]int         `json:"org_entitled"`
     // eligibility for the Switch SLE
-    SvnaEnabled          bool           `json:"svna_enabled"`
-    TrialEnabled         bool           `json:"trial_enabled"`
+    SvnaEnabled          bool                   `json:"svna_enabled"`
+    TrialEnabled         bool                   `json:"trial_enabled"`
     // subscriptions and their quantities
-    Usages               map[string]int `json:"usages"`
+    Usages               map[string]int         `json:"usages"`
     // eligibility for the AP/Client SLE
-    VnaEligible          bool           `json:"vna_eligible"`
+    VnaEligible          bool                   `json:"vna_eligible"`
     // if True, Conversational Assistant and Marvis Action available
-    VnaUi                bool           `json:"vna_ui"`
+    VnaUi                bool                   `json:"vna_ui"`
     // eligibility for the WAN SLE
-    WvnaEligible         bool           `json:"wvna_eligible"`
-    AdditionalProperties map[string]any `json:"_"`
+    WvnaEligible         bool                   `json:"wvna_eligible"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for LicenseUsageSite.
@@ -29,13 +29,17 @@ type LicenseUsageSite struct {
 func (l LicenseUsageSite) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(l.AdditionalProperties,
+        "org_entitled", "svna_enabled", "trial_enabled", "usages", "vna_eligible", "vna_ui", "wvna_eligible"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(l.toMap())
 }
 
 // toMap converts the LicenseUsageSite object to a map representation for JSON marshaling.
 func (l LicenseUsageSite) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, l.AdditionalProperties)
+    MergeAdditionalProperties(structMap, l.AdditionalProperties)
     structMap["org_entitled"] = l.OrgEntitled
     structMap["svna_enabled"] = l.SvnaEnabled
     structMap["trial_enabled"] = l.TrialEnabled
@@ -58,12 +62,12 @@ func (l *LicenseUsageSite) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "org_entitled", "svna_enabled", "trial_enabled", "usages", "vna_eligible", "vna_ui", "wvna_eligible")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "org_entitled", "svna_enabled", "trial_enabled", "usages", "vna_eligible", "vna_ui", "wvna_eligible")
     if err != nil {
     	return err
     }
-    
     l.AdditionalProperties = additionalProperties
+    
     l.OrgEntitled = *temp.OrgEntitled
     l.SvnaEnabled = *temp.SvnaEnabled
     l.TrialEnabled = *temp.TrialEnabled

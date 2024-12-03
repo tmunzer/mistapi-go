@@ -1,6 +1,8 @@
 
 # Response Tunnel Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseTunnelSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.ResponseTunnelSearchItem`](../../doc/models/containers/response-tunnel-search-item.md) | Required | - |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,19 +31,31 @@
       "for_site": false,
       "last_seen": 249.6,
       "mxcluster_id": "00001676-0000-0000-0000-000000000000",
-      "mxedge_id": "000015aa-0000-0000-0000-000000000000"
+      "mxedge_id": "000015aa-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "ap": "ap4",
       "for_site": false,
       "last_seen": 249.6,
       "mxcluster_id": "00001676-0000-0000-0000-000000000000",
-      "mxedge_id": "000015aa-0000-0000-0000-000000000000"
+      "mxedge_id": "000015aa-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 196,
   "total": 230,
-  "next": "next2"
+  "next": "next2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

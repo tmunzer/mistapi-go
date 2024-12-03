@@ -3,6 +3,8 @@
 
 optional dynamic vlan
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApPortConfigDynamicVlan`
@@ -15,6 +17,7 @@ optional dynamic vlan
 | `Enabled` | `*bool` | Optional | - |
 | `Type` | `*string` | Optional | - |
 | `Vlans` | `map[string]string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,7 +29,11 @@ optional dynamic vlan
     "user": "vlans4"
   },
   "enabled": false,
-  "type": "type2"
+  "type": "type2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

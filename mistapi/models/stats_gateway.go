@@ -92,7 +92,7 @@ type StatsGateway struct {
     // only present when `vpn_peers` in `fields` query parameter
     // Each port object is same as `GET /api/v1/sites/:site_id/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed
     VpnPeers             []OptionalStatVpnPeer          `json:"vpn_peers,omitempty"`
-    AdditionalProperties map[string]any                 `json:"_"`
+    AdditionalProperties map[string]interface{}         `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGateway.
@@ -100,13 +100,17 @@ type StatsGateway struct {
 func (s StatsGateway) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ap_redundancy", "arp_table_stats", "bgp_peers", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "ports", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "tunnels", "type", "uptime", "version", "vpn_peers"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsGateway object to a map representation for JSON marshaling.
 func (s StatsGateway) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ApRedundancy != nil {
         structMap["ap_redundancy"] = s.ApRedundancy.toMap()
     }
@@ -308,12 +312,12 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_redundancy", "arp_table_stats", "bgp_peers", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "ports", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "tunnels", "type", "uptime", "version", "vpn_peers")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_redundancy", "arp_table_stats", "bgp_peers", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "ports", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "tunnels", "type", "uptime", "version", "vpn_peers")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ApRedundancy = temp.ApRedundancy
     s.ArpTableStats = temp.ArpTableStats
     s.BgpPeers = temp.BgpPeers

@@ -33,7 +33,7 @@ type WlanAuth struct {
     Type                 WlanAuthTypeEnum           `json:"type"`
     // enable WEP as secondary auth
     WepAsSecondaryAuth   *bool                      `json:"wep_as_secondary_auth,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAuth.
@@ -41,13 +41,17 @@ type WlanAuth struct {
 func (w WlanAuth) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "anticlog_threshold", "eap_reauth", "enable_mac_auth", "key_idx", "keys", "multi_psk_only", "owe", "pairwise", "private_wlan", "psk", "type", "wep_as_secondary_auth"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanAuth object to a map representation for JSON marshaling.
 func (w WlanAuth) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.AnticlogThreshold != nil {
         structMap["anticlog_threshold"] = w.AnticlogThreshold
     }
@@ -101,12 +105,12 @@ func (w *WlanAuth) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "anticlog_threshold", "eap_reauth", "enable_mac_auth", "key_idx", "keys", "multi_psk_only", "owe", "pairwise", "private_wlan", "psk", "type", "wep_as_secondary_auth")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "anticlog_threshold", "eap_reauth", "enable_mac_auth", "key_idx", "keys", "multi_psk_only", "owe", "pairwise", "private_wlan", "psk", "type", "wep_as_secondary_auth")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.AnticlogThreshold = temp.AnticlogThreshold
     w.EapReauth = temp.EapReauth
     w.EnableMacAuth = temp.EnableMacAuth

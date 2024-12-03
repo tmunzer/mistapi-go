@@ -8,8 +8,8 @@ import (
 
 // ResponseMxtunnelsPreemptAps represents a ResponseMxtunnelsPreemptAps struct.
 type ResponseMxtunnelsPreemptAps struct {
-    PreemptedAps         []string       `json:"preempted_aps"`
-    AdditionalProperties map[string]any `json:"_"`
+    PreemptedAps         []string               `json:"preempted_aps"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMxtunnelsPreemptAps.
@@ -17,13 +17,17 @@ type ResponseMxtunnelsPreemptAps struct {
 func (r ResponseMxtunnelsPreemptAps) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "preempted_aps"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseMxtunnelsPreemptAps object to a map representation for JSON marshaling.
 func (r ResponseMxtunnelsPreemptAps) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["preempted_aps"] = r.PreemptedAps
     return structMap
 }
@@ -40,12 +44,12 @@ func (r *ResponseMxtunnelsPreemptAps) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "preempted_aps")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "preempted_aps")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.PreemptedAps = *temp.PreemptedAps
     return nil
 }

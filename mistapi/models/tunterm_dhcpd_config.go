@@ -7,11 +7,11 @@ import (
 // TuntermDhcpdConfig represents a TuntermDhcpdConfig struct.
 // DHCP server/relay configuration of Mist Tunneled VLANs. Property key is the VLAN ID
 type TuntermDhcpdConfig struct {
-    Enabled              *bool                 `json:"enabled,omitempty"`
-    Servers              []string              `json:"servers,omitempty"`
+    Enabled              *bool                                 `json:"enabled,omitempty"`
+    Servers              []string                              `json:"servers,omitempty"`
     // enum: `relay`
-    Type                 *TuntermDhcpdTypeEnum `json:"type,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Type                 *TuntermDhcpdTypeEnum                 `json:"type,omitempty"`
+    AdditionalProperties map[string]TuntermDhcpdConfigProperty `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TuntermDhcpdConfig.
@@ -19,13 +19,17 @@ type TuntermDhcpdConfig struct {
 func (t TuntermDhcpdConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "enabled", "servers", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TuntermDhcpdConfig object to a map representation for JSON marshaling.
 func (t TuntermDhcpdConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.Enabled != nil {
         structMap["enabled"] = t.Enabled
     }
@@ -46,12 +50,12 @@ func (t *TuntermDhcpdConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "servers", "type")
+    additionalProperties, err := ExtractAdditionalProperties[TuntermDhcpdConfigProperty](input, "enabled", "servers", "type")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.Enabled = temp.Enabled
     t.Servers = temp.Servers
     t.Type = temp.Type

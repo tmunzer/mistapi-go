@@ -7,8 +7,8 @@ import (
 // Proxy represents a Proxy struct.
 // Proxy Configuration to talk to Mist
 type Proxy struct {
-    Url                  *string        `json:"url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Url                  *string                `json:"url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Proxy.
@@ -16,13 +16,17 @@ type Proxy struct {
 func (p Proxy) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the Proxy object to a map representation for JSON marshaling.
 func (p Proxy) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.Url != nil {
         structMap["url"] = p.Url
     }
@@ -37,12 +41,12 @@ func (p *Proxy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "url")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.Url = temp.Url
     return nil
 }

@@ -13,10 +13,10 @@ type WlanInjectDhcpOption82 struct {
     // * {{AP_NAME}}
     // * {{SITE_NAME}}
     // * {{SSID}}
-    CircuitId            *string        `json:"circuit_id,omitempty"`
+    CircuitId            *string                `json:"circuit_id,omitempty"`
     // whether to inject option 82 when forwarding DHCP packets
-    Enabled              *bool          `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanInjectDhcpOption82.
@@ -24,13 +24,17 @@ type WlanInjectDhcpOption82 struct {
 func (w WlanInjectDhcpOption82) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "circuit_id", "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanInjectDhcpOption82 object to a map representation for JSON marshaling.
 func (w WlanInjectDhcpOption82) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.CircuitId != nil {
         structMap["circuit_id"] = w.CircuitId
     }
@@ -48,12 +52,12 @@ func (w *WlanInjectDhcpOption82) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "circuit_id", "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "circuit_id", "enabled")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.CircuitId = temp.CircuitId
     w.Enabled = temp.Enabled
     return nil

@@ -9,7 +9,7 @@ type SynthetictestConfig struct {
     Disabled             *bool                            `json:"disabled,omitempty"`
     Vlans                []SynthetictestProperties        `json:"vlans,omitempty"`
     WanSpeedtest         *SynthetictestConfigWanSpeedtest `json:"wan_speedtest,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestConfig.
@@ -17,13 +17,17 @@ type SynthetictestConfig struct {
 func (s SynthetictestConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "disabled", "vlans", "wan_speedtest"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SynthetictestConfig object to a map representation for JSON marshaling.
 func (s SynthetictestConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Disabled != nil {
         structMap["disabled"] = s.Disabled
     }
@@ -44,12 +48,12 @@ func (s *SynthetictestConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disabled", "vlans", "wan_speedtest")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "vlans", "wan_speedtest")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Disabled = temp.Disabled
     s.Vlans = temp.Vlans
     s.WanSpeedtest = temp.WanSpeedtest

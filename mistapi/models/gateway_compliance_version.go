@@ -10,7 +10,7 @@ type GatewayComplianceVersion struct {
     MajorVersion         map[string]GatewayComplianceMajorVersionProperties `json:"major_version,omitempty"`
     Score                *float64                                           `json:"score,omitempty"`
     Type                 *string                                            `json:"type,omitempty"`
-    AdditionalProperties map[string]any                                     `json:"_"`
+    AdditionalProperties map[string]interface{}                             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayComplianceVersion.
@@ -18,13 +18,17 @@ type GatewayComplianceVersion struct {
 func (g GatewayComplianceVersion) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "major_version", "score", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayComplianceVersion object to a map representation for JSON marshaling.
 func (g GatewayComplianceVersion) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.MajorVersion != nil {
         structMap["major_version"] = g.MajorVersion
     }
@@ -45,12 +49,12 @@ func (g *GatewayComplianceVersion) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "major_version", "score", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "major_version", "score", "type")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.MajorVersion = temp.MajorVersion
     g.Score = temp.Score
     g.Type = temp.Type

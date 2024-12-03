@@ -1,6 +1,8 @@
 
 # If Stat Property Servp Info
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `IfStatPropertyServpInfo`
@@ -16,6 +18,7 @@
 | `Longitude` | `*float64` | Optional | - |
 | `Org` | `*string` | Optional | - |
 | `RegionCode` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   "city": "city4",
   "country_code": "country_code4",
   "latitude": 48.18,
-  "longitude": 45.98
+  "longitude": 45.98,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

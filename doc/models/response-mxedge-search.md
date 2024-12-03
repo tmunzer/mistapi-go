@@ -1,6 +1,8 @@
 
 # Response Mxedge Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseMxedgeSearch`
@@ -14,6 +16,7 @@
 | `Results` | [`[]models.StatsMxedge`](../../doc/models/stats-mxedge.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,18 +37,30 @@
               8.63
             ],
             "system": 110.88,
-            "user": 107.24
+            "user": 107.24,
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
         },
         "idle": 224,
         "interrupt": 80,
         "system": 80,
-        "usage": 46
+        "usage": 46,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "created_time": 73.76,
       "fips_enabled": false,
       "for_site": false,
-      "id": "000023ba-0000-0000-0000-000000000000"
+      "id": "000023ba-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "cpu_stat": {
@@ -57,18 +72,30 @@
               8.63
             ],
             "system": 110.88,
-            "user": 107.24
+            "user": 107.24,
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
         },
         "idle": 224,
         "interrupt": 80,
         "system": 80,
-        "usage": 46
+        "usage": 46,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "created_time": 73.76,
       "fips_enabled": false,
       "for_site": false,
-      "id": "000023ba-0000-0000-0000-000000000000"
+      "id": "000023ba-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "cpu_stat": {
@@ -80,20 +107,36 @@
               8.63
             ],
             "system": 110.88,
-            "user": 107.24
+            "user": 107.24,
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
         },
         "idle": 224,
         "interrupt": 80,
         "system": 80,
-        "usage": 46
+        "usage": 46,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "created_time": 73.76,
       "fips_enabled": false,
       "for_site": false,
-      "id": "000023ba-0000-0000-0000-000000000000"
+      "id": "000023ba-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

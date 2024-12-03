@@ -9,12 +9,12 @@ import (
 // SynthetictestRadiusServer represents a SynthetictestRadiusServer struct.
 type SynthetictestRadiusServer struct {
     // Specify the password associated with the username
-    Password             string         `json:"password"`
+    Password             string                 `json:"password"`
     // Specify the access profile associated with the subscriber
-    Profile              *string        `json:"profile,omitempty"`
+    Profile              *string                `json:"profile,omitempty"`
     // Specify the subscriber username to test
-    User                 string         `json:"user"`
-    AdditionalProperties map[string]any `json:"_"`
+    User                 string                 `json:"user"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestRadiusServer.
@@ -22,13 +22,17 @@ type SynthetictestRadiusServer struct {
 func (s SynthetictestRadiusServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "password", "profile", "user"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SynthetictestRadiusServer object to a map representation for JSON marshaling.
 func (s SynthetictestRadiusServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["password"] = s.Password
     if s.Profile != nil {
         structMap["profile"] = s.Profile
@@ -49,12 +53,12 @@ func (s *SynthetictestRadiusServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "password", "profile", "user")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "password", "profile", "user")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Password = *temp.Password
     s.Profile = temp.Profile
     s.User = *temp.User

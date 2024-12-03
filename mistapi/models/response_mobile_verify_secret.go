@@ -9,10 +9,10 @@ import (
 
 // ResponseMobileVerifySecret represents a ResponseMobileVerifySecret struct.
 type ResponseMobileVerifySecret struct {
-    Name                 string         `json:"name"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    Secret               string         `json:"secret"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 string                 `json:"name"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    Secret               string                 `json:"secret"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMobileVerifySecret.
@@ -20,13 +20,17 @@ type ResponseMobileVerifySecret struct {
 func (r ResponseMobileVerifySecret) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "name", "org_id", "secret"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseMobileVerifySecret object to a map representation for JSON marshaling.
 func (r ResponseMobileVerifySecret) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["name"] = r.Name
     structMap["org_id"] = r.OrgId
     structMap["secret"] = r.Secret
@@ -45,12 +49,12 @@ func (r *ResponseMobileVerifySecret) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "name", "org_id", "secret")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name", "org_id", "secret")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Name = *temp.Name
     r.OrgId = *temp.OrgId
     r.Secret = *temp.Secret

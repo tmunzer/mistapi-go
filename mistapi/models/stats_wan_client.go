@@ -7,20 +7,20 @@ import (
 
 // StatsWanClient represents a StatsWanClient struct.
 type StatsWanClient struct {
-    DhcpExpireTime       *float64       `json:"dhcp_expire_time,omitempty"`
-    DhcpStartTime        *float64       `json:"dhcp_start_time,omitempty"`
-    Hostname             []string       `json:"hostname,omitempty"`
-    Ip                   []string       `json:"ip,omitempty"`
-    IpSrc                *string        `json:"ip_src,omitempty"`
-    LastHostname         *string        `json:"last_hostname,omitempty"`
-    LastIp               *string        `json:"last_ip,omitempty"`
-    Mfg                  *string        `json:"mfg,omitempty"`
-    Network              *string        `json:"network,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
-    Wcid                 *string        `json:"wcid,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    DhcpExpireTime       *float64               `json:"dhcp_expire_time,omitempty"`
+    DhcpStartTime        *float64               `json:"dhcp_start_time,omitempty"`
+    Hostname             []string               `json:"hostname,omitempty"`
+    Ip                   []string               `json:"ip,omitempty"`
+    IpSrc                *string                `json:"ip_src,omitempty"`
+    LastHostname         *string                `json:"last_hostname,omitempty"`
+    LastIp               *string                `json:"last_ip,omitempty"`
+    Mfg                  *string                `json:"mfg,omitempty"`
+    Network              *string                `json:"network,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Wcid                 *string                `json:"wcid,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWanClient.
@@ -28,13 +28,17 @@ type StatsWanClient struct {
 func (s StatsWanClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "dhcp_expire_time", "dhcp_start_time", "hostname", "ip", "ip_src", "last_hostname", "last_ip", "mfg", "network", "org_id", "site_id", "timestamp", "wcid"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsWanClient object to a map representation for JSON marshaling.
 func (s StatsWanClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.DhcpExpireTime != nil {
         structMap["dhcp_expire_time"] = s.DhcpExpireTime
     }
@@ -85,12 +89,12 @@ func (s *StatsWanClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dhcp_expire_time", "dhcp_start_time", "hostname", "ip", "ip_src", "last_hostname", "last_ip", "mfg", "network", "org_id", "site_id", "timestamp", "wcid")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dhcp_expire_time", "dhcp_start_time", "hostname", "ip", "ip_src", "last_hostname", "last_ip", "mfg", "network", "org_id", "site_id", "timestamp", "wcid")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.DhcpExpireTime = temp.DhcpExpireTime
     s.DhcpStartTime = temp.DhcpStartTime
     s.Hostname = temp.Hostname

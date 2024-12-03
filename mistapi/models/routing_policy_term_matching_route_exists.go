@@ -6,11 +6,11 @@ import (
 
 // RoutingPolicyTermMatchingRouteExists represents a RoutingPolicyTermMatchingRouteExists struct.
 type RoutingPolicyTermMatchingRouteExists struct {
-    Route                *string        `json:"route,omitempty"`
+    Route                *string                `json:"route,omitempty"`
     // name of the vrf instance
     // it can also be the name of the VPN or wan if they
-    VrfName              *string        `json:"vrf_name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    VrfName              *string                `json:"vrf_name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTermMatchingRouteExists.
@@ -18,13 +18,17 @@ type RoutingPolicyTermMatchingRouteExists struct {
 func (r RoutingPolicyTermMatchingRouteExists) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "route", "vrf_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RoutingPolicyTermMatchingRouteExists object to a map representation for JSON marshaling.
 func (r RoutingPolicyTermMatchingRouteExists) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Route != nil {
         structMap["route"] = r.Route
     }
@@ -42,12 +46,12 @@ func (r *RoutingPolicyTermMatchingRouteExists) UnmarshalJSON(input []byte) error
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "route", "vrf_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "route", "vrf_name")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Route = temp.Route
     r.VrfName = temp.VrfName
     return nil

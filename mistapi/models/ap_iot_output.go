@@ -8,16 +8,16 @@ import (
 // IoT output AP settings
 type ApIotOutput struct {
     // whether to enable a pin
-    Enabled              *bool            `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // optional; descriptive pin name
-    Name                 *string          `json:"name,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
     // whether the pin is configured as an output. DO and A1-A4 can be repurposed by changing
-    Output               *bool            `json:"output,omitempty"`
+    Output               *bool                  `json:"output,omitempty"`
     // the type of pull-up the pin uses. enum: `external`, `internal`, `none`
-    Pullup               *ApIotPullupEnum `json:"pullup,omitempty"`
+    Pullup               *ApIotPullupEnum       `json:"pullup,omitempty"`
     // output pin signal level, default 0
-    Value                *int             `json:"value,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Value                *int                   `json:"value,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApIotOutput.
@@ -25,13 +25,17 @@ type ApIotOutput struct {
 func (a ApIotOutput) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "enabled", "name", "output", "pullup", "value"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApIotOutput object to a map representation for JSON marshaling.
 func (a ApIotOutput) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Enabled != nil {
         structMap["enabled"] = a.Enabled
     }
@@ -58,12 +62,12 @@ func (a *ApIotOutput) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "name", "output", "pullup", "value")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "name", "output", "pullup", "value")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Enabled = temp.Enabled
     a.Name = temp.Name
     a.Output = temp.Output

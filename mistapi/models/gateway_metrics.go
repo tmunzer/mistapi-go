@@ -10,7 +10,7 @@ type GatewayMetrics struct {
     ConfigSuccess        *float64                  `json:"config_success,omitempty"`
     // version compliance score, major version for gateway, type
     VersionCompliance    *GatewayComplianceVersion `json:"version_compliance,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayMetrics.
@@ -18,13 +18,17 @@ type GatewayMetrics struct {
 func (g GatewayMetrics) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "config_success", "version_compliance"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayMetrics object to a map representation for JSON marshaling.
 func (g GatewayMetrics) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.ConfigSuccess != nil {
         structMap["config_success"] = g.ConfigSuccess
     }
@@ -42,12 +46,12 @@ func (g *GatewayMetrics) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "config_success", "version_compliance")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_success", "version_compliance")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.ConfigSuccess = temp.ConfigSuccess
     g.VersionCompliance = temp.VersionCompliance
     return nil

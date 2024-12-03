@@ -1,6 +1,8 @@
 
 # Msp
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Msp`
@@ -17,6 +19,7 @@
 | `Name` | `*string` | Optional | - |
 | `Tier` | [`*models.MspTierEnum`](../../doc/models/msp-tier-enum.md) | Optional | enum: `advanced`, `base`<br>**Default**: `"base"` |
 | `Url` | `*string` | Optional | For advanced tier (uMSPs) only |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "allow_mist": false,
   "created_time": 109.3,
   "logo_url": "logo_url0",
-  "modified_time": 225.66
+  "modified_time": 225.66,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

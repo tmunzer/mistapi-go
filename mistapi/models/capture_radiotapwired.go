@@ -34,7 +34,7 @@ type CaptureRadiotapwired struct {
     WirelessTcpdumpExpression *string                         `json:"wireless_tcpdump_expression,omitempty"`
     // wlan id associated with the respective ssid.
     WlanId                    Optional[string]                `json:"wlan_id"`
-    AdditionalProperties      map[string]any                  `json:"_"`
+    AdditionalProperties      map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureRadiotapwired.
@@ -42,13 +42,17 @@ type CaptureRadiotapwired struct {
 func (c CaptureRadiotapwired) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ap_mac", "band", "client_mac", "duration", "format", "max_pkt_len", "num_packets", "radiotap_tcpdump_expression", "ssid", "tcpdump_expression", "type", "wired_tcpdump_expression", "wireless_tcpdump_expression", "wlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureRadiotapwired object to a map representation for JSON marshaling.
 func (c CaptureRadiotapwired) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.ApMac.IsValueSet() {
         if c.ApMac.Value() != nil {
             structMap["ap_mac"] = c.ApMac.Value()
@@ -120,12 +124,12 @@ func (c *CaptureRadiotapwired) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "band", "client_mac", "duration", "format", "max_pkt_len", "num_packets", "radiotap_tcpdump_expression", "ssid", "tcpdump_expression", "type", "wired_tcpdump_expression", "wireless_tcpdump_expression", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "band", "client_mac", "duration", "format", "max_pkt_len", "num_packets", "radiotap_tcpdump_expression", "ssid", "tcpdump_expression", "type", "wired_tcpdump_expression", "wireless_tcpdump_expression", "wlan_id")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.ApMac = temp.ApMac
     c.Band = temp.Band
     c.ClientMac = temp.ClientMac

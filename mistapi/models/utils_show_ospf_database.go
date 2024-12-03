@@ -7,12 +7,12 @@ import (
 // UtilsShowOspfDatabase represents a UtilsShowOspfDatabase struct.
 type UtilsShowOspfDatabase struct {
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // show originating info, default is false
-    SelfOriginate        *bool              `json:"self_originate,omitempty"`
+    SelfOriginate        *bool                  `json:"self_originate,omitempty"`
     // VRF name
-    Vrf                  *string            `json:"vrf,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Vrf                  *string                `json:"vrf,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowOspfDatabase.
@@ -20,13 +20,17 @@ type UtilsShowOspfDatabase struct {
 func (u UtilsShowOspfDatabase) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "node", "self_originate", "vrf"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsShowOspfDatabase object to a map representation for JSON marshaling.
 func (u UtilsShowOspfDatabase) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Node != nil {
         structMap["node"] = u.Node
     }
@@ -47,12 +51,12 @@ func (u *UtilsShowOspfDatabase) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "node", "self_originate", "vrf")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "node", "self_originate", "vrf")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Node = temp.Node
     u.SelfOriginate = temp.SelfOriginate
     u.Vrf = temp.Vrf

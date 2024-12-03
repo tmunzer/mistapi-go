@@ -5,6 +5,8 @@ WLAN
 
 **Note**: portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template.
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Wlan`
@@ -113,6 +115,7 @@ WLAN
 | `WxtagIds` | `models.Optional[[]uuid.UUID]` | Optional | list of wxtag_ids |
 | `WxtunnelId` | `models.Optional[string]` | Optional | when `interface`=`wxtunnel`, id of the WXLAN Tunnel |
 | `WxtunnelRemoteId` | `models.Optional[string]` | Optional | when `interface`=`wxtunnel`, remote tunnel identifier |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -195,7 +198,11 @@ WLAN
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 254,
-      "secret": "secret0"
+      "secret": "secret0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "airwatch": {
@@ -203,7 +210,15 @@ WLAN
     "console_url": "console_url2",
     "enabled": false,
     "password": "password8",
-    "username": "username4"
+    "username": "username4",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

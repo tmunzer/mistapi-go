@@ -3,6 +3,8 @@
 
 vBeacon
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Vbeacon`
@@ -29,6 +31,7 @@ vBeacon
 | `WayfindingNodename` | `*string` | Optional | the name to be used in wayfinding_path or wayfinding_grid blob |
 | `X` | `*float64` | Optional | x in pixel |
 | `Y` | `*float64` | Optional | y in pixel |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,7 +53,11 @@ vBeacon
   "x": 53.5,
   "y": 173.1,
   "created_time": 135.22,
-  "for_site": false
+  "for_site": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

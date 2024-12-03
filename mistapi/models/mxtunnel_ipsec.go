@@ -12,7 +12,7 @@ type MxtunnelIpsec struct {
     ExtraRoutes          []MxtunnelIpsecExtraRoute `json:"extra_routes,omitempty"`
     SplitTunnel          *bool                     `json:"split_tunnel,omitempty"`
     UseMxedge            *bool                     `json:"use_mxedge,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxtunnelIpsec.
@@ -20,13 +20,17 @@ type MxtunnelIpsec struct {
 func (m MxtunnelIpsec) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "dns_servers", "dns_suffix", "enabled", "extra_routes", "split_tunnel", "use_mxedge"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxtunnelIpsec object to a map representation for JSON marshaling.
 func (m MxtunnelIpsec) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.DnsServers.IsValueSet() {
         if m.DnsServers.Value() != nil {
             structMap["dns_servers"] = m.DnsServers.Value()
@@ -60,12 +64,12 @@ func (m *MxtunnelIpsec) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dns_servers", "dns_suffix", "enabled", "extra_routes", "split_tunnel", "use_mxedge")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns_servers", "dns_suffix", "enabled", "extra_routes", "split_tunnel", "use_mxedge")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.DnsServers = temp.DnsServers
     m.DnsSuffix = temp.DnsSuffix
     m.Enabled = temp.Enabled

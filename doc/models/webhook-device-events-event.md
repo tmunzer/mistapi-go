@@ -1,6 +1,8 @@
 
 # Webhook Device Events Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookDeviceEventsEvent`
@@ -23,6 +25,7 @@
 | `Text` | `*string` | Optional | (optional) event description |
 | `Timestamp` | `int` | Required | time the event occurred e.g. 1565987313 |
 | `Type` | `string` | Required | event type |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,7 +42,11 @@
   "ap": "ap4",
   "ap_name": "ap_name6",
   "audit_id": "000005d2-0000-0000-0000-000000000000",
-  "reason": "reason6"
+  "reason": "reason6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

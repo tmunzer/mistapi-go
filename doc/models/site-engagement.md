@@ -7,6 +7,8 @@
 
 **Note**: default values for `dwell_tag_names`: passerby = “Passerby”, bounce = “Visitor”, engaged = “Associates”, stationed = “Assets”
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteEngagement`
@@ -20,6 +22,7 @@
 | `Hours` | [`*models.Hours`](../../doc/models/hours.md) | Optional | hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun).<br><br>**Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59. |
 | `MaxDwell` | `*int` | Optional | max time, default is 43200(12h), max is 68400 (18h)<br>**Default**: `43200`<br>**Constraints**: `>= 1`, `<= 68400` |
 | `MinDwell` | `*int` | Optional | min time<br>**Constraints**: `>= 0` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,22 +33,38 @@
     "bounce": "bounce0",
     "engaged": "engaged2",
     "passerby": "passerby6",
-    "stationed": "stationed4"
+    "stationed": "stationed4",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "dwell_tags": {
     "bounce": "bounce0",
     "engaged": "engaged2",
     "passerby": "passerby6",
-    "stationed": "stationed6"
+    "stationed": "stationed6",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "hours": {
     "fri": "fri2",
     "mon": "mon8",
     "sat": "sat0",
     "sun": "sun6",
-    "thu": "thu6"
+    "thu": "thu6",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "min_dwell": 36
+  "min_dwell": 36,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

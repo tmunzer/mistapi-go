@@ -8,24 +8,24 @@ import (
 // Radsec represents a Radsec struct.
 // Radsec settings
 type Radsec struct {
-    CoaEnabled           *bool          `json:"coa_enabled,omitempty"`
-    Enabled              *bool          `json:"enabled,omitempty"`
-    IdleTimeout          *int           `json:"idle_timeout,omitempty"`
+    CoaEnabled           *bool                  `json:"coa_enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    IdleTimeout          *int                   `json:"idle_timeout,omitempty"`
     // To use Org mxedges when this WLAN does not use mxtunnel, specify their mxcluster_ids.
     // Org mxedge(s) identified by mxcluster_ids
-    MxclusterIds         []uuid.UUID    `json:"mxcluster_ids,omitempty"`
+    MxclusterIds         []uuid.UUID            `json:"mxcluster_ids,omitempty"`
     // default is site.mxedge.radsec.proxy_hosts which must be a superset of all wlans[*].radsec.proxy_hosts
     // when radsec.proxy_hosts are not used, tunnel peers (org or site mxedges) are used irrespective of use_site_mxedge
-    ProxyHosts           []string       `json:"proxy_hosts,omitempty"`
+    ProxyHosts           []string               `json:"proxy_hosts,omitempty"`
     // name of the server to verify (against the cacerts in Org Setting). Only if not Mist Edge.
-    ServerName           *string        `json:"server_name,omitempty"`
+    ServerName           *string                `json:"server_name,omitempty"`
     // List of Radsec Servers. Only if not Mist Edge.
-    Servers              []RadsecServer `json:"servers,omitempty"`
+    Servers              []RadsecServer         `json:"servers,omitempty"`
     // use mxedge(s) as radsecproxy
-    UseMxedge            *bool          `json:"use_mxedge,omitempty"`
+    UseMxedge            *bool                  `json:"use_mxedge,omitempty"`
     // To use Site mxedges when this WLAN does not use mxtunnel
-    UseSiteMxedge        *bool          `json:"use_site_mxedge,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    UseSiteMxedge        *bool                  `json:"use_site_mxedge,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Radsec.
@@ -33,13 +33,17 @@ type Radsec struct {
 func (r Radsec) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "coa_enabled", "enabled", "idle_timeout", "mxcluster_ids", "proxy_hosts", "server_name", "servers", "use_mxedge", "use_site_mxedge"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the Radsec object to a map representation for JSON marshaling.
 func (r Radsec) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.CoaEnabled != nil {
         structMap["coa_enabled"] = r.CoaEnabled
     }
@@ -78,12 +82,12 @@ func (r *Radsec) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "coa_enabled", "enabled", "idle_timeout", "mxcluster_ids", "proxy_hosts", "server_name", "servers", "use_mxedge", "use_site_mxedge")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "coa_enabled", "enabled", "idle_timeout", "mxcluster_ids", "proxy_hosts", "server_name", "servers", "use_mxedge", "use_site_mxedge")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.CoaEnabled = temp.CoaEnabled
     r.Enabled = temp.Enabled
     r.IdleTimeout = temp.IdleTimeout

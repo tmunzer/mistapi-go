@@ -6,11 +6,11 @@ import (
 
 // StatsApEslStat represents a StatsApEslStat struct.
 type StatsApEslStat struct {
-    Channel              Optional[int]    `json:"channel"`
-    Connected            Optional[bool]   `json:"connected"`
-    Type                 Optional[string] `json:"type"`
-    Up                   Optional[bool]   `json:"up"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Channel              Optional[int]          `json:"channel"`
+    Connected            Optional[bool]         `json:"connected"`
+    Type                 Optional[string]       `json:"type"`
+    Up                   Optional[bool]         `json:"up"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApEslStat.
@@ -18,13 +18,17 @@ type StatsApEslStat struct {
 func (s StatsApEslStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "channel", "connected", "type", "up"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApEslStat object to a map representation for JSON marshaling.
 func (s StatsApEslStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Channel.IsValueSet() {
         if s.Channel.Value() != nil {
             structMap["channel"] = s.Channel.Value()
@@ -64,12 +68,12 @@ func (s *StatsApEslStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "channel", "connected", "type", "up")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "connected", "type", "up")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Channel = temp.Channel
     s.Connected = temp.Connected
     s.Type = temp.Type

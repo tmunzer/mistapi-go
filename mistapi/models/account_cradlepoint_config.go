@@ -6,12 +6,12 @@ import (
 
 // AccountCradlepointConfig represents a AccountCradlepointConfig struct.
 type AccountCradlepointConfig struct {
-    CpApiId              *string        `json:"cp_api_id,omitempty"`
-    CpApiKey             *string        `json:"cp_api_key,omitempty"`
-    EcmApiId             *string        `json:"ecm_api_id,omitempty"`
-    EcmApiKey            *string        `json:"ecm_api_key,omitempty"`
-    EnableLldp           *bool          `json:"enable_lldp,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    CpApiId              *string                `json:"cp_api_id,omitempty"`
+    CpApiKey             *string                `json:"cp_api_key,omitempty"`
+    EcmApiId             *string                `json:"ecm_api_id,omitempty"`
+    EcmApiKey            *string                `json:"ecm_api_key,omitempty"`
+    EnableLldp           *bool                  `json:"enable_lldp,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountCradlepointConfig.
@@ -19,13 +19,17 @@ type AccountCradlepointConfig struct {
 func (a AccountCradlepointConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "cp_api_id", "cp_api_key", "ecm_api_id", "ecm_api_key", "enable_lldp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AccountCradlepointConfig object to a map representation for JSON marshaling.
 func (a AccountCradlepointConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.CpApiId != nil {
         structMap["cp_api_id"] = a.CpApiId
     }
@@ -52,12 +56,12 @@ func (a *AccountCradlepointConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cp_api_id", "cp_api_key", "ecm_api_id", "ecm_api_key", "enable_lldp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cp_api_id", "cp_api_key", "ecm_api_id", "ecm_api_key", "enable_lldp")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.CpApiId = temp.CpApiId
     a.CpApiKey = temp.CpApiKey
     a.EcmApiId = temp.EcmApiId

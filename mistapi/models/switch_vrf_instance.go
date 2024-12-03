@@ -9,7 +9,7 @@ type SwitchVrfInstance struct {
     // Property key is the destination CIDR (e.g. "10.0.0.0/8")
     ExtraRoutes          map[string]VrfExtraRoute `json:"extra_routes,omitempty"`
     Networks             []string                 `json:"networks,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchVrfInstance.
@@ -17,13 +17,17 @@ type SwitchVrfInstance struct {
 func (s SwitchVrfInstance) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "extra_routes", "networks"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchVrfInstance object to a map representation for JSON marshaling.
 func (s SwitchVrfInstance) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ExtraRoutes != nil {
         structMap["extra_routes"] = s.ExtraRoutes
     }
@@ -41,12 +45,12 @@ func (s *SwitchVrfInstance) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "extra_routes", "networks")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "extra_routes", "networks")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ExtraRoutes = temp.ExtraRoutes
     s.Networks = temp.Networks
     return nil

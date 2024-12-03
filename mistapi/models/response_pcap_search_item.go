@@ -24,7 +24,7 @@ type ResponsePcapSearchItem struct {
     Timestamp            float64                                      `json:"timestamp"`
     Type                 string                                       `json:"type"`
     Url                  string                                       `json:"url"`
-    AdditionalProperties map[string]any                               `json:"_"`
+    AdditionalProperties map[string]interface{}                       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapSearchItem.
@@ -32,13 +32,17 @@ type ResponsePcapSearchItem struct {
 func (r ResponsePcapSearchItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "ap_macs", "aps", "duration", "format", "id", "max_num_packets", "org_id", "pcap_aps", "pcap_url", "site_id", "termination_reason", "timestamp", "type", "url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponsePcapSearchItem object to a map representation for JSON marshaling.
 func (r ResponsePcapSearchItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.ApMacs != nil {
         structMap["ap_macs"] = r.ApMacs
     }
@@ -90,12 +94,12 @@ func (r *ResponsePcapSearchItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_macs", "aps", "duration", "format", "id", "max_num_packets", "org_id", "pcap_aps", "pcap_url", "site_id", "termination_reason", "timestamp", "type", "url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_macs", "aps", "duration", "format", "id", "max_num_packets", "org_id", "pcap_aps", "pcap_url", "site_id", "termination_reason", "timestamp", "type", "url")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.ApMacs = temp.ApMacs
     r.Aps = temp.Aps
     r.Duration = temp.Duration

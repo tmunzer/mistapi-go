@@ -23,7 +23,7 @@ type MxclusterRadsec struct {
     ServerSelection      *MxclusterRadsecServerSelectionEnum `json:"server_selection,omitempty"`
     // Specify IP address to connect to auth_servers and acct_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
     SrcIpSource          *MxclusterRadsecSrcIpSourceEnum     `json:"src_ip_source,omitempty"`
-    AdditionalProperties map[string]any                      `json:"_"`
+    AdditionalProperties map[string]interface{}              `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterRadsec.
@@ -31,13 +31,17 @@ type MxclusterRadsec struct {
 func (m MxclusterRadsec) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "acct_servers", "auth_servers", "enabled", "match_ssid", "nas_ip_source", "proxy_hosts", "server_selection", "src_ip_source"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxclusterRadsec object to a map representation for JSON marshaling.
 func (m MxclusterRadsec) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.AcctServers != nil {
         structMap["acct_servers"] = m.AcctServers
     }
@@ -73,12 +77,12 @@ func (m *MxclusterRadsec) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_servers", "auth_servers", "enabled", "match_ssid", "nas_ip_source", "proxy_hosts", "server_selection", "src_ip_source")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acct_servers", "auth_servers", "enabled", "match_ssid", "nas_ip_source", "proxy_hosts", "server_selection", "src_ip_source")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.AcctServers = temp.AcctServers
     m.AuthServers = temp.AuthServers
     m.Enabled = temp.Enabled

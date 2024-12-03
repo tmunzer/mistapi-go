@@ -7,6 +7,8 @@ Org API Token
 `privilege` field is required to create the object, but may not be
 returned in the POST API Response (only in the afterward GET)
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgApitoken`
@@ -24,6 +26,7 @@ returned in the POST API Response (only in the afterward GET)
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Privileges` | [`[]models.PrivilegeOrg`](../../doc/models/privilege-org.md) | Optional | list of privileges the token has on the orgs/sites<br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10`, *Unique Items Required* |
 | `SrcIps` | `[]string` | Optional | list of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified, cannot be changed once the API Token is created. |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -45,7 +48,11 @@ returned in the POST API Response (only in the afterward GET)
     "63.3.56.0/24",
     "63.3.55.4"
   ],
-  "created_time": 254.8
+  "created_time": 254.8,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

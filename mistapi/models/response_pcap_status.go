@@ -55,7 +55,7 @@ type ResponsePcapStatus struct {
     WiredTcpdumpExpression    *string                   `json:"wired_tcpdump_expression,omitempty"`
     // when `type`==`‘wireless’`, wireless_tcpdump_expression provided by the user
     WirelessTcpdumpExpression *string                   `json:"wireless_tcpdump_expression,omitempty"`
-    AdditionalProperties      map[string]any            `json:"_"`
+    AdditionalProperties      map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapStatus.
@@ -63,13 +63,17 @@ type ResponsePcapStatus struct {
 func (r ResponsePcapStatus) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "ap_mac", "aps", "client_mac", "duration", "failed", "format", "gateways", "id", "includes_mcast", "max_num_packets", "max_pkt_len", "mxedges", "num_packets", "ok", "pcap_aps", "radiotap_tcpdump_expression", "scan_tcpdump_expression", "ssid", "started_time", "switches", "tcpdump_expression", "type", "tzsp_host", "tzsp_port", "wired_tcpdump_expression", "wireless_tcpdump_expression"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponsePcapStatus object to a map representation for JSON marshaling.
 func (r ResponsePcapStatus) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.ApMac.IsValueSet() {
         if r.ApMac.Value() != nil {
             structMap["ap_mac"] = r.ApMac.Value()
@@ -171,12 +175,12 @@ func (r *ResponsePcapStatus) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "aps", "client_mac", "duration", "failed", "format", "gateways", "id", "includes_mcast", "max_num_packets", "max_pkt_len", "mxedges", "num_packets", "ok", "pcap_aps", "radiotap_tcpdump_expression", "scan_tcpdump_expression", "ssid", "started_time", "switches", "tcpdump_expression", "type", "tzsp_host", "tzsp_port", "wired_tcpdump_expression", "wireless_tcpdump_expression")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "aps", "client_mac", "duration", "failed", "format", "gateways", "id", "includes_mcast", "max_num_packets", "max_pkt_len", "mxedges", "num_packets", "ok", "pcap_aps", "radiotap_tcpdump_expression", "scan_tcpdump_expression", "ssid", "started_time", "switches", "tcpdump_expression", "type", "tzsp_host", "tzsp_port", "wired_tcpdump_expression", "wireless_tcpdump_expression")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.ApMac = temp.ApMac
     r.Aps = temp.Aps
     r.ClientMac = temp.ClientMac

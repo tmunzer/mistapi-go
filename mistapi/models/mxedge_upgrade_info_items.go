@@ -8,10 +8,10 @@ import (
 
 // MxedgeUpgradeInfoItems represents a MxedgeUpgradeInfoItems struct.
 type MxedgeUpgradeInfoItems struct {
-    Default              *bool          `json:"default,omitempty"`
-    Package              string         `json:"package"`
-    Version              string         `json:"version"`
-    AdditionalProperties map[string]any `json:"_"`
+    Default              *bool                  `json:"default,omitempty"`
+    Package              string                 `json:"package"`
+    Version              string                 `json:"version"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeUpgradeInfoItems.
@@ -19,13 +19,17 @@ type MxedgeUpgradeInfoItems struct {
 func (m MxedgeUpgradeInfoItems) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "default", "package", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeUpgradeInfoItems object to a map representation for JSON marshaling.
 func (m MxedgeUpgradeInfoItems) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Default != nil {
         structMap["default"] = m.Default
     }
@@ -46,12 +50,12 @@ func (m *MxedgeUpgradeInfoItems) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "default", "package", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default", "package", "version")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Default = temp.Default
     m.Package = *temp.Package
     m.Version = *temp.Version

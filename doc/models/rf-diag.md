@@ -3,6 +3,8 @@
 
 RF Diag
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RfDiag`
@@ -16,6 +18,7 @@ RF Diag
 | `Name` | `string` | Required | name of the recording, the name of the sdk client would be a good default choice |
 | `SdkclientId` | `*uuid.UUID` | Optional | if `type`==`sdkclient`, sdkclient_id of this recording |
 | `Type` | [`models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Required | enum: `asset`, `client`, `sdkclient` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@ RF Diag
   "name": "name6",
   "type": "sdkclient",
   "mac": "mac0",
-  "sdkclient_id": "00000a0e-0000-0000-0000-000000000000"
+  "sdkclient_id": "00000a0e-0000-0000-0000-000000000000",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

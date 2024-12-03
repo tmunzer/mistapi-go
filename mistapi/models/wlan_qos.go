@@ -7,10 +7,10 @@ import (
 // WlanQos represents a WlanQos struct.
 type WlanQos struct {
     // enum: `background`, `best_effort`, `video`, `voice`
-    Class                *WlanQosClassEnum `json:"class,omitempty"`
+    Class                *WlanQosClassEnum      `json:"class,omitempty"`
     // whether to overwrite QoS
-    Overwrite            *bool             `json:"overwrite,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    Overwrite            *bool                  `json:"overwrite,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanQos.
@@ -18,13 +18,17 @@ type WlanQos struct {
 func (w WlanQos) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "class", "overwrite"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanQos object to a map representation for JSON marshaling.
 func (w WlanQos) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Class != nil {
         structMap["class"] = w.Class
     }
@@ -42,12 +46,12 @@ func (w *WlanQos) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "class", "overwrite")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "class", "overwrite")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Class = temp.Class
     w.Overwrite = temp.Overwrite
     return nil

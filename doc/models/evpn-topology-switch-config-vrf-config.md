@@ -1,6 +1,8 @@
 
 # Evpn Topology Switch Config Vrf Config
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `EvpnTopologySwitchConfigVrfConfig`
@@ -10,12 +12,17 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | whether to enable VRF (when supported on the device) |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "enabled": false
+  "enabled": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

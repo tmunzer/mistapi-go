@@ -14,7 +14,7 @@ type TicketComment struct {
     Author               string                     `json:"author"`
     Comment              string                     `json:"comment"`
     CreatedAt            int                        `json:"created_at"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TicketComment.
@@ -22,13 +22,17 @@ type TicketComment struct {
 func (t TicketComment) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "attachment_ids", "attachments", "author", "comment", "created_at"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TicketComment object to a map representation for JSON marshaling.
 func (t TicketComment) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.AttachmentIds != nil {
         structMap["attachment_ids"] = t.AttachmentIds
     }
@@ -53,12 +57,12 @@ func (t *TicketComment) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "attachment_ids", "attachments", "author", "comment", "created_at")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "attachment_ids", "attachments", "author", "comment", "created_at")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.AttachmentIds = temp.AttachmentIds
     t.Attachments = temp.Attachments
     t.Author = *temp.Author

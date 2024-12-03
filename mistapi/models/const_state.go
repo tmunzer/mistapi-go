@@ -6,9 +6,9 @@ import (
 
 // ConstState represents a ConstState struct.
 type ConstState struct {
-    IsoCode              *string        `json:"iso_code,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    IsoCode              *string                `json:"iso_code,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstState.
@@ -16,13 +16,17 @@ type ConstState struct {
 func (c ConstState) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "iso_code", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstState object to a map representation for JSON marshaling.
 func (c ConstState) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.IsoCode != nil {
         structMap["iso_code"] = c.IsoCode
     }
@@ -40,12 +44,12 @@ func (c *ConstState) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "iso_code", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "iso_code", "name")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.IsoCode = temp.IsoCode
     c.Name = temp.Name
     return nil

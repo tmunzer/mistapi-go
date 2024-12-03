@@ -26,7 +26,7 @@ type CaptureWireless struct {
     Type                 string                     `json:"type"`
     // WLAN ID
     WlanId               *uuid.UUID                 `json:"wlan_id,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureWireless.
@@ -34,13 +34,17 @@ type CaptureWireless struct {
 func (c CaptureWireless) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ap_mac", "band", "duration", "format", "max_pkt_len", "num_packets", "ssid", "type", "wlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureWireless object to a map representation for JSON marshaling.
 func (c CaptureWireless) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.ApMac.IsValueSet() {
         if c.ApMac.Value() != nil {
             structMap["ap_mac"] = c.ApMac.Value()
@@ -85,12 +89,12 @@ func (c *CaptureWireless) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "band", "duration", "format", "max_pkt_len", "num_packets", "ssid", "type", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "band", "duration", "format", "max_pkt_len", "num_packets", "ssid", "type", "wlan_id")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.ApMac = temp.ApMac
     c.Band = temp.Band
     c.Duration = temp.Duration

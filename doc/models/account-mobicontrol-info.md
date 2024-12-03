@@ -3,6 +3,8 @@
 
 OAuth linked Mobicontrol apps account details
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AccountMobicontrolInfo`
@@ -20,6 +22,7 @@ OAuth linked Mobicontrol apps account details
 | `LinkedBy` | `*string` | Optional | First name of the user who linked the MobiControl account |
 | `LinkedTimestamp` | `*int64` | Optional | - |
 | `Name` | `*string` | Optional | Name of the company whose MobiControl account mist has subscribed to |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,7 +36,11 @@ OAuth linked Mobicontrol apps account details
   "linked_timestamp": 1665465339000,
   "name": "Test Compay1 Ltd",
   "account_id": "account_id4",
-  "client_id": "client_id4"
+  "client_id": "client_id4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

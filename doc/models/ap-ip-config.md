@@ -3,6 +3,8 @@
 
 IP AP settings
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApIpConfig`
@@ -23,6 +25,7 @@ IP AP settings
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
 | `Type6` | [`*models.IpType6Enum`](../../doc/models/ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br>**Default**: `"disabled"` |
 | `VlanId` | `*int` | Optional | management vlan id, default is 1 (untagged)<br>**Default**: `1` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -45,7 +48,11 @@ IP AP settings
   "netmask6": "/32",
   "type": "static",
   "type6": "static",
-  "vlan_id": 1
+  "vlan_id": 1,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

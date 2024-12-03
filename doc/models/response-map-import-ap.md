@@ -1,6 +1,8 @@
 
 # Response Map Import Ap
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseMapImportAp`
@@ -16,6 +18,7 @@
 | `MapId` | `uuid.UUID` | Required | - |
 | `Orientation` | `int` | Required | - |
 | `Reason` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "mac": "mac2",
   "map_id": "00000f06-0000-0000-0000-000000000000",
   "orientation": 154,
-  "reason": "reason6"
+  "reason": "reason6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

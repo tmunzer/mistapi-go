@@ -3,6 +3,8 @@
 
 SDK Template
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Sdktemplate`
@@ -24,6 +26,7 @@ SDK Template
 | `SearchTxtcolor` | `*string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `WelcomeMsg` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,7 +40,11 @@ SDK Template
   "btn_flr_bgcolor": "btn_flr_bgcolor4",
   "created_time": 41.34,
   "default": false,
-  "for_site": false
+  "for_site": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -18,7 +18,7 @@ type RrmBandMetric struct {
     Neighbors            float64                              `json:"neighbors"`
     // average noise in dBm
     Noise                float64                              `json:"noise"`
-    AdditionalProperties map[string]any                       `json:"_"`
+    AdditionalProperties map[string]interface{}               `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmBandMetric.
@@ -26,13 +26,17 @@ type RrmBandMetric struct {
 func (r RrmBandMetric) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "cochannel_neighbors", "density", "interferences", "neighbors", "noise"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RrmBandMetric object to a map representation for JSON marshaling.
 func (r RrmBandMetric) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["cochannel_neighbors"] = r.CochannelNeighbors
     structMap["density"] = r.Density
     if r.Interferences != nil {
@@ -55,12 +59,12 @@ func (r *RrmBandMetric) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cochannel_neighbors", "density", "interferences", "neighbors", "noise")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cochannel_neighbors", "density", "interferences", "neighbors", "noise")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.CochannelNeighbors = *temp.CochannelNeighbors
     r.Density = *temp.Density
     r.Interferences = temp.Interferences

@@ -10,8 +10,7 @@ import (
 // GatewayTemplate represents a GatewayTemplate struct.
 // Gateway Template is applied to a site for gateway(s) in a site.
 type GatewayTemplate struct {
-    // additional CLI commands to append to the generated Junos config
-    // **Note**: no check is done
+    // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds  []string                           `json:"additional_config_cmds,omitempty"`
     BgpConfig             map[string]BgpConfig               `json:"bgp_config,omitempty"`
     // when the object has been created, in epoch
@@ -61,7 +60,7 @@ type GatewayTemplate struct {
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
     // Property key is the network name
     VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
-    AdditionalProperties  map[string]any                     `json:"_"`
+    AdditionalProperties  map[string]interface{}             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayTemplate.
@@ -69,13 +68,17 @@ type GatewayTemplate struct {
 func (g GatewayTemplate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type", "vrf_config", "vrf_instances"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayTemplate object to a map representation for JSON marshaling.
 func (g GatewayTemplate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.AdditionalConfigCmds != nil {
         structMap["additional_config_cmds"] = g.AdditionalConfigCmds
     }
@@ -179,12 +182,12 @@ func (g *GatewayTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type", "vrf_config", "vrf_instances")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type", "vrf_config", "vrf_instances")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.AdditionalConfigCmds = temp.AdditionalConfigCmds
     g.BgpConfig = temp.BgpConfig
     g.CreatedTime = temp.CreatedTime

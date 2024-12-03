@@ -1,6 +1,8 @@
 
 # Nac Portal Template
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `NacPortalTemplate`
@@ -13,6 +15,7 @@
 | `Color` | `*string` | Optional | **Default**: `"#1074bc"` |
 | `Logo` | `*string` | Optional | custom logo custom logo with “data:image/png;base64,” format. default null, uses Juniper Mist Logo. |
 | `PoweredBy` | `*bool` | Optional | whether to hide “Powered by Juniper Mist” and email footers<br>**Default**: `false` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,11 @@
   "alignment": "center",
   "color": "#1074bc",
   "poweredBy": false,
-  "logo": "logo6"
+  "logo": "logo6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -49,7 +49,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Sitegroup{
-    Name:         "string",
+    Name:                 "string",
 }
 
 apiResponse, err := orgsSitegroups.CreateOrgSiteGroup(ctx, orgId, &body)
@@ -320,7 +320,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 sitegroupId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NameString{
-    Name: models.ToPointer("string"),
+    Name:                 models.ToPointer("string"),
 }
 
 apiResponse, err := orgsSitegroups.UpdateOrgSiteGroup(ctx, orgId, sitegroupId, &body)

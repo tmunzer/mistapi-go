@@ -6,9 +6,9 @@ import (
 
 // ResponseDeviceBiosUpgrade represents a ResponseDeviceBiosUpgrade struct.
 type ResponseDeviceBiosUpgrade struct {
-    Status               *string        `json:"status,omitempty"`
-    Timestamp            *int           `json:"timestamp,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Status               *string                `json:"status,omitempty"`
+    Timestamp            *int                   `json:"timestamp,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceBiosUpgrade.
@@ -16,13 +16,17 @@ type ResponseDeviceBiosUpgrade struct {
 func (r ResponseDeviceBiosUpgrade) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "status", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseDeviceBiosUpgrade object to a map representation for JSON marshaling.
 func (r ResponseDeviceBiosUpgrade) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Status != nil {
         structMap["status"] = r.Status
     }
@@ -40,12 +44,12 @@ func (r *ResponseDeviceBiosUpgrade) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "status", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "status", "timestamp")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Status = temp.Status
     r.Timestamp = temp.Timestamp
     return nil

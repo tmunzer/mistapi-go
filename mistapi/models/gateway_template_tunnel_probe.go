@@ -15,7 +15,7 @@ type GatewayTemplateTunnelProbe struct {
     Timeout              *int                          `json:"timeout,omitempty"`
     // enum: `http`, `icmp`
     Type                 *GatewayTemplateProbeTypeEnum `json:"type,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayTemplateTunnelProbe.
@@ -23,13 +23,17 @@ type GatewayTemplateTunnelProbe struct {
 func (g GatewayTemplateTunnelProbe) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "interval", "threshold", "timeout", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayTemplateTunnelProbe object to a map representation for JSON marshaling.
 func (g GatewayTemplateTunnelProbe) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Interval != nil {
         structMap["interval"] = g.Interval
     }
@@ -53,12 +57,12 @@ func (g *GatewayTemplateTunnelProbe) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "interval", "threshold", "timeout", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "interval", "threshold", "timeout", "type")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Interval = temp.Interval
     g.Threshold = temp.Threshold
     g.Timeout = temp.Timeout

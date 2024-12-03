@@ -6,11 +6,11 @@ import (
 
 // NetworkStaticNatProperty represents a NetworkStaticNatProperty struct.
 type NetworkStaticNatProperty struct {
-    InternalIp           *string        `json:"internal_ip,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
+    InternalIp           *string                `json:"internal_ip,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
     // If not set, we configure the nat policies against all WAN ports for simplicity
-    WanName              *string        `json:"wan_name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    WanName              *string                `json:"wan_name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkStaticNatProperty.
@@ -18,13 +18,17 @@ type NetworkStaticNatProperty struct {
 func (n NetworkStaticNatProperty) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "internal_ip", "name", "wan_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NetworkStaticNatProperty object to a map representation for JSON marshaling.
 func (n NetworkStaticNatProperty) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.InternalIp != nil {
         structMap["internal_ip"] = n.InternalIp
     }
@@ -45,12 +49,12 @@ func (n *NetworkStaticNatProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "internal_ip", "name", "wan_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "internal_ip", "name", "wan_name")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.InternalIp = temp.InternalIp
     n.Name = temp.Name
     n.WanName = temp.WanName

@@ -3,6 +3,8 @@
 
 additional information per alarm type
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Alarm`
@@ -31,6 +33,7 @@ additional information per alarm type
 | `Switches` | `[]string` | Optional | additional information: List of MACs of the switches |
 | `Timestamp` | `int` | Required | Epoch (seconds) of the first incident/alarm |
 | `Type` | `string` | Required | Key-name of the alarm type |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -64,7 +67,11 @@ additional information per alarm type
     "ffeeddccbbab"
   ],
   "timestamp": 1711031774,
-  "type": "rogue_client"
+  "type": "rogue_client",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

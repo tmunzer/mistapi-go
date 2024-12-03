@@ -1,6 +1,8 @@
 
 # Inventory Search Result
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `InventorySearchResult`
@@ -22,6 +24,7 @@
 | `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
 | `VcMac` | `*string` | Optional | - |
 | `Version` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,19 +46,35 @@
     {
       "mac": "mac2",
       "model": "model6",
-      "serial": "serial8"
+      "serial": "serial8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "mac": "mac2",
       "model": "model6",
-      "serial": "serial8"
+      "serial": "serial8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "mac": "mac2",
       "model": "model6",
-      "serial": "serial8"
+      "serial": "serial8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

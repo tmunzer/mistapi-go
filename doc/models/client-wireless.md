@@ -1,6 +1,8 @@
 
 # Client Wireless
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ClientWireless`
@@ -49,6 +51,7 @@
 | `Username` | `[]string` | Optional | only for 802.1X authentication. List of usernames used by the client |
 | `Vlan` | `[]int` | Optional | list of vlans that have been assigned to the client |
 | `WlanId` | `[]uuid.UUID` | Optional | list of IDs of WLANs the client was connected to |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -125,7 +128,11 @@
   "wlan_id": [
     "e5d67b07-aae8-494b-8584-cbc20c8110aa"
   ],
-  "ftc": false
+  "ftc": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # Utils Service Ping
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UtilsServicePing`
@@ -15,6 +17,7 @@
 | `Service` | `string` | Required | ping packet takes the same path as the service |
 | `Size` | `*int` | Optional | **Default**: `56`<br>**Constraints**: `>= 56`, `<= 65535` |
 | `Tenant` | `*string` | Optional | tenant context in which the packet is sent |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   "service": "service8",
   "size": 56,
   "node": "node0",
-  "tenant": "tenant4"
+  "tenant": "tenant4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

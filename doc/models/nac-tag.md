@@ -1,6 +1,8 @@
 
 # Nac Tag
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `NacTag`
@@ -27,6 +29,7 @@
 | `UsernameAttr` | [`*models.NacTagUsernameAttrEnum`](../../doc/models/nac-tag-username-attr-enum.md) | Optional | enum: `automatic`, `cn`, `dns`, `email`, `upn` |
 | `Values` | `[]string` | Optional | if `type`==`match` |
 | `Vlan` | `*string` | Optional | if `type`==`vlan` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -53,7 +56,11 @@
   "session_timeout": 86000,
   "type": "vlan",
   "created_time": 105.64,
-  "gbp_tag": 162
+  "gbp_tag": 162,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -3,6 +3,8 @@
 
 device gateway
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `DeviceGateway`
@@ -11,7 +13,7 @@ device gateway
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
+| `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
 | `BgpConfig` | [`map[string]models.BgpConfig`](../../doc/models/bgp-config.md) | Optional | - |
 | `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DeviceprofileId` | `*uuid.UUID` | Optional | - |
@@ -55,6 +57,7 @@ device gateway
 | `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
 | `X` | `*float64` | Optional | x in pixel |
 | `Y` | `*float64` | Optional | y in pixel |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -95,13 +98,49 @@ device gateway
       "bfd_minimum_interval": 212,
       "bfd_multiplier": 90,
       "disable_bfd": false,
-      "export": "export6"
+      "export": "export6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "created_time": 176.02,
   "deviceprofile_id": "0000062e-0000-0000-0000-000000000000",
   "dhcpd_config": {
-    "enabled": false
+    "enabled": false,
+    "exampleAdditionalProperty": {
+      "dns_servers": [
+        "dns_servers2",
+        "dns_servers3",
+        "dns_servers4"
+      ],
+      "dns_suffix": [
+        "dns_suffix1",
+        "dns_suffix0",
+        "dns_suffix9"
+      ],
+      "fixed_bindings": {
+        "key0": {
+          "ip": "ip0",
+          "name": "name6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        }
+      },
+      "gateway": "gateway8",
+      "ip_end": "ip_end4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

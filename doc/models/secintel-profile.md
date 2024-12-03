@@ -1,6 +1,8 @@
 
 # Secintel Profile
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SecintelProfile`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Name` | `*string` | Optional | - |
 | `Profiles` | [`[]models.SecintelProfileProfile`](../../doc/models/secintel-profile-profile.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -20,13 +23,25 @@
   "profiles": [
     {
       "action": "strict",
-      "category": "IH"
+      "category": "IH",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "action": "strict",
-      "category": "IH"
+      "category": "IH",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

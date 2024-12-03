@@ -23,7 +23,7 @@ type UtilsShowRoute struct {
     Route                *string                     `json:"route,omitempty"`
     // VRF name
     Vrf                  *string                     `json:"vrf,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowRoute.
@@ -31,13 +31,17 @@ type UtilsShowRoute struct {
 func (u UtilsShowRoute) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "duration", "interval", "neighbor", "node", "prefix", "protocol", "route", "vrf"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsShowRoute object to a map representation for JSON marshaling.
 func (u UtilsShowRoute) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Duration != nil {
         structMap["duration"] = u.Duration
     }
@@ -73,12 +77,12 @@ func (u *UtilsShowRoute) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "duration", "interval", "neighbor", "node", "prefix", "protocol", "route", "vrf")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "interval", "neighbor", "node", "prefix", "protocol", "route", "vrf")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Duration = temp.Duration
     u.Interval = temp.Interval
     u.Neighbor = temp.Neighbor

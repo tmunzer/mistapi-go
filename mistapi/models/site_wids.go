@@ -8,7 +8,7 @@ import (
 // WIDS site settings
 type SiteWids struct {
     RepeatedAuthFailures *SiteWidsRepeatedAuthFailures `json:"repeated_auth_failures,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteWids.
@@ -16,13 +16,17 @@ type SiteWids struct {
 func (s SiteWids) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "repeated_auth_failures"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteWids object to a map representation for JSON marshaling.
 func (s SiteWids) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.RepeatedAuthFailures != nil {
         structMap["repeated_auth_failures"] = s.RepeatedAuthFailures.toMap()
     }
@@ -37,12 +41,12 @@ func (s *SiteWids) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "repeated_auth_failures")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "repeated_auth_failures")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.RepeatedAuthFailures = temp.RepeatedAuthFailures
     return nil
 }

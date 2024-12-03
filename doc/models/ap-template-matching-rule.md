@@ -1,6 +1,8 @@
 
 # Ap Template Matching Rule
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApTemplateMatchingRule`
@@ -12,6 +14,7 @@
 | `MatchModel` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `Name` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `PortConfig` | [`map[string]models.ApPortConfig`](../../doc/models/ap-port-config.md) | Optional | Property key is the interface(s) name (e.g. "eth1,eth2") |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,12 +31,24 @@
         "type": "type6",
         "vlans": {
           "key0": "vlans1"
+        },
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
         }
       },
       "enable_mac_auth": false,
       "flow_control": false,
-      "forwarding": "site_mxedge"
+      "forwarding": "site_mxedge",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

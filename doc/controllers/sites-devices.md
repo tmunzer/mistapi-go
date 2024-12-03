@@ -1054,7 +1054,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsDevicesRestartMulti{
-    DeviceIds: []uuid.UUID{
+    DeviceIds:            []uuid.UUID{
         uuid.MustParse("00000000-0000-0000-1000-5c5b35584a6f"),
         uuid.MustParse("00000000-0000-0000-1000-5c5b350ea3b3"),
     },
@@ -1682,23 +1682,23 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MistDeviceContainer.FromDeviceAp(models.DeviceAp{
-    DeviceprofileId:  models.NewOptional(models.ToPointer(uuid.MustParse("6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9"))),
-    DisableEth1:      models.ToPointer(false),
-    DisableEth2:      models.ToPointer(false),
-    DisableEth3:      models.ToPointer(false),
-    DisableModule:    models.ToPointer(false),
-    Height:           models.ToPointer(float64(2.75)),
-    MapId:            models.ToPointer(uuid.MustParse("63eda950-c6da-11e4-a628-60f81dd250cc")),
-    Name:             models.ToPointer("conference room"),
-    Notes:            models.ToPointer("slightly off center"),
-    Orientation:      models.ToPointer(45),
-    PoePassthrough:   models.ToPointer(false),
-    Vars:             map[string]string{
+    DeviceprofileId:      models.NewOptional(models.ToPointer(uuid.MustParse("6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9"))),
+    DisableEth1:          models.ToPointer(false),
+    DisableEth2:          models.ToPointer(false),
+    DisableEth3:          models.ToPointer(false),
+    DisableModule:        models.ToPointer(false),
+    Height:               models.ToPointer(float64(2.75)),
+    MapId:                models.ToPointer(uuid.MustParse("63eda950-c6da-11e4-a628-60f81dd250cc")),
+    Name:                 models.ToPointer("conference room"),
+    Notes:                models.ToPointer("slightly off center"),
+    Orientation:          models.ToPointer(45),
+    PoePassthrough:       models.ToPointer(false),
+    Vars:                 map[string]string{
         "RADIUS_IP1": "172.31.2.5",
         "RADIUS_SECRET": "11s64632d",
     },
-    X:                models.ToPointer(float64(53.5)),
-    Y:                models.ToPointer(float64(173.1)),
+    X:                    models.ToPointer(float64(53.5)),
+    Y:                    models.ToPointer(float64(173.1)),
 })
 
 apiResponse, err := sitesDevices.UpdateSiteDevice(ctx, siteId, deviceId, &body)

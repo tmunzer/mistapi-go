@@ -10,9 +10,9 @@ import (
 // ResponseClaimMxEdge represents a ResponseClaimMxEdge struct.
 type ResponseClaimMxEdge struct {
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID      `json:"id"`
-    Magic                string         `json:"magic"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   uuid.UUID              `json:"id"`
+    Magic                string                 `json:"magic"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClaimMxEdge.
@@ -20,13 +20,17 @@ type ResponseClaimMxEdge struct {
 func (r ResponseClaimMxEdge) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "id", "magic"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseClaimMxEdge object to a map representation for JSON marshaling.
 func (r ResponseClaimMxEdge) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["id"] = r.Id
     structMap["magic"] = r.Magic
     return structMap
@@ -44,12 +48,12 @@ func (r *ResponseClaimMxEdge) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "magic")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "magic")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Id = *temp.Id
     r.Magic = *temp.Magic
     return nil

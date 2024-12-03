@@ -10,7 +10,7 @@ type TunnelConfigsAutoProvision struct {
     Latlng               *LatLng                         `json:"latlng,omitempty"`
     Primary              *TunnelConfigsAutoProvisionNode `json:"primary,omitempty"`
     Secondary            *TunnelConfigsAutoProvisionNode `json:"secondary,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelConfigsAutoProvision.
@@ -18,13 +18,17 @@ type TunnelConfigsAutoProvision struct {
 func (t TunnelConfigsAutoProvision) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "enable", "latlng", "primary", "secondary"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TunnelConfigsAutoProvision object to a map representation for JSON marshaling.
 func (t TunnelConfigsAutoProvision) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.Enable != nil {
         structMap["enable"] = t.Enable
     }
@@ -48,12 +52,12 @@ func (t *TunnelConfigsAutoProvision) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enable", "latlng", "primary", "secondary")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enable", "latlng", "primary", "secondary")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.Enable = temp.Enable
     t.Latlng = temp.Latlng
     t.Primary = temp.Primary

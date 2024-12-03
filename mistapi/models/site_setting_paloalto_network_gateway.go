@@ -6,9 +6,9 @@ import (
 
 // SiteSettingPaloaltoNetworkGateway represents a SiteSettingPaloaltoNetworkGateway struct.
 type SiteSettingPaloaltoNetworkGateway struct {
-    ApiKey               *string        `json:"api_key,omitempty"`
-    ApiUrl               *string        `json:"api_url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ApiKey               *string                `json:"api_key,omitempty"`
+    ApiUrl               *string                `json:"api_url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingPaloaltoNetworkGateway.
@@ -16,13 +16,17 @@ type SiteSettingPaloaltoNetworkGateway struct {
 func (s SiteSettingPaloaltoNetworkGateway) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "api_key", "api_url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingPaloaltoNetworkGateway object to a map representation for JSON marshaling.
 func (s SiteSettingPaloaltoNetworkGateway) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ApiKey != nil {
         structMap["api_key"] = s.ApiKey
     }
@@ -40,12 +44,12 @@ func (s *SiteSettingPaloaltoNetworkGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "api_key", "api_url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "api_key", "api_url")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ApiKey = temp.ApiKey
     s.ApiUrl = temp.ApiUrl
     return nil

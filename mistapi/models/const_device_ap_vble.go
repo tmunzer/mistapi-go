@@ -6,10 +6,10 @@ import (
 
 // ConstDeviceApVble represents a ConstDeviceApVble struct.
 type ConstDeviceApVble struct {
-    BeaconRate           *int           `json:"beacon_rate,omitempty"`
-    Beams                *int           `json:"beams,omitempty"`
-    Power                *int           `json:"power,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    BeaconRate           *int                   `json:"beacon_rate,omitempty"`
+    Beams                *int                   `json:"beams,omitempty"`
+    Power                *int                   `json:"power,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceApVble.
@@ -17,13 +17,17 @@ type ConstDeviceApVble struct {
 func (c ConstDeviceApVble) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "beacon_rate", "beams", "power"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstDeviceApVble object to a map representation for JSON marshaling.
 func (c ConstDeviceApVble) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.BeaconRate != nil {
         structMap["beacon_rate"] = c.BeaconRate
     }
@@ -44,12 +48,12 @@ func (c *ConstDeviceApVble) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "beacon_rate", "beams", "power")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "beacon_rate", "beams", "power")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.BeaconRate = temp.BeaconRate
     c.Beams = temp.Beams
     c.Power = temp.Power

@@ -11,22 +11,22 @@ import (
 // Unconnected clients statistics
 type StatsUnconnectedClient struct {
     // mac address of the AP that heard the client
-    ApMac                string              `json:"ap_mac"`
+    ApMac                string                 `json:"ap_mac"`
     // last seen timestamp
-    LastSeen             float64             `json:"last_seen"`
+    LastSeen             float64                `json:"last_seen"`
     // mac address of the (unconnected) client
-    Mac                  string              `json:"mac"`
+    Mac                  string                 `json:"mac"`
     // device manufacture, through fingerprinting or OUI
-    Manufacture          string              `json:"manufacture"`
+    Manufacture          string                 `json:"manufacture"`
     // map_id of the client (if known), or null
-    MapId                Optional[uuid.UUID] `json:"map_id"`
+    MapId                Optional[uuid.UUID]    `json:"map_id"`
     // client RSSI observered by the AP that heard the client (in dBm)
-    Rssi                 int                 `json:"rssi"`
+    Rssi                 int                    `json:"rssi"`
     // x (in pixels) of user location on the map (if known)
-    X                    *float64            `json:"x,omitempty"`
+    X                    *float64               `json:"x,omitempty"`
     // y (in pixels) of user location on the map (if known)
-    Y                    float64             `json:"y"`
-    AdditionalProperties map[string]any      `json:"_"`
+    Y                    float64                `json:"y"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsUnconnectedClient.
@@ -34,13 +34,17 @@ type StatsUnconnectedClient struct {
 func (s StatsUnconnectedClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ap_mac", "last_seen", "mac", "manufacture", "map_id", "rssi", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsUnconnectedClient object to a map representation for JSON marshaling.
 func (s StatsUnconnectedClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["ap_mac"] = s.ApMac
     structMap["last_seen"] = s.LastSeen
     structMap["mac"] = s.Mac
@@ -72,12 +76,12 @@ func (s *StatsUnconnectedClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "last_seen", "mac", "manufacture", "map_id", "rssi", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "last_seen", "mac", "manufacture", "map_id", "rssi", "x", "y")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ApMac = *temp.ApMac
     s.LastSeen = *temp.LastSeen
     s.Mac = *temp.Mac

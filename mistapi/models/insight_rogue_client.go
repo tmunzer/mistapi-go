@@ -8,14 +8,14 @@ import (
 
 // InsightRogueClient represents a InsightRogueClient struct.
 type InsightRogueClient struct {
-    Annotation           string         `json:"annotation"`
-    ApMac                string         `json:"ap_mac"`
-    AvgRssi              float64        `json:"avg_rssi"`
-    Band                 string         `json:"band"`
-    Bssid                string         `json:"bssid"`
-    ClientMac            string         `json:"client_mac"`
-    NumAps               int            `json:"num_aps"`
-    AdditionalProperties map[string]any `json:"_"`
+    Annotation           string                 `json:"annotation"`
+    ApMac                string                 `json:"ap_mac"`
+    AvgRssi              float64                `json:"avg_rssi"`
+    Band                 string                 `json:"band"`
+    Bssid                string                 `json:"bssid"`
+    ClientMac            string                 `json:"client_mac"`
+    NumAps               int                    `json:"num_aps"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for InsightRogueClient.
@@ -23,13 +23,17 @@ type InsightRogueClient struct {
 func (i InsightRogueClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "annotation", "ap_mac", "avg_rssi", "band", "bssid", "client_mac", "num_aps"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the InsightRogueClient object to a map representation for JSON marshaling.
 func (i InsightRogueClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     structMap["annotation"] = i.Annotation
     structMap["ap_mac"] = i.ApMac
     structMap["avg_rssi"] = i.AvgRssi
@@ -52,12 +56,12 @@ func (i *InsightRogueClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "annotation", "ap_mac", "avg_rssi", "band", "bssid", "client_mac", "num_aps")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "annotation", "ap_mac", "avg_rssi", "band", "bssid", "client_mac", "num_aps")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.Annotation = *temp.Annotation
     i.ApMac = *temp.ApMac
     i.AvgRssi = *temp.AvgRssi

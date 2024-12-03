@@ -29,7 +29,7 @@ type ApRadioBand6 struct {
     Preamble             *RadioBandPreambleEnum    `json:"preamble,omitempty"`
     // for 6GHz Only, standard-power operation, AFC (Automatic Frequency Coordination) will be performed and we'll fallback to Low Power Indoor if AFC failed
     StandardPower        *bool                     `json:"standard_power,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadioBand6.
@@ -37,13 +37,17 @@ type ApRadioBand6 struct {
 func (a ApRadioBand6) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "allow_rrm_disable", "ant_gain", "antenna_mode", "bandwidth", "channel", "channels", "disabled", "power", "power_max", "power_min", "preamble", "standard_power"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApRadioBand6 object to a map representation for JSON marshaling.
 func (a ApRadioBand6) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.AllowRrmDisable != nil {
         structMap["allow_rrm_disable"] = a.AllowRrmDisable
     }
@@ -115,12 +119,12 @@ func (a *ApRadioBand6) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "allow_rrm_disable", "ant_gain", "antenna_mode", "bandwidth", "channel", "channels", "disabled", "power", "power_max", "power_min", "preamble", "standard_power")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_rrm_disable", "ant_gain", "antenna_mode", "bandwidth", "channel", "channels", "disabled", "power", "power_max", "power_min", "preamble", "standard_power")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.AllowRrmDisable = temp.AllowRrmDisable
     a.AntGain = temp.AntGain
     a.AntennaMode = temp.AntennaMode

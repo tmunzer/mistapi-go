@@ -8,23 +8,23 @@ import (
 // OAuth linked Mobicontrol apps account details
 type AccountMobicontrolInfo struct {
     // customer account client id
-    AccountId            *string        `json:"account_id,omitempty"`
+    AccountId            *string                `json:"account_id,omitempty"`
     // Linked MobiControl Client Id
-    ClientId             *string        `json:"client_id,omitempty"`
+    ClientId             *string                `json:"client_id,omitempty"`
     // This error is provided when the MobiControl account fails to fetch token/data
-    Error                *string        `json:"error,omitempty"`
+    Error                *string                `json:"error,omitempty"`
     // Linked MobiControl Instance URL
-    InstanceUrl          *string        `json:"instance_url,omitempty"`
+    InstanceUrl          *string                `json:"instance_url,omitempty"`
     // Is the last data pull for MobiControl account is successful or not
-    LastStatus           *string        `json:"last_status,omitempty"`
+    LastStatus           *string                `json:"last_status,omitempty"`
     // Last data pull timestamp, background jobs that pull MobiControl account data
-    LastSync             *int64         `json:"last_sync,omitempty"`
+    LastSync             *int64                 `json:"last_sync,omitempty"`
     // First name of the user who linked the MobiControl account
-    LinkedBy             *string        `json:"linked_by,omitempty"`
-    LinkedTimestamp      *int64         `json:"linked_timestamp,omitempty"`
+    LinkedBy             *string                `json:"linked_by,omitempty"`
+    LinkedTimestamp      *int64                 `json:"linked_timestamp,omitempty"`
     // Name of the company whose MobiControl account mist has subscribed to
-    Name                 *string        `json:"name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 *string                `json:"name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountMobicontrolInfo.
@@ -32,13 +32,17 @@ type AccountMobicontrolInfo struct {
 func (a AccountMobicontrolInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "account_id", "client_id", "error", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AccountMobicontrolInfo object to a map representation for JSON marshaling.
 func (a AccountMobicontrolInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.AccountId != nil {
         structMap["account_id"] = a.AccountId
     }
@@ -77,12 +81,12 @@ func (a *AccountMobicontrolInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "account_id", "client_id", "error", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "client_id", "error", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "name")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.AccountId = temp.AccountId
     a.ClientId = temp.ClientId
     a.Error = temp.Error

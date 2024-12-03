@@ -8,16 +8,16 @@ import (
 
 // UtilsServicePing represents a UtilsServicePing struct.
 type UtilsServicePing struct {
-    Count                *int               `json:"count,omitempty"`
-    Host                 string             `json:"host"`
+    Count                *int                   `json:"count,omitempty"`
+    Host                 string                 `json:"host"`
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // ping packet takes the same path as the service
-    Service              string             `json:"service"`
-    Size                 *int               `json:"size,omitempty"`
+    Service              string                 `json:"service"`
+    Size                 *int                   `json:"size,omitempty"`
     // tenant context in which the packet is sent
-    Tenant               *string            `json:"tenant,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Tenant               *string                `json:"tenant,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsServicePing.
@@ -25,13 +25,17 @@ type UtilsServicePing struct {
 func (u UtilsServicePing) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "count", "host", "node", "service", "size", "tenant"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsServicePing object to a map representation for JSON marshaling.
 func (u UtilsServicePing) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Count != nil {
         structMap["count"] = u.Count
     }
@@ -61,12 +65,12 @@ func (u *UtilsServicePing) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "count", "host", "node", "service", "size", "tenant")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "count", "host", "node", "service", "size", "tenant")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Count = temp.Count
     u.Host = *temp.Host
     u.Node = temp.Node

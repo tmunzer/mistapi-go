@@ -307,9 +307,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SynthetictestRadiusServer{
-    Password: "string",
-    Profile:  models.ToPointer("dot1x"),
-    User:     "string",
+    Password:             "string",
+    Profile:              models.ToPointer("dot1x"),
+    User:                 "string",
 }
 
 apiResponse, err := sitesSyntheticTests.StartSiteSwitchRadiusSyntheticTest(ctx, siteId, deviceId, &body)
@@ -369,20 +369,20 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SynthetictestDevice{
-    Host:              models.ToPointer("www.example.com"),
-    Hostname:          models.ToPointer("google.com\""),
-    Ip:                models.ToPointer("192.168.3.5"),
-    Password:          models.ToPointer("test123"),
-    PingCount:         models.ToPointer(10),
-    PingDetails:       models.ToPointer(false),
-    PingSize:          models.ToPointer(56),
-    PortId:            models.ToPointer("wan0"),
-    Protocol:          models.ToPointer(models.SynthetictestDeviceProtocolEnum("ping+traceroute")),
-    Tenant:            models.ToPointer("lan_network1"),
-    TracerouteUdpPort: models.ToPointer(33434),
-    Type:              models.SynthetictestTypeEnum("radius"),
-    Url:               models.ToPointer("https://www.example.com"),
-    Username:          models.ToPointer("user"),
+    Host:                 models.ToPointer("www.example.com"),
+    Hostname:             models.ToPointer("google.com\""),
+    Ip:                   models.ToPointer("192.168.3.5"),
+    Password:             models.ToPointer("test123"),
+    PingCount:            models.ToPointer(10),
+    PingDetails:          models.ToPointer(false),
+    PingSize:             models.ToPointer(56),
+    PortId:               models.ToPointer("wan0"),
+    Protocol:             models.ToPointer(models.SynthetictestDeviceProtocolEnum("ping+traceroute")),
+    Tenant:               models.ToPointer("lan_network1"),
+    TracerouteUdpPort:    models.ToPointer(33434),
+    Type:                 models.SynthetictestTypeEnum("radius"),
+    Url:                  models.ToPointer("https://www.example.com"),
+    Username:             models.ToPointer("user"),
 }
 
 resp, err := sitesSyntheticTests.TriggerSiteDeviceSyntheticTest(ctx, siteId, deviceId, &body)
@@ -436,7 +436,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Synthetictest{
-    Email: models.ToPointer("test@mist.com"),
+    Email:                models.ToPointer("test@mist.com"),
 }
 
 apiResponse, err := sitesSyntheticTests.TriggerSiteSyntheticTest(ctx, siteId, &body)

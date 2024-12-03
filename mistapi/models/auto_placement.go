@@ -8,10 +8,10 @@ import (
 type AutoPlacement struct {
     // * If `force_collection`==`false`: the API Iattempts to start localization with existing data.
     // * If `force_collection`==`true`: maintenance the API attempts to start orchestration.
-    ForceCollection      *bool          `json:"force_collection,omitempty"`
+    ForceCollection      *bool                  `json:"force_collection,omitempty"`
     // list of device macs
-    Macs                 []string       `json:"macs,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Macs                 []string               `json:"macs,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AutoPlacement.
@@ -19,13 +19,17 @@ type AutoPlacement struct {
 func (a AutoPlacement) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "force_collection", "macs"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AutoPlacement object to a map representation for JSON marshaling.
 func (a AutoPlacement) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.ForceCollection != nil {
         structMap["force_collection"] = a.ForceCollection
     }
@@ -43,12 +47,12 @@ func (a *AutoPlacement) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "force_collection", "macs")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "force_collection", "macs")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.ForceCollection = temp.ForceCollection
     a.Macs = temp.Macs
     return nil

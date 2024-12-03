@@ -3,6 +3,8 @@
 
 Asset
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Asset`
@@ -21,6 +23,7 @@ Asset
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `TagId` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,7 +37,11 @@ Asset
   "created_time": 89.5,
   "for_site": false,
   "map_id": "0000057c-0000-0000-0000-000000000000",
-  "modified_time": 245.46
+  "modified_time": 245.46,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

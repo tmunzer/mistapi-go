@@ -3,6 +3,8 @@
 
 ap events
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `EventsDeviceAp`
@@ -22,6 +24,7 @@ ap events
 | `Text` | `*string` | Optional | - |
 | `Timestamp` | `float64` | Required | - |
 | `Type` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,7 +37,11 @@ ap events
   "apfw": "apfw0",
   "count": 140,
   "device_type": "device_type6",
-  "mac": "mac8"
+  "mac": "mac8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

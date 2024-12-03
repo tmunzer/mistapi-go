@@ -45,7 +45,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 sdkclientId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NameString{
-    Name: models.ToPointer("John Smith"),
+    Name:                 models.ToPointer("John Smith"),
 }
 
 resp, err := orgsClientsSDK.UpdateSdkClient(ctx, orgId, sdkclientId, &body)

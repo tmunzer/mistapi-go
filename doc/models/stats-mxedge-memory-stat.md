@@ -3,6 +3,8 @@
 
 Memory usage
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsMxedgeMemoryStat`
@@ -22,6 +24,7 @@ Memory usage
 | `SwapTotal` | `*int` | Optional | The total amount of swap available, in kibibytes. |
 | `Total` | `*int64` | Optional | Total amount of usable RAM, in kibibytes, which is physical RAM minus a number of reserved bits and the kernel binary code |
 | `Usage` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,7 +40,11 @@ Memory usage
   "swap_free": 1022357504,
   "swap_total": 1022357504,
   "total": 8365957120,
-  "usage": 48
+  "usage": 48,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

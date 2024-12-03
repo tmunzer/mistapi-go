@@ -9,7 +9,7 @@ type ResponseTroubleshoot struct {
     End                  *int                       `json:"end,omitempty"`
     Results              []ResponseTroubleshootItem `json:"results,omitempty"`
     Start                *int                       `json:"start,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseTroubleshoot.
@@ -17,13 +17,17 @@ type ResponseTroubleshoot struct {
 func (r ResponseTroubleshoot) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "end", "results", "start"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseTroubleshoot object to a map representation for JSON marshaling.
 func (r ResponseTroubleshoot) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.End != nil {
         structMap["end"] = r.End
     }
@@ -44,12 +48,12 @@ func (r *ResponseTroubleshoot) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "results", "start")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "results", "start")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.End = temp.End
     r.Results = temp.Results
     r.Start = temp.Start

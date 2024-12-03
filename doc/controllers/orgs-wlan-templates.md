@@ -54,7 +54,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 templateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NameString{
-    Name: models.ToPointer("Cloned"),
+    Name:                 models.ToPointer("Cloned"),
 }
 
 apiResponse, err := orgsWLANTemplates.CloneOrgTemplate(ctx, orgId, templateId, &body)

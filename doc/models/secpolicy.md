@@ -3,6 +3,8 @@
 
 Security Policy is designed to audit / catch discripancies between “what’s intended to be running” versus “what’s actually running” in a network. Many big organizations have separated Security and IT team (for good reasons). Each site can be assigned a security policy. Whenever an AP is provisioned, the configuration will be checked against the security policy. Any violations will be flagged in Device Config History where you can search for the when and where the violation occurs.
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Secpolicy`
@@ -18,6 +20,7 @@ Security Policy is designed to audit / catch discripancies between “what’s i
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Wlans` | [`[]models.Wlan`](../../doc/models/wlan.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,7 +31,11 @@ Security Policy is designed to audit / catch discripancies between “what’s i
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "created_time": 67.52,
   "modified_time": 11.44,
-  "name": "name2"
+  "name": "name2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

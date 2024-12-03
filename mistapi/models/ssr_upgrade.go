@@ -16,7 +16,7 @@ type SsrUpgrade struct {
     StartTime            *int                   `json:"start_time,omitempty"`
     // 128T firmware version to upgrade (e.g. 5.3.0-93)
     Version              string                 `json:"version"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrUpgrade.
@@ -24,13 +24,17 @@ type SsrUpgrade struct {
 func (s SsrUpgrade) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "channel", "reboot_at", "start_time", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SsrUpgrade object to a map representation for JSON marshaling.
 func (s SsrUpgrade) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Channel != nil {
         structMap["channel"] = s.Channel
     }
@@ -56,12 +60,12 @@ func (s *SsrUpgrade) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "channel", "reboot_at", "start_time", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "reboot_at", "start_time", "version")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Channel = temp.Channel
     s.RebootAt = temp.RebootAt
     s.StartTime = temp.StartTime

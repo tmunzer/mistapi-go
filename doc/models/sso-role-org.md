@@ -3,6 +3,8 @@
 
 SSO Role response
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SsoRoleOrg`
@@ -20,6 +22,7 @@ SSO Role response
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Privileges` | [`[]models.PrivilegeOrg`](../../doc/models/privilege-org.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,13 +38,21 @@ SSO Role response
       "role": "admin",
       "scope": "site",
       "site_id": "00002366-0000-0000-0000-000000000000",
-      "sitegroup_id": "000006ce-0000-0000-0000-000000000000"
+      "sitegroup_id": "000006ce-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "created_time": 76.64,
   "for_site": false,
-  "modified_time": 2.32
+  "modified_time": 2.32,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

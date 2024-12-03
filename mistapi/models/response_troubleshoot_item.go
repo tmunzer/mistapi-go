@@ -6,11 +6,11 @@ import (
 
 // ResponseTroubleshootItem represents a ResponseTroubleshootItem struct.
 type ResponseTroubleshootItem struct {
-    Category             *string        `json:"category,omitempty"`
-    Reason               *string        `json:"reason,omitempty"`
-    Recommendation       *string        `json:"recommendation,omitempty"`
-    Text                 *string        `json:"text,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Category             *string                `json:"category,omitempty"`
+    Reason               *string                `json:"reason,omitempty"`
+    Recommendation       *string                `json:"recommendation,omitempty"`
+    Text                 *string                `json:"text,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseTroubleshootItem.
@@ -18,13 +18,17 @@ type ResponseTroubleshootItem struct {
 func (r ResponseTroubleshootItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "category", "reason", "recommendation", "text"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseTroubleshootItem object to a map representation for JSON marshaling.
 func (r ResponseTroubleshootItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Category != nil {
         structMap["category"] = r.Category
     }
@@ -48,12 +52,12 @@ func (r *ResponseTroubleshootItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "category", "reason", "recommendation", "text")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "category", "reason", "recommendation", "text")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Category = temp.Category
     r.Reason = temp.Reason
     r.Recommendation = temp.Recommendation

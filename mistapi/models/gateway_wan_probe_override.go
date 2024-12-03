@@ -10,7 +10,7 @@ type GatewayWanProbeOverride struct {
     Ips                  []string                                 `json:"ips,omitempty"`
     // enum: `broadband`, `lte`
     ProbeProfile         *GatewayWanProbeOverrideProbeProfileEnum `json:"probe_profile,omitempty"`
-    AdditionalProperties map[string]any                           `json:"_"`
+    AdditionalProperties map[string]interface{}                   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayWanProbeOverride.
@@ -18,13 +18,17 @@ type GatewayWanProbeOverride struct {
 func (g GatewayWanProbeOverride) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "ips", "probe_profile"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayWanProbeOverride object to a map representation for JSON marshaling.
 func (g GatewayWanProbeOverride) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Ips != nil {
         structMap["ips"] = g.Ips
     }
@@ -42,12 +46,12 @@ func (g *GatewayWanProbeOverride) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ips", "probe_profile")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ips", "probe_profile")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Ips = temp.Ips
     g.ProbeProfile = temp.ProbeProfile
     return nil

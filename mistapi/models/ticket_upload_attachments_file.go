@@ -7,8 +7,8 @@ import (
 // TicketUploadAttachmentsFile represents a TicketUploadAttachmentsFile struct.
 type TicketUploadAttachmentsFile struct {
     // ekahau or ibwave file
-    File                 *[]byte        `json:"file,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    File                 *[]byte                `json:"file,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TicketUploadAttachmentsFile.
@@ -16,13 +16,17 @@ type TicketUploadAttachmentsFile struct {
 func (t TicketUploadAttachmentsFile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "file"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TicketUploadAttachmentsFile object to a map representation for JSON marshaling.
 func (t TicketUploadAttachmentsFile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.File != nil {
         structMap["file"] = t.File
     }
@@ -37,12 +41,12 @@ func (t *TicketUploadAttachmentsFile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "file")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "file")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.File = temp.File
     return nil
 }

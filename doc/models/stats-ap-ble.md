@@ -1,6 +1,8 @@
 
 # Stats Ap Ble
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsApBle`
@@ -32,6 +34,7 @@
 | `TxPkts` | `models.Optional[int]` | Optional | - |
 | `TxResets` | `models.Optional[int]` | Optional | resets due to tx hung |
 | `Uuid` | `models.Optional[uuid.UUID]` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -58,7 +61,11 @@
   "tx_pkts": 135135135,
   "tx_resets": 0,
   "uuid": "ada72f8f-1643-e5c6-94db-f2a5636f1a64",
-  "beacon_enabled": false
+  "beacon_enabled": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

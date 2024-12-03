@@ -9,40 +9,40 @@ import (
 // Beacon
 type Beacon struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64        `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // Eddystone-UID instance (6 bytes) in hexstring format
-    EddystoneInstance    *string         `json:"eddystone_instance,omitempty"`
+    EddystoneInstance    *string                `json:"eddystone_instance,omitempty"`
     // Eddystone-UID namespace (10 bytes) in hexstring format
-    EddystoneNamespace   *string         `json:"eddystone_namespace,omitempty"`
+    EddystoneNamespace   *string                `json:"eddystone_namespace,omitempty"`
     // Eddystone-URL url
-    EddystoneUrl         *string         `json:"eddystone_url,omitempty"`
-    ForSite              *bool           `json:"for_site,omitempty"`
+    EddystoneUrl         *string                `json:"eddystone_url,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // bluetooth tag major
-    IbeaconMajor         *int            `json:"ibeacon_major,omitempty"`
+    IbeaconMajor         *int                   `json:"ibeacon_major,omitempty"`
     // bluetooth tag minor
-    IbeaconMinor         *int            `json:"ibeacon_minor,omitempty"`
+    IbeaconMinor         *int                   `json:"ibeacon_minor,omitempty"`
     // bluetooth tag UUID
-    IbeaconUuid          *uuid.UUID      `json:"ibeacon_uuid,omitempty"`
+    IbeaconUuid          *uuid.UUID             `json:"ibeacon_uuid,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID      `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // optiona, MAC of the beacon, currently used only to identify battery voltage
-    Mac                  *string         `json:"mac,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
     // map where the device belongs to
-    MapId                *uuid.UUID      `json:"map_id,omitempty"`
-    ModifiedTime         *float64        `json:"modified_time,omitempty"`
+    MapId                *uuid.UUID             `json:"map_id,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // name / label of the device
-    Name                 *string         `json:"name,omitempty"`
-    OrgId                *uuid.UUID      `json:"org_id,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // in dBm
-    Power                *int            `json:"power,omitempty"`
-    SiteId               *uuid.UUID      `json:"site_id,omitempty"`
+    Power                *int                   `json:"power,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // enum: `eddystone-uid`, `eddystone-url`, `ibeacon`
-    Type                 *BeaconTypeEnum `json:"type,omitempty"`
+    Type                 *BeaconTypeEnum        `json:"type,omitempty"`
     // x in pixel
-    X                    *float64        `json:"x,omitempty"`
+    X                    *float64               `json:"x,omitempty"`
     // y in pixel
-    Y                    *float64        `json:"y,omitempty"`
-    AdditionalProperties map[string]any  `json:"_"`
+    Y                    *float64               `json:"y,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Beacon.
@@ -50,13 +50,17 @@ type Beacon struct {
 func (b Beacon) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(b.AdditionalProperties,
+        "created_time", "eddystone_instance", "eddystone_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "id", "mac", "map_id", "modified_time", "name", "org_id", "power", "site_id", "type", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(b.toMap())
 }
 
 // toMap converts the Beacon object to a map representation for JSON marshaling.
 func (b Beacon) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, b.AdditionalProperties)
+    MergeAdditionalProperties(structMap, b.AdditionalProperties)
     if b.CreatedTime != nil {
         structMap["created_time"] = b.CreatedTime
     }
@@ -125,12 +129,12 @@ func (b *Beacon) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "eddystone_instance", "eddystone_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "id", "mac", "map_id", "modified_time", "name", "org_id", "power", "site_id", "type", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "eddystone_instance", "eddystone_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "id", "mac", "map_id", "modified_time", "name", "org_id", "power", "site_id", "type", "x", "y")
     if err != nil {
     	return err
     }
-    
     b.AdditionalProperties = additionalProperties
+    
     b.CreatedTime = temp.CreatedTime
     b.EddystoneInstance = temp.EddystoneInstance
     b.EddystoneNamespace = temp.EddystoneNamespace

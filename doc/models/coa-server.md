@@ -3,6 +3,8 @@
 
 CoA Server
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `CoaServer`
@@ -16,6 +18,7 @@ CoA Server
 | `Ip` | `string` | Required | - |
 | `Port` | `*int` | Optional | **Default**: `3799`<br>**Constraints**: `>= 1`, `<= 65535` |
 | `Secret` | `string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@ CoA Server
   "enabled": false,
   "ip": "1.2.3.4",
   "port": 3799,
-  "secret": "testing456"
+  "secret": "testing456",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -14,21 +14,21 @@ import (
 // returned in the POST API Response (only in the afterward GET)
 type OrgApitoken struct {
     // email of the token creator / null if creator is deleted
-    CreatedBy            Optional[string]  `json:"created_by"`
+    CreatedBy            Optional[string]       `json:"created_by"`
     // when the object has been created, in epoch
-    CreatedTime          *float64          `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID        `json:"id,omitempty"`
-    Key                  *string           `json:"key,omitempty"`
-    LastUsed             Optional[float64] `json:"last_used"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Key                  *string                `json:"key,omitempty"`
+    LastUsed             Optional[float64]      `json:"last_used"`
     // name of the token
-    Name                 string            `json:"name"`
-    OrgId                *uuid.UUID        `json:"org_id,omitempty"`
+    Name                 string                 `json:"name"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // list of privileges the token has on the orgs/sites
-    Privileges           []PrivilegeOrg    `json:"privileges,omitempty"`
+    Privileges           []PrivilegeOrg         `json:"privileges,omitempty"`
     // list of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified, cannot be changed once the API Token is created.
-    SrcIps               []string          `json:"src_ips,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    SrcIps               []string               `json:"src_ips,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgApitoken.
@@ -36,13 +36,17 @@ type OrgApitoken struct {
 func (o OrgApitoken) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "created_by", "created_time", "id", "key", "last_used", "name", "org_id", "privileges", "src_ips"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgApitoken object to a map representation for JSON marshaling.
 func (o OrgApitoken) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.CreatedBy.IsValueSet() {
         if o.CreatedBy.Value() != nil {
             structMap["created_by"] = o.CreatedBy.Value()
@@ -91,12 +95,12 @@ func (o *OrgApitoken) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_by", "created_time", "id", "key", "last_used", "name", "org_id", "privileges", "src_ips")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_by", "created_time", "id", "key", "last_used", "name", "org_id", "privileges", "src_ips")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.CreatedBy = temp.CreatedBy
     o.CreatedTime = temp.CreatedTime
     o.Id = temp.Id

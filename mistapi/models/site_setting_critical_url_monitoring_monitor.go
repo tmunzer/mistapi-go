@@ -6,9 +6,9 @@ import (
 
 // SiteSettingCriticalUrlMonitoringMonitor represents a SiteSettingCriticalUrlMonitoringMonitor struct.
 type SiteSettingCriticalUrlMonitoringMonitor struct {
-    Url                  *string             `json:"url,omitempty"`
-    VlanId               *VlanIdWithVariable `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any      `json:"_"`
+    Url                  *string                `json:"url,omitempty"`
+    VlanId               *VlanIdWithVariable    `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingCriticalUrlMonitoringMonitor.
@@ -16,13 +16,17 @@ type SiteSettingCriticalUrlMonitoringMonitor struct {
 func (s SiteSettingCriticalUrlMonitoringMonitor) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "url", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingCriticalUrlMonitoringMonitor object to a map representation for JSON marshaling.
 func (s SiteSettingCriticalUrlMonitoringMonitor) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Url != nil {
         structMap["url"] = s.Url
     }
@@ -40,12 +44,12 @@ func (s *SiteSettingCriticalUrlMonitoringMonitor) UnmarshalJSON(input []byte) er
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "url", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "url", "vlan_id")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Url = temp.Url
     s.VlanId = temp.VlanId
     return nil

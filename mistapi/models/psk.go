@@ -11,45 +11,45 @@ import (
 // PSK
 type Psk struct {
     // sso id for psk created from psk portal
-    AdminSsoId             *string        `json:"admin_sso_id,omitempty"`
+    AdminSsoId             *string                `json:"admin_sso_id,omitempty"`
     // when the object has been created, in epoch
-    CreatedTime            *float64       `json:"created_time,omitempty"`
+    CreatedTime            *float64               `json:"created_time,omitempty"`
     // email to send psk expiring notifications to
-    Email                  *string        `json:"email,omitempty"`
+    Email                  *string                `json:"email,omitempty"`
     // Expire time for this PSK key (epoch time in seconds). Default `null` (as no expiration)
-    ExpireTime             Optional[int]  `json:"expire_time"`
+    ExpireTime             Optional[int]          `json:"expire_time"`
     // Number of days before psk is expired. Used as to when to start sending reminder notification when the psk is about to expire
-    ExpiryNotificationTime *int           `json:"expiry_notification_time,omitempty"`
+    ExpiryNotificationTime *int                   `json:"expiry_notification_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                     *uuid.UUID     `json:"id,omitempty"`
+    Id                     *uuid.UUID             `json:"id,omitempty"`
     // if `usage`==`single`, the mac that this PSK ties to, empty if `auto-binding`
-    Mac                    *string        `json:"mac,omitempty"`
+    Mac                    *string                `json:"mac,omitempty"`
     // if `usage`==`macs`, this list contains N number of client mac addresses or mac patterns(11:22:*) or both. This list is capped at 5000
-    Macs                   []string       `json:"macs,omitempty"`
+    Macs                   []string               `json:"macs,omitempty"`
     // For Org PSK Only. Max concurrent users for this PSK key. Default is 0 (unlimited)
-    MaxUsage               *int           `json:"max_usage,omitempty"`
+    MaxUsage               *int                   `json:"max_usage,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime           *float64       `json:"modified_time,omitempty"`
-    Name                   string         `json:"name"`
-    Note                   *string        `json:"note,omitempty"`
+    ModifiedTime           *float64               `json:"modified_time,omitempty"`
+    Name                   string                 `json:"name"`
+    Note                   *string                `json:"note,omitempty"`
     // If set to true, reminder notification will be sent when psk is about to expire
-    NotifyExpiry           *bool          `json:"notify_expiry,omitempty"`
+    NotifyExpiry           *bool                  `json:"notify_expiry,omitempty"`
     // If set to true, notification will be sent when psk is created or edited
-    NotifyOnCreateOrEdit   *bool          `json:"notify_on_create_or_edit,omitempty"`
+    NotifyOnCreateOrEdit   *bool                  `json:"notify_on_create_or_edit,omitempty"`
     // previous passphrase of the PSK if it has been rotated
-    OldPassphrase          *string        `json:"old_passphrase,omitempty"`
-    OrgId                  *uuid.UUID     `json:"org_id,omitempty"`
+    OldPassphrase          *string                `json:"old_passphrase,omitempty"`
+    OrgId                  *uuid.UUID             `json:"org_id,omitempty"`
     // passphrase of the PSK (8-63 character or 64 in hex)
-    Passphrase             string         `json:"passphrase"`
-    Role                   *string        `json:"role,omitempty"`
-    SiteId                 *uuid.UUID     `json:"site_id,omitempty"`
+    Passphrase             string                 `json:"passphrase"`
+    Role                   *string                `json:"role,omitempty"`
+    SiteId                 *uuid.UUID             `json:"site_id,omitempty"`
     // SSID this PSK should be applicable to
-    Ssid                   string         `json:"ssid"`
+    Ssid                   string                 `json:"ssid"`
     // enum: `macs`, `multi`, `single`
-    Usage                  *PskUsageEnum  `json:"usage,omitempty"`
+    Usage                  *PskUsageEnum          `json:"usage,omitempty"`
     // VLAN for this PSK key
-    VlanId                 *PskVlanId     `json:"vlan_id,omitempty"`
-    AdditionalProperties   map[string]any `json:"_"`
+    VlanId                 *PskVlanId             `json:"vlan_id,omitempty"`
+    AdditionalProperties   map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Psk.
@@ -57,13 +57,17 @@ type Psk struct {
 func (p Psk) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "admin_sso_id", "created_time", "email", "expire_time", "expiry_notification_time", "id", "mac", "macs", "max_usage", "modified_time", "name", "note", "notify_expiry", "notify_on_create_or_edit", "old_passphrase", "org_id", "passphrase", "role", "site_id", "ssid", "usage", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the Psk object to a map representation for JSON marshaling.
 func (p Psk) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.AdminSsoId != nil {
         structMap["admin_sso_id"] = p.AdminSsoId
     }
@@ -143,12 +147,12 @@ func (p *Psk) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "admin_sso_id", "created_time", "email", "expire_time", "expiry_notification_time", "id", "mac", "macs", "max_usage", "modified_time", "name", "note", "notify_expiry", "notify_on_create_or_edit", "old_passphrase", "org_id", "passphrase", "role", "site_id", "ssid", "usage", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_sso_id", "created_time", "email", "expire_time", "expiry_notification_time", "id", "mac", "macs", "max_usage", "modified_time", "name", "note", "notify_expiry", "notify_on_create_or_edit", "old_passphrase", "org_id", "passphrase", "role", "site_id", "ssid", "usage", "vlan_id")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.AdminSsoId = temp.AdminSsoId
     p.CreatedTime = temp.CreatedTime
     p.Email = temp.Email

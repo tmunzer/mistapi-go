@@ -3,6 +3,8 @@
 
 Site Settings
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteSetting`
@@ -13,7 +15,7 @@ Site Settings
 |  --- | --- | --- | --- |
 | `AclPolicies` | [`[]models.AclPolicy`](../../doc/models/acl-policy.md) | Optional | - |
 | `AclTags` | [`map[string]models.AclTag`](../../doc/models/acl-tag.md) | Optional | ACL Tags to identify traffic source or destination. Key name is the tag name |
-| `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
+| `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
 | `Analytic` | [`*models.SiteSettingAnalytic`](../../doc/models/site-setting-analytic.md) | Optional | - |
 | `ApMatching` | [`*models.SiteSettingApMatching`](../../doc/models/site-setting-ap-matching.md) | Optional | - |
 | `ApPortConfig` | [`*models.SiteSettingApPortConfig`](../../doc/models/site-setting-ap-port-config.md) | Optional | - |
@@ -38,7 +40,7 @@ Site Settings
 | `Flags` | `map[string]string` | Optional | name/val pair objects for location engine to use |
 | `ForSite` | `*bool` | Optional | - |
 | `Gateway` | [`*models.GatewayTemplate`](../../doc/models/gateway-template.md) | Optional | Gateway Template is applied to a site for gateway(s) in a site. |
-| `GatewayAdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
+| `GatewayAdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
 | `GatewayMgmt` | [`*models.SiteSettingGatewayMgmt`](../../doc/models/site-setting-gateway-mgmt.md) | Optional | Gateway Site settings |
 | `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
@@ -74,7 +76,7 @@ Site Settings
 | `Ssr` | [`*models.SiteSettingSsr`](../../doc/models/site-setting-ssr.md) | Optional | - |
 | `StatusPortal` | [`*models.SiteSettingStatusPortal`](../../doc/models/site-setting-status-portal.md) | Optional | - |
 | `Switch` | [`*models.NetworkTemplate`](../../doc/models/network-template.md) | Optional | Network Template |
-| `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | Switch template |
+| `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | defines custom switch configuration based on different criterias |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
 | `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `SyntheticTest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
@@ -96,6 +98,7 @@ Site Settings
 | `Wifi` | [`*models.SiteWifi`](../../doc/models/site-wifi.md) | Optional | Wi-Fi site settings |
 | `WiredVna` | [`*models.SiteSettingWiredVna`](../../doc/models/site-setting-wired-vna.md) | Optional | - |
 | `ZoneOccupancyAlert` | [`*models.SiteZoneOccupancyAlert`](../../doc/models/site-zone-occupancy-alert.md) | Optional | Zone Occupancy alert site settings |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -143,14 +146,22 @@ Site Settings
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0"
+          "dst_tag": "dst_tag0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "acl_tags": {
@@ -164,10 +175,18 @@ Site Settings
       "specs": [
         {
           "port_range": "port_range8",
-          "protocol": "protocol6"
+          "protocol": "protocol6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
-      "type": "dynamic_gbp"
+      "type": "dynamic_gbp",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key1": {
       "gbp_tag": 14,
@@ -179,10 +198,18 @@ Site Settings
       "specs": [
         {
           "port_range": "port_range8",
-          "protocol": "protocol6"
+          "protocol": "protocol6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
-      "type": "dynamic_gbp"
+      "type": "dynamic_gbp",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key2": {
       "gbp_tag": 14,
@@ -194,10 +221,18 @@ Site Settings
       "specs": [
         {
           "port_range": "port_range8",
-          "protocol": "protocol6"
+          "protocol": "protocol6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
-      "type": "dynamic_gbp"
+      "type": "dynamic_gbp",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "additional_config_cmds": [
@@ -206,7 +241,11 @@ Site Settings
     "additional_config_cmds2"
   ],
   "analytic": {
-    "enabled": false
+    "enabled": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "ap_matching": {
     "enabled": false,
@@ -223,11 +262,19 @@ Site Settings
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key1": {
             "disabled": false,
@@ -237,12 +284,24 @@ Site Settings
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
+        },
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
         }
       },
       {
@@ -257,11 +316,19 @@ Site Settings
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key1": {
             "disabled": false,
@@ -271,12 +338,24 @@ Site Settings
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
+        },
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
         }
       },
       {
@@ -291,11 +370,19 @@ Site Settings
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key1": {
             "disabled": false,
@@ -305,15 +392,35 @@ Site Settings
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
+        },
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
         }
       }
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

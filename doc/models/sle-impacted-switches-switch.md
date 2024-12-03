@@ -1,6 +1,8 @@
 
 # Sle Impacted Switches Switch
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SleImpactedSwitchesSwitch`
@@ -17,6 +19,7 @@
 | `SwitchModel` | `*string` | Optional | - |
 | `SwitchVersion` | `*string` | Optional | - |
 | `Total` | `*float64` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,7 +33,11 @@
     "interface8"
   ],
   "name": "name4",
-  "switch_mac": "switch_mac2"
+  "switch_mac": "switch_mac2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

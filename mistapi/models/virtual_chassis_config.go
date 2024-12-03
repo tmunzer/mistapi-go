@@ -11,7 +11,7 @@ type VirtualChassisConfig struct {
     Members              []VirtualChassisConfigMember `json:"members,omitempty"`
     // To create the Virtual Chassis in Pre-Provisioned mode
     Preprovisioned       *bool                        `json:"preprovisioned,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VirtualChassisConfig.
@@ -19,13 +19,17 @@ type VirtualChassisConfig struct {
 func (v VirtualChassisConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "locating", "members", "preprovisioned"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VirtualChassisConfig object to a map representation for JSON marshaling.
 func (v VirtualChassisConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.Locating != nil {
         structMap["locating"] = v.Locating
     }
@@ -46,12 +50,12 @@ func (v *VirtualChassisConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "locating", "members", "preprovisioned")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "locating", "members", "preprovisioned")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.Locating = temp.Locating
     v.Members = temp.Members
     v.Preprovisioned = temp.Preprovisioned

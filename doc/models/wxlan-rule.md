@@ -3,6 +3,8 @@
 
 WXlan
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WxlanRule`
@@ -27,6 +29,7 @@ WXlan
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SrcWxtags` | `[]string` | Required | List of WxTag UUID to determine if this rule would match |
 | `TemplateId` | `*uuid.UUID` | Optional | Only for Org Level WxRule |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -63,7 +66,11 @@ WXlan
     "apply_tags0",
     "apply_tags1"
   ],
-  "created_time": 145.62
+  "created_time": 145.62,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

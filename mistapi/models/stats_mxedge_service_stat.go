@@ -7,18 +7,18 @@ import (
 // StatsMxedgeServiceStat represents a StatsMxedgeServiceStat struct.
 type StatsMxedgeServiceStat struct {
     // external IP from ep-terminator’s point of view. valid only for service having its own cloud connection
-    ExtIp                *string        `json:"ext_ip,omitempty"`
+    ExtIp                *string                `json:"ext_ip,omitempty"`
     // timestamp when the last stats is seen (cloud unix time, in second). valid only for service having its own stats or whole system (last among last_seen of all services)
-    LastSeen             *float64       `json:"last_seen,omitempty"`
+    LastSeen             *float64               `json:"last_seen,omitempty"`
     // package/service installation state.
-    PackageState         *string        `json:"package_state,omitempty"`
+    PackageState         *string                `json:"package_state,omitempty"`
     // package/service installation state.
-    PackageVersion       *string        `json:"package_version,omitempty"`
+    PackageVersion       *string                `json:"package_version,omitempty"`
     // service running state.
-    RunningState         *string        `json:"running_state,omitempty"`
+    RunningState         *string                `json:"running_state,omitempty"`
     // service uptime.
-    Uptime               *int           `json:"uptime,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Uptime               *int                   `json:"uptime,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeServiceStat.
@@ -26,13 +26,17 @@ type StatsMxedgeServiceStat struct {
 func (s StatsMxedgeServiceStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ext_ip", "last_seen", "package_state", "package_version", "running_state", "uptime"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxedgeServiceStat object to a map representation for JSON marshaling.
 func (s StatsMxedgeServiceStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ExtIp != nil {
         structMap["ext_ip"] = s.ExtIp
     }
@@ -62,12 +66,12 @@ func (s *StatsMxedgeServiceStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ext_ip", "last_seen", "package_state", "package_version", "running_state", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ext_ip", "last_seen", "package_state", "package_version", "running_state", "uptime")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ExtIp = temp.ExtIp
     s.LastSeen = temp.LastSeen
     s.PackageState = temp.PackageState

@@ -1,6 +1,8 @@
 
 # Org Site Sle Wired Result
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgSiteSleWiredResult`
@@ -15,6 +17,7 @@
 | `SwitchHealth` | `*float64` | Optional | - |
 | `SwitchStc` | `*float64` | Optional | - |
 | `SwitchThroughput` | `*float64` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   "num_switches": 63.2,
   "switch_health": 63.7,
   "switch_stc": 157.88,
-  "switch_throughput": 231.14
+  "switch_throughput": 231.14,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

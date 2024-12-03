@@ -9,8 +9,8 @@ type OrgSettingApiPolicy struct {
     // by default, API hides password/secrets when the user doesn't have write access
     // * `true`: API will hide passwords/secrets for all users
     // * `false`: API will hide passwords/secrets for read-only users
-    NoReveal             *bool          `json:"no_reveal,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    NoReveal             *bool                  `json:"no_reveal,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingApiPolicy.
@@ -18,13 +18,17 @@ type OrgSettingApiPolicy struct {
 func (o OrgSettingApiPolicy) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "no_reveal"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingApiPolicy object to a map representation for JSON marshaling.
 func (o OrgSettingApiPolicy) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.NoReveal != nil {
         structMap["no_reveal"] = o.NoReveal
     }
@@ -39,12 +43,12 @@ func (o *OrgSettingApiPolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "no_reveal")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "no_reveal")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.NoReveal = temp.NoReveal
     return nil
 }

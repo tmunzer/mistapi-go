@@ -8,11 +8,11 @@ import (
 
 // ConstApLed represents a ConstApLed struct.
 type ConstApLed struct {
-    Code                 string         `json:"code"`
-    Description          string         `json:"description"`
-    Key                  string         `json:"key"`
-    Name                 string         `json:"name"`
-    AdditionalProperties map[string]any `json:"_"`
+    Code                 string                 `json:"code"`
+    Description          string                 `json:"description"`
+    Key                  string                 `json:"key"`
+    Name                 string                 `json:"name"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstApLed.
@@ -20,13 +20,17 @@ type ConstApLed struct {
 func (c ConstApLed) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "code", "description", "key", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstApLed object to a map representation for JSON marshaling.
 func (c ConstApLed) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     structMap["code"] = c.Code
     structMap["description"] = c.Description
     structMap["key"] = c.Key
@@ -46,12 +50,12 @@ func (c *ConstApLed) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "code", "description", "key", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "code", "description", "key", "name")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Code = *temp.Code
     c.Description = *temp.Description
     c.Key = *temp.Key

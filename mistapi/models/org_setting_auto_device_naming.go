@@ -8,7 +8,7 @@ import (
 type OrgSettingAutoDeviceNaming struct {
     Enable               *bool                    `json:"enable,omitempty"`
     Rules                Optional[[]OrgAutoRules] `json:"rules"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingAutoDeviceNaming.
@@ -16,13 +16,17 @@ type OrgSettingAutoDeviceNaming struct {
 func (o OrgSettingAutoDeviceNaming) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "enable", "rules"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingAutoDeviceNaming object to a map representation for JSON marshaling.
 func (o OrgSettingAutoDeviceNaming) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Enable != nil {
         structMap["enable"] = o.Enable
     }
@@ -44,12 +48,12 @@ func (o *OrgSettingAutoDeviceNaming) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enable", "rules")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enable", "rules")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Enable = temp.Enable
     o.Rules = temp.Rules
     return nil

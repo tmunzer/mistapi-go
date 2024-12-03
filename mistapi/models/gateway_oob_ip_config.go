@@ -22,7 +22,7 @@ type GatewayOobIpConfig struct {
     // for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
     UseMgmtVrfForHostOut *bool                    `json:"use_mgmt_vrf_for_host_out,omitempty"`
     VlanId               *string                  `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayOobIpConfig.
@@ -30,13 +30,17 @@ type GatewayOobIpConfig struct {
 func (g GatewayOobIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "gateway", "ip", "netmask", "node1", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayOobIpConfig object to a map representation for JSON marshaling.
 func (g GatewayOobIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Gateway != nil {
         structMap["gateway"] = g.Gateway
     }
@@ -72,12 +76,12 @@ func (g *GatewayOobIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "ip", "netmask", "node1", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateway", "ip", "netmask", "node1", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "vlan_id")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Gateway = temp.Gateway
     g.Ip = temp.Ip
     g.Netmask = temp.Netmask

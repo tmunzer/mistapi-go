@@ -8,12 +8,12 @@ import (
 
 // ResponseClaimLicenseInventoryItem represents a ResponseClaimLicenseInventoryItem struct.
 type ResponseClaimLicenseInventoryItem struct {
-    Mac                  string         `json:"mac"`
-    Magic                string         `json:"magic"`
-    Model                string         `json:"model"`
-    Serial               string         `json:"serial"`
-    Type                 string         `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  string                 `json:"mac"`
+    Magic                string                 `json:"magic"`
+    Model                string                 `json:"model"`
+    Serial               string                 `json:"serial"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClaimLicenseInventoryItem.
@@ -21,13 +21,17 @@ type ResponseClaimLicenseInventoryItem struct {
 func (r ResponseClaimLicenseInventoryItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "mac", "magic", "model", "serial", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseClaimLicenseInventoryItem object to a map representation for JSON marshaling.
 func (r ResponseClaimLicenseInventoryItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["mac"] = r.Mac
     structMap["magic"] = r.Magic
     structMap["model"] = r.Model
@@ -48,12 +52,12 @@ func (r *ResponseClaimLicenseInventoryItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "magic", "model", "serial", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "magic", "model", "serial", "type")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Mac = *temp.Mac
     r.Magic = *temp.Magic
     r.Model = *temp.Model

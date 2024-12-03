@@ -6,20 +6,20 @@ import (
 
 // AccountVmwareInfo represents a AccountVmwareInfo struct.
 type AccountVmwareInfo struct {
-    AccountId            *string        `json:"account_id,omitempty"`
+    AccountId            *string                `json:"account_id,omitempty"`
     // Linked VMware Instance URL
-    InstanceUrl          *string        `json:"instance_url,omitempty"`
+    InstanceUrl          *string                `json:"instance_url,omitempty"`
     // Is the last data pull for VMware account is successful or not
-    LastStatus           *string        `json:"last_status,omitempty"`
+    LastStatus           *string                `json:"last_status,omitempty"`
     // Last data pull timestamp, background jobs that pull VMware account data
-    LastSync             *int           `json:"last_sync,omitempty"`
+    LastSync             *int                   `json:"last_sync,omitempty"`
     // First name of the user who linked the VMware account
-    LinkedBy             *string        `json:"linked_by,omitempty"`
+    LinkedBy             *string                `json:"linked_by,omitempty"`
     // This error is provided when the VMware account fails to fetch token/data
-    LinkedTimestamp      *int           `json:"linked_timestamp,omitempty"`
+    LinkedTimestamp      *int                   `json:"linked_timestamp,omitempty"`
     // Name of the company whose VMware account mist has subscribed to
-    Name                 *string        `json:"name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 *string                `json:"name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountVmwareInfo.
@@ -27,13 +27,17 @@ type AccountVmwareInfo struct {
 func (a AccountVmwareInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "account_id", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AccountVmwareInfo object to a map representation for JSON marshaling.
 func (a AccountVmwareInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.AccountId != nil {
         structMap["account_id"] = a.AccountId
     }
@@ -66,12 +70,12 @@ func (a *AccountVmwareInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "account_id", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "name")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.AccountId = temp.AccountId
     a.InstanceUrl = temp.InstanceUrl
     a.LastStatus = temp.LastStatus

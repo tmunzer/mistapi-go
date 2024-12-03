@@ -32,7 +32,7 @@ type OrgSettingMistNac struct {
     // Set `use_ssl_port`==`true` to override that port with TCP43 (ssl),
     // This is a org level setting that is applicable to wlans, switch_templates, and mxedge_clusters that have mist-nac enabled
     UseSslPort                *bool                           `json:"use_ssl_port,omitempty"`
-    AdditionalProperties      map[string]any                  `json:"_"`
+    AdditionalProperties      map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingMistNac.
@@ -40,13 +40,17 @@ type OrgSettingMistNac struct {
 func (o OrgSettingMistNac) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "cacerts", "default_idp_id", "disable_rsae_algorithms", "eap_ssl_security_level", "eu_only", "idp_machine_cert_lookup_field", "idp_user_cert_lookup_field", "idps", "server_cert", "use_ip_version", "use_ssl_port"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingMistNac object to a map representation for JSON marshaling.
 func (o OrgSettingMistNac) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Cacerts != nil {
         structMap["cacerts"] = o.Cacerts
     }
@@ -91,12 +95,12 @@ func (o *OrgSettingMistNac) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cacerts", "default_idp_id", "disable_rsae_algorithms", "eap_ssl_security_level", "eu_only", "idp_machine_cert_lookup_field", "idp_user_cert_lookup_field", "idps", "server_cert", "use_ip_version", "use_ssl_port")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cacerts", "default_idp_id", "disable_rsae_algorithms", "eap_ssl_security_level", "eu_only", "idp_machine_cert_lookup_field", "idp_user_cert_lookup_field", "idps", "server_cert", "use_ip_version", "use_ssl_port")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Cacerts = temp.Cacerts
     o.DefaultIdpId = temp.DefaultIdpId
     o.DisableRsaeAlgorithms = temp.DisableRsaeAlgorithms

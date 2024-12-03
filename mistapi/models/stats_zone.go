@@ -38,7 +38,7 @@ type StatsZone struct {
     // vertices used to define an area. It’s assumed that the last point connects to the first point and forms an closed area
     Vertices             []ZoneVertex              `json:"vertices,omitempty"`
     VerticesM            []ZoneVertexM             `json:"vertices_m,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsZone.
@@ -46,13 +46,17 @@ type StatsZone struct {
 func (s StatsZone) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "assets_waits", "clients_waits", "created_time", "id", "map_id", "modified_time", "name", "num_assets", "num_clients", "num_sdkclients", "occupancy_limit", "org_id", "sdkclients_waits", "site_id", "vertices", "vertices_m"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsZone object to a map representation for JSON marshaling.
 func (s StatsZone) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AssetsWaits != nil {
         structMap["assets_waits"] = s.AssetsWaits.toMap()
     }
@@ -110,12 +114,12 @@ func (s *StatsZone) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "assets_waits", "clients_waits", "created_time", "id", "map_id", "modified_time", "name", "num_assets", "num_clients", "num_sdkclients", "occupancy_limit", "org_id", "sdkclients_waits", "site_id", "vertices", "vertices_m")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "assets_waits", "clients_waits", "created_time", "id", "map_id", "modified_time", "name", "num_assets", "num_clients", "num_sdkclients", "occupancy_limit", "org_id", "sdkclients_waits", "site_id", "vertices", "vertices_m")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AssetsWaits = temp.AssetsWaits
     s.ClientsWaits = temp.ClientsWaits
     s.CreatedTime = temp.CreatedTime

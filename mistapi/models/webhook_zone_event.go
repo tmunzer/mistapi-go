@@ -27,7 +27,7 @@ type WebhookZoneEvent struct {
     Type                 string                      `json:"type"`
     // zone id
     ZoneId               uuid.UUID                   `json:"zone_id"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookZoneEvent.
@@ -35,13 +35,17 @@ type WebhookZoneEvent struct {
 func (w WebhookZoneEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "asset_id", "id", "mac", "map_id", "name", "site_id", "timestamp", "trigger", "type", "zone_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookZoneEvent object to a map representation for JSON marshaling.
 func (w WebhookZoneEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.AssetId != nil {
         structMap["asset_id"] = w.AssetId
     }
@@ -73,12 +77,12 @@ func (w *WebhookZoneEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "asset_id", "id", "mac", "map_id", "name", "site_id", "timestamp", "trigger", "type", "zone_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "asset_id", "id", "mac", "map_id", "name", "site_id", "timestamp", "trigger", "type", "zone_id")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.AssetId = temp.AssetId
     w.Id = *temp.Id
     w.Mac = temp.Mac

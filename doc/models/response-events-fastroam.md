@@ -1,6 +1,8 @@
 
 # Response Events Fastroam
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseEventsFastroam`
@@ -14,6 +16,7 @@
 | `Next` | `*string` | Optional | the link to query next set of results. value is null if no next page exists. |
 | `Results` | [`[]models.EventFastroam`](../../doc/models/event-fastroam.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,11 +33,19 @@
       "ssid": "ssid6",
       "subtype": "subtype8",
       "timestamp": 2.64,
-      "type": "pingpong"
+      "type": "pingpong",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 140,
-  "next": "next6"
+  "next": "next6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -8,21 +8,21 @@ import (
 // Junos Radius config
 type RadiusConfig struct {
     // how frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled
-    AcctInterimInterval  *int               `json:"acct_interim_interval,omitempty"`
-    AcctServers          []RadiusAcctServer `json:"acct_servers,omitempty"`
-    AuthServers          []RadiusAuthServer `json:"auth_servers,omitempty"`
+    AcctInterimInterval  *int                   `json:"acct_interim_interval,omitempty"`
+    AcctServers          []RadiusAcctServer     `json:"acct_servers,omitempty"`
+    AuthServers          []RadiusAuthServer     `json:"auth_servers,omitempty"`
     // radius auth session retries
-    AuthServersRetries   *int               `json:"auth_servers_retries,omitempty"`
+    AuthServersRetries   *int                   `json:"auth_servers_retries,omitempty"`
     // radius auth session timeout
-    AuthServersTimeout   *int               `json:"auth_servers_timeout,omitempty"`
-    CoaEnabled           *bool              `json:"coa_enabled,omitempty"`
-    CoaPort              *int               `json:"coa_port,omitempty"`
+    AuthServersTimeout   *int                   `json:"auth_servers_timeout,omitempty"`
+    CoaEnabled           *bool                  `json:"coa_enabled,omitempty"`
+    CoaPort              *int                   `json:"coa_port,omitempty"`
     // use `network`or `source_ip`
     // which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip
-    Network              *string            `json:"network,omitempty"`
+    Network              *string                `json:"network,omitempty"`
     // use `network`or `source_ip`
-    SourceIp             *string            `json:"source_ip,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    SourceIp             *string                `json:"source_ip,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RadiusConfig.
@@ -30,13 +30,17 @@ type RadiusConfig struct {
 func (r RadiusConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "acct_interim_interval", "acct_servers", "auth_servers", "auth_servers_retries", "auth_servers_timeout", "coa_enabled", "coa_port", "network", "source_ip"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RadiusConfig object to a map representation for JSON marshaling.
 func (r RadiusConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.AcctInterimInterval != nil {
         structMap["acct_interim_interval"] = r.AcctInterimInterval
     }
@@ -75,12 +79,12 @@ func (r *RadiusConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_interim_interval", "acct_servers", "auth_servers", "auth_servers_retries", "auth_servers_timeout", "coa_enabled", "coa_port", "network", "source_ip")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acct_interim_interval", "acct_servers", "auth_servers", "auth_servers_retries", "auth_servers_timeout", "coa_enabled", "coa_port", "network", "source_ip")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.AcctInterimInterval = temp.AcctInterimInterval
     r.AcctServers = temp.AcctServers
     r.AuthServers = temp.AuthServers

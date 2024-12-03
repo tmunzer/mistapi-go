@@ -7,10 +7,10 @@ import (
 // OpticPortConfigPort represents a OpticPortConfigPort struct.
 type OpticPortConfigPort struct {
     // enable channelization
-    Channelized          *bool          `json:"channelized,omitempty"`
+    Channelized          *bool                  `json:"channelized,omitempty"`
     // interface speed (e.g. `25g`, `50g`), use the chassis speed by default
-    Speed                *string        `json:"speed,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Speed                *string                `json:"speed,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OpticPortConfigPort.
@@ -18,13 +18,17 @@ type OpticPortConfigPort struct {
 func (o OpticPortConfigPort) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "channelized", "speed"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OpticPortConfigPort object to a map representation for JSON marshaling.
 func (o OpticPortConfigPort) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Channelized != nil {
         structMap["channelized"] = o.Channelized
     }
@@ -42,12 +46,12 @@ func (o *OpticPortConfigPort) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "channelized", "speed")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channelized", "speed")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Channelized = temp.Channelized
     o.Speed = temp.Speed
     return nil

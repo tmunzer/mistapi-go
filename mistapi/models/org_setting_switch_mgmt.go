@@ -7,8 +7,8 @@ import (
 // OrgSettingSwitchMgmt represents a OrgSettingSwitchMgmt struct.
 type OrgSettingSwitchMgmt struct {
     // If the field is set in both site/setting and org/setting, the value from site/setting will be used.
-    ApAffinityThreshold  *int           `json:"ap_affinity_threshold,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ApAffinityThreshold  *int                   `json:"ap_affinity_threshold,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingSwitchMgmt.
@@ -16,13 +16,17 @@ type OrgSettingSwitchMgmt struct {
 func (o OrgSettingSwitchMgmt) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "ap_affinity_threshold"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingSwitchMgmt object to a map representation for JSON marshaling.
 func (o OrgSettingSwitchMgmt) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.ApAffinityThreshold != nil {
         structMap["ap_affinity_threshold"] = o.ApAffinityThreshold
     }
@@ -37,12 +41,12 @@ func (o *OrgSettingSwitchMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_affinity_threshold")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_affinity_threshold")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.ApAffinityThreshold = temp.ApAffinityThreshold
     return nil
 }

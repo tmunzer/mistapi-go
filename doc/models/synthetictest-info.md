@@ -1,6 +1,8 @@
 
 # Synthetictest Info
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SynthetictestInfo`
@@ -23,6 +25,7 @@
 | `TxMbps` | `*int` | Optional | - |
 | `Type` | [`*models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Optional | enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest` |
 | `VlanId` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,7 +42,11 @@
   "tx_mbps": 199,
   "vlan_id": 20,
   "device_type": "switch",
-  "mac": "mac2"
+  "mac": "mac2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

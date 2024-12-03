@@ -6,15 +6,15 @@ import (
 
 // WanUsages represents a WanUsages struct.
 type WanUsages struct {
-    Mac                  *string        `json:"mac,omitempty"`
-    PathType             *string        `json:"path_type,omitempty"`
-    PathWeight           *int           `json:"path_weight,omitempty"`
-    PeerMac              *string        `json:"peer_mac,omitempty"`
-    PeerPortId           *string        `json:"peer_port_id,omitempty"`
-    Policy               *string        `json:"policy,omitempty"`
-    PortId               *string        `json:"port_id,omitempty"`
-    Tenant               *string        `json:"tenant,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  *string                `json:"mac,omitempty"`
+    PathType             *string                `json:"path_type,omitempty"`
+    PathWeight           *int                   `json:"path_weight,omitempty"`
+    PeerMac              *string                `json:"peer_mac,omitempty"`
+    PeerPortId           *string                `json:"peer_port_id,omitempty"`
+    Policy               *string                `json:"policy,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
+    Tenant               *string                `json:"tenant,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WanUsages.
@@ -22,13 +22,17 @@ type WanUsages struct {
 func (w WanUsages) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "mac", "path_type", "path_weight", "peer_mac", "peer_port_id", "policy", "port_id", "tenant"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WanUsages object to a map representation for JSON marshaling.
 func (w WanUsages) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Mac != nil {
         structMap["mac"] = w.Mac
     }
@@ -64,12 +68,12 @@ func (w *WanUsages) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "path_type", "path_weight", "peer_mac", "peer_port_id", "policy", "port_id", "tenant")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "path_type", "path_weight", "peer_mac", "peer_port_id", "policy", "port_id", "tenant")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Mac = temp.Mac
     w.PathType = temp.PathType
     w.PathWeight = temp.PathWeight

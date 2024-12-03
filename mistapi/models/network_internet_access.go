@@ -15,7 +15,7 @@ type NetworkInternetAccess struct {
     Restricted                *bool                                    `json:"restricted,omitempty"`
     // Property key may be an IP Address (i.e. "172.16.0.1"), and IP Address and Port (i.e. "172.16.0.1:8443") or a CIDR (i.e. "172.16.0.12/20")
     StaticNat                 map[string]NetworkStaticNatProperty      `json:"static_nat,omitempty"`
-    AdditionalProperties      map[string]any                           `json:"_"`
+    AdditionalProperties      map[string]interface{}                   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkInternetAccess.
@@ -23,13 +23,17 @@ type NetworkInternetAccess struct {
 func (n NetworkInternetAccess) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "create_simple_service_policy", "destination_nat", "enabled", "restricted", "static_nat"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NetworkInternetAccess object to a map representation for JSON marshaling.
 func (n NetworkInternetAccess) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.CreateSimpleServicePolicy != nil {
         structMap["create_simple_service_policy"] = n.CreateSimpleServicePolicy
     }
@@ -56,12 +60,12 @@ func (n *NetworkInternetAccess) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "create_simple_service_policy", "destination_nat", "enabled", "restricted", "static_nat")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "create_simple_service_policy", "destination_nat", "enabled", "restricted", "static_nat")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.CreateSimpleServicePolicy = temp.CreateSimpleServicePolicy
     n.DestinationNat = temp.DestinationNat
     n.Enabled = temp.Enabled

@@ -1,6 +1,8 @@
 
 # Insight Rogue Ap
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `InsightRogueAp`
@@ -19,6 +21,7 @@
 | `SeenOnLan` | `*bool` | Optional | whether the reporting AP see a wireless client (on LAN) connecting to it |
 | `Ssid` | `*string` | Optional | ssid of the network detected as threat |
 | `TimesHeard` | `*int` | Optional | represents number of times the pair was heard in the interval. Each count roughly corresponds to a minute. |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,7 +36,11 @@
   "num_aps": 138,
   "seen_on_lan": false,
   "ssid": "ssid0",
-  "times_heard": 112
+  "times_heard": 112,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

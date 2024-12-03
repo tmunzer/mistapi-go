@@ -106,10 +106,10 @@ autoDeviceprofileAssignment := true
 
 
 json := models.MapImportJson{
-    ImportAllFloorplans: models.ToPointer(false),
-    ImportHeight:        models.ToPointer(true),
-    ImportOrientation:   models.ToPointer(true),
-    VendorName:          models.MapImportJsonVendorNameEnum("ekahau"),
+    ImportAllFloorplans:  models.ToPointer(false),
+    ImportHeight:         models.ToPointer(true),
+    ImportOrientation:    models.ToPointer(true),
+    VendorName:           models.MapImportJsonVendorNameEnum("ekahau"),
 }
 
 resp, err := installer.AddInstallerDeviceImage(ctx, orgId, imageName, deviceMac, &autoDeviceprofileAssignment, nil, nil, &json)
@@ -265,79 +265,79 @@ siteName := "site_name8"
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Map{
-    Height:             models.ToPointer(0),
-    LatlngBr:           models.ToPointer(models.LatlngBr{
-        Lat: models.ToPointer("string"),
-        Lng: models.ToPointer("string"),
+    Height:               models.ToPointer(0),
+    LatlngBr:             models.ToPointer(models.LatlngBr{
+        Lat:                  models.ToPointer("string"),
+        Lng:                  models.ToPointer("string"),
     }),
-    LatlngTl:           models.ToPointer(models.LatlngTl{
-        Lat: models.ToPointer("string"),
-        Lng: models.ToPointer("string"),
+    LatlngTl:             models.ToPointer(models.LatlngTl{
+        Lat:                  models.ToPointer("string"),
+        Lng:                  models.ToPointer("string"),
     }),
-    Locked:             models.ToPointer(true),
-    Name:               models.ToPointer("string"),
-    Orientation:        models.ToPointer(0),
-    OriginX:            models.ToPointer(0),
-    OriginY:            models.ToPointer(0),
-    Ppm:                models.ToPointer(float64(0)),
-    SitesurveyPath:     []models.MapSitesurveyPathItems{
+    Locked:               models.ToPointer(true),
+    Name:                 models.ToPointer("string"),
+    Orientation:          models.ToPointer(0),
+    OriginX:              models.ToPointer(0),
+    OriginY:              models.ToPointer(0),
+    Ppm:                  models.ToPointer(float64(0)),
+    SitesurveyPath:       []models.MapSitesurveyPathItems{
         models.MapSitesurveyPathItems{
-            Coordinate: models.ToPointer("string"),
-            Name:       models.ToPointer("string"),
-            Nodes:      []models.MapNode{
+            Coordinate:           models.ToPointer("string"),
+            Name:                 models.ToPointer("string"),
+            Nodes:                []models.MapNode{
                 models.MapNode{
-                    Edges:    map[string]string{
+                    Edges:                map[string]string{
                         "N2": "string",
                     },
-                    Name:     "string",
-                    Position: models.ToPointer(models.MapNodePosition{
-                        X: float64(0),
-                        Y: float64(0),
+                    Name:                 "string",
+                    Position:             models.ToPointer(models.MapNodePosition{
+                        X:                    float64(0),
+                        Y:                    float64(0),
                     }),
                 },
             },
         },
     },
-    Type:               models.ToPointer(models.MapTypeEnum("image")),
-    View:               models.NewOptional(models.ToPointer(models.MapViewEnum("roadmap"))),
-    WallPath:           models.ToPointer(models.MapWallPath{
-        Coordinate: models.ToPointer("string"),
-        Nodes:      []models.MapNode{
+    Type:                 models.ToPointer(models.MapTypeEnum("image")),
+    View:                 models.NewOptional(models.ToPointer(models.MapViewEnum("roadmap"))),
+    WallPath:             models.ToPointer(models.MapWallPath{
+        Coordinate:           models.ToPointer("string"),
+        Nodes:                []models.MapNode{
             models.MapNode{
-                Edges:    map[string]string{
+                Edges:                map[string]string{
                     "N2": "string",
                 },
-                Name:     "string",
-                Position: models.ToPointer(models.MapNodePosition{
-                    X: float64(0),
-                    Y: float64(0),
+                Name:                 "string",
+                Position:             models.ToPointer(models.MapNodePosition{
+                    X:                    float64(0),
+                    Y:                    float64(0),
                 }),
             },
         },
     }),
-    Wayfinding:         models.ToPointer(models.MapWayfinding{
-        Micello:    models.ToPointer(models.MapWayfindingMicello{
-            AccountKey:     models.ToPointer("string"),
-            DefaultLevelId: models.ToPointer(0),
+    Wayfinding:           models.ToPointer(models.MapWayfinding{
+        Micello:              models.ToPointer(models.MapWayfindingMicello{
+            AccountKey:           models.ToPointer("string"),
+            DefaultLevelId:       models.ToPointer(0),
         }),
-        SnapToPath: models.ToPointer(true),
+        SnapToPath:           models.ToPointer(true),
     }),
-    WayfindingPath:     models.ToPointer(models.MapWayfindingPath{
-        Coordinate: models.ToPointer("string"),
-        Nodes:      []models.MapNode{
+    WayfindingPath:       models.ToPointer(models.MapWayfindingPath{
+        Coordinate:           models.ToPointer("string"),
+        Nodes:                []models.MapNode{
             models.MapNode{
-                Edges:    map[string]string{
+                Edges:                map[string]string{
                     "N2": "string",
                 },
-                Name:     "string",
-                Position: models.ToPointer(models.MapNodePosition{
-                    X: float64(0),
-                    Y: float64(0),
+                Name:                 "string",
+                Position:             models.ToPointer(models.MapNodePosition{
+                    X:                    float64(0),
+                    Y:                    float64(0),
                 }),
             },
         },
     }),
-    Width:              models.ToPointer(0),
+    Width:                models.ToPointer(0),
 }
 
 apiResponse, err := installer.CreateInstallerMap(ctx, orgId, siteName, mapId, &body)
@@ -406,28 +406,28 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 fpc0Mac := "fpc0_mac6"
 
 body := models.VirtualChassisConfig{
-    Members:        []models.VirtualChassisConfigMember{
+    Members:              []models.VirtualChassisConfigMember{
         models.VirtualChassisConfigMember{
-            Mac:      models.ToPointer("aff827549235"),
-            VcPorts:  []string{
+            Mac:                  models.ToPointer("aff827549235"),
+            VcPorts:              []string{
                 "xe-0/1/0",
             },
-            VcRole:   models.ToPointer(models.VirtualChassisConfigMemberVcRoleEnum("master")),
+            VcRole:               models.ToPointer(models.VirtualChassisConfigMemberVcRoleEnum("master")),
         },
         models.VirtualChassisConfigMember{
-            Mac:      models.ToPointer("8396cd006c8c"),
-            VcPorts:  []string{
+            Mac:                  models.ToPointer("8396cd006c8c"),
+            VcPorts:              []string{
                 "xe-0/1/0",
                 "xe-0/1/1",
             },
-            VcRole:   models.ToPointer(models.VirtualChassisConfigMemberVcRoleEnum("backup")),
+            VcRole:               models.ToPointer(models.VirtualChassisConfigMemberVcRoleEnum("backup")),
         },
         models.VirtualChassisConfigMember{
-            Mac:      models.ToPointer("8396cd00888c"),
-            VcPorts:  []string{
+            Mac:                  models.ToPointer("8396cd00888c"),
+            VcPorts:              []string{
                 "xe-0/1/0",
             },
-            VcRole:   models.ToPointer(models.VirtualChassisConfigMemberVcRoleEnum("linecard")),
+            VcRole:               models.ToPointer(models.VirtualChassisConfigMemberVcRoleEnum("linecard")),
         },
     },
 }
@@ -509,19 +509,19 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 siteName := "site_name8"
 
 body := models.InstallerSite{
-    Address:        "1601 S. Deanza Blvd., Cupertino, CA, 95014",
-    CountryCode:    "US",
-    Latlng:         models.LatLng{
-        Lat: float64(37.295833),
-        Lng: float64(-122.032946),
+    Address:              "1601 S. Deanza Blvd., Cupertino, CA, 95014",
+    CountryCode:          "US",
+    Latlng:               models.LatLng{
+        Lat:                  float64(37.295833),
+        Lng:                  float64(-122.032946),
     },
-    Name:           "string",
-    RftemplateName: models.ToPointer("rftemplate1"),
-    SitegroupNames: []string{
+    Name:                 "string",
+    RftemplateName:       models.ToPointer("rftemplate1"),
+    SitegroupNames:       []string{
         "sg1",
         "sg2",
     },
-    Timezone:       models.ToPointer("America/Los_Angeles"),
+    Timezone:             models.ToPointer("America/Los_Angeles"),
 }
 
 resp, err := installer.CreateOrUpdateInstallerSites(ctx, orgId, siteName, &body)
@@ -779,10 +779,10 @@ autoDeviceprofileAssignment := true
 
 
 json := models.MapImportJson{
-    ImportAllFloorplans: models.ToPointer(false),
-    ImportHeight:        models.ToPointer(true),
-    ImportOrientation:   models.ToPointer(true),
-    VendorName:          models.MapImportJsonVendorNameEnum("ekahau"),
+    ImportAllFloorplans:  models.ToPointer(false),
+    ImportHeight:         models.ToPointer(true),
+    ImportOrientation:    models.ToPointer(true),
+    VendorName:           models.MapImportJsonVendorNameEnum("ekahau"),
 }
 
 apiResponse, err := installer.ImportInstallerMap(ctx, orgId, siteName, &autoDeviceprofileAssignment, nil, nil, &json)
@@ -1484,14 +1484,14 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceMac := "0000000000ab"
 
 body := models.InstallerProvisionDevice{
-    DeviceprofileName: models.ToPointer("SJ1"),
-    Height:            models.ToPointer(float64(2.7)),
-    Name:              "SJ1-AP1",
-    Orientation:       models.ToPointer(90),
-    SiteId:            models.ToPointer(uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")),
-    SiteName:          models.ToPointer("SJ1"),
-    X:                 models.ToPointer(float64(150)),
-    Y:                 models.ToPointer(float64(300)),
+    DeviceprofileName:    models.ToPointer("SJ1"),
+    Height:               models.ToPointer(float64(2.7)),
+    Name:                 "SJ1-AP1",
+    Orientation:          models.ToPointer(90),
+    SiteId:               models.ToPointer(uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")),
+    SiteName:             models.ToPointer("SJ1"),
+    X:                    models.ToPointer(float64(150)),
+    Y:                    models.ToPointer(float64(300)),
 }
 
 resp, err := installer.ProvisionInstallerDevices(ctx, orgId, deviceMac, &body)
@@ -1709,17 +1709,17 @@ siteName := "site_name8"
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Map{
-    Height:             models.ToPointer(1500),
-    Locked:             models.ToPointer(false),
-    Name:               models.ToPointer("Mist Office"),
-    Orientation:        models.ToPointer(30),
-    OriginX:            models.ToPointer(35),
-    OriginY:            models.ToPointer(60),
-    Ppm:                models.ToPointer(float64(40.94)),
-    Type:               models.ToPointer(models.MapTypeEnum("image")),
-    UseAutoOrientation: models.ToPointer(false),
-    UseAutoPlacement:   models.ToPointer(false),
-    Width:              models.ToPointer(1250),
+    Height:               models.ToPointer(1500),
+    Locked:               models.ToPointer(false),
+    Name:                 models.ToPointer("Mist Office"),
+    Orientation:          models.ToPointer(30),
+    OriginX:              models.ToPointer(35),
+    OriginY:              models.ToPointer(60),
+    Ppm:                  models.ToPointer(float64(40.94)),
+    Type:                 models.ToPointer(models.MapTypeEnum("image")),
+    UseAutoOrientation:   models.ToPointer(false),
+    UseAutoPlacement:     models.ToPointer(false),
+    Width:                models.ToPointer(1250),
 }
 
 apiResponse, err := installer.UpdateInstallerMap(ctx, orgId, siteName, mapId, &body)
@@ -1837,24 +1837,24 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 fpc0Mac := "fpc0_mac6"
 
 body := models.VirtualChassisUpdate{
-    Members:   []models.VirtualChassisMemberUpdate{
+    Members:              []models.VirtualChassisMemberUpdate{
         models.VirtualChassisMemberUpdate{
-            Mac:     models.ToPointer("aff827549235"),
-            Member:  models.ToPointer(0),
-            VcPorts: []string{
+            Mac:                  models.ToPointer("aff827549235"),
+            Member:               models.ToPointer(0),
+            VcPorts:              []string{
                 "xe-0/1/1",
             },
-            VcRole:  models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum("linecard")),
+            VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum("linecard")),
         },
         models.VirtualChassisMemberUpdate{
-            Mac:     models.ToPointer("8396cd00777c"),
-            VcPorts: []string{
+            Mac:                  models.ToPointer("8396cd00777c"),
+            VcPorts:              []string{
                 "xe-0/1/0",
             },
-            VcRole:  models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum("linecard")),
+            VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum("linecard")),
         },
     },
-    Op:        models.ToPointer(models.VirtualChassisUpdateOpEnum("add")),
+    Op:                   models.ToPointer(models.VirtualChassisUpdateOpEnum("add")),
 }
 
 apiResponse, err := installer.UpdateInstallerVirtualChassisMember(ctx, orgId, fpc0Mac, &body)

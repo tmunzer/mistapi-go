@@ -38,7 +38,7 @@ type ModuleStatItem struct {
     VcRole               Optional[string]                 `json:"vc_role"`
     VcState              Optional[string]                 `json:"vc_state"`
     Version              Optional[string]                 `json:"version"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItem.
@@ -46,13 +46,17 @@ type ModuleStatItem struct {
 func (m ModuleStatItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "backup_version", "bios_version", "cpld_version", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the ModuleStatItem object to a map representation for JSON marshaling.
 func (m ModuleStatItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.BackupVersion.IsValueSet() {
         if m.BackupVersion.Value() != nil {
             structMap["backup_version"] = m.BackupVersion.Value()
@@ -235,12 +239,12 @@ func (m *ModuleStatItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "backup_version", "bios_version", "cpld_version", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "backup_version", "bios_version", "cpld_version", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.BackupVersion = temp.BackupVersion
     m.BiosVersion = temp.BiosVersion
     m.CpldVersion = temp.CpldVersion

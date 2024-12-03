@@ -3,6 +3,8 @@
 
 ethernet port configurations
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `TuntermPortConfig`
@@ -15,6 +17,7 @@ ethernet port configurations
 | `SeparateUpstreamDownstream` | `*bool` | Optional | weather to separate upstream / downstream ports. default is false where all ports will be used.<br>**Default**: `false` |
 | `UpstreamPortVlanId` | `*int` | Optional | native VLAN id for upstream ports<br>**Default**: `1` |
 | `UpstreamPorts` | `[]string` | Optional | list of ports to be used for upstrea purpose (to LAN) |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@ ethernet port configurations
   "upstream_ports": [
     "0",
     "1"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -7,11 +7,11 @@ import (
 // ServiceSpec represents a ServiceSpec struct.
 type ServiceSpec struct {
     // port number, port range, or variable
-    PortRange            *string        `json:"port_range,omitempty"`
+    PortRange            *string                `json:"port_range,omitempty"`
     // `https`/ `tcp` / `udp` / `icmp` / `gre` / `any` / `:protocol_number`.
     // `protocol_number` is between 1-254
-    Protocol             *string        `json:"protocol,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Protocol             *string                `json:"protocol,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServiceSpec.
@@ -19,13 +19,17 @@ type ServiceSpec struct {
 func (s ServiceSpec) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "port_range", "protocol"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the ServiceSpec object to a map representation for JSON marshaling.
 func (s ServiceSpec) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.PortRange != nil {
         structMap["port_range"] = s.PortRange
     }
@@ -43,12 +47,12 @@ func (s *ServiceSpec) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "port_range", "protocol")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "port_range", "protocol")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.PortRange = temp.PortRange
     s.Protocol = temp.Protocol
     return nil

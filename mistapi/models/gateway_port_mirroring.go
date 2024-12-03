@@ -7,7 +7,7 @@ import (
 // GatewayPortMirroring represents a GatewayPortMirroring struct.
 type GatewayPortMirroring struct {
     PortMirror           *GatewayPortMirroringPortMirror `json:"port_mirror,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortMirroring.
@@ -15,13 +15,17 @@ type GatewayPortMirroring struct {
 func (g GatewayPortMirroring) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "port_mirror"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayPortMirroring object to a map representation for JSON marshaling.
 func (g GatewayPortMirroring) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.PortMirror != nil {
         structMap["port_mirror"] = g.PortMirror.toMap()
     }
@@ -36,12 +40,12 @@ func (g *GatewayPortMirroring) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "port_mirror")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "port_mirror")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.PortMirror = temp.PortMirror
     return nil
 }

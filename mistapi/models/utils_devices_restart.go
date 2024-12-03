@@ -7,11 +7,11 @@ import (
 // UtilsDevicesRestart represents a UtilsDevicesRestart struct.
 type UtilsDevicesRestart struct {
     // optional for VC member
-    Member               *string        `json:"member,omitempty"`
+    Member               *string                `json:"member,omitempty"`
     // only for SSR: if node is not present, both nodes are restarted
     // for other devices: node should not be present
-    Node                 *string        `json:"node,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Node                 *string                `json:"node,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsDevicesRestart.
@@ -19,13 +19,17 @@ type UtilsDevicesRestart struct {
 func (u UtilsDevicesRestart) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "member", "node"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsDevicesRestart object to a map representation for JSON marshaling.
 func (u UtilsDevicesRestart) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Member != nil {
         structMap["member"] = u.Member
     }
@@ -43,12 +47,12 @@ func (u *UtilsDevicesRestart) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "member", "node")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "member", "node")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Member = temp.Member
     u.Node = temp.Node
     return nil

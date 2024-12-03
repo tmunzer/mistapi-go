@@ -1,6 +1,8 @@
 
 # Map Site Import File
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MapSiteImportFile`
@@ -13,6 +15,7 @@
 | `Csv` | `*[]byte` | Optional | csv file for ap name mapping, optional |
 | `File` | `*[]byte` | Optional | ekahau or ibwave file |
 | `Json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,15 @@
     "import_all_floorplans": false,
     "import_height": false,
     "import_orientation": false,
-    "vendor_name": "ekahau"
+    "vendor_name": "ekahau",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

@@ -939,7 +939,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.DeviceUpgrade{
-    Version:   "3.1.5",
+    Version:              "3.1.5",
 }
 
 apiResponse, err := utilitiesUpgrade.UpgradeDevice(ctx, siteId, deviceId, &body)
@@ -1116,7 +1116,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceMac := "0000000000ab"
 
 body := models.VersionString{
-    Version: models.ToPointer("3.1.5"),
+    Version:              models.ToPointer("3.1.5"),
 }
 
 resp, err := utilitiesUpgrade.UpgradeOrgJsiDevice(ctx, orgId, deviceMac, &body)
@@ -1175,8 +1175,8 @@ body := models.MxedgeUpgradeMulti{
         uuid.MustParse("387804a7-3474-85ce-15a2-f9a9684c9c90"),
     },
     Versions:             models.ToPointer(models.MxedgeUpgradeVersion{
-        Mxagent:     "current",
-        Tunterm:     "default",
+        Mxagent:              "current",
+        Tunterm:              "default",
     }),
 }
 
@@ -1231,13 +1231,13 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsrUpgradeMulti{
-    Channel:   models.ToPointer(models.SsrUpgradeChannelEnum("stable")),
-    DeviceIds: []uuid.UUID{
+    Channel:              models.ToPointer(models.SsrUpgradeChannelEnum("stable")),
+    DeviceIds:            []uuid.UUID{
         uuid.MustParse("00000000-0000-0000-1000-5c5b3500001f"),
         uuid.MustParse("00000000-0000-0000-1000-5c5b35000020"),
     },
-    Strategy:  models.ToPointer(models.SsrUpgradeStrategyEnum("big_bang")),
-    Version:   models.ToPointer("5.3.0-93"),
+    Strategy:             models.ToPointer(models.SsrUpgradeStrategyEnum("big_bang")),
+    Version:              models.ToPointer("5.3.0-93"),
 }
 
 apiResponse, err := utilitiesUpgrade.UpgradeOrgSsrs(ctx, orgId, &body)
@@ -1399,8 +1399,8 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsrUpgrade{
-    Channel:   models.ToPointer(models.SsrUpgradeChannelEnum("stable")),
-    Version:   "5.3.1-170-93",
+    Channel:              models.ToPointer(models.SsrUpgradeChannelEnum("stable")),
+    Version:              "5.3.1-170-93",
 }
 
 apiResponse, err := utilitiesUpgrade.UpgradeSsr(ctx, siteId, deviceId, &body)

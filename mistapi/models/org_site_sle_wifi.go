@@ -15,7 +15,7 @@ type OrgSiteSleWifi struct {
     Results              []OrgSiteSleWifiResult `json:"results"`
     Start                float64                `json:"start"`
     Total                int                    `json:"total"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSiteSleWifi.
@@ -23,13 +23,17 @@ type OrgSiteSleWifi struct {
 func (o OrgSiteSleWifi) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "end", "interval", "limit", "page", "results", "start", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSiteSleWifi object to a map representation for JSON marshaling.
 func (o OrgSiteSleWifi) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     structMap["end"] = o.End
     structMap["interval"] = o.Interval
     structMap["limit"] = o.Limit
@@ -52,12 +56,12 @@ func (o *OrgSiteSleWifi) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "interval", "limit", "page", "results", "start", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "interval", "limit", "page", "results", "start", "total")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.End = *temp.End
     o.Interval = *temp.Interval
     o.Limit = *temp.Limit

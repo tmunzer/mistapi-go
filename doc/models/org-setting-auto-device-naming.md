@@ -1,6 +1,8 @@
 
 # Org Setting Auto Device Naming
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgSettingAutoDeviceNaming`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Enable` | `*bool` | Optional | - |
 | `Rules` | [`models.Optional[[]models.OrgAutoRules]`](../../doc/models/org-auto-rules.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,11 @@
       "gatewaytemplate_id": "gatewaytemplate_id0",
       "match_country": "match_country8",
       "match_device_type": "other",
-      "src": "name"
+      "src": "name",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "create_new_site_if_needed": false,
@@ -32,9 +39,17 @@
       "gatewaytemplate_id": "gatewaytemplate_id0",
       "match_country": "match_country8",
       "match_device_type": "other",
-      "src": "name"
+      "src": "name",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -8,12 +8,12 @@ import (
 // IoT Input AP settings
 type ApIotInput struct {
     // whether to enable a pin
-    Enabled              *bool            `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // optional; descriptive pin name
-    Name                 *string          `json:"name,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
     // the type of pull-up the pin uses. enum: `external`, `internal`, `none`
-    Pullup               *ApIotPullupEnum `json:"pullup,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Pullup               *ApIotPullupEnum       `json:"pullup,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApIotInput.
@@ -21,13 +21,17 @@ type ApIotInput struct {
 func (a ApIotInput) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "enabled", "name", "pullup"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApIotInput object to a map representation for JSON marshaling.
 func (a ApIotInput) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Enabled != nil {
         structMap["enabled"] = a.Enabled
     }
@@ -48,12 +52,12 @@ func (a *ApIotInput) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "name", "pullup")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "name", "pullup")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Enabled = temp.Enabled
     a.Name = temp.Name
     a.Pullup = temp.Pullup

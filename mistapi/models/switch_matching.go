@@ -5,11 +5,11 @@ import (
 )
 
 // SwitchMatching represents a SwitchMatching struct.
-// Switch template
+// defines custom switch configuration based on different criterias
 type SwitchMatching struct {
-    Enable               *bool                `json:"enable,omitempty"`
-    Rules                []SwitchMatchingRule `json:"rules,omitempty"`
-    AdditionalProperties map[string]any       `json:"_"`
+    Enable               *bool                  `json:"enable,omitempty"`
+    Rules                []SwitchMatchingRule   `json:"rules,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMatching.
@@ -17,13 +17,17 @@ type SwitchMatching struct {
 func (s SwitchMatching) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "enable", "rules"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchMatching object to a map representation for JSON marshaling.
 func (s SwitchMatching) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Enable != nil {
         structMap["enable"] = s.Enable
     }
@@ -41,12 +45,12 @@ func (s *SwitchMatching) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enable", "rules")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enable", "rules")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Enable = temp.Enable
     s.Rules = temp.Rules
     return nil

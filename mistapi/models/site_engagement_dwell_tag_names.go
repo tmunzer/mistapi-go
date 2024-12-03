@@ -6,11 +6,11 @@ import (
 
 // SiteEngagementDwellTagNames represents a SiteEngagementDwellTagNames struct.
 type SiteEngagementDwellTagNames struct {
-    Bounce               *string        `json:"bounce,omitempty"`
-    Engaged              *string        `json:"engaged,omitempty"`
-    Passerby             *string        `json:"passerby,omitempty"`
-    Stationed            *string        `json:"stationed,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Bounce               *string                `json:"bounce,omitempty"`
+    Engaged              *string                `json:"engaged,omitempty"`
+    Passerby             *string                `json:"passerby,omitempty"`
+    Stationed            *string                `json:"stationed,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteEngagementDwellTagNames.
@@ -18,13 +18,17 @@ type SiteEngagementDwellTagNames struct {
 func (s SiteEngagementDwellTagNames) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "bounce", "engaged", "passerby", "stationed"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteEngagementDwellTagNames object to a map representation for JSON marshaling.
 func (s SiteEngagementDwellTagNames) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Bounce != nil {
         structMap["bounce"] = s.Bounce
     }
@@ -48,12 +52,12 @@ func (s *SiteEngagementDwellTagNames) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bounce", "engaged", "passerby", "stationed")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bounce", "engaged", "passerby", "stationed")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Bounce = temp.Bounce
     s.Engaged = temp.Engaged
     s.Passerby = temp.Passerby

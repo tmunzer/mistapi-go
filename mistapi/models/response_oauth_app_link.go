@@ -10,7 +10,7 @@ type ResponseOauthAppLink struct {
     Accounts             []ResponseOauthAppLinkItem `json:"accounts,omitempty"`
     // Basic Auth application linked status in mist portal enabled for VMware
     Linked               *bool                      `json:"linked,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOauthAppLink.
@@ -18,13 +18,17 @@ type ResponseOauthAppLink struct {
 func (r ResponseOauthAppLink) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "accounts", "linked"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseOauthAppLink object to a map representation for JSON marshaling.
 func (r ResponseOauthAppLink) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Accounts != nil {
         structMap["accounts"] = r.Accounts
     }
@@ -42,12 +46,12 @@ func (r *ResponseOauthAppLink) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "accounts", "linked")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accounts", "linked")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Accounts = temp.Accounts
     r.Linked = temp.Linked
     return nil

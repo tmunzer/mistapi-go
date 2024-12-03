@@ -10,7 +10,7 @@ type ApTemplateMatchingRule struct {
     Name                 *string                 `json:"name,omitempty"`
     // Property key is the interface(s) name (e.g. "eth1,eth2")
     PortConfig           map[string]ApPortConfig `json:"port_config,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApTemplateMatchingRule.
@@ -18,13 +18,17 @@ type ApTemplateMatchingRule struct {
 func (a ApTemplateMatchingRule) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "match_model", "name", "port_config"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApTemplateMatchingRule object to a map representation for JSON marshaling.
 func (a ApTemplateMatchingRule) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.MatchModel != nil {
         structMap["match_model"] = a.MatchModel
     }
@@ -45,12 +49,12 @@ func (a *ApTemplateMatchingRule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "match_model", "name", "port_config")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "match_model", "name", "port_config")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.MatchModel = temp.MatchModel
     a.Name = temp.Name
     a.PortConfig = temp.PortConfig

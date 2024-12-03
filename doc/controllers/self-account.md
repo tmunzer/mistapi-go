@@ -164,6 +164,9 @@ body := models.Admin{
     LastName:             models.ToPointer("Smith"),
     Phone:                models.ToPointer("14081112222"),
     Phone2:               models.ToPointer("14083334444"),
+    AdditionalProperties: map[string]interface{}{
+        "persona": interface{}("security"),
+    },
 }
 
 apiResponse, err := selfAccount.UpdateSelf(ctx, &body)
@@ -252,7 +255,7 @@ UpdateSelfEmail(
 ctx := context.Background()
 
 body := models.EmailString{
-    Email: "new@mistsys.com",
+    Email:                "new@mistsys.com",
 }
 
 resp, err := selfAccount.UpdateSelfEmail(ctx, &body)

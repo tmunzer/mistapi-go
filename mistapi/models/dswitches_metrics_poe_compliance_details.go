@@ -8,9 +8,9 @@ import (
 
 // DswitchesMetricsPoeComplianceDetails represents a DswitchesMetricsPoeComplianceDetails struct.
 type DswitchesMetricsPoeComplianceDetails struct {
-    TotalAps             int            `json:"total_aps"`
-    TotalPower           float64        `json:"total_power"`
-    AdditionalProperties map[string]any `json:"_"`
+    TotalAps             int                    `json:"total_aps"`
+    TotalPower           float64                `json:"total_power"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DswitchesMetricsPoeComplianceDetails.
@@ -18,13 +18,17 @@ type DswitchesMetricsPoeComplianceDetails struct {
 func (d DswitchesMetricsPoeComplianceDetails) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "total_aps", "total_power"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DswitchesMetricsPoeComplianceDetails object to a map representation for JSON marshaling.
 func (d DswitchesMetricsPoeComplianceDetails) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     structMap["total_aps"] = d.TotalAps
     structMap["total_power"] = d.TotalPower
     return structMap
@@ -42,12 +46,12 @@ func (d *DswitchesMetricsPoeComplianceDetails) UnmarshalJSON(input []byte) error
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "total_aps", "total_power")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "total_aps", "total_power")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.TotalAps = *temp.TotalAps
     d.TotalPower = *temp.TotalPower
     return nil

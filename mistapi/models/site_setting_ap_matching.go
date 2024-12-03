@@ -8,7 +8,7 @@ import (
 type SiteSettingApMatching struct {
     Enabled              *bool                       `json:"enabled,omitempty"`
     Rules                []SiteSettingApMatchingRule `json:"rules,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingApMatching.
@@ -16,13 +16,17 @@ type SiteSettingApMatching struct {
 func (s SiteSettingApMatching) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "enabled", "rules"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingApMatching object to a map representation for JSON marshaling.
 func (s SiteSettingApMatching) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Enabled != nil {
         structMap["enabled"] = s.Enabled
     }
@@ -40,12 +44,12 @@ func (s *SiteSettingApMatching) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "rules")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "rules")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Enabled = temp.Enabled
     s.Rules = temp.Rules
     return nil

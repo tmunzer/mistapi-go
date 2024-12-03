@@ -9,18 +9,18 @@ import (
 
 // ApTemplate represents a ApTemplate struct.
 type ApTemplate struct {
-    ApMatching           ApTemplateMatching `json:"ap_matching"`
+    ApMatching           ApTemplateMatching     `json:"ap_matching"`
     // when the object has been created, in epoch
-    CreatedTime          *float64           `json:"created_time,omitempty"`
-    ForSite              *bool              `json:"for_site,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID         `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64           `json:"modified_time,omitempty"`
-    OrgId                *uuid.UUID         `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID         `json:"site_id,omitempty"`
-    Wifi                 *ApTemplateWifi    `json:"wifi,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Wifi                 *ApTemplateWifi        `json:"wifi,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApTemplate.
@@ -28,13 +28,17 @@ type ApTemplate struct {
 func (a ApTemplate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "ap_matching", "created_time", "for_site", "id", "modified_time", "org_id", "site_id", "wifi"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApTemplate object to a map representation for JSON marshaling.
 func (a ApTemplate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     structMap["ap_matching"] = a.ApMatching.toMap()
     if a.CreatedTime != nil {
         structMap["created_time"] = a.CreatedTime
@@ -72,12 +76,12 @@ func (a *ApTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_matching", "created_time", "for_site", "id", "modified_time", "org_id", "site_id", "wifi")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_matching", "created_time", "for_site", "id", "modified_time", "org_id", "site_id", "wifi")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.ApMatching = *temp.ApMatching
     a.CreatedTime = temp.CreatedTime
     a.ForSite = temp.ForSite

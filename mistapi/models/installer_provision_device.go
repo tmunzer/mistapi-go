@@ -10,21 +10,21 @@ import (
 // InstallerProvisionDevice represents a InstallerProvisionDevice struct.
 // Provision Device
 type InstallerProvisionDevice struct {
-    DeviceprofileName    *string        `json:"deviceprofile_name,omitempty"`
-    ForSite              *bool          `json:"for_site,omitempty"`
-    Height               *float64       `json:"height,omitempty"`
-    MapId                *uuid.UUID     `json:"map_id,omitempty"`
-    Name                 string         `json:"name"`
-    Orientation          *int           `json:"orientation,omitempty"`
+    DeviceprofileName    *string                `json:"deviceprofile_name,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
+    Height               *float64               `json:"height,omitempty"`
+    MapId                *uuid.UUID             `json:"map_id,omitempty"`
+    Name                 string                 `json:"name"`
+    Orientation          *int                   `json:"orientation,omitempty"`
     // Onlif this is to replace an existing device
-    ReplacingMac         *string        `json:"replacing_mac,omitempty"`
+    ReplacingMac         *string                `json:"replacing_mac,omitempty"`
     // optional role for switch / gateway
-    Role                 *string        `json:"role,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    SiteName             *string        `json:"site_name,omitempty"`
-    X                    *float64       `json:"x,omitempty"`
-    Y                    *float64       `json:"y,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Role                 *string                `json:"role,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    SiteName             *string                `json:"site_name,omitempty"`
+    X                    *float64               `json:"x,omitempty"`
+    Y                    *float64               `json:"y,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for InstallerProvisionDevice.
@@ -32,13 +32,17 @@ type InstallerProvisionDevice struct {
 func (i InstallerProvisionDevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "deviceprofile_name", "for_site", "height", "map_id", "name", "orientation", "replacing_mac", "role", "site_id", "site_name", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the InstallerProvisionDevice object to a map representation for JSON marshaling.
 func (i InstallerProvisionDevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.DeviceprofileName != nil {
         structMap["deviceprofile_name"] = i.DeviceprofileName
     }
@@ -88,12 +92,12 @@ func (i *InstallerProvisionDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "deviceprofile_name", "for_site", "height", "map_id", "name", "orientation", "replacing_mac", "role", "site_id", "site_name", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "deviceprofile_name", "for_site", "height", "map_id", "name", "orientation", "replacing_mac", "role", "site_id", "site_name", "x", "y")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.DeviceprofileName = temp.DeviceprofileName
     i.ForSite = temp.ForSite
     i.Height = temp.Height

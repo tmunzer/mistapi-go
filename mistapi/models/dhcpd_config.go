@@ -7,8 +7,8 @@ import (
 // DhcpdConfig represents a DhcpdConfig struct.
 type DhcpdConfig struct {
     // if set to `false`, disable the DHCP server
-    Enabled              *bool          `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enabled              *bool                          `json:"enabled,omitempty"`
+    AdditionalProperties map[string]DhcpdConfigProperty `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpdConfig.
@@ -16,13 +16,17 @@ type DhcpdConfig struct {
 func (d DhcpdConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DhcpdConfig object to a map representation for JSON marshaling.
 func (d DhcpdConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.Enabled != nil {
         structMap["enabled"] = d.Enabled
     }
@@ -37,12 +41,12 @@ func (d *DhcpdConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[DhcpdConfigProperty](input, "enabled")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.Enabled = temp.Enabled
     return nil
 }

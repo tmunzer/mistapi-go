@@ -8,9 +8,9 @@ import (
 // StatsWirelessClientZone represents a StatsWirelessClientZone struct.
 type StatsWirelessClientZone struct {
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Since                *int           `json:"since,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Since                *int                   `json:"since,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWirelessClientZone.
@@ -18,13 +18,17 @@ type StatsWirelessClientZone struct {
 func (s StatsWirelessClientZone) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "id", "since"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsWirelessClientZone object to a map representation for JSON marshaling.
 func (s StatsWirelessClientZone) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Id != nil {
         structMap["id"] = s.Id
     }
@@ -42,12 +46,12 @@ func (s *StatsWirelessClientZone) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "since")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "since")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Id = temp.Id
     s.Since = temp.Since
     return nil

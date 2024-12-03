@@ -7,8 +7,8 @@ import (
 // HaClusterConfigNode represents a HaClusterConfigNode struct.
 type HaClusterConfigNode struct {
     // node mac, should be unassigned
-    Mac                  *string        `json:"mac,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  *string                `json:"mac,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for HaClusterConfigNode.
@@ -16,13 +16,17 @@ type HaClusterConfigNode struct {
 func (h HaClusterConfigNode) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(h.AdditionalProperties,
+        "mac"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(h.toMap())
 }
 
 // toMap converts the HaClusterConfigNode object to a map representation for JSON marshaling.
 func (h HaClusterConfigNode) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, h.AdditionalProperties)
+    MergeAdditionalProperties(structMap, h.AdditionalProperties)
     if h.Mac != nil {
         structMap["mac"] = h.Mac
     }
@@ -37,12 +41,12 @@ func (h *HaClusterConfigNode) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac")
     if err != nil {
     	return err
     }
-    
     h.AdditionalProperties = additionalProperties
+    
     h.Mac = temp.Mac
     return nil
 }

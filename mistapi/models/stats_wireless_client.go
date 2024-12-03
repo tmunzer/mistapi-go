@@ -111,7 +111,7 @@ type StatsWirelessClient struct {
     YM                   *float64                         `json:"y_m,omitempty"`
     // list of zone_id’s where client is in and since when (if known)
     Zones                []StatsWirelessClientZone        `json:"zones,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWirelessClient.
@@ -119,13 +119,17 @@ type StatsWirelessClient struct {
 func (s StatsWirelessClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "accuracy", "airespace_ifname", "airwatch", "ap_id", "ap_mac", "band", "channel", "dual_band", "family", "guest", "hostname", "idle_time", "ip", "is_guest", "key_mgmt", "last_seen", "mac", "manufacture", "map_id", "model", "num_locating_aps", "os", "power_saving", "proto", "psk_id", "rssi", "rssizones", "rx_bps", "rx_bytes", "rx_packets", "rx_rate", "rx_retries", "snr", "ssid", "tx_bps", "tx_bytes", "tx_packets", "tx_rate", "tx_retries", "type", "uptime", "username", "vbeacons", "vlan_id", "wlan_id", "wxrule_id", "wxrule_usage", "x", "x_m", "y", "y_m", "zones"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsWirelessClient object to a map representation for JSON marshaling.
 func (s StatsWirelessClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Accuracy != nil {
         structMap["accuracy"] = s.Accuracy
     }
@@ -229,12 +233,12 @@ func (s *StatsWirelessClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "accuracy", "airespace_ifname", "airwatch", "ap_id", "ap_mac", "band", "channel", "dual_band", "family", "guest", "hostname", "idle_time", "ip", "is_guest", "key_mgmt", "last_seen", "mac", "manufacture", "map_id", "model", "num_locating_aps", "os", "power_saving", "proto", "psk_id", "rssi", "rssizones", "rx_bps", "rx_bytes", "rx_packets", "rx_rate", "rx_retries", "snr", "ssid", "tx_bps", "tx_bytes", "tx_packets", "tx_rate", "tx_retries", "type", "uptime", "username", "vbeacons", "vlan_id", "wlan_id", "wxrule_id", "wxrule_usage", "x", "x_m", "y", "y_m", "zones")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accuracy", "airespace_ifname", "airwatch", "ap_id", "ap_mac", "band", "channel", "dual_band", "family", "guest", "hostname", "idle_time", "ip", "is_guest", "key_mgmt", "last_seen", "mac", "manufacture", "map_id", "model", "num_locating_aps", "os", "power_saving", "proto", "psk_id", "rssi", "rssizones", "rx_bps", "rx_bytes", "rx_packets", "rx_rate", "rx_retries", "snr", "ssid", "tx_bps", "tx_bytes", "tx_packets", "tx_rate", "tx_retries", "type", "uptime", "username", "vbeacons", "vlan_id", "wlan_id", "wxrule_id", "wxrule_usage", "x", "x_m", "y", "y_m", "zones")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Accuracy = temp.Accuracy
     s.AirespaceIfname = temp.AirespaceIfname
     s.Airwatch = temp.Airwatch

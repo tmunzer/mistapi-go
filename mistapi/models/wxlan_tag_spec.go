@@ -7,12 +7,12 @@ import (
 // WxlanTagSpec represents a WxlanTagSpec struct.
 type WxlanTagSpec struct {
     // matched destination port, "0" means any
-    PortRange            *string        `json:"port_range,omitempty"`
+    PortRange            *string                `json:"port_range,omitempty"`
     // tcp / udp / icmp / gre / any / ":protocol_number", `protocol_number` is between 1-254
-    Protocol             *string        `json:"protocol,omitempty"`
+    Protocol             *string                `json:"protocol,omitempty"`
     // matched destination subnets and/or IP Addresses
-    Subnets              []string       `json:"subnets,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Subnets              []string               `json:"subnets,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanTagSpec.
@@ -20,13 +20,17 @@ type WxlanTagSpec struct {
 func (w WxlanTagSpec) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "port_range", "protocol", "subnets"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WxlanTagSpec object to a map representation for JSON marshaling.
 func (w WxlanTagSpec) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.PortRange != nil {
         structMap["port_range"] = w.PortRange
     }
@@ -47,12 +51,12 @@ func (w *WxlanTagSpec) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "port_range", "protocol", "subnets")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "port_range", "protocol", "subnets")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.PortRange = temp.PortRange
     w.Protocol = temp.Protocol
     w.Subnets = temp.Subnets

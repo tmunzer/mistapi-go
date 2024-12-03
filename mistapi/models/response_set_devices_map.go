@@ -6,9 +6,9 @@ import (
 
 // ResponseSetDevicesMap represents a ResponseSetDevicesMap struct.
 type ResponseSetDevicesMap struct {
-    Locked               []string       `json:"locked,omitempty"`
-    Moved                []string       `json:"moved,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Locked               []string               `json:"locked,omitempty"`
+    Moved                []string               `json:"moved,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSetDevicesMap.
@@ -16,13 +16,17 @@ type ResponseSetDevicesMap struct {
 func (r ResponseSetDevicesMap) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "locked", "moved"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSetDevicesMap object to a map representation for JSON marshaling.
 func (r ResponseSetDevicesMap) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Locked != nil {
         structMap["locked"] = r.Locked
     }
@@ -40,12 +44,12 @@ func (r *ResponseSetDevicesMap) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "locked", "moved")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "locked", "moved")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Locked = temp.Locked
     r.Moved = temp.Moved
     return nil

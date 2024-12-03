@@ -1,6 +1,8 @@
 
 # Avprofile
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Avprofile`
@@ -20,6 +22,7 @@
 | `Protocols` | [`[]models.AvprofileProtocolsEnum`](../../doc/models/avprofile-protocols-enum.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `UrlWhitelist` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,7 +37,11 @@
   "mex_filesize": 94,
   "mime_whitelist": [
     "mime_whitelist3"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

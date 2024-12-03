@@ -7,14 +7,14 @@ import (
 // UtilsShowEvpnDatabase represents a UtilsShowEvpnDatabase struct.
 type UtilsShowEvpnDatabase struct {
     // duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.
-    Duration             *int           `json:"duration,omitempty"`
+    Duration             *int                   `json:"duration,omitempty"`
     // rate at which output will refresh
-    Interval             *int           `json:"interval,omitempty"`
+    Interval             *int                   `json:"interval,omitempty"`
     // client mac filter
-    Mac                  *string        `json:"mac,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
     // interface name
-    PortId               *string        `json:"port_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    PortId               *string                `json:"port_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowEvpnDatabase.
@@ -22,13 +22,17 @@ type UtilsShowEvpnDatabase struct {
 func (u UtilsShowEvpnDatabase) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "duration", "interval", "mac", "port_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsShowEvpnDatabase object to a map representation for JSON marshaling.
 func (u UtilsShowEvpnDatabase) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Duration != nil {
         structMap["duration"] = u.Duration
     }
@@ -52,12 +56,12 @@ func (u *UtilsShowEvpnDatabase) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "duration", "interval", "mac", "port_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "interval", "mac", "port_id")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Duration = temp.Duration
     u.Interval = temp.Interval
     u.Mac = temp.Mac

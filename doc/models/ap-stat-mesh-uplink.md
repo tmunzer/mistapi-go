@@ -1,6 +1,8 @@
 
 # Ap Stat Mesh Uplink
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApStatMeshUplink`
@@ -28,6 +30,7 @@
 | `TxRate` | `*int` | Optional | - |
 | `TxRetries` | `*int` | Optional | - |
 | `UplinkApId` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -51,7 +54,11 @@
   "tx_packets": 1566,
   "tx_rate": 65,
   "tx_retries": 500,
-  "uplink_ap_id": "00000000-0000-0000-1000-5c5b35000010"
+  "uplink_ap_id": "00000000-0000-0000-1000-5c5b35000010",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

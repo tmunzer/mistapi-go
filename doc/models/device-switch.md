@@ -4,6 +4,8 @@
 Switch Configuration.
 You can configure `port_usages` and `networks` settings at the device level, but most of the time it's better use the Site Setting to achieve better consistency and be able to re-use the same settings across switches entries defined here will "replace" those defined in Site Setting/Network Template
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `DeviceSwitch`
@@ -14,7 +16,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 |  --- | --- | --- | --- |
 | `AclPolicies` | [`[]models.AclPolicy`](../../doc/models/acl-policy.md) | Optional | - |
 | `AclTags` | [`map[string]models.AclTag`](../../doc/models/acl-tag.md) | Optional | ACL Tags to identify traffic source or destination. Key name is the tag name |
-| `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
+| `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
 | `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DeviceprofileId` | `*uuid.UUID` | Optional | - |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
@@ -66,6 +68,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `VrrpConfig` | [`*models.VrrpConfig`](../../doc/models/vrrp-config.md) | Optional | Junos VRRP config |
 | `X` | `*float64` | Optional | x in pixel |
 | `Y` | `*float64` | Optional | y in pixel |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -108,27 +111,43 @@ You can configure `port_usages` and `networks` settings at the device level, but
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0"
+          "dst_tag": "dst_tag0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0"
+          "dst_tag": "dst_tag0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "acl_tags": {
@@ -142,10 +161,18 @@ You can configure `port_usages` and `networks` settings at the device level, but
       "specs": [
         {
           "port_range": "port_range8",
-          "protocol": "protocol6"
+          "protocol": "protocol6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
-      "type": "dynamic_gbp"
+      "type": "dynamic_gbp",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "additional_config_cmds": [
@@ -153,7 +180,11 @@ You can configure `port_usages` and `networks` settings at the device level, but
     "additional_config_cmds3"
   ],
   "created_time": 110.44,
-  "deviceprofile_id": "000024d0-0000-0000-0000-000000000000"
+  "deviceprofile_id": "000024d0-0000-0000-0000-000000000000",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

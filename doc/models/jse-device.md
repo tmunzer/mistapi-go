@@ -1,6 +1,8 @@
 
 # Jse Device
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `JseDevice`
@@ -14,6 +16,7 @@
 | `Mac` | `*string` | Optional | - |
 | `Model` | `*string` | Optional | - |
 | `Serial` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@
   "last_seen": 77.36,
   "mac": "mac0",
   "model": "model6",
-  "serial": "serial6"
+  "serial": "serial6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # Response Ssr Upgrade Status Targets
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseSsrUpgradeStatusTargets`
@@ -13,6 +15,7 @@
 | `Queued` | `[]string` | Required | **Constraints**: *Unique Items Required* |
 | `Success` | `[]string` | Required | **Constraints**: *Unique Items Required* |
 | `Upgrading` | `[]string` | Required | **Constraints**: *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,7 +38,11 @@
     "upgrading9",
     "upgrading0",
     "upgrading1"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

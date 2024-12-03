@@ -37,7 +37,7 @@ type Network struct {
     VlanId               *VlanIdWithVariable               `json:"vlan_id,omitempty"`
     // Property key is the VPN name. Whether this network can be accessed from vpn
     VpnAccess            map[string]NetworkVpnAccessConfig `json:"vpn_access,omitempty"`
-    AdditionalProperties map[string]any                    `json:"_"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Network.
@@ -45,13 +45,17 @@ type Network struct {
 func (n Network) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "created_time", "disallow_mist_services", "gateway", "gateway6", "id", "internal_access", "internet_access", "isolation", "modified_time", "multicast", "name", "org_id", "routed_for_networks", "subnet", "subnet6", "tenants", "vlan_id", "vpn_access"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the Network object to a map representation for JSON marshaling.
 func (n Network) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.CreatedTime != nil {
         structMap["created_time"] = n.CreatedTime
     }
@@ -119,12 +123,12 @@ func (n *Network) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "disallow_mist_services", "gateway", "gateway6", "id", "internal_access", "internet_access", "isolation", "modified_time", "multicast", "name", "org_id", "routed_for_networks", "subnet", "subnet6", "tenants", "vlan_id", "vpn_access")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "disallow_mist_services", "gateway", "gateway6", "id", "internal_access", "internet_access", "isolation", "modified_time", "multicast", "name", "org_id", "routed_for_networks", "subnet", "subnet6", "tenants", "vlan_id", "vpn_access")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.CreatedTime = temp.CreatedTime
     n.DisallowMistServices = temp.DisallowMistServices
     n.Gateway = temp.Gateway

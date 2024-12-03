@@ -1,6 +1,8 @@
 
 # Response Location Coverage
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseLocationCoverage`
@@ -15,6 +17,7 @@
 | `ResultDef` | `[]string` | Required | list of names annotating the fields in results |
 | `Results` | `[][]float64` | Required | list of results, see result_def. |
 | `Start` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -45,7 +48,11 @@
       31.84
     ]
   ],
-  "start": 106
+  "start": 106,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

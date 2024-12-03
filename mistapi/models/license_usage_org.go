@@ -9,14 +9,14 @@ import (
 
 // LicenseUsageOrg represents a LicenseUsageOrg struct.
 type LicenseUsageOrg struct {
-    ForSite              *bool          `json:"for_site,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // Property key is the service name (e.g. "SUB-MAN")
-    FullyLoaded          map[string]int `json:"fully_loaded,omitempty"`
-    NumDevices           int            `json:"num_devices"`
-    SiteId               uuid.UUID      `json:"site_id"`
+    FullyLoaded          map[string]int         `json:"fully_loaded,omitempty"`
+    NumDevices           int                    `json:"num_devices"`
+    SiteId               uuid.UUID              `json:"site_id"`
     // subscriptions and their quantities. Property key is the service name (e.g. "SUB-MAN")
-    Usages               map[string]int `json:"usages"`
-    AdditionalProperties map[string]any `json:"_"`
+    Usages               map[string]int         `json:"usages"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for LicenseUsageOrg.
@@ -24,13 +24,17 @@ type LicenseUsageOrg struct {
 func (l LicenseUsageOrg) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(l.AdditionalProperties,
+        "for_site", "fully_loaded", "num_devices", "site_id", "usages"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(l.toMap())
 }
 
 // toMap converts the LicenseUsageOrg object to a map representation for JSON marshaling.
 func (l LicenseUsageOrg) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, l.AdditionalProperties)
+    MergeAdditionalProperties(structMap, l.AdditionalProperties)
     if l.ForSite != nil {
         structMap["for_site"] = l.ForSite
     }
@@ -55,12 +59,12 @@ func (l *LicenseUsageOrg) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "for_site", "fully_loaded", "num_devices", "site_id", "usages")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "for_site", "fully_loaded", "num_devices", "site_id", "usages")
     if err != nil {
     	return err
     }
-    
     l.AdditionalProperties = additionalProperties
+    
     l.ForSite = temp.ForSite
     l.FullyLoaded = temp.FullyLoaded
     l.NumDevices = *temp.NumDevices

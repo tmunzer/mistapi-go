@@ -1,6 +1,8 @@
 
 # Utils Cable Tests
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UtilsCableTests`
@@ -10,12 +12,17 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Port` | `string` | Required | the port to run the cable test |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "port": "port2"
+  "port": "port2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -8,16 +8,16 @@ import (
 // WebhookClientInfoEvent represents a WebhookClientInfoEvent struct.
 type WebhookClientInfoEvent struct {
     // Hostname of client
-    Hostname             *string        `json:"hostname,omitempty"`
+    Hostname             *string                `json:"hostname,omitempty"`
     // IP address of client
-    Ip                   *string        `json:"ip,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
     // the client’s mac
-    Mac                  *string        `json:"mac,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // time at which IP address was assigned E.g. 1703003956
-    Timestamp            *float64       `json:"timestamp,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookClientInfoEvent.
@@ -25,13 +25,17 @@ type WebhookClientInfoEvent struct {
 func (w WebhookClientInfoEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "hostname", "ip", "mac", "org_id", "site_id", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookClientInfoEvent object to a map representation for JSON marshaling.
 func (w WebhookClientInfoEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Hostname != nil {
         structMap["hostname"] = w.Hostname
     }
@@ -61,12 +65,12 @@ func (w *WebhookClientInfoEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "hostname", "ip", "mac", "org_id", "site_id", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "hostname", "ip", "mac", "org_id", "site_id", "timestamp")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Hostname = temp.Hostname
     w.Ip = temp.Ip
     w.Mac = temp.Mac

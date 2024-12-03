@@ -6,8 +6,8 @@ import (
 
 // EvpnOptionsVsInstance represents a EvpnOptionsVsInstance struct.
 type EvpnOptionsVsInstance struct {
-    Networks             []string       `json:"networks,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Networks             []string               `json:"networks,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnOptionsVsInstance.
@@ -15,13 +15,17 @@ type EvpnOptionsVsInstance struct {
 func (e EvpnOptionsVsInstance) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "networks"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EvpnOptionsVsInstance object to a map representation for JSON marshaling.
 func (e EvpnOptionsVsInstance) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.Networks != nil {
         structMap["networks"] = e.Networks
     }
@@ -36,12 +40,12 @@ func (e *EvpnOptionsVsInstance) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "networks")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "networks")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Networks = temp.Networks
     return nil
 }

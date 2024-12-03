@@ -6,11 +6,11 @@ import (
 
 // RouteSummaryStats represents a RouteSummaryStats struct.
 type RouteSummaryStats struct {
-    FibRoutes                 *int           `json:"fib_routes,omitempty"`
-    MaxUnicastRoutesSupported *int           `json:"max_unicast_routes_supported,omitempty"`
-    RibRoutes                 *int           `json:"rib_routes,omitempty"`
-    TotalRoutes               *int           `json:"total_routes,omitempty"`
-    AdditionalProperties      map[string]any `json:"_"`
+    FibRoutes                 *int                   `json:"fib_routes,omitempty"`
+    MaxUnicastRoutesSupported *int                   `json:"max_unicast_routes_supported,omitempty"`
+    RibRoutes                 *int                   `json:"rib_routes,omitempty"`
+    TotalRoutes               *int                   `json:"total_routes,omitempty"`
+    AdditionalProperties      map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RouteSummaryStats.
@@ -18,13 +18,17 @@ type RouteSummaryStats struct {
 func (r RouteSummaryStats) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "fib_routes", "max_unicast_routes_supported", "rib_routes", "total_routes"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RouteSummaryStats object to a map representation for JSON marshaling.
 func (r RouteSummaryStats) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.FibRoutes != nil {
         structMap["fib_routes"] = r.FibRoutes
     }
@@ -48,12 +52,12 @@ func (r *RouteSummaryStats) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "fib_routes", "max_unicast_routes_supported", "rib_routes", "total_routes")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "fib_routes", "max_unicast_routes_supported", "rib_routes", "total_routes")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.FibRoutes = temp.FibRoutes
     r.MaxUnicastRoutesSupported = temp.MaxUnicastRoutesSupported
     r.RibRoutes = temp.RibRoutes

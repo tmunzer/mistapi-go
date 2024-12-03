@@ -1,6 +1,8 @@
 
 # Webhook Location Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookLocationEvent`
@@ -28,6 +30,7 @@
 | `WifiBeaconExtendedInfo` | [`[]models.WifiBeaconExtendedInfoItems`](../../doc/models/wifi-beacon-extended-info-items.md) | Optional | optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload |
 | `X` | `float64` | Required | x, in meter |
 | `Y` | `float64` | Required | y, in meter |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -44,7 +47,11 @@
   "eddystone_uid_instance": "eddystone_uid_instance0",
   "eddystone_uid_namespace": "eddystone_uid_namespace8",
   "eddystone_url_url": "eddystone_url_url8",
-  "ibeacon_major": 124
+  "ibeacon_major": 124,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

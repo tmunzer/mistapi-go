@@ -9,18 +9,18 @@ import (
 
 // OrgSiteSleWifiResult represents a OrgSiteSleWifiResult struct.
 type OrgSiteSleWifiResult struct {
-    ApAvailability       *float64       `json:"ap-availability,omitempty"`
-    ApHealth             *float64       `json:"ap-health,omitempty"`
-    Capacity             *float64       `json:"capacity,omitempty"`
-    Coverage             *float64       `json:"coverage,omitempty"`
-    NumAps               *float64       `json:"num_aps,omitempty"`
-    NumClients           *float64       `json:"num_clients,omitempty"`
-    Roaming              *float64       `json:"roaming,omitempty"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    SuccessfulConnect    *float64       `json:"successful-connect,omitempty"`
-    Throughput           *float64       `json:"throughput,omitempty"`
-    TimeToConnect        *float64       `json:"time-to-connect,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ApAvailability       *float64               `json:"ap-availability,omitempty"`
+    ApHealth             *float64               `json:"ap-health,omitempty"`
+    Capacity             *float64               `json:"capacity,omitempty"`
+    Coverage             *float64               `json:"coverage,omitempty"`
+    NumAps               *float64               `json:"num_aps,omitempty"`
+    NumClients           *float64               `json:"num_clients,omitempty"`
+    Roaming              *float64               `json:"roaming,omitempty"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    SuccessfulConnect    *float64               `json:"successful-connect,omitempty"`
+    Throughput           *float64               `json:"throughput,omitempty"`
+    TimeToConnect        *float64               `json:"time-to-connect,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSiteSleWifiResult.
@@ -28,13 +28,17 @@ type OrgSiteSleWifiResult struct {
 func (o OrgSiteSleWifiResult) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "ap-availability", "ap-health", "capacity", "coverage", "num_aps", "num_clients", "roaming", "site_id", "successful-connect", "throughput", "time-to-connect"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSiteSleWifiResult object to a map representation for JSON marshaling.
 func (o OrgSiteSleWifiResult) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.ApAvailability != nil {
         structMap["ap-availability"] = o.ApAvailability
     }
@@ -81,12 +85,12 @@ func (o *OrgSiteSleWifiResult) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap-availability", "ap-health", "capacity", "coverage", "num_aps", "num_clients", "roaming", "site_id", "successful-connect", "throughput", "time-to-connect")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap-availability", "ap-health", "capacity", "coverage", "num_aps", "num_clients", "roaming", "site_id", "successful-connect", "throughput", "time-to-connect")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.ApAvailability = temp.ApAvailability
     o.ApHealth = temp.ApHealth
     o.Capacity = temp.Capacity

@@ -50,7 +50,7 @@ type StatsMxedge struct {
     Uptime               *int                              `json:"uptime,omitempty"`
     // Virtualization environment
     VirtualizationType   *string                           `json:"virtualization_type,omitempty"`
-    AdditionalProperties map[string]any                    `json:"_"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedge.
@@ -58,13 +58,17 @@ type StatsMxedge struct {
 func (s StatsMxedge) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "cpu_stat", "created_time", "fips_enabled", "for_site", "id", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxedge object to a map representation for JSON marshaling.
 func (s StatsMxedge) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.CpuStat != nil {
         structMap["cpu_stat"] = s.CpuStat.toMap()
     }
@@ -173,12 +177,12 @@ func (s *StatsMxedge) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cpu_stat", "created_time", "fips_enabled", "for_site", "id", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cpu_stat", "created_time", "fips_enabled", "for_site", "id", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.CpuStat = temp.CpuStat
     s.CreatedTime = temp.CreatedTime
     s.FipsEnabled = temp.FipsEnabled

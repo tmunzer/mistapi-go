@@ -10,12 +10,12 @@ import (
 // Object defines the scope (within the org e.g. whole org, and/or some site_groups, and/or some sites) for which the alarm service has to be suppressed for some `duration`
 type SuppressedAlarmApplies struct {
     // UUID of the current org (if provided, the alarms will be suppressed at org level)
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // List of UUID of the sites within the org (if provided, the alarms will be suppressed for all the mentioned sites under the org)
-    SiteIds              []uuid.UUID    `json:"site_ids,omitempty"`
+    SiteIds              []uuid.UUID            `json:"site_ids,omitempty"`
     // List of UUID of the site groups within the org (if provided, the alarms will be suppressed for all the sites under those site groups)
-    SitegroupIds         []uuid.UUID    `json:"sitegroup_ids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SuppressedAlarmApplies.
@@ -23,13 +23,17 @@ type SuppressedAlarmApplies struct {
 func (s SuppressedAlarmApplies) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "org_id", "site_ids", "sitegroup_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SuppressedAlarmApplies object to a map representation for JSON marshaling.
 func (s SuppressedAlarmApplies) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.OrgId != nil {
         structMap["org_id"] = s.OrgId
     }
@@ -50,12 +54,12 @@ func (s *SuppressedAlarmApplies) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "org_id", "site_ids", "sitegroup_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "org_id", "site_ids", "sitegroup_ids")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.OrgId = temp.OrgId
     s.SiteIds = temp.SiteIds
     s.SitegroupIds = temp.SitegroupIds

@@ -6,8 +6,8 @@ import (
 
 // WanExtraRoutes represents a WanExtraRoutes struct.
 type WanExtraRoutes struct {
-    Via                  *string        `json:"via,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Via                  *string                `json:"via,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WanExtraRoutes.
@@ -15,13 +15,17 @@ type WanExtraRoutes struct {
 func (w WanExtraRoutes) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "via"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WanExtraRoutes object to a map representation for JSON marshaling.
 func (w WanExtraRoutes) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Via != nil {
         structMap["via"] = w.Via
     }
@@ -36,12 +40,12 @@ func (w *WanExtraRoutes) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "via")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "via")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Via = temp.Via
     return nil
 }

@@ -17,7 +17,7 @@ type Snmpv3ConfigTargetParam struct {
     SecurityModel          *Snmpv3ConfigTargetParamSecurityModelEnum    `json:"security_model,omitempty"`
     // refer to security_name in usm
     SecurityName           *string                                      `json:"security_name,omitempty"`
-    AdditionalProperties   map[string]any                               `json:"_"`
+    AdditionalProperties   map[string]interface{}                       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Snmpv3ConfigTargetParam.
@@ -25,13 +25,17 @@ type Snmpv3ConfigTargetParam struct {
 func (s Snmpv3ConfigTargetParam) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "message_processing_model", "name", "notify_filter", "security_level", "security_model", "security_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Snmpv3ConfigTargetParam object to a map representation for JSON marshaling.
 func (s Snmpv3ConfigTargetParam) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.MessageProcessingModel != nil {
         structMap["message_processing_model"] = s.MessageProcessingModel
     }
@@ -61,12 +65,12 @@ func (s *Snmpv3ConfigTargetParam) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "message_processing_model", "name", "notify_filter", "security_level", "security_model", "security_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "message_processing_model", "name", "notify_filter", "security_level", "security_model", "security_name")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.MessageProcessingModel = temp.MessageProcessingModel
     s.Name = temp.Name
     s.NotifyFilter = temp.NotifyFilter

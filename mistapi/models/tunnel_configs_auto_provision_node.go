@@ -6,10 +6,10 @@ import (
 
 // TunnelConfigsAutoProvisionNode represents a TunnelConfigsAutoProvisionNode struct.
 type TunnelConfigsAutoProvisionNode struct {
-    NumHosts             *string        `json:"num_hosts,omitempty"`
+    NumHosts             *string                `json:"num_hosts,omitempty"`
     // optional, only needed if `vars_only`==`false`
-    WanNames             []string       `json:"wan_names,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    WanNames             []string               `json:"wan_names,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelConfigsAutoProvisionNode.
@@ -17,13 +17,17 @@ type TunnelConfigsAutoProvisionNode struct {
 func (t TunnelConfigsAutoProvisionNode) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "num_hosts", "wan_names"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TunnelConfigsAutoProvisionNode object to a map representation for JSON marshaling.
 func (t TunnelConfigsAutoProvisionNode) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.NumHosts != nil {
         structMap["num_hosts"] = t.NumHosts
     }
@@ -41,12 +45,12 @@ func (t *TunnelConfigsAutoProvisionNode) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "num_hosts", "wan_names")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "num_hosts", "wan_names")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.NumHosts = temp.NumHosts
     t.WanNames = temp.WanNames
     return nil

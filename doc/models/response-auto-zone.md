@@ -1,6 +1,8 @@
 
 # Response Auto Zone
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseAutoZone`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Status` | [`*models.ResponseAutoZoneStatusEnum`](../../doc/models/response-auto-zone-status-enum.md) | Optional | The status for the auto zones service for a given map. enum:<br><br>* not_started: The auto zones service has not been run on this map or the results were cleared by the user<br>* in_progress: The auto zones service is currently in progress<br>* awaiting_review: The auto zones service has completed and suggested location zones to be added to the map<br>* error: There was an error with the auto zones service |
 | `Zones` | [`*models.ResponseAutoZoneZone`](../../doc/models/response-auto-zone-zone.md) | Optional | A list of suggested zones to review and accept for a given map |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -22,13 +25,29 @@
     "vertices": [
       {
         "x": 16,
-        "y": 88
+        "y": 88,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       {
         "x": 16,
-        "y": 88
+        "y": 88,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

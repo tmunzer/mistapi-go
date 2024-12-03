@@ -231,17 +231,17 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.HaClusterConfig{
-    DisableAutoConfig: models.ToPointer(true),
-    Managed:           models.ToPointer(true),
-    Nodes:             []models.HaClusterConfigNode{
+    DisableAutoConfig:    models.ToPointer(true),
+    Managed:              models.ToPointer(true),
+    Nodes:                []models.HaClusterConfigNode{
         models.HaClusterConfigNode{
-            Mac: models.ToPointer("aff827549235"),
+            Mac:                  models.ToPointer("aff827549235"),
         },
         models.HaClusterConfigNode{
-            Mac: models.ToPointer("8396cd006c8c"),
+            Mac:                  models.ToPointer("8396cd006c8c"),
         },
     },
-    SiteId:            models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
+    SiteId:               models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
 }
 
 resp, err := orgsInventory.CreateOrgGatewayHaCluster(ctx, orgId, &body)
@@ -297,7 +297,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.HaClusterDelete{
-    Mac: models.ToPointer("aff827549235"),
+    Mac:                  models.ToPointer("aff827549235"),
 }
 
 resp, err := orgsInventory.DeleteOrgGatewayHaCluster(ctx, orgId, &body)
@@ -529,11 +529,11 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.ReplaceDevice{
-    Discard:           []string{
+    Discard:              []string{
     },
-    InventoryMac:      models.ToPointer("5c5b35000301"),
-    Mac:               models.ToPointer("5c5b35000101"),
-    SiteId:            models.ToPointer("4ac1dcf4-9d8b-7211-65c4-057819f0862b"),
+    InventoryMac:         models.ToPointer("5c5b35000301"),
+    Mac:                  models.ToPointer("5c5b35000101"),
+    SiteId:               models.ToPointer("4ac1dcf4-9d8b-7211-65c4-057819f0862b"),
 }
 
 apiResponse, err := orgsInventory.ReplaceOrgDevices(ctx, orgId, &body)
@@ -736,14 +736,14 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.InventoryUpdate{
-    DisableAutoConfig: models.ToPointer(false),
-    Macs:              []string{
+    DisableAutoConfig:    models.ToPointer(false),
+    Macs:                 []string{
         "5c5b350e0001",
     },
-    Managed:           models.ToPointer(false),
-    NoReassign:        models.ToPointer(false),
-    Op:                models.InventoryUpdateOperationEnum("assign"),
-    SiteId:            models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
+    Managed:              models.ToPointer(false),
+    NoReassign:           models.ToPointer(false),
+    Op:                   models.InventoryUpdateOperationEnum("assign"),
+    SiteId:               models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
 }
 
 apiResponse, err := orgsInventory.UpdateOrgInventoryAssignment(ctx, orgId, &body)

@@ -9,10 +9,10 @@ import (
 // ResponseUpgradeDevice represents a ResponseUpgradeDevice struct.
 type ResponseUpgradeDevice struct {
     // enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
-    Status               UpgradeInfoStatusEnum `json:"status"`
+    Status               UpgradeInfoStatusEnum  `json:"status"`
     // timestamp
-    Timestamp            float64               `json:"timestamp"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseUpgradeDevice.
@@ -20,13 +20,17 @@ type ResponseUpgradeDevice struct {
 func (r ResponseUpgradeDevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "status", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseUpgradeDevice object to a map representation for JSON marshaling.
 func (r ResponseUpgradeDevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["status"] = r.Status
     structMap["timestamp"] = r.Timestamp
     return structMap
@@ -44,12 +48,12 @@ func (r *ResponseUpgradeDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "status", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "status", "timestamp")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Status = *temp.Status
     r.Timestamp = *temp.Timestamp
     return nil

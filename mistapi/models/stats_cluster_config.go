@@ -16,7 +16,7 @@ type StatsClusterConfig struct {
     RedundancyGroupInformation []StatsClusterConfigRedundancyGroupInfoItem `json:"redundancy_group_information,omitempty"`
     SecondaryNodeHealth        *string                                     `json:"secondary_node_health,omitempty"`
     Status                     *string                                     `json:"status,omitempty"`
-    AdditionalProperties       map[string]any                              `json:"_"`
+    AdditionalProperties       map[string]interface{}                      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsClusterConfig.
@@ -24,13 +24,17 @@ type StatsClusterConfig struct {
 func (s StatsClusterConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "configuration", "control_link_info", "ethernet_connection", "fabric_link_info", "last_status_change_reason", "operational", "primary_node_health", "redundancy_group_information", "secondary_node_health", "status"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsClusterConfig object to a map representation for JSON marshaling.
 func (s StatsClusterConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Configuration != nil {
         structMap["configuration"] = s.Configuration
     }
@@ -72,12 +76,12 @@ func (s *StatsClusterConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "configuration", "control_link_info", "ethernet_connection", "fabric_link_info", "last_status_change_reason", "operational", "primary_node_health", "redundancy_group_information", "secondary_node_health", "status")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "configuration", "control_link_info", "ethernet_connection", "fabric_link_info", "last_status_change_reason", "operational", "primary_node_health", "redundancy_group_information", "secondary_node_health", "status")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Configuration = temp.Configuration
     s.ControlLinkInfo = temp.ControlLinkInfo
     s.EthernetConnection = temp.EthernetConnection

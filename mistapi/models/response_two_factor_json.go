@@ -6,8 +6,8 @@ import (
 
 // ResponseTwoFactorJson represents a ResponseTwoFactorJson struct.
 type ResponseTwoFactorJson struct {
-    TwoFactorSecret      *string        `json:"two_factor_secret,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TwoFactorSecret      *string                `json:"two_factor_secret,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseTwoFactorJson.
@@ -15,13 +15,17 @@ type ResponseTwoFactorJson struct {
 func (r ResponseTwoFactorJson) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "two_factor_secret"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseTwoFactorJson object to a map representation for JSON marshaling.
 func (r ResponseTwoFactorJson) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.TwoFactorSecret != nil {
         structMap["two_factor_secret"] = r.TwoFactorSecret
     }
@@ -36,12 +40,12 @@ func (r *ResponseTwoFactorJson) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "two_factor_secret")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "two_factor_secret")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.TwoFactorSecret = temp.TwoFactorSecret
     return nil
 }

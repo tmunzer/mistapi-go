@@ -3,6 +3,8 @@
 
 User API Token
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UserApitoken`
@@ -16,6 +18,7 @@ User API Token
 | `Key` | `*string` | Optional | - |
 | `LastUsed` | `models.Optional[int]` | Optional | - |
 | `Name` | `*string` | Optional | name of the token |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@ User API Token
   "key": "1qkb...QQCL",
   "last_used": 1690115110,
   "name": "org_token_xyz",
-  "created_time": 116.44
+  "created_time": 116.44,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

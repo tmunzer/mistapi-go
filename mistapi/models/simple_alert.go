@@ -11,7 +11,7 @@ type SimpleAlert struct {
     ArpFailure           *SimpleAlertArpFailure  `json:"arp_failure,omitempty"`
     DhcpFailure          *SimpleAlertDhcpFailure `json:"dhcp_failure,omitempty"`
     DnsFailure           *SimpleAlertDnsFailure  `json:"dns_failure,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SimpleAlert.
@@ -19,13 +19,17 @@ type SimpleAlert struct {
 func (s SimpleAlert) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "arp_failure", "dhcp_failure", "dns_failure"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SimpleAlert object to a map representation for JSON marshaling.
 func (s SimpleAlert) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ArpFailure != nil {
         structMap["arp_failure"] = s.ArpFailure.toMap()
     }
@@ -46,12 +50,12 @@ func (s *SimpleAlert) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "arp_failure", "dhcp_failure", "dns_failure")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "arp_failure", "dhcp_failure", "dns_failure")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ArpFailure = temp.ArpFailure
     s.DhcpFailure = temp.DhcpFailure
     s.DnsFailure = temp.DnsFailure

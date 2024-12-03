@@ -6,14 +6,14 @@ import (
 
 // SleImpactedGatewaysGateway represents a SleImpactedGatewaysGateway struct.
 type SleImpactedGatewaysGateway struct {
-    Degraded             *float64       `json:"degraded,omitempty"`
-    Duration             *int           `json:"duration,omitempty"`
-    GatewayMac           *string        `json:"gateway_mac,omitempty"`
-    GatewayModel         *string        `json:"gateway_model,omitempty"`
-    GatewayVersion       *string        `json:"gateway_version,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    Total                *int           `json:"total,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Degraded             *float64               `json:"degraded,omitempty"`
+    Duration             *int                   `json:"duration,omitempty"`
+    GatewayMac           *string                `json:"gateway_mac,omitempty"`
+    GatewayModel         *string                `json:"gateway_model,omitempty"`
+    GatewayVersion       *string                `json:"gateway_version,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    Total                *int                   `json:"total,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedGatewaysGateway.
@@ -21,13 +21,17 @@ type SleImpactedGatewaysGateway struct {
 func (s SleImpactedGatewaysGateway) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "degraded", "duration", "gateway_mac", "gateway_model", "gateway_version", "name", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedGatewaysGateway object to a map representation for JSON marshaling.
 func (s SleImpactedGatewaysGateway) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Degraded != nil {
         structMap["degraded"] = s.Degraded
     }
@@ -60,12 +64,12 @@ func (s *SleImpactedGatewaysGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "degraded", "duration", "gateway_mac", "gateway_model", "gateway_version", "name", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "degraded", "duration", "gateway_mac", "gateway_model", "gateway_version", "name", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Degraded = temp.Degraded
     s.Duration = temp.Duration
     s.GatewayMac = temp.GatewayMac

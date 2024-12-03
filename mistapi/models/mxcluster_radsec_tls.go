@@ -6,8 +6,8 @@ import (
 
 // MxclusterRadsecTls represents a MxclusterRadsecTls struct.
 type MxclusterRadsecTls struct {
-    Keypair              *string        `json:"keypair,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Keypair              *string                `json:"keypair,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterRadsecTls.
@@ -15,13 +15,17 @@ type MxclusterRadsecTls struct {
 func (m MxclusterRadsecTls) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "keypair"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxclusterRadsecTls object to a map representation for JSON marshaling.
 func (m MxclusterRadsecTls) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Keypair != nil {
         structMap["keypair"] = m.Keypair
     }
@@ -36,12 +40,12 @@ func (m *MxclusterRadsecTls) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "keypair")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "keypair")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Keypair = temp.Keypair
     return nil
 }

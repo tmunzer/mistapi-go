@@ -6,9 +6,9 @@ import (
 
 // UsernamePassword represents a UsernamePassword struct.
 type UsernamePassword struct {
-    Password             *string        `json:"password,omitempty"`
-    Username             *string        `json:"username,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Password             *string                `json:"password,omitempty"`
+    Username             *string                `json:"username,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UsernamePassword.
@@ -16,13 +16,17 @@ type UsernamePassword struct {
 func (u UsernamePassword) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "password", "username"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UsernamePassword object to a map representation for JSON marshaling.
 func (u UsernamePassword) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Password != nil {
         structMap["password"] = u.Password
     }
@@ -40,12 +44,12 @@ func (u *UsernamePassword) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "password", "username")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "password", "username")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Password = temp.Password
     u.Username = temp.Username
     return nil

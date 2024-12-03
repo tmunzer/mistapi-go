@@ -10,7 +10,7 @@ type OrgServicePolicySslProxy struct {
     // enum: `medium`, `strong`, `weak`
     CiphersCatagory      *SslProxyCiphersCatagoryEnum `json:"ciphers_catagory,omitempty"`
     Enabled              *bool                        `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgServicePolicySslProxy.
@@ -18,13 +18,17 @@ type OrgServicePolicySslProxy struct {
 func (o OrgServicePolicySslProxy) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "ciphers_catagory", "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgServicePolicySslProxy object to a map representation for JSON marshaling.
 func (o OrgServicePolicySslProxy) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.CiphersCatagory != nil {
         structMap["ciphers_catagory"] = o.CiphersCatagory
     }
@@ -42,12 +46,12 @@ func (o *OrgServicePolicySslProxy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ciphers_catagory", "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ciphers_catagory", "enabled")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.CiphersCatagory = temp.CiphersCatagory
     o.Enabled = temp.Enabled
     return nil

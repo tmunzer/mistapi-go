@@ -10,30 +10,30 @@ import (
 // WebhookClientJoinEvent represents a WebhookClientJoinEvent struct.
 type WebhookClientJoinEvent struct {
     // mac address of the AP the client connected to
-    Ap                   string         `json:"ap"`
+    Ap                   string                 `json:"ap"`
     // user-friendly name of the AP the client connected to.
-    ApName               string         `json:"ap_name"`
+    ApName               string                 `json:"ap_name"`
     // 5GHz or 2.4GHz band
-    Band                 string         `json:"band"`
-    Bssid                string         `json:"bssid"`
+    Band                 string                 `json:"band"`
+    Bssid                string                 `json:"bssid"`
     // time when the user connects
-    Connect              int            `json:"connect"`
+    Connect              int                    `json:"connect"`
     // floating point connect timestamp with millisecond precision
-    ConnectFloat         float64        `json:"connect_float"`
+    ConnectFloat         float64                `json:"connect_float"`
     // the client’s mac
-    Mac                  string         `json:"mac"`
-    OrgId                uuid.UUID      `json:"org_id"`
+    Mac                  string                 `json:"mac"`
+    OrgId                uuid.UUID              `json:"org_id"`
     // RSSI when the client associated
-    Rssi                 float64        `json:"rssi"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    SiteName             string         `json:"site_name"`
+    Rssi                 float64                `json:"rssi"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    SiteName             string                 `json:"site_name"`
     // ESSID
-    Ssid                 string         `json:"ssid"`
-    Timestamp            float64        `json:"timestamp"`
+    Ssid                 string                 `json:"ssid"`
+    Timestamp            float64                `json:"timestamp"`
     // schema version of this message
-    Version              float64        `json:"version"`
-    WlanId               uuid.UUID      `json:"wlan_id"`
-    AdditionalProperties map[string]any `json:"_"`
+    Version              float64                `json:"version"`
+    WlanId               uuid.UUID              `json:"wlan_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookClientJoinEvent.
@@ -41,13 +41,17 @@ type WebhookClientJoinEvent struct {
 func (w WebhookClientJoinEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "ap", "ap_name", "band", "bssid", "connect", "connect_float", "mac", "org_id", "rssi", "site_id", "site_name", "ssid", "timestamp", "version", "wlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookClientJoinEvent object to a map representation for JSON marshaling.
 func (w WebhookClientJoinEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["ap"] = w.Ap
     structMap["ap_name"] = w.ApName
     structMap["band"] = w.Band
@@ -78,12 +82,12 @@ func (w *WebhookClientJoinEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "ap_name", "band", "bssid", "connect", "connect_float", "mac", "org_id", "rssi", "site_id", "site_name", "ssid", "timestamp", "version", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "ap_name", "band", "bssid", "connect", "connect_float", "mac", "org_id", "rssi", "site_id", "site_name", "ssid", "timestamp", "version", "wlan_id")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Ap = *temp.Ap
     w.ApName = *temp.ApName
     w.Band = *temp.Band

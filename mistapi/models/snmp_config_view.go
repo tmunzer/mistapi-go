@@ -7,10 +7,10 @@ import (
 // SnmpConfigView represents a SnmpConfigView struct.
 type SnmpConfigView struct {
     // if the root oid configured is included
-    Include              *bool          `json:"include,omitempty"`
-    Oid                  *string        `json:"oid,omitempty"`
-    ViewName             *string        `json:"view_name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Include              *bool                  `json:"include,omitempty"`
+    Oid                  *string                `json:"oid,omitempty"`
+    ViewName             *string                `json:"view_name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpConfigView.
@@ -18,13 +18,17 @@ type SnmpConfigView struct {
 func (s SnmpConfigView) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "include", "oid", "view_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SnmpConfigView object to a map representation for JSON marshaling.
 func (s SnmpConfigView) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Include != nil {
         structMap["include"] = s.Include
     }
@@ -45,12 +49,12 @@ func (s *SnmpConfigView) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "include", "oid", "view_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "include", "oid", "view_name")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Include = temp.Include
     s.Oid = temp.Oid
     s.ViewName = temp.ViewName

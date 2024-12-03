@@ -1,6 +1,8 @@
 
 # Ap Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApSearch`
@@ -41,6 +43,7 @@
 | `Timestamp` | `*float64` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
 | `Version` | `*string` | Optional | version |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -52,7 +55,11 @@
   "band_24_channel": 200,
   "band_24_power": 154,
   "band_5_bandwidth": "band_5_bandwidth0",
-  "band_5_channel": 132
+  "band_5_channel": 132,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

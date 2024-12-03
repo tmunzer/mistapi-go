@@ -3,6 +3,8 @@
 
 EVPN Options
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `EvpnOptions`
@@ -21,6 +23,7 @@ EVPN Options
 | `RoutedAt` | [`*models.EvpnOptionsRoutedAtEnum`](../../doc/models/evpn-options-routed-at-enum.md) | Optional | optional, where virtual-gateway should reside. enum: `core`, `distribution`, `edge`<br>**Default**: `"edge"` |
 | `Underlay` | [`*models.EvpnOptionsUnderlay`](../../doc/models/evpn-options-underlay.md) | Optional | - |
 | `VsInstances` | [`map[string]models.EvpnOptionsVsInstance`](../../doc/models/evpn-options-vs-instance.md) | Optional | optional, for EX9200 only to seggregate virtual-switches |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -45,6 +48,10 @@ EVPN Options
         "iot-lan"
       ]
     }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

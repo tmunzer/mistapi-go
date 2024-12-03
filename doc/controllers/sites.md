@@ -177,22 +177,22 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Site{
-    Address:           models.ToPointer("string"),
-    AlarmtemplateId:   models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
-    CountryCode:       models.ToPointer("string"),
-    Latlng:            models.ToPointer(models.LatLng{
-        Lat: float64(0),
-        Lng: float64(0),
+    Address:              models.ToPointer("string"),
+    AlarmtemplateId:      models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
+    CountryCode:          models.ToPointer("string"),
+    Latlng:               models.ToPointer(models.LatLng{
+        Lat:                  float64(0),
+        Lng:                  float64(0),
     }),
-    Name:              "string",
-    NetworktemplateId: models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
-    Notes:             models.ToPointer("string"),
-    RftemplateId:      models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
-    SecpolicyId:       models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
-    SitegroupIds:      []uuid.UUID{
+    Name:                 "string",
+    NetworktemplateId:    models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
+    Notes:                models.ToPointer("string"),
+    RftemplateId:         models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
+    SecpolicyId:          models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
+    SitegroupIds:         []uuid.UUID{
         uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
     },
-    Timezone:          models.ToPointer("string"),
+    Timezone:             models.ToPointer("string"),
 }
 
 apiResponse, err := sites.UpdateSiteInfo(ctx, siteId, &body)

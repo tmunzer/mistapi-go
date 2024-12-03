@@ -49,7 +49,7 @@ type PskPortal struct {
     // for personal psk portal. enum: `admin`, `byod`
     Type                         *PskPortalTypeEnum        `json:"type,omitempty"`
     VlanId                       *VlanIdWithVariable       `json:"vlan_id,omitempty"`
-    AdditionalProperties         map[string]any            `json:"_"`
+    AdditionalProperties         map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortal.
@@ -57,13 +57,17 @@ type PskPortal struct {
 func (p PskPortal) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "auth", "bg_image_url", "cleanup_psk", "created_time", "expire_time", "expiry_notification_time", "hide_psks_created_by_other_admins", "id", "max_usage", "modified_time", "name", "notification_renew_url", "notify_expiry", "notify_on_create_or_edit", "org_id", "passphrase_rules", "required_fields", "role", "ssid", "sso", "template_url", "thumbnail_url", "type", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the PskPortal object to a map representation for JSON marshaling.
 func (p PskPortal) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.Auth != nil {
         structMap["auth"] = p.Auth
     }
@@ -147,12 +151,12 @@ func (p *PskPortal) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth", "bg_image_url", "cleanup_psk", "created_time", "expire_time", "expiry_notification_time", "hide_psks_created_by_other_admins", "id", "max_usage", "modified_time", "name", "notification_renew_url", "notify_expiry", "notify_on_create_or_edit", "org_id", "passphrase_rules", "required_fields", "role", "ssid", "sso", "template_url", "thumbnail_url", "type", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth", "bg_image_url", "cleanup_psk", "created_time", "expire_time", "expiry_notification_time", "hide_psks_created_by_other_admins", "id", "max_usage", "modified_time", "name", "notification_renew_url", "notify_expiry", "notify_on_create_or_edit", "org_id", "passphrase_rules", "required_fields", "role", "ssid", "sso", "template_url", "thumbnail_url", "type", "vlan_id")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.Auth = temp.Auth
     p.BgImageUrl = temp.BgImageUrl
     p.CleanupPsk = temp.CleanupPsk

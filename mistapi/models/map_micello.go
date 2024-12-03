@@ -10,14 +10,14 @@ import (
 // MapMicello represents a MapMicello struct.
 type MapMicello struct {
     // the account key that has access to the map
-    AccountKey           string         `json:"account_key"`
+    AccountKey           string                 `json:"account_key"`
     // micello floor/level id
-    DefaultLevelId       int            `json:"default_level_id"`
+    DefaultLevelId       int                    `json:"default_level_id"`
     // micello map id
-    MapId                uuid.UUID      `json:"map_id"`
+    MapId                uuid.UUID              `json:"map_id"`
     // the vendor ‘micello’. enum: `micello`
-    VendorName           string         `json:"vendor_name"`
-    AdditionalProperties map[string]any `json:"_"`
+    VendorName           string                 `json:"vendor_name"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapMicello.
@@ -25,13 +25,17 @@ type MapMicello struct {
 func (m MapMicello) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "account_key", "default_level_id", "map_id", "vendor_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MapMicello object to a map representation for JSON marshaling.
 func (m MapMicello) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["account_key"] = m.AccountKey
     structMap["default_level_id"] = m.DefaultLevelId
     structMap["map_id"] = m.MapId
@@ -51,12 +55,12 @@ func (m *MapMicello) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "account_key", "default_level_id", "map_id", "vendor_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_key", "default_level_id", "map_id", "vendor_name")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.AccountKey = *temp.AccountKey
     m.DefaultLevelId = *temp.DefaultLevelId
     m.MapId = *temp.MapId

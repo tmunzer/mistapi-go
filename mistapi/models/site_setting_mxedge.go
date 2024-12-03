@@ -8,12 +8,12 @@ import (
 // site mist edges form a cluster of radsecproxy servers
 type SiteSettingMxedge struct {
     // configure cloud-assisted dynamic authorization service on this cluster of mist edges
-    MistDas              *MxedgeDas       `json:"mist_das,omitempty"`
-    MistNac              *MxclusterNac    `json:"mist_nac,omitempty"`
-    MistNacedge          *MistNacedge     `json:"mist_nacedge,omitempty"`
+    MistDas              *MxedgeDas             `json:"mist_das,omitempty"`
+    MistNac              *MxclusterNac          `json:"mist_nac,omitempty"`
+    MistNacedge          *MistNacedge           `json:"mist_nacedge,omitempty"`
     // MxEdge Radsec Configuration
-    Radsec               *MxclusterRadsec `json:"radsec,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Radsec               *MxclusterRadsec       `json:"radsec,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingMxedge.
@@ -21,13 +21,17 @@ type SiteSettingMxedge struct {
 func (s SiteSettingMxedge) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "mist_das", "mist_nac", "mist_nacedge", "radsec"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingMxedge object to a map representation for JSON marshaling.
 func (s SiteSettingMxedge) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.MistDas != nil {
         structMap["mist_das"] = s.MistDas.toMap()
     }
@@ -51,12 +55,12 @@ func (s *SiteSettingMxedge) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mist_das", "mist_nac", "mist_nacedge", "radsec")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mist_das", "mist_nac", "mist_nacedge", "radsec")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.MistDas = temp.MistDas
     s.MistNac = temp.MistNac
     s.MistNacedge = temp.MistNacedge

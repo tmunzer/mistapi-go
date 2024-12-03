@@ -35,7 +35,7 @@ type WebhookDeviceEventsEvent struct {
     Timestamp            int                                    `json:"timestamp"`
     // event type
     Type                 string                                 `json:"type"`
-    AdditionalProperties map[string]any                         `json:"_"`
+    AdditionalProperties map[string]interface{}                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookDeviceEventsEvent.
@@ -43,13 +43,17 @@ type WebhookDeviceEventsEvent struct {
 func (w WebhookDeviceEventsEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "ap", "ap_name", "audit_id", "device_name", "device_type", "ev_type", "mac", "org_id", "reason", "site_id", "site_name", "text", "timestamp", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookDeviceEventsEvent object to a map representation for JSON marshaling.
 func (w WebhookDeviceEventsEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Ap != nil {
         structMap["ap"] = w.Ap
     }
@@ -93,12 +97,12 @@ func (w *WebhookDeviceEventsEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "ap_name", "audit_id", "device_name", "device_type", "ev_type", "mac", "org_id", "reason", "site_id", "site_name", "text", "timestamp", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "ap_name", "audit_id", "device_name", "device_type", "ev_type", "mac", "org_id", "reason", "site_id", "site_name", "text", "timestamp", "type")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Ap = temp.Ap
     w.ApName = temp.ApName
     w.AuditId = temp.AuditId

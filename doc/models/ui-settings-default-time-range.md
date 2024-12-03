@@ -1,6 +1,8 @@
 
 # Ui Settings Default Time Range
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UiSettingsDefaultTimeRange`
@@ -16,6 +18,7 @@
 | `ShortName` | `*string` | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `UsePreset` | `*bool` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "name": "This Week",
   "shortName": "thisWeek",
   "start": 1508655600,
-  "usePreset": true
+  "usePreset": true,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

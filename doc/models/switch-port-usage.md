@@ -3,6 +3,8 @@
 
 Junos port usages
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SwitchPortUsage`
@@ -49,6 +51,7 @@ Junos port usages
 | `UiEvpntopoId` | `*uuid.UUID` | Optional | optional for Campus Fabric Core-Distribution ESI-LAG profile. Helper used by the UI to select this port profile as the ESI-Lag between Distribution and Access switches |
 | `UseVstp` | `*bool` | Optional | if this is connected to a vstp network<br>**Default**: `false` |
 | `VoipNetwork` | `*string` | Optional | Only if `mode`!=`dynamic` network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -79,7 +82,11 @@ Junos port usages
   "stp_no_root_port": false,
   "stp_p2p": false,
   "use_vstp": false,
-  "allow_dhcpd": false
+  "allow_dhcpd": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

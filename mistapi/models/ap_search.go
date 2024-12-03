@@ -8,55 +8,55 @@ import (
 // ApSearch represents a ApSearch struct.
 type ApSearch struct {
     // bandwidth of band_24
-    Band24Bandwidth      *string        `json:"band_24_bandwidth,omitempty"`
+    Band24Bandwidth      *string                `json:"band_24_bandwidth,omitempty"`
     // Channel of band_24
-    Band24Channel        *int           `json:"band_24_channel,omitempty"`
-    Band24Power          *int           `json:"band_24_power,omitempty"`
+    Band24Channel        *int                   `json:"band_24_channel,omitempty"`
+    Band24Power          *int                   `json:"band_24_power,omitempty"`
     // bandwidth of band_5
-    Band5Bandwidth       *string        `json:"band_5_bandwidth,omitempty"`
+    Band5Bandwidth       *string                `json:"band_5_bandwidth,omitempty"`
     // Channel of band_5
-    Band5Channel         *int           `json:"band_5_channel,omitempty"`
-    Band5Power           *int           `json:"band_5_power,omitempty"`
-    Band6Bandwidth       *string        `json:"band_6_bandwidth,omitempty"`
+    Band5Channel         *int                   `json:"band_5_channel,omitempty"`
+    Band5Power           *int                   `json:"band_5_power,omitempty"`
+    Band6Bandwidth       *string                `json:"band_6_bandwidth,omitempty"`
     // Channel of band_6
-    Band6Channel         *int           `json:"band_6_channel,omitempty"`
-    Band6Power           *int           `json:"band_6_power,omitempty"`
+    Band6Channel         *int                   `json:"band_6_channel,omitempty"`
+    Band6Power           *int                   `json:"band_6_power,omitempty"`
     // Port speed of eth0
-    Eth0PortSpeed        *int           `json:"eth0_port_speed,omitempty"`
-    ExtIp                *string        `json:"ext_ip,omitempty"`
+    Eth0PortSpeed        *int                   `json:"eth0_port_speed,omitempty"`
+    ExtIp                *string                `json:"ext_ip,omitempty"`
     // partial / full hostname
-    Hostname             []string       `json:"hostname,omitempty"`
+    Hostname             []string               `json:"hostname,omitempty"`
     // ip address
-    Ip                   *string        `json:"ip,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
     // LLDP management ip address
-    LldpMgmtAddr         *string        `json:"lldp_mgmt_addr,omitempty"`
-    LldpPortDesc         *string        `json:"lldp_port_desc,omitempty"`
+    LldpMgmtAddr         *string                `json:"lldp_mgmt_addr,omitempty"`
+    LldpPortDesc         *string                `json:"lldp_port_desc,omitempty"`
     // LLDP port id
-    LldpPortId           *string        `json:"lldp_port_id,omitempty"`
-    LldpPowerAllocated   *int           `json:"lldp_power_allocated,omitempty"`
-    LldpPowerDraw        *int           `json:"lldp_power_draw,omitempty"`
+    LldpPortId           *string                `json:"lldp_port_id,omitempty"`
+    LldpPowerAllocated   *int                   `json:"lldp_power_allocated,omitempty"`
+    LldpPowerDraw        *int                   `json:"lldp_power_draw,omitempty"`
     // LLDP system description
-    LldpSystemDesc       *string        `json:"lldp_system_desc,omitempty"`
+    LldpSystemDesc       *string                `json:"lldp_system_desc,omitempty"`
     // LLDP system name
-    LldpSystemName       *string        `json:"lldp_system_name,omitempty"`
+    LldpSystemName       *string                `json:"lldp_system_name,omitempty"`
     // device model
-    Mac                  *string        `json:"mac,omitempty"`
-    Model                *string        `json:"model,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    Model                *string                `json:"model,omitempty"`
     // Mist Edge id, if AP is connecting to a Mist Edge
-    MxedgeId             *string        `json:"mxedge_id,omitempty"`
+    MxedgeId             *string                `json:"mxedge_id,omitempty"`
     // Comma separated list of Mist Edge ids, if AP is connecting to a Mist Edge
-    MxedgeIds            *string        `json:"mxedge_ids,omitempty"`
+    MxedgeIds            *string                `json:"mxedge_ids,omitempty"`
     // MxTunnel status
-    MxtunnelStatus       *string        `json:"mxtunnel_status,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    PowerConstrained     *bool          `json:"power_constrained,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Sku                  *string        `json:"sku,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
-    Uptime               *int           `json:"uptime,omitempty"`
+    MxtunnelStatus       *string                `json:"mxtunnel_status,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    PowerConstrained     *bool                  `json:"power_constrained,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Sku                  *string                `json:"sku,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Uptime               *int                   `json:"uptime,omitempty"`
     // version
-    Version              *string        `json:"version,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Version              *string                `json:"version,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApSearch.
@@ -64,13 +64,17 @@ type ApSearch struct {
 func (a ApSearch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "band_24_bandwidth", "band_24_channel", "band_24_power", "band_5_bandwidth", "band_5_channel", "band_5_power", "band_6_bandwidth", "band_6_channel", "band_6_power", "eth0_port_speed", "ext_ip", "hostname", "ip", "lldp_mgmt_addr", "lldp_port_desc", "lldp_port_id", "lldp_power_allocated", "lldp_power_draw", "lldp_system_desc", "lldp_system_name", "mac", "model", "mxedge_id", "mxedge_ids", "mxtunnel_status", "org_id", "power_constrained", "site_id", "sku", "timestamp", "uptime", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApSearch object to a map representation for JSON marshaling.
 func (a ApSearch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Band24Bandwidth != nil {
         structMap["band_24_bandwidth"] = a.Band24Bandwidth
     }
@@ -178,12 +182,12 @@ func (a *ApSearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band_24_bandwidth", "band_24_channel", "band_24_power", "band_5_bandwidth", "band_5_channel", "band_5_power", "band_6_bandwidth", "band_6_channel", "band_6_power", "eth0_port_speed", "ext_ip", "hostname", "ip", "lldp_mgmt_addr", "lldp_port_desc", "lldp_port_id", "lldp_power_allocated", "lldp_power_draw", "lldp_system_desc", "lldp_system_name", "mac", "model", "mxedge_id", "mxedge_ids", "mxtunnel_status", "org_id", "power_constrained", "site_id", "sku", "timestamp", "uptime", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band_24_bandwidth", "band_24_channel", "band_24_power", "band_5_bandwidth", "band_5_channel", "band_5_power", "band_6_bandwidth", "band_6_channel", "band_6_power", "eth0_port_speed", "ext_ip", "hostname", "ip", "lldp_mgmt_addr", "lldp_port_desc", "lldp_port_id", "lldp_power_allocated", "lldp_power_draw", "lldp_system_desc", "lldp_system_name", "mac", "model", "mxedge_id", "mxedge_ids", "mxtunnel_status", "org_id", "power_constrained", "site_id", "sku", "timestamp", "uptime", "version")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Band24Bandwidth = temp.Band24Bandwidth
     a.Band24Channel = temp.Band24Channel
     a.Band24Power = temp.Band24Power

@@ -3,6 +3,8 @@
 
 Provision Device
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `InstallerProvisionDevice`
@@ -23,6 +25,7 @@ Provision Device
 | `SiteName` | `*string` | Optional | - |
 | `X` | `*float64` | Optional | - |
 | `Y` | `*float64` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,7 +41,11 @@ Provision Device
   "site_name": "SJ1",
   "x": 150,
   "y": 300,
-  "for_site": false
+  "for_site": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

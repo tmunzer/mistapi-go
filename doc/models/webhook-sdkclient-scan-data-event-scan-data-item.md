@@ -1,6 +1,8 @@
 
 # Webhook Sdkclient Scan Data Event Scan Data Item
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookSdkclientScanDataEventScanDataItem`
@@ -16,6 +18,7 @@
 | `Rssi` | `float64` | Required | client’s RSSI relative to the BSSID scanned |
 | `Ssid` | `string` | Required | ESSID containing the BSSID scanned |
 | `Timestamp` | `float64` | Required | time the scan of the particular BSSID occurred |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "channel": 26,
   "rssi": 10.96,
   "ssid": "ssid2",
-  "timestamp": 140.92
+  "timestamp": 140.92,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

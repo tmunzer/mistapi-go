@@ -14,7 +14,7 @@ type VirtualChassisConfigMember struct {
     VcPorts              []string                              `json:"vc_ports,omitempty"`
     // enum: `backup`, `linecard`, `master`
     VcRole               *VirtualChassisConfigMemberVcRoleEnum `json:"vc_role,omitempty"`
-    AdditionalProperties map[string]any                        `json:"_"`
+    AdditionalProperties map[string]interface{}                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VirtualChassisConfigMember.
@@ -22,13 +22,17 @@ type VirtualChassisConfigMember struct {
 func (v VirtualChassisConfigMember) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "locating", "mac", "member", "vc_ports", "vc_role"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VirtualChassisConfigMember object to a map representation for JSON marshaling.
 func (v VirtualChassisConfigMember) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.Locating != nil {
         structMap["locating"] = v.Locating
     }
@@ -55,12 +59,12 @@ func (v *VirtualChassisConfigMember) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "locating", "mac", "member", "vc_ports", "vc_role")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "locating", "mac", "member", "vc_ports", "vc_role")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.Locating = temp.Locating
     v.Mac = temp.Mac
     v.Member = temp.Member

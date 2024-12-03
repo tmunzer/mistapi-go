@@ -9,13 +9,13 @@ import (
 
 // OrgSiteSleWanResult represents a OrgSiteSleWanResult struct.
 type OrgSiteSleWanResult struct {
-    ApplicationHealth    *float64       `json:"application_health,omitempty"`
-    GatewayHealth        *float64       `json:"gateway-health,omitempty"`
-    NumClients           *float64       `json:"num_clients,omitempty"`
-    NumGateways          *float64       `json:"num_gateways,omitempty"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    WanLinkHealth        *float64       `json:"wan-link-health,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ApplicationHealth    *float64               `json:"application_health,omitempty"`
+    GatewayHealth        *float64               `json:"gateway-health,omitempty"`
+    NumClients           *float64               `json:"num_clients,omitempty"`
+    NumGateways          *float64               `json:"num_gateways,omitempty"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    WanLinkHealth        *float64               `json:"wan-link-health,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSiteSleWanResult.
@@ -23,13 +23,17 @@ type OrgSiteSleWanResult struct {
 func (o OrgSiteSleWanResult) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "application_health", "gateway-health", "num_clients", "num_gateways", "site_id", "wan-link-health"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSiteSleWanResult object to a map representation for JSON marshaling.
 func (o OrgSiteSleWanResult) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.ApplicationHealth != nil {
         structMap["application_health"] = o.ApplicationHealth
     }
@@ -61,12 +65,12 @@ func (o *OrgSiteSleWanResult) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "application_health", "gateway-health", "num_clients", "num_gateways", "site_id", "wan-link-health")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "application_health", "gateway-health", "num_clients", "num_gateways", "site_id", "wan-link-health")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.ApplicationHealth = temp.ApplicationHealth
     o.GatewayHealth = temp.GatewayHealth
     o.NumClients = temp.NumClients

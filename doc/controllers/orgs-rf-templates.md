@@ -49,7 +49,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.RfTemplate{
-    Name:            "name6",
+    Name:                 "name6",
 }
 
 apiResponse, err := orgsRFTemplates.CreateOrgRfTemplate(ctx, orgId, &body)
@@ -443,7 +443,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 rftemplateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.RfTemplate{
-    Name:            "name6",
+    Name:                 "name6",
 }
 
 apiResponse, err := orgsRFTemplates.UpdateOrgRfTemplate(ctx, orgId, rftemplateId, &body)

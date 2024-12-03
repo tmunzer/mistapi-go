@@ -1,6 +1,8 @@
 
 # Stats Mxedge
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsMxedge`
@@ -40,6 +42,7 @@
 | `TuntermStat` | [`*models.StatsMxedgeTuntermStat`](../../doc/models/stats-mxedge-tunterm-stat.md) | Optional | - |
 | `Uptime` | `*int` | Optional | - |
 | `VirtualizationType` | `*string` | Optional | Virtualization environment |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -126,16 +129,28 @@
           8.63
         ],
         "system": 110.88,
-        "user": 107.24
+        "user": 107.24,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     },
     "idle": 224,
     "interrupt": 80,
     "system": 80,
-    "usage": 46
+    "usage": 46,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "created_time": 71.86,
-  "fips_enabled": false
+  "fips_enabled": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

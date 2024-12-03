@@ -3,6 +3,8 @@
 
 Unconnected clients statistics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsUnconnectedClient`
@@ -19,6 +21,7 @@ Unconnected clients statistics
 | `Rssi` | `int` | Required | client RSSI observered by the AP that heard the client (in dBm) |
 | `X` | `*float64` | Optional | x (in pixels) of user location on the map (if known) |
 | `Y` | `float64` | Required | y (in pixels) of user location on the map (if known) |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,7 +34,11 @@ Unconnected clients statistics
   "map_id": "00000b60-0000-0000-0000-000000000000",
   "rssi": 166,
   "x": 109.98,
-  "y": 241.26
+  "y": 241.26,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

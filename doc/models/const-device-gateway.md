@@ -1,6 +1,8 @@
 
 # Const Device Gateway
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ConstDeviceGateway`
@@ -31,6 +33,7 @@
 | `SubRequired` | `*string` | Optional | - |
 | `T128Device` | `*bool` | Optional | **Default**: `false` |
 | `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Default**: `"gateway"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -55,7 +58,11 @@
     "key2": "defaults8"
   },
   "description": "description8",
-  "ha_node0_fpc": 116
+  "ha_node0_fpc": 116,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

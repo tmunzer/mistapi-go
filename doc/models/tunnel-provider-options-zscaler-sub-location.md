@@ -1,6 +1,8 @@
 
 # Tunnel Provider Options Zscaler Sub Location
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `TunnelProviderOptionsZscalerSubLocation`
@@ -18,6 +20,7 @@
 | `EnforceAuthentication` | `*bool` | Optional | **Default**: `false` |
 | `Subnets` | `[]string` | Optional | - |
 | `UploadMbps` | `*int` | Optional | the download bandwidth cap of the link, in Mbps |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,7 +37,11 @@
     "172.16.32.0/23"
   ],
   "upload_mbps": 200,
-  "enable_aup": false
+  "enable_aup": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

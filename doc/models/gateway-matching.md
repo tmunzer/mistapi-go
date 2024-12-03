@@ -3,6 +3,8 @@
 
 Gateway matching
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `GatewayMatching`
@@ -13,6 +15,7 @@ Gateway matching
 |  --- | --- | --- | --- |
 | `Enable` | `*bool` | Optional | - |
 | `Rules` | [`[]models.GatewayMatchingRule`](../../doc/models/gateway-matching-rule.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,7 +35,11 @@ Gateway matching
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "usage6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         "key1": {
           "ae_disable_lacp": false,
@@ -40,9 +47,14 @@ Gateway matching
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "usage6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
-      }
+      },
+      "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8"
     },
     {
       "additional_config_cmds": [
@@ -56,7 +68,11 @@ Gateway matching
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "usage6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         "key1": {
           "ae_disable_lacp": false,
@@ -64,9 +80,14 @@ Gateway matching
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "usage6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
-      }
+      },
+      "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8"
     },
     {
       "additional_config_cmds": [
@@ -80,7 +101,11 @@ Gateway matching
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "usage6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         "key1": {
           "ae_disable_lacp": false,
@@ -88,11 +113,20 @@ Gateway matching
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "usage6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
-      }
+      },
+      "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8"
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

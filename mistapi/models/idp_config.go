@@ -7,13 +7,13 @@ import (
 
 // IdpConfig represents a IdpConfig struct.
 type IdpConfig struct {
-    AlertOnly            *bool          `json:"alert_only,omitempty"`
-    Enabled              *bool          `json:"enabled,omitempty"`
+    AlertOnly            *bool                  `json:"alert_only,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // org_level IDP Profile can be used, this takes precedence over `profile`
-    IdpprofileId         *uuid.UUID     `json:"idpprofile_id,omitempty"`
+    IdpprofileId         *uuid.UUID             `json:"idpprofile_id,omitempty"`
     // enum: `Custom`, `strict` (default), `standard` or keys from from idp_profiles
-    Profile              *string        `json:"profile,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Profile              *string                `json:"profile,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for IdpConfig.
@@ -21,13 +21,17 @@ type IdpConfig struct {
 func (i IdpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "alert_only", "enabled", "idpprofile_id", "profile"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the IdpConfig object to a map representation for JSON marshaling.
 func (i IdpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.AlertOnly != nil {
         structMap["alert_only"] = i.AlertOnly
     }
@@ -51,12 +55,12 @@ func (i *IdpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "alert_only", "enabled", "idpprofile_id", "profile")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alert_only", "enabled", "idpprofile_id", "profile")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.AlertOnly = temp.AlertOnly
     i.Enabled = temp.Enabled
     i.IdpprofileId = temp.IdpprofileId

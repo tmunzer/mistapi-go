@@ -7,161 +7,161 @@ import (
 // WlanPortalTemplateSettingLocale represents a WlanPortalTemplateSettingLocale struct.
 type WlanPortalTemplateSettingLocale struct {
     // label for Amazon auth button
-    AuthButtonAmazon         *string        `json:"authButtonAmazon,omitempty"`
+    AuthButtonAmazon         *string                `json:"authButtonAmazon,omitempty"`
     // label for Azure auth button
-    AuthButtonAzure          *string        `json:"authButtonAzure,omitempty"`
+    AuthButtonAzure          *string                `json:"authButtonAzure,omitempty"`
     // label for Email auth button
-    AuthButtonEmail          *string        `json:"authButtonEmail,omitempty"`
+    AuthButtonEmail          *string                `json:"authButtonEmail,omitempty"`
     // label for Facebook auth button
-    AuthButtonFacebook       *string        `json:"authButtonFacebook,omitempty"`
+    AuthButtonFacebook       *string                `json:"authButtonFacebook,omitempty"`
     // label for Google auth button
-    AuthButtonGoogle         *string        `json:"authButtonGoogle,omitempty"`
+    AuthButtonGoogle         *string                `json:"authButtonGoogle,omitempty"`
     // label for Microsoft auth button
-    AuthButtonMicrosoft      *string        `json:"authButtonMicrosoft,omitempty"`
+    AuthButtonMicrosoft      *string                `json:"authButtonMicrosoft,omitempty"`
     // label for passphrase auth button
-    AuthButtonPassphrase     *string        `json:"authButtonPassphrase,omitempty"`
+    AuthButtonPassphrase     *string                `json:"authButtonPassphrase,omitempty"`
     // label for SMS auth button
-    AuthButtonSms            *string        `json:"authButtonSms,omitempty"`
+    AuthButtonSms            *string                `json:"authButtonSms,omitempty"`
     // label for Sponsor auth button
-    AuthButtonSponsor        *string        `json:"authButtonSponsor,omitempty"`
-    AuthLabel                *string        `json:"authLabel,omitempty"`
+    AuthButtonSponsor        *string                `json:"authButtonSponsor,omitempty"`
+    AuthLabel                *string                `json:"authLabel,omitempty"`
     // label of the link to go back to /logon
-    BackLink                 *string        `json:"backLink,omitempty"`
+    BackLink                 *string                `json:"backLink,omitempty"`
     // error message when company not provided
-    CompanyError             *string        `json:"companyError,omitempty"`
+    CompanyError             *string                `json:"companyError,omitempty"`
     // label of company field
-    CompanyLabel             *string        `json:"companyLabel,omitempty"`
+    CompanyLabel             *string                `json:"companyLabel,omitempty"`
     // error message when a user has valid social login but doesn't match specified email domains.
-    EmailAccessDomainError   *string        `json:"emailAccessDomainError,omitempty"`
+    EmailAccessDomainError   *string                `json:"emailAccessDomainError,omitempty"`
     // Label for cancel confirmation code submission using email auth
-    EmailCancel              *string        `json:"emailCancel,omitempty"`
-    EmailCodeCancel          *string        `json:"emailCodeCancel,omitempty"`
-    EmailCodeError           *string        `json:"emailCodeError,omitempty"`
-    EmailCodeFieldLabel      *string        `json:"emailCodeFieldLabel,omitempty"`
-    EmailCodeMessage         *string        `json:"emailCodeMessage,omitempty"`
-    EmailCodeSubmit          *string        `json:"emailCodeSubmit,omitempty"`
-    EmailCodeTitle           *string        `json:"emailCodeTitle,omitempty"`
+    EmailCancel              *string                `json:"emailCancel,omitempty"`
+    EmailCodeCancel          *string                `json:"emailCodeCancel,omitempty"`
+    EmailCodeError           *string                `json:"emailCodeError,omitempty"`
+    EmailCodeFieldLabel      *string                `json:"emailCodeFieldLabel,omitempty"`
+    EmailCodeMessage         *string                `json:"emailCodeMessage,omitempty"`
+    EmailCodeSubmit          *string                `json:"emailCodeSubmit,omitempty"`
+    EmailCodeTitle           *string                `json:"emailCodeTitle,omitempty"`
     // error message when email not provided
-    EmailError               *string        `json:"emailError,omitempty"`
-    EmailFieldLabel          *string        `json:"emailFieldLabel,omitempty"`
+    EmailError               *string                `json:"emailError,omitempty"`
+    EmailFieldLabel          *string                `json:"emailFieldLabel,omitempty"`
     // label of email field
-    EmailLabel               *string        `json:"emailLabel,omitempty"`
-    EmailMessage             *string        `json:"emailMessage,omitempty"`
+    EmailLabel               *string                `json:"emailLabel,omitempty"`
+    EmailMessage             *string                `json:"emailMessage,omitempty"`
     // Label for confirmation code submit button using email auth
-    EmailSubmit              *string        `json:"emailSubmit,omitempty"`
+    EmailSubmit              *string                `json:"emailSubmit,omitempty"`
     // Title for the Email registration
-    EmailTitle               *string        `json:"emailTitle,omitempty"`
+    EmailTitle               *string                `json:"emailTitle,omitempty"`
     // error message when field1 not provided
-    Field1Error              *string        `json:"field1Error,omitempty"`
+    Field1Error              *string                `json:"field1Error,omitempty"`
     // label of field1
-    Field1Label              *string        `json:"field1Label,omitempty"`
+    Field1Label              *string                `json:"field1Label,omitempty"`
     // error message when field2 not provided
-    Field2Error              *string        `json:"field2Error,omitempty"`
+    Field2Error              *string                `json:"field2Error,omitempty"`
     // label of field2
-    Field2Label              *string        `json:"field2Label,omitempty"`
+    Field2Label              *string                `json:"field2Label,omitempty"`
     // error message when field3 not provided
-    Field3Error              *string        `json:"field3Error,omitempty"`
+    Field3Error              *string                `json:"field3Error,omitempty"`
     // label of field3
-    Field3Label              *string        `json:"field3Label,omitempty"`
+    Field3Label              *string                `json:"field3Label,omitempty"`
     // error message when field4 not provided
-    Field4Error              *string        `json:"field4Error,omitempty"`
+    Field4Error              *string                `json:"field4Error,omitempty"`
     // label of field4
-    Field4Label              *string        `json:"field4Label,omitempty"`
-    Message                  *string        `json:"message,omitempty"`
+    Field4Label              *string                `json:"field4Label,omitempty"`
+    Message                  *string                `json:"message,omitempty"`
     // error message when name not provided
-    NameError                *string        `json:"nameError,omitempty"`
+    NameError                *string                `json:"nameError,omitempty"`
     // label of name field
-    NameLabel                *string        `json:"nameLabel,omitempty"`
+    NameLabel                *string                `json:"nameLabel,omitempty"`
     // label for Do Not Store My Personal Information
-    OptoutLabel              *string        `json:"optoutLabel,omitempty"`
-    PageTitle                *string        `json:"pageTitle,omitempty"`
+    OptoutLabel              *string                `json:"optoutLabel,omitempty"`
+    PageTitle                *string                `json:"pageTitle,omitempty"`
     // Label for the Passphrase cancel button
-    PassphraseCancel         *string        `json:"passphraseCancel,omitempty"`
+    PassphraseCancel         *string                `json:"passphraseCancel,omitempty"`
     // error message when invalid passphrase is provided
-    PassphraseError          *string        `json:"passphraseError,omitempty"`
+    PassphraseError          *string                `json:"passphraseError,omitempty"`
     // Passphrase
-    PassphraseLabel          *string        `json:"passphraseLabel,omitempty"`
-    PassphraseMessage        *string        `json:"passphraseMessage,omitempty"`
+    PassphraseLabel          *string                `json:"passphraseLabel,omitempty"`
+    PassphraseMessage        *string                `json:"passphraseMessage,omitempty"`
     // Label for the Passphrase submit button
-    PassphraseSubmit         *string        `json:"passphraseSubmit,omitempty"`
+    PassphraseSubmit         *string                `json:"passphraseSubmit,omitempty"`
     // Title for passphrase details page
-    PassphraseTitle          *string        `json:"passphraseTitle,omitempty"`
+    PassphraseTitle          *string                `json:"passphraseTitle,omitempty"`
     // prefix of the label of the link to go to Privacy Policy
-    PrivacyPolicyAcceptLabel *string        `json:"privacyPolicyAcceptLabel,omitempty"`
+    PrivacyPolicyAcceptLabel *string                `json:"privacyPolicyAcceptLabel,omitempty"`
     // error message when Privacy Policy not accepted
-    PrivacyPolicyError       *string        `json:"privacyPolicyError,omitempty"`
+    PrivacyPolicyError       *string                `json:"privacyPolicyError,omitempty"`
     // label of the link to go to Privacy Policy
-    PrivacyPolicyLink        *string        `json:"privacyPolicyLink,omitempty"`
+    PrivacyPolicyLink        *string                `json:"privacyPolicyLink,omitempty"`
     // text of the Privacy Policy
-    PrivacyPolicyText        *string        `json:"privacyPolicyText,omitempty"`
+    PrivacyPolicyText        *string                `json:"privacyPolicyText,omitempty"`
     // label to denote required field
-    RequiredFieldLabel       *string        `json:"requiredFieldLabel,omitempty"`
+    RequiredFieldLabel       *string                `json:"requiredFieldLabel,omitempty"`
     // label of the button to /signin
-    SignInLabel              *string        `json:"signInLabel,omitempty"`
-    SmsCarrierDefault        *string        `json:"smsCarrierDefault,omitempty"`
-    SmsCarrierError          *string        `json:"smsCarrierError,omitempty"`
+    SignInLabel              *string                `json:"signInLabel,omitempty"`
+    SmsCarrierDefault        *string                `json:"smsCarrierDefault,omitempty"`
+    SmsCarrierError          *string                `json:"smsCarrierError,omitempty"`
     // label for mobile carrier drop-down list
-    SmsCarrierFieldLabel     *string        `json:"smsCarrierFieldLabel,omitempty"`
+    SmsCarrierFieldLabel     *string                `json:"smsCarrierFieldLabel,omitempty"`
     // Label for cancel confirmation code submission
-    SmsCodeCancel            *string        `json:"smsCodeCancel,omitempty"`
+    SmsCodeCancel            *string                `json:"smsCodeCancel,omitempty"`
     // error message when confirmation code is invalid
-    SmsCodeError             *string        `json:"smsCodeError,omitempty"`
-    SmsCodeFieldLabel        *string        `json:"smsCodeFieldLabel,omitempty"`
-    SmsCodeMessage           *string        `json:"smsCodeMessage,omitempty"`
+    SmsCodeError             *string                `json:"smsCodeError,omitempty"`
+    SmsCodeFieldLabel        *string                `json:"smsCodeFieldLabel,omitempty"`
+    SmsCodeMessage           *string                `json:"smsCodeMessage,omitempty"`
     // Label for confirmation code submit button
-    SmsCodeSubmit            *string        `json:"smsCodeSubmit,omitempty"`
-    SmsCodeTitle             *string        `json:"smsCodeTitle,omitempty"`
-    SmsCountryFieldLabel     *string        `json:"smsCountryFieldLabel,omitempty"`
-    SmsCountryFormat         *string        `json:"smsCountryFormat,omitempty"`
+    SmsCodeSubmit            *string                `json:"smsCodeSubmit,omitempty"`
+    SmsCodeTitle             *string                `json:"smsCodeTitle,omitempty"`
+    SmsCountryFieldLabel     *string                `json:"smsCountryFieldLabel,omitempty"`
+    SmsCountryFormat         *string                `json:"smsCountryFormat,omitempty"`
     // Label for checkbox to specify that the user has access code
-    SmsHaveAccessCode        *string        `json:"smsHaveAccessCode,omitempty"`
+    SmsHaveAccessCode        *string                `json:"smsHaveAccessCode,omitempty"`
     // format of access code sms message. {{code}} and {{duration}} are place holders and should be retained as is.
-    SmsMessageFormat         *string        `json:"smsMessageFormat,omitempty"`
+    SmsMessageFormat         *string                `json:"smsMessageFormat,omitempty"`
     // label for canceling mobile details for SMS auth
-    SmsNumberCancel          *string        `json:"smsNumberCancel,omitempty"`
-    SmsNumberError           *string        `json:"smsNumberError,omitempty"`
+    SmsNumberCancel          *string                `json:"smsNumberCancel,omitempty"`
+    SmsNumberError           *string                `json:"smsNumberError,omitempty"`
     // label for field to provide mobile number
-    SmsNumberFieldLabel      *string        `json:"smsNumberFieldLabel,omitempty"`
-    SmsNumberFormat          *string        `json:"smsNumberFormat,omitempty"`
-    SmsNumberMessage         *string        `json:"smsNumberMessage,omitempty"`
+    SmsNumberFieldLabel      *string                `json:"smsNumberFieldLabel,omitempty"`
+    SmsNumberFormat          *string                `json:"smsNumberFormat,omitempty"`
+    SmsNumberMessage         *string                `json:"smsNumberMessage,omitempty"`
     // label for submit button for code generation
-    SmsNumberSubmit          *string        `json:"smsNumberSubmit,omitempty"`
+    SmsNumberSubmit          *string                `json:"smsNumberSubmit,omitempty"`
     // Title for phone number details
-    SmsNumberTitle           *string        `json:"smsNumberTitle,omitempty"`
-    SmsUsernameFormat        *string        `json:"smsUsernameFormat,omitempty"`
-    SponsorBackLink          *string        `json:"sponsorBackLink,omitempty"`
-    SponsorCancel            *string        `json:"sponsorCancel,omitempty"`
+    SmsNumberTitle           *string                `json:"smsNumberTitle,omitempty"`
+    SmsUsernameFormat        *string                `json:"smsUsernameFormat,omitempty"`
+    SponsorBackLink          *string                `json:"sponsorBackLink,omitempty"`
+    SponsorCancel            *string                `json:"sponsorCancel,omitempty"`
     // label for Sponsor Email
-    SponsorEmail             *string        `json:"sponsorEmail,omitempty"`
-    SponsorEmailError        *string        `json:"sponsorEmailError,omitempty"`
-    SponsorInfoApproved      *string        `json:"sponsorInfoApproved,omitempty"`
-    SponsorInfoDenied        *string        `json:"sponsorInfoDenied,omitempty"`
-    SponsorInfoPending       *string        `json:"sponsorInfoPending,omitempty"`
+    SponsorEmail             *string                `json:"sponsorEmail,omitempty"`
+    SponsorEmailError        *string                `json:"sponsorEmailError,omitempty"`
+    SponsorInfoApproved      *string                `json:"sponsorInfoApproved,omitempty"`
+    SponsorInfoDenied        *string                `json:"sponsorInfoDenied,omitempty"`
+    SponsorInfoPending       *string                `json:"sponsorInfoPending,omitempty"`
     // label for Sponsor Name
-    SponsorName              *string        `json:"sponsorName,omitempty"`
-    SponsorNameError         *string        `json:"sponsorNameError,omitempty"`
-    SponsorNotePending       *string        `json:"sponsorNotePending,omitempty"`
+    SponsorName              *string                `json:"sponsorName,omitempty"`
+    SponsorNameError         *string                `json:"sponsorNameError,omitempty"`
+    SponsorNotePending       *string                `json:"sponsorNotePending,omitempty"`
     // submit button label request Wifi Access and notify sponsor about guest request
-    SponsorRequestAccess     *string        `json:"sponsorRequestAccess,omitempty"`
+    SponsorRequestAccess     *string                `json:"sponsorRequestAccess,omitempty"`
     // text to display if sponsor approves request
-    SponsorStatusApproved    *string        `json:"sponsorStatusApproved,omitempty"`
+    SponsorStatusApproved    *string                `json:"sponsorStatusApproved,omitempty"`
     // text to display when sponsor denies request
-    SponsorStatusDenied      *string        `json:"sponsorStatusDenied,omitempty"`
+    SponsorStatusDenied      *string                `json:"sponsorStatusDenied,omitempty"`
     // text to display if request is still pending
-    SponsorStatusPending     *string        `json:"sponsorStatusPending,omitempty"`
+    SponsorStatusPending     *string                `json:"sponsorStatusPending,omitempty"`
     // submit button label to notify sponsor about guest request
-    SponsorSubmit            *string        `json:"sponsorSubmit,omitempty"`
-    SponsorsError            *string        `json:"sponsorsError,omitempty"`
-    SponsorsFieldLabel       *string        `json:"sponsorsFieldLabel,omitempty"`
+    SponsorSubmit            *string                `json:"sponsorSubmit,omitempty"`
+    SponsorsError            *string                `json:"sponsorsError,omitempty"`
+    SponsorsFieldLabel       *string                `json:"sponsorsFieldLabel,omitempty"`
     // prefix of the label of the link to go to tos
-    TosAcceptLabel           *string        `json:"tosAcceptLabel,omitempty"`
+    TosAcceptLabel           *string                `json:"tosAcceptLabel,omitempty"`
     // error message when tos not accepted
-    TosError                 *string        `json:"tosError,omitempty"`
+    TosError                 *string                `json:"tosError,omitempty"`
     // label of the link to go to tos
-    TosLink                  *string        `json:"tosLink,omitempty"`
+    TosLink                  *string                `json:"tosLink,omitempty"`
     // text of the Terms of Service
-    TosText                  *string        `json:"tosText,omitempty"`
-    AdditionalProperties     map[string]any `json:"_"`
+    TosText                  *string                `json:"tosText,omitempty"`
+    AdditionalProperties     map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanPortalTemplateSettingLocale.
@@ -169,13 +169,17 @@ type WlanPortalTemplateSettingLocale struct {
 func (w WlanPortalTemplateSettingLocale) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "authButtonAmazon", "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "companyError", "companyLabel", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "field1Error", "field1Label", "field2Error", "field2Label", "field3Error", "field3Label", "field4Error", "field4Label", "message", "nameError", "nameLabel", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "requiredFieldLabel", "signInLabel", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "tosAcceptLabel", "tosError", "tosLink", "tosText"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanPortalTemplateSettingLocale object to a map representation for JSON marshaling.
 func (w WlanPortalTemplateSettingLocale) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.AuthButtonAmazon != nil {
         structMap["authButtonAmazon"] = w.AuthButtonAmazon
     }
@@ -469,12 +473,12 @@ func (w *WlanPortalTemplateSettingLocale) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "authButtonAmazon", "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "companyError", "companyLabel", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "field1Error", "field1Label", "field2Error", "field2Label", "field3Error", "field3Label", "field4Error", "field4Label", "message", "nameError", "nameLabel", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "requiredFieldLabel", "signInLabel", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "tosAcceptLabel", "tosError", "tosLink", "tosText")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "authButtonAmazon", "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "companyError", "companyLabel", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "field1Error", "field1Label", "field2Error", "field2Label", "field3Error", "field3Label", "field4Error", "field4Label", "message", "nameError", "nameLabel", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "requiredFieldLabel", "signInLabel", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "tosAcceptLabel", "tosError", "tosLink", "tosText")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.AuthButtonAmazon = temp.AuthButtonAmazon
     w.AuthButtonAzure = temp.AuthButtonAzure
     w.AuthButtonEmail = temp.AuthButtonEmail

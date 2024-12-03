@@ -8,11 +8,11 @@ import (
 
 // SsrUpgradeResponseCounts represents a SsrUpgradeResponseCounts struct.
 type SsrUpgradeResponseCounts struct {
-    Failed               int            `json:"failed"`
-    Queued               int            `json:"queued"`
-    Success              int            `json:"success"`
-    Upgrading            int            `json:"upgrading"`
-    AdditionalProperties map[string]any `json:"_"`
+    Failed               int                    `json:"failed"`
+    Queued               int                    `json:"queued"`
+    Success              int                    `json:"success"`
+    Upgrading            int                    `json:"upgrading"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrUpgradeResponseCounts.
@@ -20,13 +20,17 @@ type SsrUpgradeResponseCounts struct {
 func (s SsrUpgradeResponseCounts) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "failed", "queued", "success", "upgrading"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SsrUpgradeResponseCounts object to a map representation for JSON marshaling.
 func (s SsrUpgradeResponseCounts) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["failed"] = s.Failed
     structMap["queued"] = s.Queued
     structMap["success"] = s.Success
@@ -46,12 +50,12 @@ func (s *SsrUpgradeResponseCounts) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "failed", "queued", "success", "upgrading")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "failed", "queued", "success", "upgrading")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Failed = *temp.Failed
     s.Queued = *temp.Queued
     s.Success = *temp.Success

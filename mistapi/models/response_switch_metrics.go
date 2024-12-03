@@ -9,7 +9,7 @@ type ResponseSwitchMetrics struct {
     ActivePortsSummary   *ResponseSwitchMetricsActivePortsSummary `json:"active_ports_summary,omitempty"`
     ConfigSuccess        *ResponseSwitchMetricsConfigSuccess      `json:"config_success,omitempty"`
     VersionCompliance    *ResponseSwitchMetricsVersionCompliance  `json:"version_compliance,omitempty"`
-    AdditionalProperties map[string]any                           `json:"_"`
+    AdditionalProperties map[string]interface{}                   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSwitchMetrics.
@@ -17,13 +17,17 @@ type ResponseSwitchMetrics struct {
 func (r ResponseSwitchMetrics) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "active_ports_summary", "config_success", "version_compliance"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSwitchMetrics object to a map representation for JSON marshaling.
 func (r ResponseSwitchMetrics) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.ActivePortsSummary != nil {
         structMap["active_ports_summary"] = r.ActivePortsSummary.toMap()
     }
@@ -44,12 +48,12 @@ func (r *ResponseSwitchMetrics) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "active_ports_summary", "config_success", "version_compliance")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "active_ports_summary", "config_success", "version_compliance")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.ActivePortsSummary = temp.ActivePortsSummary
     r.ConfigSuccess = temp.ConfigSuccess
     r.VersionCompliance = temp.VersionCompliance

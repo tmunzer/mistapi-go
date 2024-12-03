@@ -8,14 +8,14 @@ import (
 
 // UtilsPing represents a UtilsPing struct.
 type UtilsPing struct {
-    Count                *int               `json:"count,omitempty"`
+    Count                *int                   `json:"count,omitempty"`
     // Interface through which packet needs to egress
-    EgressInterface      *string            `json:"egress_interface,omitempty"`
-    Host                 string             `json:"host"`
+    EgressInterface      *string                `json:"egress_interface,omitempty"`
+    Host                 string                 `json:"host"`
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
-    Size                 *int               `json:"size,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
+    Size                 *int                   `json:"size,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsPing.
@@ -23,13 +23,17 @@ type UtilsPing struct {
 func (u UtilsPing) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "count", "egress_interface", "host", "node", "size"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsPing object to a map representation for JSON marshaling.
 func (u UtilsPing) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Count != nil {
         structMap["count"] = u.Count
     }
@@ -58,12 +62,12 @@ func (u *UtilsPing) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "count", "egress_interface", "host", "node", "size")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "count", "egress_interface", "host", "node", "size")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Count = temp.Count
     u.EgressInterface = temp.EgressInterface
     u.Host = *temp.Host

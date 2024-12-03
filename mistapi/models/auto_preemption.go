@@ -8,12 +8,12 @@ import (
 // schedule to preempt ap’s which are not connected to preferred peer
 type AutoPreemption struct {
     // enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed`
-    DayOfWeek            *DayOfWeekEnum `json:"day_of_week,omitempty"`
+    DayOfWeek            *DayOfWeekEnum         `json:"day_of_week,omitempty"`
     // whether auto preemption should happen
-    Enabled              *bool          `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // any / HH:MM (24-hour format)
-    TimeOfDay            *string        `json:"time_of_day,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TimeOfDay            *string                `json:"time_of_day,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AutoPreemption.
@@ -21,13 +21,17 @@ type AutoPreemption struct {
 func (a AutoPreemption) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "day_of_week", "enabled", "time_of_day"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AutoPreemption object to a map representation for JSON marshaling.
 func (a AutoPreemption) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.DayOfWeek != nil {
         structMap["day_of_week"] = a.DayOfWeek
     }
@@ -48,12 +52,12 @@ func (a *AutoPreemption) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "day_of_week", "enabled", "time_of_day")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "day_of_week", "enabled", "time_of_day")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.DayOfWeek = temp.DayOfWeek
     a.Enabled = temp.Enabled
     a.TimeOfDay = temp.TimeOfDay

@@ -6,9 +6,9 @@ import (
 
 // DhcpClientOption represents a DhcpClientOption struct.
 type DhcpClientOption struct {
-    Code                 *string        `json:"code,omitempty"`
-    Data                 *string        `json:"data,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Code                 *string                `json:"code,omitempty"`
+    Data                 *string                `json:"data,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpClientOption.
@@ -16,13 +16,17 @@ type DhcpClientOption struct {
 func (d DhcpClientOption) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "code", "data"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DhcpClientOption object to a map representation for JSON marshaling.
 func (d DhcpClientOption) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.Code != nil {
         structMap["code"] = d.Code
     }
@@ -40,12 +44,12 @@ func (d *DhcpClientOption) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "code", "data")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "code", "data")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.Code = temp.Code
     d.Data = temp.Data
     return nil

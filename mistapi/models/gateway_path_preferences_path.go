@@ -6,26 +6,26 @@ import (
 
 // GatewayPathPreferencesPath represents a GatewayPathPreferencesPath struct.
 type GatewayPathPreferencesPath struct {
-    Cost                 *int                 `json:"cost,omitempty"`
+    Cost                 *int                   `json:"cost,omitempty"`
     // For SSR Only. `true`, if this specific path is undesired
-    Disabled             *bool                `json:"disabled,omitempty"`
+    Disabled             *bool                  `json:"disabled,omitempty"`
     // only if `type`==`local`, if a different gateway is desired
-    GatewayIp            *string              `json:"gateway_ip,omitempty"`
+    GatewayIp            *string                `json:"gateway_ip,omitempty"`
     // only if `type`==`vpn`, if this vpn path can be used for internet
-    InternetAccess       *bool                `json:"internet_access,omitempty"`
+    InternetAccess       *bool                  `json:"internet_access,omitempty"`
     // required when
     // * `type`==`vpn`: the name of the VPN Path to use
     // * `type`==`wan`: the name of the WAN interface to use'
-    Name                 *string              `json:"name,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
     // required when `type`==`local`
-    Networks             []string             `json:"networks,omitempty"`
+    Networks             []string               `json:"networks,omitempty"`
     // if `type`==`local`, if destination IP is to be replaced
-    TargetIps            []string             `json:"target_ips,omitempty"`
+    TargetIps            []string               `json:"target_ips,omitempty"`
     // enum: `local`, `tunnel`, `vpn`, `wan`
-    Type                 *GatewayPathTypeEnum `json:"type,omitempty"`
+    Type                 *GatewayPathTypeEnum   `json:"type,omitempty"`
     // optional if `type`==`vpn`
-    WanName              *string              `json:"wan_name,omitempty"`
-    AdditionalProperties map[string]any       `json:"_"`
+    WanName              *string                `json:"wan_name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPathPreferencesPath.
@@ -33,13 +33,17 @@ type GatewayPathPreferencesPath struct {
 func (g GatewayPathPreferencesPath) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "cost", "disabled", "gateway_ip", "internet_access", "name", "networks", "target_ips", "type", "wan_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayPathPreferencesPath object to a map representation for JSON marshaling.
 func (g GatewayPathPreferencesPath) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Cost != nil {
         structMap["cost"] = g.Cost
     }
@@ -78,12 +82,12 @@ func (g *GatewayPathPreferencesPath) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cost", "disabled", "gateway_ip", "internet_access", "name", "networks", "target_ips", "type", "wan_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cost", "disabled", "gateway_ip", "internet_access", "name", "networks", "target_ips", "type", "wan_name")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Cost = temp.Cost
     g.Disabled = temp.Disabled
     g.GatewayIp = temp.GatewayIp

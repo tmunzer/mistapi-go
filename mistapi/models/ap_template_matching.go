@@ -8,7 +8,7 @@ import (
 type ApTemplateMatching struct {
     Enabled              *bool                    `json:"enabled,omitempty"`
     Rules                []ApTemplateMatchingRule `json:"rules,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApTemplateMatching.
@@ -16,13 +16,17 @@ type ApTemplateMatching struct {
 func (a ApTemplateMatching) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "enabled", "rules"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApTemplateMatching object to a map representation for JSON marshaling.
 func (a ApTemplateMatching) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Enabled != nil {
         structMap["enabled"] = a.Enabled
     }
@@ -40,12 +44,12 @@ func (a *ApTemplateMatching) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "rules")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "rules")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Enabled = temp.Enabled
     a.Rules = temp.Rules
     return nil

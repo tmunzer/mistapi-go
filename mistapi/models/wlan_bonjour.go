@@ -16,7 +16,7 @@ type WlanBonjour struct {
     // what services are allowed.
     // Property key is the service name
     Services             map[string]WlanBonjourServiceProperties `json:"services"`
-    AdditionalProperties map[string]any                          `json:"_"`
+    AdditionalProperties map[string]interface{}                  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanBonjour.
@@ -24,13 +24,17 @@ type WlanBonjour struct {
 func (w WlanBonjour) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "additional_vlan_ids", "enabled", "services"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanBonjour object to a map representation for JSON marshaling.
 func (w WlanBonjour) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["additional_vlan_ids"] = w.AdditionalVlanIds
     if w.Enabled != nil {
         structMap["enabled"] = w.Enabled
@@ -51,12 +55,12 @@ func (w *WlanBonjour) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_vlan_ids", "enabled", "services")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_vlan_ids", "enabled", "services")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.AdditionalVlanIds = *temp.AdditionalVlanIds
     w.Enabled = temp.Enabled
     w.Services = *temp.Services

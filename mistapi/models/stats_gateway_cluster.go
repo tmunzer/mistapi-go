@@ -6,8 +6,8 @@ import (
 
 // StatsGatewayCluster represents a StatsGatewayCluster struct.
 type StatsGatewayCluster struct {
-    State                Optional[string] `json:"state"`
-    AdditionalProperties map[string]any   `json:"_"`
+    State                Optional[string]       `json:"state"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGatewayCluster.
@@ -15,13 +15,17 @@ type StatsGatewayCluster struct {
 func (s StatsGatewayCluster) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "state"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsGatewayCluster object to a map representation for JSON marshaling.
 func (s StatsGatewayCluster) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.State.IsValueSet() {
         if s.State.Value() != nil {
             structMap["state"] = s.State.Value()
@@ -40,12 +44,12 @@ func (s *StatsGatewayCluster) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "state")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "state")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.State = temp.State
     return nil
 }

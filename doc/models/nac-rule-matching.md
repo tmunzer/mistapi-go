@@ -1,6 +1,8 @@
 
 # Nac Rule Matching
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `NacRuleMatching`
@@ -15,6 +17,7 @@
 | `SiteIds` | `[]uuid.UUID` | Optional | list of site ids to match |
 | `SitegroupIds` | `[]uuid.UUID` | Optional | list of sitegroup ids to match |
 | `Vendor` | `[]string` | Optional | list of vendors to match |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,7 +38,11 @@
     "bb19fc3e-4124-4b57-80d9-c3f6edce47c4",
     "bb19fc3e-6564-4b57-80d9-c3f6edce47c1"
   ],
-  "auth_type": "idp"
+  "auth_type": "idp",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

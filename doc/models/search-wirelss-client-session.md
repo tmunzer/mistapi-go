@@ -1,6 +1,8 @@
 
 # Search Wirelss Client Session
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SearchWirelssClientSession`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.WirelssClientSession`](../../doc/models/wirelss-client-session.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,12 +43,20 @@
       "tags": [
         "tags1",
         "tags2"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 7.34,
   "total": 0,
-  "next": "next2"
+  "next": "next2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

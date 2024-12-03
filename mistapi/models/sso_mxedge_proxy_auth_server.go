@@ -6,12 +6,12 @@ import (
 
 // SsoMxedgeProxyAuthServer represents a SsoMxedgeProxyAuthServer struct.
 type SsoMxedgeProxyAuthServer struct {
-    Host                        *string        `json:"host,omitempty"`
-    Port                        *int           `json:"port,omitempty"`
+    Host                        *string                `json:"host,omitempty"`
+    Port                        *int                   `json:"port,omitempty"`
     // whether to require Message-Authenticator in requests
-    RequireMessageAuthenticator *bool          `json:"require_message_authenticator,omitempty"`
-    Secret                      *string        `json:"secret,omitempty"`
-    AdditionalProperties        map[string]any `json:"_"`
+    RequireMessageAuthenticator *bool                  `json:"require_message_authenticator,omitempty"`
+    Secret                      *string                `json:"secret,omitempty"`
+    AdditionalProperties        map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsoMxedgeProxyAuthServer.
@@ -19,13 +19,17 @@ type SsoMxedgeProxyAuthServer struct {
 func (s SsoMxedgeProxyAuthServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "host", "port", "require_message_authenticator", "secret"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SsoMxedgeProxyAuthServer object to a map representation for JSON marshaling.
 func (s SsoMxedgeProxyAuthServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Host != nil {
         structMap["host"] = s.Host
     }
@@ -49,12 +53,12 @@ func (s *SsoMxedgeProxyAuthServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "port", "require_message_authenticator", "secret")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "port", "require_message_authenticator", "secret")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Host = temp.Host
     s.Port = temp.Port
     s.RequireMessageAuthenticator = temp.RequireMessageAuthenticator

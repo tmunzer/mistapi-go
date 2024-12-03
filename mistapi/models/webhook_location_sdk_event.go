@@ -8,17 +8,17 @@ import (
 // WebhookLocationSdkEvent represents a WebhookLocationSdkEvent struct.
 type WebhookLocationSdkEvent struct {
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    MapId                *uuid.UUID     `json:"map_id,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Timestamp            *int           `json:"timestamp,omitempty"`
-    Type                 *string        `json:"type,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    MapId                *uuid.UUID             `json:"map_id,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Timestamp            *int                   `json:"timestamp,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
     // x, in meter
-    X                    *float64       `json:"x,omitempty"`
+    X                    *float64               `json:"x,omitempty"`
     // y, in meter
-    Y                    *float64       `json:"y,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Y                    *float64               `json:"y,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookLocationSdkEvent.
@@ -26,13 +26,17 @@ type WebhookLocationSdkEvent struct {
 func (w WebhookLocationSdkEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "id", "map_id", "name", "site_id", "timestamp", "type", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookLocationSdkEvent object to a map representation for JSON marshaling.
 func (w WebhookLocationSdkEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Id != nil {
         structMap["id"] = w.Id
     }
@@ -68,12 +72,12 @@ func (w *WebhookLocationSdkEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "map_id", "name", "site_id", "timestamp", "type", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "map_id", "name", "site_id", "timestamp", "type", "x", "y")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Id = temp.Id
     w.MapId = temp.MapId
     w.Name = temp.Name

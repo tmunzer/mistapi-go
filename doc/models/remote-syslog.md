@@ -1,6 +1,8 @@
 
 # Remote Syslog
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RemoteSyslog`
@@ -18,6 +20,7 @@
 | `Servers` | [`[]models.RemoteSyslogServer`](../../doc/models/remote-syslog-server.md) | Optional | - |
 | `TimeFormat` | [`*models.RemoteSyslogTimeFormatEnum`](../../doc/models/remote-syslog-time-format-enum.md) | Optional | enum: `millisecond`, `year`, `year millisecond` |
 | `Users` | [`[]models.RemoteSyslogUser`](../../doc/models/remote-syslog-user.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,83 +42,155 @@
   "time_format": "millisecond",
   "archive": {
     "files": 122,
-    "size": "size8"
+    "size": "size8",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "console": {
     "contents": [
       {
         "facility": "ntp",
-        "severity": "error"
+        "severity": "error",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       {
         "facility": "ntp",
-        "severity": "error"
+        "severity": "error",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       {
         "facility": "ntp",
-        "severity": "error"
+        "severity": "error",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "files": [
     {
       "archive": {
         "files": 122,
-        "size": "size8"
+        "size": "size8",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "contents": [
         {
           "facility": "ntp",
-          "severity": "error"
+          "severity": "error",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "facility": "ntp",
-          "severity": "error"
+          "severity": "error",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "explicit_priority": false,
       "file": "file4",
-      "match": "match4"
+      "match": "match4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "archive": {
         "files": 122,
-        "size": "size8"
+        "size": "size8",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "contents": [
         {
           "facility": "ntp",
-          "severity": "error"
+          "severity": "error",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "facility": "ntp",
-          "severity": "error"
+          "severity": "error",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "explicit_priority": false,
       "file": "file4",
-      "match": "match4"
+      "match": "match4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "archive": {
         "files": 122,
-        "size": "size8"
+        "size": "size8",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "contents": [
         {
           "facility": "ntp",
-          "severity": "error"
+          "severity": "error",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "facility": "ntp",
-          "severity": "error"
+          "severity": "error",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "explicit_priority": false,
       "file": "file4",
-      "match": "match4"
+      "match": "match4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

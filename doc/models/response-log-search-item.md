@@ -1,6 +1,8 @@
 
 # Response Log Search Item
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseLogSearchItem`
@@ -19,6 +21,7 @@
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `float64` | Required | start time, in epoch |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,7 +42,11 @@
     "key1": "val1",
     "key2": "val2"
   },
-  "for_site": false
+  "for_site": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

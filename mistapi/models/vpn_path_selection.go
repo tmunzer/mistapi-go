@@ -9,7 +9,7 @@ import (
 type VpnPathSelection struct {
     // enum: `disabled`, `simple`, `manual`
     Strategy             *VpnPathSelectionStrategyEnum `json:"strategy,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VpnPathSelection.
@@ -17,13 +17,17 @@ type VpnPathSelection struct {
 func (v VpnPathSelection) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "strategy"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VpnPathSelection object to a map representation for JSON marshaling.
 func (v VpnPathSelection) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.Strategy != nil {
         structMap["strategy"] = v.Strategy
     }
@@ -38,12 +42,12 @@ func (v *VpnPathSelection) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "strategy")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "strategy")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.Strategy = temp.Strategy
     return nil
 }

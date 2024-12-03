@@ -22,7 +22,7 @@ type RemoteSyslogServer struct {
     SourceAddress        *string                         `json:"source_address,omitempty"`
     StructuredData       *bool                           `json:"structured_data,omitempty"`
     Tag                  *string                         `json:"tag,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogServer.
@@ -30,13 +30,17 @@ type RemoteSyslogServer struct {
 func (r RemoteSyslogServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "contents", "explicit_priority", "facility", "host", "match", "port", "protocol", "routing_instance", "severity", "source_address", "structured_data", "tag"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RemoteSyslogServer object to a map representation for JSON marshaling.
 func (r RemoteSyslogServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Contents != nil {
         structMap["contents"] = r.Contents
     }
@@ -84,12 +88,12 @@ func (r *RemoteSyslogServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "contents", "explicit_priority", "facility", "host", "match", "port", "protocol", "routing_instance", "severity", "source_address", "structured_data", "tag")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "contents", "explicit_priority", "facility", "host", "match", "port", "protocol", "routing_instance", "severity", "source_address", "structured_data", "tag")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Contents = temp.Contents
     r.ExplicitPriority = temp.ExplicitPriority
     r.Facility = temp.Facility

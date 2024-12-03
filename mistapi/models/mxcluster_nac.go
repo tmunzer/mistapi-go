@@ -12,7 +12,7 @@ type MxclusterNac struct {
     ClientIps            map[string]MxclusterNacClientIp `json:"client_ips,omitempty"`
     Enabled              *bool                           `json:"enabled,omitempty"`
     Secret               *string                         `json:"secret,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterNac.
@@ -20,13 +20,17 @@ type MxclusterNac struct {
 func (m MxclusterNac) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "acct_server_port", "auth_server_port", "client_ips", "enabled", "secret"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxclusterNac object to a map representation for JSON marshaling.
 func (m MxclusterNac) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.AcctServerPort != nil {
         structMap["acct_server_port"] = m.AcctServerPort
     }
@@ -53,12 +57,12 @@ func (m *MxclusterNac) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_server_port", "auth_server_port", "client_ips", "enabled", "secret")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acct_server_port", "auth_server_port", "client_ips", "enabled", "secret")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.AcctServerPort = temp.AcctServerPort
     m.AuthServerPort = temp.AuthServerPort
     m.ClientIps = temp.ClientIps

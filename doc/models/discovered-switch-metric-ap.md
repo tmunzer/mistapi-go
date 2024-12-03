@@ -1,6 +1,8 @@
 
 # Discovered Switch Metric Ap
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `DiscoveredSwitchMetricAp`
@@ -16,6 +18,7 @@
 | `PortId` | `*string` | Optional | - |
 | `PowerDraw` | `*int` | Optional | - |
 | `When` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   "mac": "mac0",
   "poe_status": false,
   "port": "port6",
-  "port_id": "port_id4"
+  "port_id": "port_id4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

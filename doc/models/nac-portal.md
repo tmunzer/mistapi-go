@@ -1,6 +1,8 @@
 
 # Nac Portal
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `NacPortal`
@@ -24,6 +26,7 @@
 | `ThumbnailUrl` | `*string` | Optional | - |
 | `Tos` | `*string` | Optional | - |
 | `Type` | [`*models.NacPortalTypeEnum`](../../doc/models/nac-portal-type-enum.md) | Optional | enum: `guest`, `marvis_client` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,7 +38,11 @@
   "name": "get-wifi",
   "ssid": "Corp",
   "bg_image_url": "bg_image_url2",
-  "enable_telemetry": false
+  "enable_telemetry": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

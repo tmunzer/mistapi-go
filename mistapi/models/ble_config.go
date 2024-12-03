@@ -59,7 +59,7 @@ type BleConfig struct {
     Power                   *int                         `json:"power,omitempty"`
     // enum: `custom`, `default`
     PowerMode               *BleConfigPowerModeEnum      `json:"power_mode,omitempty"`
-    AdditionalProperties    map[string]any               `json:"_"`
+    AdditionalProperties    map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for BleConfig.
@@ -67,13 +67,17 @@ type BleConfig struct {
 func (b BleConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(b.AdditionalProperties,
+        "beacon_enabled", "beacon_rate", "beacon_rate_mode", "beam_disabled", "custom_ble_packet_enabled", "custom_ble_packet_frame", "custom_ble_packet_freq_msec", "eddystone_uid_adv_power", "eddystone_uid_beams", "eddystone_uid_enabled", "eddystone_uid_freq_msec", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_adv_power", "eddystone_url_beams", "eddystone_url_enabled", "eddystone_url_freq_msec", "eddystone_url_url", "ibeacon_adv_power", "ibeacon_beams", "ibeacon_enabled", "ibeacon_freq_msec", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "power", "power_mode"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(b.toMap())
 }
 
 // toMap converts the BleConfig object to a map representation for JSON marshaling.
 func (b BleConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, b.AdditionalProperties)
+    MergeAdditionalProperties(structMap, b.AdditionalProperties)
     if b.BeaconEnabled != nil {
         structMap["beacon_enabled"] = b.BeaconEnabled
     }
@@ -166,12 +170,12 @@ func (b *BleConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "beacon_enabled", "beacon_rate", "beacon_rate_mode", "beam_disabled", "custom_ble_packet_enabled", "custom_ble_packet_frame", "custom_ble_packet_freq_msec", "eddystone_uid_adv_power", "eddystone_uid_beams", "eddystone_uid_enabled", "eddystone_uid_freq_msec", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_adv_power", "eddystone_url_beams", "eddystone_url_enabled", "eddystone_url_freq_msec", "eddystone_url_url", "ibeacon_adv_power", "ibeacon_beams", "ibeacon_enabled", "ibeacon_freq_msec", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "power", "power_mode")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "beacon_enabled", "beacon_rate", "beacon_rate_mode", "beam_disabled", "custom_ble_packet_enabled", "custom_ble_packet_frame", "custom_ble_packet_freq_msec", "eddystone_uid_adv_power", "eddystone_uid_beams", "eddystone_uid_enabled", "eddystone_uid_freq_msec", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_adv_power", "eddystone_url_beams", "eddystone_url_enabled", "eddystone_url_freq_msec", "eddystone_url_url", "ibeacon_adv_power", "ibeacon_beams", "ibeacon_enabled", "ibeacon_freq_msec", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "power", "power_mode")
     if err != nil {
     	return err
     }
-    
     b.AdditionalProperties = additionalProperties
+    
     b.BeaconEnabled = temp.BeaconEnabled
     b.BeaconRate = temp.BeaconRate
     b.BeaconRateMode = temp.BeaconRateMode

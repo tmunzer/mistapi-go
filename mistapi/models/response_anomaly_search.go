@@ -8,13 +8,13 @@ import (
 
 // ResponseAnomalySearch represents a ResponseAnomalySearch struct.
 type ResponseAnomalySearch struct {
-    End                  int            `json:"end"`
-    Limit                int            `json:"limit"`
-    Page                 int            `json:"page"`
-    Results              []Anomaly      `json:"results"`
-    Start                int            `json:"start"`
-    Total                *int           `json:"total,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    End                  int                    `json:"end"`
+    Limit                int                    `json:"limit"`
+    Page                 int                    `json:"page"`
+    Results              []Anomaly              `json:"results"`
+    Start                int                    `json:"start"`
+    Total                *int                   `json:"total,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAnomalySearch.
@@ -22,13 +22,17 @@ type ResponseAnomalySearch struct {
 func (r ResponseAnomalySearch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "end", "limit", "page", "results", "start", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseAnomalySearch object to a map representation for JSON marshaling.
 func (r ResponseAnomalySearch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["end"] = r.End
     structMap["limit"] = r.Limit
     structMap["page"] = r.Page
@@ -52,12 +56,12 @@ func (r *ResponseAnomalySearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "limit", "page", "results", "start", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "page", "results", "start", "total")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.End = *temp.End
     r.Limit = *temp.Limit
     r.Page = *temp.Page

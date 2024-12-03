@@ -7,14 +7,14 @@ import (
 // MxclusterRadsecAcctServer represents a MxclusterRadsecAcctServer struct.
 type MxclusterRadsecAcctServer struct {
     // ip / hostname of RADIUS server
-    Host                 *string        `json:"host,omitempty"`
+    Host                 *string                `json:"host,omitempty"`
     // Acct port of RADIUS server
-    Port                 *int           `json:"port,omitempty"`
+    Port                 *int                   `json:"port,omitempty"`
     // secret of RADIUS server
-    Secret               *string        `json:"secret,omitempty"`
+    Secret               *string                `json:"secret,omitempty"`
     // list of ssids that will use this server if match_ssid is true and match is found
-    Ssids                []string       `json:"ssids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Ssids                []string               `json:"ssids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterRadsecAcctServer.
@@ -22,13 +22,17 @@ type MxclusterRadsecAcctServer struct {
 func (m MxclusterRadsecAcctServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "host", "port", "secret", "ssids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxclusterRadsecAcctServer object to a map representation for JSON marshaling.
 func (m MxclusterRadsecAcctServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Host != nil {
         structMap["host"] = m.Host
     }
@@ -52,12 +56,12 @@ func (m *MxclusterRadsecAcctServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "port", "secret", "ssids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "port", "secret", "ssids")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Host = temp.Host
     m.Port = temp.Port
     m.Secret = temp.Secret

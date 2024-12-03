@@ -155,10 +155,10 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AccountZscalerConfig{
-    CloudName:  "zscalerbeta.net",
-    PartnerKey: "K35vrZcK3JvrZc",
-    Password:   "password",
-    Username:   "john@nmo.com",
+    CloudName:            "zscalerbeta.net",
+    PartnerKey:           "K35vrZcK3JvrZc",
+    Password:             "password",
+    Username:             "john@nmo.com",
 }
 
 resp, err := orgsSettingZscaler.SetupOrgZscalerCredential(ctx, orgId, &body)

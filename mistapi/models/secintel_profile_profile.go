@@ -10,7 +10,7 @@ type SecintelProfileProfile struct {
     Action               *SecintelProfileProfileActionEnum   `json:"action,omitempty"`
     // enum: `CC`, `IH` (Infected Host), `DNS`
     Category             *SecintelProfileProfileCategoryEnum `json:"category,omitempty"`
-    AdditionalProperties map[string]any                      `json:"_"`
+    AdditionalProperties map[string]interface{}              `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SecintelProfileProfile.
@@ -18,13 +18,17 @@ type SecintelProfileProfile struct {
 func (s SecintelProfileProfile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "action", "category"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SecintelProfileProfile object to a map representation for JSON marshaling.
 func (s SecintelProfileProfile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Action != nil {
         structMap["action"] = s.Action
     }
@@ -42,12 +46,12 @@ func (s *SecintelProfileProfile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "category")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "category")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Action = temp.Action
     s.Category = temp.Category
     return nil

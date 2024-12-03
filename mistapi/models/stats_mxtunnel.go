@@ -27,7 +27,7 @@ type StatsMxtunnel struct {
     State                *StatsMxtunnelStateEnum `json:"state,omitempty"`
     TxControlPkts        *int                    `json:"tx_control_pkts,omitempty"`
     Uptime               *int                    `json:"uptime,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxtunnel.
@@ -35,13 +35,17 @@ type StatsMxtunnel struct {
 func (s StatsMxtunnel) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ap", "for_site", "last_seen", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "rx_control_pkts", "sessions", "site_id", "state", "tx_control_pkts", "uptime"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxtunnel object to a map representation for JSON marshaling.
 func (s StatsMxtunnel) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Ap != nil {
         structMap["ap"] = s.Ap
     }
@@ -101,12 +105,12 @@ func (s *StatsMxtunnel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "for_site", "last_seen", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "rx_control_pkts", "sessions", "site_id", "state", "tx_control_pkts", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "for_site", "last_seen", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "rx_control_pkts", "sessions", "site_id", "state", "tx_control_pkts", "uptime")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Ap = temp.Ap
     s.ForSite = temp.ForSite
     s.LastSeen = temp.LastSeen

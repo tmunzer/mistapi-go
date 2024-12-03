@@ -10,15 +10,15 @@ import (
 // UserMac represents a UserMac struct.
 type UserMac struct {
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Labels               []string       `json:"labels,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Labels               []string               `json:"labels,omitempty"`
     // only non-local-admin MAC is accepted
-    Mac                  string         `json:"mac"`
-    Name                 *string        `json:"name,omitempty"`
-    Notes                *string        `json:"notes,omitempty"`
-    RadiusGroup          *string        `json:"radius_group,omitempty"`
-    Vlan                 *string        `json:"vlan,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  string                 `json:"mac"`
+    Name                 *string                `json:"name,omitempty"`
+    Notes                *string                `json:"notes,omitempty"`
+    RadiusGroup          *string                `json:"radius_group,omitempty"`
+    Vlan                 *string                `json:"vlan,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UserMac.
@@ -26,13 +26,17 @@ type UserMac struct {
 func (u UserMac) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "id", "labels", "mac", "name", "notes", "radius_group", "vlan"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UserMac object to a map representation for JSON marshaling.
 func (u UserMac) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Id != nil {
         structMap["id"] = u.Id
     }
@@ -67,12 +71,12 @@ func (u *UserMac) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "labels", "mac", "name", "notes", "radius_group", "vlan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "labels", "mac", "name", "notes", "radius_group", "vlan")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Id = temp.Id
     u.Labels = temp.Labels
     u.Mac = *temp.Mac

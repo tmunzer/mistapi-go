@@ -8,12 +8,12 @@ import (
 // Aeroscout AP settings
 type ApAeroscout struct {
     // whether to enable aeroscout config
-    Enabled              *bool            `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // required if enabled, aeroscout server host
-    Host                 Optional[string] `json:"host"`
+    Host                 Optional[string]       `json:"host"`
     // whether to enable the feature to allow wireless clients data received and sent to AES server for location calculation
-    LocateConnected      *bool            `json:"locate_connected,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    LocateConnected      *bool                  `json:"locate_connected,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApAeroscout.
@@ -21,13 +21,17 @@ type ApAeroscout struct {
 func (a ApAeroscout) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "enabled", "host", "locate_connected"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApAeroscout object to a map representation for JSON marshaling.
 func (a ApAeroscout) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Enabled != nil {
         structMap["enabled"] = a.Enabled
     }
@@ -52,12 +56,12 @@ func (a *ApAeroscout) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "host", "locate_connected")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "host", "locate_connected")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Enabled = temp.Enabled
     a.Host = temp.Host
     a.LocateConnected = temp.LocateConnected

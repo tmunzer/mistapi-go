@@ -11,22 +11,22 @@ import (
 // Template
 type Template struct {
     // where this template should be applied to, can be org_id, site_ids, sitegroup_ids
-    Applies               *TemplateApplies    `json:"applies,omitempty"`
+    Applies               *TemplateApplies       `json:"applies,omitempty"`
     // when the object has been created, in epoch
-    CreatedTime           *float64            `json:"created_time,omitempty"`
+    CreatedTime           *float64               `json:"created_time,omitempty"`
     // list of Device Profile ids
-    DeviceprofileIds      []uuid.UUID         `json:"deviceprofile_ids,omitempty"`
+    DeviceprofileIds      []uuid.UUID            `json:"deviceprofile_ids,omitempty"`
     // where this template should not be applied to (takes precedence)
-    Exceptions            *TemplateExceptions `json:"exceptions,omitempty"`
+    Exceptions            *TemplateExceptions    `json:"exceptions,omitempty"`
     // whether to further filter by Device Profile
-    FilterByDeviceprofile *bool               `json:"filter_by_deviceprofile,omitempty"`
+    FilterByDeviceprofile *bool                  `json:"filter_by_deviceprofile,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                    *uuid.UUID          `json:"id,omitempty"`
+    Id                    *uuid.UUID             `json:"id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime          *float64            `json:"modified_time,omitempty"`
-    Name                  string              `json:"name"`
-    OrgId                 *uuid.UUID          `json:"org_id,omitempty"`
-    AdditionalProperties  map[string]any      `json:"_"`
+    ModifiedTime          *float64               `json:"modified_time,omitempty"`
+    Name                  string                 `json:"name"`
+    OrgId                 *uuid.UUID             `json:"org_id,omitempty"`
+    AdditionalProperties  map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Template.
@@ -34,13 +34,17 @@ type Template struct {
 func (t Template) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "applies", "created_time", "deviceprofile_ids", "exceptions", "filter_by_deviceprofile", "id", "modified_time", "name", "org_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the Template object to a map representation for JSON marshaling.
 func (t Template) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.Applies != nil {
         structMap["applies"] = t.Applies.toMap()
     }
@@ -81,12 +85,12 @@ func (t *Template) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "applies", "created_time", "deviceprofile_ids", "exceptions", "filter_by_deviceprofile", "id", "modified_time", "name", "org_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "applies", "created_time", "deviceprofile_ids", "exceptions", "filter_by_deviceprofile", "id", "modified_time", "name", "org_id")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.Applies = temp.Applies
     t.CreatedTime = temp.CreatedTime
     t.DeviceprofileIds = temp.DeviceprofileIds

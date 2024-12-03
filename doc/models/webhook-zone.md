@@ -3,6 +3,8 @@
 
 zone webhook sample
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookZone`
@@ -13,6 +15,7 @@ zone webhook sample
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookZoneEvent`](../../doc/models/webhook-zone-event.md) | Required | list of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"zone"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,10 +32,18 @@ zone webhook sample
       "zone_id": "00000f60-0000-0000-0000-000000000000",
       "asset_id": "00001e56-0000-0000-0000-000000000000",
       "mac": "mac4",
-      "name": "name0"
+      "name": "name0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "zone"
+  "topic": "zone",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

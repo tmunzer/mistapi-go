@@ -7,15 +7,15 @@ import (
 
 // EventOtherdevice represents a EventOtherdevice struct.
 type EventOtherdevice struct {
-    DeviceMac            *string        `json:"device_mac,omitempty"`
-    Mac                  *string        `json:"mac,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Text                 *string        `json:"text,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
-    Type                 *string        `json:"type,omitempty"`
-    Vendor               *string        `json:"vendor,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    DeviceMac            *string                `json:"device_mac,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Text                 *string                `json:"text,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
+    Vendor               *string                `json:"vendor,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventOtherdevice.
@@ -23,13 +23,17 @@ type EventOtherdevice struct {
 func (e EventOtherdevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "device_mac", "mac", "org_id", "site_id", "text", "timestamp", "type", "vendor"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EventOtherdevice object to a map representation for JSON marshaling.
 func (e EventOtherdevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.DeviceMac != nil {
         structMap["device_mac"] = e.DeviceMac
     }
@@ -65,12 +69,12 @@ func (e *EventOtherdevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "device_mac", "mac", "org_id", "site_id", "text", "timestamp", "type", "vendor")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "device_mac", "mac", "org_id", "site_id", "text", "timestamp", "type", "vendor")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.DeviceMac = temp.DeviceMac
     e.Mac = temp.Mac
     e.OrgId = temp.OrgId

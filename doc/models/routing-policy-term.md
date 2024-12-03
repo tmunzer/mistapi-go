@@ -1,6 +1,8 @@
 
 # Routing Policy Term
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RoutingPolicyTerm`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Action` | [`*models.RoutingPolicyTermAction`](../../doc/models/routing-policy-term-action.md) | Optional | when used as import policy |
 | `Matching` | [`*models.RoutingPolicyTermMatching`](../../doc/models/routing-policy-term-matching.md) | Optional | zero or more criteria/filter can be specified to match the term, all criteria have to be met |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,7 +35,11 @@
     ],
     "exclude_as_path": [
       "exclude_as_path4"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "matching": {
     "as_path": [
@@ -54,7 +61,15 @@
     "protocol": [
       "protocol5",
       "protocol6"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

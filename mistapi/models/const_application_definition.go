@@ -6,16 +6,16 @@ import (
 
 // ConstApplicationDefinition represents a ConstApplicationDefinition struct.
 type ConstApplicationDefinition struct {
-    AppId                *bool          `json:"app_id,omitempty"`
-    AppImageUrl          *string        `json:"app_image_url,omitempty"`
-    AppProbe             *bool          `json:"app_probe,omitempty"`
-    Category             *string        `json:"category,omitempty"`
-    Group                *string        `json:"group,omitempty"`
-    Key                  *string        `json:"key,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    SignatureBased       *bool          `json:"signature_based,omitempty"`
-    SsrAppId             *bool          `json:"ssr_app_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    AppId                *bool                  `json:"app_id,omitempty"`
+    AppImageUrl          *string                `json:"app_image_url,omitempty"`
+    AppProbe             *bool                  `json:"app_probe,omitempty"`
+    Category             *string                `json:"category,omitempty"`
+    Group                *string                `json:"group,omitempty"`
+    Key                  *string                `json:"key,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    SignatureBased       *bool                  `json:"signature_based,omitempty"`
+    SsrAppId             *bool                  `json:"ssr_app_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstApplicationDefinition.
@@ -23,13 +23,17 @@ type ConstApplicationDefinition struct {
 func (c ConstApplicationDefinition) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "app_id", "app_image_url", "app_probe", "category", "group", "key", "name", "signature_based", "ssr_app_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstApplicationDefinition object to a map representation for JSON marshaling.
 func (c ConstApplicationDefinition) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.AppId != nil {
         structMap["app_id"] = c.AppId
     }
@@ -68,12 +72,12 @@ func (c *ConstApplicationDefinition) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "app_id", "app_image_url", "app_probe", "category", "group", "key", "name", "signature_based", "ssr_app_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "app_id", "app_image_url", "app_probe", "category", "group", "key", "name", "signature_based", "ssr_app_id")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.AppId = temp.AppId
     c.AppImageUrl = temp.AppImageUrl
     c.AppProbe = temp.AppProbe

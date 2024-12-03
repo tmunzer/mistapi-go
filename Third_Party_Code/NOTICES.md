@@ -2,8 +2,8 @@
 ## github.com/apimatic/go-core-runtime
 
 * Name: github.com/apimatic/go-core-runtime
-* Version: v0.0.25
-* License: [MIT](https://github.com/apimatic/go-core-runtime/blob/v0.0.25/LICENSE)
+* Version: v0.0.26
+* License: [MIT](https://github.com/apimatic/go-core-runtime/blob/v0.0.26/LICENSE)
 
 ```
 MIT License

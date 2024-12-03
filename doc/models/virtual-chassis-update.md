@@ -3,6 +3,8 @@
 
 Virtual Chassis
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `VirtualChassisUpdate`
@@ -15,6 +17,7 @@ Virtual Chassis
 | `Members` | [`[]models.VirtualChassisMemberUpdate`](../../doc/models/virtual-chassis-member-update.md) | Optional | - |
 | `NewMember` | `*int` | Optional | Only if `op`==`renumber` |
 | `Op` | [`*models.VirtualChassisUpdateOpEnum`](../../doc/models/virtual-chassis-update-op-enum.md) | Optional | enum: `add`, `preprovision`, `remove`, `renumber` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,11 +33,19 @@ Virtual Chassis
         "vc_ports3",
         "vc_ports4"
       ],
-      "vc_role": "master"
+      "vc_role": "master",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "new-member": 200,
-  "op": "add"
+  "op": "add",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

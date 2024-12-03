@@ -49,13 +49,16 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Avprofile{
-    FallbackAction: models.ToPointer(models.AvprofileFallbackActionEnum("permit")),
-    MimeWhitelist:  []string{
+    FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum("permit")),
+    MimeWhitelist:        []string{
     },
-    Name:           "av-custom",
-    Protocols:      []models.AvprofileProtocolsEnum{
+    Name:                 "av-custom",
+    Protocols:            []models.AvprofileProtocolsEnum{
     },
-    UrlWhitelist:   []string{
+    UrlWhitelist:         []string{
+    },
+    AdditionalProperties: map[string]interface{}{
+        "max_filesize": interface{}("10000"),
     },
 }
 
@@ -321,13 +324,16 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 avprofilesId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Avprofile{
-    FallbackAction: models.ToPointer(models.AvprofileFallbackActionEnum("permit")),
-    MimeWhitelist:  []string{
+    FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum("permit")),
+    MimeWhitelist:        []string{
     },
-    Name:           "av-custom",
-    Protocols:      []models.AvprofileProtocolsEnum{
+    Name:                 "av-custom",
+    Protocols:            []models.AvprofileProtocolsEnum{
     },
-    UrlWhitelist:   []string{
+    UrlWhitelist:         []string{
+    },
+    AdditionalProperties: map[string]interface{}{
+        "max_filesize": interface{}("10000"),
     },
 }
 

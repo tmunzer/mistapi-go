@@ -7,35 +7,35 @@ import (
 
 // ResponseOrgSearchItem represents a ResponseOrgSearchItem struct.
 type ResponseOrgSearchItem struct {
-    MspId                *uuid.UUID     `json:"msp_id,omitempty"`
+    MspId                *uuid.UUID             `json:"msp_id,omitempty"`
     // org name
-    Name                 *string        `json:"name,omitempty"`
-    NumAps               *int           `json:"num_aps,omitempty"`
-    NumGateways          *int           `json:"num_gateways,omitempty"`
-    NumSites             *int           `json:"num_sites,omitempty"`
-    NumSwitches          *int           `json:"num_switches,omitempty"`
-    NumUnassignedAps     *int           `json:"num_unassigned_aps,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SubAnaEntitled       *int           `json:"sub_ana_entitled,omitempty"`
-    SubAnaRequired       *int           `json:"sub_ana_required,omitempty"`
-    SubAstEntitled       *int           `json:"sub_ast_entitled,omitempty"`
-    SubAstRequired       *int           `json:"sub_ast_required,omitempty"`
-    SubEngEntitled       *int           `json:"sub_eng_entitled,omitempty"`
-    SubEngRequired       *int           `json:"sub_eng_required,omitempty"`
-    SubEx12Required      *int           `json:"sub_ex12_required,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    NumAps               *int                   `json:"num_aps,omitempty"`
+    NumGateways          *int                   `json:"num_gateways,omitempty"`
+    NumSites             *int                   `json:"num_sites,omitempty"`
+    NumSwitches          *int                   `json:"num_switches,omitempty"`
+    NumUnassignedAps     *int                   `json:"num_unassigned_aps,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SubAnaEntitled       *int                   `json:"sub_ana_entitled,omitempty"`
+    SubAnaRequired       *int                   `json:"sub_ana_required,omitempty"`
+    SubAstEntitled       *int                   `json:"sub_ast_entitled,omitempty"`
+    SubAstRequired       *int                   `json:"sub_ast_required,omitempty"`
+    SubEngEntitled       *int                   `json:"sub_eng_entitled,omitempty"`
+    SubEngRequired       *int                   `json:"sub_eng_required,omitempty"`
+    SubEx12Required      *int                   `json:"sub_ex12_required,omitempty"`
     // if this org has sufficient subscription
-    SubInsufficient      *bool          `json:"sub_insufficient,omitempty"`
-    SubManEntitled       *int           `json:"sub_man_entitled,omitempty"`
-    SubManRequired       *int           `json:"sub_man_required,omitempty"`
-    SubMeEntitled        *int           `json:"sub_me_entitled,omitempty"`
-    SubVnaEntitled       *int           `json:"sub_vna_entitled,omitempty"`
-    SubVnaRequired       *int           `json:"sub_vna_required,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
+    SubInsufficient      *bool                  `json:"sub_insufficient,omitempty"`
+    SubManEntitled       *int                   `json:"sub_man_entitled,omitempty"`
+    SubManRequired       *int                   `json:"sub_man_required,omitempty"`
+    SubMeEntitled        *int                   `json:"sub_me_entitled,omitempty"`
+    SubVnaEntitled       *int                   `json:"sub_vna_entitled,omitempty"`
+    SubVnaRequired       *int                   `json:"sub_vna_required,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     // if this org is under trial period
-    TrialEnabled         *bool          `json:"trial_enabled,omitempty"`
+    TrialEnabled         *bool                  `json:"trial_enabled,omitempty"`
     // a list of types that enabled by usage
-    UsageTypes           []string       `json:"usage_types,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    UsageTypes           []string               `json:"usage_types,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOrgSearchItem.
@@ -43,13 +43,17 @@ type ResponseOrgSearchItem struct {
 func (r ResponseOrgSearchItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "msp_id", "name", "num_aps", "num_gateways", "num_sites", "num_switches", "num_unassigned_aps", "org_id", "sub_ana_entitled", "sub_ana_required", "sub_ast_entitled", "sub_ast_required", "sub_eng_entitled", "sub_eng_required", "sub_ex12_required", "sub_insufficient", "sub_man_entitled", "sub_man_required", "sub_me_entitled", "sub_vna_entitled", "sub_vna_required", "timestamp", "trial_enabled", "usage_types"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseOrgSearchItem object to a map representation for JSON marshaling.
 func (r ResponseOrgSearchItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.MspId != nil {
         structMap["msp_id"] = r.MspId
     }
@@ -133,12 +137,12 @@ func (r *ResponseOrgSearchItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "msp_id", "name", "num_aps", "num_gateways", "num_sites", "num_switches", "num_unassigned_aps", "org_id", "sub_ana_entitled", "sub_ana_required", "sub_ast_entitled", "sub_ast_required", "sub_eng_entitled", "sub_eng_required", "sub_ex12_required", "sub_insufficient", "sub_man_entitled", "sub_man_required", "sub_me_entitled", "sub_vna_entitled", "sub_vna_required", "timestamp", "trial_enabled", "usage_types")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "msp_id", "name", "num_aps", "num_gateways", "num_sites", "num_switches", "num_unassigned_aps", "org_id", "sub_ana_entitled", "sub_ana_required", "sub_ast_entitled", "sub_ast_required", "sub_eng_entitled", "sub_eng_required", "sub_ex12_required", "sub_insufficient", "sub_man_entitled", "sub_man_required", "sub_me_entitled", "sub_vna_entitled", "sub_vna_required", "timestamp", "trial_enabled", "usage_types")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.MspId = temp.MspId
     r.Name = temp.Name
     r.NumAps = temp.NumAps

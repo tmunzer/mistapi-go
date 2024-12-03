@@ -34,7 +34,7 @@ type OrgServicePolicy struct {
     // for SRX-only
     SslProxy             *OrgServicePolicySslProxy   `json:"ssl_proxy,omitempty"`
     Tenants              []string                    `json:"tenants,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgServicePolicy.
@@ -42,13 +42,17 @@ type OrgServicePolicy struct {
 func (o OrgServicePolicy) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "action", "antivirus", "appqoe", "created_time", "ewf", "id", "idp", "local_routing", "modified_time", "name", "org_id", "path_preference", "secintel", "services", "ssl_proxy", "tenants"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgServicePolicy object to a map representation for JSON marshaling.
 func (o OrgServicePolicy) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Action != nil {
         structMap["action"] = o.Action
     }
@@ -108,12 +112,12 @@ func (o *OrgServicePolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "antivirus", "appqoe", "created_time", "ewf", "id", "idp", "local_routing", "modified_time", "name", "org_id", "path_preference", "secintel", "services", "ssl_proxy", "tenants")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "antivirus", "appqoe", "created_time", "ewf", "id", "idp", "local_routing", "modified_time", "name", "org_id", "path_preference", "secintel", "services", "ssl_proxy", "tenants")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Action = temp.Action
     o.Antivirus = temp.Antivirus
     o.Appqoe = temp.Appqoe

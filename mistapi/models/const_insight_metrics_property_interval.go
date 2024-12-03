@@ -6,9 +6,9 @@ import (
 
 // ConstInsightMetricsPropertyInterval represents a ConstInsightMetricsPropertyInterval struct.
 type ConstInsightMetricsPropertyInterval struct {
-    Interval             *int           `json:"interval,omitempty"`
-    MaxAge               *int           `json:"max_age,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Interval             *int                   `json:"interval,omitempty"`
+    MaxAge               *int                   `json:"max_age,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstInsightMetricsPropertyInterval.
@@ -16,13 +16,17 @@ type ConstInsightMetricsPropertyInterval struct {
 func (c ConstInsightMetricsPropertyInterval) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "interval", "max_age"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstInsightMetricsPropertyInterval object to a map representation for JSON marshaling.
 func (c ConstInsightMetricsPropertyInterval) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Interval != nil {
         structMap["interval"] = c.Interval
     }
@@ -40,12 +44,12 @@ func (c *ConstInsightMetricsPropertyInterval) UnmarshalJSON(input []byte) error 
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "interval", "max_age")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "interval", "max_age")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Interval = temp.Interval
     c.MaxAge = temp.MaxAge
     return nil

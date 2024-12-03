@@ -7,10 +7,10 @@ import (
 // SiteSettingAutoPlacement represents a SiteSettingAutoPlacement struct.
 // if we're able to determine its x/y/orientation, this will be populated
 type SiteSettingAutoPlacement struct {
-    Orientation          *int           `json:"orientation,omitempty"`
-    X                    *float64       `json:"x,omitempty"`
-    Y                    *float64       `json:"y,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Orientation          *int                   `json:"orientation,omitempty"`
+    X                    *float64               `json:"x,omitempty"`
+    Y                    *float64               `json:"y,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingAutoPlacement.
@@ -18,13 +18,17 @@ type SiteSettingAutoPlacement struct {
 func (s SiteSettingAutoPlacement) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "orientation", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingAutoPlacement object to a map representation for JSON marshaling.
 func (s SiteSettingAutoPlacement) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Orientation != nil {
         structMap["orientation"] = s.Orientation
     }
@@ -45,12 +49,12 @@ func (s *SiteSettingAutoPlacement) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "orientation", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "orientation", "x", "y")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Orientation = temp.Orientation
     s.X = temp.X
     s.Y = temp.Y

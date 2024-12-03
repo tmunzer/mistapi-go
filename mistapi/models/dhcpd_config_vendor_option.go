@@ -9,7 +9,7 @@ type DhcpdConfigVendorOption struct {
     // enum: `boolean`, `hex`, `int16`, `int32`, `ip`, `string`, `uint16`, `uint32`
     Type                 *DhcpdConfigVendorOptionTypeEnum `json:"type,omitempty"`
     Value                *string                          `json:"value,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpdConfigVendorOption.
@@ -17,13 +17,17 @@ type DhcpdConfigVendorOption struct {
 func (d DhcpdConfigVendorOption) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "type", "value"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DhcpdConfigVendorOption object to a map representation for JSON marshaling.
 func (d DhcpdConfigVendorOption) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.Type != nil {
         structMap["type"] = d.Type
     }
@@ -41,12 +45,12 @@ func (d *DhcpdConfigVendorOption) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "type", "value")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "type", "value")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.Type = temp.Type
     d.Value = temp.Value
     return nil

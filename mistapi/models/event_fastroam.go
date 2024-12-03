@@ -18,7 +18,7 @@ type EventFastroam struct {
     Timestamp            float64                `json:"timestamp"`
     // enum: `fail`, `none`, `pingpong`, `poor`, `slow`, `success`
     Type                 *EventFastroamTypeEnum `json:"type,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventFastroam.
@@ -26,13 +26,17 @@ type EventFastroam struct {
 func (e EventFastroam) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "ap_mac", "client_mac", "fromap", "latency", "ssid", "subtype", "timestamp", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EventFastroam object to a map representation for JSON marshaling.
 func (e EventFastroam) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     structMap["ap_mac"] = e.ApMac
     structMap["client_mac"] = e.ClientMac
     structMap["fromap"] = e.Fromap
@@ -60,12 +64,12 @@ func (e *EventFastroam) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "client_mac", "fromap", "latency", "ssid", "subtype", "timestamp", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "client_mac", "fromap", "latency", "ssid", "subtype", "timestamp", "type")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.ApMac = *temp.ApMac
     e.ClientMac = *temp.ClientMac
     e.Fromap = *temp.Fromap

@@ -8,8 +8,8 @@ import (
 
 // ResponseDeviceConfigCli represents a ResponseDeviceConfigCli struct.
 type ResponseDeviceConfigCli struct {
-    Cli                  []string       `json:"cli"`
-    AdditionalProperties map[string]any `json:"_"`
+    Cli                  []string               `json:"cli"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceConfigCli.
@@ -17,13 +17,17 @@ type ResponseDeviceConfigCli struct {
 func (r ResponseDeviceConfigCli) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "cli"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseDeviceConfigCli object to a map representation for JSON marshaling.
 func (r ResponseDeviceConfigCli) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["cli"] = r.Cli
     return structMap
 }
@@ -40,12 +44,12 @@ func (r *ResponseDeviceConfigCli) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cli")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cli")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Cli = *temp.Cli
     return nil
 }

@@ -161,10 +161,18 @@ body := models.PskPortal{
         IdpSsoUrl:            models.ToPointer("string"),
         Issuer:               models.ToPointer("string"),
         NameidFormat:         models.ToPointer("string"),
+        AdditionalProperties: map[string]interface{}{
+            "default_role": interface{}("string"),
+            "forced_role": interface{}("string"),
+        },
     }),
     TemplateUrl:                  models.ToPointer("string"),
     Type:                         models.ToPointer(models.PskPortalTypeEnum("byod")),
     VlanId:                       models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(10)),
+    AdditionalProperties:         map[string]interface{}{
+        "expire": interface{}("0"),
+        "sso_required_role": interface{}("string"),
+    },
 }
 
 apiResponse, err := orgsPskPortals.CreateOrgPskPortal(ctx, orgId, &body)
@@ -670,10 +678,18 @@ body := models.PskPortal{
         IdpSsoUrl:            models.ToPointer("string"),
         Issuer:               models.ToPointer("string"),
         NameidFormat:         models.ToPointer("email"),
+        AdditionalProperties: map[string]interface{}{
+            "default_role": interface{}("string"),
+            "forced_role": interface{}("string"),
+        },
     }),
     TemplateUrl:                  models.ToPointer("string"),
     Type:                         models.ToPointer(models.PskPortalTypeEnum("byod")),
     VlanId:                       models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(10)),
+    AdditionalProperties:         map[string]interface{}{
+        "expire": interface{}("0"),
+        "sso_required_role": interface{}("string"),
+    },
 }
 
 apiResponse, err := orgsPskPortals.UpdateOrgPskPortal(ctx, orgId, pskportalId, &body)
@@ -733,9 +749,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 pskportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskPortalTemplate{
-    Alignment: models.ToPointer(models.PortalTemplateAlignmentEnum("center")),
-    Color:     models.ToPointer("#1074bc"),
-    PoweredBy: models.ToPointer(false),
+    Alignment:            models.ToPointer(models.PortalTemplateAlignmentEnum("center")),
+    Color:                models.ToPointer("#1074bc"),
+    PoweredBy:            models.ToPointer(false),
 }
 
 resp, err := orgsPskPortals.UpdateOrgPskPortalTemplate(ctx, orgId, pskportalId, &body)

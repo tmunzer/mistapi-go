@@ -11,15 +11,15 @@ import (
 // Sites Group
 type Sitegroup struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64       `json:"modified_time,omitempty"`
-    Name                 string         `json:"name"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SiteIds              []uuid.UUID    `json:"site_ids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    Name                 string                 `json:"name"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteIds              []uuid.UUID            `json:"site_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Sitegroup.
@@ -27,13 +27,17 @@ type Sitegroup struct {
 func (s Sitegroup) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "created_time", "id", "modified_time", "name", "org_id", "site_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Sitegroup object to a map representation for JSON marshaling.
 func (s Sitegroup) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.CreatedTime != nil {
         structMap["created_time"] = s.CreatedTime
     }
@@ -65,12 +69,12 @@ func (s *Sitegroup) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "id", "modified_time", "name", "org_id", "site_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "id", "modified_time", "name", "org_id", "site_ids")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.CreatedTime = temp.CreatedTime
     s.Id = temp.Id
     s.ModifiedTime = temp.ModifiedTime

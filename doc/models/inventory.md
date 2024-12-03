@@ -1,6 +1,8 @@
 
 # Inventory
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Inventory`
@@ -28,6 +30,7 @@
 | `Sku` | `*string` | Optional | device stock keeping unit |
 | `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
 | `VcMac` | `*string` | Optional | if `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Clust, MAC Address of the Cluster |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,7 +44,11 @@
   "connected": false,
   "created_time": 98.34,
   "deviceprofile_id": "deviceprofile_id4",
-  "hostname": "hostname0"
+  "hostname": "hostname0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

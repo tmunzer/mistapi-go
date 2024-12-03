@@ -8,10 +8,10 @@ import (
 // In-Band Management interface configuration
 type SwitchMatchingRuleIpConfig struct {
     // VLAN Name for the management interface
-    Network              *string        `json:"network,omitempty"`
+    Network              *string                `json:"network,omitempty"`
     // enum: `dhcp`, `static`
-    Type                 *IpTypeEnum    `json:"type,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Type                 *IpTypeEnum            `json:"type,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMatchingRuleIpConfig.
@@ -19,13 +19,17 @@ type SwitchMatchingRuleIpConfig struct {
 func (s SwitchMatchingRuleIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "network", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchMatchingRuleIpConfig object to a map representation for JSON marshaling.
 func (s SwitchMatchingRuleIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Network != nil {
         structMap["network"] = s.Network
     }
@@ -43,12 +47,12 @@ func (s *SwitchMatchingRuleIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "network", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "network", "type")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Network = temp.Network
     s.Type = temp.Type
     return nil

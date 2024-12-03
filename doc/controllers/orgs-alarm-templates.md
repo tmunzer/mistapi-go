@@ -54,34 +54,34 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AlarmTemplate{
-    Delivery:     models.Delivery{
-        Enabled:          true,
-        ToOrgAdmins:      models.ToPointer(true),
-        ToSiteAdmins:     models.ToPointer(false),
+    Delivery:             models.Delivery{
+        Enabled:              true,
+        ToOrgAdmins:          models.ToPointer(true),
+        ToSiteAdmins:         models.ToPointer(false),
     },
-    Name:         models.ToPointer("default"),
-    Rules:        map[string]models.AlarmTemplateRule{
+    Name:                 models.ToPointer("default"),
+    Rules:                map[string]models.AlarmTemplateRule{
         "ap_offline": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "bad_cable": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
     },
 }
@@ -380,9 +380,9 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SuppressedAlarm{
-    Duration:      models.ToPointer(float64(3600)),
-    ScheduledTime: models.ToPointer(1678232980),
-    Scope:         models.ToPointer(models.SuppressedAlarmScopeEnum("org")),
+    Duration:             models.ToPointer(float64(3600)),
+    ScheduledTime:        models.ToPointer(1678232980),
+    Scope:                models.ToPointer(models.SuppressedAlarmScopeEnum("org")),
 }
 
 resp, err := orgsAlarmTemplates.SuppressOrgAlarm(ctx, orgId, &body)
@@ -488,450 +488,450 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 alarmtemplateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AlarmTemplate{
-    Delivery:     models.Delivery{
-        AdditionalEmails: []string{
+    Delivery:             models.Delivery{
+        AdditionalEmails:     []string{
             "string",
         },
-        Enabled:          true,
-        ToOrgAdmins:      models.ToPointer(true),
-        ToSiteAdmins:     models.ToPointer(true),
+        Enabled:              true,
+        ToOrgAdmins:          models.ToPointer(true),
+        ToSiteAdmins:         models.ToPointer(true),
     },
-    Name:         models.ToPointer("string"),
-    Rules:        map[string]models.AlarmTemplateRule{
+    Name:                 models.ToPointer("string"),
+    Rules:                map[string]models.AlarmTemplateRule{
         "adhoc_network": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "air_magnet_scan": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "ap_offline": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "bad_cable": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "beacon_flood": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "bssid_spoofing": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "device_down": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "device_restarted": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "dhcp_failure": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "disassociation_flood": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "dot1x_failure": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "eap_dictionary_attack": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "eap_failure_injection": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "eap_handshake_flood": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "eap_spoofed_success": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "eapol_logoff_attack": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "essid_jack": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "excessive_client": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "excessive_eapol_start": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "gateway_down": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "gw_bad_cable": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "gw_negotiation_mismatch": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "honeypot_ssid": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "krack_attack": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "missing_vlan": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "monkey_jack": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "negotiation_mismatch": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "non_compliant": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "out_of_sequence": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                Enabled:          false,
+            Delivery:             models.ToPointer(models.Delivery{
+                Enabled:              false,
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "psk_failure": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "repeated_auth_failures": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "rogue_ap": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "rogue_client": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "secpolicy_violation": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "ssid_injection": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "switch_down": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "tkip_icv_attack": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "vendor_ie_missing": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "watched_station": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
         "zero_ssid_association": models.AlarmTemplateRule{
-            Delivery: models.ToPointer(models.Delivery{
-                AdditionalEmails: []string{
+            Delivery:             models.ToPointer(models.Delivery{
+                AdditionalEmails:     []string{
                     "string",
                 },
-                Enabled:          true,
-                ToOrgAdmins:      models.ToPointer(true),
-                ToSiteAdmins:     models.ToPointer(true),
+                Enabled:              true,
+                ToOrgAdmins:          models.ToPointer(true),
+                ToSiteAdmins:         models.ToPointer(true),
             }),
-            Enabled:  models.ToPointer(true),
+            Enabled:              models.ToPointer(true),
         },
     },
 }

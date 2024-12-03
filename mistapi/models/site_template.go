@@ -10,7 +10,7 @@ type SiteTemplate struct {
     Name                 *string                  `json:"name,omitempty"`
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                 map[string]string        `json:"vars,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteTemplate.
@@ -18,13 +18,17 @@ type SiteTemplate struct {
 func (s SiteTemplate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "auto_upgrade", "name", "vars"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteTemplate object to a map representation for JSON marshaling.
 func (s SiteTemplate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AutoUpgrade != nil {
         structMap["auto_upgrade"] = s.AutoUpgrade.toMap()
     }
@@ -45,12 +49,12 @@ func (s *SiteTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_upgrade", "name", "vars")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_upgrade", "name", "vars")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AutoUpgrade = temp.AutoUpgrade
     s.Name = temp.Name
     s.Vars = temp.Vars

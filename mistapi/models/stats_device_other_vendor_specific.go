@@ -9,7 +9,7 @@ import (
 type StatsDeviceOtherVendorSpecific struct {
     Ports                map[string]StatsDeviceOtherVendorSpecificPort `json:"ports,omitempty"`
     TargetVersion        *string                                       `json:"target_version,omitempty"`
-    AdditionalProperties map[string]any                                `json:"_"`
+    AdditionalProperties map[string]interface{}                        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsDeviceOtherVendorSpecific.
@@ -17,13 +17,17 @@ type StatsDeviceOtherVendorSpecific struct {
 func (s StatsDeviceOtherVendorSpecific) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ports", "target_version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsDeviceOtherVendorSpecific object to a map representation for JSON marshaling.
 func (s StatsDeviceOtherVendorSpecific) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Ports != nil {
         structMap["ports"] = s.Ports
     }
@@ -41,12 +45,12 @@ func (s *StatsDeviceOtherVendorSpecific) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ports", "target_version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ports", "target_version")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Ports = temp.Ports
     s.TargetVersion = temp.TargetVersion
     return nil

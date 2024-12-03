@@ -3,6 +3,8 @@
 
 location webhook sample
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookLocation`
@@ -13,6 +15,7 @@ location webhook sample
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationEvent`](../../doc/models/webhook-location-event.md) | Required | list of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"location"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,10 +34,18 @@ location webhook sample
       "eddystone_uid_instance": "eddystone_uid_instance4",
       "eddystone_uid_namespace": "eddystone_uid_namespace6",
       "eddystone_url_url": "eddystone_url_url4",
-      "ibeacon_major": 178
+      "ibeacon_major": 178,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "location"
+  "topic": "location",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

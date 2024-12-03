@@ -3,6 +3,8 @@
 
 SDK Client Details statistics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SdkstatsWirelessClient`
@@ -21,6 +23,7 @@ SDK Client Details statistics
 | `X` | `*float64` | Optional | x (in pixels) of user location on the map (if known) |
 | `Y` | `*float64` | Optional | y (in pixels) of user location on the map (if known) |
 | `Zones` | [`[]models.SdkstatsWirelessClientZone`](../../doc/models/sdkstats-wireless-client-zone.md) | Optional | list of zone_id’s of the sdk client is in and since when (if known)<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,15 +38,27 @@ SDK Client Details statistics
     "mac": "mac2",
     "rssi": 235.8,
     "signal_level": 47.82,
-    "type": "type2"
+    "type": "type2",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "vbeacons": [
     {
       "id": "00001cc0-0000-0000-0000-000000000000",
-      "since": 115.2
+      "since": 115.2,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "x": 48.84
+  "x": 48.84,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -7,20 +7,20 @@ import (
 
 // AssetOfInterest represents a AssetOfInterest struct.
 type AssetOfInterest struct {
-    ApMac                *string        `json:"ap_mac,omitempty"`
-    Beam                 *float64       `json:"beam,omitempty"`
-    By                   *string        `json:"by,omitempty"`
-    CurrSite             *string        `json:"curr_site,omitempty"`
-    DeviceName           *string        `json:"device_name,omitempty"`
+    ApMac                *string                `json:"ap_mac,omitempty"`
+    Beam                 *float64               `json:"beam,omitempty"`
+    By                   *string                `json:"by,omitempty"`
+    CurrSite             *string                `json:"curr_site,omitempty"`
+    DeviceName           *string                `json:"device_name,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    LastSeen             *float64       `json:"last_seen,omitempty"`
-    Mac                  *string        `json:"mac,omitempty"`
-    Manufacture          *string        `json:"manufacture,omitempty"`
-    MapId                *string        `json:"map_id,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    Rssi                 *float64       `json:"rssi,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    LastSeen             *float64               `json:"last_seen,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    Manufacture          *string                `json:"manufacture,omitempty"`
+    MapId                *string                `json:"map_id,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    Rssi                 *float64               `json:"rssi,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetOfInterest.
@@ -28,13 +28,17 @@ type AssetOfInterest struct {
 func (a AssetOfInterest) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "ap_mac", "beam", "by", "curr_site", "device_name", "id", "last_seen", "mac", "manufacture", "map_id", "name", "rssi"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AssetOfInterest object to a map representation for JSON marshaling.
 func (a AssetOfInterest) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.ApMac != nil {
         structMap["ap_mac"] = a.ApMac
     }
@@ -82,12 +86,12 @@ func (a *AssetOfInterest) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "beam", "by", "curr_site", "device_name", "id", "last_seen", "mac", "manufacture", "map_id", "name", "rssi")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "beam", "by", "curr_site", "device_name", "id", "last_seen", "mac", "manufacture", "map_id", "name", "rssi")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.ApMac = temp.ApMac
     a.Beam = temp.Beam
     a.By = temp.By

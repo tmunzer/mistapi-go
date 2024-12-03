@@ -38,7 +38,7 @@ type SynthetictestDevice struct {
     Username             *string                          `json:"username,omitempty"`
     // required for AP
     VlanId               *SynthetictestDeviceVlanId       `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestDevice.
@@ -46,13 +46,17 @@ type SynthetictestDevice struct {
 func (s SynthetictestDevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "host", "hostname", "ip", "password", "ping_count", "ping_details", "ping_size", "port_id", "protocol", "tenant", "traceroute_udp_port", "type", "url", "username", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SynthetictestDevice object to a map representation for JSON marshaling.
 func (s SynthetictestDevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Host != nil {
         structMap["host"] = s.Host
     }
@@ -111,12 +115,12 @@ func (s *SynthetictestDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "hostname", "ip", "password", "ping_count", "ping_details", "ping_size", "port_id", "protocol", "tenant", "traceroute_udp_port", "type", "url", "username", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "hostname", "ip", "password", "ping_count", "ping_details", "ping_size", "port_id", "protocol", "tenant", "traceroute_udp_port", "type", "url", "username", "vlan_id")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Host = temp.Host
     s.Hostname = temp.Hostname
     s.Ip = temp.Ip

@@ -3,6 +3,8 @@
 
 Radio Band AP settings
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApRadioBand24`
@@ -22,6 +24,7 @@ Radio Band AP settings
 | `PowerMax` | `models.Optional[int]` | Optional | when power=0, max tx power to use, HW-specific values will be used if not set<br>**Default**: `17`<br>**Constraints**: `>= 3`, `<= 18` |
 | `PowerMin` | `models.Optional[int]` | Optional | when power=0, min tx power to use, HW-specific values will be used if not set<br>**Default**: `8`<br>**Constraints**: `>= 3`, `<= 18` |
 | `Preamble` | [`*models.RadioBandPreambleEnum`](../../doc/models/radio-band-preamble-enum.md) | Optional | enum: `auto`, `long`, `short`<br>**Default**: `"short"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,7 +40,11 @@ Radio Band AP settings
   "power": 3,
   "power_max": 17,
   "power_min": 8,
-  "preamble": "short"
+  "preamble": "short",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

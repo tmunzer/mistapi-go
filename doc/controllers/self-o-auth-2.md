@@ -109,7 +109,7 @@ ctx := context.Background()
 provider := "provider8"
 
 body := models.CodeString{
-    Code: "4/S9tegDeLkrYg0L9pWNXV4cgMVbbr3SR9t693A2kSHzw",
+    Code:                 "4/S9tegDeLkrYg0L9pWNXV4cgMVbbr3SR9t693A2kSHzw",
 }
 
 apiResponse, err := selfOAuth2.LinkOauth2MistAccount(ctx, provider, &body)

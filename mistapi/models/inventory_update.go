@@ -28,7 +28,7 @@ type InventoryUpdate struct {
     Serials              []string                     `json:"serials,omitempty"`
     // if `op`==`assign`, target site id
     SiteId               *uuid.UUID                   `json:"site_id,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for InventoryUpdate.
@@ -36,13 +36,17 @@ type InventoryUpdate struct {
 func (i InventoryUpdate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "disable_auto_config", "macs", "managed", "no_reassign", "op", "serials", "site_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the InventoryUpdate object to a map representation for JSON marshaling.
 func (i InventoryUpdate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.DisableAutoConfig != nil {
         structMap["disable_auto_config"] = i.DisableAutoConfig
     }
@@ -77,12 +81,12 @@ func (i *InventoryUpdate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disable_auto_config", "macs", "managed", "no_reassign", "op", "serials", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_auto_config", "macs", "managed", "no_reassign", "op", "serials", "site_id")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.DisableAutoConfig = temp.DisableAutoConfig
     i.Macs = temp.Macs
     i.Managed = temp.Managed

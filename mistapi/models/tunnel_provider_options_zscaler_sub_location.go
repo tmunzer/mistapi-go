@@ -6,22 +6,22 @@ import (
 
 // TunnelProviderOptionsZscalerSubLocation represents a TunnelProviderOptionsZscalerSubLocation struct.
 type TunnelProviderOptionsZscalerSubLocation struct {
-    AupAcceptanceRequired *bool          `json:"aup_acceptance_required,omitempty"`
+    AupAcceptanceRequired *bool                  `json:"aup_acceptance_required,omitempty"`
     // days before AUP is requested again
-    AupExpire             *int           `json:"aup_expire,omitempty"`
+    AupExpire             *int                   `json:"aup_expire,omitempty"`
     // proxy HTTPs traffic, requiring Zscaler cert to be installed in browser
-    AupSslProxy           *bool          `json:"aup_ssl_proxy,omitempty"`
+    AupSslProxy           *bool                  `json:"aup_ssl_proxy,omitempty"`
     // the download bandwidth cap of the link, in Mbps
-    DownloadMbps          *int           `json:"download_mbps,omitempty"`
+    DownloadMbps          *int                   `json:"download_mbps,omitempty"`
     // if `use_xff`==`true`, display Acceptable Use Policy (AUP)
-    EnableAup             *bool          `json:"enable_aup,omitempty"`
+    EnableAup             *bool                  `json:"enable_aup,omitempty"`
     // when `enforce_authentication`==`false`, display caution notification for non-authenticated users
-    EnableCaution         *bool          `json:"enable_caution,omitempty"`
-    EnforceAuthentication *bool          `json:"enforce_authentication,omitempty"`
-    Subnets               []string       `json:"subnets,omitempty"`
+    EnableCaution         *bool                  `json:"enable_caution,omitempty"`
+    EnforceAuthentication *bool                  `json:"enforce_authentication,omitempty"`
+    Subnets               []string               `json:"subnets,omitempty"`
     // the download bandwidth cap of the link, in Mbps
-    UploadMbps            *int           `json:"upload_mbps,omitempty"`
-    AdditionalProperties  map[string]any `json:"_"`
+    UploadMbps            *int                   `json:"upload_mbps,omitempty"`
+    AdditionalProperties  map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelProviderOptionsZscalerSubLocation.
@@ -29,13 +29,17 @@ type TunnelProviderOptionsZscalerSubLocation struct {
 func (t TunnelProviderOptionsZscalerSubLocation) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "aup_acceptance_required", "aup_expire", "aup_ssl_proxy", "download_mbps", "enable_aup", "enable_caution", "enforce_authentication", "subnets", "upload_mbps"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TunnelProviderOptionsZscalerSubLocation object to a map representation for JSON marshaling.
 func (t TunnelProviderOptionsZscalerSubLocation) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.AupAcceptanceRequired != nil {
         structMap["aup_acceptance_required"] = t.AupAcceptanceRequired
     }
@@ -74,12 +78,12 @@ func (t *TunnelProviderOptionsZscalerSubLocation) UnmarshalJSON(input []byte) er
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "aup_acceptance_required", "aup_expire", "aup_ssl_proxy", "download_mbps", "enable_aup", "enable_caution", "enforce_authentication", "subnets", "upload_mbps")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aup_acceptance_required", "aup_expire", "aup_ssl_proxy", "download_mbps", "enable_aup", "enable_caution", "enforce_authentication", "subnets", "upload_mbps")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.AupAcceptanceRequired = temp.AupAcceptanceRequired
     t.AupExpire = temp.AupExpire
     t.AupSslProxy = temp.AupSslProxy

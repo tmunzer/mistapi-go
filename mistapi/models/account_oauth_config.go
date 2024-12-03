@@ -10,10 +10,10 @@ import (
 // OAuth linked apps (zoom/teams/intune) account details
 type AccountOauthConfig struct {
     // Linked app(zoom/teams/intune) account id
-    AccountId            string         `json:"account_id"`
+    AccountId            string                 `json:"account_id"`
     // Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/
-    MaxDailyApiRequests  *int           `json:"max_daily_api_requests,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    MaxDailyApiRequests  *int                   `json:"max_daily_api_requests,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthConfig.
@@ -21,13 +21,17 @@ type AccountOauthConfig struct {
 func (a AccountOauthConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "account_id", "max_daily_api_requests"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AccountOauthConfig object to a map representation for JSON marshaling.
 func (a AccountOauthConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     structMap["account_id"] = a.AccountId
     if a.MaxDailyApiRequests != nil {
         structMap["max_daily_api_requests"] = a.MaxDailyApiRequests
@@ -47,12 +51,12 @@ func (a *AccountOauthConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "account_id", "max_daily_api_requests")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "max_daily_api_requests")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.AccountId = *temp.AccountId
     a.MaxDailyApiRequests = temp.MaxDailyApiRequests
     return nil

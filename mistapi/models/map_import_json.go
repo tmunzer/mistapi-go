@@ -13,7 +13,7 @@ type MapImportJson struct {
     ImportOrientation    *bool                       `json:"import_orientation,omitempty"`
     // enum: `ekahau`, `ibwave`
     VendorName           MapImportJsonVendorNameEnum `json:"vendor_name"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapImportJson.
@@ -21,13 +21,17 @@ type MapImportJson struct {
 func (m MapImportJson) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "import_all_floorplans", "import_height", "import_orientation", "vendor_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MapImportJson object to a map representation for JSON marshaling.
 func (m MapImportJson) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.ImportAllFloorplans != nil {
         structMap["import_all_floorplans"] = m.ImportAllFloorplans
     }
@@ -53,12 +57,12 @@ func (m *MapImportJson) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "import_all_floorplans", "import_height", "import_orientation", "vendor_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "import_all_floorplans", "import_height", "import_orientation", "vendor_name")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.ImportAllFloorplans = temp.ImportAllFloorplans
     m.ImportHeight = temp.ImportHeight
     m.ImportOrientation = temp.ImportOrientation

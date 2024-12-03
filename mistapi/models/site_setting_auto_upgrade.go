@@ -17,7 +17,7 @@ type SiteSettingAutoUpgrade struct {
     TimeOfDay            *string                     `json:"time_of_day,omitempty"`
     // desired version. enum: `beta`, `custom`, `stable`
     Version              *SiteAutoUpgradeVersionEnum `json:"version,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingAutoUpgrade.
@@ -25,13 +25,17 @@ type SiteSettingAutoUpgrade struct {
 func (s SiteSettingAutoUpgrade) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "custom_versions", "day_of_week", "enabled", "time_of_day", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingAutoUpgrade object to a map representation for JSON marshaling.
 func (s SiteSettingAutoUpgrade) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.CustomVersions != nil {
         structMap["custom_versions"] = s.CustomVersions
     }
@@ -58,12 +62,12 @@ func (s *SiteSettingAutoUpgrade) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "custom_versions", "day_of_week", "enabled", "time_of_day", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "custom_versions", "day_of_week", "enabled", "time_of_day", "version")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.CustomVersions = temp.CustomVersions
     s.DayOfWeek = temp.DayOfWeek
     s.Enabled = temp.Enabled

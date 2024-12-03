@@ -7,11 +7,11 @@ import (
 // ApPortConfigDynamicVlan represents a ApPortConfigDynamicVlan struct.
 // optional dynamic vlan
 type ApPortConfigDynamicVlan struct {
-    DefaultVlanId        *int              `json:"default_vlan_id,omitempty"`
-    Enabled              *bool             `json:"enabled,omitempty"`
-    Type                 *string           `json:"type,omitempty"`
-    Vlans                map[string]string `json:"vlans,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    DefaultVlanId        *int                   `json:"default_vlan_id,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
+    Vlans                map[string]string      `json:"vlans,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApPortConfigDynamicVlan.
@@ -19,13 +19,17 @@ type ApPortConfigDynamicVlan struct {
 func (a ApPortConfigDynamicVlan) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "default_vlan_id", "enabled", "type", "vlans"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApPortConfigDynamicVlan object to a map representation for JSON marshaling.
 func (a ApPortConfigDynamicVlan) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.DefaultVlanId != nil {
         structMap["default_vlan_id"] = a.DefaultVlanId
     }
@@ -49,12 +53,12 @@ func (a *ApPortConfigDynamicVlan) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "default_vlan_id", "enabled", "type", "vlans")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default_vlan_id", "enabled", "type", "vlans")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.DefaultVlanId = temp.DefaultVlanId
     a.Enabled = temp.Enabled
     a.Type = temp.Type

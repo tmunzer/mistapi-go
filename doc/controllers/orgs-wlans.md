@@ -521,14 +521,14 @@ body := models.Wlan{
     },
     BlockBlacklistClients:              models.ToPointer(false),
     Bonjour:                            models.ToPointer(models.WlanBonjour{
-        AdditionalVlanIds: "10,20",
-        Enabled:           models.ToPointer(false),
-        Services:          map[string]models.WlanBonjourServiceProperties{
+        AdditionalVlanIds:    "10,20",
+        Enabled:              models.ToPointer(false),
+        Services:             map[string]models.WlanBonjourServiceProperties{
             "airplay": models.WlanBonjourServiceProperties{
-                RadiusGroups: []string{
+                RadiusGroups:         []string{
                     "teachers",
                 },
-                Scope:        models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
+                Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
             },
         },
     }),
@@ -543,13 +543,13 @@ body := models.Wlan{
     DisableV2RoamNotify:                models.ToPointer(false),
     DisableWmm:                         models.ToPointer(false),
     DynamicVlan:                        models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
-        DefaultVlanId:  models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
-        Enabled:        models.ToPointer(false),
-        LocalVlanIds:   []models.VlanIdWithVariable{
+        DefaultVlanId:        models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
+        Enabled:              models.ToPointer(false),
+        LocalVlanIds:         []models.VlanIdWithVariable{
             models.VlanIdWithVariableContainer.FromNumber(1),
         },
-        Type:           models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
-        Vlans:          map[string]string{
+        Type:                 models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
+        Vlans:                map[string]string{
             "131": "default",
             "322": "fast,video",
         },

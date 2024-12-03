@@ -7,8 +7,8 @@ import (
 // VrfExtraRoute represents a VrfExtraRoute struct.
 type VrfExtraRoute struct {
     // Next-hop address
-    Via                  *string        `json:"via,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Via                  *string                `json:"via,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VrfExtraRoute.
@@ -16,13 +16,17 @@ type VrfExtraRoute struct {
 func (v VrfExtraRoute) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "via"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VrfExtraRoute object to a map representation for JSON marshaling.
 func (v VrfExtraRoute) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.Via != nil {
         structMap["via"] = v.Via
     }
@@ -37,12 +41,12 @@ func (v *VrfExtraRoute) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "via")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "via")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.Via = temp.Via
     return nil
 }

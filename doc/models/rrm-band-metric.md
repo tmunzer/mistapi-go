@@ -1,6 +1,8 @@
 
 # Rrm Band Metric
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RrmBandMetric`
@@ -14,6 +16,7 @@
 | `Interferences` | [`map[string]models.RrmBandMetricInterference`](../../doc/models/rrm-band-metric-interference.md) | Optional | Property key is the channel number |
 | `Neighbors` | `float64` | Required | average number of neighbors |
 | `Noise` | `float64` | Required | average noise in dBm |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,14 +26,26 @@
   "density": 56.56,
   "interferences": {
     "149": {
-      "radar": 0.3
+      "radar": 0.3,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "153": {
-      "radar": 0.2
+      "radar": 0.2,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "neighbors": 217.56,
-  "noise": 202.26
+  "noise": 202.26,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

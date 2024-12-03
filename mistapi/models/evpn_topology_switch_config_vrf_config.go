@@ -7,8 +7,8 @@ import (
 // EvpnTopologySwitchConfigVrfConfig represents a EvpnTopologySwitchConfigVrfConfig struct.
 type EvpnTopologySwitchConfigVrfConfig struct {
     // whether to enable VRF (when supported on the device)
-    Enabled              *bool          `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopologySwitchConfigVrfConfig.
@@ -16,13 +16,17 @@ type EvpnTopologySwitchConfigVrfConfig struct {
 func (e EvpnTopologySwitchConfigVrfConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EvpnTopologySwitchConfigVrfConfig object to a map representation for JSON marshaling.
 func (e EvpnTopologySwitchConfigVrfConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.Enabled != nil {
         structMap["enabled"] = e.Enabled
     }
@@ -37,12 +41,12 @@ func (e *EvpnTopologySwitchConfigVrfConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Enabled = temp.Enabled
     return nil
 }

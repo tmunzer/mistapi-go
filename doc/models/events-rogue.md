@@ -3,6 +3,8 @@
 
 rogue events
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `EventsRogue`
@@ -17,6 +19,7 @@ rogue events
 | `Rssi` | `int` | Required | - |
 | `Ssid` | `string` | Required | - |
 | `Timestamp` | `float64` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@ rogue events
   "channel": 26,
   "rssi": 72,
   "ssid": "ssid0",
-  "timestamp": 43.4
+  "timestamp": 43.4,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

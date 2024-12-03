@@ -8,9 +8,9 @@ import (
 
 // ResponseLoginOauthUrl represents a ResponseLoginOauthUrl struct.
 type ResponseLoginOauthUrl struct {
-    AuthorizationUrl     string         `json:"authorization_url"`
-    ClientId             string         `json:"client_id"`
-    AdditionalProperties map[string]any `json:"_"`
+    AuthorizationUrl     string                 `json:"authorization_url"`
+    ClientId             string                 `json:"client_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseLoginOauthUrl.
@@ -18,13 +18,17 @@ type ResponseLoginOauthUrl struct {
 func (r ResponseLoginOauthUrl) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "authorization_url", "client_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseLoginOauthUrl object to a map representation for JSON marshaling.
 func (r ResponseLoginOauthUrl) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["authorization_url"] = r.AuthorizationUrl
     structMap["client_id"] = r.ClientId
     return structMap
@@ -42,12 +46,12 @@ func (r *ResponseLoginOauthUrl) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "authorization_url", "client_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "authorization_url", "client_id")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.AuthorizationUrl = *temp.AuthorizationUrl
     r.ClientId = *temp.ClientId
     return nil

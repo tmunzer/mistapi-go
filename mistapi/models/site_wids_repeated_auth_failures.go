@@ -7,10 +7,10 @@ import (
 // SiteWidsRepeatedAuthFailures represents a SiteWidsRepeatedAuthFailures struct.
 type SiteWidsRepeatedAuthFailures struct {
     // window where a trigger will be detected and action to be taken (in seconds)
-    Duration             *int           `json:"duration,omitempty"`
+    Duration             *int                   `json:"duration,omitempty"`
     // count of events to trigger
-    Threshold            *int           `json:"threshold,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Threshold            *int                   `json:"threshold,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteWidsRepeatedAuthFailures.
@@ -18,13 +18,17 @@ type SiteWidsRepeatedAuthFailures struct {
 func (s SiteWidsRepeatedAuthFailures) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "duration", "threshold"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteWidsRepeatedAuthFailures object to a map representation for JSON marshaling.
 func (s SiteWidsRepeatedAuthFailures) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Duration != nil {
         structMap["duration"] = s.Duration
     }
@@ -42,12 +46,12 @@ func (s *SiteWidsRepeatedAuthFailures) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "duration", "threshold")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "threshold")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Duration = temp.Duration
     s.Threshold = temp.Threshold
     return nil

@@ -6,9 +6,9 @@ import (
 
 // DhcpdStatLan represents a DhcpdStatLan struct.
 type DhcpdStatLan struct {
-    NumIps               *int           `json:"num_ips,omitempty"`
-    NumLeased            *int           `json:"num_leased,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    NumIps               *int                   `json:"num_ips,omitempty"`
+    NumLeased            *int                   `json:"num_leased,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpdStatLan.
@@ -16,13 +16,17 @@ type DhcpdStatLan struct {
 func (d DhcpdStatLan) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "num_ips", "num_leased"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DhcpdStatLan object to a map representation for JSON marshaling.
 func (d DhcpdStatLan) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.NumIps != nil {
         structMap["num_ips"] = d.NumIps
     }
@@ -40,12 +44,12 @@ func (d *DhcpdStatLan) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "num_ips", "num_leased")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "num_ips", "num_leased")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.NumIps = temp.NumIps
     d.NumLeased = temp.NumLeased
     return nil

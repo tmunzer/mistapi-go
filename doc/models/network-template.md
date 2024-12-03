@@ -3,6 +3,8 @@
 
 Network Template
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `NetworkTemplate`
@@ -13,7 +15,7 @@ Network Template
 |  --- | --- | --- | --- |
 | `AclPolicies` | [`[]models.AclPolicy`](../../doc/models/acl-policy.md) | Optional | - |
 | `AclTags` | [`map[string]models.AclTag`](../../doc/models/acl-tag.md) | Optional | ACL Tags to identify traffic source or destination. Key name is the tag name |
-| `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
+| `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
 | `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
@@ -35,10 +37,11 @@ Network Template
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
 | `RemoveExistingConfigs` | `*bool` | Optional | by default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled<br>**Default**: `false` |
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
-| `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | Switch template |
+| `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | defines custom switch configuration based on different criterias |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.SwitchVrfInstance`](../../doc/models/switch-vrf-instance.md) | Optional | Property key is the network name |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -69,14 +72,22 @@ Network Template
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0"
+          "dst_tag": "dst_tag0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "acl_tags": {
@@ -90,10 +101,18 @@ Network Template
       "specs": [
         {
           "port_range": "port_range8",
-          "protocol": "protocol6"
+          "protocol": "protocol6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
-      "type": "dynamic_gbp"
+      "type": "dynamic_gbp",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key1": {
       "gbp_tag": 14,
@@ -105,10 +124,18 @@ Network Template
       "specs": [
         {
           "port_range": "port_range8",
-          "protocol": "protocol6"
+          "protocol": "protocol6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
-      "type": "dynamic_gbp"
+      "type": "dynamic_gbp",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key2": {
       "gbp_tag": 14,
@@ -120,10 +147,18 @@ Network Template
       "specs": [
         {
           "port_range": "port_range8",
-          "protocol": "protocol6"
+          "protocol": "protocol6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
-      "type": "dynamic_gbp"
+      "type": "dynamic_gbp",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "additional_config_cmds": [
@@ -140,7 +175,15 @@ Network Template
     "networks": [
       "networks8",
       "networks9"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

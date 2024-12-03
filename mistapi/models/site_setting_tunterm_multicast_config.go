@@ -9,7 +9,7 @@ type SiteSettingTuntermMulticastConfig struct {
     Mdns                 *SiteSettingTuntermMulticastConfigMdns `json:"mdns,omitempty"`
     MulticastAll         *bool                                  `json:"multicast_all,omitempty"`
     Ssdp                 *SiteSettingTuntermMulticastConfigSsdp `json:"ssdp,omitempty"`
-    AdditionalProperties map[string]any                         `json:"_"`
+    AdditionalProperties map[string]interface{}                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingTuntermMulticastConfig.
@@ -17,13 +17,17 @@ type SiteSettingTuntermMulticastConfig struct {
 func (s SiteSettingTuntermMulticastConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "mdns", "multicast_all", "ssdp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingTuntermMulticastConfig object to a map representation for JSON marshaling.
 func (s SiteSettingTuntermMulticastConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Mdns != nil {
         structMap["mdns"] = s.Mdns.toMap()
     }
@@ -44,12 +48,12 @@ func (s *SiteSettingTuntermMulticastConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mdns", "multicast_all", "ssdp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mdns", "multicast_all", "ssdp")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Mdns = temp.Mdns
     s.MulticastAll = temp.MulticastAll
     s.Ssdp = temp.Ssdp

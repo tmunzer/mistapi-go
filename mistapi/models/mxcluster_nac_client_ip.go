@@ -18,7 +18,7 @@ type MxclusterNacClientIp struct {
     // for ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, airnonet) etc.
     // enum: `aruba`, `cisco-aironet`, `cisco-ios`, `cisco-meraki`, `generic`, `juniper`, `paloalto`
     Vendor                      *MxclusterNacClientVendorEnum `json:"vendor,omitempty"`
-    AdditionalProperties        map[string]any                `json:"_"`
+    AdditionalProperties        map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterNacClientIp.
@@ -26,13 +26,17 @@ type MxclusterNacClientIp struct {
 func (m MxclusterNacClientIp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "require_message_authenticator", "secret", "site_id", "vendor"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxclusterNacClientIp object to a map representation for JSON marshaling.
 func (m MxclusterNacClientIp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.RequireMessageAuthenticator != nil {
         structMap["require_message_authenticator"] = m.RequireMessageAuthenticator
     }
@@ -56,12 +60,12 @@ func (m *MxclusterNacClientIp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "require_message_authenticator", "secret", "site_id", "vendor")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "require_message_authenticator", "secret", "site_id", "vendor")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.RequireMessageAuthenticator = temp.RequireMessageAuthenticator
     m.Secret = temp.Secret
     m.SiteId = temp.SiteId

@@ -119,6 +119,13 @@ body := map[string]models.JunosLocalPortConfig{
         PoeDisabled:                              models.ToPointer(true),
         Speed:                                    models.ToPointer(models.JunosPortConfigSpeedEnum("auto")),
         Usage:                                    "string",
+        AdditionalProperties:                     map[string]interface{}{
+            "ae_disable_lacp": interface{}("true"),
+            "ae_idx": interface{}("0"),
+            "aggregated": interface{}("false"),
+            "dynamic_usage": interface{}("string"),
+            "esilag": interface{}("true"),
+        },
     },
 }
 

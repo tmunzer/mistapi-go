@@ -15,7 +15,7 @@ type CaptureScanAps struct {
     TcpdumpExpression    *string                 `json:"tcpdump_expression,omitempty"`
     // specify the bandwidth value with respect to the channel.
     Width                *string                 `json:"width,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureScanAps.
@@ -23,13 +23,17 @@ type CaptureScanAps struct {
 func (c CaptureScanAps) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "band", "channel", "tcpdump_expression", "width"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureScanAps object to a map representation for JSON marshaling.
 func (c CaptureScanAps) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Band != nil {
         structMap["band"] = c.Band
     }
@@ -53,12 +57,12 @@ func (c *CaptureScanAps) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band", "channel", "tcpdump_expression", "width")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channel", "tcpdump_expression", "width")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Band = temp.Band
     c.Channel = temp.Channel
     c.TcpdumpExpression = temp.TcpdumpExpression

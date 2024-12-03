@@ -9,9 +9,9 @@ import (
 // WebhookAudits represents a WebhookAudits struct.
 // audit webhook sample
 type WebhookAudits struct {
-    Events               []WebhookAuditEvent `json:"events"`
-    Topic                string              `json:"topic"`
-    AdditionalProperties map[string]any      `json:"_"`
+    Events               []WebhookAuditEvent    `json:"events"`
+    Topic                string                 `json:"topic"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookAudits.
@@ -19,13 +19,17 @@ type WebhookAudits struct {
 func (w WebhookAudits) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "events", "topic"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookAudits object to a map representation for JSON marshaling.
 func (w WebhookAudits) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["events"] = w.Events
     structMap["topic"] = w.Topic
     return structMap
@@ -43,12 +47,12 @@ func (w *WebhookAudits) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "events", "topic")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "events", "topic")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Events = *temp.Events
     w.Topic = *temp.Topic
     return nil

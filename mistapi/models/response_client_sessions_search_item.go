@@ -9,20 +9,20 @@ import (
 
 // ResponseClientSessionsSearchItem represents a ResponseClientSessionsSearchItem struct.
 type ResponseClientSessionsSearchItem struct {
-    Ap                   string         `json:"ap"`
-    Band                 string         `json:"band"`
-    ClientManufacture    string         `json:"client_manufacture"`
-    Connect              float64        `json:"connect"`
-    Disconnect           float64        `json:"disconnect"`
-    Duration             float64        `json:"duration"`
-    Mac                  string         `json:"mac"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    Ssid                 string         `json:"ssid"`
-    Tags                 []string       `json:"tags,omitempty"`
-    Timestamp            float64        `json:"timestamp"`
-    WlanId               uuid.UUID      `json:"wlan_id"`
-    AdditionalProperties map[string]any `json:"_"`
+    Ap                   string                 `json:"ap"`
+    Band                 string                 `json:"band"`
+    ClientManufacture    string                 `json:"client_manufacture"`
+    Connect              float64                `json:"connect"`
+    Disconnect           float64                `json:"disconnect"`
+    Duration             float64                `json:"duration"`
+    Mac                  string                 `json:"mac"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    Ssid                 string                 `json:"ssid"`
+    Tags                 []string               `json:"tags,omitempty"`
+    Timestamp            float64                `json:"timestamp"`
+    WlanId               uuid.UUID              `json:"wlan_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClientSessionsSearchItem.
@@ -30,13 +30,17 @@ type ResponseClientSessionsSearchItem struct {
 func (r ResponseClientSessionsSearchItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "ap", "band", "client_manufacture", "connect", "disconnect", "duration", "mac", "org_id", "site_id", "ssid", "tags", "timestamp", "wlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseClientSessionsSearchItem object to a map representation for JSON marshaling.
 func (r ResponseClientSessionsSearchItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["ap"] = r.Ap
     structMap["band"] = r.Band
     structMap["client_manufacture"] = r.ClientManufacture
@@ -67,12 +71,12 @@ func (r *ResponseClientSessionsSearchItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "band", "client_manufacture", "connect", "disconnect", "duration", "mac", "org_id", "site_id", "ssid", "tags", "timestamp", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "band", "client_manufacture", "connect", "disconnect", "duration", "mac", "org_id", "site_id", "ssid", "tags", "timestamp", "wlan_id")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Ap = *temp.Ap
     r.Band = *temp.Band
     r.ClientManufacture = *temp.ClientManufacture

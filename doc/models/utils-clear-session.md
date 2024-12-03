@@ -3,6 +3,8 @@
 
 to use five tuples to lookup the session to be cleared, all must be provided
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UtilsClearSession`
@@ -14,6 +16,7 @@ to use five tuples to lookup the session to be cleared, all must be provided
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `ServiceName` | `*string` | Optional | ervice name, only supported in SSR |
 | `SessionIds` | `[]uuid.UUID` | Optional | List of id of the sessions to be cleared |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@ to use five tuples to lookup the session to be cleared, all must be provided
   "session_ids": [
     "88776655-0123-4567-890a-112233445566"
   ],
-  "node": "node0"
+  "node": "node0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

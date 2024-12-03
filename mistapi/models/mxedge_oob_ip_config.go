@@ -7,25 +7,25 @@ import (
 // MxedgeOobIpConfig represents a MxedgeOobIpConfig struct.
 // ip configuration of the Mist Edge out-of_band management interface
 type MxedgeOobIpConfig struct {
-    Autoconf6            *bool          `json:"autoconf6,omitempty"`
-    Dhcp6                *bool          `json:"dhcp6,omitempty"`
+    Autoconf6            *bool                  `json:"autoconf6,omitempty"`
+    Dhcp6                *bool                  `json:"dhcp6,omitempty"`
     // IPv4 ignored if `type`!=`static`
     // IPv6 ignored if `type6`!=`static`
-    Dns                  []string       `json:"dns,omitempty"`
+    Dns                  []string               `json:"dns,omitempty"`
     // if `type`=`static`
-    Gateway              *string        `json:"gateway,omitempty"`
-    Gateway6             *string        `json:"gateway6,omitempty"`
+    Gateway              *string                `json:"gateway,omitempty"`
+    Gateway6             *string                `json:"gateway6,omitempty"`
     // if `type`=`static`
-    Ip                   *string        `json:"ip,omitempty"`
-    Ip6                  *string        `json:"ip6,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
+    Ip6                  *string                `json:"ip6,omitempty"`
     // if `type`=`static`
-    Netmask              *string        `json:"netmask,omitempty"`
-    Netmask6             *string        `json:"netmask6,omitempty"`
+    Netmask              *string                `json:"netmask,omitempty"`
+    Netmask6             *string                `json:"netmask6,omitempty"`
     // enum: `dhcp`, `static`
-    Type                 *IpTypeEnum    `json:"type,omitempty"`
+    Type                 *IpTypeEnum            `json:"type,omitempty"`
     // enum: `dhcp`, `static`
-    Type6                *IpTypeEnum    `json:"type6,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Type6                *IpTypeEnum            `json:"type6,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeOobIpConfig.
@@ -33,13 +33,17 @@ type MxedgeOobIpConfig struct {
 func (m MxedgeOobIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "autoconf6", "dhcp6", "dns", "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6", "type", "type6"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeOobIpConfig object to a map representation for JSON marshaling.
 func (m MxedgeOobIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Autoconf6 != nil {
         structMap["autoconf6"] = m.Autoconf6
     }
@@ -84,12 +88,12 @@ func (m *MxedgeOobIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "autoconf6", "dhcp6", "dns", "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6", "type", "type6")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "autoconf6", "dhcp6", "dns", "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6", "type", "type6")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Autoconf6 = temp.Autoconf6
     m.Dhcp6 = temp.Dhcp6
     m.Dns = temp.Dns

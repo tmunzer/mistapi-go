@@ -1,6 +1,8 @@
 
 # Tunnel Configs Auto Provision Node
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `TunnelConfigsAutoProvisionNode`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `NumHosts` | `*string` | Optional | - |
 | `WanNames` | `[]string` | Optional | optional, only needed if `vars_only`==`false` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -20,7 +23,11 @@
   "wan_names": [
     "wan_names6",
     "wan_names7"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

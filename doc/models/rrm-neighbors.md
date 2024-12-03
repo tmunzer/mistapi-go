@@ -1,6 +1,8 @@
 
 # Rrm Neighbors
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RrmNeighbors`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Mac` | `*string` | Optional | - |
 | `Neighbors` | [`[]models.RrmNeighborsNeighbor`](../../doc/models/rrm-neighbors-neighbor.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -20,17 +23,33 @@
   "neighbors": [
     {
       "mac": "mac4",
-      "rssi": 56
+      "rssi": 56,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "mac": "mac4",
-      "rssi": 56
+      "rssi": 56,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "mac": "mac4",
-      "rssi": 56
+      "rssi": 56,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

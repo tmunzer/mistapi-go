@@ -49,17 +49,17 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Vbeacon{
-    Major:              models.ToPointer(0),
-    Message:            models.ToPointer("string"),
-    Minor:              models.ToPointer(0),
-    Name:               models.ToPointer("string"),
-    Power:              models.ToPointer(4),
-    PowerMode:          models.ToPointer(models.BleConfigPowerModeEnum("default")),
-    Url:                models.ToPointer("string"),
-    Uuid:               models.ToPointer(uuid.MustParse("6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9")),
-    WayfindingNodename: models.ToPointer("string"),
-    X:                  models.ToPointer(float64(0)),
-    Y:                  models.ToPointer(float64(0)),
+    Major:                models.ToPointer(0),
+    Message:              models.ToPointer("string"),
+    Minor:                models.ToPointer(0),
+    Name:                 models.ToPointer("string"),
+    Power:                models.ToPointer(4),
+    PowerMode:            models.ToPointer(models.BleConfigPowerModeEnum("default")),
+    Url:                  models.ToPointer("string"),
+    Uuid:                 models.ToPointer(uuid.MustParse("6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9")),
+    WayfindingNodename:   models.ToPointer("string"),
+    X:                    models.ToPointer(float64(0)),
+    Y:                    models.ToPointer(float64(0)),
 }
 
 apiResponse, err := sitesVBeacons.CreateSiteVBeacon(ctx, siteId, &body)
@@ -357,17 +357,17 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 vbeaconId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Vbeacon{
-    Major:              models.ToPointer(0),
-    Message:            models.ToPointer("string"),
-    Minor:              models.ToPointer(0),
-    Name:               models.ToPointer("string"),
-    Power:              models.ToPointer(4),
-    PowerMode:          models.ToPointer(models.BleConfigPowerModeEnum("default")),
-    Url:                models.ToPointer("string"),
-    Uuid:               models.ToPointer(uuid.MustParse("6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9")),
-    WayfindingNodename: models.ToPointer("string"),
-    X:                  models.ToPointer(float64(0)),
-    Y:                  models.ToPointer(float64(0)),
+    Major:                models.ToPointer(0),
+    Message:              models.ToPointer("string"),
+    Minor:                models.ToPointer(0),
+    Name:                 models.ToPointer("string"),
+    Power:                models.ToPointer(4),
+    PowerMode:            models.ToPointer(models.BleConfigPowerModeEnum("default")),
+    Url:                  models.ToPointer("string"),
+    Uuid:                 models.ToPointer(uuid.MustParse("6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9")),
+    WayfindingNodename:   models.ToPointer("string"),
+    X:                    models.ToPointer(float64(0)),
+    Y:                    models.ToPointer(float64(0)),
 }
 
 apiResponse, err := sitesVBeacons.UpdateSiteVBeacon(ctx, siteId, vbeaconId, &body)

@@ -12,7 +12,7 @@ type Snmpv3Config struct {
     TargetParameters     []Snmpv3ConfigTargetParam       `json:"target_parameters,omitempty"`
     Usm                  *SnmpUsm                        `json:"usm,omitempty"`
     Vacm                 *SnmpVacm                       `json:"vacm,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Snmpv3Config.
@@ -20,13 +20,17 @@ type Snmpv3Config struct {
 func (s Snmpv3Config) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "notify", "notify_filter", "target_address", "target_parameters", "usm", "vacm"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Snmpv3Config object to a map representation for JSON marshaling.
 func (s Snmpv3Config) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Notify != nil {
         structMap["notify"] = s.Notify
     }
@@ -56,12 +60,12 @@ func (s *Snmpv3Config) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "notify", "notify_filter", "target_address", "target_parameters", "usm", "vacm")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "notify", "notify_filter", "target_address", "target_parameters", "usm", "vacm")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Notify = temp.Notify
     s.NotifyFilter = temp.NotifyFilter
     s.TargetAddress = temp.TargetAddress

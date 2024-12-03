@@ -8,7 +8,7 @@ import (
 type WebhookClientLatency struct {
     Events               []WebhookClientLatencyEvent `json:"events,omitempty"`
     Topic                *string                     `json:"topic,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookClientLatency.
@@ -16,13 +16,17 @@ type WebhookClientLatency struct {
 func (w WebhookClientLatency) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "events", "topic"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookClientLatency object to a map representation for JSON marshaling.
 func (w WebhookClientLatency) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Events != nil {
         structMap["events"] = w.Events
     }
@@ -40,12 +44,12 @@ func (w *WebhookClientLatency) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "events", "topic")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "events", "topic")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Events = temp.Events
     w.Topic = temp.Topic
     return nil

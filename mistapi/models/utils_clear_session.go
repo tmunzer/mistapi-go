@@ -9,12 +9,12 @@ import (
 // to use five tuples to lookup the session to be cleared, all must be provided
 type UtilsClearSession struct {
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // ervice name, only supported in SSR
-    ServiceName          *string            `json:"service_name,omitempty"`
+    ServiceName          *string                `json:"service_name,omitempty"`
     // List of id of the sessions to be cleared
-    SessionIds           []uuid.UUID        `json:"session_ids,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    SessionIds           []uuid.UUID            `json:"session_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsClearSession.
@@ -22,13 +22,17 @@ type UtilsClearSession struct {
 func (u UtilsClearSession) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "node", "service_name", "session_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsClearSession object to a map representation for JSON marshaling.
 func (u UtilsClearSession) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Node != nil {
         structMap["node"] = u.Node
     }
@@ -49,12 +53,12 @@ func (u *UtilsClearSession) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "node", "service_name", "session_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "node", "service_name", "session_ids")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Node = temp.Node
     u.ServiceName = temp.ServiceName
     u.SessionIds = temp.SessionIds

@@ -8,26 +8,26 @@ import (
 // IP AP settings
 type ApIpConfig struct {
     // if `type`==`static`
-    Dns                  []string       `json:"dns,omitempty"`
+    Dns                  []string               `json:"dns,omitempty"`
     // required if `type`==`static`
-    DnsSuffix            []string       `json:"dns_suffix,omitempty"`
+    DnsSuffix            []string               `json:"dns_suffix,omitempty"`
     // required if `type`==`static`
-    Gateway              *string        `json:"gateway,omitempty"`
-    Gateway6             *string        `json:"gateway6,omitempty"`
+    Gateway              *string                `json:"gateway,omitempty"`
+    Gateway6             *string                `json:"gateway6,omitempty"`
     // required if `type`==`static`
-    Ip                   *string        `json:"ip,omitempty"`
-    Ip6                  *string        `json:"ip6,omitempty"`
-    Mtu                  *int           `json:"mtu,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
+    Ip6                  *string                `json:"ip6,omitempty"`
+    Mtu                  *int                   `json:"mtu,omitempty"`
     // required if `type`==`static`
-    Netmask              *string        `json:"netmask,omitempty"`
-    Netmask6             *string        `json:"netmask6,omitempty"`
+    Netmask              *string                `json:"netmask,omitempty"`
+    Netmask6             *string                `json:"netmask6,omitempty"`
     // enum: `dhcp`, `static`
-    Type                 *IpTypeEnum    `json:"type,omitempty"`
+    Type                 *IpTypeEnum            `json:"type,omitempty"`
     // enum: `autoconf`, `dhcp`, `disabled`, `static`
-    Type6                *IpType6Enum   `json:"type6,omitempty"`
+    Type6                *IpType6Enum           `json:"type6,omitempty"`
     // management vlan id, default is 1 (untagged)
-    VlanId               *int           `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    VlanId               *int                   `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApIpConfig.
@@ -35,13 +35,17 @@ type ApIpConfig struct {
 func (a ApIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "dns", "dns_suffix", "gateway", "gateway6", "ip", "ip6", "mtu", "netmask", "netmask6", "type", "type6", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApIpConfig object to a map representation for JSON marshaling.
 func (a ApIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Dns != nil {
         structMap["dns"] = a.Dns
     }
@@ -89,12 +93,12 @@ func (a *ApIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dns", "dns_suffix", "gateway", "gateway6", "ip", "ip6", "mtu", "netmask", "netmask6", "type", "type6", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns", "dns_suffix", "gateway", "gateway6", "ip", "ip6", "mtu", "netmask", "netmask6", "type", "type6", "vlan_id")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Dns = temp.Dns
     a.DnsSuffix = temp.DnsSuffix
     a.Gateway = temp.Gateway

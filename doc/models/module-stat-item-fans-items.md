@@ -1,6 +1,8 @@
 
 # Module Stat Item Fans Items
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ModuleStatItemFansItems`
@@ -12,6 +14,7 @@
 | `Airflow` | `*string` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Status` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -19,7 +22,11 @@
 {
   "airflow": "out",
   "name": "Fan 0",
-  "status": "ok"
+  "status": "ok",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

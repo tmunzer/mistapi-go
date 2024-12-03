@@ -1,6 +1,8 @@
 
 # App Probing Custom App
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AppProbingCustomApp`
@@ -19,6 +21,7 @@
 | `Protocol` | [`*models.AppProbingCustomAppProtocolEnum`](../../doc/models/app-probing-custom-app-protocol-enum.md) | Optional | enum: `http`, `icmp`<br>**Default**: `"http"` |
 | `Url` | `*string` | Optional | if `protocol`==`http` |
 | `Vrf` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,7 +37,11 @@
   "url": "www.abc.com",
   "vrf": "lan",
   "app_type": "app_type8",
-  "key": "key4"
+  "key": "key4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

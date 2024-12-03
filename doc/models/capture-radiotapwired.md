@@ -3,6 +3,8 @@
 
 Initiate a Radiotap Packet Capture and Wired Packet Capture
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `CaptureRadiotapwired`
@@ -25,6 +27,7 @@ Initiate a Radiotap Packet Capture and Wired Packet Capture
 | `WiredTcpdumpExpression` | `*string` | Optional | tcpdump expression for wired |
 | `WirelessTcpdumpExpression` | `*string` | Optional | tcpdump expression for radiotap interface (802.11) |
 | `WlanId` | `models.Optional[string]` | Optional | wlan id associated with the respective ssid. |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,7 +44,11 @@ Initiate a Radiotap Packet Capture and Wired Packet Capture
   "type": "radiotap,wired",
   "wired_tcpdump_expression": "tcp port 80",
   "wlan_id": "fac8e973-feb9-421a-b381-aabbc4b61f5a",
-  "ap_mac": "ap_mac0"
+  "ap_mac": "ap_mac0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

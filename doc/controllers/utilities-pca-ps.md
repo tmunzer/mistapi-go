@@ -431,20 +431,23 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.CaptureOrgContainer.FromCaptureMxedge(models.CaptureMxedge{
-    Duration:   models.ToPointer(600),
-    Format:     models.ToPointer(models.CaptureMxedgeFormatEnum("stream")),
-    MaxPktLen:  models.ToPointer(1500),
-    Mxedges:    map[string]models.CaptureMxedgeMxedges{
+    Duration:             models.ToPointer(600),
+    Format:               models.ToPointer(models.CaptureMxedgeFormatEnum("stream")),
+    MaxPktLen:            models.ToPointer(1500),
+    Mxedges:              map[string]models.CaptureMxedgeMxedges{
         "00000000-0000-0000-1000-001122334455": models.CaptureMxedgeMxedges{
-            Interfaces: map[string]models.CaptureMxedgeMxedgesInterfaces{
+            Interfaces:           map[string]models.CaptureMxedgeMxedgesInterfaces{
                 "port1": models.CaptureMxedgeMxedgesInterfaces{
-                    TcpdumpExpression: models.ToPointer("udp port 67 or udp port 68"),
+                    TcpdumpExpression:    models.ToPointer("udp port 67 or udp port 68"),
                 },
             },
         },
     },
-    NumPackets: models.ToPointer(100),
-    Type:       "mxedge",
+    NumPackets:           models.ToPointer(100),
+    Type:                 "mxedge",
+    AdditionalProperties: map[string]interface{}{
+        "tcpdump_expression": interface{}("vlan 999"),
+    },
 })
 
 apiResponse, err := utilitiesPCAPs.StartOrgPacketCapture(ctx, orgId, &body)
@@ -610,12 +613,12 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.CaptureSiteContainer.FromCaptureNewAssoc(models.CaptureNewAssoc{
-    ClientMac:     models.ToPointer("60a10a773412"),
-    Duration:      models.ToPointer(600),
-    IncludesMcast: models.ToPointer(false),
-    MaxPktLen:     models.ToPointer(128),
-    NumPackets:    models.ToPointer(100),
-    Type:          "new_assoc",
+    ClientMac:            models.ToPointer("60a10a773412"),
+    Duration:             models.ToPointer(600),
+    IncludesMcast:        models.ToPointer(false),
+    MaxPktLen:            models.ToPointer(128),
+    NumPackets:           models.ToPointer(100),
+    Type:                 "new_assoc",
 })
 
 apiResponse, err := utilitiesPCAPs.StartSitePacketCapture(ctx, siteId, &body)
@@ -794,7 +797,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 pcapId := uuid.MustParse("00002548-0000-0000-0000-000000000000")
 
 body := models.NotesString{
-    Notes: models.ToPointer("wired pcap test"),
+    Notes:                models.ToPointer("wired pcap test"),
 }
 
 resp, err := utilitiesPCAPs.UpdateSitePacketCapture(ctx, siteId, pcapId, &body)

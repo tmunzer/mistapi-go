@@ -10,12 +10,12 @@ import (
 type AclPolicy struct {
     // - for GBP-based policy, all src_tags and dst_tags have to be gbp-based
     // - for ACL-based policy, `network` is required in either the source or destination so that we know where to attach the policy to
-    Actions              []AclPolicyAction `json:"actions,omitempty"`
-    Name                 *string           `json:"name,omitempty"`
+    Actions              []AclPolicyAction      `json:"actions,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
     // - for GBP-based policy, all src_tags and dst_tags have to be gbp-based
     // - for ACL-based policy, `network` is required in either the source or destination so that we know where to attach the policy to
-    SrcTags              []string          `json:"src_tags,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    SrcTags              []string               `json:"src_tags,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AclPolicy.
@@ -23,13 +23,17 @@ type AclPolicy struct {
 func (a AclPolicy) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "actions", "name", "src_tags"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AclPolicy object to a map representation for JSON marshaling.
 func (a AclPolicy) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Actions != nil {
         structMap["actions"] = a.Actions
     }
@@ -50,12 +54,12 @@ func (a *AclPolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "actions", "name", "src_tags")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "actions", "name", "src_tags")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Actions = temp.Actions
     a.Name = temp.Name
     a.SrcTags = temp.SrcTags

@@ -6,11 +6,11 @@ import (
 
 // ResponsePcapAp represents a ResponsePcapAp struct.
 type ResponsePcapAp struct {
-    Band                 *int             `json:"band,omitempty"`
-    Bandwidth            *int             `json:"bandwidth,omitempty"`
-    Channel              *int             `json:"channel,omitempty"`
-    TcpdumpExpresssion   Optional[string] `json:"tcpdump_expresssion"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Band                 *int                   `json:"band,omitempty"`
+    Bandwidth            *int                   `json:"bandwidth,omitempty"`
+    Channel              *int                   `json:"channel,omitempty"`
+    TcpdumpExpresssion   Optional[string]       `json:"tcpdump_expresssion"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapAp.
@@ -18,13 +18,17 @@ type ResponsePcapAp struct {
 func (r ResponsePcapAp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "band", "bandwidth", "channel", "tcpdump_expresssion"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponsePcapAp object to a map representation for JSON marshaling.
 func (r ResponsePcapAp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Band != nil {
         structMap["band"] = r.Band
     }
@@ -52,12 +56,12 @@ func (r *ResponsePcapAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band", "bandwidth", "channel", "tcpdump_expresssion")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "bandwidth", "channel", "tcpdump_expresssion")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Band = temp.Band
     r.Bandwidth = temp.Bandwidth
     r.Channel = temp.Channel

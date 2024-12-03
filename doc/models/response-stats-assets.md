@@ -1,6 +1,8 @@
 
 # Response Stats Assets
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseStatsAssets`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.StatsAsset`](../../doc/models/stats-asset.md) | Required | - |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,12 +44,20 @@
       "rssi": -60,
       "temperatur": 23,
       "x": 280.199181403102,
-      "y": 420.298772104653
+      "y": 420.298772104653,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 128,
   "total": 162,
-  "next": "next8"
+  "next": "next8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

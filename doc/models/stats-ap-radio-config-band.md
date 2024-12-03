@@ -1,6 +1,8 @@
 
 # Stats Ap Radio Config Band
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsApRadioConfigBand`
@@ -19,6 +21,7 @@
 | `PowerMin` | `models.Optional[float64]` | Optional | - |
 | `RxChain` | `models.Optional[int]` | Optional | - |
 | `TxChain` | `models.Optional[int]` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,7 +36,11 @@
   "rx_chain": 4,
   "tx_chain": 4,
   "allow_rrm_disable": false,
-  "disabled": false
+  "disabled": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

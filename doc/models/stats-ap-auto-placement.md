@@ -1,6 +1,8 @@
 
 # Stats Ap Auto Placement
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsApAutoPlacement`
@@ -18,6 +20,7 @@
 | `XM` | `*float64` | Optional | X Autoplaced Position in meters |
 | `Y` | `*float64` | Optional | Y Autoplaced Position in pixels |
 | `YM` | `*float64` | Optional | X Autoplaced Position in meters |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,11 +38,23 @@
     "probability_surface": {
       "radius": 74.96,
       "radius_m": 19.46,
-      "x": 93.54
+      "x": 93.54,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
     }
   },
   "recommended_anchor": false,
-  "use_auto_placement": false
+  "use_auto_placement": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

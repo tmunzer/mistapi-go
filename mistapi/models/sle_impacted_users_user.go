@@ -8,18 +8,18 @@ import (
 
 // SleImpactedUsersUser represents a SleImpactedUsersUser struct.
 type SleImpactedUsersUser struct {
-    ApMac                string         `json:"ap_mac"`
-    ApName               string         `json:"ap_name"`
-    Degraded             float64        `json:"degraded"`
-    DeviceOs             string         `json:"device_os"`
-    DeviceType           string         `json:"device_type"`
-    Duration             float64        `json:"duration"`
-    Mac                  string         `json:"mac"`
-    Name                 string         `json:"name"`
-    Ssid                 string         `json:"ssid"`
-    Total                float64        `json:"total"`
-    WlanId               string         `json:"wlan_id"`
-    AdditionalProperties map[string]any `json:"_"`
+    ApMac                string                 `json:"ap_mac"`
+    ApName               string                 `json:"ap_name"`
+    Degraded             float64                `json:"degraded"`
+    DeviceOs             string                 `json:"device_os"`
+    DeviceType           string                 `json:"device_type"`
+    Duration             float64                `json:"duration"`
+    Mac                  string                 `json:"mac"`
+    Name                 string                 `json:"name"`
+    Ssid                 string                 `json:"ssid"`
+    Total                float64                `json:"total"`
+    WlanId               string                 `json:"wlan_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedUsersUser.
@@ -27,13 +27,17 @@ type SleImpactedUsersUser struct {
 func (s SleImpactedUsersUser) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ap_mac", "ap_name", "degraded", "device_os", "device_type", "duration", "mac", "name", "ssid", "total", "wlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedUsersUser object to a map representation for JSON marshaling.
 func (s SleImpactedUsersUser) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["ap_mac"] = s.ApMac
     structMap["ap_name"] = s.ApName
     structMap["degraded"] = s.Degraded
@@ -60,12 +64,12 @@ func (s *SleImpactedUsersUser) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "ap_name", "degraded", "device_os", "device_type", "duration", "mac", "name", "ssid", "total", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "ap_name", "degraded", "device_os", "device_type", "duration", "mac", "name", "ssid", "total", "wlan_id")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ApMac = *temp.ApMac
     s.ApName = *temp.ApName
     s.Degraded = *temp.Degraded

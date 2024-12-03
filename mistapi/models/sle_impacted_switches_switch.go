@@ -6,15 +6,15 @@ import (
 
 // SleImpactedSwitchesSwitch represents a SleImpactedSwitchesSwitch struct.
 type SleImpactedSwitchesSwitch struct {
-    Degraded             *float64       `json:"degraded,omitempty"`
-    Duration             *float64       `json:"duration,omitempty"`
-    Interface            []string       `json:"interface,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    SwitchMac            *string        `json:"switch_mac,omitempty"`
-    SwitchModel          *string        `json:"switch_model,omitempty"`
-    SwitchVersion        *string        `json:"switch_version,omitempty"`
-    Total                *float64       `json:"total,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Degraded             *float64               `json:"degraded,omitempty"`
+    Duration             *float64               `json:"duration,omitempty"`
+    Interface            []string               `json:"interface,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    SwitchMac            *string                `json:"switch_mac,omitempty"`
+    SwitchModel          *string                `json:"switch_model,omitempty"`
+    SwitchVersion        *string                `json:"switch_version,omitempty"`
+    Total                *float64               `json:"total,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedSwitchesSwitch.
@@ -22,13 +22,17 @@ type SleImpactedSwitchesSwitch struct {
 func (s SleImpactedSwitchesSwitch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "degraded", "duration", "interface", "name", "switch_mac", "switch_model", "switch_version", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedSwitchesSwitch object to a map representation for JSON marshaling.
 func (s SleImpactedSwitchesSwitch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Degraded != nil {
         structMap["degraded"] = s.Degraded
     }
@@ -64,12 +68,12 @@ func (s *SleImpactedSwitchesSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "degraded", "duration", "interface", "name", "switch_mac", "switch_model", "switch_version", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "degraded", "duration", "interface", "name", "switch_mac", "switch_model", "switch_version", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Degraded = temp.Degraded
     s.Duration = temp.Duration
     s.Interface = temp.Interface

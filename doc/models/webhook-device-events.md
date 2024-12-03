@@ -3,6 +3,8 @@
 
 device event webhook sample
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookDeviceEvents`
@@ -13,6 +15,7 @@ device event webhook sample
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookDeviceEventsEvent`](../../doc/models/webhook-device-events-event.md) | Required | list of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"device_events"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,10 +34,18 @@ device event webhook sample
       "ap": "ap6",
       "ap_name": "ap_name8",
       "audit_id": "00001d3a-0000-0000-0000-000000000000",
-      "reason": "reason6"
+      "reason": "reason6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "device_events"
+  "topic": "device_events",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

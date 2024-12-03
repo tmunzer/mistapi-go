@@ -3,6 +3,8 @@
 
 authentication wlan settings
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WlanAuth`
@@ -23,6 +25,7 @@ authentication wlan settings
 | `Psk` | `models.Optional[string]` | Optional | when `type`==`psk`, 8-64 characters, or 64 hex characters<br>**Constraints**: *Minimum Length*: `8`, *Maximum Length*: `64` |
 | `Type` | [`models.WlanAuthTypeEnum`](../../doc/models/wlan-auth-type-enum.md) | Required | enum: `eap`, `eap192`, `open`, `psk`, `psk-tkip`, `psk-wpa2-tkip`, `wep`<br>**Default**: `"open"` |
 | `WepAsSecondaryAuth` | `*bool` | Optional | enable WEP as secondary auth<br>**Default**: `false` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,7 +43,11 @@ authentication wlan settings
   "private_wlan": false,
   "psk": "foryoureyesonly",
   "type": "psk",
-  "wep_as_secondary_auth": false
+  "wep_as_secondary_auth": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

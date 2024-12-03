@@ -8,11 +8,11 @@ import (
 
 // SleClassifierSummaryImpact represents a SleClassifierSummaryImpact struct.
 type SleClassifierSummaryImpact struct {
-    NumAps               float64        `json:"num_aps"`
-    NumUsers             float64        `json:"num_users"`
-    TotalAps             float64        `json:"total_aps"`
-    TotalUsers           float64        `json:"total_users"`
-    AdditionalProperties map[string]any `json:"_"`
+    NumAps               float64                `json:"num_aps"`
+    NumUsers             float64                `json:"num_users"`
+    TotalAps             float64                `json:"total_aps"`
+    TotalUsers           float64                `json:"total_users"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleClassifierSummaryImpact.
@@ -20,13 +20,17 @@ type SleClassifierSummaryImpact struct {
 func (s SleClassifierSummaryImpact) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "num_aps", "num_users", "total_aps", "total_users"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleClassifierSummaryImpact object to a map representation for JSON marshaling.
 func (s SleClassifierSummaryImpact) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["num_aps"] = s.NumAps
     structMap["num_users"] = s.NumUsers
     structMap["total_aps"] = s.TotalAps
@@ -46,12 +50,12 @@ func (s *SleClassifierSummaryImpact) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "num_aps", "num_users", "total_aps", "total_users")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "num_aps", "num_users", "total_aps", "total_users")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.NumAps = *temp.NumAps
     s.NumUsers = *temp.NumUsers
     s.TotalAps = *temp.TotalAps

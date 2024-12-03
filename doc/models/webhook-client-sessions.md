@@ -3,6 +3,8 @@
 
 client session webhook sample
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookClientSessions`
@@ -13,6 +15,7 @@ client session webhook sample
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookClientSessionsEvent`](../../doc/models/webhook-client-sessions-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Topic` | `string` | Required | **Default**: `"client-sessions"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,10 +46,18 @@ client session webhook sample
       "termination_reason": 198,
       "timestamp": 188.18,
       "version": 15.76,
-      "wlan_id": "0000177c-0000-0000-0000-000000000000"
+      "wlan_id": "0000177c-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "client-sessions"
+  "topic": "client-sessions",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -9,14 +9,14 @@ import (
 // TestTwilio represents a TestTwilio struct.
 type TestTwilio struct {
     // One of the numbers you have in your Twilio account
-    From                 string         `json:"from"`
+    From                 string                 `json:"from"`
     // Phone number of the recipient of SMS
-    To                   string         `json:"to"`
+    To                   string                 `json:"to"`
     // Auth Token associated with twilio account
-    TwilioAuthToken      string         `json:"twilio_auth_token"`
+    TwilioAuthToken      string                 `json:"twilio_auth_token"`
     // Twilio Account SID
-    TwilioSid            string         `json:"twilio_sid"`
-    AdditionalProperties map[string]any `json:"_"`
+    TwilioSid            string                 `json:"twilio_sid"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TestTwilio.
@@ -24,13 +24,17 @@ type TestTwilio struct {
 func (t TestTwilio) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "from", "to", "twilio_auth_token", "twilio_sid"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TestTwilio object to a map representation for JSON marshaling.
 func (t TestTwilio) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     structMap["from"] = t.From
     structMap["to"] = t.To
     structMap["twilio_auth_token"] = t.TwilioAuthToken
@@ -50,12 +54,12 @@ func (t *TestTwilio) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "from", "to", "twilio_auth_token", "twilio_sid")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "from", "to", "twilio_auth_token", "twilio_sid")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.From = *temp.From
     t.To = *temp.To
     t.TwilioAuthToken = *temp.TwilioAuthToken

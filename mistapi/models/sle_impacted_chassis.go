@@ -15,7 +15,7 @@ type SleImpactedChassis struct {
     Page                 *int                            `json:"page,omitempty"`
     Start                *int                            `json:"start,omitempty"`
     TotalCount           *int                            `json:"total_count,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedChassis.
@@ -23,13 +23,17 @@ type SleImpactedChassis struct {
 func (s SleImpactedChassis) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "chassis", "classifier", "end", "failure", "limit", "metric", "page", "start", "total_count"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedChassis object to a map representation for JSON marshaling.
 func (s SleImpactedChassis) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Chassis != nil {
         structMap["chassis"] = s.Chassis
     }
@@ -68,12 +72,12 @@ func (s *SleImpactedChassis) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "chassis", "classifier", "end", "failure", "limit", "metric", "page", "start", "total_count")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "chassis", "classifier", "end", "failure", "limit", "metric", "page", "start", "total_count")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Chassis = temp.Chassis
     s.Classifier = temp.Classifier
     s.End = temp.End

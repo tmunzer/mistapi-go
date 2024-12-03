@@ -7,25 +7,25 @@ import (
 
 // InstallerDevice represents a InstallerDevice struct.
 type InstallerDevice struct {
-    Connected            *bool            `json:"connected,omitempty"`
-    DeviceprofileName    *string          `json:"deviceprofile_name,omitempty"`
-    ExtIp                *string          `json:"ext_ip,omitempty"`
-    Height               *float64         `json:"height,omitempty"`
-    Ip                   *string          `json:"ip,omitempty"`
-    LastSeen             *float64         `json:"last_seen,omitempty"`
-    Mac                  *string          `json:"mac,omitempty"`
-    MapId                *uuid.UUID       `json:"map_id,omitempty"`
-    Model                *string          `json:"model,omitempty"`
-    Name                 *string          `json:"name,omitempty"`
-    Orientation          *int             `json:"orientation,omitempty"`
-    Serial               *string          `json:"serial,omitempty"`
-    SiteName             *string          `json:"site_name,omitempty"`
-    Uptime               *int             `json:"uptime,omitempty"`
-    VcMac                Optional[string] `json:"vc_mac"`
-    Version              *string          `json:"version,omitempty"`
-    X                    *float64         `json:"x,omitempty"`
-    Y                    *float64         `json:"y,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Connected            *bool                  `json:"connected,omitempty"`
+    DeviceprofileName    *string                `json:"deviceprofile_name,omitempty"`
+    ExtIp                *string                `json:"ext_ip,omitempty"`
+    Height               *float64               `json:"height,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
+    LastSeen             *float64               `json:"last_seen,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    MapId                *uuid.UUID             `json:"map_id,omitempty"`
+    Model                *string                `json:"model,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    Orientation          *int                   `json:"orientation,omitempty"`
+    Serial               *string                `json:"serial,omitempty"`
+    SiteName             *string                `json:"site_name,omitempty"`
+    Uptime               *int                   `json:"uptime,omitempty"`
+    VcMac                Optional[string]       `json:"vc_mac"`
+    Version              *string                `json:"version,omitempty"`
+    X                    *float64               `json:"x,omitempty"`
+    Y                    *float64               `json:"y,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for InstallerDevice.
@@ -33,13 +33,17 @@ type InstallerDevice struct {
 func (i InstallerDevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "connected", "deviceprofile_name", "ext_ip", "height", "ip", "last_seen", "mac", "map_id", "model", "name", "orientation", "serial", "site_name", "uptime", "vc_mac", "version", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the InstallerDevice object to a map representation for JSON marshaling.
 func (i InstallerDevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.Connected != nil {
         structMap["connected"] = i.Connected
     }
@@ -109,12 +113,12 @@ func (i *InstallerDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "connected", "deviceprofile_name", "ext_ip", "height", "ip", "last_seen", "mac", "map_id", "model", "name", "orientation", "serial", "site_name", "uptime", "vc_mac", "version", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "connected", "deviceprofile_name", "ext_ip", "height", "ip", "last_seen", "mac", "map_id", "model", "name", "orientation", "serial", "site_name", "uptime", "vc_mac", "version", "x", "y")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.Connected = temp.Connected
     i.DeviceprofileName = temp.DeviceprofileName
     i.ExtIp = temp.ExtIp

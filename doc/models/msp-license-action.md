@@ -1,6 +1,8 @@
 
 # Msp License Action
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MspLicenseAction`
@@ -15,6 +17,7 @@
 | `Op` | [`models.MspLicenseActionOperationEnum`](../../doc/models/msp-license-action-operation-enum.md) | Required | enum: `amend`, `annotate`, `delete`, `unamend`<br>**Constraints**: *Minimum Length*: `1` |
 | `Quantity` | `*float64` | Optional | required if `op`==`amend` |
 | `SubscriptionId` | `*string` | Optional | required if `op`== `annotate`<br>**Constraints**: *Minimum Length*: `1` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   "notes": "notes8",
   "op": "amend",
   "quantity": 46.94,
-  "subscription_id": "subscription_id8"
+  "subscription_id": "subscription_id8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

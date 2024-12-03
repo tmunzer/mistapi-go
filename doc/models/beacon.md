@@ -3,6 +3,8 @@
 
 Beacon
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Beacon`
@@ -30,6 +32,7 @@ Beacon
 | `Type` | [`*models.BeaconTypeEnum`](../../doc/models/beacon-type-enum.md) | Optional | enum: `eddystone-uid`, `eddystone-url`, `ibeacon`<br>**Default**: `"eddystone-uid"` |
 | `X` | `*float64` | Optional | x in pixel |
 | `Y` | `*float64` | Optional | y in pixel |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -44,7 +47,11 @@ Beacon
   "eddystone_instance": "eddystone_instance6",
   "eddystone_namespace": "eddystone_namespace0",
   "eddystone_url": "eddystone_url8",
-  "for_site": false
+  "for_site": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

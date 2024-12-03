@@ -7,10 +7,10 @@ import (
 // EvpnConfig represents a EvpnConfig struct.
 // EVPN Junos settings
 type EvpnConfig struct {
-    Enabled              *bool               `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
-    Role                 *EvpnConfigRoleEnum `json:"role,omitempty"`
-    AdditionalProperties map[string]any      `json:"_"`
+    Role                 *EvpnConfigRoleEnum    `json:"role,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnConfig.
@@ -18,13 +18,17 @@ type EvpnConfig struct {
 func (e EvpnConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "enabled", "role"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EvpnConfig object to a map representation for JSON marshaling.
 func (e EvpnConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.Enabled != nil {
         structMap["enabled"] = e.Enabled
     }
@@ -42,12 +46,12 @@ func (e *EvpnConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "role")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "role")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Enabled = temp.Enabled
     e.Role = temp.Role
     return nil

@@ -8,13 +8,13 @@ import (
 
 // SearchWiredClient represents a SearchWiredClient struct.
 type SearchWiredClient struct {
-    End                  float64               `json:"end"`
-    Limit                int                   `json:"limit"`
-    Next                 *string               `json:"next,omitempty"`
-    Results              []WiredClientResponse `json:"results"`
-    Start                float64               `json:"start"`
-    Total                int                   `json:"total"`
-    AdditionalProperties map[string]any        `json:"_"`
+    End                  float64                `json:"end"`
+    Limit                int                    `json:"limit"`
+    Next                 *string                `json:"next,omitempty"`
+    Results              []WiredClientResponse  `json:"results"`
+    Start                float64                `json:"start"`
+    Total                int                    `json:"total"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SearchWiredClient.
@@ -22,13 +22,17 @@ type SearchWiredClient struct {
 func (s SearchWiredClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "end", "limit", "next", "results", "start", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SearchWiredClient object to a map representation for JSON marshaling.
 func (s SearchWiredClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["end"] = s.End
     structMap["limit"] = s.Limit
     if s.Next != nil {
@@ -52,12 +56,12 @@ func (s *SearchWiredClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "limit", "next", "results", "start", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "next", "results", "start", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.End = *temp.End
     s.Limit = *temp.Limit
     s.Next = temp.Next

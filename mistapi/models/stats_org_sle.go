@@ -10,7 +10,7 @@ import (
 type StatsOrgSle struct {
     Path                 string                  `json:"path"`
     UserMinutes          *StatsOrgSleUserMinutes `json:"user_minutes,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsOrgSle.
@@ -18,13 +18,17 @@ type StatsOrgSle struct {
 func (s StatsOrgSle) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "path", "user_minutes"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsOrgSle object to a map representation for JSON marshaling.
 func (s StatsOrgSle) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["path"] = s.Path
     if s.UserMinutes != nil {
         structMap["user_minutes"] = s.UserMinutes.toMap()
@@ -44,12 +48,12 @@ func (s *StatsOrgSle) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "path", "user_minutes")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "path", "user_minutes")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Path = *temp.Path
     s.UserMinutes = temp.UserMinutes
     return nil

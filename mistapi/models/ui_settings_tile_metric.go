@@ -6,8 +6,8 @@ import (
 
 // UiSettingsTileMetric represents a UiSettingsTileMetric struct.
 type UiSettingsTileMetric struct {
-    ApiName              *string        `json:"apiName,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ApiName              *string                `json:"apiName,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UiSettingsTileMetric.
@@ -15,13 +15,17 @@ type UiSettingsTileMetric struct {
 func (u UiSettingsTileMetric) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "apiName"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UiSettingsTileMetric object to a map representation for JSON marshaling.
 func (u UiSettingsTileMetric) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.ApiName != nil {
         structMap["apiName"] = u.ApiName
     }
@@ -36,12 +40,12 @@ func (u *UiSettingsTileMetric) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "apiName")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "apiName")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.ApiName = temp.ApiName
     return nil
 }

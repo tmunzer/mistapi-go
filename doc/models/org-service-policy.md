@@ -1,6 +1,8 @@
 
 # Org Service Policy
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgServicePolicy`
@@ -25,6 +27,7 @@
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `SslProxy` | [`*models.OrgServicePolicySslProxy`](../../doc/models/org-service-policy-ssl-proxy.md) | Optional | for SRX-only |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,10 +39,18 @@
   "antivirus": {
     "avprofile_id": "00000282-0000-0000-0000-000000000000",
     "enabled": false,
-    "profile": "profile4"
+    "profile": "profile4",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "appqoe": {
-    "enabled": false
+    "enabled": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "created_time": 21.72,
   "ewf": [
@@ -47,21 +58,37 @@
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "standard"
+      "profile": "standard",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "standard"
+      "profile": "standard",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "standard"
+      "profile": "standard",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -3,6 +3,8 @@
 
 device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsApEnvStat`
@@ -23,6 +25,7 @@ device environment, including CPU temperature, Ambient temperature, Humidity, At
 | `MagneZ` | `models.Optional[float64]` | Optional | - |
 | `Pressure` | `models.Optional[float64]` | Optional | - |
 | `VcoreVoltage` | `models.Optional[int]` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,7 +42,11 @@ device environment, including CPU temperature, Ambient temperature, Humidity, At
   "magne_y": 0,
   "magne_z": 0,
   "pressure": 968,
-  "vcore_voltage": 0
+  "vcore_voltage": 0,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

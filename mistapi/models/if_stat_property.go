@@ -22,7 +22,7 @@ type IfStatProperty struct {
     Vlan                 *int                     `json:"vlan,omitempty"`
     WanName              *string                  `json:"wan_name,omitempty"`
     WanType              *string                  `json:"wan_type,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for IfStatProperty.
@@ -30,13 +30,17 @@ type IfStatProperty struct {
 func (i IfStatProperty) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "address_mode", "ips", "nat_addresses", "network_name", "port_id", "port_usage", "redundancy_state", "rx_bytes", "rx_pkts", "servp_info", "tx_bytes", "tx_pkts", "up", "vlan", "wan_name", "wan_type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the IfStatProperty object to a map representation for JSON marshaling.
 func (i IfStatProperty) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.AddressMode != nil {
         structMap["address_mode"] = i.AddressMode
     }
@@ -96,12 +100,12 @@ func (i *IfStatProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "address_mode", "ips", "nat_addresses", "network_name", "port_id", "port_usage", "redundancy_state", "rx_bytes", "rx_pkts", "servp_info", "tx_bytes", "tx_pkts", "up", "vlan", "wan_name", "wan_type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address_mode", "ips", "nat_addresses", "network_name", "port_id", "port_usage", "redundancy_state", "rx_bytes", "rx_pkts", "servp_info", "tx_bytes", "tx_pkts", "up", "vlan", "wan_name", "wan_type")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.AddressMode = temp.AddressMode
     i.Ips = temp.Ips
     i.NatAddresses = temp.NatAddresses

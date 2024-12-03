@@ -6,11 +6,11 @@ import (
 
 // SiteMxtunnelRadsec represents a SiteMxtunnelRadsec struct.
 type SiteMxtunnelRadsec struct {
-    AcctServers          []RadiusAcctServer `json:"acct_servers,omitempty"`
-    AuthServers          []RadiusAuthServer `json:"auth_servers,omitempty"`
-    Enabled              *bool              `json:"enabled,omitempty"`
-    UseMxedge            *bool              `json:"use_mxedge,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    AcctServers          []RadiusAcctServer     `json:"acct_servers,omitempty"`
+    AuthServers          []RadiusAuthServer     `json:"auth_servers,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    UseMxedge            *bool                  `json:"use_mxedge,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteMxtunnelRadsec.
@@ -18,13 +18,17 @@ type SiteMxtunnelRadsec struct {
 func (s SiteMxtunnelRadsec) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "acct_servers", "auth_servers", "enabled", "use_mxedge"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteMxtunnelRadsec object to a map representation for JSON marshaling.
 func (s SiteMxtunnelRadsec) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AcctServers != nil {
         structMap["acct_servers"] = s.AcctServers
     }
@@ -48,12 +52,12 @@ func (s *SiteMxtunnelRadsec) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_servers", "auth_servers", "enabled", "use_mxedge")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acct_servers", "auth_servers", "enabled", "use_mxedge")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AcctServers = temp.AcctServers
     s.AuthServers = temp.AuthServers
     s.Enabled = temp.Enabled

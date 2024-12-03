@@ -1,6 +1,8 @@
 
 # Gateway Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `GatewaySearch`
@@ -22,6 +24,7 @@
 | `Type` | `*string` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
 | `Version` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,7 +40,11 @@
   ],
   "ip": "ip8",
   "last_hostname": "last_hostname0",
-  "mac": "mac8"
+  "mac": "mac8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

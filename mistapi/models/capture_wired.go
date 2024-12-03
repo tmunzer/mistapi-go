@@ -22,7 +22,7 @@ type CaptureWired struct {
     TcpdumpExpression    Optional[string]        `json:"tcpdump_expression"`
     // enum: `wired`
     Type                 string                  `json:"type"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureWired.
@@ -30,13 +30,17 @@ type CaptureWired struct {
 func (c CaptureWired) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ap_mac", "duration", "format", "max_pkt_len", "num_packets", "tcpdump_expression", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureWired object to a map representation for JSON marshaling.
 func (c CaptureWired) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.ApMac.IsValueSet() {
         if c.ApMac.Value() != nil {
             structMap["ap_mac"] = c.ApMac.Value()
@@ -79,12 +83,12 @@ func (c *CaptureWired) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "duration", "format", "max_pkt_len", "num_packets", "tcpdump_expression", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "duration", "format", "max_pkt_len", "num_packets", "tcpdump_expression", "type")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.ApMac = temp.ApMac
     c.Duration = temp.Duration
     c.Format = temp.Format

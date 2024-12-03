@@ -1,6 +1,8 @@
 
 # Response Client Events Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseClientEventsSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.EventsClient`](../../doc/models/events-client.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,12 +34,20 @@
       "proto": "a",
       "ssid": "ssid6",
       "text": "text4",
-      "timestamp": 2.64
+      "timestamp": 2.64,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 234,
   "total": 244,
-  "next": "next4"
+  "next": "next4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

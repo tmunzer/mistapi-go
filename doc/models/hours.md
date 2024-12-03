@@ -5,6 +5,8 @@ hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun
 
 **Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59.
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Hours`
@@ -20,6 +22,7 @@ hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun
 | `Thu` | `*string` | Optional | - |
 | `Tue` | `*string` | Optional | - |
 | `Wed` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,7 +34,11 @@ hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun
   "sun": "09:00-12:00",
   "thu": "09:00-17:00",
   "tue": "09:00-17:00",
-  "wed": "09:00-17:00"
+  "wed": "09:00-17:00",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

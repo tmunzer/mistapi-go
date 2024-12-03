@@ -7,20 +7,20 @@ import (
 
 // DiscoveredSwitch represents a DiscoveredSwitch struct.
 type DiscoveredSwitch struct {
-    Adopted              *bool                `json:"adopted,omitempty"`
-    ApRedundancy         *ApRedundancy        `json:"ap_redundancy,omitempty"`
-    Aps                  []DiscoveredSwitchAp `json:"aps,omitempty"`
-    ChassisId            []string             `json:"chassis_id,omitempty"`
-    ForSite              *bool                `json:"for_site,omitempty"`
-    Model                *string              `json:"model,omitempty"`
-    OrgId                *uuid.UUID           `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID           `json:"site_id,omitempty"`
-    SystemDesc           *string              `json:"system_desc,omitempty"`
-    SystemName           *string              `json:"system_name,omitempty"`
-    Timestamp            *float64             `json:"timestamp,omitempty"`
-    Vendor               *string              `json:"vendor,omitempty"`
-    Version              *string              `json:"version,omitempty"`
-    AdditionalProperties map[string]any       `json:"_"`
+    Adopted              *bool                  `json:"adopted,omitempty"`
+    ApRedundancy         *ApRedundancy          `json:"ap_redundancy,omitempty"`
+    Aps                  []DiscoveredSwitchAp   `json:"aps,omitempty"`
+    ChassisId            []string               `json:"chassis_id,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
+    Model                *string                `json:"model,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    SystemDesc           *string                `json:"system_desc,omitempty"`
+    SystemName           *string                `json:"system_name,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Vendor               *string                `json:"vendor,omitempty"`
+    Version              *string                `json:"version,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DiscoveredSwitch.
@@ -28,13 +28,17 @@ type DiscoveredSwitch struct {
 func (d DiscoveredSwitch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "adopted", "ap_redundancy", "aps", "chassis_id", "for_site", "model", "org_id", "site_id", "system_desc", "system_name", "timestamp", "vendor", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DiscoveredSwitch object to a map representation for JSON marshaling.
 func (d DiscoveredSwitch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.Adopted != nil {
         structMap["adopted"] = d.Adopted
     }
@@ -85,12 +89,12 @@ func (d *DiscoveredSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "adopted", "ap_redundancy", "aps", "chassis_id", "for_site", "model", "org_id", "site_id", "system_desc", "system_name", "timestamp", "vendor", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "adopted", "ap_redundancy", "aps", "chassis_id", "for_site", "model", "org_id", "site_id", "system_desc", "system_name", "timestamp", "vendor", "version")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.Adopted = temp.Adopted
     d.ApRedundancy = temp.ApRedundancy
     d.Aps = temp.Aps

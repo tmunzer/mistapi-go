@@ -10,24 +10,24 @@ import (
 // MapJibestream represents a MapJibestream struct.
 type MapJibestream struct {
     // the client id
-    ClientId             uuid.UUID      `json:"client_id"`
+    ClientId             uuid.UUID              `json:"client_id"`
     // the client secret
-    ClientSecret         string         `json:"client_secret"`
+    ClientSecret         string                 `json:"client_secret"`
     // the jibestream customer record id
-    CustomerId           int            `json:"customer_id"`
+    CustomerId           int                    `json:"customer_id"`
     // the map contents endpoint host
-    EndpointUrl          string         `json:"endpoint_url"`
+    EndpointUrl          string                 `json:"endpoint_url"`
     // the jibestream map id
-    MapId                uuid.UUID      `json:"map_id"`
+    MapId                uuid.UUID              `json:"map_id"`
     // millimeter per pixel
-    Mmpp                 int            `json:"mmpp"`
+    Mmpp                 int                    `json:"mmpp"`
     // pixel per meter, same as the map JSON value.
-    Ppm                  float64        `json:"ppm"`
+    Ppm                  float64                `json:"ppm"`
     // the vendor ‘jibestream’. enum: `jibestream`
-    VendorName           string         `json:"vendor_name"`
+    VendorName           string                 `json:"vendor_name"`
     // the venue or organization id
-    VenueId              int            `json:"venue_id"`
-    AdditionalProperties map[string]any `json:"_"`
+    VenueId              int                    `json:"venue_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapJibestream.
@@ -35,13 +35,17 @@ type MapJibestream struct {
 func (m MapJibestream) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "client_id", "client_secret", "customer_id", "endpoint_url", "map_id", "mmpp", "ppm", "vendor_name", "venue_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MapJibestream object to a map representation for JSON marshaling.
 func (m MapJibestream) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["client_id"] = m.ClientId
     structMap["client_secret"] = m.ClientSecret
     structMap["customer_id"] = m.CustomerId
@@ -66,12 +70,12 @@ func (m *MapJibestream) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "client_id", "client_secret", "customer_id", "endpoint_url", "map_id", "mmpp", "ppm", "vendor_name", "venue_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "client_id", "client_secret", "customer_id", "endpoint_url", "map_id", "mmpp", "ppm", "vendor_name", "venue_id")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.ClientId = *temp.ClientId
     m.ClientSecret = *temp.ClientSecret
     m.CustomerId = *temp.CustomerId

@@ -15,7 +15,7 @@ type SleImpactedSwitches struct {
     Start                *int                        `json:"start,omitempty"`
     Switches             []SleImpactedSwitchesSwitch `json:"switches,omitempty"`
     TotalCount           *int                        `json:"total_count,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedSwitches.
@@ -23,13 +23,17 @@ type SleImpactedSwitches struct {
 func (s SleImpactedSwitches) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "classifier", "end", "failure", "limit", "metric", "page", "start", "switches", "total_count"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedSwitches object to a map representation for JSON marshaling.
 func (s SleImpactedSwitches) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Classifier != nil {
         structMap["classifier"] = s.Classifier
     }
@@ -68,12 +72,12 @@ func (s *SleImpactedSwitches) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "classifier", "end", "failure", "limit", "metric", "page", "start", "switches", "total_count")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "classifier", "end", "failure", "limit", "metric", "page", "start", "switches", "total_count")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Classifier = temp.Classifier
     s.End = temp.End
     s.Failure = temp.Failure

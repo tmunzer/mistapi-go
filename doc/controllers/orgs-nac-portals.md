@@ -740,9 +740,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 nacportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacPortalTemplate{
-    Alignment: models.ToPointer(models.PortalTemplateAlignmentEnum("center")),
-    Color:     models.ToPointer("#1074bc"),
-    PoweredBy: models.ToPointer(false),
+    Alignment:            models.ToPointer(models.PortalTemplateAlignmentEnum("center")),
+    Color:                models.ToPointer("#1074bc"),
+    PoweredBy:            models.ToPointer(false),
 }
 
 resp, err := orgsNACPortals.UpdateOrgNacPortalTempalte(ctx, orgId, nacportalId, &body)

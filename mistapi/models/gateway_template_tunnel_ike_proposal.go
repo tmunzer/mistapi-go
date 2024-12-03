@@ -22,7 +22,7 @@ type GatewayTemplateTunnelIkeProposal struct {
     DhGroup              *GatewayTemplateTunnelIkeDhGroupEnum `json:"dh_group,omitempty"`
     // enum: `3des`, `aes128`, `aes256`, `aes_gcm128`, `aes_gcm256`
     EncAlgo              Optional[TunnelConfigsEncAlgoEnum]   `json:"enc_algo"`
-    AdditionalProperties map[string]any                       `json:"_"`
+    AdditionalProperties map[string]interface{}               `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayTemplateTunnelIkeProposal.
@@ -30,13 +30,17 @@ type GatewayTemplateTunnelIkeProposal struct {
 func (g GatewayTemplateTunnelIkeProposal) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "auth_algo", "dh_group", "enc_algo"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayTemplateTunnelIkeProposal object to a map representation for JSON marshaling.
 func (g GatewayTemplateTunnelIkeProposal) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.AuthAlgo != nil {
         structMap["auth_algo"] = g.AuthAlgo
     }
@@ -61,12 +65,12 @@ func (g *GatewayTemplateTunnelIkeProposal) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_algo", "dh_group", "enc_algo")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_algo", "dh_group", "enc_algo")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.AuthAlgo = temp.AuthAlgo
     g.DhGroup = temp.DhGroup
     g.EncAlgo = temp.EncAlgo

@@ -1,6 +1,8 @@
 
 # Const Insight Metrics Property
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ConstInsightMetricsProperty`
@@ -23,6 +25,7 @@
 | `Type` | `*string` | Optional | - |
 | `Unit` | `*string` | Optional | - |
 | `Values` | `*interface{}` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,18 +43,34 @@
   "intervals": {
     "key0": {
       "interval": 140,
-      "max_age": 96
+      "max_age": 96,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key1": {
       "interval": 140,
-      "max_age": 96
+      "max_age": 96,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key2": {
       "interval": 140,
-      "max_age": 96
+      "max_age": 96,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "keys": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"
   }

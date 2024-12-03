@@ -3,6 +3,8 @@
 
 IP stats
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsMxedgeIpStat`
@@ -15,6 +17,7 @@ IP stats
 | `Ip6` | `*string` | Optional | - |
 | `Ips` | `map[string]string` | Optional | Property key is the interface name. IPs for each net interface |
 | `Macs` | `map[string]string` | Optional | Property key is the interface name. MAC for each net interface |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,6 +30,10 @@ IP stats
   },
   "macs": {
     "ens18": "e4434b217044"
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

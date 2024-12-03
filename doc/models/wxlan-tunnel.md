@@ -3,6 +3,8 @@
 
 WxLAn Tunnel
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WxlanTunnel`
@@ -32,6 +34,7 @@ WxLAn Tunnel
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `UdpPort` | `*int` | Optional | udp port if `use_udp`==`true` |
 | `UseUdp` | `*bool` | Optional | whether to use UDP instead of IP (proto=115, which is default of L2TPv3)<br>**Default**: `false` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -54,9 +57,17 @@ WxLAn Tunnel
     "host_routes": [
       "host_routes6",
       "host_routes7"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "for_site": false
+  "for_site": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

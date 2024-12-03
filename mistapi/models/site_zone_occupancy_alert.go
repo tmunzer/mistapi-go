@@ -8,12 +8,12 @@ import (
 // Zone Occupancy alert site settings
 type SiteZoneOccupancyAlert struct {
     // list of email addresses to send email notifications when the alert threshold is reached
-    EmailNotifiers       []string       `json:"email_notifiers,omitempty"`
+    EmailNotifiers       []string               `json:"email_notifiers,omitempty"`
     // indicate whether zone occupancy alert is enabled for the site
-    Enabled              *bool          `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // sending zone-occupancy-alert webhook message only if a zone stays non-compliant (i.e. actual occupancy > occupancy_limit) for a minimum duration specified in the threshold, in minutes
-    Threshold            *int           `json:"threshold,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Threshold            *int                   `json:"threshold,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteZoneOccupancyAlert.
@@ -21,13 +21,17 @@ type SiteZoneOccupancyAlert struct {
 func (s SiteZoneOccupancyAlert) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "email_notifiers", "enabled", "threshold"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteZoneOccupancyAlert object to a map representation for JSON marshaling.
 func (s SiteZoneOccupancyAlert) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.EmailNotifiers != nil {
         structMap["email_notifiers"] = s.EmailNotifiers
     }
@@ -48,12 +52,12 @@ func (s *SiteZoneOccupancyAlert) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "email_notifiers", "enabled", "threshold")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "email_notifiers", "enabled", "threshold")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.EmailNotifiers = temp.EmailNotifiers
     s.Enabled = temp.Enabled
     s.Threshold = temp.Threshold

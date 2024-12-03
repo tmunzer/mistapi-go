@@ -1,6 +1,8 @@
 
 # Stats Device Other
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsDeviceOther`
@@ -18,6 +20,7 @@
 | `Vendor` | `*string` | Optional | - |
 | `VendorSpecific` | [`*models.StatsDeviceOtherVendorSpecific`](../../doc/models/stats-device-other-vendor-specific.md) | Optional | when `vendor`==`cradlepoint` |
 | `Version` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,7 +33,11 @@
   "status": "online",
   "uptime": 20296,
   "vendor": "cradlepoint",
-  "version": "7.22.70"
+  "version": "7.22.70",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

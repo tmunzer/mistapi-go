@@ -7,13 +7,13 @@ import (
 // StatsMxedgeIpStat represents a StatsMxedgeIpStat struct.
 // IP stats
 type StatsMxedgeIpStat struct {
-    Ip                   *string           `json:"ip,omitempty"`
-    Ip6                  *string           `json:"ip6,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
+    Ip6                  *string                `json:"ip6,omitempty"`
     // Property key is the interface name. IPs for each net interface
-    Ips                  map[string]string `json:"ips,omitempty"`
+    Ips                  map[string]string      `json:"ips,omitempty"`
     // Property key is the interface name. MAC for each net interface
-    Macs                 map[string]string `json:"macs,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    Macs                 map[string]string      `json:"macs,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeIpStat.
@@ -21,13 +21,17 @@ type StatsMxedgeIpStat struct {
 func (s StatsMxedgeIpStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ip", "ip6", "ips", "macs"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxedgeIpStat object to a map representation for JSON marshaling.
 func (s StatsMxedgeIpStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Ip != nil {
         structMap["ip"] = s.Ip
     }
@@ -51,12 +55,12 @@ func (s *StatsMxedgeIpStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ip", "ip6", "ips", "macs")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ip", "ip6", "ips", "macs")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Ip = temp.Ip
     s.Ip6 = temp.Ip6
     s.Ips = temp.Ips

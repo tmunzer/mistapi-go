@@ -7,11 +7,11 @@ import (
 // WlanSchedule represents a WlanSchedule struct.
 // WLAN operating schedule, default is disabled
 type WlanSchedule struct {
-    Enabled              *bool          `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun).
     // **Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59.
-    Hours                *Hours         `json:"hours,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Hours                *Hours                 `json:"hours,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanSchedule.
@@ -19,13 +19,17 @@ type WlanSchedule struct {
 func (w WlanSchedule) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "enabled", "hours"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanSchedule object to a map representation for JSON marshaling.
 func (w WlanSchedule) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Enabled != nil {
         structMap["enabled"] = w.Enabled
     }
@@ -43,12 +47,12 @@ func (w *WlanSchedule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "hours")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "hours")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Enabled = temp.Enabled
     w.Hours = temp.Hours
     return nil

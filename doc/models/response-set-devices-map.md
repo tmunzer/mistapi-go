@@ -1,6 +1,8 @@
 
 # Response Set Devices Map
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseSetDevicesMap`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Locked` | `[]string` | Optional | - |
 | `Moved` | `[]string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
     "moved9",
     "moved0",
     "moved1"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

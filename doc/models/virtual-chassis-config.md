@@ -3,6 +3,8 @@
 
 Virtual Chassis
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `VirtualChassisConfig`
@@ -14,6 +16,7 @@ Virtual Chassis
 | `Locating` | `*bool` | Optional | - |
 | `Members` | [`[]models.VirtualChassisConfigMember`](../../doc/models/virtual-chassis-config-member.md) | Optional | - |
 | `Preprovisioned` | `*bool` | Optional | To create the Virtual Chassis in Pre-Provisioned mode<br>**Default**: `false` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,7 +34,11 @@ Virtual Chassis
         "vc_ports3",
         "vc_ports4"
       ],
-      "vc_role": "master"
+      "vc_role": "master",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "locating": false,
@@ -42,9 +49,17 @@ Virtual Chassis
         "vc_ports3",
         "vc_ports4"
       ],
-      "vc_role": "master"
+      "vc_role": "master",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

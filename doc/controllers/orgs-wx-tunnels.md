@@ -49,13 +49,13 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanTunnel{
-    ForMgmt:       models.ToPointer(false),
-    HelloInterval: models.ToPointer(60),
-    HelloRetries:  models.ToPointer(7),
-    IsStatic:      models.ToPointer(false),
-    Mtu:           models.ToPointer(0),
-    Name:          "name6",
-    UseUdp:        models.ToPointer(false),
+    ForMgmt:              models.ToPointer(false),
+    HelloInterval:        models.ToPointer(60),
+    HelloRetries:         models.ToPointer(7),
+    IsStatic:             models.ToPointer(false),
+    Mtu:                  models.ToPointer(0),
+    Name:                 "name6",
+    UseUdp:               models.ToPointer(false),
 }
 
 apiResponse, err := orgsWxTunnels.CreateOrgWxTunnel(ctx, orgId, &body)
@@ -431,13 +431,13 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wxtunnelId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanTunnel{
-    ForMgmt:       models.ToPointer(false),
-    HelloInterval: models.ToPointer(60),
-    HelloRetries:  models.ToPointer(7),
-    IsStatic:      models.ToPointer(false),
-    Mtu:           models.ToPointer(0),
-    Name:          "name6",
-    UseUdp:        models.ToPointer(false),
+    ForMgmt:              models.ToPointer(false),
+    HelloInterval:        models.ToPointer(60),
+    HelloRetries:         models.ToPointer(7),
+    IsStatic:             models.ToPointer(false),
+    Mtu:                  models.ToPointer(0),
+    Name:                 "name6",
+    UseUdp:               models.ToPointer(false),
 }
 
 apiResponse, err := orgsWxTunnels.UpdateOrgWxTunnel(ctx, orgId, wxtunnelId, &body)

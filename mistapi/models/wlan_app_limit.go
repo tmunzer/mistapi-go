@@ -9,12 +9,12 @@ import (
 type WlanAppLimit struct {
     // Map from app key to bandwidth in kbps.
     // Property key is the app key, defined in Get Application List
-    Apps                 map[string]int `json:"apps,omitempty"`
-    Enabled              *bool          `json:"enabled,omitempty"`
+    Apps                 map[string]int         `json:"apps,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // Map from wxtag_id of Hostname Wxlan Tags to bandwidth in kbps
     // Property key is the wxtag id
-    WxtagIds             map[string]int `json:"wxtag_ids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    WxtagIds             map[string]int         `json:"wxtag_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAppLimit.
@@ -22,13 +22,17 @@ type WlanAppLimit struct {
 func (w WlanAppLimit) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "apps", "enabled", "wxtag_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanAppLimit object to a map representation for JSON marshaling.
 func (w WlanAppLimit) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Apps != nil {
         structMap["apps"] = w.Apps
     }
@@ -49,12 +53,12 @@ func (w *WlanAppLimit) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "apps", "enabled", "wxtag_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "apps", "enabled", "wxtag_ids")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Apps = temp.Apps
     w.Enabled = temp.Enabled
     w.WxtagIds = temp.WxtagIds

@@ -27,7 +27,7 @@ type UiSettingsTile struct {
     TimeRange            *UiSettingsTileTimeRange `json:"timeRange,omitempty"`
     TrendType            *string                  `json:"trendType,omitempty"`
     VizType              *string                  `json:"vizType,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UiSettingsTile.
@@ -35,13 +35,17 @@ type UiSettingsTile struct {
 func (u UiSettingsTile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "chartBand", "chartColor", "chartDirection", "chartRankBy", "chartType", "colspan", "column", "hideEmptyRows", "id", "metric", "name", "row", "rowspan", "scopeId", "scopeType", "sortedColumnIds", "timeRange", "trendType", "vizType"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UiSettingsTile object to a map representation for JSON marshaling.
 func (u UiSettingsTile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.ChartBand != nil {
         structMap["chartBand"] = u.ChartBand
     }
@@ -110,12 +114,12 @@ func (u *UiSettingsTile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "chartBand", "chartColor", "chartDirection", "chartRankBy", "chartType", "colspan", "column", "hideEmptyRows", "id", "metric", "name", "row", "rowspan", "scopeId", "scopeType", "sortedColumnIds", "timeRange", "trendType", "vizType")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "chartBand", "chartColor", "chartDirection", "chartRankBy", "chartType", "colspan", "column", "hideEmptyRows", "id", "metric", "name", "row", "rowspan", "scopeId", "scopeType", "sortedColumnIds", "timeRange", "trendType", "vizType")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.ChartBand = temp.ChartBand
     u.ChartColor = temp.ChartColor
     u.ChartDirection = temp.ChartDirection

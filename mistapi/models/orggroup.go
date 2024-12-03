@@ -11,15 +11,15 @@ import (
 // Organizations Group
 type Orggroup struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64       `json:"modified_time,omitempty"`
-    MspId                *uuid.UUID     `json:"msp_id,omitempty"`
-    Name                 string         `json:"name"`
-    OrgIds               []uuid.UUID    `json:"org_ids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    MspId                *uuid.UUID             `json:"msp_id,omitempty"`
+    Name                 string                 `json:"name"`
+    OrgIds               []uuid.UUID            `json:"org_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Orggroup.
@@ -27,13 +27,17 @@ type Orggroup struct {
 func (o Orggroup) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "created_time", "id", "modified_time", "msp_id", "name", "org_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the Orggroup object to a map representation for JSON marshaling.
 func (o Orggroup) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.CreatedTime != nil {
         structMap["created_time"] = o.CreatedTime
     }
@@ -65,12 +69,12 @@ func (o *Orggroup) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "id", "modified_time", "msp_id", "name", "org_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "id", "modified_time", "msp_id", "name", "org_ids")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.CreatedTime = temp.CreatedTime
     o.Id = temp.Id
     o.ModifiedTime = temp.ModifiedTime

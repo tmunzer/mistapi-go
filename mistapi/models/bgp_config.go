@@ -45,7 +45,7 @@ type BgpConfig struct {
     VpnName                *string                       `json:"vpn_name,omitempty"`
     // if `via`==`wan`
     WanName                *string                       `json:"wan_name,omitempty"`
-    AdditionalProperties   map[string]any                `json:"_"`
+    AdditionalProperties   map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for BgpConfig.
@@ -53,13 +53,17 @@ type BgpConfig struct {
 func (b BgpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(b.AdditionalProperties,
+        "auth_key", "bfd_minimum_interval", "bfd_multiplier", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_readvertise_to_overlay", "tunnel_name", "type", "via", "vpn_name", "wan_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(b.toMap())
 }
 
 // toMap converts the BgpConfig object to a map representation for JSON marshaling.
 func (b BgpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, b.AdditionalProperties)
+    MergeAdditionalProperties(structMap, b.AdditionalProperties)
     if b.AuthKey != nil {
         structMap["auth_key"] = b.AuthKey
     }
@@ -142,12 +146,12 @@ func (b *BgpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_key", "bfd_minimum_interval", "bfd_multiplier", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_readvertise_to_overlay", "tunnel_name", "type", "via", "vpn_name", "wan_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_key", "bfd_minimum_interval", "bfd_multiplier", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_readvertise_to_overlay", "tunnel_name", "type", "via", "vpn_name", "wan_name")
     if err != nil {
     	return err
     }
-    
     b.AdditionalProperties = additionalProperties
+    
     b.AuthKey = temp.AuthKey
     b.BfdMinimumInterval = temp.BfdMinimumInterval
     b.BfdMultiplier = temp.BfdMultiplier

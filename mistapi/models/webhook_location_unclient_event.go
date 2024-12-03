@@ -18,7 +18,7 @@ type WebhookLocationUnclientEvent struct {
     X                      *float64                      `json:"x,omitempty"`
     // y, in meter
     Y                      *float64                      `json:"y,omitempty"`
-    AdditionalProperties   map[string]any                `json:"_"`
+    AdditionalProperties   map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookLocationUnclientEvent.
@@ -26,13 +26,17 @@ type WebhookLocationUnclientEvent struct {
 func (w WebhookLocationUnclientEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "mac", "map_id", "site_id", "timestamp", "type", "wifi_beacon_extended_info", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookLocationUnclientEvent object to a map representation for JSON marshaling.
 func (w WebhookLocationUnclientEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Mac != nil {
         structMap["mac"] = w.Mac
     }
@@ -68,12 +72,12 @@ func (w *WebhookLocationUnclientEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "map_id", "site_id", "timestamp", "type", "wifi_beacon_extended_info", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "map_id", "site_id", "timestamp", "type", "wifi_beacon_extended_info", "x", "y")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Mac = temp.Mac
     w.MapId = temp.MapId
     w.SiteId = temp.SiteId

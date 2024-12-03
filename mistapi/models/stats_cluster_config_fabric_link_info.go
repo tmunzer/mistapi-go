@@ -6,12 +6,12 @@ import (
 
 // StatsClusterConfigFabricLinkInfo represents a StatsClusterConfigFabricLinkInfo struct.
 type StatsClusterConfigFabricLinkInfo struct {
-    DataPlaneNotifiedStatus *string        `json:"DataPlaneNotifiedStatus,omitempty"`
-    Interface               []string       `json:"Interface,omitempty"`
-    InternalStatus          *string        `json:"InternalStatus,omitempty"`
-    State                   *string        `json:"State,omitempty"`
-    Status                  *string        `json:"Status,omitempty"`
-    AdditionalProperties    map[string]any `json:"_"`
+    DataPlaneNotifiedStatus *string                `json:"DataPlaneNotifiedStatus,omitempty"`
+    Interface               []string               `json:"Interface,omitempty"`
+    InternalStatus          *string                `json:"InternalStatus,omitempty"`
+    State                   *string                `json:"State,omitempty"`
+    Status                  *string                `json:"Status,omitempty"`
+    AdditionalProperties    map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsClusterConfigFabricLinkInfo.
@@ -19,13 +19,17 @@ type StatsClusterConfigFabricLinkInfo struct {
 func (s StatsClusterConfigFabricLinkInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "DataPlaneNotifiedStatus", "Interface", "InternalStatus", "State", "Status"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsClusterConfigFabricLinkInfo object to a map representation for JSON marshaling.
 func (s StatsClusterConfigFabricLinkInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.DataPlaneNotifiedStatus != nil {
         structMap["DataPlaneNotifiedStatus"] = s.DataPlaneNotifiedStatus
     }
@@ -52,12 +56,12 @@ func (s *StatsClusterConfigFabricLinkInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "DataPlaneNotifiedStatus", "Interface", "InternalStatus", "State", "Status")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "DataPlaneNotifiedStatus", "Interface", "InternalStatus", "State", "Status")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.DataPlaneNotifiedStatus = temp.DataPlaneNotifiedStatus
     s.Interface = temp.Interface
     s.InternalStatus = temp.InternalStatus

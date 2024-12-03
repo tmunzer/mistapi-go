@@ -1,6 +1,8 @@
 
 # Webhook Site Sle Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookSiteSleEvent`
@@ -13,6 +15,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Sle` | [`*models.WebhookSiteSleEventSle`](../../doc/models/webhook-site-sle-event-sle.md) | Optional | - |
 | `Timestamp` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,15 @@
   "sle": {
     "ap-availability": 199.22,
     "successful-connect": 14.8,
-    "time-to-connect": 125.56
+    "time-to-connect": 125.56,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

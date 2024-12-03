@@ -1,6 +1,8 @@
 
 # Response Device Radio Channels
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseDeviceRadioChannels`
@@ -22,6 +24,7 @@
 | `Key` | `string` | Required | - |
 | `Name` | `string` | Required | - |
 | `Uses` | `string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -446,7 +449,11 @@
   "key": "key6",
   "name": "name6",
   "uses": "uses8",
-  "band6_enabled": false
+  "band6_enabled": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

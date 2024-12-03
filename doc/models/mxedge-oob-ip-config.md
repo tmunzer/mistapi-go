@@ -3,6 +3,8 @@
 
 ip configuration of the Mist Edge out-of_band management interface
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MxedgeOobIpConfig`
@@ -22,6 +24,7 @@ ip configuration of the Mist Edge out-of_band management interface
 | `Netmask6` | `*string` | Optional | - |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
 | `Type6` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,7 +45,11 @@ ip configuration of the Mist Edge out-of_band management interface
   "netmask": "255.255.255.0",
   "netmask6": "/64",
   "type": "static",
-  "type6": "static"
+  "type6": "static",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

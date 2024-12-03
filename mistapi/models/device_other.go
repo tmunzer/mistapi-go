@@ -8,20 +8,20 @@ import (
 // DeviceOther represents a DeviceOther struct.
 type DeviceOther struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
-    DeviceMac            *string        `json:"device_mac,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
+    DeviceMac            *string                `json:"device_mac,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Mac                  *string        `json:"mac,omitempty"`
-    Model                *string        `json:"model,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    Model                *string                `json:"model,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64       `json:"modified_time,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    Serial               *string        `json:"serial,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Vendor               *string        `json:"vendor,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    Serial               *string                `json:"serial,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Vendor               *string                `json:"vendor,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceOther.
@@ -29,13 +29,17 @@ type DeviceOther struct {
 func (d DeviceOther) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "created_time", "device_mac", "id", "mac", "model", "modified_time", "name", "org_id", "serial", "site_id", "vendor"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DeviceOther object to a map representation for JSON marshaling.
 func (d DeviceOther) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.CreatedTime != nil {
         structMap["created_time"] = d.CreatedTime
     }
@@ -80,12 +84,12 @@ func (d *DeviceOther) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "device_mac", "id", "mac", "model", "modified_time", "name", "org_id", "serial", "site_id", "vendor")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "device_mac", "id", "mac", "model", "modified_time", "name", "org_id", "serial", "site_id", "vendor")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.CreatedTime = temp.CreatedTime
     d.DeviceMac = temp.DeviceMac
     d.Id = temp.Id

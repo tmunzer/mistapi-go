@@ -1,6 +1,8 @@
 
 # License Sub
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `LicenseSub`
@@ -20,6 +22,7 @@
 | `StartTime` | `*int` | Optional | start date of the license term |
 | `SubscriptionId` | `*string` | Optional | - |
 | `Type` | [`*models.LicenseTypeEnum`](../../doc/models/license-type-enum.md) | Optional | enum: `SUB-AST`, `SUB-DATA`, `SUB-ENG`, `SUB-EX12`, `SUB-EX24`, `SUB-EX48`, `SUB-MAN`, `SUB-ME`, `SUB-PMA`, `SUB-SRX1`, `SUB-SRX2`, `SUB-SVNA`, `SUB-VNA`, `SUB-WAN1`, `SUB-WAN2`, `SUB-WVNA1`, `SUB-WVNA2` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,7 +33,11 @@
   "created_time": 46.48,
   "end_time": 18,
   "modified_time": 32.48,
-  "order_id": "order_id8"
+  "order_id": "order_id8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

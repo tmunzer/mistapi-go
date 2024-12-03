@@ -7,8 +7,8 @@ import (
 // StatsMxedgeLagStat represents a StatsMxedgeLagStat struct.
 type StatsMxedgeLagStat struct {
     // list of ports active on the LAG defined by the LACP
-    ActivePorts          []string       `json:"active_ports,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ActivePorts          []string               `json:"active_ports,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeLagStat.
@@ -16,13 +16,17 @@ type StatsMxedgeLagStat struct {
 func (s StatsMxedgeLagStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "active_ports"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxedgeLagStat object to a map representation for JSON marshaling.
 func (s StatsMxedgeLagStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ActivePorts != nil {
         structMap["active_ports"] = s.ActivePorts
     }
@@ -37,12 +41,12 @@ func (s *StatsMxedgeLagStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "active_ports")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "active_ports")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ActivePorts = temp.ActivePorts
     return nil
 }

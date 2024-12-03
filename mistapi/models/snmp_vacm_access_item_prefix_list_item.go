@@ -20,7 +20,7 @@ type SnmpVacmAccessItemPrefixListItem struct {
     Type                 *SnmpVacmAccessItemTypeEnum                `json:"type,omitempty"`
     // refer to view name
     WriteView            *string                                    `json:"write_view,omitempty"`
-    AdditionalProperties map[string]any                             `json:"_"`
+    AdditionalProperties map[string]interface{}                     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpVacmAccessItemPrefixListItem.
@@ -28,13 +28,17 @@ type SnmpVacmAccessItemPrefixListItem struct {
 func (s SnmpVacmAccessItemPrefixListItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "context_prefix", "notify_view", "read_view", "security_level", "security_model", "type", "write_view"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SnmpVacmAccessItemPrefixListItem object to a map representation for JSON marshaling.
 func (s SnmpVacmAccessItemPrefixListItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ContextPrefix != nil {
         structMap["context_prefix"] = s.ContextPrefix
     }
@@ -67,12 +71,12 @@ func (s *SnmpVacmAccessItemPrefixListItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "context_prefix", "notify_view", "read_view", "security_level", "security_model", "type", "write_view")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "context_prefix", "notify_view", "read_view", "security_level", "security_model", "type", "write_view")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ContextPrefix = temp.ContextPrefix
     s.NotifyView = temp.NotifyView
     s.ReadView = temp.ReadView

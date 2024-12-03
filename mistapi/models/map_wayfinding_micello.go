@@ -6,10 +6,10 @@ import (
 
 // MapWayfindingMicello represents a MapWayfindingMicello struct.
 type MapWayfindingMicello struct {
-    AccountKey           *string        `json:"account_key,omitempty"`
-    DefaultLevelId       *int           `json:"default_level_id,omitempty"`
-    MapId                *string        `json:"map_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    AccountKey           *string                `json:"account_key,omitempty"`
+    DefaultLevelId       *int                   `json:"default_level_id,omitempty"`
+    MapId                *string                `json:"map_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapWayfindingMicello.
@@ -17,13 +17,17 @@ type MapWayfindingMicello struct {
 func (m MapWayfindingMicello) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "account_key", "default_level_id", "map_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MapWayfindingMicello object to a map representation for JSON marshaling.
 func (m MapWayfindingMicello) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.AccountKey != nil {
         structMap["account_key"] = m.AccountKey
     }
@@ -44,12 +48,12 @@ func (m *MapWayfindingMicello) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "account_key", "default_level_id", "map_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_key", "default_level_id", "map_id")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.AccountKey = temp.AccountKey
     m.DefaultLevelId = temp.DefaultLevelId
     m.MapId = temp.MapId

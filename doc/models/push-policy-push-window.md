@@ -3,6 +3,8 @@
 
 if enabled, new config will only be pushed to device within the specified time window
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `PushPolicyPushWindow`
@@ -13,6 +15,7 @@ if enabled, new config will only be pushed to device within the specified time w
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Hours` | [`*models.Hours`](../../doc/models/hours.md) | Optional | hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun).<br><br>**Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59. |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,15 @@ if enabled, new config will only be pushed to device within the specified time w
     "mon": "mon8",
     "sat": "sat0",
     "sun": "sun6",
-    "thu": "thu6"
+    "thu": "thu6",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

@@ -6,11 +6,11 @@ import (
 
 // ConstLicenseType represents a ConstLicenseType struct.
 type ConstLicenseType struct {
-    Description          *string        `json:"description,omitempty"`
-    Includes             []string       `json:"includes,omitempty"`
-    Key                  *string        `json:"key,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Description          *string                `json:"description,omitempty"`
+    Includes             []string               `json:"includes,omitempty"`
+    Key                  *string                `json:"key,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstLicenseType.
@@ -18,13 +18,17 @@ type ConstLicenseType struct {
 func (c ConstLicenseType) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "description", "includes", "key", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstLicenseType object to a map representation for JSON marshaling.
 func (c ConstLicenseType) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Description != nil {
         structMap["description"] = c.Description
     }
@@ -48,12 +52,12 @@ func (c *ConstLicenseType) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "description", "includes", "key", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "description", "includes", "key", "name")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Description = temp.Description
     c.Includes = temp.Includes
     c.Key = temp.Key

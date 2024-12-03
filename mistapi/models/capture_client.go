@@ -9,20 +9,20 @@ import (
 // CaptureClient represents a CaptureClient struct.
 // Initiate a Client Packet Capture
 type CaptureClient struct {
-    ApMac                Optional[string] `json:"ap_mac"`
+    ApMac                Optional[string]       `json:"ap_mac"`
     // client mac, required if `type`==`client`; optional otherwise
-    ClientMac            Optional[string] `json:"client_mac"`
+    ClientMac            Optional[string]       `json:"client_mac"`
     // duration of the capture, in seconds
-    Duration             Optional[int]    `json:"duration"`
-    IncludesMcast        *bool            `json:"includes_mcast,omitempty"`
-    MaxPktLen            Optional[int]    `json:"max_pkt_len"`
+    Duration             Optional[int]          `json:"duration"`
+    IncludesMcast        *bool                  `json:"includes_mcast,omitempty"`
+    MaxPktLen            Optional[int]          `json:"max_pkt_len"`
     // number of packets to capture, 0 for unlimited, default is 1024 for client-capture
-    NumPackets           Optional[int]    `json:"num_packets"`
+    NumPackets           Optional[int]          `json:"num_packets"`
     // optional filter by ssid
-    Ssid                 Optional[string] `json:"ssid"`
+    Ssid                 Optional[string]       `json:"ssid"`
     // enum: `client`
-    Type                 string           `json:"type"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureClient.
@@ -30,13 +30,17 @@ type CaptureClient struct {
 func (c CaptureClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ap_mac", "client_mac", "duration", "includes_mcast", "max_pkt_len", "num_packets", "ssid", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureClient object to a map representation for JSON marshaling.
 func (c CaptureClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.ApMac.IsValueSet() {
         if c.ApMac.Value() != nil {
             structMap["ap_mac"] = c.ApMac.Value()
@@ -98,12 +102,12 @@ func (c *CaptureClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "client_mac", "duration", "includes_mcast", "max_pkt_len", "num_packets", "ssid", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "client_mac", "duration", "includes_mcast", "max_pkt_len", "num_packets", "ssid", "type")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.ApMac = temp.ApMac
     c.ClientMac = temp.ClientMac
     c.Duration = temp.Duration

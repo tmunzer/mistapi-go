@@ -30,7 +30,7 @@ type SdkstatsWirelessClient struct {
     Y                    *float64                         `json:"y,omitempty"`
     // list of zone_id’s of the sdk client is in and since when (if known)
     Zones                []SdkstatsWirelessClientZone     `json:"zones,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SdkstatsWirelessClient.
@@ -38,13 +38,17 @@ type SdkstatsWirelessClient struct {
 func (s SdkstatsWirelessClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "id", "last_seen", "map_id", "name", "network_connection", "uuid", "vbeacons", "x", "y", "zones"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SdkstatsWirelessClient object to a map representation for JSON marshaling.
 func (s SdkstatsWirelessClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["id"] = s.Id
     structMap["last_seen"] = s.LastSeen
     if s.MapId.IsValueSet() {
@@ -88,12 +92,12 @@ func (s *SdkstatsWirelessClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "last_seen", "map_id", "name", "network_connection", "uuid", "vbeacons", "x", "y", "zones")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "last_seen", "map_id", "name", "network_connection", "uuid", "vbeacons", "x", "y", "zones")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Id = *temp.Id
     s.LastSeen = *temp.LastSeen
     s.MapId = temp.MapId

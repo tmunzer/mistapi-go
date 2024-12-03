@@ -6,12 +6,12 @@ import (
 
 // WlanAppQosOthersItem represents a WlanAppQosOthersItem struct.
 type WlanAppQosOthersItem struct {
-    Dscp                 *int           `json:"dscp,omitempty"`
-    DstSubnet            *string        `json:"dst_subnet,omitempty"`
-    PortRanges           *string        `json:"port_ranges,omitempty"`
-    Protocol             *string        `json:"protocol,omitempty"`
-    SrcSubnet            *string        `json:"src_subnet,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Dscp                 *int                   `json:"dscp,omitempty"`
+    DstSubnet            *string                `json:"dst_subnet,omitempty"`
+    PortRanges           *string                `json:"port_ranges,omitempty"`
+    Protocol             *string                `json:"protocol,omitempty"`
+    SrcSubnet            *string                `json:"src_subnet,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAppQosOthersItem.
@@ -19,13 +19,17 @@ type WlanAppQosOthersItem struct {
 func (w WlanAppQosOthersItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "dscp", "dst_subnet", "port_ranges", "protocol", "src_subnet"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanAppQosOthersItem object to a map representation for JSON marshaling.
 func (w WlanAppQosOthersItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Dscp != nil {
         structMap["dscp"] = w.Dscp
     }
@@ -52,12 +56,12 @@ func (w *WlanAppQosOthersItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dscp", "dst_subnet", "port_ranges", "protocol", "src_subnet")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dscp", "dst_subnet", "port_ranges", "protocol", "src_subnet")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Dscp = temp.Dscp
     w.DstSubnet = temp.DstSubnet
     w.PortRanges = temp.PortRanges

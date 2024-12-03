@@ -7,11 +7,11 @@ import (
 
 // OrgEvent represents a OrgEvent struct.
 type OrgEvent struct {
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    Text                 *string        `json:"text,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
-    Type                 *string        `json:"type,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    Text                 *string                `json:"text,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgEvent.
@@ -19,13 +19,17 @@ type OrgEvent struct {
 func (o OrgEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "org_id", "text", "timestamp", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgEvent object to a map representation for JSON marshaling.
 func (o OrgEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.OrgId != nil {
         structMap["org_id"] = o.OrgId
     }
@@ -49,12 +53,12 @@ func (o *OrgEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "org_id", "text", "timestamp", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "org_id", "text", "timestamp", "type")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.OrgId = temp.OrgId
     o.Text = temp.Text
     o.Timestamp = temp.Timestamp

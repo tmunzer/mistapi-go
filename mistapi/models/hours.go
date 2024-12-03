@@ -8,14 +8,14 @@ import (
 // hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun). 
 // **Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59.
 type Hours struct {
-    Fri                  *string        `json:"fri,omitempty"`
-    Mon                  *string        `json:"mon,omitempty"`
-    Sat                  *string        `json:"sat,omitempty"`
-    Sun                  *string        `json:"sun,omitempty"`
-    Thu                  *string        `json:"thu,omitempty"`
-    Tue                  *string        `json:"tue,omitempty"`
-    Wed                  *string        `json:"wed,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Fri                  *string                `json:"fri,omitempty"`
+    Mon                  *string                `json:"mon,omitempty"`
+    Sat                  *string                `json:"sat,omitempty"`
+    Sun                  *string                `json:"sun,omitempty"`
+    Thu                  *string                `json:"thu,omitempty"`
+    Tue                  *string                `json:"tue,omitempty"`
+    Wed                  *string                `json:"wed,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Hours.
@@ -23,13 +23,17 @@ type Hours struct {
 func (h Hours) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(h.AdditionalProperties,
+        "fri", "mon", "sat", "sun", "thu", "tue", "wed"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(h.toMap())
 }
 
 // toMap converts the Hours object to a map representation for JSON marshaling.
 func (h Hours) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, h.AdditionalProperties)
+    MergeAdditionalProperties(structMap, h.AdditionalProperties)
     if h.Fri != nil {
         structMap["fri"] = h.Fri
     }
@@ -62,12 +66,12 @@ func (h *Hours) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "fri", "mon", "sat", "sun", "thu", "tue", "wed")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "fri", "mon", "sat", "sun", "thu", "tue", "wed")
     if err != nil {
     	return err
     }
-    
     h.AdditionalProperties = additionalProperties
+    
     h.Fri = temp.Fri
     h.Mon = temp.Mon
     h.Sat = temp.Sat

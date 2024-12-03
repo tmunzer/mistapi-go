@@ -7,8 +7,8 @@ import (
 // UtilsClearBpdu represents a UtilsClearBpdu struct.
 type UtilsClearBpdu struct {
     // the port on which to clear the detected BPDU error, or `all` for all ports
-    Port                 *string        `json:"port,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Port                 *string                `json:"port,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsClearBpdu.
@@ -16,13 +16,17 @@ type UtilsClearBpdu struct {
 func (u UtilsClearBpdu) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "port"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsClearBpdu object to a map representation for JSON marshaling.
 func (u UtilsClearBpdu) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Port != nil {
         structMap["port"] = u.Port
     }
@@ -37,12 +41,12 @@ func (u *UtilsClearBpdu) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "port")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "port")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Port = temp.Port
     return nil
 }

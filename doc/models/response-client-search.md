@@ -1,6 +1,8 @@
 
 # Response Client Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseClientSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.ClientWireless`](../../doc/models/client-wireless.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -95,12 +98,20 @@
       "wlan_id": [
         "e5d67b07-aae8-494b-8584-cbc20c8110aa"
       ],
-      "ftc": false
+      "ftc": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 40.94,
   "total": 32,
-  "next": "next8"
+  "next": "next8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

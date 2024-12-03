@@ -14,7 +14,7 @@ type ExtraRoute struct {
     Preference           Optional[int]                                `json:"preference"`
     // next-hop IP Address
     Via                  *string                                      `json:"via,omitempty"`
-    AdditionalProperties map[string]any                               `json:"_"`
+    AdditionalProperties map[string]interface{}                       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ExtraRoute.
@@ -22,13 +22,17 @@ type ExtraRoute struct {
 func (e ExtraRoute) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "discard", "metric", "next_qualified", "no_resolve", "preference", "via"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the ExtraRoute object to a map representation for JSON marshaling.
 func (e ExtraRoute) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.Discard != nil {
         structMap["discard"] = e.Discard
     }
@@ -66,12 +70,12 @@ func (e *ExtraRoute) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "discard", "metric", "next_qualified", "no_resolve", "preference", "via")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "discard", "metric", "next_qualified", "no_resolve", "preference", "via")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Discard = temp.Discard
     e.Metric = temp.Metric
     e.NextQualified = temp.NextQualified

@@ -28,7 +28,7 @@ type SiteSettingGatewayMgmt struct {
     RootPassword               *string                                    `json:"root_password,omitempty"`
     SecurityLogSourceAddress   *string                                    `json:"security_log_source_address,omitempty"`
     SecurityLogSourceInterface *string                                    `json:"security_log_source_interface,omitempty"`
-    AdditionalProperties       map[string]any                             `json:"_"`
+    AdditionalProperties       map[string]interface{}                     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingGatewayMgmt.
@@ -36,13 +36,17 @@ type SiteSettingGatewayMgmt struct {
 func (s SiteSettingGatewayMgmt) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "probe_hosts", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingGatewayMgmt object to a map representation for JSON marshaling.
 func (s SiteSettingGatewayMgmt) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AdminSshkeys != nil {
         structMap["admin_sshkeys"] = s.AdminSshkeys
     }
@@ -90,12 +94,12 @@ func (s *SiteSettingGatewayMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "probe_hosts", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "probe_hosts", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AdminSshkeys = temp.AdminSshkeys
     s.AppProbing = temp.AppProbing
     s.AppUsage = temp.AppUsage

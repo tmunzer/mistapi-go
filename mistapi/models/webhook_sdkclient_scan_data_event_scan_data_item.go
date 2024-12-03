@@ -9,20 +9,20 @@ import (
 // WebhookSdkclientScanDataEventScanDataItem represents a WebhookSdkclientScanDataEventScanDataItem struct.
 type WebhookSdkclientScanDataEventScanDataItem struct {
     // mac address of the AP associated with the BSSID scanned
-    Ap                   string               `json:"ap"`
+    Ap                   string                 `json:"ap"`
     // 5GHz or 2.4GHz band, associated with the BSSID scanned. enum: `2.4`, `5`
-    Band                 ScanDataItemBandEnum `json:"band"`
+    Band                 ScanDataItemBandEnum   `json:"band"`
     // BSSID found during client’s background scan for wifi
-    Bssid                string               `json:"bssid"`
+    Bssid                string                 `json:"bssid"`
     // channel of the band found in the scan
-    Channel              int                  `json:"channel"`
+    Channel              int                    `json:"channel"`
     // client’s RSSI relative to the BSSID scanned
-    Rssi                 float64              `json:"rssi"`
+    Rssi                 float64                `json:"rssi"`
     // ESSID containing the BSSID scanned
-    Ssid                 string               `json:"ssid"`
+    Ssid                 string                 `json:"ssid"`
     // time the scan of the particular BSSID occurred
-    Timestamp            float64              `json:"timestamp"`
-    AdditionalProperties map[string]any       `json:"_"`
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookSdkclientScanDataEventScanDataItem.
@@ -30,13 +30,17 @@ type WebhookSdkclientScanDataEventScanDataItem struct {
 func (w WebhookSdkclientScanDataEventScanDataItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "ap", "band", "bssid", "channel", "rssi", "ssid", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookSdkclientScanDataEventScanDataItem object to a map representation for JSON marshaling.
 func (w WebhookSdkclientScanDataEventScanDataItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["ap"] = w.Ap
     structMap["band"] = w.Band
     structMap["bssid"] = w.Bssid
@@ -59,12 +63,12 @@ func (w *WebhookSdkclientScanDataEventScanDataItem) UnmarshalJSON(input []byte) 
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "band", "bssid", "channel", "rssi", "ssid", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "band", "bssid", "channel", "rssi", "ssid", "timestamp")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Ap = *temp.Ap
     w.Band = *temp.Band
     w.Bssid = *temp.Bssid

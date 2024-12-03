@@ -1,6 +1,8 @@
 
 # Rrm Consideration
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RrmConsideration`
@@ -16,6 +18,7 @@
 | `UtilScore` | `float64` | Required | utilization score, 0-1, lower means less utilization (cleaner RF) |
 | `UtilScoreNonWifi` | `float64` | Required | non-wifi utilization score, 0-1, lower means less utilization (cleaner RF) |
 | `UtilScoreOther` | `float64` | Required | other utilization score, 0-1, lower means less utilization (cleaner RF) |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "other_ssid": "other_ssid6",
   "util_score": 16.52,
   "util_score_non_wifi": 168.18,
-  "util_score_other": 15.1
+  "util_score_other": 15.1,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

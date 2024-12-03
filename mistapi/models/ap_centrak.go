@@ -6,8 +6,8 @@ import (
 
 // ApCentrak represents a ApCentrak struct.
 type ApCentrak struct {
-    Enabled              *bool          `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApCentrak.
@@ -15,13 +15,17 @@ type ApCentrak struct {
 func (a ApCentrak) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApCentrak object to a map representation for JSON marshaling.
 func (a ApCentrak) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Enabled != nil {
         structMap["enabled"] = a.Enabled
     }
@@ -36,12 +40,12 @@ func (a *ApCentrak) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Enabled = temp.Enabled
     return nil
 }

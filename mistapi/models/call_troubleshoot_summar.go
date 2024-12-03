@@ -11,7 +11,7 @@ type CallTroubleshootSummar struct {
     Timestamp            *int                         `json:"timestamp,omitempty"`
     VideoIn              *CallTroubleshootSummaryData `json:"video_in,omitempty"`
     VideoOut             *CallTroubleshootSummaryData `json:"video_out,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CallTroubleshootSummar.
@@ -19,13 +19,17 @@ type CallTroubleshootSummar struct {
 func (c CallTroubleshootSummar) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "audio_in", "audio_out", "timestamp", "video_in", "video_out"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CallTroubleshootSummar object to a map representation for JSON marshaling.
 func (c CallTroubleshootSummar) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.AudioIn != nil {
         structMap["audio_in"] = c.AudioIn.toMap()
     }
@@ -52,12 +56,12 @@ func (c *CallTroubleshootSummar) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "audio_in", "audio_out", "timestamp", "video_in", "video_out")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "audio_in", "audio_out", "timestamp", "video_in", "video_out")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.AudioIn = temp.AudioIn
     c.AudioOut = temp.AudioOut
     c.Timestamp = temp.Timestamp

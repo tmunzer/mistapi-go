@@ -1,6 +1,8 @@
 
 # Org License Action
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgLicenseAction`
@@ -15,6 +17,7 @@
 | `Op` | [`models.OrgLicenseActionOperationEnum`](../../doc/models/org-license-action-operation-enum.md) | Required | to move a license, use the `amend` operation. enum: `amend`, `annotate`, `delete`, `unamend` |
 | `Quantity` | `*int` | Optional | if `op`==`amend`, the number of licenses to move |
 | `SubscriptionId` | `*string` | Optional | if `op`==`amend` or `op`==`delete`, the ID of the subscription to use |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   "notes": "notes4",
   "op": "delete",
   "quantity": 80,
-  "subscription_id": "subscription_id4"
+  "subscription_id": "subscription_id4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

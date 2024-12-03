@@ -8,25 +8,25 @@ import (
 // OptionalStatVpnPeer represents a OptionalStatVpnPeer struct.
 type OptionalStatVpnPeer struct {
     // Redundancy status of the associated interface
-    IsActive             *bool          `json:"is_active,omitempty"`
-    LastSeen             *float64       `json:"last_seen,omitempty"`
-    Latency              *float64       `json:"latency,omitempty"`
-    Mos                  *float64       `json:"mos,omitempty"`
-    Mtu                  *int           `json:"mtu,omitempty"`
+    IsActive             *bool                  `json:"is_active,omitempty"`
+    LastSeen             *float64               `json:"last_seen,omitempty"`
+    Latency              *float64               `json:"latency,omitempty"`
+    Mos                  *float64               `json:"mos,omitempty"`
+    Mtu                  *int                   `json:"mtu,omitempty"`
     // peer router mac address
-    PeerMac              *string        `json:"peer_mac,omitempty"`
+    PeerMac              *string                `json:"peer_mac,omitempty"`
     // peer router device interface
-    PeerPortId           *string        `json:"peer_port_id,omitempty"`
-    PeerRouterName       *string        `json:"peer_router_name,omitempty"`
-    PeerSiteId           *uuid.UUID     `json:"peer_site_id,omitempty"`
+    PeerPortId           *string                `json:"peer_port_id,omitempty"`
+    PeerRouterName       *string                `json:"peer_router_name,omitempty"`
+    PeerSiteId           *uuid.UUID             `json:"peer_site_id,omitempty"`
     // router device interface
-    PortId               *string        `json:"port_id,omitempty"`
-    RouterName           *string        `json:"router_name,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
+    RouterName           *string                `json:"router_name,omitempty"`
     // `ipsec`for SRX, `svr` for 128T
-    Type                 *string        `json:"type,omitempty"`
-    Up                   *bool          `json:"up,omitempty"`
-    Uptime               *int           `json:"uptime,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Type                 *string                `json:"type,omitempty"`
+    Up                   *bool                  `json:"up,omitempty"`
+    Uptime               *int                   `json:"uptime,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OptionalStatVpnPeer.
@@ -34,13 +34,17 @@ type OptionalStatVpnPeer struct {
 func (o OptionalStatVpnPeer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "is_active", "last_seen", "latency", "mos", "mtu", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "type", "up", "uptime"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OptionalStatVpnPeer object to a map representation for JSON marshaling.
 func (o OptionalStatVpnPeer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.IsActive != nil {
         structMap["is_active"] = o.IsActive
     }
@@ -94,12 +98,12 @@ func (o *OptionalStatVpnPeer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "is_active", "last_seen", "latency", "mos", "mtu", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "type", "up", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "is_active", "last_seen", "latency", "mos", "mtu", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "type", "up", "uptime")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.IsActive = temp.IsActive
     o.LastSeen = temp.LastSeen
     o.Latency = temp.Latency

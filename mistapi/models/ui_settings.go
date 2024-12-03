@@ -29,7 +29,7 @@ type UiSettings struct {
     Purpose              string                      `json:"purpose"`
     SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
     Tiles                []UiSettingsTile            `json:"tiles,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UiSettings.
@@ -37,13 +37,17 @@ type UiSettings struct {
 func (u UiSettings) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "created_time", "defaultScopeId", "defaultScopeType", "defaultTimeRange", "description", "for_site", "id", "isCustomDataboard", "isScopeLinked", "isTimeRangeLinked", "modified_time", "name", "org_id", "purpose", "site_id", "tiles"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UiSettings object to a map representation for JSON marshaling.
 func (u UiSettings) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.CreatedTime != nil {
         structMap["created_time"] = u.CreatedTime
     }
@@ -103,12 +107,12 @@ func (u *UiSettings) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "defaultScopeId", "defaultScopeType", "defaultTimeRange", "description", "for_site", "id", "isCustomDataboard", "isScopeLinked", "isTimeRangeLinked", "modified_time", "name", "org_id", "purpose", "site_id", "tiles")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "defaultScopeId", "defaultScopeType", "defaultTimeRange", "description", "for_site", "id", "isCustomDataboard", "isScopeLinked", "isTimeRangeLinked", "modified_time", "name", "org_id", "purpose", "site_id", "tiles")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.CreatedTime = temp.CreatedTime
     u.DefaultScopeId = temp.DefaultScopeId
     u.DefaultScopeType = temp.DefaultScopeType

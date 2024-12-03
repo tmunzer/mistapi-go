@@ -3,6 +3,8 @@
 
 client wait time right now
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsZoneDetailsClientWaits`
@@ -15,6 +17,7 @@ client wait time right now
 | `Max` | `int` | Required | longest wait time in seconds |
 | `Min` | `int` | Required | shortest wait time in seconds |
 | `P95` | `int` | Required | 95th percentile of all the wait time(s) |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@ client wait time right now
   "avg": 1200,
   "max": 3610,
   "min": 600,
-  "p95": 2800
+  "p95": 2800,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

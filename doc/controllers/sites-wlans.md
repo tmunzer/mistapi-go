@@ -57,21 +57,21 @@ body := models.Wlan{
     AcctInterimInterval:                models.ToPointer(0),
     AcctServers:                        []models.RadiusAcctServer{
         models.RadiusAcctServer{
-            Host:           "1.2.3.4",
-            KeywrapEnabled: models.ToPointer(true),
-            KeywrapFormat:  models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
-            KeywrapKek:     models.ToPointer("1122334455"),
-            KeywrapMack:    models.ToPointer("1122334455"),
-            Port:           models.ToPointer(1813),
-            Secret:         "testing123",
+            Host:                 "1.2.3.4",
+            KeywrapEnabled:       models.ToPointer(true),
+            KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+            KeywrapKek:           models.ToPointer("1122334455"),
+            KeywrapMack:          models.ToPointer("1122334455"),
+            Port:                 models.ToPointer(1813),
+            Secret:               "testing123",
         },
     },
     Airwatch:                           models.ToPointer(models.WlanAirwatch{
-        ApiKey:     models.ToPointer("aHhlbGxvYXNkZmFzZGZhc2Rmc2RmCg==\""),
-        ConsoleUrl: models.ToPointer("https://hs1.airwatchportals.com"),
-        Enabled:    models.ToPointer(true),
-        Password:   models.ToPointer("user1"),
-        Username:   models.ToPointer("test123"),
+        ApiKey:               models.ToPointer("aHhlbGxvYXNkZmFzZGZhc2Rmc2RmCg==\""),
+        ConsoleUrl:           models.ToPointer("https://hs1.airwatchportals.com"),
+        Enabled:              models.ToPointer(true),
+        Password:             models.ToPointer("user1"),
+        Username:             models.ToPointer("test123"),
     }),
     AllowIpv6Ndp:                       models.ToPointer(true),
     AllowMdns:                          models.ToPointer(false),
@@ -80,52 +80,52 @@ body := models.Wlan{
         uuid.MustParse("497f6eca-6276-4993-bfeb-53cbbbbb6f08"),
     })),
     AppLimit:                           models.ToPointer(models.WlanAppLimit{
-        Apps:     map[string]int{
+        Apps:                 map[string]int{
             "dropbox": 300,
             "netflix": 60,
         },
-        Enabled:  models.ToPointer(false),
-        WxtagIds: map[string]int{
+        Enabled:              models.ToPointer(false),
+        WxtagIds:             map[string]int{
             "f99862d9-2726-931f-7559-3dfdf5d070d3": 30,
         },
     }),
     AppQos:                             models.ToPointer(models.WlanAppQos{
-        Apps:    map[string]models.WlanAppQosAppsProperties{
+        Apps:                 map[string]models.WlanAppQosAppsProperties{
             "skype-business-video": models.WlanAppQosAppsProperties{
-                Dscp:      models.ToPointer(32),
-                DstSubnet: models.ToPointer("10.2.0.0/16"),
-                SrcSubnet: models.ToPointer("10.2.0.0/16"),
+                Dscp:                 models.ToPointer(32),
+                DstSubnet:            models.ToPointer("10.2.0.0/16"),
+                SrcSubnet:            models.ToPointer("10.2.0.0/16"),
             },
         },
-        Enabled: models.ToPointer(true),
-        Others:  []models.WlanAppQosOthersItem{
+        Enabled:              models.ToPointer(true),
+        Others:               []models.WlanAppQosOthersItem{
             models.WlanAppQosOthersItem{
-                Dscp:       models.ToPointer(32),
-                DstSubnet:  models.ToPointer("10.2.0.0/16"),
-                PortRanges: models.ToPointer("80,1024-6553"),
-                Protocol:   models.ToPointer("udp"),
-                SrcSubnet:  models.ToPointer("10.2.0.0/16"),
+                Dscp:                 models.ToPointer(32),
+                DstSubnet:            models.ToPointer("10.2.0.0/16"),
+                PortRanges:           models.ToPointer("80,1024-6553"),
+                Protocol:             models.ToPointer("udp"),
+                SrcSubnet:            models.ToPointer("10.2.0.0/16"),
             },
         },
     }),
     ApplyTo:                            models.ToPointer(models.WlanApplyToEnum("site")),
     ArpFilter:                          models.ToPointer(false),
     Auth:                               models.ToPointer(models.WlanAuth{
-        AnticlogThreshold:  models.ToPointer(16),
-        EapReauth:          models.ToPointer(false),
-        EnableMacAuth:      models.ToPointer(false),
-        KeyIdx:             models.ToPointer(1),
-        Keys:               []string{
+        AnticlogThreshold:    models.ToPointer(16),
+        EapReauth:            models.ToPointer(false),
+        EnableMacAuth:        models.ToPointer(false),
+        KeyIdx:               models.ToPointer(1),
+        Keys:                 []string{
             "string",
         },
-        MultiPskOnly:       models.ToPointer(false),
-        Pairwise:           []models.WlanAuthPairwiseItemEnum{
+        MultiPskOnly:         models.ToPointer(false),
+        Pairwise:             []models.WlanAuthPairwiseItemEnum{
             models.WlanAuthPairwiseItemEnum("wpa2-ccmp"),
         },
-        PrivateWlan:        models.ToPointer(true),
-        Psk:                models.NewOptional(models.ToPointer("foryoureyesonly")),
-        Type:               models.WlanAuthTypeEnum("psk"),
-        WepAsSecondaryAuth: models.ToPointer(true),
+        PrivateWlan:          models.ToPointer(true),
+        Psk:                  models.NewOptional(models.ToPointer("foryoureyesonly")),
+        Type:                 models.WlanAuthTypeEnum("psk"),
+        WepAsSecondaryAuth:   models.ToPointer(true),
     }),
     AuthServerSelection:                models.ToPointer(models.WlanAuthServerSelectionEnum("ordered")),
     AuthServers:                        []models.RadiusAuthServer{
@@ -152,28 +152,28 @@ body := models.Wlan{
     },
     BlockBlacklistClients:              models.ToPointer(false),
     Bonjour:                            models.ToPointer(models.WlanBonjour{
-        AdditionalVlanIds: "10,20",
-        Enabled:           models.ToPointer(false),
-        Services:          map[string]models.WlanBonjourServiceProperties{
+        AdditionalVlanIds:    "10,20",
+        Enabled:              models.ToPointer(false),
+        Services:             map[string]models.WlanBonjourServiceProperties{
             "airplay": models.WlanBonjourServiceProperties{
-                RadiusGroups: []string{
+                RadiusGroups:         []string{
                     "teachers",
                 },
-                Scope:        models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
+                Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
             },
         },
     }),
     CiscoCwa:                           models.ToPointer(models.WlanCiscoCwa{
-        AllowedHostnames: []string{
+        AllowedHostnames:     []string{
             "snapchat.com",
         },
-        AllowedSubnets:   []string{
+        AllowedSubnets:       []string{
             "63.5.3.0/24",
         },
-        BlockedSubnets:   []string{
+        BlockedSubnets:       []string{
             "192.168.0.0/16",
         },
-        Enabled:          models.ToPointer(false),
+        Enabled:              models.ToPointer(false),
     }),
     ClientLimitDown:                    models.ToPointer(0),
     ClientLimitDownEnabled:             models.ToPointer(false),
@@ -195,30 +195,30 @@ body := models.Wlan{
     DisableV2RoamNotify:                models.ToPointer(false),
     DisableWmm:                         models.ToPointer(false),
     DnsServerRewrite:                   models.NewOptional(models.ToPointer(models.WlanDnsServerRewrite{
-        Enabled:      models.ToPointer(false),
-        RadiusGroups: map[string]string{
+        Enabled:              models.ToPointer(false),
+        RadiusGroups:         map[string]string{
             "contractor": "172.1.1.1",
             "guest": "8.8.8.8",
         },
     })),
     Dtim:                               models.ToPointer(2),
     DynamicPsk:                         models.NewOptional(models.ToPointer(models.WlanDynamicPsk{
-        DefaultPsk:    models.ToPointer("foryoureyesonly"),
-        DefaultVlanId: models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
-        Enabled:       models.ToPointer(false),
-        Source:        models.ToPointer(models.DynamicPskSourceEnum("cloud_psks")),
-        VlanIds:       []models.VlanIdWithVariable{
+        DefaultPsk:           models.ToPointer("foryoureyesonly"),
+        DefaultVlanId:        models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
+        Enabled:              models.ToPointer(false),
+        Source:               models.ToPointer(models.DynamicPskSourceEnum("cloud_psks")),
+        VlanIds:              []models.VlanIdWithVariable{
             models.VlanIdWithVariableContainer.FromNumber(1),
         },
     })),
     DynamicVlan:                        models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
-        DefaultVlanId:  models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
-        Enabled:        models.ToPointer(false),
-        LocalVlanIds:   []models.VlanIdWithVariable{
+        DefaultVlanId:        models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
+        Enabled:              models.ToPointer(false),
+        LocalVlanIds:         []models.VlanIdWithVariable{
             models.VlanIdWithVariableContainer.FromNumber(1),
         },
-        Type:           models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
-        Vlans:          map[string]string{
+        Type:                 models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
+        Vlans:                map[string]string{
             "131": "default",
             "322": "fast,video",
         },
@@ -230,21 +230,21 @@ body := models.Wlan{
     HideSsid:                           models.ToPointer(false),
     HostnameIe:                         models.ToPointer(false),
     Hotspot20:                          models.ToPointer(models.WlanHotspot20{
-        DomainName: []string{
+        DomainName:           []string{
             "mist.com",
         },
-        Enabled:    models.ToPointer(true),
-        NaiRealms:  []string{
+        Enabled:              models.ToPointer(true),
+        NaiRealms:            []string{
             "string",
         },
-        Operators:  []models.WlanHotspot20OperatorsItemEnum{
+        Operators:            []models.WlanHotspot20OperatorsItemEnum{
             models.WlanHotspot20OperatorsItemEnum("google"),
             models.WlanHotspot20OperatorsItemEnum("att"),
         },
-        Rcoi:       []string{
+        Rcoi:                 []string{
             "5A03BA0000",
         },
-        VenueName:  models.ToPointer("some_name"),
+        VenueName:            models.ToPointer("some_name"),
     }),
     Interface:                          models.ToPointer(models.WlanInterfaceEnum("all")),
     Isolation:                          models.ToPointer(false),
@@ -254,7 +254,7 @@ body := models.Wlan{
     LimitProbeResponse:                 models.ToPointer(true),
     MaxIdletime:                        models.ToPointer(1800),
     MistNac:                            models.ToPointer(models.WlanMistNac{
-        Enabled: models.ToPointer(false),
+        Enabled:              models.ToPointer(false),
     }),
     NoStaticDns:                        models.ToPointer(false),
     NoStaticIp:                         models.ToPointer(false),
@@ -714,21 +714,21 @@ body := models.Wlan{
     AcctInterimInterval:                models.ToPointer(0),
     AcctServers:                        []models.RadiusAcctServer{
         models.RadiusAcctServer{
-            Host:           "1.2.3.4",
-            KeywrapEnabled: models.ToPointer(true),
-            KeywrapFormat:  models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
-            KeywrapKek:     models.ToPointer("1122334455"),
-            KeywrapMack:    models.ToPointer("1122334455"),
-            Port:           models.ToPointer(1813),
-            Secret:         "testing123",
+            Host:                 "1.2.3.4",
+            KeywrapEnabled:       models.ToPointer(true),
+            KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+            KeywrapKek:           models.ToPointer("1122334455"),
+            KeywrapMack:          models.ToPointer("1122334455"),
+            Port:                 models.ToPointer(1813),
+            Secret:               "testing123",
         },
     },
     Airwatch:                           models.ToPointer(models.WlanAirwatch{
-        ApiKey:     models.ToPointer("aHhlbGxvYXNkZmFzZGZhc2Rmc2RmCg==\""),
-        ConsoleUrl: models.ToPointer("https://hs1.airwatchportals.com"),
-        Enabled:    models.ToPointer(true),
-        Password:   models.ToPointer("user1"),
-        Username:   models.ToPointer("test123"),
+        ApiKey:               models.ToPointer("aHhlbGxvYXNkZmFzZGZhc2Rmc2RmCg==\""),
+        ConsoleUrl:           models.ToPointer("https://hs1.airwatchportals.com"),
+        Enabled:              models.ToPointer(true),
+        Password:             models.ToPointer("user1"),
+        Username:             models.ToPointer("test123"),
     }),
     AllowIpv6Ndp:                       models.ToPointer(true),
     AllowMdns:                          models.ToPointer(false),
@@ -737,52 +737,52 @@ body := models.Wlan{
         uuid.MustParse("497f6eca-6276-4993-bfeb-53cbbbbe6f08"),
     })),
     AppLimit:                           models.ToPointer(models.WlanAppLimit{
-        Apps:     map[string]int{
+        Apps:                 map[string]int{
             "dropbox": 300,
             "netflix": 60,
         },
-        Enabled:  models.ToPointer(false),
-        WxtagIds: map[string]int{
+        Enabled:              models.ToPointer(false),
+        WxtagIds:             map[string]int{
             "f99862d9-2726-931f-7559-3dfdf5d070d3": 30,
         },
     }),
     AppQos:                             models.ToPointer(models.WlanAppQos{
-        Apps:    map[string]models.WlanAppQosAppsProperties{
+        Apps:                 map[string]models.WlanAppQosAppsProperties{
             "skype-business-video": models.WlanAppQosAppsProperties{
-                Dscp:      models.ToPointer(32),
-                DstSubnet: models.ToPointer("10.2.0.0/16"),
-                SrcSubnet: models.ToPointer("10.2.0.0/16"),
+                Dscp:                 models.ToPointer(32),
+                DstSubnet:            models.ToPointer("10.2.0.0/16"),
+                SrcSubnet:            models.ToPointer("10.2.0.0/16"),
             },
         },
-        Enabled: models.ToPointer(true),
-        Others:  []models.WlanAppQosOthersItem{
+        Enabled:              models.ToPointer(true),
+        Others:               []models.WlanAppQosOthersItem{
             models.WlanAppQosOthersItem{
-                Dscp:       models.ToPointer(32),
-                DstSubnet:  models.ToPointer("10.2.0.0/16"),
-                PortRanges: models.ToPointer("80,1024-6553"),
-                Protocol:   models.ToPointer("udp"),
-                SrcSubnet:  models.ToPointer("10.2.0.0/16"),
+                Dscp:                 models.ToPointer(32),
+                DstSubnet:            models.ToPointer("10.2.0.0/16"),
+                PortRanges:           models.ToPointer("80,1024-6553"),
+                Protocol:             models.ToPointer("udp"),
+                SrcSubnet:            models.ToPointer("10.2.0.0/16"),
             },
         },
     }),
     ApplyTo:                            models.ToPointer(models.WlanApplyToEnum("site")),
     ArpFilter:                          models.ToPointer(false),
     Auth:                               models.ToPointer(models.WlanAuth{
-        AnticlogThreshold:  models.ToPointer(16),
-        EapReauth:          models.ToPointer(false),
-        EnableMacAuth:      models.ToPointer(false),
-        KeyIdx:             models.ToPointer(1),
-        Keys:               []string{
+        AnticlogThreshold:    models.ToPointer(16),
+        EapReauth:            models.ToPointer(false),
+        EnableMacAuth:        models.ToPointer(false),
+        KeyIdx:               models.ToPointer(1),
+        Keys:                 []string{
             "string",
         },
-        MultiPskOnly:       models.ToPointer(false),
-        Pairwise:           []models.WlanAuthPairwiseItemEnum{
+        MultiPskOnly:         models.ToPointer(false),
+        Pairwise:             []models.WlanAuthPairwiseItemEnum{
             models.WlanAuthPairwiseItemEnum("wpa2-ccmp"),
         },
-        PrivateWlan:        models.ToPointer(true),
-        Psk:                models.NewOptional(models.ToPointer("foryoureyesonly")),
-        Type:               models.WlanAuthTypeEnum("psk"),
-        WepAsSecondaryAuth: models.ToPointer(true),
+        PrivateWlan:          models.ToPointer(true),
+        Psk:                  models.NewOptional(models.ToPointer("foryoureyesonly")),
+        Type:                 models.WlanAuthTypeEnum("psk"),
+        WepAsSecondaryAuth:   models.ToPointer(true),
     }),
     AuthServerSelection:                models.ToPointer(models.WlanAuthServerSelectionEnum("ordered")),
     AuthServers:                        []models.RadiusAuthServer{
@@ -809,28 +809,28 @@ body := models.Wlan{
     },
     BlockBlacklistClients:              models.ToPointer(false),
     Bonjour:                            models.ToPointer(models.WlanBonjour{
-        AdditionalVlanIds: "10,20",
-        Enabled:           models.ToPointer(false),
-        Services:          map[string]models.WlanBonjourServiceProperties{
+        AdditionalVlanIds:    "10,20",
+        Enabled:              models.ToPointer(false),
+        Services:             map[string]models.WlanBonjourServiceProperties{
             "airplay": models.WlanBonjourServiceProperties{
-                RadiusGroups: []string{
+                RadiusGroups:         []string{
                     "teachers",
                 },
-                Scope:        models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
+                Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
             },
         },
     }),
     CiscoCwa:                           models.ToPointer(models.WlanCiscoCwa{
-        AllowedHostnames: []string{
+        AllowedHostnames:     []string{
             "snapchat.com",
         },
-        AllowedSubnets:   []string{
+        AllowedSubnets:       []string{
             "63.5.3.0/24",
         },
-        BlockedSubnets:   []string{
+        BlockedSubnets:       []string{
             "192.168.0.0/16",
         },
-        Enabled:          models.ToPointer(false),
+        Enabled:              models.ToPointer(false),
     }),
     ClientLimitDown:                    models.ToPointer(0),
     ClientLimitDownEnabled:             models.ToPointer(false),
@@ -852,30 +852,30 @@ body := models.Wlan{
     DisableV2RoamNotify:                models.ToPointer(false),
     DisableWmm:                         models.ToPointer(false),
     DnsServerRewrite:                   models.NewOptional(models.ToPointer(models.WlanDnsServerRewrite{
-        Enabled:      models.ToPointer(false),
-        RadiusGroups: map[string]string{
+        Enabled:              models.ToPointer(false),
+        RadiusGroups:         map[string]string{
             "contractor": "172.1.1.1",
             "guest": "8.8.8.8",
         },
     })),
     Dtim:                               models.ToPointer(2),
     DynamicPsk:                         models.NewOptional(models.ToPointer(models.WlanDynamicPsk{
-        DefaultPsk:    models.ToPointer("foryoureyesonly"),
-        DefaultVlanId: models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
-        Enabled:       models.ToPointer(false),
-        Source:        models.ToPointer(models.DynamicPskSourceEnum("cloud_psks")),
-        VlanIds:       []models.VlanIdWithVariable{
+        DefaultPsk:           models.ToPointer("foryoureyesonly"),
+        DefaultVlanId:        models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
+        Enabled:              models.ToPointer(false),
+        Source:               models.ToPointer(models.DynamicPskSourceEnum("cloud_psks")),
+        VlanIds:              []models.VlanIdWithVariable{
             models.VlanIdWithVariableContainer.FromNumber(1),
         },
     })),
     DynamicVlan:                        models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
-        DefaultVlanId:  models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
-        Enabled:        models.ToPointer(false),
-        LocalVlanIds:   []models.VlanIdWithVariable{
+        DefaultVlanId:        models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
+        Enabled:              models.ToPointer(false),
+        LocalVlanIds:         []models.VlanIdWithVariable{
             models.VlanIdWithVariableContainer.FromNumber(1),
         },
-        Type:           models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
-        Vlans:          map[string]string{
+        Type:                 models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
+        Vlans:                map[string]string{
             "131": "default",
             "322": "fast,video",
         },
@@ -887,21 +887,21 @@ body := models.Wlan{
     HideSsid:                           models.ToPointer(false),
     HostnameIe:                         models.ToPointer(false),
     Hotspot20:                          models.ToPointer(models.WlanHotspot20{
-        DomainName: []string{
+        DomainName:           []string{
             "mist.com",
         },
-        Enabled:    models.ToPointer(true),
-        NaiRealms:  []string{
+        Enabled:              models.ToPointer(true),
+        NaiRealms:            []string{
             "string",
         },
-        Operators:  []models.WlanHotspot20OperatorsItemEnum{
+        Operators:            []models.WlanHotspot20OperatorsItemEnum{
             models.WlanHotspot20OperatorsItemEnum("google"),
             models.WlanHotspot20OperatorsItemEnum("att"),
         },
-        Rcoi:       []string{
+        Rcoi:                 []string{
             "5A03BA0000",
         },
-        VenueName:  models.ToPointer("some_name"),
+        VenueName:            models.ToPointer("some_name"),
     }),
     Interface:                          models.ToPointer(models.WlanInterfaceEnum("all")),
     Isolation:                          models.ToPointer(false),
@@ -911,7 +911,7 @@ body := models.Wlan{
     LimitProbeResponse:                 models.ToPointer(true),
     MaxIdletime:                        models.ToPointer(1800),
     MistNac:                            models.ToPointer(models.WlanMistNac{
-        Enabled: models.ToPointer(false),
+        Enabled:              models.ToPointer(false),
     }),
     NoStaticDns:                        models.ToPointer(false),
     NoStaticIp:                         models.ToPointer(false),
@@ -1050,6 +1050,111 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wlanId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WlanPortalTemplate{
+    AdditionalProperties: map[string]interface{}{
+        "accessCodeAlternateEmail": interface{}("string"),
+        "alignment": interface{}("string"),
+        "authButtonAmazon": interface{}("string"),
+        "authButtonAzure": interface{}("string"),
+        "authButtonEmail": interface{}("string"),
+        "authButtonFacebook": interface{}("string"),
+        "authButtonGoogle": interface{}("string"),
+        "authButtonMicrosoft": interface{}("string"),
+        "authButtonPassphrase": interface{}("string"),
+        "authButtonSms": interface{}("string"),
+        "authButtonSponsor": interface{}("string"),
+        "authLabel": interface{}("string"),
+        "backLink": interface{}("string"),
+        "color": interface{}("string"),
+        "colorDark": interface{}("string"),
+        "colorLight": interface{}("string"),
+        "company": interface{}("true"),
+        "companyError": interface{}("string"),
+        "companyLabel": interface{}("string"),
+        "email": interface{}("true"),
+        "emailAccessDomainError": interface{}("string"),
+        "emailCancel": interface{}("string"),
+        "emailCodeError": interface{}("string"),
+        "emailError": interface{}("string"),
+        "emailFieldLabel": interface{}("string"),
+        "emailLabel": interface{}("string"),
+        "emailMessage": interface{}("string"),
+        "emailSubmit": interface{}("string"),
+        "emailTitle": interface{}("string"),
+        "field1": interface{}("true"),
+        "field1Error": interface{}("string"),
+        "field1Label": interface{}("string"),
+        "field1Required": interface{}("true"),
+        "field2": interface{}("true"),
+        "field2Error": interface{}("string"),
+        "field2Label": interface{}("string"),
+        "field2Required": interface{}("true"),
+        "field3": interface{}("true"),
+        "field3Error": interface{}("string"),
+        "field3Label": interface{}("string"),
+        "field3Required": interface{}("true"),
+        "field4": interface{}("true"),
+        "field4Error": interface{}("string"),
+        "field4Label": interface{}("string"),
+        "field4Required": interface{}("true"),
+        "message": interface{}("string"),
+        "name": interface{}("true"),
+        "nameError": interface{}("string"),
+        "nameLabel": interface{}("string"),
+        "optout": interface{}("true"),
+        "optoutLabel": interface{}("string"),
+        "pageTitle": interface{}("string"),
+        "passphraseCancel": interface{}("string"),
+        "passphraseError": interface{}("string"),
+        "passphraseLabel": interface{}("string"),
+        "passphraseMessage": interface{}("string"),
+        "passphraseSubmit": interface{}("string"),
+        "passphraseTitle": interface{}("string"),
+        "poweredBy": interface{}("true"),
+        "requiredFieldLabel": interface{}("string"),
+        "signInLabel": interface{}("string"),
+        "smsCarrierDefault": interface{}("string"),
+        "smsCarrierError": interface{}("string"),
+        "smsCarrierFieldLabel": interface{}("string"),
+        "smsCodeCancel": interface{}("string"),
+        "smsCodeError": interface{}("string"),
+        "smsCodeFieldLabel": interface{}("string"),
+        "smsCodeMessage": interface{}("string"),
+        "smsCodeSubmit": interface{}("string"),
+        "smsCodeTitle": interface{}("string"),
+        "smsCountryFieldLabel": interface{}("string"),
+        "smsCountryFormat": interface{}("string"),
+        "smsHaveAccessCode": interface{}("string"),
+        "smsMessageFormat": interface{}("string"),
+        "smsNumberCancel": interface{}("string"),
+        "smsNumberError": interface{}("string"),
+        "smsNumberFieldLabel": interface{}("string"),
+        "smsNumberFormat": interface{}("string"),
+        "smsNumberMessage": interface{}("string"),
+        "smsNumberSubmit": interface{}("string"),
+        "smsNumberTitle": interface{}("string"),
+        "smsUsernameFormat": interface{}("string"),
+        "smsValidityDuration": interface{}("0"),
+        "sponsorBackLink": interface{}("string"),
+        "sponsorCancel": interface{}("string"),
+        "sponsorEmail": interface{}("string"),
+        "sponsorEmailError": interface{}("string"),
+        "sponsorEmailTemplate": interface{}("string"),
+        "sponsorInfoApproved": interface{}("string"),
+        "sponsorInfoDenied": interface{}("string"),
+        "sponsorInfoPending": interface{}("string"),
+        "sponsorName": interface{}("string"),
+        "sponsorNameError": interface{}("string"),
+        "sponsorNotePending": interface{}("string"),
+        "sponsorStatusApproved": interface{}("string"),
+        "sponsorStatusDenied": interface{}("string"),
+        "sponsorStatusPending": interface{}("string"),
+        "sponsorSubmit": interface{}("string"),
+        "tos": interface{}("true"),
+        "tosAcceptLabel": interface{}("string"),
+        "tosError": interface{}("string"),
+        "tosLink": interface{}("string"),
+        "tosText": interface{}("string"),
+    },
 }
 
 apiResponse, err := sitesWlans.UpdateSiteWlanPortalTemplate(ctx, siteId, wlanId, &body)

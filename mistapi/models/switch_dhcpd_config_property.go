@@ -41,7 +41,7 @@ type SwitchDhcpdConfigProperty struct {
     // * enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)
     // * sub option code: 1-255, sub-option code'
     VendorEncapulated    map[string]DhcpdConfigVendorOption `json:"vendor_encapulated,omitempty"`
-    AdditionalProperties map[string]any                     `json:"_"`
+    AdditionalProperties map[string]interface{}             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchDhcpdConfigProperty.
@@ -49,13 +49,17 @@ type SwitchDhcpdConfigProperty struct {
 func (s SwitchDhcpdConfigProperty) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "dns_servers", "dns_suffix", "fixed_bindings", "gateway", "ip_end", "ip_end6", "ip_start", "ip_start6", "lease_time", "options", "server_id_override", "servers", "servers6", "type", "type6", "vendor_encapulated"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchDhcpdConfigProperty object to a map representation for JSON marshaling.
 func (s SwitchDhcpdConfigProperty) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.DnsServers != nil {
         structMap["dns_servers"] = s.DnsServers
     }
@@ -115,12 +119,12 @@ func (s *SwitchDhcpdConfigProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dns_servers", "dns_suffix", "fixed_bindings", "gateway", "ip_end", "ip_end6", "ip_start", "ip_start6", "lease_time", "options", "server_id_override", "servers", "servers6", "type", "type6", "vendor_encapulated")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns_servers", "dns_suffix", "fixed_bindings", "gateway", "ip_end", "ip_end6", "ip_start", "ip_start6", "lease_time", "options", "server_id_override", "servers", "servers6", "type", "type6", "vendor_encapulated")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.DnsServers = temp.DnsServers
     s.DnsSuffix = temp.DnsSuffix
     s.FixedBindings = temp.FixedBindings

@@ -1,6 +1,8 @@
 
 # Search Webhook Delivery
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SearchWebhookDelivery`
@@ -14,6 +16,7 @@
 | `Results` | [`[]models.WebhookDelivery`](../../doc/models/webhook-delivery.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,24 +31,40 @@
       "id": "000023ba-0000-0000-0000-000000000000",
       "org_id": "00002492-0000-0000-0000-000000000000",
       "req_headers": "req_headers6",
-      "req_payload": "req_payload4"
+      "req_payload": "req_payload4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "error": "error0",
       "id": "000023ba-0000-0000-0000-000000000000",
       "org_id": "00002492-0000-0000-0000-000000000000",
       "req_headers": "req_headers6",
-      "req_payload": "req_payload4"
+      "req_payload": "req_payload4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "error": "error0",
       "id": "000023ba-0000-0000-0000-000000000000",
       "org_id": "00002492-0000-0000-0000-000000000000",
       "req_headers": "req_headers6",
-      "req_payload": "req_payload4"
+      "req_payload": "req_payload4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "total": 150
+  "total": 150,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

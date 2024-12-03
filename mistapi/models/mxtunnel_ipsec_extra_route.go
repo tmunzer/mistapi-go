@@ -6,9 +6,9 @@ import (
 
 // MxtunnelIpsecExtraRoute represents a MxtunnelIpsecExtraRoute struct.
 type MxtunnelIpsecExtraRoute struct {
-    Dest                 *string        `json:"dest,omitempty"`
-    NextHop              *string        `json:"next_hop,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Dest                 *string                `json:"dest,omitempty"`
+    NextHop              *string                `json:"next_hop,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxtunnelIpsecExtraRoute.
@@ -16,13 +16,17 @@ type MxtunnelIpsecExtraRoute struct {
 func (m MxtunnelIpsecExtraRoute) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "dest", "next_hop"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxtunnelIpsecExtraRoute object to a map representation for JSON marshaling.
 func (m MxtunnelIpsecExtraRoute) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Dest != nil {
         structMap["dest"] = m.Dest
     }
@@ -40,12 +44,12 @@ func (m *MxtunnelIpsecExtraRoute) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dest", "next_hop")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dest", "next_hop")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Dest = temp.Dest
     m.NextHop = temp.NextHop
     return nil

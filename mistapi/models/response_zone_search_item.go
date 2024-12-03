@@ -6,11 +6,11 @@ import (
 
 // ResponseZoneSearchItem represents a ResponseZoneSearchItem struct.
 type ResponseZoneSearchItem struct {
-    Enter                *int           `json:"enter,omitempty"`
-    Scope                *string        `json:"scope,omitempty"`
-    Timestamp            *int           `json:"timestamp,omitempty"`
-    User                 *string        `json:"user,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enter                *int                   `json:"enter,omitempty"`
+    Scope                *string                `json:"scope,omitempty"`
+    Timestamp            *int                   `json:"timestamp,omitempty"`
+    User                 *string                `json:"user,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseZoneSearchItem.
@@ -18,13 +18,17 @@ type ResponseZoneSearchItem struct {
 func (r ResponseZoneSearchItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "enter", "scope", "timestamp", "user"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseZoneSearchItem object to a map representation for JSON marshaling.
 func (r ResponseZoneSearchItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Enter != nil {
         structMap["enter"] = r.Enter
     }
@@ -48,12 +52,12 @@ func (r *ResponseZoneSearchItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enter", "scope", "timestamp", "user")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enter", "scope", "timestamp", "user")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Enter = temp.Enter
     r.Scope = temp.Scope
     r.Timestamp = temp.Timestamp

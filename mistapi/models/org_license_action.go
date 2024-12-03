@@ -21,7 +21,7 @@ type OrgLicenseAction struct {
     Quantity             *int                          `json:"quantity,omitempty"`
     // if `op`==`amend` or `op`==`delete`, the ID of the subscription to use
     SubscriptionId       *string                       `json:"subscription_id,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgLicenseAction.
@@ -29,13 +29,17 @@ type OrgLicenseAction struct {
 func (o OrgLicenseAction) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "amendment_id", "dst_org_id", "notes", "op", "quantity", "subscription_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgLicenseAction object to a map representation for JSON marshaling.
 func (o OrgLicenseAction) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.AmendmentId != nil {
         structMap["amendment_id"] = o.AmendmentId
     }
@@ -67,12 +71,12 @@ func (o *OrgLicenseAction) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "amendment_id", "dst_org_id", "notes", "op", "quantity", "subscription_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "amendment_id", "dst_org_id", "notes", "op", "quantity", "subscription_id")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.AmendmentId = temp.AmendmentId
     o.DstOrgId = temp.DstOrgId
     o.Notes = temp.Notes

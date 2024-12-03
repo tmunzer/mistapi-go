@@ -10,22 +10,22 @@ import (
 // Note: legacy, new config moved to ESL Config.
 type ApUsb struct {
     // only if `type`==`imagotag`
-    Cacert               Optional[string] `json:"cacert"`
+    Cacert               Optional[string]       `json:"cacert"`
     // only if `type`==`imagotag`, channel selection, not needed by default, required for manual channel override only
-    Channel              *int             `json:"channel,omitempty"`
+    Channel              *int                   `json:"channel,omitempty"`
     // whether to enable any usb config
-    Enabled              *bool            `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // only if `type`==`imagotag`
-    Host                 *string          `json:"host,omitempty"`
+    Host                 *string                `json:"host,omitempty"`
     // only if `type`==`imagotag`
-    Port                 *int             `json:"port,omitempty"`
+    Port                 *int                   `json:"port,omitempty"`
     // usb config type. enum: `hanshow`, `imagotag`, `solum`
-    Type                 *ApUsbTypeEnum   `json:"type,omitempty"`
+    Type                 *ApUsbTypeEnum         `json:"type,omitempty"`
     // only if `type`==`imagotag`, whether to turn on SSL verification
-    VerifyCert           *bool            `json:"verify_cert,omitempty"`
+    VerifyCert           *bool                  `json:"verify_cert,omitempty"`
     // only if `type`==`solum` or `type`==`hanshow`
-    VlanId               *int             `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    VlanId               *int                   `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApUsb.
@@ -33,13 +33,17 @@ type ApUsb struct {
 func (a ApUsb) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "cacert", "channel", "enabled", "host", "port", "type", "verify_cert", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApUsb object to a map representation for JSON marshaling.
 func (a ApUsb) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Cacert.IsValueSet() {
         if a.Cacert.Value() != nil {
             structMap["cacert"] = a.Cacert.Value()
@@ -79,12 +83,12 @@ func (a *ApUsb) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cacert", "channel", "enabled", "host", "port", "type", "verify_cert", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cacert", "channel", "enabled", "host", "port", "type", "verify_cert", "vlan_id")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Cacert = temp.Cacert
     a.Channel = temp.Channel
     a.Enabled = temp.Enabled

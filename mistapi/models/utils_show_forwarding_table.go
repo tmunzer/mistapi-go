@@ -7,22 +7,22 @@ import (
 // UtilsShowForwardingTable represents a UtilsShowForwardingTable struct.
 type UtilsShowForwardingTable struct {
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // IP Prefix
-    Prefix               *string            `json:"prefix,omitempty"`
+    Prefix               *string                `json:"prefix,omitempty"`
     // only supported with SSR
-    ServiceIp            *string            `json:"service_ip,omitempty"`
+    ServiceIp            *string                `json:"service_ip,omitempty"`
     // only supported with SSR
-    ServiceName          *string            `json:"service_name,omitempty"`
+    ServiceName          *string                `json:"service_name,omitempty"`
     // only supported with SSR
-    ServicePort          *int               `json:"service_port,omitempty"`
+    ServicePort          *int                   `json:"service_port,omitempty"`
     // only supported with SSR
-    ServiceProtocol      *string            `json:"service_protocol,omitempty"`
+    ServiceProtocol      *string                `json:"service_protocol,omitempty"`
     // only supported with SSR
-    ServiceTenant        *string            `json:"service_tenant,omitempty"`
+    ServiceTenant        *string                `json:"service_tenant,omitempty"`
     // VRF Name
-    Vrf                  *string            `json:"vrf,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Vrf                  *string                `json:"vrf,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowForwardingTable.
@@ -30,13 +30,17 @@ type UtilsShowForwardingTable struct {
 func (u UtilsShowForwardingTable) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "node", "prefix", "service_ip", "service_name", "service_port", "service_protocol", "service_tenant", "vrf"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsShowForwardingTable object to a map representation for JSON marshaling.
 func (u UtilsShowForwardingTable) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Node != nil {
         structMap["node"] = u.Node
     }
@@ -72,12 +76,12 @@ func (u *UtilsShowForwardingTable) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "node", "prefix", "service_ip", "service_name", "service_port", "service_protocol", "service_tenant", "vrf")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "node", "prefix", "service_ip", "service_name", "service_port", "service_protocol", "service_tenant", "vrf")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Node = temp.Node
     u.Prefix = temp.Prefix
     u.ServiceIp = temp.ServiceIp

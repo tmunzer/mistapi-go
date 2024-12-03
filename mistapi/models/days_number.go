@@ -6,8 +6,8 @@ import (
 
 // DaysNumber represents a DaysNumber struct.
 type DaysNumber struct {
-    Days                 *int           `json:"days,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Days                 *int                   `json:"days,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DaysNumber.
@@ -15,13 +15,17 @@ type DaysNumber struct {
 func (d DaysNumber) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "days"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DaysNumber object to a map representation for JSON marshaling.
 func (d DaysNumber) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.Days != nil {
         structMap["days"] = d.Days
     }
@@ -36,12 +40,12 @@ func (d *DaysNumber) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "days")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "days")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.Days = temp.Days
     return nil
 }

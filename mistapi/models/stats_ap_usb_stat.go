@@ -6,12 +6,12 @@ import (
 
 // StatsApUsbStat represents a StatsApUsbStat struct.
 type StatsApUsbStat struct {
-    Channel              Optional[int]    `json:"channel"`
-    Connected            Optional[bool]   `json:"connected"`
-    LastActivity         Optional[int]    `json:"last_activity"`
-    Type                 Optional[string] `json:"type"`
-    Up                   Optional[bool]   `json:"up"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Channel              Optional[int]          `json:"channel"`
+    Connected            Optional[bool]         `json:"connected"`
+    LastActivity         Optional[int]          `json:"last_activity"`
+    Type                 Optional[string]       `json:"type"`
+    Up                   Optional[bool]         `json:"up"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApUsbStat.
@@ -19,13 +19,17 @@ type StatsApUsbStat struct {
 func (s StatsApUsbStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "channel", "connected", "last_activity", "type", "up"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApUsbStat object to a map representation for JSON marshaling.
 func (s StatsApUsbStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Channel.IsValueSet() {
         if s.Channel.Value() != nil {
             structMap["channel"] = s.Channel.Value()
@@ -72,12 +76,12 @@ func (s *StatsApUsbStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "channel", "connected", "last_activity", "type", "up")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "connected", "last_activity", "type", "up")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Channel = temp.Channel
     s.Connected = temp.Connected
     s.LastActivity = temp.LastActivity

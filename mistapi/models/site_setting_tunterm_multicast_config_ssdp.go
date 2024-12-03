@@ -6,9 +6,9 @@ import (
 
 // SiteSettingTuntermMulticastConfigSsdp represents a SiteSettingTuntermMulticastConfigSsdp struct.
 type SiteSettingTuntermMulticastConfigSsdp struct {
-    Enabled              *bool          `json:"enabled,omitempty"`
-    VlanIds              []int          `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    VlanIds              []int                  `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingTuntermMulticastConfigSsdp.
@@ -16,13 +16,17 @@ type SiteSettingTuntermMulticastConfigSsdp struct {
 func (s SiteSettingTuntermMulticastConfigSsdp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "enabled", "vlan_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingTuntermMulticastConfigSsdp object to a map representation for JSON marshaling.
 func (s SiteSettingTuntermMulticastConfigSsdp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Enabled != nil {
         structMap["enabled"] = s.Enabled
     }
@@ -40,12 +44,12 @@ func (s *SiteSettingTuntermMulticastConfigSsdp) UnmarshalJSON(input []byte) erro
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "vlan_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "vlan_ids")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Enabled = temp.Enabled
     s.VlanIds = temp.VlanIds
     return nil

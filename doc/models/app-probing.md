@@ -1,6 +1,8 @@
 
 # App Probing
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AppProbing`
@@ -12,6 +14,7 @@
 | `Apps` | `[]string` | Optional | app-keys from /api/v1/const/applications |
 | `CustomApps` | [`[]models.AppProbingCustomApp`](../../doc/models/app-probing-custom-app.md) | Optional | - |
 | `Enabled` | `*bool` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
         "hostnames5"
       ],
       "key": "key8",
-      "name": "name8"
+      "name": "name8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "address": "address4",
@@ -39,10 +46,18 @@
         "hostnames5"
       ],
       "key": "key8",
-      "name": "name8"
+      "name": "name8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "enabled": false
+  "enabled": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # Account Vmware Info
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AccountVmwareInfo`
@@ -16,6 +18,7 @@
 | `LinkedBy` | `*string` | Optional | First name of the user who linked the VMware account |
 | `LinkedTimestamp` | `*int` | Optional | This error is provided when the VMware account fails to fetch token/data |
 | `Name` | `*string` | Optional | Name of the company whose VMware account mist has subscribed to |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   "instance_url": "instance_url2",
   "last_status": "last_status2",
   "last_sync": 142,
-  "linked_by": "linked_by4"
+  "linked_by": "linked_by4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

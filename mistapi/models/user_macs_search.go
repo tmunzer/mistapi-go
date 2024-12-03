@@ -6,11 +6,11 @@ import (
 
 // UserMacsSearch represents a UserMacsSearch struct.
 type UserMacsSearch struct {
-    Limit                *int           `json:"limit,omitempty"`
-    Page                 *int           `json:"page,omitempty"`
-    Results              []UserMac      `json:"results,omitempty"`
-    Total                *int           `json:"total,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Limit                *int                   `json:"limit,omitempty"`
+    Page                 *int                   `json:"page,omitempty"`
+    Results              []UserMac              `json:"results,omitempty"`
+    Total                *int                   `json:"total,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UserMacsSearch.
@@ -18,13 +18,17 @@ type UserMacsSearch struct {
 func (u UserMacsSearch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "limit", "page", "results", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UserMacsSearch object to a map representation for JSON marshaling.
 func (u UserMacsSearch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Limit != nil {
         structMap["limit"] = u.Limit
     }
@@ -48,12 +52,12 @@ func (u *UserMacsSearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "limit", "page", "results", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "limit", "page", "results", "total")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Limit = temp.Limit
     u.Page = temp.Page
     u.Results = temp.Results

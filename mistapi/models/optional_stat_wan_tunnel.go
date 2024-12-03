@@ -39,7 +39,7 @@ type OptionalStatWanTunnel struct {
     Uptime               *int                        `json:"uptime,omitempty"`
     // wan interface name
     WanName              *string                     `json:"wan_name,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OptionalStatWanTunnel.
@@ -47,13 +47,17 @@ type OptionalStatWanTunnel struct {
 func (o OptionalStatWanTunnel) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "auth_algo", "encrypt_algo", "ike_version", "ip", "last_event", "last_flapped", "node", "peer_host", "peer_ip", "priority", "protocol", "rx_bytes", "rx_pkts", "tunnel_name", "tx_bytes", "tx_pkts", "up", "uptime", "wan_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OptionalStatWanTunnel object to a map representation for JSON marshaling.
 func (o OptionalStatWanTunnel) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.AuthAlgo != nil {
         structMap["auth_algo"] = o.AuthAlgo
     }
@@ -122,12 +126,12 @@ func (o *OptionalStatWanTunnel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_algo", "encrypt_algo", "ike_version", "ip", "last_event", "last_flapped", "node", "peer_host", "peer_ip", "priority", "protocol", "rx_bytes", "rx_pkts", "tunnel_name", "tx_bytes", "tx_pkts", "up", "uptime", "wan_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_algo", "encrypt_algo", "ike_version", "ip", "last_event", "last_flapped", "node", "peer_host", "peer_ip", "priority", "protocol", "rx_bytes", "rx_pkts", "tunnel_name", "tx_bytes", "tx_pkts", "up", "uptime", "wan_name")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.AuthAlgo = temp.AuthAlgo
     o.EncryptAlgo = temp.EncryptAlgo
     o.IkeVersion = temp.IkeVersion

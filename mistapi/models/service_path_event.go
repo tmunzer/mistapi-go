@@ -7,19 +7,19 @@ import (
 
 // ServicePathEvent represents a ServicePathEvent struct.
 type ServicePathEvent struct {
-    Mac                  *string        `json:"mac,omitempty"`
-    Model                *string        `json:"model,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    Policy               *string        `json:"policy,omitempty"`
-    PortId               *string        `json:"port_id,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Text                 *string        `json:"text,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
-    Type                 *string        `json:"type,omitempty"`
-    Version              *string        `json:"version,omitempty"`
-    VpnName              *string        `json:"vpn_name,omitempty"`
-    VpnPath              *string        `json:"vpn_path,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  *string                `json:"mac,omitempty"`
+    Model                *string                `json:"model,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    Policy               *string                `json:"policy,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Text                 *string                `json:"text,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
+    Version              *string                `json:"version,omitempty"`
+    VpnName              *string                `json:"vpn_name,omitempty"`
+    VpnPath              *string                `json:"vpn_path,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServicePathEvent.
@@ -27,13 +27,17 @@ type ServicePathEvent struct {
 func (s ServicePathEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "mac", "model", "org_id", "policy", "port_id", "site_id", "text", "timestamp", "type", "version", "vpn_name", "vpn_path"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the ServicePathEvent object to a map representation for JSON marshaling.
 func (s ServicePathEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Mac != nil {
         structMap["mac"] = s.Mac
     }
@@ -81,12 +85,12 @@ func (s *ServicePathEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "model", "org_id", "policy", "port_id", "site_id", "text", "timestamp", "type", "version", "vpn_name", "vpn_path")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "model", "org_id", "policy", "port_id", "site_id", "text", "timestamp", "type", "version", "vpn_name", "vpn_path")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Mac = temp.Mac
     s.Model = temp.Model
     s.OrgId = temp.OrgId

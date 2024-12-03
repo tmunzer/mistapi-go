@@ -8,12 +8,12 @@ import (
 // HaClusterConfig represents a HaClusterConfig struct.
 type HaClusterConfig struct {
     // if the device is claimed
-    DisableAutoConfig    *bool                 `json:"disable_auto_config,omitempty"`
+    DisableAutoConfig    *bool                  `json:"disable_auto_config,omitempty"`
     // if the device is adopted
-    Managed              *bool                 `json:"managed,omitempty"`
-    Nodes                []HaClusterConfigNode `json:"nodes,omitempty"`
-    SiteId               *uuid.UUID            `json:"site_id,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Managed              *bool                  `json:"managed,omitempty"`
+    Nodes                []HaClusterConfigNode  `json:"nodes,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for HaClusterConfig.
@@ -21,13 +21,17 @@ type HaClusterConfig struct {
 func (h HaClusterConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(h.AdditionalProperties,
+        "disable_auto_config", "managed", "nodes", "site_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(h.toMap())
 }
 
 // toMap converts the HaClusterConfig object to a map representation for JSON marshaling.
 func (h HaClusterConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, h.AdditionalProperties)
+    MergeAdditionalProperties(structMap, h.AdditionalProperties)
     if h.DisableAutoConfig != nil {
         structMap["disable_auto_config"] = h.DisableAutoConfig
     }
@@ -51,12 +55,12 @@ func (h *HaClusterConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disable_auto_config", "managed", "nodes", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_auto_config", "managed", "nodes", "site_id")
     if err != nil {
     	return err
     }
-    
     h.AdditionalProperties = additionalProperties
+    
     h.DisableAutoConfig = temp.DisableAutoConfig
     h.Managed = temp.Managed
     h.Nodes = temp.Nodes

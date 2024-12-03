@@ -9,14 +9,14 @@ import (
 // User API Token
 type UserApitoken struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Key                  *string        `json:"key,omitempty"`
-    LastUsed             Optional[int]  `json:"last_used"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Key                  *string                `json:"key,omitempty"`
+    LastUsed             Optional[int]          `json:"last_used"`
     // name of the token
-    Name                 *string        `json:"name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 *string                `json:"name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UserApitoken.
@@ -24,13 +24,17 @@ type UserApitoken struct {
 func (u UserApitoken) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "created_time", "id", "key", "last_used", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UserApitoken object to a map representation for JSON marshaling.
 func (u UserApitoken) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.CreatedTime != nil {
         structMap["created_time"] = u.CreatedTime
     }
@@ -61,12 +65,12 @@ func (u *UserApitoken) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "id", "key", "last_used", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "id", "key", "last_used", "name")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.CreatedTime = temp.CreatedTime
     u.Id = temp.Id
     u.Key = temp.Key

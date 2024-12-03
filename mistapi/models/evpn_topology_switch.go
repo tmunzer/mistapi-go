@@ -32,7 +32,7 @@ type EvpnTopologySwitch struct {
     SuggestedEsilaglinks []string                   `json:"suggested_esilaglinks,omitempty"`
     SuggestedUplinks     []string                   `json:"suggested_uplinks,omitempty"`
     Uplinks              []string                   `json:"uplinks,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopologySwitch.
@@ -40,13 +40,17 @@ type EvpnTopologySwitch struct {
 func (e EvpnTopologySwitch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "config", "deviceprofile_id", "downlink_ips", "downlinks", "esilaglinks", "evpn_id", "mac", "model", "pod", "pods", "role", "router_id", "site_id", "suggested_downlinks", "suggested_esilaglinks", "suggested_uplinks", "uplinks"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EvpnTopologySwitch object to a map representation for JSON marshaling.
 func (e EvpnTopologySwitch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.Config != nil {
         structMap["config"] = e.Config.toMap()
     }
@@ -109,12 +113,12 @@ func (e *EvpnTopologySwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "config", "deviceprofile_id", "downlink_ips", "downlinks", "esilaglinks", "evpn_id", "mac", "model", "pod", "pods", "role", "router_id", "site_id", "suggested_downlinks", "suggested_esilaglinks", "suggested_uplinks", "uplinks")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config", "deviceprofile_id", "downlink_ips", "downlinks", "esilaglinks", "evpn_id", "mac", "model", "pod", "pods", "role", "router_id", "site_id", "suggested_downlinks", "suggested_esilaglinks", "suggested_uplinks", "uplinks")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Config = temp.Config
     e.DeviceprofileId = temp.DeviceprofileId
     e.DownlinkIps = temp.DownlinkIps

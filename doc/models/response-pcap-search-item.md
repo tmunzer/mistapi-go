@@ -1,6 +1,8 @@
 
 # Response Pcap Search Item
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponsePcapSearchItem`
@@ -23,6 +25,7 @@
 | `Timestamp` | `float64` | Required | - |
 | `Type` | `string` | Required | - |
 | `Url` | `string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -53,7 +56,11 @@
   ],
   "aps": [
     "aps1"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

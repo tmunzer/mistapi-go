@@ -39,7 +39,7 @@ type JseInventoryItem struct {
     WarrantyEndTime      *int                      `json:"warranty_end_time,omitempty"`
     WarrantyStartTime    *int                      `json:"warranty_start_time,omitempty"`
     WarrantyType         *string                   `json:"warranty_type,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for JseInventoryItem.
@@ -47,13 +47,17 @@ type JseInventoryItem struct {
 func (j JseInventoryItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(j.AdditionalProperties,
+        "contract_end_time", "contract_id", "contract_sku", "contract_start_time", "contract_type", "customer_po", "distributor", "eol_time", "eos_time", "installed_address", "model", "order_id", "reseller", "serial", "shipped_time", "sku", "type", "warranty_end_time", "warranty_start_time", "warranty_type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(j.toMap())
 }
 
 // toMap converts the JseInventoryItem object to a map representation for JSON marshaling.
 func (j JseInventoryItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, j.AdditionalProperties)
+    MergeAdditionalProperties(structMap, j.AdditionalProperties)
     if j.ContractEndTime != nil {
         structMap["contract_end_time"] = j.ContractEndTime
     }
@@ -125,12 +129,12 @@ func (j *JseInventoryItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "contract_end_time", "contract_id", "contract_sku", "contract_start_time", "contract_type", "customer_po", "distributor", "eol_time", "eos_time", "installed_address", "model", "order_id", "reseller", "serial", "shipped_time", "sku", "type", "warranty_end_time", "warranty_start_time", "warranty_type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "contract_end_time", "contract_id", "contract_sku", "contract_start_time", "contract_type", "customer_po", "distributor", "eol_time", "eos_time", "installed_address", "model", "order_id", "reseller", "serial", "shipped_time", "sku", "type", "warranty_end_time", "warranty_start_time", "warranty_type")
     if err != nil {
     	return err
     }
-    
     j.AdditionalProperties = additionalProperties
+    
     j.ContractEndTime = temp.ContractEndTime
     j.ContractId = temp.ContractId
     j.ContractSku = temp.ContractSku

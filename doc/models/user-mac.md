@@ -1,6 +1,8 @@
 
 # User Mac
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UserMac`
@@ -16,6 +18,7 @@
 | `Notes` | `*string` | Optional | - |
 | `RadiusGroup` | `*string` | Optional | - |
 | `Vlan` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,7 +33,11 @@
   "name": "Printer2",
   "notes": "mac address refers to Canon printers",
   "radius_group": "VIP",
-  "vlan": "30"
+  "vlan": "30",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

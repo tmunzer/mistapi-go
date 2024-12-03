@@ -6,13 +6,13 @@ import (
 
 // StatsGatewaySpuItem represents a StatsGatewaySpuItem struct.
 type StatsGatewaySpuItem struct {
-    SpuCpu               *int           `json:"spu_cpu,omitempty"`
-    SpuCurrentSession    *int           `json:"spu_current_session,omitempty"`
-    SpuMaxSession        *int           `json:"spu_max_session,omitempty"`
-    SpuMemory            *int           `json:"spu_memory,omitempty"`
-    SpuPendingSession    *int           `json:"spu_pending_session,omitempty"`
-    SpuValidSession      *int           `json:"spu_valid_session,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    SpuCpu               *int                   `json:"spu_cpu,omitempty"`
+    SpuCurrentSession    *int                   `json:"spu_current_session,omitempty"`
+    SpuMaxSession        *int                   `json:"spu_max_session,omitempty"`
+    SpuMemory            *int                   `json:"spu_memory,omitempty"`
+    SpuPendingSession    *int                   `json:"spu_pending_session,omitempty"`
+    SpuValidSession      *int                   `json:"spu_valid_session,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGatewaySpuItem.
@@ -20,13 +20,17 @@ type StatsGatewaySpuItem struct {
 func (s StatsGatewaySpuItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "spu_cpu", "spu_current_session", "spu_max_session", "spu_memory", "spu_pending_session", "spu_valid_session"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsGatewaySpuItem object to a map representation for JSON marshaling.
 func (s StatsGatewaySpuItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.SpuCpu != nil {
         structMap["spu_cpu"] = s.SpuCpu
     }
@@ -56,12 +60,12 @@ func (s *StatsGatewaySpuItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "spu_cpu", "spu_current_session", "spu_max_session", "spu_memory", "spu_pending_session", "spu_valid_session")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "spu_cpu", "spu_current_session", "spu_max_session", "spu_memory", "spu_pending_session", "spu_valid_session")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.SpuCpu = temp.SpuCpu
     s.SpuCurrentSession = temp.SpuCurrentSession
     s.SpuMaxSession = temp.SpuMaxSession

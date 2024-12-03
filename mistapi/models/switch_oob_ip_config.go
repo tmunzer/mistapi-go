@@ -8,19 +8,19 @@ import (
 // - If HA configuration: key parameter will be nodeX (eg: node1)
 // - If there are 2 routing engines, re1 mgmt IP has to be set separately (if desired): key parameter = `re1`
 type SwitchOobIpConfig struct {
-    Gateway              *string        `json:"gateway,omitempty"`
-    Ip                   *string        `json:"ip,omitempty"`
+    Gateway              *string                `json:"gateway,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
     // used only if `subnet` is not specified in `networks`
-    Netmask              *string        `json:"netmask,omitempty"`
+    Netmask              *string                `json:"netmask,omitempty"`
     // optional, the network to be used for mgmt
-    Network              *string        `json:"network,omitempty"`
+    Network              *string                `json:"network,omitempty"`
     // enum: `dhcp`, `static`
-    Type                 *IpTypeEnum    `json:"type,omitempty"`
+    Type                 *IpTypeEnum            `json:"type,omitempty"`
     // if supported on the platform. If enabled, DNS will be using this routing-instance, too
-    UseMgmtVrf           *bool          `json:"use_mgmt_vrf,omitempty"`
+    UseMgmtVrf           *bool                  `json:"use_mgmt_vrf,omitempty"`
     // for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
-    UseMgmtVrfForHostOut *bool          `json:"use_mgmt_vrf_for_host_out,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    UseMgmtVrfForHostOut *bool                  `json:"use_mgmt_vrf_for_host_out,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchOobIpConfig.
@@ -28,13 +28,17 @@ type SwitchOobIpConfig struct {
 func (s SwitchOobIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "gateway", "ip", "netmask", "network", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchOobIpConfig object to a map representation for JSON marshaling.
 func (s SwitchOobIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Gateway != nil {
         structMap["gateway"] = s.Gateway
     }
@@ -67,12 +71,12 @@ func (s *SwitchOobIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "ip", "netmask", "network", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateway", "ip", "netmask", "network", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Gateway = temp.Gateway
     s.Ip = temp.Ip
     s.Netmask = temp.Netmask

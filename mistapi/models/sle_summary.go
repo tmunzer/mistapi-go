@@ -8,13 +8,13 @@ import (
 
 // SleSummary represents a SleSummary struct.
 type SleSummary struct {
-    Classifiers          []SleClassifier  `json:"classifiers"`
-    End                  float64          `json:"end"`
-    Events               []interface{}    `json:"events"`
-    Impact               SleSummaryImpact `json:"impact"`
-    Sle                  SleSummarySle    `json:"sle"`
-    Start                float64          `json:"start"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Classifiers          []SleClassifier        `json:"classifiers"`
+    End                  float64                `json:"end"`
+    Events               []interface{}          `json:"events"`
+    Impact               SleSummaryImpact       `json:"impact"`
+    Sle                  SleSummarySle          `json:"sle"`
+    Start                float64                `json:"start"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleSummary.
@@ -22,13 +22,17 @@ type SleSummary struct {
 func (s SleSummary) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "classifiers", "end", "events", "impact", "sle", "start"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleSummary object to a map representation for JSON marshaling.
 func (s SleSummary) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["classifiers"] = s.Classifiers
     structMap["end"] = s.End
     structMap["events"] = s.Events
@@ -50,12 +54,12 @@ func (s *SleSummary) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "classifiers", "end", "events", "impact", "sle", "start")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "classifiers", "end", "events", "impact", "sle", "start")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Classifiers = *temp.Classifiers
     s.End = *temp.End
     s.Events = *temp.Events

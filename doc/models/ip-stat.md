@@ -1,6 +1,8 @@
 
 # Ip Stat
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `IpStat`
@@ -19,6 +21,7 @@
 | `Ips` | `map[string]string` | Optional | - |
 | `Netmask` | `models.Optional[string]` | Optional | - |
 | `Netmask6` | `models.Optional[string]` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,7 +41,11 @@
     "dns_suffix5",
     "dns_suffix6"
   ],
-  "gateway": "gateway6"
+  "gateway": "gateway6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

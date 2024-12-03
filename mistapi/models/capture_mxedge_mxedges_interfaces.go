@@ -8,8 +8,8 @@ import (
 // Property key is the Port name (e.g. "port1", "kni0", "lacp0", "ipsec", "drop", "oobm"), currently limited to specifying one interface per mxedge
 type CaptureMxedgeMxedgesInterfaces struct {
     // tcpdump expression common for wired,radiotap
-    TcpdumpExpression    *string        `json:"tcpdump_expression,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TcpdumpExpression    *string                `json:"tcpdump_expression,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureMxedgeMxedgesInterfaces.
@@ -17,13 +17,17 @@ type CaptureMxedgeMxedgesInterfaces struct {
 func (c CaptureMxedgeMxedgesInterfaces) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "tcpdump_expression"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureMxedgeMxedgesInterfaces object to a map representation for JSON marshaling.
 func (c CaptureMxedgeMxedgesInterfaces) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.TcpdumpExpression != nil {
         structMap["tcpdump_expression"] = c.TcpdumpExpression
     }
@@ -38,12 +42,12 @@ func (c *CaptureMxedgeMxedgesInterfaces) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "tcpdump_expression")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "tcpdump_expression")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.TcpdumpExpression = temp.TcpdumpExpression
     return nil
 }

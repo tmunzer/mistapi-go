@@ -55,7 +55,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "5c5b350e0001",
         "5c5b350e0003",
     },
@@ -124,29 +124,29 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.DeviceprofileContainer.FromDeviceprofileAp(models.DeviceprofileAp{
-    Aeroscout:        models.ToPointer(models.ApAeroscout{
-        Enabled:         models.ToPointer(false),
-        Host:            models.NewOptional(models.ToPointer("aero.pvt.net")),
-        LocateConnected: models.ToPointer(true),
+    Aeroscout:            models.ToPointer(models.ApAeroscout{
+        Enabled:              models.ToPointer(false),
+        Host:                 models.NewOptional(models.ToPointer("aero.pvt.net")),
+        LocateConnected:      models.ToPointer(true),
     }),
-    Led:              models.ToPointer(models.ApLed{
-        Brightness: models.ToPointer(255),
-        Enabled:    models.ToPointer(true),
+    Led:                  models.ToPointer(models.ApLed{
+        Brightness:           models.ToPointer(255),
+        Enabled:              models.ToPointer(true),
     }),
-    Name:             models.ToPointer("string"),
-    NtpServers:       []string{
+    Name:                 models.ToPointer("string"),
+    NtpServers:           []string{
         "10.10.10.10",
     },
-    Type:             "ap",
-    UsbConfig:        models.ToPointer(models.ApUsb{
-        Cacert:     models.NewOptional(models.ToPointer("string")),
-        Channel:    models.ToPointer(3),
-        Enabled:    models.ToPointer(true),
-        Host:       models.ToPointer("1.1.1.1"),
-        Port:       models.ToPointer(0),
-        Type:       models.ToPointer(models.ApUsbTypeEnum("imagotag")),
-        VerifyCert: models.ToPointer(true),
-        VlanId:     models.ToPointer(1),
+    Type:                 "ap",
+    UsbConfig:            models.ToPointer(models.ApUsb{
+        Cacert:               models.NewOptional(models.ToPointer("string")),
+        Channel:              models.ToPointer(3),
+        Enabled:              models.ToPointer(true),
+        Host:                 models.ToPointer("1.1.1.1"),
+        Port:                 models.ToPointer(0),
+        Type:                 models.ToPointer(models.ApUsbTypeEnum("imagotag")),
+        VerifyCert:           models.ToPointer(true),
+        VlanId:               models.ToPointer(1),
     }),
 })
 
@@ -575,7 +575,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "5c5b350e0001",
         "5c5b350e0003",
     },
@@ -648,45 +648,51 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.DeviceprofileContainer.FromDeviceprofileAp(models.DeviceprofileAp{
-    Aeroscout:        models.ToPointer(models.ApAeroscout{
-        Enabled:         models.ToPointer(true),
-        Host:            models.NewOptional(models.ToPointer("string")),
+    Aeroscout:            models.ToPointer(models.ApAeroscout{
+        Enabled:              models.ToPointer(true),
+        Host:                 models.NewOptional(models.ToPointer("string")),
     }),
-    DisableEth1:      models.ToPointer(true),
-    DisableModule:    models.ToPointer(true),
-    Mesh:             models.ToPointer(models.ApMesh{
-        Enabled: models.ToPointer(true),
-        Group:   models.NewOptional(models.ToPointer(1)),
-        Role:    models.ToPointer(models.ApMeshRoleEnum("base")),
+    DisableEth1:          models.ToPointer(true),
+    DisableModule:        models.ToPointer(true),
+    Mesh:                 models.ToPointer(models.ApMesh{
+        Enabled:              models.ToPointer(true),
+        Group:                models.NewOptional(models.ToPointer(1)),
+        Role:                 models.ToPointer(models.ApMeshRoleEnum("base")),
     }),
-    Name:             models.ToPointer("string"),
-    PoePassthrough:   models.ToPointer(true),
-    RadioConfig:      models.ToPointer(models.ApRadio{
-        AntGain24:       models.ToPointer(0),
-        AntGain5:        models.ToPointer(0),
-        Band24:          models.ToPointer(models.ApRadioBand24{
-            AllowRrmDisable: models.ToPointer(true),
-            AntennaMode:     models.ToPointer(models.RadioBandAntennaModeEnum("default")),
-            Bandwidth:       models.ToPointer(models.Dot11Bandwidth24Enum(20)),
-            Channel:         models.NewOptional(models.ToPointer(6)),
-            Disabled:        models.ToPointer(true),
-            Power:           models.NewOptional(models.ToPointer(8)),
-            Preamble:        models.ToPointer(models.RadioBandPreambleEnum("auto")),
+    Name:                 models.ToPointer("string"),
+    PoePassthrough:       models.ToPointer(true),
+    RadioConfig:          models.ToPointer(models.ApRadio{
+        AntGain24:            models.ToPointer(0),
+        AntGain5:             models.ToPointer(0),
+        Band24:               models.ToPointer(models.ApRadioBand24{
+            AllowRrmDisable:      models.ToPointer(true),
+            AntennaMode:          models.ToPointer(models.RadioBandAntennaModeEnum("default")),
+            Bandwidth:            models.ToPointer(models.Dot11Bandwidth24Enum(20)),
+            Channel:              models.NewOptional(models.ToPointer(6)),
+            Disabled:             models.ToPointer(true),
+            Power:                models.NewOptional(models.ToPointer(8)),
+            Preamble:             models.ToPointer(models.RadioBandPreambleEnum("auto")),
+            AdditionalProperties: map[string]interface{}{
+                "usage": interface{}("24"),
+            },
         }),
-        Band24Usage:     models.ToPointer(models.RadioBand24UsageEnum("24")),
-        Band5:           models.ToPointer(models.ApRadioBand5{
-            AllowRrmDisable: models.ToPointer(true),
-            AntennaMode:     models.ToPointer(models.RadioBandAntennaModeEnum("default")),
-            Bandwidth:       models.ToPointer(models.Dot11Bandwidth5Enum(20)),
-            Channel:         models.NewOptional(models.ToPointer(50)),
-            Disabled:        models.ToPointer(true),
-            PowerMax:        models.NewOptional(models.ToPointer(8)),
-            PowerMin:        models.NewOptional(models.ToPointer(15)),
-            Preamble:        models.ToPointer(models.RadioBandPreambleEnum("auto")),
+        Band24Usage:          models.ToPointer(models.RadioBand24UsageEnum("24")),
+        Band5:                models.ToPointer(models.ApRadioBand5{
+            AllowRrmDisable:      models.ToPointer(true),
+            AntennaMode:          models.ToPointer(models.RadioBandAntennaModeEnum("default")),
+            Bandwidth:            models.ToPointer(models.Dot11Bandwidth5Enum(20)),
+            Channel:              models.NewOptional(models.ToPointer(50)),
+            Disabled:             models.ToPointer(true),
+            PowerMax:             models.NewOptional(models.ToPointer(8)),
+            PowerMin:             models.NewOptional(models.ToPointer(15)),
+            Preamble:             models.ToPointer(models.RadioBandPreambleEnum("auto")),
+            AdditionalProperties: map[string]interface{}{
+                "usage": interface{}("24"),
+            },
         }),
-        ScanningEnabled: models.ToPointer(true),
+        ScanningEnabled:      models.ToPointer(true),
     }),
-    Type:             "ap",
+    Type:                 "ap",
 })
 
 apiResponse, err := orgsDeviceProfiles.UpdateOrgDeviceProfile(ctx, orgId, deviceprofileId, &body)

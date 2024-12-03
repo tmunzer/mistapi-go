@@ -7,8 +7,8 @@ import (
 // CaptureGatewayGatewaysPort represents a CaptureGatewayGatewaysPort struct.
 type CaptureGatewayGatewaysPort struct {
     // tcpdump expression per port
-    TcpdumpExpression    *string        `json:"tcpdump_expression,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TcpdumpExpression    *string                `json:"tcpdump_expression,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureGatewayGatewaysPort.
@@ -16,13 +16,17 @@ type CaptureGatewayGatewaysPort struct {
 func (c CaptureGatewayGatewaysPort) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "tcpdump_expression"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureGatewayGatewaysPort object to a map representation for JSON marshaling.
 func (c CaptureGatewayGatewaysPort) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.TcpdumpExpression != nil {
         structMap["tcpdump_expression"] = c.TcpdumpExpression
     }
@@ -37,12 +41,12 @@ func (c *CaptureGatewayGatewaysPort) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "tcpdump_expression")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "tcpdump_expression")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.TcpdumpExpression = temp.TcpdumpExpression
     return nil
 }

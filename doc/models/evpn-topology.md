@@ -1,6 +1,8 @@
 
 # Evpn Topology
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `EvpnTopology`
@@ -17,6 +19,7 @@
 | `PodNames` | `map[string]string` | Optional | Property key is the pod number |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Switches` | [`[]models.EvpnTopologySwitch`](../../doc/models/evpn-topology-switch.md) | Required | **Constraints**: *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -61,7 +64,11 @@
       ],
       "config": {
         "dhcpd_config": {
-          "enabled": false
+          "enabled": false,
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         "networks": {
           "key0": {
@@ -70,7 +77,11 @@
             "isolation": false,
             "isolation_vlan_id": "isolation_vlan_id8",
             "subnet": "subnet6",
-            "vlan_id": "String7"
+            "vlan_id": "String7",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key1": {
             "gateway": "gateway8",
@@ -78,7 +89,11 @@
             "isolation": false,
             "isolation_vlan_id": "isolation_vlan_id8",
             "subnet": "subnet6",
-            "vlan_id": "String7"
+            "vlan_id": "String7",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
         },
         "other_ip_configs": {
@@ -87,21 +102,33 @@
             "ip": "ip4",
             "ip6": "ip60",
             "netmask": "netmask0",
-            "netmask6": "netmask60"
+            "netmask6": "netmask60",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key1": {
             "evpn_anycast": false,
             "ip": "ip4",
             "ip6": "ip60",
             "netmask": "netmask0",
-            "netmask6": "netmask60"
+            "netmask6": "netmask60",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key2": {
             "evpn_anycast": false,
             "ip": "ip4",
             "ip6": "ip60",
             "netmask": "netmask0",
-            "netmask6": "netmask60"
+            "netmask6": "netmask60",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
         },
         "port_config": {
@@ -111,7 +138,11 @@
             "ae_lacp_slow": false,
             "aggregated": false,
             "critical": false,
-            "usage": "usage6"
+            "usage": "usage6",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key1": {
             "ae_disable_lacp": false,
@@ -119,7 +150,11 @@
             "ae_lacp_slow": false,
             "aggregated": false,
             "critical": false,
-            "usage": "usage6"
+            "usage": "usage6",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
         },
         "port_usages": {
@@ -128,27 +163,47 @@
             "allow_dhcpd": false,
             "allow_multiple_supplicants": false,
             "bypass_auth_when_server_down": false,
-            "bypass_auth_when_server_down_for_unkonwn_client": false
+            "bypass_auth_when_server_down_for_unkonwn_client": false,
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key1": {
             "all_networks": false,
             "allow_dhcpd": false,
             "allow_multiple_supplicants": false,
             "bypass_auth_when_server_down": false,
-            "bypass_auth_when_server_down_for_unkonwn_client": false
+            "bypass_auth_when_server_down_for_unkonwn_client": false,
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key2": {
             "all_networks": false,
             "allow_dhcpd": false,
             "allow_multiple_supplicants": false,
             "bypass_auth_when_server_down": false,
-            "bypass_auth_when_server_down_for_unkonwn_client": false
+            "bypass_auth_when_server_down_for_unkonwn_client": false,
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
+        },
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
         }
       },
       "downlink_ips": [
         "downlink_ips6"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "evpn_options": {
@@ -156,9 +211,17 @@
     "auto_loopback_subnet6": "auto_loopback_subnet60",
     "auto_router_id_subnet": "auto_router_id_subnet8",
     "auto_router_id_subnet6": "auto_router_id_subnet60",
-    "core_as_border": false
+    "core_as_border": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "overwrite": false
+  "overwrite": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

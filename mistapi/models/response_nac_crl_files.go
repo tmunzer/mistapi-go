@@ -6,8 +6,8 @@ import (
 
 // ResponseNacCrlFiles represents a ResponseNacCrlFiles struct.
 type ResponseNacCrlFiles struct {
-    Results              []NacCrlFile   `json:"results,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Results              []NacCrlFile           `json:"results,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseNacCrlFiles.
@@ -15,13 +15,17 @@ type ResponseNacCrlFiles struct {
 func (r ResponseNacCrlFiles) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "results"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseNacCrlFiles object to a map representation for JSON marshaling.
 func (r ResponseNacCrlFiles) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Results != nil {
         structMap["results"] = r.Results
     }
@@ -36,12 +40,12 @@ func (r *ResponseNacCrlFiles) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "results")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "results")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Results = temp.Results
     return nil
 }

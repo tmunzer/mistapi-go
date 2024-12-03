@@ -13,7 +13,7 @@ type Tacacs struct {
     // which network the TACACS server resides
     Network              *string                `json:"network,omitempty"`
     TacplusServers       []TacacsAuthServer     `json:"tacplus_servers,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Tacacs.
@@ -21,13 +21,17 @@ type Tacacs struct {
 func (t Tacacs) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "acct_servers", "default_role", "enabled", "network", "tacplus_servers"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the Tacacs object to a map representation for JSON marshaling.
 func (t Tacacs) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.AcctServers != nil {
         structMap["acct_servers"] = t.AcctServers
     }
@@ -54,12 +58,12 @@ func (t *Tacacs) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_servers", "default_role", "enabled", "network", "tacplus_servers")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acct_servers", "default_role", "enabled", "network", "tacplus_servers")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.AcctServers = temp.AcctServers
     t.DefaultRole = temp.DefaultRole
     t.Enabled = temp.Enabled

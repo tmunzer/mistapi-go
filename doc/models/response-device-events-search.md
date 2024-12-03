@@ -1,6 +1,8 @@
 
 # Response Device Events Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseDeviceEventsSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.EventsDeviceAp`](../../doc/models/events-device-ap.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,12 +34,20 @@
       "apfw": "apfw8",
       "count": 226,
       "device_type": "device_type4",
-      "mac": "mac0"
+      "mac": "mac0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 120,
   "total": 154,
-  "next": "next6"
+  "next": "next6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

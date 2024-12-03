@@ -27,7 +27,7 @@ type Vpn struct {
     Paths                map[string]VpnPath          `json:"paths"`
     // enum: `hub_spoke`, `mesh`
     Type                 *VpnTypeEnum                `json:"type,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Vpn.
@@ -35,13 +35,17 @@ type Vpn struct {
 func (v Vpn) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "created_time", "id", "links", "modified_time", "name", "org_id", "path_selection", "paths", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the Vpn object to a map representation for JSON marshaling.
 func (v Vpn) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.CreatedTime != nil {
         structMap["created_time"] = v.CreatedTime
     }
@@ -80,12 +84,12 @@ func (v *Vpn) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "id", "links", "modified_time", "name", "org_id", "path_selection", "paths", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "id", "links", "modified_time", "name", "org_id", "path_selection", "paths", "type")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.CreatedTime = temp.CreatedTime
     v.Id = temp.Id
     v.Links = temp.Links

@@ -52,32 +52,32 @@ body := models.Network{
     DisallowMistServices: models.ToPointer(false),
     Gateway:              models.ToPointer("192.168.70.1"),
     InternalAccess:       models.ToPointer(models.NetworkInternalAccess{
-        Enabled: models.ToPointer(true),
+        Enabled:              models.ToPointer(true),
     }),
     InternetAccess:       models.ToPointer(models.NetworkInternetAccess{
         CreateSimpleServicePolicy: models.ToPointer(false),
         DestinationNat:            map[string]models.NetworkDestinationNatProperty{
             "property1": models.NetworkDestinationNatProperty{
-                InternalIp: models.ToPointer("192.168.70.30"),
-                Name:       models.ToPointer("web server"),
-                Port:       models.ToPointer(443),
+                InternalIp:           models.ToPointer("192.168.70.30"),
+                Name:                 models.ToPointer("web server"),
+                Port:                 models.ToPointer(443),
             },
             "property2": models.NetworkDestinationNatProperty{
-                InternalIp: models.ToPointer("192.168.70.30"),
-                Name:       models.ToPointer("web server"),
-                Port:       models.ToPointer(443),
+                InternalIp:           models.ToPointer("192.168.70.30"),
+                Name:                 models.ToPointer("web server"),
+                Port:                 models.ToPointer(443),
             },
         },
         Enabled:                   models.ToPointer(true),
         Restricted:                models.ToPointer(false),
         StaticNat:                 map[string]models.NetworkStaticNatProperty{
             "property1": models.NetworkStaticNatProperty{
-                InternalIp: models.ToPointer("192.168.70.3"),
-                Name:       models.ToPointer("printer-1"),
+                InternalIp:           models.ToPointer("192.168.70.3"),
+                Name:                 models.ToPointer("printer-1"),
             },
             "property2": models.NetworkStaticNatProperty{
-                InternalIp: models.ToPointer("192.168.70.3"),
-                Name:       models.ToPointer("printer-1"),
+                InternalIp:           models.ToPointer("192.168.70.3"),
+                Name:                 models.ToPointer("printer-1"),
             },
         },
     }),
@@ -86,12 +86,12 @@ body := models.Network{
     Subnet:               models.ToPointer("192.168.70.0/24"),
     Tenants:              map[string]models.NetworkTenant{
         "property1": models.NetworkTenant{
-            Addresses: []string{
+            Addresses:            []string{
                 "10.10.10.10.",
             },
         },
         "property2": models.NetworkTenant{
-            Addresses: []string{
+            Addresses:            []string{
                 "10.10.10.52",
             },
         },
@@ -102,27 +102,33 @@ body := models.Network{
             AllowPing:                 models.ToPointer(true),
             DestinationNat:            map[string]models.NetworkDestinationNatProperty{
                 "property1": models.NetworkDestinationNatProperty{
-                    Name:       models.ToPointer("web server"),
-                    Port:       models.ToPointer(443),
+                    Name:                 models.ToPointer("web server"),
+                    Port:                 models.ToPointer(443),
+                    AdditionalProperties: map[string]interface{}{
+                        "to": interface{}("192.168.70.5/30"),
+                    },
                 },
                 "property2": models.NetworkDestinationNatProperty{
-                    Name:       models.ToPointer("web server"),
-                    Port:       models.ToPointer(443),
+                    Name:                 models.ToPointer("web server"),
+                    Port:                 models.ToPointer(443),
+                    AdditionalProperties: map[string]interface{}{
+                        "to": interface{}("192.168.70.5/30"),
+                    },
                 },
             },
             NatPool:                   models.ToPointer("172.16.0.0/26"),
             Routed:                    models.ToPointer(true),
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
-                ExternalIp: models.ToPointer("172.16.0.8/30"),
+                ExternalIp:           models.ToPointer("172.16.0.8/30"),
             }),
             StaticNat:                 map[string]models.NetworkStaticNatProperty{
                 "property1": models.NetworkStaticNatProperty{
-                    InternalIp: models.ToPointer("192.168.70.3"),
-                    Name:       models.ToPointer("pos_station-1"),
+                    InternalIp:           models.ToPointer("192.168.70.3"),
+                    Name:                 models.ToPointer("pos_station-1"),
                 },
                 "property2": models.NetworkStaticNatProperty{
-                    InternalIp: models.ToPointer("192.168.70.3"),
-                    Name:       models.ToPointer("pos_station-1"),
+                    InternalIp:           models.ToPointer("192.168.70.3"),
+                    Name:                 models.ToPointer("pos_station-1"),
                 },
             },
             SummarizedSubnet:          models.ToPointer("172.16.0.0/16"),
@@ -131,31 +137,40 @@ body := models.Network{
             AllowPing:                 models.ToPointer(true),
             DestinationNat:            map[string]models.NetworkDestinationNatProperty{
                 "property1": models.NetworkDestinationNatProperty{
-                    Name:       models.ToPointer("web server"),
-                    Port:       models.ToPointer(443),
+                    Name:                 models.ToPointer("web server"),
+                    Port:                 models.ToPointer(443),
+                    AdditionalProperties: map[string]interface{}{
+                        "to": interface{}("192.168.70.5/30"),
+                    },
                 },
                 "property2": models.NetworkDestinationNatProperty{
-                    Name:       models.ToPointer("web server"),
-                    Port:       models.ToPointer(443),
+                    Name:                 models.ToPointer("web server"),
+                    Port:                 models.ToPointer(443),
+                    AdditionalProperties: map[string]interface{}{
+                        "to": interface{}("192.168.70.5/30"),
+                    },
                 },
             },
             NatPool:                   models.ToPointer("172.16.0.0/26"),
             Routed:                    models.ToPointer(true),
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
-                ExternalIp: models.ToPointer("172.16.0.8/30"),
+                ExternalIp:           models.ToPointer("172.16.0.8/30"),
             }),
             StaticNat:                 map[string]models.NetworkStaticNatProperty{
                 "property1": models.NetworkStaticNatProperty{
-                    InternalIp: models.ToPointer("192.168.70.3"),
-                    Name:       models.ToPointer("pos_station-1"),
+                    InternalIp:           models.ToPointer("192.168.70.3"),
+                    Name:                 models.ToPointer("pos_station-1"),
                 },
                 "property2": models.NetworkStaticNatProperty{
-                    InternalIp: models.ToPointer("192.168.70.3"),
-                    Name:       models.ToPointer("pos_station-1"),
+                    InternalIp:           models.ToPointer("192.168.70.3"),
+                    Name:                 models.ToPointer("pos_station-1"),
                 },
             },
             SummarizedSubnet:          models.ToPointer("172.16.0.0/16"),
         },
+    },
+    AdditionalProperties: map[string]interface{}{
+        "hosts": interface{}("[property1, DotLiquid.Hash][property2, DotLiquid.Hash]"),
     },
 }
 
@@ -784,32 +799,32 @@ body := models.Network{
     DisallowMistServices: models.ToPointer(false),
     Gateway:              models.ToPointer("192.168.70.1"),
     InternalAccess:       models.ToPointer(models.NetworkInternalAccess{
-        Enabled: models.ToPointer(true),
+        Enabled:              models.ToPointer(true),
     }),
     InternetAccess:       models.ToPointer(models.NetworkInternetAccess{
         CreateSimpleServicePolicy: models.ToPointer(false),
         DestinationNat:            map[string]models.NetworkDestinationNatProperty{
             "property1": models.NetworkDestinationNatProperty{
-                InternalIp: models.ToPointer("192.168.70.30"),
-                Name:       models.ToPointer("web server"),
-                Port:       models.ToPointer(443),
+                InternalIp:           models.ToPointer("192.168.70.30"),
+                Name:                 models.ToPointer("web server"),
+                Port:                 models.ToPointer(443),
             },
             "property2": models.NetworkDestinationNatProperty{
-                InternalIp: models.ToPointer("192.168.70.30"),
-                Name:       models.ToPointer("web server"),
-                Port:       models.ToPointer(443),
+                InternalIp:           models.ToPointer("192.168.70.30"),
+                Name:                 models.ToPointer("web server"),
+                Port:                 models.ToPointer(443),
             },
         },
         Enabled:                   models.ToPointer(true),
         Restricted:                models.ToPointer(false),
         StaticNat:                 map[string]models.NetworkStaticNatProperty{
             "property1": models.NetworkStaticNatProperty{
-                InternalIp: models.ToPointer("192.168.70.3"),
-                Name:       models.ToPointer("printer-1"),
+                InternalIp:           models.ToPointer("192.168.70.3"),
+                Name:                 models.ToPointer("printer-1"),
             },
             "property2": models.NetworkStaticNatProperty{
-                InternalIp: models.ToPointer("192.168.70.3"),
-                Name:       models.ToPointer("printer-1"),
+                InternalIp:           models.ToPointer("192.168.70.3"),
+                Name:                 models.ToPointer("printer-1"),
             },
         },
     }),
@@ -818,12 +833,12 @@ body := models.Network{
     Subnet:               models.ToPointer("192.168.70.0/24"),
     Tenants:              map[string]models.NetworkTenant{
         "property1": models.NetworkTenant{
-            Addresses: []string{
+            Addresses:            []string{
                 "10.10.10.10",
             },
         },
         "property2": models.NetworkTenant{
-            Addresses: []string{
+            Addresses:            []string{
                 "10.10.10.52",
             },
         },
@@ -834,27 +849,33 @@ body := models.Network{
             AllowPing:                 models.ToPointer(true),
             DestinationNat:            map[string]models.NetworkDestinationNatProperty{
                 "property1": models.NetworkDestinationNatProperty{
-                    Name:       models.ToPointer("web server"),
-                    Port:       models.ToPointer(443),
+                    Name:                 models.ToPointer("web server"),
+                    Port:                 models.ToPointer(443),
+                    AdditionalProperties: map[string]interface{}{
+                        "to": interface{}("192.168.70.5/30"),
+                    },
                 },
                 "property2": models.NetworkDestinationNatProperty{
-                    Name:       models.ToPointer("web server"),
-                    Port:       models.ToPointer(443),
+                    Name:                 models.ToPointer("web server"),
+                    Port:                 models.ToPointer(443),
+                    AdditionalProperties: map[string]interface{}{
+                        "to": interface{}("192.168.70.5/30"),
+                    },
                 },
             },
             NatPool:                   models.ToPointer("172.16.0.0/26"),
             Routed:                    models.ToPointer(true),
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
-                ExternalIp: models.ToPointer("172.16.0.8/30"),
+                ExternalIp:           models.ToPointer("172.16.0.8/30"),
             }),
             StaticNat:                 map[string]models.NetworkStaticNatProperty{
                 "property1": models.NetworkStaticNatProperty{
-                    InternalIp: models.ToPointer("192.168.70.3"),
-                    Name:       models.ToPointer("pos_station-1"),
+                    InternalIp:           models.ToPointer("192.168.70.3"),
+                    Name:                 models.ToPointer("pos_station-1"),
                 },
                 "property2": models.NetworkStaticNatProperty{
-                    InternalIp: models.ToPointer("192.168.70.3"),
-                    Name:       models.ToPointer("pos_station-1"),
+                    InternalIp:           models.ToPointer("192.168.70.3"),
+                    Name:                 models.ToPointer("pos_station-1"),
                 },
             },
             SummarizedSubnet:          models.ToPointer("172.16.0.0/16"),
@@ -863,31 +884,40 @@ body := models.Network{
             AllowPing:                 models.ToPointer(true),
             DestinationNat:            map[string]models.NetworkDestinationNatProperty{
                 "property1": models.NetworkDestinationNatProperty{
-                    Name:       models.ToPointer("web server"),
-                    Port:       models.ToPointer(443),
+                    Name:                 models.ToPointer("web server"),
+                    Port:                 models.ToPointer(443),
+                    AdditionalProperties: map[string]interface{}{
+                        "to": interface{}("192.168.70.5/30"),
+                    },
                 },
                 "property2": models.NetworkDestinationNatProperty{
-                    Name:       models.ToPointer("web server"),
-                    Port:       models.ToPointer(443),
+                    Name:                 models.ToPointer("web server"),
+                    Port:                 models.ToPointer(443),
+                    AdditionalProperties: map[string]interface{}{
+                        "to": interface{}("192.168.70.5/30"),
+                    },
                 },
             },
             NatPool:                   models.ToPointer("172.16.0.0/26"),
             Routed:                    models.ToPointer(true),
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
-                ExternalIp: models.ToPointer("172.16.0.8/30"),
+                ExternalIp:           models.ToPointer("172.16.0.8/30"),
             }),
             StaticNat:                 map[string]models.NetworkStaticNatProperty{
                 "property1": models.NetworkStaticNatProperty{
-                    InternalIp: models.ToPointer("192.168.70.3"),
-                    Name:       models.ToPointer("pos_station-1"),
+                    InternalIp:           models.ToPointer("192.168.70.3"),
+                    Name:                 models.ToPointer("pos_station-1"),
                 },
                 "property2": models.NetworkStaticNatProperty{
-                    InternalIp: models.ToPointer("192.168.70.3"),
-                    Name:       models.ToPointer("pos_station-1"),
+                    InternalIp:           models.ToPointer("192.168.70.3"),
+                    Name:                 models.ToPointer("pos_station-1"),
                 },
             },
             SummarizedSubnet:          models.ToPointer("172.16.0.0/16"),
         },
+    },
+    AdditionalProperties: map[string]interface{}{
+        "hosts": interface{}("[property1, DotLiquid.Hash][property2, DotLiquid.Hash]"),
     },
 }
 

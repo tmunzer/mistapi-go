@@ -1,6 +1,8 @@
 
 # Webhook Asset Raw Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookAssetRawEvent`
@@ -27,6 +29,7 @@
 | `ServicePackets` | [`[]models.ServicePacket`](../../doc/models/service-packet.md) | Optional | list of service data packets heard from the asset/ beacon |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `float64` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,7 +49,11 @@
   "ibeacon_minor": 82,
   "ibeacon_uuid": "0000122c-0000-0000-0000-000000000000",
   "service_data_data": "service_data_data2",
-  "service_data_last_rx_time": 168
+  "service_data_last_rx_time": 168,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -9,12 +9,12 @@ import (
 // management-related properties
 type OrgSettingMgmt struct {
     // list of Mist Tunnels
-    MxtunnelIds          []uuid.UUID    `json:"mxtunnel_ids,omitempty"`
+    MxtunnelIds          []uuid.UUID            `json:"mxtunnel_ids,omitempty"`
     // whether to use Mist Tunnel for mgmt connectivity, this takes precedence over use_wxtunnel
-    UseMxtunnel          *bool          `json:"use_mxtunnel,omitempty"`
+    UseMxtunnel          *bool                  `json:"use_mxtunnel,omitempty"`
     // whether to use wxtunnel for mgmt connectivity
-    UseWxtunnel          *bool          `json:"use_wxtunnel,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    UseWxtunnel          *bool                  `json:"use_wxtunnel,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingMgmt.
@@ -22,13 +22,17 @@ type OrgSettingMgmt struct {
 func (o OrgSettingMgmt) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "mxtunnel_ids", "use_mxtunnel", "use_wxtunnel"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingMgmt object to a map representation for JSON marshaling.
 func (o OrgSettingMgmt) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.MxtunnelIds != nil {
         structMap["mxtunnel_ids"] = o.MxtunnelIds
     }
@@ -49,12 +53,12 @@ func (o *OrgSettingMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mxtunnel_ids", "use_mxtunnel", "use_wxtunnel")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mxtunnel_ids", "use_mxtunnel", "use_wxtunnel")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.MxtunnelIds = temp.MxtunnelIds
     o.UseMxtunnel = temp.UseMxtunnel
     o.UseWxtunnel = temp.UseWxtunnel

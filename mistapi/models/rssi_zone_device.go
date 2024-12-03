@@ -9,10 +9,10 @@ import (
 
 // RssiZoneDevice represents a RssiZoneDevice struct.
 type RssiZoneDevice struct {
-    DeviceId             uuid.UUID      `json:"device_id"`
+    DeviceId             uuid.UUID              `json:"device_id"`
     // RSSI threshold
-    Rssi                 int            `json:"rssi"`
-    AdditionalProperties map[string]any `json:"_"`
+    Rssi                 int                    `json:"rssi"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RssiZoneDevice.
@@ -20,13 +20,17 @@ type RssiZoneDevice struct {
 func (r RssiZoneDevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "device_id", "rssi"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RssiZoneDevice object to a map representation for JSON marshaling.
 func (r RssiZoneDevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["device_id"] = r.DeviceId
     structMap["rssi"] = r.Rssi
     return structMap
@@ -44,12 +48,12 @@ func (r *RssiZoneDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "device_id", "rssi")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "device_id", "rssi")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.DeviceId = *temp.DeviceId
     r.Rssi = *temp.Rssi
     return nil

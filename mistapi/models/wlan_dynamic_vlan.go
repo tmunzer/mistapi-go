@@ -21,7 +21,7 @@ type WlanDynamicVlan struct {
     // * if `dynamic_vlan.type`==`standard`, property key is the Vlan ID and property value is \"\"
     // * if `dynamic_vlan.type`==`airespace-interface-name`, property key is the Vlan ID and property value is the Airespace Interface Name
     Vlans                map[string]string                       `json:"vlans,omitempty"`
-    AdditionalProperties map[string]any                          `json:"_"`
+    AdditionalProperties map[string]interface{}                  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDynamicVlan.
@@ -29,13 +29,17 @@ type WlanDynamicVlan struct {
 func (w WlanDynamicVlan) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "default_vlan_id", "default_vlan_ids", "enabled", "local_vlan_ids", "type", "vlans"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanDynamicVlan object to a map representation for JSON marshaling.
 func (w WlanDynamicVlan) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.DefaultVlanId != nil {
         structMap["default_vlan_id"] = w.DefaultVlanId.toMap()
     }
@@ -65,12 +69,12 @@ func (w *WlanDynamicVlan) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "default_vlan_id", "default_vlan_ids", "enabled", "local_vlan_ids", "type", "vlans")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default_vlan_id", "default_vlan_ids", "enabled", "local_vlan_ids", "type", "vlans")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.DefaultVlanId = temp.DefaultVlanId
     w.DefaultVlanIds = temp.DefaultVlanIds
     w.Enabled = temp.Enabled

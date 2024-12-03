@@ -7,10 +7,10 @@ import (
 // ServicePacket represents a ServicePacket struct.
 type ServicePacket struct {
     // ata from service data
-    ServiceData          *string        `json:"service_data,omitempty"`
+    ServiceData          *string                `json:"service_data,omitempty"`
     // UUID from service data
-    ServiceUuid          *string        `json:"service_uuid,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ServiceUuid          *string                `json:"service_uuid,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServicePacket.
@@ -18,13 +18,17 @@ type ServicePacket struct {
 func (s ServicePacket) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "service_data", "service_uuid"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the ServicePacket object to a map representation for JSON marshaling.
 func (s ServicePacket) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ServiceData != nil {
         structMap["service_data"] = s.ServiceData
     }
@@ -42,12 +46,12 @@ func (s *ServicePacket) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "service_data", "service_uuid")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "service_data", "service_uuid")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ServiceData = temp.ServiceData
     s.ServiceUuid = temp.ServiceUuid
     return nil

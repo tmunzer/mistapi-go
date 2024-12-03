@@ -1,6 +1,8 @@
 
 # Vpn Peer Stat
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `VpnPeerStat`
@@ -26,6 +28,7 @@
 | `Type` | `*string` | Optional | `ipsec`for SRX, `svr` for 128T<br>**Constraints**: *Minimum Length*: `1` |
 | `Up` | `*bool` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,7 +41,11 @@
   "last_seen": 49.48,
   "latency": 109.82,
   "mac": "mac2",
-  "mos": 168.08
+  "mos": 168.08,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

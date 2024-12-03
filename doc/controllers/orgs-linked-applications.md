@@ -54,10 +54,10 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 appName := models.OauthAppNameEnum("mobicontrol")
 
 body := models.AccountOauthAddContainer.FromAccountJamfConfig(models.AccountJamfConfig{
-    ClientId:       "client_id0",
-    ClientSecret:   "client_secret6",
-    InstanceUrl:    "junipertest.jamfcloud.com",
-    SmartgroupName: "CompliantGroup1",
+    ClientId:             "client_id0",
+    ClientSecret:         "client_secret6",
+    InstanceUrl:          "junipertest.jamfcloud.com",
+    SmartgroupName:       "CompliantGroup1",
 })
 
 resp, err := orgsLinkedApplications.AddOrgOauthAppAccounts(ctx, orgId, appName, &body)
@@ -225,8 +225,8 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AccountJuniperConfig{
-    Password: "password",
-    Username: "john@nmo.com",
+    Password:             "password",
+    Username:             "john@nmo.com",
 }
 
 apiResponse, err := orgsLinkedApplications.LinkOrgToJuniperJuniperAccount(ctx, orgId, &body)
@@ -352,8 +352,8 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 appName := models.OauthAppNameEnum("mobicontrol")
 
 body := models.AccountOauthConfig{
-    AccountId:           "iojzXIJWEuiD73ZvydOfg",
-    MaxDailyApiRequests: models.ToPointer(5000),
+    AccountId:            "iojzXIJWEuiD73ZvydOfg",
+    MaxDailyApiRequests:  models.ToPointer(5000),
 }
 
 resp, err := orgsLinkedApplications.UpdateOrgOauthAppAccounts(ctx, orgId, appName, &body)

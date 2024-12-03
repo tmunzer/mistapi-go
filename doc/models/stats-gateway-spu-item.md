@@ -1,6 +1,8 @@
 
 # Stats Gateway Spu Item
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsGatewaySpuItem`
@@ -15,6 +17,7 @@
 | `SpuMemory` | `*int` | Optional | - |
 | `SpuPendingSession` | `*int` | Optional | - |
 | `SpuValidSession` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   "spu_max_session": 131072,
   "spu_memory": 46,
   "spu_pending_session": 0,
-  "spu_valid_session": 0
+  "spu_valid_session": 0,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -6,15 +6,15 @@ import (
 
 // DhcpSnooping represents a DhcpSnooping struct.
 type DhcpSnooping struct {
-    AllNetworks          *bool          `json:"all_networks,omitempty"`
+    AllNetworks          *bool                  `json:"all_networks,omitempty"`
     // Enable for dynamic ARP inspection check
-    EnableArpSpoofCheck  *bool          `json:"enable_arp_spoof_check,omitempty"`
+    EnableArpSpoofCheck  *bool                  `json:"enable_arp_spoof_check,omitempty"`
     // Enable for check for forging source IP address
-    EnableIpSourceGuard  *bool          `json:"enable_ip_source_guard,omitempty"`
-    Enabled              *bool          `json:"enabled,omitempty"`
+    EnableIpSourceGuard  *bool                  `json:"enable_ip_source_guard,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // if `all_networks`==`false`, list of network with DHCP snooping enabled
-    Networks             []string       `json:"networks,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Networks             []string               `json:"networks,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpSnooping.
@@ -22,13 +22,17 @@ type DhcpSnooping struct {
 func (d DhcpSnooping) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "all_networks", "enable_arp_spoof_check", "enable_ip_source_guard", "enabled", "networks"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DhcpSnooping object to a map representation for JSON marshaling.
 func (d DhcpSnooping) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.AllNetworks != nil {
         structMap["all_networks"] = d.AllNetworks
     }
@@ -55,12 +59,12 @@ func (d *DhcpSnooping) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "all_networks", "enable_arp_spoof_check", "enable_ip_source_guard", "enabled", "networks")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_networks", "enable_arp_spoof_check", "enable_ip_source_guard", "enabled", "networks")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.AllNetworks = temp.AllNetworks
     d.EnableArpSpoofCheck = temp.EnableArpSpoofCheck
     d.EnableIpSourceGuard = temp.EnableIpSourceGuard

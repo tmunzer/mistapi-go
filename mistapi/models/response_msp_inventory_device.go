@@ -9,14 +9,14 @@ import (
 
 // ResponseMspInventoryDevice represents a ResponseMspInventoryDevice struct.
 type ResponseMspInventoryDevice struct {
-    ForSite              *bool          `json:"for_site,omitempty"`
-    Mac                  string         `json:"mac"`
-    Model                string         `json:"model"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    Serial               string         `json:"serial"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    Type                 string         `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
+    Mac                  string                 `json:"mac"`
+    Model                string                 `json:"model"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    Serial               string                 `json:"serial"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMspInventoryDevice.
@@ -24,13 +24,17 @@ type ResponseMspInventoryDevice struct {
 func (r ResponseMspInventoryDevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "for_site", "mac", "model", "org_id", "serial", "site_id", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseMspInventoryDevice object to a map representation for JSON marshaling.
 func (r ResponseMspInventoryDevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.ForSite != nil {
         structMap["for_site"] = r.ForSite
     }
@@ -55,12 +59,12 @@ func (r *ResponseMspInventoryDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "for_site", "mac", "model", "org_id", "serial", "site_id", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "for_site", "mac", "model", "org_id", "serial", "site_id", "type")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.ForSite = temp.ForSite
     r.Mac = *temp.Mac
     r.Model = *temp.Model

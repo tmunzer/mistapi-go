@@ -52,10 +52,19 @@ body := models.Service{
     Name:                          models.ToPointer("string"),
     Specs:                         []models.ServiceSpec{
         models.ServiceSpec{
-            Protocol:  models.ToPointer("any"),
+            Protocol:             models.ToPointer("any"),
+            AdditionalProperties: map[string]interface{}{
+                "address": interface{}("string"),
+                "port": interface{}("0"),
+            },
         },
     },
     Type:                          models.ToPointer(models.ServiceTypeEnum("custom")),
+    AdditionalProperties:          map[string]interface{}{
+        "app_key": interface{}("string"),
+        "network_id": interface{}("d6797cf4-42b9-4cad-8591-9dd91c3f0fc3"),
+        "subnet": interface{}("string"),
+    },
 }
 
 apiResponse, err := orgsServices.CreateOrgService(ctx, orgId, &body)
@@ -412,13 +421,16 @@ body := models.Service{
     SleEnabled:                    models.ToPointer(false),
     Specs:                         []models.ServiceSpec{
         models.ServiceSpec{
-            PortRange: models.ToPointer("0"),
-            Protocol:  models.ToPointer("any"),
+            PortRange:            models.ToPointer("0"),
+            Protocol:             models.ToPointer("any"),
         },
     },
     TrafficClass:                  models.ToPointer(models.ServiceTrafficClassEnum("best_effort")),
     TrafficType:                   models.ToPointer("data_best_effort"),
     Type:                          models.ToPointer(models.ServiceTypeEnum("custom")),
+    AdditionalProperties:          map[string]interface{}{
+        "vpn_name": interface{}("addresses"),
+    },
 }
 
 apiResponse, err := orgsServices.UpdateOrgService(ctx, orgId, serviceId, &body)

@@ -3,6 +3,8 @@
 
 a JSON blob for wall definition (same format as wayfinding_path)
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MapWallPath`
@@ -13,6 +15,7 @@ a JSON blob for wall definition (same format as wayfinding_path)
 |  --- | --- | --- | --- |
 | `Coordinate` | `*string` | Optional | - |
 | `Nodes` | [`[]models.MapNode`](../../doc/models/map-node.md) | Optional | **Constraints**: *Minimum Items*: `0` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,10 +30,22 @@ a JSON blob for wall definition (same format as wayfinding_path)
       "name": "name6",
       "position": {
         "x": 224.72,
-        "y": 100.0
+        "y": 100.0,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      },
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
       }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

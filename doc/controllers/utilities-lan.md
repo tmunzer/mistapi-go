@@ -82,7 +82,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsCableTests{
-    Port: "ge-0/0/0",
+    Port:                 "ge-0/0/0",
 }
 
 apiResponse, err := utilitiesLAN.CableTestFromSwitch(ctx, siteId, deviceId, &body)
@@ -142,7 +142,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsClearMacs{
-    Ports: []string{
+    Ports:                []string{
         "ge-0/0/0.0",
     },
 }
@@ -502,8 +502,8 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UpgradeBios{
-    Reboot:  models.ToPointer(false),
-    Version: models.ToPointer("CDEN_P_EX1_00.20.01.00"),
+    Reboot:               models.ToPointer(false),
+    Version:              models.ToPointer("CDEN_P_EX1_00.20.01.00"),
 }
 
 apiResponse, err := utilitiesLAN.UpgradeDeviceBios(ctx, siteId, deviceId, &body)
@@ -572,8 +572,8 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UpgradeFpga{
-    Reboot:  models.ToPointer(false),
-    Version: models.ToPointer("REV37"),
+    Reboot:               models.ToPointer(false),
+    Version:              models.ToPointer("REV37"),
 }
 
 apiResponse, err := utilitiesLAN.UpgradeDeviceFPGA(ctx, siteId, deviceId, &body)
@@ -638,8 +638,8 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UpgradeBiosMulti{
-    Reboot:    models.ToPointer(false),
-    Version:   models.ToPointer("CDEN_P_EX1_00.15.01.00"),
+    Reboot:               models.ToPointer(false),
+    Version:              models.ToPointer("CDEN_P_EX1_00.15.01.00"),
 }
 
 resp, err := utilitiesLAN.UpgradeSiteDevicesBios(ctx, siteId, &body)
@@ -693,8 +693,8 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UpgradeFpgaMulti{
-    Reboot:    models.ToPointer(false),
-    Version:   models.ToPointer("REV37"),
+    Reboot:               models.ToPointer(false),
+    Version:              models.ToPointer("REV37"),
 }
 
 resp, err := utilitiesLAN.UpgradeSiteDevicesFpga(ctx, siteId, &body)

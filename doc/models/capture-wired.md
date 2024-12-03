@@ -3,6 +3,8 @@
 
 Initiate a Wired Packet Capture
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `CaptureWired`
@@ -18,6 +20,7 @@ Initiate a Wired Packet Capture
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024` |
 | `TcpdumpExpression` | `models.Optional[string]` | Optional | tcpdump expression |
 | `Type` | `string` | Required, Constant | enum: `wired`<br>**Default**: `"wired"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@ Initiate a Wired Packet Capture
   "num_packets": 100,
   "tcpdump_expression": "tcp port 80",
   "type": "wired",
-  "ap_mac": "ap_mac8"
+  "ap_mac": "ap_mac8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

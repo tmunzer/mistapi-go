@@ -8,12 +8,12 @@ import (
 
 // SleImpactedApsAp represents a SleImpactedApsAp struct.
 type SleImpactedApsAp struct {
-    ApMac                string         `json:"ap_mac"`
-    Degraded             float64        `json:"degraded"`
-    Duration             float64        `json:"duration"`
-    Name                 string         `json:"name"`
-    Total                float64        `json:"total"`
-    AdditionalProperties map[string]any `json:"_"`
+    ApMac                string                 `json:"ap_mac"`
+    Degraded             float64                `json:"degraded"`
+    Duration             float64                `json:"duration"`
+    Name                 string                 `json:"name"`
+    Total                float64                `json:"total"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedApsAp.
@@ -21,13 +21,17 @@ type SleImpactedApsAp struct {
 func (s SleImpactedApsAp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ap_mac", "degraded", "duration", "name", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedApsAp object to a map representation for JSON marshaling.
 func (s SleImpactedApsAp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["ap_mac"] = s.ApMac
     structMap["degraded"] = s.Degraded
     structMap["duration"] = s.Duration
@@ -48,12 +52,12 @@ func (s *SleImpactedApsAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "degraded", "duration", "name", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "degraded", "duration", "name", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ApMac = *temp.ApMac
     s.Degraded = *temp.Degraded
     s.Duration = *temp.Duration

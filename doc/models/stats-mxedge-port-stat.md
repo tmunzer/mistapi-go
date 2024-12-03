@@ -1,6 +1,8 @@
 
 # Stats Mxedge Port Stat
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsMxedgePortStat`
@@ -20,6 +22,7 @@
 | `TxErrors` | `*int` | Optional | - |
 | `TxPkts` | `*int` | Optional | - |
 | `Up` | `*bool` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
   "mac": "mac4",
   "rx_bytes": 3.38,
   "rx_errors": 252,
-  "rx_pkts": 140
+  "rx_pkts": 140,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

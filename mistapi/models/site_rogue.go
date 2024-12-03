@@ -8,18 +8,18 @@ import (
 // Rogue site settings
 type SiteRogue struct {
     // whether or not rogue detection is enabled
-    Enabled              *bool          `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // whether or not honeypot detection is enabled
-    HoneypotEnabled      *bool          `json:"honeypot_enabled,omitempty"`
+    HoneypotEnabled      *bool                  `json:"honeypot_enabled,omitempty"`
     // minimum duration for a bssid to be considered rogue
-    MinDuration          *int           `json:"min_duration,omitempty"`
+    MinDuration          *int                   `json:"min_duration,omitempty"`
     // minimum RSSI for an AP to be considered rogue (ignoring APs that’s far away)
-    MinRssi              *int           `json:"min_rssi,omitempty"`
+    MinRssi              *int                   `json:"min_rssi,omitempty"`
     // list of BSSIDs to whitelist. Ex: "cc-:8e-:6f-:d4-:bf-:16", "cc-8e-6f-d4-bf-16", "cc-73-*", "cc:82:*"
-    WhitelistedBssids    []string       `json:"whitelisted_bssids,omitempty"`
+    WhitelistedBssids    []string               `json:"whitelisted_bssids,omitempty"`
     // list of SSIDs to whitelist
-    WhitelistedSsids     []string       `json:"whitelisted_ssids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    WhitelistedSsids     []string               `json:"whitelisted_ssids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteRogue.
@@ -27,13 +27,17 @@ type SiteRogue struct {
 func (s SiteRogue) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "enabled", "honeypot_enabled", "min_duration", "min_rssi", "whitelisted_bssids", "whitelisted_ssids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteRogue object to a map representation for JSON marshaling.
 func (s SiteRogue) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Enabled != nil {
         structMap["enabled"] = s.Enabled
     }
@@ -63,12 +67,12 @@ func (s *SiteRogue) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "honeypot_enabled", "min_duration", "min_rssi", "whitelisted_bssids", "whitelisted_ssids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "honeypot_enabled", "min_duration", "min_rssi", "whitelisted_bssids", "whitelisted_ssids")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Enabled = temp.Enabled
     s.HoneypotEnabled = temp.HoneypotEnabled
     s.MinDuration = temp.MinDuration

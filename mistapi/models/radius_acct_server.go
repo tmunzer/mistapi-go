@@ -19,7 +19,7 @@ type RadiusAcctServer struct {
     Port                 *int                     `json:"port,omitempty"`
     // secret of RADIUS server
     Secret               string                   `json:"secret"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RadiusAcctServer.
@@ -27,13 +27,17 @@ type RadiusAcctServer struct {
 func (r RadiusAcctServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "host", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RadiusAcctServer object to a map representation for JSON marshaling.
 func (r RadiusAcctServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["host"] = r.Host
     if r.KeywrapEnabled != nil {
         structMap["keywrap_enabled"] = r.KeywrapEnabled
@@ -66,12 +70,12 @@ func (r *RadiusAcctServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Host = *temp.Host
     r.KeywrapEnabled = temp.KeywrapEnabled
     r.KeywrapFormat = temp.KeywrapFormat

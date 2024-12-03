@@ -27,7 +27,7 @@ type StatsZoneDetails struct {
     NumSdkclients        int                         `json:"num_sdkclients"`
     // list of sdkclients currently in the zone and when they entered
     Sdkclients           []string                    `json:"sdkclients,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsZoneDetails.
@@ -35,13 +35,17 @@ type StatsZoneDetails struct {
 func (s StatsZoneDetails) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "assets", "client_waits", "clients", "id", "map_id", "name", "num_clients", "num_sdkclients", "sdkclients"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsZoneDetails object to a map representation for JSON marshaling.
 func (s StatsZoneDetails) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Assets != nil {
         structMap["assets"] = s.Assets
     }
@@ -72,12 +76,12 @@ func (s *StatsZoneDetails) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "assets", "client_waits", "clients", "id", "map_id", "name", "num_clients", "num_sdkclients", "sdkclients")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "assets", "client_waits", "clients", "id", "map_id", "name", "num_clients", "num_sdkclients", "sdkclients")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Assets = temp.Assets
     s.ClientWaits = *temp.ClientWaits
     s.Clients = temp.Clients

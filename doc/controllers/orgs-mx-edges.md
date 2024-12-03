@@ -124,10 +124,10 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MxedgesAssign{
-    MxedgeIds: []uuid.UUID{
+    MxedgeIds:            []uuid.UUID{
         uuid.MustParse("387804a7-3474-85ce-15a2-f9a9684c9c90"),
     },
-    SiteId:    uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b"),
+    SiteId:               uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b"),
 }
 
 apiResponse, err := orgsMxEdges.AssignOrgMxEdgeToSite(ctx, orgId, &body)
@@ -197,7 +197,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsTuntermBouncePort{
-    Ports:    []string{
+    Ports:                []string{
         "0",
         "2",
     },
@@ -254,7 +254,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.CodeString{
-    Code: "135-546-673",
+    Code:                 "135-546-673",
 }
 
 apiResponse, err := orgsMxEdges.ClaimOrgMxEdge(ctx, orgId, &body)
@@ -620,9 +620,9 @@ body := models.Mxedge{
         "tunterm",
     },
     TuntermIpConfig:           models.ToPointer(models.MxedgeTuntermIpConfig{
-        Gateway:  "10.2.1.254",
-        Ip:       "10.2.1.1",
-        Netmask:  "255.255.255.0",
+        Gateway:              "10.2.1.254",
+        Ip:                   "10.2.1.1",
+        Netmask:              "255.255.255.0",
     }),
     TuntermPortConfig:         models.ToPointer(models.TuntermPortConfig{
         DownstreamPorts:            []string{
@@ -641,7 +641,17 @@ body := models.Mxedge{
         },
     }),
     TuntermSwitchConfig:       models.ToPointer(models.MxedgeTuntermSwitchConfigs{
-        Enabled: models.ToPointer(true),
+        Enabled:              models.ToPointer(true),
+        AdditionalProperties: map[string]models.MxedgeTuntermSwitchConfig{
+            "0": models.MxedgeTuntermSwitchConfig{
+                PortVlanId:           models.ToPointer(1),
+                VlanIds:              []models.MxedgeTuntermSwitchConfigVlanId{
+                    models.MxedgeTuntermSwitchConfigVlanIdContainer.FromNumber(5),
+                    models.MxedgeTuntermSwitchConfigVlanIdContainer.FromNumber(2),
+                    models.MxedgeTuntermSwitchConfigVlanIdContainer.FromNumber(3),
+                },
+            },
+        },
     }),
 }
 
@@ -1488,7 +1498,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MxedgesUnassign{
-    MxedgeIds: []uuid.UUID{
+    MxedgeIds:            []uuid.UUID{
         uuid.MustParse("387804a7-3474-85ce-15a2-f9a9684c9c90"),
     },
 }
@@ -1621,9 +1631,13 @@ body := models.Mxedge{
         "tunterm",
     },
     TuntermIpConfig:           models.ToPointer(models.MxedgeTuntermIpConfig{
-        Gateway:  "string",
-        Ip:       "string",
-        Netmask:  "string",
+        Gateway:              "string",
+        Ip:                   "string",
+        Netmask:              "string",
+        AdditionalProperties: map[string]interface{}{
+            "dns": interface{}("string"),
+            "dns_suffix": interface{}("string"),
+        },
     }),
     TuntermPortConfig:         models.ToPointer(models.TuntermPortConfig{
         DownstreamPorts:            []string{

@@ -8,9 +8,9 @@ import (
 
 // ApRadioMac represents a ApRadioMac struct.
 type ApRadioMac struct {
-    Mac                  string         `json:"mac"`
-    RadioMacs            []string       `json:"radio_macs"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  string                 `json:"mac"`
+    RadioMacs            []string               `json:"radio_macs"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadioMac.
@@ -18,13 +18,17 @@ type ApRadioMac struct {
 func (a ApRadioMac) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "mac", "radio_macs"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApRadioMac object to a map representation for JSON marshaling.
 func (a ApRadioMac) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     structMap["mac"] = a.Mac
     structMap["radio_macs"] = a.RadioMacs
     return structMap
@@ -42,12 +46,12 @@ func (a *ApRadioMac) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "radio_macs")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "radio_macs")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Mac = *temp.Mac
     a.RadioMacs = *temp.RadioMacs
     return nil

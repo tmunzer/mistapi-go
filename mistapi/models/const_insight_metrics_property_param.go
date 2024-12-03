@@ -6,8 +6,8 @@ import (
 
 // ConstInsightMetricsPropertyParam represents a ConstInsightMetricsPropertyParam struct.
 type ConstInsightMetricsPropertyParam struct {
-    Required             *bool          `json:"required,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Required             *bool                  `json:"required,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstInsightMetricsPropertyParam.
@@ -15,13 +15,17 @@ type ConstInsightMetricsPropertyParam struct {
 func (c ConstInsightMetricsPropertyParam) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "required"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstInsightMetricsPropertyParam object to a map representation for JSON marshaling.
 func (c ConstInsightMetricsPropertyParam) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Required != nil {
         structMap["required"] = c.Required
     }
@@ -36,12 +40,12 @@ func (c *ConstInsightMetricsPropertyParam) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "required")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "required")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Required = temp.Required
     return nil
 }

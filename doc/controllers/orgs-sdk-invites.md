@@ -53,7 +53,7 @@ ctx := context.Background()
 secret := "secret4"
 
 body := models.DeviceIdString{
-    DeviceId: uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
+    DeviceId:             uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
 }
 
 apiResponse, err := orgsSDKInvites.ActivateSdkInvite(ctx, secret, &body)
@@ -119,10 +119,10 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Sdkinvite{
-    Enabled:      models.ToPointer(true),
-    Name:         "string",
-    Quota:        models.ToPointer(0),
-    QuotaLimited: models.ToPointer(true),
+    Enabled:              models.ToPointer(true),
+    Name:                 "string",
+    Quota:                models.ToPointer(0),
+    QuotaLimited:         models.ToPointer(true),
 }
 
 apiResponse, err := orgsSDKInvites.CreateSdkInvite(ctx, orgId, &body)
@@ -433,7 +433,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 sdkinviteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.EmailString{
-    Email: "test@abc.com",
+    Email:                "test@abc.com",
 }
 
 resp, err := orgsSDKInvites.SendSdkInviteEmail(ctx, orgId, sdkinviteId, &body)
@@ -491,7 +491,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 sdkinviteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SdkInviteSms{
-    Number: "14081234567",
+    Number:               "14081234567",
 }
 
 resp, err := orgsSDKInvites.SendSdkInviteSms(ctx, orgId, sdkinviteId, &body)
@@ -549,9 +549,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 sdkinviteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Sdkinvite{
-    Enabled:      models.ToPointer(true),
-    Name:         "name6",
-    QuotaLimited: models.ToPointer(false),
+    Enabled:              models.ToPointer(true),
+    Name:                 "name6",
+    QuotaLimited:         models.ToPointer(false),
 }
 
 apiResponse, err := orgsSDKInvites.UpdateSdkInvite(ctx, orgId, sdkinviteId, &body)

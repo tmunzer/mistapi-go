@@ -8,8 +8,8 @@ import (
 
 // ResponseAssignSuccess represents a ResponseAssignSuccess struct.
 type ResponseAssignSuccess struct {
-    Success              []string       `json:"success"`
-    AdditionalProperties map[string]any `json:"_"`
+    Success              []string               `json:"success"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAssignSuccess.
@@ -17,13 +17,17 @@ type ResponseAssignSuccess struct {
 func (r ResponseAssignSuccess) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "success"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseAssignSuccess object to a map representation for JSON marshaling.
 func (r ResponseAssignSuccess) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["success"] = r.Success
     return structMap
 }
@@ -40,12 +44,12 @@ func (r *ResponseAssignSuccess) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "success")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "success")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Success = *temp.Success
     return nil
 }

@@ -50,14 +50,14 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgApitoken{
-    Name:        "org_token_xyz",
-    Privileges:  []models.PrivilegeOrg{
+    Name:                 "org_token_xyz",
+    Privileges:           []models.PrivilegeOrg{
         models.PrivilegeOrg{
-            Role:        models.PrivilegeOrgRoleEnum("admin"),
-            Scope:       models.PrivilegeOrgScopeEnum("org"),
+            Role:                 models.PrivilegeOrgRoleEnum("admin"),
+            Scope:                models.PrivilegeOrgScopeEnum("org"),
         },
     },
-    SrcIps:      []string{
+    SrcIps:               []string{
         "63.3.56.0/24",
         "63.3.55.4",
     },
@@ -341,11 +341,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 apitokenId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgApitoken{
-    Name:        "org_token_xyz",
-    Privileges:  []models.PrivilegeOrg{
+    Name:                 "org_token_xyz",
+    Privileges:           []models.PrivilegeOrg{
         models.PrivilegeOrg{
-            Role:        models.PrivilegeOrgRoleEnum("admin"),
-            Scope:       models.PrivilegeOrgScopeEnum("org"),
+            Role:                 models.PrivilegeOrgRoleEnum("admin"),
+            Scope:                models.PrivilegeOrgScopeEnum("org"),
         },
     },
 }

@@ -15,7 +15,7 @@ type TuntermMonitoringItem struct {
     // optional source for the monitoring check, vlan_id configured in tunterm_other_ip_configs
     SrcVlanId            *int                           `json:"src_vlan_id,omitempty"`
     Timeout              *int                           `json:"timeout,omitempty"`
-    AdditionalProperties map[string]any                 `json:"_"`
+    AdditionalProperties map[string]interface{}         `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TuntermMonitoringItem.
@@ -23,13 +23,17 @@ type TuntermMonitoringItem struct {
 func (t TuntermMonitoringItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "host", "port", "protocol", "src_vlan_id", "timeout"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TuntermMonitoringItem object to a map representation for JSON marshaling.
 func (t TuntermMonitoringItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.Host != nil {
         structMap["host"] = t.Host
     }
@@ -56,12 +60,12 @@ func (t *TuntermMonitoringItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "port", "protocol", "src_vlan_id", "timeout")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "port", "protocol", "src_vlan_id", "timeout")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.Host = temp.Host
     t.Port = temp.Port
     t.Protocol = temp.Protocol

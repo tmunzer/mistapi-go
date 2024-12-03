@@ -8,8 +8,8 @@ import (
 
 // CodeString represents a CodeString struct.
 type CodeString struct {
-    Code                 string         `json:"code"`
-    AdditionalProperties map[string]any `json:"_"`
+    Code                 string                 `json:"code"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CodeString.
@@ -17,13 +17,17 @@ type CodeString struct {
 func (c CodeString) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "code"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CodeString object to a map representation for JSON marshaling.
 func (c CodeString) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     structMap["code"] = c.Code
     return structMap
 }
@@ -40,12 +44,12 @@ func (c *CodeString) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "code")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "code")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Code = *temp.Code
     return nil
 }

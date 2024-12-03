@@ -1,6 +1,8 @@
 
 # Response Claim License Inventory Item
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseClaimLicenseInventoryItem`
@@ -14,6 +16,7 @@
 | `Model` | `string` | Required | - |
 | `Serial` | `string` | Required | - |
 | `Type` | `string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@
   "magic": "magic4",
   "model": "model2",
   "serial": "serial4",
-  "type": "type6"
+  "type": "type6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

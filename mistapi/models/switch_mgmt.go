@@ -32,7 +32,7 @@ type SwitchMgmt struct {
     Tacacs               *Tacacs                                  `json:"tacacs,omitempty"`
     // to use mxedge as proxy
     UseMxedgeProxy       *bool                                    `json:"use_mxedge_proxy,omitempty"`
-    AdditionalProperties map[string]any                           `json:"_"`
+    AdditionalProperties map[string]interface{}                   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMgmt.
@@ -40,13 +40,17 @@ type SwitchMgmt struct {
 func (s SwitchMgmt) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ap_affinity_threshold", "cli_banner", "cli_idle_timeout", "config_revert_timer", "dhcp_option_fqdn", "disable_oob_down_alarm", "local_accounts", "mxedge_proxy_host", "mxedge_proxy_port", "protect_re", "radius", "root_password", "tacacs", "use_mxedge_proxy"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchMgmt object to a map representation for JSON marshaling.
 func (s SwitchMgmt) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ApAffinityThreshold != nil {
         structMap["ap_affinity_threshold"] = s.ApAffinityThreshold
     }
@@ -100,12 +104,12 @@ func (s *SwitchMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_affinity_threshold", "cli_banner", "cli_idle_timeout", "config_revert_timer", "dhcp_option_fqdn", "disable_oob_down_alarm", "local_accounts", "mxedge_proxy_host", "mxedge_proxy_port", "protect_re", "radius", "root_password", "tacacs", "use_mxedge_proxy")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_affinity_threshold", "cli_banner", "cli_idle_timeout", "config_revert_timer", "dhcp_option_fqdn", "disable_oob_down_alarm", "local_accounts", "mxedge_proxy_host", "mxedge_proxy_port", "protect_re", "radius", "root_password", "tacacs", "use_mxedge_proxy")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ApAffinityThreshold = temp.ApAffinityThreshold
     s.CliBanner = temp.CliBanner
     s.CliIdleTimeout = temp.CliIdleTimeout

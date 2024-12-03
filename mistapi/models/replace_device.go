@@ -7,16 +7,16 @@ import (
 // ReplaceDevice represents a ReplaceDevice struct.
 type ReplaceDevice struct {
     // attributes that you don’t want to copy
-    Discard              []string           `json:"discard,omitempty"`
+    Discard              []string               `json:"discard,omitempty"`
     // MAC Address of the inventory that will be replacing the old one. It has to be claimed and unassigned
-    InventoryMac         *string            `json:"inventory_mac,omitempty"`
+    InventoryMac         *string                `json:"inventory_mac,omitempty"`
     // MAC Address of the device to replace
-    Mac                  *string            `json:"mac,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
     // the site_id of the device to be replaced
-    SiteId               *string            `json:"site_id,omitempty"`
+    SiteId               *string                `json:"site_id,omitempty"`
     // ethernet port configurations
-    TuntermPortConfig    *TuntermPortConfig `json:"tunterm_port_config,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    TuntermPortConfig    *TuntermPortConfig     `json:"tunterm_port_config,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ReplaceDevice.
@@ -24,13 +24,17 @@ type ReplaceDevice struct {
 func (r ReplaceDevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "discard", "inventory_mac", "mac", "site_id", "tunterm_port_config"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ReplaceDevice object to a map representation for JSON marshaling.
 func (r ReplaceDevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Discard != nil {
         structMap["discard"] = r.Discard
     }
@@ -57,12 +61,12 @@ func (r *ReplaceDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "discard", "inventory_mac", "mac", "site_id", "tunterm_port_config")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "discard", "inventory_mac", "mac", "site_id", "tunterm_port_config")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Discard = temp.Discard
     r.InventoryMac = temp.InventoryMac
     r.Mac = temp.Mac

@@ -8,10 +8,10 @@ import (
 // ReponseSynthetictest represents a ReponseSynthetictest struct.
 type ReponseSynthetictest struct {
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Message              *string        `json:"message,omitempty"`
-    Status               *string        `json:"status,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Message              *string                `json:"message,omitempty"`
+    Status               *string                `json:"status,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ReponseSynthetictest.
@@ -19,13 +19,17 @@ type ReponseSynthetictest struct {
 func (r ReponseSynthetictest) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "id", "message", "status"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ReponseSynthetictest object to a map representation for JSON marshaling.
 func (r ReponseSynthetictest) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Id != nil {
         structMap["id"] = r.Id
     }
@@ -46,12 +50,12 @@ func (r *ReponseSynthetictest) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "message", "status")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "message", "status")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Id = temp.Id
     r.Message = temp.Message
     r.Status = temp.Status

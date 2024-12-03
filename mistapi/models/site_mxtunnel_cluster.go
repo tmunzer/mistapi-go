@@ -6,9 +6,9 @@ import (
 
 // SiteMxtunnelCluster represents a SiteMxtunnelCluster struct.
 type SiteMxtunnelCluster struct {
-    Name                 *string        `json:"name,omitempty"`
-    TuntermHosts         []string       `json:"tunterm_hosts,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 *string                `json:"name,omitempty"`
+    TuntermHosts         []string               `json:"tunterm_hosts,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteMxtunnelCluster.
@@ -16,13 +16,17 @@ type SiteMxtunnelCluster struct {
 func (s SiteMxtunnelCluster) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "name", "tunterm_hosts"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteMxtunnelCluster object to a map representation for JSON marshaling.
 func (s SiteMxtunnelCluster) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Name != nil {
         structMap["name"] = s.Name
     }
@@ -40,12 +44,12 @@ func (s *SiteMxtunnelCluster) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "name", "tunterm_hosts")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name", "tunterm_hosts")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Name = temp.Name
     s.TuntermHosts = temp.TuntermHosts
     return nil

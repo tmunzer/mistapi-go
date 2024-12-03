@@ -10,7 +10,7 @@ import (
 type DswitchesMetricsVersionComplianceDetails struct {
     MajorVersions        []DswitchesComplianceMajorVersion `json:"major_versions"`
     TotalSwitchCount     int                               `json:"total_switch_count"`
-    AdditionalProperties map[string]any                    `json:"_"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DswitchesMetricsVersionComplianceDetails.
@@ -18,13 +18,17 @@ type DswitchesMetricsVersionComplianceDetails struct {
 func (d DswitchesMetricsVersionComplianceDetails) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "major_versions", "total_switch_count"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DswitchesMetricsVersionComplianceDetails object to a map representation for JSON marshaling.
 func (d DswitchesMetricsVersionComplianceDetails) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     structMap["major_versions"] = d.MajorVersions
     structMap["total_switch_count"] = d.TotalSwitchCount
     return structMap
@@ -42,12 +46,12 @@ func (d *DswitchesMetricsVersionComplianceDetails) UnmarshalJSON(input []byte) e
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "major_versions", "total_switch_count")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "major_versions", "total_switch_count")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.MajorVersions = *temp.MajorVersions
     d.TotalSwitchCount = *temp.TotalSwitchCount
     return nil

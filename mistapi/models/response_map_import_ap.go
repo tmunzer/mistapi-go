@@ -17,7 +17,7 @@ type ResponseMapImportAp struct {
     MapId                uuid.UUID                     `json:"map_id"`
     Orientation          int                           `json:"orientation"`
     Reason               *string                       `json:"reason,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMapImportAp.
@@ -25,13 +25,17 @@ type ResponseMapImportAp struct {
 func (r ResponseMapImportAp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "action", "floorplan_id", "height", "mac", "map_id", "orientation", "reason"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseMapImportAp object to a map representation for JSON marshaling.
 func (r ResponseMapImportAp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["action"] = r.Action
     structMap["floorplan_id"] = r.FloorplanId
     if r.Height != nil {
@@ -58,12 +62,12 @@ func (r *ResponseMapImportAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "floorplan_id", "height", "mac", "map_id", "orientation", "reason")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "floorplan_id", "height", "mac", "map_id", "orientation", "reason")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Action = *temp.Action
     r.FloorplanId = *temp.FloorplanId
     r.Height = temp.Height

@@ -1,6 +1,8 @@
 
 # Sle Classifier
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SleClassifier`
@@ -15,6 +17,7 @@
 | `Samples` | [`*models.SleClassifierSamples`](../../doc/models/sle-classifier-samples.md) | Optional | - |
 | `XLabel` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `YLabel` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,11 @@
     "num_aps": 250.52,
     "num_users": 4.56,
     "total_aps": 243.84,
-    "total_users": 4.14
+    "total_users": 4.14,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "interval": 0.34,
   "name": "name8",
@@ -39,10 +46,18 @@
     ],
     "total": [
       158.41
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "x_label": "x_label6",
-  "y_label": "y_label6"
+  "y_label": "y_label6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

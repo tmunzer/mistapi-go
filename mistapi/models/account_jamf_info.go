@@ -8,22 +8,22 @@ import (
 // OAuth linked Jamf apps account details
 type AccountJamfInfo struct {
     // customer account client id
-    ClientId             *string        `json:"client_id,omitempty"`
+    ClientId             *string                `json:"client_id,omitempty"`
     // This error is provided when the Jamf account fails to fetch token/data
-    Error                *string        `json:"error,omitempty"`
+    Error                *string                `json:"error,omitempty"`
     // customer account Jamf instance URL
-    InstanceUrl          *string        `json:"instance_url,omitempty"`
+    InstanceUrl          *string                `json:"instance_url,omitempty"`
     // Is the last data pull for Jamf account is successful or not
-    LastStatus           *string        `json:"last_status,omitempty"`
+    LastStatus           *string                `json:"last_status,omitempty"`
     // Last data pull timestamp, background jobs that pull Jamf account data
-    LastSync             *int64         `json:"last_sync,omitempty"`
+    LastSync             *int64                 `json:"last_sync,omitempty"`
     // First name of the user who linked the Jamf account
-    LinkedBy             *string        `json:"linked_by,omitempty"`
+    LinkedBy             *string                `json:"linked_by,omitempty"`
     // Name of the company whose Jamf account mist has subscribed to
-    Name                 *string        `json:"name,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
     // smart group membership for determining compliance status
-    SmartgroupName       *string        `json:"smartgroup_name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    SmartgroupName       *string                `json:"smartgroup_name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountJamfInfo.
@@ -31,13 +31,17 @@ type AccountJamfInfo struct {
 func (a AccountJamfInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "client_id", "error", "instance_url", "last_status", "last_sync", "linked_by", "name", "smartgroup_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AccountJamfInfo object to a map representation for JSON marshaling.
 func (a AccountJamfInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.ClientId != nil {
         structMap["client_id"] = a.ClientId
     }
@@ -73,12 +77,12 @@ func (a *AccountJamfInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "client_id", "error", "instance_url", "last_status", "last_sync", "linked_by", "name", "smartgroup_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "client_id", "error", "instance_url", "last_status", "last_sync", "linked_by", "name", "smartgroup_name")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.ClientId = temp.ClientId
     a.Error = temp.Error
     a.InstanceUrl = temp.InstanceUrl

@@ -1,6 +1,8 @@
 
 # Response Log Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseLogSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.ResponseLogSearchItem`](../../doc/models/response-log-search-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,12 +42,20 @@
         "key1": "val1",
         "key2": "val2"
       },
-      "for_site": false
+      "for_site": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 6,
   "total": 40,
-  "next": "next8"
+  "next": "next8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

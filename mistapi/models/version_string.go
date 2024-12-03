@@ -6,8 +6,8 @@ import (
 
 // VersionString represents a VersionString struct.
 type VersionString struct {
-    Version              *string        `json:"version,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Version              *string                `json:"version,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VersionString.
@@ -15,13 +15,17 @@ type VersionString struct {
 func (v VersionString) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VersionString object to a map representation for JSON marshaling.
 func (v VersionString) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.Version != nil {
         structMap["version"] = v.Version
     }
@@ -36,12 +40,12 @@ func (v *VersionString) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "version")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.Version = temp.Version
     return nil
 }

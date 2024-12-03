@@ -7,7 +7,7 @@ import (
 // ResponseSwitchMetricsVersionComplianceDetails represents a ResponseSwitchMetricsVersionComplianceDetails struct.
 type ResponseSwitchMetricsVersionComplianceDetails struct {
     MajorVersions        []SwitchMetricsComplianceMajorVersion `json:"major_versions,omitempty"`
-    AdditionalProperties map[string]any                        `json:"_"`
+    AdditionalProperties map[string]interface{}                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSwitchMetricsVersionComplianceDetails.
@@ -15,13 +15,17 @@ type ResponseSwitchMetricsVersionComplianceDetails struct {
 func (r ResponseSwitchMetricsVersionComplianceDetails) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "major_versions"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSwitchMetricsVersionComplianceDetails object to a map representation for JSON marshaling.
 func (r ResponseSwitchMetricsVersionComplianceDetails) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.MajorVersions != nil {
         structMap["major_versions"] = r.MajorVersions
     }
@@ -36,12 +40,12 @@ func (r *ResponseSwitchMetricsVersionComplianceDetails) UnmarshalJSON(input []by
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "major_versions")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "major_versions")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.MajorVersions = temp.MajorVersions
     return nil
 }

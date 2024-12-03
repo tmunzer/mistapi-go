@@ -493,12 +493,12 @@ deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := map[string]models.MlOverwriteAdditionalProperties{
     "iOS": models.MlOverwriteAdditionalProperties{
-        Int: models.ToPointer(6),
-        Ple: models.ToPointer(-3),
+        Int:                  models.ToPointer(6),
+        Ple:                  models.ToPointer(-3),
     },
     "iPod": models.MlOverwriteAdditionalProperties{
-        Int: models.ToPointer(-10),
-        Ple: models.ToPointer(-5),
+        Int:                  models.ToPointer(-10),
+        Ple:                  models.ToPointer(-5),
     },
 }
 
@@ -610,12 +610,12 @@ mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := map[string]models.MlOverwriteAdditionalProperties{
     "iOS": models.MlOverwriteAdditionalProperties{
-        Int: models.ToPointer(6),
-        Ple: models.ToPointer(-3),
+        Int:                  models.ToPointer(6),
+        Ple:                  models.ToPointer(-3),
     },
     "iPod": models.MlOverwriteAdditionalProperties{
-        Int: models.ToPointer(-10),
-        Ple: models.ToPointer(-5),
+        Int:                  models.ToPointer(-10),
+        Ple:                  models.ToPointer(-5),
     },
 }
 

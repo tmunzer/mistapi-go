@@ -49,25 +49,25 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanRule{
-    Action:         models.ToPointer(models.WxlanRuleActionEnum("allow")),
-    ApplyTags:      []string{
+    Action:               models.ToPointer(models.WxlanRuleActionEnum("allow")),
+    ApplyTags:            []string{
         "c049dfcd-0c73-5014-1c64-062e9903f1e5",
     },
-    BlockedApps:    []string{
+    BlockedApps:          []string{
         "mist",
         "all-videos",
     },
-    DstAllowWxtags: []string{
+    DstAllowWxtags:       []string{
         "fff34466-eec0-3756-6765-381c728a6037",
         "eee2c7b0-d1d0-5a30-f349-e35fa43dc3b3",
     },
-    DstDenyWxtags:  []string{
+    DstDenyWxtags:        []string{
         "aaa34466-eec0-3756-6765-381c728a6037",
         "bbb2c7b0-d1d0-5a30-f349-e35fa43dc3b3",
     },
-    Enabled:        models.ToPointer(true),
-    Order:          1,
-    SrcWxtags:      []string{
+    Enabled:              models.ToPointer(true),
+    Order:                1,
+    SrcWxtags:            []string{
         "8bfc2490-d726-3587-038d-cb2e71bd2330",
         "3aa8e73f-9f46-d827-8d6a-567bb7e67fc9",
     },
@@ -401,25 +401,25 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wxruleId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanRule{
-    Action:         models.ToPointer(models.WxlanRuleActionEnum("allow")),
-    ApplyTags:      []string{
+    Action:               models.ToPointer(models.WxlanRuleActionEnum("allow")),
+    ApplyTags:            []string{
         "c049dfcd-0c73-5014-1c64-062e9903f1e5",
     },
-    BlockedApps:    []string{
+    BlockedApps:          []string{
         "mist",
         "all-videos",
     },
-    DstAllowWxtags: []string{
+    DstAllowWxtags:       []string{
         "fff34466-eec0-3756-6765-381c728a6037",
         "eee2c7b0-d1d0-5a30-f349-e35fa43dc3b3",
     },
-    DstDenyWxtags:  []string{
+    DstDenyWxtags:        []string{
         "aaa34466-eec0-3756-6765-381c728a6037",
         "bbb2c7b0-d1d0-5a30-f349-e35fa43dc3b3",
     },
-    Enabled:        models.ToPointer(true),
-    Order:          1,
-    SrcWxtags:      []string{
+    Enabled:              models.ToPointer(true),
+    Order:                1,
+    SrcWxtags:            []string{
         "8bfc2490-d726-3587-038d-cb2e71bd2330",
         "3aa8e73f-9f46-d827-8d6a-567bb7e67fc9",
     },

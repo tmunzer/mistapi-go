@@ -8,16 +8,16 @@ import (
 // Switch storm control
 type SwitchPortLocalUsageStormControl struct {
     // whether to disable storm control on broadcast traffic
-    NoBroadcast           *bool          `json:"no_broadcast,omitempty"`
+    NoBroadcast           *bool                  `json:"no_broadcast,omitempty"`
     // whether to disable storm control on multicast traffic
-    NoMulticast           *bool          `json:"no_multicast,omitempty"`
+    NoMulticast           *bool                  `json:"no_multicast,omitempty"`
     // whether to disable storm control on registered multicast traffic
-    NoRegisteredMulticast *bool          `json:"no_registered_multicast,omitempty"`
+    NoRegisteredMulticast *bool                  `json:"no_registered_multicast,omitempty"`
     // whether to disable storm control on unknown unicast traffic
-    NoUnknownUnicast      *bool          `json:"no_unknown_unicast,omitempty"`
+    NoUnknownUnicast      *bool                  `json:"no_unknown_unicast,omitempty"`
     // bandwidth-percentage, configures the storm control level as a percentage of the available bandwidth
-    Percentage            *int           `json:"percentage,omitempty"`
-    AdditionalProperties  map[string]any `json:"_"`
+    Percentage            *int                   `json:"percentage,omitempty"`
+    AdditionalProperties  map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortLocalUsageStormControl.
@@ -25,13 +25,17 @@ type SwitchPortLocalUsageStormControl struct {
 func (s SwitchPortLocalUsageStormControl) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "no_broadcast", "no_multicast", "no_registered_multicast", "no_unknown_unicast", "percentage"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchPortLocalUsageStormControl object to a map representation for JSON marshaling.
 func (s SwitchPortLocalUsageStormControl) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.NoBroadcast != nil {
         structMap["no_broadcast"] = s.NoBroadcast
     }
@@ -58,12 +62,12 @@ func (s *SwitchPortLocalUsageStormControl) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "no_broadcast", "no_multicast", "no_registered_multicast", "no_unknown_unicast", "percentage")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "no_broadcast", "no_multicast", "no_registered_multicast", "no_unknown_unicast", "percentage")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.NoBroadcast = temp.NoBroadcast
     s.NoMulticast = temp.NoMulticast
     s.NoRegisteredMulticast = temp.NoRegisteredMulticast

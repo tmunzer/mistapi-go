@@ -42,7 +42,7 @@ type ApPortConfig struct {
     WxtunnelId           *uuid.UUID                       `json:"wxtunnel_id,omitempty"`
     // if `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session
     WxtunnelRemoteId     *string                          `json:"wxtunnel_remote_id,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApPortConfig.
@@ -50,13 +50,17 @@ type ApPortConfig struct {
 func (a ApPortConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "disabled", "dynamic_vlan", "enable_mac_auth", "flow_control", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApPortConfig object to a map representation for JSON marshaling.
 func (a ApPortConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Disabled != nil {
         structMap["disabled"] = a.Disabled
     }
@@ -122,12 +126,12 @@ func (a *ApPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disabled", "dynamic_vlan", "enable_mac_auth", "flow_control", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "dynamic_vlan", "enable_mac_auth", "flow_control", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Disabled = temp.Disabled
     a.DynamicVlan = temp.DynamicVlan
     a.EnableMacAuth = temp.EnableMacAuth

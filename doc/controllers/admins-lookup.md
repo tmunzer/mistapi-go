@@ -37,7 +37,7 @@ Lookup(
 ctx := context.Background()
 
 body := models.EmailString{
-    Email: "test@mistsys.com",
+    Email:                "test@mistsys.com",
 }
 
 apiResponse, err := adminsLookup.Lookup(ctx, &body)

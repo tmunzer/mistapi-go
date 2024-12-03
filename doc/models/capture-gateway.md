@@ -3,6 +3,8 @@
 
 Initiate a Gateway (SSR) Packet Capture
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `CaptureGateway`
@@ -18,6 +20,7 @@ Initiate a Gateway (SSR) Packet Capture
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `>= 0` |
 | `Ports` | [`map[string]models.CaptureGatewayGatewaysPort`](../../doc/models/capture-gateway-gateways-port.md) | Optional | Property key is the port ID |
 | `Type` | `string` | Required, Constant | enum: `gateway`<br>**Default**: `"gateway"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,13 +35,29 @@ Initiate a Gateway (SSR) Packet Capture
     "key0": {
       "ports": {
         "key0": {
-          "tcpdump_expression": "tcpdump_expression0"
+          "tcpdump_expression": "tcpdump_expression0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         "key1": {
-          "tcpdump_expression": "tcpdump_expression0"
+          "tcpdump_expression": "tcpdump_expression0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
+      },
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
       }
     }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

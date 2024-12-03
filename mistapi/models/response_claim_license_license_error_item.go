@@ -8,9 +8,9 @@ import (
 
 // ResponseClaimLicenseLicenseErrorItem represents a ResponseClaimLicenseLicenseErrorItem struct.
 type ResponseClaimLicenseLicenseErrorItem struct {
-    Order                string         `json:"order"`
-    Reason               string         `json:"reason"`
-    AdditionalProperties map[string]any `json:"_"`
+    Order                string                 `json:"order"`
+    Reason               string                 `json:"reason"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClaimLicenseLicenseErrorItem.
@@ -18,13 +18,17 @@ type ResponseClaimLicenseLicenseErrorItem struct {
 func (r ResponseClaimLicenseLicenseErrorItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "order", "reason"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseClaimLicenseLicenseErrorItem object to a map representation for JSON marshaling.
 func (r ResponseClaimLicenseLicenseErrorItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["order"] = r.Order
     structMap["reason"] = r.Reason
     return structMap
@@ -42,12 +46,12 @@ func (r *ResponseClaimLicenseLicenseErrorItem) UnmarshalJSON(input []byte) error
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "order", "reason")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "order", "reason")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Order = *temp.Order
     r.Reason = *temp.Reason
     return nil

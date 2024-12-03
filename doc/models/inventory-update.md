@@ -1,6 +1,8 @@
 
 # Inventory Update
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `InventoryUpdate`
@@ -16,6 +18,7 @@
 | `Op` | [`models.InventoryUpdateOperationEnum`](../../doc/models/inventory-update-operation-enum.md) | Required | enum:<br><br>* `upgrade_to_mist`: Upgrade to mist-managed<br>* `downgrade_to_jsi`: Downgrade to basic monitoring. When downgrading a VC member to jsi, we will move the cloud connection of the VC to jsi-terminator and keep all VC device/inventories intact for pain-free upgrading back to mist.<br>* `assign`: Assign inventory to a site<br>* `unassign`: Unassign inventory from a site<br>* `delete`: Delete multiple inventory from org. If the device is already assigned to a site, it will be unassigned |
 | `Serials` | `[]string` | Optional | if `op`==`delete`, list of serial numbers, e.g. ["FXLH2015150025"] |
 | `SiteId` | `*uuid.UUID` | Optional | if `op`==`assign`, target site id |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,7 +34,11 @@
   "serials": [
     "serials0",
     "serials1"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -95,7 +95,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.HaClusterNode{
-    Node: models.ToPointer(models.HaClusterNodeEnum("node0")),
+    Node:                 models.ToPointer(models.HaClusterNodeEnum("node0")),
 }
 
 apiResponse, err := utilitiesCommon.ArpFromDevice(ctx, siteId, deviceId, &body)
@@ -182,7 +182,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsBouncePort{
-    Ports: []string{
+    Ports:                []string{
         "ge-0/0/0",
         "ge-0/0/1",
     },
@@ -255,9 +255,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsMacTable{
-    MacAddress: models.ToPointer("f8c1165c6400"),
-    PortId:     models.ToPointer("ge-0/0/0.0"),
-    VlanId:     models.ToPointer("ge-0/0/0.0"),
+    MacAddress:           models.ToPointer("f8c1165c6400"),
+    PortId:               models.ToPointer("ge-0/0/0.0"),
+    VlanId:               models.ToPointer("ge-0/0/0.0"),
 }
 
 apiResponse, err := utilitiesCommon.ClearSiteDeviceMacTable(ctx, siteId, deviceId, &body)
@@ -561,7 +561,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsMonitorTraffic{
-    Port: models.ToPointer("ge-0/0/1"),
+    Port:                 models.ToPointer("ge-0/0/1"),
 }
 
 apiResponse, err := utilitiesCommon.MonitorSiteDeviceTraffic(ctx, siteId, deviceId, &body)
@@ -646,8 +646,8 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsPing{
-    Count:           models.ToPointer(10),
-    Host:            "1.1.1.1",
+    Count:                models.ToPointer(10),
+    Host:                 "1.1.1.1",
 }
 
 apiResponse, err := utilitiesCommon.PingFromDevice(ctx, siteId, deviceId, &body)
@@ -759,7 +759,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsReleaseDhcpLeases{
-    PortId:  "ge-0/0/1.10",
+    PortId:               "ge-0/0/1.10",
 }
 
 resp, err := utilitiesCommon.ReleaseSiteDeviceDhcpLease(ctx, siteId, deviceId, &body)
@@ -937,11 +937,11 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowArp{
-    Duration: models.ToPointer(0),
-    Interval: models.ToPointer(0),
-    Ip:       models.ToPointer("192.168.30.7"),
-    PortId:   models.ToPointer("ge-0/0/0.0"),
-    Vrf:      models.ToPointer("guest"),
+    Duration:             models.ToPointer(0),
+    Interval:             models.ToPointer(0),
+    Ip:                   models.ToPointer("192.168.30.7"),
+    PortId:               models.ToPointer("ge-0/0/0.0"),
+    Vrf:                  models.ToPointer("guest"),
 }
 
 apiResponse, err := utilitiesCommon.ShowSiteDeviceArpTable(ctx, siteId, deviceId, &body)
@@ -1090,7 +1090,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowDhcpLeases{
-    Network: "guest",
+    Network:              "guest",
 }
 
 apiResponse, err := utilitiesCommon.ShowSiteDeviceDhcpLeases(ctx, siteId, deviceId, &body)
@@ -1150,10 +1150,10 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowEvpnDatabase{
-    Duration: models.ToPointer(0),
-    Interval: models.ToPointer(0),
-    Mac:      models.ToPointer("f8c1165c6400"),
-    PortId:   models.ToPointer("ge-0/0/0.0"),
+    Duration:             models.ToPointer(0),
+    Interval:             models.ToPointer(0),
+    Mac:                  models.ToPointer("f8c1165c6400"),
+    PortId:               models.ToPointer("ge-0/0/0.0"),
 }
 
 apiResponse, err := utilitiesCommon.ShowSiteDeviceEvpnDatabase(ctx, siteId, deviceId, &body)
@@ -1230,13 +1230,13 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowForwardingTable{
-    Prefix:          models.ToPointer("3.1.1.0/24"),
-    ServiceIp:       models.ToPointer("3.1.1.10"),
-    ServiceName:     models.ToPointer("internet-wan_and_lte"),
-    ServicePort:     models.ToPointer(32768),
-    ServiceProtocol: models.ToPointer("udp"),
-    ServiceTenant:   models.ToPointer("branch1-wifi-mgt"),
-    Vrf:             models.ToPointer("guest"),
+    Prefix:               models.ToPointer("3.1.1.0/24"),
+    ServiceIp:            models.ToPointer("3.1.1.10"),
+    ServiceName:          models.ToPointer("internet-wan_and_lte"),
+    ServicePort:          models.ToPointer(32768),
+    ServiceProtocol:      models.ToPointer("udp"),
+    ServiceTenant:        models.ToPointer("branch1-wifi-mgt"),
+    Vrf:                  models.ToPointer("guest"),
 }
 
 apiResponse, err := utilitiesCommon.ShowSiteDeviceForwardingTable(ctx, siteId, deviceId, &body)
@@ -1308,9 +1308,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsMacTable{
-    MacAddress: models.ToPointer("f8c1165c6400"),
-    PortId:     models.ToPointer("ge-0/0/0.0"),
-    VlanId:     models.ToPointer("ge-0/0/0.0"),
+    MacAddress:           models.ToPointer("f8c1165c6400"),
+    PortId:               models.ToPointer("ge-0/0/0.0"),
+    VlanId:               models.ToPointer("ge-0/0/0.0"),
 }
 
 apiResponse, err := utilitiesCommon.ShowSiteDeviceMacTable(ctx, siteId, deviceId, &body)
@@ -1383,8 +1383,8 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.LocateSwitch{
-    Duration: models.ToPointer(5),
-    Mac:      models.ToPointer("f01c2d4ff760"),
+    Duration:             models.ToPointer(5),
+    Mac:                  models.ToPointer("f01c2d4ff760"),
 }
 
 resp, err := utilitiesCommon.StartSiteLocateDevice(ctx, siteId, deviceId, &body)
@@ -1522,9 +1522,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsTraceroute{
-    Host:     models.ToPointer("string"),
-    Port:     models.ToPointer(33434),
-    Protocol: models.ToPointer(models.UtilsTracerouteProtocolEnum("udp")),
+    Host:                 models.ToPointer("string"),
+    Port:                 models.ToPointer(33434),
+    Protocol:             models.ToPointer(models.UtilsTracerouteProtocolEnum("udp")),
 }
 
 apiResponse, err := utilitiesCommon.TracerouteFromDevice(ctx, siteId, deviceId, &body)
@@ -1597,7 +1597,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsSendSupportLogs{
-    Info:             models.ToPointer(models.UtilsSendSupportLogsInfoEnum("full")),
+    Info:                 models.ToPointer(models.UtilsSendSupportLogsInfoEnum("full")),
 }
 
 resp, err := utilitiesCommon.UploadSiteDeviceSupportFile(ctx, siteId, deviceId, &body)

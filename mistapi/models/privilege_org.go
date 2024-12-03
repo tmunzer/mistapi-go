@@ -11,16 +11,16 @@ import (
 // Privilieges settings
 type PrivilegeOrg struct {
     // if `scope`==`org`
-    OrgId                *uuid.UUID            `json:"org_id,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
-    Role                 PrivilegeOrgRoleEnum  `json:"role"`
+    Role                 PrivilegeOrgRoleEnum   `json:"role"`
     // enum: `org`, `site`, `sitegroup`
-    Scope                PrivilegeOrgScopeEnum `json:"scope"`
+    Scope                PrivilegeOrgScopeEnum  `json:"scope"`
     // if `scope`==`site`
-    SiteId               *uuid.UUID            `json:"site_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // if `scope`==`sitegroup`
-    SitegroupId          *uuid.UUID            `json:"sitegroup_id,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    SitegroupId          *uuid.UUID             `json:"sitegroup_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PrivilegeOrg.
@@ -28,13 +28,17 @@ type PrivilegeOrg struct {
 func (p PrivilegeOrg) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "org_id", "role", "scope", "site_id", "sitegroup_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the PrivilegeOrg object to a map representation for JSON marshaling.
 func (p PrivilegeOrg) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.OrgId != nil {
         structMap["org_id"] = p.OrgId
     }
@@ -61,12 +65,12 @@ func (p *PrivilegeOrg) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "org_id", "role", "scope", "site_id", "sitegroup_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "org_id", "role", "scope", "site_id", "sitegroup_id")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.OrgId = temp.OrgId
     p.Role = *temp.Role
     p.Scope = *temp.Scope

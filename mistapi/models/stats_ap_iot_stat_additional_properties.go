@@ -6,8 +6,8 @@ import (
 
 // StatsApIotStatAdditionalProperties represents a StatsApIotStatAdditionalProperties struct.
 type StatsApIotStatAdditionalProperties struct {
-    Value                Optional[int]  `json:"value"`
-    AdditionalProperties map[string]any `json:"_"`
+    Value                Optional[int]          `json:"value"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApIotStatAdditionalProperties.
@@ -15,13 +15,17 @@ type StatsApIotStatAdditionalProperties struct {
 func (s StatsApIotStatAdditionalProperties) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "value"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApIotStatAdditionalProperties object to a map representation for JSON marshaling.
 func (s StatsApIotStatAdditionalProperties) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Value.IsValueSet() {
         if s.Value.Value() != nil {
             structMap["value"] = s.Value.Value()
@@ -40,12 +44,12 @@ func (s *StatsApIotStatAdditionalProperties) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "value")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "value")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Value = temp.Value
     return nil
 }

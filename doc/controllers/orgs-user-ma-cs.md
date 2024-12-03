@@ -59,15 +59,15 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UserMac{
-    Labels:      []string{
+    Labels:               []string{
         "byod",
         "flr1",
     },
-    Mac:         "5684dae9ac8b",
-    Name:        models.ToPointer("Printer2"),
-    Notes:       models.ToPointer("mac address refers to Canon printers"),
-    RadiusGroup: models.ToPointer("VIP"),
-    Vlan:        models.ToPointer("30"),
+    Mac:                  "5684dae9ac8b",
+    Name:                 models.ToPointer("Printer2"),
+    Notes:                models.ToPointer("mac address refers to Canon printers"),
+    RadiusGroup:          models.ToPointer("VIP"),
+    Vlan:                 models.ToPointer("30"),
 }
 
 apiResponse, err := orgsUserMACs.CreateOrgUserMacs(ctx, orgId, &body)
@@ -416,15 +416,15 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 usermacId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UserMac{
-    Labels:      []string{
+    Labels:               []string{
         "byod",
         "flr1",
     },
-    Mac:         "5684dae9ac8b",
-    Name:        models.ToPointer("Printer2"),
-    Notes:       models.ToPointer("mac address refers to Canon printers"),
-    RadiusGroup: models.ToPointer("VIP"),
-    Vlan:        models.ToPointer("30"),
+    Mac:                  "5684dae9ac8b",
+    Name:                 models.ToPointer("Printer2"),
+    Notes:                models.ToPointer("mac address refers to Canon printers"),
+    RadiusGroup:          models.ToPointer("VIP"),
+    Vlan:                 models.ToPointer("30"),
 }
 
 apiResponse, err := orgsUserMACs.UpdateOrgUserMac(ctx, orgId, usermacId, &body)

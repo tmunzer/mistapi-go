@@ -3,6 +3,8 @@
 
 resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in `dst_tags`
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AclTag`
@@ -18,6 +20,7 @@ resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in
 | `Specs` | [`[]models.AclTagSpec`](../../doc/models/acl-tag-spec.md) | Optional | if `type`==`resource` or `type`==`gbp_resource`<br>empty means unrestricted, i.e. any |
 | `Subnets` | `[]string` | Optional | if<br><br>- `type`==`subnet`<br>- `type`==`resource` (optional. default is `any`)<br>- `type`==`static_gbp` if from matching subnet |
 | `Type` | [`models.AclTagTypeEnum`](../../doc/models/acl-tag-type-enum.md) | Required | enum:<br><br>* `any`: matching anything not identified<br>* `dynamic_gbp`: from the gbp_tag received from RADIUS<br>* `gbp_resource`: can only be used in `dst_tags`<br>* `mac`<br>* `network`<br>* `radius_group`<br>* `resource`: can only be used in `dst_tags`<br>* `static_gbp`: applying gbp tag against matching conditions<br>* `subnet`' |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,14 +36,26 @@ resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in
   "specs": [
     {
       "port_range": "port_range8",
-      "protocol": "protocol6"
+      "protocol": "protocol6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "port_range": "port_range8",
-      "protocol": "protocol6"
+      "protocol": "protocol6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "type": "gbp_resource"
+  "type": "gbp_resource",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

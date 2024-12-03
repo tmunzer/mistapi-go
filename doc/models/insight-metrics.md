@@ -1,6 +1,8 @@
 
 # Insight Metrics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `InsightMetrics`
@@ -13,6 +15,7 @@
 | `Interval` | `int` | Required | - |
 | `Results` | `[]interface{}` | Required | results depends on the `metric`<br>**Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,7 +29,11 @@
       "key2": "val2"
     }
   ],
-  "start": 230
+  "start": 230,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

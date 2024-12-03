@@ -3,6 +3,8 @@
 
 password policy
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgSettingPasswordPolicy`
@@ -16,6 +18,7 @@ password policy
 | `MinLength` | `*int` | Optional | required password length<br>**Default**: `8` |
 | `RequiresSpecialChar` | `*bool` | Optional | whether to require special character<br>**Default**: `false` |
 | `RequiresTwoFactorAuth` | `*bool` | Optional | whether to require two-factor auth<br>**Default**: `false` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@ password policy
   "expiry_in_days": 60,
   "min_length": 8,
   "requires_special_char": false,
-  "requires_two_factor_auth": false
+  "requires_two_factor_auth": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

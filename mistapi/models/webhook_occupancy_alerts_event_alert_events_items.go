@@ -18,7 +18,7 @@ type WebhookOccupancyAlertsEventAlertEventsItems struct {
     Type                 WebhookOccupancyAlertTypeEnum `json:"type"`
     ZoneId               uuid.UUID                     `json:"zone_id"`
     ZoneName             string                        `json:"zone_name"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookOccupancyAlertsEventAlertEventsItems.
@@ -26,13 +26,17 @@ type WebhookOccupancyAlertsEventAlertEventsItems struct {
 func (w WebhookOccupancyAlertsEventAlertEventsItems) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "current_occupancy", "map_id", "occupancy_limit", "org_id", "timestamp", "type", "zone_id", "zone_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookOccupancyAlertsEventAlertEventsItems object to a map representation for JSON marshaling.
 func (w WebhookOccupancyAlertsEventAlertEventsItems) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["current_occupancy"] = w.CurrentOccupancy
     structMap["map_id"] = w.MapId
     structMap["occupancy_limit"] = w.OccupancyLimit
@@ -56,12 +60,12 @@ func (w *WebhookOccupancyAlertsEventAlertEventsItems) UnmarshalJSON(input []byte
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "current_occupancy", "map_id", "occupancy_limit", "org_id", "timestamp", "type", "zone_id", "zone_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "current_occupancy", "map_id", "occupancy_limit", "org_id", "timestamp", "type", "zone_id", "zone_name")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.CurrentOccupancy = *temp.CurrentOccupancy
     w.MapId = *temp.MapId
     w.OccupancyLimit = *temp.OccupancyLimit

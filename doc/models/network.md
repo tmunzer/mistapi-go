@@ -3,6 +3,8 @@
 
 Networks are usually subnets that have cross-site significance. `networks`in Org Settings will got merged into `networks`in Site Setting. For gateways, they can be used to define Service Routes.
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Network`
@@ -29,6 +31,7 @@ Networks are usually subnets that have cross-site significance. `networks`in Org
 | `Tenants` | [`map[string]models.NetworkTenant`](../../doc/models/network-tenant.md) | Optional | - |
 | `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 | `VpnAccess` | [`map[string]models.NetworkVpnAccessConfig`](../../doc/models/network-vpn-access-config.md) | Optional | Property key is the VPN name. Whether this network can be accessed from vpn |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,7 +45,11 @@ Networks are usually subnets that have cross-site significance. `networks`in Org
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "subnet": "192.168.70.0/24",
   "subnet6": "fdad:b0bc:f29e::/32",
-  "created_time": 103.24
+  "created_time": 103.24,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

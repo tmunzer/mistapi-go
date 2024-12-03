@@ -6,8 +6,8 @@ import (
 
 // Synthetictest represents a Synthetictest struct.
 type Synthetictest struct {
-    Email                *string        `json:"email,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Email                *string                `json:"email,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Synthetictest.
@@ -15,13 +15,17 @@ type Synthetictest struct {
 func (s Synthetictest) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "email"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Synthetictest object to a map representation for JSON marshaling.
 func (s Synthetictest) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Email != nil {
         structMap["email"] = s.Email
     }
@@ -36,12 +40,12 @@ func (s *Synthetictest) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "email")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "email")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Email = temp.Email
     return nil
 }

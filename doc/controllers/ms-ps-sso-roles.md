@@ -48,11 +48,11 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsoRoleMsp{
-    Name:         "name6",
-    Privileges:   []models.PrivilegeMsp{
+    Name:                 "name6",
+    Privileges:           []models.PrivilegeMsp{
         models.PrivilegeMsp{
-            Role:       models.PrivilegeMspRoleEnum("admin"),
-            Scope:      models.PrivilegeMspScopeEnum("org"),
+            Role:                 models.PrivilegeMspRoleEnum("admin"),
+            Scope:                models.PrivilegeMspScopeEnum("org"),
         },
     },
 }
@@ -237,11 +237,11 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 ssoroleId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsoRoleMsp{
-    Name:         "name6",
-    Privileges:   []models.PrivilegeMsp{
+    Name:                 "name6",
+    Privileges:           []models.PrivilegeMsp{
         models.PrivilegeMsp{
-            Role:       models.PrivilegeMspRoleEnum("admin"),
-            Scope:      models.PrivilegeMspScopeEnum("org"),
+            Role:                 models.PrivilegeMspRoleEnum("admin"),
+            Scope:                models.PrivilegeMspScopeEnum("org"),
         },
     },
 }

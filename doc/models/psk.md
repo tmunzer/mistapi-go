@@ -3,6 +3,8 @@
 
 PSK
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Psk`
@@ -33,6 +35,7 @@ PSK
 | `Ssid` | `string` | Required | SSID this PSK should be applicable to |
 | `Usage` | [`*models.PskUsageEnum`](../../doc/models/psk-usage-enum.md) | Optional | enum: `macs`, `multi`, `single`<br>**Default**: `"multi"` |
 | `VlanId` | [`*models.PskVlanId`](../../doc/models/containers/psk-vlan-id.md) | Optional | VLAN for this PSK key |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -56,7 +59,11 @@ PSK
   "admin_sso_id": "admin_sso_id4",
   "created_time": 36.88,
   "email": "email8",
-  "expiry_notification_time": 222
+  "expiry_notification_time": 222,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

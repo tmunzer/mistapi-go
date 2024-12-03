@@ -25,7 +25,7 @@ type WebhookSdkclientScanDataEvent struct {
     Mac                  string                                      `json:"mac"`
     ScanData             []WebhookSdkclientScanDataEventScanDataItem `json:"scan_data,omitempty"`
     SiteId               uuid.UUID                                   `json:"site_id"`
-    AdditionalProperties map[string]any                              `json:"_"`
+    AdditionalProperties map[string]interface{}                      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookSdkclientScanDataEvent.
@@ -33,13 +33,17 @@ type WebhookSdkclientScanDataEvent struct {
 func (w WebhookSdkclientScanDataEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "connection_ap", "connection_band", "connection_bssid", "connection_channel", "connection_rssi", "last_seen", "mac", "scan_data", "site_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookSdkclientScanDataEvent object to a map representation for JSON marshaling.
 func (w WebhookSdkclientScanDataEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["connection_ap"] = w.ConnectionAp
     structMap["connection_band"] = w.ConnectionBand
     structMap["connection_bssid"] = w.ConnectionBssid
@@ -66,12 +70,12 @@ func (w *WebhookSdkclientScanDataEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "connection_ap", "connection_band", "connection_bssid", "connection_channel", "connection_rssi", "last_seen", "mac", "scan_data", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "connection_ap", "connection_band", "connection_bssid", "connection_channel", "connection_rssi", "last_seen", "mac", "scan_data", "site_id")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.ConnectionAp = *temp.ConnectionAp
     w.ConnectionBand = *temp.ConnectionBand
     w.ConnectionBssid = *temp.ConnectionBssid

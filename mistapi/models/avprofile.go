@@ -24,7 +24,7 @@ type Avprofile struct {
     Protocols            []AvprofileProtocolsEnum     `json:"protocols,omitempty"`
     SiteId               *uuid.UUID                   `json:"site_id,omitempty"`
     UrlWhitelist         []string                     `json:"url_whitelist,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Avprofile.
@@ -32,13 +32,17 @@ type Avprofile struct {
 func (a Avprofile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "created_time", "fallback_action", "id", "mex_filesize", "mime_whitelist", "modified_time", "name", "org_id", "protocols", "site_id", "url_whitelist"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the Avprofile object to a map representation for JSON marshaling.
 func (a Avprofile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.CreatedTime != nil {
         structMap["created_time"] = a.CreatedTime
     }
@@ -85,12 +89,12 @@ func (a *Avprofile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "fallback_action", "id", "mex_filesize", "mime_whitelist", "modified_time", "name", "org_id", "protocols", "site_id", "url_whitelist")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "fallback_action", "id", "mex_filesize", "mime_whitelist", "modified_time", "name", "org_id", "protocols", "site_id", "url_whitelist")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.CreatedTime = temp.CreatedTime
     a.FallbackAction = temp.FallbackAction
     a.Id = temp.Id

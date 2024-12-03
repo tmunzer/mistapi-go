@@ -6,10 +6,10 @@ import (
 
 // SleImpactedClientsClientSwitch represents a SleImpactedClientsClientSwitch struct.
 type SleImpactedClientsClientSwitch struct {
-    Interfaces           []string       `json:"interfaces,omitempty"`
-    SwitchMac            *string        `json:"switch_mac,omitempty"`
-    SwitchName           *string        `json:"switch_name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Interfaces           []string               `json:"interfaces,omitempty"`
+    SwitchMac            *string                `json:"switch_mac,omitempty"`
+    SwitchName           *string                `json:"switch_name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedClientsClientSwitch.
@@ -17,13 +17,17 @@ type SleImpactedClientsClientSwitch struct {
 func (s SleImpactedClientsClientSwitch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "interfaces", "switch_mac", "switch_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedClientsClientSwitch object to a map representation for JSON marshaling.
 func (s SleImpactedClientsClientSwitch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Interfaces != nil {
         structMap["interfaces"] = s.Interfaces
     }
@@ -44,12 +48,12 @@ func (s *SleImpactedClientsClientSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "interfaces", "switch_mac", "switch_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "interfaces", "switch_mac", "switch_name")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Interfaces = temp.Interfaces
     s.SwitchMac = temp.SwitchMac
     s.SwitchName = temp.SwitchName

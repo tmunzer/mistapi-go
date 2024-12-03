@@ -19,7 +19,7 @@ type SnmpConfig struct {
     V2cConfig            []SnmpConfigV2cConfig   `json:"v2c_config,omitempty"`
     V3Config             *Snmpv3Config           `json:"v3_config,omitempty"`
     Views                []SnmpConfigView        `json:"views,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpConfig.
@@ -27,13 +27,17 @@ type SnmpConfig struct {
 func (s SnmpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "client_list", "contact", "description", "enabled", "engine_id", "location", "name", "network", "trap_groups", "v2c_config", "v3_config", "views"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SnmpConfig object to a map representation for JSON marshaling.
 func (s SnmpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ClientList != nil {
         structMap["client_list"] = s.ClientList
     }
@@ -81,12 +85,12 @@ func (s *SnmpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "client_list", "contact", "description", "enabled", "engine_id", "location", "name", "network", "trap_groups", "v2c_config", "v3_config", "views")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "client_list", "contact", "description", "enabled", "engine_id", "location", "name", "network", "trap_groups", "v2c_config", "v3_config", "views")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ClientList = temp.ClientList
     s.Contact = temp.Contact
     s.Description = temp.Description

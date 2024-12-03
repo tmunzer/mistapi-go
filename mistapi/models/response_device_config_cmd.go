@@ -8,8 +8,8 @@ import (
 
 // ResponseDeviceConfigCmd represents a ResponseDeviceConfigCmd struct.
 type ResponseDeviceConfigCmd struct {
-    Cmd                  string         `json:"cmd"`
-    AdditionalProperties map[string]any `json:"_"`
+    Cmd                  string                 `json:"cmd"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceConfigCmd.
@@ -17,13 +17,17 @@ type ResponseDeviceConfigCmd struct {
 func (r ResponseDeviceConfigCmd) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "cmd"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseDeviceConfigCmd object to a map representation for JSON marshaling.
 func (r ResponseDeviceConfigCmd) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["cmd"] = r.Cmd
     return structMap
 }
@@ -40,12 +44,12 @@ func (r *ResponseDeviceConfigCmd) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cmd")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cmd")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Cmd = *temp.Cmd
     return nil
 }

@@ -1,6 +1,8 @@
 
 # Suppressed Alarm
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SuppressedAlarm`
@@ -13,6 +15,7 @@
 | `Duration` | `*float64` | Optional | duration, in seconds. Maximum duration is 86400 * 180 (180 days). 0 is to un-suppress alarms<br>**Default**: `3600`<br>**Constraints**: `>= 0`, `<= 15552000` |
 | `ScheduledTime` | `*int` | Optional | poch_time in seconds, Default as now, accepted time range is from now to now + 7 days |
 | `Scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Optional | level of scope. enum: `org`, `site`<br>**Default**: `"site"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,9 +32,17 @@
     ],
     "sitegroup_ids": [
       "00000634-0000-0000-0000-000000000000"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "scheduled_time": 8
+  "scheduled_time": 8,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

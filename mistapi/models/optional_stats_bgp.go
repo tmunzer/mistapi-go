@@ -8,29 +8,29 @@ import (
 // only present when `bgp_peers` in `fields` query parameter
 type OptionalStatsBgp struct {
     // if this is created for evpn overlay
-    EvpnOverlay          *bool              `json:"evpn_overlay,omitempty"`
+    EvpnOverlay          *bool                  `json:"evpn_overlay,omitempty"`
     // if this is created for overlay
-    ForOverlay           *bool              `json:"for_overlay,omitempty"`
+    ForOverlay           *bool                  `json:"for_overlay,omitempty"`
     // AS
-    LocalAs              *int               `json:"local_as,omitempty"`
-    Neighbor             *string            `json:"neighbor,omitempty"`
-    NeighborAs           *int               `json:"neighbor_as,omitempty"`
+    LocalAs              *int                   `json:"local_as,omitempty"`
+    Neighbor             *string                `json:"neighbor,omitempty"`
+    NeighborAs           *int                   `json:"neighbor_as,omitempty"`
     // if it's another device in the same org
-    NeighborMac          *string            `json:"neighbor_mac,omitempty"`
+    NeighborMac          *string                `json:"neighbor_mac,omitempty"`
     // node0/node1
-    Node                 *string            `json:"node,omitempty"`
-    RxPkts               *int               `json:"rx_pkts,omitempty"`
+    Node                 *string                `json:"node,omitempty"`
+    RxPkts               *int                   `json:"rx_pkts,omitempty"`
     // number of received routes
-    RxRoutes             *int               `json:"rx_routes,omitempty"`
+    RxRoutes             *int                   `json:"rx_routes,omitempty"`
     // enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent`
-    State                *BgpStatsStateEnum `json:"state,omitempty"`
-    Timestamp            *float64           `json:"timestamp,omitempty"`
-    TxPkts               *int               `json:"tx_pkts,omitempty"`
-    TxRoutes             *int               `json:"tx_routes,omitempty"`
-    Up                   *bool              `json:"up,omitempty"`
-    Uptime               *int               `json:"uptime,omitempty"`
-    VrfName              *string            `json:"vrf_name,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    State                *BgpStatsStateEnum     `json:"state,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    TxPkts               *int                   `json:"tx_pkts,omitempty"`
+    TxRoutes             *int                   `json:"tx_routes,omitempty"`
+    Up                   *bool                  `json:"up,omitempty"`
+    Uptime               *int                   `json:"uptime,omitempty"`
+    VrfName              *string                `json:"vrf_name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OptionalStatsBgp.
@@ -38,13 +38,17 @@ type OptionalStatsBgp struct {
 func (o OptionalStatsBgp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "evpn_overlay", "for_overlay", "local_as", "neighbor", "neighbor_as", "neighbor_mac", "node", "rx_pkts", "rx_routes", "state", "timestamp", "tx_pkts", "tx_routes", "up", "uptime", "vrf_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OptionalStatsBgp object to a map representation for JSON marshaling.
 func (o OptionalStatsBgp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.EvpnOverlay != nil {
         structMap["evpn_overlay"] = o.EvpnOverlay
     }
@@ -104,12 +108,12 @@ func (o *OptionalStatsBgp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "evpn_overlay", "for_overlay", "local_as", "neighbor", "neighbor_as", "neighbor_mac", "node", "rx_pkts", "rx_routes", "state", "timestamp", "tx_pkts", "tx_routes", "up", "uptime", "vrf_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "evpn_overlay", "for_overlay", "local_as", "neighbor", "neighbor_as", "neighbor_mac", "node", "rx_pkts", "rx_routes", "state", "timestamp", "tx_pkts", "tx_routes", "up", "uptime", "vrf_name")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.EvpnOverlay = temp.EvpnOverlay
     o.ForOverlay = temp.ForOverlay
     o.LocalAs = temp.LocalAs

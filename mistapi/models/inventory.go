@@ -9,41 +9,41 @@ import (
 type Inventory struct {
     // only if `type`==`switch` or `type`==`gateway`
     // whether the switch/gateway is adopted
-    Adopted              *bool            `json:"adopted,omitempty"`
+    Adopted              *bool                  `json:"adopted,omitempty"`
     // whether the device is connected
-    Connected            *bool            `json:"connected,omitempty"`
+    Connected            *bool                  `json:"connected,omitempty"`
     // when the object has been created, in epoch
-    CreatedTime          *float64         `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // deviceprofile id if assigned, null if not assigned
-    DeviceprofileId      Optional[string] `json:"deviceprofile_id"`
+    DeviceprofileId      Optional[string]       `json:"deviceprofile_id"`
     // hostname reported by the device
-    Hostname             *string          `json:"hostname,omitempty"`
+    Hostname             *string                `json:"hostname,omitempty"`
     // device hardware revision number
-    HwRev                *string          `json:"hw_rev,omitempty"`
+    HwRev                *string                `json:"hw_rev,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID       `json:"id,omitempty"`
-    Jsi                  *bool            `json:"jsi,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Jsi                  *bool                  `json:"jsi,omitempty"`
     // device MAC address
-    Mac                  *string          `json:"mac,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
     // device claim code
-    Magic                *string          `json:"magic,omitempty"`
+    Magic                *string                `json:"magic,omitempty"`
     // device model
-    Model                *string          `json:"model,omitempty"`
+    Model                *string                `json:"model,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64         `json:"modified_time,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // device name if configured
-    Name                 *string          `json:"name,omitempty"`
-    OrgId                *uuid.UUID       `json:"org_id,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // device serial
-    Serial               *string          `json:"serial,omitempty"`
-    SiteId               *uuid.UUID       `json:"site_id,omitempty"`
+    Serial               *string                `json:"serial,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // device stock keeping unit
-    Sku                  *string          `json:"sku,omitempty"`
+    Sku                  *string                `json:"sku,omitempty"`
     // enum: `ap`, `gateway`, `switch`
-    Type                 *DeviceTypeEnum  `json:"type,omitempty"`
+    Type                 *DeviceTypeEnum        `json:"type,omitempty"`
     // if `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Clust, MAC Address of the Cluster
-    VcMac                *string          `json:"vc_mac,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    VcMac                *string                `json:"vc_mac,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Inventory.
@@ -51,13 +51,17 @@ type Inventory struct {
 func (i Inventory) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "adopted", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the Inventory object to a map representation for JSON marshaling.
 func (i Inventory) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.Adopted != nil {
         structMap["adopted"] = i.Adopted
     }
@@ -130,12 +134,12 @@ func (i *Inventory) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "adopted", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "adopted", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.Adopted = temp.Adopted
     i.Connected = temp.Connected
     i.CreatedTime = temp.CreatedTime

@@ -9,8 +9,8 @@ import (
 // UtilsCableTests represents a UtilsCableTests struct.
 type UtilsCableTests struct {
     // the port to run the cable test
-    Port                 string         `json:"port"`
-    AdditionalProperties map[string]any `json:"_"`
+    Port                 string                 `json:"port"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsCableTests.
@@ -18,13 +18,17 @@ type UtilsCableTests struct {
 func (u UtilsCableTests) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "port"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsCableTests object to a map representation for JSON marshaling.
 func (u UtilsCableTests) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     structMap["port"] = u.Port
     return structMap
 }
@@ -41,12 +45,12 @@ func (u *UtilsCableTests) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "port")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "port")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Port = *temp.Port
     return nil
 }

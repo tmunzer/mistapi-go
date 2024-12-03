@@ -10,7 +10,7 @@ type ResponseCountMarvisActions struct {
     Limit                *int                               `json:"limit,omitempty"`
     Results              []ResponseCountMarvisActionsResult `json:"results,omitempty"`
     Total                *int                               `json:"total,omitempty"`
-    AdditionalProperties map[string]any                     `json:"_"`
+    AdditionalProperties map[string]interface{}             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseCountMarvisActions.
@@ -18,13 +18,17 @@ type ResponseCountMarvisActions struct {
 func (r ResponseCountMarvisActions) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "distinct", "limit", "results", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseCountMarvisActions object to a map representation for JSON marshaling.
 func (r ResponseCountMarvisActions) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Distinct != nil {
         structMap["distinct"] = r.Distinct
     }
@@ -48,12 +52,12 @@ func (r *ResponseCountMarvisActions) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "distinct", "limit", "results", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "distinct", "limit", "results", "total")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Distinct = temp.Distinct
     r.Limit = temp.Limit
     r.Results = temp.Results

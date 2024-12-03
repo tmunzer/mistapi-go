@@ -1,6 +1,8 @@
 
 # Webhook Client Join Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookClientJoinEvent`
@@ -24,6 +26,7 @@
 | `Timestamp` | `float64` | Required | - |
 | `Version` | `float64` | Required | schema version of this message |
 | `WlanId` | `uuid.UUID` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,7 +46,11 @@
   "ssid": "ssid6",
   "timestamp": 100.84,
   "version": 184.42,
-  "wlan_id": "0000068e-0000-0000-0000-000000000000"
+  "wlan_id": "0000068e-0000-0000-0000-000000000000",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

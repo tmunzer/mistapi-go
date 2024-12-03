@@ -7,11 +7,11 @@ import (
 // SiteSettingGatewayMgmtAutoSignatureUpdate represents a SiteSettingGatewayMgmtAutoSignatureUpdate struct.
 type SiteSettingGatewayMgmtAutoSignatureUpdate struct {
     // enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed`
-    DayOfWeek            *DayOfWeekEnum `json:"day_of_week,omitempty"`
-    Enable               *bool          `json:"enable,omitempty"`
+    DayOfWeek            *DayOfWeekEnum         `json:"day_of_week,omitempty"`
+    Enable               *bool                  `json:"enable,omitempty"`
     // optional, Mist will decide the timing
-    TimeOfDay            *string        `json:"time_of_day,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TimeOfDay            *string                `json:"time_of_day,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingGatewayMgmtAutoSignatureUpdate.
@@ -19,13 +19,17 @@ type SiteSettingGatewayMgmtAutoSignatureUpdate struct {
 func (s SiteSettingGatewayMgmtAutoSignatureUpdate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "day_of_week", "enable", "time_of_day"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingGatewayMgmtAutoSignatureUpdate object to a map representation for JSON marshaling.
 func (s SiteSettingGatewayMgmtAutoSignatureUpdate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.DayOfWeek != nil {
         structMap["day_of_week"] = s.DayOfWeek
     }
@@ -46,12 +50,12 @@ func (s *SiteSettingGatewayMgmtAutoSignatureUpdate) UnmarshalJSON(input []byte) 
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "day_of_week", "enable", "time_of_day")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "day_of_week", "enable", "time_of_day")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.DayOfWeek = temp.DayOfWeek
     s.Enable = temp.Enable
     s.TimeOfDay = temp.TimeOfDay

@@ -10,7 +10,7 @@ type RemoteSyslogContent struct {
     Facility             *RemoteSyslogFacilityEnum `json:"facility,omitempty"`
     // enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`
     Severity             *RemoteSyslogSeverityEnum `json:"severity,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogContent.
@@ -18,13 +18,17 @@ type RemoteSyslogContent struct {
 func (r RemoteSyslogContent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "facility", "severity"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RemoteSyslogContent object to a map representation for JSON marshaling.
 func (r RemoteSyslogContent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Facility != nil {
         structMap["facility"] = r.Facility
     }
@@ -42,12 +46,12 @@ func (r *RemoteSyslogContent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "facility", "severity")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "facility", "severity")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Facility = temp.Facility
     r.Severity = temp.Severity
     return nil

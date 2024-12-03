@@ -3,6 +3,8 @@
 
 Gateway Template is applied to a site for gateway(s) in a site.
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `DeviceprofileGateway`
@@ -11,7 +13,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config<br><br>**Note**: no check is done |
+| `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
 | `BgpConfig` | [`map[string]models.BgpConfig`](../../doc/models/bgp-config.md) | Optional | - |
 | `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DhcpdConfig` | [`*models.DhcpdConfig`](../../doc/models/dhcpd-config.md) | Optional | - |
@@ -41,6 +43,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
 | `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Default**: `"gateway"` |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -76,26 +79,70 @@ Gateway Template is applied to a site for gateway(s) in a site.
       "bfd_minimum_interval": 212,
       "bfd_multiplier": 90,
       "disable_bfd": false,
-      "export": "export6"
+      "export": "export6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key1": {
       "auth_key": "auth_key8",
       "bfd_minimum_interval": 212,
       "bfd_multiplier": 90,
       "disable_bfd": false,
-      "export": "export6"
+      "export": "export6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key2": {
       "auth_key": "auth_key8",
       "bfd_minimum_interval": 212,
       "bfd_multiplier": 90,
       "disable_bfd": false,
-      "export": "export6"
+      "export": "export6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "created_time": 177.78,
   "dhcpd_config": {
-    "enabled": false
+    "enabled": false,
+    "exampleAdditionalProperty": {
+      "dns_servers": [
+        "dns_servers2",
+        "dns_servers3",
+        "dns_servers4"
+      ],
+      "dns_suffix": [
+        "dns_suffix1",
+        "dns_suffix0",
+        "dns_suffix9"
+      ],
+      "fixed_bindings": {
+        "key0": {
+          "ip": "ip0",
+          "name": "name6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        }
+      },
+      "gateway": "gateway8",
+      "ip_end": "ip_end4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

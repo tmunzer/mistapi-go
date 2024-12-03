@@ -8,7 +8,7 @@ import (
 type SnmpVacmAccessItem struct {
     GroupName            *string                            `json:"group_name,omitempty"`
     PrefixList           []SnmpVacmAccessItemPrefixListItem `json:"prefix_list,omitempty"`
-    AdditionalProperties map[string]any                     `json:"_"`
+    AdditionalProperties map[string]interface{}             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpVacmAccessItem.
@@ -16,13 +16,17 @@ type SnmpVacmAccessItem struct {
 func (s SnmpVacmAccessItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "group_name", "prefix_list"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SnmpVacmAccessItem object to a map representation for JSON marshaling.
 func (s SnmpVacmAccessItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.GroupName != nil {
         structMap["group_name"] = s.GroupName
     }
@@ -40,12 +44,12 @@ func (s *SnmpVacmAccessItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "group_name", "prefix_list")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "group_name", "prefix_list")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.GroupName = temp.GroupName
     s.PrefixList = temp.PrefixList
     return nil

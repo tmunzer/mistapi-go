@@ -10,7 +10,7 @@ type OrgDeviceUpgrade struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                    `json:"id,omitempty"`
     SiteUpgrades         []OrgDeviceUpgradeSiteUpgrade `json:"site_upgrades,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgDeviceUpgrade.
@@ -18,13 +18,17 @@ type OrgDeviceUpgrade struct {
 func (o OrgDeviceUpgrade) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "id", "site_upgrades"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgDeviceUpgrade object to a map representation for JSON marshaling.
 func (o OrgDeviceUpgrade) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Id != nil {
         structMap["id"] = o.Id
     }
@@ -42,12 +46,12 @@ func (o *OrgDeviceUpgrade) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "site_upgrades")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "site_upgrades")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Id = temp.Id
     o.SiteUpgrades = temp.SiteUpgrades
     return nil

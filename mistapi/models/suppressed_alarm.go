@@ -15,7 +15,7 @@ type SuppressedAlarm struct {
     ScheduledTime        *int                      `json:"scheduled_time,omitempty"`
     // level of scope. enum: `org`, `site`
     Scope                *SuppressedAlarmScopeEnum `json:"scope,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SuppressedAlarm.
@@ -23,13 +23,17 @@ type SuppressedAlarm struct {
 func (s SuppressedAlarm) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "applies", "duration", "scheduled_time", "scope"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SuppressedAlarm object to a map representation for JSON marshaling.
 func (s SuppressedAlarm) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Applies != nil {
         structMap["applies"] = s.Applies.toMap()
     }
@@ -53,12 +57,12 @@ func (s *SuppressedAlarm) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "applies", "duration", "scheduled_time", "scope")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "applies", "duration", "scheduled_time", "scope")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Applies = temp.Applies
     s.Duration = temp.Duration
     s.ScheduledTime = temp.ScheduledTime

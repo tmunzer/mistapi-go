@@ -55,7 +55,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 alarmId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NoteString{
-    Note: models.ToPointer("maintenance window"),
+    Note:                 models.ToPointer("maintenance window"),
 }
 
 resp, err := orgsAlarms.AckOrgAlarm(ctx, orgId, alarmId, &body)
@@ -111,7 +111,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NoteString{
-    Note: models.ToPointer("string"),
+    Note:                 models.ToPointer("string"),
 }
 
 resp, err := orgsAlarms.AckOrgAllAlarms(ctx, orgId, &body)
@@ -165,11 +165,11 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Alarms{
-    AlarmIds: []uuid.UUID{
+    AlarmIds:             []uuid.UUID{
         uuid.MustParse("ccb8c94d-ca56-4075-932f-1f2ab444ff2c"),
         uuid.MustParse("98ff4a3d-ec9b-4138-a42e-54fc3335179d"),
     },
-    Note:     models.ToPointer("maintenance window"),
+    Note:                 models.ToPointer("maintenance window"),
 }
 
 resp, err := orgsAlarms.AckOrgMultipleAlarms(ctx, orgId, &body)
@@ -391,7 +391,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NoteString{
-    Note: models.ToPointer("maintenance window"),
+    Note:                 models.ToPointer("maintenance window"),
 }
 
 resp, err := orgsAlarms.UnackOrgAllArlarms(ctx, orgId, &body)
@@ -445,11 +445,11 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Alarms{
-    AlarmIds: []uuid.UUID{
+    AlarmIds:             []uuid.UUID{
         uuid.MustParse("ccb8c94d-ca56-4075-932f-1f2ab444ff2c"),
         uuid.MustParse("98ff4a3d-ec9b-4138-a42e-54fc3335179d"),
     },
-    Note:     models.ToPointer("maintenance window"),
+    Note:                 models.ToPointer("maintenance window"),
 }
 
 resp, err := orgsAlarms.UnackOrgMultipleAlarms(ctx, orgId, &body)

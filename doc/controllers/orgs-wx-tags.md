@@ -51,10 +51,10 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanTag{
-    Match:        models.ToPointer(models.WxlanTagMatchEnum("app")),
-    Name:         "match app",
-    Type:         models.WxlanTagTypeEnum("match"),
-    Values:       []string{
+    Match:                models.ToPointer(models.WxlanTagMatchEnum("app")),
+    Name:                 "match app",
+    Type:                 models.WxlanTagTypeEnum("match"),
+    Values:               []string{
         "gmail",
         "dropbox",
     },
@@ -510,10 +510,10 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wxtagId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanTag{
-    Name:         "name6",
-    Op:           models.ToPointer(models.WxlanTagOperationEnum("in")),
-    Type:         models.WxlanTagTypeEnum("subnet"),
-    VlanId:       models.ToPointer(models.WxlanTagVlanIdContainer.FromNumber(1055)),
+    Name:                 "name6",
+    Op:                   models.ToPointer(models.WxlanTagOperationEnum("in")),
+    Type:                 models.WxlanTagTypeEnum("subnet"),
+    VlanId:               models.ToPointer(models.WxlanTagVlanIdContainer.FromNumber(1055)),
 }
 
 apiResponse, err := orgsWxTags.UpdateOrgWxTag(ctx, orgId, wxtagId, &body)

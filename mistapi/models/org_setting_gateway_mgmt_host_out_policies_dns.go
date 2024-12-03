@@ -6,8 +6,8 @@ import (
 
 // OrgSettingGatewayMgmtHostOutPoliciesDns represents a OrgSettingGatewayMgmtHostOutPoliciesDns struct.
 type OrgSettingGatewayMgmtHostOutPoliciesDns struct {
-    PathPreference       *string        `json:"path_preference,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    PathPreference       *string                `json:"path_preference,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingGatewayMgmtHostOutPoliciesDns.
@@ -15,13 +15,17 @@ type OrgSettingGatewayMgmtHostOutPoliciesDns struct {
 func (o OrgSettingGatewayMgmtHostOutPoliciesDns) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "path_preference"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingGatewayMgmtHostOutPoliciesDns object to a map representation for JSON marshaling.
 func (o OrgSettingGatewayMgmtHostOutPoliciesDns) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.PathPreference != nil {
         structMap["path_preference"] = o.PathPreference
     }
@@ -36,12 +40,12 @@ func (o *OrgSettingGatewayMgmtHostOutPoliciesDns) UnmarshalJSON(input []byte) er
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "path_preference")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "path_preference")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.PathPreference = temp.PathPreference
     return nil
 }

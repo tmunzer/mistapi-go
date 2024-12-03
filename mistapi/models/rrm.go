@@ -11,23 +11,23 @@ import (
 // RRM
 type Rrm struct {
     // proposal on band 2.4G, key is ap_id, value is the proposal
-    Band24               map[string]RrmBand `json:"band_24"`
-    Band24Metric         RrmBandMetric      `json:"band_24_metric"`
+    Band24               map[string]RrmBand     `json:"band_24"`
+    Band24Metric         RrmBandMetric          `json:"band_24_metric"`
     // proposal on band 5G, key is ap_id, value is the proposal
-    Band5                map[string]RrmBand `json:"band_5"`
-    Band5Metric          RrmBandMetric      `json:"band_5_metric"`
+    Band5                map[string]RrmBand     `json:"band_5"`
+    Band5Metric          RrmBandMetric          `json:"band_5_metric"`
     // proposal on band 6G, key is ap_id, value is the proposal
-    Band6                map[string]RrmBand `json:"band_6,omitempty"`
-    Band6Metric          *RrmBandMetric     `json:"band_6_metric,omitempty"`
+    Band6                map[string]RrmBand     `json:"band_6,omitempty"`
+    Band6Metric          *RrmBandMetric         `json:"band_6_metric,omitempty"`
     // RF Template
-    Rftemplate           RfTemplate         `json:"rftemplate"`
-    RftemplateId         uuid.UUID          `json:"rftemplate_id"`
-    RftemplateName       string             `json:"rftemplate_name"`
+    Rftemplate           RfTemplate             `json:"rftemplate"`
+    RftemplateId         uuid.UUID              `json:"rftemplate_id"`
+    RftemplateName       string                 `json:"rftemplate_name"`
     // enum: `ready`, `unknown`, `updating`
-    Status               RrmStatusEnum      `json:"status"`
+    Status               RrmStatusEnum          `json:"status"`
     // time where the status was updated
-    Timestamp            float64            `json:"timestamp"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Rrm.
@@ -35,13 +35,17 @@ type Rrm struct {
 func (r Rrm) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "band_24", "band_24_metric", "band_5", "band_5_metric", "band_6", "band_6_metric", "rftemplate", "rftemplate_id", "rftemplate_name", "status", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the Rrm object to a map representation for JSON marshaling.
 func (r Rrm) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["band_24"] = r.Band24
     structMap["band_24_metric"] = r.Band24Metric.toMap()
     structMap["band_5"] = r.Band5
@@ -72,12 +76,12 @@ func (r *Rrm) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band_24", "band_24_metric", "band_5", "band_5_metric", "band_6", "band_6_metric", "rftemplate", "rftemplate_id", "rftemplate_name", "status", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band_24", "band_24_metric", "band_5", "band_5_metric", "band_6", "band_6_metric", "rftemplate", "rftemplate_id", "rftemplate_name", "status", "timestamp")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Band24 = *temp.Band24
     r.Band24Metric = *temp.Band24Metric
     r.Band5 = *temp.Band5

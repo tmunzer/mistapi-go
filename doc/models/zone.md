@@ -3,6 +3,8 @@
 
 Zone
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Zone`
@@ -20,6 +22,7 @@ Zone
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Vertices` | [`[]models.ZoneVertex`](../../doc/models/zone-vertex.md) | Optional | vertices used to define an area. It’s assumed that the last point connects to the first point and forms an closed area |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -49,7 +52,11 @@ Zone
   "created_time": 89.02,
   "for_site": false,
   "map_id": "000005ac-0000-0000-0000-000000000000",
-  "modified_time": 245.94
+  "modified_time": 245.94,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

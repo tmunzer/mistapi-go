@@ -222,7 +222,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.DaysNumber{
-    Days: models.ToPointer(30),
+    Days:                 models.ToPointer(30),
 }
 
 resp, err := orgsCert.TruncateOrgCrlFile(ctx, orgId, &body)

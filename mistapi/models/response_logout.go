@@ -7,8 +7,8 @@ import (
 // ResponseLogout represents a ResponseLogout struct.
 type ResponseLogout struct {
     // if configured in SSO as custom_logout_url
-    ForwardUrl           *string        `json:"forward_url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ForwardUrl           *string                `json:"forward_url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseLogout.
@@ -16,13 +16,17 @@ type ResponseLogout struct {
 func (r ResponseLogout) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "forward_url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseLogout object to a map representation for JSON marshaling.
 func (r ResponseLogout) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.ForwardUrl != nil {
         structMap["forward_url"] = r.ForwardUrl
     }
@@ -37,12 +41,12 @@ func (r *ResponseLogout) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "forward_url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "forward_url")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.ForwardUrl = temp.ForwardUrl
     return nil
 }

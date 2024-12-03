@@ -9,12 +9,12 @@ import (
 // ClaimActivation represents a ClaimActivation struct.
 type ClaimActivation struct {
     // activation code
-    Code                 string          `json:"code"`
+    Code                 string                 `json:"code"`
     // enum: `ap`, `gateway`, `switch`
-    DeviceType           *DeviceTypeEnum `json:"device_type,omitempty"`
+    DeviceType           *DeviceTypeEnum        `json:"device_type,omitempty"`
     // what to claim. enum: `all`, `inventory`, `license`
-    Type                 ClaimTypeEnum   `json:"type"`
-    AdditionalProperties map[string]any  `json:"_"`
+    Type                 ClaimTypeEnum          `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClaimActivation.
@@ -22,13 +22,17 @@ type ClaimActivation struct {
 func (c ClaimActivation) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "code", "device_type", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ClaimActivation object to a map representation for JSON marshaling.
 func (c ClaimActivation) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     structMap["code"] = c.Code
     if c.DeviceType != nil {
         structMap["device_type"] = c.DeviceType
@@ -49,12 +53,12 @@ func (c *ClaimActivation) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "code", "device_type", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "code", "device_type", "type")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Code = *temp.Code
     c.DeviceType = temp.DeviceType
     c.Type = *temp.Type

@@ -3,6 +3,8 @@
 
 Template
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Template`
@@ -20,6 +22,7 @@ Template
 | `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,7 +40,11 @@ Template
     ],
     "sitegroup_ids": [
       "00000634-0000-0000-0000-000000000000"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "created_time": 247.46,
   "deviceprofile_ids": [
@@ -53,9 +60,17 @@ Template
     ],
     "sitegroup_ids": [
       "00000c2e-0000-0000-0000-000000000000"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "filter_by_deviceprofile": false
+  "filter_by_deviceprofile": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

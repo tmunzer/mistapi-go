@@ -10,22 +10,22 @@ import (
 // EventsClient represents a EventsClient struct.
 // client events
 type EventsClient struct {
-    Ap                   *string        `json:"ap,omitempty"`
+    Ap                   *string                `json:"ap,omitempty"`
     // enum: `24`, `5`, `6`
-    Band                 Dot11BandEnum  `json:"band"`
-    Bssid                *string        `json:"bssid,omitempty"`
-    Channel              *int           `json:"channel,omitempty"`
+    Band                 Dot11BandEnum          `json:"band"`
+    Bssid                *string                `json:"bssid,omitempty"`
+    Channel              *int                   `json:"channel,omitempty"`
     // enum: `a`, `ac`, `ax`, `b`, `g`, `n`
-    Proto                Dot11ProtoEnum `json:"proto"`
-    Ssid                 *string        `json:"ssid,omitempty"`
-    Text                 *string        `json:"text,omitempty"`
-    Timestamp            float64        `json:"timestamp"`
+    Proto                Dot11ProtoEnum         `json:"proto"`
+    Ssid                 *string                `json:"ssid,omitempty"`
+    Text                 *string                `json:"text,omitempty"`
+    Timestamp            float64                `json:"timestamp"`
     // event type, e.g. MARVIS_EVENT_CLIENT_FBT_FAILURE
-    Type                 *string        `json:"type,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
     // for assoc/disassoc events
-    TypeCode             *int           `json:"type_code,omitempty"`
-    WlanId               *uuid.UUID     `json:"wlan_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TypeCode             *int                   `json:"type_code,omitempty"`
+    WlanId               *uuid.UUID             `json:"wlan_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventsClient.
@@ -33,13 +33,17 @@ type EventsClient struct {
 func (e EventsClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "ap", "band", "bssid", "channel", "proto", "ssid", "text", "timestamp", "type", "type_code", "wlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EventsClient object to a map representation for JSON marshaling.
 func (e EventsClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.Ap != nil {
         structMap["ap"] = e.Ap
     }
@@ -82,12 +86,12 @@ func (e *EventsClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "band", "bssid", "channel", "proto", "ssid", "text", "timestamp", "type", "type_code", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "band", "bssid", "channel", "proto", "ssid", "text", "timestamp", "type", "type_code", "wlan_id")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Ap = temp.Ap
     e.Band = *temp.Band
     e.Bssid = temp.Bssid

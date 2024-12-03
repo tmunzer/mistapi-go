@@ -9,12 +9,12 @@ import (
 // MxedgeUpgradeVersion represents a MxedgeUpgradeVersion struct.
 // version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nIgnored if distro upgrade, `tunterm`, `radsecproxy`, `mxagent`, `mxocproxy`, `mxdas` or `mxnacedge`
 type MxedgeUpgradeVersion struct {
-    Mxagent              string         `json:"mxagent"`
-    Mxdas                *string        `json:"mxdas,omitempty"`
-    Mxocproxy            *string        `json:"mxocproxy,omitempty"`
-    Radsecproxy          *string        `json:"radsecproxy,omitempty"`
-    Tunterm              string         `json:"tunterm"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mxagent              string                 `json:"mxagent"`
+    Mxdas                *string                `json:"mxdas,omitempty"`
+    Mxocproxy            *string                `json:"mxocproxy,omitempty"`
+    Radsecproxy          *string                `json:"radsecproxy,omitempty"`
+    Tunterm              string                 `json:"tunterm"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeUpgradeVersion.
@@ -22,13 +22,17 @@ type MxedgeUpgradeVersion struct {
 func (m MxedgeUpgradeVersion) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "mxagent", "mxdas", "mxocproxy", "radsecproxy", "tunterm"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeUpgradeVersion object to a map representation for JSON marshaling.
 func (m MxedgeUpgradeVersion) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["mxagent"] = m.Mxagent
     if m.Mxdas != nil {
         structMap["mxdas"] = m.Mxdas
@@ -55,12 +59,12 @@ func (m *MxedgeUpgradeVersion) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mxagent", "mxdas", "mxocproxy", "radsecproxy", "tunterm")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mxagent", "mxdas", "mxocproxy", "radsecproxy", "tunterm")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Mxagent = *temp.Mxagent
     m.Mxdas = temp.Mxdas
     m.Mxocproxy = temp.Mxocproxy

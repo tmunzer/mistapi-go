@@ -9,7 +9,7 @@ type IdpProfileMatching struct {
     AttackName           []string                              `json:"attack_name,omitempty"`
     DstSubnet            []string                              `json:"dst_subnet,omitempty"`
     Severity             []IdpProfileMatchingSeverityValueEnum `json:"severity,omitempty"`
-    AdditionalProperties map[string]any                        `json:"_"`
+    AdditionalProperties map[string]interface{}                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for IdpProfileMatching.
@@ -17,13 +17,17 @@ type IdpProfileMatching struct {
 func (i IdpProfileMatching) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "attack_name", "dst_subnet", "severity"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the IdpProfileMatching object to a map representation for JSON marshaling.
 func (i IdpProfileMatching) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.AttackName != nil {
         structMap["attack_name"] = i.AttackName
     }
@@ -44,12 +48,12 @@ func (i *IdpProfileMatching) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "attack_name", "dst_subnet", "severity")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "attack_name", "dst_subnet", "severity")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.AttackName = temp.AttackName
     i.DstSubnet = temp.DstSubnet
     i.Severity = temp.Severity

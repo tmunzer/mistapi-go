@@ -7,17 +7,17 @@ import (
 // JunosIpConfig represents a JunosIpConfig struct.
 // Junos IP Config
 type JunosIpConfig struct {
-    Dns                  []string       `json:"dns,omitempty"`
-    DnsSuffix            []string       `json:"dns_suffix,omitempty"`
-    Gateway              *string        `json:"gateway,omitempty"`
-    Ip                   *string        `json:"ip,omitempty"`
+    Dns                  []string               `json:"dns,omitempty"`
+    DnsSuffix            []string               `json:"dns_suffix,omitempty"`
+    Gateway              *string                `json:"gateway,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
     // used only if `subnet` is not specified in `networks`
-    Netmask              *string        `json:"netmask,omitempty"`
+    Netmask              *string                `json:"netmask,omitempty"`
     // the network where this mgmt IP reside, this will be used as default network for outbound-ssh, dns, ntp, dns, tacplus, radius, syslog, snmp
-    Network              *string        `json:"network,omitempty"`
+    Network              *string                `json:"network,omitempty"`
     // enum: `dhcp`, `static`
-    Type                 *IpTypeEnum    `json:"type,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Type                 *IpTypeEnum            `json:"type,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for JunosIpConfig.
@@ -25,13 +25,17 @@ type JunosIpConfig struct {
 func (j JunosIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(j.AdditionalProperties,
+        "dns", "dns_suffix", "gateway", "ip", "netmask", "network", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(j.toMap())
 }
 
 // toMap converts the JunosIpConfig object to a map representation for JSON marshaling.
 func (j JunosIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, j.AdditionalProperties)
+    MergeAdditionalProperties(structMap, j.AdditionalProperties)
     if j.Dns != nil {
         structMap["dns"] = j.Dns
     }
@@ -64,12 +68,12 @@ func (j *JunosIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dns", "dns_suffix", "gateway", "ip", "netmask", "network", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns", "dns_suffix", "gateway", "ip", "netmask", "network", "type")
     if err != nil {
     	return err
     }
-    
     j.AdditionalProperties = additionalProperties
+    
     j.Dns = temp.Dns
     j.DnsSuffix = temp.DnsSuffix
     j.Gateway = temp.Gateway

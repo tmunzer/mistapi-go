@@ -3,6 +3,8 @@
 
 Asset Filter
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AssetFilter`
@@ -29,6 +31,7 @@ Asset Filter
 | `Rssi` | `*int` | Optional | - |
 | `ServiceUuid` | `*uuid.UUID` | Optional | ble service data uuid used to filter assets |
 | `SiteId` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,7 +51,11 @@ Asset Filter
   "ap_mac": "ap_mac0",
   "beam": 124,
   "created_time": 126.18,
-  "disasbled": false
+  "disasbled": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

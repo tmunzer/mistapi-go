@@ -6,10 +6,10 @@ import (
 
 // ModuleStatItemFansItems represents a ModuleStatItemFansItems struct.
 type ModuleStatItemFansItems struct {
-    Airflow              *string        `json:"airflow,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    Status               *string        `json:"status,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Airflow              *string                `json:"airflow,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    Status               *string                `json:"status,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemFansItems.
@@ -17,13 +17,17 @@ type ModuleStatItemFansItems struct {
 func (m ModuleStatItemFansItems) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "airflow", "name", "status"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the ModuleStatItemFansItems object to a map representation for JSON marshaling.
 func (m ModuleStatItemFansItems) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Airflow != nil {
         structMap["airflow"] = m.Airflow
     }
@@ -44,12 +48,12 @@ func (m *ModuleStatItemFansItems) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "airflow", "name", "status")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "airflow", "name", "status")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Airflow = temp.Airflow
     m.Name = temp.Name
     m.Status = temp.Status

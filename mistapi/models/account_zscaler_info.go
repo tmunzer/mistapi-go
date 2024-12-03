@@ -7,11 +7,11 @@ import (
 // AccountZscalerInfo represents a AccountZscalerInfo struct.
 // OAuth linked Zscaler apps account details
 type AccountZscalerInfo struct {
-    CloudName            *string        `json:"cloud_name,omitempty"`
-    PartnerKey           *string        `json:"partner_key,omitempty"`
+    CloudName            *string                `json:"cloud_name,omitempty"`
+    PartnerKey           *string                `json:"partner_key,omitempty"`
     // customer account user name
-    Username             *string        `json:"username,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Username             *string                `json:"username,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountZscalerInfo.
@@ -19,13 +19,17 @@ type AccountZscalerInfo struct {
 func (a AccountZscalerInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "cloud_name", "partner_key", "username"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AccountZscalerInfo object to a map representation for JSON marshaling.
 func (a AccountZscalerInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.CloudName != nil {
         structMap["cloud_name"] = a.CloudName
     }
@@ -46,12 +50,12 @@ func (a *AccountZscalerInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cloud_name", "partner_key", "username")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cloud_name", "partner_key", "username")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.CloudName = temp.CloudName
     a.PartnerKey = temp.PartnerKey
     a.Username = temp.Username

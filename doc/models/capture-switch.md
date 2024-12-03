@@ -3,6 +3,8 @@
 
 Initiate a Switch (Junos) Packet Capture
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `CaptureSwitch`
@@ -19,6 +21,7 @@ Initiate a Switch (Junos) Packet Capture
 | `Switches` | [`map[string]models.CaptureSwitchSwitches`](../../doc/models/capture-switch-switches.md) | Optional | Property key is the switch mac |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist. |
 | `Type` | `string` | Required, Constant | enum: `switch`<br>**Default**: `"switch"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,14 +35,30 @@ Initiate a Switch (Junos) Packet Capture
   "type": "switch",
   "ports": {
     "key0": {
-      "tcpdump_expression": "tcpdump_expression0"
+      "tcpdump_expression": "tcpdump_expression0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key1": {
-      "tcpdump_expression": "tcpdump_expression0"
+      "tcpdump_expression": "tcpdump_expression0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key2": {
-      "tcpdump_expression": "tcpdump_expression0"
+      "tcpdump_expression": "tcpdump_expression0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

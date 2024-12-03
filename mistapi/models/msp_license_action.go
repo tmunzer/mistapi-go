@@ -21,7 +21,7 @@ type MspLicenseAction struct {
     Quantity             *float64                      `json:"quantity,omitempty"`
     // required if `op`== `annotate`
     SubscriptionId       *string                       `json:"subscription_id,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MspLicenseAction.
@@ -29,13 +29,17 @@ type MspLicenseAction struct {
 func (m MspLicenseAction) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "amendment_id", "dst_org_id", "notes", "op", "quantity", "subscription_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MspLicenseAction object to a map representation for JSON marshaling.
 func (m MspLicenseAction) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.AmendmentId != nil {
         structMap["amendment_id"] = m.AmendmentId
     }
@@ -67,12 +71,12 @@ func (m *MspLicenseAction) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "amendment_id", "dst_org_id", "notes", "op", "quantity", "subscription_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "amendment_id", "dst_org_id", "notes", "op", "quantity", "subscription_id")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.AmendmentId = temp.AmendmentId
     m.DstOrgId = temp.DstOrgId
     m.Notes = temp.Notes

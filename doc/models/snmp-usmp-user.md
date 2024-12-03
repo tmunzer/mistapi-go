@@ -1,6 +1,8 @@
 
 # Snmp Usmp User
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SnmpUsmpUser`
@@ -14,6 +16,7 @@
 | `EncryptionPassword` | `*string` | Optional | Not required if `encryption_type`==`privacy-none`<br>include alphabetic, numeric, and special characters, but it cannot include control characters<br>**Constraints**: *Minimum Length*: `8` |
 | `EncryptionType` | [`*models.SnmpUsmpUserEncryptionTypeEnum`](../../doc/models/snmp-usmp-user-encryption-type-enum.md) | Optional | enum: `privacy-3des`, `privacy-aes128`, `privacy-des`, `privacy-none` |
 | `Name` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@
   "authentication_type": "authentication_none",
   "encryption_password": "encryption_password2",
   "encryption_type": "privacy-des",
-  "name": "name4"
+  "name": "name4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

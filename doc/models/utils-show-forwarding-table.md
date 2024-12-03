@@ -1,6 +1,8 @@
 
 # Utils Show Forwarding Table
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UtilsShowForwardingTable`
@@ -17,6 +19,7 @@
 | `ServiceProtocol` | `*string` | Optional | only supported with SSR |
 | `ServiceTenant` | `*string` | Optional | only supported with SSR |
 | `Vrf` | `*string` | Optional | VRF Name |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
   "service_protocol": "udp",
   "service_tenant": "branch1-wifi-mgt",
   "vrf": "guest",
-  "node": "node0"
+  "node": "node0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -99,7 +99,7 @@ type StatsSwitchPort struct {
     XcvrPartNumber       *string                       `json:"xcvr_part_number,omitempty"`
     // Optic Slot SerialNumber, Check for null/empty
     XcvrSerial           *string                       `json:"xcvr_serial,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchPort.
@@ -107,13 +107,17 @@ type StatsSwitchPort struct {
 func (s StatsSwitchPort) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "active", "auth_state", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsSwitchPort object to a map representation for JSON marshaling.
 func (s StatsSwitchPort) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Active != nil {
         structMap["active"] = s.Active
     }
@@ -262,12 +266,12 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "active", "auth_state", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "active", "auth_state", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Active = temp.Active
     s.AuthState = temp.AuthState
     s.ForSite = temp.ForSite

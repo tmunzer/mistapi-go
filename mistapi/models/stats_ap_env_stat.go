@@ -7,19 +7,19 @@ import (
 // StatsApEnvStat represents a StatsApEnvStat struct.
 // device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
 type StatsApEnvStat struct {
-    AccelX               Optional[float64] `json:"accel_x"`
-    AccelY               Optional[float64] `json:"accel_y"`
-    AccelZ               Optional[float64] `json:"accel_z"`
-    AmbientTemp          Optional[int]     `json:"ambient_temp"`
-    Attitude             Optional[int]     `json:"attitude"`
-    CpuTemp              Optional[int]     `json:"cpu_temp"`
-    Humidity             Optional[int]     `json:"humidity"`
-    MagneX               Optional[float64] `json:"magne_x"`
-    MagneY               Optional[float64] `json:"magne_y"`
-    MagneZ               Optional[float64] `json:"magne_z"`
-    Pressure             Optional[float64] `json:"pressure"`
-    VcoreVoltage         Optional[int]     `json:"vcore_voltage"`
-    AdditionalProperties map[string]any    `json:"_"`
+    AccelX               Optional[float64]      `json:"accel_x"`
+    AccelY               Optional[float64]      `json:"accel_y"`
+    AccelZ               Optional[float64]      `json:"accel_z"`
+    AmbientTemp          Optional[int]          `json:"ambient_temp"`
+    Attitude             Optional[int]          `json:"attitude"`
+    CpuTemp              Optional[int]          `json:"cpu_temp"`
+    Humidity             Optional[int]          `json:"humidity"`
+    MagneX               Optional[float64]      `json:"magne_x"`
+    MagneY               Optional[float64]      `json:"magne_y"`
+    MagneZ               Optional[float64]      `json:"magne_z"`
+    Pressure             Optional[float64]      `json:"pressure"`
+    VcoreVoltage         Optional[int]          `json:"vcore_voltage"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApEnvStat.
@@ -27,13 +27,17 @@ type StatsApEnvStat struct {
 func (s StatsApEnvStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "accel_x", "accel_y", "accel_z", "ambient_temp", "attitude", "cpu_temp", "humidity", "magne_x", "magne_y", "magne_z", "pressure", "vcore_voltage"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApEnvStat object to a map representation for JSON marshaling.
 func (s StatsApEnvStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AccelX.IsValueSet() {
         if s.AccelX.Value() != nil {
             structMap["accel_x"] = s.AccelX.Value()
@@ -129,12 +133,12 @@ func (s *StatsApEnvStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "accel_x", "accel_y", "accel_z", "ambient_temp", "attitude", "cpu_temp", "humidity", "magne_x", "magne_y", "magne_z", "pressure", "vcore_voltage")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accel_x", "accel_y", "accel_z", "ambient_temp", "attitude", "cpu_temp", "humidity", "magne_x", "magne_y", "magne_z", "pressure", "vcore_voltage")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AccelX = temp.AccelX
     s.AccelY = temp.AccelY
     s.AccelZ = temp.AccelZ

@@ -7,8 +7,8 @@ import (
 // OrgSettingGatewayMgmtAppProbing represents a OrgSettingGatewayMgmtAppProbing struct.
 type OrgSettingGatewayMgmtAppProbing struct {
     // app-keys from /api/v1/const/applications
-    Apps                 []string       `json:"apps,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Apps                 []string               `json:"apps,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingGatewayMgmtAppProbing.
@@ -16,13 +16,17 @@ type OrgSettingGatewayMgmtAppProbing struct {
 func (o OrgSettingGatewayMgmtAppProbing) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "apps"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingGatewayMgmtAppProbing object to a map representation for JSON marshaling.
 func (o OrgSettingGatewayMgmtAppProbing) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Apps != nil {
         structMap["apps"] = o.Apps
     }
@@ -37,12 +41,12 @@ func (o *OrgSettingGatewayMgmtAppProbing) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "apps")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "apps")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Apps = temp.Apps
     return nil
 }

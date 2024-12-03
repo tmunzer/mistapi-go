@@ -6,9 +6,9 @@ import (
 
 // ApRedundancyModule represents a ApRedundancyModule struct.
 type ApRedundancyModule struct {
-    NumAps                     *int           `json:"num_aps,omitempty"`
-    NumApsWithSwitchRedundancy *int           `json:"num_aps_with_switch_redundancy,omitempty"`
-    AdditionalProperties       map[string]any `json:"_"`
+    NumAps                     *int                   `json:"num_aps,omitempty"`
+    NumApsWithSwitchRedundancy *int                   `json:"num_aps_with_switch_redundancy,omitempty"`
+    AdditionalProperties       map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRedundancyModule.
@@ -16,13 +16,17 @@ type ApRedundancyModule struct {
 func (a ApRedundancyModule) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "num_aps", "num_aps_with_switch_redundancy"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApRedundancyModule object to a map representation for JSON marshaling.
 func (a ApRedundancyModule) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.NumAps != nil {
         structMap["num_aps"] = a.NumAps
     }
@@ -40,12 +44,12 @@ func (a *ApRedundancyModule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "num_aps", "num_aps_with_switch_redundancy")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "num_aps", "num_aps_with_switch_redundancy")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.NumAps = temp.NumAps
     a.NumApsWithSwitchRedundancy = temp.NumApsWithSwitchRedundancy
     return nil

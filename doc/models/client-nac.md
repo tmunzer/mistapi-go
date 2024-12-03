@@ -1,6 +1,8 @@
 
 # Client Nac
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ClientNac`
@@ -50,6 +52,7 @@
 | `Type` | `*string` | Optional | Type of client (wired, wireless) |
 | `Username` | `[]string` | Optional | List of usernames that have been assigned to the client |
 | `Vlan` | `[]string` | Optional | List of vlans that have been assigned to the client |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -77,7 +80,11 @@
     "cert_serial8",
     "cert_serial9",
     "cert_serial0"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

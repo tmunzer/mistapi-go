@@ -7,9 +7,9 @@ import (
 // ApLed represents a ApLed struct.
 // LED AP settings
 type ApLed struct {
-    Brightness           *int           `json:"brightness,omitempty"`
-    Enabled              *bool          `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Brightness           *int                   `json:"brightness,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApLed.
@@ -17,13 +17,17 @@ type ApLed struct {
 func (a ApLed) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "brightness", "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApLed object to a map representation for JSON marshaling.
 func (a ApLed) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Brightness != nil {
         structMap["brightness"] = a.Brightness
     }
@@ -41,12 +45,12 @@ func (a *ApLed) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "brightness", "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "brightness", "enabled")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Brightness = temp.Brightness
     a.Enabled = temp.Enabled
     return nil

@@ -20,7 +20,7 @@ type UtilsTraceroute struct {
     Timeout              *int                         `json:"timeout,omitempty"`
     // for SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed
     Vrf                  *string                      `json:"vrf,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsTraceroute.
@@ -28,13 +28,17 @@ type UtilsTraceroute struct {
 func (u UtilsTraceroute) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "host", "network", "node", "port", "protocol", "timeout", "vrf"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsTraceroute object to a map representation for JSON marshaling.
 func (u UtilsTraceroute) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Host != nil {
         structMap["host"] = u.Host
     }
@@ -67,12 +71,12 @@ func (u *UtilsTraceroute) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "network", "node", "port", "protocol", "timeout", "vrf")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "network", "node", "port", "protocol", "timeout", "vrf")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Host = temp.Host
     u.Network = temp.Network
     u.Node = temp.Node

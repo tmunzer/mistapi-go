@@ -1,6 +1,8 @@
 
 # Service Path Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ServicePathEvent`
@@ -21,6 +23,7 @@
 | `Version` | `*string` | Optional | - |
 | `VpnName` | `*string` | Optional | - |
 | `VpnPath` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,7 +40,11 @@
   "type": "GW_SERVICE_PATH_REMOVE",
   "version": "6.1.5-14.lts",
   "vpn_name": "Syracuse_HUB",
-  "vpn_path": "Syracuse_HUB-Wan0"
+  "vpn_path": "Syracuse_HUB-Wan0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

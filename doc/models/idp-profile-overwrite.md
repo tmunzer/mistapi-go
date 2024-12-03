@@ -1,6 +1,8 @@
 
 # Idp Profile Overwrite
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `IdpProfileOverwrite`
@@ -12,6 +14,7 @@
 | `Action` | [`*models.IdpProfileActionEnum`](../../doc/models/idp-profile-action-enum.md) | Optional | enum:<br><br>* alert (default)<br>* drop: siliently dropping packets<br>* close: notify client/server to close connection<br>**Default**: `"alert"` |
 | `Matching` | [`*models.IdpProfileMatching`](../../doc/models/idp-profile-matching.md) | Optional | - |
 | `Name` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,9 +31,17 @@
     "severity": [
       "critical",
       "info"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "name": "name4"
+  "name": "name4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

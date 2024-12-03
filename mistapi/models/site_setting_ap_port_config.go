@@ -8,7 +8,7 @@ import (
 type SiteSettingApPortConfig struct {
     // Property key is the AP model (e.g "AP32")
     ModelSpecific        map[string]ApPortConfig `json:"model_specific,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingApPortConfig.
@@ -16,13 +16,17 @@ type SiteSettingApPortConfig struct {
 func (s SiteSettingApPortConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "model_specific"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingApPortConfig object to a map representation for JSON marshaling.
 func (s SiteSettingApPortConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ModelSpecific != nil {
         structMap["model_specific"] = s.ModelSpecific
     }
@@ -37,12 +41,12 @@ func (s *SiteSettingApPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "model_specific")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "model_specific")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ModelSpecific = temp.ModelSpecific
     return nil
 }

@@ -11,33 +11,33 @@ import (
 // WXlan
 type WxlanRule struct {
     // type of action, allow / block. enum: `allow`, `block`
-    Action               *WxlanRuleActionEnum `json:"action,omitempty"`
-    ApplyTags            []string             `json:"apply_tags,omitempty"`
+    Action               *WxlanRuleActionEnum   `json:"action,omitempty"`
+    ApplyTags            []string               `json:"apply_tags,omitempty"`
     // blocked apps (always blocking, ignoring action), the key of Get Application List
-    BlockedApps          []string             `json:"blocked_apps,omitempty"`
+    BlockedApps          []string               `json:"blocked_apps,omitempty"`
     // when the object has been created, in epoch
-    CreatedTime          *float64             `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // List of WxTag UUID to indicate these tags are allowed access
-    DstAllowWxtags       []string             `json:"dst_allow_wxtags"`
+    DstAllowWxtags       []string               `json:"dst_allow_wxtags"`
     // List of WxTag UUID to indicate these tags are blocked access
-    DstDenyWxtags        []string             `json:"dst_deny_wxtags"`
+    DstDenyWxtags        []string               `json:"dst_deny_wxtags"`
     // List of WxTag UUID
-    DstWxtags            []string             `json:"dst_wxtags,omitempty"`
-    Enabled              *bool                `json:"enabled,omitempty"`
-    ForSite              *bool                `json:"for_site,omitempty"`
+    DstWxtags            []string               `json:"dst_wxtags,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID           `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64             `json:"modified_time,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // the order how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked
-    Order                int                  `json:"order"`
-    OrgId                *uuid.UUID           `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID           `json:"site_id,omitempty"`
+    Order                int                    `json:"order"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // List of WxTag UUID to determine if this rule would match
-    SrcWxtags            []string             `json:"src_wxtags"`
+    SrcWxtags            []string               `json:"src_wxtags"`
     // Only for Org Level WxRule
-    TemplateId           *uuid.UUID           `json:"template_id,omitempty"`
-    AdditionalProperties map[string]any       `json:"_"`
+    TemplateId           *uuid.UUID             `json:"template_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanRule.
@@ -45,13 +45,17 @@ type WxlanRule struct {
 func (w WxlanRule) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "action", "apply_tags", "blocked_apps", "created_time", "dst_allow_wxtags", "dst_deny_wxtags", "dst_wxtags", "enabled", "for_site", "id", "modified_time", "order", "org_id", "site_id", "src_wxtags", "template_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WxlanRule object to a map representation for JSON marshaling.
 func (w WxlanRule) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Action != nil {
         structMap["action"] = w.Action
     }
@@ -107,12 +111,12 @@ func (w *WxlanRule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "apply_tags", "blocked_apps", "created_time", "dst_allow_wxtags", "dst_deny_wxtags", "dst_wxtags", "enabled", "for_site", "id", "modified_time", "order", "org_id", "site_id", "src_wxtags", "template_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "apply_tags", "blocked_apps", "created_time", "dst_allow_wxtags", "dst_deny_wxtags", "dst_wxtags", "enabled", "for_site", "id", "modified_time", "order", "org_id", "site_id", "src_wxtags", "template_id")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Action = temp.Action
     w.ApplyTags = temp.ApplyTags
     w.BlockedApps = temp.BlockedApps

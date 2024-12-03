@@ -8,12 +8,12 @@ import (
 
 // ResponseSwitchPortSearch represents a ResponseSwitchPortSearch struct.
 type ResponseSwitchPortSearch struct {
-    End                  int               `json:"end"`
-    Limit                int               `json:"limit"`
-    Results              []StatsSwitchPort `json:"results"`
-    Start                int               `json:"start"`
-    Total                int               `json:"total"`
-    AdditionalProperties map[string]any    `json:"_"`
+    End                  int                    `json:"end"`
+    Limit                int                    `json:"limit"`
+    Results              []StatsSwitchPort      `json:"results"`
+    Start                int                    `json:"start"`
+    Total                int                    `json:"total"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSwitchPortSearch.
@@ -21,13 +21,17 @@ type ResponseSwitchPortSearch struct {
 func (r ResponseSwitchPortSearch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "end", "limit", "results", "start", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSwitchPortSearch object to a map representation for JSON marshaling.
 func (r ResponseSwitchPortSearch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["end"] = r.End
     structMap["limit"] = r.Limit
     structMap["results"] = r.Results
@@ -48,12 +52,12 @@ func (r *ResponseSwitchPortSearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "limit", "results", "start", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "results", "start", "total")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.End = *temp.End
     r.Limit = *temp.Limit
     r.Results = *temp.Results

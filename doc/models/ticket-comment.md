@@ -1,6 +1,8 @@
 
 # Ticket Comment
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `TicketComment`
@@ -14,6 +16,7 @@
 | `Author` | `string` | Required | - |
 | `Comment` | `string` | Required | - |
 | `CreatedAt` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,9 +34,17 @@
       "content_url": "content_url4",
       "created_at": 174,
       "file_name": "file_name8",
-      "id": "000001f4-0000-0000-0000-000000000000"
+      "id": "000001f4-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

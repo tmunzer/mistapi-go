@@ -8,7 +8,7 @@ import (
 type CaptureGatewayGateways struct {
     // Property key is the port ID
     Ports                map[string]CaptureGatewayGatewaysPort `json:"ports,omitempty"`
-    AdditionalProperties map[string]any                        `json:"_"`
+    AdditionalProperties map[string]interface{}                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureGatewayGateways.
@@ -16,13 +16,17 @@ type CaptureGatewayGateways struct {
 func (c CaptureGatewayGateways) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ports"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureGatewayGateways object to a map representation for JSON marshaling.
 func (c CaptureGatewayGateways) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Ports != nil {
         structMap["ports"] = c.Ports
     }
@@ -37,12 +41,12 @@ func (c *CaptureGatewayGateways) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ports")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ports")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Ports = temp.Ports
     return nil
 }

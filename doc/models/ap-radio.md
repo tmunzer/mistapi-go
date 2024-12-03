@@ -3,6 +3,8 @@
 
 Radio AP settings
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApRadio`
@@ -23,6 +25,7 @@ Radio AP settings
 | `Band6` | [`*models.ApRadioBand6`](../../doc/models/ap-radio-band-6.md) | Optional | Radio Band AP settings |
 | `IndoorUse` | `*bool` | Optional | to make an outdoor operate indoor.<br>for an outdoor-ap, some channels are disallowed by default, this allows the user to use it as an indoor-ap<br>**Default**: `false` |
 | `ScanningEnabled` | `*bool` | Optional | whether scanning radio is enabled |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,7 +36,11 @@ Radio AP settings
   "ant_gain_5": 5,
   "ant_gain_6": 5,
   "antenna_mode": "default",
-  "indoor_use": false
+  "indoor_use": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

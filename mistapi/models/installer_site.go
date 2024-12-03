@@ -9,16 +9,16 @@ import (
 
 // InstallerSite represents a InstallerSite struct.
 type InstallerSite struct {
-    Address              string         `json:"address"`
-    CountryCode          string         `json:"country_code"`
+    Address              string                 `json:"address"`
+    CountryCode          string                 `json:"country_code"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Latlng               LatLng         `json:"latlng"`
-    Name                 string         `json:"name"`
-    RftemplateName       *string        `json:"rftemplate_name,omitempty"`
-    SitegroupNames       []string       `json:"sitegroup_names,omitempty"`
-    Timezone             *string        `json:"timezone,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Latlng               LatLng                 `json:"latlng"`
+    Name                 string                 `json:"name"`
+    RftemplateName       *string                `json:"rftemplate_name,omitempty"`
+    SitegroupNames       []string               `json:"sitegroup_names,omitempty"`
+    Timezone             *string                `json:"timezone,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for InstallerSite.
@@ -26,13 +26,17 @@ type InstallerSite struct {
 func (i InstallerSite) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "address", "country_code", "id", "latlng", "name", "rftemplate_name", "sitegroup_names", "timezone"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the InstallerSite object to a map representation for JSON marshaling.
 func (i InstallerSite) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     structMap["address"] = i.Address
     structMap["country_code"] = i.CountryCode
     if i.Id != nil {
@@ -64,12 +68,12 @@ func (i *InstallerSite) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "address", "country_code", "id", "latlng", "name", "rftemplate_name", "sitegroup_names", "timezone")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "country_code", "id", "latlng", "name", "rftemplate_name", "sitegroup_names", "timezone")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.Address = *temp.Address
     i.CountryCode = *temp.CountryCode
     i.Id = temp.Id

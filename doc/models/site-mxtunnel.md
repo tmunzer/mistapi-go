@@ -3,6 +3,8 @@
 
 Site MxTunnel
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteMxtunnel`
@@ -29,6 +31,7 @@ Site MxTunnel
 | `Radsec` | [`*models.SiteMxtunnelRadsec`](../../doc/models/site-mxtunnel-radsec.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `VlanIds` | `[]int` | Optional | list of vlan_ids that will be used |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,13 +51,21 @@ Site MxTunnel
           "name": "name6",
           "tunterm_hosts": [
             "tunterm_hosts6"
-          ]
+          ],
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "name": "name6",
           "tunterm_hosts": [
             "tunterm_hosts6"
-          ]
+          ],
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "hello_interval": 38,
@@ -63,7 +74,11 @@ Site MxTunnel
       "vlan_ids": [
         142,
         143
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key1": {
       "clusters": [
@@ -71,13 +86,21 @@ Site MxTunnel
           "name": "name6",
           "tunterm_hosts": [
             "tunterm_hosts6"
-          ]
+          ],
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "name": "name6",
           "tunterm_hosts": [
             "tunterm_hosts6"
-          ]
+          ],
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "hello_interval": 38,
@@ -86,7 +109,11 @@ Site MxTunnel
       "vlan_ids": [
         142,
         143
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "ap_subnets": [
@@ -97,17 +124,29 @@ Site MxTunnel
   "auto_preemption": {
     "day_of_week": "mon",
     "enabled": false,
-    "time_of_day": "time_of_day4"
+    "time_of_day": "time_of_day4",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "clusters": [
     {
       "name": "name6",
       "tunterm_hosts": [
         "tunterm_hosts6"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "created_time": 248.86
+  "created_time": 248.86,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -61,7 +61,7 @@ type DeviceprofileAp struct {
     UsbConfig            *ApUsb                  `json:"usb_config,omitempty"`
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                 map[string]string       `json:"vars,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceprofileAp.
@@ -69,13 +69,17 @@ type DeviceprofileAp struct {
 func (d DeviceprofileAp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DeviceprofileAp object to a map representation for JSON marshaling.
 func (d DeviceprofileAp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.Aeroscout != nil {
         structMap["aeroscout"] = d.Aeroscout.toMap()
     }
@@ -175,12 +179,12 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.Aeroscout = temp.Aeroscout
     d.BleConfig = temp.BleConfig
     d.CreatedTime = temp.CreatedTime

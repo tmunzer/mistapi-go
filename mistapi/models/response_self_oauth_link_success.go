@@ -9,10 +9,10 @@ import (
 
 // ResponseSelfOauthLinkSuccess represents a ResponseSelfOauthLinkSuccess struct.
 type ResponseSelfOauthLinkSuccess struct {
-    Action               string         `json:"action"`
+    Action               string                 `json:"action"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID      `json:"id"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   uuid.UUID              `json:"id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSelfOauthLinkSuccess.
@@ -20,13 +20,17 @@ type ResponseSelfOauthLinkSuccess struct {
 func (r ResponseSelfOauthLinkSuccess) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "action", "id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSelfOauthLinkSuccess object to a map representation for JSON marshaling.
 func (r ResponseSelfOauthLinkSuccess) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["action"] = r.Action
     structMap["id"] = r.Id
     return structMap
@@ -44,12 +48,12 @@ func (r *ResponseSelfOauthLinkSuccess) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "id")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Action = *temp.Action
     r.Id = *temp.Id
     return nil

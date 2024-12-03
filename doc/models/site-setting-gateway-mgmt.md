@@ -3,6 +3,8 @@
 
 Gateway Site settings
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteSettingGatewayMgmt`
@@ -23,6 +25,7 @@ Gateway Site settings
 | `RootPassword` | `*string` | Optional | for SRX only |
 | `SecurityLogSourceAddress` | `*string` | Optional | - |
 | `SecurityLogSourceInterface` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -54,7 +57,11 @@ Gateway Site settings
           "hostnames5"
         ],
         "key": "key8",
-        "name": "name8"
+        "name": "name8",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       {
         "address": "address4",
@@ -64,16 +71,32 @@ Gateway Site settings
           "hostnames5"
         ],
         "key": "key8",
-        "name": "name8"
+        "name": "name8",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     ],
-    "enabled": false
+    "enabled": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "app_usage": false,
   "auto_signature_update": {
     "day_of_week": "any",
     "enable": false,
-    "time_of_day": "time_of_day6"
+    "time_of_day": "time_of_day6",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

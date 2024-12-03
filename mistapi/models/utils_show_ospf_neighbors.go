@@ -7,14 +7,14 @@ import (
 // UtilsShowOspfNeighbors represents a UtilsShowOspfNeighbors struct.
 type UtilsShowOspfNeighbors struct {
     // Neighbor IP Address
-    Neighbor             *string            `json:"neighbor,omitempty"`
+    Neighbor             *string                `json:"neighbor,omitempty"`
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // the network interface
-    PortId               *string            `json:"port_id,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
     // VRF name
-    Vrf                  *string            `json:"vrf,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Vrf                  *string                `json:"vrf,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowOspfNeighbors.
@@ -22,13 +22,17 @@ type UtilsShowOspfNeighbors struct {
 func (u UtilsShowOspfNeighbors) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "neighbor", "node", "port_id", "vrf"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsShowOspfNeighbors object to a map representation for JSON marshaling.
 func (u UtilsShowOspfNeighbors) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Neighbor != nil {
         structMap["neighbor"] = u.Neighbor
     }
@@ -52,12 +56,12 @@ func (u *UtilsShowOspfNeighbors) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "neighbor", "node", "port_id", "vrf")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "neighbor", "node", "port_id", "vrf")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Neighbor = temp.Neighbor
     u.Node = temp.Node
     u.PortId = temp.PortId

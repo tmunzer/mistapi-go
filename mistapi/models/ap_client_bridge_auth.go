@@ -9,7 +9,7 @@ type ApClientBridgeAuth struct {
     Psk                  *string                     `json:"psk,omitempty"`
     // wpa2-AES/CCMPp is assumed when `type`==`psk`. enum: `open`, `psk`
     Type                 *ApClientBridgeAuthTypeEnum `json:"type,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApClientBridgeAuth.
@@ -17,13 +17,17 @@ type ApClientBridgeAuth struct {
 func (a ApClientBridgeAuth) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "psk", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApClientBridgeAuth object to a map representation for JSON marshaling.
 func (a ApClientBridgeAuth) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Psk != nil {
         structMap["psk"] = a.Psk
     }
@@ -41,12 +45,12 @@ func (a *ApClientBridgeAuth) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "psk", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "psk", "type")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Psk = temp.Psk
     a.Type = temp.Type
     return nil

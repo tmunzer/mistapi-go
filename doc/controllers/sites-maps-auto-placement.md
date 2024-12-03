@@ -56,7 +56,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "683b679ac024",
     },
 }
@@ -116,7 +116,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "683b679ac024",
     },
 }
@@ -176,8 +176,11 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UseAutoApValues{
-    Accept: models.ToPointer(false),
-    For:    models.ToPointer(models.UseAutoApValuesForEnum("placement")),
+    Accept:               models.ToPointer(false),
+    For:                  models.ToPointer(models.UseAutoApValuesForEnum("placement")),
+    AdditionalProperties: map[string]interface{}{
+        "device_macs": interface{}("string"),
+    },
 }
 
 resp, err := sitesMapsAutoPlacement.ConfirmSiteApLocalizationData(ctx, siteId, mapId, &body)
@@ -417,7 +420,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AutoPlacement{
-    ForceCollection: models.ToPointer(false),
+    ForceCollection:      models.ToPointer(false),
 }
 
 resp, err := sitesMapsAutoPlacement.RunSiteApAutoplacement(ctx, siteId, mapId, &body)
@@ -477,7 +480,7 @@ mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AutoOrient{
-    ForceCollection: models.ToPointer(false),
+    ForceCollection:      models.ToPointer(false),
 }
 
 apiResponse, err := sitesMapsAutoPlacement.StartSiteApAutoOrientation(ctx, mapId, siteId, &body)

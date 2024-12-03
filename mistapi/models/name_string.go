@@ -6,8 +6,8 @@ import (
 
 // NameString represents a NameString struct.
 type NameString struct {
-    Name                 *string        `json:"name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 *string                `json:"name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NameString.
@@ -15,13 +15,17 @@ type NameString struct {
 func (n NameString) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NameString object to a map representation for JSON marshaling.
 func (n NameString) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.Name != nil {
         structMap["name"] = n.Name
     }
@@ -36,12 +40,12 @@ func (n *NameString) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.Name = temp.Name
     return nil
 }

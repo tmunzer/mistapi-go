@@ -19,7 +19,7 @@ type ResponseConfigHistorySearchItem struct {
     Timestamp            float64                                `json:"timestamp"`
     Version              string                                 `json:"version"`
     Wlans                []ResponseConfigHistorySearchItemWlan  `json:"wlans,omitempty"`
-    AdditionalProperties map[string]any                         `json:"_"`
+    AdditionalProperties map[string]interface{}                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseConfigHistorySearchItem.
@@ -27,13 +27,17 @@ type ResponseConfigHistorySearchItem struct {
 func (r ResponseConfigHistorySearchItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "channel_24", "channel_5", "radio_macs", "radios", "secpolicy_violated", "ssids", "ssids_24", "ssids_5", "timestamp", "version", "wlans"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseConfigHistorySearchItem object to a map representation for JSON marshaling.
 func (r ResponseConfigHistorySearchItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["channel_24"] = r.Channel24
     structMap["channel_5"] = r.Channel5
     if r.RadioMacs != nil {
@@ -72,12 +76,12 @@ func (r *ResponseConfigHistorySearchItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "channel_24", "channel_5", "radio_macs", "radios", "secpolicy_violated", "ssids", "ssids_24", "ssids_5", "timestamp", "version", "wlans")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel_24", "channel_5", "radio_macs", "radios", "secpolicy_violated", "ssids", "ssids_24", "ssids_5", "timestamp", "version", "wlans")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Channel24 = *temp.Channel24
     r.Channel5 = *temp.Channel5
     r.RadioMacs = temp.RadioMacs

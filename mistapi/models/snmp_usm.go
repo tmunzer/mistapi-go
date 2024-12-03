@@ -11,7 +11,7 @@ type SnmpUsm struct {
     // enum: `local_engine`, `remote_engine`
     EngineType           *SnmpUsmEngineTypeEnum `json:"engine_type,omitempty"`
     Users                []SnmpUsmpUser         `json:"users,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpUsm.
@@ -19,13 +19,17 @@ type SnmpUsm struct {
 func (s SnmpUsm) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "engine-id", "engine_type", "users"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SnmpUsm object to a map representation for JSON marshaling.
 func (s SnmpUsm) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.EngineId != nil {
         structMap["engine-id"] = s.EngineId
     }
@@ -46,12 +50,12 @@ func (s *SnmpUsm) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "engine-id", "engine_type", "users")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "engine-id", "engine_type", "users")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.EngineId = temp.EngineId
     s.EngineType = temp.EngineType
     s.Users = temp.Users

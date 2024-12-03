@@ -1,6 +1,8 @@
 
 # Org Site Sle Wifi
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgSiteSleWifi`
@@ -16,6 +18,7 @@
 | `Results` | [`[]models.OrgSiteSleWifiResult`](../../doc/models/org-site-sle-wifi-result.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +35,19 @@
       "ap-health": 236.64,
       "capacity": 106.72,
       "coverage": 128.26,
-      "num_aps": 247.16
+      "num_aps": 247.16,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 64.88,
-  "total": 122
+  "total": 122,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

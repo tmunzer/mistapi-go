@@ -11,35 +11,35 @@ import (
 // Asset statistics
 type StatsAsset struct {
     // battery voltage, in mV
-    BatteryVoltage        *float64        `json:"battery_voltage,omitempty"`
-    Beam                  *int            `json:"beam,omitempty"`
-    DeviceName            *string         `json:"device_name,omitempty"`
-    Duration              *int            `json:"duration,omitempty"`
-    EddystoneUidInstance  *string         `json:"eddystone_uid_instance,omitempty"`
-    EddystoneUidNamespace *string         `json:"eddystone_uid_namespace,omitempty"`
-    EddystoneUrlUrl       *string         `json:"eddystone_url_url,omitempty"`
-    IbeaconMajor          *int            `json:"ibeacon_major,omitempty"`
-    IbeaconMinor          *int            `json:"ibeacon_minor,omitempty"`
-    IbeaconUuid           *uuid.UUID      `json:"ibeacon_uuid,omitempty"`
+    BatteryVoltage        *float64               `json:"battery_voltage,omitempty"`
+    Beam                  *int                   `json:"beam,omitempty"`
+    DeviceName            *string                `json:"device_name,omitempty"`
+    Duration              *int                   `json:"duration,omitempty"`
+    EddystoneUidInstance  *string                `json:"eddystone_uid_instance,omitempty"`
+    EddystoneUidNamespace *string                `json:"eddystone_uid_namespace,omitempty"`
+    EddystoneUrlUrl       *string                `json:"eddystone_url_url,omitempty"`
+    IbeaconMajor          *int                   `json:"ibeacon_major,omitempty"`
+    IbeaconMinor          *int                   `json:"ibeacon_minor,omitempty"`
+    IbeaconUuid           *uuid.UUID             `json:"ibeacon_uuid,omitempty"`
     // last seen timestamp
-    LastSeen              *float64        `json:"last_seen,omitempty"`
+    LastSeen              *float64               `json:"last_seen,omitempty"`
     // bluetooth MAC
-    Mac                   string          `json:"mac"`
+    Mac                   string                 `json:"mac"`
     // map where the device belongs to
-    MapId                 *uuid.UUID      `json:"map_id,omitempty"`
+    MapId                 *uuid.UUID             `json:"map_id,omitempty"`
     // name / label of the device
-    Name                  *string         `json:"name,omitempty"`
-    Rssi                  *int            `json:"rssi,omitempty"`
+    Name                  *string                `json:"name,omitempty"`
+    Rssi                  *int                   `json:"rssi,omitempty"`
     // only send this for individual asset stat
-    Rssizones             []AssetRssiZone `json:"rssizones,omitempty"`
-    Temperatur            *float64        `json:"temperatur,omitempty"`
+    Rssizones             []AssetRssiZone        `json:"rssizones,omitempty"`
+    Temperatur            *float64               `json:"temperatur,omitempty"`
     // x in pixel
-    X                     *float64        `json:"x,omitempty"`
+    X                     *float64               `json:"x,omitempty"`
     // y in pixel
-    Y                     *float64        `json:"y,omitempty"`
+    Y                     *float64               `json:"y,omitempty"`
     // only send this for individual asset stat
-    Zones                 []AssetZone     `json:"zones,omitempty"`
-    AdditionalProperties  map[string]any  `json:"_"`
+    Zones                 []AssetZone            `json:"zones,omitempty"`
+    AdditionalProperties  map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsAsset.
@@ -47,13 +47,17 @@ type StatsAsset struct {
 func (s StatsAsset) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "battery_voltage", "beam", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "last_seen", "mac", "map_id", "name", "rssi", "rssizones", "temperatur", "x", "y", "zones"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsAsset object to a map representation for JSON marshaling.
 func (s StatsAsset) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.BatteryVoltage != nil {
         structMap["battery_voltage"] = s.BatteryVoltage
     }
@@ -127,12 +131,12 @@ func (s *StatsAsset) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "battery_voltage", "beam", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "last_seen", "mac", "map_id", "name", "rssi", "rssizones", "temperatur", "x", "y", "zones")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "battery_voltage", "beam", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "last_seen", "mac", "map_id", "name", "rssi", "rssizones", "temperatur", "x", "y", "zones")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.BatteryVoltage = temp.BatteryVoltage
     s.Beam = temp.Beam
     s.DeviceName = temp.DeviceName

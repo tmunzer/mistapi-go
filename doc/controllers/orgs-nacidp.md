@@ -101,8 +101,8 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UsernamePassword{
-    Password: models.ToPointer("xxxxxx"),
-    Username: models.ToPointer("suriyas@juniper.net"),
+    Password:             models.ToPointer("xxxxxx"),
+    Username:             models.ToPointer("suriyas@juniper.net"),
 }
 
 apiResponse, err := orgsNACIDP.ValidateOrgIdpCredential(ctx, orgId, &body)

@@ -6,10 +6,10 @@ import (
 
 // NetworkDestinationNatProperty represents a NetworkDestinationNatProperty struct.
 type NetworkDestinationNatProperty struct {
-    InternalIp           *string        `json:"internal_ip,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    Port                 *int           `json:"port,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    InternalIp           *string                `json:"internal_ip,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    Port                 *int                   `json:"port,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkDestinationNatProperty.
@@ -17,13 +17,17 @@ type NetworkDestinationNatProperty struct {
 func (n NetworkDestinationNatProperty) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "internal_ip", "name", "port"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NetworkDestinationNatProperty object to a map representation for JSON marshaling.
 func (n NetworkDestinationNatProperty) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.InternalIp != nil {
         structMap["internal_ip"] = n.InternalIp
     }
@@ -44,12 +48,12 @@ func (n *NetworkDestinationNatProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "internal_ip", "name", "port")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "internal_ip", "name", "port")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.InternalIp = temp.InternalIp
     n.Name = temp.Name
     n.Port = temp.Port

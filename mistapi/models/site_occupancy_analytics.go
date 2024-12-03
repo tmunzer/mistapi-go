@@ -8,16 +8,16 @@ import (
 // Occupancy Analytics settings
 type SiteOccupancyAnalytics struct {
     // indicate whether named BLE assets should be included in the zone occupancy calculation
-    AssetsEnabled             *bool          `json:"assets_enabled,omitempty"`
+    AssetsEnabled             *bool                  `json:"assets_enabled,omitempty"`
     // indicate whether connected WiFi clients should be included in the zone occupancy calculation
-    ClientsEnabled            *bool          `json:"clients_enabled,omitempty"`
+    ClientsEnabled            *bool                  `json:"clients_enabled,omitempty"`
     // minimum duration
-    MinDuration               *int           `json:"min_duration,omitempty"`
+    MinDuration               *int                   `json:"min_duration,omitempty"`
     // indicate whether SDK clients should be included in the zone occupancy calculation
-    SdkclientsEnabled         *bool          `json:"sdkclients_enabled,omitempty"`
+    SdkclientsEnabled         *bool                  `json:"sdkclients_enabled,omitempty"`
     // indicate whether unconnected WiFi clients should be included in the zone occupancy calculation
-    UnconnectedClientsEnabled *bool          `json:"unconnected_clients_enabled,omitempty"`
-    AdditionalProperties      map[string]any `json:"_"`
+    UnconnectedClientsEnabled *bool                  `json:"unconnected_clients_enabled,omitempty"`
+    AdditionalProperties      map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteOccupancyAnalytics.
@@ -25,13 +25,17 @@ type SiteOccupancyAnalytics struct {
 func (s SiteOccupancyAnalytics) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "assets_enabled", "clients_enabled", "min_duration", "sdkclients_enabled", "unconnected_clients_enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteOccupancyAnalytics object to a map representation for JSON marshaling.
 func (s SiteOccupancyAnalytics) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AssetsEnabled != nil {
         structMap["assets_enabled"] = s.AssetsEnabled
     }
@@ -58,12 +62,12 @@ func (s *SiteOccupancyAnalytics) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "assets_enabled", "clients_enabled", "min_duration", "sdkclients_enabled", "unconnected_clients_enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "assets_enabled", "clients_enabled", "min_duration", "sdkclients_enabled", "unconnected_clients_enabled")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AssetsEnabled = temp.AssetsEnabled
     s.ClientsEnabled = temp.ClientsEnabled
     s.MinDuration = temp.MinDuration

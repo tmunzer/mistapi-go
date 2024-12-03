@@ -3,6 +3,8 @@
 
 Organizations Group
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Orggroup`
@@ -17,6 +19,7 @@ Organizations Group
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `Name` | `string` | Required | - |
 | `OrgIds` | `[]uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,7 +33,11 @@ Organizations Group
   "org_ids": [
     "00001d40-0000-0000-0000-000000000000",
     "00001d41-0000-0000-0000-000000000000"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

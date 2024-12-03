@@ -7,12 +7,12 @@ import (
 // OrgSettingSecurity represents a OrgSettingSecurity struct.
 type OrgSettingSecurity struct {
     // whether to disable local SSH (by default, local SSH is enabled with allow_mist in Org is enabled
-    DisableLocalSsh      *bool          `json:"disable_local_ssh,omitempty"`
+    DisableLocalSsh      *bool                  `json:"disable_local_ssh,omitempty"`
     // password required to zeroize devices (FIPS) on site level
-    FipsZeroizePassword  *string        `json:"fips_zeroize_password,omitempty"`
+    FipsZeroizePassword  *string                `json:"fips_zeroize_password,omitempty"`
     // whether to allow certain SSH keys to SSH into the AP (see Site:Setting)
-    LimitSshAccess       *bool          `json:"limit_ssh_access,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    LimitSshAccess       *bool                  `json:"limit_ssh_access,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingSecurity.
@@ -20,13 +20,17 @@ type OrgSettingSecurity struct {
 func (o OrgSettingSecurity) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "disable_local_ssh", "fips_zeroize_password", "limit_ssh_access"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingSecurity object to a map representation for JSON marshaling.
 func (o OrgSettingSecurity) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.DisableLocalSsh != nil {
         structMap["disable_local_ssh"] = o.DisableLocalSsh
     }
@@ -47,12 +51,12 @@ func (o *OrgSettingSecurity) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disable_local_ssh", "fips_zeroize_password", "limit_ssh_access")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_local_ssh", "fips_zeroize_password", "limit_ssh_access")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.DisableLocalSsh = temp.DisableLocalSsh
     o.FipsZeroizePassword = temp.FipsZeroizePassword
     o.LimitSshAccess = temp.LimitSshAccess

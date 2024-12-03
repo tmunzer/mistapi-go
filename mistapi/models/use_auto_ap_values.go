@@ -12,7 +12,7 @@ type UseAutoApValues struct {
     For                  *UseAutoApValuesForEnum `json:"for,omitempty"`
     // A list of macs to accept/reject. If a list is not provided the API will accept/reject for the full map.
     Macs                 []string                `json:"macs,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UseAutoApValues.
@@ -20,13 +20,17 @@ type UseAutoApValues struct {
 func (u UseAutoApValues) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "accept", "for", "macs"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UseAutoApValues object to a map representation for JSON marshaling.
 func (u UseAutoApValues) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Accept != nil {
         structMap["accept"] = u.Accept
     }
@@ -47,12 +51,12 @@ func (u *UseAutoApValues) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "accept", "for", "macs")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accept", "for", "macs")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Accept = temp.Accept
     u.For = temp.For
     u.Macs = temp.Macs

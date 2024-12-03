@@ -1,6 +1,8 @@
 
 # Webhook Discovered Raw Rssi Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookDiscoveredRawRssiEvent`
@@ -25,6 +27,7 @@
 | `ServicePackets` | [`[]models.ServicePacket`](../../doc/models/service-packet.md) | Optional | list of service data packets heard from the asset/ beacon |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,7 +46,11 @@
   "ibeacon_major": 66,
   "ibeacon_minor": 184,
   "ibeacon_uuid": "0000173a-0000-0000-0000-000000000000",
-  "is_asset": false
+  "is_asset": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

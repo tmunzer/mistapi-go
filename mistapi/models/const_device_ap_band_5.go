@@ -6,10 +6,10 @@ import (
 
 // ConstDeviceApBand5 represents a ConstDeviceApBand5 struct.
 type ConstDeviceApBand5 struct {
-    MaxClients           *int           `json:"max_clients,omitempty"`
-    MaxPower             *int           `json:"max_power,omitempty"`
-    MinPower             *int           `json:"min_power,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    MaxClients           *int                   `json:"max_clients,omitempty"`
+    MaxPower             *int                   `json:"max_power,omitempty"`
+    MinPower             *int                   `json:"min_power,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceApBand5.
@@ -17,13 +17,17 @@ type ConstDeviceApBand5 struct {
 func (c ConstDeviceApBand5) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "max_clients", "max_power", "min_power"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstDeviceApBand5 object to a map representation for JSON marshaling.
 func (c ConstDeviceApBand5) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.MaxClients != nil {
         structMap["max_clients"] = c.MaxClients
     }
@@ -44,12 +48,12 @@ func (c *ConstDeviceApBand5) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "max_clients", "max_power", "min_power")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "max_clients", "max_power", "min_power")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.MaxClients = temp.MaxClients
     c.MaxPower = temp.MaxPower
     c.MinPower = temp.MinPower

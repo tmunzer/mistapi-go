@@ -6,11 +6,11 @@ import (
 
 // StatsSwitchClientItem represents a StatsSwitchClientItem struct.
 type StatsSwitchClientItem struct {
-    DeviceMac            *string        `json:"device_mac,omitempty"`
-    Hostname             *string        `json:"hostname,omitempty"`
-    Mac                  *string        `json:"mac,omitempty"`
-    PortId               *string        `json:"port_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    DeviceMac            *string                `json:"device_mac,omitempty"`
+    Hostname             *string                `json:"hostname,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchClientItem.
@@ -18,13 +18,17 @@ type StatsSwitchClientItem struct {
 func (s StatsSwitchClientItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "device_mac", "hostname", "mac", "port_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsSwitchClientItem object to a map representation for JSON marshaling.
 func (s StatsSwitchClientItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.DeviceMac != nil {
         structMap["device_mac"] = s.DeviceMac
     }
@@ -48,12 +52,12 @@ func (s *StatsSwitchClientItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "device_mac", "hostname", "mac", "port_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "device_mac", "hostname", "mac", "port_id")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.DeviceMac = temp.DeviceMac
     s.Hostname = temp.Hostname
     s.Mac = temp.Mac

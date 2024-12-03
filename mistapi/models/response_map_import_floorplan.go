@@ -9,13 +9,13 @@ import (
 
 // ResponseMapImportFloorplan represents a ResponseMapImportFloorplan struct.
 type ResponseMapImportFloorplan struct {
-    Action               string         `json:"action"`
+    Action               string                 `json:"action"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID      `json:"id"`
-    MapId                uuid.UUID      `json:"map_id"`
-    Name                 string         `json:"name"`
-    Reason               *string        `json:"reason,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   uuid.UUID              `json:"id"`
+    MapId                uuid.UUID              `json:"map_id"`
+    Name                 string                 `json:"name"`
+    Reason               *string                `json:"reason,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMapImportFloorplan.
@@ -23,13 +23,17 @@ type ResponseMapImportFloorplan struct {
 func (r ResponseMapImportFloorplan) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "action", "id", "map_id", "name", "reason"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseMapImportFloorplan object to a map representation for JSON marshaling.
 func (r ResponseMapImportFloorplan) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["action"] = r.Action
     structMap["id"] = r.Id
     structMap["map_id"] = r.MapId
@@ -52,12 +56,12 @@ func (r *ResponseMapImportFloorplan) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "id", "map_id", "name", "reason")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "id", "map_id", "name", "reason")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Action = *temp.Action
     r.Id = *temp.Id
     r.MapId = *temp.MapId

@@ -7,9 +7,9 @@ import (
 // AlarmTemplateRule represents a AlarmTemplateRule struct.
 type AlarmTemplateRule struct {
     // Delivery object to configure the alarm delivery
-    Delivery             *Delivery      `json:"delivery,omitempty"`
-    Enabled              *bool          `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Delivery             *Delivery              `json:"delivery,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AlarmTemplateRule.
@@ -17,13 +17,17 @@ type AlarmTemplateRule struct {
 func (a AlarmTemplateRule) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "delivery", "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AlarmTemplateRule object to a map representation for JSON marshaling.
 func (a AlarmTemplateRule) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Delivery != nil {
         structMap["delivery"] = a.Delivery.toMap()
     }
@@ -41,12 +45,12 @@ func (a *AlarmTemplateRule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "delivery", "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "delivery", "enabled")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Delivery = temp.Delivery
     a.Enabled = temp.Enabled
     return nil

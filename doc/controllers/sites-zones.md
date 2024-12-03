@@ -163,11 +163,11 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Zone{
-    Name:         models.ToPointer("string"),
-    Vertices:     []models.ZoneVertex{
+    Name:                 models.ToPointer("string"),
+    Vertices:             []models.ZoneVertex{
         models.ZoneVertex{
-            X: float64(0),
-            Y: float64(0),
+            X:                    float64(0),
+            Y:                    float64(0),
         },
     },
 }
@@ -565,11 +565,11 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 zoneId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Zone{
-    Name:         models.ToPointer("string"),
-    Vertices:     []models.ZoneVertex{
+    Name:                 models.ToPointer("string"),
+    Vertices:             []models.ZoneVertex{
         models.ZoneVertex{
-            X: float64(0),
-            Y: float64(0),
+            X:                    float64(0),
+            Y:                    float64(0),
         },
     },
 }

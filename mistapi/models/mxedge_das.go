@@ -8,9 +8,9 @@ import (
 // configure cloud-assisted dynamic authorization service on this cluster of mist edges
 type MxedgeDas struct {
     // dynamic authorization clients configured to send CoA|DM to mist edges on port 3799
-    CoaServers           []MxedgeDasCoaServer `json:"coa_servers,omitempty"`
-    Enabled              *bool                `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any       `json:"_"`
+    CoaServers           []MxedgeDasCoaServer   `json:"coa_servers,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeDas.
@@ -18,13 +18,17 @@ type MxedgeDas struct {
 func (m MxedgeDas) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "coa_servers", "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeDas object to a map representation for JSON marshaling.
 func (m MxedgeDas) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.CoaServers != nil {
         structMap["coa_servers"] = m.CoaServers
     }
@@ -42,12 +46,12 @@ func (m *MxedgeDas) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "coa_servers", "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "coa_servers", "enabled")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.CoaServers = temp.CoaServers
     m.Enabled = temp.Enabled
     return nil

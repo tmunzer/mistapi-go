@@ -3,6 +3,8 @@
 
 Switch statistics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsSwitch`
@@ -53,6 +55,7 @@ Switch statistics
 | `VcMac` | `models.Optional[string]` | Optional | - |
 | `VcSetupInfo` | [`*models.StatsSwitchVcSetupInfo`](../../doc/models/stats-switch-vc-setup-info.md) | Optional | - |
 | `Version` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -76,15 +79,27 @@ Switch statistics
     "modules": {
       "key0": {
         "num_aps": 2,
-        "num_aps_with_switch_redundancy": 254
+        "num_aps_with_switch_redundancy": 254,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     },
     "num_aps": 246,
-    "num_aps_with_switch_redundancy": 10
+    "num_aps_with_switch_redundancy": 10,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "arp_table_stats": {
     "arp_table_count": 136,
-    "max_entries_supported": 8
+    "max_entries_supported": 8,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "cert_expiry": 122,
   "clients": [
@@ -92,19 +107,31 @@ Switch statistics
       "device_mac": "device_mac2",
       "hostname": "hostname6",
       "mac": "mac2",
-      "port_id": "port_id8"
+      "port_id": "port_id8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "device_mac": "device_mac2",
       "hostname": "hostname6",
       "mac": "mac2",
-      "port_id": "port_id8"
+      "port_id": "port_id8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "device_mac": "device_mac2",
       "hostname": "hostname6",
       "mac": "mac2",
-      "port_id": "port_id8"
+      "port_id": "port_id8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "clients_stats": {
@@ -114,8 +141,20 @@ Switch statistics
         22,
         21
       ],
-      "num_wired_clients": 222
+      "num_wired_clients": 222,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
     }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

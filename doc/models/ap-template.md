@@ -1,6 +1,8 @@
 
 # Ap Template
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApTemplate`
@@ -17,6 +19,7 @@
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Wifi` | [`*models.ApTemplateWifi`](../../doc/models/ap-template-wifi.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,11 +40,19 @@
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key1": {
             "disabled": false,
@@ -51,12 +62,24 @@
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
+        },
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
         }
       },
       {
@@ -71,11 +94,19 @@
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key1": {
             "disabled": false,
@@ -85,12 +116,24 @@
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
+        },
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
         }
       },
       {
@@ -105,11 +148,19 @@
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           },
           "key1": {
             "disabled": false,
@@ -119,22 +170,42 @@
               "type": "type6",
               "vlans": {
                 "key0": "vlans1"
+              },
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
               }
             },
             "enable_mac_auth": false,
             "flow_control": false,
-            "forwarding": "site_mxedge"
+            "forwarding": "site_mxedge",
+            "exampleAdditionalProperty": {
+              "key1": "val1",
+              "key2": "val2"
+            }
           }
+        },
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
         }
       }
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "created_time": 236.6,
   "for_site": false,
-  "modified_time": 98.36
+  "modified_time": 98.36,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -52,13 +52,13 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Org{
-    AlarmtemplateId: models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
-    AllowMist:       models.ToPointer(true),
-    Name:            "string",
-    OrggroupIds:     []uuid.UUID{
+    AlarmtemplateId:      models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
+    AllowMist:            models.ToPointer(true),
+    Name:                 "string",
+    OrggroupIds:          []uuid.UUID{
         uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
     },
-    SessionExpiry:   models.ToPointer(10),
+    SessionExpiry:        models.ToPointer(10),
 }
 
 apiResponse, err := mSPsOrgs.CreateMspOrg(ctx, mspId, &body)
@@ -384,8 +384,8 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MspOrgChange{
-    Op:     models.MspOrgChangeOperationEnum("assign"),
-    OrgIds: []string{
+    Op:                   models.MspOrgChangeOperationEnum("assign"),
+    OrgIds:               []string{
         "2b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
     },
 }
@@ -567,9 +567,9 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Org{
-    AllowMist:       models.ToPointer(true),
-    Name:            "Org",
-    SessionExpiry:   models.ToPointer(1440),
+    AllowMist:            models.ToPointer(true),
+    Name:                 "Org",
+    SessionExpiry:        models.ToPointer(1440),
 }
 
 apiResponse, err := mSPsOrgs.UpdateMspOrg(ctx, mspId, orgId, &body)

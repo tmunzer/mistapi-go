@@ -8,9 +8,9 @@ import (
 
 // ConfigVcPortMember represents a ConfigVcPortMember struct.
 type ConfigVcPortMember struct {
-    Member               float64        `json:"member"`
-    VcPorts              []string       `json:"vc_ports,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Member               float64                `json:"member"`
+    VcPorts              []string               `json:"vc_ports,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConfigVcPortMember.
@@ -18,13 +18,17 @@ type ConfigVcPortMember struct {
 func (c ConfigVcPortMember) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "member", "vc_ports"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConfigVcPortMember object to a map representation for JSON marshaling.
 func (c ConfigVcPortMember) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     structMap["member"] = c.Member
     if c.VcPorts != nil {
         structMap["vc_ports"] = c.VcPorts
@@ -44,12 +48,12 @@ func (c *ConfigVcPortMember) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "member", "vc_ports")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "member", "vc_ports")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Member = *temp.Member
     c.VcPorts = temp.VcPorts
     return nil

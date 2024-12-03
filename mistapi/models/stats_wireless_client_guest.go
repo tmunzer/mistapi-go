@@ -10,16 +10,16 @@ import (
 // information about this portal
 type StatsWirelessClientGuest struct {
     // whether this guest is authorized
-    Authorized             bool           `json:"authorized"`
+    Authorized             bool                   `json:"authorized"`
     // when the guest authorization will expire
-    AuthorizedExpiringTime float64        `json:"authorized_expiring_time"`
+    AuthorizedExpiringTime float64                `json:"authorized_expiring_time"`
     // when the guest is authorized
-    AuthorizedTime         float64        `json:"authorized_time"`
-    Company                string         `json:"company"`
-    Email                  string         `json:"email"`
-    Field1                 string         `json:"field1"`
-    Name                   string         `json:"name"`
-    AdditionalProperties   map[string]any `json:"_"`
+    AuthorizedTime         float64                `json:"authorized_time"`
+    Company                string                 `json:"company"`
+    Email                  string                 `json:"email"`
+    Field1                 string                 `json:"field1"`
+    Name                   string                 `json:"name"`
+    AdditionalProperties   map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWirelessClientGuest.
@@ -27,13 +27,17 @@ type StatsWirelessClientGuest struct {
 func (s StatsWirelessClientGuest) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "authorized", "authorized_expiring_time", "authorized_time", "company", "email", "field1", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsWirelessClientGuest object to a map representation for JSON marshaling.
 func (s StatsWirelessClientGuest) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["authorized"] = s.Authorized
     structMap["authorized_expiring_time"] = s.AuthorizedExpiringTime
     structMap["authorized_time"] = s.AuthorizedTime
@@ -56,12 +60,12 @@ func (s *StatsWirelessClientGuest) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "authorized", "authorized_expiring_time", "authorized_time", "company", "email", "field1", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "authorized", "authorized_expiring_time", "authorized_time", "company", "email", "field1", "name")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Authorized = *temp.Authorized
     s.AuthorizedExpiringTime = *temp.AuthorizedExpiringTime
     s.AuthorizedTime = *temp.AuthorizedTime

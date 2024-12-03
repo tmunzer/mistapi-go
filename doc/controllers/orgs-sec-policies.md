@@ -49,28 +49,28 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Secpolicy{
-    Name:         models.ToPointer("string"),
-    Wlans:        []models.Wlan{
+    Name:                 models.ToPointer("string"),
+    Wlans:                []models.Wlan{
         models.Wlan{
             AcctImmediateUpdate:                models.ToPointer(false),
             AcctInterimInterval:                models.ToPointer(0),
             AcctServers:                        []models.RadiusAcctServer{
                 models.RadiusAcctServer{
-                    Host:           "1.2.3.4",
-                    KeywrapEnabled: models.ToPointer(true),
-                    KeywrapFormat:  models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
-                    KeywrapKek:     models.ToPointer("1122334455"),
-                    KeywrapMack:    models.ToPointer("1122334455"),
-                    Port:           models.ToPointer(1813),
-                    Secret:         "testing123",
+                    Host:                 "1.2.3.4",
+                    KeywrapEnabled:       models.ToPointer(true),
+                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                    KeywrapKek:           models.ToPointer("1122334455"),
+                    KeywrapMack:          models.ToPointer("1122334455"),
+                    Port:                 models.ToPointer(1813),
+                    Secret:               "testing123",
                 },
             },
             Airwatch:                           models.ToPointer(models.WlanAirwatch{
-                ApiKey:     models.ToPointer("aHhlbGxvYXNkZmFzZGZhc2Rmc2RmCg==\""),
-                ConsoleUrl: models.ToPointer("https://hs1.airwatchportals.com"),
-                Enabled:    models.ToPointer(true),
-                Password:   models.ToPointer("user1"),
-                Username:   models.ToPointer("test123"),
+                ApiKey:               models.ToPointer("aHhlbGxvYXNkZmFzZGZhc2Rmc2RmCg==\""),
+                ConsoleUrl:           models.ToPointer("https://hs1.airwatchportals.com"),
+                Enabled:              models.ToPointer(true),
+                Password:             models.ToPointer("user1"),
+                Username:             models.ToPointer("test123"),
             }),
             AllowIpv6Ndp:                       models.ToPointer(true),
             AllowMdns:                          models.ToPointer(false),
@@ -79,52 +79,52 @@ body := models.Secpolicy{
                 uuid.MustParse("497f6eca-6276-4993-bfeb-53e2bbba6f08"),
             })),
             AppLimit:                           models.ToPointer(models.WlanAppLimit{
-                Apps:     map[string]int{
+                Apps:                 map[string]int{
                     "dropbox": 300,
                     "netflix": 60,
                 },
-                Enabled:  models.ToPointer(false),
-                WxtagIds: map[string]int{
+                Enabled:              models.ToPointer(false),
+                WxtagIds:             map[string]int{
                     "f99862d9-2726-931f-7559-3dfdf5d070d3": 30,
                 },
             }),
             AppQos:                             models.ToPointer(models.WlanAppQos{
-                Apps:    map[string]models.WlanAppQosAppsProperties{
+                Apps:                 map[string]models.WlanAppQosAppsProperties{
                     "skype-business-video": models.WlanAppQosAppsProperties{
-                        Dscp:      models.ToPointer(32),
-                        DstSubnet: models.ToPointer("10.2.0.0/16"),
-                        SrcSubnet: models.ToPointer("10.2.0.0/16"),
+                        Dscp:                 models.ToPointer(32),
+                        DstSubnet:            models.ToPointer("10.2.0.0/16"),
+                        SrcSubnet:            models.ToPointer("10.2.0.0/16"),
                     },
                 },
-                Enabled: models.ToPointer(true),
-                Others:  []models.WlanAppQosOthersItem{
+                Enabled:              models.ToPointer(true),
+                Others:               []models.WlanAppQosOthersItem{
                     models.WlanAppQosOthersItem{
-                        Dscp:       models.ToPointer(32),
-                        DstSubnet:  models.ToPointer("10.2.0.0/16"),
-                        PortRanges: models.ToPointer("80,1024-6553"),
-                        Protocol:   models.ToPointer("udp"),
-                        SrcSubnet:  models.ToPointer("10.2.0.0/16"),
+                        Dscp:                 models.ToPointer(32),
+                        DstSubnet:            models.ToPointer("10.2.0.0/16"),
+                        PortRanges:           models.ToPointer("80,1024-6553"),
+                        Protocol:             models.ToPointer("udp"),
+                        SrcSubnet:            models.ToPointer("10.2.0.0/16"),
                     },
                 },
             }),
             ApplyTo:                            models.ToPointer(models.WlanApplyToEnum("site")),
             ArpFilter:                          models.ToPointer(false),
             Auth:                               models.ToPointer(models.WlanAuth{
-                AnticlogThreshold:  models.ToPointer(16),
-                EapReauth:          models.ToPointer(false),
-                EnableMacAuth:      models.ToPointer(false),
-                KeyIdx:             models.ToPointer(1),
-                Keys:               []string{
+                AnticlogThreshold:    models.ToPointer(16),
+                EapReauth:            models.ToPointer(false),
+                EnableMacAuth:        models.ToPointer(false),
+                KeyIdx:               models.ToPointer(1),
+                Keys:                 []string{
                     "string",
                 },
-                MultiPskOnly:       models.ToPointer(false),
-                Pairwise:           []models.WlanAuthPairwiseItemEnum{
+                MultiPskOnly:         models.ToPointer(false),
+                Pairwise:             []models.WlanAuthPairwiseItemEnum{
                     models.WlanAuthPairwiseItemEnum("wpa2-ccmp"),
                 },
-                PrivateWlan:        models.ToPointer(true),
-                Psk:                models.NewOptional(models.ToPointer("foryoureyesonly")),
-                Type:               models.WlanAuthTypeEnum("psk"),
-                WepAsSecondaryAuth: models.ToPointer(true),
+                PrivateWlan:          models.ToPointer(true),
+                Psk:                  models.NewOptional(models.ToPointer("foryoureyesonly")),
+                Type:                 models.WlanAuthTypeEnum("psk"),
+                WepAsSecondaryAuth:   models.ToPointer(true),
             }),
             AuthServerSelection:                models.ToPointer(models.WlanAuthServerSelectionEnum("ordered")),
             AuthServers:                        []models.RadiusAuthServer{
@@ -151,28 +151,28 @@ body := models.Secpolicy{
             },
             BlockBlacklistClients:              models.ToPointer(false),
             Bonjour:                            models.ToPointer(models.WlanBonjour{
-                AdditionalVlanIds: "10,20",
-                Enabled:           models.ToPointer(false),
-                Services:          map[string]models.WlanBonjourServiceProperties{
+                AdditionalVlanIds:    "10,20",
+                Enabled:              models.ToPointer(false),
+                Services:             map[string]models.WlanBonjourServiceProperties{
                     "airplay": models.WlanBonjourServiceProperties{
-                        RadiusGroups: []string{
+                        RadiusGroups:         []string{
                             "teachers",
                         },
-                        Scope:        models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
+                        Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
                     },
                 },
             }),
             CiscoCwa:                           models.ToPointer(models.WlanCiscoCwa{
-                AllowedHostnames: []string{
+                AllowedHostnames:     []string{
                     "snapchat.com",
                 },
-                AllowedSubnets:   []string{
+                AllowedSubnets:       []string{
                     "63.5.3.0/24",
                 },
-                BlockedSubnets:   []string{
+                BlockedSubnets:       []string{
                     "192.168.0.0/16",
                 },
-                Enabled:          models.ToPointer(false),
+                Enabled:              models.ToPointer(false),
             }),
             ClientLimitDown:                    models.ToPointer(0),
             ClientLimitDownEnabled:             models.ToPointer(false),
@@ -194,30 +194,30 @@ body := models.Secpolicy{
             DisableV2RoamNotify:                models.ToPointer(false),
             DisableWmm:                         models.ToPointer(false),
             DnsServerRewrite:                   models.NewOptional(models.ToPointer(models.WlanDnsServerRewrite{
-                Enabled:      models.ToPointer(false),
-                RadiusGroups: map[string]string{
+                Enabled:              models.ToPointer(false),
+                RadiusGroups:         map[string]string{
                     "contractor": "172.1.1.1",
                     "guest": "8.8.8.8",
                 },
             })),
             Dtim:                               models.ToPointer(2),
             DynamicPsk:                         models.NewOptional(models.ToPointer(models.WlanDynamicPsk{
-                DefaultPsk:    models.ToPointer("foryoureyesonly"),
-                DefaultVlanId: models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
-                Enabled:       models.ToPointer(false),
-                Source:        models.ToPointer(models.DynamicPskSourceEnum("cloud_psks")),
-                VlanIds:       []models.VlanIdWithVariable{
+                DefaultPsk:           models.ToPointer("foryoureyesonly"),
+                DefaultVlanId:        models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
+                Enabled:              models.ToPointer(false),
+                Source:               models.ToPointer(models.DynamicPskSourceEnum("cloud_psks")),
+                VlanIds:              []models.VlanIdWithVariable{
                     models.VlanIdWithVariableContainer.FromNumber(1),
                 },
             })),
             DynamicVlan:                        models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
-                DefaultVlanId:  models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
-                Enabled:        models.ToPointer(false),
-                LocalVlanIds:   []models.VlanIdWithVariable{
+                DefaultVlanId:        models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
+                Enabled:              models.ToPointer(false),
+                LocalVlanIds:         []models.VlanIdWithVariable{
                     models.VlanIdWithVariableContainer.FromNumber(1),
                 },
-                Type:           models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
-                Vlans:          map[string]string{
+                Type:                 models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
+                Vlans:                map[string]string{
                     "131": "default",
                     "322": "fast,video",
                 },
@@ -229,21 +229,21 @@ body := models.Secpolicy{
             HideSsid:                           models.ToPointer(false),
             HostnameIe:                         models.ToPointer(false),
             Hotspot20:                          models.ToPointer(models.WlanHotspot20{
-                DomainName: []string{
+                DomainName:           []string{
                     "mist.com",
                 },
-                Enabled:    models.ToPointer(true),
-                NaiRealms:  []string{
+                Enabled:              models.ToPointer(true),
+                NaiRealms:            []string{
                     "string",
                 },
-                Operators:  []models.WlanHotspot20OperatorsItemEnum{
+                Operators:            []models.WlanHotspot20OperatorsItemEnum{
                     models.WlanHotspot20OperatorsItemEnum("google"),
                     models.WlanHotspot20OperatorsItemEnum("att"),
                 },
-                Rcoi:       []string{
+                Rcoi:                 []string{
                     "5A03BA0000",
                 },
-                VenueName:  models.ToPointer("some_name"),
+                VenueName:            models.ToPointer("some_name"),
             }),
             Interface:                          models.ToPointer(models.WlanInterfaceEnum("all")),
             Isolation:                          models.ToPointer(false),
@@ -253,7 +253,7 @@ body := models.Secpolicy{
             LimitProbeResponse:                 models.ToPointer(true),
             MaxIdletime:                        models.ToPointer(1800),
             MistNac:                            models.ToPointer(models.WlanMistNac{
-                Enabled: models.ToPointer(false),
+                Enabled:              models.ToPointer(false),
             }),
             NoStaticDns:                        models.ToPointer(false),
             NoStaticIp:                         models.ToPointer(false),
@@ -337,6 +337,11 @@ body := models.Secpolicy{
                 TwilioAuthToken:             models.NewOptional(models.ToPointer("af9dac44c344a875ab5d31cb7abcdefg")),
                 TwilioPhoneNumber:           models.NewOptional(models.ToPointer("+18548888888")),
                 TwilioSid:                   models.NewOptional(models.ToPointer("AC72ec6ba0ec5af30e6731c5e47abcdefgh")),
+                AdditionalProperties:        map[string]interface{}{
+                    "portal_api_secret": interface{}("string"),
+                    "portal_image": interface{}("https://url/to/image.png"),
+                    "thumbnail": interface{}("string"),
+                },
             }),
             PortalAllowedHostnames:             []string{
                 "snapchat.com",
@@ -350,32 +355,32 @@ body := models.Secpolicy{
                 "msg.snapchat.com",
             },
             Qos:                                models.ToPointer(models.WlanQos{
-                Class:     models.ToPointer(models.WlanQosClassEnum("best_effort")),
-                Overwrite: models.ToPointer(false),
+                Class:                models.ToPointer(models.WlanQosClassEnum("best_effort")),
+                Overwrite:            models.ToPointer(false),
             }),
             Radsec:                             models.ToPointer(models.Radsec{
-                Enabled:       models.ToPointer(true),
-                IdleTimeout:   models.ToPointer(60),
-                MxclusterIds:  []uuid.UUID{
+                Enabled:              models.ToPointer(true),
+                IdleTimeout:          models.ToPointer(60),
+                MxclusterIds:         []uuid.UUID{
                     uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
                 },
-                ProxyHosts:    []string{
+                ProxyHosts:           []string{
                     "mxedge1.local",
                 },
-                ServerName:    models.ToPointer("radsec.abc.com"),
-                Servers:       []models.RadsecServer{
+                ServerName:           models.ToPointer("radsec.abc.com"),
+                Servers:              []models.RadsecServer{
                     models.RadsecServer{
-                        Host: models.ToPointer("1.1.1.1"),
-                        Port: models.ToPointer(1812),
+                        Host:                 models.ToPointer("1.1.1.1"),
+                        Port:                 models.ToPointer(1812),
                     },
                 },
-                UseMxedge:     models.ToPointer(true),
-                UseSiteMxedge: models.ToPointer(false),
+                UseMxedge:            models.ToPointer(true),
+                UseSiteMxedge:        models.ToPointer(false),
             }),
             Rateset:                            map[string]models.WlanDatarates{
                 "24": models.WlanDatarates{
-                    Ht:       models.NewOptional(models.ToPointer("00ff00ff00ff")),
-                    Legacy:   []models.WlanDataratesLegacyItemEnum{
+                    Ht:                   models.NewOptional(models.ToPointer("00ff00ff00ff")),
+                    Legacy:               []models.WlanDataratesLegacyItemEnum{
                         models.WlanDataratesLegacyItemEnum("6"),
                         models.WlanDataratesLegacyItemEnum("9"),
                         models.WlanDataratesLegacyItemEnum("12"),
@@ -385,13 +390,13 @@ body := models.Secpolicy{
                         models.WlanDataratesLegacyItemEnum("48"),
                         models.WlanDataratesLegacyItemEnum("54"),
                     },
-                    MinRssi:  models.ToPointer(-70),
-                    Template: models.NewOptional(models.ToPointer(models.WlanDataratesTemplateEnum("custom"))),
-                    Vht:      models.NewOptional(models.ToPointer("03ff03ff03ff01ff")),
+                    MinRssi:              models.ToPointer(-70),
+                    Template:             models.NewOptional(models.ToPointer(models.WlanDataratesTemplateEnum("custom"))),
+                    Vht:                  models.NewOptional(models.ToPointer("03ff03ff03ff01ff")),
                 },
                 "5": models.WlanDatarates{
-                    Ht:       models.NewOptional(models.ToPointer("00ff00ff00ff")),
-                    Legacy:   []models.WlanDataratesLegacyItemEnum{
+                    Ht:                   models.NewOptional(models.ToPointer("00ff00ff00ff")),
+                    Legacy:               []models.WlanDataratesLegacyItemEnum{
                         models.WlanDataratesLegacyItemEnum("6"),
                         models.WlanDataratesLegacyItemEnum("9"),
                         models.WlanDataratesLegacyItemEnum("12"),
@@ -401,17 +406,17 @@ body := models.Secpolicy{
                         models.WlanDataratesLegacyItemEnum("48"),
                         models.WlanDataratesLegacyItemEnum("54"),
                     },
-                    MinRssi:  models.ToPointer(-70),
-                    Template: models.NewOptional(models.ToPointer(models.WlanDataratesTemplateEnum("custom"))),
-                    Vht:      models.NewOptional(models.ToPointer("03ff03ff03ff01ff")),
+                    MinRssi:              models.ToPointer(-70),
+                    Template:             models.NewOptional(models.ToPointer(models.WlanDataratesTemplateEnum("custom"))),
+                    Vht:                  models.NewOptional(models.ToPointer("03ff03ff03ff01ff")),
                 },
             },
             RoamMode:                           models.ToPointer(models.WlanRoamModeEnum("NONE")),
             Schedule:                           models.ToPointer(models.WlanSchedule{
-                Enabled: models.ToPointer(false),
-                Hours:   models.ToPointer(models.Hours{
-                    Fri: models.ToPointer("09:00-17:00"),
-                    Mon: models.ToPointer("09:00-17:00"),
+                Enabled:              models.ToPointer(false),
+                Hours:                models.ToPointer(models.Hours{
+                    Fri:                  models.ToPointer("09:00-17:00"),
+                    Mon:                  models.ToPointer("09:00-17:00"),
                 }),
             }),
             SleExcluded:                        models.ToPointer(false),

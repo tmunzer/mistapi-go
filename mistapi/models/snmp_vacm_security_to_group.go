@@ -9,7 +9,7 @@ type SnmpVacmSecurityToGroup struct {
     Content              []SnmpVacmSecurityToGroupContentItem `json:"content,omitempty"`
     // enum: `usm`, `v1`, `v2c`
     SecurityModel        *SnmpVacmSecurityModelEnum           `json:"security_model,omitempty"`
-    AdditionalProperties map[string]any                       `json:"_"`
+    AdditionalProperties map[string]interface{}               `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpVacmSecurityToGroup.
@@ -17,13 +17,17 @@ type SnmpVacmSecurityToGroup struct {
 func (s SnmpVacmSecurityToGroup) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "content", "security_model"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SnmpVacmSecurityToGroup object to a map representation for JSON marshaling.
 func (s SnmpVacmSecurityToGroup) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Content != nil {
         structMap["content"] = s.Content
     }
@@ -41,12 +45,12 @@ func (s *SnmpVacmSecurityToGroup) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "content", "security_model")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "content", "security_model")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Content = temp.Content
     s.SecurityModel = temp.SecurityModel
     return nil

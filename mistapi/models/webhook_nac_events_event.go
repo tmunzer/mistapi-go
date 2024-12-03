@@ -8,45 +8,45 @@ import (
 // WebhookNacEventsEvent represents a WebhookNacEventsEvent struct.
 type WebhookNacEventsEvent struct {
     // random mac
-    Ap                   *string        `json:"ap,omitempty"`
+    Ap                   *string                `json:"ap,omitempty"`
     // authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth"
-    AuthType             *string        `json:"auth_type,omitempty"`
+    AuthType             *string                `json:"auth_type,omitempty"`
     // BSSID
-    Bssid                *string        `json:"bssid,omitempty"`
+    Bssid                *string                `json:"bssid,omitempty"`
     // NAC Policy Dry Run Rule ID, if present and matched
-    DryrunNacruleId      *uuid.UUID     `json:"dryrun_nacrule_id,omitempty"`
+    DryrunNacruleId      *uuid.UUID             `json:"dryrun_nacrule_id,omitempty"`
     // True - if dryrun rule present and matched with priority, False - if not matched or not present
-    DryrunNacruleMatched *bool          `json:"dryrun_nacrule_matched,omitempty"`
+    DryrunNacruleMatched *bool                  `json:"dryrun_nacrule_matched,omitempty"`
     // SSO ID, if present and used
-    IdpId                *uuid.UUID     `json:"idp_id,omitempty"`
+    IdpId                *uuid.UUID             `json:"idp_id,omitempty"`
     // IDP returned roles/groups for the user
-    IdpRole              []string       `json:"idp_role,omitempty"`
+    IdpRole              []string               `json:"idp_role,omitempty"`
     // MAC address
-    Mac                  *string        `json:"mac,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
     // NAC Policy Rule ID, if matched
-    NacruleId            *uuid.UUID     `json:"nacrule_id,omitempty"`
+    NacruleId            *uuid.UUID             `json:"nacrule_id,omitempty"`
     // NAC Policy Rule Matched
-    NacruleMatched       *bool          `json:"nacrule_matched,omitempty"`
+    NacruleMatched       *bool                  `json:"nacrule_matched,omitempty"`
     // vendor of NAS device
-    NasVendor            *string        `json:"nas_vendor,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
+    NasVendor            *string                `json:"nas_vendor,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // AP MAC
-    RandomMac            *bool          `json:"random_mac,omitempty"`
+    RandomMac            *bool                  `json:"random_mac,omitempty"`
     // Radius attributes returned by NAC to NAS Devive
-    RespAttrs            []string       `json:"resp_attrs,omitempty"`
+    RespAttrs            []string               `json:"resp_attrs,omitempty"`
     // site id if assigned, null if not assigned
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // SSID
-    Ssid                 *string        `json:"ssid,omitempty"`
+    Ssid                 *string                `json:"ssid,omitempty"`
     // start time, in epoch
-    Timestamp            *float64       `json:"timestamp,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     // event type, e.g. NAC_CLIENT_PERMIT
-    Type                 *string        `json:"type,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
     // Username presented by the client
-    Username             *string        `json:"username,omitempty"`
+    Username             *string                `json:"username,omitempty"`
     // Vlan ID
-    Vlan                 *string        `json:"vlan,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Vlan                 *string                `json:"vlan,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookNacEventsEvent.
@@ -54,13 +54,17 @@ type WebhookNacEventsEvent struct {
 func (w WebhookNacEventsEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "ap", "auth_type", "bssid", "dryrun_nacrule_id", "dryrun_nacrule_matched", "idp_id", "idp_role", "mac", "nacrule_id", "nacrule_matched", "nas_vendor", "org_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "username", "vlan"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookNacEventsEvent object to a map representation for JSON marshaling.
 func (w WebhookNacEventsEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Ap != nil {
         structMap["ap"] = w.Ap
     }
@@ -132,12 +136,12 @@ func (w *WebhookNacEventsEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "auth_type", "bssid", "dryrun_nacrule_id", "dryrun_nacrule_matched", "idp_id", "idp_role", "mac", "nacrule_id", "nacrule_matched", "nas_vendor", "org_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "username", "vlan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "auth_type", "bssid", "dryrun_nacrule_id", "dryrun_nacrule_matched", "idp_id", "idp_role", "mac", "nacrule_id", "nacrule_matched", "nas_vendor", "org_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "username", "vlan")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Ap = temp.Ap
     w.AuthType = temp.AuthType
     w.Bssid = temp.Bssid

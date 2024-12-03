@@ -6,15 +6,15 @@ import (
 
 // StatsApPortStat represents a StatsApPortStat struct.
 type StatsApPortStat struct {
-    FullDuplex           Optional[bool]    `json:"full_duplex"`
-    RxBytes              Optional[float64] `json:"rx_bytes"`
-    RxErrors             Optional[float64] `json:"rx_errors"`
-    RxPkts               Optional[float64] `json:"rx_pkts"`
-    Speed                Optional[int]     `json:"speed"`
-    TxBytes              Optional[float64] `json:"tx_bytes"`
-    TxPkts               Optional[float64] `json:"tx_pkts"`
-    Up                   Optional[bool]    `json:"up"`
-    AdditionalProperties map[string]any    `json:"_"`
+    FullDuplex           Optional[bool]         `json:"full_duplex"`
+    RxBytes              Optional[float64]      `json:"rx_bytes"`
+    RxErrors             Optional[float64]      `json:"rx_errors"`
+    RxPkts               Optional[float64]      `json:"rx_pkts"`
+    Speed                Optional[int]          `json:"speed"`
+    TxBytes              Optional[float64]      `json:"tx_bytes"`
+    TxPkts               Optional[float64]      `json:"tx_pkts"`
+    Up                   Optional[bool]         `json:"up"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApPortStat.
@@ -22,13 +22,17 @@ type StatsApPortStat struct {
 func (s StatsApPortStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "full_duplex", "rx_bytes", "rx_errors", "rx_pkts", "speed", "tx_bytes", "tx_pkts", "up"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApPortStat object to a map representation for JSON marshaling.
 func (s StatsApPortStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.FullDuplex.IsValueSet() {
         if s.FullDuplex.Value() != nil {
             structMap["full_duplex"] = s.FullDuplex.Value()
@@ -96,12 +100,12 @@ func (s *StatsApPortStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "full_duplex", "rx_bytes", "rx_errors", "rx_pkts", "speed", "tx_bytes", "tx_pkts", "up")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "full_duplex", "rx_bytes", "rx_errors", "rx_pkts", "speed", "tx_bytes", "tx_pkts", "up")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.FullDuplex = temp.FullDuplex
     s.RxBytes = temp.RxBytes
     s.RxErrors = temp.RxErrors

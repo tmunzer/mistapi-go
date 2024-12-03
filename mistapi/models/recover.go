@@ -8,12 +8,12 @@ import (
 
 // Recover represents a Recover struct.
 type Recover struct {
-    Email                string               `json:"email"`
+    Email                string                 `json:"email"`
     // see https://www.google.com/recaptcha/
-    Recaptcha            *string              `json:"recaptcha,omitempty"`
+    Recaptcha            *string                `json:"recaptcha,omitempty"`
     // flavor of the captcha. enum: `google`, `hcaptcha`
-    RecaptchaFlavor      *RecaptchaFlavorEnum `json:"recaptcha_flavor,omitempty"`
-    AdditionalProperties map[string]any       `json:"_"`
+    RecaptchaFlavor      *RecaptchaFlavorEnum   `json:"recaptcha_flavor,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Recover.
@@ -21,13 +21,17 @@ type Recover struct {
 func (r Recover) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "email", "recaptcha", "recaptcha_flavor"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the Recover object to a map representation for JSON marshaling.
 func (r Recover) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["email"] = r.Email
     if r.Recaptcha != nil {
         structMap["recaptcha"] = r.Recaptcha
@@ -50,12 +54,12 @@ func (r *Recover) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "email", "recaptcha", "recaptcha_flavor")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "email", "recaptcha", "recaptcha_flavor")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Email = *temp.Email
     r.Recaptcha = temp.Recaptcha
     r.RecaptchaFlavor = temp.RecaptchaFlavor

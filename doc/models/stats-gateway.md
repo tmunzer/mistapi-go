@@ -3,6 +3,8 @@
 
 Gateway statistics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsGateway`
@@ -65,6 +67,7 @@ Gateway statistics
 | `Uptime` | `*float64` | Optional | - |
 | `Version` | `*string` | Optional | - |
 | `VpnPeers` | [`[]models.OptionalStatVpnPeer`](../../doc/models/optional-stat-vpn-peer.md) | Optional | only present when `vpn_peers` in `fields` query parameter<br>Each port object is same as `GET /api/v1/sites/:site_id/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -91,15 +94,27 @@ Gateway statistics
     "modules": {
       "key0": {
         "num_aps": 2,
-        "num_aps_with_switch_redundancy": 254
+        "num_aps_with_switch_redundancy": 254,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     },
     "num_aps": 246,
-    "num_aps_with_switch_redundancy": 10
+    "num_aps_with_switch_redundancy": 10,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "arp_table_stats": {
     "arp_table_count": 136,
-    "max_entries_supported": 8
+    "max_entries_supported": 8,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "bgp_peers": [
     {
@@ -107,21 +122,33 @@ Gateway statistics
       "for_overlay": false,
       "local_as": 146,
       "neighbor": "neighbor6",
-      "neighbor_as": 172
+      "neighbor_as": 172,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "evpn_overlay": false,
       "for_overlay": false,
       "local_as": 146,
       "neighbor": "neighbor6",
-      "neighbor_as": 172
+      "neighbor_as": 172,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "evpn_overlay": false,
       "for_overlay": false,
       "local_as": 146,
       "neighbor": "neighbor6",
-      "neighbor_as": 172
+      "neighbor_as": 172,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "cert_expiry": 52,
@@ -129,12 +156,20 @@ Gateway statistics
     "configuration": "configuration0",
     "control_link_info": {
       "name": "name0",
-      "status": "status2"
+      "status": "status2",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "ethernet_connection": [
       {
         "name": "name2",
-        "status": "status6"
+        "status": "status6",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     ],
     "fabric_link_info": {
@@ -146,9 +181,21 @@ Gateway statistics
       ],
       "InternalStatus": "InternalStatus2",
       "State": "State4",
-      "Status": "Status0"
+      "Status": "Status0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
-    "last_status_change_reason": "last_status_change_reason8"
+    "last_status_change_reason": "last_status_change_reason8",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

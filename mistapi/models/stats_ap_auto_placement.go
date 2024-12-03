@@ -24,7 +24,7 @@ type StatsApAutoPlacement struct {
     Y                    *float64                  `json:"y,omitempty"`
     // X Autoplaced Position in meters
     YM                   *float64                  `json:"y_m,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApAutoPlacement.
@@ -32,13 +32,17 @@ type StatsApAutoPlacement struct {
 func (s StatsApAutoPlacement) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "info", "recommended_anchor", "status", "status_detail", "use_auto_placement", "x", "x_m", "y", "y_m"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApAutoPlacement object to a map representation for JSON marshaling.
 func (s StatsApAutoPlacement) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Info != nil {
         structMap["info"] = s.Info.toMap()
     }
@@ -77,12 +81,12 @@ func (s *StatsApAutoPlacement) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "info", "recommended_anchor", "status", "status_detail", "use_auto_placement", "x", "x_m", "y", "y_m")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "info", "recommended_anchor", "status", "status_detail", "use_auto_placement", "x", "x_m", "y", "y_m")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Info = temp.Info
     s.RecommendedAnchor = temp.RecommendedAnchor
     s.Status = temp.Status

@@ -8,9 +8,9 @@ import (
 
 // AssetImport represents a AssetImport struct.
 type AssetImport struct {
-    Mac                  string         `json:"mac"`
-    Name                 string         `json:"name"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  string                 `json:"mac"`
+    Name                 string                 `json:"name"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetImport.
@@ -18,13 +18,17 @@ type AssetImport struct {
 func (a AssetImport) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "mac", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AssetImport object to a map representation for JSON marshaling.
 func (a AssetImport) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     structMap["mac"] = a.Mac
     structMap["name"] = a.Name
     return structMap
@@ -42,12 +46,12 @@ func (a *AssetImport) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "name")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Mac = *temp.Mac
     a.Name = *temp.Name
     return nil

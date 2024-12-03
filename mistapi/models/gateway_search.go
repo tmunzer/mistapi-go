@@ -7,20 +7,20 @@ import (
 
 // GatewaySearch represents a GatewaySearch struct.
 type GatewaySearch struct {
-    ExtIp                *string        `json:"ext_ip,omitempty"`
-    Hostname             []string       `json:"hostname,omitempty"`
-    Ip                   *string        `json:"ip,omitempty"`
-    LastHostname         *string        `json:"last_hostname,omitempty"`
-    Mac                  *string        `json:"mac,omitempty"`
-    Model                *string        `json:"model,omitempty"`
-    NumMembers           *int           `json:"num_members,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
-    Type                 *string        `json:"type,omitempty"`
-    Uptime               *int           `json:"uptime,omitempty"`
-    Version              *string        `json:"version,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ExtIp                *string                `json:"ext_ip,omitempty"`
+    Hostname             []string               `json:"hostname,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
+    LastHostname         *string                `json:"last_hostname,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    Model                *string                `json:"model,omitempty"`
+    NumMembers           *int                   `json:"num_members,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
+    Uptime               *int                   `json:"uptime,omitempty"`
+    Version              *string                `json:"version,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewaySearch.
@@ -28,13 +28,17 @@ type GatewaySearch struct {
 func (g GatewaySearch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "ext_ip", "hostname", "ip", "last_hostname", "mac", "model", "num_members", "org_id", "site_id", "timestamp", "type", "uptime", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewaySearch object to a map representation for JSON marshaling.
 func (g GatewaySearch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.ExtIp != nil {
         structMap["ext_ip"] = g.ExtIp
     }
@@ -85,12 +89,12 @@ func (g *GatewaySearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ext_ip", "hostname", "ip", "last_hostname", "mac", "model", "num_members", "org_id", "site_id", "timestamp", "type", "uptime", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ext_ip", "hostname", "ip", "last_hostname", "mac", "model", "num_members", "org_id", "site_id", "timestamp", "type", "uptime", "version")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.ExtIp = temp.ExtIp
     g.Hostname = temp.Hostname
     g.Ip = temp.Ip

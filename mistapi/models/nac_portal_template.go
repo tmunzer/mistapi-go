@@ -13,7 +13,7 @@ type NacPortalTemplate struct {
     Logo                 *string                      `json:"logo,omitempty"`
     // whether to hide “Powered by Juniper Mist” and email footers
     PoweredBy            *bool                        `json:"poweredBy,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortalTemplate.
@@ -21,13 +21,17 @@ type NacPortalTemplate struct {
 func (n NacPortalTemplate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "alignment", "color", "logo", "poweredBy"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NacPortalTemplate object to a map representation for JSON marshaling.
 func (n NacPortalTemplate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.Alignment != nil {
         structMap["alignment"] = n.Alignment
     }
@@ -51,12 +55,12 @@ func (n *NacPortalTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "alignment", "color", "logo", "poweredBy")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alignment", "color", "logo", "poweredBy")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.Alignment = temp.Alignment
     n.Color = temp.Color
     n.Logo = temp.Logo

@@ -7,14 +7,14 @@ import (
 // ApSwitch represents a ApSwitch struct.
 // for people who want to fully control the vlans (advanced)
 type ApSwitch struct {
-    Enabled              *bool            `json:"enabled,omitempty"`
-    Eth0                 *ApSwitchSetting `json:"eth0,omitempty"`
-    Eth1                 *ApSwitchSetting `json:"eth1,omitempty"`
-    Eth2                 *ApSwitchSetting `json:"eth2,omitempty"`
-    Eth3                 *ApSwitchSetting `json:"eth3,omitempty"`
-    Module               *ApSwitchSetting `json:"module,omitempty"`
-    Wds                  *ApSwitchSetting `json:"wds,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    Eth0                 *ApSwitchSetting       `json:"eth0,omitempty"`
+    Eth1                 *ApSwitchSetting       `json:"eth1,omitempty"`
+    Eth2                 *ApSwitchSetting       `json:"eth2,omitempty"`
+    Eth3                 *ApSwitchSetting       `json:"eth3,omitempty"`
+    Module               *ApSwitchSetting       `json:"module,omitempty"`
+    Wds                  *ApSwitchSetting       `json:"wds,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApSwitch.
@@ -22,13 +22,17 @@ type ApSwitch struct {
 func (a ApSwitch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "enabled", "eth0", "eth1", "eth2", "eth3", "module", "wds"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApSwitch object to a map representation for JSON marshaling.
 func (a ApSwitch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Enabled != nil {
         structMap["enabled"] = a.Enabled
     }
@@ -61,12 +65,12 @@ func (a *ApSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "eth0", "eth1", "eth2", "eth3", "module", "wds")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "eth0", "eth1", "eth2", "eth3", "module", "wds")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Enabled = temp.Enabled
     a.Eth0 = temp.Eth0
     a.Eth1 = temp.Eth1

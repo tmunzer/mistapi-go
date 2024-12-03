@@ -9,39 +9,39 @@ import (
 // Guest
 type Guest struct {
     // if `auth_method`==`email`, the email address where the authorization code has been sent to
-    AccessCodeEmail        *string        `json:"access_code_email,omitempty"`
+    AccessCodeEmail        *string                `json:"access_code_email,omitempty"`
     // the MAC Address of the AP the guest was connected to during the registration process
-    ApMac                  *string        `json:"ap_mac,omitempty"`
+    ApMac                  *string                `json:"ap_mac,omitempty"`
     // type of guest authorization
-    AuthMethod             *string        `json:"auth_method,omitempty"`
+    AuthMethod             *string                `json:"auth_method,omitempty"`
     // whether the guest is current authorized
-    Authorized             *bool          `json:"authorized,omitempty"`
+    Authorized             *bool                  `json:"authorized,omitempty"`
     // when the authorization would expire
-    AuthorizedExpiringTime *float64       `json:"authorized_expiring_time,omitempty"`
+    AuthorizedExpiringTime *float64               `json:"authorized_expiring_time,omitempty"`
     // when the guest was authorized
-    AuthorizedTime         *float64       `json:"authorized_time,omitempty"`
+    AuthorizedTime         *float64               `json:"authorized_time,omitempty"`
     // optional, the info provided by user
-    Company                *string        `json:"company,omitempty"`
+    Company                *string                `json:"company,omitempty"`
     // optional, the info provided by user
-    Email                  *string        `json:"email,omitempty"`
+    Email                  *string                `json:"email,omitempty"`
     // optional, the info provided by user
-    Field1                 *string        `json:"field1,omitempty"`
-    Field2                 *string        `json:"field2,omitempty"`
-    Field3                 *string        `json:"field3,omitempty"`
-    Field4                 *string        `json:"field4,omitempty"`
+    Field1                 *string                `json:"field1,omitempty"`
+    Field2                 *string                `json:"field2,omitempty"`
+    Field3                 *string                `json:"field3,omitempty"`
+    Field4                 *string                `json:"field4,omitempty"`
     // mac
-    Mac                    *string        `json:"mac,omitempty"`
+    Mac                    *string                `json:"mac,omitempty"`
     // Authorization duration, in minutes. Default is 1440 minutes (1 day), maximum is 259200 (180 days)
-    Minutes                *int           `json:"minutes,omitempty"`
+    Minutes                *int                   `json:"minutes,omitempty"`
     // optional, the info provided by user
-    Name                   *string        `json:"name,omitempty"`
+    Name                   *string                `json:"name,omitempty"`
     // if the client is using a randomized MAC Address to connect the SSID
-    RandomMac              *bool          `json:"random_mac,omitempty"`
+    RandomMac              *bool                  `json:"random_mac,omitempty"`
     // name of the SSID
-    Ssid                   *string        `json:"ssid,omitempty"`
+    Ssid                   *string                `json:"ssid,omitempty"`
     // ID of the SSID
-    WlanId                 *uuid.UUID     `json:"wlan_id,omitempty"`
-    AdditionalProperties   map[string]any `json:"_"`
+    WlanId                 *uuid.UUID             `json:"wlan_id,omitempty"`
+    AdditionalProperties   map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Guest.
@@ -49,13 +49,17 @@ type Guest struct {
 func (g Guest) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "access_code_email", "ap_mac", "auth_method", "authorized", "authorized_expiring_time", "authorized_time", "company", "email", "field1", "field2", "field3", "field4", "mac", "minutes", "name", "random_mac", "ssid", "wlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the Guest object to a map representation for JSON marshaling.
 func (g Guest) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.AccessCodeEmail != nil {
         structMap["access_code_email"] = g.AccessCodeEmail
     }
@@ -121,12 +125,12 @@ func (g *Guest) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "access_code_email", "ap_mac", "auth_method", "authorized", "authorized_expiring_time", "authorized_time", "company", "email", "field1", "field2", "field3", "field4", "mac", "minutes", "name", "random_mac", "ssid", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "access_code_email", "ap_mac", "auth_method", "authorized", "authorized_expiring_time", "authorized_time", "company", "email", "field1", "field2", "field3", "field4", "mac", "minutes", "name", "random_mac", "ssid", "wlan_id")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.AccessCodeEmail = temp.AccessCodeEmail
     g.ApMac = temp.ApMac
     g.AuthMethod = temp.AuthMethod

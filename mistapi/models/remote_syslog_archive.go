@@ -6,9 +6,9 @@ import (
 
 // RemoteSyslogArchive represents a RemoteSyslogArchive struct.
 type RemoteSyslogArchive struct {
-    Files                *int           `json:"files,omitempty"`
-    Size                 *string        `json:"size,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Files                *int                   `json:"files,omitempty"`
+    Size                 *string                `json:"size,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogArchive.
@@ -16,13 +16,17 @@ type RemoteSyslogArchive struct {
 func (r RemoteSyslogArchive) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "files", "size"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RemoteSyslogArchive object to a map representation for JSON marshaling.
 func (r RemoteSyslogArchive) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Files != nil {
         structMap["files"] = r.Files
     }
@@ -40,12 +44,12 @@ func (r *RemoteSyslogArchive) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "files", "size")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "files", "size")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Files = temp.Files
     r.Size = temp.Size
     return nil

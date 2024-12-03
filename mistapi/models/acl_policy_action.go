@@ -9,9 +9,9 @@ import (
 // AclPolicyAction represents a AclPolicyAction struct.
 type AclPolicyAction struct {
     // enum: `allow`, `deny`
-    Action               *AllowDenyEnum `json:"action,omitempty"`
-    DstTag               string         `json:"dst_tag"`
-    AdditionalProperties map[string]any `json:"_"`
+    Action               *AllowDenyEnum         `json:"action,omitempty"`
+    DstTag               string                 `json:"dst_tag"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AclPolicyAction.
@@ -19,13 +19,17 @@ type AclPolicyAction struct {
 func (a AclPolicyAction) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "action", "dst_tag"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AclPolicyAction object to a map representation for JSON marshaling.
 func (a AclPolicyAction) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Action != nil {
         structMap["action"] = a.Action
     }
@@ -45,12 +49,12 @@ func (a *AclPolicyAction) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "dst_tag")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "dst_tag")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Action = temp.Action
     a.DstTag = *temp.DstTag
     return nil

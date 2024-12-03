@@ -6,8 +6,8 @@ import (
 
 // NetworkTenant represents a NetworkTenant struct.
 type NetworkTenant struct {
-    Addresses            []string       `json:"addresses,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Addresses            []string               `json:"addresses,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkTenant.
@@ -15,13 +15,17 @@ type NetworkTenant struct {
 func (n NetworkTenant) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "addresses"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NetworkTenant object to a map representation for JSON marshaling.
 func (n NetworkTenant) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.Addresses != nil {
         structMap["addresses"] = n.Addresses
     }
@@ -36,12 +40,12 @@ func (n *NetworkTenant) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "addresses")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "addresses")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.Addresses = temp.Addresses
     return nil
 }

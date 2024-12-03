@@ -6,9 +6,9 @@ import (
 
 // AccountJseInfo represents a AccountJseInfo struct.
 type AccountJseInfo struct {
-    CloudName            *string        `json:"cloud_name,omitempty"`
-    Username             *string        `json:"username,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    CloudName            *string                `json:"cloud_name,omitempty"`
+    Username             *string                `json:"username,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountJseInfo.
@@ -16,13 +16,17 @@ type AccountJseInfo struct {
 func (a AccountJseInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "cloud_name", "username"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AccountJseInfo object to a map representation for JSON marshaling.
 func (a AccountJseInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.CloudName != nil {
         structMap["cloud_name"] = a.CloudName
     }
@@ -40,12 +44,12 @@ func (a *AccountJseInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cloud_name", "username")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cloud_name", "username")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.CloudName = temp.CloudName
     a.Username = temp.Username
     return nil

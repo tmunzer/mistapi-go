@@ -3,6 +3,8 @@
 
 RRM
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Rrm`
@@ -22,6 +24,7 @@ RRM
 | `RftemplateName` | `string` | Required | - |
 | `Status` | [`models.RrmStatusEnum`](../../doc/models/rrm-status-enum.md) | Required | enum: `ready`, `unknown`, `updating` |
 | `Timestamp` | `float64` | Required | time where the status was updated |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,21 +36,33 @@ RRM
       "channel": 80,
       "curr_bandwidht": 80,
       "curr_channel": 200,
-      "curr_power": 116
+      "curr_power": 116,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key1": {
       "bandwidth": 20,
       "channel": 80,
       "curr_bandwidht": 80,
       "curr_channel": 200,
-      "curr_power": 116
+      "curr_power": 116,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key2": {
       "bandwidth": 20,
       "channel": 80,
       "curr_bandwidht": 80,
       "curr_channel": 200,
-      "curr_power": 116
+      "curr_power": 116,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "band_24_metric": {
@@ -55,14 +70,26 @@ RRM
     "density": 107.0,
     "interferences": {
       "149": {
-        "radar": 0.3
+        "radar": 0.3,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "153": {
-        "radar": 0.2
+        "radar": 0.2,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     },
     "neighbors": 12.0,
-    "noise": 252.7
+    "noise": 252.7,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "band_5": {
     "key0": {
@@ -70,14 +97,22 @@ RRM
       "channel": 132,
       "curr_bandwidht": 80,
       "curr_channel": 252,
-      "curr_power": 64
+      "curr_power": 64,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key1": {
       "bandwidth": 20,
       "channel": 132,
       "curr_bandwidht": 80,
       "curr_channel": 252,
-      "curr_power": 64
+      "curr_power": 64,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "band_5_metric": {
@@ -85,14 +120,26 @@ RRM
     "density": 23.78,
     "interferences": {
       "149": {
-        "radar": 0.3
+        "radar": 0.3,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "153": {
-        "radar": 0.2
+        "radar": 0.2,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     },
     "neighbors": 184.78,
-    "noise": 86.52
+    "noise": 86.52,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "rftemplate": {
     "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
@@ -108,9 +155,17 @@ RRM
       "bandwidth": 20,
       "channels": [
         221
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
-    "band_24_usage": "24"
+    "band_24_usage": "24",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "rftemplate_id": "00000cf4-0000-0000-0000-000000000000",
   "rftemplate_name": "rftemplate_name8",
@@ -122,7 +177,11 @@ RRM
       "channel": 200,
       "curr_bandwidht": 80,
       "curr_channel": 64,
-      "curr_power": 252
+      "curr_power": 252,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "band_6_metric": {
@@ -130,11 +189,23 @@ RRM
     "density": 99.62,
     "interferences": {
       "key0": {
-        "radar": 1.76
+        "radar": 1.76,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     },
     "neighbors": 4.62,
-    "noise": 10.68
+    "noise": 10.68,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

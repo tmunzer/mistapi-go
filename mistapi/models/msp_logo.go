@@ -6,8 +6,8 @@ import (
 
 // MspLogo represents a MspLogo struct.
 type MspLogo struct {
-    LogoUrl              *string        `json:"logo_url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    LogoUrl              *string                `json:"logo_url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MspLogo.
@@ -15,13 +15,17 @@ type MspLogo struct {
 func (m MspLogo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "logo_url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MspLogo object to a map representation for JSON marshaling.
 func (m MspLogo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.LogoUrl != nil {
         structMap["logo_url"] = m.LogoUrl
     }
@@ -36,12 +40,12 @@ func (m *MspLogo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "logo_url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "logo_url")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.LogoUrl = temp.LogoUrl
     return nil
 }

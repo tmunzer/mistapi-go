@@ -13,7 +13,7 @@ type MxedgeMgmt struct {
     // enum: `autoconf`, `dhcp`, `disabled`, `static`
     OobIpType6           *MxedgeMgmtOobIpType6Enum `json:"oob_ip_type6,omitempty"`
     RootPassword         *string                   `json:"root_password,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeMgmt.
@@ -21,13 +21,17 @@ type MxedgeMgmt struct {
 func (m MxedgeMgmt) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "fips_enabled", "mist_password", "oob_ip_type", "oob_ip_type6", "root_password"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeMgmt object to a map representation for JSON marshaling.
 func (m MxedgeMgmt) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.FipsEnabled != nil {
         structMap["fips_enabled"] = m.FipsEnabled
     }
@@ -54,12 +58,12 @@ func (m *MxedgeMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "fips_enabled", "mist_password", "oob_ip_type", "oob_ip_type6", "root_password")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "fips_enabled", "mist_password", "oob_ip_type", "oob_ip_type6", "root_password")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.FipsEnabled = temp.FipsEnabled
     m.MistPassword = temp.MistPassword
     m.OobIpType = temp.OobIpType

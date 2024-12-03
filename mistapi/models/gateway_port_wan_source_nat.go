@@ -8,10 +8,10 @@ import (
 // optional, by default, source-NAT is performed on all WAN Ports using the interface-ip
 type GatewayPortWanSourceNat struct {
     // or to disable the source-nat
-    Disabled             *bool          `json:"disabled,omitempty"`
+    Disabled             *bool                  `json:"disabled,omitempty"`
     // if alternative nat_pool is desired
-    NatPool              *string        `json:"nat_pool,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    NatPool              *string                `json:"nat_pool,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortWanSourceNat.
@@ -19,13 +19,17 @@ type GatewayPortWanSourceNat struct {
 func (g GatewayPortWanSourceNat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "disabled", "nat_pool"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayPortWanSourceNat object to a map representation for JSON marshaling.
 func (g GatewayPortWanSourceNat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Disabled != nil {
         structMap["disabled"] = g.Disabled
     }
@@ -43,12 +47,12 @@ func (g *GatewayPortWanSourceNat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disabled", "nat_pool")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "nat_pool")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Disabled = temp.Disabled
     g.NatPool = temp.NatPool
     return nil

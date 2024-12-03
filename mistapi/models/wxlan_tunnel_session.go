@@ -23,7 +23,7 @@ type WxlanTunnelSession struct {
     RemoteSessionId      *int                             `json:"remote_session_id,omitempty"`
     // whether to use AP (last 4 bytes of MAC currently) as session ids
     UseApAsSessionIds    *bool                            `json:"use_ap_as_session_ids,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanTunnelSession.
@@ -31,13 +31,17 @@ type WxlanTunnelSession struct {
 func (w WxlanTunnelSession) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "ap_as_session_id", "comment", "enable_cookie", "ethertype", "local_session_id", "pseudo_802.1ad_enabled", "remote_id", "remote_session_id", "use_ap_as_session_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WxlanTunnelSession object to a map representation for JSON marshaling.
 func (w WxlanTunnelSession) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.ApAsSessionId != nil {
         structMap["ap_as_session_id"] = w.ApAsSessionId
     }
@@ -76,12 +80,12 @@ func (w *WxlanTunnelSession) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_as_session_id", "comment", "enable_cookie", "ethertype", "local_session_id", "pseudo_802.1ad_enabled", "remote_id", "remote_session_id", "use_ap_as_session_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_as_session_id", "comment", "enable_cookie", "ethertype", "local_session_id", "pseudo_802.1ad_enabled", "remote_id", "remote_session_id", "use_ap_as_session_ids")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.ApAsSessionId = temp.ApAsSessionId
     w.Comment = temp.Comment
     w.EnableCookie = temp.EnableCookie

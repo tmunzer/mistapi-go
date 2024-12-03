@@ -3,6 +3,8 @@
 
 Initiate a packet Capture for New Wireless Client Associations
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `CaptureNewAssoc`
@@ -19,6 +21,7 @@ Initiate a packet Capture for New Wireless Client Associations
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `100` |
 | `Ssid` | `*string` | Optional | optional filter by ssid |
 | `Type` | `string` | Required, Constant | enum: `new_assoc`<br>**Default**: `"new_assoc"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,7 +33,11 @@ Initiate a packet Capture for New Wireless Client Associations
   "includes_mcast": false,
   "max_pkt_len": 128,
   "num_packets": 100,
-  "type": "new_assoc"
+  "type": "new_assoc",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

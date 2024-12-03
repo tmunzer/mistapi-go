@@ -6,8 +6,8 @@ import (
 
 // VsInstanceProperty represents a VsInstanceProperty struct.
 type VsInstanceProperty struct {
-    Networks             []string       `json:"networks,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Networks             []string               `json:"networks,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VsInstanceProperty.
@@ -15,13 +15,17 @@ type VsInstanceProperty struct {
 func (v VsInstanceProperty) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "networks"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VsInstanceProperty object to a map representation for JSON marshaling.
 func (v VsInstanceProperty) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.Networks != nil {
         structMap["networks"] = v.Networks
     }
@@ -36,12 +40,12 @@ func (v *VsInstanceProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "networks")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "networks")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.Networks = temp.Networks
     return nil
 }

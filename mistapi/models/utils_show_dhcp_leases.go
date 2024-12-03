@@ -9,10 +9,10 @@ import (
 // UtilsShowDhcpLeases represents a UtilsShowDhcpLeases struct.
 type UtilsShowDhcpLeases struct {
     // DHCP network for the leases, returns full table if not specified
-    Network              string             `json:"network"`
+    Network              string                 `json:"network"`
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowDhcpLeases.
@@ -20,13 +20,17 @@ type UtilsShowDhcpLeases struct {
 func (u UtilsShowDhcpLeases) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "network", "node"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsShowDhcpLeases object to a map representation for JSON marshaling.
 func (u UtilsShowDhcpLeases) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     structMap["network"] = u.Network
     if u.Node != nil {
         structMap["node"] = u.Node
@@ -46,12 +50,12 @@ func (u *UtilsShowDhcpLeases) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "network", "node")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "network", "node")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Network = *temp.Network
     u.Node = temp.Node
     return nil

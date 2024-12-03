@@ -6,10 +6,10 @@ import (
 
 // RoutingPolicyTermMatchingVpnPathSla represents a RoutingPolicyTermMatchingVpnPathSla struct.
 type RoutingPolicyTermMatchingVpnPathSla struct {
-    MaxJitter            Optional[int]  `json:"max_jitter"`
-    MaxLatency           Optional[int]  `json:"max_latency"`
-    MaxLoss              Optional[int]  `json:"max_loss"`
-    AdditionalProperties map[string]any `json:"_"`
+    MaxJitter            Optional[int]          `json:"max_jitter"`
+    MaxLatency           Optional[int]          `json:"max_latency"`
+    MaxLoss              Optional[int]          `json:"max_loss"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTermMatchingVpnPathSla.
@@ -17,13 +17,17 @@ type RoutingPolicyTermMatchingVpnPathSla struct {
 func (r RoutingPolicyTermMatchingVpnPathSla) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "max_jitter", "max_latency", "max_loss"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RoutingPolicyTermMatchingVpnPathSla object to a map representation for JSON marshaling.
 func (r RoutingPolicyTermMatchingVpnPathSla) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.MaxJitter.IsValueSet() {
         if r.MaxJitter.Value() != nil {
             structMap["max_jitter"] = r.MaxJitter.Value()
@@ -56,12 +60,12 @@ func (r *RoutingPolicyTermMatchingVpnPathSla) UnmarshalJSON(input []byte) error 
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "max_jitter", "max_latency", "max_loss")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "max_jitter", "max_latency", "max_loss")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.MaxJitter = temp.MaxJitter
     r.MaxLatency = temp.MaxLatency
     r.MaxLoss = temp.MaxLoss

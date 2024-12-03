@@ -1,6 +1,8 @@
 
 # Site Setting Ap Port Config
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteSettingApPortConfig`
@@ -10,6 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ModelSpecific` | [`map[string]models.ApPortConfig`](../../doc/models/ap-port-config.md) | Optional | Property key is the AP model (e.g "AP32") |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,12 +35,20 @@
         "type": "type6",
         "vlans": {
           "key0": "vlans1"
+        },
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
         }
       },
       "enable_mac_auth": false,
       "flow_control": false,
       "forwarding": "wxtunnel"
     }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

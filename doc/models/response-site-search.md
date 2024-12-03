@@ -1,6 +1,8 @@
 
 # Response Site Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseSiteSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.ResponseSiteSearchItem`](../../doc/models/response-site-search-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,12 +38,20 @@
       "timestamp": 2.64,
       "timezone": "timezone4",
       "vna_enabled": false,
-      "wifi_enabled": false
+      "wifi_enabled": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 148,
   "total": 74,
-  "next": "next2"
+  "next": "next2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

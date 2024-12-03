@@ -1,6 +1,8 @@
 
 # Utils Send Ble Beacon
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UtilsSendBleBeacon`
@@ -14,6 +16,7 @@
 | `Duration` | `*int` | Optional | **Constraints**: `>= 1`, `<= 60` |
 | `Macs` | `[]string` | Optional | - |
 | `MapIds` | `[]string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,7 +31,11 @@
   ],
   "map_ids": [
     "845a23bf-bed9-e43c-4c86-6fa474be7ae5"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

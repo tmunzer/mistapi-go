@@ -8,9 +8,9 @@ import (
 
 // ResponseSelfOauthUrl represents a ResponseSelfOauthUrl struct.
 type ResponseSelfOauthUrl struct {
-    AuthorizationUrl     string         `json:"authorization_url"`
-    Linked               bool           `json:"linked"`
-    AdditionalProperties map[string]any `json:"_"`
+    AuthorizationUrl     string                 `json:"authorization_url"`
+    Linked               bool                   `json:"linked"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSelfOauthUrl.
@@ -18,13 +18,17 @@ type ResponseSelfOauthUrl struct {
 func (r ResponseSelfOauthUrl) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "authorization_url", "linked"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSelfOauthUrl object to a map representation for JSON marshaling.
 func (r ResponseSelfOauthUrl) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["authorization_url"] = r.AuthorizationUrl
     structMap["linked"] = r.Linked
     return structMap
@@ -42,12 +46,12 @@ func (r *ResponseSelfOauthUrl) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "authorization_url", "linked")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "authorization_url", "linked")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.AuthorizationUrl = *temp.AuthorizationUrl
     r.Linked = *temp.Linked
     return nil

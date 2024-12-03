@@ -3,6 +3,8 @@
 
 If `transform` is provided, all the locations of the objects on the map (AP, Zone, Vbeacon, Beacon) will be transformed as well (relative to the new Map)
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MapSiteReplaceFileJsonTransform`
@@ -15,6 +17,7 @@ If `transform` is provided, all the locations of the objects on the map (AP, Zon
 | `Scale` | `*float64` | Optional | whether to scale the replacing image<br>**Default**: `1` |
 | `X` | `*float64` | Optional | where the (0, 0) of the new image is relative to the original map<br>**Default**: `0` |
 | `Y` | `*float64` | Optional | where the (0, 0) of the new image is relative to the original map<br>**Default**: `0` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@ If `transform` is provided, all the locations of the objects on the map (AP, Zon
   "rotation": 0.0,
   "scale": 0.98,
   "x": 3.16,
-  "y": 12.0
+  "y": 12.0,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

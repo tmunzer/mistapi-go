@@ -1,6 +1,8 @@
 
 # Upgrade Org Devices
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UpgradeOrgDevices`
@@ -29,6 +31,7 @@
 | `StartTime` | `*float64` | Optional | upgrade start time in epoch seconds, default is now |
 | `Strategy` | [`*models.DeviceUpgradeStrategyEnum`](../../doc/models/device-upgrade-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)<br>**Default**: `"big_bang"` |
 | `Version` | `*string` | Optional | specific version / stable<br>**Default**: `"latest"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -55,7 +58,11 @@
   "max_failures": [
     253,
     254
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

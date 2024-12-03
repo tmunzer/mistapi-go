@@ -35,7 +35,7 @@ type CaptureScan struct {
     Type                 string                        `json:"type"`
     // specify the bandwidth value with respect to the channel.
     Width                *string                       `json:"width,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureScan.
@@ -43,13 +43,17 @@ type CaptureScan struct {
 func (c CaptureScan) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ap_mac", "aps", "band", "bandwidth", "channel", "client_mac", "duration", "format", "max_pkt_len", "num_packets", "tcpdump_expression", "type", "width"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureScan object to a map representation for JSON marshaling.
 func (c CaptureScan) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.ApMac.IsValueSet() {
         if c.ApMac.Value() != nil {
             structMap["ap_mac"] = c.ApMac.Value()
@@ -114,12 +118,12 @@ func (c *CaptureScan) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "aps", "band", "bandwidth", "channel", "client_mac", "duration", "format", "max_pkt_len", "num_packets", "tcpdump_expression", "type", "width")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "aps", "band", "bandwidth", "channel", "client_mac", "duration", "format", "max_pkt_len", "num_packets", "tcpdump_expression", "type", "width")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.ApMac = temp.ApMac
     c.Aps = temp.Aps
     c.Band = temp.Band

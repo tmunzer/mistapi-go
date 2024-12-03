@@ -46,7 +46,7 @@ CreateApiToken(
 ctx := context.Background()
 
 body := models.UserApitoken{
-    Name:        models.ToPointer("org_token_xyz"),
+    Name:                 models.ToPointer("org_token_xyz"),
 }
 
 apiResponse, err := selfAPIToken.CreateApiToken(ctx, &body)
@@ -281,7 +281,7 @@ ctx := context.Background()
 apitokenId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UserApitoken{
-    Name:        models.ToPointer("org_token_xyz"),
+    Name:                 models.ToPointer("org_token_xyz"),
 }
 
 apiResponse, err := selfAPIToken.UpdateApiToken(ctx, apitokenId, &body)

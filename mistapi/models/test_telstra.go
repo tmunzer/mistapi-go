@@ -9,12 +9,12 @@ import (
 // TestTelstra represents a TestTelstra struct.
 type TestTelstra struct {
     // Telstra client id
-    TelstraClientId      string         `json:"telstra_client_id"`
+    TelstraClientId      string                 `json:"telstra_client_id"`
     // Telstra client secret
-    TelstraClientSecret  string         `json:"telstra_client_secret"`
+    TelstraClientSecret  string                 `json:"telstra_client_secret"`
     // Phone number of the recipient of SMS with country code
-    To                   string         `json:"to"`
-    AdditionalProperties map[string]any `json:"_"`
+    To                   string                 `json:"to"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TestTelstra.
@@ -22,13 +22,17 @@ type TestTelstra struct {
 func (t TestTelstra) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "telstra_client_id", "telstra_client_secret", "to"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TestTelstra object to a map representation for JSON marshaling.
 func (t TestTelstra) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     structMap["telstra_client_id"] = t.TelstraClientId
     structMap["telstra_client_secret"] = t.TelstraClientSecret
     structMap["to"] = t.To
@@ -47,12 +51,12 @@ func (t *TestTelstra) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "telstra_client_id", "telstra_client_secret", "to")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "telstra_client_id", "telstra_client_secret", "to")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.TelstraClientId = *temp.TelstraClientId
     t.TelstraClientSecret = *temp.TelstraClientSecret
     t.To = *temp.To

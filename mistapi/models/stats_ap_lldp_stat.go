@@ -7,28 +7,28 @@ import (
 // StatsApLldpStat represents a StatsApLldpStat struct.
 // LLDP Stat (neighbor information, power negotiations)
 type StatsApLldpStat struct {
-    ChassisId            Optional[string]  `json:"chassis_id"`
+    ChassisId            Optional[string]       `json:"chassis_id"`
     // whether it support LLDP-MED
-    LldpMedSupported     Optional[bool]    `json:"lldp_med_supported"`
+    LldpMedSupported     Optional[bool]         `json:"lldp_med_supported"`
     // switch’s management address (if advertised), can be IPv4, IPv6, or MAC
-    MgmtAddr             Optional[string]  `json:"mgmt_addr"`
-    MgmtAddrs            []string          `json:"mgmt_addrs,omitempty"`
+    MgmtAddr             Optional[string]       `json:"mgmt_addr"`
+    MgmtAddrs            []string               `json:"mgmt_addrs,omitempty"`
     // ge-0/0/4
-    PortDesc             Optional[string]  `json:"port_desc"`
-    PortId               Optional[string]  `json:"port_id"`
+    PortDesc             Optional[string]       `json:"port_desc"`
+    PortId               Optional[string]       `json:"port_id"`
     // in mW, provided/allocated by PSE
-    PowerAllocated       Optional[float64] `json:"power_allocated"`
+    PowerAllocated       Optional[float64]      `json:"power_allocated"`
     // in mW, total power needed by PD
-    PowerDraw            Optional[float64] `json:"power_draw"`
+    PowerDraw            Optional[float64]      `json:"power_draw"`
     // number of negotiations, if it keeps increasing, we don’ t have a stable power
-    PowerRequestCount    Optional[int]     `json:"power_request_count"`
+    PowerRequestCount    Optional[int]          `json:"power_request_count"`
     // in mW, the current power requested by PD
-    PowerRequested       Optional[float64] `json:"power_requested"`
+    PowerRequested       Optional[float64]      `json:"power_requested"`
     // description provided by switch
-    SystemDesc           Optional[string]  `json:"system_desc"`
+    SystemDesc           Optional[string]       `json:"system_desc"`
     // name of the switch
-    SystemName           Optional[string]  `json:"system_name"`
-    AdditionalProperties map[string]any    `json:"_"`
+    SystemName           Optional[string]       `json:"system_name"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApLldpStat.
@@ -36,13 +36,17 @@ type StatsApLldpStat struct {
 func (s StatsApLldpStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "chassis_id", "lldp_med_supported", "mgmt_addr", "mgmt_addrs", "port_desc", "port_id", "power_allocated", "power_draw", "power_request_count", "power_requested", "system_desc", "system_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApLldpStat object to a map representation for JSON marshaling.
 func (s StatsApLldpStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ChassisId.IsValueSet() {
         if s.ChassisId.Value() != nil {
             structMap["chassis_id"] = s.ChassisId.Value()
@@ -134,12 +138,12 @@ func (s *StatsApLldpStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "chassis_id", "lldp_med_supported", "mgmt_addr", "mgmt_addrs", "port_desc", "port_id", "power_allocated", "power_draw", "power_request_count", "power_requested", "system_desc", "system_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "chassis_id", "lldp_med_supported", "mgmt_addr", "mgmt_addrs", "port_desc", "port_id", "power_allocated", "power_draw", "power_request_count", "power_requested", "system_desc", "system_name")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ChassisId = temp.ChassisId
     s.LldpMedSupported = temp.LldpMedSupported
     s.MgmtAddr = temp.MgmtAddr

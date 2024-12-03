@@ -8,12 +8,12 @@ import (
 
 // ResponseSearch represents a ResponseSearch struct.
 type ResponseSearch struct {
-    Limit                int                  `json:"limit"`
-    Next                 *string              `json:"next,omitempty"`
-    Page                 int                  `json:"page"`
-    Results              []ResponseSearchItem `json:"results"`
-    Total                int                  `json:"total"`
-    AdditionalProperties map[string]any       `json:"_"`
+    Limit                int                    `json:"limit"`
+    Next                 *string                `json:"next,omitempty"`
+    Page                 int                    `json:"page"`
+    Results              []ResponseSearchItem   `json:"results"`
+    Total                int                    `json:"total"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSearch.
@@ -21,13 +21,17 @@ type ResponseSearch struct {
 func (r ResponseSearch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "limit", "next", "page", "results", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSearch object to a map representation for JSON marshaling.
 func (r ResponseSearch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["limit"] = r.Limit
     if r.Next != nil {
         structMap["next"] = r.Next
@@ -50,12 +54,12 @@ func (r *ResponseSearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "limit", "next", "page", "results", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "limit", "next", "page", "results", "total")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Limit = *temp.Limit
     r.Next = temp.Next
     r.Page = *temp.Page

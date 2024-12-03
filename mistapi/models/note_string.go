@@ -7,8 +7,8 @@ import (
 // NoteString represents a NoteString struct.
 type NoteString struct {
     // Some text note describing the intent
-    Note                 *string        `json:"note,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Note                 *string                `json:"note,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NoteString.
@@ -16,13 +16,17 @@ type NoteString struct {
 func (n NoteString) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "note"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NoteString object to a map representation for JSON marshaling.
 func (n NoteString) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.Note != nil {
         structMap["note"] = n.Note
     }
@@ -37,12 +41,12 @@ func (n *NoteString) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "note")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "note")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.Note = temp.Note
     return nil
 }

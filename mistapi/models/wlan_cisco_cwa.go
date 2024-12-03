@@ -8,13 +8,13 @@ import (
 // Cisco CWA (central web authentication) required RADIUS with COA in order to work. See CWA: https://www.cisco.com/c/en/us/support/docs/security/identity-services-engine/115732-central-web-auth-00.html
 type WlanCiscoCwa struct {
     // list of hostnames without http(s):// (matched by substring)
-    AllowedHostnames     []string       `json:"allowed_hostnames,omitempty"`
+    AllowedHostnames     []string               `json:"allowed_hostnames,omitempty"`
     // list of CIDRs
-    AllowedSubnets       []string       `json:"allowed_subnets,omitempty"`
+    AllowedSubnets       []string               `json:"allowed_subnets,omitempty"`
     // list of blocked CIDRs
-    BlockedSubnets       []string       `json:"blocked_subnets,omitempty"`
-    Enabled              *bool          `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    BlockedSubnets       []string               `json:"blocked_subnets,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanCiscoCwa.
@@ -22,13 +22,17 @@ type WlanCiscoCwa struct {
 func (w WlanCiscoCwa) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "allowed_hostnames", "allowed_subnets", "blocked_subnets", "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanCiscoCwa object to a map representation for JSON marshaling.
 func (w WlanCiscoCwa) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.AllowedHostnames != nil {
         structMap["allowed_hostnames"] = w.AllowedHostnames
     }
@@ -52,12 +56,12 @@ func (w *WlanCiscoCwa) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "allowed_hostnames", "allowed_subnets", "blocked_subnets", "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allowed_hostnames", "allowed_subnets", "blocked_subnets", "enabled")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.AllowedHostnames = temp.AllowedHostnames
     w.AllowedSubnets = temp.AllowedSubnets
     w.BlockedSubnets = temp.BlockedSubnets

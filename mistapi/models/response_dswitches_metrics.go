@@ -12,7 +12,7 @@ type ResponseDswitchesMetrics struct {
     PoeCompliance        DswitchesMetricsPoeCompliance      `json:"poe_compliance"`
     SwitchApAffinity     DswitchesMetricsSwitchApAffinity   `json:"switch_ap_affinity"`
     VersionCompliance    DswitchesMetricsVersionCompliance  `json:"version_compliance"`
-    AdditionalProperties map[string]any                     `json:"_"`
+    AdditionalProperties map[string]interface{}             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDswitchesMetrics.
@@ -20,13 +20,17 @@ type ResponseDswitchesMetrics struct {
 func (r ResponseDswitchesMetrics) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "inactive_wired_vlans", "poe_compliance", "switch_ap_affinity", "version_compliance"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseDswitchesMetrics object to a map representation for JSON marshaling.
 func (r ResponseDswitchesMetrics) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["inactive_wired_vlans"] = r.InactiveWiredVlans.toMap()
     structMap["poe_compliance"] = r.PoeCompliance.toMap()
     structMap["switch_ap_affinity"] = r.SwitchApAffinity.toMap()
@@ -46,12 +50,12 @@ func (r *ResponseDswitchesMetrics) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "inactive_wired_vlans", "poe_compliance", "switch_ap_affinity", "version_compliance")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "inactive_wired_vlans", "poe_compliance", "switch_ap_affinity", "version_compliance")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.InactiveWiredVlans = *temp.InactiveWiredVlans
     r.PoeCompliance = *temp.PoeCompliance
     r.SwitchApAffinity = *temp.SwitchApAffinity

@@ -7,18 +7,18 @@ import (
 
 // StatsDeviceOtherVendorSpecificPort represents a StatsDeviceOtherVendorSpecificPort struct.
 type StatsDeviceOtherVendorSpecificPort struct {
-    BytesIn              *int           `json:"bytes_in,omitempty"`
-    BytesOut             *int           `json:"bytes_out,omitempty"`
-    HealthCategory       *string        `json:"health_category,omitempty"`
-    HealthScore          *int           `json:"health_score,omitempty"`
+    BytesIn              *int                   `json:"bytes_in,omitempty"`
+    BytesOut             *int                   `json:"bytes_out,omitempty"`
+    HealthCategory       *string                `json:"health_category,omitempty"`
+    HealthScore          *int                   `json:"health_score,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Mode                 *string        `json:"mode,omitempty"`
-    Model                *string        `json:"model,omitempty"`
-    State                *string        `json:"state,omitempty"`
-    Type                 *string        `json:"type,omitempty"`
-    Uptime               *float64       `json:"uptime,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Mode                 *string                `json:"mode,omitempty"`
+    Model                *string                `json:"model,omitempty"`
+    State                *string                `json:"state,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
+    Uptime               *float64               `json:"uptime,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsDeviceOtherVendorSpecificPort.
@@ -26,13 +26,17 @@ type StatsDeviceOtherVendorSpecificPort struct {
 func (s StatsDeviceOtherVendorSpecificPort) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "bytes_in", "bytes_out", "health_category", "health_score", "id", "mode", "model", "state", "type", "uptime"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsDeviceOtherVendorSpecificPort object to a map representation for JSON marshaling.
 func (s StatsDeviceOtherVendorSpecificPort) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.BytesIn != nil {
         structMap["bytes_in"] = s.BytesIn
     }
@@ -74,12 +78,12 @@ func (s *StatsDeviceOtherVendorSpecificPort) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bytes_in", "bytes_out", "health_category", "health_score", "id", "mode", "model", "state", "type", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bytes_in", "bytes_out", "health_category", "health_score", "id", "mode", "model", "state", "type", "uptime")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.BytesIn = temp.BytesIn
     s.BytesOut = temp.BytesOut
     s.HealthCategory = temp.HealthCategory

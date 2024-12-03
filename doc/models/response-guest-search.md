@@ -1,6 +1,8 @@
 
 # Response Guest Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseGuestSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.Guest`](../../doc/models/guest.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,11 +39,19 @@
       "wlan_id": "6748cfa6-4e12-11e6-9188-0242ac110007",
       "access_code_email": "access_code_email8",
       "ap_mac": "ap_mac8",
-      "auth_method": "auth_method0"
+      "auth_method": "auth_method0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 124,
-  "total": 98
+  "total": 98,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

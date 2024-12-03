@@ -23,7 +23,7 @@ type ConstInsightMetricsProperty struct {
     Type                 *string                                              `json:"type,omitempty"`
     Unit                 *string                                              `json:"unit,omitempty"`
     Values               *interface{}                                         `json:"values,omitempty"`
-    AdditionalProperties map[string]any                                       `json:"_"`
+    AdditionalProperties map[string]interface{}                               `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstInsightMetricsProperty.
@@ -31,13 +31,17 @@ type ConstInsightMetricsProperty struct {
 func (c ConstInsightMetricsProperty) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ctype", "description", "example", "intervals", "keys", "params", "report_duration", "report_scopes", "scopes", "sle_baselined", "sle_classifiers", "type", "unit", "values"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstInsightMetricsProperty object to a map representation for JSON marshaling.
 func (c ConstInsightMetricsProperty) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Ctype != nil {
         structMap["ctype"] = c.Ctype
     }
@@ -91,12 +95,12 @@ func (c *ConstInsightMetricsProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ctype", "description", "example", "intervals", "keys", "params", "report_duration", "report_scopes", "scopes", "sle_baselined", "sle_classifiers", "type", "unit", "values")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ctype", "description", "example", "intervals", "keys", "params", "report_duration", "report_scopes", "scopes", "sle_baselined", "sle_classifiers", "type", "unit", "values")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Ctype = temp.Ctype
     c.Description = temp.Description
     c.Example = temp.Example

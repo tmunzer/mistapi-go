@@ -1,6 +1,8 @@
 
 # Dhcpd Config Property
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `DhcpdConfigProperty`
@@ -25,6 +27,7 @@
 | `Type` | [`*models.DhcpdConfigTypeEnum`](../../doc/models/dhcpd-config-type-enum.md) | Optional | enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)<br>**Default**: `"local"` |
 | `Type6` | [`*models.DhcpdConfigTypeEnum`](../../doc/models/dhcpd-config-type-enum.md) | Optional | enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)<br>**Default**: `"none"` |
 | `VendorEncapulated` | [`map[string]models.DhcpdConfigVendorOption`](../../doc/models/dhcpd-config-vendor-option.md) | Optional | if `type`==`local` or `type6`==`local`. Property key is <enterprise number>:<sub option code>, with<br><br>* enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)<br>* sub option code: 1-255, sub-option code' |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,7 +44,11 @@
   "fixed_bindings": {
     "5684dae9ac8b": {
       "ip": "192.168.70.35",
-      "name": "John"
+      "name": "John",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "gateway": "192.168.70.1",
@@ -58,7 +65,11 @@
     "2607:f8b0:4005:808::64"
   ],
   "type": "local",
-  "type6": "none"
+  "type6": "none",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -8,12 +8,12 @@ import (
 
 // SleImpactSummaryDeviceOsItem represents a SleImpactSummaryDeviceOsItem struct.
 type SleImpactSummaryDeviceOsItem struct {
-    Degraded             float64        `json:"degraded"`
-    DeviceOs             string         `json:"device_os"`
-    Duration             float64        `json:"duration"`
-    Name                 string         `json:"name"`
-    Total                float64        `json:"total"`
-    AdditionalProperties map[string]any `json:"_"`
+    Degraded             float64                `json:"degraded"`
+    DeviceOs             string                 `json:"device_os"`
+    Duration             float64                `json:"duration"`
+    Name                 string                 `json:"name"`
+    Total                float64                `json:"total"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactSummaryDeviceOsItem.
@@ -21,13 +21,17 @@ type SleImpactSummaryDeviceOsItem struct {
 func (s SleImpactSummaryDeviceOsItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "degraded", "device_os", "duration", "name", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactSummaryDeviceOsItem object to a map representation for JSON marshaling.
 func (s SleImpactSummaryDeviceOsItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["degraded"] = s.Degraded
     structMap["device_os"] = s.DeviceOs
     structMap["duration"] = s.Duration
@@ -48,12 +52,12 @@ func (s *SleImpactSummaryDeviceOsItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "degraded", "device_os", "duration", "name", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "degraded", "device_os", "duration", "name", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Degraded = *temp.Degraded
     s.DeviceOs = *temp.DeviceOs
     s.Duration = *temp.Duration

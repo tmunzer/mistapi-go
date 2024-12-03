@@ -1,6 +1,8 @@
 
 # Stats Wireless Client
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsWirelessClient`
@@ -61,6 +63,7 @@
 | `Y` | `*float64` | Optional | estimated clinet location in pixels |
 | `YM` | `*float64` | Optional | estimated client location in meter |
 | `Zones` | [`[]models.StatsWirelessClientZone`](../../doc/models/stats-wireless-client-zone.md) | Optional | list of zone_id’s where client is in and since when (if known) |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -103,7 +106,11 @@
   "accuracy": 154,
   "airespace_ifname": "airespace_ifname0",
   "airwatch": {
-    "authorized": false
+    "authorized": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "guest": {
     "authorized": false,
@@ -112,9 +119,17 @@
     "company": "company2",
     "email": "email4",
     "field1": "field16",
-    "name": "name2"
+    "name": "name2",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "map_id": "0000241c-0000-0000-0000-000000000000"
+  "map_id": "0000241c-0000-0000-0000-000000000000",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

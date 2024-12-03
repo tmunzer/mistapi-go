@@ -16,7 +16,7 @@ type WlanHotspot20 struct {
     Rcoi                 []string                         `json:"rcoi,omitempty"`
     // venue name, default is site name
     VenueName            *string                          `json:"venue_name,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanHotspot20.
@@ -24,13 +24,17 @@ type WlanHotspot20 struct {
 func (w WlanHotspot20) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "domain_name", "enabled", "nai_realms", "operators", "rcoi", "venue_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanHotspot20 object to a map representation for JSON marshaling.
 func (w WlanHotspot20) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.DomainName != nil {
         structMap["domain_name"] = w.DomainName
     }
@@ -60,12 +64,12 @@ func (w *WlanHotspot20) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "domain_name", "enabled", "nai_realms", "operators", "rcoi", "venue_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "domain_name", "enabled", "nai_realms", "operators", "rcoi", "venue_name")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.DomainName = temp.DomainName
     w.Enabled = temp.Enabled
     w.NaiRealms = temp.NaiRealms

@@ -6,11 +6,11 @@ import (
 
 // ResponsePcapSearchItemPcapApsItem represents a ResponsePcapSearchItemPcapApsItem struct.
 type ResponsePcapSearchItemPcapApsItem struct {
-    Band                 *string          `json:"band,omitempty"`
-    Bandwidth            *string          `json:"bandwidth,omitempty"`
-    Channel              *int             `json:"channel,omitempty"`
-    TcpdumpExpression    Optional[string] `json:"tcpdump_expression"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Band                 *string                `json:"band,omitempty"`
+    Bandwidth            *string                `json:"bandwidth,omitempty"`
+    Channel              *int                   `json:"channel,omitempty"`
+    TcpdumpExpression    Optional[string]       `json:"tcpdump_expression"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapSearchItemPcapApsItem.
@@ -18,13 +18,17 @@ type ResponsePcapSearchItemPcapApsItem struct {
 func (r ResponsePcapSearchItemPcapApsItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "band", "bandwidth", "channel", "tcpdump_expression"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponsePcapSearchItemPcapApsItem object to a map representation for JSON marshaling.
 func (r ResponsePcapSearchItemPcapApsItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Band != nil {
         structMap["band"] = r.Band
     }
@@ -52,12 +56,12 @@ func (r *ResponsePcapSearchItemPcapApsItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band", "bandwidth", "channel", "tcpdump_expression")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "bandwidth", "channel", "tcpdump_expression")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Band = temp.Band
     r.Bandwidth = temp.Bandwidth
     r.Channel = temp.Channel

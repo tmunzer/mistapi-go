@@ -1,6 +1,8 @@
 
 # Webhook Device Updowns Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookDeviceUpdownsEvent`
@@ -17,6 +19,7 @@
 | `SiteName` | `string` | Required | - |
 | `Timestamp` | `float64` | Required | - |
 | `Type` | `string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
   "site_name": "site_name0",
   "timestamp": 16.04,
   "type": "type2",
-  "for_site": false
+  "for_site": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

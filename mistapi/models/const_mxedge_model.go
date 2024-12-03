@@ -10,7 +10,7 @@ type ConstMxedgeModel struct {
     Display              *string                         `json:"display,omitempty"`
     Model                *string                         `json:"model,omitempty"`
     Ports                map[string]ConstMxedgeModelPort `json:"ports,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstMxedgeModel.
@@ -18,13 +18,17 @@ type ConstMxedgeModel struct {
 func (c ConstMxedgeModel) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "custom_ports", "display", "model", "ports"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstMxedgeModel object to a map representation for JSON marshaling.
 func (c ConstMxedgeModel) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.CustomPorts != nil {
         structMap["custom_ports"] = c.CustomPorts
     }
@@ -48,12 +52,12 @@ func (c *ConstMxedgeModel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "custom_ports", "display", "model", "ports")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "custom_ports", "display", "model", "ports")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.CustomPorts = temp.CustomPorts
     c.Display = temp.Display
     c.Model = temp.Model

@@ -17,7 +17,7 @@ type SsoMxedgeProxy struct {
     ProxyHosts           []string                   `json:"proxy_hosts,omitempty"`
     // SSIDs that support eduroam
     Ssids                []string                   `json:"ssids,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsoMxedgeProxy.
@@ -25,13 +25,17 @@ type SsoMxedgeProxy struct {
 func (s SsoMxedgeProxy) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "acct_servers", "auth_servers", "mxcluster_id", "operator_name", "proxy_hosts", "ssids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SsoMxedgeProxy object to a map representation for JSON marshaling.
 func (s SsoMxedgeProxy) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AcctServers != nil {
         structMap["acct_servers"] = s.AcctServers
     }
@@ -61,12 +65,12 @@ func (s *SsoMxedgeProxy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acct_servers", "auth_servers", "mxcluster_id", "operator_name", "proxy_hosts", "ssids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acct_servers", "auth_servers", "mxcluster_id", "operator_name", "proxy_hosts", "ssids")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AcctServers = temp.AcctServers
     s.AuthServers = temp.AuthServers
     s.MxclusterId = temp.MxclusterId

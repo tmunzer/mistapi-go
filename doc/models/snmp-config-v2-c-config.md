@@ -1,6 +1,8 @@
 
 # Snmp Config V2 C Config
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SnmpConfigV2cConfig`
@@ -13,6 +15,7 @@
 | `ClientListName` | `*string` | Optional | client_list_name here should refer to client_list above |
 | `CommunityName` | `*string` | Optional | - |
 | `View` | `*string` | Optional | view name here should be defined in views above |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,11 @@
   "authorization": "read-only",
   "client_list_name": "clist-1",
   "community_name": "abc123",
-  "view": "all"
+  "view": "all",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

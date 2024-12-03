@@ -6,9 +6,9 @@ import (
 
 // StatsSwitchVcSetupInfo represents a StatsSwitchVcSetupInfo struct.
 type StatsSwitchVcSetupInfo struct {
-    ConfigType           *string        `json:"config_type,omitempty"`
-    ErrMissingDevIdFpc   *bool          `json:"err_missing_dev_id_fpc,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ConfigType           *string                `json:"config_type,omitempty"`
+    ErrMissingDevIdFpc   *bool                  `json:"err_missing_dev_id_fpc,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchVcSetupInfo.
@@ -16,13 +16,17 @@ type StatsSwitchVcSetupInfo struct {
 func (s StatsSwitchVcSetupInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "config_type", "err_missing_dev_id_fpc"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsSwitchVcSetupInfo object to a map representation for JSON marshaling.
 func (s StatsSwitchVcSetupInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ConfigType != nil {
         structMap["config_type"] = s.ConfigType
     }
@@ -40,12 +44,12 @@ func (s *StatsSwitchVcSetupInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "config_type", "err_missing_dev_id_fpc")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_type", "err_missing_dev_id_fpc")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ConfigType = temp.ConfigType
     s.ErrMissingDevIdFpc = temp.ErrMissingDevIdFpc
     return nil

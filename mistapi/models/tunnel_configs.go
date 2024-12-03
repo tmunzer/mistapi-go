@@ -41,7 +41,7 @@ type TunnelConfigs struct {
     Secondary            *GatewayTemplateTunnelNode           `json:"secondary,omitempty"`
     // Only if `provider`== `custom-gre` or `provider`== `custom-ipsec`. enum: `1`, `2`
     Version              *GatewayTemplateTunnelVersionEnum    `json:"version,omitempty"`
-    AdditionalProperties map[string]any                       `json:"_"`
+    AdditionalProperties map[string]interface{}               `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelConfigs.
@@ -49,13 +49,17 @@ type TunnelConfigs struct {
 func (t TunnelConfigs) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "auto_provision", "ike_lifetime", "ike_mode", "ike_proposals", "ipsec_lifetime", "ipsec_proposals", "local_id", "mode", "networks", "primary", "probe", "protocol", "provider", "psk", "secondary", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TunnelConfigs object to a map representation for JSON marshaling.
 func (t TunnelConfigs) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.AutoProvision != nil {
         structMap["auto_provision"] = t.AutoProvision.toMap()
     }
@@ -115,12 +119,12 @@ func (t *TunnelConfigs) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_provision", "ike_lifetime", "ike_mode", "ike_proposals", "ipsec_lifetime", "ipsec_proposals", "local_id", "mode", "networks", "primary", "probe", "protocol", "provider", "psk", "secondary", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_provision", "ike_lifetime", "ike_mode", "ike_proposals", "ipsec_lifetime", "ipsec_proposals", "local_id", "mode", "networks", "primary", "probe", "protocol", "provider", "psk", "secondary", "version")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.AutoProvision = temp.AutoProvision
     t.IkeLifetime = temp.IkeLifetime
     t.IkeMode = temp.IkeMode

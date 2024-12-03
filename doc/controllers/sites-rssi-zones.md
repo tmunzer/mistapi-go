@@ -49,12 +49,12 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.RssiZone{
-    Devices:      []models.RssiZoneDevice{
+    Devices:              []models.RssiZoneDevice{
         models.RssiZoneDevice{
-            Rssi:     0,
+            Rssi:                 0,
         },
     },
-    Name:         models.ToPointer("string"),
+    Name:                 models.ToPointer("string"),
 }
 
 apiResponse, err := sitesRSSIZones.CreateSiteRssiZone(ctx, siteId, &body)
@@ -314,12 +314,12 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 rssizoneId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.RssiZone{
-    Devices:      []models.RssiZoneDevice{
+    Devices:              []models.RssiZoneDevice{
         models.RssiZoneDevice{
-            Rssi:     0,
+            Rssi:                 0,
         },
     },
-    Name:         models.ToPointer("string"),
+    Name:                 models.ToPointer("string"),
 }
 
 apiResponse, err := sitesRSSIZones.UpdateSiteRssiZone(ctx, siteId, rssizoneId, &body)

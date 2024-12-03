@@ -1,6 +1,8 @@
 
 # Service Policy
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ServicePolicy`
@@ -19,6 +21,7 @@
 | `ServicepolicyId` | `*uuid.UUID` | Optional | used to link servicepolicy defined at org level and overwrite some attributes |
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,35 +29,59 @@
 {
   "action": "allow",
   "appqoe": {
-    "enabled": false
+    "enabled": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "ewf": [
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "standard"
+      "profile": "standard",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "standard"
+      "profile": "standard",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "standard"
+      "profile": "standard",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "idp": {
     "alert_only": false,
     "enabled": false,
     "idpprofile_id": "00000e94-0000-0000-0000-000000000000",
-    "profile": "profile8"
+    "profile": "profile8",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "local_routing": false
+  "local_routing": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

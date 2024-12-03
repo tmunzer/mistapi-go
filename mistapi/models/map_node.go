@@ -9,10 +9,10 @@ import (
 // MapNode represents a MapNode struct.
 // Nodes on maps
 type MapNode struct {
-    Edges                map[string]string `json:"edges,omitempty"`
-    Name                 string            `json:"name"`
-    Position             *MapNodePosition  `json:"position,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    Edges                map[string]string      `json:"edges,omitempty"`
+    Name                 string                 `json:"name"`
+    Position             *MapNodePosition       `json:"position,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapNode.
@@ -20,13 +20,17 @@ type MapNode struct {
 func (m MapNode) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "edges", "name", "position"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MapNode object to a map representation for JSON marshaling.
 func (m MapNode) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Edges != nil {
         structMap["edges"] = m.Edges
     }
@@ -49,12 +53,12 @@ func (m *MapNode) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "edges", "name", "position")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "edges", "name", "position")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Edges = temp.Edges
     m.Name = *temp.Name
     m.Position = temp.Position

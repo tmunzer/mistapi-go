@@ -1,6 +1,8 @@
 
 # Webhook Location Asset Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookLocationAssetEvent`
@@ -25,6 +27,7 @@
 | `Type` | `*string` | Optional | **Default**: `"asset"` |
 | `X` | `*float64` | Optional | x, in meter |
 | `Y` | `*float64` | Optional | y, in meter |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -45,7 +48,11 @@
   "timestamp": 1461220784,
   "type": "asset",
   "x": 13.5,
-  "y": 3.2
+  "y": 3.2,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

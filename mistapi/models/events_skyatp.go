@@ -10,16 +10,16 @@ import (
 // EventsSkyatp represents a EventsSkyatp struct.
 // SkyATP events
 type EventsSkyatp struct {
-    DeviceMac            string         `json:"device_mac"`
-    ForSite              *bool          `json:"for_site,omitempty"`
-    Ip                   string         `json:"ip"`
-    Mac                  string         `json:"mac"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    ThreatLevel          int            `json:"threat_level"`
-    Timestamp            float64        `json:"timestamp"`
-    Type                 string         `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    DeviceMac            string                 `json:"device_mac"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
+    Ip                   string                 `json:"ip"`
+    Mac                  string                 `json:"mac"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    ThreatLevel          int                    `json:"threat_level"`
+    Timestamp            float64                `json:"timestamp"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventsSkyatp.
@@ -27,13 +27,17 @@ type EventsSkyatp struct {
 func (e EventsSkyatp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "device_mac", "for_site", "ip", "mac", "org_id", "site_id", "threat_level", "timestamp", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EventsSkyatp object to a map representation for JSON marshaling.
 func (e EventsSkyatp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     structMap["device_mac"] = e.DeviceMac
     if e.ForSite != nil {
         structMap["for_site"] = e.ForSite
@@ -60,12 +64,12 @@ func (e *EventsSkyatp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "device_mac", "for_site", "ip", "mac", "org_id", "site_id", "threat_level", "timestamp", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "device_mac", "for_site", "ip", "mac", "org_id", "site_id", "threat_level", "timestamp", "type")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.DeviceMac = *temp.DeviceMac
     e.ForSite = temp.ForSite
     e.Ip = *temp.Ip

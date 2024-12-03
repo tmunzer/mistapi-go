@@ -22,7 +22,7 @@ type MxclusterRadsecAuthServer struct {
     Secret               *string                                           `json:"secret,omitempty"`
     // list of ssids that will use this server if match_ssid is true and match is found
     Ssids                []string                                          `json:"ssids,omitempty"`
-    AdditionalProperties map[string]any                                    `json:"_"`
+    AdditionalProperties map[string]interface{}                            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterRadsecAuthServer.
@@ -30,13 +30,17 @@ type MxclusterRadsecAuthServer struct {
 func (m MxclusterRadsecAuthServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "host", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret", "ssids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxclusterRadsecAuthServer object to a map representation for JSON marshaling.
 func (m MxclusterRadsecAuthServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Host != nil {
         structMap["host"] = m.Host
     }
@@ -76,12 +80,12 @@ func (m *MxclusterRadsecAuthServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret", "ssids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret", "ssids")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Host = temp.Host
     m.KeywrapEnabled = temp.KeywrapEnabled
     m.KeywrapFormat = temp.KeywrapFormat

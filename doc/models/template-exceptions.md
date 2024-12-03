@@ -3,6 +3,8 @@
 
 where this template should not be applied to (takes precedence)
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `TemplateExceptions`
@@ -13,6 +15,7 @@ where this template should not be applied to (takes precedence)
 |  --- | --- | --- | --- |
 | `SiteIds` | `[]uuid.UUID` | Optional | list of site ids |
 | `SitegroupIds` | `[]uuid.UUID` | Optional | list of sitegroup ids |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@ where this template should not be applied to (takes precedence)
   ],
   "sitegroup_ids": [
     "0000039e-0000-0000-0000-000000000000"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

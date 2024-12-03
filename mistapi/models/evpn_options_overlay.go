@@ -7,8 +7,8 @@ import (
 // EvpnOptionsOverlay represents a EvpnOptionsOverlay struct.
 type EvpnOptionsOverlay struct {
     // Overlay BGP Local AS Number
-    As                   *int           `json:"as,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    As                   *int                   `json:"as,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnOptionsOverlay.
@@ -16,13 +16,17 @@ type EvpnOptionsOverlay struct {
 func (e EvpnOptionsOverlay) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "as"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EvpnOptionsOverlay object to a map representation for JSON marshaling.
 func (e EvpnOptionsOverlay) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.As != nil {
         structMap["as"] = e.As
     }
@@ -37,12 +41,12 @@ func (e *EvpnOptionsOverlay) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "as")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "as")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.As = temp.As
     return nil
 }

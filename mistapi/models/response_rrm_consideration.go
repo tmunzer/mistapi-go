@@ -8,8 +8,8 @@ import (
 
 // ResponseRrmConsideration represents a ResponseRrmConsideration struct.
 type ResponseRrmConsideration struct {
-    Results              []RrmConsideration `json:"results"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Results              []RrmConsideration     `json:"results"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseRrmConsideration.
@@ -17,13 +17,17 @@ type ResponseRrmConsideration struct {
 func (r ResponseRrmConsideration) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "results"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseRrmConsideration object to a map representation for JSON marshaling.
 func (r ResponseRrmConsideration) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["results"] = r.Results
     return structMap
 }
@@ -40,12 +44,12 @@ func (r *ResponseRrmConsideration) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "results")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "results")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Results = *temp.Results
     return nil
 }

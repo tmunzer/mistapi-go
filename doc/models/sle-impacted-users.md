@@ -1,6 +1,8 @@
 
 # Sle Impacted Users
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SleImpactedUsers`
@@ -18,6 +20,7 @@
 | `Start` | `float64` | Required | - |
 | `TotalCount` | `float64` | Required | - |
 | `Users` | [`[]models.SleImpactedUsersUser`](../../doc/models/sle-impacted-users-user.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,9 +46,17 @@
       "name": "name6",
       "ssid": "ssid4",
       "total": 90.24,
-      "wlan_id": "wlan_id8"
+      "wlan_id": "wlan_id8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -9,13 +9,13 @@ import (
 // StatsMxtunnelSession represents a StatsMxtunnelSession struct.
 type StatsMxtunnelSession struct {
     // remote sessions id (dynamically unless Tunnel is said to be static)
-    LocalSid             int            `json:"local_sid"`
+    LocalSid             int                    `json:"local_sid"`
     // WxlanTunnel Remote ID
-    RemoteId             string         `json:"remote_id"`
+    RemoteId             string                 `json:"remote_id"`
     // remote sessions id (dynamically unless Tunnel is said to be static)
-    RemoteSid            int            `json:"remote_sid"`
-    State                string         `json:"state"`
-    AdditionalProperties map[string]any `json:"_"`
+    RemoteSid            int                    `json:"remote_sid"`
+    State                string                 `json:"state"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxtunnelSession.
@@ -23,13 +23,17 @@ type StatsMxtunnelSession struct {
 func (s StatsMxtunnelSession) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "local_sid", "remote_id", "remote_sid", "state"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxtunnelSession object to a map representation for JSON marshaling.
 func (s StatsMxtunnelSession) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["local_sid"] = s.LocalSid
     structMap["remote_id"] = s.RemoteId
     structMap["remote_sid"] = s.RemoteSid
@@ -49,12 +53,12 @@ func (s *StatsMxtunnelSession) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "local_sid", "remote_id", "remote_sid", "state")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "local_sid", "remote_id", "remote_sid", "state")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.LocalSid = *temp.LocalSid
     s.RemoteId = *temp.RemoteId
     s.RemoteSid = *temp.RemoteSid

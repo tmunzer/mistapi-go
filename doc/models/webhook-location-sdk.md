@@ -3,6 +3,8 @@
 
 Location SDK sample
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookLocationSdk`
@@ -13,6 +15,7 @@ Location SDK sample
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationSdkEvent`](../../doc/models/webhook-location-sdk-event.md) | Required | list of events |
 | `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"location_sdk"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,10 +30,18 @@ Location SDK sample
       "timestamp": 1461220784,
       "type": "sdk",
       "x": 13.5,
-      "y": 3.2
+      "y": 3.2,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "location_sdk"
+  "topic": "location_sdk",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

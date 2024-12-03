@@ -6,8 +6,8 @@ import (
 
 // RrmBandMetricInterference represents a RrmBandMetricInterference struct.
 type RrmBandMetricInterference struct {
-    Radar                *float64       `json:"radar,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Radar                *float64               `json:"radar,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmBandMetricInterference.
@@ -15,13 +15,17 @@ type RrmBandMetricInterference struct {
 func (r RrmBandMetricInterference) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "radar"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RrmBandMetricInterference object to a map representation for JSON marshaling.
 func (r RrmBandMetricInterference) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Radar != nil {
         structMap["radar"] = r.Radar
     }
@@ -36,12 +40,12 @@ func (r *RrmBandMetricInterference) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "radar")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "radar")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Radar = temp.Radar
     return nil
 }

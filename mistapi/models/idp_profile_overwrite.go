@@ -10,10 +10,10 @@ type IdpProfileOverwrite struct {
     // * alert (default)
     // * drop: siliently dropping packets
     // * close: notify client/server to close connection
-    Action               *IdpProfileActionEnum `json:"action,omitempty"`
-    Matching             *IdpProfileMatching   `json:"matching,omitempty"`
-    Name                 *string               `json:"name,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Action               *IdpProfileActionEnum  `json:"action,omitempty"`
+    Matching             *IdpProfileMatching    `json:"matching,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for IdpProfileOverwrite.
@@ -21,13 +21,17 @@ type IdpProfileOverwrite struct {
 func (i IdpProfileOverwrite) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "action", "matching", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the IdpProfileOverwrite object to a map representation for JSON marshaling.
 func (i IdpProfileOverwrite) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.Action != nil {
         structMap["action"] = i.Action
     }
@@ -48,12 +52,12 @@ func (i *IdpProfileOverwrite) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "matching", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "matching", "name")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.Action = temp.Action
     i.Matching = temp.Matching
     i.Name = temp.Name

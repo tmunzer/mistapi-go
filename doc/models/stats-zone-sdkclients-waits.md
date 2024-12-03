@@ -3,6 +3,8 @@
 
 sdkclient wait time right now
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsZoneSdkclientsWaits`
@@ -15,6 +17,7 @@ sdkclient wait time right now
 | `Max` | `*float64` | Optional | longest wait time in seconds |
 | `Min` | `*float64` | Optional | shortest wait time in seconds |
 | `P95` | `*float64` | Optional | 95th percentile of all the wait time(s) |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@ sdkclient wait time right now
   "avg": 1200.0,
   "max": 3610.0,
   "min": 600.0,
-  "p95": 2800.0
+  "p95": 2800.0,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -8,9 +8,9 @@ import (
 
 // WxtagMatching represents a WxtagMatching struct.
 type WxtagMatching struct {
-    Mac                  string         `json:"mac"`
-    Since                int            `json:"since"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  string                 `json:"mac"`
+    Since                int                    `json:"since"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxtagMatching.
@@ -18,13 +18,17 @@ type WxtagMatching struct {
 func (w WxtagMatching) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "mac", "since"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WxtagMatching object to a map representation for JSON marshaling.
 func (w WxtagMatching) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["mac"] = w.Mac
     structMap["since"] = w.Since
     return structMap
@@ -42,12 +46,12 @@ func (w *WxtagMatching) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "since")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "since")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Mac = *temp.Mac
     w.Since = *temp.Since
     return nil

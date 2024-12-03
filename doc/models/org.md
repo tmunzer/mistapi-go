@@ -1,6 +1,8 @@
 
 # Org
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Org`
@@ -20,6 +22,7 @@
 | `Name` | `string` | Required | - |
 | `OrggroupIds` | `[]uuid.UUID` | Optional | - |
 | `SessionExpiry` | `*int` | Optional | **Default**: `1440`<br>**Constraints**: `>= 10`, `<= 20160` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,7 +37,11 @@
   "session_expiry": 1440,
   "alarmtemplate_id": "00000682-0000-0000-0000-000000000000",
   "created_time": 36.26,
-  "modified_time": 42.7
+  "modified_time": 42.7,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

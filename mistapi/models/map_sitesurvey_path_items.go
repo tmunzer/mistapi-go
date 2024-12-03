@@ -7,12 +7,12 @@ import (
 
 // MapSitesurveyPathItems represents a MapSitesurveyPathItems struct.
 type MapSitesurveyPathItems struct {
-    Coordinate           *string        `json:"coordinate,omitempty"`
+    Coordinate           *string                `json:"coordinate,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    Nodes                []MapNode      `json:"nodes,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    Nodes                []MapNode              `json:"nodes,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapSitesurveyPathItems.
@@ -20,13 +20,17 @@ type MapSitesurveyPathItems struct {
 func (m MapSitesurveyPathItems) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "coordinate", "id", "name", "nodes"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MapSitesurveyPathItems object to a map representation for JSON marshaling.
 func (m MapSitesurveyPathItems) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Coordinate != nil {
         structMap["coordinate"] = m.Coordinate
     }
@@ -50,12 +54,12 @@ func (m *MapSitesurveyPathItems) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "coordinate", "id", "name", "nodes")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "coordinate", "id", "name", "nodes")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Coordinate = temp.Coordinate
     m.Id = temp.Id
     m.Name = temp.Name

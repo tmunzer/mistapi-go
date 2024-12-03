@@ -102,7 +102,7 @@ VerifyTwoFactor(
 ctx := context.Background()
 
 body := models.TwoFactorCode{
-    TwoFactor: "123456",
+    TwoFactor:            "123456",
 }
 
 resp, err := selfMFA.VerifyTwoFactor(ctx, &body)

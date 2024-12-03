@@ -3,6 +3,8 @@
 
 MxTunnels statistics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsMxtunnel`
@@ -27,6 +29,7 @@ MxTunnels statistics
 | `State` | [`*models.StatsMxtunnelStateEnum`](../../doc/models/stats-mxtunnel-state-enum.md) | Optional | enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
 | `TxControlPkts` | `*int` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,7 +41,11 @@ MxTunnels statistics
   "for_site": false,
   "last_seen": 249.6,
   "mxcluster_id": "00001676-0000-0000-0000-000000000000",
-  "mxedge_id": "000015aa-0000-0000-0000-000000000000"
+  "mxedge_id": "000015aa-0000-0000-0000-000000000000",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

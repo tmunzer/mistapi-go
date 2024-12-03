@@ -50,7 +50,7 @@ type AdminPrivilege struct {
     // | `mxedge_admin` | `admin` | can view and manage Mist edges and Mist tunnels |
     // | `lobby_admin` | `admin` | full access to Org and Site Pre-shared keys |
     Views                *AdminPrivilegeViewEnum `json:"views,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AdminPrivilege.
@@ -58,13 +58,17 @@ type AdminPrivilege struct {
 func (a AdminPrivilege) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "msp_id", "msp_logo_url", "msp_name", "msp_url", "name", "org_id", "org_name", "orggroup_ids", "role", "scope", "site_id", "sitegroup_ids", "views"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AdminPrivilege object to a map representation for JSON marshaling.
 func (a AdminPrivilege) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.MspId != nil {
         structMap["msp_id"] = a.MspId
     }
@@ -119,12 +123,12 @@ func (a *AdminPrivilege) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "msp_id", "msp_logo_url", "msp_name", "msp_url", "name", "org_id", "org_name", "orggroup_ids", "role", "scope", "site_id", "sitegroup_ids", "views")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "msp_id", "msp_logo_url", "msp_name", "msp_url", "name", "org_id", "org_name", "orggroup_ids", "role", "scope", "site_id", "sitegroup_ids", "views")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.MspId = temp.MspId
     a.MspLogoUrl = temp.MspLogoUrl
     a.MspName = temp.MspName

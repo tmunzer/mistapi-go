@@ -49,24 +49,27 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Mxtunnel{
-    HelloInterval:     models.NewOptional(models.ToPointer(60)),
-    HelloRetries:      models.NewOptional(models.ToPointer(7)),
-    Ipsec:             models.ToPointer(models.MxtunnelIpsec{
-        DnsServers:  models.NewOptional(models.ToPointer([]string{
+    HelloInterval:        models.NewOptional(models.ToPointer(60)),
+    HelloRetries:         models.NewOptional(models.ToPointer(7)),
+    Ipsec:                models.ToPointer(models.MxtunnelIpsec{
+        DnsServers:           models.NewOptional(models.ToPointer([]string{
             "string",
         })),
-        Enabled:     models.ToPointer(true),
-        ExtraRoutes: []models.MxtunnelIpsecExtraRoute{
+        Enabled:              models.ToPointer(true),
+        ExtraRoutes:          []models.MxtunnelIpsecExtraRoute{
             models.MxtunnelIpsecExtraRoute{
-                Dest:    models.ToPointer("string"),
-                NextHop: models.ToPointer("192.168.0.1"),
+                Dest:                 models.ToPointer("string"),
+                NextHop:              models.ToPointer("192.168.0.1"),
             },
         },
-        SplitTunnel: models.ToPointer(true),
-        UseMxedge:   models.ToPointer(true),
+        SplitTunnel:          models.ToPointer(true),
+        UseMxedge:            models.ToPointer(true),
     }),
-    VlanIds:           []int{
+    VlanIds:              []int{
         0,
+    },
+    AdditionalProperties: map[string]interface{}{
+        "cluster_ids": interface{}("string"),
     },
 }
 
@@ -395,10 +398,10 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mxtunnelId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Mxtunnel{
-    HelloInterval:     models.NewOptional(models.ToPointer(60)),
-    HelloRetries:      models.NewOptional(models.ToPointer(7)),
-    Mtu:               models.ToPointer(0),
-    Protocol:          models.ToPointer(models.MxtunnelProtocolEnum("udp")),
+    HelloInterval:        models.NewOptional(models.ToPointer(60)),
+    HelloRetries:         models.NewOptional(models.ToPointer(7)),
+    Mtu:                  models.ToPointer(0),
+    Protocol:             models.ToPointer(models.MxtunnelProtocolEnum("udp")),
 }
 
 apiResponse, err := orgsMxTunnels.UpdateOrgMxTunnel(ctx, orgId, mxtunnelId, &body)

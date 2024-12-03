@@ -6,17 +6,17 @@ import (
 
 // StatsApRadioConfigBand represents a StatsApRadioConfigBand struct.
 type StatsApRadioConfigBand struct {
-    AllowRrmDisable        Optional[bool]    `json:"allow_rrm_disable"`
-    Bandwidth              Optional[float64] `json:"bandwidth"`
-    Channel                *int              `json:"channel,omitempty"`
-    Disabled               Optional[bool]    `json:"disabled"`
-    DynamicChainingEnabled Optional[bool]    `json:"dynamic_chaining_enabled"`
-    Power                  Optional[float64] `json:"power"`
-    PowerMax               Optional[float64] `json:"power_max"`
-    PowerMin               Optional[float64] `json:"power_min"`
-    RxChain                Optional[int]     `json:"rx_chain"`
-    TxChain                Optional[int]     `json:"tx_chain"`
-    AdditionalProperties   map[string]any    `json:"_"`
+    AllowRrmDisable        Optional[bool]         `json:"allow_rrm_disable"`
+    Bandwidth              Optional[float64]      `json:"bandwidth"`
+    Channel                *int                   `json:"channel,omitempty"`
+    Disabled               Optional[bool]         `json:"disabled"`
+    DynamicChainingEnabled Optional[bool]         `json:"dynamic_chaining_enabled"`
+    Power                  Optional[float64]      `json:"power"`
+    PowerMax               Optional[float64]      `json:"power_max"`
+    PowerMin               Optional[float64]      `json:"power_min"`
+    RxChain                Optional[int]          `json:"rx_chain"`
+    TxChain                Optional[int]          `json:"tx_chain"`
+    AdditionalProperties   map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApRadioConfigBand.
@@ -24,13 +24,17 @@ type StatsApRadioConfigBand struct {
 func (s StatsApRadioConfigBand) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "allow_rrm_disable", "bandwidth", "channel", "disabled", "dynamic_chaining_enabled", "power", "power_max", "power_min", "rx_chain", "tx_chain"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApRadioConfigBand object to a map representation for JSON marshaling.
 func (s StatsApRadioConfigBand) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AllowRrmDisable.IsValueSet() {
         if s.AllowRrmDisable.Value() != nil {
             structMap["allow_rrm_disable"] = s.AllowRrmDisable.Value()
@@ -108,12 +112,12 @@ func (s *StatsApRadioConfigBand) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "allow_rrm_disable", "bandwidth", "channel", "disabled", "dynamic_chaining_enabled", "power", "power_max", "power_min", "rx_chain", "tx_chain")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_rrm_disable", "bandwidth", "channel", "disabled", "dynamic_chaining_enabled", "power", "power_max", "power_min", "rx_chain", "tx_chain")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AllowRrmDisable = temp.AllowRrmDisable
     s.Bandwidth = temp.Bandwidth
     s.Channel = temp.Channel

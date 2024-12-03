@@ -8,12 +8,12 @@ import (
 
 // SleImpactSummaryBandItem represents a SleImpactSummaryBandItem struct.
 type SleImpactSummaryBandItem struct {
-    Band                 string         `json:"band"`
-    Degraded             float64        `json:"degraded"`
-    Duration             float64        `json:"duration"`
-    Name                 string         `json:"name"`
-    Total                float64        `json:"total"`
-    AdditionalProperties map[string]any `json:"_"`
+    Band                 string                 `json:"band"`
+    Degraded             float64                `json:"degraded"`
+    Duration             float64                `json:"duration"`
+    Name                 string                 `json:"name"`
+    Total                float64                `json:"total"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactSummaryBandItem.
@@ -21,13 +21,17 @@ type SleImpactSummaryBandItem struct {
 func (s SleImpactSummaryBandItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "band", "degraded", "duration", "name", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactSummaryBandItem object to a map representation for JSON marshaling.
 func (s SleImpactSummaryBandItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["band"] = s.Band
     structMap["degraded"] = s.Degraded
     structMap["duration"] = s.Duration
@@ -48,12 +52,12 @@ func (s *SleImpactSummaryBandItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band", "degraded", "duration", "name", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "degraded", "duration", "name", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Band = *temp.Band
     s.Degraded = *temp.Degraded
     s.Duration = *temp.Duration

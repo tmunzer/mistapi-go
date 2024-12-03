@@ -8,9 +8,9 @@ import (
 // AssetRssiZone represents a AssetRssiZone struct.
 type AssetRssiZone struct {
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Since                *float64       `json:"since,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Since                *float64               `json:"since,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetRssiZone.
@@ -18,13 +18,17 @@ type AssetRssiZone struct {
 func (a AssetRssiZone) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "id", "since"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AssetRssiZone object to a map representation for JSON marshaling.
 func (a AssetRssiZone) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Id != nil {
         structMap["id"] = a.Id
     }
@@ -42,12 +46,12 @@ func (a *AssetRssiZone) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "since")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "since")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Id = temp.Id
     a.Since = temp.Since
     return nil

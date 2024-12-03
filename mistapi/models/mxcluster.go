@@ -44,7 +44,7 @@ type Mxcluster struct {
     TuntermHostsSelection     *MxclusterTuntermHostsSelectionEnum   `json:"tunterm_hosts_selection,omitempty"`
     TuntermMonitoring         [][]TuntermMonitoringItem             `json:"tunterm_monitoring,omitempty"`
     TuntermMonitoringDisabled *bool                                 `json:"tunterm_monitoring_disabled,omitempty"`
-    AdditionalProperties      map[string]any                        `json:"_"`
+    AdditionalProperties      map[string]interface{}                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Mxcluster.
@@ -52,13 +52,17 @@ type Mxcluster struct {
 func (m Mxcluster) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "created_time", "for_site", "id", "mist_das", "mist_nac", "modified_time", "mxedge_mgmt", "name", "org_id", "proxy", "radsec", "radsec_tls", "site_id", "tunterm_ap_subnets", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_hosts", "tunterm_hosts_order", "tunterm_hosts_selection", "tunterm_monitoring", "tunterm_monitoring_disabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the Mxcluster object to a map representation for JSON marshaling.
 func (m Mxcluster) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.CreatedTime != nil {
         structMap["created_time"] = m.CreatedTime
     }
@@ -133,12 +137,12 @@ func (m *Mxcluster) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "for_site", "id", "mist_das", "mist_nac", "modified_time", "mxedge_mgmt", "name", "org_id", "proxy", "radsec", "radsec_tls", "site_id", "tunterm_ap_subnets", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_hosts", "tunterm_hosts_order", "tunterm_hosts_selection", "tunterm_monitoring", "tunterm_monitoring_disabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "mist_das", "mist_nac", "modified_time", "mxedge_mgmt", "name", "org_id", "proxy", "radsec", "radsec_tls", "site_id", "tunterm_ap_subnets", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_hosts", "tunterm_hosts_order", "tunterm_hosts_selection", "tunterm_monitoring", "tunterm_monitoring_disabled")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.CreatedTime = temp.CreatedTime
     m.ForSite = temp.ForSite
     m.Id = temp.Id

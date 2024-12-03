@@ -6,8 +6,8 @@ import (
 
 // MxclusterTuntermExtraRoute represents a MxclusterTuntermExtraRoute struct.
 type MxclusterTuntermExtraRoute struct {
-    Via                  *string        `json:"via,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Via                  *string                `json:"via,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterTuntermExtraRoute.
@@ -15,13 +15,17 @@ type MxclusterTuntermExtraRoute struct {
 func (m MxclusterTuntermExtraRoute) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "via"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxclusterTuntermExtraRoute object to a map representation for JSON marshaling.
 func (m MxclusterTuntermExtraRoute) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Via != nil {
         structMap["via"] = m.Via
     }
@@ -36,12 +40,12 @@ func (m *MxclusterTuntermExtraRoute) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "via")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "via")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Via = temp.Via
     return nil
 }

@@ -9,26 +9,26 @@ import (
 // InsightRogueAp represents a InsightRogueAp struct.
 type InsightRogueAp struct {
     // mac of the device that had strongest signal strength for ssid/bssid pair
-    ApMac                string         `json:"ap_mac"`
+    ApMac                string                 `json:"ap_mac"`
     // average signal strength of ap_mac for ssid/bssid pair
-    AvgRssi              float64        `json:"avg_rssi"`
+    AvgRssi              float64                `json:"avg_rssi"`
     // bssid of the network detected as threat
-    Bssid                string         `json:"bssid"`
+    Bssid                string                 `json:"bssid"`
     // channel over which ap_mac heard ssid/bssid pair
-    Channel              string         `json:"channel"`
+    Channel              string                 `json:"channel"`
     // X position relative to the reporting AP (`ap_mac`)
-    DeltaX               *float64       `json:"delta_x,omitempty"`
+    DeltaX               *float64               `json:"delta_x,omitempty"`
     // Y position relative to the reporting AP (`ap_mac`)
-    DeltaY               *float64       `json:"delta_y,omitempty"`
+    DeltaY               *float64               `json:"delta_y,omitempty"`
     // num of aps that heard the ssid/bssid pair
-    NumAps               int            `json:"num_aps"`
+    NumAps               int                    `json:"num_aps"`
     // whether the reporting AP see a wireless client (on LAN) connecting to it
-    SeenOnLan            *bool          `json:"seen_on_lan,omitempty"`
+    SeenOnLan            *bool                  `json:"seen_on_lan,omitempty"`
     // ssid of the network detected as threat
-    Ssid                 *string        `json:"ssid,omitempty"`
+    Ssid                 *string                `json:"ssid,omitempty"`
     // represents number of times the pair was heard in the interval. Each count roughly corresponds to a minute.
-    TimesHeard           *int           `json:"times_heard,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TimesHeard           *int                   `json:"times_heard,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for InsightRogueAp.
@@ -36,13 +36,17 @@ type InsightRogueAp struct {
 func (i InsightRogueAp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "ap_mac", "avg_rssi", "bssid", "channel", "delta_x", "delta_y", "num_aps", "seen_on_lan", "ssid", "times_heard"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the InsightRogueAp object to a map representation for JSON marshaling.
 func (i InsightRogueAp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     structMap["ap_mac"] = i.ApMac
     structMap["avg_rssi"] = i.AvgRssi
     structMap["bssid"] = i.Bssid
@@ -78,12 +82,12 @@ func (i *InsightRogueAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "avg_rssi", "bssid", "channel", "delta_x", "delta_y", "num_aps", "seen_on_lan", "ssid", "times_heard")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "avg_rssi", "bssid", "channel", "delta_x", "delta_y", "num_aps", "seen_on_lan", "ssid", "times_heard")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.ApMac = *temp.ApMac
     i.AvgRssi = *temp.AvgRssi
     i.Bssid = *temp.Bssid

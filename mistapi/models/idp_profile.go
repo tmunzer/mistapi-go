@@ -18,7 +18,7 @@ type IdpProfile struct {
     Name                 *string                    `json:"name,omitempty"`
     OrgId                *uuid.UUID                 `json:"org_id,omitempty"`
     Overwrites           []IdpProfileOverwrite      `json:"overwrites,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for IdpProfile.
@@ -26,13 +26,17 @@ type IdpProfile struct {
 func (i IdpProfile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "base_profile", "created_time", "id", "modified_time", "name", "org_id", "overwrites"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the IdpProfile object to a map representation for JSON marshaling.
 func (i IdpProfile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.BaseProfile != nil {
         structMap["base_profile"] = i.BaseProfile
     }
@@ -65,12 +69,12 @@ func (i *IdpProfile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "base_profile", "created_time", "id", "modified_time", "name", "org_id", "overwrites")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "base_profile", "created_time", "id", "modified_time", "name", "org_id", "overwrites")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.BaseProfile = temp.BaseProfile
     i.CreatedTime = temp.CreatedTime
     i.Id = temp.Id

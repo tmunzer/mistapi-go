@@ -3,6 +3,8 @@
 
 for zscaler-ipsec and zscaler-gre
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `TunnelProviderOptionsZscaler`
@@ -22,6 +24,7 @@ for zscaler-ipsec and zscaler-gre
 | `SubLocations` | [`[]models.TunnelProviderOptionsZscalerSubLocation`](../../doc/models/tunnel-provider-options-zscaler-sub-location.md) | Optional | if `use_xff`==`true` |
 | `UploadMbps` | `*int` | Optional | the download bandwidth cap of the link, in Mbps |
 | `UseXff` | `*bool` | Optional | location uses proxy chaining to forward traffic |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,7 +38,11 @@ for zscaler-ipsec and zscaler-gre
   "enable_caution": false,
   "enforce_authentication": false,
   "name": "guest-wifi",
-  "upload_mbps": 200
+  "upload_mbps": 200,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

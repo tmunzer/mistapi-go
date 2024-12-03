@@ -11,7 +11,7 @@ type OspfArea struct {
     Networks             map[string]OspfAreasNetwork `json:"networks,omitempty"`
     // OSPF type. enum: `default`, `nssa`, `stub`
     Type                 *OspfAreaTypeEnum           `json:"type,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OspfArea.
@@ -19,13 +19,17 @@ type OspfArea struct {
 func (o OspfArea) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "include_loopback", "networks", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OspfArea object to a map representation for JSON marshaling.
 func (o OspfArea) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.IncludeLoopback != nil {
         structMap["include_loopback"] = o.IncludeLoopback
     }
@@ -46,12 +50,12 @@ func (o *OspfArea) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "include_loopback", "networks", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "include_loopback", "networks", "type")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.IncludeLoopback = temp.IncludeLoopback
     o.Networks = temp.Networks
     o.Type = temp.Type

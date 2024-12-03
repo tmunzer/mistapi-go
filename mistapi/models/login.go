@@ -8,10 +8,10 @@ import (
 
 // Login represents a Login struct.
 type Login struct {
-    Email                string         `json:"email"`
-    Password             string         `json:"password"`
-    TwoFactor            *string        `json:"two_factor,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Email                string                 `json:"email"`
+    Password             string                 `json:"password"`
+    TwoFactor            *string                `json:"two_factor,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Login.
@@ -19,13 +19,17 @@ type Login struct {
 func (l Login) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(l.AdditionalProperties,
+        "email", "password", "two_factor"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(l.toMap())
 }
 
 // toMap converts the Login object to a map representation for JSON marshaling.
 func (l Login) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, l.AdditionalProperties)
+    MergeAdditionalProperties(structMap, l.AdditionalProperties)
     structMap["email"] = l.Email
     structMap["password"] = l.Password
     if l.TwoFactor != nil {
@@ -46,12 +50,12 @@ func (l *Login) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "email", "password", "two_factor")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "email", "password", "two_factor")
     if err != nil {
     	return err
     }
-    
     l.AdditionalProperties = additionalProperties
+    
     l.Email = *temp.Email
     l.Password = *temp.Password
     l.TwoFactor = temp.TwoFactor

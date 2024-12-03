@@ -9,12 +9,12 @@ import (
 // UtilsRrmOptimize represents a UtilsRrmOptimize struct.
 type UtilsRrmOptimize struct {
     // list of bands
-    Bands                []string       `json:"bands"`
+    Bands                []string               `json:"bands"`
     // targeting AP (neighbor APs may get changed, too), default is empty for ALL APs
-    Macs                 []string       `json:"macs,omitempty"`
+    Macs                 []string               `json:"macs,omitempty"`
     // only changng TX Power (will not disconnect clients)
-    TxpowerOnly          *bool          `json:"txpower_only,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TxpowerOnly          *bool                  `json:"txpower_only,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsRrmOptimize.
@@ -22,13 +22,17 @@ type UtilsRrmOptimize struct {
 func (u UtilsRrmOptimize) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "bands", "macs", "txpower_only"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsRrmOptimize object to a map representation for JSON marshaling.
 func (u UtilsRrmOptimize) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     structMap["bands"] = u.Bands
     if u.Macs != nil {
         structMap["macs"] = u.Macs
@@ -51,12 +55,12 @@ func (u *UtilsRrmOptimize) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bands", "macs", "txpower_only")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bands", "macs", "txpower_only")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Bands = *temp.Bands
     u.Macs = temp.Macs
     u.TxpowerOnly = temp.TxpowerOnly

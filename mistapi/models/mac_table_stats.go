@@ -6,9 +6,9 @@ import (
 
 // MacTableStats represents a MacTableStats struct.
 type MacTableStats struct {
-    MacTableCount          *int           `json:"mac_table_count,omitempty"`
-    MaxMacEntriesSupported *int           `json:"max_mac_entries_supported,omitempty"`
-    AdditionalProperties   map[string]any `json:"_"`
+    MacTableCount          *int                   `json:"mac_table_count,omitempty"`
+    MaxMacEntriesSupported *int                   `json:"max_mac_entries_supported,omitempty"`
+    AdditionalProperties   map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MacTableStats.
@@ -16,13 +16,17 @@ type MacTableStats struct {
 func (m MacTableStats) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "mac_table_count", "max_mac_entries_supported"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MacTableStats object to a map representation for JSON marshaling.
 func (m MacTableStats) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.MacTableCount != nil {
         structMap["mac_table_count"] = m.MacTableCount
     }
@@ -40,12 +44,12 @@ func (m *MacTableStats) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac_table_count", "max_mac_entries_supported")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac_table_count", "max_mac_entries_supported")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.MacTableCount = temp.MacTableCount
     m.MaxMacEntriesSupported = temp.MaxMacEntriesSupported
     return nil

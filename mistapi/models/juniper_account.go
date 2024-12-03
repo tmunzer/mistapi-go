@@ -6,9 +6,9 @@ import (
 
 // JuniperAccount represents a JuniperAccount struct.
 type JuniperAccount struct {
-    LinkedBy             *string        `json:"linked_by,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    LinkedBy             *string                `json:"linked_by,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for JuniperAccount.
@@ -16,13 +16,17 @@ type JuniperAccount struct {
 func (j JuniperAccount) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(j.AdditionalProperties,
+        "linked_by", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(j.toMap())
 }
 
 // toMap converts the JuniperAccount object to a map representation for JSON marshaling.
 func (j JuniperAccount) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, j.AdditionalProperties)
+    MergeAdditionalProperties(structMap, j.AdditionalProperties)
     if j.LinkedBy != nil {
         structMap["linked_by"] = j.LinkedBy
     }
@@ -40,12 +44,12 @@ func (j *JuniperAccount) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "linked_by", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "linked_by", "name")
     if err != nil {
     	return err
     }
-    
     j.AdditionalProperties = additionalProperties
+    
     j.LinkedBy = temp.LinkedBy
     j.Name = temp.Name
     return nil

@@ -3,6 +3,8 @@
 
 MxTunnel
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Mxtunnel`
@@ -27,6 +29,7 @@ MxTunnel
 | `Protocol` | [`*models.MxtunnelProtocolEnum`](../../doc/models/mxtunnel-protocol-enum.md) | Optional | enum: `ip`, `udp`<br>**Default**: `"udp"` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `VlanIds` | `[]int` | Optional | list of vlan_ids that will be used |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,10 +49,18 @@ MxTunnel
   "auto_preemption": {
     "day_of_week": "mon",
     "enabled": false,
-    "time_of_day": "time_of_day4"
+    "time_of_day": "time_of_day4",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "created_time": 69.9,
-  "for_site": false
+  "for_site": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

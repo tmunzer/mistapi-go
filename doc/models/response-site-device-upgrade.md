@@ -1,6 +1,8 @@
 
 # Response Site Device Upgrade
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseSiteDeviceUpgrade`
@@ -22,6 +24,7 @@
 | `Strategy` | [`*models.DeviceUpgradeStrategyEnum`](../../doc/models/device-upgrade-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)<br>**Default**: `"big_bang"` |
 | `TargetVersion` | `*string` | Optional | version to upgrade to<br>**Constraints**: *Minimum Length*: `1` |
 | `UpgradePlan` | `*interface{}` | Optional | a dictionary of rrm phase number to devices part of that phase |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,12 +37,20 @@
     "downloaded": 70,
     "failed": 166,
     "reboot_in_progress": 88,
-    "rebooted": 76
+    "rebooted": 76,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "current_phase": 156,
   "enable_p2p": false,
   "force": false,
-  "max_failure_percentage": 22
+  "max_failure_percentage": 22,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -6,17 +6,17 @@ import (
 
 // StatsGatewayServiceStatus represents a StatsGatewayServiceStatus struct.
 type StatsGatewayServiceStatus struct {
-    AppidInstallResult    *string        `json:"appid_install_result,omitempty"`
-    AppidInstallTimestamp *string        `json:"appid_install_timestamp,omitempty"`
-    AppidStatus           *string        `json:"appid_status,omitempty"`
-    AppidVersion          *int           `json:"appid_version,omitempty"`
-    EwfStatus             *string        `json:"ewf_status,omitempty"`
-    IdpInstallResult      *string        `json:"idp_install_result,omitempty"`
-    IdpInstallTimestamp   *string        `json:"idp_install_timestamp,omitempty"`
-    IdpPolicy             *string        `json:"idp_policy,omitempty"`
-    IdpStatus             *string        `json:"idp_status,omitempty"`
-    IdpUpdateTimestamp    *string        `json:"idp_update_timestamp,omitempty"`
-    AdditionalProperties  map[string]any `json:"_"`
+    AppidInstallResult    *string                `json:"appid_install_result,omitempty"`
+    AppidInstallTimestamp *string                `json:"appid_install_timestamp,omitempty"`
+    AppidStatus           *string                `json:"appid_status,omitempty"`
+    AppidVersion          *int                   `json:"appid_version,omitempty"`
+    EwfStatus             *string                `json:"ewf_status,omitempty"`
+    IdpInstallResult      *string                `json:"idp_install_result,omitempty"`
+    IdpInstallTimestamp   *string                `json:"idp_install_timestamp,omitempty"`
+    IdpPolicy             *string                `json:"idp_policy,omitempty"`
+    IdpStatus             *string                `json:"idp_status,omitempty"`
+    IdpUpdateTimestamp    *string                `json:"idp_update_timestamp,omitempty"`
+    AdditionalProperties  map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGatewayServiceStatus.
@@ -24,13 +24,17 @@ type StatsGatewayServiceStatus struct {
 func (s StatsGatewayServiceStatus) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "appid_install_result", "appid_install_timestamp", "appid_status", "appid_version", "ewf_status", "idp_install_result", "idp_install_timestamp", "idp_policy", "idp_status", "idp_update_timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsGatewayServiceStatus object to a map representation for JSON marshaling.
 func (s StatsGatewayServiceStatus) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AppidInstallResult != nil {
         structMap["appid_install_result"] = s.AppidInstallResult
     }
@@ -72,12 +76,12 @@ func (s *StatsGatewayServiceStatus) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "appid_install_result", "appid_install_timestamp", "appid_status", "appid_version", "ewf_status", "idp_install_result", "idp_install_timestamp", "idp_policy", "idp_status", "idp_update_timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "appid_install_result", "appid_install_timestamp", "appid_status", "appid_version", "ewf_status", "idp_install_result", "idp_install_timestamp", "idp_policy", "idp_status", "idp_update_timestamp")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AppidInstallResult = temp.AppidInstallResult
     s.AppidInstallTimestamp = temp.AppidInstallTimestamp
     s.AppidStatus = temp.AppidStatus

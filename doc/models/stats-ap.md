@@ -3,6 +3,8 @@
 
 AP statistics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsAp`
@@ -76,6 +78,7 @@ AP statistics
 | `Version` | `models.Optional[string]` | Optional | - |
 | `X` | `models.Optional[float64]` | Optional | - |
 | `Y` | `models.Optional[float64]` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -123,25 +126,49 @@ AP statistics
       "probability_surface": {
         "radius": 74.96,
         "radius_m": 19.46,
-        "x": 93.54
+        "x": 93.54,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      },
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
       }
     },
     "recommended_anchor": false,
     "status": "status4",
     "status_detail": "status_detail0",
-    "use_auto_placement": false
+    "use_auto_placement": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "auto_upgrade_stat": {
-    "lastcheck": 28
+    "lastcheck": 28,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "ble_stat": {
     "beacon_enabled": false,
     "beacon_rate": 78,
     "eddystone_uid_enabled": false,
     "eddystone_uid_freq_msec": 132,
-    "eddystone_uid_instance": "eddystone_uid_instance6"
+    "eddystone_uid_instance": "eddystone_uid_instance6",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "config_reverted": false
+  "config_reverted": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

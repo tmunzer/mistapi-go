@@ -3,6 +3,8 @@
 
 SDK invite
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Sdkinvite`
@@ -21,6 +23,7 @@ SDK invite
 | `Quota` | `*int` | Optional | number of time this invite can be used |
 | `QuotaLimited` | `*bool` | Optional | whether quota limiting is enabled<br>**Default**: `false` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,7 +37,11 @@ SDK invite
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "created_time": 203.14,
   "expire_time": 100,
-  "modified_time": 131.82
+  "modified_time": 131.82,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

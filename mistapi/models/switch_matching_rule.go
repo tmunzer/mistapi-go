@@ -11,8 +11,7 @@ import (
 // * `match_model[0-8]`: switch model must match the first 8 letters of the property value
 // * `match_role`: switch role must match the property value
 type SwitchMatchingRule struct {
-    // additional CLI commands to append to the generated Junos config
-    // **Note**: no check is done
+    // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds []string                               `json:"additional_config_cmds,omitempty"`
     // In-Band Management interface configuration
     IpConfig             *SwitchMatchingRuleIpConfig            `json:"ip_config,omitempty"`
@@ -26,7 +25,7 @@ type SwitchMatchingRule struct {
     PortMirroring        map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     // Switch settings
     SwitchMgmt           *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
-    AdditionalProperties map[string]any                         `json:"_"`
+    AdditionalProperties map[string]string                      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMatchingRule.
@@ -34,13 +33,17 @@ type SwitchMatchingRule struct {
 func (s SwitchMatchingRule) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "additional_config_cmds", "ip_config", "name", "oob_ip_config", "port_config", "port_mirroring", "switch_mgmt"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchMatchingRule object to a map representation for JSON marshaling.
 func (s SwitchMatchingRule) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AdditionalConfigCmds != nil {
         structMap["additional_config_cmds"] = s.AdditionalConfigCmds
     }
@@ -73,12 +76,12 @@ func (s *SwitchMatchingRule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "ip_config", "name", "oob_ip_config", "port_config", "port_mirroring", "switch_mgmt")
+    additionalProperties, err := ExtractAdditionalProperties[string](input, "additional_config_cmds", "ip_config", "name", "oob_ip_config", "port_config", "port_mirroring", "switch_mgmt")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AdditionalConfigCmds = temp.AdditionalConfigCmds
     s.IpConfig = temp.IpConfig
     s.Name = temp.Name

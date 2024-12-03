@@ -4,6 +4,8 @@
 Switch storm control
 Only if `mode`!=`dynamic`
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SwitchPortUsageStormControl`
@@ -17,6 +19,7 @@ Only if `mode`!=`dynamic`
 | `NoRegisteredMulticast` | `*bool` | Optional | whether to disable storm control on registered multicast traffic<br>**Default**: `false` |
 | `NoUnknownUnicast` | `*bool` | Optional | whether to disable storm control on unknown unicast traffic<br>**Default**: `false` |
 | `Percentage` | `*int` | Optional | bandwidth-percentage, configures the storm control level as a percentage of the available bandwidth<br>**Default**: `80`<br>**Constraints**: `>= 0`, `<= 100` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,7 +29,11 @@ Only if `mode`!=`dynamic`
   "no_multicast": false,
   "no_registered_multicast": false,
   "no_unknown_unicast": false,
-  "percentage": 80
+  "percentage": 80,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -13,7 +13,7 @@ type PskPortalTemplate struct {
     Logo                 Optional[string]             `json:"logo"`
     // whether to hide "Powered by Juniper Mist" and email footers
     PoweredBy            *bool                        `json:"poweredBy,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalTemplate.
@@ -21,13 +21,17 @@ type PskPortalTemplate struct {
 func (p PskPortalTemplate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "alignment", "color", "logo", "poweredBy"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the PskPortalTemplate object to a map representation for JSON marshaling.
 func (p PskPortalTemplate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.Alignment != nil {
         structMap["alignment"] = p.Alignment
     }
@@ -55,12 +59,12 @@ func (p *PskPortalTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "alignment", "color", "logo", "poweredBy")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alignment", "color", "logo", "poweredBy")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.Alignment = temp.Alignment
     p.Color = temp.Color
     p.Logo = temp.Logo

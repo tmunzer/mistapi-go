@@ -3,6 +3,8 @@
 
 Support Ticket
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Ticket`
@@ -21,6 +23,7 @@ Support Ticket
 | `Subject` | `string` | Required | - |
 | `Type` | `string` | Required | question (default) / bug / critical |
 | `UpdatedAt` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,12 +46,20 @@ Support Ticket
           "content_url": "content_url4",
           "created_at": 174,
           "file_name": "file_name8",
-          "id": "000001f4-0000-0000-0000-000000000000"
+          "id": "000001f4-0000-0000-0000-000000000000",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "author": "author2",
       "comment": "comment8",
-      "created_at": 176
+      "created_at": 176,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "attachment_ids": [
@@ -62,12 +73,20 @@ Support Ticket
           "content_url": "content_url4",
           "created_at": 174,
           "file_name": "file_name8",
-          "id": "000001f4-0000-0000-0000-000000000000"
+          "id": "000001f4-0000-0000-0000-000000000000",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "author": "author2",
       "comment": "comment8",
-      "created_at": 176
+      "created_at": 176,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "attachment_ids": [
@@ -81,16 +100,28 @@ Support Ticket
           "content_url": "content_url4",
           "created_at": 174,
           "file_name": "file_name8",
-          "id": "000001f4-0000-0000-0000-000000000000"
+          "id": "000001f4-0000-0000-0000-000000000000",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "author": "author2",
       "comment": "comment8",
-      "created_at": 176
+      "created_at": 176,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "created_at": 160,
-  "requester": "requester8"
+  "requester": "requester8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

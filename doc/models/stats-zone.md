@@ -3,6 +3,8 @@
 
 Zone statistics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsZone`
@@ -27,6 +29,7 @@ Zone statistics
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Vertices` | [`[]models.ZoneVertex`](../../doc/models/zone-vertex.md) | Optional | vertices used to define an area. It’s assumed that the last point connects to the first point and forms an closed area |
 | `VerticesM` | [`[]models.ZoneVertexM`](../../doc/models/zone-vertex-m.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -81,16 +84,28 @@ Zone statistics
     "avg": 81.08,
     "max": 149.16,
     "min": 75.74,
-    "p95": 47.26
+    "p95": 47.26,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "clients_waits": {
     "avg": 73.04,
     "max": 141.12,
     "min": 188.3,
-    "p95": 39.22
+    "p95": 39.22,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "created_time": 13.1,
-  "modified_time": 65.86
+  "modified_time": 65.86,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

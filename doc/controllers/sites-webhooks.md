@@ -195,18 +195,18 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Webhook{
-    Enabled:            models.ToPointer(true),
-    Headers:            models.NewOptional(models.ToPointer(map[string]string{
+    Enabled:              models.ToPointer(true),
+    Headers:              models.NewOptional(models.ToPointer(map[string]string{
     })),
-    Name:               models.NewOptional(models.ToPointer("string")),
-    Secret:             models.NewOptional(models.ToPointer("string")),
-    SplunkToken:        models.NewOptional(models.ToPointer("string")),
-    Topics:             []string{
+    Name:                 models.NewOptional(models.ToPointer("string")),
+    Secret:               models.NewOptional(models.ToPointer("string")),
+    SplunkToken:          models.NewOptional(models.ToPointer("string")),
+    Topics:               []string{
         "location",
     },
-    Type:               models.ToPointer(models.WebhookTypeEnum("http-post")),
-    Url:                models.ToPointer("string"),
-    VerifyCert:         models.ToPointer(true),
+    Type:                 models.ToPointer(models.WebhookTypeEnum("http-post")),
+    Url:                  models.ToPointer("string"),
+    VerifyCert:           models.ToPointer(true),
 }
 
 apiResponse, err := sitesWebhooks.CreateSiteWebhook(ctx, siteId, &body)
@@ -676,18 +676,18 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 webhookId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Webhook{
-    Enabled:            models.ToPointer(true),
-    Headers:            models.NewOptional(models.ToPointer(map[string]string{
+    Enabled:              models.ToPointer(true),
+    Headers:              models.NewOptional(models.ToPointer(map[string]string{
     })),
-    Name:               models.NewOptional(models.ToPointer("string")),
-    Secret:             models.NewOptional(models.ToPointer("string")),
-    SplunkToken:        models.NewOptional(models.ToPointer("string")),
-    Topics:             []string{
+    Name:                 models.NewOptional(models.ToPointer("string")),
+    Secret:               models.NewOptional(models.ToPointer("string")),
+    SplunkToken:          models.NewOptional(models.ToPointer("string")),
+    Topics:               []string{
         "location",
     },
-    Type:               models.ToPointer(models.WebhookTypeEnum("http-post")),
-    Url:                models.ToPointer("string"),
-    VerifyCert:         models.ToPointer(true),
+    Type:                 models.ToPointer(models.WebhookTypeEnum("http-post")),
+    Url:                  models.ToPointer("string"),
+    VerifyCert:           models.ToPointer(true),
 }
 
 apiResponse, err := sitesWebhooks.UpdateSiteWebhook(ctx, siteId, webhookId, &body)

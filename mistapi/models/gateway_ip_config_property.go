@@ -6,13 +6,13 @@ import (
 
 // GatewayIpConfigProperty represents a GatewayIpConfigProperty struct.
 type GatewayIpConfigProperty struct {
-    Ip                   *string        `json:"ip,omitempty"`
-    Netmask              *string        `json:"netmask,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
+    Netmask              *string                `json:"netmask,omitempty"`
     // optional list of secondary IPs in CIDR format
-    SecondaryIps         []string       `json:"secondary_ips,omitempty"`
+    SecondaryIps         []string               `json:"secondary_ips,omitempty"`
     // enum: `dhcp`, `static`
-    Type                 *IpTypeEnum    `json:"type,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Type                 *IpTypeEnum            `json:"type,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayIpConfigProperty.
@@ -20,13 +20,17 @@ type GatewayIpConfigProperty struct {
 func (g GatewayIpConfigProperty) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "ip", "netmask", "secondary_ips", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayIpConfigProperty object to a map representation for JSON marshaling.
 func (g GatewayIpConfigProperty) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Ip != nil {
         structMap["ip"] = g.Ip
     }
@@ -50,12 +54,12 @@ func (g *GatewayIpConfigProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ip", "netmask", "secondary_ips", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ip", "netmask", "secondary_ips", "type")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Ip = temp.Ip
     g.Netmask = temp.Netmask
     g.SecondaryIps = temp.SecondaryIps

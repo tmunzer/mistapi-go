@@ -1,6 +1,8 @@
 
 # Sle Impacted Aps
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SleImpactedAps`
@@ -18,6 +20,7 @@
 | `Page` | `float64` | Required | - |
 | `Start` | `float64` | Required | - |
 | `TotalCount` | `float64` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
       "degraded": 30.24,
       "duration": 159.3,
       "name": "name4",
-      "total": 197.76
+      "total": 197.76,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "classifier": "classifier2",
@@ -39,7 +46,11 @@
   "metric": "metric2",
   "page": 129.22,
   "start": 206.0,
-  "total_count": 64.12
+  "total_count": 64.12,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

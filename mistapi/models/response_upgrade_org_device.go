@@ -9,7 +9,7 @@ import (
 type ResponseUpgradeOrgDevice struct {
     SiteId               *uuid.UUID               `json:"site_id,omitempty"`
     Upgrade              *UpgradeOrgDeviceUpgrade `json:"upgrade,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseUpgradeOrgDevice.
@@ -17,13 +17,17 @@ type ResponseUpgradeOrgDevice struct {
 func (r ResponseUpgradeOrgDevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "site_id", "upgrade"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseUpgradeOrgDevice object to a map representation for JSON marshaling.
 func (r ResponseUpgradeOrgDevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.SiteId != nil {
         structMap["site_id"] = r.SiteId
     }
@@ -41,12 +45,12 @@ func (r *ResponseUpgradeOrgDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "site_id", "upgrade")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "site_id", "upgrade")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.SiteId = temp.SiteId
     r.Upgrade = temp.Upgrade
     return nil

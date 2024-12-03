@@ -3,6 +3,8 @@
 
 version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nIgnored if distro upgrade, `tunterm`, `radsecproxy`, `mxagent`, `mxocproxy`, `mxdas` or `mxnacedge`
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MxedgeUpgradeVersion`
@@ -16,6 +18,7 @@ version to upgrade for each service, `current` / `latest` / `default` / specific
 | `Mxocproxy` | `*string` | Optional | **Default**: `"current"` |
 | `Radsecproxy` | `*string` | Optional | **Default**: `"current"` |
 | `Tunterm` | `string` | Required | **Default**: `"current"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@ version to upgrade for each service, `current` / `latest` / `default` / specific
   "mxdas": "current",
   "mxocproxy": "current",
   "radsecproxy": "current",
-  "tunterm": "current"
+  "tunterm": "current",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

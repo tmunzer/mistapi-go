@@ -8,9 +8,9 @@ import (
 
 // MxedgeTuntermOtherIpConfig represents a MxedgeTuntermOtherIpConfig struct.
 type MxedgeTuntermOtherIpConfig struct {
-    Ip                   string         `json:"ip"`
-    Netmask              string         `json:"netmask"`
-    AdditionalProperties map[string]any `json:"_"`
+    Ip                   string                 `json:"ip"`
+    Netmask              string                 `json:"netmask"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermOtherIpConfig.
@@ -18,13 +18,17 @@ type MxedgeTuntermOtherIpConfig struct {
 func (m MxedgeTuntermOtherIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "ip", "netmask"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeTuntermOtherIpConfig object to a map representation for JSON marshaling.
 func (m MxedgeTuntermOtherIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["ip"] = m.Ip
     structMap["netmask"] = m.Netmask
     return structMap
@@ -42,12 +46,12 @@ func (m *MxedgeTuntermOtherIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ip", "netmask")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ip", "netmask")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Ip = *temp.Ip
     m.Netmask = *temp.Netmask
     return nil

@@ -9,16 +9,16 @@ import (
 // AccountMobicontrolConfig represents a AccountMobicontrolConfig struct.
 type AccountMobicontrolConfig struct {
     // customer account Client ID
-    ClientId             string         `json:"client_id"`
+    ClientId             string                 `json:"client_id"`
     // customer account Client Secret
-    ClientSecret         string         `json:"client_secret"`
+    ClientSecret         string                 `json:"client_secret"`
     // customer account MobiControl instance URL
-    InstanceUrl          string         `json:"instance_url"`
+    InstanceUrl          string                 `json:"instance_url"`
     // customer account password instance URL
-    Password             string         `json:"password"`
+    Password             string                 `json:"password"`
     // customer account username
-    Username             string         `json:"username"`
-    AdditionalProperties map[string]any `json:"_"`
+    Username             string                 `json:"username"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountMobicontrolConfig.
@@ -26,13 +26,17 @@ type AccountMobicontrolConfig struct {
 func (a AccountMobicontrolConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "client_id", "client_secret", "instance_url", "password", "username"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AccountMobicontrolConfig object to a map representation for JSON marshaling.
 func (a AccountMobicontrolConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     structMap["client_id"] = a.ClientId
     structMap["client_secret"] = a.ClientSecret
     structMap["instance_url"] = a.InstanceUrl
@@ -53,12 +57,12 @@ func (a *AccountMobicontrolConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "client_id", "client_secret", "instance_url", "password", "username")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "client_id", "client_secret", "instance_url", "password", "username")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.ClientId = *temp.ClientId
     a.ClientSecret = *temp.ClientSecret
     a.InstanceUrl = *temp.InstanceUrl

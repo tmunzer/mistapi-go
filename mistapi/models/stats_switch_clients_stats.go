@@ -7,7 +7,7 @@ import (
 // StatsSwitchClientsStats represents a StatsSwitchClientsStats struct.
 type StatsSwitchClientsStats struct {
     Total                *StatsSwitchClientsStatsTotal `json:"total,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchClientsStats.
@@ -15,13 +15,17 @@ type StatsSwitchClientsStats struct {
 func (s StatsSwitchClientsStats) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsSwitchClientsStats object to a map representation for JSON marshaling.
 func (s StatsSwitchClientsStats) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Total != nil {
         structMap["total"] = s.Total.toMap()
     }
@@ -36,12 +40,12 @@ func (s *StatsSwitchClientsStats) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Total = temp.Total
     return nil
 }

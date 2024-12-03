@@ -3,6 +3,8 @@
 
 Coordinates representing a circle where the AP is most likely exists in the event of an inaccurate placement result
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsApAutoPlacementInfoProbabilitySurface`
@@ -14,6 +16,7 @@ Coordinates representing a circle where the AP is most likely exists in the even
 | `Radius` | `*float64` | Optional | The radius representing placement uncertainty, measured in pixels |
 | `RadiusM` | `*float64` | Optional | The radius representing placement uncertainty, measured in meters |
 | `X` | `*float64` | Optional | Y-coordinate of the potential placement’s center, measured in pixels |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,11 @@ Coordinates representing a circle where the AP is most likely exists in the even
 {
   "radius": 2.1,
   "x": 17.0,
-  "radius_m": 200.0
+  "radius_m": 200.0,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -14,7 +14,7 @@ type SiteMxtunnelAdditionalMxtunnel struct {
     // enum: `ip`, `udp`
     Protocol             *SiteMxtunnelProtocolEnum `json:"protocol,omitempty"`
     VlanIds              []int                     `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteMxtunnelAdditionalMxtunnel.
@@ -22,13 +22,17 @@ type SiteMxtunnelAdditionalMxtunnel struct {
 func (s SiteMxtunnelAdditionalMxtunnel) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "clusters", "hello_interval", "hello_retries", "protocol", "vlan_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteMxtunnelAdditionalMxtunnel object to a map representation for JSON marshaling.
 func (s SiteMxtunnelAdditionalMxtunnel) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Clusters != nil {
         structMap["clusters"] = s.Clusters
     }
@@ -55,12 +59,12 @@ func (s *SiteMxtunnelAdditionalMxtunnel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "clusters", "hello_interval", "hello_retries", "protocol", "vlan_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clusters", "hello_interval", "hello_retries", "protocol", "vlan_ids")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Clusters = temp.Clusters
     s.HelloInterval = temp.HelloInterval
     s.HelloRetries = temp.HelloRetries

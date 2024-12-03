@@ -7,16 +7,16 @@ import (
 // SamlMetadata represents a SamlMetadata struct.
 type SamlMetadata struct {
     // if `idp_type`==`saml`
-    AcsUrl               *string        `json:"acs_url,omitempty"`
+    AcsUrl               *string                `json:"acs_url,omitempty"`
     // if `idp_type`==`saml`
-    EntityId             *string        `json:"entity_id,omitempty"`
+    EntityId             *string                `json:"entity_id,omitempty"`
     // if `idp_type`==`saml`
-    LogoutUrl            *string        `json:"logout_url,omitempty"`
+    LogoutUrl            *string                `json:"logout_url,omitempty"`
     // if `idp_type`==`saml`
-    Metadata             *string        `json:"metadata,omitempty"`
+    Metadata             *string                `json:"metadata,omitempty"`
     // if `idp_type`==`oauth` and `scim_enabled`==`true`
-    ScimBaseUrl          *string        `json:"scim_base_url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ScimBaseUrl          *string                `json:"scim_base_url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SamlMetadata.
@@ -24,13 +24,17 @@ type SamlMetadata struct {
 func (s SamlMetadata) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "acs_url", "entity_id", "logout_url", "metadata", "scim_base_url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SamlMetadata object to a map representation for JSON marshaling.
 func (s SamlMetadata) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AcsUrl != nil {
         structMap["acs_url"] = s.AcsUrl
     }
@@ -57,12 +61,12 @@ func (s *SamlMetadata) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acs_url", "entity_id", "logout_url", "metadata", "scim_base_url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acs_url", "entity_id", "logout_url", "metadata", "scim_base_url")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AcsUrl = temp.AcsUrl
     s.EntityId = temp.EntityId
     s.LogoutUrl = temp.LogoutUrl

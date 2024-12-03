@@ -9,8 +9,8 @@ import (
 // BinaryStream represents a BinaryStream struct.
 type BinaryStream struct {
     // file to updload
-    File                 []byte         `json:"file"`
-    AdditionalProperties map[string]any `json:"_"`
+    File                 []byte                 `json:"file"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for BinaryStream.
@@ -18,13 +18,17 @@ type BinaryStream struct {
 func (b BinaryStream) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(b.AdditionalProperties,
+        "file"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(b.toMap())
 }
 
 // toMap converts the BinaryStream object to a map representation for JSON marshaling.
 func (b BinaryStream) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, b.AdditionalProperties)
+    MergeAdditionalProperties(structMap, b.AdditionalProperties)
     structMap["file"] = b.File
     return structMap
 }
@@ -41,12 +45,12 @@ func (b *BinaryStream) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "file")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "file")
     if err != nil {
     	return err
     }
-    
     b.AdditionalProperties = additionalProperties
+    
     b.File = *temp.File
     return nil
 }

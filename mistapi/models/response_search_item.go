@@ -10,10 +10,10 @@ import (
 // ResponseSearchItem represents a ResponseSearchItem struct.
 type ResponseSearchItem struct {
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID      `json:"id"`
-    Text                 string         `json:"text"`
-    Type                 string         `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   uuid.UUID              `json:"id"`
+    Text                 string                 `json:"text"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSearchItem.
@@ -21,13 +21,17 @@ type ResponseSearchItem struct {
 func (r ResponseSearchItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "id", "text", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSearchItem object to a map representation for JSON marshaling.
 func (r ResponseSearchItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["id"] = r.Id
     structMap["text"] = r.Text
     structMap["type"] = r.Type
@@ -46,12 +50,12 @@ func (r *ResponseSearchItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "text", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "text", "type")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Id = *temp.Id
     r.Text = *temp.Text
     r.Type = *temp.Type

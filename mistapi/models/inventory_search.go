@@ -9,7 +9,7 @@ type InventorySearch struct {
     Limit                *int                    `json:"limit,omitempty"`
     Page                 *int                    `json:"page,omitempty"`
     Results              []InventorySearchResult `json:"results,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for InventorySearch.
@@ -17,13 +17,17 @@ type InventorySearch struct {
 func (i InventorySearch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "limit", "page", "results"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the InventorySearch object to a map representation for JSON marshaling.
 func (i InventorySearch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.Limit != nil {
         structMap["limit"] = i.Limit
     }
@@ -44,12 +48,12 @@ func (i *InventorySearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "limit", "page", "results")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "limit", "page", "results")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.Limit = temp.Limit
     i.Page = temp.Page
     i.Results = temp.Results

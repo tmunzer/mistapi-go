@@ -12,7 +12,7 @@ type NetworkMulticast struct {
     Enabled              *bool                            `json:"enabled,omitempty"`
     // Group address to RP (rendezvous point) mapping. Property Key is the CIDR (example "225.1.0.3/32")
     Groups               map[string]NetworkMulticastGroup `json:"groups,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkMulticast.
@@ -20,13 +20,17 @@ type NetworkMulticast struct {
 func (n NetworkMulticast) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "disable_igmp", "enabled", "groups"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NetworkMulticast object to a map representation for JSON marshaling.
 func (n NetworkMulticast) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.DisableIgmp != nil {
         structMap["disable_igmp"] = n.DisableIgmp
     }
@@ -47,12 +51,12 @@ func (n *NetworkMulticast) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disable_igmp", "enabled", "groups")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_igmp", "enabled", "groups")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.DisableIgmp = temp.DisableIgmp
     n.Enabled = temp.Enabled
     n.Groups = temp.Groups

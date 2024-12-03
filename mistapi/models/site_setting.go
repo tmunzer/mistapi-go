@@ -11,8 +11,7 @@ type SiteSetting struct {
     AclPolicies                     []AclPolicy                            `json:"acl_policies,omitempty"`
     // ACL Tags to identify traffic source or destination. Key name is the tag name
     AclTags                         map[string]AclTag                      `json:"acl_tags,omitempty"`
-    // additional CLI commands to append to the generated Junos config
-    // **Note**: no check is done
+    // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds            []string                               `json:"additional_config_cmds,omitempty"`
     Analytic                        *SiteSettingAnalytic                   `json:"analytic,omitempty"`
     ApMatching                      *SiteSettingApMatching                 `json:"ap_matching,omitempty"`
@@ -57,8 +56,7 @@ type SiteSetting struct {
     ForSite                         *bool                                  `json:"for_site,omitempty"`
     // Gateway Template is applied to a site for gateway(s) in a site.
     Gateway                         *GatewayTemplate                       `json:"gateway,omitempty"`
-    // additional CLI commands to append to the generated Junos config
-    // **Note**: no check is done
+    // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     GatewayAdditionalConfigCmds     []string                               `json:"gateway_additional_config_cmds,omitempty"`
     // Gateway Site settings
     GatewayMgmt                     *SiteSettingGatewayMgmt                `json:"gateway_mgmt,omitempty"`
@@ -122,7 +120,7 @@ type SiteSetting struct {
     StatusPortal                    *SiteSettingStatusPortal               `json:"status_portal,omitempty"`
     // Network Template
     Switch                          *NetworkTemplate                       `json:"switch,omitempty"`
-    // Switch template
+    // defines custom switch configuration based on different criterias
     SwitchMatching                  *SwitchMatching                        `json:"switch_matching,omitempty"`
     // Switch settings
     SwitchMgmt                      *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
@@ -155,7 +153,7 @@ type SiteSetting struct {
     WiredVna                        *SiteSettingWiredVna                   `json:"wired_vna,omitempty"`
     // Zone Occupancy alert site settings
     ZoneOccupancyAlert              *SiteZoneOccupancyAlert                `json:"zone_occupancy_alert,omitempty"`
-    AdditionalProperties            map[string]any                         `json:"_"`
+    AdditionalProperties            map[string]interface{}                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSetting.
@@ -163,13 +161,17 @@ type SiteSetting struct {
 func (s SiteSetting) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSetting object to a map representation for JSON marshaling.
 func (s SiteSetting) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AclPolicies != nil {
         structMap["acl_policies"] = s.AclPolicies
     }
@@ -452,12 +454,12 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AclPolicies = temp.AclPolicies
     s.AclTags = temp.AclTags
     s.AdditionalConfigCmds = temp.AdditionalConfigCmds

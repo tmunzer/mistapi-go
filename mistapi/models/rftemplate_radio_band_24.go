@@ -25,7 +25,7 @@ type RftemplateRadioBand24 struct {
     PowerMin             Optional[int]             `json:"power_min"`
     // enum: `auto`, `long`, `short`
     Preamble             *RadioBandPreambleEnum    `json:"preamble,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RftemplateRadioBand24.
@@ -33,13 +33,17 @@ type RftemplateRadioBand24 struct {
 func (r RftemplateRadioBand24) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "allow_rrm_disable", "ant_gain", "antenna_mode", "bandwidth", "channels", "disabled", "power", "power_max", "power_min", "preamble"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RftemplateRadioBand24 object to a map representation for JSON marshaling.
 func (r RftemplateRadioBand24) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.AllowRrmDisable != nil {
         structMap["allow_rrm_disable"] = r.AllowRrmDisable
     }
@@ -101,12 +105,12 @@ func (r *RftemplateRadioBand24) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "allow_rrm_disable", "ant_gain", "antenna_mode", "bandwidth", "channels", "disabled", "power", "power_max", "power_min", "preamble")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_rrm_disable", "ant_gain", "antenna_mode", "bandwidth", "channels", "disabled", "power", "power_max", "power_min", "preamble")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.AllowRrmDisable = temp.AllowRrmDisable
     r.AntGain = temp.AntGain
     r.AntennaMode = temp.AntennaMode

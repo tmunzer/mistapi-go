@@ -6,10 +6,10 @@ import (
 
 // ModuleStatItemTemperaturesItem represents a ModuleStatItemTemperaturesItem struct.
 type ModuleStatItemTemperaturesItem struct {
-    Celsius              *float64       `json:"celsius,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    Status               *string        `json:"status,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Celsius              *float64               `json:"celsius,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    Status               *string                `json:"status,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemTemperaturesItem.
@@ -17,13 +17,17 @@ type ModuleStatItemTemperaturesItem struct {
 func (m ModuleStatItemTemperaturesItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "celsius", "name", "status"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the ModuleStatItemTemperaturesItem object to a map representation for JSON marshaling.
 func (m ModuleStatItemTemperaturesItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Celsius != nil {
         structMap["celsius"] = m.Celsius
     }
@@ -44,12 +48,12 @@ func (m *ModuleStatItemTemperaturesItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "celsius", "name", "status")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "celsius", "name", "status")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Celsius = temp.Celsius
     m.Name = temp.Name
     m.Status = temp.Status

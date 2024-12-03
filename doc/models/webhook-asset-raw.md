@@ -3,6 +3,8 @@
 
 asset raw webhook sample
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookAssetRaw`
@@ -13,6 +15,7 @@ asset raw webhook sample
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookAssetRawEvent`](../../doc/models/webhook-asset-raw-event.md) | Required | list of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"asset-raw"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,10 +37,18 @@ asset raw webhook sample
       "ibeacon_minor": 40,
       "ibeacon_uuid": "0000149a-0000-0000-0000-000000000000",
       "service_data_data": "service_data_data8",
-      "service_data_last_rx_time": 210
+      "service_data_last_rx_time": 210,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "asset-raw"
+  "topic": "asset-raw",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

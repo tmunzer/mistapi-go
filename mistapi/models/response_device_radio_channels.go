@@ -24,7 +24,7 @@ type ResponseDeviceRadioChannels struct {
     Key                  string                 `json:"key"`
     Name                 string                 `json:"name"`
     Uses                 string                 `json:"uses"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceRadioChannels.
@@ -32,13 +32,17 @@ type ResponseDeviceRadioChannels struct {
 func (r ResponseDeviceRadioChannels) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "band24_40mhz_allowed", "band24_channels", "band24_enabled", "band5_channels", "band5_enabled", "band6_channels", "band6_enabled", "certified", "code", "dfs_ok", "key", "name", "uses"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseDeviceRadioChannels object to a map representation for JSON marshaling.
 func (r ResponseDeviceRadioChannels) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["band24_40mhz_allowed"] = r.Band2440mhzAllowed
     structMap["band24_channels"] = r.Band24Channels
     structMap["band24_enabled"] = r.Band24Enabled
@@ -71,12 +75,12 @@ func (r *ResponseDeviceRadioChannels) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band24_40mhz_allowed", "band24_channels", "band24_enabled", "band5_channels", "band5_enabled", "band6_channels", "band6_enabled", "certified", "code", "dfs_ok", "key", "name", "uses")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band24_40mhz_allowed", "band24_channels", "band24_enabled", "band5_channels", "band5_enabled", "band6_channels", "band6_enabled", "certified", "code", "dfs_ok", "key", "name", "uses")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Band2440mhzAllowed = *temp.Band2440mhzAllowed
     r.Band24Channels = *temp.Band24Channels
     r.Band24Enabled = *temp.Band24Enabled

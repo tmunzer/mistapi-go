@@ -1,6 +1,8 @@
 
 # Webhook
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Webhook`
@@ -31,6 +33,7 @@
 | `Type` | [`*models.WebhookTypeEnum`](../../doc/models/webhook-type-enum.md) | Optional | enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`<br>**Default**: `"http-post"` |
 | `Url` | `*string` | Optional | - |
 | `VerifyCert` | `*bool` | Optional | when url uses HTTPS, whether to verify the certificate<br>**Default**: `true` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -47,7 +50,11 @@
   "type": "http-post",
   "verify_cert": true,
   "created_time": 238.32,
-  "for_site": false
+  "for_site": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -6,10 +6,10 @@ import (
 
 // SynthetictestConfigWanSpeedtest represents a SynthetictestConfigWanSpeedtest struct.
 type SynthetictestConfigWanSpeedtest struct {
-    Enabled              *bool          `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // any / HH:MM (24-hour format)
-    TimeOfDay            *string        `json:"time_of_day,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TimeOfDay            *string                `json:"time_of_day,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestConfigWanSpeedtest.
@@ -17,13 +17,17 @@ type SynthetictestConfigWanSpeedtest struct {
 func (s SynthetictestConfigWanSpeedtest) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "enabled", "time_of_day"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SynthetictestConfigWanSpeedtest object to a map representation for JSON marshaling.
 func (s SynthetictestConfigWanSpeedtest) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Enabled != nil {
         structMap["enabled"] = s.Enabled
     }
@@ -41,12 +45,12 @@ func (s *SynthetictestConfigWanSpeedtest) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "time_of_day")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "time_of_day")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Enabled = temp.Enabled
     s.TimeOfDay = temp.TimeOfDay
     return nil

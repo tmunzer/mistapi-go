@@ -50,6 +50,32 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.GatewayTemplate{
     DhcpdConfig:           models.ToPointer(models.DhcpdConfig{
+        AdditionalProperties: map[string]models.DhcpdConfigProperty{
+            "Corp-Mgmt": models.DhcpdConfigProperty{
+                DnsServers:           []string{
+                    "8.8.8.8",
+                },
+                DnsSuffix:            []string{
+                    "stag.one",
+                },
+                Gateway:              models.ToPointer("10.3.172.9"),
+                IpEnd:                models.ToPointer("10.3.172.99"),
+                IpStart:              models.ToPointer("10.3.172.50"),
+                Type:                 models.ToPointer(models.DhcpdConfigTypeEnum("local")),
+            },
+            "Corp-lan": models.DhcpdConfigProperty{
+                DnsServers:           []string{
+                    "8.8.8.8",
+                },
+                DnsSuffix:            []string{
+                    "stag.one",
+                },
+                Gateway:              models.ToPointer("10.3.171.9"),
+                IpEnd:                models.ToPointer("10.3.171.99"),
+                IpStart:              models.ToPointer("10.3.171.50"),
+                Type:                 models.ToPointer(models.DhcpdConfigTypeEnum("local")),
+            },
+        },
     }),
     DnsOverride:           models.ToPointer(true),
     DnsServers:            []string{
@@ -62,24 +88,24 @@ body := models.GatewayTemplate{
     },
     ExtraRoutes:           map[string]models.GatewayExtraRoute{
         "10.101.0.0/16": models.GatewayExtraRoute{
-            Via: models.ToPointer("10.3.100.10"),
+            Via:                  models.ToPointer("10.3.100.10"),
         },
     },
     IpConfigs:             map[string]models.GatewayIpConfigProperty{
         "Corp-Core": models.GatewayIpConfigProperty{
-            Ip:           models.ToPointer("10.3.100.9"),
-            Netmask:      models.ToPointer("/24"),
-            Type:         models.ToPointer(models.IpTypeEnum("static")),
+            Ip:                   models.ToPointer("10.3.100.9"),
+            Netmask:              models.ToPointer("/24"),
+            Type:                 models.ToPointer(models.IpTypeEnum("static")),
         },
         "Corp-Mgmt": models.GatewayIpConfigProperty{
-            Ip:           models.ToPointer("10.3.172.9"),
-            Netmask:      models.ToPointer("/24"),
-            Type:         models.ToPointer(models.IpTypeEnum("static")),
+            Ip:                   models.ToPointer("10.3.172.9"),
+            Netmask:              models.ToPointer("/24"),
+            Type:                 models.ToPointer(models.IpTypeEnum("static")),
         },
         "Corp-lan": models.GatewayIpConfigProperty{
-            Ip:           models.ToPointer("10.3.171.9"),
-            Netmask:      models.ToPointer("/24"),
-            Type:         models.ToPointer(models.IpTypeEnum("static")),
+            Ip:                   models.ToPointer("10.3.171.9"),
+            Netmask:              models.ToPointer("/24"),
+            Type:                 models.ToPointer(models.IpTypeEnum("static")),
         },
     },
     Name:                  "ITParis",
@@ -89,105 +115,105 @@ body := models.GatewayTemplate{
     },
     PathPreferences:       map[string]models.GatewayPathPreferences{
         "core": models.GatewayPathPreferences{
-            Paths:    []models.GatewayPathPreferencesPath{
+            Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
-                    Networks:       []string{
+                    Networks:             []string{
                         "Corp-Core",
                     },
-                    Type:           models.ToPointer(models.GatewayPathTypeEnum("local")),
+                    Type:                 models.ToPointer(models.GatewayPathTypeEnum("local")),
                 },
             },
-            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+            Strategy:             models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
         },
         "lab": models.GatewayPathPreferences{
-            Paths:    []models.GatewayPathPreferencesPath{
+            Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
-                    Networks:       []string{
+                    Networks:             []string{
                         "Corp-lan",
                     },
-                    Type:           models.ToPointer(models.GatewayPathTypeEnum("local")),
+                    Type:                 models.ToPointer(models.GatewayPathTypeEnum("local")),
                 },
             },
-            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+            Strategy:             models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
         },
         "mgmt": models.GatewayPathPreferences{
-            Paths:    []models.GatewayPathPreferencesPath{
+            Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
-                    Networks:       []string{
+                    Networks:             []string{
                         "Corp-Mgmt",
                     },
-                    Type:           models.ToPointer(models.GatewayPathTypeEnum("local")),
+                    Type:                 models.ToPointer(models.GatewayPathTypeEnum("local")),
                 },
             },
-            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+            Strategy:             models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
         },
         "untrust": models.GatewayPathPreferences{
-            Paths:    []models.GatewayPathPreferencesPath{
+            Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
-                    Name:           models.ToPointer("wan"),
-                    Type:           models.ToPointer(models.GatewayPathTypeEnum("wan")),
+                    Name:                 models.ToPointer("wan"),
+                    Type:                 models.ToPointer(models.GatewayPathTypeEnum("wan")),
                 },
             },
-            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+            Strategy:             models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
         },
     },
     PortConfig:            map[string]models.GatewayPortConfig{
         "ge-0/0/0": models.GatewayPortConfig{
-            Aggregated:       models.ToPointer(false),
-            IpConfig:         models.ToPointer(models.GatewayPortConfigIpConfig{
-                Gateway:       models.ToPointer("192.168.1.1"),
-                Ip:            models.ToPointer("192.168.1.9"),
-                Netmask:       models.ToPointer("/24"),
-                Type:          models.ToPointer(models.GatewayWanTypeEnum("static")),
+            Aggregated:           models.ToPointer(false),
+            IpConfig:             models.ToPointer(models.GatewayPortConfigIpConfig{
+                Gateway:              models.ToPointer("192.168.1.1"),
+                Ip:                   models.ToPointer("192.168.1.9"),
+                Netmask:              models.ToPointer("/24"),
+                Type:                 models.ToPointer(models.GatewayWanTypeEnum("static")),
             }),
-            Name:             models.ToPointer("wan"),
-            Redundant:        models.ToPointer(false),
-            TrafficShaping:   models.ToPointer(models.GatewayTrafficShaping{
-                Enabled:          models.ToPointer(false),
+            Name:                 models.ToPointer("wan"),
+            Redundant:            models.ToPointer(false),
+            TrafficShaping:       models.ToPointer(models.GatewayTrafficShaping{
+                Enabled:              models.ToPointer(false),
             }),
-            Usage:            models.GatewayPortUsageEnum("wan"),
-            WanType:          models.ToPointer(models.GatewayPortWanTypeEnum("broadband")),
+            Usage:                models.GatewayPortUsageEnum("wan"),
+            WanType:              models.ToPointer(models.GatewayPortWanTypeEnum("broadband")),
         },
         "ge-0/0/6-7": models.GatewayPortConfig{
-            AeDisableLacp:    models.ToPointer(false),
-            AeIdx:            models.NewOptional(models.ToPointer("0")),
-            AeLacpForceUp:    models.ToPointer(true),
-            Aggregated:       models.ToPointer(true),
-            Networks:         []string{
+            AeDisableLacp:        models.ToPointer(false),
+            AeIdx:                models.NewOptional(models.ToPointer("0")),
+            AeLacpForceUp:        models.ToPointer(true),
+            Aggregated:           models.ToPointer(true),
+            Networks:             []string{
                 "Corp-lan",
                 "Corp-Mgmt",
                 "Corp-Core",
             },
-            Usage:            models.GatewayPortUsageEnum("lan"),
+            Usage:                models.GatewayPortUsageEnum("lan"),
         },
     },
     ServicePolicies:       []models.ServicePolicy{
         models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                Enabled:      models.ToPointer(false),
+            Action:               models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:                  models.ToPointer(models.IdpConfig{
+                Enabled:              models.ToPointer(false),
             }),
-            Name:            models.ToPointer("ITParis-Internal"),
-            PathPreference:  models.ToPointer("core"),
-            Services:        []string{
+            Name:                 models.ToPointer("ITParis-Internal"),
+            PathPreference:       models.ToPointer("core"),
+            Services:             []string{
                 "internal_dns",
                 "drive",
             },
-            Tenants:         []string{
+            Tenants:              []string{
                 "ITParis",
             },
         },
         models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("deny")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                Enabled:      models.ToPointer(false),
+            Action:               models.ToPointer(models.AllowDenyEnum("deny")),
+            Idp:                  models.ToPointer(models.IdpConfig{
+                Enabled:              models.ToPointer(false),
             }),
-            Name:            models.ToPointer("ITParis-internet"),
-            PathPreference:  models.ToPointer("untrust"),
-            Services:        []string{
+            Name:                 models.ToPointer("ITParis-internet"),
+            PathPreference:       models.ToPointer("untrust"),
+            Services:             []string{
                 "internet_any",
             },
-            Tenants:         []string{
+            Tenants:              []string{
                 "ITParis",
             },
         },
@@ -417,6 +443,32 @@ gatewaytemplateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.GatewayTemplate{
     DhcpdConfig:           models.ToPointer(models.DhcpdConfig{
+        AdditionalProperties: map[string]models.DhcpdConfigProperty{
+            "Corp-Mgmt": models.DhcpdConfigProperty{
+                DnsServers:           []string{
+                    "8.8.8.8",
+                },
+                DnsSuffix:            []string{
+                    "stag.one",
+                },
+                Gateway:              models.ToPointer("10.3.172.9"),
+                IpEnd:                models.ToPointer("10.3.172.99"),
+                IpStart:              models.ToPointer("10.3.172.50"),
+                Type:                 models.ToPointer(models.DhcpdConfigTypeEnum("local")),
+            },
+            "Corp-lan": models.DhcpdConfigProperty{
+                DnsServers:           []string{
+                    "8.8.8.8",
+                },
+                DnsSuffix:            []string{
+                    "stag.one",
+                },
+                Gateway:              models.ToPointer("10.3.171.9"),
+                IpEnd:                models.ToPointer("10.3.171.99"),
+                IpStart:              models.ToPointer("10.3.171.50"),
+                Type:                 models.ToPointer(models.DhcpdConfigTypeEnum("local")),
+            },
+        },
     }),
     DnsOverride:           models.ToPointer(true),
     DnsServers:            []string{
@@ -429,24 +481,24 @@ body := models.GatewayTemplate{
     },
     ExtraRoutes:           map[string]models.GatewayExtraRoute{
         "10.101.0.0/16": models.GatewayExtraRoute{
-            Via: models.ToPointer("10.3.100.10"),
+            Via:                  models.ToPointer("10.3.100.10"),
         },
     },
     IpConfigs:             map[string]models.GatewayIpConfigProperty{
         "Corp-Core": models.GatewayIpConfigProperty{
-            Ip:           models.ToPointer("10.3.100.9"),
-            Netmask:      models.ToPointer("/24"),
-            Type:         models.ToPointer(models.IpTypeEnum("static")),
+            Ip:                   models.ToPointer("10.3.100.9"),
+            Netmask:              models.ToPointer("/24"),
+            Type:                 models.ToPointer(models.IpTypeEnum("static")),
         },
         "Corp-Mgmt": models.GatewayIpConfigProperty{
-            Ip:           models.ToPointer("10.3.172.9"),
-            Netmask:      models.ToPointer("/24"),
-            Type:         models.ToPointer(models.IpTypeEnum("static")),
+            Ip:                   models.ToPointer("10.3.172.9"),
+            Netmask:              models.ToPointer("/24"),
+            Type:                 models.ToPointer(models.IpTypeEnum("static")),
         },
         "Corp-lan": models.GatewayIpConfigProperty{
-            Ip:           models.ToPointer("10.3.171.9"),
-            Netmask:      models.ToPointer("/24"),
-            Type:         models.ToPointer(models.IpTypeEnum("static")),
+            Ip:                   models.ToPointer("10.3.171.9"),
+            Netmask:              models.ToPointer("/24"),
+            Type:                 models.ToPointer(models.IpTypeEnum("static")),
         },
     },
     Name:                  "ITParis",
@@ -456,105 +508,105 @@ body := models.GatewayTemplate{
     },
     PathPreferences:       map[string]models.GatewayPathPreferences{
         "core": models.GatewayPathPreferences{
-            Paths:    []models.GatewayPathPreferencesPath{
+            Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
-                    Networks:       []string{
+                    Networks:             []string{
                         "Corp-Core",
                     },
-                    Type:           models.ToPointer(models.GatewayPathTypeEnum("local")),
+                    Type:                 models.ToPointer(models.GatewayPathTypeEnum("local")),
                 },
             },
-            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+            Strategy:             models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
         },
         "lab": models.GatewayPathPreferences{
-            Paths:    []models.GatewayPathPreferencesPath{
+            Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
-                    Networks:       []string{
+                    Networks:             []string{
                         "Corp-lan",
                     },
-                    Type:           models.ToPointer(models.GatewayPathTypeEnum("local")),
+                    Type:                 models.ToPointer(models.GatewayPathTypeEnum("local")),
                 },
             },
-            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+            Strategy:             models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
         },
         "mgmt": models.GatewayPathPreferences{
-            Paths:    []models.GatewayPathPreferencesPath{
+            Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
-                    Networks:       []string{
+                    Networks:             []string{
                         "Corp-Mgmt",
                     },
-                    Type:           models.ToPointer(models.GatewayPathTypeEnum("local")),
+                    Type:                 models.ToPointer(models.GatewayPathTypeEnum("local")),
                 },
             },
-            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+            Strategy:             models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
         },
         "untrust": models.GatewayPathPreferences{
-            Paths:    []models.GatewayPathPreferencesPath{
+            Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
-                    Name:           models.ToPointer("wan"),
-                    Type:           models.ToPointer(models.GatewayPathTypeEnum("wan")),
+                    Name:                 models.ToPointer("wan"),
+                    Type:                 models.ToPointer(models.GatewayPathTypeEnum("wan")),
                 },
             },
-            Strategy: models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
+            Strategy:             models.ToPointer(models.GatewayPathStrategyEnum("ordered")),
         },
     },
     PortConfig:            map[string]models.GatewayPortConfig{
         "ge-0/0/0": models.GatewayPortConfig{
-            Aggregated:       models.ToPointer(false),
-            IpConfig:         models.ToPointer(models.GatewayPortConfigIpConfig{
-                Gateway:       models.ToPointer("192.168.1.1"),
-                Ip:            models.ToPointer("192.168.1.9"),
-                Netmask:       models.ToPointer("/24"),
-                Type:          models.ToPointer(models.GatewayWanTypeEnum("static")),
+            Aggregated:           models.ToPointer(false),
+            IpConfig:             models.ToPointer(models.GatewayPortConfigIpConfig{
+                Gateway:              models.ToPointer("192.168.1.1"),
+                Ip:                   models.ToPointer("192.168.1.9"),
+                Netmask:              models.ToPointer("/24"),
+                Type:                 models.ToPointer(models.GatewayWanTypeEnum("static")),
             }),
-            Name:             models.ToPointer("wan"),
-            Redundant:        models.ToPointer(false),
-            TrafficShaping:   models.ToPointer(models.GatewayTrafficShaping{
-                Enabled:          models.ToPointer(false),
+            Name:                 models.ToPointer("wan"),
+            Redundant:            models.ToPointer(false),
+            TrafficShaping:       models.ToPointer(models.GatewayTrafficShaping{
+                Enabled:              models.ToPointer(false),
             }),
-            Usage:            models.GatewayPortUsageEnum("wan"),
-            WanType:          models.ToPointer(models.GatewayPortWanTypeEnum("broadband")),
+            Usage:                models.GatewayPortUsageEnum("wan"),
+            WanType:              models.ToPointer(models.GatewayPortWanTypeEnum("broadband")),
         },
         "ge-0/0/6-7": models.GatewayPortConfig{
-            AeDisableLacp:    models.ToPointer(false),
-            AeIdx:            models.NewOptional(models.ToPointer("0")),
-            AeLacpForceUp:    models.ToPointer(true),
-            Aggregated:       models.ToPointer(true),
-            Networks:         []string{
+            AeDisableLacp:        models.ToPointer(false),
+            AeIdx:                models.NewOptional(models.ToPointer("0")),
+            AeLacpForceUp:        models.ToPointer(true),
+            Aggregated:           models.ToPointer(true),
+            Networks:             []string{
                 "Corp-lan",
                 "Corp-Mgmt",
                 "Corp-Core",
             },
-            Usage:            models.GatewayPortUsageEnum("lan"),
+            Usage:                models.GatewayPortUsageEnum("lan"),
         },
     },
     ServicePolicies:       []models.ServicePolicy{
         models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("allow")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                Enabled:      models.ToPointer(false),
+            Action:               models.ToPointer(models.AllowDenyEnum("allow")),
+            Idp:                  models.ToPointer(models.IdpConfig{
+                Enabled:              models.ToPointer(false),
             }),
-            Name:            models.ToPointer("ITParis-Internal"),
-            PathPreference:  models.ToPointer("core"),
-            Services:        []string{
+            Name:                 models.ToPointer("ITParis-Internal"),
+            PathPreference:       models.ToPointer("core"),
+            Services:             []string{
                 "internal_dns",
                 "drive",
             },
-            Tenants:         []string{
+            Tenants:              []string{
                 "ITParis",
             },
         },
         models.ServicePolicy{
-            Action:          models.ToPointer(models.AllowDenyEnum("deny")),
-            Idp:             models.ToPointer(models.IdpConfig{
-                Enabled:      models.ToPointer(false),
+            Action:               models.ToPointer(models.AllowDenyEnum("deny")),
+            Idp:                  models.ToPointer(models.IdpConfig{
+                Enabled:              models.ToPointer(false),
             }),
-            Name:            models.ToPointer("ITParis-internet"),
-            PathPreference:  models.ToPointer("untrust"),
-            Services:        []string{
+            Name:                 models.ToPointer("ITParis-internet"),
+            PathPreference:       models.ToPointer("untrust"),
+            Services:             []string{
                 "internet_any",
             },
-            Tenants:         []string{
+            Tenants:              []string{
                 "ITParis",
             },
         },

@@ -1,6 +1,8 @@
 
 # Const App Category Definition
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ConstAppCategoryDefinition`
@@ -13,6 +15,7 @@
 | `Filters` | [`*models.ConstAppCategoryDefinitionFilters`](../../doc/models/const-app-category-definition-filters.md) | Optional | - |
 | `Includes` | `[]string` | Optional | List of other App Categories contained by this one |
 | `Key` | `string` | Required | Key name of the app category |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,12 +32,20 @@
       "ssr6",
       "ssr5",
       "ssr4"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "key": "Images",
   "includes": [
     "includes5"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

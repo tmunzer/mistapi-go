@@ -7,10 +7,10 @@ import (
 // ApUplinkPortConfig represents a ApUplinkPortConfig struct.
 type ApUplinkPortConfig struct {
     // Whether to do 802.1x against uplink switch. When enaled, AP cert will be used to do EAP-TLS and the Org's CA Cert has to be provisioned at the switch
-    Dot1x                *bool          `json:"dot1x,omitempty"`
+    Dot1x                *bool                  `json:"dot1x,omitempty"`
     // by default, WLANs are disabled when uplink is down. In some scenario, like SiteSurvey, one would want the AP to keep sending beacons.
-    KeepWlansUpIfDown    *bool          `json:"keep_wlans_up_if_down,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    KeepWlansUpIfDown    *bool                  `json:"keep_wlans_up_if_down,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApUplinkPortConfig.
@@ -18,13 +18,17 @@ type ApUplinkPortConfig struct {
 func (a ApUplinkPortConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "dot1x", "keep_wlans_up_if_down"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApUplinkPortConfig object to a map representation for JSON marshaling.
 func (a ApUplinkPortConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Dot1x != nil {
         structMap["dot1x"] = a.Dot1x
     }
@@ -42,12 +46,12 @@ func (a *ApUplinkPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dot1x", "keep_wlans_up_if_down")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dot1x", "keep_wlans_up_if_down")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Dot1x = temp.Dot1x
     a.KeepWlansUpIfDown = temp.KeepWlansUpIfDown
     return nil

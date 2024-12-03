@@ -1,6 +1,8 @@
 
 # Switch Port Usage Dynamic Rule
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SwitchPortUsageDynamicRule`
@@ -14,6 +16,7 @@
 | `Expression` | `*string` | Optional | "[0:3]":"abcdef" -> "abc"<br>"split(.)[1]": "a.b.c" -> "b"<br>"split(-)[1][0:3]: "a1234-b5678-c90" -> "b56" |
 | `Src` | [`models.SwitchPortUsageDynamicRuleSrcEnum`](../../doc/models/switch-port-usage-dynamic-rule-src-enum.md) | Required | enum: `link_peermac`, `lldp_chassis_id`, `lldp_hardware_revision`, `lldp_manufacturer_name`, `lldp_oui`, `lldp_serial_number`, `lldp_system_name`, `radius_dynamicfilter`, `radius_usermac`, `radius_username` |
 | `Usage` | `*string` | Optional | `port_usage` name |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   ],
   "expression": "expression0",
   "src": "radius_usermac",
-  "usage": "usage0"
+  "usage": "usage0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

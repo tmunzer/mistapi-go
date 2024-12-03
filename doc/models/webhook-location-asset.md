@@ -3,6 +3,8 @@
 
 Location Asset sample
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookLocationAsset`
@@ -13,6 +15,7 @@ Location Asset sample
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationAssetEvent`](../../doc/models/webhook-location-asset-event.md) | Required | list of events |
 | `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"location_asset"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,10 +38,18 @@ Location Asset sample
       "timestamp": 1461220784,
       "type": "asset",
       "x": 13.5,
-      "y": 3.2
+      "y": 3.2,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "location_asset"
+  "topic": "location_asset",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

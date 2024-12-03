@@ -18,7 +18,7 @@ type EvpnTopologySwitchConfig struct {
     // used for OSPF / BGP / EVPN
     RouterId             *string                              `json:"router_id,omitempty"`
     VrfConfig            *EvpnTopologySwitchConfigVrfConfig   `json:"vrf_config,omitempty"`
-    AdditionalProperties map[string]any                       `json:"_"`
+    AdditionalProperties map[string]interface{}               `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopologySwitchConfig.
@@ -26,13 +26,17 @@ type EvpnTopologySwitchConfig struct {
 func (e EvpnTopologySwitchConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "dhcpd_config", "networks", "other_ip_configs", "port_config", "port_usages", "router_id", "vrf_config"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EvpnTopologySwitchConfig object to a map representation for JSON marshaling.
 func (e EvpnTopologySwitchConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.DhcpdConfig != nil {
         structMap["dhcpd_config"] = e.DhcpdConfig.toMap()
     }
@@ -65,12 +69,12 @@ func (e *EvpnTopologySwitchConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dhcpd_config", "networks", "other_ip_configs", "port_config", "port_usages", "router_id", "vrf_config")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dhcpd_config", "networks", "other_ip_configs", "port_config", "port_usages", "router_id", "vrf_config")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.DhcpdConfig = temp.DhcpdConfig
     e.Networks = temp.Networks
     e.OtherIpConfigs = temp.OtherIpConfigs

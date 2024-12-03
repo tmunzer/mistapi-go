@@ -11,21 +11,21 @@ import (
 // Asset
 type Asset struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
-    ForSite              *bool          `json:"for_site,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // bluetooth MAC
-    Mac                  string         `json:"mac"`
-    MapId                *uuid.UUID     `json:"map_id,omitempty"`
+    Mac                  string                 `json:"mac"`
+    MapId                *uuid.UUID             `json:"map_id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64       `json:"modified_time,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // name / label of the device
-    Name                 string         `json:"name"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    TagId                *uuid.UUID     `json:"tag_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 string                 `json:"name"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    TagId                *uuid.UUID             `json:"tag_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Asset.
@@ -33,13 +33,17 @@ type Asset struct {
 func (a Asset) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "created_time", "for_site", "id", "mac", "map_id", "modified_time", "name", "org_id", "site_id", "tag_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the Asset object to a map representation for JSON marshaling.
 func (a Asset) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.CreatedTime != nil {
         structMap["created_time"] = a.CreatedTime
     }
@@ -81,12 +85,12 @@ func (a *Asset) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "for_site", "id", "mac", "map_id", "modified_time", "name", "org_id", "site_id", "tag_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "mac", "map_id", "modified_time", "name", "org_id", "site_id", "tag_id")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.CreatedTime = temp.CreatedTime
     a.ForSite = temp.ForSite
     a.Id = temp.Id

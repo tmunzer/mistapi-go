@@ -123,7 +123,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "5c5b35000001",
         "5c5b35584a6f",
     },
@@ -195,82 +195,82 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Map{
-    Height:             models.ToPointer(0),
-    HeightM:            models.ToPointer(float64(0)),
-    LatlngBr:           models.ToPointer(models.LatlngBr{
-        Lat: models.ToPointer("string"),
-        Lng: models.ToPointer("string"),
+    Height:               models.ToPointer(0),
+    HeightM:              models.ToPointer(float64(0)),
+    LatlngBr:             models.ToPointer(models.LatlngBr{
+        Lat:                  models.ToPointer("string"),
+        Lng:                  models.ToPointer("string"),
     }),
-    LatlngTl:           models.ToPointer(models.LatlngTl{
-        Lat: models.ToPointer("string"),
-        Lng: models.ToPointer("string"),
+    LatlngTl:             models.ToPointer(models.LatlngTl{
+        Lat:                  models.ToPointer("string"),
+        Lng:                  models.ToPointer("string"),
     }),
-    Locked:             models.ToPointer(true),
-    Name:               models.ToPointer("string"),
-    OccupancyLimit:     models.ToPointer(0),
-    Orientation:        models.ToPointer(0),
-    OriginX:            models.ToPointer(0),
-    OriginY:            models.ToPointer(0),
-    Ppm:                models.ToPointer(float64(0)),
-    SitesurveyPath:     []models.MapSitesurveyPathItems{
+    Locked:               models.ToPointer(true),
+    Name:                 models.ToPointer("string"),
+    OccupancyLimit:       models.ToPointer(0),
+    Orientation:          models.ToPointer(0),
+    OriginX:              models.ToPointer(0),
+    OriginY:              models.ToPointer(0),
+    Ppm:                  models.ToPointer(float64(0)),
+    SitesurveyPath:       []models.MapSitesurveyPathItems{
         models.MapSitesurveyPathItems{
-            Coordinate: models.ToPointer("string"),
-            Name:       models.ToPointer("string"),
-            Nodes:      []models.MapNode{
+            Coordinate:           models.ToPointer("string"),
+            Name:                 models.ToPointer("string"),
+            Nodes:                []models.MapNode{
                 models.MapNode{
-                    Edges:    map[string]string{
+                    Edges:                map[string]string{
                         "N2": "string",
                     },
-                    Name:     "string",
-                    Position: models.ToPointer(models.MapNodePosition{
-                        X: float64(0),
-                        Y: float64(0),
+                    Name:                 "string",
+                    Position:             models.ToPointer(models.MapNodePosition{
+                        X:                    float64(0),
+                        Y:                    float64(0),
                     }),
                 },
             },
         },
     },
-    Type:               models.ToPointer(models.MapTypeEnum("image")),
-    View:               models.NewOptional(models.ToPointer(models.MapViewEnum("roadmap"))),
-    WallPath:           models.ToPointer(models.MapWallPath{
-        Coordinate: models.ToPointer("string"),
-        Nodes:      []models.MapNode{
+    Type:                 models.ToPointer(models.MapTypeEnum("image")),
+    View:                 models.NewOptional(models.ToPointer(models.MapViewEnum("roadmap"))),
+    WallPath:             models.ToPointer(models.MapWallPath{
+        Coordinate:           models.ToPointer("string"),
+        Nodes:                []models.MapNode{
             models.MapNode{
-                Edges:    map[string]string{
+                Edges:                map[string]string{
                     "N2": "string",
                 },
-                Name:     "string",
-                Position: models.ToPointer(models.MapNodePosition{
-                    X: float64(0),
-                    Y: float64(0),
+                Name:                 "string",
+                Position:             models.ToPointer(models.MapNodePosition{
+                    X:                    float64(0),
+                    Y:                    float64(0),
                 }),
             },
         },
     }),
-    Wayfinding:         models.ToPointer(models.MapWayfinding{
-        Micello:    models.ToPointer(models.MapWayfindingMicello{
-            AccountKey:     models.ToPointer("string"),
-            DefaultLevelId: models.ToPointer(0),
+    Wayfinding:           models.ToPointer(models.MapWayfinding{
+        Micello:              models.ToPointer(models.MapWayfindingMicello{
+            AccountKey:           models.ToPointer("string"),
+            DefaultLevelId:       models.ToPointer(0),
         }),
-        SnapToPath: models.ToPointer(true),
+        SnapToPath:           models.ToPointer(true),
     }),
-    WayfindingPath:     models.ToPointer(models.MapWayfindingPath{
-        Coordinate: models.ToPointer("string"),
-        Nodes:      []models.MapNode{
+    WayfindingPath:       models.ToPointer(models.MapWayfindingPath{
+        Coordinate:           models.ToPointer("string"),
+        Nodes:                []models.MapNode{
             models.MapNode{
-                Edges:    map[string]string{
+                Edges:                map[string]string{
                     "N2": "string",
                 },
-                Name:     "string",
-                Position: models.ToPointer(models.MapNodePosition{
-                    X: float64(0),
-                    Y: float64(0),
+                Name:                 "string",
+                Position:             models.ToPointer(models.MapNodePosition{
+                    X:                    float64(0),
+                    Y:                    float64(0),
                 }),
             },
         },
     }),
-    Width:              models.ToPointer(0),
-    WidthM:             models.ToPointer(float64(0)),
+    Width:                models.ToPointer(0),
+    WidthM:               models.ToPointer(float64(0)),
 }
 
 apiResponse, err := sitesMaps.CreateSiteMap(ctx, siteId, &body)
@@ -508,10 +508,10 @@ autoDeviceprofileAssignment := true
 
 
 json := models.MapImportJson{
-    ImportAllFloorplans: models.ToPointer(false),
-    ImportHeight:        models.ToPointer(true),
-    ImportOrientation:   models.ToPointer(true),
-    VendorName:          models.MapImportJsonVendorNameEnum("ekahau"),
+    ImportAllFloorplans:  models.ToPointer(false),
+    ImportHeight:         models.ToPointer(true),
+    ImportOrientation:    models.ToPointer(true),
+    VendorName:           models.MapImportJsonVendorNameEnum("ekahau"),
 }
 
 apiResponse, err := sitesMaps.ImportSiteMaps(ctx, siteId, &autoDeviceprofileAssignment, nil, nil, &json)
@@ -602,15 +602,15 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WayfindingImportJsonContainer.FromMapJibestream(models.MapJibestream{
-    ClientId:     uuid.MustParse("199d6770-0f6f-407a-9bd5-fc33c7840194"),
-    ClientSecret: "/9Nog3yDzcYj0bY91XJZQLCt+m9DXaIVhx+Ghk3ddd",
-    CustomerId:   123,
-    EndpointUrl:  "https://api.jibestream.com",
-    MapId:        uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-    Mmpp:         223,
-    Ppm:          float64(4),
-    VendorName:   "jibestream",
-    VenueId:      123,
+    ClientId:             uuid.MustParse("199d6770-0f6f-407a-9bd5-fc33c7840194"),
+    ClientSecret:         "/9Nog3yDzcYj0bY91XJZQLCt+m9DXaIVhx+Ghk3ddd",
+    CustomerId:           123,
+    EndpointUrl:          "https://api.jibestream.com",
+    MapId:                uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
+    Mmpp:                 223,
+    Ppm:                  float64(4),
+    VendorName:           "jibestream",
+    VenueId:              123,
 })
 
 resp, err := sitesMaps.ImportSiteWayfindings(ctx, siteId, mapId, &body)
@@ -883,82 +883,82 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Map{
-    Height:             models.ToPointer(0),
-    HeightM:            models.ToPointer(float64(0)),
-    LatlngBr:           models.ToPointer(models.LatlngBr{
-        Lat: models.ToPointer("string"),
-        Lng: models.ToPointer("string"),
+    Height:               models.ToPointer(0),
+    HeightM:              models.ToPointer(float64(0)),
+    LatlngBr:             models.ToPointer(models.LatlngBr{
+        Lat:                  models.ToPointer("string"),
+        Lng:                  models.ToPointer("string"),
     }),
-    LatlngTl:           models.ToPointer(models.LatlngTl{
-        Lat: models.ToPointer("string"),
-        Lng: models.ToPointer("string"),
+    LatlngTl:             models.ToPointer(models.LatlngTl{
+        Lat:                  models.ToPointer("string"),
+        Lng:                  models.ToPointer("string"),
     }),
-    Locked:             models.ToPointer(true),
-    Name:               models.ToPointer("string"),
-    OccupancyLimit:     models.ToPointer(0),
-    Orientation:        models.ToPointer(0),
-    OriginX:            models.ToPointer(0),
-    OriginY:            models.ToPointer(0),
-    Ppm:                models.ToPointer(float64(0)),
-    SitesurveyPath:     []models.MapSitesurveyPathItems{
+    Locked:               models.ToPointer(true),
+    Name:                 models.ToPointer("string"),
+    OccupancyLimit:       models.ToPointer(0),
+    Orientation:          models.ToPointer(0),
+    OriginX:              models.ToPointer(0),
+    OriginY:              models.ToPointer(0),
+    Ppm:                  models.ToPointer(float64(0)),
+    SitesurveyPath:       []models.MapSitesurveyPathItems{
         models.MapSitesurveyPathItems{
-            Coordinate: models.ToPointer("string"),
-            Name:       models.ToPointer("string"),
-            Nodes:      []models.MapNode{
+            Coordinate:           models.ToPointer("string"),
+            Name:                 models.ToPointer("string"),
+            Nodes:                []models.MapNode{
                 models.MapNode{
-                    Edges:    map[string]string{
+                    Edges:                map[string]string{
                         "N2": "string",
                     },
-                    Name:     "string",
-                    Position: models.ToPointer(models.MapNodePosition{
-                        X: float64(0),
-                        Y: float64(0),
+                    Name:                 "string",
+                    Position:             models.ToPointer(models.MapNodePosition{
+                        X:                    float64(0),
+                        Y:                    float64(0),
                     }),
                 },
             },
         },
     },
-    Type:               models.ToPointer(models.MapTypeEnum("image")),
-    View:               models.NewOptional(models.ToPointer(models.MapViewEnum("roadmap"))),
-    WallPath:           models.ToPointer(models.MapWallPath{
-        Coordinate: models.ToPointer("string"),
-        Nodes:      []models.MapNode{
+    Type:                 models.ToPointer(models.MapTypeEnum("image")),
+    View:                 models.NewOptional(models.ToPointer(models.MapViewEnum("roadmap"))),
+    WallPath:             models.ToPointer(models.MapWallPath{
+        Coordinate:           models.ToPointer("string"),
+        Nodes:                []models.MapNode{
             models.MapNode{
-                Edges:    map[string]string{
+                Edges:                map[string]string{
                     "N2": "string",
                 },
-                Name:     "string",
-                Position: models.ToPointer(models.MapNodePosition{
-                    X: float64(0),
-                    Y: float64(0),
+                Name:                 "string",
+                Position:             models.ToPointer(models.MapNodePosition{
+                    X:                    float64(0),
+                    Y:                    float64(0),
                 }),
             },
         },
     }),
-    Wayfinding:         models.ToPointer(models.MapWayfinding{
-        Micello:    models.ToPointer(models.MapWayfindingMicello{
-            AccountKey:     models.ToPointer("string"),
-            DefaultLevelId: models.ToPointer(0),
+    Wayfinding:           models.ToPointer(models.MapWayfinding{
+        Micello:              models.ToPointer(models.MapWayfindingMicello{
+            AccountKey:           models.ToPointer("string"),
+            DefaultLevelId:       models.ToPointer(0),
         }),
-        SnapToPath: models.ToPointer(true),
+        SnapToPath:           models.ToPointer(true),
     }),
-    WayfindingPath:     models.ToPointer(models.MapWayfindingPath{
-        Coordinate: models.ToPointer("string"),
-        Nodes:      []models.MapNode{
+    WayfindingPath:       models.ToPointer(models.MapWayfindingPath{
+        Coordinate:           models.ToPointer("string"),
+        Nodes:                []models.MapNode{
             models.MapNode{
-                Edges:    map[string]string{
+                Edges:                map[string]string{
                     "N2": "string",
                 },
-                Name:     "string",
-                Position: models.ToPointer(models.MapNodePosition{
-                    X: float64(0),
-                    Y: float64(0),
+                Name:                 "string",
+                Position:             models.ToPointer(models.MapNodePosition{
+                    X:                    float64(0),
+                    Y:                    float64(0),
                 }),
             },
         },
     }),
-    Width:              models.ToPointer(0),
-    WidthM:             models.ToPointer(float64(0)),
+    Width:                models.ToPointer(0),
+    WidthM:               models.ToPointer(float64(0)),
 }
 
 apiResponse, err := sitesMaps.UpdateSiteMap(ctx, siteId, mapId, &body)

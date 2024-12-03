@@ -1,6 +1,8 @@
 
 # Webhook Discovered Raw Rssi
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookDiscoveredRawRssi`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookDiscoveredRawRssiEvent`](../../doc/models/webhook-discovered-raw-rssi-event.md) | Optional | - |
 | `Topic` | `string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,7 +36,11 @@
       "map_id": "00001148-0000-0000-0000-000000000000",
       "org_id": "00000dbc-0000-0000-0000-000000000000",
       "rssi": 58.22,
-      "site_id": "0000245a-0000-0000-0000-000000000000"
+      "site_id": "0000245a-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "ap_loc": [
@@ -51,7 +58,11 @@
       "map_id": "00001148-0000-0000-0000-000000000000",
       "org_id": "00000dbc-0000-0000-0000-000000000000",
       "rssi": 58.22,
-      "site_id": "0000245a-0000-0000-0000-000000000000"
+      "site_id": "0000245a-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "ap_loc": [
@@ -69,10 +80,18 @@
       "map_id": "00001148-0000-0000-0000-000000000000",
       "org_id": "00000dbc-0000-0000-0000-000000000000",
       "rssi": 58.22,
-      "site_id": "0000245a-0000-0000-0000-000000000000"
+      "site_id": "0000245a-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "topic2"
+  "topic": "topic2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -6,14 +6,14 @@ import (
 
 // SleImpactedChassisChassisItem represents a SleImpactedChassisChassisItem struct.
 type SleImpactedChassisChassisItem struct {
-    Chassis              *string        `json:"chassis,omitempty"`
-    Degraded             *float64       `json:"degraded,omitempty"`
-    Duration             *float64       `json:"duration,omitempty"`
-    Role                 *string        `json:"role,omitempty"`
-    SwitchMac            *string        `json:"switch_mac,omitempty"`
-    SwitchName           *string        `json:"switch_name,omitempty"`
-    Total                *float64       `json:"total,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Chassis              *string                `json:"chassis,omitempty"`
+    Degraded             *float64               `json:"degraded,omitempty"`
+    Duration             *float64               `json:"duration,omitempty"`
+    Role                 *string                `json:"role,omitempty"`
+    SwitchMac            *string                `json:"switch_mac,omitempty"`
+    SwitchName           *string                `json:"switch_name,omitempty"`
+    Total                *float64               `json:"total,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedChassisChassisItem.
@@ -21,13 +21,17 @@ type SleImpactedChassisChassisItem struct {
 func (s SleImpactedChassisChassisItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "chassis", "degraded", "duration", "role", "switch_mac", "switch_name", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedChassisChassisItem object to a map representation for JSON marshaling.
 func (s SleImpactedChassisChassisItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Chassis != nil {
         structMap["chassis"] = s.Chassis
     }
@@ -60,12 +64,12 @@ func (s *SleImpactedChassisChassisItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "chassis", "degraded", "duration", "role", "switch_mac", "switch_name", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "chassis", "degraded", "duration", "role", "switch_mac", "switch_name", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Chassis = temp.Chassis
     s.Degraded = temp.Degraded
     s.Duration = temp.Duration

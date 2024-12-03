@@ -26,7 +26,7 @@ type StatsSdkclient struct {
     X                    *float64                        `json:"x,omitempty"`
     // y (in pixels) of user location on the map (if known)
     Y                    *float64                        `json:"y,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSdkclient.
@@ -34,13 +34,17 @@ type StatsSdkclient struct {
 func (s StatsSdkclient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "id", "last_seen", "map_id", "name", "network_connection", "uuid", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsSdkclient object to a map representation for JSON marshaling.
 func (s StatsSdkclient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["id"] = s.Id
     structMap["last_seen"] = s.LastSeen
     if s.MapId.IsValueSet() {
@@ -76,12 +80,12 @@ func (s *StatsSdkclient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "last_seen", "map_id", "name", "network_connection", "uuid", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "last_seen", "map_id", "name", "network_connection", "uuid", "x", "y")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Id = *temp.Id
     s.LastSeen = *temp.LastSeen
     s.MapId = temp.MapId

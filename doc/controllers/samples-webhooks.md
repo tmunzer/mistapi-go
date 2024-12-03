@@ -65,11 +65,11 @@ Alarms(
 ctx := context.Background()
 
 body := models.WebhookAlarms{
-    Events: []models.WebhookAlarmEvent{
+    Events:               []models.WebhookAlarmEvent{
         models.WebhookAlarmEvent{
         },
     },
-    Topic:  "alarms",
+    Topic:                "alarms",
 }
 
 resp, err := samplesWebhooks.Alarms(ctx, &body)
@@ -113,7 +113,7 @@ AssetRaw(
 ctx := context.Background()
 
 body := models.WebhookAssetRaw{
-    Events: []models.WebhookAssetRawEvent{
+    Events:               []models.WebhookAssetRawEvent{
         models.WebhookAssetRawEvent{
             AssetId:               uuid.MustParse("b4695157-0d1d-4da0-8f9e-5c53149389e4"),
             Beam:                  0,
@@ -129,7 +129,7 @@ body := models.WebhookAssetRaw{
             Timestamp:             float64(0),
         },
     },
-    Topic:  "asset-raw",
+    Topic:                "asset-raw",
 }
 
 resp, err := samplesWebhooks.AssetRaw(ctx, &body)
@@ -171,15 +171,15 @@ Audits(
 ctx := context.Background()
 
 body := models.WebhookAudits{
-    Events: []models.WebhookAuditEvent{
+    Events:               []models.WebhookAuditEvent{
         models.WebhookAuditEvent{
-            AdminName: "admin_name8",
-            Message:   "message0",
-            SrcIp:     "src_ip6",
-            Timestamp: float64(157.68),
+            AdminName:            "admin_name8",
+            Message:              "message0",
+            SrcIp:                "src_ip6",
+            Timestamp:            float64(157.68),
         },
     },
-    Topic:  "audits",
+    Topic:                "audits",
 }
 
 resp, err := samplesWebhooks.Audits(ctx, &body)
@@ -221,15 +221,15 @@ ClientInfo(
 ctx := context.Background()
 
 body := models.WebhookClientInfo{
-    Events: []models.WebhookClientInfoEvent{
+    Events:               []models.WebhookClientInfoEvent{
         models.WebhookClientInfoEvent{
-            Hostname:  models.ToPointer("service.company.net"),
-            Ip:        models.ToPointer("21.0.128.151"),
-            Mac:       models.ToPointer("6ebaa47a3fd4"),
-            Timestamp: models.ToPointer(float64(1703003296)),
+            Hostname:             models.ToPointer("service.company.net"),
+            Ip:                   models.ToPointer("21.0.128.151"),
+            Mac:                  models.ToPointer("6ebaa47a3fd4"),
+            Timestamp:            models.ToPointer(float64(1703003296)),
         },
     },
-    Topic:  models.ToPointer(models.WebhookClientInfoTopicEnum("client-info")),
+    Topic:                models.ToPointer(models.WebhookClientInfoTopicEnum("client-info")),
 }
 
 resp, err := samplesWebhooks.ClientInfo(ctx, &body)
@@ -271,24 +271,24 @@ ClientJoin(
 ctx := context.Background()
 
 body := models.WebhookClientJoin{
-    Events: []models.WebhookClientJoinEvent{
+    Events:               []models.WebhookClientJoinEvent{
         models.WebhookClientJoinEvent{
-            Ap:           "string",
-            ApName:       "string",
-            Band:         "string",
-            Bssid:        "string",
-            Connect:      0,
-            ConnectFloat: float64(0),
-            Mac:          "string",
-            Rssi:         float64(0),
-            SiteName:     "string",
-            Ssid:         "string",
-            Timestamp:    float64(0),
-            Version:      float64(0),
-            WlanId:       uuid.MustParse("5028e92b-fc59-4056-91d1-ea4b4ca1617a"),
+            Ap:                   "string",
+            ApName:               "string",
+            Band:                 "string",
+            Bssid:                "string",
+            Connect:              0,
+            ConnectFloat:         float64(0),
+            Mac:                  "string",
+            Rssi:                 float64(0),
+            SiteName:             "string",
+            Ssid:                 "string",
+            Timestamp:            float64(0),
+            Version:              float64(0),
+            WlanId:               uuid.MustParse("5028e92b-fc59-4056-91d1-ea4b4ca1617a"),
         },
     },
-    Topic:  "client-join",
+    Topic:                "client-join",
 }
 
 resp, err := samplesWebhooks.ClientJoin(ctx, &body)
@@ -330,21 +330,21 @@ ClientLatency(
 ctx := context.Background()
 
 body := models.WebhookClientLatency{
-    Events: []models.WebhookClientLatencyEvent{
+    Events:               []models.WebhookClientLatencyEvent{
         models.WebhookClientLatencyEvent{
-            AvgAuth:   models.ToPointer(float64(0.17170219)),
-            AvgDhcp:   models.ToPointer(float64(0.017828934)),
-            AvgDns:    models.ToPointer(float64(0.024532124)),
-            MaxAuth:   models.ToPointer(float64(0.18170219)),
-            MaxDhcp:   models.ToPointer(float64(0.027828934)),
-            MaxDns:    models.ToPointer(float64(0.029532124)),
-            MinAuth:   models.ToPointer(float64(0.16050219)),
-            MinDhcp:   models.ToPointer(float64(0.015828934)),
-            MinDns:    models.ToPointer(float64(0.022532124)),
-            Timestamp: models.ToPointer(1696401600),
+            AvgAuth:              models.ToPointer(float64(0.17170219)),
+            AvgDhcp:              models.ToPointer(float64(0.017828934)),
+            AvgDns:               models.ToPointer(float64(0.024532124)),
+            MaxAuth:              models.ToPointer(float64(0.18170219)),
+            MaxDhcp:              models.ToPointer(float64(0.027828934)),
+            MaxDns:               models.ToPointer(float64(0.029532124)),
+            MinAuth:              models.ToPointer(float64(0.16050219)),
+            MinDhcp:              models.ToPointer(float64(0.015828934)),
+            MinDns:               models.ToPointer(float64(0.022532124)),
+            Timestamp:            models.ToPointer(1696401600),
         },
     },
-    Topic:  models.ToPointer("client-latency"),
+    Topic:                models.ToPointer("client-latency"),
 }
 
 resp, err := samplesWebhooks.ClientLatency(ctx, &body)
@@ -386,33 +386,33 @@ ClientSessions(
 ctx := context.Background()
 
 body := models.WebhookClientSessions{
-    Events: []models.WebhookClientSessionsEvent{
+    Events:               []models.WebhookClientSessionsEvent{
         models.WebhookClientSessionsEvent{
-            Ap:                "string",
-            ApName:            "string",
-            Band:              "string",
-            Bssid:             "string",
-            ClientFamily:      "string",
-            ClientManufacture: "string",
-            ClientModel:       "string",
-            ClientOs:          "string",
-            Connect:           0,
-            ConnectFloat:      float64(0),
-            Disconnect:        0,
-            DisconnectFloat:   float64(0),
-            Duration:          0,
-            Mac:               "string",
-            NextAp:            "string",
-            Rssi:              float64(0),
-            SiteName:          "string",
-            Ssid:              "string",
-            TerminationReason: 0,
-            Timestamp:         float64(0),
-            Version:           float64(0),
-            WlanId:            uuid.MustParse("5028e92b-fc59-4056-91d1-ea4b4ca1617a"),
+            Ap:                   "string",
+            ApName:               "string",
+            Band:                 "string",
+            Bssid:                "string",
+            ClientFamily:         "string",
+            ClientManufacture:    "string",
+            ClientModel:          "string",
+            ClientOs:             "string",
+            Connect:              0,
+            ConnectFloat:         float64(0),
+            Disconnect:           0,
+            DisconnectFloat:      float64(0),
+            Duration:             0,
+            Mac:                  "string",
+            NextAp:               "string",
+            Rssi:                 float64(0),
+            SiteName:             "string",
+            Ssid:                 "string",
+            TerminationReason:    0,
+            Timestamp:            float64(0),
+            Version:              float64(0),
+            WlanId:               uuid.MustParse("5028e92b-fc59-4056-91d1-ea4b4ca1617a"),
         },
     },
-    Topic:  "client-sessions",
+    Topic:                "client-sessions",
 }
 
 resp, err := samplesWebhooks.ClientSessions(ctx, &body)
@@ -460,23 +460,23 @@ DeviceEvents(
 ctx := context.Background()
 
 body := models.WebhookDeviceEvents{
-    Events: []models.WebhookDeviceEventsEvent{
+    Events:               []models.WebhookDeviceEventsEvent{
         models.WebhookDeviceEventsEvent{
-            Ap:         models.ToPointer("string"),
-            ApName:     models.ToPointer("string"),
-            AuditId:    models.ToPointer(uuid.MustParse("78c04fa6-cfb4-46a0-9aa5-3681ba4f3897")),
-            DeviceName: "string",
-            DeviceType: models.WebhookDeviceEventsEventDeviceTypeEnum("ap"),
-            EvType:     models.WebhookDeviceEventsEventEvTypeEnum("notice"),
-            Mac:        "string",
-            Reason:     models.ToPointer("string"),
-            SiteName:   models.ToPointer("string"),
-            Text:       models.ToPointer("string"),
-            Timestamp:  0,
-            Type:       "string",
+            Ap:                   models.ToPointer("string"),
+            ApName:               models.ToPointer("string"),
+            AuditId:              models.ToPointer(uuid.MustParse("78c04fa6-cfb4-46a0-9aa5-3681ba4f3897")),
+            DeviceName:           "string",
+            DeviceType:           models.WebhookDeviceEventsEventDeviceTypeEnum("ap"),
+            EvType:               models.WebhookDeviceEventsEventEvTypeEnum("notice"),
+            Mac:                  "string",
+            Reason:               models.ToPointer("string"),
+            SiteName:             models.ToPointer("string"),
+            Text:                 models.ToPointer("string"),
+            Timestamp:            0,
+            Type:                 "string",
         },
     },
-    Topic:  "device_events",
+    Topic:                "device_events",
 }
 
 resp, err := samplesWebhooks.DeviceEvents(ctx, &body)
@@ -518,12 +518,12 @@ DeviceUpDown(
 ctx := context.Background()
 
 body := models.WebhookDeviceUpdowns{
-    Events: []models.WebhookDeviceUpdownsEvent{
+    Events:               []models.WebhookDeviceUpdownsEvent{
         models.WebhookDeviceUpdownsEvent{
-            Timestamp: float64(0),
+            Timestamp:            float64(0),
         },
     },
-    Topic:  "device-updowns",
+    Topic:                "device-updowns",
 }
 
 resp, err := samplesWebhooks.DeviceUpDown(ctx, &body)
@@ -565,32 +565,32 @@ DiscoveredRawRssi(
 ctx := context.Background()
 
 body := models.WebhookDiscoveredRawRssi{
-    Events: []models.WebhookDiscoveredRawRssiEvent{
+    Events:               []models.WebhookDiscoveredRawRssiEvent{
         models.WebhookDiscoveredRawRssiEvent{
-            ApLoc:          []float64{
+            ApLoc:                []float64{
                 float64(0),
             },
-            Beam:           0,
-            DeviceId:       uuid.MustParse("3bafab7b-4400-4bcf-8e6e-09f954699940"),
-            IbeaconMajor:   models.ToPointer(0),
-            IbeaconMinor:   models.ToPointer(0),
-            IbeaconUuid:    models.ToPointer(uuid.MustParse("1f89bc00-d0af-481b-82fe-a6629259a39f")),
-            IsAsset:        models.ToPointer(true),
-            Mac:            "string",
-            MapId:          uuid.MustParse("09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1"),
-            MfgCompanyId:   models.ToPointer("string"),
-            MfgData:        models.ToPointer("string"),
-            Rssi:           float64(0),
-            ServicePackets: []models.ServicePacket{
+            Beam:                 0,
+            DeviceId:             uuid.MustParse("3bafab7b-4400-4bcf-8e6e-09f954699940"),
+            IbeaconMajor:         models.ToPointer(0),
+            IbeaconMinor:         models.ToPointer(0),
+            IbeaconUuid:          models.ToPointer(uuid.MustParse("1f89bc00-d0af-481b-82fe-a6629259a39f")),
+            IsAsset:              models.ToPointer(true),
+            Mac:                  "string",
+            MapId:                uuid.MustParse("09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1"),
+            MfgCompanyId:         models.ToPointer("string"),
+            MfgData:              models.ToPointer("string"),
+            Rssi:                 float64(0),
+            ServicePackets:       []models.ServicePacket{
                 models.ServicePacket{
-                    ServiceData: models.ToPointer("string"),
-                    ServiceUuid: models.ToPointer("7138cc00-c611-4dec-a05e-5c4b1cae13c0"),
+                    ServiceData:          models.ToPointer("string"),
+                    ServiceUuid:          models.ToPointer("7138cc00-c611-4dec-a05e-5c4b1cae13c0"),
                 },
             },
-            Timestamp:      models.ToPointer(0),
+            Timestamp:            models.ToPointer(0),
         },
     },
-    Topic:  "string",
+    Topic:                "string",
 }
 
 resp, err := samplesWebhooks.DiscoveredRawRssi(ctx, &body)
@@ -632,7 +632,7 @@ Location(
 ctx := context.Background()
 
 body := models.WebhookLocation{
-    Events: []models.WebhookLocationEvent{
+    Events:               []models.WebhookLocationEvent{
         models.WebhookLocationEvent{
             BatteryVoltage:         models.ToPointer(0),
             EddystoneUidInstance:   models.ToPointer("string"),
@@ -652,7 +652,7 @@ body := models.WebhookLocation{
             Y:                      float64(0),
         },
     },
-    Topic:  "location",
+    Topic:                "location",
 }
 
 resp, err := samplesWebhooks.Location(ctx, &body)
@@ -694,7 +694,7 @@ LocationAsset(
 ctx := context.Background()
 
 body := models.WebhookLocationAsset{
-    Events: []models.WebhookLocationAssetEvent{
+    Events:               []models.WebhookLocationAssetEvent{
         models.WebhookLocationAssetEvent{
             BatteryVoltage:        models.ToPointer(3370),
             EddystoneUidInstance:  models.ToPointer("5c5b35000001"),
@@ -713,7 +713,7 @@ body := models.WebhookLocationAsset{
             Y:                     models.ToPointer(float64(3.2)),
         },
     },
-    Topic:  "location_asset",
+    Topic:                "location_asset",
 }
 
 resp, err := samplesWebhooks.LocationAsset(ctx, &body)
@@ -755,22 +755,27 @@ LocationCentrak(
 ctx := context.Background()
 
 body := models.WebhookLocationCentrak{
-    Events: []models.WebhookLocationCentrakEvent{
+    Events:               []models.WebhookLocationCentrakEvent{
         models.WebhookLocationCentrakEvent{
             MapId:                  models.ToPointer("845a23bf-bed9-e43c-4c86-6fa474be7ae5"),
             Timestamp:              models.ToPointer(1461220784),
             WifiBeaconExtendedInfo: []models.WifiBeaconExtendedInfoItems{
                 models.WifiBeaconExtendedInfoItems{
-                    FrameCtrl: models.ToPointer(776),
-                    Payload:   models.ToPointer("............"),
-                    SeqCtrl:   models.ToPointer(772),
+                    FrameCtrl:            models.ToPointer(776),
+                    Payload:              models.ToPointer("............"),
+                    SeqCtrl:              models.ToPointer(772),
                 },
             },
             X:                      models.ToPointer(float64(13.5)),
             Y:                      models.ToPointer(float64(3.2)),
+            AdditionalProperties:   map[string]interface{}{
+                "mac": interface{}("5684dae9ac8b"),
+                "site_id": interface{}("4ac1dcf4-9d8b-7211-65c4-057819f0862b"),
+                "type": interface{}("wifi"),
+            },
         },
     },
-    Topic:  "location_centrak",
+    Topic:                "location_centrak",
 }
 
 resp, err := samplesWebhooks.LocationCentrak(ctx, &body)
@@ -812,7 +817,7 @@ LocationClient(
 ctx := context.Background()
 
 body := models.WebhookLocationClient{
-    Events: []models.WebhookLocationClientEvent{
+    Events:               []models.WebhookLocationClientEvent{
         models.WebhookLocationClientEvent{
             Mac:                    models.ToPointer("5684dae9ac8b"),
             MapId:                  models.ToPointer(uuid.MustParse("845a23bf-bed9-e43c-4c86-6fa474be7ae5")),
@@ -820,16 +825,16 @@ body := models.WebhookLocationClient{
             Type:                   models.ToPointer("wifi"),
             WifiBeaconExtendedInfo: []models.WifiBeaconExtendedInfoItems{
                 models.WifiBeaconExtendedInfoItems{
-                    FrameCtrl: models.ToPointer(776),
-                    Payload:   models.ToPointer("............"),
-                    SeqCtrl:   models.ToPointer(772),
+                    FrameCtrl:            models.ToPointer(776),
+                    Payload:              models.ToPointer("............"),
+                    SeqCtrl:              models.ToPointer(772),
                 },
             },
             X:                      models.ToPointer(float64(13.5)),
             Y:                      models.ToPointer(float64(3.2)),
         },
     },
-    Topic:  "location_client",
+    Topic:                "location_client",
 }
 
 resp, err := samplesWebhooks.LocationClient(ctx, &body)
@@ -871,17 +876,17 @@ LocationSdk(
 ctx := context.Background()
 
 body := models.WebhookLocationSdk{
-    Events: []models.WebhookLocationSdkEvent{
+    Events:               []models.WebhookLocationSdkEvent{
         models.WebhookLocationSdkEvent{
-            MapId:     models.ToPointer(uuid.MustParse("845a23bf-bed9-e43c-4c86-6fa474be7ae5")),
-            Name:      models.ToPointer("optional"),
-            Timestamp: models.ToPointer(1461220784),
-            Type:      models.ToPointer("sdk"),
-            X:         models.ToPointer(float64(13.5)),
-            Y:         models.ToPointer(float64(3.2)),
+            MapId:                models.ToPointer(uuid.MustParse("845a23bf-bed9-e43c-4c86-6fa474be7ae5")),
+            Name:                 models.ToPointer("optional"),
+            Timestamp:            models.ToPointer(1461220784),
+            Type:                 models.ToPointer("sdk"),
+            X:                    models.ToPointer(float64(13.5)),
+            Y:                    models.ToPointer(float64(3.2)),
         },
     },
-    Topic:  "location_sdk",
+    Topic:                "location_sdk",
 }
 
 resp, err := samplesWebhooks.LocationSdk(ctx, &body)
@@ -923,7 +928,7 @@ LocationUnclient(
 ctx := context.Background()
 
 body := models.WebhookLocationUnclient{
-    Events: []models.WebhookLocationUnclientEvent{
+    Events:               []models.WebhookLocationUnclientEvent{
         models.WebhookLocationUnclientEvent{
             Mac:                    models.ToPointer("5684dae9ac8b"),
             MapId:                  models.ToPointer(uuid.MustParse("845a23bf-bed9-e43c-4c86-6fa474be7ae5")),
@@ -931,16 +936,16 @@ body := models.WebhookLocationUnclient{
             Type:                   models.ToPointer("wifi"),
             WifiBeaconExtendedInfo: []models.WifiBeaconExtendedInfoItems{
                 models.WifiBeaconExtendedInfoItems{
-                    FrameCtrl: models.ToPointer(776),
-                    Payload:   models.ToPointer("............"),
-                    SeqCtrl:   models.ToPointer(772),
+                    FrameCtrl:            models.ToPointer(776),
+                    Payload:              models.ToPointer("............"),
+                    SeqCtrl:              models.ToPointer(772),
                 },
             },
             X:                      models.ToPointer(float64(13.5)),
             Y:                      models.ToPointer(float64(3.2)),
         },
     },
-    Topic:  "location_unclient",
+    Topic:                "location_unclient",
 }
 
 resp, err := samplesWebhooks.LocationUnclient(ctx, &body)
@@ -982,24 +987,24 @@ NacAccounting(
 ctx := context.Background()
 
 body := models.WebhookNacAccounting{
-    Events: []models.WebhookNacAccountingEvent{
+    Events:               []models.WebhookNacAccountingEvent{
         models.WebhookNacAccountingEvent{
-            Ap:         models.ToPointer("5c5b355005be"),
-            AuthType:   models.ToPointer("eap-tls"),
-            Bssid:      models.ToPointer("5c5b35546bb4"),
-            ClientIp:   models.ToPointer("172.16.87.4"),
-            ClientType: models.ToPointer("wireless"),
-            Mac:        models.ToPointer("6e795836d5f9"),
-            NasVendor:  models.ToPointer("juniper-mist"),
-            RxPkts:     models.ToPointer(9523),
-            Ssid:       models.ToPointer("Test-CMR SSID"),
-            Timestamp:  models.ToPointer(float64(1547235620.89)),
-            TxPkts:     models.ToPointer(5233),
-            Type:       models.ToPointer("NAC_ACCOUNTING_STOP"),
-            Username:   models.ToPointer("hi"),
+            Ap:                   models.ToPointer("5c5b355005be"),
+            AuthType:             models.ToPointer("eap-tls"),
+            Bssid:                models.ToPointer("5c5b35546bb4"),
+            ClientIp:             models.ToPointer("172.16.87.4"),
+            ClientType:           models.ToPointer("wireless"),
+            Mac:                  models.ToPointer("6e795836d5f9"),
+            NasVendor:            models.ToPointer("juniper-mist"),
+            RxPkts:               models.ToPointer(9523),
+            Ssid:                 models.ToPointer("Test-CMR SSID"),
+            Timestamp:            models.ToPointer(float64(1547235620.89)),
+            TxPkts:               models.ToPointer(5233),
+            Type:                 models.ToPointer("NAC_ACCOUNTING_STOP"),
+            Username:             models.ToPointer("hi"),
         },
     },
-    Topic:  models.ToPointer("nac-accounting"),
+    Topic:                models.ToPointer("nac-accounting"),
 }
 
 resp, err := samplesWebhooks.NacAccounting(ctx, &body)
@@ -1039,7 +1044,7 @@ NacEvents(
 ctx := context.Background()
 
 body := models.WebhookNacEvents{
-    Events: []models.WebhookNacEventsEvent{
+    Events:               []models.WebhookNacEventsEvent{
         models.WebhookNacEventsEvent{
             Ap:                   models.ToPointer("5c5b35513227"),
             AuthType:             models.ToPointer("802.1X"),
@@ -1070,7 +1075,7 @@ body := models.WebhookNacEvents{
             Vlan:                 models.ToPointer("750"),
         },
     },
-    Topic:  models.ToPointer("string"),
+    Topic:                models.ToPointer("string"),
 }
 
 resp, err := samplesWebhooks.NacEvents(ctx, &body)
@@ -1112,11 +1117,11 @@ OccupancyAlerts(
 ctx := context.Background()
 
 body := models.WebhookOccupancyAlerts{
-    Events: []models.WebhookOccupancyAlertsEvent{
+    Events:               []models.WebhookOccupancyAlertsEvent{
         models.WebhookOccupancyAlertsEvent{
         },
     },
-    Topic:  "occupancy-alerts",
+    Topic:                "occupancy-alerts",
 }
 
 resp, err := samplesWebhooks.OccupancyAlerts(ctx, &body)
@@ -1158,13 +1163,13 @@ Ping(
 ctx := context.Background()
 
 body := models.WebhookPing{
-    Events: []models.WebhookPingEvent{
+    Events:               []models.WebhookPingEvent{
         models.WebhookPingEvent{
-            Name:      "string",
-            Timestamp: float64(0),
+            Name:                 "string",
+            Timestamp:            float64(0),
         },
     },
-    Topic:  "ping",
+    Topic:                "ping",
 }
 
 resp, err := samplesWebhooks.Ping(ctx, &body)
@@ -1206,38 +1211,38 @@ SdkclientScanData(
 ctx := context.Background()
 
 body := models.WebhookSdkclientScanData{
-    Events: []models.WebhookSdkclientScanDataEvent{
+    Events:               []models.WebhookSdkclientScanDataEvent{
         models.WebhookSdkclientScanDataEvent{
-            ConnectionAp:      "5c5b352f587e",
-            ConnectionBand:    "2.4",
-            ConnectionBssid:   "5c5b352b51b4",
-            ConnectionChannel: 11,
-            ConnectionRssi:    float64(-87),
-            LastSeen:          float64(1592333828),
-            Mac:               "70ef0071535f",
-            ScanData:          []models.WebhookSdkclientScanDataEventScanDataItem{
+            ConnectionAp:         "5c5b352f587e",
+            ConnectionBand:       "2.4",
+            ConnectionBssid:      "5c5b352b51b4",
+            ConnectionChannel:    11,
+            ConnectionRssi:       float64(-87),
+            LastSeen:             float64(1592333828),
+            Mac:                  "70ef0071535f",
+            ScanData:             []models.WebhookSdkclientScanDataEventScanDataItem{
                 models.WebhookSdkclientScanDataEventScanDataItem{
-                    Ap:        "5c5b352f587e",
-                    Band:      models.ScanDataItemBandEnum("2.4"),
-                    Bssid:     "5c5b352b51b4",
-                    Channel:   11,
-                    Rssi:      float64(-87),
-                    Ssid:      "mist-wifi",
-                    Timestamp: float64(1592333828),
+                    Ap:                   "5c5b352f587e",
+                    Band:                 models.ScanDataItemBandEnum("2.4"),
+                    Bssid:                "5c5b352b51b4",
+                    Channel:              11,
+                    Rssi:                 float64(-87),
+                    Ssid:                 "mist-wifi",
+                    Timestamp:            float64(1592333828),
                 },
                 models.WebhookSdkclientScanDataEventScanDataItem{
-                    Ap:        "5c5b352f587e",
-                    Band:      models.ScanDataItemBandEnum("5"),
-                    Bssid:     "5c5b352b51b8",
-                    Channel:   36,
-                    Rssi:      float64(-75),
-                    Ssid:      "mist-wifi",
-                    Timestamp: float64(1592333828),
+                    Ap:                   "5c5b352f587e",
+                    Band:                 models.ScanDataItemBandEnum("5"),
+                    Bssid:                "5c5b352b51b8",
+                    Channel:              36,
+                    Rssi:                 float64(-75),
+                    Ssid:                 "mist-wifi",
+                    Timestamp:            float64(1592333828),
                 },
             },
         },
     },
-    Topic:  "sdkclient_scan_data",
+    Topic:                "sdkclient_scan_data",
 }
 
 resp, err := samplesWebhooks.SdkclientScanData(ctx, &body)
@@ -1279,17 +1284,17 @@ SiteSle(
 ctx := context.Background()
 
 body := models.WebhookSiteSle{
-    Events: []models.WebhookSiteSleEvent{
+    Events:               []models.WebhookSiteSleEvent{
         models.WebhookSiteSleEvent{
-            Sle:       models.ToPointer(models.WebhookSiteSleEventSle{
-                ApAvailability:    models.ToPointer(float64(0.6)),
-                SuccessfulConnect: models.ToPointer(float64(0.7)),
-                TimeToConnect:     models.ToPointer(float64(0.9)),
+            Sle:                  models.ToPointer(models.WebhookSiteSleEventSle{
+                ApAvailability:       models.ToPointer(float64(0.6)),
+                SuccessfulConnect:    models.ToPointer(float64(0.7)),
+                TimeToConnect:        models.ToPointer(float64(0.9)),
             }),
-            Timestamp: models.ToPointer(1694620800),
+            Timestamp:            models.ToPointer(1694620800),
         },
     },
-    Topic:  models.ToPointer("site_sle"),
+    Topic:                models.ToPointer("site_sle"),
 }
 
 resp, err := samplesWebhooks.SiteSle(ctx, &body)
@@ -1331,19 +1336,19 @@ Zone(
 ctx := context.Background()
 
 body := models.WebhookZone{
-    Events: []models.WebhookZoneEvent{
+    Events:               []models.WebhookZoneEvent{
         models.WebhookZoneEvent{
-            AssetId:   models.ToPointer(uuid.MustParse("b4695157-0d1d-4da0-8f9e-5c53149389e4")),
-            Mac:       models.ToPointer("string"),
-            MapId:     uuid.MustParse("09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1"),
-            Name:      models.ToPointer("string"),
-            Timestamp: 0,
-            Trigger:   models.WebhookZoneEventTriggerEnum("enter"),
-            Type:      "string",
-            ZoneId:    uuid.MustParse("4495020a-236f-46e0-9453-e3f9cc6476f4"),
+            AssetId:              models.ToPointer(uuid.MustParse("b4695157-0d1d-4da0-8f9e-5c53149389e4")),
+            Mac:                  models.ToPointer("string"),
+            MapId:                uuid.MustParse("09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1"),
+            Name:                 models.ToPointer("string"),
+            Timestamp:            0,
+            Trigger:              models.WebhookZoneEventTriggerEnum("enter"),
+            Type:                 "string",
+            ZoneId:               uuid.MustParse("4495020a-236f-46e0-9453-e3f9cc6476f4"),
         },
     },
-    Topic:  "zone",
+    Topic:                "zone",
 }
 
 resp, err := samplesWebhooks.Zone(ctx, &body)

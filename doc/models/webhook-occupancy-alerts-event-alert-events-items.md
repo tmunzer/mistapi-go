@@ -1,6 +1,8 @@
 
 # Webhook Occupancy Alerts Event Alert Events Items
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookOccupancyAlertsEventAlertEventsItems`
@@ -17,6 +19,7 @@
 | `Type` | [`models.WebhookOccupancyAlertTypeEnum`](../../doc/models/webhook-occupancy-alert-type-enum.md) | Required | enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION` |
 | `ZoneId` | `uuid.UUID` | Required | - |
 | `ZoneName` | `string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
   "timestamp": 144.22,
   "type": "COMPLIANCE-OK",
   "zone_id": "00002544-0000-0000-0000-000000000000",
-  "zone_name": "zone_name4"
+  "zone_name": "zone_name4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

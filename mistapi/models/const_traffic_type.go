@@ -6,15 +6,15 @@ import (
 
 // ConstTrafficType represents a ConstTrafficType struct.
 type ConstTrafficType struct {
-    Display              *string        `json:"display,omitempty"`
-    Dscp                 *int           `json:"dscp,omitempty"`
-    FailoverPolicy       *string        `json:"failover_policy,omitempty"`
-    MaxJitter            *int           `json:"max_jitter,omitempty"`
-    MaxLatency           *int           `json:"max_latency,omitempty"`
-    MaxLoss              *int           `json:"max_loss,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    TrafficClass         *string        `json:"traffic_class,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Display              *string                `json:"display,omitempty"`
+    Dscp                 *int                   `json:"dscp,omitempty"`
+    FailoverPolicy       *string                `json:"failover_policy,omitempty"`
+    MaxJitter            *int                   `json:"max_jitter,omitempty"`
+    MaxLatency           *int                   `json:"max_latency,omitempty"`
+    MaxLoss              *int                   `json:"max_loss,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    TrafficClass         *string                `json:"traffic_class,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstTrafficType.
@@ -22,13 +22,17 @@ type ConstTrafficType struct {
 func (c ConstTrafficType) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "display", "dscp", "failover_policy", "max_jitter", "max_latency", "max_loss", "name", "traffic_class"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstTrafficType object to a map representation for JSON marshaling.
 func (c ConstTrafficType) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Display != nil {
         structMap["display"] = c.Display
     }
@@ -64,12 +68,12 @@ func (c *ConstTrafficType) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "display", "dscp", "failover_policy", "max_jitter", "max_latency", "max_loss", "name", "traffic_class")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "display", "dscp", "failover_policy", "max_jitter", "max_latency", "max_loss", "name", "traffic_class")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Display = temp.Display
     c.Dscp = temp.Dscp
     c.FailoverPolicy = temp.FailoverPolicy

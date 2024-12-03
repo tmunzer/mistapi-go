@@ -13,31 +13,31 @@ type AclTag struct {
     // - `type`==`dynamic_gbp` (gbp_tag received from RADIUS)
     // - `type`==`gbp_resource`
     // - `type`==`static_gbp` (applying gbp tag against matching conditions)
-    GbpTag               *int           `json:"gbp_tag,omitempty"`
+    GbpTag               *int                   `json:"gbp_tag,omitempty"`
     // required if
     // - `type`==`mac`
     // - `type`==`static_gbp` if from matching mac
-    Macs                 []string       `json:"macs,omitempty"`
+    Macs                 []string               `json:"macs,omitempty"`
     // if:
     // * `type`==`mac` (optional. default is `any`)
     // * `type`==`subnet` (optional. default is `any`)
     // * `type`==`network`
     // * `type`==`resource` (optional. default is `any`)
     // * `type`==`static_gbp` if from matching network (vlan)'
-    Network              *string        `json:"network,omitempty"`
+    Network              *string                `json:"network,omitempty"`
     // required if:
     // * `type`==`radius_group`
     // * `type`==`static_gbp`
     // if from matching radius_group
-    RadiusGroup          *string        `json:"radius_group,omitempty"`
+    RadiusGroup          *string                `json:"radius_group,omitempty"`
     // if `type`==`resource` or `type`==`gbp_resource`
     // empty means unrestricted, i.e. any
-    Specs                []AclTagSpec   `json:"specs,omitempty"`
+    Specs                []AclTagSpec           `json:"specs,omitempty"`
     // if
     // - `type`==`subnet`
     // - `type`==`resource` (optional. default is `any`)
     // - `type`==`static_gbp` if from matching subnet
-    Subnets              []string       `json:"subnets,omitempty"`
+    Subnets              []string               `json:"subnets,omitempty"`
     // enum:
     // * `any`: matching anything not identified
     // * `dynamic_gbp`: from the gbp_tag received from RADIUS
@@ -48,8 +48,8 @@ type AclTag struct {
     // * `resource`: can only be used in `dst_tags`
     // * `static_gbp`: applying gbp tag against matching conditions
     // * `subnet`'
-    Type                 AclTagTypeEnum `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    Type                 AclTagTypeEnum         `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AclTag.
@@ -57,13 +57,17 @@ type AclTag struct {
 func (a AclTag) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "gbp_tag", "macs", "network", "radius_group", "specs", "subnets", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AclTag object to a map representation for JSON marshaling.
 func (a AclTag) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.GbpTag != nil {
         structMap["gbp_tag"] = a.GbpTag
     }
@@ -98,12 +102,12 @@ func (a *AclTag) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gbp_tag", "macs", "network", "radius_group", "specs", "subnets", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gbp_tag", "macs", "network", "radius_group", "specs", "subnets", "type")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.GbpTag = temp.GbpTag
     a.Macs = temp.Macs
     a.Network = temp.Network

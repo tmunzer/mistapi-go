@@ -9,9 +9,9 @@ import (
 
 // MxedgesAssign represents a MxedgesAssign struct.
 type MxedgesAssign struct {
-    MxedgeIds            []uuid.UUID    `json:"mxedge_ids"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    AdditionalProperties map[string]any `json:"_"`
+    MxedgeIds            []uuid.UUID            `json:"mxedge_ids"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgesAssign.
@@ -19,13 +19,17 @@ type MxedgesAssign struct {
 func (m MxedgesAssign) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "mxedge_ids", "site_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgesAssign object to a map representation for JSON marshaling.
 func (m MxedgesAssign) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["mxedge_ids"] = m.MxedgeIds
     structMap["site_id"] = m.SiteId
     return structMap
@@ -43,12 +47,12 @@ func (m *MxedgesAssign) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mxedge_ids", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mxedge_ids", "site_id")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.MxedgeIds = *temp.MxedgeIds
     m.SiteId = *temp.SiteId
     return nil

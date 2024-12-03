@@ -14,7 +14,7 @@ type SleClassifierSummary struct {
     Impact               SleClassifierSummaryImpact `json:"impact"`
     Metric               string                     `json:"metric"`
     Start                float64                    `json:"start"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleClassifierSummary.
@@ -22,13 +22,17 @@ type SleClassifierSummary struct {
 func (s SleClassifierSummary) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "classifier", "end", "failures", "impact", "metric", "start"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleClassifierSummary object to a map representation for JSON marshaling.
 func (s SleClassifierSummary) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["classifier"] = s.Classifier.toMap()
     structMap["end"] = s.End
     structMap["failures"] = s.Failures
@@ -50,12 +54,12 @@ func (s *SleClassifierSummary) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "classifier", "end", "failures", "impact", "metric", "start")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "classifier", "end", "failures", "impact", "metric", "start")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Classifier = *temp.Classifier
     s.End = *temp.End
     s.Failures = *temp.Failures

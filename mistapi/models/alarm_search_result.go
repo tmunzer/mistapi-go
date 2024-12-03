@@ -9,15 +9,15 @@ import (
 // AlarmSearchResult represents a AlarmSearchResult struct.
 type AlarmSearchResult struct {
     // Component of the alarm
-    Component            *string        `json:"component,omitempty"`
-    End                  int            `json:"end"`
-    Limit                int            `json:"limit"`
-    Next                 *string        `json:"next,omitempty"`
-    Page                 *int           `json:"page,omitempty"`
-    Results              []Alarm        `json:"results"`
-    Start                int            `json:"start"`
-    Total                int            `json:"total"`
-    AdditionalProperties map[string]any `json:"_"`
+    Component            *string                `json:"component,omitempty"`
+    End                  int                    `json:"end"`
+    Limit                int                    `json:"limit"`
+    Next                 *string                `json:"next,omitempty"`
+    Page                 *int                   `json:"page,omitempty"`
+    Results              []Alarm                `json:"results"`
+    Start                int                    `json:"start"`
+    Total                int                    `json:"total"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AlarmSearchResult.
@@ -25,13 +25,17 @@ type AlarmSearchResult struct {
 func (a AlarmSearchResult) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "component", "end", "limit", "next", "page", "results", "start", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AlarmSearchResult object to a map representation for JSON marshaling.
 func (a AlarmSearchResult) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Component != nil {
         structMap["component"] = a.Component
     }
@@ -61,12 +65,12 @@ func (a *AlarmSearchResult) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "component", "end", "limit", "next", "page", "results", "start", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "component", "end", "limit", "next", "page", "results", "start", "total")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Component = temp.Component
     a.End = *temp.End
     a.Limit = *temp.Limit

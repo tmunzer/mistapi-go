@@ -49,7 +49,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MarvisClient{
-    Name:         models.ToPointer("string"),
+    Name:                 models.ToPointer("string"),
 }
 
 apiResponse, err := orgsClientsMarvis.CreateOrgMarvisClientInvites(ctx, orgId, &body)
@@ -294,7 +294,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 marvisinviteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MarvisClient{
-    Name:         models.ToPointer("string"),
+    Name:                 models.ToPointer("string"),
 }
 
 apiResponse, err := orgsClientsMarvis.UpdateOrgMarvisClientInvite(ctx, orgId, marvisinviteId, &body)

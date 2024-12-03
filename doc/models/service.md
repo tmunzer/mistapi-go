@@ -3,6 +3,8 @@
 
 Applications used for the Gateway configurations
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Service`
@@ -38,6 +40,7 @@ Applications used for the Gateway configurations
 | `TrafficType` | `*string` | Optional | values from `/api/v1/consts/traffic_types`<br>**Default**: `"data_best_effort"` |
 | `Type` | [`*models.ServiceTypeEnum`](../../doc/models/service-type-enum.md) | Optional | enum: `app_categories`, `apps`, `custom`, `urls`<br>**Default**: `"custom"` |
 | `Urls` | `[]string` | Optional | when `type`==`urls`, no need for spec as URL can encode the ports being used |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -69,7 +72,11 @@ Applications used for the Gateway configurations
     "addresses6",
     "addresses7",
     "addresses8"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

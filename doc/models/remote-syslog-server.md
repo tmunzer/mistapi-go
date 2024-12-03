@@ -1,6 +1,8 @@
 
 # Remote Syslog Server
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RemoteSyslogServer`
@@ -21,6 +23,7 @@
 | `SourceAddress` | `*string` | Optional | if source_address is configured, will use the vlan firstly otherwise use source_ip |
 | `StructuredData` | `*bool` | Optional | - |
 | `Tag` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,10 +39,18 @@
   "contents": [
     {
       "facility": "ntp",
-      "severity": "error"
+      "severity": "error",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "explicit_priority": false
+  "explicit_priority": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

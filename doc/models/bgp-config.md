@@ -3,6 +3,8 @@
 
 BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `BgpConfig`
@@ -32,6 +34,7 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 | `Via` | [`*models.BgpConfigViaEnum`](../../doc/models/bgp-config-via-enum.md) | Optional | network name. enum: `lan`, `tunnel`, `vpn`, `wan`<br>**Default**: `"lan"` |
 | `VpnName` | `*string` | Optional | - |
 | `WanName` | `*string` | Optional | if `via`==`wan` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -45,7 +48,11 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
   "no_readvertise_to_overlay": false,
   "via": "lan",
   "auth_key": "auth_key8",
-  "export": "export6"
+  "export": "export6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

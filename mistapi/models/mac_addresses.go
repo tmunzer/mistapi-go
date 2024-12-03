@@ -8,8 +8,8 @@ import (
 
 // MacAddresses represents a MacAddresses struct.
 type MacAddresses struct {
-    Macs                 []string       `json:"macs"`
-    AdditionalProperties map[string]any `json:"_"`
+    Macs                 []string               `json:"macs"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MacAddresses.
@@ -17,13 +17,17 @@ type MacAddresses struct {
 func (m MacAddresses) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "macs"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MacAddresses object to a map representation for JSON marshaling.
 func (m MacAddresses) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["macs"] = m.Macs
     return structMap
 }
@@ -40,12 +44,12 @@ func (m *MacAddresses) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "macs")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "macs")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Macs = *temp.Macs
     return nil
 }

@@ -1,6 +1,8 @@
 
 # Utils Traceroute
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UtilsTraceroute`
@@ -16,6 +18,7 @@
 | `Protocol` | [`*models.UtilsTracerouteProtocolEnum`](../../doc/models/utils-traceroute-protocol-enum.md) | Optional | enum: `icmp` (Only suported by AP/MxEdge), `udp`<br>**Default**: `"udp"` |
 | `Timeout` | `*int` | Optional | not supported in SSR. Maximum time in seconds to wait for the response<br>**Default**: `60` |
 | `Vrf` | `*string` | Optional | for SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,7 +29,11 @@
   "protocol": "udp",
   "timeout": 60,
   "host": "host2",
-  "node": "node0"
+  "node": "node0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

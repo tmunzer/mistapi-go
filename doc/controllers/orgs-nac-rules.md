@@ -49,32 +49,32 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacRule{
-    Action:       models.NacRuleActionEnum("allow"),
-    ApplyTags:    []string{
+    Action:               models.NacRuleActionEnum("allow"),
+    ApplyTags:            []string{
         "c049dfcd-0c73-5014-1c64-062e9903f1e5\"",
     },
-    Matching:     models.ToPointer(models.NacRuleMatching{
-        AuthType:     models.ToPointer(models.NacRuleMatchingAuthTypeEnum("eap-tls")),
-        Nactags:      []string{
+    Matching:             models.ToPointer(models.NacRuleMatching{
+        AuthType:             models.ToPointer(models.NacRuleMatchingAuthTypeEnum("eap-tls")),
+        Nactags:              []string{
             "041d5d36-716c-4cfb-4988-3857c6aa14a2",
             "a809a97f-d599-f812-eb8c-c3f84aabf6ba",
         },
-        PortTypes:    []models.NacRuleMatchingPortTypeEnum{
+        PortTypes:            []models.NacRuleMatchingPortTypeEnum{
             models.NacRuleMatchingPortTypeEnum("wired"),
         },
-        SiteIds:      []uuid.UUID{
+        SiteIds:              []uuid.UUID{
             uuid.MustParse("bb19fc3e-4124-4b57-80d9-c3f6edce47c4"),
             uuid.MustParse("bb19fc3e-6564-4b57-80d9-c3f6edce47c1"),
         },
-        SitegroupIds: []uuid.UUID{
+        SitegroupIds:         []uuid.UUID{
             uuid.MustParse("bb19fc3e-4124-4b57-80d9-c3f6edce47c4"),
             uuid.MustParse("bb19fc3e-6564-4b57-80d9-c3f6edce47c1"),
         },
     }),
-    Name:         "name1",
-    NotMatching:  models.ToPointer(models.NacRuleMatching{
+    Name:                 "name1",
+    NotMatching:          models.ToPointer(models.NacRuleMatching{
     }),
-    Order:        models.ToPointer(1),
+    Order:                models.ToPointer(1),
 }
 
 apiResponse, err := orgsNACRules.CreateOrgNacRule(ctx, orgId, &body)
@@ -347,13 +347,13 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 nacruleId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacRule{
-    Action:       models.NacRuleActionEnum("allow"),
-    ApplyTags:    []string{
+    Action:               models.NacRuleActionEnum("allow"),
+    ApplyTags:            []string{
         "c049dfcd-0c73-5014-1c64-062e9903f1e5",
     },
-    Enabled:      models.ToPointer(true),
-    Name:         "name6",
-    Order:        models.ToPointer(1),
+    Enabled:              models.ToPointer(true),
+    Name:                 "name6",
+    Order:                models.ToPointer(1),
 }
 
 apiResponse, err := orgsNACRules.UpdateOrgNacRule(ctx, orgId, nacruleId, &body)

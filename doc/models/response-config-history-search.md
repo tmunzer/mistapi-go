@@ -1,6 +1,8 @@
 
 # Response Config History Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseConfigHistorySearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.ResponseConfigHistorySearchItem`](../../doc/models/response-config-history-search-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,15 +37,27 @@
       "radios": [
         {
           "band": "band2",
-          "channel": 156
+          "channel": 156,
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "band": "band2",
-          "channel": 156
+          "channel": 156,
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "band": "band2",
-          "channel": 156
+          "channel": 156,
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "secpolicy_violated": false,
@@ -58,12 +73,20 @@
         "ssids_57"
       ],
       "timestamp": 2.64,
-      "version": "version2"
+      "version": "version2",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 154,
   "total": 68,
-  "next": "next2"
+  "next": "next2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

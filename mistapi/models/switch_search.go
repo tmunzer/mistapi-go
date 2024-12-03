@@ -7,20 +7,20 @@ import (
 
 // SwitchSearch represents a SwitchSearch struct.
 type SwitchSearch struct {
-    ExtIp                *string        `json:"ext_ip,omitempty"`
-    Hostname             []string       `json:"hostname,omitempty"`
-    Ip                   *string        `json:"ip,omitempty"`
-    LastHostname         *string        `json:"last_hostname,omitempty"`
-    Mac                  *string        `json:"mac,omitempty"`
-    Model                *string        `json:"model,omitempty"`
-    NumMembers           *int           `json:"num_members,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
-    Type                 *string        `json:"type,omitempty"`
-    Uptime               *int           `json:"uptime,omitempty"`
-    Version              *string        `json:"version,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ExtIp                *string                `json:"ext_ip,omitempty"`
+    Hostname             []string               `json:"hostname,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
+    LastHostname         *string                `json:"last_hostname,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    Model                *string                `json:"model,omitempty"`
+    NumMembers           *int                   `json:"num_members,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
+    Uptime               *int                   `json:"uptime,omitempty"`
+    Version              *string                `json:"version,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchSearch.
@@ -28,13 +28,17 @@ type SwitchSearch struct {
 func (s SwitchSearch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ext_ip", "hostname", "ip", "last_hostname", "mac", "model", "num_members", "org_id", "site_id", "timestamp", "type", "uptime", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchSearch object to a map representation for JSON marshaling.
 func (s SwitchSearch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ExtIp != nil {
         structMap["ext_ip"] = s.ExtIp
     }
@@ -85,12 +89,12 @@ func (s *SwitchSearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ext_ip", "hostname", "ip", "last_hostname", "mac", "model", "num_members", "org_id", "site_id", "timestamp", "type", "uptime", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ext_ip", "hostname", "ip", "last_hostname", "mac", "model", "num_members", "org_id", "site_id", "timestamp", "type", "uptime", "version")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ExtIp = temp.ExtIp
     s.Hostname = temp.Hostname
     s.Ip = temp.Ip

@@ -9,21 +9,21 @@ import (
 
 // WirelssClientSession represents a WirelssClientSession struct.
 type WirelssClientSession struct {
-    Ap                   string         `json:"ap"`
-    Band                 string         `json:"band"`
-    ClientManufacture    *string        `json:"client_manufacture"`
-    Connect              int            `json:"connect"`
-    Disconnect           int            `json:"disconnect"`
-    Duration             float64        `json:"duration"`
-    ForSite              *bool          `json:"for_site,omitempty"`
-    Mac                  string         `json:"mac"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    Ssid                 string         `json:"ssid"`
-    Tags                 []string       `json:"tags,omitempty"`
-    Timestamp            float64        `json:"timestamp"`
-    WlanId               uuid.UUID      `json:"wlan_id"`
-    AdditionalProperties map[string]any `json:"_"`
+    Ap                   string                 `json:"ap"`
+    Band                 string                 `json:"band"`
+    ClientManufacture    *string                `json:"client_manufacture"`
+    Connect              int                    `json:"connect"`
+    Disconnect           int                    `json:"disconnect"`
+    Duration             float64                `json:"duration"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
+    Mac                  string                 `json:"mac"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    Ssid                 string                 `json:"ssid"`
+    Tags                 []string               `json:"tags,omitempty"`
+    Timestamp            float64                `json:"timestamp"`
+    WlanId               uuid.UUID              `json:"wlan_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WirelssClientSession.
@@ -31,13 +31,17 @@ type WirelssClientSession struct {
 func (w WirelssClientSession) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "ap", "band", "client_manufacture", "connect", "disconnect", "duration", "for_site", "mac", "org_id", "site_id", "ssid", "tags", "timestamp", "wlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WirelssClientSession object to a map representation for JSON marshaling.
 func (w WirelssClientSession) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["ap"] = w.Ap
     structMap["band"] = w.Band
     if w.ClientManufacture != nil {
@@ -75,12 +79,12 @@ func (w *WirelssClientSession) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "band", "client_manufacture", "connect", "disconnect", "duration", "for_site", "mac", "org_id", "site_id", "ssid", "tags", "timestamp", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "band", "client_manufacture", "connect", "disconnect", "duration", "for_site", "mac", "org_id", "site_id", "ssid", "tags", "timestamp", "wlan_id")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Ap = *temp.Ap
     w.Band = *temp.Band
     w.ClientManufacture = temp.ClientManufacture

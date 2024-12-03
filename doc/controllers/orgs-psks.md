@@ -180,7 +180,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskIdList{
-    PskIds: []uuid.UUID{
+    PskIds:               []uuid.UUID{
         uuid.MustParse("0039c16c-ca87-4d3f-bb94-b97c58199f18"),
         uuid.MustParse("6562cc8e-5893-418a-acaa-4d7c1af8084f"),
     },

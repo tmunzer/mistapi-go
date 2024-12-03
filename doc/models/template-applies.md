@@ -3,6 +3,8 @@
 
 where this template should be applied to, can be org_id, site_ids, sitegroup_ids
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `TemplateApplies`
@@ -14,6 +16,7 @@ where this template should be applied to, can be org_id, site_ids, sitegroup_ids
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteIds` | `[]uuid.UUID` | Optional | list of site ids |
 | `SitegroupIds` | `[]uuid.UUID` | Optional | list of sitegroup ids |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,7 +31,11 @@ where this template should be applied to, can be org_id, site_ids, sitegroup_ids
   "sitegroup_ids": [
     "000020da-0000-0000-0000-000000000000",
     "000020db-0000-0000-0000-000000000000"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

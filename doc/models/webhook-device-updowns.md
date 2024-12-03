@@ -3,6 +3,8 @@
 
 device up/down webhook sample
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookDeviceUpdowns`
@@ -13,6 +15,7 @@ device up/down webhook sample
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookDeviceUpdownsEvent`](../../doc/models/webhook-device-updowns-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Topic` | `string` | Required | **Default**: `"device-updowns"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,10 +30,18 @@ device up/down webhook sample
       "site_name": "site_name2",
       "timestamp": 188.18,
       "type": "type0",
-      "for_site": false
+      "for_site": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "device-updowns"
+  "topic": "device-updowns",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

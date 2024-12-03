@@ -3,6 +3,8 @@
 
 mxCluster
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Mxcluster`
@@ -32,6 +34,7 @@ mxCluster
 | `TuntermHostsSelection` | [`*models.MxclusterTuntermHostsSelectionEnum`](../../doc/models/mxcluster-tunterm-hosts-selection-enum.md) | Optional | Ordering of tunterm_hosts for mxedge within the same mxcluster. enum:<br><br>* `shuffle`: the ordering of tunterm_hosts is randomized by the device''s MAC<br>* `shuffle-by-site`: shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels)<br>* `ordered`: order decided by tunterm_hosts_order<br>**Default**: `"shuffle"` |
 | `TuntermMonitoring` | [`[][]models.TuntermMonitoringItem`](../../doc/models/tunterm-monitoring-item.md) | Optional | - |
 | `TuntermMonitoringDisabled` | `*bool` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,17 +53,29 @@ mxCluster
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "require_message_authenticator": false
+        "require_message_authenticator": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       {
         "disable_event_timestamp_check": false,
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "require_message_authenticator": false
+        "require_message_authenticator": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     ],
-    "enabled": false
+    "enabled": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "mist_nac": {
     "acct_server_port": 70,
@@ -70,23 +85,43 @@ mxCluster
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-meraki"
+        "vendor": "cisco-meraki",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "key1": {
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-meraki"
+        "vendor": "cisco-meraki",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "key2": {
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-meraki"
+        "vendor": "cisco-meraki",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     },
     "enabled": false,
-    "secret": "secret6"
+    "secret": "secret6",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

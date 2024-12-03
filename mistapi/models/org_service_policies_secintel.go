@@ -12,7 +12,7 @@ type OrgServicePoliciesSecintel struct {
     Profile              *SecintelProfileProfileActionEnum `json:"profile,omitempty"`
     // org-level secintel Profile can be used, this takes precendence over 'profile'
     SecintelprofileId    *string                           `json:"secintelprofile_id,omitempty"`
-    AdditionalProperties map[string]any                    `json:"_"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgServicePoliciesSecintel.
@@ -20,13 +20,17 @@ type OrgServicePoliciesSecintel struct {
 func (o OrgServicePoliciesSecintel) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "enabled", "profile", "secintelprofile_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgServicePoliciesSecintel object to a map representation for JSON marshaling.
 func (o OrgServicePoliciesSecintel) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Enabled != nil {
         structMap["enabled"] = o.Enabled
     }
@@ -47,12 +51,12 @@ func (o *OrgServicePoliciesSecintel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "profile", "secintelprofile_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "profile", "secintelprofile_id")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Enabled = temp.Enabled
     o.Profile = temp.Profile
     o.SecintelprofileId = temp.SecintelprofileId

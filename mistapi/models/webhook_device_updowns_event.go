@@ -9,15 +9,15 @@ import (
 
 // WebhookDeviceUpdownsEvent represents a WebhookDeviceUpdownsEvent struct.
 type WebhookDeviceUpdownsEvent struct {
-    Ap                   string         `json:"ap"`
-    ApName               string         `json:"ap_name"`
-    ForSite              *bool          `json:"for_site,omitempty"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    SiteName             string         `json:"site_name"`
-    Timestamp            float64        `json:"timestamp"`
-    Type                 string         `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    Ap                   string                 `json:"ap"`
+    ApName               string                 `json:"ap_name"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    SiteName             string                 `json:"site_name"`
+    Timestamp            float64                `json:"timestamp"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookDeviceUpdownsEvent.
@@ -25,13 +25,17 @@ type WebhookDeviceUpdownsEvent struct {
 func (w WebhookDeviceUpdownsEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "ap", "ap_name", "for_site", "org_id", "site_id", "site_name", "timestamp", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookDeviceUpdownsEvent object to a map representation for JSON marshaling.
 func (w WebhookDeviceUpdownsEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["ap"] = w.Ap
     structMap["ap_name"] = w.ApName
     if w.ForSite != nil {
@@ -57,12 +61,12 @@ func (w *WebhookDeviceUpdownsEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "ap_name", "for_site", "org_id", "site_id", "site_name", "timestamp", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "ap_name", "for_site", "org_id", "site_id", "site_name", "timestamp", "type")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Ap = *temp.Ap
     w.ApName = *temp.ApName
     w.ForSite = temp.ForSite

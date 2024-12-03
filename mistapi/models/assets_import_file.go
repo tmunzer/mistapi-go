@@ -7,8 +7,8 @@ import (
 // AssetsImportFile represents a AssetsImportFile struct.
 type AssetsImportFile struct {
     // CSV file
-    File                 *[]byte        `json:"file,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    File                 *[]byte                `json:"file,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetsImportFile.
@@ -16,13 +16,17 @@ type AssetsImportFile struct {
 func (a AssetsImportFile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "file"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AssetsImportFile object to a map representation for JSON marshaling.
 func (a AssetsImportFile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.File != nil {
         structMap["file"] = a.File
     }
@@ -37,12 +41,12 @@ func (a *AssetsImportFile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "file")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "file")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.File = temp.File
     return nil
 }

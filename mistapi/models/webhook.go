@@ -52,7 +52,7 @@ type Webhook struct {
     Url                  *string                     `json:"url,omitempty"`
     // when url uses HTTPS, whether to verify the certificate
     VerifyCert           *bool                       `json:"verify_cert,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Webhook.
@@ -60,13 +60,17 @@ type Webhook struct {
 func (w Webhook) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "site_id", "splunk_token", "topics", "type", "url", "verify_cert"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the Webhook object to a map representation for JSON marshaling.
 func (w Webhook) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.CreatedTime != nil {
         structMap["created_time"] = w.CreatedTime
     }
@@ -160,12 +164,12 @@ func (w *Webhook) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "site_id", "splunk_token", "topics", "type", "url", "verify_cert")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "site_id", "splunk_token", "topics", "type", "url", "verify_cert")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.CreatedTime = temp.CreatedTime
     w.Enabled = temp.Enabled
     w.ForSite = temp.ForSite

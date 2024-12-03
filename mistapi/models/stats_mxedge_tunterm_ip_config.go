@@ -6,10 +6,10 @@ import (
 
 // StatsMxedgeTuntermIpConfig represents a StatsMxedgeTuntermIpConfig struct.
 type StatsMxedgeTuntermIpConfig struct {
-    Gateway              *string        `json:"gateway,omitempty"`
-    Ip                   *string        `json:"ip,omitempty"`
-    Netmask              *string        `json:"netmask,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Gateway              *string                `json:"gateway,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
+    Netmask              *string                `json:"netmask,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeTuntermIpConfig.
@@ -17,13 +17,17 @@ type StatsMxedgeTuntermIpConfig struct {
 func (s StatsMxedgeTuntermIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "gateway", "ip", "netmask"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxedgeTuntermIpConfig object to a map representation for JSON marshaling.
 func (s StatsMxedgeTuntermIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Gateway != nil {
         structMap["gateway"] = s.Gateway
     }
@@ -44,12 +48,12 @@ func (s *StatsMxedgeTuntermIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "ip", "netmask")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateway", "ip", "netmask")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Gateway = temp.Gateway
     s.Ip = temp.Ip
     s.Netmask = temp.Netmask

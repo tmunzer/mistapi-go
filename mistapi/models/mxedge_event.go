@@ -8,14 +8,14 @@ import (
 // MxedgeEvent represents a MxedgeEvent struct.
 type MxedgeEvent struct {
     // component like PS1, PS2
-    Component            *string        `json:"component,omitempty"`
-    MxclusterId          *string        `json:"mxcluster_id,omitempty"`
-    MxedgeId             *string        `json:"mxedge_id,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    Service              *string        `json:"service,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
-    Type                 *string        `json:"type,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Component            *string                `json:"component,omitempty"`
+    MxclusterId          *string                `json:"mxcluster_id,omitempty"`
+    MxedgeId             *string                `json:"mxedge_id,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    Service              *string                `json:"service,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeEvent.
@@ -23,13 +23,17 @@ type MxedgeEvent struct {
 func (m MxedgeEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "component", "mxcluster_id", "mxedge_id", "org_id", "service", "timestamp", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeEvent object to a map representation for JSON marshaling.
 func (m MxedgeEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Component != nil {
         structMap["component"] = m.Component
     }
@@ -62,12 +66,12 @@ func (m *MxedgeEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "component", "mxcluster_id", "mxedge_id", "org_id", "service", "timestamp", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "component", "mxcluster_id", "mxedge_id", "org_id", "service", "timestamp", "type")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Component = temp.Component
     m.MxclusterId = temp.MxclusterId
     m.MxedgeId = temp.MxedgeId

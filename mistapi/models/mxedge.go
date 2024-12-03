@@ -51,7 +51,7 @@ type Mxedge struct {
     // if custom vlan settings are desired
     TuntermSwitchConfig       *MxedgeTuntermSwitchConfigs           `json:"tunterm_switch_config,omitempty"`
     Versions                  *MxedgeVersions                       `json:"versions,omitempty"`
-    AdditionalProperties      map[string]any                        `json:"_"`
+    AdditionalProperties      map[string]interface{}                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Mxedge.
@@ -59,13 +59,17 @@ type Mxedge struct {
 func (m Mxedge) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "created_time", "for_site", "id", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "note", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the Mxedge object to a map representation for JSON marshaling.
 func (m Mxedge) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.CreatedTime != nil {
         structMap["created_time"] = m.CreatedTime
     }
@@ -161,12 +165,12 @@ func (m *Mxedge) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "for_site", "id", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "note", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "note", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.CreatedTime = temp.CreatedTime
     m.ForSite = temp.ForSite
     m.Id = temp.Id

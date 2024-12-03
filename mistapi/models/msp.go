@@ -7,21 +7,21 @@ import (
 
 // Msp represents a Msp struct.
 type Msp struct {
-    AllowMist            *bool          `json:"allow_mist,omitempty"`
+    AllowMist            *bool                  `json:"allow_mist,omitempty"`
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // For advanced tier (uMSPs) only
-    LogoUrl              *string        `json:"logo_url,omitempty"`
+    LogoUrl              *string                `json:"logo_url,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64       `json:"modified_time,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
     // enum: `advanced`, `base`
-    Tier                 *MspTierEnum   `json:"tier,omitempty"`
+    Tier                 *MspTierEnum           `json:"tier,omitempty"`
     // For advanced tier (uMSPs) only
-    Url                  *string        `json:"url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Url                  *string                `json:"url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Msp.
@@ -29,13 +29,17 @@ type Msp struct {
 func (m Msp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "allow_mist", "created_time", "id", "logo_url", "modified_time", "name", "tier", "url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the Msp object to a map representation for JSON marshaling.
 func (m Msp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.AllowMist != nil {
         structMap["allow_mist"] = m.AllowMist
     }
@@ -71,12 +75,12 @@ func (m *Msp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "allow_mist", "created_time", "id", "logo_url", "modified_time", "name", "tier", "url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_mist", "created_time", "id", "logo_url", "modified_time", "name", "tier", "url")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.AllowMist = temp.AllowMist
     m.CreatedTime = temp.CreatedTime
     m.Id = temp.Id

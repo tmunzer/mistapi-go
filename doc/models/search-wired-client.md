@@ -1,6 +1,8 @@
 
 # Search Wired Client
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SearchWiredClient`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.WiredClientResponse`](../../doc/models/wired-client-response.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,35 +43,63 @@
           "ip": "ip8",
           "port_id": "port_id4",
           "port_parent": "port_parent6",
-          "start": "start8"
+          "start": "start8",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "device_mac": "device_mac8",
           "ip": "ip8",
           "port_id": "port_id4",
           "port_parent": "port_parent6",
-          "start": "start8"
+          "start": "start8",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
       ],
       "dhcp_client_options": [
         {
           "code": "code2",
-          "data": "data4"
+          "data": "data4",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "code": "code2",
-          "data": "data4"
+          "data": "data4",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "code": "code2",
-          "data": "data4"
+          "data": "data4",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 30.94,
   "total": 56,
-  "next": "next8"
+  "next": "next8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

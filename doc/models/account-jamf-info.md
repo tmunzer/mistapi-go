@@ -3,6 +3,8 @@
 
 OAuth linked Jamf apps account details
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AccountJamfInfo`
@@ -19,6 +21,7 @@ OAuth linked Jamf apps account details
 | `LinkedBy` | `*string` | Optional | First name of the user who linked the Jamf account |
 | `Name` | `*string` | Optional | Name of the company whose Jamf account mist has subscribed to |
 | `SmartgroupName` | `*string` | Optional | smart group membership for determining compliance status |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,7 +34,11 @@ OAuth linked Jamf apps account details
   "linked_by": "Testname1",
   "name": "Test Compay1 Ltd",
   "smartgroup_name": "CompliantGroup1",
-  "client_id": "client_id6"
+  "client_id": "client_id6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

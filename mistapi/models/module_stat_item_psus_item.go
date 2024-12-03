@@ -6,9 +6,9 @@ import (
 
 // ModuleStatItemPsusItem represents a ModuleStatItemPsusItem struct.
 type ModuleStatItemPsusItem struct {
-    Name                 *string        `json:"name,omitempty"`
-    Status               *string        `json:"status,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 *string                `json:"name,omitempty"`
+    Status               *string                `json:"status,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemPsusItem.
@@ -16,13 +16,17 @@ type ModuleStatItemPsusItem struct {
 func (m ModuleStatItemPsusItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "name", "status"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the ModuleStatItemPsusItem object to a map representation for JSON marshaling.
 func (m ModuleStatItemPsusItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Name != nil {
         structMap["name"] = m.Name
     }
@@ -40,12 +44,12 @@ func (m *ModuleStatItemPsusItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "name", "status")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name", "status")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Name = temp.Name
     m.Status = temp.Status
     return nil

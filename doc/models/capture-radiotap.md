@@ -3,6 +3,8 @@
 
 Initiate a Radiotap Packet Capture
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `CaptureRadiotap`
@@ -22,6 +24,7 @@ Initiate a Radiotap Packet Capture
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression specific to radiotap |
 | `Type` | `string` | Required, Constant | enum: `radiotap`<br>**Default**: `"radiotap"` |
 | `WlanId` | `*uuid.UUID` | Optional | wlan id associated with the respective ssid. |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,7 +40,11 @@ Initiate a Radiotap Packet Capture
   "ssid": "atest",
   "tcpdump_expression": "tcp port 80",
   "type": "radiotap",
-  "wlan_id": "fac8e973-feb9-421a-b381-aabbc4b61f5a"
+  "wlan_id": "fac8e973-feb9-421a-b381-aabbc4b61f5a",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

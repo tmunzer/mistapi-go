@@ -9,7 +9,7 @@ type ModuleStatItemPicsItem struct {
     Index                *int                                   `json:"index,omitempty"`
     ModelNumber          *string                                `json:"model_number,omitempty"`
     PortGroups           []ModuleStatItemPicsItemPortGroupsItem `json:"port_groups,omitempty"`
-    AdditionalProperties map[string]any                         `json:"_"`
+    AdditionalProperties map[string]interface{}                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemPicsItem.
@@ -17,13 +17,17 @@ type ModuleStatItemPicsItem struct {
 func (m ModuleStatItemPicsItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "index", "model_number", "port_groups"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the ModuleStatItemPicsItem object to a map representation for JSON marshaling.
 func (m ModuleStatItemPicsItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Index != nil {
         structMap["index"] = m.Index
     }
@@ -44,12 +48,12 @@ func (m *ModuleStatItemPicsItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "index", "model_number", "port_groups")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "index", "model_number", "port_groups")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Index = temp.Index
     m.ModelNumber = temp.ModelNumber
     m.PortGroups = temp.PortGroups

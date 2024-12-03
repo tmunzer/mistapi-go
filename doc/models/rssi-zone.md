@@ -3,6 +3,8 @@
 
 RSSI Zone
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RssiZone`
@@ -19,6 +21,7 @@ RSSI Zone
 | `Name` | `*string` | Optional | The name of the zone |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@ RSSI Zone
   "devices": [
     {
       "device_id": "00000000-0000-0000-1000-d8695a0f9e61",
-      "rssi": 0
+      "rssi": 0,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
@@ -36,7 +43,11 @@ RSSI Zone
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "created_time": 116.44,
   "for_site": false,
-  "modified_time": 218.52
+  "modified_time": 218.52,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

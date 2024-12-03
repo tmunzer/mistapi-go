@@ -19,7 +19,7 @@ type SiteEngagement struct {
     MaxDwell             *int                         `json:"max_dwell,omitempty"`
     // min time
     MinDwell             *int                         `json:"min_dwell,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteEngagement.
@@ -27,13 +27,17 @@ type SiteEngagement struct {
 func (s SiteEngagement) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "dwell_tag_names", "dwell_tags", "hours", "max_dwell", "min_dwell"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteEngagement object to a map representation for JSON marshaling.
 func (s SiteEngagement) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.DwellTagNames != nil {
         structMap["dwell_tag_names"] = s.DwellTagNames.toMap()
     }
@@ -60,12 +64,12 @@ func (s *SiteEngagement) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dwell_tag_names", "dwell_tags", "hours", "max_dwell", "min_dwell")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dwell_tag_names", "dwell_tags", "hours", "max_dwell", "min_dwell")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.DwellTagNames = temp.DwellTagNames
     s.DwellTags = temp.DwellTags
     s.Hours = temp.Hours

@@ -18,7 +18,7 @@ type SleImpactSummary struct {
     Metric               string                           `json:"metric"`
     Start                float64                          `json:"start"`
     Wlan                 []SleImpactSummaryWlanItem       `json:"wlan"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactSummary.
@@ -26,13 +26,17 @@ type SleImpactSummary struct {
 func (s SleImpactSummary) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ap", "band", "classifier", "device_os", "device_type", "end", "failure", "metric", "start", "wlan"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactSummary object to a map representation for JSON marshaling.
 func (s SleImpactSummary) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["ap"] = s.Ap
     structMap["band"] = s.Band
     structMap["classifier"] = s.Classifier
@@ -58,12 +62,12 @@ func (s *SleImpactSummary) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "band", "classifier", "device_os", "device_type", "end", "failure", "metric", "start", "wlan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "band", "classifier", "device_os", "device_type", "end", "failure", "metric", "start", "wlan")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Ap = *temp.Ap
     s.Band = *temp.Band
     s.Classifier = *temp.Classifier

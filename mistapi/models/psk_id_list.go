@@ -7,8 +7,8 @@ import (
 
 // PskIdList represents a PskIdList struct.
 type PskIdList struct {
-    PskIds               []uuid.UUID    `json:"psk_ids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    PskIds               []uuid.UUID            `json:"psk_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskIdList.
@@ -16,13 +16,17 @@ type PskIdList struct {
 func (p PskIdList) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "psk_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the PskIdList object to a map representation for JSON marshaling.
 func (p PskIdList) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.PskIds != nil {
         structMap["psk_ids"] = p.PskIds
     }
@@ -37,12 +41,12 @@ func (p *PskIdList) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "psk_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "psk_ids")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.PskIds = temp.PskIds
     return nil
 }

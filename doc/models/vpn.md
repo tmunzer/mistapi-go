@@ -1,6 +1,8 @@
 
 # Vpn
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Vpn`
@@ -18,6 +20,7 @@
 | `PathSelection` | [`*models.VpnPathSelection`](../../doc/models/vpn-path-selection.md) | Optional | Only if `type`==`hub_spoke` |
 | `Paths` | [`map[string]models.VpnPath`](../../doc/models/vpn-path.md) | Required | Only if `type`==`hub_spoke`. Property key is the VPN name |
 | `Type` | [`*models.VpnTypeEnum`](../../doc/models/vpn-type-enum.md) | Optional | enum: `hub_spoke`, `mesh`<br>**Default**: `"hub_spoke"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,27 +33,47 @@
     "key0": {
       "bfd_profile": "broadband",
       "ip": "ip8",
-      "pod": 146
+      "pod": 146,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key1": {
       "bfd_profile": "broadband",
       "ip": "ip8",
-      "pod": 146
+      "pod": 146,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "key2": {
       "bfd_profile": "broadband",
       "ip": "ip8",
-      "pod": 146
+      "pod": 146,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
   "type": "hub_spoke",
   "created_time": 229.0,
   "links": {
     "key0": {
-      "preference": 8
+      "preference": 8,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
-  "modified_time": 105.96
+  "modified_time": 105.96,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

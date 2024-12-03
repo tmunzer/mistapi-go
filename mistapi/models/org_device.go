@@ -8,9 +8,9 @@ import (
 
 // OrgDevice represents a OrgDevice struct.
 type OrgDevice struct {
-    Mac                  string         `json:"mac"`
-    Name                 string         `json:"name"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  string                 `json:"mac"`
+    Name                 string                 `json:"name"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgDevice.
@@ -18,13 +18,17 @@ type OrgDevice struct {
 func (o OrgDevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "mac", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgDevice object to a map representation for JSON marshaling.
 func (o OrgDevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     structMap["mac"] = o.Mac
     structMap["name"] = o.Name
     return structMap
@@ -42,12 +46,12 @@ func (o *OrgDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "name")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Mac = *temp.Mac
     o.Name = *temp.Name
     return nil

@@ -37,7 +37,7 @@ type NetworkVpnAccessConfig struct {
     SummarizedSubnetToLanBgp  *string                                  `json:"summarized_subnet_to_lan_bgp,omitempty"`
     // toward LAN-side OSPF peers
     SummarizedSubnetToLanOspf *string                                  `json:"summarized_subnet_to_lan_ospf,omitempty"`
-    AdditionalProperties      map[string]any                           `json:"_"`
+    AdditionalProperties      map[string]interface{}                   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkVpnAccessConfig.
@@ -45,13 +45,17 @@ type NetworkVpnAccessConfig struct {
 func (n NetworkVpnAccessConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "advertised_subnet", "allow_ping", "destination_nat", "nat_pool", "no_readvertise_to_lan_bgp", "no_readvertise_to_lan_ospf", "no_readvertise_to_overlay", "other_vrfs", "routed", "source_nat", "static_nat", "summarized_subnet", "summarized_subnet_to_lan_bgp", "summarized_subnet_to_lan_ospf"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NetworkVpnAccessConfig object to a map representation for JSON marshaling.
 func (n NetworkVpnAccessConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.AdvertisedSubnet != nil {
         structMap["advertised_subnet"] = n.AdvertisedSubnet
     }
@@ -105,12 +109,12 @@ func (n *NetworkVpnAccessConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "advertised_subnet", "allow_ping", "destination_nat", "nat_pool", "no_readvertise_to_lan_bgp", "no_readvertise_to_lan_ospf", "no_readvertise_to_overlay", "other_vrfs", "routed", "source_nat", "static_nat", "summarized_subnet", "summarized_subnet_to_lan_bgp", "summarized_subnet_to_lan_ospf")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "advertised_subnet", "allow_ping", "destination_nat", "nat_pool", "no_readvertise_to_lan_bgp", "no_readvertise_to_lan_ospf", "no_readvertise_to_overlay", "other_vrfs", "routed", "source_nat", "static_nat", "summarized_subnet", "summarized_subnet_to_lan_bgp", "summarized_subnet_to_lan_ospf")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.AdvertisedSubnet = temp.AdvertisedSubnet
     n.AllowPing = temp.AllowPing
     n.DestinationNat = temp.DestinationNat

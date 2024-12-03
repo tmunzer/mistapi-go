@@ -41,7 +41,7 @@ type Vbeacon struct {
     X                    *float64                `json:"x,omitempty"`
     // y in pixel
     Y                    *float64                `json:"y,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Vbeacon.
@@ -49,13 +49,17 @@ type Vbeacon struct {
 func (v Vbeacon) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "created_time", "for_site", "id", "major", "map_id", "message", "minor", "modified_time", "name", "org_id", "power", "power_mode", "site_id", "url", "uuid", "wayfinding_nodename", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the Vbeacon object to a map representation for JSON marshaling.
 func (v Vbeacon) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.CreatedTime != nil {
         structMap["created_time"] = v.CreatedTime
     }
@@ -121,12 +125,12 @@ func (v *Vbeacon) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "for_site", "id", "major", "map_id", "message", "minor", "modified_time", "name", "org_id", "power", "power_mode", "site_id", "url", "uuid", "wayfinding_nodename", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "major", "map_id", "message", "minor", "modified_time", "name", "org_id", "power", "power_mode", "site_id", "url", "uuid", "wayfinding_nodename", "x", "y")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.CreatedTime = temp.CreatedTime
     v.ForSite = temp.ForSite
     v.Id = temp.Id

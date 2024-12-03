@@ -3,6 +3,8 @@
 
 nac-accounting webhook sample
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookNacAccounting`
@@ -13,6 +15,7 @@ nac-accounting webhook sample
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookNacAccountingEvent`](../../doc/models/webhook-nac-accounting-event.md) | Optional | - |
 | `Topic` | `*string` | Optional | **Default**: `"nac-accounting"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,23 +28,39 @@ nac-accounting webhook sample
       "auth_type": "auth_type0",
       "bssid": "bssid4",
       "client_ip": "client_ip0",
-      "client_type": "client_type6"
+      "client_type": "client_type6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "ap": "ap6",
       "auth_type": "auth_type0",
       "bssid": "bssid4",
       "client_ip": "client_ip0",
-      "client_type": "client_type6"
+      "client_type": "client_type6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "ap": "ap6",
       "auth_type": "auth_type0",
       "bssid": "bssid4",
       "client_ip": "client_ip0",
-      "client_type": "client_type6"
+      "client_type": "client_type6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

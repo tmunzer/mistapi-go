@@ -9,7 +9,7 @@ type ResponseSwitchMetricsConfigSuccess struct {
     Details              *ResponseSwitchMetricsConfigSuccessDetails `json:"details,omitempty"`
     Score                *int                                       `json:"score,omitempty"`
     TotalSwitchCount     *int                                       `json:"total_switch_count,omitempty"`
-    AdditionalProperties map[string]any                             `json:"_"`
+    AdditionalProperties map[string]interface{}                     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSwitchMetricsConfigSuccess.
@@ -17,13 +17,17 @@ type ResponseSwitchMetricsConfigSuccess struct {
 func (r ResponseSwitchMetricsConfigSuccess) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "details", "score", "total_switch_count"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSwitchMetricsConfigSuccess object to a map representation for JSON marshaling.
 func (r ResponseSwitchMetricsConfigSuccess) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Details != nil {
         structMap["details"] = r.Details.toMap()
     }
@@ -44,12 +48,12 @@ func (r *ResponseSwitchMetricsConfigSuccess) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "details", "score", "total_switch_count")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "details", "score", "total_switch_count")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Details = temp.Details
     r.Score = temp.Score
     r.TotalSwitchCount = temp.TotalSwitchCount

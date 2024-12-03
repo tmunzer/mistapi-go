@@ -6,16 +6,16 @@ import (
 
 // GatewayTemplateTunnelNode represents a GatewayTemplateTunnelNode struct.
 type GatewayTemplateTunnelNode struct {
-    Hosts                []string       `json:"hosts,omitempty"`
+    Hosts                []string               `json:"hosts,omitempty"`
     // Only if:
     // * `provider`== `zscaler-gre`
     // * `provider`== `custom-gre`
-    InternalIps          []string       `json:"internal_ips,omitempty"`
-    ProbeIps             []string       `json:"probe_ips,omitempty"`
+    InternalIps          []string               `json:"internal_ips,omitempty"`
+    ProbeIps             []string               `json:"probe_ips,omitempty"`
     // Only if `provider`== `custom-ipsec`
-    RemoteIds            []string       `json:"remote_ids,omitempty"`
-    WanNames             []string       `json:"wan_names,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    RemoteIds            []string               `json:"remote_ids,omitempty"`
+    WanNames             []string               `json:"wan_names,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayTemplateTunnelNode.
@@ -23,13 +23,17 @@ type GatewayTemplateTunnelNode struct {
 func (g GatewayTemplateTunnelNode) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "hosts", "internal_ips", "probe_ips", "remote_ids", "wan_names"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayTemplateTunnelNode object to a map representation for JSON marshaling.
 func (g GatewayTemplateTunnelNode) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Hosts != nil {
         structMap["hosts"] = g.Hosts
     }
@@ -56,12 +60,12 @@ func (g *GatewayTemplateTunnelNode) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "hosts", "internal_ips", "probe_ips", "remote_ids", "wan_names")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "hosts", "internal_ips", "probe_ips", "remote_ids", "wan_names")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Hosts = temp.Hosts
     g.InternalIps = temp.InternalIps
     g.ProbeIps = temp.ProbeIps

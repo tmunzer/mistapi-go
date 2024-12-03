@@ -19,7 +19,7 @@ type RfTemplateModelSpecificProperty struct {
     Band5On24Radio       *RftemplateRadioBand5  `json:"band_5_on_24_radio,omitempty"`
     // Radio Band AP settings
     Band6                *RftemplateRadioBand6  `json:"band_6,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RfTemplateModelSpecificProperty.
@@ -27,13 +27,17 @@ type RfTemplateModelSpecificProperty struct {
 func (r RfTemplateModelSpecificProperty) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "ant_gain_24", "ant_gain_5", "ant_gain_6", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RfTemplateModelSpecificProperty object to a map representation for JSON marshaling.
 func (r RfTemplateModelSpecificProperty) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.AntGain24 != nil {
         structMap["ant_gain_24"] = r.AntGain24
     }
@@ -69,12 +73,12 @@ func (r *RfTemplateModelSpecificProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ant_gain_24", "ant_gain_5", "ant_gain_6", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ant_gain_24", "ant_gain_5", "ant_gain_6", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.AntGain24 = temp.AntGain24
     r.AntGain5 = temp.AntGain5
     r.AntGain6 = temp.AntGain6

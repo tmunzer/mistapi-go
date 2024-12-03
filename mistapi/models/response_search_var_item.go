@@ -8,14 +8,14 @@ import (
 // ResponseSearchVarItem represents a ResponseSearchVarItem struct.
 type ResponseSearchVarItem struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64       `json:"modified_time,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Src                  *string        `json:"src,omitempty"`
-    Var                  *string        `json:"var,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Src                  *string                `json:"src,omitempty"`
+    Var                  *string                `json:"var,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSearchVarItem.
@@ -23,13 +23,17 @@ type ResponseSearchVarItem struct {
 func (r ResponseSearchVarItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "created_time", "modified_time", "org_id", "site_id", "src", "var"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSearchVarItem object to a map representation for JSON marshaling.
 func (r ResponseSearchVarItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.CreatedTime != nil {
         structMap["created_time"] = r.CreatedTime
     }
@@ -59,12 +63,12 @@ func (r *ResponseSearchVarItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "modified_time", "org_id", "site_id", "src", "var")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "modified_time", "org_id", "site_id", "src", "var")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.CreatedTime = temp.CreatedTime
     r.ModifiedTime = temp.ModifiedTime
     r.OrgId = temp.OrgId

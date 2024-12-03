@@ -3,6 +3,8 @@
 
 Asset statistics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsAsset`
@@ -31,6 +33,7 @@ Asset statistics
 | `X` | `*float64` | Optional | x in pixel |
 | `Y` | `*float64` | Optional | y in pixel |
 | `Zones` | [`[]models.AssetZone`](../../doc/models/asset-zone.md) | Optional | only send this for individual asset stat |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -53,7 +56,11 @@ Asset statistics
   "rssi": -60,
   "temperatur": 23,
   "x": 280.199181403102,
-  "y": 420.298772104653
+  "y": 420.298772104653,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

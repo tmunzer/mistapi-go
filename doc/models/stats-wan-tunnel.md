@@ -1,6 +1,8 @@
 
 # Stats Wan Tunnel
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsWanTunnel`
@@ -30,6 +32,7 @@
 | `Up` | `*bool` | Optional | - |
 | `Uptime` | `*int` | Optional | duration from first (or last) SA was established |
 | `WanName` | `*string` | Optional | wan interface name |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,7 +45,11 @@
   "encrypt_algo": "encrypt_algo0",
   "ike_version": "ike_version0",
   "ip": "ip0",
-  "last_event": "last_event0"
+  "last_event": "last_event0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

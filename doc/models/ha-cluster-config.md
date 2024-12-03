@@ -1,6 +1,8 @@
 
 # Ha Cluster Config
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `HaClusterConfig`
@@ -13,6 +15,7 @@
 | `Managed` | `*bool` | Optional | if the device is adopted |
 | `Nodes` | [`[]models.HaClusterConfigNode`](../../doc/models/ha-cluster-config-node.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,12 +26,24 @@
   "managed": false,
   "nodes": [
     {
-      "mac": "mac0"
+      "mac": "mac0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
-      "mac": "mac0"
+      "mac": "mac0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

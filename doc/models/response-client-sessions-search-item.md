@@ -1,6 +1,8 @@
 
 # Response Client Sessions Search Item
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseClientSessionsSearchItem`
@@ -22,6 +24,7 @@
 | `Tags` | `[]string` | Optional | - |
 | `Timestamp` | `float64` | Required | - |
 | `WlanId` | `uuid.UUID` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,7 +46,11 @@
     "tags5",
     "tags6",
     "tags7"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

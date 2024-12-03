@@ -8,10 +8,10 @@ import (
 
 // DswitchesComplianceMajorVersion represents a DswitchesComplianceMajorVersion struct.
 type DswitchesComplianceMajorVersion struct {
-    MajorCount           float64        `json:"major_count"`
-    Model                string         `json:"model"`
-    SystemNames          []string       `json:"system_names,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    MajorCount           float64                `json:"major_count"`
+    Model                string                 `json:"model"`
+    SystemNames          []string               `json:"system_names,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DswitchesComplianceMajorVersion.
@@ -19,13 +19,17 @@ type DswitchesComplianceMajorVersion struct {
 func (d DswitchesComplianceMajorVersion) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "major_count", "model", "system_names"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DswitchesComplianceMajorVersion object to a map representation for JSON marshaling.
 func (d DswitchesComplianceMajorVersion) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     structMap["major_count"] = d.MajorCount
     structMap["model"] = d.Model
     if d.SystemNames != nil {
@@ -46,12 +50,12 @@ func (d *DswitchesComplianceMajorVersion) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "major_count", "model", "system_names")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "major_count", "model", "system_names")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.MajorCount = *temp.MajorCount
     d.Model = *temp.Model
     d.SystemNames = temp.SystemNames

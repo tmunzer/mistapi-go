@@ -7,14 +7,14 @@ import (
 // ConstWebhookTopic represents a ConstWebhookTopic struct.
 type ConstWebhookTopic struct {
     // can be used in org webhooks, optional
-    ForOrg               *bool          `json:"for_org,omitempty"`
+    ForOrg               *bool                  `json:"for_org,omitempty"`
     // supports webhook delivery results /api/v1/:scope/:scope_id/webhooks/:webhook_id/events/search
-    HasDeliveryResults   *bool          `json:"has_delivery_results,omitempty"`
+    HasDeliveryResults   *bool                  `json:"has_delivery_results,omitempty"`
     // internal topic (not selectable in site/org webhooks)
-    Internal             *bool          `json:"internal,omitempty"`
+    Internal             *bool                  `json:"internal,omitempty"`
     // webhook topic name
-    Key                  *string        `json:"key,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Key                  *string                `json:"key,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstWebhookTopic.
@@ -22,13 +22,17 @@ type ConstWebhookTopic struct {
 func (c ConstWebhookTopic) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "for_org", "has_delivery_results", "internal", "key"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstWebhookTopic object to a map representation for JSON marshaling.
 func (c ConstWebhookTopic) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.ForOrg != nil {
         structMap["for_org"] = c.ForOrg
     }
@@ -52,12 +56,12 @@ func (c *ConstWebhookTopic) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "for_org", "has_delivery_results", "internal", "key")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "for_org", "has_delivery_results", "internal", "key")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.ForOrg = temp.ForOrg
     c.HasDeliveryResults = temp.HasDeliveryResults
     c.Internal = temp.Internal

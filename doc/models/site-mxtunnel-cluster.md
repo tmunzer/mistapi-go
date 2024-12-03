@@ -1,6 +1,8 @@
 
 # Site Mxtunnel Cluster
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteMxtunnelCluster`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Name` | `*string` | Optional | - |
 | `TuntermHosts` | `[]string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -20,7 +23,11 @@
   "tunterm_hosts": [
     "mxedge1",
     "mxedge2.local"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

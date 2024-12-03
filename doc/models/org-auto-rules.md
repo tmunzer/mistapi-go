@@ -3,6 +3,8 @@
 
 auto_rules in org settings
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgAutoRules`
@@ -23,6 +25,7 @@ auto_rules in org settings
 | `Subnet` | `*string` | Optional | if `src`==`subnet` |
 | `Suffix` | `models.Optional[string]` | Optional | if `src`==`name` |
 | `Value` | `*string` | Optional | if<br><br>* `src`==`model`<br>* `src`==`geoip: site name for the device to be assigned to ("city" / "city+country" / ...) |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,7 +38,11 @@ auto_rules in org settings
   "src": "lldp_port_desc",
   "suffix": "-YY",
   "gatewaytemplate_id": "gatewaytemplate_id2",
-  "match_country": "match_country6"
+  "match_country": "match_country6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

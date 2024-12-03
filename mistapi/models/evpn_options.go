@@ -27,7 +27,7 @@ type EvpnOptions struct {
     Underlay             *EvpnOptionsUnderlay             `json:"underlay,omitempty"`
     // optional, for EX9200 only to seggregate virtual-switches
     VsInstances          map[string]EvpnOptionsVsInstance `json:"vs_instances,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnOptions.
@@ -35,13 +35,17 @@ type EvpnOptions struct {
 func (e EvpnOptions) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "overlay", "per_vlan_vga_v4_mac", "routed_at", "underlay", "vs_instances"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EvpnOptions object to a map representation for JSON marshaling.
 func (e EvpnOptions) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.AutoLoopbackSubnet != nil {
         structMap["auto_loopback_subnet"] = e.AutoLoopbackSubnet
     }
@@ -83,12 +87,12 @@ func (e *EvpnOptions) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "overlay", "per_vlan_vga_v4_mac", "routed_at", "underlay", "vs_instances")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "overlay", "per_vlan_vga_v4_mac", "routed_at", "underlay", "vs_instances")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.AutoLoopbackSubnet = temp.AutoLoopbackSubnet
     e.AutoLoopbackSubnet6 = temp.AutoLoopbackSubnet6
     e.AutoRouterIdSubnet = temp.AutoRouterIdSubnet

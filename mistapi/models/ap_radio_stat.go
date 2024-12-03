@@ -8,39 +8,39 @@ import (
 // radio stat
 type ApRadioStat struct {
     // channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
-    Bandwidth              *Dot11BandwidthEnum `json:"bandwidth,omitempty"`
+    Bandwidth              *Dot11BandwidthEnum    `json:"bandwidth,omitempty"`
     // current channel the radio is running on
-    Channel                Optional[int]       `json:"channel"`
+    Channel                Optional[int]          `json:"channel"`
     // Use dynamic chaining for downlink
-    DynamicChainingEnalbed Optional[bool]      `json:"dynamic_chaining_enalbed"`
+    DynamicChainingEnalbed Optional[bool]         `json:"dynamic_chaining_enalbed"`
     // radio (base) mac, it can have 16 bssids (e.g. 5c5b350001a0-5c5b350001af)
-    Mac                    Optional[string]    `json:"mac"`
-    NoiseFloor             Optional[int]       `json:"noise_floor"`
-    NumClients             Optional[int]       `json:"num_clients"`
+    Mac                    Optional[string]       `json:"mac"`
+    NoiseFloor             Optional[int]          `json:"noise_floor"`
+    NumClients             Optional[int]          `json:"num_clients"`
     // how many WLANs are applied to the radio
-    NumWlans               *int                `json:"num_wlans,omitempty"`
+    NumWlans               *int                   `json:"num_wlans,omitempty"`
     // transmit power (in dBm)
-    Power                  Optional[int]       `json:"power"`
-    RxBytes                Optional[int]       `json:"rx_bytes"`
-    RxPkts                 Optional[int]       `json:"rx_pkts"`
-    TxBytes                Optional[int]       `json:"tx_bytes"`
-    TxPkts                 Optional[int]       `json:"tx_pkts"`
-    Usage                  Optional[string]    `json:"usage"`
+    Power                  Optional[int]          `json:"power"`
+    RxBytes                Optional[int]          `json:"rx_bytes"`
+    RxPkts                 Optional[int]          `json:"rx_pkts"`
+    TxBytes                Optional[int]          `json:"tx_bytes"`
+    TxPkts                 Optional[int]          `json:"tx_pkts"`
+    Usage                  Optional[string]       `json:"usage"`
     // all utilization in percentage
-    UtilAll                Optional[int]       `json:"util_all"`
+    UtilAll                Optional[int]          `json:"util_all"`
     // reception of “No Packets” utilization in percentage, received frames with invalid PLCPs and CRS glitches as noise
-    UtilNonWifi            Optional[int]       `json:"util_non_wifi"`
+    UtilNonWifi            Optional[int]          `json:"util_non_wifi"`
     // reception of “In BSS” utilization in percentage, only frames that are received from AP/STAs within the BSS
-    UtilRxInBss            Optional[int]       `json:"util_rx_in_bss"`
+    UtilRxInBss            Optional[int]          `json:"util_rx_in_bss"`
     // reception of “Other BSS” utilization in percentage, all frames received from AP/STAs that are outside the BSS
-    UtilRxOtherBss         Optional[int]       `json:"util_rx_other_bss"`
+    UtilRxOtherBss         Optional[int]          `json:"util_rx_other_bss"`
     // transmission utilization in percentage
-    UtilTx                 Optional[int]       `json:"util_tx"`
+    UtilTx                 Optional[int]          `json:"util_tx"`
     // reception of “UnDecodable Wifi“ utilization in percentage, only Preamble, PLCP header is decoded, Rest is undecodable in this radio
-    UtilUndecodableWifi    Optional[int]       `json:"util_undecodable_wifi"`
+    UtilUndecodableWifi    Optional[int]          `json:"util_undecodable_wifi"`
     // reception of “No Category” utilization in percentage, all 802.11 frames that are corrupted at the receiver
-    UtilUnknownWifi        Optional[int]       `json:"util_unknown_wifi"`
-    AdditionalProperties   map[string]any      `json:"_"`
+    UtilUnknownWifi        Optional[int]          `json:"util_unknown_wifi"`
+    AdditionalProperties   map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadioStat.
@@ -48,13 +48,17 @@ type ApRadioStat struct {
 func (a ApRadioStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "bandwidth", "channel", "dynamic_chaining_enalbed", "mac", "noise_floor", "num_clients", "num_wlans", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "usage", "util_all", "util_non_wifi", "util_rx_in_bss", "util_rx_other_bss", "util_tx", "util_undecodable_wifi", "util_unknown_wifi"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApRadioStat object to a map representation for JSON marshaling.
 func (a ApRadioStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Bandwidth != nil {
         structMap["bandwidth"] = a.Bandwidth
     }
@@ -198,12 +202,12 @@ func (a *ApRadioStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bandwidth", "channel", "dynamic_chaining_enalbed", "mac", "noise_floor", "num_clients", "num_wlans", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "usage", "util_all", "util_non_wifi", "util_rx_in_bss", "util_rx_other_bss", "util_tx", "util_undecodable_wifi", "util_unknown_wifi")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bandwidth", "channel", "dynamic_chaining_enalbed", "mac", "noise_floor", "num_clients", "num_wlans", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "usage", "util_all", "util_non_wifi", "util_rx_in_bss", "util_rx_other_bss", "util_tx", "util_undecodable_wifi", "util_unknown_wifi")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Bandwidth = temp.Bandwidth
     a.Channel = temp.Channel
     a.DynamicChainingEnalbed = temp.DynamicChainingEnalbed

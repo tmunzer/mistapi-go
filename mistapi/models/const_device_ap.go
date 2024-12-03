@@ -49,7 +49,7 @@ type ConstDeviceAp struct {
     Type                 string                         `json:"type"`
     Unmanaged            *bool                          `json:"unmanaged,omitempty"`
     Vble                 *ConstDeviceApVble             `json:"vble,omitempty"`
-    AdditionalProperties map[string]any                 `json:"_"`
+    AdditionalProperties map[string]interface{}         `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceAp.
@@ -57,13 +57,17 @@ type ConstDeviceAp struct {
 func (c ConstDeviceAp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ap_type", "band24", "band5", "band6", "band_24_usages", "ce_dfs_ok", "cisco_pace", "description", "disallowed_channels", "display", "extio", "fcc_dfs_ok", "has_11ax", "has_compass", "has_ext_ant", "has_extio", "has_height", "has_module_port", "has_poe_out", "has_scanning_radio", "has_selectable_radio", "has_usb", "has_vble", "has_wifi_band24", "has_wifi_band5", "has_wifi_band6", "max_poe_out", "max_wlans", "model", "other_dfs_ok", "outdoor", "radios", "shared_scanning_radio", "type", "unmanaged", "vble"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstDeviceAp object to a map representation for JSON marshaling.
 func (c ConstDeviceAp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     structMap["ap_type"] = c.ApType
     if c.Band24 != nil {
         structMap["band24"] = c.Band24.toMap()
@@ -183,12 +187,12 @@ func (c *ConstDeviceAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_type", "band24", "band5", "band6", "band_24_usages", "ce_dfs_ok", "cisco_pace", "description", "disallowed_channels", "display", "extio", "fcc_dfs_ok", "has_11ax", "has_compass", "has_ext_ant", "has_extio", "has_height", "has_module_port", "has_poe_out", "has_scanning_radio", "has_selectable_radio", "has_usb", "has_vble", "has_wifi_band24", "has_wifi_band5", "has_wifi_band6", "max_poe_out", "max_wlans", "model", "other_dfs_ok", "outdoor", "radios", "shared_scanning_radio", "type", "unmanaged", "vble")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_type", "band24", "band5", "band6", "band_24_usages", "ce_dfs_ok", "cisco_pace", "description", "disallowed_channels", "display", "extio", "fcc_dfs_ok", "has_11ax", "has_compass", "has_ext_ant", "has_extio", "has_height", "has_module_port", "has_poe_out", "has_scanning_radio", "has_selectable_radio", "has_usb", "has_vble", "has_wifi_band24", "has_wifi_band5", "has_wifi_band6", "max_poe_out", "max_wlans", "model", "other_dfs_ok", "outdoor", "radios", "shared_scanning_radio", "type", "unmanaged", "vble")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.ApType = *temp.ApType
     c.Band24 = temp.Band24
     c.Band5 = temp.Band5

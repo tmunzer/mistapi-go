@@ -22,7 +22,7 @@ type RoutingPolicyTermMatching struct {
     // ordered-
     VpnPath              []string                              `json:"vpn_path,omitempty"`
     VpnPathSla           *RoutingPolicyTermMatchingVpnPathSla  `json:"vpn_path_sla,omitempty"`
-    AdditionalProperties map[string]any                        `json:"_"`
+    AdditionalProperties map[string]interface{}                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTermMatching.
@@ -30,13 +30,17 @@ type RoutingPolicyTermMatching struct {
 func (r RoutingPolicyTermMatching) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "as_path", "community", "network", "prefix", "protocol", "route_exists", "vpn_neighbor_mac", "vpn_path", "vpn_path_sla"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RoutingPolicyTermMatching object to a map representation for JSON marshaling.
 func (r RoutingPolicyTermMatching) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.AsPath != nil {
         structMap["as_path"] = r.AsPath
     }
@@ -75,12 +79,12 @@ func (r *RoutingPolicyTermMatching) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "as_path", "community", "network", "prefix", "protocol", "route_exists", "vpn_neighbor_mac", "vpn_path", "vpn_path_sla")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "as_path", "community", "network", "prefix", "protocol", "route_exists", "vpn_neighbor_mac", "vpn_path", "vpn_path_sla")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.AsPath = temp.AsPath
     r.Community = temp.Community
     r.Network = temp.Network

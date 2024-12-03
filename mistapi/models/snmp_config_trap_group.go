@@ -12,7 +12,7 @@ type SnmpConfigTrapGroup struct {
     Targets              []string                  `json:"targets,omitempty"`
     // enum: `all`, `v1`, `v2`
     Version              *SnmpConfigTrapVerionEnum `json:"version,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpConfigTrapGroup.
@@ -20,13 +20,17 @@ type SnmpConfigTrapGroup struct {
 func (s SnmpConfigTrapGroup) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "categories", "group_name", "targets", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SnmpConfigTrapGroup object to a map representation for JSON marshaling.
 func (s SnmpConfigTrapGroup) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Categories != nil {
         structMap["categories"] = s.Categories
     }
@@ -50,12 +54,12 @@ func (s *SnmpConfigTrapGroup) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "categories", "group_name", "targets", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "categories", "group_name", "targets", "version")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Categories = temp.Categories
     s.GroupName = temp.GroupName
     s.Targets = temp.Targets

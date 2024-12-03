@@ -9,20 +9,20 @@ import (
 // CaptureNewAssoc represents a CaptureNewAssoc struct.
 // Initiate a packet Capture for New Wireless Client Associations
 type CaptureNewAssoc struct {
-    ApMac                *string        `json:"ap_mac,omitempty"`
+    ApMac                *string                `json:"ap_mac,omitempty"`
     // client mac, required if `type`==`client`; optional otherwise
-    ClientMac            *string        `json:"client_mac,omitempty"`
+    ClientMac            *string                `json:"client_mac,omitempty"`
     // duration of the capture, in seconds
-    Duration             *int           `json:"duration,omitempty"`
-    IncludesMcast        *bool          `json:"includes_mcast,omitempty"`
-    MaxPktLen            *int           `json:"max_pkt_len,omitempty"`
+    Duration             *int                   `json:"duration,omitempty"`
+    IncludesMcast        *bool                  `json:"includes_mcast,omitempty"`
+    MaxPktLen            *int                   `json:"max_pkt_len,omitempty"`
     // number of packets to capture, 0 for unlimited
-    NumPackets           *int           `json:"num_packets,omitempty"`
+    NumPackets           *int                   `json:"num_packets,omitempty"`
     // optional filter by ssid
-    Ssid                 *string        `json:"ssid,omitempty"`
+    Ssid                 *string                `json:"ssid,omitempty"`
     // enum: `new_assoc`
-    Type                 string         `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureNewAssoc.
@@ -30,13 +30,17 @@ type CaptureNewAssoc struct {
 func (c CaptureNewAssoc) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ap_mac", "client_mac", "duration", "includes_mcast", "max_pkt_len", "num_packets", "ssid", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureNewAssoc object to a map representation for JSON marshaling.
 func (c CaptureNewAssoc) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.ApMac != nil {
         structMap["ap_mac"] = c.ApMac
     }
@@ -74,12 +78,12 @@ func (c *CaptureNewAssoc) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_mac", "client_mac", "duration", "includes_mcast", "max_pkt_len", "num_packets", "ssid", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "client_mac", "duration", "includes_mcast", "max_pkt_len", "num_packets", "ssid", "type")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.ApMac = temp.ApMac
     c.ClientMac = temp.ClientMac
     c.Duration = temp.Duration

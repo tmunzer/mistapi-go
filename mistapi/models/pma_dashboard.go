@@ -7,14 +7,14 @@ import (
 // PmaDashboard represents a PmaDashboard struct.
 type PmaDashboard struct {
     // description of the dashboard
-    Description          *string        `json:"description,omitempty"`
+    Description          *string                `json:"description,omitempty"`
     // group label name
-    Label                *string        `json:"label,omitempty"`
+    Label                *string                `json:"label,omitempty"`
     // name of the dashboard
-    Name                 *string        `json:"name,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
     // url to access dashboard. Url will redirect the user to the dashboard
-    Url                  *string        `json:"url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Url                  *string                `json:"url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PmaDashboard.
@@ -22,13 +22,17 @@ type PmaDashboard struct {
 func (p PmaDashboard) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "description", "label", "name", "url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the PmaDashboard object to a map representation for JSON marshaling.
 func (p PmaDashboard) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.Description != nil {
         structMap["description"] = p.Description
     }
@@ -52,12 +56,12 @@ func (p *PmaDashboard) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "description", "label", "name", "url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "description", "label", "name", "url")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.Description = temp.Description
     p.Label = temp.Label
     p.Name = temp.Name

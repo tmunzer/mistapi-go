@@ -6,33 +6,33 @@ import (
 
 // CallTroubleshootSummaryData represents a CallTroubleshootSummaryData struct.
 type CallTroubleshootSummaryData struct {
-    ApNumClients          *float64       `json:"ap_num_clients,omitempty"`
-    ApRtt                 *float64       `json:"ap_rtt,omitempty"`
-    ClientCpu             *float64       `json:"client_cpu,omitempty"`
-    ClientNStreams        *float64       `json:"client_n_streams,omitempty"`
-    ClientRadioBand       *float64       `json:"client_radio_band,omitempty"`
-    ClientRssi            *float64       `json:"client_rssi,omitempty"`
-    ClientRxBytes         *float64       `json:"client_rx_bytes,omitempty"`
-    ClientRxRates         *float64       `json:"client_rx_rates,omitempty"`
-    ClientTxBytes         *float64       `json:"client_tx_bytes,omitempty"`
-    ClientTxRates         *float64       `json:"client_tx_rates,omitempty"`
-    ClientTxRetries       *float64       `json:"client_tx_retries,omitempty"`
-    ClientVpnDistaince    *float64       `json:"client_vpn_distaince,omitempty"`
-    ClientWifiVersion     *float64       `json:"client_wifi_version,omitempty"`
-    Expected              *float64       `json:"expected,omitempty"`
-    RadioBandwidth        *float64       `json:"radio_bandwidth,omitempty"`
-    RadioChannel          *float64       `json:"radio_channel,omitempty"`
-    RadioTxPower          *float64       `json:"radio_tx_power,omitempty"`
-    RadioUtil             *float64       `json:"radio_util,omitempty"`
-    RadioUtilInterference *float64       `json:"radio_util_interference,omitempty"`
-    SiteNumClients        *float64       `json:"site_num_clients,omitempty"`
-    WanAvgDownloadMbps    *float64       `json:"wan_avg_download_mbps,omitempty"`
-    WanAvgUploadMbps      *float64       `json:"wan_avg_upload_mbps,omitempty"`
-    WanJitter             *float64       `json:"wan_jitter,omitempty"`
-    WanMaxDownloadMbps    *float64       `json:"wan_max_download_mbps,omitempty"`
-    WanMaxUploadMbps      *float64       `json:"wan_max_upload_mbps,omitempty"`
-    WanRtt                *float64       `json:"wan_rtt,omitempty"`
-    AdditionalProperties  map[string]any `json:"_"`
+    ApNumClients          *float64               `json:"ap_num_clients,omitempty"`
+    ApRtt                 *float64               `json:"ap_rtt,omitempty"`
+    ClientCpu             *float64               `json:"client_cpu,omitempty"`
+    ClientNStreams        *float64               `json:"client_n_streams,omitempty"`
+    ClientRadioBand       *float64               `json:"client_radio_band,omitempty"`
+    ClientRssi            *float64               `json:"client_rssi,omitempty"`
+    ClientRxBytes         *float64               `json:"client_rx_bytes,omitempty"`
+    ClientRxRates         *float64               `json:"client_rx_rates,omitempty"`
+    ClientTxBytes         *float64               `json:"client_tx_bytes,omitempty"`
+    ClientTxRates         *float64               `json:"client_tx_rates,omitempty"`
+    ClientTxRetries       *float64               `json:"client_tx_retries,omitempty"`
+    ClientVpnDistaince    *float64               `json:"client_vpn_distaince,omitempty"`
+    ClientWifiVersion     *float64               `json:"client_wifi_version,omitempty"`
+    Expected              *float64               `json:"expected,omitempty"`
+    RadioBandwidth        *float64               `json:"radio_bandwidth,omitempty"`
+    RadioChannel          *float64               `json:"radio_channel,omitempty"`
+    RadioTxPower          *float64               `json:"radio_tx_power,omitempty"`
+    RadioUtil             *float64               `json:"radio_util,omitempty"`
+    RadioUtilInterference *float64               `json:"radio_util_interference,omitempty"`
+    SiteNumClients        *float64               `json:"site_num_clients,omitempty"`
+    WanAvgDownloadMbps    *float64               `json:"wan_avg_download_mbps,omitempty"`
+    WanAvgUploadMbps      *float64               `json:"wan_avg_upload_mbps,omitempty"`
+    WanJitter             *float64               `json:"wan_jitter,omitempty"`
+    WanMaxDownloadMbps    *float64               `json:"wan_max_download_mbps,omitempty"`
+    WanMaxUploadMbps      *float64               `json:"wan_max_upload_mbps,omitempty"`
+    WanRtt                *float64               `json:"wan_rtt,omitempty"`
+    AdditionalProperties  map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CallTroubleshootSummaryData.
@@ -40,13 +40,17 @@ type CallTroubleshootSummaryData struct {
 func (c CallTroubleshootSummaryData) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distaince", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CallTroubleshootSummaryData object to a map representation for JSON marshaling.
 func (c CallTroubleshootSummaryData) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.ApNumClients != nil {
         structMap["ap_num_clients"] = c.ApNumClients
     }
@@ -136,12 +140,12 @@ func (c *CallTroubleshootSummaryData) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distaince", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distaince", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.ApNumClients = temp.ApNumClients
     c.ApRtt = temp.ApRtt
     c.ClientCpu = temp.ClientCpu

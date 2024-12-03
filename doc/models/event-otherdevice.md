@@ -1,6 +1,8 @@
 
 # Event Otherdevice
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `EventOtherdevice`
@@ -17,6 +19,7 @@
 | `Timestamp` | `*float64` | Optional | - |
 | `Type` | `*string` | Optional | - |
 | `Vendor` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
   "timestamp": 547235620.89,
   "type": "CELLULAR_EDGE_MODEM_WAN_PLUGGED",
   "vendor": "cradlepoint",
-  "device_mac": "device_mac8"
+  "device_mac": "device_mac8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

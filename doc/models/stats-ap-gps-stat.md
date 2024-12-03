@@ -1,6 +1,8 @@
 
 # Stats Ap Gps Stat
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsApGpsStat`
@@ -15,6 +17,7 @@
 | `Longitude` | `*float64` | Optional | The geographic longitude of the AP, measured in degrees. |
 | `Src` | [`*models.StatsApGpsStatSrcEnum`](../../doc/models/stats-ap-gps-stat-src-enum.md) | Optional | The origin of the GPS data. enum:<br><br>* `gps`: from this device’s GPS estimates<br>* `other_ap` from neighboring device GPS estimates |
 | `Timestamp` | `*float64` | Optional | The unix timestamp when the GPS data was recorded. |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   "latitude": 37.29548,
   "longitude": -122.03304,
   "timestamp": 1428949501,
-  "src": "gps"
+  "src": "gps",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

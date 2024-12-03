@@ -7,27 +7,27 @@ import (
 
 // WebhookLocationAssetEvent represents a WebhookLocationAssetEvent struct.
 type WebhookLocationAssetEvent struct {
-    BatteryVoltage        *int           `json:"battery_voltage,omitempty"`
-    EddystoneUidInstance  *string        `json:"eddystone_uid_instance,omitempty"`
-    EddystoneUidNamespace *string        `json:"eddystone_uid_namespace,omitempty"`
-    EddystoneUrlUrl       *string        `json:"eddystone_url_url,omitempty"`
-    IbeaconMajor          *int           `json:"ibeacon_major,omitempty"`
-    IbeaconMinor          *int           `json:"ibeacon_minor,omitempty"`
-    IbeaconUuid           *uuid.UUID     `json:"ibeacon_uuid,omitempty"`
-    Mac                   *string        `json:"mac,omitempty"`
-    MapId                 *uuid.UUID     `json:"map_id,omitempty"`
+    BatteryVoltage        *int                   `json:"battery_voltage,omitempty"`
+    EddystoneUidInstance  *string                `json:"eddystone_uid_instance,omitempty"`
+    EddystoneUidNamespace *string                `json:"eddystone_uid_namespace,omitempty"`
+    EddystoneUrlUrl       *string                `json:"eddystone_url_url,omitempty"`
+    IbeaconMajor          *int                   `json:"ibeacon_major,omitempty"`
+    IbeaconMinor          *int                   `json:"ibeacon_minor,omitempty"`
+    IbeaconUuid           *uuid.UUID             `json:"ibeacon_uuid,omitempty"`
+    Mac                   *string                `json:"mac,omitempty"`
+    MapId                 *uuid.UUID             `json:"map_id,omitempty"`
     // optional, BLE manufacturing company ID
-    MfgCompanyId          *int           `json:"mfg_company_id,omitempty"`
+    MfgCompanyId          *int                   `json:"mfg_company_id,omitempty"`
     // optional, BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”)
-    MfgData               *string        `json:"mfg_data,omitempty"`
-    SiteId                *uuid.UUID     `json:"site_id,omitempty"`
-    Timestamp             *int           `json:"timestamp,omitempty"`
-    Type                  *string        `json:"type,omitempty"`
+    MfgData               *string                `json:"mfg_data,omitempty"`
+    SiteId                *uuid.UUID             `json:"site_id,omitempty"`
+    Timestamp             *int                   `json:"timestamp,omitempty"`
+    Type                  *string                `json:"type,omitempty"`
     // x, in meter
-    X                     *float64       `json:"x,omitempty"`
+    X                     *float64               `json:"x,omitempty"`
     // y, in meter
-    Y                     *float64       `json:"y,omitempty"`
-    AdditionalProperties  map[string]any `json:"_"`
+    Y                     *float64               `json:"y,omitempty"`
+    AdditionalProperties  map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookLocationAssetEvent.
@@ -35,13 +35,17 @@ type WebhookLocationAssetEvent struct {
 func (w WebhookLocationAssetEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "battery_voltage", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "mac", "map_id", "mfg_company_id", "mfg_data", "site_id", "timestamp", "type", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookLocationAssetEvent object to a map representation for JSON marshaling.
 func (w WebhookLocationAssetEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.BatteryVoltage != nil {
         structMap["battery_voltage"] = w.BatteryVoltage
     }
@@ -101,12 +105,12 @@ func (w *WebhookLocationAssetEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "battery_voltage", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "mac", "map_id", "mfg_company_id", "mfg_data", "site_id", "timestamp", "type", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "battery_voltage", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "mac", "map_id", "mfg_company_id", "mfg_data", "site_id", "timestamp", "type", "x", "y")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.BatteryVoltage = temp.BatteryVoltage
     w.EddystoneUidInstance = temp.EddystoneUidInstance
     w.EddystoneUidNamespace = temp.EddystoneUidNamespace

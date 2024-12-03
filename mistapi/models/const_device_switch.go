@@ -35,7 +35,7 @@ type ConstDeviceSwitch struct {
     SubRequired          *string                   `json:"sub_required,omitempty"`
     // Device Type. enum: `switch`
     Type                 string                    `json:"type"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceSwitch.
@@ -43,13 +43,17 @@ type ConstDeviceSwitch struct {
 func (c ConstDeviceSwitch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "alias", "defaults", "description", "display", "evolved_os", "evpn_ri_type", "experimental", "fans_pluggable", "has_bgp", "has_ets", "has_evpn", "has_irb", "has_poe_out", "has_snapshot", "has_vc", "model", "modular", "no_shaping_rate", "number_fans", "oc_device", "oob_interface", "packet_action_drop_only", "pic", "sub_required", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstDeviceSwitch object to a map representation for JSON marshaling.
 func (c ConstDeviceSwitch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Alias != nil {
         structMap["alias"] = c.Alias
     }
@@ -138,12 +142,12 @@ func (c *ConstDeviceSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "alias", "defaults", "description", "display", "evolved_os", "evpn_ri_type", "experimental", "fans_pluggable", "has_bgp", "has_ets", "has_evpn", "has_irb", "has_poe_out", "has_snapshot", "has_vc", "model", "modular", "no_shaping_rate", "number_fans", "oc_device", "oob_interface", "packet_action_drop_only", "pic", "sub_required", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alias", "defaults", "description", "display", "evolved_os", "evpn_ri_type", "experimental", "fans_pluggable", "has_bgp", "has_ets", "has_evpn", "has_irb", "has_poe_out", "has_snapshot", "has_vc", "model", "modular", "no_shaping_rate", "number_fans", "oc_device", "oob_interface", "packet_action_drop_only", "pic", "sub_required", "type")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Alias = temp.Alias
     c.Defaults = temp.Defaults
     c.Description = temp.Description

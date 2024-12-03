@@ -8,14 +8,14 @@ import (
 // OrgSettingMistNacIdp represents a OrgSettingMistNacIdp struct.
 type OrgSettingMistNacIdp struct {
     // when the IDP of mxedge_proxy type, exclude the following realms from proxying in addition to other valid home realms in this org
-    ExcludeRealms        []string       `json:"exclude_realms,omitempty"`
+    ExcludeRealms        []string               `json:"exclude_realms,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // which realm should trigger this IDP. User Realm is extracted from:
     // * Username-AVP (`mist.com` from john@mist.com)
     // * Cert CN
-    UserRealms           []string       `json:"user_realms,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    UserRealms           []string               `json:"user_realms,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingMistNacIdp.
@@ -23,13 +23,17 @@ type OrgSettingMistNacIdp struct {
 func (o OrgSettingMistNacIdp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "exclude_realms", "id", "user_realms"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingMistNacIdp object to a map representation for JSON marshaling.
 func (o OrgSettingMistNacIdp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.ExcludeRealms != nil {
         structMap["exclude_realms"] = o.ExcludeRealms
     }
@@ -50,12 +54,12 @@ func (o *OrgSettingMistNacIdp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "exclude_realms", "id", "user_realms")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "exclude_realms", "id", "user_realms")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.ExcludeRealms = temp.ExcludeRealms
     o.Id = temp.Id
     o.UserRealms = temp.UserRealms

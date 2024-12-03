@@ -1,6 +1,8 @@
 
 # Installer Site
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `InstallerSite`
@@ -17,6 +19,7 @@
 | `RftemplateName` | `*string` | Optional | - |
 | `SitegroupNames` | `[]string` | Optional | - |
 | `Timezone` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "latlng": {
     "lat": 37.295833,
-    "lng": -122.032946
+    "lng": -122.032946,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "name": "Mist Office",
   "rftemplate_name": "rftemplate1",
@@ -35,7 +42,11 @@
     "sg1",
     "sg2"
   ],
-  "timezone": "America/Los_Angeles"
+  "timezone": "America/Los_Angeles",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

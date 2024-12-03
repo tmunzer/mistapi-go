@@ -7,18 +7,18 @@ import (
 // StatsMxedgeCpuStat represents a StatsMxedgeCpuStat struct.
 // CPU/core stats list
 type StatsMxedgeCpuStat struct {
-    Cpus                 map[string]CpuStat `json:"cpus,omitempty"`
+    Cpus                 map[string]CpuStat     `json:"cpus,omitempty"`
     // percentage of Idle, Idle/(Idle + Busy) since last sampling
-    Idle                 *int               `json:"idle,omitempty"`
+    Idle                 *int                   `json:"idle,omitempty"`
     // percentage of Interrupt, (Irq + SoftIrq)/(Idle + Busy) since last sampling
-    Interrupt            *int               `json:"interrupt,omitempty"`
+    Interrupt            *int                   `json:"interrupt,omitempty"`
     // percentage of System, System/(Idle + Busy) since last sampling
-    System               *int               `json:"system,omitempty"`
+    System               *int                   `json:"system,omitempty"`
     // percentage of load, Busy/(Idle + Busy) since last sampling
-    Usage                *int               `json:"usage,omitempty"`
+    Usage                *int                   `json:"usage,omitempty"`
     // percentage of User, User/(Idle + Busy) since last sampling
-    User                 *int               `json:"user,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    User                 *int                   `json:"user,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeCpuStat.
@@ -26,13 +26,17 @@ type StatsMxedgeCpuStat struct {
 func (s StatsMxedgeCpuStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "cpus", "idle", "interrupt", "system", "usage", "user"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxedgeCpuStat object to a map representation for JSON marshaling.
 func (s StatsMxedgeCpuStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Cpus != nil {
         structMap["cpus"] = s.Cpus
     }
@@ -62,12 +66,12 @@ func (s *StatsMxedgeCpuStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cpus", "idle", "interrupt", "system", "usage", "user")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cpus", "idle", "interrupt", "system", "usage", "user")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Cpus = temp.Cpus
     s.Idle = temp.Idle
     s.Interrupt = temp.Interrupt

@@ -1,6 +1,8 @@
 
 # Evpn Options Underlay
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `EvpnOptionsUnderlay`
@@ -13,6 +15,7 @@
 | `RoutedIdPrefix` | `*string` | Optional | - |
 | `Subnet` | `*string` | Optional | underlay subnet, by default, `10.255.240.0/20`, or `fd31:5700::/64` for ipv6 |
 | `UseIpv6` | `*bool` | Optional | if v6 is desired for underlay<br>**Default**: `false` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,11 @@
   "as_base": 65001,
   "routed_id_prefix": "/24",
   "subnet": "10.255.240.0/20",
-  "use_ipv6": false
+  "use_ipv6": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -10,7 +10,7 @@ type ConstDeviceApExtios struct {
     DefaultDir           *ConstDeviceApExtiosDefaultDirEnum `json:"default_dir,omitempty"`
     Input                *bool                              `json:"input,omitempty"`
     Output               *bool                              `json:"output,omitempty"`
-    AdditionalProperties map[string]any                     `json:"_"`
+    AdditionalProperties map[string]interface{}             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceApExtios.
@@ -18,13 +18,17 @@ type ConstDeviceApExtios struct {
 func (c ConstDeviceApExtios) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "default_dir", "input", "output"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstDeviceApExtios object to a map representation for JSON marshaling.
 func (c ConstDeviceApExtios) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.DefaultDir != nil {
         structMap["default_dir"] = c.DefaultDir
     }
@@ -45,12 +49,12 @@ func (c *ConstDeviceApExtios) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "default_dir", "input", "output")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default_dir", "input", "output")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.DefaultDir = temp.DefaultDir
     c.Input = temp.Input
     c.Output = temp.Output

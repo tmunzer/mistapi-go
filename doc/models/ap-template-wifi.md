@@ -1,6 +1,8 @@
 
 # Ap Template Wifi
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApTemplateWifi`
@@ -21,6 +23,7 @@
 | `MeshEnableCrm` | `*bool` | Optional | - |
 | `MeshEnabled` | `*bool` | Optional | - |
 | `ProxyArp` | `*bool` | Optional | **Default**: `false` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,7 +38,11 @@
   "proxy_arp": false,
   "cisco_enabled": false,
   "disable_radios_when_power_constrained": false,
-  "enable_arp_spoof": false
+  "enable_arp_spoof": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

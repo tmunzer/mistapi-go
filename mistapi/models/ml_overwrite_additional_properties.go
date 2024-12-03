@@ -6,9 +6,9 @@ import (
 
 // MlOverwriteAdditionalProperties represents a MlOverwriteAdditionalProperties struct.
 type MlOverwriteAdditionalProperties struct {
-    Int                  *int           `json:"int,omitempty"`
-    Ple                  *int           `json:"ple,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Int                  *int                   `json:"int,omitempty"`
+    Ple                  *int                   `json:"ple,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MlOverwriteAdditionalProperties.
@@ -16,13 +16,17 @@ type MlOverwriteAdditionalProperties struct {
 func (m MlOverwriteAdditionalProperties) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "int", "ple"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MlOverwriteAdditionalProperties object to a map representation for JSON marshaling.
 func (m MlOverwriteAdditionalProperties) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Int != nil {
         structMap["int"] = m.Int
     }
@@ -40,12 +44,12 @@ func (m *MlOverwriteAdditionalProperties) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "int", "ple")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "int", "ple")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Int = temp.Int
     m.Ple = temp.Ple
     return nil

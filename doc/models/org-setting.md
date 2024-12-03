@@ -3,6 +3,8 @@
 
 Org Settings
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgSetting`
@@ -56,6 +58,7 @@ Org Settings
 | `WanPma` | [`*models.OrgSettingWanPma`](../../doc/models/org-setting-wan-pma.md) | Optional | - |
 | `WiredPma` | [`*models.OrgSettingWiredPma`](../../doc/models/org-setting-wired-pma.md) | Optional | - |
 | `WirelessPma` | [`*models.OrgSettingWirelessPma`](../../doc/models/org-setting-wireless-pma.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -74,7 +77,11 @@ Org Settings
   "switch_updown_threshold": 0,
   "ui_idle_timeout": 10,
   "api_policy": {
-    "no_reveal": false
+    "no_reveal": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "auto_device_naming": {
     "enable": false,
@@ -85,7 +92,11 @@ Org Settings
         "gatewaytemplate_id": "gatewaytemplate_id0",
         "match_country": "match_country8",
         "match_device_type": "other",
-        "src": "name"
+        "src": "name",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       {
         "create_new_site_if_needed": false,
@@ -93,9 +104,17 @@ Org Settings
         "gatewaytemplate_id": "gatewaytemplate_id0",
         "match_country": "match_country8",
         "match_device_type": "other",
-        "src": "name"
+        "src": "name",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "auto_deviceprofile_assignment": {
     "enable": false,
@@ -106,9 +125,17 @@ Org Settings
         "gatewaytemplate_id": "gatewaytemplate_id0",
         "match_country": "match_country8",
         "match_device_type": "other",
-        "src": "name"
+        "src": "name",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "auto_site_assignment": {
     "enable": false,
@@ -119,9 +146,21 @@ Org Settings
         "gatewaytemplate_id": "gatewaytemplate_id0",
         "match_country": "match_country8",
         "match_device_type": "other",
-        "src": "name"
+        "src": "name",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

@@ -10,7 +10,7 @@ type VrrpConfig struct {
     Enabled              *bool                      `json:"enabled,omitempty"`
     // Property key is the VRRP name
     Groups               map[string]VrrpConfigGroup `json:"groups,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VrrpConfig.
@@ -18,13 +18,17 @@ type VrrpConfig struct {
 func (v VrrpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "enabled", "groups"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VrrpConfig object to a map representation for JSON marshaling.
 func (v VrrpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.Enabled != nil {
         structMap["enabled"] = v.Enabled
     }
@@ -42,12 +46,12 @@ func (v *VrrpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "groups")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "groups")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.Enabled = temp.Enabled
     v.Groups = temp.Groups
     return nil

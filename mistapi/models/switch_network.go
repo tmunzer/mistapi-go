@@ -10,19 +10,19 @@ import (
 // A network represents a network segment. It can either represent a VLAN (then usually ties to a L3 subnet), optionally associate it with a subnet which can later be used to create addition routes. Used for ports doing `family ethernet-switching`. It can also be a pure L3-subnet that can then be used against a port that with `family inet`.
 type SwitchNetwork struct {
     // only required for EVPN-VXLAN networks, IPv4 Virtual Gateway
-    Gateway              *string            `json:"gateway,omitempty"`
+    Gateway              *string                `json:"gateway,omitempty"`
     // only required for EVPN-VXLAN networks, IPv6 Virtual Gateway
-    Gateway6             *string            `json:"gateway6,omitempty"`
+    Gateway6             *string                `json:"gateway6,omitempty"`
     // whether to stop clients to talk to each other, default is false (when enabled, a unique isolation_vlan_id is required)
     // NOTE: this features requires uplink device to also a be Juniper device and `inter_switch_link` to be set
-    Isolation            *bool              `json:"isolation,omitempty"`
-    IsolationVlanId      *string            `json:"isolation_vlan_id,omitempty"`
+    Isolation            *bool                  `json:"isolation,omitempty"`
+    IsolationVlanId      *string                `json:"isolation_vlan_id,omitempty"`
     // optional for pure switching, required when L3 / routing features are used
-    Subnet               *string            `json:"subnet,omitempty"`
+    Subnet               *string                `json:"subnet,omitempty"`
     // optional for pure switching, required when L3 / routing features are used
-    Subnet6              *string            `json:"subnet6,omitempty"`
-    VlanId               VlanIdWithVariable `json:"vlan_id"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Subnet6              *string                `json:"subnet6,omitempty"`
+    VlanId               VlanIdWithVariable     `json:"vlan_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchNetwork.
@@ -30,13 +30,17 @@ type SwitchNetwork struct {
 func (s SwitchNetwork) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "gateway", "gateway6", "isolation", "isolation_vlan_id", "subnet", "subnet6", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchNetwork object to a map representation for JSON marshaling.
 func (s SwitchNetwork) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Gateway != nil {
         structMap["gateway"] = s.Gateway
     }
@@ -71,12 +75,12 @@ func (s *SwitchNetwork) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "gateway6", "isolation", "isolation_vlan_id", "subnet", "subnet6", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateway", "gateway6", "isolation", "isolation_vlan_id", "subnet", "subnet6", "vlan_id")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Gateway = temp.Gateway
     s.Gateway6 = temp.Gateway6
     s.Isolation = temp.Isolation

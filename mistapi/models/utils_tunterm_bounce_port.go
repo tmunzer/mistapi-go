@@ -9,10 +9,10 @@ import (
 // UtilsTuntermBouncePort represents a UtilsTuntermBouncePort struct.
 type UtilsTuntermBouncePort struct {
     // in milli seconds, hold time between multiple port bounces
-    HoldTime             *int           `json:"hold_time,omitempty"`
+    HoldTime             *int                   `json:"hold_time,omitempty"`
     // list of ports to bounce
-    Ports                []string       `json:"ports"`
-    AdditionalProperties map[string]any `json:"_"`
+    Ports                []string               `json:"ports"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsTuntermBouncePort.
@@ -20,13 +20,17 @@ type UtilsTuntermBouncePort struct {
 func (u UtilsTuntermBouncePort) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "hold_time", "ports"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsTuntermBouncePort object to a map representation for JSON marshaling.
 func (u UtilsTuntermBouncePort) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.HoldTime != nil {
         structMap["hold_time"] = u.HoldTime
     }
@@ -46,12 +50,12 @@ func (u *UtilsTuntermBouncePort) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "hold_time", "ports")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "hold_time", "ports")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.HoldTime = temp.HoldTime
     u.Ports = *temp.Ports
     return nil

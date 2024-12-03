@@ -50,8 +50,8 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Asset{
-    Mac:          "mac0",
-    Name:         "name6",
+    Mac:                  "mac0",
+    Name:                 "name6",
 }
 
 apiResponse, err := sitesAssets.CreateSiteAsset(ctx, siteId, &body)
@@ -372,8 +372,8 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 assetId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Asset{
-    Mac:          "mac0",
-    Name:         "name6",
+    Mac:                  "mac0",
+    Name:                 "name6",
 }
 
 apiResponse, err := sitesAssets.UpdateSiteAsset(ctx, siteId, assetId, &body)

@@ -6,9 +6,9 @@ import (
 
 // RadsecServer represents a RadsecServer struct.
 type RadsecServer struct {
-    Host                 *string        `json:"host,omitempty"`
-    Port                 *int           `json:"port,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Host                 *string                `json:"host,omitempty"`
+    Port                 *int                   `json:"port,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RadsecServer.
@@ -16,13 +16,17 @@ type RadsecServer struct {
 func (r RadsecServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "host", "port"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RadsecServer object to a map representation for JSON marshaling.
 func (r RadsecServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Host != nil {
         structMap["host"] = r.Host
     }
@@ -40,12 +44,12 @@ func (r *RadsecServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "port")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "port")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Host = temp.Host
     r.Port = temp.Port
     return nil

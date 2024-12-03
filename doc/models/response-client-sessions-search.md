@@ -1,6 +1,8 @@
 
 # Response Client Sessions Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseClientSessionsSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.ResponseClientSessionsSearchItem`](../../doc/models/response-client-sessions-search-item.md) | Required | - |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,12 +42,20 @@
       "tags": [
         "tags1",
         "tags2"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 188,
   "total": 222,
-  "next": "next4"
+  "next": "next4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

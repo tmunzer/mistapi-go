@@ -1,6 +1,8 @@
 
 # Event Nac Client
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `EventNacClient`
@@ -36,6 +38,7 @@
 | `Username` | `*string` | Optional | Username presented by the client |
 | `Vlan` | `*string` | Optional | Vlan ID |
 | `VlanSource` | `*string` | Optional | Vlan source, e.g. "nactag", "usermac" |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -74,7 +77,11 @@
   "username": "user@deaflyz.net",
   "vlan": "750",
   "vlan_source": "nactag",
-  "device_mac": "device_mac6"
+  "device_mac": "device_mac6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

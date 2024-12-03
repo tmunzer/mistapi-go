@@ -26,7 +26,7 @@ type CaptureMxedge struct {
     TzspHost             *string                         `json:"tzsp_host,omitempty"`
     // if `format`==`tzsp`. Port on remote host for receiving the captured packets
     TzspPort             *int                            `json:"tzsp_port,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureMxedge.
@@ -34,13 +34,17 @@ type CaptureMxedge struct {
 func (c CaptureMxedge) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "duration", "format", "max_pkt_len", "mxedges", "num_packets", "type", "tzsp_host", "tzsp_port"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureMxedge object to a map representation for JSON marshaling.
 func (c CaptureMxedge) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Duration != nil {
         structMap["duration"] = c.Duration
     }
@@ -78,12 +82,12 @@ func (c *CaptureMxedge) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "duration", "format", "max_pkt_len", "mxedges", "num_packets", "type", "tzsp_host", "tzsp_port")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "format", "max_pkt_len", "mxedges", "num_packets", "type", "tzsp_host", "tzsp_port")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Duration = temp.Duration
     c.Format = temp.Format
     c.MaxPktLen = temp.MaxPktLen

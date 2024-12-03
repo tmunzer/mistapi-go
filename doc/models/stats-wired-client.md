@@ -1,6 +1,8 @@
 
 # Stats Wired Client
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsWiredClient`
@@ -21,6 +23,7 @@
 | `TxPkts` | `*float64` | Optional | amount of traffic received from client since client connects |
 | `Uptime` | `*float64` | Optional | how long, in seconds, has the client been connected |
 | `VlanId` | `*float64` | Optional | vlan id, could be empty |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,7 +35,11 @@
   "device_id": "device_id2",
   "eth_port": "eth_port4",
   "last_seen": 111.26,
-  "rx_bytes": 77.14
+  "rx_bytes": 77.14,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

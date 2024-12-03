@@ -1,6 +1,8 @@
 
 # Idp Profile
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `IdpProfile`
@@ -16,6 +18,7 @@
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Overwrites` | [`[]models.IdpProfileOverwrite`](../../doc/models/idp-profile-overwrite.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,7 +29,11 @@
   "name": "relaxed",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "created_time": 104.4,
-  "modified_time": 230.56
+  "modified_time": 230.56,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

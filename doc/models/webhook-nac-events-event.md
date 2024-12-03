@@ -1,6 +1,8 @@
 
 # Webhook Nac Events Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookNacEventsEvent`
@@ -29,6 +31,7 @@
 | `Type` | `*string` | Optional | event type, e.g. NAC_CLIENT_PERMIT |
 | `Username` | `*string` | Optional | Username presented by the client |
 | `Vlan` | `*string` | Optional | Vlan ID |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -59,7 +62,11 @@
   "type": "NAC_CLIENT_PERMIT",
   "username": "user@deaflyz.net",
   "vlan": "750",
-  "dryrun_nacrule_matched": false
+  "dryrun_nacrule_matched": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

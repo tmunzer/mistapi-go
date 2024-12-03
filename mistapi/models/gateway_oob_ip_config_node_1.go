@@ -8,18 +8,18 @@ import (
 // for HA Cluster, node1 can have different IP Config
 type GatewayOobIpConfigNode1 struct {
     // if `type`==`static`
-    Gateway              *string        `json:"gateway,omitempty"`
-    Ip                   *string        `json:"ip,omitempty"`
+    Gateway              *string                `json:"gateway,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
     // used only if `subnet` is not specified in `networks`
-    Netmask              *string        `json:"netmask,omitempty"`
+    Netmask              *string                `json:"netmask,omitempty"`
     // enum: `dhcp`, `static`
-    Type                 *IpTypeEnum    `json:"type,omitempty"`
+    Type                 *IpTypeEnum            `json:"type,omitempty"`
     // if supported on the platform. If enabled, DNS will be using this routing-instance, too
-    UseMgmtVrf           *bool          `json:"use_mgmt_vrf,omitempty"`
+    UseMgmtVrf           *bool                  `json:"use_mgmt_vrf,omitempty"`
     // whether to use `mgmt_junos` for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
-    UseMgmtVrfForHostOut *bool          `json:"use_mgmt_vrf_for_host_out,omitempty"`
-    VlanId               *string        `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    UseMgmtVrfForHostOut *bool                  `json:"use_mgmt_vrf_for_host_out,omitempty"`
+    VlanId               *string                `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayOobIpConfigNode1.
@@ -27,13 +27,17 @@ type GatewayOobIpConfigNode1 struct {
 func (g GatewayOobIpConfigNode1) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "gateway", "ip", "netmask", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayOobIpConfigNode1 object to a map representation for JSON marshaling.
 func (g GatewayOobIpConfigNode1) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Gateway != nil {
         structMap["gateway"] = g.Gateway
     }
@@ -66,12 +70,12 @@ func (g *GatewayOobIpConfigNode1) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "ip", "netmask", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateway", "ip", "netmask", "type", "use_mgmt_vrf", "use_mgmt_vrf_for_host_out", "vlan_id")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Gateway = temp.Gateway
     g.Ip = temp.Ip
     g.Netmask = temp.Netmask

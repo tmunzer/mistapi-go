@@ -10,24 +10,24 @@ import (
 // NacRule represents a NacRule struct.
 type NacRule struct {
     // enum: `allow`, `block`
-    Action               NacRuleActionEnum `json:"action"`
+    Action               NacRuleActionEnum      `json:"action"`
     // all optional, this goes into Access-Accept
-    ApplyTags            []string          `json:"apply_tags,omitempty"`
+    ApplyTags            []string               `json:"apply_tags,omitempty"`
     // when the object has been created, in epoch
-    CreatedTime          *float64          `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // enabled or not
-    Enabled              *bool             `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID        `json:"id,omitempty"`
-    Matching             *NacRuleMatching  `json:"matching,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Matching             *NacRuleMatching       `json:"matching,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64          `json:"modified_time,omitempty"`
-    Name                 string            `json:"name"`
-    NotMatching          *NacRuleMatching  `json:"not_matching,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    Name                 string                 `json:"name"`
+    NotMatching          *NacRuleMatching       `json:"not_matching,omitempty"`
     // the order of the rule, lower value implies higher priority
-    Order                *int              `json:"order,omitempty"`
-    OrgId                *uuid.UUID        `json:"org_id,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    Order                *int                   `json:"order,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacRule.
@@ -35,13 +35,17 @@ type NacRule struct {
 func (n NacRule) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "action", "apply_tags", "created_time", "enabled", "id", "matching", "modified_time", "name", "not_matching", "order", "org_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NacRule object to a map representation for JSON marshaling.
 func (n NacRule) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     structMap["action"] = n.Action
     if n.ApplyTags != nil {
         structMap["apply_tags"] = n.ApplyTags
@@ -86,12 +90,12 @@ func (n *NacRule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "apply_tags", "created_time", "enabled", "id", "matching", "modified_time", "name", "not_matching", "order", "org_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "apply_tags", "created_time", "enabled", "id", "matching", "modified_time", "name", "not_matching", "order", "org_id")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.Action = *temp.Action
     n.ApplyTags = temp.ApplyTags
     n.CreatedTime = temp.CreatedTime

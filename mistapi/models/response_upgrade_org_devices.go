@@ -18,7 +18,7 @@ type ResponseUpgradeOrgDevices struct {
     // version to upgrade to
     TargetVersion        *string                    `json:"target_version,omitempty"`
     Upgrades             []ResponseUpgradeOrgDevice `json:"upgrades,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseUpgradeOrgDevices.
@@ -26,13 +26,17 @@ type ResponseUpgradeOrgDevices struct {
 func (r ResponseUpgradeOrgDevices) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "enable_p2p", "force", "id", "strategy", "target_version", "upgrades"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseUpgradeOrgDevices object to a map representation for JSON marshaling.
 func (r ResponseUpgradeOrgDevices) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.EnableP2p != nil {
         structMap["enable_p2p"] = r.EnableP2p
     }
@@ -62,12 +66,12 @@ func (r *ResponseUpgradeOrgDevices) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enable_p2p", "force", "id", "strategy", "target_version", "upgrades")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enable_p2p", "force", "id", "strategy", "target_version", "upgrades")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.EnableP2p = temp.EnableP2p
     r.Force = temp.Force
     r.Id = temp.Id

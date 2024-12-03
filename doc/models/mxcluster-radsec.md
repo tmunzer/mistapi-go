@@ -3,6 +3,8 @@
 
 MxEdge Radsec Configuration
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MxclusterRadsec`
@@ -19,6 +21,7 @@ MxEdge Radsec Configuration
 | `ProxyHosts` | `[]string` | Optional | hostnames or IPs for Mist AP to use as the TLS Server (i.e. they are reachable from AP) in addition to `tunterm_hosts` |
 | `ServerSelection` | [`*models.MxclusterRadsecServerSelectionEnum`](../../doc/models/mxcluster-radsec-server-selection-enum.md) | Optional | When ordered, Mist Edge will prefer and go back to the first radius server if possible. enum: `ordered`, `unordered`<br>**Default**: `"ordered"` |
 | `SrcIpSource` | [`*models.MxclusterRadsecSrcIpSourceEnum`](../../doc/models/mxcluster-radsec-src-ip-source-enum.md) | Optional | Specify IP address to connect to auth_servers and acct_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`<br>**Default**: `"any"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,7 +38,11 @@ MxEdge Radsec Configuration
       "ssids": [
         "ssids5",
         "ssids6"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "host": "host4",
@@ -44,7 +51,11 @@ MxEdge Radsec Configuration
       "ssids": [
         "ssids5",
         "ssids6"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "host": "host4",
@@ -53,7 +64,11 @@ MxEdge Radsec Configuration
       "ssids": [
         "ssids5",
         "ssids6"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "auth_servers": [
@@ -62,25 +77,41 @@ MxEdge Radsec Configuration
       "keywrap_enabled": false,
       "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek4",
-      "keywrap_mack": "keywrap_mack6"
+      "keywrap_mack": "keywrap_mack6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "host": "host0",
       "keywrap_enabled": false,
       "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek4",
-      "keywrap_mack": "keywrap_mack6"
+      "keywrap_mack": "keywrap_mack6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "host": "host0",
       "keywrap_enabled": false,
       "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek4",
-      "keywrap_mack": "keywrap_mack6"
+      "keywrap_mack": "keywrap_mack6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "enabled": false,
-  "match_ssid": false
+  "match_ssid": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

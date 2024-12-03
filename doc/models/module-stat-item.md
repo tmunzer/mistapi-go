@@ -1,6 +1,8 @@
 
 # Module Stat Item
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ModuleStatItem`
@@ -38,6 +40,7 @@
 | `VcRole` | `models.Optional[string]` | Optional | master / backup / linecard |
 | `VcState` | `models.Optional[string]` | Optional | - |
 | `Version` | `models.Optional[string]` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -55,40 +58,68 @@
       "minimum_version": "minimum_version2",
       "reason": "reason4",
       "since": 174,
-      "type": "type0"
+      "type": "type0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "feature": "feature4",
       "minimum_version": "minimum_version2",
       "reason": "reason4",
       "since": 174,
-      "type": "type0"
+      "type": "type0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "feature": "feature4",
       "minimum_version": "minimum_version2",
       "reason": "reason4",
       "since": 174,
-      "type": "type0"
+      "type": "type0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "fans": [
     {
       "airflow": "airflow8",
       "name": "name4",
-      "status": "status4"
+      "status": "status4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "airflow": "airflow8",
       "name": "name4",
-      "status": "status4"
+      "status": "status4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "airflow": "airflow8",
       "name": "name4",
-      "status": "status4"
+      "status": "status4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

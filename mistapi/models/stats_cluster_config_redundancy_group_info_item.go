@@ -6,10 +6,10 @@ import (
 
 // StatsClusterConfigRedundancyGroupInfoItem represents a StatsClusterConfigRedundancyGroupInfoItem struct.
 type StatsClusterConfigRedundancyGroupInfoItem struct {
-    Id                   *int           `json:"Id,omitempty"`
-    MonitoringFailure    *string        `json:"MonitoringFailure,omitempty"`
-    Threshold            *int           `json:"Threshold,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   *int                   `json:"Id,omitempty"`
+    MonitoringFailure    *string                `json:"MonitoringFailure,omitempty"`
+    Threshold            *int                   `json:"Threshold,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsClusterConfigRedundancyGroupInfoItem.
@@ -17,13 +17,17 @@ type StatsClusterConfigRedundancyGroupInfoItem struct {
 func (s StatsClusterConfigRedundancyGroupInfoItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "Id", "MonitoringFailure", "Threshold"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsClusterConfigRedundancyGroupInfoItem object to a map representation for JSON marshaling.
 func (s StatsClusterConfigRedundancyGroupInfoItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Id != nil {
         structMap["Id"] = s.Id
     }
@@ -44,12 +48,12 @@ func (s *StatsClusterConfigRedundancyGroupInfoItem) UnmarshalJSON(input []byte) 
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "Id", "MonitoringFailure", "Threshold")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "Id", "MonitoringFailure", "Threshold")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Id = temp.Id
     s.MonitoringFailure = temp.MonitoringFailure
     s.Threshold = temp.Threshold

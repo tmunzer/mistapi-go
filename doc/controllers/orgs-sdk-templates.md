@@ -49,7 +49,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Sdktemplate{
-    Name:           "name6",
+    Name:                 "name6",
 }
 
 apiResponse, err := orgsSDKTemplates.CreateSdkTemplate(ctx, orgId, &body)
@@ -309,7 +309,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 sdktemplateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Sdktemplate{
-    Name:           "name6",
+    Name:                 "name6",
 }
 
 apiResponse, err := orgsSDKTemplates.UpdateSdkTemplate(ctx, orgId, sdktemplateId, &body)

@@ -14,7 +14,7 @@ type ResponseAutoPlacementInfo struct {
     StartTime            *float64                     `json:"start_time,omitempty"`
     // the status of autoplacement for a given map. enum: `done`, `error`, `inprogress`, `pending`
     Status               *AutoPlacementInfoStatusEnum `json:"status,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAutoPlacementInfo.
@@ -22,13 +22,17 @@ type ResponseAutoPlacementInfo struct {
 func (r ResponseAutoPlacementInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "end_time", "est_time_left", "start_time", "status"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseAutoPlacementInfo object to a map representation for JSON marshaling.
 func (r ResponseAutoPlacementInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.EndTime != nil {
         structMap["end_time"] = r.EndTime
     }
@@ -52,12 +56,12 @@ func (r *ResponseAutoPlacementInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end_time", "est_time_left", "start_time", "status")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end_time", "est_time_left", "start_time", "status")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.EndTime = temp.EndTime
     r.EstTimeLeft = temp.EstTimeLeft
     r.StartTime = temp.StartTime

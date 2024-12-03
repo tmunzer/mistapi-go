@@ -9,7 +9,7 @@ import (
 type SiteSettingCriticalUrlMonitoring struct {
     Enabled              *bool                                     `json:"enabled,omitempty"`
     Monitors             []SiteSettingCriticalUrlMonitoringMonitor `json:"monitors,omitempty"`
-    AdditionalProperties map[string]any                            `json:"_"`
+    AdditionalProperties map[string]interface{}                    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingCriticalUrlMonitoring.
@@ -17,13 +17,17 @@ type SiteSettingCriticalUrlMonitoring struct {
 func (s SiteSettingCriticalUrlMonitoring) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "enabled", "monitors"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingCriticalUrlMonitoring object to a map representation for JSON marshaling.
 func (s SiteSettingCriticalUrlMonitoring) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Enabled != nil {
         structMap["enabled"] = s.Enabled
     }
@@ -41,12 +45,12 @@ func (s *SiteSettingCriticalUrlMonitoring) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "monitors")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "monitors")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Enabled = temp.Enabled
     s.Monitors = temp.Monitors
     return nil

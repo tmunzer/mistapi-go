@@ -6,12 +6,12 @@ import (
 
 // WlanAppQosAppsProperties represents a WlanAppQosAppsProperties struct.
 type WlanAppQosAppsProperties struct {
-    Dscp                 *int           `json:"dscp,omitempty"`
+    Dscp                 *int                   `json:"dscp,omitempty"`
     // subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load)
-    DstSubnet            *string        `json:"dst_subnet,omitempty"`
+    DstSubnet            *string                `json:"dst_subnet,omitempty"`
     // subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load)
-    SrcSubnet            *string        `json:"src_subnet,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    SrcSubnet            *string                `json:"src_subnet,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAppQosAppsProperties.
@@ -19,13 +19,17 @@ type WlanAppQosAppsProperties struct {
 func (w WlanAppQosAppsProperties) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "dscp", "dst_subnet", "src_subnet"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanAppQosAppsProperties object to a map representation for JSON marshaling.
 func (w WlanAppQosAppsProperties) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Dscp != nil {
         structMap["dscp"] = w.Dscp
     }
@@ -46,12 +50,12 @@ func (w *WlanAppQosAppsProperties) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dscp", "dst_subnet", "src_subnet")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dscp", "dst_subnet", "src_subnet")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Dscp = temp.Dscp
     w.DstSubnet = temp.DstSubnet
     w.SrcSubnet = temp.SrcSubnet

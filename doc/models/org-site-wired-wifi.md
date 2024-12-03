@@ -1,6 +1,8 @@
 
 # Org Site Wired Wifi
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgSiteWiredWifi`
@@ -16,6 +18,7 @@
 | `Results` | [`[]models.OrgSiteSleWiredResult`](../../doc/models/org-site-sle-wired-result.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +35,19 @@
       "num_switches": 67.86,
       "switch_health": 68.36,
       "switch_stc": 162.54,
-      "switch_throughput": 20.2
+      "switch_throughput": 20.2,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 108.5,
-  "total": 132
+  "total": 132,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

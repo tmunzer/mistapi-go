@@ -7,9 +7,9 @@ import (
 // GatewayMatching represents a GatewayMatching struct.
 // Gateway matching
 type GatewayMatching struct {
-    Enable               *bool                 `json:"enable,omitempty"`
-    Rules                []GatewayMatchingRule `json:"rules,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Enable               *bool                  `json:"enable,omitempty"`
+    Rules                []GatewayMatchingRule  `json:"rules,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayMatching.
@@ -17,13 +17,17 @@ type GatewayMatching struct {
 func (g GatewayMatching) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "enable", "rules"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayMatching object to a map representation for JSON marshaling.
 func (g GatewayMatching) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Enable != nil {
         structMap["enable"] = g.Enable
     }
@@ -41,12 +45,12 @@ func (g *GatewayMatching) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enable", "rules")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enable", "rules")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Enable = temp.Enable
     g.Rules = temp.Rules
     return nil

@@ -1,6 +1,8 @@
 
 # Stats Switch Clients Stats Total
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsSwitchClientsStatsTotal`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `NumAps` | `[]int` | Optional | - |
 | `NumWiredClients` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -20,7 +23,11 @@
     19,
     18
   ],
-  "num_wired_clients": 218
+  "num_wired_clients": 218,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

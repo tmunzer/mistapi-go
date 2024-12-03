@@ -3,6 +3,8 @@
 
 OAuth linked Jamf apps account details
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AccountJamfConfig`
@@ -15,6 +17,7 @@ OAuth linked Jamf apps account details
 | `ClientSecret` | `string` | Required | customer account api client secret |
 | `InstanceUrl` | `string` | Required | customer account Jamf instance URL |
 | `SmartgroupName` | `string` | Required | smart group membership for determining compliance status |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@ OAuth linked Jamf apps account details
   "client_id": "client_id0",
   "client_secret": "client_secret6",
   "instance_url": "junipertest.jamfcloud.com",
-  "smartgroup_name": "CompliantGroup1"
+  "smartgroup_name": "CompliantGroup1",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

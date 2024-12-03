@@ -10,14 +10,14 @@ import (
 // Delivery object to configure the alarm delivery
 type Delivery struct {
     // List of additional email string to deliver the alarms via emails
-    AdditionalEmails     []string       `json:"additional_emails,omitempty"`
+    AdditionalEmails     []string               `json:"additional_emails,omitempty"`
     // Whether to enable the alarm delivery via emails or not
-    Enabled              bool           `json:"enabled"`
+    Enabled              bool                   `json:"enabled"`
     // Whether to deliver the alarms via emails to Org admins or not
-    ToOrgAdmins          *bool          `json:"to_org_admins,omitempty"`
+    ToOrgAdmins          *bool                  `json:"to_org_admins,omitempty"`
     // Whether to deliver the alarms via emails to Site admins or not
-    ToSiteAdmins         *bool          `json:"to_site_admins,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ToSiteAdmins         *bool                  `json:"to_site_admins,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Delivery.
@@ -25,13 +25,17 @@ type Delivery struct {
 func (d Delivery) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "additional_emails", "enabled", "to_org_admins", "to_site_admins"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the Delivery object to a map representation for JSON marshaling.
 func (d Delivery) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.AdditionalEmails != nil {
         structMap["additional_emails"] = d.AdditionalEmails
     }
@@ -57,12 +61,12 @@ func (d *Delivery) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_emails", "enabled", "to_org_admins", "to_site_admins")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_emails", "enabled", "to_org_admins", "to_site_admins")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.AdditionalEmails = temp.AdditionalEmails
     d.Enabled = *temp.Enabled
     d.ToOrgAdmins = temp.ToOrgAdmins

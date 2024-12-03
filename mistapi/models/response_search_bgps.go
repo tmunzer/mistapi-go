@@ -6,12 +6,12 @@ import (
 
 // ResponseSearchBgps represents a ResponseSearchBgps struct.
 type ResponseSearchBgps struct {
-    End                  *float64       `json:"end,omitempty"`
-    Limit                *int           `json:"limit,omitempty"`
-    Results              []BgpStats     `json:"results,omitempty"`
-    Start                *float64       `json:"start,omitempty"`
-    Total                *int           `json:"total,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    End                  *float64               `json:"end,omitempty"`
+    Limit                *int                   `json:"limit,omitempty"`
+    Results              []BgpStats             `json:"results,omitempty"`
+    Start                *float64               `json:"start,omitempty"`
+    Total                *int                   `json:"total,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSearchBgps.
@@ -19,13 +19,17 @@ type ResponseSearchBgps struct {
 func (r ResponseSearchBgps) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "end", "limit", "results", "start", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSearchBgps object to a map representation for JSON marshaling.
 func (r ResponseSearchBgps) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.End != nil {
         structMap["end"] = r.End
     }
@@ -52,12 +56,12 @@ func (r *ResponseSearchBgps) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "limit", "results", "start", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "results", "start", "total")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.End = temp.End
     r.Limit = temp.Limit
     r.Results = temp.Results

@@ -7,11 +7,11 @@ import (
 // WlanDnsServerRewrite represents a WlanDnsServerRewrite struct.
 // for radius_group-based DNS server (rewrite DNS request depending on the Group RADIUS server returns)
 type WlanDnsServerRewrite struct {
-    Enabled              *bool             `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // map between radius_group and the desired DNS server (IPv4 only)
     // Property key is the RADIUS group, property value is the desired DNS Server
-    RadiusGroups         map[string]string `json:"radius_groups,omitempty"`
-    AdditionalProperties map[string]any    `json:"_"`
+    RadiusGroups         map[string]string      `json:"radius_groups,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDnsServerRewrite.
@@ -19,13 +19,17 @@ type WlanDnsServerRewrite struct {
 func (w WlanDnsServerRewrite) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "enabled", "radius_groups"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanDnsServerRewrite object to a map representation for JSON marshaling.
 func (w WlanDnsServerRewrite) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Enabled != nil {
         structMap["enabled"] = w.Enabled
     }
@@ -43,12 +47,12 @@ func (w *WlanDnsServerRewrite) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "radius_groups")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "radius_groups")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Enabled = temp.Enabled
     w.RadiusGroups = temp.RadiusGroups
     return nil

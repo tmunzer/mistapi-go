@@ -8,9 +8,9 @@ import (
 
 // DswitchesMetricsSwitchApAffinityDetails represents a DswitchesMetricsSwitchApAffinityDetails struct.
 type DswitchesMetricsSwitchApAffinityDetails struct {
-    SystemName           []string       `json:"system_name"`
-    Threshold            float64        `json:"threshold"`
-    AdditionalProperties map[string]any `json:"_"`
+    SystemName           []string               `json:"system_name"`
+    Threshold            float64                `json:"threshold"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DswitchesMetricsSwitchApAffinityDetails.
@@ -18,13 +18,17 @@ type DswitchesMetricsSwitchApAffinityDetails struct {
 func (d DswitchesMetricsSwitchApAffinityDetails) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "system_name", "threshold"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DswitchesMetricsSwitchApAffinityDetails object to a map representation for JSON marshaling.
 func (d DswitchesMetricsSwitchApAffinityDetails) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     structMap["system_name"] = d.SystemName
     structMap["threshold"] = d.Threshold
     return structMap
@@ -42,12 +46,12 @@ func (d *DswitchesMetricsSwitchApAffinityDetails) UnmarshalJSON(input []byte) er
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "system_name", "threshold")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "system_name", "threshold")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.SystemName = *temp.SystemName
     d.Threshold = *temp.Threshold
     return nil

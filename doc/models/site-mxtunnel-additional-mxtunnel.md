@@ -1,6 +1,8 @@
 
 # Site Mxtunnel Additional Mxtunnel
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteMxtunnelAdditionalMxtunnel`
@@ -14,6 +16,7 @@
 | `HelloRetries` | `*int` | Optional | **Default**: `7`<br>**Constraints**: `>= 2`, `<= 30` |
 | `Protocol` | [`*models.SiteMxtunnelProtocolEnum`](../../doc/models/site-mxtunnel-protocol-enum.md) | Optional | enum: `ip`, `udp` |
 | `VlanIds` | `[]int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,15 +35,27 @@
       "name": "name6",
       "tunterm_hosts": [
         "tunterm_hosts6"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "name": "name6",
       "tunterm_hosts": [
         "tunterm_hosts6"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

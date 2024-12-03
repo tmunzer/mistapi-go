@@ -7,22 +7,22 @@ import (
 // RoutingPolicyTermAction represents a RoutingPolicyTermAction struct.
 // when used as import policy
 type RoutingPolicyTermAction struct {
-    Accept               *bool          `json:"accept,omitempty"`
-    AddCommunity         []string       `json:"add_community,omitempty"`
+    Accept               *bool                  `json:"accept,omitempty"`
+    AddCommunity         []string               `json:"add_community,omitempty"`
     // for SSR, hub decides how VRF routes are leaked on spoke
-    AddTargetVrfs        []string       `json:"add_target_vrfs,omitempty"`
+    AddTargetVrfs        []string               `json:"add_target_vrfs,omitempty"`
     // when used as export policy, optional
-    Community            []string       `json:"community,omitempty"`
+    Community            []string               `json:"community,omitempty"`
     // when used as export policy, optional. To exclude certain AS
-    ExcludeAsPath        []string       `json:"exclude_as_path,omitempty"`
-    ExcludeCommunity     []string       `json:"exclude_community,omitempty"`
+    ExcludeAsPath        []string               `json:"exclude_as_path,omitempty"`
+    ExcludeCommunity     []string               `json:"exclude_community,omitempty"`
     // when used as export policy, optional
-    ExportCommunitites   []string       `json:"export_communitites,omitempty"`
+    ExportCommunitites   []string               `json:"export_communitites,omitempty"`
     // optional, for an import policy, local_preference can be changed
-    LocalPreference      *string        `json:"local_preference,omitempty"`
+    LocalPreference      *string                `json:"local_preference,omitempty"`
     // when used as export policy, optional. By default, the local AS will be prepended, to change it
-    PrependAsPath        []string       `json:"prepend_as_path,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    PrependAsPath        []string               `json:"prepend_as_path,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTermAction.
@@ -30,13 +30,17 @@ type RoutingPolicyTermAction struct {
 func (r RoutingPolicyTermAction) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communitites", "local_preference", "prepend_as_path"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RoutingPolicyTermAction object to a map representation for JSON marshaling.
 func (r RoutingPolicyTermAction) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Accept != nil {
         structMap["accept"] = r.Accept
     }
@@ -75,12 +79,12 @@ func (r *RoutingPolicyTermAction) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communitites", "local_preference", "prepend_as_path")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communitites", "local_preference", "prepend_as_path")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Accept = temp.Accept
     r.AddCommunity = temp.AddCommunity
     r.AddTargetVrfs = temp.AddTargetVrfs

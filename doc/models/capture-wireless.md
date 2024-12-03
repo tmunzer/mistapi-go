@@ -3,6 +3,8 @@
 
 Initiate a Wireless Packet Capture
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `CaptureWireless`
@@ -20,6 +22,7 @@ Initiate a Wireless Packet Capture
 | `Ssid` | `*string` | Optional | - |
 | `Type` | `string` | Required, Constant | enum: `wireless`<br>**Default**: `"wireless"` |
 | `WlanId` | `*uuid.UUID` | Optional | WLAN ID |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,7 +34,11 @@ Initiate a Wireless Packet Capture
   "max_pkt_len": 68,
   "num_packets": 100,
   "type": "wireless",
-  "ap_mac": "ap_mac4"
+  "ap_mac": "ap_mac4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

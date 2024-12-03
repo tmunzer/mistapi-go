@@ -9,13 +9,13 @@ import (
 // AccountZscalerConfig represents a AccountZscalerConfig struct.
 // OAuth linked Zscaler apps account details
 type AccountZscalerConfig struct {
-    CloudName            string         `json:"cloud_name"`
-    PartnerKey           string         `json:"partner_key"`
+    CloudName            string                 `json:"cloud_name"`
+    PartnerKey           string                 `json:"partner_key"`
     // customer account password
-    Password             string         `json:"password"`
+    Password             string                 `json:"password"`
     // customer account user name
-    Username             string         `json:"username"`
-    AdditionalProperties map[string]any `json:"_"`
+    Username             string                 `json:"username"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountZscalerConfig.
@@ -23,13 +23,17 @@ type AccountZscalerConfig struct {
 func (a AccountZscalerConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "cloud_name", "partner_key", "password", "username"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AccountZscalerConfig object to a map representation for JSON marshaling.
 func (a AccountZscalerConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     structMap["cloud_name"] = a.CloudName
     structMap["partner_key"] = a.PartnerKey
     structMap["password"] = a.Password
@@ -49,12 +53,12 @@ func (a *AccountZscalerConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cloud_name", "partner_key", "password", "username")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cloud_name", "partner_key", "password", "username")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.CloudName = *temp.CloudName
     a.PartnerKey = *temp.PartnerKey
     a.Password = *temp.Password

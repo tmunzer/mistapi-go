@@ -3,6 +3,8 @@
 
 Initiate a Client Packet Capture
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `CaptureClient`
@@ -19,6 +21,7 @@ Initiate a Client Packet Capture
 | `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024 for client-capture<br>**Default**: `1024` |
 | `Ssid` | `models.Optional[string]` | Optional | optional filter by ssid |
 | `Type` | `string` | Required, Constant | enum: `client`<br>**Default**: `"client"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,7 +33,11 @@ Initiate a Client Packet Capture
   "max_pkt_len": 128,
   "num_packets": 1000,
   "type": "client",
-  "ap_mac": "ap_mac0"
+  "ap_mac": "ap_mac0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

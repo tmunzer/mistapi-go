@@ -7,16 +7,16 @@ import (
 // NacCrlFile represents a NacCrlFile struct.
 type NacCrlFile struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // Unique ID for the uploaded CRL file, used to reference the file
-    Id                   *string        `json:"id,omitempty"`
+    Id                   *string                `json:"id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64       `json:"modified_time,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // Issuer name for the CRL file
-    Name                 *string        `json:"name,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
     // URL to download the uploaded CRL file
-    Url                  *string        `json:"url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Url                  *string                `json:"url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacCrlFile.
@@ -24,13 +24,17 @@ type NacCrlFile struct {
 func (n NacCrlFile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "created_time", "id", "modified_time", "name", "url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NacCrlFile object to a map representation for JSON marshaling.
 func (n NacCrlFile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.CreatedTime != nil {
         structMap["created_time"] = n.CreatedTime
     }
@@ -57,12 +61,12 @@ func (n *NacCrlFile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "id", "modified_time", "name", "url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "id", "modified_time", "name", "url")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.CreatedTime = temp.CreatedTime
     n.Id = temp.Id
     n.ModifiedTime = temp.ModifiedTime

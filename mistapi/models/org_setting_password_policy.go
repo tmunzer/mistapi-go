@@ -8,16 +8,16 @@ import (
 // password policy
 type OrgSettingPasswordPolicy struct {
     // whether the policy is enabled
-    Enabled               *bool          `json:"enabled,omitempty"`
+    Enabled               *bool                  `json:"enabled,omitempty"`
     // password expiry in days
-    ExpiryInDays          *int           `json:"expiry_in_days,omitempty"`
+    ExpiryInDays          *int                   `json:"expiry_in_days,omitempty"`
     // required password length
-    MinLength             *int           `json:"min_length,omitempty"`
+    MinLength             *int                   `json:"min_length,omitempty"`
     // whether to require special character
-    RequiresSpecialChar   *bool          `json:"requires_special_char,omitempty"`
+    RequiresSpecialChar   *bool                  `json:"requires_special_char,omitempty"`
     // whether to require two-factor auth
-    RequiresTwoFactorAuth *bool          `json:"requires_two_factor_auth,omitempty"`
-    AdditionalProperties  map[string]any `json:"_"`
+    RequiresTwoFactorAuth *bool                  `json:"requires_two_factor_auth,omitempty"`
+    AdditionalProperties  map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingPasswordPolicy.
@@ -25,13 +25,17 @@ type OrgSettingPasswordPolicy struct {
 func (o OrgSettingPasswordPolicy) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "enabled", "expiry_in_days", "min_length", "requires_special_char", "requires_two_factor_auth"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingPasswordPolicy object to a map representation for JSON marshaling.
 func (o OrgSettingPasswordPolicy) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Enabled != nil {
         structMap["enabled"] = o.Enabled
     }
@@ -58,12 +62,12 @@ func (o *OrgSettingPasswordPolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "expiry_in_days", "min_length", "requires_special_char", "requires_two_factor_auth")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "expiry_in_days", "min_length", "requires_special_char", "requires_two_factor_auth")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Enabled = temp.Enabled
     o.ExpiryInDays = temp.ExpiryInDays
     o.MinLength = temp.MinLength

@@ -8,15 +8,15 @@ import (
 // airwatch wlan settings
 type WlanAirwatch struct {
     // API Key
-    ApiKey               *string        `json:"api_key,omitempty"`
+    ApiKey               *string                `json:"api_key,omitempty"`
     // console URL
-    ConsoleUrl           *string        `json:"console_url,omitempty"`
-    Enabled              *bool          `json:"enabled,omitempty"`
+    ConsoleUrl           *string                `json:"console_url,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // password
-    Password             *string        `json:"password,omitempty"`
+    Password             *string                `json:"password,omitempty"`
     // username
-    Username             *string        `json:"username,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Username             *string                `json:"username,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAirwatch.
@@ -24,13 +24,17 @@ type WlanAirwatch struct {
 func (w WlanAirwatch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "api_key", "console_url", "enabled", "password", "username"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanAirwatch object to a map representation for JSON marshaling.
 func (w WlanAirwatch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.ApiKey != nil {
         structMap["api_key"] = w.ApiKey
     }
@@ -57,12 +61,12 @@ func (w *WlanAirwatch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "api_key", "console_url", "enabled", "password", "username")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "api_key", "console_url", "enabled", "password", "username")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.ApiKey = temp.ApiKey
     w.ConsoleUrl = temp.ConsoleUrl
     w.Enabled = temp.Enabled

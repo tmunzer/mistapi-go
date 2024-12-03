@@ -1,6 +1,8 @@
 
 # Device Version Item
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `DeviceVersionItem`
@@ -12,6 +14,7 @@
 | `Model` | `string` | Required | Device model (as seen in the device stats) |
 | `Tag` | `*string` | Optional | annotation, stable / beta / alpha. Or it can be empty or nothing which is likely a dev build |
 | `Version` | `string` | Required | firmware version |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -19,7 +22,11 @@
 {
   "model": "model8",
   "tag": "tag6",
-  "version": "version6"
+  "version": "version6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

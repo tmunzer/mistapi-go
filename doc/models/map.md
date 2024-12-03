@@ -3,6 +3,8 @@
 
 Map
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Map`
@@ -41,6 +43,7 @@ Map
 | `WayfindingPath` | [`*models.MapWayfindingPath`](../../doc/models/map-wayfinding-path.md) | Optional | a JSON blob for wayfinding (using Dijkstra’s algorithm) |
 | `Width` | `*int` | Optional | when type=image, width of the image map |
 | `WidthM` | `*float64` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -68,7 +71,11 @@ Map
   "width": 1250,
   "created_time": 45.28,
   "for_site": false,
-  "height_m": 113.3
+  "height_m": 113.3,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

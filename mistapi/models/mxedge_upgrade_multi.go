@@ -30,7 +30,7 @@ type MxedgeUpgradeMulti struct {
     Strategy             *MxedgeUpgradeStrategyEnum         `json:"strategy,omitempty"`
     // version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nIgnored if distro upgrade, `tunterm`, `radsecproxy`, `mxagent`, `mxocproxy`, `mxdas` or `mxnacedge`
     Versions             *MxedgeUpgradeVersion              `json:"versions,omitempty"`
-    AdditionalProperties map[string]any                     `json:"_"`
+    AdditionalProperties map[string]interface{}             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeUpgradeMulti.
@@ -38,13 +38,17 @@ type MxedgeUpgradeMulti struct {
 func (m MxedgeUpgradeMulti) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "allow_downgrades", "canary_phases", "channel", "distro", "max_failure_percentage", "mxedge_ids", "start_time", "strategy", "versions"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeUpgradeMulti object to a map representation for JSON marshaling.
 func (m MxedgeUpgradeMulti) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.AllowDowngrades != nil {
         structMap["allow_downgrades"] = m.AllowDowngrades.toMap()
     }
@@ -85,12 +89,12 @@ func (m *MxedgeUpgradeMulti) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "allow_downgrades", "canary_phases", "channel", "distro", "max_failure_percentage", "mxedge_ids", "start_time", "strategy", "versions")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_downgrades", "canary_phases", "channel", "distro", "max_failure_percentage", "mxedge_ids", "start_time", "strategy", "versions")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.AllowDowngrades = temp.AllowDowngrades
     m.CanaryPhases = temp.CanaryPhases
     m.Channel = temp.Channel

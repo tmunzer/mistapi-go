@@ -7,53 +7,53 @@ import (
 
 // ClientNac represents a ClientNac struct.
 type ClientNac struct {
-    Ap                   []string       `json:"ap,omitempty"`
+    Ap                   []string               `json:"ap,omitempty"`
     // Type of authentication used by the client
-    AuthType             *string        `json:"auth_type,omitempty"`
-    CertCn               []string       `json:"cert_cn,omitempty"`
-    CertIssuer           []string       `json:"cert_issuer,omitempty"`
-    CertSerial           []string       `json:"cert_serial,omitempty"`
-    CertSubject          []string       `json:"cert_subject,omitempty"`
-    ClientIp             []string       `json:"client_ip,omitempty"`
-    DeviceMac            *string        `json:"device_mac,omitempty"`
-    Group                *string        `json:"group,omitempty"`
-    IdpId                *string        `json:"idp_id,omitempty"`
-    IdpRole              []string       `json:"idp_role,omitempty"`
-    LastAp               *string        `json:"last_ap,omitempty"`
-    LastCertCn           *string        `json:"last_cert_cn,omitempty"`
-    LastCertExpiry       *int           `json:"last_cert_expiry,omitempty"`
-    LastCertIssuer       *string        `json:"last_cert_issuer,omitempty"`
-    LastCertSerial       *string        `json:"last_cert_serial,omitempty"`
-    LastCertSubject      *string        `json:"last_cert_subject,omitempty"`
-    LastClientIp         *string        `json:"last_client_ip,omitempty"`
-    LastNacruleId        *string        `json:"last_nacrule_id,omitempty"`
-    LastNacruleName      *string        `json:"last_nacrule_name,omitempty"`
-    LastNasVendor        *string        `json:"last_nas_vendor,omitempty"`
-    LastPortId           *string        `json:"last_port_id,omitempty"`
-    LastSsid             *string        `json:"last_ssid,omitempty"`
-    LastStatus           *string        `json:"last_status,omitempty"`
-    LastUsername         *string        `json:"last_username,omitempty"`
-    LastVlan             *string        `json:"last_vlan,omitempty"`
-    Mac                  *string        `json:"mac,omitempty"`
-    NacruleId            []string       `json:"nacrule_id,omitempty"`
-    NacruleMatched       *bool          `json:"nacrule_matched,omitempty"`
-    NacruleName          []string       `json:"nacrule_name,omitempty"`
-    NasVendor            []string       `json:"nas_vendor,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    PortId               []string       `json:"port_id,omitempty"`
+    AuthType             *string                `json:"auth_type,omitempty"`
+    CertCn               []string               `json:"cert_cn,omitempty"`
+    CertIssuer           []string               `json:"cert_issuer,omitempty"`
+    CertSerial           []string               `json:"cert_serial,omitempty"`
+    CertSubject          []string               `json:"cert_subject,omitempty"`
+    ClientIp             []string               `json:"client_ip,omitempty"`
+    DeviceMac            *string                `json:"device_mac,omitempty"`
+    Group                *string                `json:"group,omitempty"`
+    IdpId                *string                `json:"idp_id,omitempty"`
+    IdpRole              []string               `json:"idp_role,omitempty"`
+    LastAp               *string                `json:"last_ap,omitempty"`
+    LastCertCn           *string                `json:"last_cert_cn,omitempty"`
+    LastCertExpiry       *int                   `json:"last_cert_expiry,omitempty"`
+    LastCertIssuer       *string                `json:"last_cert_issuer,omitempty"`
+    LastCertSerial       *string                `json:"last_cert_serial,omitempty"`
+    LastCertSubject      *string                `json:"last_cert_subject,omitempty"`
+    LastClientIp         *string                `json:"last_client_ip,omitempty"`
+    LastNacruleId        *string                `json:"last_nacrule_id,omitempty"`
+    LastNacruleName      *string                `json:"last_nacrule_name,omitempty"`
+    LastNasVendor        *string                `json:"last_nas_vendor,omitempty"`
+    LastPortId           *string                `json:"last_port_id,omitempty"`
+    LastSsid             *string                `json:"last_ssid,omitempty"`
+    LastStatus           *string                `json:"last_status,omitempty"`
+    LastUsername         *string                `json:"last_username,omitempty"`
+    LastVlan             *string                `json:"last_vlan,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    NacruleId            []string               `json:"nacrule_id,omitempty"`
+    NacruleMatched       *bool                  `json:"nacrule_matched,omitempty"`
+    NacruleName          []string               `json:"nacrule_name,omitempty"`
+    NasVendor            []string               `json:"nas_vendor,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    PortId               []string               `json:"port_id,omitempty"`
     // whether the client is using randomized MAC Address or not
-    RandomMac            *bool          `json:"random_mac,omitempty"`
-    RespAttr             []string       `json:"resp_attr,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Ssid                 []string       `json:"ssid,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
+    RandomMac            *bool                  `json:"random_mac,omitempty"`
+    RespAttr             []string               `json:"resp_attr,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Ssid                 []string               `json:"ssid,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     // Type of client (wired, wireless)
-    Type                 *string        `json:"type,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
     // List of usernames that have been assigned to the client
-    Username             []string       `json:"username,omitempty"`
+    Username             []string               `json:"username,omitempty"`
     // List of vlans that have been assigned to the client
-    Vlan                 []string       `json:"vlan,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Vlan                 []string               `json:"vlan,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClientNac.
@@ -61,13 +61,17 @@ type ClientNac struct {
 func (c ClientNac) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attr", "site_id", "ssid", "timestamp", "type", "username", "vlan"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ClientNac object to a map representation for JSON marshaling.
 func (c ClientNac) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Ap != nil {
         structMap["ap"] = c.Ap
     }
@@ -202,12 +206,12 @@ func (c *ClientNac) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attr", "site_id", "ssid", "timestamp", "type", "username", "vlan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attr", "site_id", "ssid", "timestamp", "type", "username", "vlan")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Ap = temp.Ap
     c.AuthType = temp.AuthType
     c.CertCn = temp.CertCn

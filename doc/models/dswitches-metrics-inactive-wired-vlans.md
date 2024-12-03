@@ -1,6 +1,8 @@
 
 # Dswitches Metrics Inactive Wired Vlans
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `DswitchesMetricsInactiveWiredVlans`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Details` | `interface{}` | Required | - |
 | `Score` | `float64` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -20,7 +23,11 @@
     "key1": "val1",
     "key2": "val2"
   },
-  "score": 4.92
+  "score": 4.92,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

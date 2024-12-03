@@ -15,7 +15,7 @@ type VrrpGroup struct {
     AuthType             *VrrpGroupAuthTypeEnum      `json:"auth_type,omitempty"`
     // Property key is the network name
     Networks             map[string]VrrpGroupNetwork `json:"networks,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VrrpGroup.
@@ -23,13 +23,17 @@ type VrrpGroup struct {
 func (v VrrpGroup) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "auth_key", "auth_password", "auth_type", "networks"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VrrpGroup object to a map representation for JSON marshaling.
 func (v VrrpGroup) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.AuthKey != nil {
         structMap["auth_key"] = v.AuthKey
     }
@@ -53,12 +57,12 @@ func (v *VrrpGroup) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_key", "auth_password", "auth_type", "networks")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_key", "auth_password", "auth_type", "networks")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.AuthKey = temp.AuthKey
     v.AuthPassword = temp.AuthPassword
     v.AuthType = temp.AuthType

@@ -533,8 +533,8 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceMac := "0000000000ab"
 
 body := models.OtherDeviceUpdate{
-    DeviceMac: models.ToPointer("0adfea67e65b"),
-    SiteId:    models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
+    DeviceMac:            models.ToPointer("0adfea67e65b"),
+    SiteId:               models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
 }
 
 resp, err := orgsDevicesOthers.UpdateOrgOtherDevice(ctx, orgId, deviceMac, &body)
@@ -588,12 +588,15 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OtherDeviceUpdateMulti{
-    Macs:   []string{
+    Macs:                 []string{
         "5c5b350e0001",
         "5c5b350e0003",
     },
-    Op:     models.OtherDeviceUpdateOperationEnum("assign"),
-    SiteId: models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
+    Op:                   models.OtherDeviceUpdateOperationEnum("assign"),
+    SiteId:               models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
+    AdditionalProperties: map[string]interface{}{
+        "device_mac": interface{}("0adfea67e65b"),
+    },
 }
 
 resp, err := orgsDevicesOthers.UpdateOrgOtherDevices(ctx, orgId, &body)

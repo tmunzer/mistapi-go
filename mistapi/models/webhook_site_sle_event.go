@@ -11,7 +11,7 @@ type WebhookSiteSleEvent struct {
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     Sle                  *WebhookSiteSleEventSle `json:"sle,omitempty"`
     Timestamp            *int                    `json:"timestamp,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookSiteSleEvent.
@@ -19,13 +19,17 @@ type WebhookSiteSleEvent struct {
 func (w WebhookSiteSleEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "org_id", "site_id", "sle", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookSiteSleEvent object to a map representation for JSON marshaling.
 func (w WebhookSiteSleEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.OrgId != nil {
         structMap["org_id"] = w.OrgId
     }
@@ -49,12 +53,12 @@ func (w *WebhookSiteSleEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "org_id", "site_id", "sle", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "org_id", "site_id", "sle", "timestamp")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.OrgId = temp.OrgId
     w.SiteId = temp.SiteId
     w.Sle = temp.Sle

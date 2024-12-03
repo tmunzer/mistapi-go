@@ -10,11 +10,11 @@ import (
 // WebhookPingEvent represents a WebhookPingEvent struct.
 type WebhookPingEvent struct {
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID      `json:"id"`
-    Name                 string         `json:"name"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    Timestamp            float64        `json:"timestamp"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   uuid.UUID              `json:"id"`
+    Name                 string                 `json:"name"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookPingEvent.
@@ -22,13 +22,17 @@ type WebhookPingEvent struct {
 func (w WebhookPingEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "id", "name", "site_id", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookPingEvent object to a map representation for JSON marshaling.
 func (w WebhookPingEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["id"] = w.Id
     structMap["name"] = w.Name
     structMap["site_id"] = w.SiteId
@@ -48,12 +52,12 @@ func (w *WebhookPingEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "name", "site_id", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "name", "site_id", "timestamp")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Id = *temp.Id
     w.Name = *temp.Name
     w.SiteId = *temp.SiteId

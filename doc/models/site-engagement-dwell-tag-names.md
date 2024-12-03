@@ -1,6 +1,8 @@
 
 # Site Engagement Dwell Tag Names
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteEngagementDwellTagNames`
@@ -13,6 +15,7 @@
 | `Engaged` | `*string` | Optional | - |
 | `Passerby` | `*string` | Optional | - |
 | `Stationed` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,11 @@
   "bounce": "Bounce",
   "engaged": "Engaged",
   "passerby": "Passer By",
-  "stationed": "Stationed"
+  "stationed": "Stationed",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -9,16 +9,16 @@ import (
 
 // WebhookAuditEvent represents a WebhookAuditEvent struct.
 type WebhookAuditEvent struct {
-    AdminName            string         `json:"admin_name"`
-    DeviceId             uuid.UUID      `json:"device_id"`
+    AdminName            string                 `json:"admin_name"`
+    DeviceId             uuid.UUID              `json:"device_id"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID      `json:"id"`
-    Message              string         `json:"message"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    SrcIp                string         `json:"src_ip"`
-    Timestamp            float64        `json:"timestamp"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   uuid.UUID              `json:"id"`
+    Message              string                 `json:"message"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    SrcIp                string                 `json:"src_ip"`
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookAuditEvent.
@@ -26,13 +26,17 @@ type WebhookAuditEvent struct {
 func (w WebhookAuditEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "admin_name", "device_id", "id", "message", "org_id", "site_id", "src_ip", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookAuditEvent object to a map representation for JSON marshaling.
 func (w WebhookAuditEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["admin_name"] = w.AdminName
     structMap["device_id"] = w.DeviceId
     structMap["id"] = w.Id
@@ -56,12 +60,12 @@ func (w *WebhookAuditEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "admin_name", "device_id", "id", "message", "org_id", "site_id", "src_ip", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_name", "device_id", "id", "message", "org_id", "site_id", "src_ip", "timestamp")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.AdminName = *temp.AdminName
     w.DeviceId = *temp.DeviceId
     w.Id = *temp.Id

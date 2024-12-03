@@ -3,6 +3,8 @@
 
 Site
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Site`
@@ -28,7 +30,8 @@ Site
 | `SecpolicyId` | `models.Optional[uuid.UUID]` | Optional | SecPolicy ID |
 | `SitegroupIds` | `[]uuid.UUID` | Optional | sitegroups this site belongs to |
 | `SitetemplateId` | `models.Optional[uuid.UUID]` | Optional | Site Template ID |
-| `Timezone` | `*string` | Optional | Timezone the site is at |
+| `Timezone` | `*string` | Optional | Timezone the site is at<br>**Default**: `"UTC"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,7 +49,11 @@ Site
   "rftemplate_id": "bb8a9017-1e36-5d6c-6f2b-551abe8a76a2",
   "secpolicy_id": "3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef",
   "timezone": "America/Los_Angeles",
-  "created_time": 113.34
+  "created_time": 113.34,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

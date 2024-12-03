@@ -1,6 +1,8 @@
 
 # Stats Mxedge Oob Ip Stat
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsMxedgeOobIpStat`
@@ -18,6 +20,7 @@
 | `Netmask6` | `*string` | Optional | - |
 | `Type` | [`*models.MxedgeMgmtOobIpTypeEnum`](../../doc/models/mxedge-mgmt-oob-ip-type-enum.md) | Optional | enum: `dhcp`, `disabled`, `static`<br>**Default**: `"dhcp"` |
 | `Type8` | [`*models.MxedgeMgmtOobIpType6Enum`](../../doc/models/mxedge-mgmt-oob-ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br>**Default**: `"autoconf"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,7 +36,11 @@
   "gateway": "gateway0",
   "gateway6": "gateway66",
   "ip": "ip4",
-  "ip6": "ip60"
+  "ip6": "ip60",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -6,9 +6,9 @@ import (
 
 // SnmpConfigClientList represents a SnmpConfigClientList struct.
 type SnmpConfigClientList struct {
-    ClientListName       *string        `json:"client_list_name,omitempty"`
-    Clients              []string       `json:"clients,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ClientListName       *string                `json:"client_list_name,omitempty"`
+    Clients              []string               `json:"clients,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpConfigClientList.
@@ -16,13 +16,17 @@ type SnmpConfigClientList struct {
 func (s SnmpConfigClientList) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "client_list_name", "clients"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SnmpConfigClientList object to a map representation for JSON marshaling.
 func (s SnmpConfigClientList) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ClientListName != nil {
         structMap["client_list_name"] = s.ClientListName
     }
@@ -40,12 +44,12 @@ func (s *SnmpConfigClientList) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "client_list_name", "clients")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "client_list_name", "clients")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ClientListName = temp.ClientListName
     s.Clients = temp.Clients
     return nil

@@ -1,6 +1,8 @@
 
 # Nac Rule
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `NacRule`
@@ -20,6 +22,7 @@
 | `NotMatching` | [`*models.NacRuleMatching`](../../doc/models/nac-rule-matching.md) | Optional | - |
 | `Order` | `*int` | Optional | the order of the rule, lower value implies higher priority<br>**Constraints**: `>= 0` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,7 +53,15 @@
       "00002472-0000-0000-0000-000000000000",
       "00002473-0000-0000-0000-000000000000",
       "00002474-0000-0000-0000-000000000000"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

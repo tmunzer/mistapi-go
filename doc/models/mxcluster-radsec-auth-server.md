@@ -1,6 +1,8 @@
 
 # Mxcluster Radsec Auth Server
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MxclusterRadsecAuthServer`
@@ -17,6 +19,7 @@
 | `Port` | `*int` | Optional | Auth port of RADIUS server<br>**Default**: `1812` |
 | `Secret` | `*string` | Optional | secret of RADIUS server |
 | `Ssids` | `[]string` | Optional | list of ssids that will use this server if match_ssid is true and match is found |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "host": "host6",
   "keywrap_enabled": false,
   "keywrap_kek": "keywrap_kek0",
-  "keywrap_mack": "keywrap_mack2"
+  "keywrap_mack": "keywrap_mack2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

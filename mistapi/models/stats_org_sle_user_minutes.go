@@ -8,9 +8,9 @@ import (
 
 // StatsOrgSleUserMinutes represents a StatsOrgSleUserMinutes struct.
 type StatsOrgSleUserMinutes struct {
-    Ok                   float64        `json:"ok"`
-    Total                float64        `json:"total"`
-    AdditionalProperties map[string]any `json:"_"`
+    Ok                   float64                `json:"ok"`
+    Total                float64                `json:"total"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsOrgSleUserMinutes.
@@ -18,13 +18,17 @@ type StatsOrgSleUserMinutes struct {
 func (s StatsOrgSleUserMinutes) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ok", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsOrgSleUserMinutes object to a map representation for JSON marshaling.
 func (s StatsOrgSleUserMinutes) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["ok"] = s.Ok
     structMap["total"] = s.Total
     return structMap
@@ -42,12 +46,12 @@ func (s *StatsOrgSleUserMinutes) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ok", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ok", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Ok = *temp.Ok
     s.Total = *temp.Total
     return nil

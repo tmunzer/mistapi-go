@@ -6,8 +6,8 @@ import (
 
 // ClientCertSerialNumbers represents a ClientCertSerialNumbers struct.
 type ClientCertSerialNumbers struct {
-    SerialNumbers        []string       `json:"serial_numbers,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    SerialNumbers        []string               `json:"serial_numbers,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClientCertSerialNumbers.
@@ -15,13 +15,17 @@ type ClientCertSerialNumbers struct {
 func (c ClientCertSerialNumbers) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "serial_numbers"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ClientCertSerialNumbers object to a map representation for JSON marshaling.
 func (c ClientCertSerialNumbers) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.SerialNumbers != nil {
         structMap["serial_numbers"] = c.SerialNumbers
     }
@@ -36,12 +40,12 @@ func (c *ClientCertSerialNumbers) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "serial_numbers")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "serial_numbers")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.SerialNumbers = temp.SerialNumbers
     return nil
 }

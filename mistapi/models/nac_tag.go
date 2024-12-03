@@ -50,7 +50,7 @@ type NacTag struct {
     Values               []string                `json:"values,omitempty"`
     // if `type`==`vlan`
     Vlan                 *string                 `json:"vlan,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacTag.
@@ -58,13 +58,17 @@ type NacTag struct {
 func (n NacTag) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "allow_usermac_override", "created_time", "egress_vlan_names", "gbp_tag", "id", "match", "match_all", "modified_time", "name", "org_id", "radius_attrs", "radius_group", "radius_vendor_attrs", "session_timeout", "type", "username_attr", "values", "vlan"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NacTag object to a map representation for JSON marshaling.
 func (n NacTag) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.AllowUsermacOverride != nil {
         structMap["allow_usermac_override"] = n.AllowUsermacOverride
     }
@@ -130,12 +134,12 @@ func (n *NacTag) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "allow_usermac_override", "created_time", "egress_vlan_names", "gbp_tag", "id", "match", "match_all", "modified_time", "name", "org_id", "radius_attrs", "radius_group", "radius_vendor_attrs", "session_timeout", "type", "username_attr", "values", "vlan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_usermac_override", "created_time", "egress_vlan_names", "gbp_tag", "id", "match", "match_all", "modified_time", "name", "org_id", "radius_attrs", "radius_group", "radius_vendor_attrs", "session_timeout", "type", "username_attr", "values", "vlan")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.AllowUsermacOverride = temp.AllowUsermacOverride
     n.CreatedTime = temp.CreatedTime
     n.EgressVlanNames = temp.EgressVlanNames

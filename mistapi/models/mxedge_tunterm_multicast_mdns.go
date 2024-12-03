@@ -6,9 +6,9 @@ import (
 
 // MxedgeTuntermMulticastMdns represents a MxedgeTuntermMulticastMdns struct.
 type MxedgeTuntermMulticastMdns struct {
-    Enabled              *bool          `json:"enabled,omitempty"`
-    VlanIds              []string       `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    VlanIds              []string               `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermMulticastMdns.
@@ -16,13 +16,17 @@ type MxedgeTuntermMulticastMdns struct {
 func (m MxedgeTuntermMulticastMdns) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "enabled", "vlan_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeTuntermMulticastMdns object to a map representation for JSON marshaling.
 func (m MxedgeTuntermMulticastMdns) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Enabled != nil {
         structMap["enabled"] = m.Enabled
     }
@@ -40,12 +44,12 @@ func (m *MxedgeTuntermMulticastMdns) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "vlan_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "vlan_ids")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Enabled = temp.Enabled
     m.VlanIds = temp.VlanIds
     return nil

@@ -52,7 +52,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NameString{
-    Name: models.ToPointer("New Org"),
+    Name:                 models.ToPointer("New Org"),
 }
 
 apiResponse, err := orgs.CloneOrg(ctx, orgId, &body)
@@ -122,10 +122,10 @@ CreateOrg(
 ctx := context.Background()
 
 body := models.Org{
-    AlarmtemplateId: models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
-    AllowMist:       models.ToPointer(true),
-    Name:            "string",
-    SessionExpiry:   models.ToPointer(1440),
+    AlarmtemplateId:      models.NewOptional(models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"))),
+    AllowMist:            models.ToPointer(true),
+    Name:                 "string",
+    SessionExpiry:        models.ToPointer(1440),
 }
 
 apiResponse, err := orgs.CreateOrg(ctx, &body)
@@ -391,12 +391,12 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Org{
-    AlarmtemplateId: models.NewOptional(models.ToPointer(uuid.MustParse("1984805d-2be2-4aec-a8d4-3ddf67fab0df"))),
-    AllowMist:       models.ToPointer(true),
-    Name:            "string",
-    OrggroupIds:     []uuid.UUID{
+    AlarmtemplateId:      models.NewOptional(models.ToPointer(uuid.MustParse("1984805d-2be2-4aec-a8d4-3ddf67fab0df"))),
+    AllowMist:            models.ToPointer(true),
+    Name:                 "string",
+    OrggroupIds:          []uuid.UUID{
     },
-    SessionExpiry:   models.ToPointer(1440),
+    SessionExpiry:        models.ToPointer(1440),
 }
 
 apiResponse, err := orgs.UpdateOrg(ctx, orgId, &body)

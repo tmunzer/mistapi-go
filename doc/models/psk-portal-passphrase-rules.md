@@ -1,6 +1,8 @@
 
 # Psk Portal Passphrase Rules
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `PskPortalPassphraseRules`
@@ -16,6 +18,7 @@
 | `NumericsEnabled` | `*bool` | Optional | **Default**: `true` |
 | `Symbols` | `*string` | Optional | - |
 | `SymbolsEnabled` | `*bool` | Optional | **Default**: `true` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "symbols_enabled": true,
   "length": 80,
   "max_length": 148,
-  "min_length": 112
+  "min_length": 112,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

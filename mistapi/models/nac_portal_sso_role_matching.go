@@ -6,9 +6,9 @@ import (
 
 // NacPortalSsoRoleMatching represents a NacPortalSsoRoleMatching struct.
 type NacPortalSsoRoleMatching struct {
-    Assigned             *string        `json:"assigned,omitempty"`
-    Match                *string        `json:"match,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Assigned             *string                `json:"assigned,omitempty"`
+    Match                *string                `json:"match,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortalSsoRoleMatching.
@@ -16,13 +16,17 @@ type NacPortalSsoRoleMatching struct {
 func (n NacPortalSsoRoleMatching) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "assigned", "match"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NacPortalSsoRoleMatching object to a map representation for JSON marshaling.
 func (n NacPortalSsoRoleMatching) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.Assigned != nil {
         structMap["assigned"] = n.Assigned
     }
@@ -40,12 +44,12 @@ func (n *NacPortalSsoRoleMatching) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "assigned", "match")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "assigned", "match")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.Assigned = temp.Assigned
     n.Match = temp.Match
     return nil

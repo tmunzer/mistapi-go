@@ -8,12 +8,12 @@ import (
 
 // SleSummarySle represents a SleSummarySle struct.
 type SleSummarySle struct {
-    Interval             float64              `json:"interval"`
-    Name                 string               `json:"name"`
-    Samples              SleSummarySleSamples `json:"samples"`
-    XLabel               string               `json:"x_label"`
-    YLabel               string               `json:"y_label"`
-    AdditionalProperties map[string]any       `json:"_"`
+    Interval             float64                `json:"interval"`
+    Name                 string                 `json:"name"`
+    Samples              SleSummarySleSamples   `json:"samples"`
+    XLabel               string                 `json:"x_label"`
+    YLabel               string                 `json:"y_label"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleSummarySle.
@@ -21,13 +21,17 @@ type SleSummarySle struct {
 func (s SleSummarySle) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "interval", "name", "samples", "x_label", "y_label"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleSummarySle object to a map representation for JSON marshaling.
 func (s SleSummarySle) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["interval"] = s.Interval
     structMap["name"] = s.Name
     structMap["samples"] = s.Samples.toMap()
@@ -48,12 +52,12 @@ func (s *SleSummarySle) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "interval", "name", "samples", "x_label", "y_label")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "interval", "name", "samples", "x_label", "y_label")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Interval = *temp.Interval
     s.Name = *temp.Name
     s.Samples = *temp.Samples

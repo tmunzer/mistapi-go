@@ -6,19 +6,19 @@ import (
 
 // ApTemplateWifi represents a ApTemplateWifi struct.
 type ApTemplateWifi struct {
-    CiscoEnabled                      *bool          `json:"cisco_enabled,omitempty"`
-    Disable11k                        *bool          `json:"disable_11k,omitempty"`
-    DisableRadiosWhenPowerConstrained *bool          `json:"disable_radios_when_power_constrained,omitempty"`
-    EnableArpSpoof                    *bool          `json:"enable_arp_spoof,omitempty"`
-    EnableSharedRadioScanning         *bool          `json:"enable_shared_radio_scanning,omitempty"`
-    Enabled                           *bool          `json:"enabled,omitempty"`
-    LocateConnected                   *bool          `json:"locate_connected,omitempty"`
-    LocateUnconnected                 *bool          `json:"locate_unconnected,omitempty"`
-    MeshAllowDfs                      *bool          `json:"mesh_allow_dfs,omitempty"`
-    MeshEnableCrm                     *bool          `json:"mesh_enable_crm,omitempty"`
-    MeshEnabled                       *bool          `json:"mesh_enabled,omitempty"`
-    ProxyArp                          *bool          `json:"proxy_arp,omitempty"`
-    AdditionalProperties              map[string]any `json:"_"`
+    CiscoEnabled                      *bool                  `json:"cisco_enabled,omitempty"`
+    Disable11k                        *bool                  `json:"disable_11k,omitempty"`
+    DisableRadiosWhenPowerConstrained *bool                  `json:"disable_radios_when_power_constrained,omitempty"`
+    EnableArpSpoof                    *bool                  `json:"enable_arp_spoof,omitempty"`
+    EnableSharedRadioScanning         *bool                  `json:"enable_shared_radio_scanning,omitempty"`
+    Enabled                           *bool                  `json:"enabled,omitempty"`
+    LocateConnected                   *bool                  `json:"locate_connected,omitempty"`
+    LocateUnconnected                 *bool                  `json:"locate_unconnected,omitempty"`
+    MeshAllowDfs                      *bool                  `json:"mesh_allow_dfs,omitempty"`
+    MeshEnableCrm                     *bool                  `json:"mesh_enable_crm,omitempty"`
+    MeshEnabled                       *bool                  `json:"mesh_enabled,omitempty"`
+    ProxyArp                          *bool                  `json:"proxy_arp,omitempty"`
+    AdditionalProperties              map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApTemplateWifi.
@@ -26,13 +26,17 @@ type ApTemplateWifi struct {
 func (a ApTemplateWifi) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "cisco_enabled", "disable_11k", "disable_radios_when_power_constrained", "enable_arp_spoof", "enable_shared_radio_scanning", "enabled", "locate_connected", "locate_unconnected", "mesh_allow_dfs", "mesh_enable_crm", "mesh_enabled", "proxy_arp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApTemplateWifi object to a map representation for JSON marshaling.
 func (a ApTemplateWifi) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.CiscoEnabled != nil {
         structMap["cisco_enabled"] = a.CiscoEnabled
     }
@@ -80,12 +84,12 @@ func (a *ApTemplateWifi) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cisco_enabled", "disable_11k", "disable_radios_when_power_constrained", "enable_arp_spoof", "enable_shared_radio_scanning", "enabled", "locate_connected", "locate_unconnected", "mesh_allow_dfs", "mesh_enable_crm", "mesh_enabled", "proxy_arp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cisco_enabled", "disable_11k", "disable_radios_when_power_constrained", "enable_arp_spoof", "enable_shared_radio_scanning", "enabled", "locate_connected", "locate_unconnected", "mesh_allow_dfs", "mesh_enable_crm", "mesh_enabled", "proxy_arp")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.CiscoEnabled = temp.CiscoEnabled
     a.Disable11k = temp.Disable11k
     a.DisableRadiosWhenPowerConstrained = temp.DisableRadiosWhenPowerConstrained

@@ -3,6 +3,8 @@
 
 Guest
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Guest`
@@ -29,6 +31,7 @@ Guest
 | `RandomMac` | `*bool` | Optional | if the client is using a randomized MAC Address to connect the SSID |
 | `Ssid` | `*string` | Optional | name of the SSID |
 | `WlanId` | `*uuid.UUID` | Optional | ID of the SSID |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -45,7 +48,11 @@ Guest
   "wlan_id": "6748cfa6-4e12-11e6-9188-0242ac110007",
   "access_code_email": "access_code_email4",
   "ap_mac": "ap_mac4",
-  "auth_method": "auth_method6"
+  "auth_method": "auth_method6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

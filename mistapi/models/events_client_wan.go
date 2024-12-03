@@ -7,15 +7,15 @@ import (
 
 // EventsClientWan represents a EventsClientWan struct.
 type EventsClientWan struct {
-    When                 *string        `json:"When,omitempty"`
-    EvType               *string        `json:"ev_type,omitempty"`
-    Metadata             *interface{}   `json:"metadata,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    RandomMac            *bool          `json:"random_mac,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Text                 *string        `json:"text,omitempty"`
-    Wcid                 *uuid.UUID     `json:"wcid,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    When                 *string                `json:"When,omitempty"`
+    EvType               *string                `json:"ev_type,omitempty"`
+    Metadata             *interface{}           `json:"metadata,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    RandomMac            *bool                  `json:"random_mac,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Text                 *string                `json:"text,omitempty"`
+    Wcid                 *uuid.UUID             `json:"wcid,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventsClientWan.
@@ -23,13 +23,17 @@ type EventsClientWan struct {
 func (e EventsClientWan) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "When", "ev_type", "metadata", "org_id", "random_mac", "site_id", "text", "wcid"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EventsClientWan object to a map representation for JSON marshaling.
 func (e EventsClientWan) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.When != nil {
         structMap["When"] = e.When
     }
@@ -65,12 +69,12 @@ func (e *EventsClientWan) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "When", "ev_type", "metadata", "org_id", "random_mac", "site_id", "text", "wcid")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "When", "ev_type", "metadata", "org_id", "random_mac", "site_id", "text", "wcid")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.When = temp.When
     e.EvType = temp.EvType
     e.Metadata = temp.Metadata

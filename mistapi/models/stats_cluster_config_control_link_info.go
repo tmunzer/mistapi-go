@@ -6,9 +6,9 @@ import (
 
 // StatsClusterConfigControlLinkInfo represents a StatsClusterConfigControlLinkInfo struct.
 type StatsClusterConfigControlLinkInfo struct {
-    Name                 *string        `json:"name,omitempty"`
-    Status               *string        `json:"status,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 *string                `json:"name,omitempty"`
+    Status               *string                `json:"status,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsClusterConfigControlLinkInfo.
@@ -16,13 +16,17 @@ type StatsClusterConfigControlLinkInfo struct {
 func (s StatsClusterConfigControlLinkInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "name", "status"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsClusterConfigControlLinkInfo object to a map representation for JSON marshaling.
 func (s StatsClusterConfigControlLinkInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Name != nil {
         structMap["name"] = s.Name
     }
@@ -40,12 +44,12 @@ func (s *StatsClusterConfigControlLinkInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "name", "status")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name", "status")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Name = temp.Name
     s.Status = temp.Status
     return nil

@@ -61,7 +61,7 @@ type Service struct {
     Type                          *ServiceTypeEnum           `json:"type,omitempty"`
     // when `type`==`urls`, no need for spec as URL can encode the ports being used
     Urls                          []string                   `json:"urls,omitempty"`
-    AdditionalProperties          map[string]any             `json:"_"`
+    AdditionalProperties          map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Service.
@@ -69,13 +69,17 @@ type Service struct {
 func (s Service) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "addresses", "app_categories", "app_subcategories", "apps", "client_limit_down", "client_limit_up", "created_time", "description", "dscp", "failover_policy", "hostnames", "id", "max_jitter", "max_latency", "max_loss", "modified_time", "name", "org_id", "service_limit_down", "service_limit_up", "sle_enabled", "specs", "ssr_relaxed_tcp_state_enforcement", "traffic_class", "traffic_type", "type", "urls"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Service object to a map representation for JSON marshaling.
 func (s Service) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Addresses != nil {
         structMap["addresses"] = s.Addresses
     }
@@ -168,12 +172,12 @@ func (s *Service) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "addresses", "app_categories", "app_subcategories", "apps", "client_limit_down", "client_limit_up", "created_time", "description", "dscp", "failover_policy", "hostnames", "id", "max_jitter", "max_latency", "max_loss", "modified_time", "name", "org_id", "service_limit_down", "service_limit_up", "sle_enabled", "specs", "ssr_relaxed_tcp_state_enforcement", "traffic_class", "traffic_type", "type", "urls")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "addresses", "app_categories", "app_subcategories", "apps", "client_limit_down", "client_limit_up", "created_time", "description", "dscp", "failover_policy", "hostnames", "id", "max_jitter", "max_latency", "max_loss", "modified_time", "name", "org_id", "service_limit_down", "service_limit_up", "sle_enabled", "specs", "ssr_relaxed_tcp_state_enforcement", "traffic_class", "traffic_type", "type", "urls")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Addresses = temp.Addresses
     s.AppCategories = temp.AppCategories
     s.AppSubcategories = temp.AppSubcategories

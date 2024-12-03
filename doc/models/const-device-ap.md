@@ -1,6 +1,8 @@
 
 # Const Device Ap
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ConstDeviceAp`
@@ -45,6 +47,7 @@
 | `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Default**: `"ap"` |
 | `Unmanaged` | `*bool` | Optional | - |
 | `Vble` | [`*models.ConstDeviceApVble`](../../doc/models/const-device-ap-vble.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -78,19 +81,35 @@
     "band5_channels_op": "band5_channels_op4",
     "max_clients": 176,
     "max_power": 208,
-    "min_power": 38
+    "min_power": 38,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "band5": {
     "max_clients": 252,
     "max_power": 132,
-    "min_power": 142
+    "min_power": 142,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "band6": {
     "max_clients": 154,
     "max_power": 230,
-    "min_power": 240
+    "min_power": 240,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "band_24_usages": "6"
+  "band_24_usages": "6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -3,6 +3,8 @@
 
 radio stat
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApRadioStat`
@@ -31,6 +33,7 @@ radio stat
 | `UtilTx` | `models.Optional[int]` | Optional | transmission utilization in percentage |
 | `UtilUndecodableWifi` | `models.Optional[int]` | Optional | reception of “UnDecodable Wifi“ utilization in percentage, only Preamble, PLCP header is decoded, Rest is undecodable in this radio |
 | `UtilUnknownWifi` | `models.Optional[int]` | Optional | reception of “No Category” utilization in percentage, all 802.11 frames that are corrupted at the receiver |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,7 +44,11 @@ radio stat
   "usage": "24",
   "channel": 138,
   "dynamic_chaining_enalbed": false,
-  "mac": "mac2"
+  "mac": "mac2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

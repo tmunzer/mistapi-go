@@ -16,7 +16,7 @@ type StatsDeviceOther struct {
     // when `vendor`==`cradlepoint`
     VendorSpecific       *StatsDeviceOtherVendorSpecific `json:"vendor_specific,omitempty"`
     Version              *string                         `json:"version,omitempty"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsDeviceOther.
@@ -24,13 +24,17 @@ type StatsDeviceOther struct {
 func (s StatsDeviceOther) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "config_status", "last_config", "last_seen", "mac", "status", "uptime", "vendor", "vendor_specific", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsDeviceOther object to a map representation for JSON marshaling.
 func (s StatsDeviceOther) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ConfigStatus != nil {
         structMap["config_status"] = s.ConfigStatus
     }
@@ -69,12 +73,12 @@ func (s *StatsDeviceOther) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "config_status", "last_config", "last_seen", "mac", "status", "uptime", "vendor", "vendor_specific", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_status", "last_config", "last_seen", "mac", "status", "uptime", "vendor", "vendor_specific", "version")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ConfigStatus = temp.ConfigStatus
     s.LastConfig = temp.LastConfig
     s.LastSeen = temp.LastSeen

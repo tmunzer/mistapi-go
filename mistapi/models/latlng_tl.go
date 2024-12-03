@@ -7,9 +7,9 @@ import (
 // LatlngTl represents a LatlngTl struct.
 // when type=google, latitude / longitude of the top-left corner
 type LatlngTl struct {
-    Lat                  *string        `json:"lat,omitempty"`
-    Lng                  *string        `json:"lng,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Lat                  *string                `json:"lat,omitempty"`
+    Lng                  *string                `json:"lng,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for LatlngTl.
@@ -17,13 +17,17 @@ type LatlngTl struct {
 func (l LatlngTl) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(l.AdditionalProperties,
+        "lat", "lng"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(l.toMap())
 }
 
 // toMap converts the LatlngTl object to a map representation for JSON marshaling.
 func (l LatlngTl) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, l.AdditionalProperties)
+    MergeAdditionalProperties(structMap, l.AdditionalProperties)
     if l.Lat != nil {
         structMap["lat"] = l.Lat
     }
@@ -41,12 +45,12 @@ func (l *LatlngTl) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "lat", "lng")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "lat", "lng")
     if err != nil {
     	return err
     }
-    
     l.AdditionalProperties = additionalProperties
+    
     l.Lat = temp.Lat
     l.Lng = temp.Lng
     return nil

@@ -1,6 +1,8 @@
 
 # Const App Category Definition Filters
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ConstAppCategoryDefinitionFilters`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Srx` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Ssr` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,11 @@
   "ssr": [
     "ssr8",
     "ssr9"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

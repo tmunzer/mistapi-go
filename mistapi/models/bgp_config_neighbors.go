@@ -7,14 +7,14 @@ import (
 // BgpConfigNeighbors represents a BgpConfigNeighbors struct.
 type BgpConfigNeighbors struct {
     // If true, the BGP session to this neighbor will be administratively disabled/shutdown
-    Disabled             *bool          `json:"disabled,omitempty"`
-    ExportPolicy         *string        `json:"export_policy,omitempty"`
-    HoldTime             *int           `json:"hold_time,omitempty"`
-    ImportPolicy         *string        `json:"import_policy,omitempty"`
+    Disabled             *bool                  `json:"disabled,omitempty"`
+    ExportPolicy         *string                `json:"export_policy,omitempty"`
+    HoldTime             *int                   `json:"hold_time,omitempty"`
+    ImportPolicy         *string                `json:"import_policy,omitempty"`
     // assuming BGP neighbor is directly connected
-    MultihopTtl          *int           `json:"multihop_ttl,omitempty"`
-    NeighborAs           *int           `json:"neighbor_as,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    MultihopTtl          *int                   `json:"multihop_ttl,omitempty"`
+    NeighborAs           *int                   `json:"neighbor_as,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for BgpConfigNeighbors.
@@ -22,13 +22,17 @@ type BgpConfigNeighbors struct {
 func (b BgpConfigNeighbors) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(b.AdditionalProperties,
+        "disabled", "export_policy", "hold_time", "import_policy", "multihop_ttl", "neighbor_as"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(b.toMap())
 }
 
 // toMap converts the BgpConfigNeighbors object to a map representation for JSON marshaling.
 func (b BgpConfigNeighbors) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, b.AdditionalProperties)
+    MergeAdditionalProperties(structMap, b.AdditionalProperties)
     if b.Disabled != nil {
         structMap["disabled"] = b.Disabled
     }
@@ -58,12 +62,12 @@ func (b *BgpConfigNeighbors) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "disabled", "export_policy", "hold_time", "import_policy", "multihop_ttl", "neighbor_as")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "export_policy", "hold_time", "import_policy", "multihop_ttl", "neighbor_as")
     if err != nil {
     	return err
     }
-    
     b.AdditionalProperties = additionalProperties
+    
     b.Disabled = temp.Disabled
     b.ExportPolicy = temp.ExportPolicy
     b.HoldTime = temp.HoldTime

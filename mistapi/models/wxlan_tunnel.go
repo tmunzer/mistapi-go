@@ -11,46 +11,46 @@ import (
 // WxLAn Tunnel
 type WxlanTunnel struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64             `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // Dynamic Multipoint VPN configurations
-    Dmvpn                *WxlanTunnelDmvpn    `json:"dmvpn,omitempty"`
+    Dmvpn                *WxlanTunnelDmvpn      `json:"dmvpn,omitempty"`
     // determined during creation time and cannot be toggled. A management tunnel cannot be used by wxlan rule or by wlan
-    ForMgmt              *bool                `json:"for_mgmt,omitempty"`
-    ForSite              *bool                `json:"for_site,omitempty"`
+    ForMgmt              *bool                  `json:"for_mgmt,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // in seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries.
-    HelloInterval        *int                 `json:"hello_interval,omitempty"`
-    HelloRetries         *int                 `json:"hello_retries,omitempty"`
+    HelloInterval        *int                   `json:"hello_interval,omitempty"`
+    HelloRetries         *int                   `json:"hello_retries,omitempty"`
     // optional, overwrite the hostname in SCCRQ control message, default is \u201C\u201D or null, %H and %M can be used, which will be replace with corresponding values:
     // * %H: name of the ap if provided (and will be stripped so it can be used for hostname) and fallbacks to MAC
     // * %M: MAC (e.g. 5c5b350e0060)
-    Hostname             *string              `json:"hostname,omitempty"`
+    Hostname             *string                `json:"hostname,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID           `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // IPSec-related configurations; requires DMVPN be enabled
-    Ipsec                *WxlanTunnelIpsec    `json:"ipsec,omitempty"`
+    Ipsec                *WxlanTunnelIpsec      `json:"ipsec,omitempty"`
     // whether it’s static/unmanaged (i.e. no control session). As the session configurations are not compatible, cannot be toggled.
-    IsStatic             *bool                `json:"is_static,omitempty"`
+    IsStatic             *bool                  `json:"is_static,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64             `json:"modified_time,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU
-    Mtu                  *int                 `json:"mtu,omitempty"`
+    Mtu                  *int                   `json:"mtu,omitempty"`
     // The name of the tunnel
-    Name                 string               `json:"name"`
-    OrgId                *uuid.UUID           `json:"org_id,omitempty"`
+    Name                 string                 `json:"name"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // list of remote peers’ IP or hostname
-    Peers                []string             `json:"peers,omitempty"`
+    Peers                []string               `json:"peers,omitempty"`
     // optional, overwrite the router-id in SCCRQ control message, default is “0” or null, can also be an IPv4 address
-    RouterId             *string              `json:"router_id,omitempty"`
+    RouterId             *string                `json:"router_id,omitempty"`
     // secret, ‘’ if no auth is used
-    Secret               *string              `json:"secret,omitempty"`
+    Secret               *string                `json:"secret,omitempty"`
     // sessions to be established with the tunnel. Has to be >= 1 in order for this tunnel to be useful. For management tunnel, it can only have 1
-    Sessions             []WxlanTunnelSession `json:"sessions,omitempty"`
-    SiteId               *uuid.UUID           `json:"site_id,omitempty"`
+    Sessions             []WxlanTunnelSession   `json:"sessions,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // udp port if `use_udp`==`true`
-    UdpPort              *int                 `json:"udp_port,omitempty"`
+    UdpPort              *int                   `json:"udp_port,omitempty"`
     // whether to use UDP instead of IP (proto=115, which is default of L2TPv3)
-    UseUdp               *bool                `json:"use_udp,omitempty"`
-    AdditionalProperties map[string]any       `json:"_"`
+    UseUdp               *bool                  `json:"use_udp,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanTunnel.
@@ -58,13 +58,17 @@ type WxlanTunnel struct {
 func (w WxlanTunnel) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "created_time", "dmvpn", "for_mgmt", "for_site", "hello_interval", "hello_retries", "hostname", "id", "ipsec", "is_static", "modified_time", "mtu", "name", "org_id", "peers", "router_id", "secret", "sessions", "site_id", "udp_port", "use_udp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WxlanTunnel object to a map representation for JSON marshaling.
 func (w WxlanTunnel) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.CreatedTime != nil {
         structMap["created_time"] = w.CreatedTime
     }
@@ -141,12 +145,12 @@ func (w *WxlanTunnel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "dmvpn", "for_mgmt", "for_site", "hello_interval", "hello_retries", "hostname", "id", "ipsec", "is_static", "modified_time", "mtu", "name", "org_id", "peers", "router_id", "secret", "sessions", "site_id", "udp_port", "use_udp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "dmvpn", "for_mgmt", "for_site", "hello_interval", "hello_retries", "hostname", "id", "ipsec", "is_static", "modified_time", "mtu", "name", "org_id", "peers", "router_id", "secret", "sessions", "site_id", "udp_port", "use_udp")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.CreatedTime = temp.CreatedTime
     w.Dmvpn = temp.Dmvpn
     w.ForMgmt = temp.ForMgmt

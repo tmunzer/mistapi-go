@@ -8,29 +8,29 @@ import (
 // VpnPeerStat represents a VpnPeerStat struct.
 type VpnPeerStat struct {
     // Redundancy status of the associated interface
-    IsActive             *bool          `json:"is_active,omitempty"`
-    LastSeen             *float64       `json:"last_seen,omitempty"`
-    Latency              *float64       `json:"latency,omitempty"`
+    IsActive             *bool                  `json:"is_active,omitempty"`
+    LastSeen             *float64               `json:"last_seen,omitempty"`
+    Latency              *float64               `json:"latency,omitempty"`
     // router mac address
-    Mac                  *string        `json:"mac,omitempty"`
-    Mos                  *float64       `json:"mos,omitempty"`
-    Mtu                  *int           `json:"mtu,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    Mos                  *float64               `json:"mos,omitempty"`
+    Mtu                  *int                   `json:"mtu,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // peer router mac address
-    PeerMac              *string        `json:"peer_mac,omitempty"`
+    PeerMac              *string                `json:"peer_mac,omitempty"`
     // peer router device interface
-    PeerPortId           *string        `json:"peer_port_id,omitempty"`
-    PeerRouterName       *string        `json:"peer_router_name,omitempty"`
-    PeerSiteId           *uuid.UUID     `json:"peer_site_id,omitempty"`
+    PeerPortId           *string                `json:"peer_port_id,omitempty"`
+    PeerRouterName       *string                `json:"peer_router_name,omitempty"`
+    PeerSiteId           *uuid.UUID             `json:"peer_site_id,omitempty"`
     // router device interface
-    PortId               *string        `json:"port_id,omitempty"`
-    RouterName           *string        `json:"router_name,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
+    RouterName           *string                `json:"router_name,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // `ipsec`for SRX, `svr` for 128T
-    Type                 *string        `json:"type,omitempty"`
-    Up                   *bool          `json:"up,omitempty"`
-    Uptime               *int           `json:"uptime,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Type                 *string                `json:"type,omitempty"`
+    Up                   *bool                  `json:"up,omitempty"`
+    Uptime               *int                   `json:"uptime,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VpnPeerStat.
@@ -38,13 +38,17 @@ type VpnPeerStat struct {
 func (v VpnPeerStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "is_active", "last_seen", "latency", "mac", "mos", "mtu", "org_id", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "site_id", "type", "up", "uptime"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VpnPeerStat object to a map representation for JSON marshaling.
 func (v VpnPeerStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.IsActive != nil {
         structMap["is_active"] = v.IsActive
     }
@@ -107,12 +111,12 @@ func (v *VpnPeerStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "is_active", "last_seen", "latency", "mac", "mos", "mtu", "org_id", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "site_id", "type", "up", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "is_active", "last_seen", "latency", "mac", "mos", "mtu", "org_id", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "site_id", "type", "up", "uptime")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.IsActive = temp.IsActive
     v.LastSeen = temp.LastSeen
     v.Latency = temp.Latency

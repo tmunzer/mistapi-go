@@ -7,12 +7,12 @@ import (
 // JseDevice represents a JseDevice struct.
 type JseDevice struct {
     // when available
-    ExtIp                *string        `json:"ext_ip,omitempty"`
-    LastSeen             *float64       `json:"last_seen,omitempty"`
-    Mac                  *string        `json:"mac,omitempty"`
-    Model                *string        `json:"model,omitempty"`
-    Serial               *string        `json:"serial,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ExtIp                *string                `json:"ext_ip,omitempty"`
+    LastSeen             *float64               `json:"last_seen,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    Model                *string                `json:"model,omitempty"`
+    Serial               *string                `json:"serial,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for JseDevice.
@@ -20,13 +20,17 @@ type JseDevice struct {
 func (j JseDevice) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(j.AdditionalProperties,
+        "ext_ip", "last_seen", "mac", "model", "serial"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(j.toMap())
 }
 
 // toMap converts the JseDevice object to a map representation for JSON marshaling.
 func (j JseDevice) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, j.AdditionalProperties)
+    MergeAdditionalProperties(structMap, j.AdditionalProperties)
     if j.ExtIp != nil {
         structMap["ext_ip"] = j.ExtIp
     }
@@ -53,12 +57,12 @@ func (j *JseDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ext_ip", "last_seen", "mac", "model", "serial")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ext_ip", "last_seen", "mac", "model", "serial")
     if err != nil {
     	return err
     }
-    
     j.AdditionalProperties = additionalProperties
+    
     j.ExtIp = temp.ExtIp
     j.LastSeen = temp.LastSeen
     j.Mac = temp.Mac

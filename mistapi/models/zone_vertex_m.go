@@ -9,10 +9,10 @@ import (
 // ZoneVertexM represents a ZoneVertexM struct.
 type ZoneVertexM struct {
     // x in pixel
-    X                    float64        `json:"x"`
+    X                    float64                `json:"x"`
     // y in pixel
-    Y                    float64        `json:"y"`
-    AdditionalProperties map[string]any `json:"_"`
+    Y                    float64                `json:"y"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ZoneVertexM.
@@ -20,13 +20,17 @@ type ZoneVertexM struct {
 func (z ZoneVertexM) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(z.AdditionalProperties,
+        "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(z.toMap())
 }
 
 // toMap converts the ZoneVertexM object to a map representation for JSON marshaling.
 func (z ZoneVertexM) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, z.AdditionalProperties)
+    MergeAdditionalProperties(structMap, z.AdditionalProperties)
     structMap["x"] = z.X
     structMap["y"] = z.Y
     return structMap
@@ -44,12 +48,12 @@ func (z *ZoneVertexM) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "x", "y")
     if err != nil {
     	return err
     }
-    
     z.AdditionalProperties = additionalProperties
+    
     z.X = *temp.X
     z.Y = *temp.Y
     return nil

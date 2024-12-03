@@ -8,10 +8,10 @@ import (
 
 // SleSummarySleSamples represents a SleSummarySleSamples struct.
 type SleSummarySleSamples struct {
-    Degraded             []float64      `json:"degraded"`
-    Total                []float64      `json:"total"`
-    Value                []float64      `json:"value"`
-    AdditionalProperties map[string]any `json:"_"`
+    Degraded             []float64              `json:"degraded"`
+    Total                []float64              `json:"total"`
+    Value                []float64              `json:"value"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleSummarySleSamples.
@@ -19,13 +19,17 @@ type SleSummarySleSamples struct {
 func (s SleSummarySleSamples) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "degraded", "total", "value"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleSummarySleSamples object to a map representation for JSON marshaling.
 func (s SleSummarySleSamples) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["degraded"] = s.Degraded
     structMap["total"] = s.Total
     structMap["value"] = s.Value
@@ -44,12 +48,12 @@ func (s *SleSummarySleSamples) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "degraded", "total", "value")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "degraded", "total", "value")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Degraded = *temp.Degraded
     s.Total = *temp.Total
     s.Value = *temp.Value

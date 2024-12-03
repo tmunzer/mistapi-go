@@ -1,6 +1,8 @@
 
 # Stats Ap Port Stat
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsApPortStat`
@@ -17,6 +19,7 @@
 | `TxBytes` | `models.Optional[float64]` | Optional | - |
 | `TxPkts` | `models.Optional[float64]` | Optional | - |
 | `Up` | `models.Optional[bool]` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
   "speed": 1000,
   "tx_bytes": 2056,
   "tx_pkts": 670,
-  "up": true
+  "up": true,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -9,12 +9,12 @@ import (
 // Anomaly represents a Anomaly struct.
 // Anomaly
 type Anomaly struct {
-    Events               []string       `json:"events"`
-    Since                *float64       `json:"since,omitempty"`
-    SleBaseline          float64        `json:"sle_baseline"`
-    SleDeviation         float64        `json:"sle_deviation"`
-    Timestamp            float64        `json:"timestamp"`
-    AdditionalProperties map[string]any `json:"_"`
+    Events               []string               `json:"events"`
+    Since                *float64               `json:"since,omitempty"`
+    SleBaseline          float64                `json:"sle_baseline"`
+    SleDeviation         float64                `json:"sle_deviation"`
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Anomaly.
@@ -22,13 +22,17 @@ type Anomaly struct {
 func (a Anomaly) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "events", "since", "sle_baseline", "sle_deviation", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the Anomaly object to a map representation for JSON marshaling.
 func (a Anomaly) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     structMap["events"] = a.Events
     if a.Since != nil {
         structMap["since"] = a.Since
@@ -51,12 +55,12 @@ func (a *Anomaly) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "events", "since", "sle_baseline", "sle_deviation", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "events", "since", "sle_baseline", "sle_deviation", "timestamp")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Events = *temp.Events
     a.Since = temp.Since
     a.SleBaseline = *temp.SleBaseline

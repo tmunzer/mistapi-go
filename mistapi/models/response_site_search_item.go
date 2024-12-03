@@ -9,20 +9,20 @@ import (
 
 // ResponseSiteSearchItem represents a ResponseSiteSearchItem struct.
 type ResponseSiteSearchItem struct {
-    AutoUpgradeEnabled   bool           `json:"auto_upgrade_enabled"`
-    AutoUpgradeVersion   string         `json:"auto_upgrade_version"`
-    CountryCode          *string        `json:"country_code"`
-    HoneypotEnabled      bool           `json:"honeypot_enabled"`
+    AutoUpgradeEnabled   bool                   `json:"auto_upgrade_enabled"`
+    AutoUpgradeVersion   string                 `json:"auto_upgrade_version"`
+    CountryCode          *string                `json:"country_code"`
+    HoneypotEnabled      bool                   `json:"honeypot_enabled"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID      `json:"id"`
-    Name                 string         `json:"name"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    Timestamp            float64        `json:"timestamp"`
-    Timezone             string         `json:"timezone"`
-    VnaEnabled           bool           `json:"vna_enabled"`
-    WifiEnabled          bool           `json:"wifi_enabled"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   uuid.UUID              `json:"id"`
+    Name                 string                 `json:"name"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    Timestamp            float64                `json:"timestamp"`
+    Timezone             string                 `json:"timezone"`
+    VnaEnabled           bool                   `json:"vna_enabled"`
+    WifiEnabled          bool                   `json:"wifi_enabled"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSiteSearchItem.
@@ -30,13 +30,17 @@ type ResponseSiteSearchItem struct {
 func (r ResponseSiteSearchItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "auto_upgrade_enabled", "auto_upgrade_version", "country_code", "honeypot_enabled", "id", "name", "org_id", "site_id", "timestamp", "timezone", "vna_enabled", "wifi_enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSiteSearchItem object to a map representation for JSON marshaling.
 func (r ResponseSiteSearchItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["auto_upgrade_enabled"] = r.AutoUpgradeEnabled
     structMap["auto_upgrade_version"] = r.AutoUpgradeVersion
     if r.CountryCode != nil {
@@ -68,12 +72,12 @@ func (r *ResponseSiteSearchItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auto_upgrade_enabled", "auto_upgrade_version", "country_code", "honeypot_enabled", "id", "name", "org_id", "site_id", "timestamp", "timezone", "vna_enabled", "wifi_enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_upgrade_enabled", "auto_upgrade_version", "country_code", "honeypot_enabled", "id", "name", "org_id", "site_id", "timestamp", "timezone", "vna_enabled", "wifi_enabled")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.AutoUpgradeEnabled = *temp.AutoUpgradeEnabled
     r.AutoUpgradeVersion = *temp.AutoUpgradeVersion
     r.CountryCode = temp.CountryCode

@@ -6,10 +6,10 @@ import (
 
 // InventorySearchResultMember represents a InventorySearchResultMember struct.
 type InventorySearchResultMember struct {
-    Mac                  *string        `json:"mac,omitempty"`
-    Model                *string        `json:"model,omitempty"`
-    Serial               *string        `json:"serial,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  *string                `json:"mac,omitempty"`
+    Model                *string                `json:"model,omitempty"`
+    Serial               *string                `json:"serial,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for InventorySearchResultMember.
@@ -17,13 +17,17 @@ type InventorySearchResultMember struct {
 func (i InventorySearchResultMember) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "mac", "model", "serial"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the InventorySearchResultMember object to a map representation for JSON marshaling.
 func (i InventorySearchResultMember) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.Mac != nil {
         structMap["mac"] = i.Mac
     }
@@ -44,12 +48,12 @@ func (i *InventorySearchResultMember) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "model", "serial")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "model", "serial")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.Mac = temp.Mac
     i.Model = temp.Model
     i.Serial = temp.Serial

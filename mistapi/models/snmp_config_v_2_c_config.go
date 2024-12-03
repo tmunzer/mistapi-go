@@ -6,13 +6,13 @@ import (
 
 // SnmpConfigV2cConfig represents a SnmpConfigV2cConfig struct.
 type SnmpConfigV2cConfig struct {
-    Authorization        *string        `json:"authorization,omitempty"`
+    Authorization        *string                `json:"authorization,omitempty"`
     // client_list_name here should refer to client_list above
-    ClientListName       *string        `json:"client_list_name,omitempty"`
-    CommunityName        *string        `json:"community_name,omitempty"`
+    ClientListName       *string                `json:"client_list_name,omitempty"`
+    CommunityName        *string                `json:"community_name,omitempty"`
     // view name here should be defined in views above
-    View                 *string        `json:"view,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    View                 *string                `json:"view,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpConfigV2cConfig.
@@ -20,13 +20,17 @@ type SnmpConfigV2cConfig struct {
 func (s SnmpConfigV2cConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "authorization", "client_list_name", "community_name", "view"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SnmpConfigV2cConfig object to a map representation for JSON marshaling.
 func (s SnmpConfigV2cConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Authorization != nil {
         structMap["authorization"] = s.Authorization
     }
@@ -50,12 +54,12 @@ func (s *SnmpConfigV2cConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "authorization", "client_list_name", "community_name", "view")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "authorization", "client_list_name", "community_name", "view")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Authorization = temp.Authorization
     s.ClientListName = temp.ClientListName
     s.CommunityName = temp.CommunityName

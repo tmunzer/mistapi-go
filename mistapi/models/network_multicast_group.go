@@ -7,8 +7,8 @@ import (
 // NetworkMulticastGroup represents a NetworkMulticastGroup struct.
 type NetworkMulticastGroup struct {
     // RP (rendezvous point) IP Address
-    RpIp                 *string        `json:"rp_ip,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    RpIp                 *string                `json:"rp_ip,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkMulticastGroup.
@@ -16,13 +16,17 @@ type NetworkMulticastGroup struct {
 func (n NetworkMulticastGroup) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "rp_ip"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NetworkMulticastGroup object to a map representation for JSON marshaling.
 func (n NetworkMulticastGroup) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.RpIp != nil {
         structMap["rp_ip"] = n.RpIp
     }
@@ -37,12 +41,12 @@ func (n *NetworkMulticastGroup) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "rp_ip")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "rp_ip")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.RpIp = temp.RpIp
     return nil
 }

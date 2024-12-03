@@ -56,7 +56,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "18-65-90-de-f4-c6",
         "84-89-ad-5d-69-0d",
     },
@@ -346,7 +346,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PcapBucket{
-    Bucket: "company-private-pcap",
+    Bucket:               "company-private-pcap",
 }
 
 apiResponse, err := orgsSetting.SetOrgCustomBucket(ctx, orgId, &body)
@@ -589,8 +589,8 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PcapBucketVerify{
-    Bucket:      "company-private-pcap",
-    VerifyToken: "eyJhbGciOiJIUzI1J9.eyJzdWIiOiIxMjM0joiMjgxOG5MDIyfQ.2rzcRvMA3Eg09NnjCAC-1EWMRtxAnFDM",
+    Bucket:               "company-private-pcap",
+    VerifyToken:          "eyJhbGciOiJIUzI1J9.eyJzdWIiOiIxMjM0joiMjgxOG5MDIyfQ.2rzcRvMA3Eg09NnjCAC-1EWMRtxAnFDM",
 }
 
 resp, err := orgsSetting.VerifyOrgCustomBucket(ctx, orgId, &body)

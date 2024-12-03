@@ -6,11 +6,11 @@ import (
 
 // TacacsAuthServer represents a TacacsAuthServer struct.
 type TacacsAuthServer struct {
-    Host                 *string        `json:"host,omitempty"`
-    Port                 *string        `json:"port,omitempty"`
-    Secret               *string        `json:"secret,omitempty"`
-    Timeout              *int           `json:"timeout,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Host                 *string                `json:"host,omitempty"`
+    Port                 *string                `json:"port,omitempty"`
+    Secret               *string                `json:"secret,omitempty"`
+    Timeout              *int                   `json:"timeout,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TacacsAuthServer.
@@ -18,13 +18,17 @@ type TacacsAuthServer struct {
 func (t TacacsAuthServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "host", "port", "secret", "timeout"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TacacsAuthServer object to a map representation for JSON marshaling.
 func (t TacacsAuthServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.Host != nil {
         structMap["host"] = t.Host
     }
@@ -48,12 +52,12 @@ func (t *TacacsAuthServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "port", "secret", "timeout")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "port", "secret", "timeout")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.Host = temp.Host
     t.Port = temp.Port
     t.Secret = temp.Secret

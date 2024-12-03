@@ -6,9 +6,9 @@ import (
 
 // ArpTableStats represents a ArpTableStats struct.
 type ArpTableStats struct {
-    ArpTableCount        *int           `json:"arp_table_count,omitempty"`
-    MaxEntriesSupported  *int           `json:"max_entries_supported,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ArpTableCount        *int                   `json:"arp_table_count,omitempty"`
+    MaxEntriesSupported  *int                   `json:"max_entries_supported,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ArpTableStats.
@@ -16,13 +16,17 @@ type ArpTableStats struct {
 func (a ArpTableStats) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "arp_table_count", "max_entries_supported"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ArpTableStats object to a map representation for JSON marshaling.
 func (a ArpTableStats) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.ArpTableCount != nil {
         structMap["arp_table_count"] = a.ArpTableCount
     }
@@ -40,12 +44,12 @@ func (a *ArpTableStats) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "arp_table_count", "max_entries_supported")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "arp_table_count", "max_entries_supported")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.ArpTableCount = temp.ArpTableCount
     a.MaxEntriesSupported = temp.MaxEntriesSupported
     return nil

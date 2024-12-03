@@ -6,8 +6,8 @@ import (
 
 // StatsWxruleUsageProperties represents a StatsWxruleUsageProperties struct.
 type StatsWxruleUsageProperties struct {
-    NumFlows             *int           `json:"num_flows,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    NumFlows             *int                   `json:"num_flows,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWxruleUsageProperties.
@@ -15,13 +15,17 @@ type StatsWxruleUsageProperties struct {
 func (s StatsWxruleUsageProperties) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "num_flows"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsWxruleUsageProperties object to a map representation for JSON marshaling.
 func (s StatsWxruleUsageProperties) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.NumFlows != nil {
         structMap["num_flows"] = s.NumFlows
     }
@@ -36,12 +40,12 @@ func (s *StatsWxruleUsageProperties) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "num_flows")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "num_flows")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.NumFlows = temp.NumFlows
     return nil
 }

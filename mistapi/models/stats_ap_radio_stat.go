@@ -7,12 +7,12 @@ import (
 // StatsApRadioStat represents a StatsApRadioStat struct.
 type StatsApRadioStat struct {
     // radio stat
-    Band24               *ApRadioStat   `json:"band_24,omitempty"`
+    Band24               *ApRadioStat           `json:"band_24,omitempty"`
     // radio stat
-    Band5                *ApRadioStat   `json:"band_5,omitempty"`
+    Band5                *ApRadioStat           `json:"band_5,omitempty"`
     // radio stat
-    Band6                *ApRadioStat   `json:"band_6,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Band6                *ApRadioStat           `json:"band_6,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApRadioStat.
@@ -20,13 +20,17 @@ type StatsApRadioStat struct {
 func (s StatsApRadioStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "band_24", "band_5", "band_6"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApRadioStat object to a map representation for JSON marshaling.
 func (s StatsApRadioStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Band24 != nil {
         structMap["band_24"] = s.Band24.toMap()
     }
@@ -47,12 +51,12 @@ func (s *StatsApRadioStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band_24", "band_5", "band_6")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band_24", "band_5", "band_6")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Band24 = temp.Band24
     s.Band5 = temp.Band5
     s.Band6 = temp.Band6

@@ -6,8 +6,8 @@ import (
 
 // ResponseLoginLookup represents a ResponseLoginLookup struct.
 type ResponseLoginLookup struct {
-    SsoUrl               *string        `json:"sso_url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    SsoUrl               *string                `json:"sso_url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseLoginLookup.
@@ -15,13 +15,17 @@ type ResponseLoginLookup struct {
 func (r ResponseLoginLookup) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "sso_url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseLoginLookup object to a map representation for JSON marshaling.
 func (r ResponseLoginLookup) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.SsoUrl != nil {
         structMap["sso_url"] = r.SsoUrl
     }
@@ -36,12 +40,12 @@ func (r *ResponseLoginLookup) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "sso_url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "sso_url")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.SsoUrl = temp.SsoUrl
     return nil
 }

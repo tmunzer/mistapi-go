@@ -17,7 +17,7 @@ type RemoteSyslog struct {
     // enum: `millisecond`, `year`, `year millisecond`
     TimeFormat           *RemoteSyslogTimeFormatEnum `json:"time_format,omitempty"`
     Users                []RemoteSyslogUser          `json:"users,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslog.
@@ -25,13 +25,17 @@ type RemoteSyslog struct {
 func (r RemoteSyslog) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "archive", "console", "enabled", "files", "network", "send_to_all_servers", "servers", "time_format", "users"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RemoteSyslog object to a map representation for JSON marshaling.
 func (r RemoteSyslog) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Archive != nil {
         structMap["archive"] = r.Archive.toMap()
     }
@@ -70,12 +74,12 @@ func (r *RemoteSyslog) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "archive", "console", "enabled", "files", "network", "send_to_all_servers", "servers", "time_format", "users")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "archive", "console", "enabled", "files", "network", "send_to_all_servers", "servers", "time_format", "users")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Archive = temp.Archive
     r.Console = temp.Console
     r.Enabled = temp.Enabled

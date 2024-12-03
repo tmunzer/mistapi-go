@@ -7,24 +7,24 @@ import (
 // ResponseSiteDeviceUpgradeCounts represents a ResponseSiteDeviceUpgradeCounts struct.
 type ResponseSiteDeviceUpgradeCounts struct {
     // count of devices which cloud has requested to download firmware
-    DownloadRequested    *int           `json:"download_requested,omitempty"`
+    DownloadRequested    *int                   `json:"download_requested,omitempty"`
     // count of ap’s which have the firmware downloaded
-    Downloaded           *int           `json:"downloaded,omitempty"`
+    Downloaded           *int                   `json:"downloaded,omitempty"`
     // count of devices which have failed to upgrade
-    Failed               *int           `json:"failed,omitempty"`
+    Failed               *int                   `json:"failed,omitempty"`
     // count of devices which are rebooting
-    RebootInProgress     *int           `json:"reboot_in_progress,omitempty"`
+    RebootInProgress     *int                   `json:"reboot_in_progress,omitempty"`
     // count of devices which have rebooted successfully
-    Rebooted             *int           `json:"rebooted,omitempty"`
+    Rebooted             *int                   `json:"rebooted,omitempty"`
     // count of devices which cloud has scheduled an upgrade for
-    Scheduled            *int           `json:"scheduled,omitempty"`
+    Scheduled            *int                   `json:"scheduled,omitempty"`
     // count of devices which skipped upgrade since requested version was same as running version. Use force to always upgrade
-    Skipped              *int           `json:"skipped,omitempty"`
+    Skipped              *int                   `json:"skipped,omitempty"`
     // count of devices part of this upgrade
-    Total                *int           `json:"total,omitempty"`
+    Total                *int                   `json:"total,omitempty"`
     // count of devices which have upgraded successfully
-    Upgraded             *int           `json:"upgraded,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Upgraded             *int                   `json:"upgraded,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSiteDeviceUpgradeCounts.
@@ -32,13 +32,17 @@ type ResponseSiteDeviceUpgradeCounts struct {
 func (r ResponseSiteDeviceUpgradeCounts) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "download_requested", "downloaded", "failed", "reboot_in_progress", "rebooted", "scheduled", "skipped", "total", "upgraded"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSiteDeviceUpgradeCounts object to a map representation for JSON marshaling.
 func (r ResponseSiteDeviceUpgradeCounts) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.DownloadRequested != nil {
         structMap["download_requested"] = r.DownloadRequested
     }
@@ -77,12 +81,12 @@ func (r *ResponseSiteDeviceUpgradeCounts) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "download_requested", "downloaded", "failed", "reboot_in_progress", "rebooted", "scheduled", "skipped", "total", "upgraded")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "download_requested", "downloaded", "failed", "reboot_in_progress", "rebooted", "scheduled", "skipped", "total", "upgraded")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.DownloadRequested = temp.DownloadRequested
     r.Downloaded = temp.Downloaded
     r.Failed = temp.Failed

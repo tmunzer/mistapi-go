@@ -7,13 +7,13 @@ import (
 // SiteSettingRtsa represents a SiteSettingRtsa struct.
 // managed mobility
 type SiteSettingRtsa struct {
-    AppWaking             *bool          `json:"app_waking,omitempty"`
-    DisableDeadReckoning  *bool          `json:"disable_dead_reckoning,omitempty"`
-    DisablePressureSensor *bool          `json:"disable_pressure_sensor,omitempty"`
-    Enabled               *bool          `json:"enabled,omitempty"`
+    AppWaking             *bool                  `json:"app_waking,omitempty"`
+    DisableDeadReckoning  *bool                  `json:"disable_dead_reckoning,omitempty"`
+    DisablePressureSensor *bool                  `json:"disable_pressure_sensor,omitempty"`
+    Enabled               *bool                  `json:"enabled,omitempty"`
     // asset tracking related
-    TrackAsset            *bool          `json:"track_asset,omitempty"`
-    AdditionalProperties  map[string]any `json:"_"`
+    TrackAsset            *bool                  `json:"track_asset,omitempty"`
+    AdditionalProperties  map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingRtsa.
@@ -21,13 +21,17 @@ type SiteSettingRtsa struct {
 func (s SiteSettingRtsa) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "app_waking", "disable_dead_reckoning", "disable_pressure_sensor", "enabled", "track_asset"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingRtsa object to a map representation for JSON marshaling.
 func (s SiteSettingRtsa) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AppWaking != nil {
         structMap["app_waking"] = s.AppWaking
     }
@@ -54,12 +58,12 @@ func (s *SiteSettingRtsa) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "app_waking", "disable_dead_reckoning", "disable_pressure_sensor", "enabled", "track_asset")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "app_waking", "disable_dead_reckoning", "disable_pressure_sensor", "enabled", "track_asset")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AppWaking = temp.AppWaking
     s.DisableDeadReckoning = temp.DisableDeadReckoning
     s.DisablePressureSensor = temp.DisablePressureSensor

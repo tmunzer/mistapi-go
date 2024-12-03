@@ -1,6 +1,8 @@
 
 # Response Events Rrm
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseEventsRrm`
@@ -14,6 +16,7 @@
 | `Next` | `*string` | Optional | the link to query next set of results. value is null if no next page exists. |
 | `Results` | [`[]models.RrmEvent`](../../doc/models/rrm-event.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,11 +37,19 @@
       "pre_power": 92.2,
       "pre_usage": "pre_usage6",
       "timestamp": 2.64,
-      "usage": "usage4"
+      "usage": "usage4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 192,
-  "next": "next4"
+  "next": "next4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

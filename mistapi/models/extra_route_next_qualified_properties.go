@@ -6,9 +6,9 @@ import (
 
 // ExtraRouteNextQualifiedProperties represents a ExtraRouteNextQualifiedProperties struct.
 type ExtraRouteNextQualifiedProperties struct {
-    Metric               Optional[int]  `json:"metric"`
-    Preference           Optional[int]  `json:"preference"`
-    AdditionalProperties map[string]any `json:"_"`
+    Metric               Optional[int]          `json:"metric"`
+    Preference           Optional[int]          `json:"preference"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ExtraRouteNextQualifiedProperties.
@@ -16,13 +16,17 @@ type ExtraRouteNextQualifiedProperties struct {
 func (e ExtraRouteNextQualifiedProperties) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "metric", "preference"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the ExtraRouteNextQualifiedProperties object to a map representation for JSON marshaling.
 func (e ExtraRouteNextQualifiedProperties) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.Metric.IsValueSet() {
         if e.Metric.Value() != nil {
             structMap["metric"] = e.Metric.Value()
@@ -48,12 +52,12 @@ func (e *ExtraRouteNextQualifiedProperties) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "metric", "preference")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "metric", "preference")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Metric = temp.Metric
     e.Preference = temp.Preference
     return nil

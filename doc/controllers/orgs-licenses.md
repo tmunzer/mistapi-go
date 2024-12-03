@@ -48,8 +48,8 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.ClaimActivation{
-    Code:       "ZHT3K-H36DT-MG85D-M61AC",
-    Type:       models.ClaimTypeEnum("all"),
+    Code:                 "ZHT3K-H36DT-MG85D-M61AC",
+    Type:                 models.ClaimTypeEnum("all"),
 }
 
 apiResponse, err := orgsLicenses.ClaimOrgLicense(ctx, orgId, &body)
@@ -479,9 +479,9 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgLicenseAction{
-    Notes:          models.ToPointer("customer notes"),
-    Op:             models.OrgLicenseActionOperationEnum("annotate"),
-    SubscriptionId: models.ToPointer("SUB-000144"),
+    Notes:                models.ToPointer("customer notes"),
+    Op:                   models.OrgLicenseActionOperationEnum("annotate"),
+    SubscriptionId:       models.ToPointer("SUB-000144"),
 }
 
 resp, err := orgsLicenses.MoveOrDeleteOrgLicenseToAnotherOrg(ctx, orgId, &body)

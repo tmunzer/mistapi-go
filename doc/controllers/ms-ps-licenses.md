@@ -48,7 +48,7 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.CodeString{
-    Code: "ZHT3K-H36DT-MG85D-M61AC",
+    Code:                 "ZHT3K-H36DT-MG85D-M61AC",
 }
 
 apiResponse, err := mSPsLicenses.ClaimMspLicence(ctx, mspId, &body)
@@ -649,8 +649,8 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MspLicenseAction{
-    Op:             models.MspLicenseActionOperationEnum("delete"),
-    SubscriptionId: models.ToPointer("SUB-0000144"),
+    Op:                   models.MspLicenseActionOperationEnum("delete"),
+    SubscriptionId:       models.ToPointer("SUB-0000144"),
 }
 
 resp, err := mSPsLicenses.MoveOrDeleteMspLicenseToAnotherOrg(ctx, mspId, &body)

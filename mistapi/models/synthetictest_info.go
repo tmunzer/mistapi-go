@@ -22,7 +22,7 @@ type SynthetictestInfo struct {
     // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest`
     Type                 *SynthetictestTypeEnum           `json:"type,omitempty"`
     VlanId               *int                             `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestInfo.
@@ -30,13 +30,17 @@ type SynthetictestInfo struct {
 func (s SynthetictestInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "by", "device_type", "failed", "latency", "mac", "port_id", "reason", "rx_mbps", "start_time", "status", "timestamp", "tx_mbps", "type", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SynthetictestInfo object to a map representation for JSON marshaling.
 func (s SynthetictestInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.By != nil {
         structMap["by"] = s.By
     }
@@ -90,12 +94,12 @@ func (s *SynthetictestInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "by", "device_type", "failed", "latency", "mac", "port_id", "reason", "rx_mbps", "start_time", "status", "timestamp", "tx_mbps", "type", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "by", "device_type", "failed", "latency", "mac", "port_id", "reason", "rx_mbps", "start_time", "status", "timestamp", "tx_mbps", "type", "vlan_id")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.By = temp.By
     s.DeviceType = temp.DeviceType
     s.Failed = temp.Failed

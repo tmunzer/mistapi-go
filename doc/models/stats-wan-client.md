@@ -1,6 +1,8 @@
 
 # Stats Wan Client
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsWanClient`
@@ -22,6 +24,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
 | `Wcid` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,7 +45,11 @@
   ],
   "ip": [
     "ip9"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

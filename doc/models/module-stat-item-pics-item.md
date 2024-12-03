@@ -1,6 +1,8 @@
 
 # Module Stat Item Pics Item
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ModuleStatItemPicsItem`
@@ -12,6 +14,7 @@
 | `Index` | `*int` | Optional | - |
 | `ModelNumber` | `*string` | Optional | - |
 | `PortGroups` | [`[]models.ModuleStatItemPicsItemPortGroupsItem`](../../doc/models/module-stat-item-pics-item-port-groups-item.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -22,17 +25,33 @@
   "port_groups": [
     {
       "count": 32,
-      "type": "type6"
+      "type": "type6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "count": 32,
-      "type": "type6"
+      "type": "type6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "count": 32,
-      "type": "type6"
+      "type": "type6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

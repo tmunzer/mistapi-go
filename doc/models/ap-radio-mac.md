@@ -1,6 +1,8 @@
 
 # Ap Radio Mac
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApRadioMac`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Mac` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `RadioMacs` | `[]string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -20,7 +23,11 @@
   "radio_macs": [
     "radio_macs7",
     "radio_macs8"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

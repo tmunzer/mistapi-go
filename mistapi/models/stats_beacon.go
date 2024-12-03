@@ -10,18 +10,18 @@ import (
 // StatsBeacon represents a StatsBeacon struct.
 type StatsBeacon struct {
     // battery voltage, in mV
-    BatteryVoltage       *float64       `json:"battery_voltage,omitempty"`
-    EddystoneInstance    *string        `json:"eddystone_instance,omitempty"`
-    EddystoneNamespace   *string        `json:"eddystone_namespace,omitempty"`
-    LastSeen             float64        `json:"last_seen"`
-    Mac                  string         `json:"mac"`
-    MapId                uuid.UUID      `json:"map_id"`
-    Name                 string         `json:"name"`
-    Power                int            `json:"power"`
-    Type                 string         `json:"type"`
-    X                    float64        `json:"x"`
-    Y                    float64        `json:"y"`
-    AdditionalProperties map[string]any `json:"_"`
+    BatteryVoltage       *float64               `json:"battery_voltage,omitempty"`
+    EddystoneInstance    *string                `json:"eddystone_instance,omitempty"`
+    EddystoneNamespace   *string                `json:"eddystone_namespace,omitempty"`
+    LastSeen             float64                `json:"last_seen"`
+    Mac                  string                 `json:"mac"`
+    MapId                uuid.UUID              `json:"map_id"`
+    Name                 string                 `json:"name"`
+    Power                int                    `json:"power"`
+    Type                 string                 `json:"type"`
+    X                    float64                `json:"x"`
+    Y                    float64                `json:"y"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsBeacon.
@@ -29,13 +29,17 @@ type StatsBeacon struct {
 func (s StatsBeacon) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "battery_voltage", "eddystone_instance", "eddystone_namespace", "last_seen", "mac", "map_id", "name", "power", "type", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsBeacon object to a map representation for JSON marshaling.
 func (s StatsBeacon) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.BatteryVoltage != nil {
         structMap["battery_voltage"] = s.BatteryVoltage
     }
@@ -68,12 +72,12 @@ func (s *StatsBeacon) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "battery_voltage", "eddystone_instance", "eddystone_namespace", "last_seen", "mac", "map_id", "name", "power", "type", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "battery_voltage", "eddystone_instance", "eddystone_namespace", "last_seen", "mac", "map_id", "name", "power", "type", "x", "y")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.BatteryVoltage = temp.BatteryVoltage
     s.EddystoneInstance = temp.EddystoneInstance
     s.EddystoneNamespace = temp.EddystoneNamespace

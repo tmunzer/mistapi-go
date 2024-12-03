@@ -23,7 +23,7 @@ type CaptureGateway struct {
     Ports                map[string]CaptureGatewayGatewaysPort `json:"ports,omitempty"`
     // enum: `gateway`
     Type                 string                                `json:"type"`
-    AdditionalProperties map[string]any                        `json:"_"`
+    AdditionalProperties map[string]interface{}                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureGateway.
@@ -31,13 +31,17 @@ type CaptureGateway struct {
 func (c CaptureGateway) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "duration", "format", "gateways", "max_pkt_len", "num_packets", "ports", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureGateway object to a map representation for JSON marshaling.
 func (c CaptureGateway) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Duration != nil {
         structMap["duration"] = c.Duration
     }
@@ -72,12 +76,12 @@ func (c *CaptureGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "duration", "format", "gateways", "max_pkt_len", "num_packets", "ports", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "format", "gateways", "max_pkt_len", "num_packets", "ports", "type")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Duration = temp.Duration
     c.Format = temp.Format
     c.Gateways = temp.Gateways

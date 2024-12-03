@@ -1,6 +1,8 @@
 
 # Mxedge Upgrade Multi
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MxedgeUpgradeMulti`
@@ -18,6 +20,7 @@
 | `StartTime` | `*float64` | Optional | upgrade start time in epoch seconds, default is now |
 | `Strategy` | [`*models.MxedgeUpgradeStrategyEnum`](../../doc/models/mxedge-upgrade-strategy-enum.md) | Optional | enum:<br><br>* `big_bang`: upgrade all at once, no orchestration<br>* `serial`: one at a time'<br>* `canary`: upgrade in phases<br>**Default**: `"big_bang"` |
 | `Versions` | [`*models.MxedgeUpgradeVersion`](../../doc/models/mxedge-upgrade-version.md) | Optional | version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nIgnored if distro upgrade, `tunterm`, `radsecproxy`, `mxagent`, `mxocproxy`, `mxdas` or `mxnacedge` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,13 +37,21 @@
     "mxdas": false,
     "mxocproxy": false,
     "radsecproxy": false,
-    "tunterm": false
+    "tunterm": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "canary_phases": [
     241,
     242
   ],
-  "distro": "distro4"
+  "distro": "distro4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # Mxedge Tunterm Dhcpd Config Property
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `MxedgeTuntermDhcpdConfigProperty`
@@ -12,6 +14,7 @@
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Servers` | `[]string` | Optional | list of DHCP servers; required if `type`==`relay` |
 | `Type` | [`*models.MxedgeTuntermDhcpdConfigTypeEnum`](../../doc/models/mxedge-tunterm-dhcpd-config-type-enum.md) | Optional | enum: `relay`<br>**Default**: `"relay"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -22,7 +25,11 @@
   "servers": [
     "servers3",
     "servers4"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

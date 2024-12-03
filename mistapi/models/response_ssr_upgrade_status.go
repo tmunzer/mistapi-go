@@ -16,7 +16,7 @@ type ResponseSsrUpgradeStatus struct {
     Status               string                          `json:"status"`
     Targets              ResponseSsrUpgradeStatusTargets `json:"targets"`
     Versions             interface{}                     `json:"versions"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSsrUpgradeStatus.
@@ -24,13 +24,17 @@ type ResponseSsrUpgradeStatus struct {
 func (r ResponseSsrUpgradeStatus) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "channel", "device_type", "id", "status", "targets", "versions"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSsrUpgradeStatus object to a map representation for JSON marshaling.
 func (r ResponseSsrUpgradeStatus) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["channel"] = r.Channel
     if r.DeviceType != nil {
         structMap["device_type"] = r.DeviceType
@@ -54,12 +58,12 @@ func (r *ResponseSsrUpgradeStatus) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "channel", "device_type", "id", "status", "targets", "versions")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "device_type", "id", "status", "targets", "versions")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Channel = *temp.Channel
     r.DeviceType = temp.DeviceType
     r.Id = *temp.Id

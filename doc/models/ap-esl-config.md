@@ -1,6 +1,8 @@
 
 # Ap Esl Config
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApEslConfig`
@@ -17,6 +19,7 @@
 | `Type` | [`*models.ApEslTypeEnum`](../../doc/models/ap-esl-type-enum.md) | Optional | note: ble_config will be ingored if esl_config is enabled and with native mode. enum: `hanshow`, `imagotag`, `native`, `solum` |
 | `VerifyCert` | `*bool` | Optional | Only if `type`==`imagotag` or `type`==`native` |
 | `VlanId` | `*int` | Optional | Only if `type`==`solum` or `type`==`hanshow`<br>**Default**: `1` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,7 +31,11 @@
   "port": 0,
   "type": "imagotag",
   "vlan_id": 1,
-  "cacert": "cacert4"
+  "cacert": "cacert4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

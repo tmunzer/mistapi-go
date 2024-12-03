@@ -8,13 +8,13 @@ import (
 
 // RepsonseCount represents a RepsonseCount struct.
 type RepsonseCount struct {
-    Distinct             string         `json:"distinct"`
-    End                  int            `json:"end"`
-    Limit                int            `json:"limit"`
-    Results              []CountResult  `json:"results"`
-    Start                int            `json:"start"`
-    Total                int            `json:"total"`
-    AdditionalProperties map[string]any `json:"_"`
+    Distinct             string                 `json:"distinct"`
+    End                  int                    `json:"end"`
+    Limit                int                    `json:"limit"`
+    Results              []CountResult          `json:"results"`
+    Start                int                    `json:"start"`
+    Total                int                    `json:"total"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RepsonseCount.
@@ -22,13 +22,17 @@ type RepsonseCount struct {
 func (r RepsonseCount) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "distinct", "end", "limit", "results", "start", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RepsonseCount object to a map representation for JSON marshaling.
 func (r RepsonseCount) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["distinct"] = r.Distinct
     structMap["end"] = r.End
     structMap["limit"] = r.Limit
@@ -50,12 +54,12 @@ func (r *RepsonseCount) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "distinct", "end", "limit", "results", "start", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "distinct", "end", "limit", "results", "start", "total")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Distinct = *temp.Distinct
     r.End = *temp.End
     r.Limit = *temp.Limit

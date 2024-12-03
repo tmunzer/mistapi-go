@@ -23,7 +23,7 @@ type DiscoveredSwitchMetric struct {
     Type                 *string                    `json:"type,omitempty"`
     Vendor               *string                    `json:"vendor,omitempty"`
     Version              *string                    `json:"version,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DiscoveredSwitchMetric.
@@ -31,13 +31,17 @@ type DiscoveredSwitchMetric struct {
 func (d DiscoveredSwitchMetric) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "adopted", "aps", "chassis_id", "hostname", "mgmt_addr", "model", "org_id", "scope", "score", "site_id", "system_desc", "system_name", "timestamp", "type", "vendor", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DiscoveredSwitchMetric object to a map representation for JSON marshaling.
 func (d DiscoveredSwitchMetric) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.Adopted != nil {
         structMap["adopted"] = d.Adopted
     }
@@ -97,12 +101,12 @@ func (d *DiscoveredSwitchMetric) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "adopted", "aps", "chassis_id", "hostname", "mgmt_addr", "model", "org_id", "scope", "score", "site_id", "system_desc", "system_name", "timestamp", "type", "vendor", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "adopted", "aps", "chassis_id", "hostname", "mgmt_addr", "model", "org_id", "scope", "score", "site_id", "system_desc", "system_name", "timestamp", "type", "vendor", "version")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.Adopted = temp.Adopted
     d.Aps = temp.Aps
     d.ChassisId = temp.ChassisId

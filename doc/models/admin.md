@@ -1,6 +1,8 @@
 
 # Admin
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Admin`
@@ -28,6 +30,7 @@
 | `Tags` | `[]string` | Optional | - |
 | `TwoFactorVerified` | `*bool` | Optional | if admin account is not an Org API Token<br>two factor status |
 | `ViaSso` | `*bool` | Optional | if admin account is not an Org API Token<br>an admin login via_sso is more restircted. (password and email<br>cannot be changed) |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,7 +44,11 @@
   "session_expiry": 1440,
   "compliance_status": "blocked",
   "enable_two_factor": false,
-  "expire_time": 6
+  "expire_time": 6,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -8,20 +8,20 @@ import (
 // optional, if it's required to have switch's L3 presense on a network/vlan
 type JunosOtherIpConfig struct {
     // for EVPN, if anycast is desired
-    EvpnAnycast          *bool          `json:"evpn_anycast,omitempty"`
+    EvpnAnycast          *bool                  `json:"evpn_anycast,omitempty"`
     // required if `type`==`static`
-    Ip                   *string        `json:"ip,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
     // required if `type6`==`static`
-    Ip6                  *string        `json:"ip6,omitempty"`
+    Ip6                  *string                `json:"ip6,omitempty"`
     // optional, `subnet` from `network` definition will be used if defined
-    Netmask              *string        `json:"netmask,omitempty"`
+    Netmask              *string                `json:"netmask,omitempty"`
     // optional, `subnet` from `network` definition will be used if defined
-    Netmask6             *string        `json:"netmask6,omitempty"`
+    Netmask6             *string                `json:"netmask6,omitempty"`
     // enum: `dhcp`, `static`
-    Type                 *IpTypeEnum    `json:"type,omitempty"`
+    Type                 *IpTypeEnum            `json:"type,omitempty"`
     // enum: `autoconf`, `dhcp`, `disabled`, `static`
-    Type6                *IpType6Enum   `json:"type6,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Type6                *IpType6Enum           `json:"type6,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for JunosOtherIpConfig.
@@ -29,13 +29,17 @@ type JunosOtherIpConfig struct {
 func (j JunosOtherIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(j.AdditionalProperties,
+        "evpn_anycast", "ip", "ip6", "netmask", "netmask6", "type", "type6"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(j.toMap())
 }
 
 // toMap converts the JunosOtherIpConfig object to a map representation for JSON marshaling.
 func (j JunosOtherIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, j.AdditionalProperties)
+    MergeAdditionalProperties(structMap, j.AdditionalProperties)
     if j.EvpnAnycast != nil {
         structMap["evpn_anycast"] = j.EvpnAnycast
     }
@@ -68,12 +72,12 @@ func (j *JunosOtherIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "evpn_anycast", "ip", "ip6", "netmask", "netmask6", "type", "type6")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "evpn_anycast", "ip", "ip6", "netmask", "netmask6", "type", "type6")
     if err != nil {
     	return err
     }
-    
     j.AdditionalProperties = additionalProperties
+    
     j.EvpnAnycast = temp.EvpnAnycast
     j.Ip = temp.Ip
     j.Ip6 = temp.Ip6

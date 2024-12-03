@@ -1,6 +1,8 @@
 
 # Upgrade Bios Multi
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UpgradeBiosMulti`
@@ -13,6 +15,7 @@
 | `Models` | `[]string` | Optional | list of device model to upgrade bios |
 | `Reboot` | `*bool` | Optional | Reboot device immediately after upgrade is completed<br>**Default**: `false` |
 | `Version` | `*string` | Optional | specific bios version |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "models": [
     "models0",
     "models1"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -10,30 +10,30 @@ import (
 // WebhookDiscoveredRawRssiEvent represents a WebhookDiscoveredRawRssiEvent struct.
 type WebhookDiscoveredRawRssiEvent struct {
     // coordinates (if any) of reporting AP (updated once in 60s per client)
-    ApLoc                []float64       `json:"ap_loc,omitempty"`
+    ApLoc                []float64              `json:"ap_loc,omitempty"`
     // antenna index, from 1-8, clock-wise starting from the LED
-    Beam                 int             `json:"beam"`
+    Beam                 int                    `json:"beam"`
     // device id of the reporting AP
-    DeviceId             uuid.UUID       `json:"device_id"`
-    IbeaconMajor         *int            `json:"ibeacon_major,omitempty"`
-    IbeaconMinor         *int            `json:"ibeacon_minor,omitempty"`
-    IbeaconUuid          *uuid.UUID      `json:"ibeacon_uuid,omitempty"`
-    IsAsset              *bool           `json:"is_asset,omitempty"`
+    DeviceId             uuid.UUID              `json:"device_id"`
+    IbeaconMajor         *int                   `json:"ibeacon_major,omitempty"`
+    IbeaconMinor         *int                   `json:"ibeacon_minor,omitempty"`
+    IbeaconUuid          *uuid.UUID             `json:"ibeacon_uuid,omitempty"`
+    IsAsset              *bool                  `json:"is_asset,omitempty"`
     // MAC of the asset/ beacon
-    Mac                  string          `json:"mac"`
-    MapId                uuid.UUID       `json:"map_id"`
+    Mac                  string                 `json:"mac"`
+    MapId                uuid.UUID              `json:"map_id"`
     // BLE manufacturing company ID
-    MfgCompanyId         *string         `json:"mfg_company_id,omitempty"`
+    MfgCompanyId         *string                `json:"mfg_company_id,omitempty"`
     // BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”)
-    MfgData              *string         `json:"mfg_data,omitempty"`
-    OrgId                uuid.UUID       `json:"org_id"`
+    MfgData              *string                `json:"mfg_data,omitempty"`
+    OrgId                uuid.UUID              `json:"org_id"`
     // signal strength
-    Rssi                 float64         `json:"rssi"`
+    Rssi                 float64                `json:"rssi"`
     // list of service data packets heard from the asset/ beacon
-    ServicePackets       []ServicePacket `json:"service_packets,omitempty"`
-    SiteId               uuid.UUID       `json:"site_id"`
-    Timestamp            *int            `json:"timestamp,omitempty"`
-    AdditionalProperties map[string]any  `json:"_"`
+    ServicePackets       []ServicePacket        `json:"service_packets,omitempty"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    Timestamp            *int                   `json:"timestamp,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookDiscoveredRawRssiEvent.
@@ -41,13 +41,17 @@ type WebhookDiscoveredRawRssiEvent struct {
 func (w WebhookDiscoveredRawRssiEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "ap_loc", "beam", "device_id", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "is_asset", "mac", "map_id", "mfg_company_id", "mfg_data", "org_id", "rssi", "service_packets", "site_id", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookDiscoveredRawRssiEvent object to a map representation for JSON marshaling.
 func (w WebhookDiscoveredRawRssiEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.ApLoc != nil {
         structMap["ap_loc"] = w.ApLoc
     }
@@ -97,12 +101,12 @@ func (w *WebhookDiscoveredRawRssiEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_loc", "beam", "device_id", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "is_asset", "mac", "map_id", "mfg_company_id", "mfg_data", "org_id", "rssi", "service_packets", "site_id", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_loc", "beam", "device_id", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "is_asset", "mac", "map_id", "mfg_company_id", "mfg_data", "org_id", "rssi", "service_packets", "site_id", "timestamp")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.ApLoc = temp.ApLoc
     w.Beam = *temp.Beam
     w.DeviceId = *temp.DeviceId

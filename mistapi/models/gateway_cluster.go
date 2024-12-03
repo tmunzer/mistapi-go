@@ -9,8 +9,8 @@ import (
 // GatewayCluster represents a GatewayCluster struct.
 type GatewayCluster struct {
     // when replacing a node, either mac has to remain the same as existing cluster
-    Nodes                []GatewayClusterNode `json:"nodes"`
-    AdditionalProperties map[string]any       `json:"_"`
+    Nodes                []GatewayClusterNode   `json:"nodes"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayCluster.
@@ -18,13 +18,17 @@ type GatewayCluster struct {
 func (g GatewayCluster) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "nodes"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayCluster object to a map representation for JSON marshaling.
 func (g GatewayCluster) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     structMap["nodes"] = g.Nodes
     return structMap
 }
@@ -41,12 +45,12 @@ func (g *GatewayCluster) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "nodes")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "nodes")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Nodes = *temp.Nodes
     return nil
 }

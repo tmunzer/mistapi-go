@@ -1,6 +1,8 @@
 
 # Installer Device
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `InstallerDevice`
@@ -27,6 +29,7 @@
 | `Version` | `*string` | Optional | - |
 | `X` | `*float64` | Optional | - |
 | `Y` | `*float64` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,7 +51,11 @@
   "uptime": 12345,
   "version": "0.10.24362",
   "x": 150,
-  "y": 300
+  "y": 300,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

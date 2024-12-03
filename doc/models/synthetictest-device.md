@@ -1,6 +1,8 @@
 
 # Synthetictest Device
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SynthetictestDevice`
@@ -24,6 +26,7 @@
 | `Url` | `*string` | Optional | if `type`==`curl` |
 | `Username` | `*string` | Optional | if `type`==`radius` |
 | `VlanId` | [`*models.SynthetictestDeviceVlanId`](../../doc/models/containers/synthetictest-device-vlan-id.md) | Optional | required for AP |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,7 +45,11 @@
   "traceroute_udp_port": 33434,
   "type": "dns",
   "url": "https://www.example.com",
-  "username": "user"
+  "username": "user",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -8,11 +8,11 @@ import (
 
 // ResponseClaimLicenseLicenseItem represents a ResponseClaimLicenseLicenseItem struct.
 type ResponseClaimLicenseLicenseItem struct {
-    End                  int            `json:"end"`
-    Quantity             int            `json:"quantity"`
-    Start                int            `json:"start"`
-    Type                 string         `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    End                  int                    `json:"end"`
+    Quantity             int                    `json:"quantity"`
+    Start                int                    `json:"start"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClaimLicenseLicenseItem.
@@ -20,13 +20,17 @@ type ResponseClaimLicenseLicenseItem struct {
 func (r ResponseClaimLicenseLicenseItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "end", "quantity", "start", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseClaimLicenseLicenseItem object to a map representation for JSON marshaling.
 func (r ResponseClaimLicenseLicenseItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["end"] = r.End
     structMap["quantity"] = r.Quantity
     structMap["start"] = r.Start
@@ -46,12 +50,12 @@ func (r *ResponseClaimLicenseLicenseItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "quantity", "start", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "quantity", "start", "type")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.End = *temp.End
     r.Quantity = *temp.Quantity
     r.Start = *temp.Start

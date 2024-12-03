@@ -6,14 +6,14 @@ import (
 
 // UiSettingsTileTimeRange represents a UiSettingsTileTimeRange struct.
 type UiSettingsTileTimeRange struct {
-    End                  *float64       `json:"end,omitempty"`
-    EndDate              *string        `json:"endDate,omitempty"`
-    Interval             *string        `json:"interval,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    ShortName            *string        `json:"shortName,omitempty"`
-    Start                *int           `json:"start,omitempty"`
-    UsePreset            *bool          `json:"usePreset,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    End                  *float64               `json:"end,omitempty"`
+    EndDate              *string                `json:"endDate,omitempty"`
+    Interval             *string                `json:"interval,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    ShortName            *string                `json:"shortName,omitempty"`
+    Start                *int                   `json:"start,omitempty"`
+    UsePreset            *bool                  `json:"usePreset,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UiSettingsTileTimeRange.
@@ -21,13 +21,17 @@ type UiSettingsTileTimeRange struct {
 func (u UiSettingsTileTimeRange) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "end", "endDate", "interval", "name", "shortName", "start", "usePreset"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UiSettingsTileTimeRange object to a map representation for JSON marshaling.
 func (u UiSettingsTileTimeRange) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.End != nil {
         structMap["end"] = u.End
     }
@@ -60,12 +64,12 @@ func (u *UiSettingsTileTimeRange) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "endDate", "interval", "name", "shortName", "start", "usePreset")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "endDate", "interval", "name", "shortName", "start", "usePreset")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.End = temp.End
     u.EndDate = temp.EndDate
     u.Interval = temp.Interval

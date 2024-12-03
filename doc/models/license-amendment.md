@@ -1,6 +1,8 @@
 
 # License Amendment
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `LicenseAmendment`
@@ -17,6 +19,7 @@
 | `StartTime` | `*int` | Optional | - |
 | `SubscriptionId` | `*string` | Optional | - |
 | `Type` | [`*models.LicenseTypeEnum`](../../doc/models/license-type-enum.md) | Optional | enum: `SUB-AST`, `SUB-DATA`, `SUB-ENG`, `SUB-EX12`, `SUB-EX24`, `SUB-EX48`, `SUB-MAN`, `SUB-ME`, `SUB-PMA`, `SUB-SRX1`, `SUB-SRX2`, `SUB-SVNA`, `SUB-VNA`, `SUB-WAN1`, `SUB-WAN2`, `SUB-WVNA1`, `SUB-WVNA2` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,7 +29,11 @@
   "created_time": 222.36,
   "end_time": 198,
   "modified_time": 112.6,
-  "quantity": 170
+  "quantity": 170,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

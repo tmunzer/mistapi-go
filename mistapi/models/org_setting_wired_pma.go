@@ -6,8 +6,8 @@ import (
 
 // OrgSettingWiredPma represents a OrgSettingWiredPma struct.
 type OrgSettingWiredPma struct {
-    Enabled              *bool          `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingWiredPma.
@@ -15,13 +15,17 @@ type OrgSettingWiredPma struct {
 func (o OrgSettingWiredPma) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingWiredPma object to a map representation for JSON marshaling.
 func (o OrgSettingWiredPma) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Enabled != nil {
         structMap["enabled"] = o.Enabled
     }
@@ -36,12 +40,12 @@ func (o *OrgSettingWiredPma) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Enabled = temp.Enabled
     return nil
 }

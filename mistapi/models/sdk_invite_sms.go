@@ -8,8 +8,8 @@ import (
 
 // SdkInviteSms represents a SdkInviteSms struct.
 type SdkInviteSms struct {
-    Number               string         `json:"number"`
-    AdditionalProperties map[string]any `json:"_"`
+    Number               string                 `json:"number"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SdkInviteSms.
@@ -17,13 +17,17 @@ type SdkInviteSms struct {
 func (s SdkInviteSms) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "number"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SdkInviteSms object to a map representation for JSON marshaling.
 func (s SdkInviteSms) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["number"] = s.Number
     return structMap
 }
@@ -40,12 +44,12 @@ func (s *SdkInviteSms) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "number")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "number")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Number = *temp.Number
     return nil
 }

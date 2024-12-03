@@ -6,14 +6,14 @@ import (
 
 // SleThreshold represents a SleThreshold struct.
 type SleThreshold struct {
-    Default              *float64       `json:"default,omitempty"`
-    Direction            *string        `json:"direction,omitempty"`
-    Maximum              *float64       `json:"maximum,omitempty"`
-    Metric               *string        `json:"metric,omitempty"`
-    Minimum              *float64       `json:"minimum,omitempty"`
-    Threshold            *string        `json:"threshold,omitempty"`
-    Units                *string        `json:"units,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Default              *float64               `json:"default,omitempty"`
+    Direction            *string                `json:"direction,omitempty"`
+    Maximum              *float64               `json:"maximum,omitempty"`
+    Metric               *string                `json:"metric,omitempty"`
+    Minimum              *float64               `json:"minimum,omitempty"`
+    Threshold            *string                `json:"threshold,omitempty"`
+    Units                *string                `json:"units,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleThreshold.
@@ -21,13 +21,17 @@ type SleThreshold struct {
 func (s SleThreshold) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "default", "direction", "maximum", "metric", "minimum", "threshold", "units"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleThreshold object to a map representation for JSON marshaling.
 func (s SleThreshold) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Default != nil {
         structMap["default"] = s.Default
     }
@@ -60,12 +64,12 @@ func (s *SleThreshold) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "default", "direction", "maximum", "metric", "minimum", "threshold", "units")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default", "direction", "maximum", "metric", "minimum", "threshold", "units")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Default = temp.Default
     s.Direction = temp.Direction
     s.Maximum = temp.Maximum

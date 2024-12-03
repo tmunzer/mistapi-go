@@ -1,6 +1,8 @@
 
 # Utils Clear Arp
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UtilsClearArp`
@@ -14,6 +16,7 @@
 | `PortId` | `*string` | Optional | The device interface on which to clear the ARP cache. |
 | `Vlan` | `*int` | Optional | The VLAN on which to clear the ARP cache. port_id must be specified. |
 | `Vrf` | `*string` | Optional | The vrf for which to clear an ARP entry. applicable for switch. |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@
   "port_id": "wan",
   "vlan": 1000,
   "vrf": "guest",
-  "node": "node0"
+  "node": "node0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

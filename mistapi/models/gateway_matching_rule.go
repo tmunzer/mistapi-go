@@ -6,12 +6,11 @@ import (
 
 // GatewayMatchingRule represents a GatewayMatchingRule struct.
 type GatewayMatchingRule struct {
-    // additional CLI commands to append to the generated Junos config
-    // **Note**: no check is done
+    // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds []string                   `json:"additional_config_cmds,omitempty"`
     Name                 *string                    `json:"name,omitempty"`
     PortConfig           map[string]JunosPortConfig `json:"port_config,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]string          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayMatchingRule.
@@ -19,13 +18,17 @@ type GatewayMatchingRule struct {
 func (g GatewayMatchingRule) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "additional_config_cmds", "name", "port_config"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayMatchingRule object to a map representation for JSON marshaling.
 func (g GatewayMatchingRule) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.AdditionalConfigCmds != nil {
         structMap["additional_config_cmds"] = g.AdditionalConfigCmds
     }
@@ -46,12 +49,12 @@ func (g *GatewayMatchingRule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "name", "port_config")
+    additionalProperties, err := ExtractAdditionalProperties[string](input, "additional_config_cmds", "name", "port_config")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.AdditionalConfigCmds = temp.AdditionalConfigCmds
     g.Name = temp.Name
     g.PortConfig = temp.PortConfig

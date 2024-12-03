@@ -8,10 +8,10 @@ import (
 
 // SsrVersion represents a SsrVersion struct.
 type SsrVersion struct {
-    Default              *bool          `json:"default,omitempty"`
-    Package              string         `json:"package"`
-    Version              string         `json:"version"`
-    AdditionalProperties map[string]any `json:"_"`
+    Default              *bool                  `json:"default,omitempty"`
+    Package              string                 `json:"package"`
+    Version              string                 `json:"version"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrVersion.
@@ -19,13 +19,17 @@ type SsrVersion struct {
 func (s SsrVersion) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "default", "package", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SsrVersion object to a map representation for JSON marshaling.
 func (s SsrVersion) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Default != nil {
         structMap["default"] = s.Default
     }
@@ -46,12 +50,12 @@ func (s *SsrVersion) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "default", "package", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default", "package", "version")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Default = temp.Default
     s.Package = *temp.Package
     s.Version = *temp.Version

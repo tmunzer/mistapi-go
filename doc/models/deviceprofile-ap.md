@@ -3,6 +3,8 @@
 
 Device Profile
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `DeviceprofileAp`
@@ -39,6 +41,7 @@ Device Profile
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | - |
 | `UsbConfig` | [`*models.ApUsb`](../../doc/models/ap-usb.md) | Optional | USB AP settings<br>Note: if native imagotag is enabled, BLE will be disabled automatically<br>Note: legacy, new config moved to ESL Config. |
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -61,7 +64,11 @@ Device Profile
   "aeroscout": {
     "enabled": false,
     "host": "host6",
-    "locate_connected": false
+    "locate_connected": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "ble_config": {
     "beacon_enabled": false,
@@ -72,9 +79,17 @@ Device Profile
       114,
       115
     ],
-    "custom_ble_packet_enabled": false
+    "custom_ble_packet_enabled": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "created_time": 42.6
+  "created_time": 42.6,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

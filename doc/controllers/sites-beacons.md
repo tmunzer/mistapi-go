@@ -49,18 +49,18 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Beacon{
-    EddystoneInstance:  models.ToPointer("string"),
-    EddystoneNamespace: models.ToPointer("string"),
-    EddystoneUrl:       models.ToPointer("string"),
-    IbeaconMajor:       models.ToPointer(0),
-    IbeaconMinor:       models.ToPointer(0),
-    IbeaconUuid:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-    Mac:                models.ToPointer("string"),
-    Name:               models.ToPointer("string"),
-    Power:              models.ToPointer(0),
-    Type:               models.ToPointer(models.BeaconTypeEnum("eddystone-uid")),
-    X:                  models.ToPointer(float64(0)),
-    Y:                  models.ToPointer(float64(0)),
+    EddystoneInstance:    models.ToPointer("string"),
+    EddystoneNamespace:   models.ToPointer("string"),
+    EddystoneUrl:         models.ToPointer("string"),
+    IbeaconMajor:         models.ToPointer(0),
+    IbeaconMinor:         models.ToPointer(0),
+    IbeaconUuid:          models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+    Mac:                  models.ToPointer("string"),
+    Name:                 models.ToPointer("string"),
+    Power:                models.ToPointer(0),
+    Type:                 models.ToPointer(models.BeaconTypeEnum("eddystone-uid")),
+    X:                    models.ToPointer(float64(0)),
+    Y:                    models.ToPointer(float64(0)),
 }
 
 apiResponse, err := sitesBeacons.CreateSiteBeacon(ctx, siteId, &body)
@@ -361,18 +361,18 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 beaconId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Beacon{
-    EddystoneInstance:  models.ToPointer("string"),
-    EddystoneNamespace: models.ToPointer("string"),
-    EddystoneUrl:       models.ToPointer("string"),
-    IbeaconMajor:       models.ToPointer(0),
-    IbeaconMinor:       models.ToPointer(0),
-    IbeaconUuid:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-    Mac:                models.ToPointer("string"),
-    Name:               models.ToPointer("string"),
-    Power:              models.ToPointer(0),
-    Type:               models.ToPointer(models.BeaconTypeEnum("eddystone-uid")),
-    X:                  models.ToPointer(float64(0)),
-    Y:                  models.ToPointer(float64(0)),
+    EddystoneInstance:    models.ToPointer("string"),
+    EddystoneNamespace:   models.ToPointer("string"),
+    EddystoneUrl:         models.ToPointer("string"),
+    IbeaconMajor:         models.ToPointer(0),
+    IbeaconMinor:         models.ToPointer(0),
+    IbeaconUuid:          models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+    Mac:                  models.ToPointer("string"),
+    Name:                 models.ToPointer("string"),
+    Power:                models.ToPointer(0),
+    Type:                 models.ToPointer(models.BeaconTypeEnum("eddystone-uid")),
+    X:                    models.ToPointer(float64(0)),
+    Y:                    models.ToPointer(float64(0)),
 }
 
 apiResponse, err := sitesBeacons.UpdateSiteBeacons(ctx, siteId, beaconId, &body)

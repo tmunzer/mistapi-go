@@ -6,10 +6,10 @@ import (
 
 // OrgSettingCloudshark represents a OrgSettingCloudshark struct.
 type OrgSettingCloudshark struct {
-    Apitoken             *string        `json:"apitoken,omitempty"`
+    Apitoken             *string                `json:"apitoken,omitempty"`
     // if using CS Enteprise
-    Url                  *string        `json:"url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Url                  *string                `json:"url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingCloudshark.
@@ -17,13 +17,17 @@ type OrgSettingCloudshark struct {
 func (o OrgSettingCloudshark) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "apitoken", "url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingCloudshark object to a map representation for JSON marshaling.
 func (o OrgSettingCloudshark) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Apitoken != nil {
         structMap["apitoken"] = o.Apitoken
     }
@@ -41,12 +45,12 @@ func (o *OrgSettingCloudshark) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "apitoken", "url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "apitoken", "url")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Apitoken = temp.Apitoken
     o.Url = temp.Url
     return nil

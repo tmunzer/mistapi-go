@@ -170,13 +170,13 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Webhook{
-    Enabled:            models.ToPointer(true),
-    Headers:            models.NewOptional(models.ToPointer(map[string]string{
+    Enabled:              models.ToPointer(true),
+    Headers:              models.NewOptional(models.ToPointer(map[string]string{
         "x-custom-1": "your_custom_header_value1",
         "x-custom-2": "your_custom_header_value2",
     })),
-    Type:               models.ToPointer(models.WebhookTypeEnum("http-post")),
-    VerifyCert:         models.ToPointer(true),
+    Type:                 models.ToPointer(models.WebhookTypeEnum("http-post")),
+    VerifyCert:           models.ToPointer(true),
 }
 
 apiResponse, err := orgsWebhooks.CreateOrgWebhook(ctx, orgId, &body)
@@ -646,13 +646,13 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 webhookId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Webhook{
-    Enabled:            models.ToPointer(true),
-    Headers:            models.NewOptional(models.ToPointer(map[string]string{
+    Enabled:              models.ToPointer(true),
+    Headers:              models.NewOptional(models.ToPointer(map[string]string{
         "x-custom-1": "your_custom_header_value1",
         "x-custom-2": "your_custom_header_value2",
     })),
-    Type:               models.ToPointer(models.WebhookTypeEnum("http-post")),
-    VerifyCert:         models.ToPointer(true),
+    Type:                 models.ToPointer(models.WebhookTypeEnum("http-post")),
+    VerifyCert:           models.ToPointer(true),
 }
 
 apiResponse, err := orgsWebhooks.UpdateOrgWebhook(ctx, orgId, webhookId, &body)

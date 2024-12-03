@@ -3,6 +3,8 @@
 
 required for preprovisioned Virtual Chassis
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SwitchVirtualChassis`
@@ -13,6 +15,7 @@ required for preprovisioned Virtual Chassis
 |  --- | --- | --- | --- |
 | `Members` | [`[]models.SwitchVirtualChassisMember`](../../doc/models/switch-virtual-chassis-member.md) | Optional | list of Virtual Chassis members |
 | `Preprovisioned` | `*bool` | Optional | to configure whether the VC is preprovisioned or nonprovisioned<br>**Default**: `false` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,9 +26,17 @@ required for preprovisioned Virtual Chassis
     {
       "mac": "mac2",
       "member_id": 58,
-      "vc_role": "master"
+      "vc_role": "master",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

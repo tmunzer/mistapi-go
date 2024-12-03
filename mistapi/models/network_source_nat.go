@@ -7,8 +7,8 @@ import (
 // NetworkSourceNat represents a NetworkSourceNat struct.
 // if `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub
 type NetworkSourceNat struct {
-    ExternalIp           *string        `json:"external_ip,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ExternalIp           *string                `json:"external_ip,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkSourceNat.
@@ -16,13 +16,17 @@ type NetworkSourceNat struct {
 func (n NetworkSourceNat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "external_ip"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NetworkSourceNat object to a map representation for JSON marshaling.
 func (n NetworkSourceNat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.ExternalIp != nil {
         structMap["external_ip"] = n.ExternalIp
     }
@@ -37,12 +41,12 @@ func (n *NetworkSourceNat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "external_ip")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "external_ip")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.ExternalIp = temp.ExternalIp
     return nil
 }

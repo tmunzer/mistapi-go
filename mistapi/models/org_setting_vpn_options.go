@@ -6,10 +6,10 @@ import (
 
 // OrgSettingVpnOptions represents a OrgSettingVpnOptions struct.
 type OrgSettingVpnOptions struct {
-    AsBase               *int           `json:"as_base,omitempty"`
+    AsBase               *int                   `json:"as_base,omitempty"`
     // equiring /12 or bigger to support 16 private IPs for 65535 gateways
-    StSubnet             *string        `json:"st_subnet,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    StSubnet             *string                `json:"st_subnet,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingVpnOptions.
@@ -17,13 +17,17 @@ type OrgSettingVpnOptions struct {
 func (o OrgSettingVpnOptions) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "as_base", "st_subnet"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingVpnOptions object to a map representation for JSON marshaling.
 func (o OrgSettingVpnOptions) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.AsBase != nil {
         structMap["as_base"] = o.AsBase
     }
@@ -41,12 +45,12 @@ func (o *OrgSettingVpnOptions) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "as_base", "st_subnet")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "as_base", "st_subnet")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.AsBase = temp.AsBase
     o.StSubnet = temp.StSubnet
     return nil

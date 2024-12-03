@@ -1,6 +1,8 @@
 
 # Response Events Sky Atp Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseEventsSkyAtpSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.EventsSkyatp`](../../doc/models/events-skyatp.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,12 +35,20 @@
       "threat_level": 152,
       "timestamp": 2.64,
       "type": "type4",
-      "for_site": false
+      "for_site": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 176,
   "total": 46,
-  "next": "next4"
+  "next": "next4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

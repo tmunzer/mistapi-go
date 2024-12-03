@@ -6,12 +6,12 @@ import (
 
 // FwupdateStat represents a FwupdateStat struct.
 type FwupdateStat struct {
-    Progress             Optional[int]     `json:"progress"`
-    Status               Optional[string]  `json:"status"`
-    StatusId             Optional[int]     `json:"status_id"`
-    Timestamp            Optional[float64] `json:"timestamp"`
-    WillRetry            Optional[bool]    `json:"will_retry"`
-    AdditionalProperties map[string]any    `json:"_"`
+    Progress             Optional[int]          `json:"progress"`
+    Status               Optional[string]       `json:"status"`
+    StatusId             Optional[int]          `json:"status_id"`
+    Timestamp            Optional[float64]      `json:"timestamp"`
+    WillRetry            Optional[bool]         `json:"will_retry"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for FwupdateStat.
@@ -19,13 +19,17 @@ type FwupdateStat struct {
 func (f FwupdateStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(f.AdditionalProperties,
+        "progress", "status", "status_id", "timestamp", "will_retry"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(f.toMap())
 }
 
 // toMap converts the FwupdateStat object to a map representation for JSON marshaling.
 func (f FwupdateStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, f.AdditionalProperties)
+    MergeAdditionalProperties(structMap, f.AdditionalProperties)
     if f.Progress.IsValueSet() {
         if f.Progress.Value() != nil {
             structMap["progress"] = f.Progress.Value()
@@ -72,12 +76,12 @@ func (f *FwupdateStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "progress", "status", "status_id", "timestamp", "will_retry")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "progress", "status", "status_id", "timestamp", "will_retry")
     if err != nil {
     	return err
     }
-    
     f.AdditionalProperties = additionalProperties
+    
     f.Progress = temp.Progress
     f.Status = temp.Status
     f.StatusId = temp.StatusId

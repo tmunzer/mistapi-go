@@ -1,6 +1,8 @@
 
 # Webhook Alarm Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookAlarmEvent`
@@ -23,6 +25,7 @@
 | `Timestamp` | `int` | Required | - |
 | `Type` | `string` | Required | event type |
 | `Update` | `*bool` | Optional | If presents, represents that this is an update to event with given id sent earlier. default=false |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,7 +49,11 @@
   ],
   "count": 52,
   "event_id": "00002550-0000-0000-0000-000000000000",
-  "for_site": false
+  "for_site": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

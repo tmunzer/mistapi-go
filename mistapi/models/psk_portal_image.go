@@ -7,10 +7,10 @@ import (
 // PskPortalImage represents a PskPortalImage struct.
 type PskPortalImage struct {
     // Binary file
-    File                 *[]byte        `json:"file,omitempty"`
+    File                 *[]byte                `json:"file,omitempty"`
     // JSON string describing the upload
-    Json                 *string        `json:"json,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Json                 *string                `json:"json,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalImage.
@@ -18,13 +18,17 @@ type PskPortalImage struct {
 func (p PskPortalImage) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "file", "json"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the PskPortalImage object to a map representation for JSON marshaling.
 func (p PskPortalImage) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.File != nil {
         structMap["file"] = p.File
     }
@@ -42,12 +46,12 @@ func (p *PskPortalImage) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "file", "json")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "file", "json")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.File = temp.File
     p.Json = temp.Json
     return nil

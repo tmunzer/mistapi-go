@@ -11,7 +11,7 @@ type SwitchVirtualChassisMember struct {
     MemberId             *int                                  `json:"member_id,omitempty"`
     // Both vc_role master and backup will be matched to routing-engine role in Junos preprovisioned VC config. enum: `backup`, `linecard`, `master`
     VcRole               *SwitchVirtualChassisMemberVcRoleEnum `json:"vc_role,omitempty"`
-    AdditionalProperties map[string]any                        `json:"_"`
+    AdditionalProperties map[string]interface{}                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchVirtualChassisMember.
@@ -19,13 +19,17 @@ type SwitchVirtualChassisMember struct {
 func (s SwitchVirtualChassisMember) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "mac", "member_id", "vc_role"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchVirtualChassisMember object to a map representation for JSON marshaling.
 func (s SwitchVirtualChassisMember) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Mac != nil {
         structMap["mac"] = s.Mac
     }
@@ -46,12 +50,12 @@ func (s *SwitchVirtualChassisMember) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "member_id", "vc_role")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "member_id", "vc_role")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Mac = temp.Mac
     s.MemberId = temp.MemberId
     s.VcRole = temp.VcRole

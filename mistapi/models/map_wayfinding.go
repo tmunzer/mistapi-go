@@ -7,9 +7,9 @@ import (
 // MapWayfinding represents a MapWayfinding struct.
 // properties related to wayfinding
 type MapWayfinding struct {
-    Micello              *MapWayfindingMicello `json:"micello,omitempty"`
-    SnapToPath           *bool                 `json:"snap_to_path,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Micello              *MapWayfindingMicello  `json:"micello,omitempty"`
+    SnapToPath           *bool                  `json:"snap_to_path,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapWayfinding.
@@ -17,13 +17,17 @@ type MapWayfinding struct {
 func (m MapWayfinding) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "micello", "snap_to_path"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MapWayfinding object to a map representation for JSON marshaling.
 func (m MapWayfinding) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Micello != nil {
         structMap["micello"] = m.Micello.toMap()
     }
@@ -41,12 +45,12 @@ func (m *MapWayfinding) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "micello", "snap_to_path")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "micello", "snap_to_path")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Micello = temp.Micello
     m.SnapToPath = temp.SnapToPath
     return nil

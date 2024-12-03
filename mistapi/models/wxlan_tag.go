@@ -68,7 +68,7 @@ type WxlanTag struct {
     Values               []string               `json:"values,omitempty"`
     // if `type`==`vlan_id`, VLAN ID or variable
     VlanId               *WxlanTagVlanId        `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any         `json:"_"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanTag.
@@ -76,13 +76,17 @@ type WxlanTag struct {
 func (w WxlanTag) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "created_time", "for_site", "id", "last_ips", "mac", "match", "modified_time", "name", "op", "org_id", "resource_mac", "services", "site_id", "specs", "subnet", "type", "values", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WxlanTag object to a map representation for JSON marshaling.
 func (w WxlanTag) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.CreatedTime != nil {
         structMap["created_time"] = w.CreatedTime
     }
@@ -156,12 +160,12 @@ func (w *WxlanTag) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "for_site", "id", "last_ips", "mac", "match", "modified_time", "name", "op", "org_id", "resource_mac", "services", "site_id", "specs", "subnet", "type", "values", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "last_ips", "mac", "match", "modified_time", "name", "op", "org_id", "resource_mac", "services", "site_id", "specs", "subnet", "type", "values", "vlan_id")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.CreatedTime = temp.CreatedTime
     w.ForSite = temp.ForSite
     w.Id = temp.Id

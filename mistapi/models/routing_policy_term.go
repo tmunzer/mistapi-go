@@ -10,7 +10,7 @@ type RoutingPolicyTerm struct {
     Action               *RoutingPolicyTermAction   `json:"action,omitempty"`
     // zero or more criteria/filter can be specified to match the term, all criteria have to be met
     Matching             *RoutingPolicyTermMatching `json:"matching,omitempty"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTerm.
@@ -18,13 +18,17 @@ type RoutingPolicyTerm struct {
 func (r RoutingPolicyTerm) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "action", "matching"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RoutingPolicyTerm object to a map representation for JSON marshaling.
 func (r RoutingPolicyTerm) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Action != nil {
         structMap["action"] = r.Action.toMap()
     }
@@ -42,12 +46,12 @@ func (r *RoutingPolicyTerm) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "matching")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "matching")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Action = temp.Action
     r.Matching = temp.Matching
     return nil

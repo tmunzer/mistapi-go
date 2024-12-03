@@ -10,17 +10,17 @@ import (
 // EvpnTopology represents a EvpnTopology struct.
 type EvpnTopology struct {
     // EVPN Options
-    EvpnOptions          *EvpnOptions         `json:"evpn_options,omitempty"`
+    EvpnOptions          *EvpnOptions           `json:"evpn_options,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID           `json:"id,omitempty"`
-    Name                 *string              `json:"name,omitempty"`
-    OrgId                *uuid.UUID           `json:"org_id,omitempty"`
-    Overwrite            *bool                `json:"overwrite,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    Overwrite            *bool                  `json:"overwrite,omitempty"`
     // Property key is the pod number
-    PodNames             map[string]string    `json:"pod_names,omitempty"`
-    SiteId               *uuid.UUID           `json:"site_id,omitempty"`
-    Switches             []EvpnTopologySwitch `json:"switches"`
-    AdditionalProperties map[string]any       `json:"_"`
+    PodNames             map[string]string      `json:"pod_names,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Switches             []EvpnTopologySwitch   `json:"switches"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopology.
@@ -28,13 +28,17 @@ type EvpnTopology struct {
 func (e EvpnTopology) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "evpn_options", "id", "name", "org_id", "overwrite", "pod_names", "site_id", "switches"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EvpnTopology object to a map representation for JSON marshaling.
 func (e EvpnTopology) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.EvpnOptions != nil {
         structMap["evpn_options"] = e.EvpnOptions.toMap()
     }
@@ -72,12 +76,12 @@ func (e *EvpnTopology) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "evpn_options", "id", "name", "org_id", "overwrite", "pod_names", "site_id", "switches")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "evpn_options", "id", "name", "org_id", "overwrite", "pod_names", "site_id", "switches")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.EvpnOptions = temp.EvpnOptions
     e.Id = temp.Id
     e.Name = temp.Name

@@ -7,8 +7,8 @@ import (
 // SwitchStpConfig represents a SwitchStpConfig struct.
 type SwitchStpConfig struct {
     // Switch STP priority: from `0k` to `15k`
-    BridgePriority       *string        `json:"bridge_priority,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    BridgePriority       *string                `json:"bridge_priority,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchStpConfig.
@@ -16,13 +16,17 @@ type SwitchStpConfig struct {
 func (s SwitchStpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "bridge_priority"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchStpConfig object to a map representation for JSON marshaling.
 func (s SwitchStpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.BridgePriority != nil {
         structMap["bridge_priority"] = s.BridgePriority
     }
@@ -37,12 +41,12 @@ func (s *SwitchStpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bridge_priority")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bridge_priority")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.BridgePriority = temp.BridgePriority
     return nil
 }

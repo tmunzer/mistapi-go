@@ -8,9 +8,9 @@ import (
 // InstallersItem represents a InstallersItem struct.
 type InstallersItem struct {
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for InstallersItem.
@@ -18,13 +18,17 @@ type InstallersItem struct {
 func (i InstallersItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "id", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the InstallersItem object to a map representation for JSON marshaling.
 func (i InstallersItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.Id != nil {
         structMap["id"] = i.Id
     }
@@ -42,12 +46,12 @@ func (i *InstallersItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "name")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.Id = temp.Id
     i.Name = temp.Name
     return nil

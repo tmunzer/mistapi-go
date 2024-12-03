@@ -1,6 +1,8 @@
 
 # Admin Invite
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AdminInvite`
@@ -27,6 +29,7 @@
 | `StreetAddress` | `*string` | Optional | street address of registering user |
 | `StreetAddress2` | `*string` | Optional | street address 2 of registering user |
 | `Zipcode` | `*string` | Optional | zipcode of registering user |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -49,7 +52,11 @@
   "state": "CA",
   "street_address": "1601 S De Anza Blvd Ste 248",
   "street_address 2": "1601 S De Anza Blvd Ste 248",
-  "zipcode": "95014"
+  "zipcode": "95014",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

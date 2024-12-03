@@ -34,7 +34,7 @@ type ConstDeviceGateway struct {
     T128Device           *bool                    `json:"t128_device,omitempty"`
     // Device Type. enum: `gateway`
     Type                 string                   `json:"type"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceGateway.
@@ -42,13 +42,17 @@ type ConstDeviceGateway struct {
 func (c ConstDeviceGateway) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "defaults", "description", "experimental", "fans_pluggable", "ha_node0_fpc", "ha_node1_fpc", "has_bgp", "has_fxp0", "has_ha_control", "has_ha_data", "has_irb", "has_poe_out", "has_snapshot", "irb_disabled_by_default", "model", "number_fans", "oc_device", "pic", "ports", "sub_required", "t128_device", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstDeviceGateway object to a map representation for JSON marshaling.
 func (c ConstDeviceGateway) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Defaults != nil {
         structMap["defaults"] = c.Defaults
     }
@@ -128,12 +132,12 @@ func (c *ConstDeviceGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "defaults", "description", "experimental", "fans_pluggable", "ha_node0_fpc", "ha_node1_fpc", "has_bgp", "has_fxp0", "has_ha_control", "has_ha_data", "has_irb", "has_poe_out", "has_snapshot", "irb_disabled_by_default", "model", "number_fans", "oc_device", "pic", "ports", "sub_required", "t128_device", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "defaults", "description", "experimental", "fans_pluggable", "ha_node0_fpc", "ha_node1_fpc", "has_bgp", "has_fxp0", "has_ha_control", "has_ha_data", "has_irb", "has_poe_out", "has_snapshot", "irb_disabled_by_default", "model", "number_fans", "oc_device", "pic", "ports", "sub_required", "t128_device", "type")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Defaults = temp.Defaults
     c.Description = temp.Description
     c.Experimental = temp.Experimental

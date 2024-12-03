@@ -17,7 +17,7 @@ type NacRuleMatching struct {
     SitegroupIds         []uuid.UUID                   `json:"sitegroup_ids,omitempty"`
     // list of vendors to match
     Vendor               []string                      `json:"vendor,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacRuleMatching.
@@ -25,13 +25,17 @@ type NacRuleMatching struct {
 func (n NacRuleMatching) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "auth_type", "nactags", "port_types", "site_ids", "sitegroup_ids", "vendor"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NacRuleMatching object to a map representation for JSON marshaling.
 func (n NacRuleMatching) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.AuthType != nil {
         structMap["auth_type"] = n.AuthType
     }
@@ -61,12 +65,12 @@ func (n *NacRuleMatching) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_type", "nactags", "port_types", "site_ids", "sitegroup_ids", "vendor")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_type", "nactags", "port_types", "site_ids", "sitegroup_ids", "vendor")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.AuthType = temp.AuthType
     n.Nactags = temp.Nactags
     n.PortTypes = temp.PortTypes

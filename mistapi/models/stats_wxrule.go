@@ -20,7 +20,7 @@ type StatsWxrule struct {
     Order                int                                   `json:"order"`
     SrcWxtags            []uuid.UUID                           `json:"src_wxtags"`
     Usage                map[string]StatsWxruleUsageProperties `json:"usage"`
-    AdditionalProperties map[string]any                        `json:"_"`
+    AdditionalProperties map[string]interface{}                `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWxrule.
@@ -28,13 +28,17 @@ type StatsWxrule struct {
 func (s StatsWxrule) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "action", "client_mac", "dst_allow_wxtags", "dst_deny_wxtags", "dst_wxtags", "name", "order", "src_wxtags", "usage"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsWxrule object to a map representation for JSON marshaling.
 func (s StatsWxrule) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["action"] = s.Action
     structMap["client_mac"] = s.ClientMac
     structMap["dst_allow_wxtags"] = s.DstAllowWxtags
@@ -59,12 +63,12 @@ func (s *StatsWxrule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "action", "client_mac", "dst_allow_wxtags", "dst_deny_wxtags", "dst_wxtags", "name", "order", "src_wxtags", "usage")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "client_mac", "dst_allow_wxtags", "dst_deny_wxtags", "dst_wxtags", "name", "order", "src_wxtags", "usage")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Action = *temp.Action
     s.ClientMac = *temp.ClientMac
     s.DstAllowWxtags = *temp.DstAllowWxtags

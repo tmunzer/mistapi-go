@@ -8,9 +8,9 @@ import (
 
 // ResponseConfigHistorySearchItemRadio represents a ResponseConfigHistorySearchItemRadio struct.
 type ResponseConfigHistorySearchItemRadio struct {
-    Band                 string         `json:"band"`
-    Channel              int            `json:"channel"`
-    AdditionalProperties map[string]any `json:"_"`
+    Band                 string                 `json:"band"`
+    Channel              int                    `json:"channel"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseConfigHistorySearchItemRadio.
@@ -18,13 +18,17 @@ type ResponseConfigHistorySearchItemRadio struct {
 func (r ResponseConfigHistorySearchItemRadio) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "band", "channel"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseConfigHistorySearchItemRadio object to a map representation for JSON marshaling.
 func (r ResponseConfigHistorySearchItemRadio) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["band"] = r.Band
     structMap["channel"] = r.Channel
     return structMap
@@ -42,12 +46,12 @@ func (r *ResponseConfigHistorySearchItemRadio) UnmarshalJSON(input []byte) error
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band", "channel")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channel")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Band = *temp.Band
     r.Channel = *temp.Channel
     return nil

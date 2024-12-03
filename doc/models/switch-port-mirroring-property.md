@@ -1,6 +1,8 @@
 
 # Switch Port Mirroring Property
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SwitchPortMirroringProperty`
@@ -14,6 +16,7 @@
 | `InputPortIdsIngress` | `[]string` | Optional | at least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress` should be specified |
 | `OutputNetwork` | `*string` | Optional | exaclty one of the `output_port_id` or `output_network` should be provided |
 | `OutputPortId` | `*string` | Optional | exaclty one of the `output_port_id` or `output_network` should be provided |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,7 +36,11 @@
     "input_port_ids_ingress6",
     "input_port_ids_ingress7",
     "input_port_ids_ingress8"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

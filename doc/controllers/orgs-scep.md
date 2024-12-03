@@ -243,7 +243,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.ClientCertSerialNumbers{
-    SerialNumbers: []string{
+    SerialNumbers:        []string{
         "13 00 13 03 23 EE D5 84 01",
     },
 }
@@ -299,7 +299,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgSettingScep{
-    Enabled: models.ToPointer(true),
+    Enabled:              models.ToPointer(true),
 }
 
 apiResponse, err := orgsSCEP.UpdateOrgMistScep(ctx, orgId, &body)

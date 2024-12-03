@@ -1,6 +1,8 @@
 
 # Repsonse Count
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RepsonseCount`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.CountResult`](../../doc/models/count-result.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,11 +28,16 @@
   "limit": 214,
   "results": [
     {
-      "count": 226
+      "count": 226,
+      "exampleAdditionalProperty": "count_result_additionalProperties2"
     }
   ],
   "start": 170,
-  "total": 52
+  "total": 52,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

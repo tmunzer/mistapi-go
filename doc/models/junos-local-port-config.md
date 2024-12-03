@@ -3,6 +3,8 @@
 
 Switch port config
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `JunosLocalPortConfig`
@@ -47,6 +49,7 @@ Switch port config
 | `Usage` | `string` | Required | port usage name. |
 | `UseVstp` | `*bool` | Optional | if this is connected to a vstp network<br>**Default**: `false` |
 | `VoipNetwork` | `*string` | Optional | network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -77,7 +80,11 @@ Switch port config
   "stp_p2p": false,
   "usage": "usage8",
   "use_vstp": false,
-  "allow_dhcpd": false
+  "allow_dhcpd": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

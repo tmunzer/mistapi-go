@@ -69,10 +69,10 @@ autoDeviceprofileAssignment := true
 
 
 json := models.MapImportJson{
-    ImportAllFloorplans: models.ToPointer(false),
-    ImportHeight:        models.ToPointer(true),
-    ImportOrientation:   models.ToPointer(true),
-    VendorName:          models.MapImportJsonVendorNameEnum("ekahau"),
+    ImportAllFloorplans:  models.ToPointer(false),
+    ImportHeight:         models.ToPointer(true),
+    ImportOrientation:    models.ToPointer(true),
+    VendorName:           models.MapImportJsonVendorNameEnum("ekahau"),
 }
 
 apiResponse, err := orgsMaps.ImportOrgMapToSite(ctx, orgId, siteName, &autoDeviceprofileAssignment, nil, nil, &json)
@@ -178,10 +178,10 @@ autoDeviceprofileAssignment := true
 
 
 json := models.MapOrgImportFileJson{
-    ImportAllFloorplans: models.ToPointer(false),
-    ImportHeight:        models.ToPointer(true),
-    ImportOrientation:   models.ToPointer(true),
-    VendorName:          models.MapOrgImportFileJsonVendorNameEnum("ekahau"),
+    ImportAllFloorplans:  models.ToPointer(false),
+    ImportHeight:         models.ToPointer(true),
+    ImportOrientation:    models.ToPointer(true),
+    VendorName:           models.MapOrgImportFileJsonVendorNameEnum("ekahau"),
 }
 
 apiResponse, err := orgsMaps.ImportOrgMaps(ctx, orgId, &autoDeviceprofileAssignment, nil, nil, &json)

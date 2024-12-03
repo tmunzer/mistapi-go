@@ -62,7 +62,7 @@ type Map struct {
     // when type=image, width of the image map
     Width                *int                     `json:"width,omitempty"`
     WidthM               *float64                 `json:"width_m,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Map.
@@ -70,13 +70,17 @@ type Map struct {
 func (m Map) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "created_time", "flags", "for_site", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "use_auto_orientation", "use_auto_placement", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the Map object to a map representation for JSON marshaling.
 func (m Map) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.CreatedTime != nil {
         structMap["created_time"] = m.CreatedTime
     }
@@ -182,12 +186,12 @@ func (m *Map) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "flags", "for_site", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "use_auto_orientation", "use_auto_placement", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "flags", "for_site", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "use_auto_orientation", "use_auto_placement", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.CreatedTime = temp.CreatedTime
     m.Flags = temp.Flags
     m.ForSite = temp.ForSite

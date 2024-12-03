@@ -12,7 +12,7 @@ type ProtectReCustom struct {
     // enum: `any`, `icmp`, `tcp`, `udp`
     Protocol             *ProtectReCustomProtocolEnum `json:"protocol,omitempty"`
     Subnets              []string                     `json:"subnets,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ProtectReCustom.
@@ -20,13 +20,17 @@ type ProtectReCustom struct {
 func (p ProtectReCustom) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "port_range", "protocol", "subnets"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the ProtectReCustom object to a map representation for JSON marshaling.
 func (p ProtectReCustom) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.PortRange != nil {
         structMap["port_range"] = p.PortRange
     }
@@ -47,12 +51,12 @@ func (p *ProtectReCustom) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "port_range", "protocol", "subnets")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "port_range", "protocol", "subnets")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.PortRange = temp.PortRange
     p.Protocol = temp.Protocol
     p.Subnets = temp.Subnets

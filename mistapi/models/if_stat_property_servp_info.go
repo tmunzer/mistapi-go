@@ -6,14 +6,14 @@ import (
 
 // IfStatPropertyServpInfo represents a IfStatPropertyServpInfo struct.
 type IfStatPropertyServpInfo struct {
-    Asn                  *string        `json:"asn,omitempty"`
-    City                 *string        `json:"city,omitempty"`
-    CountryCode          *string        `json:"country_code,omitempty"`
-    Latitude             *float64       `json:"latitude,omitempty"`
-    Longitude            *float64       `json:"longitude,omitempty"`
-    Org                  *string        `json:"org,omitempty"`
-    RegionCode           *string        `json:"region_code,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Asn                  *string                `json:"asn,omitempty"`
+    City                 *string                `json:"city,omitempty"`
+    CountryCode          *string                `json:"country_code,omitempty"`
+    Latitude             *float64               `json:"latitude,omitempty"`
+    Longitude            *float64               `json:"longitude,omitempty"`
+    Org                  *string                `json:"org,omitempty"`
+    RegionCode           *string                `json:"region_code,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for IfStatPropertyServpInfo.
@@ -21,13 +21,17 @@ type IfStatPropertyServpInfo struct {
 func (i IfStatPropertyServpInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "asn", "city", "country_code", "latitude", "longitude", "org", "region_code"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the IfStatPropertyServpInfo object to a map representation for JSON marshaling.
 func (i IfStatPropertyServpInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.Asn != nil {
         structMap["asn"] = i.Asn
     }
@@ -60,12 +64,12 @@ func (i *IfStatPropertyServpInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "asn", "city", "country_code", "latitude", "longitude", "org", "region_code")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "asn", "city", "country_code", "latitude", "longitude", "org", "region_code")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.Asn = temp.Asn
     i.City = temp.City
     i.CountryCode = temp.CountryCode

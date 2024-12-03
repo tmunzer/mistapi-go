@@ -1,6 +1,8 @@
 
 # Site Sle Metrics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteSleMetrics`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Enabled` | `[]string` | Required | **Constraints**: *Unique Items Required* |
 | `Supported` | `[]string` | Required | **Constraints**: *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,11 @@
     "supported0",
     "supported9",
     "supported8"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

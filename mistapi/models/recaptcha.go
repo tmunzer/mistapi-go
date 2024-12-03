@@ -7,10 +7,10 @@ import (
 // Recaptcha represents a Recaptcha struct.
 type Recaptcha struct {
     // flavor of the captcha. enum: `google`, `hcaptcha`
-    Flavor               *RecaptchaFlavorEnum `json:"flavor,omitempty"`
-    Required             *bool                `json:"required,omitempty"`
-    Sitekey              *string              `json:"sitekey,omitempty"`
-    AdditionalProperties map[string]any       `json:"_"`
+    Flavor               *RecaptchaFlavorEnum   `json:"flavor,omitempty"`
+    Required             *bool                  `json:"required,omitempty"`
+    Sitekey              *string                `json:"sitekey,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Recaptcha.
@@ -18,13 +18,17 @@ type Recaptcha struct {
 func (r Recaptcha) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "flavor", "required", "sitekey"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the Recaptcha object to a map representation for JSON marshaling.
 func (r Recaptcha) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Flavor != nil {
         structMap["flavor"] = r.Flavor
     }
@@ -45,12 +49,12 @@ func (r *Recaptcha) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "flavor", "required", "sitekey")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "flavor", "required", "sitekey")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Flavor = temp.Flavor
     r.Required = temp.Required
     r.Sitekey = temp.Sitekey

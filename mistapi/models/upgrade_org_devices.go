@@ -44,7 +44,7 @@ type UpgradeOrgDevices struct {
     Strategy                *DeviceUpgradeStrategyEnum       `json:"strategy,omitempty"`
     // specific version / stable
     Version                 *string                          `json:"version,omitempty"`
-    AdditionalProperties    map[string]any                   `json:"_"`
+    AdditionalProperties    map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UpgradeOrgDevices.
@@ -52,13 +52,17 @@ type UpgradeOrgDevices struct {
 func (u UpgradeOrgDevices) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "canary_phases", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "site_ids", "snapshot", "start_time", "strategy", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UpgradeOrgDevices object to a map representation for JSON marshaling.
 func (u UpgradeOrgDevices) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.CanaryPhases != nil {
         structMap["canary_phases"] = u.CanaryPhases
     }
@@ -130,12 +134,12 @@ func (u *UpgradeOrgDevices) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "canary_phases", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "site_ids", "snapshot", "start_time", "strategy", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "canary_phases", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "site_ids", "snapshot", "start_time", "strategy", "version")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.CanaryPhases = temp.CanaryPhases
     u.EnableP2p = temp.EnableP2p
     u.Force = temp.Force

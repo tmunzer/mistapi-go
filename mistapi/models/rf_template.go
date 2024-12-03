@@ -39,7 +39,7 @@ type RfTemplate struct {
     OrgId                *uuid.UUID                                 `json:"org_id,omitempty"`
     // whether scanning radio is enabled
     ScanningEnabled      *bool                                      `json:"scanning_enabled,omitempty"`
-    AdditionalProperties map[string]any                             `json:"_"`
+    AdditionalProperties map[string]interface{}                     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RfTemplate.
@@ -47,13 +47,17 @@ type RfTemplate struct {
 func (r RfTemplate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "ant_gain_24", "ant_gain_5", "ant_gain_6", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "country_code", "created_time", "for_site", "id", "model_specific", "modified_time", "name", "org_id", "scanning_enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RfTemplate object to a map representation for JSON marshaling.
 func (r RfTemplate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.AntGain24 != nil {
         structMap["ant_gain_24"] = r.AntGain24
     }
@@ -118,12 +122,12 @@ func (r *RfTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ant_gain_24", "ant_gain_5", "ant_gain_6", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "country_code", "created_time", "for_site", "id", "model_specific", "modified_time", "name", "org_id", "scanning_enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ant_gain_24", "ant_gain_5", "ant_gain_6", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "country_code", "created_time", "for_site", "id", "model_specific", "modified_time", "name", "org_id", "scanning_enabled")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.AntGain24 = temp.AntGain24
     r.AntGain5 = temp.AntGain5
     r.AntGain6 = temp.AntGain6

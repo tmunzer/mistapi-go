@@ -3,6 +3,8 @@
 
 Location Client sample
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookLocationClient`
@@ -13,6 +15,7 @@ Location Client sample
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationClientEvent`](../../doc/models/webhook-location-client-event.md) | Required | list of events |
 | `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"location_client"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,10 +29,18 @@ Location Client sample
       "timestamp": 1461220784,
       "type": "wifi",
       "x": 13.5,
-      "y": 3.2
+      "y": 3.2,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "topic": "location_client"
+  "topic": "location_client",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

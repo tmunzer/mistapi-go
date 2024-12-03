@@ -9,8 +9,8 @@ import (
 // StatsWirelessClientAirwatch represents a StatsWirelessClientAirwatch struct.
 // information if airwatch enabled
 type StatsWirelessClientAirwatch struct {
-    Authorized           bool           `json:"authorized"`
-    AdditionalProperties map[string]any `json:"_"`
+    Authorized           bool                   `json:"authorized"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWirelessClientAirwatch.
@@ -18,13 +18,17 @@ type StatsWirelessClientAirwatch struct {
 func (s StatsWirelessClientAirwatch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "authorized"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsWirelessClientAirwatch object to a map representation for JSON marshaling.
 func (s StatsWirelessClientAirwatch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["authorized"] = s.Authorized
     return structMap
 }
@@ -41,12 +45,12 @@ func (s *StatsWirelessClientAirwatch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "authorized")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "authorized")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Authorized = *temp.Authorized
     return nil
 }

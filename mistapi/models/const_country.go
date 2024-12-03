@@ -9,12 +9,12 @@ import (
 // ConstCountry represents a ConstCountry struct.
 type ConstCountry struct {
     // country code, in two-character
-    Alpha2               string         `json:"alpha2"`
-    Certified            bool           `json:"certified"`
-    Name                 string         `json:"name"`
+    Alpha2               string                 `json:"alpha2"`
+    Certified            bool                   `json:"certified"`
+    Name                 string                 `json:"name"`
     // country code, ISO 3166-1 numeric
-    Numeric              float64        `json:"numeric"`
-    AdditionalProperties map[string]any `json:"_"`
+    Numeric              float64                `json:"numeric"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstCountry.
@@ -22,13 +22,17 @@ type ConstCountry struct {
 func (c ConstCountry) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "alpha2", "certified", "name", "numeric"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstCountry object to a map representation for JSON marshaling.
 func (c ConstCountry) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     structMap["alpha2"] = c.Alpha2
     structMap["certified"] = c.Certified
     structMap["name"] = c.Name
@@ -48,12 +52,12 @@ func (c *ConstCountry) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "alpha2", "certified", "name", "numeric")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alpha2", "certified", "name", "numeric")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Alpha2 = *temp.Alpha2
     c.Certified = *temp.Certified
     c.Name = *temp.Name

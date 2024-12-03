@@ -3,6 +3,8 @@
 
 information about this portal
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsWirelessClientGuest`
@@ -18,6 +20,7 @@ information about this portal
 | `Email` | `string` | Required | - |
 | `Field1` | `string` | Required | - |
 | `Name` | `string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@ information about this portal
   "company": "company4",
   "email": "email2",
   "field1": "field18",
-  "name": "name4"
+  "name": "name4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

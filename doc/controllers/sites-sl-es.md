@@ -2352,8 +2352,8 @@ scopeId := "scope_id0"
 metric := "metric8"
 
 body := models.SleThreshold{
-    Maximum:   models.ToPointer(float64(-60)),
-    Minimum:   models.ToPointer(float64(-90)),
+    Maximum:              models.ToPointer(float64(-60)),
+    Minimum:              models.ToPointer(float64(-90)),
 }
 
 apiResponse, err := sitesSLEs.ReplaceSiteSleThreshold(ctx, siteId, scope, scopeId, metric, &body)
@@ -2435,8 +2435,8 @@ scopeId := "scope_id0"
 metric := "metric8"
 
 body := models.SleThreshold{
-    Maximum:   models.ToPointer(float64(-60)),
-    Minimum:   models.ToPointer(float64(-90)),
+    Maximum:              models.ToPointer(float64(-60)),
+    Minimum:              models.ToPointer(float64(-90)),
 }
 
 apiResponse, err := sitesSLEs.UpdateSiteSleThreshold(ctx, siteId, scope, scopeId, metric, &body)

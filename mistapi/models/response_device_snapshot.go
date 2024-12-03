@@ -11,7 +11,7 @@ type ResponseDeviceSnapshot struct {
     // enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
     Staus                *ResponseDeviceSnapshotStatusEnum `json:"staus,omitempty"`
     Timestamp            *float64                          `json:"timestamp,omitempty"`
-    AdditionalProperties map[string]any                    `json:"_"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceSnapshot.
@@ -19,13 +19,17 @@ type ResponseDeviceSnapshot struct {
 func (r ResponseDeviceSnapshot) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "status_id", "staus", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseDeviceSnapshot object to a map representation for JSON marshaling.
 func (r ResponseDeviceSnapshot) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.StatusId != nil {
         structMap["status_id"] = r.StatusId
     }
@@ -46,12 +50,12 @@ func (r *ResponseDeviceSnapshot) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "status_id", "staus", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "status_id", "staus", "timestamp")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.StatusId = temp.StatusId
     r.Staus = temp.Staus
     r.Timestamp = temp.Timestamp

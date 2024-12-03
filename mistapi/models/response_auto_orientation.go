@@ -10,7 +10,7 @@ type ResponseAutoOrientation struct {
     State                *AutoOrientationStateEnum `json:"state,omitempty"`
     // Time when auto orient process was last queued for this map
     TimeQueued           *float64                  `json:"time_queued,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAutoOrientation.
@@ -18,13 +18,17 @@ type ResponseAutoOrientation struct {
 func (r ResponseAutoOrientation) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "state", "time_queued"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseAutoOrientation object to a map representation for JSON marshaling.
 func (r ResponseAutoOrientation) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.State != nil {
         structMap["state"] = r.State
     }
@@ -42,12 +46,12 @@ func (r *ResponseAutoOrientation) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "state", "time_queued")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "state", "time_queued")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.State = temp.State
     r.TimeQueued = temp.TimeQueued
     return nil

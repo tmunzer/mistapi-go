@@ -3,6 +3,8 @@
 
 Site statistics
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsSite`
@@ -38,6 +40,7 @@ Site statistics
 | `SitegroupIds` | `[]uuid.UUID` | Required | - |
 | `Timezone` | `string` | Required | - |
 | `Tzoffset` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -51,7 +54,11 @@ Site statistics
   "lat": 183.64,
   "latlng": {
     "lat": 37.295833,
-    "lng": -122.032946
+    "lng": -122.032946,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "lng": 239.82,
   "modified_time": 31.1,
@@ -75,7 +82,11 @@ Site statistics
   ],
   "timezone": "timezone6",
   "tzoffset": 240,
-  "secpolicy_id": "0000247e-0000-0000-0000-000000000000"
+  "secpolicy_id": "0000247e-0000-0000-0000-000000000000",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

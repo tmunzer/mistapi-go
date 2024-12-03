@@ -13,7 +13,7 @@ type UpgradeOrgDeviceUpgrade struct {
     // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
     Status               *DeviceUpgradeStatusEnum `json:"status,omitempty"`
     Targets              *UpgradeOrgDeviceTargets `json:"targets,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UpgradeOrgDeviceUpgrade.
@@ -21,13 +21,17 @@ type UpgradeOrgDeviceUpgrade struct {
 func (u UpgradeOrgDeviceUpgrade) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "id", "start_time", "status", "targets"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UpgradeOrgDeviceUpgrade object to a map representation for JSON marshaling.
 func (u UpgradeOrgDeviceUpgrade) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Id != nil {
         structMap["id"] = u.Id
     }
@@ -51,12 +55,12 @@ func (u *UpgradeOrgDeviceUpgrade) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "id", "start_time", "status", "targets")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "start_time", "status", "targets")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Id = temp.Id
     u.StartTime = temp.StartTime
     u.Status = temp.Status

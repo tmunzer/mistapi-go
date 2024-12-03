@@ -1,6 +1,8 @@
 
 # Response Insight Rogue
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseInsightRogue`
@@ -14,6 +16,7 @@
 | `Next` | `*string` | Optional | link to next set of results. If more results aren’t present, next is null. |
 | `Results` | [`[]models.InsightRogueAp`](../../doc/models/insight-rogue-ap.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +35,19 @@
       "num_aps": 140,
       "seen_on_lan": false,
       "ssid": "ssid6",
-      "times_heard": 110
+      "times_heard": 110,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 66,
-  "next": "next6"
+  "next": "next6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

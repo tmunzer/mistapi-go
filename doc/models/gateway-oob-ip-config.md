@@ -3,6 +3,8 @@
 
 out-of-band (vme/em0/fxp0) IP config
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `GatewayOobIpConfig`
@@ -19,6 +21,7 @@ out-of-band (vme/em0/fxp0) IP config
 | `UseMgmtVrf` | `*bool` | Optional | if supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
 | `UseMgmtVrfForHostOut` | `*bool` | Optional | for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired<br>**Default**: `false` |
 | `VlanId` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,7 +38,15 @@ out-of-band (vme/em0/fxp0) IP config
     "ip": "ip6",
     "netmask": "netmask2",
     "type": "dhcp",
-    "use_mgmt_vrf": false
+    "use_mgmt_vrf": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

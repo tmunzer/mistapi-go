@@ -8,9 +8,9 @@ import (
 // The exact service name for which to display the service path
 type UtilsShowServicePath struct {
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
-    ServiceName          *string            `json:"service_name,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
+    ServiceName          *string                `json:"service_name,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowServicePath.
@@ -18,13 +18,17 @@ type UtilsShowServicePath struct {
 func (u UtilsShowServicePath) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "node", "service_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsShowServicePath object to a map representation for JSON marshaling.
 func (u UtilsShowServicePath) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Node != nil {
         structMap["node"] = u.Node
     }
@@ -42,12 +46,12 @@ func (u *UtilsShowServicePath) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "node", "service_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "node", "service_name")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Node = temp.Node
     u.ServiceName = temp.ServiceName
     return nil

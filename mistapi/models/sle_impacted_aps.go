@@ -8,16 +8,16 @@ import (
 
 // SleImpactedAps represents a SleImpactedAps struct.
 type SleImpactedAps struct {
-    Aps                  []SleImpactedApsAp `json:"aps"`
-    Classifier           string             `json:"classifier"`
-    End                  float64            `json:"end"`
-    Failure              string             `json:"failure"`
-    Limit                float64            `json:"limit"`
-    Metric               string             `json:"metric"`
-    Page                 float64            `json:"page"`
-    Start                float64            `json:"start"`
-    TotalCount           float64            `json:"total_count"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Aps                  []SleImpactedApsAp     `json:"aps"`
+    Classifier           string                 `json:"classifier"`
+    End                  float64                `json:"end"`
+    Failure              string                 `json:"failure"`
+    Limit                float64                `json:"limit"`
+    Metric               string                 `json:"metric"`
+    Page                 float64                `json:"page"`
+    Start                float64                `json:"start"`
+    TotalCount           float64                `json:"total_count"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedAps.
@@ -25,13 +25,17 @@ type SleImpactedAps struct {
 func (s SleImpactedAps) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "aps", "classifier", "end", "failure", "limit", "metric", "page", "start", "total_count"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedAps object to a map representation for JSON marshaling.
 func (s SleImpactedAps) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["aps"] = s.Aps
     structMap["classifier"] = s.Classifier
     structMap["end"] = s.End
@@ -56,12 +60,12 @@ func (s *SleImpactedAps) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "aps", "classifier", "end", "failure", "limit", "metric", "page", "start", "total_count")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aps", "classifier", "end", "failure", "limit", "metric", "page", "start", "total_count")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Aps = *temp.Aps
     s.Classifier = *temp.Classifier
     s.End = *temp.End

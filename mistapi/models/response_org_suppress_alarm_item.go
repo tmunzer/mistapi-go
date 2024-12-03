@@ -14,7 +14,7 @@ type ResponseOrgSuppressAlarmItem struct {
     // level of scope. enum: `org`, `site`
     Scope                *SuppressedAlarmScopeEnum `json:"scope,omitempty"`
     SiteId               *uuid.UUID                `json:"site_id,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOrgSuppressAlarmItem.
@@ -22,13 +22,17 @@ type ResponseOrgSuppressAlarmItem struct {
 func (r ResponseOrgSuppressAlarmItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "duration", "expire_time", "scheduled_time", "scope", "site_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseOrgSuppressAlarmItem object to a map representation for JSON marshaling.
 func (r ResponseOrgSuppressAlarmItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Duration != nil {
         structMap["duration"] = r.Duration
     }
@@ -55,12 +59,12 @@ func (r *ResponseOrgSuppressAlarmItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "duration", "expire_time", "scheduled_time", "scope", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "expire_time", "scheduled_time", "scope", "site_id")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Duration = temp.Duration
     r.ExpireTime = temp.ExpireTime
     r.ScheduledTime = temp.ScheduledTime

@@ -10,7 +10,7 @@ type Snmpv3ConfigNotifyItems struct {
     Tag                  *string                     `json:"tag,omitempty"`
     // enum: `inform`, `trap`
     Type                 *Snmpv3ConfigNotifyTypeEnum `json:"type,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Snmpv3ConfigNotifyItems.
@@ -18,13 +18,17 @@ type Snmpv3ConfigNotifyItems struct {
 func (s Snmpv3ConfigNotifyItems) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "name", "tag", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Snmpv3ConfigNotifyItems object to a map representation for JSON marshaling.
 func (s Snmpv3ConfigNotifyItems) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Name != nil {
         structMap["name"] = s.Name
     }
@@ -45,12 +49,12 @@ func (s *Snmpv3ConfigNotifyItems) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "name", "tag", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name", "tag", "type")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Name = temp.Name
     s.Tag = temp.Tag
     s.Type = temp.Type

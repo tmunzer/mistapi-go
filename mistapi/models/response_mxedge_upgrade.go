@@ -16,7 +16,7 @@ type ResponseMxedgeUpgrade struct {
     Status               string                      `json:"status"`
     Strategy             string                      `json:"strategy"`
     Versions             interface{}                 `json:"versions"`
-    AdditionalProperties map[string]any              `json:"_"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMxedgeUpgrade.
@@ -24,13 +24,17 @@ type ResponseMxedgeUpgrade struct {
 func (r ResponseMxedgeUpgrade) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "channel", "counts", "id", "status", "strategy", "versions"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseMxedgeUpgrade object to a map representation for JSON marshaling.
 func (r ResponseMxedgeUpgrade) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["channel"] = r.Channel
     structMap["counts"] = r.Counts.toMap()
     structMap["id"] = r.Id
@@ -52,12 +56,12 @@ func (r *ResponseMxedgeUpgrade) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "channel", "counts", "id", "status", "strategy", "versions")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "counts", "id", "status", "strategy", "versions")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Channel = *temp.Channel
     r.Counts = *temp.Counts
     r.Id = *temp.Id

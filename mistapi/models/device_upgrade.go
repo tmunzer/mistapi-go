@@ -9,16 +9,16 @@ import (
 // DeviceUpgrade represents a DeviceUpgrade struct.
 type DeviceUpgrade struct {
     // Reboot device immediately after upgrade is completed (Available on Junos OS devices)
-    Reboot               *bool          `json:"reboot,omitempty"`
+    Reboot               *bool                  `json:"reboot,omitempty"`
     // reboot start time in epoch
-    RebootAt             *int           `json:"reboot_at,omitempty"`
+    RebootAt             *int                   `json:"reboot_at,omitempty"`
     // Perform recovery snapshot after device is rebooted (Available on Junos OS devices)
-    Snapshot             *bool          `json:"snapshot,omitempty"`
+    Snapshot             *bool                  `json:"snapshot,omitempty"`
     // firmware download start time in epoch
-    StartTime            *float64       `json:"start_time,omitempty"`
+    StartTime            *float64               `json:"start_time,omitempty"`
     // specific version / `stable`, default is to use the latest
-    Version              string         `json:"version"`
-    AdditionalProperties map[string]any `json:"_"`
+    Version              string                 `json:"version"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceUpgrade.
@@ -26,13 +26,17 @@ type DeviceUpgrade struct {
 func (d DeviceUpgrade) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "reboot", "reboot_at", "snapshot", "start_time", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DeviceUpgrade object to a map representation for JSON marshaling.
 func (d DeviceUpgrade) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.Reboot != nil {
         structMap["reboot"] = d.Reboot
     }
@@ -61,12 +65,12 @@ func (d *DeviceUpgrade) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "reboot", "reboot_at", "snapshot", "start_time", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "reboot", "reboot_at", "snapshot", "start_time", "version")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.Reboot = temp.Reboot
     d.RebootAt = temp.RebootAt
     d.Snapshot = temp.Snapshot

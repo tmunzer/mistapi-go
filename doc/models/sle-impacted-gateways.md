@@ -1,6 +1,8 @@
 
 # Sle Impacted Gateways
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SleImpactedGateways`
@@ -18,6 +20,7 @@
 | `Page` | `*int` | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `TotalCount` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,10 +35,18 @@
       "duration": 70,
       "gateway_mac": "gateway_mac2",
       "gateway_model": "gateway_model6",
-      "gateway_version": "gateway_version8"
+      "gateway_version": "gateway_version8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "limit": 48
+  "limit": 48,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -10,23 +10,23 @@ import (
 // ResponseLogSearchItem represents a ResponseLogSearchItem struct.
 type ResponseLogSearchItem struct {
     // admin id
-    AdminId              *uuid.UUID     `json:"admin_id"`
+    AdminId              *uuid.UUID             `json:"admin_id"`
     // name of the admin that performs the action
-    AdminName            *string        `json:"admin_name"`
+    AdminName            *string                `json:"admin_name"`
     // field values after the change
-    After                *interface{}   `json:"after,omitempty"`
+    After                *interface{}           `json:"after,omitempty"`
     // field values prior to the change
-    Before               *interface{}   `json:"before,omitempty"`
-    ForSite              *bool          `json:"for_site,omitempty"`
+    Before               *interface{}           `json:"before,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // log message
-    Message              string         `json:"message"`
-    OrgId                uuid.UUID      `json:"org_id"`
-    SiteId               uuid.UUID      `json:"site_id"`
+    Message              string                 `json:"message"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    SiteId               uuid.UUID              `json:"site_id"`
     // start time, in epoch
-    Timestamp            float64        `json:"timestamp"`
-    AdditionalProperties map[string]any `json:"_"`
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseLogSearchItem.
@@ -34,13 +34,17 @@ type ResponseLogSearchItem struct {
 func (r ResponseLogSearchItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseLogSearchItem object to a map representation for JSON marshaling.
 func (r ResponseLogSearchItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.AdminId != nil {
         structMap["admin_id"] = r.AdminId
     } else {
@@ -82,12 +86,12 @@ func (r *ResponseLogSearchItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "timestamp")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.AdminId = temp.AdminId
     r.AdminName = temp.AdminName
     r.After = temp.After

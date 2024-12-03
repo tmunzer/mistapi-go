@@ -49,19 +49,19 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.IdpProfile{
-    BaseProfile:  models.ToPointer(models.IdpProfileBaseProfileEnum("strict")),
-    Name:         models.ToPointer("relaxed"),
-    Overwrites:   []models.IdpProfileOverwrite{
+    BaseProfile:          models.ToPointer(models.IdpProfileBaseProfileEnum("strict")),
+    Name:                 models.ToPointer("relaxed"),
+    Overwrites:           []models.IdpProfileOverwrite{
         models.IdpProfileOverwrite{
-            Action:   models.ToPointer(models.IdpProfileActionEnum("alert")),
-            Matching: models.ToPointer(models.IdpProfileMatching{
-                AttackName: []string{
+            Action:               models.ToPointer(models.IdpProfileActionEnum("alert")),
+            Matching:             models.ToPointer(models.IdpProfileMatching{
+                AttackName:           []string{
                     "HTTP:INVALID:HDR-FIELD",
                 },
-                DstSubnet:  []string{
+                DstSubnet:            []string{
                     "63.1.2.0/24",
                 },
-                Severity:   []models.IdpProfileMatchingSeverityValueEnum{
+                Severity:             []models.IdpProfileMatchingSeverityValueEnum{
                     models.IdpProfileMatchingSeverityValueEnum("major"),
                 },
             }),
@@ -376,19 +376,19 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 idpprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.IdpProfile{
-    BaseProfile:  models.ToPointer(models.IdpProfileBaseProfileEnum("strict")),
-    Name:         models.ToPointer("relaxed"),
-    Overwrites:   []models.IdpProfileOverwrite{
+    BaseProfile:          models.ToPointer(models.IdpProfileBaseProfileEnum("strict")),
+    Name:                 models.ToPointer("relaxed"),
+    Overwrites:           []models.IdpProfileOverwrite{
         models.IdpProfileOverwrite{
-            Action:   models.ToPointer(models.IdpProfileActionEnum("alert")),
-            Matching: models.ToPointer(models.IdpProfileMatching{
-                AttackName: []string{
+            Action:               models.ToPointer(models.IdpProfileActionEnum("alert")),
+            Matching:             models.ToPointer(models.IdpProfileMatching{
+                AttackName:           []string{
                     "HTTP:INVALID:HDR-FIELD",
                 },
-                DstSubnet:  []string{
+                DstSubnet:            []string{
                     "63.1.2.0/24",
                 },
-                Severity:   []models.IdpProfileMatchingSeverityValueEnum{
+                Severity:             []models.IdpProfileMatchingSeverityValueEnum{
                     models.IdpProfileMatchingSeverityValueEnum("major"),
                 },
             }),

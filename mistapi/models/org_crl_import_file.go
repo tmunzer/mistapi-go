@@ -7,10 +7,10 @@ import (
 // OrgCrlImportFile represents a OrgCrlImportFile struct.
 type OrgCrlImportFile struct {
     // a PEM or DER formatted CRL file
-    File                 *[]byte        `json:"file,omitempty"`
+    File                 *[]byte                `json:"file,omitempty"`
     // a JSON string with "name" field for CRL file issuer (optional)
-    Json                 *string        `json:"json,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Json                 *string                `json:"json,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgCrlImportFile.
@@ -18,13 +18,17 @@ type OrgCrlImportFile struct {
 func (o OrgCrlImportFile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "file", "json"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgCrlImportFile object to a map representation for JSON marshaling.
 func (o OrgCrlImportFile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.File != nil {
         structMap["file"] = o.File
     }
@@ -42,12 +46,12 @@ func (o *OrgCrlImportFile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "file", "json")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "file", "json")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.File = temp.File
     o.Json = temp.Json
     return nil

@@ -55,17 +55,17 @@ body := models.Admin{
     LastName:             models.ToPointer("string"),
     Privileges:           []models.AdminPrivilege{
         models.AdminPrivilege{
-            MspId:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            Name:         models.ToPointer("string"),
-            OrgId:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            OrgName:      models.ToPointer("string"),
-            OrggroupIds:  []uuid.UUID{
+            MspId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+            Name:                 models.ToPointer("string"),
+            OrgId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+            OrgName:              models.ToPointer("string"),
+            OrggroupIds:          []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
-            Role:         models.AdminPrivilegeRoleEnum("admin"),
-            Scope:        models.AdminPrivilegeScopeEnum("org"),
-            SiteId:       models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            SitegroupIds: []uuid.UUID{
+            Role:                 models.AdminPrivilegeRoleEnum("admin"),
+            Scope:                models.AdminPrivilegeScopeEnum("org"),
+            SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+            SitegroupIds:         []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
         },
@@ -321,20 +321,20 @@ body := models.Admin{
     Phone2:               models.ToPointer("string"),
     Privileges:           []models.AdminPrivilege{
         models.AdminPrivilege{
-            MspId:        models.ToPointer(uuid.MustParse("c0cf23fc-d82f-4219-988c-82fb61d8c875")),
-            Name:         models.ToPointer("string"),
-            OrgId:        models.ToPointer(uuid.MustParse("a40f5d1f-d889-42e9-94ea-b9b33585fc6b")),
-            OrgName:      models.ToPointer("string"),
-            OrggroupIds:  []uuid.UUID{
+            MspId:                models.ToPointer(uuid.MustParse("c0cf23fc-d82f-4219-988c-82fb61d8c875")),
+            Name:                 models.ToPointer("string"),
+            OrgId:                models.ToPointer(uuid.MustParse("a40f5d1f-d889-42e9-94ea-b9b33585fc6b")),
+            OrgName:              models.ToPointer("string"),
+            OrggroupIds:          []uuid.UUID{
                 uuid.MustParse("497f6eca-6276-4993-bfeb-53d5bbba6f08"),
             },
-            Role:         models.AdminPrivilegeRoleEnum("admin"),
-            Scope:        models.AdminPrivilegeScopeEnum("org"),
-            SiteId:       models.ToPointer(uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")),
-            SitegroupIds: []uuid.UUID{
+            Role:                 models.AdminPrivilegeRoleEnum("admin"),
+            Scope:                models.AdminPrivilegeScopeEnum("org"),
+            SiteId:               models.ToPointer(uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")),
+            SitegroupIds:         []uuid.UUID{
                 uuid.MustParse("497f6eca-6276-4993-bfeb-53d6bbba6f08"),
             },
-            Views:        models.ToPointer(models.AdminPrivilegeViewEnum("switch_admin")),
+            Views:                models.ToPointer(models.AdminPrivilegeViewEnum("switch_admin")),
         },
     },
 }
@@ -431,17 +431,17 @@ body := models.Admin{
     LastName:             models.ToPointer("string"),
     Privileges:           []models.AdminPrivilege{
         models.AdminPrivilege{
-            MspId:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            Name:         models.ToPointer("string"),
-            OrgId:        models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            OrgName:      models.ToPointer("string"),
-            OrggroupIds:  []uuid.UUID{
+            MspId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+            Name:                 models.ToPointer("string"),
+            OrgId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+            OrgName:              models.ToPointer("string"),
+            OrggroupIds:          []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
-            Role:         models.AdminPrivilegeRoleEnum("admin"),
-            Scope:        models.AdminPrivilegeScopeEnum("org"),
-            SiteId:       models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            SitegroupIds: []uuid.UUID{
+            Role:                 models.AdminPrivilegeRoleEnum("admin"),
+            Scope:                models.AdminPrivilegeScopeEnum("org"),
+            SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+            SitegroupIds:         []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
         },

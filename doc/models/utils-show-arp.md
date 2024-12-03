@@ -1,6 +1,8 @@
 
 # Utils Show Arp
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UtilsShowArp`
@@ -14,6 +16,7 @@
 | `Ip` | `*string` | Optional | IP Address |
 | `PortId` | `*string` | Optional | device Port ID |
 | `Vrf` | `*string` | Optional | VRF Name |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@
   "interval": 0,
   "ip": "192.168.30.7",
   "port_id": "ge-0/0/0.0",
-  "vrf": "guest"
+  "vrf": "guest",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

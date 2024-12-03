@@ -62,6 +62,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsClearSession{
+    AdditionalProperties: map[string]interface{}{
+        "port_id": interface{}("ge-0/0/1.10"),
+    },
 }
 
 resp, err := utilitiesWAN.ClearSiteDeviceSession(ctx, siteId, deviceId, &body)
@@ -123,10 +126,10 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsClearArp{
-    Ip:     models.ToPointer("10.1.1.1"),
-    PortId: models.ToPointer("wan"),
-    Vlan:   models.ToPointer(1000),
-    Vrf:    models.ToPointer("guest"),
+    Ip:                   models.ToPointer("10.1.1.1"),
+    PortId:               models.ToPointer("wan"),
+    Vlan:                 models.ToPointer(1000),
+    Vrf:                  models.ToPointer("guest"),
 }
 
 apiResponse, err := utilitiesWAN.ClearSiteSsrArpCache(ctx, siteId, deviceId, &body)
@@ -186,9 +189,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsClearBgp{
-    Neighbor: "all",
-    Type:     models.UtilsClearBgpTypeEnum("in"),
-    Vrf:      models.ToPointer("TestVrf"),
+    Neighbor:             "all",
+    Type:                 models.UtilsClearBgpTypeEnum("in"),
+    Vrf:                  models.ToPointer("TestVrf"),
 }
 
 apiResponse, err := utilitiesWAN.ClearSiteSsrBgpRoutes(ctx, siteId, deviceId, &body)
@@ -276,7 +279,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsReleaseDhcp{
-    PortId: "ge-0/0/1.10",
+    PortId:               "ge-0/0/1.10",
 }
 
 apiResponse, err := utilitiesWAN.ReleaseSiteSsrDhcpLease(ctx, siteId, deviceId, &body)
@@ -427,9 +430,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsServicePing{
-    Count:   models.ToPointer(10),
-    Host:    "1.1.1.1",
-    Service: "web-session",
+    Count:                models.ToPointer(10),
+    Host:                 "1.1.1.1",
+    Service:              "web-session",
 }
 
 apiResponse, err := utilitiesWAN.ServicePingFromSsr(ctx, siteId, deviceId, &body)
@@ -522,13 +525,13 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowRoute{
-    Duration: models.ToPointer(0),
-    Interval: models.ToPointer(0),
-    Neighbor: models.ToPointer("192.168.4.1"),
-    Prefix:   models.ToPointer("192.168.0.5/30"),
-    Protocol: models.ToPointer(models.UtilsShowRouteProtocolEnum("bgp")),
-    Route:    models.ToPointer("advertised"),
-    Vrf:      models.ToPointer("default"),
+    Duration:             models.ToPointer(0),
+    Interval:             models.ToPointer(0),
+    Neighbor:             models.ToPointer("192.168.4.1"),
+    Prefix:               models.ToPointer("192.168.0.5/30"),
+    Protocol:             models.ToPointer(models.UtilsShowRouteProtocolEnum("bgp")),
+    Route:                models.ToPointer("advertised"),
+    Vrf:                  models.ToPointer("default"),
 }
 
 apiResponse, err := utilitiesWAN.ShowSiteSsrAndSrxRoutes(ctx, siteId, deviceId, &body)
@@ -600,8 +603,8 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowSession{
-    Node:        models.ToPointer(models.HaClusterNodeEnum("node0")),
-    ServiceName: models.ToPointer("any"),
+    Node:                 models.ToPointer(models.HaClusterNodeEnum("node0")),
+    ServiceName:          models.ToPointer("any"),
 }
 
 apiResponse, err := utilitiesWAN.ShowSiteSsrAndSrxSessions(ctx, siteId, deviceId, &body)
@@ -685,8 +688,8 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowOspfDatabase{
-    SelfOriginate: models.ToPointer(false),
-    Vrf:           models.ToPointer("lan"),
+    SelfOriginate:        models.ToPointer(false),
+    Vrf:                  models.ToPointer("lan"),
 }
 
 apiResponse, err := utilitiesWAN.ShowSiteSsrOspfDatabase(ctx, siteId, deviceId, &body)
@@ -769,8 +772,8 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowOspfInterfaces{
-    PortId: models.ToPointer("ge-0/0/3"),
-    Vrf:    models.ToPointer("lan"),
+    PortId:               models.ToPointer("ge-0/0/3"),
+    Vrf:                  models.ToPointer("lan"),
 }
 
 apiResponse, err := utilitiesWAN.ShowSiteSsrOspfInterfaces(ctx, siteId, deviceId, &body)
@@ -854,9 +857,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowOspfNeighbors{
-    Neighbor: models.ToPointer("10.1.1.1"),
-    PortId:   models.ToPointer("ge-0/0/3"),
-    Vrf:      models.ToPointer("lan"),
+    Neighbor:             models.ToPointer("10.1.1.1"),
+    PortId:               models.ToPointer("ge-0/0/3"),
+    Vrf:                  models.ToPointer("lan"),
 }
 
 apiResponse, err := utilitiesWAN.ShowSiteSsrOspfNeighbors(ctx, siteId, deviceId, &body)
@@ -939,7 +942,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowOspfSummary{
-    Vrf:  models.ToPointer("lan"),
+    Vrf:                  models.ToPointer("lan"),
 }
 
 apiResponse, err := utilitiesWAN.ShowSiteSsrOspfSummary(ctx, siteId, deviceId, &body)
@@ -1011,8 +1014,8 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowServicePath{
-    Node:        models.ToPointer(models.HaClusterNodeEnum("node0")),
-    ServiceName: models.ToPointer("any"),
+    Node:                 models.ToPointer(models.HaClusterNodeEnum("node0")),
+    ServiceName:          models.ToPointer("any"),
 }
 
 apiResponse, err := utilitiesWAN.ShowSiteSsrServicePath(ctx, siteId, deviceId, &body)

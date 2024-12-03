@@ -7,9 +7,9 @@ import (
 // TunnelProviderOptionsJse represents a TunnelProviderOptionsJse struct.
 // for jse-ipsec, this allow provisioning of adequate resource on JSE. Make sure adequate licenses are added
 type TunnelProviderOptionsJse struct {
-    Name                 *string        `json:"name,omitempty"`
-    NumUsers             *int           `json:"num_users,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 *string                `json:"name,omitempty"`
+    NumUsers             *int                   `json:"num_users,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelProviderOptionsJse.
@@ -17,13 +17,17 @@ type TunnelProviderOptionsJse struct {
 func (t TunnelProviderOptionsJse) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "name", "num_users"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TunnelProviderOptionsJse object to a map representation for JSON marshaling.
 func (t TunnelProviderOptionsJse) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.Name != nil {
         structMap["name"] = t.Name
     }
@@ -41,12 +45,12 @@ func (t *TunnelProviderOptionsJse) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "name", "num_users")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name", "num_users")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.Name = temp.Name
     t.NumUsers = temp.NumUsers
     return nil

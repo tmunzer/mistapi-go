@@ -1,6 +1,8 @@
 
 # Stats Cluster Config Fabric Link Info
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsClusterConfigFabricLinkInfo`
@@ -14,6 +16,7 @@
 | `InternalStatus` | `*string` | Optional | - |
 | `State` | `*string` | Optional | - |
 | `Status` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   ],
   "InternalStatus": "InternalStatus2",
   "State": "State4",
-  "Status": "Status0"
+  "Status": "Status0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -3,6 +3,8 @@
 
 Only if `provider`== `custom-ipsec`
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `GatewayTemplateTunnelProbe`
@@ -15,6 +17,7 @@ Only if `provider`== `custom-ipsec`
 | `Threshold` | `*int` | Optional | number of consecutive misses before declaring the tunnel down |
 | `Timeout` | `*int` | Optional | time within which to complete the connectivity check |
 | `Type` | [`*models.GatewayTemplateProbeTypeEnum`](../../doc/models/gateway-template-probe-type-enum.md) | Optional | enum: `http`, `icmp`<br>**Default**: `"icmp"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@ Only if `provider`== `custom-ipsec`
   "type": "icmp",
   "interval": 192,
   "threshold": 252,
-  "timeout": 60
+  "timeout": 60,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

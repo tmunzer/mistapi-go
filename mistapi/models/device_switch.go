@@ -14,8 +14,7 @@ type DeviceSwitch struct {
     AclPolicies           []AclPolicy                            `json:"acl_policies,omitempty"`
     // ACL Tags to identify traffic source or destination. Key name is the tag name
     AclTags               map[string]AclTag                      `json:"acl_tags,omitempty"`
-    // additional CLI commands to append to the generated Junos config
-    // **Note**: no check is done
+    // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds  []string                               `json:"additional_config_cmds,omitempty"`
     // when the object has been created, in epoch
     CreatedTime           *float64                               `json:"created_time,omitempty"`
@@ -105,7 +104,7 @@ type DeviceSwitch struct {
     X                     *float64                               `json:"x,omitempty"`
     // y in pixel
     Y                     *float64                               `json:"y,omitempty"`
-    AdditionalProperties  map[string]any                         `json:"_"`
+    AdditionalProperties  map[string]interface{}                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceSwitch.
@@ -113,13 +112,17 @@ type DeviceSwitch struct {
 func (d DeviceSwitch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "other_ip_configs", "port_config", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DeviceSwitch object to a map representation for JSON marshaling.
 func (d DeviceSwitch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.AclPolicies != nil {
         structMap["acl_policies"] = d.AclPolicies
     }
@@ -307,12 +310,12 @@ func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "other_ip_configs", "port_config", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "other_ip_configs", "port_config", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.AclPolicies = temp.AclPolicies
     d.AclTags = temp.AclTags
     d.AdditionalConfigCmds = temp.AdditionalConfigCmds

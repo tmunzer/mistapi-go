@@ -8,7 +8,7 @@ import (
 type MxedgeTuntermSwitchConfig struct {
     PortVlanId           *int                              `json:"port_vlan_id,omitempty"`
     VlanIds              []MxedgeTuntermSwitchConfigVlanId `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any                    `json:"_"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermSwitchConfig.
@@ -16,13 +16,17 @@ type MxedgeTuntermSwitchConfig struct {
 func (m MxedgeTuntermSwitchConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "port_vlan_id", "vlan_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeTuntermSwitchConfig object to a map representation for JSON marshaling.
 func (m MxedgeTuntermSwitchConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.PortVlanId != nil {
         structMap["port_vlan_id"] = m.PortVlanId
     }
@@ -40,12 +44,12 @@ func (m *MxedgeTuntermSwitchConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "port_vlan_id", "vlan_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "port_vlan_id", "vlan_ids")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.PortVlanId = temp.PortVlanId
     m.VlanIds = temp.VlanIds
     return nil

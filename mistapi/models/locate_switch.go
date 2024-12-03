@@ -7,10 +7,10 @@ import (
 // LocateSwitch represents a LocateSwitch struct.
 type LocateSwitch struct {
     // minutes the leds should keep flashing
-    Duration             *int           `json:"duration,omitempty"`
+    Duration             *int                   `json:"duration,omitempty"`
     // for virtual chassis, the MAC of the member
-    Mac                  *string        `json:"mac,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  *string                `json:"mac,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for LocateSwitch.
@@ -18,13 +18,17 @@ type LocateSwitch struct {
 func (l LocateSwitch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(l.AdditionalProperties,
+        "duration", "mac"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(l.toMap())
 }
 
 // toMap converts the LocateSwitch object to a map representation for JSON marshaling.
 func (l LocateSwitch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, l.AdditionalProperties)
+    MergeAdditionalProperties(structMap, l.AdditionalProperties)
     if l.Duration != nil {
         structMap["duration"] = l.Duration
     }
@@ -42,12 +46,12 @@ func (l *LocateSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "duration", "mac")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "mac")
     if err != nil {
     	return err
     }
-    
     l.AdditionalProperties = additionalProperties
+    
     l.Duration = temp.Duration
     l.Mac = temp.Mac
     return nil

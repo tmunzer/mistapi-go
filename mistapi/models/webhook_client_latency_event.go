@@ -7,19 +7,19 @@ import (
 
 // WebhookClientLatencyEvent represents a WebhookClientLatencyEvent struct.
 type WebhookClientLatencyEvent struct {
-    AvgAuth              *float64       `json:"avg_auth,omitempty"`
-    AvgDhcp              *float64       `json:"avg_dhcp,omitempty"`
-    AvgDns               *float64       `json:"avg_dns,omitempty"`
-    MaxAuth              *float64       `json:"max_auth,omitempty"`
-    MaxDhcp              *float64       `json:"max_dhcp,omitempty"`
-    MaxDns               *float64       `json:"max_dns,omitempty"`
-    MinAuth              *float64       `json:"min_auth,omitempty"`
-    MinDhcp              *float64       `json:"min_dhcp,omitempty"`
-    MinDns               *float64       `json:"min_dns,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Timestamp            *int           `json:"timestamp,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    AvgAuth              *float64               `json:"avg_auth,omitempty"`
+    AvgDhcp              *float64               `json:"avg_dhcp,omitempty"`
+    AvgDns               *float64               `json:"avg_dns,omitempty"`
+    MaxAuth              *float64               `json:"max_auth,omitempty"`
+    MaxDhcp              *float64               `json:"max_dhcp,omitempty"`
+    MaxDns               *float64               `json:"max_dns,omitempty"`
+    MinAuth              *float64               `json:"min_auth,omitempty"`
+    MinDhcp              *float64               `json:"min_dhcp,omitempty"`
+    MinDns               *float64               `json:"min_dns,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Timestamp            *int                   `json:"timestamp,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookClientLatencyEvent.
@@ -27,13 +27,17 @@ type WebhookClientLatencyEvent struct {
 func (w WebhookClientLatencyEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "avg_auth", "avg_dhcp", "avg_dns", "max_auth", "max_dhcp", "max_dns", "min_auth", "min_dhcp", "min_dns", "org_id", "site_id", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookClientLatencyEvent object to a map representation for JSON marshaling.
 func (w WebhookClientLatencyEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.AvgAuth != nil {
         structMap["avg_auth"] = w.AvgAuth
     }
@@ -81,12 +85,12 @@ func (w *WebhookClientLatencyEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "avg_auth", "avg_dhcp", "avg_dns", "max_auth", "max_dhcp", "max_dns", "min_auth", "min_dhcp", "min_dns", "org_id", "site_id", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "avg_auth", "avg_dhcp", "avg_dns", "max_auth", "max_dhcp", "max_dns", "min_auth", "min_dhcp", "min_dns", "org_id", "site_id", "timestamp")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.AvgAuth = temp.AvgAuth
     w.AvgDhcp = temp.AvgDhcp
     w.AvgDns = temp.AvgDns

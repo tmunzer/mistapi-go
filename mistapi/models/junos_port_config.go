@@ -35,7 +35,7 @@ type JunosPortConfig struct {
     Speed                *JunosPortConfigSpeedEnum  `json:"speed,omitempty"`
     // port usage name. If EVPN is used, use `evpn_uplink`or `evpn_downlink`
     Usage                string                     `json:"usage"`
-    AdditionalProperties map[string]any             `json:"_"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for JunosPortConfig.
@@ -43,13 +43,17 @@ type JunosPortConfig struct {
 func (j JunosPortConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(j.AdditionalProperties,
+        "ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "no_local_overwrite", "poe_disabled", "speed", "usage"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(j.toMap())
 }
 
 // toMap converts the JunosPortConfig object to a map representation for JSON marshaling.
 func (j JunosPortConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, j.AdditionalProperties)
+    MergeAdditionalProperties(structMap, j.AdditionalProperties)
     if j.AeDisableLacp != nil {
         structMap["ae_disable_lacp"] = j.AeDisableLacp
     }
@@ -112,12 +116,12 @@ func (j *JunosPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "no_local_overwrite", "poe_disabled", "speed", "usage")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "no_local_overwrite", "poe_disabled", "speed", "usage")
     if err != nil {
     	return err
     }
-    
     j.AdditionalProperties = additionalProperties
+    
     j.AeDisableLacp = temp.AeDisableLacp
     j.AeIdx = temp.AeIdx
     j.AeLacpSlow = temp.AeLacpSlow

@@ -3,6 +3,8 @@
 
 site mist edges form a cluster of radsecproxy servers
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteSettingMxedge`
@@ -15,6 +17,7 @@ site mist edges form a cluster of radsecproxy servers
 | `MistNac` | [`*models.MxclusterNac`](../../doc/models/mxcluster-nac.md) | Optional | - |
 | `MistNacedge` | [`*models.MistNacedge`](../../doc/models/mist-nacedge.md) | Optional | - |
 | `Radsec` | [`*models.MxclusterRadsec`](../../doc/models/mxcluster-radsec.md) | Optional | MxEdge Radsec Configuration |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,17 +30,29 @@ site mist edges form a cluster of radsecproxy servers
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "require_message_authenticator": false
+        "require_message_authenticator": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       {
         "disable_event_timestamp_check": false,
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "require_message_authenticator": false
+        "require_message_authenticator": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     ],
-    "enabled": false
+    "enabled": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "mist_nac": {
     "acct_server_port": 70,
@@ -47,23 +62,39 @@ site mist edges form a cluster of radsecproxy servers
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-meraki"
+        "vendor": "cisco-meraki",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "key1": {
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-meraki"
+        "vendor": "cisco-meraki",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "key2": {
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-meraki"
+        "vendor": "cisco-meraki",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     },
     "enabled": false,
-    "secret": "secret6"
+    "secret": "secret6",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "mist_nacedge": {
     "auth_ttl": 110,
@@ -74,7 +105,11 @@ site mist edges form a cluster of radsecproxy servers
       "mxedge_hosts7",
       "mxedge_hosts8",
       "mxedge_hosts9"
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "radsec": {
     "acct_servers": [
@@ -85,7 +120,11 @@ site mist edges form a cluster of radsecproxy servers
         "ssids": [
           "ssids5",
           "ssids6"
-        ]
+        ],
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     ],
     "auth_servers": [
@@ -94,12 +133,24 @@ site mist edges form a cluster of radsecproxy servers
         "keywrap_enabled": false,
         "keywrap_format": "ascii",
         "keywrap_kek": "keywrap_kek4",
-        "keywrap_mack": "keywrap_mack6"
+        "keywrap_mack": "keywrap_mack6",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     ],
     "enabled": false,
     "match_ssid": false,
-    "nas_ip_source": "tunnel"
+    "nas_ip_source": "tunnel",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

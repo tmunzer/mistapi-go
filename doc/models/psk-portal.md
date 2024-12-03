@@ -1,6 +1,8 @@
 
 # Psk Portal
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `PskPortal`
@@ -33,6 +35,7 @@
 | `ThumbnailUrl` | `*string` | Optional | - |
 | `Type` | [`*models.PskPortalTypeEnum`](../../doc/models/psk-portal-type-enum.md) | Optional | for personal psk portal. enum: `admin`, `byod` |
 | `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,7 +53,11 @@
   "ssid": "ssid2",
   "bg_image_url": "bg_image_url8",
   "created_time": 207.6,
-  "expire_time": 166
+  "expire_time": 166,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

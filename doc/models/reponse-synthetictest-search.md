@@ -1,6 +1,8 @@
 
 # Reponse Synthetictest Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ReponseSynthetictestSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.SynthetictestInfo`](../../doc/models/synthetictest-info.md) | Required | - |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,12 +38,20 @@
       "tx_mbps": 199,
       "vlan_id": 20,
       "device_type": "gateway",
-      "mac": "mac0"
+      "mac": "mac0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 200,
   "total": 22,
-  "next": "next8"
+  "next": "next8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

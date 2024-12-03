@@ -9,27 +9,27 @@ import (
 
 // WebhookAlarmEvent represents a WebhookAlarmEvent struct.
 type WebhookAlarmEvent struct {
-    Aps                  []string           `json:"aps,omitempty"`
-    Bssids               []string           `json:"bssids,omitempty"`
+    Aps                  []string               `json:"aps,omitempty"`
+    Bssids               []string               `json:"bssids,omitempty"`
     // If present, represents number of events of given type occurred in current interval, default=1
-    Count                *int               `json:"count,omitempty"`
+    Count                *int                   `json:"count,omitempty"`
     // event id
-    EventId              *uuid.UUID         `json:"event_id,omitempty"`
-    ForSite              *bool              `json:"for_site,omitempty"`
+    EventId              *uuid.UUID             `json:"event_id,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID          `json:"id"`
-    LastSeen             float64            `json:"last_seen"`
+    Id                   uuid.UUID              `json:"id"`
+    LastSeen             float64                `json:"last_seen"`
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
-    OrgId                uuid.UUID          `json:"org_id"`
-    SiteId               uuid.UUID          `json:"site_id"`
-    Ssids                []string           `json:"ssids,omitempty"`
-    Timestamp            int                `json:"timestamp"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    Ssids                []string               `json:"ssids,omitempty"`
+    Timestamp            int                    `json:"timestamp"`
     // event type
-    Type                 string             `json:"type"`
+    Type                 string                 `json:"type"`
     // If presents, represents that this is an update to event with given id sent earlier. default=false
-    Update               *bool              `json:"update,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Update               *bool                  `json:"update,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookAlarmEvent.
@@ -37,13 +37,17 @@ type WebhookAlarmEvent struct {
 func (w WebhookAlarmEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "aps", "bssids", "count", "event_id", "for_site", "id", "last_seen", "node", "org_id", "site_id", "ssids", "timestamp", "type", "update"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookAlarmEvent object to a map representation for JSON marshaling.
 func (w WebhookAlarmEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Aps != nil {
         structMap["aps"] = w.Aps
     }
@@ -89,12 +93,12 @@ func (w *WebhookAlarmEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "aps", "bssids", "count", "event_id", "for_site", "id", "last_seen", "node", "org_id", "site_id", "ssids", "timestamp", "type", "update")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aps", "bssids", "count", "event_id", "for_site", "id", "last_seen", "node", "org_id", "site_id", "ssids", "timestamp", "type", "update")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Aps = temp.Aps
     w.Bssids = temp.Bssids
     w.Count = temp.Count

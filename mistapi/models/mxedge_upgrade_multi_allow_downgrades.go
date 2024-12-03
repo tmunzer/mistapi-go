@@ -7,12 +7,12 @@ import (
 // MxedgeUpgradeMultiAllowDowngrades represents a MxedgeUpgradeMultiAllowDowngrades struct.
 // whether downgrade is allowed when running version is higher than expected version for each service
 type MxedgeUpgradeMultiAllowDowngrades struct {
-    Mxagent              *bool          `json:"mxagent,omitempty"`
-    Mxdas                *bool          `json:"mxdas,omitempty"`
-    Mxocproxy            *bool          `json:"mxocproxy,omitempty"`
-    Radsecproxy          *bool          `json:"radsecproxy,omitempty"`
-    Tunterm              *bool          `json:"tunterm,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mxagent              *bool                  `json:"mxagent,omitempty"`
+    Mxdas                *bool                  `json:"mxdas,omitempty"`
+    Mxocproxy            *bool                  `json:"mxocproxy,omitempty"`
+    Radsecproxy          *bool                  `json:"radsecproxy,omitempty"`
+    Tunterm              *bool                  `json:"tunterm,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeUpgradeMultiAllowDowngrades.
@@ -20,13 +20,17 @@ type MxedgeUpgradeMultiAllowDowngrades struct {
 func (m MxedgeUpgradeMultiAllowDowngrades) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "mxagent", "mxdas", "mxocproxy", "radsecproxy", "tunterm"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeUpgradeMultiAllowDowngrades object to a map representation for JSON marshaling.
 func (m MxedgeUpgradeMultiAllowDowngrades) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Mxagent != nil {
         structMap["mxagent"] = m.Mxagent
     }
@@ -53,12 +57,12 @@ func (m *MxedgeUpgradeMultiAllowDowngrades) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mxagent", "mxdas", "mxocproxy", "radsecproxy", "tunterm")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mxagent", "mxdas", "mxocproxy", "radsecproxy", "tunterm")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Mxagent = temp.Mxagent
     m.Mxdas = temp.Mxdas
     m.Mxocproxy = temp.Mxocproxy

@@ -25,7 +25,7 @@ type OspfAreasNetwork struct {
     NoReadvertiseToOverlay *bool                             `json:"no_readvertise_to_overlay,omitempty"`
     // whether to send OSPF-Hello
     Passive                *bool                             `json:"passive,omitempty"`
-    AdditionalProperties   map[string]any                    `json:"_"`
+    AdditionalProperties   map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OspfAreasNetwork.
@@ -33,13 +33,17 @@ type OspfAreasNetwork struct {
 func (o OspfAreasNetwork) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "auth_keys", "auth_password", "auth_type", "bfd_minimum_interval", "dead_interval", "export_policy", "hello_interval", "import_policy", "interface_type", "metric", "no_readvertise_to_overlay", "passive"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OspfAreasNetwork object to a map representation for JSON marshaling.
 func (o OspfAreasNetwork) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.AuthKeys != nil {
         structMap["auth_keys"] = o.AuthKeys
     }
@@ -91,12 +95,12 @@ func (o *OspfAreasNetwork) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_keys", "auth_password", "auth_type", "bfd_minimum_interval", "dead_interval", "export_policy", "hello_interval", "import_policy", "interface_type", "metric", "no_readvertise_to_overlay", "passive")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_keys", "auth_password", "auth_type", "bfd_minimum_interval", "dead_interval", "export_policy", "hello_interval", "import_policy", "interface_type", "metric", "no_readvertise_to_overlay", "passive")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.AuthKeys = temp.AuthKeys
     o.AuthPassword = temp.AuthPassword
     o.AuthType = temp.AuthType

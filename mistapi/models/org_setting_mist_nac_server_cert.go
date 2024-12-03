@@ -7,11 +7,11 @@ import (
 // OrgSettingMistNacServerCert represents a OrgSettingMistNacServerCert struct.
 // radius server cert to be presented in EAP TLS
 type OrgSettingMistNacServerCert struct {
-    Cert                 *string        `json:"cert,omitempty"`
-    Key                  *string        `json:"key,omitempty"`
+    Cert                 *string                `json:"cert,omitempty"`
+    Key                  *string                `json:"key,omitempty"`
     // private key password (optional)
-    Password             *string        `json:"password,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Password             *string                `json:"password,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingMistNacServerCert.
@@ -19,13 +19,17 @@ type OrgSettingMistNacServerCert struct {
 func (o OrgSettingMistNacServerCert) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "cert", "key", "password"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingMistNacServerCert object to a map representation for JSON marshaling.
 func (o OrgSettingMistNacServerCert) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Cert != nil {
         structMap["cert"] = o.Cert
     }
@@ -46,12 +50,12 @@ func (o *OrgSettingMistNacServerCert) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cert", "key", "password")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cert", "key", "password")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Cert = temp.Cert
     o.Key = temp.Key
     o.Password = temp.Password

@@ -1,7 +1,7 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/apimatic/go-core-runtime v0.0.25 h1:bEndGNqpBMZc9QSlUTcjw+RTrLEATi702N2raqPC44g=
-github.com/apimatic/go-core-runtime v0.0.25/go.mod h1:eYSG9icLyMjbPWq212ELOQ4PZdlT2RihZGXEaAZdx6Q=
+github.com/apimatic/go-core-runtime v0.0.26 h1:jf8yEXK4hIEQCwXrmLQORSrbKAMK9q2mpff/3+ueNiM=
+github.com/apimatic/go-core-runtime v0.0.26/go.mod h1:eYSG9icLyMjbPWq212ELOQ4PZdlT2RihZGXEaAZdx6Q=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/chrismarget-j/go-licenses v0.0.0-20240224210557-f22f3e06d3d4 h1:nFogSDBo0cmCwO2JX2gl+2onPk4Fw63VreG+HX9U5n0=
 github.com/chrismarget-j/go-licenses v0.0.0-20240224210557-f22f3e06d3d4/go.mod h1:RxJksUf3IJIwpKhrrGOUOVD7qQQj1tlJtXYhmsyLVlE=

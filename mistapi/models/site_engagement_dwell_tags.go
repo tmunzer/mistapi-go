@@ -7,11 +7,11 @@ import (
 // SiteEngagementDwellTags represents a SiteEngagementDwellTags struct.
 // add tags to visits within the duration (in seconds), available tags (passerby, bounce, engaged, stationed)
 type SiteEngagementDwellTags struct {
-    Bounce               Optional[string] `json:"bounce"`
-    Engaged              Optional[string] `json:"engaged"`
-    Passerby             Optional[string] `json:"passerby"`
-    Stationed            Optional[string] `json:"stationed"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Bounce               Optional[string]       `json:"bounce"`
+    Engaged              Optional[string]       `json:"engaged"`
+    Passerby             Optional[string]       `json:"passerby"`
+    Stationed            Optional[string]       `json:"stationed"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteEngagementDwellTags.
@@ -19,13 +19,17 @@ type SiteEngagementDwellTags struct {
 func (s SiteEngagementDwellTags) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "bounce", "engaged", "passerby", "stationed"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteEngagementDwellTags object to a map representation for JSON marshaling.
 func (s SiteEngagementDwellTags) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Bounce.IsValueSet() {
         if s.Bounce.Value() != nil {
             structMap["bounce"] = s.Bounce.Value()
@@ -65,12 +69,12 @@ func (s *SiteEngagementDwellTags) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bounce", "engaged", "passerby", "stationed")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bounce", "engaged", "passerby", "stationed")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Bounce = temp.Bounce
     s.Engaged = temp.Engaged
     s.Passerby = temp.Passerby

@@ -8,10 +8,10 @@ import (
 // power related configs
 type ApPwrConfig struct {
     // additional power to request during negotiating with PSE over PoE, in mW
-    Base                 *int           `json:"base,omitempty"`
+    Base                 *int                   `json:"base,omitempty"`
     // whether to enable power out to peripheral, meanwhile will reduce power to wifi (only for AP45 at power mode)
-    PreferUsbOverWifi    *bool          `json:"prefer_usb_over_wifi,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    PreferUsbOverWifi    *bool                  `json:"prefer_usb_over_wifi,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApPwrConfig.
@@ -19,13 +19,17 @@ type ApPwrConfig struct {
 func (a ApPwrConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "base", "prefer_usb_over_wifi"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApPwrConfig object to a map representation for JSON marshaling.
 func (a ApPwrConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Base != nil {
         structMap["base"] = a.Base
     }
@@ -43,12 +47,12 @@ func (a *ApPwrConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "base", "prefer_usb_over_wifi")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "base", "prefer_usb_over_wifi")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Base = temp.Base
     a.PreferUsbOverWifi = temp.PreferUsbOverWifi
     return nil

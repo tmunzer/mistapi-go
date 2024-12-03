@@ -7,13 +7,13 @@ import (
 // License represents a License struct.
 // License
 type License struct {
-    Amendments           []LicenseAmendment `json:"amendments,omitempty"`
+    Amendments           []LicenseAmendment     `json:"amendments,omitempty"`
     // Property key is license type (e.g. SUB-MAN) and Property value is the number of licenses entitled.
-    Entitled             map[string]int     `json:"entitled,omitempty"`
-    Licenses             []LicenseSub       `json:"licenses,omitempty"`
+    Entitled             map[string]int         `json:"entitled,omitempty"`
+    Licenses             []LicenseSub           `json:"licenses,omitempty"`
     // Property key is license type (e.g. SUB-MAN) and Property value is the number of licenses consumed.
-    Summary              map[string]int     `json:"summary,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Summary              map[string]int         `json:"summary,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for License.
@@ -21,13 +21,17 @@ type License struct {
 func (l License) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(l.AdditionalProperties,
+        "amendments", "entitled", "licenses", "summary"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(l.toMap())
 }
 
 // toMap converts the License object to a map representation for JSON marshaling.
 func (l License) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, l.AdditionalProperties)
+    MergeAdditionalProperties(structMap, l.AdditionalProperties)
     if l.Amendments != nil {
         structMap["amendments"] = l.Amendments
     }
@@ -51,12 +55,12 @@ func (l *License) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "amendments", "entitled", "licenses", "summary")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "amendments", "entitled", "licenses", "summary")
     if err != nil {
     	return err
     }
-    
     l.AdditionalProperties = additionalProperties
+    
     l.Amendments = temp.Amendments
     l.Entitled = temp.Entitled
     l.Licenses = temp.Licenses

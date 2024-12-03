@@ -17,7 +17,7 @@ type StatsMxedgeOobIpStat struct {
     Type                 *MxedgeMgmtOobIpTypeEnum  `json:"type,omitempty"`
     // enum: `autoconf`, `dhcp`, `disabled`, `static`
     Type8                *MxedgeMgmtOobIpType6Enum `json:"type8,omitempty"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeOobIpStat.
@@ -25,13 +25,17 @@ type StatsMxedgeOobIpStat struct {
 func (s StatsMxedgeOobIpStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "dns", "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6", "type", "type8"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxedgeOobIpStat object to a map representation for JSON marshaling.
 func (s StatsMxedgeOobIpStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Dns != nil {
         structMap["dns"] = s.Dns
     }
@@ -70,12 +74,12 @@ func (s *StatsMxedgeOobIpStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dns", "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6", "type", "type8")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns", "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6", "type", "type8")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Dns = temp.Dns
     s.Gateway = temp.Gateway
     s.Gateway6 = temp.Gateway6

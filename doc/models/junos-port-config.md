@@ -3,6 +3,8 @@
 
 Switch port config
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `JunosPortConfig`
@@ -26,6 +28,7 @@ Switch port config
 | `PoeDisabled` | `*bool` | Optional | **Default**: `false` |
 | `Speed` | [`*models.JunosPortConfigSpeedEnum`](../../doc/models/junos-port-config-speed-enum.md) | Optional | enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`<br>**Default**: `"auto"` |
 | `Usage` | `string` | Required | port usage name. If EVPN is used, use `evpn_uplink`or `evpn_downlink` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,7 +44,11 @@ Switch port config
   "ae_disable_lacp": false,
   "ae_idx": 244,
   "ae_lacp_slow": false,
-  "critical": false
+  "critical": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

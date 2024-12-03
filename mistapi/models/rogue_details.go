@@ -8,9 +8,9 @@ import (
 
 // RogueDetails represents a RogueDetails struct.
 type RogueDetails struct {
-    Manufacture          string         `json:"manufacture"`
-    SeenAsClient         bool           `json:"seen_as_client"`
-    AdditionalProperties map[string]any `json:"_"`
+    Manufacture          string                 `json:"manufacture"`
+    SeenAsClient         bool                   `json:"seen_as_client"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RogueDetails.
@@ -18,13 +18,17 @@ type RogueDetails struct {
 func (r RogueDetails) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "manufacture", "seen_as_client"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RogueDetails object to a map representation for JSON marshaling.
 func (r RogueDetails) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["manufacture"] = r.Manufacture
     structMap["seen_as_client"] = r.SeenAsClient
     return structMap
@@ -42,12 +46,12 @@ func (r *RogueDetails) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "manufacture", "seen_as_client")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "manufacture", "seen_as_client")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Manufacture = *temp.Manufacture
     r.SeenAsClient = *temp.SeenAsClient
     return nil

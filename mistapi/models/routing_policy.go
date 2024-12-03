@@ -7,8 +7,8 @@ import (
 // RoutingPolicy represents a RoutingPolicy struct.
 type RoutingPolicy struct {
     // zero or more criteria/filter can be specified to match the term, all criteria have to be met
-    Terms                []RoutingPolicyTerm `json:"terms,omitempty"`
-    AdditionalProperties map[string]any      `json:"_"`
+    Terms                []RoutingPolicyTerm    `json:"terms,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicy.
@@ -16,13 +16,17 @@ type RoutingPolicy struct {
 func (r RoutingPolicy) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "terms"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RoutingPolicy object to a map representation for JSON marshaling.
 func (r RoutingPolicy) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Terms != nil {
         structMap["terms"] = r.Terms
     }
@@ -37,12 +41,12 @@ func (r *RoutingPolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "terms")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "terms")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Terms = temp.Terms
     return nil
 }

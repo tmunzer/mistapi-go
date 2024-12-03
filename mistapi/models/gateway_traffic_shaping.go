@@ -8,9 +8,9 @@ import (
 type GatewayTrafficShaping struct {
     // percentages for differet class of traffic: high / medium / low / best-effort
     // sum must be equal to 100
-    ClassPercentages     []int          `json:"class_percentages,omitempty"`
-    Enabled              *bool          `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ClassPercentages     []int                  `json:"class_percentages,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayTrafficShaping.
@@ -18,13 +18,17 @@ type GatewayTrafficShaping struct {
 func (g GatewayTrafficShaping) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "class_percentages", "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayTrafficShaping object to a map representation for JSON marshaling.
 func (g GatewayTrafficShaping) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.ClassPercentages != nil {
         structMap["class_percentages"] = g.ClassPercentages
     }
@@ -42,12 +46,12 @@ func (g *GatewayTrafficShaping) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "class_percentages", "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "class_percentages", "enabled")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.ClassPercentages = temp.ClassPercentages
     g.Enabled = temp.Enabled
     return nil

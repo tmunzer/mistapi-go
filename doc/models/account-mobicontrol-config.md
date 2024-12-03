@@ -1,6 +1,8 @@
 
 # Account Mobicontrol Config
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AccountMobicontrolConfig`
@@ -14,6 +16,7 @@
 | `InstanceUrl` | `string` | Required | customer account MobiControl instance URL |
 | `Password` | `string` | Required | customer account password instance URL |
 | `Username` | `string` | Required | customer account username |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@
   "client_secret": "client_secret6",
   "instance_url": "instance_url2",
   "password": "password2",
-  "username": "username2"
+  "username": "username2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

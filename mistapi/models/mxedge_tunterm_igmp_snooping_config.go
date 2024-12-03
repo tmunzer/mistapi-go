@@ -10,7 +10,7 @@ type MxedgeTuntermIgmpSnoopingConfig struct {
     Querier              *MxedgeTuntermIgmpSnoopingQuerier `json:"querier,omitempty"`
     // the list of vlans on which tunterm performs IGMP snooping
     VlanIds              []int                             `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any                    `json:"_"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermIgmpSnoopingConfig.
@@ -18,13 +18,17 @@ type MxedgeTuntermIgmpSnoopingConfig struct {
 func (m MxedgeTuntermIgmpSnoopingConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "enabled", "querier", "vlan_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeTuntermIgmpSnoopingConfig object to a map representation for JSON marshaling.
 func (m MxedgeTuntermIgmpSnoopingConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Enabled != nil {
         structMap["enabled"] = m.Enabled
     }
@@ -45,12 +49,12 @@ func (m *MxedgeTuntermIgmpSnoopingConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "querier", "vlan_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "querier", "vlan_ids")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Enabled = temp.Enabled
     m.Querier = temp.Querier
     m.VlanIds = temp.VlanIds

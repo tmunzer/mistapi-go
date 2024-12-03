@@ -43,14 +43,14 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsSendBleBeacon{
-    BeaconFrame: models.ToPointer("68b329da9893e34099c7d8ad5cb9c940"),
-    BeaconFreq:  models.ToPointer(100),
-    Duration:    models.ToPointer(10),
-    Macs:        []string{
+    BeaconFrame:          models.ToPointer("68b329da9893e34099c7d8ad5cb9c940"),
+    BeaconFreq:           models.ToPointer(100),
+    Duration:             models.ToPointer(10),
+    Macs:                 []string{
         "5c5b35584a6f",
         "5c5b350ea3b3",
     },
-    MapIds:      []string{
+    MapIds:               []string{
         "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
     },
 }

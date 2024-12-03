@@ -8,10 +8,10 @@ import (
 
 // ResponseSsoFailureSearchItem represents a ResponseSsoFailureSearchItem struct.
 type ResponseSsoFailureSearchItem struct {
-    Detail               string         `json:"detail"`
-    SamlAssertionXml     string         `json:"saml_assertion_xml"`
-    Timestamp            float64        `json:"timestamp"`
-    AdditionalProperties map[string]any `json:"_"`
+    Detail               string                 `json:"detail"`
+    SamlAssertionXml     string                 `json:"saml_assertion_xml"`
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSsoFailureSearchItem.
@@ -19,13 +19,17 @@ type ResponseSsoFailureSearchItem struct {
 func (r ResponseSsoFailureSearchItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "detail", "saml_assertion_xml", "timestamp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSsoFailureSearchItem object to a map representation for JSON marshaling.
 func (r ResponseSsoFailureSearchItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["detail"] = r.Detail
     structMap["saml_assertion_xml"] = r.SamlAssertionXml
     structMap["timestamp"] = r.Timestamp
@@ -44,12 +48,12 @@ func (r *ResponseSsoFailureSearchItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "detail", "saml_assertion_xml", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "detail", "saml_assertion_xml", "timestamp")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Detail = *temp.Detail
     r.SamlAssertionXml = *temp.SamlAssertionXml
     r.Timestamp = *temp.Timestamp

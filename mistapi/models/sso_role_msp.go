@@ -11,18 +11,18 @@ import (
 // SSO Role response
 type SsoRoleMsp struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
-    ForSite              *bool          `json:"for_site,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64       `json:"modified_time,omitempty"`
-    MspId                *uuid.UUID     `json:"msp_id,omitempty"`
-    Name                 string         `json:"name"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    Privileges           []PrivilegeMsp `json:"privileges"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    MspId                *uuid.UUID             `json:"msp_id,omitempty"`
+    Name                 string                 `json:"name"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    Privileges           []PrivilegeMsp         `json:"privileges"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsoRoleMsp.
@@ -30,13 +30,17 @@ type SsoRoleMsp struct {
 func (s SsoRoleMsp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "created_time", "for_site", "id", "modified_time", "msp_id", "name", "org_id", "privileges", "site_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SsoRoleMsp object to a map representation for JSON marshaling.
 func (s SsoRoleMsp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.CreatedTime != nil {
         structMap["created_time"] = s.CreatedTime
     }
@@ -75,12 +79,12 @@ func (s *SsoRoleMsp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "for_site", "id", "modified_time", "msp_id", "name", "org_id", "privileges", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "modified_time", "msp_id", "name", "org_id", "privileges", "site_id")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.CreatedTime = temp.CreatedTime
     s.ForSite = temp.ForSite
     s.Id = temp.Id

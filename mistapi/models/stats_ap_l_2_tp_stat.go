@@ -15,7 +15,7 @@ type StatsApL2tpStat struct {
     Uptime               Optional[int]            `json:"uptime"`
     // WxlanTunnel ID
     WxtunnelId           Optional[uuid.UUID]      `json:"wxtunnel_id"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApL2tpStat.
@@ -23,13 +23,17 @@ type StatsApL2tpStat struct {
 func (s StatsApL2tpStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "sessions", "state", "uptime", "wxtunnel_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApL2tpStat object to a map representation for JSON marshaling.
 func (s StatsApL2tpStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Sessions != nil {
         structMap["sessions"] = s.Sessions
     }
@@ -61,12 +65,12 @@ func (s *StatsApL2tpStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "sessions", "state", "uptime", "wxtunnel_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "sessions", "state", "uptime", "wxtunnel_id")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Sessions = temp.Sessions
     s.State = temp.State
     s.Uptime = temp.Uptime

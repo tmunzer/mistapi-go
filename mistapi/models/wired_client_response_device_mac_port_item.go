@@ -6,14 +6,14 @@ import (
 
 // WiredClientResponseDeviceMacPortItem represents a WiredClientResponseDeviceMacPortItem struct.
 type WiredClientResponseDeviceMacPortItem struct {
-    DeviceMac            *string        `json:"device_mac,omitempty"`
-    Ip                   *string        `json:"ip,omitempty"`
-    PortId               *string        `json:"port_id,omitempty"`
-    PortParent           *string        `json:"port_parent,omitempty"`
-    Start                *string        `json:"start,omitempty"`
-    Vlan                 *int           `json:"vlan,omitempty"`
-    When                 *string        `json:"when,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    DeviceMac            *string                `json:"device_mac,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
+    PortParent           *string                `json:"port_parent,omitempty"`
+    Start                *string                `json:"start,omitempty"`
+    Vlan                 *int                   `json:"vlan,omitempty"`
+    When                 *string                `json:"when,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WiredClientResponseDeviceMacPortItem.
@@ -21,13 +21,17 @@ type WiredClientResponseDeviceMacPortItem struct {
 func (w WiredClientResponseDeviceMacPortItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "device_mac", "ip", "port_id", "port_parent", "start", "vlan", "when"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WiredClientResponseDeviceMacPortItem object to a map representation for JSON marshaling.
 func (w WiredClientResponseDeviceMacPortItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.DeviceMac != nil {
         structMap["device_mac"] = w.DeviceMac
     }
@@ -60,12 +64,12 @@ func (w *WiredClientResponseDeviceMacPortItem) UnmarshalJSON(input []byte) error
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "device_mac", "ip", "port_id", "port_parent", "start", "vlan", "when")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "device_mac", "ip", "port_id", "port_parent", "start", "vlan", "when")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.DeviceMac = temp.DeviceMac
     w.Ip = temp.Ip
     w.PortId = temp.PortId

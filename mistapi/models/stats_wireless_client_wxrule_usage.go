@@ -7,9 +7,9 @@ import (
 
 // StatsWirelessClientWxruleUsage represents a StatsWirelessClientWxruleUsage struct.
 type StatsWirelessClientWxruleUsage struct {
-    TagId                *uuid.UUID     `json:"tag_id,omitempty"`
-    Usage                *int           `json:"usage,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    TagId                *uuid.UUID             `json:"tag_id,omitempty"`
+    Usage                *int                   `json:"usage,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWirelessClientWxruleUsage.
@@ -17,13 +17,17 @@ type StatsWirelessClientWxruleUsage struct {
 func (s StatsWirelessClientWxruleUsage) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "tag_id", "usage"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsWirelessClientWxruleUsage object to a map representation for JSON marshaling.
 func (s StatsWirelessClientWxruleUsage) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.TagId != nil {
         structMap["tag_id"] = s.TagId
     }
@@ -41,12 +45,12 @@ func (s *StatsWirelessClientWxruleUsage) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "tag_id", "usage")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "tag_id", "usage")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.TagId = temp.TagId
     s.Usage = temp.Usage
     return nil

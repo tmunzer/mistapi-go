@@ -7,12 +7,12 @@ import (
 // MxedgeTuntermDhcpdConfig represents a MxedgeTuntermDhcpdConfig struct.
 // global and per-VLAN. Property key is the VLAN ID
 type MxedgeTuntermDhcpdConfig struct {
-    Enabled              *bool                       `json:"enabled,omitempty"`
+    Enabled              *bool                                       `json:"enabled,omitempty"`
     // list of DHCP servers; required if `type`==`relay`
-    Servers              []string                    `json:"servers,omitempty"`
+    Servers              []string                                    `json:"servers,omitempty"`
     // enum: `relay`
-    Type                 *MxedgeTuntermDhcpdTypeEnum `json:"type,omitempty"`
-    AdditionalProperties map[string]any              `json:"_"`
+    Type                 *MxedgeTuntermDhcpdTypeEnum                 `json:"type,omitempty"`
+    AdditionalProperties map[string]MxedgeTuntermDhcpdConfigProperty `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermDhcpdConfig.
@@ -20,13 +20,17 @@ type MxedgeTuntermDhcpdConfig struct {
 func (m MxedgeTuntermDhcpdConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "enabled", "servers", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeTuntermDhcpdConfig object to a map representation for JSON marshaling.
 func (m MxedgeTuntermDhcpdConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Enabled != nil {
         structMap["enabled"] = m.Enabled
     }
@@ -47,12 +51,12 @@ func (m *MxedgeTuntermDhcpdConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "servers", "type")
+    additionalProperties, err := ExtractAdditionalProperties[MxedgeTuntermDhcpdConfigProperty](input, "enabled", "servers", "type")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Enabled = temp.Enabled
     m.Servers = temp.Servers
     m.Type = temp.Type

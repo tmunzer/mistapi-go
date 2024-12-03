@@ -8,7 +8,7 @@ import (
 type SecintelProfile struct {
     Name                 *string                  `json:"name,omitempty"`
     Profiles             []SecintelProfileProfile `json:"profiles,omitempty"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SecintelProfile.
@@ -16,13 +16,17 @@ type SecintelProfile struct {
 func (s SecintelProfile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "name", "profiles"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SecintelProfile object to a map representation for JSON marshaling.
 func (s SecintelProfile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Name != nil {
         structMap["name"] = s.Name
     }
@@ -40,12 +44,12 @@ func (s *SecintelProfile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "name", "profiles")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name", "profiles")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Name = temp.Name
     s.Profiles = temp.Profiles
     return nil

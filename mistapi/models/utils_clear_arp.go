@@ -7,16 +7,16 @@ import (
 // UtilsClearArp represents a UtilsClearArp struct.
 type UtilsClearArp struct {
     // The IP address for which to clear an ARP entry. port_id must be specified.
-    Ip                   *string            `json:"ip,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // The device interface on which to clear the ARP cache.
-    PortId               *string            `json:"port_id,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
     // The VLAN on which to clear the ARP cache. port_id must be specified.
-    Vlan                 *int               `json:"vlan,omitempty"`
+    Vlan                 *int                   `json:"vlan,omitempty"`
     // The vrf for which to clear an ARP entry. applicable for switch.
-    Vrf                  *string            `json:"vrf,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Vrf                  *string                `json:"vrf,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsClearArp.
@@ -24,13 +24,17 @@ type UtilsClearArp struct {
 func (u UtilsClearArp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "ip", "node", "port_id", "vlan", "vrf"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsClearArp object to a map representation for JSON marshaling.
 func (u UtilsClearArp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Ip != nil {
         structMap["ip"] = u.Ip
     }
@@ -57,12 +61,12 @@ func (u *UtilsClearArp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ip", "node", "port_id", "vlan", "vrf")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ip", "node", "port_id", "vlan", "vrf")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Ip = temp.Ip
     u.Node = temp.Node
     u.PortId = temp.PortId

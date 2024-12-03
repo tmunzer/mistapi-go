@@ -30,7 +30,7 @@ type NacPortal struct {
     Tos                    *string                  `json:"tos,omitempty"`
     // enum: `guest`, `marvis_client`
     Type                   *NacPortalTypeEnum       `json:"type,omitempty"`
-    AdditionalProperties   map[string]any           `json:"_"`
+    AdditionalProperties   map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortal.
@@ -38,13 +38,17 @@ type NacPortal struct {
 func (n NacPortal) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "access_type", "bg_image_url", "cert_expire_time", "eap_type", "enable_telemetry", "expiry_notification_time", "guest_portal_config", "name", "notify_expiry", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NacPortal object to a map representation for JSON marshaling.
 func (n NacPortal) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.AccessType != nil {
         structMap["access_type"] = n.AccessType
     }
@@ -101,12 +105,12 @@ func (n *NacPortal) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "access_type", "bg_image_url", "cert_expire_time", "eap_type", "enable_telemetry", "expiry_notification_time", "guest_portal_config", "name", "notify_expiry", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "access_type", "bg_image_url", "cert_expire_time", "eap_type", "enable_telemetry", "expiry_notification_time", "guest_portal_config", "name", "notify_expiry", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.AccessType = temp.AccessType
     n.BgImageUrl = temp.BgImageUrl
     n.CertExpireTime = temp.CertExpireTime

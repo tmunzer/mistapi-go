@@ -1,6 +1,8 @@
 
 # Webhook Ping Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookPingEvent`
@@ -13,6 +15,7 @@
 | `Name` | `string` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `float64` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,11 @@
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "name6",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "timestamp": 38.34
+  "timestamp": 38.34,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

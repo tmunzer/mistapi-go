@@ -8,10 +8,10 @@ import (
 
 // ConstLanguage represents a ConstLanguage struct.
 type ConstLanguage struct {
-    Display              string         `json:"display"`
-    DisplayNative        string         `json:"display_native"`
-    Key                  string         `json:"key"`
-    AdditionalProperties map[string]any `json:"_"`
+    Display              string                 `json:"display"`
+    DisplayNative        string                 `json:"display_native"`
+    Key                  string                 `json:"key"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstLanguage.
@@ -19,13 +19,17 @@ type ConstLanguage struct {
 func (c ConstLanguage) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "display", "display_native", "key"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstLanguage object to a map representation for JSON marshaling.
 func (c ConstLanguage) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     structMap["display"] = c.Display
     structMap["display_native"] = c.DisplayNative
     structMap["key"] = c.Key
@@ -44,12 +48,12 @@ func (c *ConstLanguage) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "display", "display_native", "key")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "display", "display_native", "key")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Display = *temp.Display
     c.DisplayNative = *temp.DisplayNative
     c.Key = *temp.Key

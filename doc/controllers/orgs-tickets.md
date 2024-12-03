@@ -214,8 +214,11 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Ticket{
-    Subject:        "string",
-    Type:           "question",
+    Subject:              "string",
+    Type:                 "question",
+    AdditionalProperties: map[string]interface{}{
+        "comment": interface{}("string"),
+    },
 }
 
 apiResponse, err := orgsTickets.CreateOrgTicket(ctx, orgId, &body)
@@ -567,8 +570,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Ticket{
-    Subject:        "string",
-    Type:           "question",
+    Subject:              "string",
+    Type:                 "question",
+    AdditionalProperties: map[string]interface{}{
+        "comment": interface{}("string"),
+    },
 }
 
 apiResponse, err := orgsTickets.UpdateOrgTicket(ctx, orgId, ticketId, &body)

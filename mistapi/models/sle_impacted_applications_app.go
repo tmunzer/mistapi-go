@@ -6,13 +6,13 @@ import (
 
 // SleImpactedApplicationsApp represents a SleImpactedApplicationsApp struct.
 type SleImpactedApplicationsApp struct {
-    App                  *string        `json:"app,omitempty"`
-    Degraded             *int           `json:"degraded,omitempty"`
-    Duration             *int           `json:"duration,omitempty"`
-    Name                 *string        `json:"name,omitempty"`
-    Threshold            *int           `json:"threshold,omitempty"`
-    Total                *int           `json:"total,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    App                  *string                `json:"app,omitempty"`
+    Degraded             *int                   `json:"degraded,omitempty"`
+    Duration             *int                   `json:"duration,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    Threshold            *int                   `json:"threshold,omitempty"`
+    Total                *int                   `json:"total,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedApplicationsApp.
@@ -20,13 +20,17 @@ type SleImpactedApplicationsApp struct {
 func (s SleImpactedApplicationsApp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "app", "degraded", "duration", "name", "threshold", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedApplicationsApp object to a map representation for JSON marshaling.
 func (s SleImpactedApplicationsApp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.App != nil {
         structMap["app"] = s.App
     }
@@ -56,12 +60,12 @@ func (s *SleImpactedApplicationsApp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "app", "degraded", "duration", "name", "threshold", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "app", "degraded", "duration", "name", "threshold", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.App = temp.App
     s.Degraded = temp.Degraded
     s.Duration = temp.Duration

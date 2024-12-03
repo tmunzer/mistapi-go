@@ -9,8 +9,8 @@ import (
 
 // ResponseSelfSubscription represents a ResponseSelfSubscription struct.
 type ResponseSelfSubscription struct {
-    OrgId                uuid.UUID      `json:"org_id"`
-    AdditionalProperties map[string]any `json:"_"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSelfSubscription.
@@ -18,13 +18,17 @@ type ResponseSelfSubscription struct {
 func (r ResponseSelfSubscription) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "org_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseSelfSubscription object to a map representation for JSON marshaling.
 func (r ResponseSelfSubscription) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["org_id"] = r.OrgId
     return structMap
 }
@@ -41,12 +45,12 @@ func (r *ResponseSelfSubscription) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "org_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "org_id")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.OrgId = *temp.OrgId
     return nil
 }

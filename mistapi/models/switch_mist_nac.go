@@ -7,9 +7,9 @@ import (
 // SwitchMistNac represents a SwitchMistNac struct.
 // enable mist_nac to use radsec
 type SwitchMistNac struct {
-    Enabled              *bool          `json:"enabled,omitempty"`
-    Network              *string        `json:"network,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    Network              *string                `json:"network,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMistNac.
@@ -17,13 +17,17 @@ type SwitchMistNac struct {
 func (s SwitchMistNac) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "enabled", "network"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchMistNac object to a map representation for JSON marshaling.
 func (s SwitchMistNac) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Enabled != nil {
         structMap["enabled"] = s.Enabled
     }
@@ -41,12 +45,12 @@ func (s *SwitchMistNac) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "network")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "network")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Enabled = temp.Enabled
     s.Network = temp.Network
     return nil

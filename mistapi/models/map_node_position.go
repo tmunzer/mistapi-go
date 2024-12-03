@@ -8,9 +8,9 @@ import (
 
 // MapNodePosition represents a MapNodePosition struct.
 type MapNodePosition struct {
-    X                    float64        `json:"x"`
-    Y                    float64        `json:"y"`
-    AdditionalProperties map[string]any `json:"_"`
+    X                    float64                `json:"x"`
+    Y                    float64                `json:"y"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapNodePosition.
@@ -18,13 +18,17 @@ type MapNodePosition struct {
 func (m MapNodePosition) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MapNodePosition object to a map representation for JSON marshaling.
 func (m MapNodePosition) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["x"] = m.X
     structMap["y"] = m.Y
     return structMap
@@ -42,12 +46,12 @@ func (m *MapNodePosition) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "x", "y")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.X = *temp.X
     m.Y = *temp.Y
     return nil

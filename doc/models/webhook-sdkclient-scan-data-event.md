@@ -1,6 +1,8 @@
 
 # Webhook Sdkclient Scan Data Event
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WebhookSdkclientScanDataEvent`
@@ -18,6 +20,7 @@
 | `Mac` | `string` | Required | the client’s mac |
 | `ScanData` | [`[]models.WebhookSdkclientScanDataEventScanDataItem`](../../doc/models/webhook-sdkclient-scan-data-event-scan-data-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SiteId` | `uuid.UUID` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,7 +42,11 @@
       "channel": 72,
       "rssi": 228.1,
       "ssid": "ssid4",
-      "timestamp": 102.06
+      "timestamp": 102.06,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "ap": "ap6",
@@ -48,7 +55,11 @@
       "channel": 72,
       "rssi": 228.1,
       "ssid": "ssid4",
-      "timestamp": 102.06
+      "timestamp": 102.06,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "ap": "ap6",
@@ -57,9 +68,17 @@
       "channel": 72,
       "rssi": 228.1,
       "ssid": "ssid4",
-      "timestamp": 102.06
+      "timestamp": 102.06,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

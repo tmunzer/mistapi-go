@@ -10,8 +10,7 @@ import (
 // DeviceGateway represents a DeviceGateway struct.
 // device gateway
 type DeviceGateway struct {
-    // additional CLI commands to append to the generated Junos config
-    // **Note**: no check is done
+    // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds  []string                           `json:"additional_config_cmds,omitempty"`
     BgpConfig             map[string]BgpConfig               `json:"bgp_config,omitempty"`
     // when the object has been created, in epoch
@@ -80,7 +79,7 @@ type DeviceGateway struct {
     X                     *float64                           `json:"x,omitempty"`
     // y in pixel
     Y                     *float64                           `json:"y,omitempty"`
-    AdditionalProperties  map[string]any                     `json:"_"`
+    AdditionalProperties  map[string]interface{}             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceGateway.
@@ -88,13 +87,17 @@ type DeviceGateway struct {
 func (d DeviceGateway) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(d.AdditionalProperties,
+        "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "vrf_config", "vrf_instances", "x", "y"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(d.toMap())
 }
 
 // toMap converts the DeviceGateway object to a map representation for JSON marshaling.
 func (d DeviceGateway) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, d.AdditionalProperties)
+    MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.AdditionalConfigCmds != nil {
         structMap["additional_config_cmds"] = d.AdditionalConfigCmds
     }
@@ -252,12 +255,12 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "vrf_config", "vrf_instances", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "vrf_config", "vrf_instances", "x", "y")
     if err != nil {
     	return err
     }
-    
     d.AdditionalProperties = additionalProperties
+    
     d.AdditionalConfigCmds = temp.AdditionalConfigCmds
     d.BgpConfig = temp.BgpConfig
     d.CreatedTime = temp.CreatedTime

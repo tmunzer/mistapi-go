@@ -11,8 +11,7 @@ type NetworkTemplate struct {
     AclPolicies           []AclPolicy                            `json:"acl_policies,omitempty"`
     // ACL Tags to identify traffic source or destination. Key name is the tag name
     AclTags               map[string]AclTag                      `json:"acl_tags,omitempty"`
-    // additional CLI commands to append to the generated Junos config
-    // **Note**: no check is done
+    // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds  []string                               `json:"additional_config_cmds,omitempty"`
     // when the object has been created, in epoch
     CreatedTime           *float64                               `json:"created_time,omitempty"`
@@ -51,14 +50,14 @@ type NetworkTemplate struct {
     // by default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled
     RemoveExistingConfigs *bool                                  `json:"remove_existing_configs,omitempty"`
     SnmpConfig            *SnmpConfig                            `json:"snmp_config,omitempty"`
-    // Switch template
+    // defines custom switch configuration based on different criterias
     SwitchMatching        *SwitchMatching                        `json:"switch_matching,omitempty"`
     // Switch settings
     SwitchMgmt            *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
     VrfConfig             *VrfConfig                             `json:"vrf_config,omitempty"`
     // Property key is the network name
     VrfInstances          map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
-    AdditionalProperties  map[string]any                         `json:"_"`
+    AdditionalProperties  map[string]interface{}                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkTemplate.
@@ -66,13 +65,17 @@ type NetworkTemplate struct {
 func (n NetworkTemplate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NetworkTemplate object to a map representation for JSON marshaling.
 func (n NetworkTemplate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.AclPolicies != nil {
         structMap["acl_policies"] = n.AclPolicies
     }
@@ -168,12 +171,12 @@ func (n *NetworkTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.AclPolicies = temp.AclPolicies
     n.AclTags = temp.AclTags
     n.AdditionalConfigCmds = temp.AdditionalConfigCmds

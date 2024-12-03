@@ -3,6 +3,8 @@
 
 when `vendor`==`cradlepoint`
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsDeviceOtherVendorSpecific`
@@ -13,6 +15,7 @@ when `vendor`==`cradlepoint`
 |  --- | --- | --- | --- |
 | `Ports` | [`map[string]models.StatsDeviceOtherVendorSpecificPort`](../../doc/models/stats-device-other-vendor-specific-port.md) | Optional | - |
 | `TargetVersion` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,10 +32,18 @@ when `vendor`==`cradlepoint`
       "model": "Internal 5GB (SIM1)",
       "state": "READY",
       "type": "5G",
-      "uptime": 252371.34149021498
+      "uptime": 252371.34149021498,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   },
-  "target_version": "7.23.40"
+  "target_version": "7.23.40",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

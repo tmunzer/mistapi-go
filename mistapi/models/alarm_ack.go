@@ -9,10 +9,10 @@ import (
 
 // AlarmAck represents a AlarmAck struct.
 type AlarmAck struct {
-    AlarmIds             []uuid.UUID    `json:"alarm_ids"`
+    AlarmIds             []uuid.UUID            `json:"alarm_ids"`
     // Some text note describing the intent
-    Note                 *string        `json:"note,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Note                 *string                `json:"note,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AlarmAck.
@@ -20,13 +20,17 @@ type AlarmAck struct {
 func (a AlarmAck) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "alarm_ids", "note"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AlarmAck object to a map representation for JSON marshaling.
 func (a AlarmAck) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     structMap["alarm_ids"] = a.AlarmIds
     if a.Note != nil {
         structMap["note"] = a.Note
@@ -46,12 +50,12 @@ func (a *AlarmAck) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "alarm_ids", "note")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alarm_ids", "note")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.AlarmIds = *temp.AlarmIds
     a.Note = temp.Note
     return nil

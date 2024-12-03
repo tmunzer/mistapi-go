@@ -1,6 +1,8 @@
 
 # Stats Mxedge Service Stat
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsMxedgeServiceStat`
@@ -15,6 +17,7 @@
 | `PackageVersion` | `*string` | Optional | package/service installation state. |
 | `RunningState` | `*string` | Optional | service running state. |
 | `Uptime` | `*int` | Optional | service uptime. |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,11 @@
   "last_seen": 97.42,
   "package_state": "package_state6",
   "package_version": "package_version4",
-  "running_state": "running_state6"
+  "running_state": "running_state6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -8,7 +8,7 @@ import (
 type SiteSettingPaloaltoNetworks struct {
     Gateways             []SiteSettingPaloaltoNetworkGateway `json:"gateways,omitempty"`
     SendMistNacUserInfo  *bool                               `json:"send_mist_nac_user_info,omitempty"`
-    AdditionalProperties map[string]any                      `json:"_"`
+    AdditionalProperties map[string]interface{}              `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingPaloaltoNetworks.
@@ -16,13 +16,17 @@ type SiteSettingPaloaltoNetworks struct {
 func (s SiteSettingPaloaltoNetworks) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "gateways", "send_mist_nac_user_info"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingPaloaltoNetworks object to a map representation for JSON marshaling.
 func (s SiteSettingPaloaltoNetworks) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Gateways != nil {
         structMap["gateways"] = s.Gateways
     }
@@ -40,12 +44,12 @@ func (s *SiteSettingPaloaltoNetworks) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateways", "send_mist_nac_user_info")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateways", "send_mist_nac_user_info")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Gateways = temp.Gateways
     s.SendMistNacUserInfo = temp.SendMistNacUserInfo
     return nil

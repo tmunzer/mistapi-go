@@ -6,12 +6,12 @@ import (
 
 // SearchEventsWanClient represents a SearchEventsWanClient struct.
 type SearchEventsWanClient struct {
-    End                  *int             `json:"end,omitempty"`
-    Limit                *int             `json:"limit,omitempty"`
-    Results              *EventsClientWan `json:"results,omitempty"`
-    Start                *int             `json:"start,omitempty"`
-    Total                *int             `json:"total,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    End                  *int                   `json:"end,omitempty"`
+    Limit                *int                   `json:"limit,omitempty"`
+    Results              *EventsClientWan       `json:"results,omitempty"`
+    Start                *int                   `json:"start,omitempty"`
+    Total                *int                   `json:"total,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SearchEventsWanClient.
@@ -19,13 +19,17 @@ type SearchEventsWanClient struct {
 func (s SearchEventsWanClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "end", "limit", "results", "start", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SearchEventsWanClient object to a map representation for JSON marshaling.
 func (s SearchEventsWanClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.End != nil {
         structMap["end"] = s.End
     }
@@ -52,12 +56,12 @@ func (s *SearchEventsWanClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "limit", "results", "start", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "results", "start", "total")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.End = temp.End
     s.Limit = temp.Limit
     s.Results = temp.Results

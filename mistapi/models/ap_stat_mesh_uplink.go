@@ -7,26 +7,26 @@ import (
 
 // ApStatMeshUplink represents a ApStatMeshUplink struct.
 type ApStatMeshUplink struct {
-    Band                 *string        `json:"band,omitempty"`
-    Channel              *int           `json:"channel,omitempty"`
-    IdleTime             *int           `json:"idle_time,omitempty"`
-    LastSeen             *float64       `json:"last_seen,omitempty"`
-    Proto                *string        `json:"proto,omitempty"`
-    Rssi                 *int           `json:"rssi,omitempty"`
-    RxBps                *int           `json:"rx_bps,omitempty"`
-    RxBytes              *int           `json:"rx_bytes,omitempty"`
-    RxPackets            *int           `json:"rx_packets,omitempty"`
-    RxRate               *int           `json:"rx_rate,omitempty"`
-    RxRetries            *int           `json:"rx_retries,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Snr                  *int           `json:"snr,omitempty"`
-    TxBps                *int           `json:"tx_bps,omitempty"`
-    TxBytes              *int           `json:"tx_bytes,omitempty"`
-    TxPackets            *int           `json:"tx_packets,omitempty"`
-    TxRate               *int           `json:"tx_rate,omitempty"`
-    TxRetries            *int           `json:"tx_retries,omitempty"`
-    UplinkApId           *uuid.UUID     `json:"uplink_ap_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Band                 *string                `json:"band,omitempty"`
+    Channel              *int                   `json:"channel,omitempty"`
+    IdleTime             *int                   `json:"idle_time,omitempty"`
+    LastSeen             *float64               `json:"last_seen,omitempty"`
+    Proto                *string                `json:"proto,omitempty"`
+    Rssi                 *int                   `json:"rssi,omitempty"`
+    RxBps                *int                   `json:"rx_bps,omitempty"`
+    RxBytes              *int                   `json:"rx_bytes,omitempty"`
+    RxPackets            *int                   `json:"rx_packets,omitempty"`
+    RxRate               *int                   `json:"rx_rate,omitempty"`
+    RxRetries            *int                   `json:"rx_retries,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Snr                  *int                   `json:"snr,omitempty"`
+    TxBps                *int                   `json:"tx_bps,omitempty"`
+    TxBytes              *int                   `json:"tx_bytes,omitempty"`
+    TxPackets            *int                   `json:"tx_packets,omitempty"`
+    TxRate               *int                   `json:"tx_rate,omitempty"`
+    TxRetries            *int                   `json:"tx_retries,omitempty"`
+    UplinkApId           *uuid.UUID             `json:"uplink_ap_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApStatMeshUplink.
@@ -34,13 +34,17 @@ type ApStatMeshUplink struct {
 func (a ApStatMeshUplink) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "band", "channel", "idle_time", "last_seen", "proto", "rssi", "rx_bps", "rx_bytes", "rx_packets", "rx_rate", "rx_retries", "site_id", "snr", "tx_bps", "tx_bytes", "tx_packets", "tx_rate", "tx_retries", "uplink_ap_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApStatMeshUplink object to a map representation for JSON marshaling.
 func (a ApStatMeshUplink) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Band != nil {
         structMap["band"] = a.Band
     }
@@ -109,12 +113,12 @@ func (a *ApStatMeshUplink) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "band", "channel", "idle_time", "last_seen", "proto", "rssi", "rx_bps", "rx_bytes", "rx_packets", "rx_rate", "rx_retries", "site_id", "snr", "tx_bps", "tx_bytes", "tx_packets", "tx_rate", "tx_retries", "uplink_ap_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channel", "idle_time", "last_seen", "proto", "rssi", "rx_bps", "rx_bytes", "rx_packets", "rx_rate", "rx_retries", "site_id", "snr", "tx_bps", "tx_bytes", "tx_packets", "tx_rate", "tx_retries", "uplink_ap_id")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Band = temp.Band
     a.Channel = temp.Channel
     a.IdleTime = temp.IdleTime

@@ -8,10 +8,10 @@ import (
 
 // ResponseMapImportSummary represents a ResponseMapImportSummary struct.
 type ResponseMapImportSummary struct {
-    NumApAssigned        int            `json:"num_ap_assigned"`
-    NumInvAssigned       int            `json:"num_inv_assigned"`
-    NumMapAssigned       int            `json:"num_map_assigned"`
-    AdditionalProperties map[string]any `json:"_"`
+    NumApAssigned        int                    `json:"num_ap_assigned"`
+    NumInvAssigned       int                    `json:"num_inv_assigned"`
+    NumMapAssigned       int                    `json:"num_map_assigned"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMapImportSummary.
@@ -19,13 +19,17 @@ type ResponseMapImportSummary struct {
 func (r ResponseMapImportSummary) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "num_ap_assigned", "num_inv_assigned", "num_map_assigned"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseMapImportSummary object to a map representation for JSON marshaling.
 func (r ResponseMapImportSummary) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["num_ap_assigned"] = r.NumApAssigned
     structMap["num_inv_assigned"] = r.NumInvAssigned
     structMap["num_map_assigned"] = r.NumMapAssigned
@@ -44,12 +48,12 @@ func (r *ResponseMapImportSummary) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "num_ap_assigned", "num_inv_assigned", "num_map_assigned")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "num_ap_assigned", "num_inv_assigned", "num_map_assigned")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.NumApAssigned = *temp.NumApAssigned
     r.NumInvAssigned = *temp.NumInvAssigned
     r.NumMapAssigned = *temp.NumMapAssigned

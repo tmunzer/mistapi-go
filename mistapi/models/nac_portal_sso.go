@@ -15,7 +15,7 @@ type NacPortalSso struct {
     SsoRoleMatching      []NacPortalSsoRoleMatching   `json:"sso_role_matching,omitempty"`
     // if it's desired to inject a role into Cert's Subject (so it can be used later on in policy)
     UseSsoRoleForCert    *bool                        `json:"use_sso_role_for_cert,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortalSso.
@@ -23,13 +23,17 @@ type NacPortalSso struct {
 func (n NacPortalSso) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(n.AdditionalProperties,
+        "idp_cert", "idp_sign_algo", "idp_sso_url", "issuer", "nameid_format", "sso_role_matching", "use_sso_role_for_cert"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(n.toMap())
 }
 
 // toMap converts the NacPortalSso object to a map representation for JSON marshaling.
 func (n NacPortalSso) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, n.AdditionalProperties)
+    MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.IdpCert != nil {
         structMap["idp_cert"] = n.IdpCert
     }
@@ -62,12 +66,12 @@ func (n *NacPortalSso) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "idp_cert", "idp_sign_algo", "idp_sso_url", "issuer", "nameid_format", "sso_role_matching", "use_sso_role_for_cert")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "idp_cert", "idp_sign_algo", "idp_sso_url", "issuer", "nameid_format", "sso_role_matching", "use_sso_role_for_cert")
     if err != nil {
     	return err
     }
-    
     n.AdditionalProperties = additionalProperties
+    
     n.IdpCert = temp.IdpCert
     n.IdpSignAlgo = temp.IdpSignAlgo
     n.IdpSsoUrl = temp.IdpSsoUrl

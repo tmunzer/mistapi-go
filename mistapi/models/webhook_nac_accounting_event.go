@@ -8,34 +8,34 @@ import (
 // WebhookNacAccountingEvent represents a WebhookNacAccountingEvent struct.
 type WebhookNacAccountingEvent struct {
     // mac address of the AP the client roamed or disconnected from
-    Ap                   *string        `json:"ap,omitempty"`
+    Ap                   *string                `json:"ap,omitempty"`
     // radius authentication type
-    AuthType             *string        `json:"auth_type,omitempty"`
+    AuthType             *string                `json:"auth_type,omitempty"`
     // it’s the MAC physical address of the access point
-    Bssid                *string        `json:"bssid,omitempty"`
+    Bssid                *string                `json:"bssid,omitempty"`
     // IP Address of client
-    ClientIp             *string        `json:"client_ip,omitempty"`
+    ClientIp             *string                `json:"client_ip,omitempty"`
     // client type E.g. “wired”, “wireless”, “vty”
-    ClientType           *string        `json:"client_type,omitempty"`
+    ClientType           *string                `json:"client_type,omitempty"`
     // the client’s mac
-    Mac                  *string        `json:"mac,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
     // NAS Device vendor name E.g. “Juniper”, “Cisco”
-    NasVendor            *string        `json:"nas_vendor,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
+    NasVendor            *string                `json:"nas_vendor,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // number of packets received
-    RxPkts               *int           `json:"rx_pkts,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
+    RxPkts               *int                   `json:"rx_pkts,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // ESSID
-    Ssid                 *string        `json:"ssid,omitempty"`
+    Ssid                 *string                `json:"ssid,omitempty"`
     // sampling time (in epoch)
-    Timestamp            *float64       `json:"timestamp,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     // number of packets sent
-    TxPkts               *int           `json:"tx_pkts,omitempty"`
+    TxPkts               *int                   `json:"tx_pkts,omitempty"`
     // type of event. E.g. “ACCOUNTING_START”, “ACCOUNTING_UPDATE”, “ACCOUNTING_STOP”
-    Type                 *string        `json:"type,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
     // username authenticated with
-    Username             *string        `json:"username,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Username             *string                `json:"username,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookNacAccountingEvent.
@@ -43,13 +43,17 @@ type WebhookNacAccountingEvent struct {
 func (w WebhookNacAccountingEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "ap", "auth_type", "bssid", "client_ip", "client_type", "mac", "nas_vendor", "org_id", "rx_pkts", "site_id", "ssid", "timestamp", "tx_pkts", "type", "username"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookNacAccountingEvent object to a map representation for JSON marshaling.
 func (w WebhookNacAccountingEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Ap != nil {
         structMap["ap"] = w.Ap
     }
@@ -106,12 +110,12 @@ func (w *WebhookNacAccountingEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "auth_type", "bssid", "client_ip", "client_type", "mac", "nas_vendor", "org_id", "rx_pkts", "site_id", "ssid", "timestamp", "tx_pkts", "type", "username")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "auth_type", "bssid", "client_ip", "client_type", "mac", "nas_vendor", "org_id", "rx_pkts", "site_id", "ssid", "timestamp", "tx_pkts", "type", "username")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Ap = temp.Ap
     w.AuthType = temp.AuthType
     w.Bssid = temp.Bssid

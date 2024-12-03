@@ -8,9 +8,9 @@ import (
 
 // PcapBucketVerify represents a PcapBucketVerify struct.
 type PcapBucketVerify struct {
-    Bucket               string         `json:"bucket"`
-    VerifyToken          string         `json:"verify_token"`
-    AdditionalProperties map[string]any `json:"_"`
+    Bucket               string                 `json:"bucket"`
+    VerifyToken          string                 `json:"verify_token"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PcapBucketVerify.
@@ -18,13 +18,17 @@ type PcapBucketVerify struct {
 func (p PcapBucketVerify) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "bucket", "verify_token"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the PcapBucketVerify object to a map representation for JSON marshaling.
 func (p PcapBucketVerify) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     structMap["bucket"] = p.Bucket
     structMap["verify_token"] = p.VerifyToken
     return structMap
@@ -42,12 +46,12 @@ func (p *PcapBucketVerify) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bucket", "verify_token")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bucket", "verify_token")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.Bucket = *temp.Bucket
     p.VerifyToken = *temp.VerifyToken
     return nil

@@ -38,7 +38,7 @@ type OrgAutoRules struct {
     // * `src`==`model`
     // *  `src`==`geoip: site name for the device to be assigned to ("city" / "city+country" / ...)
     Value                 *string                          `json:"value,omitempty"`
-    AdditionalProperties  map[string]any                   `json:"_"`
+    AdditionalProperties  map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgAutoRules.
@@ -46,13 +46,17 @@ type OrgAutoRules struct {
 func (o OrgAutoRules) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "create_new_site_if_needed", "expression", "gatewaytemplate_id", "match_country", "match_device_type", "match_model", "model", "prefix", "src", "subnet", "suffix", "value"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgAutoRules object to a map representation for JSON marshaling.
 func (o OrgAutoRules) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.CreateNewSiteIfNeeded != nil {
         structMap["create_new_site_if_needed"] = o.CreateNewSiteIfNeeded
     }
@@ -114,12 +118,12 @@ func (o *OrgAutoRules) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "create_new_site_if_needed", "expression", "gatewaytemplate_id", "match_country", "match_device_type", "match_model", "model", "prefix", "src", "subnet", "suffix", "value")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "create_new_site_if_needed", "expression", "gatewaytemplate_id", "match_country", "match_device_type", "match_model", "model", "prefix", "src", "subnet", "suffix", "value")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.CreateNewSiteIfNeeded = temp.CreateNewSiteIfNeeded
     o.Expression = temp.Expression
     o.GatewaytemplateId = temp.GatewaytemplateId

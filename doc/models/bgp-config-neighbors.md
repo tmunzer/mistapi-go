@@ -1,6 +1,8 @@
 
 # Bgp Config Neighbors
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `BgpConfigNeighbors`
@@ -15,6 +17,7 @@
 | `ImportPolicy` | `*string` | Optional | - |
 | `MultihopTtl` | `*int` | Optional | assuming BGP neighbor is directly connected<br>**Constraints**: `>= 0`, `<= 255` |
 | `NeighborAs` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,11 @@
   "hold_time": 90,
   "export_policy": "export_policy4",
   "import_policy": "import_policy8",
-  "multihop_ttl": 72
+  "multihop_ttl": 72,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

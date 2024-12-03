@@ -26,7 +26,7 @@ type TunnelProviderOptionsZscaler struct {
     UploadMbps            *int                                      `json:"upload_mbps,omitempty"`
     // location uses proxy chaining to forward traffic
     UseXff                *bool                                     `json:"use_xff,omitempty"`
-    AdditionalProperties  map[string]any                            `json:"_"`
+    AdditionalProperties  map[string]interface{}                    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelProviderOptionsZscaler.
@@ -34,13 +34,17 @@ type TunnelProviderOptionsZscaler struct {
 func (t TunnelProviderOptionsZscaler) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "aup_acceptance_required", "aup_expire", "aup_ssl_proxy", "download_mbps", "enable_aup", "enable_caution", "enforce_authentication", "name", "sub_locations", "upload_mbps", "use_xff"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TunnelProviderOptionsZscaler object to a map representation for JSON marshaling.
 func (t TunnelProviderOptionsZscaler) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.AupAcceptanceRequired != nil {
         structMap["aup_acceptance_required"] = t.AupAcceptanceRequired
     }
@@ -85,12 +89,12 @@ func (t *TunnelProviderOptionsZscaler) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "aup_acceptance_required", "aup_expire", "aup_ssl_proxy", "download_mbps", "enable_aup", "enable_caution", "enforce_authentication", "name", "sub_locations", "upload_mbps", "use_xff")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aup_acceptance_required", "aup_expire", "aup_ssl_proxy", "download_mbps", "enable_aup", "enable_caution", "enforce_authentication", "name", "sub_locations", "upload_mbps", "use_xff")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.AupAcceptanceRequired = temp.AupAcceptanceRequired
     t.AupExpire = temp.AupExpire
     t.AupSslProxy = temp.AupSslProxy

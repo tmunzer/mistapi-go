@@ -7,32 +7,32 @@ import (
 
 // StatsApBle represents a StatsApBle struct.
 type StatsApBle struct {
-    BeaconEnabled         Optional[bool]      `json:"beacon_enabled"`
-    BeaconRate            Optional[int]       `json:"beacon_rate"`
-    EddystoneUidEnabled   Optional[bool]      `json:"eddystone_uid_enabled"`
-    EddystoneUidFreqMsec  Optional[int]       `json:"eddystone_uid_freq_msec"`
-    EddystoneUidInstance  Optional[string]    `json:"eddystone_uid_instance"`
-    EddystoneUidNamespace Optional[string]    `json:"eddystone_uid_namespace"`
-    EddystoneUrlEnabled   Optional[bool]      `json:"eddystone_url_enabled"`
+    BeaconEnabled         Optional[bool]         `json:"beacon_enabled"`
+    BeaconRate            Optional[int]          `json:"beacon_rate"`
+    EddystoneUidEnabled   Optional[bool]         `json:"eddystone_uid_enabled"`
+    EddystoneUidFreqMsec  Optional[int]          `json:"eddystone_uid_freq_msec"`
+    EddystoneUidInstance  Optional[string]       `json:"eddystone_uid_instance"`
+    EddystoneUidNamespace Optional[string]       `json:"eddystone_uid_namespace"`
+    EddystoneUrlEnabled   Optional[bool]         `json:"eddystone_url_enabled"`
     // Frequency (msec) of data emmit by Eddystone-UID beacon
-    EddystoneUrlFreqMsec  Optional[int]       `json:"eddystone_url_freq_msec"`
-    EddystoneUrlUrl       Optional[string]    `json:"eddystone_url_url"`
-    IbeaconEnabled        Optional[bool]      `json:"ibeacon_enabled"`
-    IbeaconFreqMsec       Optional[int]       `json:"ibeacon_freq_msec"`
-    IbeaconMajor          Optional[int]       `json:"ibeacon_major"`
-    IbeaconMinor          Optional[int]       `json:"ibeacon_minor"`
-    IbeaconUuid           Optional[uuid.UUID] `json:"ibeacon_uuid"`
-    Major                 Optional[int]       `json:"major"`
-    Minors                []int               `json:"minors,omitempty"`
-    Power                 Optional[int]       `json:"power"`
-    RxBytes               Optional[int]       `json:"rx_bytes"`
-    RxPkts                Optional[int]       `json:"rx_pkts"`
-    TxBytes               Optional[int64]     `json:"tx_bytes"`
-    TxPkts                Optional[int]       `json:"tx_pkts"`
+    EddystoneUrlFreqMsec  Optional[int]          `json:"eddystone_url_freq_msec"`
+    EddystoneUrlUrl       Optional[string]       `json:"eddystone_url_url"`
+    IbeaconEnabled        Optional[bool]         `json:"ibeacon_enabled"`
+    IbeaconFreqMsec       Optional[int]          `json:"ibeacon_freq_msec"`
+    IbeaconMajor          Optional[int]          `json:"ibeacon_major"`
+    IbeaconMinor          Optional[int]          `json:"ibeacon_minor"`
+    IbeaconUuid           Optional[uuid.UUID]    `json:"ibeacon_uuid"`
+    Major                 Optional[int]          `json:"major"`
+    Minors                []int                  `json:"minors,omitempty"`
+    Power                 Optional[int]          `json:"power"`
+    RxBytes               Optional[int]          `json:"rx_bytes"`
+    RxPkts                Optional[int]          `json:"rx_pkts"`
+    TxBytes               Optional[int64]        `json:"tx_bytes"`
+    TxPkts                Optional[int]          `json:"tx_pkts"`
     // resets due to tx hung
-    TxResets              Optional[int]       `json:"tx_resets"`
-    Uuid                  Optional[uuid.UUID] `json:"uuid"`
-    AdditionalProperties  map[string]any      `json:"_"`
+    TxResets              Optional[int]          `json:"tx_resets"`
+    Uuid                  Optional[uuid.UUID]    `json:"uuid"`
+    AdditionalProperties  map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApBle.
@@ -40,13 +40,17 @@ type StatsApBle struct {
 func (s StatsApBle) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "beacon_enabled", "beacon_rate", "eddystone_uid_enabled", "eddystone_uid_freq_msec", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_enabled", "eddystone_url_freq_msec", "eddystone_url_url", "ibeacon_enabled", "ibeacon_freq_msec", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "major", "minors", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "tx_resets", "uuid"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsApBle object to a map representation for JSON marshaling.
 func (s StatsApBle) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.BeaconEnabled.IsValueSet() {
         if s.BeaconEnabled.Value() != nil {
             structMap["beacon_enabled"] = s.BeaconEnabled.Value()
@@ -215,12 +219,12 @@ func (s *StatsApBle) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "beacon_enabled", "beacon_rate", "eddystone_uid_enabled", "eddystone_uid_freq_msec", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_enabled", "eddystone_url_freq_msec", "eddystone_url_url", "ibeacon_enabled", "ibeacon_freq_msec", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "major", "minors", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "tx_resets", "uuid")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "beacon_enabled", "beacon_rate", "eddystone_uid_enabled", "eddystone_uid_freq_msec", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_enabled", "eddystone_url_freq_msec", "eddystone_url_url", "ibeacon_enabled", "ibeacon_freq_msec", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "major", "minors", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "tx_resets", "uuid")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.BeaconEnabled = temp.BeaconEnabled
     s.BeaconRate = temp.BeaconRate
     s.EddystoneUidEnabled = temp.EddystoneUidEnabled

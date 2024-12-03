@@ -11,7 +11,7 @@ type OrgSettingGatewayMgmtHostOutPolicies struct {
     Mist                 *OrgSettingGatewayMgmtHostOutPoliciesMist `json:"mist,omitempty"`
     Ntp                  *OrgSettingGatewayMgmtHostOutPoliciesNtp  `json:"ntp,omitempty"`
     Pim                  *OrgSettingGatewayMgmtHostOutPoliciesNtp  `json:"pim,omitempty"`
-    AdditionalProperties map[string]any                            `json:"_"`
+    AdditionalProperties map[string]interface{}                    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingGatewayMgmtHostOutPolicies.
@@ -19,13 +19,17 @@ type OrgSettingGatewayMgmtHostOutPolicies struct {
 func (o OrgSettingGatewayMgmtHostOutPolicies) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "dns", "mist", "ntp", "pim"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingGatewayMgmtHostOutPolicies object to a map representation for JSON marshaling.
 func (o OrgSettingGatewayMgmtHostOutPolicies) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Dns != nil {
         structMap["dns"] = o.Dns.toMap()
     }
@@ -49,12 +53,12 @@ func (o *OrgSettingGatewayMgmtHostOutPolicies) UnmarshalJSON(input []byte) error
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dns", "mist", "ntp", "pim")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns", "mist", "ntp", "pim")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Dns = temp.Dns
     o.Mist = temp.Mist
     o.Ntp = temp.Ntp

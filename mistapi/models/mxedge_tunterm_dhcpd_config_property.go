@@ -11,7 +11,7 @@ type MxedgeTuntermDhcpdConfigProperty struct {
     Servers              []string                          `json:"servers,omitempty"`
     // enum: `relay`
     Type                 *MxedgeTuntermDhcpdConfigTypeEnum `json:"type,omitempty"`
-    AdditionalProperties map[string]any                    `json:"_"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermDhcpdConfigProperty.
@@ -19,13 +19,17 @@ type MxedgeTuntermDhcpdConfigProperty struct {
 func (m MxedgeTuntermDhcpdConfigProperty) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "enabled", "servers", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeTuntermDhcpdConfigProperty object to a map representation for JSON marshaling.
 func (m MxedgeTuntermDhcpdConfigProperty) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Enabled != nil {
         structMap["enabled"] = m.Enabled
     }
@@ -46,12 +50,12 @@ func (m *MxedgeTuntermDhcpdConfigProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "servers", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "servers", "type")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Enabled = temp.Enabled
     m.Servers = temp.Servers
     m.Type = temp.Type

@@ -109,7 +109,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "683b679ac024",
     },
 }
@@ -217,7 +217,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsRrmOptimize{
-    Bands:       []string{
+    Bands:                []string{
         "24",
         "5",
         "6",
@@ -427,12 +427,12 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsResetRadioConfig{
-    Bands: []string{
+    Bands:                []string{
         "24",
         "5",
         "6",
     },
-    Force: models.ToPointer(false),
+    Force:                models.ToPointer(false),
 }
 
 resp, err := utilitiesWiFi.ResetSiteAllApsToUseRrm(ctx, siteId, &body)
@@ -484,9 +484,9 @@ TestSiteWlanTelstraSetup(
 ctx := context.Background()
 
 body := models.TestTelstra{
-    TelstraClientId:     "123456",
-    TelstraClientSecret: "abcdef",
-    To:                  "+911122334455",
+    TelstraClientId:      "123456",
+    TelstraClientSecret:  "abcdef",
+    To:                   "+911122334455",
 }
 
 resp, err := utilitiesWiFi.TestSiteWlanTelstraSetup(ctx, &body)
@@ -537,10 +537,10 @@ TestSiteWlanTwilioSetup(
 ctx := context.Background()
 
 body := models.TestTwilio{
-    From:            "+185051234567",
-    To:              "+19999999999",
-    TwilioAuthToken: "2135be04736a1a0a314bce432d61721a",
-    TwilioSid:       "AC5f4366878d193fb4865ab151739999eb",
+    From:                 "+185051234567",
+    To:                   "+19999999999",
+    TwilioAuthToken:      "2135be04736a1a0a314bce432d61721a",
+    TwilioSid:            "AC5f4366878d193fb4865ab151739999eb",
 }
 
 resp, err := utilitiesWiFi.TestSiteWlanTwilioSetup(ctx, &body)
@@ -594,7 +594,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MacAddresses{
-    Macs: []string{
+    Macs:                 []string{
         "683b679ac024",
     },
 }
@@ -702,7 +702,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsZeroiseFips{
-    Password: "NUKETHESITE",
+    Password:             "NUKETHESITE",
 }
 
 resp, err := utilitiesWiFi.ZeroizeSiteFipsAllAps(ctx, siteId, &body)

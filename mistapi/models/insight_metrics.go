@@ -8,12 +8,12 @@ import (
 
 // InsightMetrics represents a InsightMetrics struct.
 type InsightMetrics struct {
-    End                  int            `json:"end"`
-    Interval             int            `json:"interval"`
+    End                  int                    `json:"end"`
+    Interval             int                    `json:"interval"`
     // results depends on the `metric`
-    Results              []interface{}  `json:"results"`
-    Start                int            `json:"start"`
-    AdditionalProperties map[string]any `json:"_"`
+    Results              []interface{}          `json:"results"`
+    Start                int                    `json:"start"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for InsightMetrics.
@@ -21,13 +21,17 @@ type InsightMetrics struct {
 func (i InsightMetrics) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "end", "interval", "results", "start"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the InsightMetrics object to a map representation for JSON marshaling.
 func (i InsightMetrics) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     structMap["end"] = i.End
     structMap["interval"] = i.Interval
     structMap["results"] = i.Results
@@ -47,12 +51,12 @@ func (i *InsightMetrics) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "interval", "results", "start")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "interval", "results", "start")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.End = *temp.End
     i.Interval = *temp.Interval
     i.Results = *temp.Results

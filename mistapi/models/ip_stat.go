@@ -6,17 +6,17 @@ import (
 
 // IpStat represents a IpStat struct.
 type IpStat struct {
-    DhcpServer           Optional[string]  `json:"dhcp_server"`
-    Dns                  []string          `json:"dns,omitempty"`
-    DnsSuffix            []string          `json:"dns_suffix,omitempty"`
-    Gateway              Optional[string]  `json:"gateway"`
-    Gateway6             Optional[string]  `json:"gateway6"`
-    Ip                   Optional[string]  `json:"ip"`
-    Ip6                  Optional[string]  `json:"ip6"`
-    Ips                  map[string]string `json:"ips,omitempty"`
-    Netmask              Optional[string]  `json:"netmask"`
-    Netmask6             Optional[string]  `json:"netmask6"`
-    AdditionalProperties map[string]any    `json:"_"`
+    DhcpServer           Optional[string]       `json:"dhcp_server"`
+    Dns                  []string               `json:"dns,omitempty"`
+    DnsSuffix            []string               `json:"dns_suffix,omitempty"`
+    Gateway              Optional[string]       `json:"gateway"`
+    Gateway6             Optional[string]       `json:"gateway6"`
+    Ip                   Optional[string]       `json:"ip"`
+    Ip6                  Optional[string]       `json:"ip6"`
+    Ips                  map[string]string      `json:"ips,omitempty"`
+    Netmask              Optional[string]       `json:"netmask"`
+    Netmask6             Optional[string]       `json:"netmask6"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for IpStat.
@@ -24,13 +24,17 @@ type IpStat struct {
 func (i IpStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(i.AdditionalProperties,
+        "dhcp_server", "dns", "dns_suffix", "gateway", "gateway6", "ip", "ip6", "ips", "netmask", "netmask6"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(i.toMap())
 }
 
 // toMap converts the IpStat object to a map representation for JSON marshaling.
 func (i IpStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, i.AdditionalProperties)
+    MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.DhcpServer.IsValueSet() {
         if i.DhcpServer.Value() != nil {
             structMap["dhcp_server"] = i.DhcpServer.Value()
@@ -100,12 +104,12 @@ func (i *IpStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dhcp_server", "dns", "dns_suffix", "gateway", "gateway6", "ip", "ip6", "ips", "netmask", "netmask6")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dhcp_server", "dns", "dns_suffix", "gateway", "gateway6", "ip", "ip6", "ips", "netmask", "netmask6")
     if err != nil {
     	return err
     }
-    
     i.AdditionalProperties = additionalProperties
+    
     i.DhcpServer = temp.DhcpServer
     i.Dns = temp.Dns
     i.DnsSuffix = temp.DnsSuffix

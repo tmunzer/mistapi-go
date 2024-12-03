@@ -7,12 +7,12 @@ import (
 // OrgSettingJcloud represents a OrgSettingJcloud struct.
 type OrgSettingJcloud struct {
     // JCloud Org Token
-    OrgApitoken          *string        `json:"org_apitoken,omitempty"`
+    OrgApitoken          *string                `json:"org_apitoken,omitempty"`
     // JCloud Org Token Name
-    OrgApitokenName      *string        `json:"org_apitoken_name,omitempty"`
+    OrgApitokenName      *string                `json:"org_apitoken_name,omitempty"`
     // JCloud Org ID
-    OrgId                *string        `json:"org_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    OrgId                *string                `json:"org_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingJcloud.
@@ -20,13 +20,17 @@ type OrgSettingJcloud struct {
 func (o OrgSettingJcloud) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "org_apitoken", "org_apitoken_name", "org_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingJcloud object to a map representation for JSON marshaling.
 func (o OrgSettingJcloud) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.OrgApitoken != nil {
         structMap["org_apitoken"] = o.OrgApitoken
     }
@@ -47,12 +51,12 @@ func (o *OrgSettingJcloud) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "org_apitoken", "org_apitoken_name", "org_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "org_apitoken", "org_apitoken_name", "org_id")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.OrgApitoken = temp.OrgApitoken
     o.OrgApitokenName = temp.OrgApitokenName
     o.OrgId = temp.OrgId

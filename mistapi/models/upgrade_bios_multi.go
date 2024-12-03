@@ -8,14 +8,14 @@ import (
 // UpgradeBiosMulti represents a UpgradeBiosMulti struct.
 type UpgradeBiosMulti struct {
     // list of device id to upgrade bios
-    DeviceIds            []uuid.UUID    `json:"device_ids,omitempty"`
+    DeviceIds            []uuid.UUID            `json:"device_ids,omitempty"`
     // list of device model to upgrade bios
-    Models               []string       `json:"models,omitempty"`
+    Models               []string               `json:"models,omitempty"`
     // Reboot device immediately after upgrade is completed
-    Reboot               *bool          `json:"reboot,omitempty"`
+    Reboot               *bool                  `json:"reboot,omitempty"`
     // specific bios version
-    Version              *string        `json:"version,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Version              *string                `json:"version,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UpgradeBiosMulti.
@@ -23,13 +23,17 @@ type UpgradeBiosMulti struct {
 func (u UpgradeBiosMulti) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "device_ids", "models", "reboot", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UpgradeBiosMulti object to a map representation for JSON marshaling.
 func (u UpgradeBiosMulti) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.DeviceIds != nil {
         structMap["device_ids"] = u.DeviceIds
     }
@@ -53,12 +57,12 @@ func (u *UpgradeBiosMulti) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "device_ids", "models", "reboot", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "device_ids", "models", "reboot", "version")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.DeviceIds = temp.DeviceIds
     u.Models = temp.Models
     u.Reboot = temp.Reboot

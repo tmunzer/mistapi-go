@@ -14,7 +14,7 @@ type ResponseDeviceSearch struct {
     Results              []ResponseDeviceSearchResultsItems `json:"results"`
     Start                int                                `json:"start"`
     Total                int                                `json:"total"`
-    AdditionalProperties map[string]any                     `json:"_"`
+    AdditionalProperties map[string]interface{}             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceSearch.
@@ -22,13 +22,17 @@ type ResponseDeviceSearch struct {
 func (r ResponseDeviceSearch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "end", "limit", "next", "results", "start", "total"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseDeviceSearch object to a map representation for JSON marshaling.
 func (r ResponseDeviceSearch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["end"] = r.End
     structMap["limit"] = r.Limit
     if r.Next != nil {
@@ -52,12 +56,12 @@ func (r *ResponseDeviceSearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "limit", "next", "results", "start", "total")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "next", "results", "start", "total")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.End = *temp.End
     r.Limit = *temp.Limit
     r.Next = temp.Next

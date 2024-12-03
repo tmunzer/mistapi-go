@@ -11,39 +11,39 @@ import (
 // Site
 type Site struct {
     // full address of the site
-    Address              *string             `json:"address,omitempty"`
+    Address              *string                `json:"address,omitempty"`
     // Alarm Template ID, this takes precedence over the Org-level alarmtemplate_id
-    AlarmtemplateId      Optional[uuid.UUID] `json:"alarmtemplate_id"`
+    AlarmtemplateId      Optional[uuid.UUID]    `json:"alarmtemplate_id"`
     // AP Template ID, used by APs
-    AptemplateId         Optional[uuid.UUID] `json:"aptemplate_id"`
+    AptemplateId         Optional[uuid.UUID]    `json:"aptemplate_id"`
     // country code for the site (for AP config generation), in two-character
-    CountryCode          *string             `json:"country_code,omitempty"`
+    CountryCode          *string                `json:"country_code,omitempty"`
     // when the object has been created, in epoch
-    CreatedTime          *float64            `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // Gateway Template ID, used by gateways
-    GatewaytemplateId    Optional[uuid.UUID] `json:"gatewaytemplate_id"`
+    GatewaytemplateId    Optional[uuid.UUID]    `json:"gatewaytemplate_id"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID          `json:"id,omitempty"`
-    Latlng               *LatLng             `json:"latlng,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Latlng               *LatLng                `json:"latlng,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64            `json:"modified_time,omitempty"`
-    Name                 string              `json:"name"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    Name                 string                 `json:"name"`
     // Network Template ID, this takes precedence over Site Settings
-    NetworktemplateId    Optional[uuid.UUID] `json:"networktemplate_id"`
+    NetworktemplateId    Optional[uuid.UUID]    `json:"networktemplate_id"`
     // optional, any notes about the site
-    Notes                *string             `json:"notes,omitempty"`
-    OrgId                *uuid.UUID          `json:"org_id,omitempty"`
+    Notes                *string                `json:"notes,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // RF Template ID, this takes precedence over Site Settings
-    RftemplateId         Optional[uuid.UUID] `json:"rftemplate_id"`
+    RftemplateId         Optional[uuid.UUID]    `json:"rftemplate_id"`
     // SecPolicy ID
-    SecpolicyId          Optional[uuid.UUID] `json:"secpolicy_id"`
+    SecpolicyId          Optional[uuid.UUID]    `json:"secpolicy_id"`
     // sitegroups this site belongs to
-    SitegroupIds         []uuid.UUID         `json:"sitegroup_ids,omitempty"`
+    SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
     // Site Template ID
-    SitetemplateId       Optional[uuid.UUID] `json:"sitetemplate_id"`
+    SitetemplateId       Optional[uuid.UUID]    `json:"sitetemplate_id"`
     // Timezone the site is at
-    Timezone             *string             `json:"timezone,omitempty"`
-    AdditionalProperties map[string]any      `json:"_"`
+    Timezone             *string                `json:"timezone,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Site.
@@ -51,13 +51,17 @@ type Site struct {
 func (s Site) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Site object to a map representation for JSON marshaling.
 func (s Site) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Address != nil {
         structMap["address"] = s.Address
     }
@@ -153,12 +157,12 @@ func (s *Site) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Address = temp.Address
     s.AlarmtemplateId = temp.AlarmtemplateId
     s.AptemplateId = temp.AptemplateId

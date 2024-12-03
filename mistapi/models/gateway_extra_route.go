@@ -6,8 +6,8 @@ import (
 
 // GatewayExtraRoute represents a GatewayExtraRoute struct.
 type GatewayExtraRoute struct {
-    Via                  *string        `json:"via,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Via                  *string                `json:"via,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayExtraRoute.
@@ -15,13 +15,17 @@ type GatewayExtraRoute struct {
 func (g GatewayExtraRoute) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "via"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayExtraRoute object to a map representation for JSON marshaling.
 func (g GatewayExtraRoute) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Via != nil {
         structMap["via"] = g.Via
     }
@@ -36,12 +40,12 @@ func (g *GatewayExtraRoute) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "via")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "via")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Via = temp.Via
     return nil
 }

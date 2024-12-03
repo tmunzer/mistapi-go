@@ -34,7 +34,7 @@ type ResponseDeviceUpgrade struct {
     TargetVersion        *string                      `json:"target_version,omitempty"`
     // a dictionary of rrm phase number to devices part of that phase
     UpgradePlan          *interface{}                 `json:"upgrade_plan,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceUpgrade.
@@ -42,13 +42,17 @@ type ResponseDeviceUpgrade struct {
 func (r ResponseDeviceUpgrade) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "counts", "current_phase", "enable_p2p", "force", "id", "max_failure_percentage", "max_failures", "reboot_at", "start_time", "status", "strategy", "target_version", "upgrade_plan"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseDeviceUpgrade object to a map representation for JSON marshaling.
 func (r ResponseDeviceUpgrade) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Counts != nil {
         structMap["counts"] = r.Counts.toMap()
     }
@@ -101,12 +105,12 @@ func (r *ResponseDeviceUpgrade) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "counts", "current_phase", "enable_p2p", "force", "id", "max_failure_percentage", "max_failures", "reboot_at", "start_time", "status", "strategy", "target_version", "upgrade_plan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "counts", "current_phase", "enable_p2p", "force", "id", "max_failure_percentage", "max_failures", "reboot_at", "start_time", "status", "strategy", "target_version", "upgrade_plan")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Counts = temp.Counts
     r.CurrentPhase = temp.CurrentPhase
     r.EnableP2p = temp.EnableP2p

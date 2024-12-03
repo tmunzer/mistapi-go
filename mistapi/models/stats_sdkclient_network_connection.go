@@ -9,11 +9,11 @@ import (
 // StatsSdkclientNetworkConnection represents a StatsSdkclientNetworkConnection struct.
 // various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
 type StatsSdkclientNetworkConnection struct {
-    Mac                  string         `json:"mac"`
-    Rssi                 float64        `json:"rssi"`
-    SignalLevel          float64        `json:"signal_level"`
-    Type                 string         `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  string                 `json:"mac"`
+    Rssi                 float64                `json:"rssi"`
+    SignalLevel          float64                `json:"signal_level"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSdkclientNetworkConnection.
@@ -21,13 +21,17 @@ type StatsSdkclientNetworkConnection struct {
 func (s StatsSdkclientNetworkConnection) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "mac", "rssi", "signal_level", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsSdkclientNetworkConnection object to a map representation for JSON marshaling.
 func (s StatsSdkclientNetworkConnection) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["mac"] = s.Mac
     structMap["rssi"] = s.Rssi
     structMap["signal_level"] = s.SignalLevel
@@ -47,12 +51,12 @@ func (s *StatsSdkclientNetworkConnection) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "rssi", "signal_level", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "rssi", "signal_level", "type")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Mac = *temp.Mac
     s.Rssi = *temp.Rssi
     s.SignalLevel = *temp.SignalLevel

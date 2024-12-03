@@ -10,37 +10,37 @@ import (
 // StatsSite represents a StatsSite struct.
 // Site statistics
 type StatsSite struct {
-    Address              string              `json:"address"`
-    AlarmtemplateId      *uuid.UUID          `json:"alarmtemplate_id"`
-    CountryCode          string              `json:"country_code"`
+    Address              string                 `json:"address"`
+    AlarmtemplateId      *uuid.UUID             `json:"alarmtemplate_id"`
+    CountryCode          string                 `json:"country_code"`
     // when the object has been created, in epoch
-    CreatedTime          float64             `json:"created_time"`
+    CreatedTime          float64                `json:"created_time"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID           `json:"id"`
-    Lat                  float64             `json:"lat"`
-    Latlng               LatLng              `json:"latlng"`
-    Lng                  float64             `json:"lng"`
+    Id                   uuid.UUID              `json:"id"`
+    Lat                  float64                `json:"lat"`
+    Latlng               LatLng                 `json:"latlng"`
+    Lng                  float64                `json:"lng"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         float64             `json:"modified_time"`
-    MspId                uuid.UUID           `json:"msp_id"`
-    Name                 string              `json:"name"`
-    NetworktemplateId    *uuid.UUID          `json:"networktemplate_id"`
-    NumAp                int                 `json:"num_ap"`
-    NumApConnected       int                 `json:"num_ap_connected"`
-    NumClients           int                 `json:"num_clients"`
-    NumDevices           int                 `json:"num_devices"`
-    NumDevicesConnected  int                 `json:"num_devices_connected"`
-    NumGateway           int                 `json:"num_gateway"`
-    NumGatewayConnected  int                 `json:"num_gateway_connected"`
-    NumSwitch            int                 `json:"num_switch"`
-    NumSwitchConnected   int                 `json:"num_switch_connected"`
-    OrgId                uuid.UUID           `json:"org_id"`
-    RftemplateId         *uuid.UUID          `json:"rftemplate_id"`
-    SecpolicyId          Optional[uuid.UUID] `json:"secpolicy_id"`
-    SitegroupIds         []uuid.UUID         `json:"sitegroup_ids"`
-    Timezone             string              `json:"timezone"`
-    Tzoffset             int                 `json:"tzoffset"`
-    AdditionalProperties map[string]any      `json:"_"`
+    ModifiedTime         float64                `json:"modified_time"`
+    MspId                uuid.UUID              `json:"msp_id"`
+    Name                 string                 `json:"name"`
+    NetworktemplateId    *uuid.UUID             `json:"networktemplate_id"`
+    NumAp                int                    `json:"num_ap"`
+    NumApConnected       int                    `json:"num_ap_connected"`
+    NumClients           int                    `json:"num_clients"`
+    NumDevices           int                    `json:"num_devices"`
+    NumDevicesConnected  int                    `json:"num_devices_connected"`
+    NumGateway           int                    `json:"num_gateway"`
+    NumGatewayConnected  int                    `json:"num_gateway_connected"`
+    NumSwitch            int                    `json:"num_switch"`
+    NumSwitchConnected   int                    `json:"num_switch_connected"`
+    OrgId                uuid.UUID              `json:"org_id"`
+    RftemplateId         *uuid.UUID             `json:"rftemplate_id"`
+    SecpolicyId          Optional[uuid.UUID]    `json:"secpolicy_id"`
+    SitegroupIds         []uuid.UUID            `json:"sitegroup_ids"`
+    Timezone             string                 `json:"timezone"`
+    Tzoffset             int                    `json:"tzoffset"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSite.
@@ -48,13 +48,17 @@ type StatsSite struct {
 func (s StatsSite) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "address", "alarmtemplate_id", "country_code", "created_time", "id", "lat", "latlng", "lng", "modified_time", "msp_id", "name", "networktemplate_id", "num_ap", "num_ap_connected", "num_clients", "num_devices", "num_devices_connected", "num_gateway", "num_gateway_connected", "num_switch", "num_switch_connected", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "timezone", "tzoffset"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsSite object to a map representation for JSON marshaling.
 func (s StatsSite) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["address"] = s.Address
     if s.AlarmtemplateId != nil {
         structMap["alarmtemplate_id"] = s.AlarmtemplateId
@@ -115,12 +119,12 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "address", "alarmtemplate_id", "country_code", "created_time", "id", "lat", "latlng", "lng", "modified_time", "msp_id", "name", "networktemplate_id", "num_ap", "num_ap_connected", "num_clients", "num_devices", "num_devices_connected", "num_gateway", "num_gateway_connected", "num_switch", "num_switch_connected", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "timezone", "tzoffset")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "alarmtemplate_id", "country_code", "created_time", "id", "lat", "latlng", "lng", "modified_time", "msp_id", "name", "networktemplate_id", "num_ap", "num_ap_connected", "num_clients", "num_devices", "num_devices_connected", "num_gateway", "num_gateway_connected", "num_switch", "num_switch_connected", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "timezone", "tzoffset")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Address = *temp.Address
     s.AlarmtemplateId = temp.AlarmtemplateId
     s.CountryCode = *temp.CountryCode

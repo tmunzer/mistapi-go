@@ -9,10 +9,10 @@ import (
 // UtilsResetRadioConfig represents a UtilsResetRadioConfig struct.
 type UtilsResetRadioConfig struct {
     // list of bands
-    Bands                []string       `json:"bands"`
+    Bands                []string               `json:"bands"`
     // whether to reset those with radio disabled. default is false (i.e. if user intentionally disables a radio, honor it)
-    Force                *bool          `json:"force,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Force                *bool                  `json:"force,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsResetRadioConfig.
@@ -20,13 +20,17 @@ type UtilsResetRadioConfig struct {
 func (u UtilsResetRadioConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "bands", "force"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsResetRadioConfig object to a map representation for JSON marshaling.
 func (u UtilsResetRadioConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     structMap["bands"] = u.Bands
     if u.Force != nil {
         structMap["force"] = u.Force
@@ -46,12 +50,12 @@ func (u *UtilsResetRadioConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bands", "force")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bands", "force")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Bands = *temp.Bands
     u.Force = temp.Force
     return nil

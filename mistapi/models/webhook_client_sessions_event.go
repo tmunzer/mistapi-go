@@ -10,47 +10,47 @@ import (
 // WebhookClientSessionsEvent represents a WebhookClientSessionsEvent struct.
 type WebhookClientSessionsEvent struct {
     // mac address of the AP the client roamed or disconnected from
-    Ap                   string         `json:"ap"`
+    Ap                   string                 `json:"ap"`
     // user-friendly name of the AP the client roamed or disconnected from.
-    ApName               string         `json:"ap_name"`
+    ApName               string                 `json:"ap_name"`
     // 5GHz or 2.4GHz band
-    Band                 string         `json:"band"`
-    Bssid                string         `json:"bssid"`
+    Band                 string                 `json:"band"`
+    Bssid                string                 `json:"bssid"`
     // device family E.g. “Mac”, “iPhone”, “Apple watch”
-    ClientFamily         string         `json:"client_family"`
+    ClientFamily         string                 `json:"client_family"`
     // device manufacturer E.g. “Apple”
-    ClientManufacture    string         `json:"client_manufacture"`
+    ClientManufacture    string                 `json:"client_manufacture"`
     // device model E.g. “8+”, “XS”
-    ClientModel          string         `json:"client_model"`
+    ClientModel          string                 `json:"client_model"`
     // device operating system E.g. “Mojave”, “Windows 10”, “Linux”
-    ClientOs             string         `json:"client_os"`
+    ClientOs             string                 `json:"client_os"`
     // time when the user connects
-    Connect              int            `json:"connect"`
+    Connect              int                    `json:"connect"`
     // floating point connect timestamp with millisecond precision
-    ConnectFloat         float64        `json:"connect_float"`
+    ConnectFloat         float64                `json:"connect_float"`
     // time when the user disconnects
-    Disconnect           int            `json:"disconnect"`
+    Disconnect           int                    `json:"disconnect"`
     // floating point disconnect timestamp with millisecond precision
-    DisconnectFloat      float64        `json:"disconnect_float"`
+    DisconnectFloat      float64                `json:"disconnect_float"`
     // the duration of the roamed or complete session indicated by termination_reason field.
-    Duration             int            `json:"duration"`
+    Duration             int                    `json:"duration"`
     // the client’s mac
-    Mac                  string         `json:"mac"`
+    Mac                  string                 `json:"mac"`
     // the AP the client has roamed to.
-    NextAp               string         `json:"next_ap"`
-    OrgId                uuid.UUID      `json:"org_id"`
+    NextAp               string                 `json:"next_ap"`
+    OrgId                uuid.UUID              `json:"org_id"`
     // latest average RSSI before the user disconnects
-    Rssi                 float64        `json:"rssi"`
-    SiteId               uuid.UUID      `json:"site_id"`
-    SiteName             string         `json:"site_name"`
-    Ssid                 string         `json:"ssid"`
+    Rssi                 float64                `json:"rssi"`
+    SiteId               uuid.UUID              `json:"site_id"`
+    SiteName             string                 `json:"site_name"`
+    Ssid                 string                 `json:"ssid"`
     // 1 disassociate - when the client disassociates. 2 inactive - when the client is timeout. 3 roamed - when the client is roamed between APs
-    TerminationReason    int            `json:"termination_reason"`
-    Timestamp            float64        `json:"timestamp"`
+    TerminationReason    int                    `json:"termination_reason"`
+    Timestamp            float64                `json:"timestamp"`
     // schema version of this message
-    Version              float64        `json:"version"`
-    WlanId               uuid.UUID      `json:"wlan_id"`
-    AdditionalProperties map[string]any `json:"_"`
+    Version              float64                `json:"version"`
+    WlanId               uuid.UUID              `json:"wlan_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookClientSessionsEvent.
@@ -58,13 +58,17 @@ type WebhookClientSessionsEvent struct {
 func (w WebhookClientSessionsEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "ap", "ap_name", "band", "bssid", "client_family", "client_manufacture", "client_model", "client_os", "connect", "connect_float", "disconnect", "disconnect_float", "duration", "mac", "next_ap", "org_id", "rssi", "site_id", "site_name", "ssid", "termination_reason", "timestamp", "version", "wlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookClientSessionsEvent object to a map representation for JSON marshaling.
 func (w WebhookClientSessionsEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["ap"] = w.Ap
     structMap["ap_name"] = w.ApName
     structMap["band"] = w.Band
@@ -104,12 +108,12 @@ func (w *WebhookClientSessionsEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "ap_name", "band", "bssid", "client_family", "client_manufacture", "client_model", "client_os", "connect", "connect_float", "disconnect", "disconnect_float", "duration", "mac", "next_ap", "org_id", "rssi", "site_id", "site_name", "ssid", "termination_reason", "timestamp", "version", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "ap_name", "band", "bssid", "client_family", "client_manufacture", "client_model", "client_os", "connect", "connect_float", "disconnect", "disconnect_float", "duration", "mac", "next_ap", "org_id", "rssi", "site_id", "site_name", "ssid", "termination_reason", "timestamp", "version", "wlan_id")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Ap = *temp.Ap
     w.ApName = *temp.ApName
     w.Band = *temp.Band

@@ -6,10 +6,10 @@ import (
 
 // StatsMxedgeTuntermPortConfig represents a StatsMxedgeTuntermPortConfig struct.
 type StatsMxedgeTuntermPortConfig struct {
-    DownstreamPorts            []string       `json:"downstream_ports,omitempty"`
-    SeparateUpstreamDownstream *bool          `json:"separate_upstream_downstream,omitempty"`
-    UpstreamPorts              []string       `json:"upstream_ports,omitempty"`
-    AdditionalProperties       map[string]any `json:"_"`
+    DownstreamPorts            []string               `json:"downstream_ports,omitempty"`
+    SeparateUpstreamDownstream *bool                  `json:"separate_upstream_downstream,omitempty"`
+    UpstreamPorts              []string               `json:"upstream_ports,omitempty"`
+    AdditionalProperties       map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeTuntermPortConfig.
@@ -17,13 +17,17 @@ type StatsMxedgeTuntermPortConfig struct {
 func (s StatsMxedgeTuntermPortConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "downstream_ports", "separate_upstream_downstream", "upstream_ports"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxedgeTuntermPortConfig object to a map representation for JSON marshaling.
 func (s StatsMxedgeTuntermPortConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.DownstreamPorts != nil {
         structMap["downstream_ports"] = s.DownstreamPorts
     }
@@ -44,12 +48,12 @@ func (s *StatsMxedgeTuntermPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "downstream_ports", "separate_upstream_downstream", "upstream_ports")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "downstream_ports", "separate_upstream_downstream", "upstream_ports")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.DownstreamPorts = temp.DownstreamPorts
     s.SeparateUpstreamDownstream = temp.SeparateUpstreamDownstream
     s.UpstreamPorts = temp.UpstreamPorts

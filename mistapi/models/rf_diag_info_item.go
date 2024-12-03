@@ -10,42 +10,42 @@ import (
 // RfDiagInfoItem represents a RfDiagInfoItem struct.
 type RfDiagInfoItem struct {
     // if `type`==`asset`, id of the asset
-    AssetId              *uuid.UUID       `json:"asset_id,omitempty"`
+    AssetId              *uuid.UUID             `json:"asset_id,omitempty"`
     // if `type`==`asset`, name of the asset
-    AssetName            *string          `json:"asset_name,omitempty"`
+    AssetName            *string                `json:"asset_name,omitempty"`
     // if `type`==`client`, hostname of the client
-    ClientName           *string          `json:"client_name,omitempty"`
+    ClientName           *string                `json:"client_name,omitempty"`
     // recording length in seconds, max is 120
-    Duration             int              `json:"duration"`
+    Duration             int                    `json:"duration"`
     // timestamp of end of recording
-    EndTime              int              `json:"end_time"`
+    EndTime              int                    `json:"end_time"`
     // Number of frames in the output
-    FrameCount           int              `json:"frame_count"`
+    FrameCount           int                    `json:"frame_count"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID       `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // if `type`==`client` or `asset`, mac of the device
-    Mac                  *string          `json:"mac,omitempty"`
-    MapId                uuid.UUID        `json:"map_id"`
-    Name                 string           `json:"name"`
+    Mac                  *string                `json:"mac,omitempty"`
+    MapId                uuid.UUID              `json:"map_id"`
+    Name                 string                 `json:"name"`
     // Optional. id of the next recoding if present. Only valid for site survey.
-    Next                 *string          `json:"next,omitempty"`
+    Next                 *string                `json:"next,omitempty"`
     // URL to a JSON file that contains array of raw location diag events
-    RawEvents            string           `json:"raw_events"`
+    RawEvents            string                 `json:"raw_events"`
     // whether it’s ready for playback
-    Ready                bool             `json:"ready"`
+    Ready                bool                   `json:"ready"`
     // if `type`==`sdkclient`, sdkclient_id of this recording
-    SdkclientId          *uuid.UUID       `json:"sdkclient_id,omitempty"`
+    SdkclientId          *uuid.UUID             `json:"sdkclient_id,omitempty"`
     // if `type`==`sdkclient`, name of the sdkclient
-    SdkclientName        *string          `json:"sdkclient_name,omitempty"`
+    SdkclientName        *string                `json:"sdkclient_name,omitempty"`
     // if `type`==`sdkclient`, device_id of sdkclient
-    SdkclientUuid        *uuid.UUID       `json:"sdkclient_uuid,omitempty"`
+    SdkclientUuid        *uuid.UUID             `json:"sdkclient_uuid,omitempty"`
     // timestamp of the recording (the start)
-    StartTime            int              `json:"start_time"`
+    StartTime            int                    `json:"start_time"`
     // enum: `asset`, `client`, `sdkclient`
-    Type                 RfClientTypeEnum `json:"type"`
+    Type                 RfClientTypeEnum       `json:"type"`
     // URL to a JSON file that contains an array of frames, each frame is the same format
-    Url                  string           `json:"url"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Url                  string                 `json:"url"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RfDiagInfoItem.
@@ -53,13 +53,17 @@ type RfDiagInfoItem struct {
 func (r RfDiagInfoItem) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "asset_id", "asset_name", "client_name", "duration", "end_time", "frame_count", "id", "mac", "map_id", "name", "next", "raw_events", "ready", "sdkclient_id", "sdkclient_name", "sdkclient_uuid", "start_time", "type", "url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RfDiagInfoItem object to a map representation for JSON marshaling.
 func (r RfDiagInfoItem) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.AssetId != nil {
         structMap["asset_id"] = r.AssetId
     }
@@ -112,12 +116,12 @@ func (r *RfDiagInfoItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "asset_id", "asset_name", "client_name", "duration", "end_time", "frame_count", "id", "mac", "map_id", "name", "next", "raw_events", "ready", "sdkclient_id", "sdkclient_name", "sdkclient_uuid", "start_time", "type", "url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "asset_id", "asset_name", "client_name", "duration", "end_time", "frame_count", "id", "mac", "map_id", "name", "next", "raw_events", "ready", "sdkclient_id", "sdkclient_name", "sdkclient_uuid", "start_time", "type", "url")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.AssetId = temp.AssetId
     r.AssetName = temp.AssetName
     r.ClientName = temp.ClientName

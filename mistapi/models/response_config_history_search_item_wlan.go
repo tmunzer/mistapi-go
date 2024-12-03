@@ -9,13 +9,13 @@ import (
 
 // ResponseConfigHistorySearchItemWlan represents a ResponseConfigHistorySearchItemWlan struct.
 type ResponseConfigHistorySearchItemWlan struct {
-    Auth                 string         `json:"auth"`
-    Bands                []string       `json:"bands,omitempty"`
+    Auth                 string                 `json:"auth"`
+    Bands                []string               `json:"bands,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID      `json:"id"`
-    Ssid                 string         `json:"ssid"`
-    VlanIds              []string       `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Id                   uuid.UUID              `json:"id"`
+    Ssid                 string                 `json:"ssid"`
+    VlanIds              []string               `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseConfigHistorySearchItemWlan.
@@ -23,13 +23,17 @@ type ResponseConfigHistorySearchItemWlan struct {
 func (r ResponseConfigHistorySearchItemWlan) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "auth", "bands", "id", "ssid", "vlan_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseConfigHistorySearchItemWlan object to a map representation for JSON marshaling.
 func (r ResponseConfigHistorySearchItemWlan) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["auth"] = r.Auth
     if r.Bands != nil {
         structMap["bands"] = r.Bands
@@ -54,12 +58,12 @@ func (r *ResponseConfigHistorySearchItemWlan) UnmarshalJSON(input []byte) error 
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth", "bands", "id", "ssid", "vlan_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth", "bands", "id", "ssid", "vlan_ids")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Auth = *temp.Auth
     r.Bands = temp.Bands
     r.Id = *temp.Id

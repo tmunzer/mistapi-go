@@ -6,18 +6,18 @@ import (
 
 // StatsMxedgePortStat represents a StatsMxedgePortStat struct.
 type StatsMxedgePortStat struct {
-    FullDuplex           *bool          `json:"full_duplex,omitempty"`
-    Mac                  *string        `json:"mac,omitempty"`
-    RxBytes              *float64       `json:"rx_bytes,omitempty"`
-    RxErrors             *int           `json:"rx_errors,omitempty"`
-    RxPkts               *int           `json:"rx_pkts,omitempty"`
-    Speed                *int           `json:"speed,omitempty"`
-    State                *string        `json:"state,omitempty"`
-    TxBytes              *int           `json:"tx_bytes,omitempty"`
-    TxErrors             *int           `json:"tx_errors,omitempty"`
-    TxPkts               *int           `json:"tx_pkts,omitempty"`
-    Up                   *bool          `json:"up,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    FullDuplex           *bool                  `json:"full_duplex,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    RxBytes              *float64               `json:"rx_bytes,omitempty"`
+    RxErrors             *int                   `json:"rx_errors,omitempty"`
+    RxPkts               *int                   `json:"rx_pkts,omitempty"`
+    Speed                *int                   `json:"speed,omitempty"`
+    State                *string                `json:"state,omitempty"`
+    TxBytes              *int                   `json:"tx_bytes,omitempty"`
+    TxErrors             *int                   `json:"tx_errors,omitempty"`
+    TxPkts               *int                   `json:"tx_pkts,omitempty"`
+    Up                   *bool                  `json:"up,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgePortStat.
@@ -25,13 +25,17 @@ type StatsMxedgePortStat struct {
 func (s StatsMxedgePortStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "full_duplex", "mac", "rx_bytes", "rx_errors", "rx_pkts", "speed", "state", "tx_bytes", "tx_errors", "tx_pkts", "up"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxedgePortStat object to a map representation for JSON marshaling.
 func (s StatsMxedgePortStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.FullDuplex != nil {
         structMap["full_duplex"] = s.FullDuplex
     }
@@ -76,12 +80,12 @@ func (s *StatsMxedgePortStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "full_duplex", "mac", "rx_bytes", "rx_errors", "rx_pkts", "speed", "state", "tx_bytes", "tx_errors", "tx_pkts", "up")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "full_duplex", "mac", "rx_bytes", "rx_errors", "rx_pkts", "speed", "state", "tx_bytes", "tx_errors", "tx_pkts", "up")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.FullDuplex = temp.FullDuplex
     s.Mac = temp.Mac
     s.RxBytes = temp.RxBytes

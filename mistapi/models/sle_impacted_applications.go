@@ -15,7 +15,7 @@ type SleImpactedApplications struct {
     Page                 *int                         `json:"page,omitempty"`
     Start                *int                         `json:"start,omitempty"`
     TotalCount           *int                         `json:"total_count,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedApplications.
@@ -23,13 +23,17 @@ type SleImpactedApplications struct {
 func (s SleImpactedApplications) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "apps", "classifier", "end", "failure", "limit", "metric", "page", "start", "total_count"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SleImpactedApplications object to a map representation for JSON marshaling.
 func (s SleImpactedApplications) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Apps != nil {
         structMap["apps"] = s.Apps
     }
@@ -68,12 +72,12 @@ func (s *SleImpactedApplications) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "apps", "classifier", "end", "failure", "limit", "metric", "page", "start", "total_count")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "apps", "classifier", "end", "failure", "limit", "metric", "page", "start", "total_count")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Apps = temp.Apps
     s.Classifier = temp.Classifier
     s.End = temp.End

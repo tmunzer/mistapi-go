@@ -6,8 +6,8 @@ import (
 
 // VpnLinksSteering represents a VpnLinksSteering struct.
 type VpnLinksSteering struct {
-    Preference           *int           `json:"preference,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Preference           *int                   `json:"preference,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VpnLinksSteering.
@@ -15,13 +15,17 @@ type VpnLinksSteering struct {
 func (v VpnLinksSteering) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "preference"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VpnLinksSteering object to a map representation for JSON marshaling.
 func (v VpnLinksSteering) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.Preference != nil {
         structMap["preference"] = v.Preference
     }
@@ -36,12 +40,12 @@ func (v *VpnLinksSteering) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "preference")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "preference")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.Preference = temp.Preference
     return nil
 }

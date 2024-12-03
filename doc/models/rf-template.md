@@ -3,6 +3,8 @@
 
 RF Template
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RfTemplate`
@@ -28,6 +30,7 @@ RF Template
 | `Name` | `string` | Required | The name of the RF template |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `ScanningEnabled` | `*bool` | Optional | whether scanning radio is enabled |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,9 +49,17 @@ RF Template
     "bandwidth": 20,
     "channels": [
       221
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "band_24_usage": "6"
+  "band_24_usage": "6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

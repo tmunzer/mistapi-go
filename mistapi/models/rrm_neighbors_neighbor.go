@@ -6,9 +6,9 @@ import (
 
 // RrmNeighborsNeighbor represents a RrmNeighborsNeighbor struct.
 type RrmNeighborsNeighbor struct {
-    Mac                  *string        `json:"mac,omitempty"`
-    Rssi                 *int           `json:"rssi,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Mac                  *string                `json:"mac,omitempty"`
+    Rssi                 *int                   `json:"rssi,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmNeighborsNeighbor.
@@ -16,13 +16,17 @@ type RrmNeighborsNeighbor struct {
 func (r RrmNeighborsNeighbor) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "mac", "rssi"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RrmNeighborsNeighbor object to a map representation for JSON marshaling.
 func (r RrmNeighborsNeighbor) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Mac != nil {
         structMap["mac"] = r.Mac
     }
@@ -40,12 +44,12 @@ func (r *RrmNeighborsNeighbor) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac", "rssi")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "rssi")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Mac = temp.Mac
     r.Rssi = temp.Rssi
     return nil

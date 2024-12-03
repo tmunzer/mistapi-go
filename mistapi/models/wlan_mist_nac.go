@@ -13,8 +13,8 @@ type WlanMistNac struct {
     // * `coa_servers` is ignored
     // * `radsec` is ignored
     // * `coa_enabled` is assumed'
-    Enabled              *bool          `json:"enabled,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanMistNac.
@@ -22,13 +22,17 @@ type WlanMistNac struct {
 func (w WlanMistNac) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanMistNac object to a map representation for JSON marshaling.
 func (w WlanMistNac) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Enabled != nil {
         structMap["enabled"] = w.Enabled
     }
@@ -43,12 +47,12 @@ func (w *WlanMistNac) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Enabled = temp.Enabled
     return nil
 }

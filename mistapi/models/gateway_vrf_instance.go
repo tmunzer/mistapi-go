@@ -6,8 +6,8 @@ import (
 
 // GatewayVrfInstance represents a GatewayVrfInstance struct.
 type GatewayVrfInstance struct {
-    Networks             []string       `json:"networks,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Networks             []string               `json:"networks,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayVrfInstance.
@@ -15,13 +15,17 @@ type GatewayVrfInstance struct {
 func (g GatewayVrfInstance) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "networks"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayVrfInstance object to a map representation for JSON marshaling.
 func (g GatewayVrfInstance) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Networks != nil {
         structMap["networks"] = g.Networks
     }
@@ -36,12 +40,12 @@ func (g *GatewayVrfInstance) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "networks")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "networks")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Networks = temp.Networks
     return nil
 }

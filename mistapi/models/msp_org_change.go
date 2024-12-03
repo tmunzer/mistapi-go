@@ -12,7 +12,7 @@ type MspOrgChange struct {
     Op                   MspOrgChangeOperationEnum `json:"op"`
     // list of org_id
     OrgIds               []string                  `json:"org_ids"`
-    AdditionalProperties map[string]any            `json:"_"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MspOrgChange.
@@ -20,13 +20,17 @@ type MspOrgChange struct {
 func (m MspOrgChange) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "op", "org_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MspOrgChange object to a map representation for JSON marshaling.
 func (m MspOrgChange) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["op"] = m.Op
     structMap["org_ids"] = m.OrgIds
     return structMap
@@ -44,12 +48,12 @@ func (m *MspOrgChange) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "op", "org_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "op", "org_ids")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Op = *temp.Op
     m.OrgIds = *temp.OrgIds
     return nil

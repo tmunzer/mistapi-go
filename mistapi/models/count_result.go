@@ -8,8 +8,8 @@ import (
 
 // CountResult represents a CountResult struct.
 type CountResult struct {
-    Count                int            `json:"count"`
-    AdditionalProperties map[string]any `json:"_"`
+    Count                int               `json:"count"`
+    AdditionalProperties map[string]string `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CountResult.
@@ -17,13 +17,17 @@ type CountResult struct {
 func (c CountResult) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "count"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CountResult object to a map representation for JSON marshaling.
 func (c CountResult) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     structMap["count"] = c.Count
     return structMap
 }
@@ -40,12 +44,12 @@ func (c *CountResult) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "count")
+    additionalProperties, err := ExtractAdditionalProperties[string](input, "count")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Count = *temp.Count
     return nil
 }

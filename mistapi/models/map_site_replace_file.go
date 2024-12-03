@@ -10,7 +10,7 @@ import (
 type MapSiteReplaceFile struct {
     File                 []byte                  `json:"file"`
     Json                 *MapSiteReplaceFileJson `json:"json,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapSiteReplaceFile.
@@ -18,13 +18,17 @@ type MapSiteReplaceFile struct {
 func (m MapSiteReplaceFile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "file", "json"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MapSiteReplaceFile object to a map representation for JSON marshaling.
 func (m MapSiteReplaceFile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["file"] = m.File
     if m.Json != nil {
         structMap["json"] = m.Json.toMap()
@@ -44,12 +48,12 @@ func (m *MapSiteReplaceFile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "file", "json")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "file", "json")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.File = *temp.File
     m.Json = temp.Json
     return nil

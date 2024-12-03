@@ -9,10 +9,10 @@ import (
 // UtilsReleaseDhcp represents a UtilsReleaseDhcp struct.
 type UtilsReleaseDhcp struct {
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // The nework interface on which to release the current DHCP release
-    PortId               string             `json:"port_id"`
-    AdditionalProperties map[string]any     `json:"_"`
+    PortId               string                 `json:"port_id"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsReleaseDhcp.
@@ -20,13 +20,17 @@ type UtilsReleaseDhcp struct {
 func (u UtilsReleaseDhcp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "node", "port_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsReleaseDhcp object to a map representation for JSON marshaling.
 func (u UtilsReleaseDhcp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Node != nil {
         structMap["node"] = u.Node
     }
@@ -46,12 +50,12 @@ func (u *UtilsReleaseDhcp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "node", "port_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "node", "port_id")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Node = temp.Node
     u.PortId = *temp.PortId
     return nil

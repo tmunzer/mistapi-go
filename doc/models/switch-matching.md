@@ -1,7 +1,9 @@
 
 # Switch Matching
 
-Switch template
+defines custom switch configuration based on different criterias
+
+*This model accepts additional fields of type interface{}.*
 
 ## Structure
 
@@ -13,6 +15,7 @@ Switch template
 |  --- | --- | --- | --- |
 | `Enable` | `*bool` | Optional | - |
 | `Rules` | [`[]models.SwitchMatchingRule`](../../doc/models/switch-matching-rule.md) | Optional | **Constraints**: *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,13 +29,21 @@ Switch template
       ],
       "ip_config": {
         "network": "network6",
-        "type": "dhcp"
+        "type": "dhcp",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "name": "name8",
       "oob_ip_config": {
         "type": "dhcp",
         "use_mgmt_vrf": false,
-        "use_mgmt_vrf_for_host_out": false
+        "use_mgmt_vrf_for_host_out": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "port_config": {
         "key0": {
@@ -41,7 +52,11 @@ Switch template
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "usage6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         "key1": {
           "ae_disable_lacp": false,
@@ -49,9 +64,14 @@ Switch template
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "usage6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
-      }
+      },
+      "exampleAdditionalProperty": "switch_matching_rule_additionalProperties2"
     },
     {
       "additional_config_cmds": [
@@ -59,13 +79,21 @@ Switch template
       ],
       "ip_config": {
         "network": "network6",
-        "type": "dhcp"
+        "type": "dhcp",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "name": "name8",
       "oob_ip_config": {
         "type": "dhcp",
         "use_mgmt_vrf": false,
-        "use_mgmt_vrf_for_host_out": false
+        "use_mgmt_vrf_for_host_out": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "port_config": {
         "key0": {
@@ -74,7 +102,11 @@ Switch template
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "usage6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         "key1": {
           "ae_disable_lacp": false,
@@ -82,11 +114,20 @@ Switch template
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "usage6",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
-      }
+      },
+      "exampleAdditionalProperty": "switch_matching_rule_additionalProperties2"
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

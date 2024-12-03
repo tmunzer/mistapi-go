@@ -47,7 +47,7 @@ CreateMsp(
 ctx := context.Background()
 
 body := models.Msp{
-    Name:         models.ToPointer("MSP"),
+    Name:                 models.ToPointer("MSP"),
 }
 
 apiResponse, err := mSPs.CreateMsp(ctx, &body)
@@ -314,7 +314,7 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Msp{
-    Name:         models.ToPointer("MSP"),
+    Name:                 models.ToPointer("MSP"),
 }
 
 apiResponse, err := mSPs.UpdateMsp(ctx, mspId, &body)

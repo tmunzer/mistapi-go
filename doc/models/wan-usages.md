@@ -1,6 +1,8 @@
 
 # Wan Usages
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WanUsages`
@@ -17,6 +19,7 @@
 | `Policy` | `*string` | Optional | - |
 | `PortId` | `*string` | Optional | - |
 | `Tenant` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
   "peer_port_id": "ge-0/0/3",
   "policy": "policy1",
   "port_id": "ge-0/0/0.0",
-  "tenant": "tenant1"
+  "tenant": "tenant1",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

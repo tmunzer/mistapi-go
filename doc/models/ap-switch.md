@@ -3,6 +3,8 @@
 
 for people who want to fully control the vlans (advanced)
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ApSwitch`
@@ -18,6 +20,7 @@ for people who want to fully control the vlans (advanced)
 | `Eth3` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | - |
 | `Module` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | - |
 | `Wds` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,7 +34,11 @@ for people who want to fully control the vlans (advanced)
       114,
       115,
       116
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "eth1": {
     "enable_vlan": false,
@@ -40,7 +47,11 @@ for people who want to fully control the vlans (advanced)
       146,
       147,
       148
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "eth2": {
     "enable_vlan": false,
@@ -49,7 +60,11 @@ for people who want to fully control the vlans (advanced)
       118,
       119,
       120
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "eth3": {
     "enable_vlan": false,
@@ -57,7 +72,15 @@ for people who want to fully control the vlans (advanced)
     "vlan_ids": [
       236,
       237
-    ]
+    ],
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

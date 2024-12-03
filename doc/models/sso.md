@@ -3,6 +3,8 @@
 
 SSO
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Sso`
@@ -55,6 +57,7 @@ SSO
 | `ScimEnabled` | `*bool` | Optional | if `idp_type`==`oauth`, indicates if SCIM provisioning is enabled for the OAuth IDP<br>**Default**: `false` |
 | `ScimSecretToken` | `*string` | Optional | if `idp_type`==`oauth`, scim_secret_token (auto-generated when not provided by caller and `scim_enabled`==`true`, empty string when `scim_enabled`==`false`) is used as the Bearer token in the Authorization header of SCIM provisioning requests by the IDP |
 | `SiteId` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -100,7 +103,11 @@ SSO
   "custom_logout_url": "custom_logout_url0",
   "default_role": "default_role8",
   "domain": "domain2",
-  "group_filter": "group_filter4"
+  "group_filter": "group_filter4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

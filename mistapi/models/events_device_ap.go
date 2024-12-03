@@ -10,18 +10,18 @@ import (
 // EventsDeviceAp represents a EventsDeviceAp struct.
 // ap events
 type EventsDeviceAp struct {
-    Ap                   *string        `json:"ap,omitempty"`
-    Apfw                 *string        `json:"apfw,omitempty"`
-    Count                *int           `json:"count,omitempty"`
-    DeviceType           *string        `json:"device_type,omitempty"`
-    Mac                  *string        `json:"mac,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    PortId               *string        `json:"port_id,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Text                 *string        `json:"text,omitempty"`
-    Timestamp            float64        `json:"timestamp"`
-    Type                 *string        `json:"type,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Ap                   *string                `json:"ap,omitempty"`
+    Apfw                 *string                `json:"apfw,omitempty"`
+    Count                *int                   `json:"count,omitempty"`
+    DeviceType           *string                `json:"device_type,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Text                 *string                `json:"text,omitempty"`
+    Timestamp            float64                `json:"timestamp"`
+    Type                 *string                `json:"type,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventsDeviceAp.
@@ -29,13 +29,17 @@ type EventsDeviceAp struct {
 func (e EventsDeviceAp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "ap", "apfw", "count", "device_type", "mac", "org_id", "port_id", "site_id", "text", "timestamp", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EventsDeviceAp object to a map representation for JSON marshaling.
 func (e EventsDeviceAp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.Ap != nil {
         structMap["ap"] = e.Ap
     }
@@ -82,12 +86,12 @@ func (e *EventsDeviceAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "apfw", "count", "device_type", "mac", "org_id", "port_id", "site_id", "text", "timestamp", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "apfw", "count", "device_type", "mac", "org_id", "port_id", "site_id", "text", "timestamp", "type")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Ap = temp.Ap
     e.Apfw = temp.Apfw
     e.Count = temp.Count

@@ -1,6 +1,8 @@
 
 # Response Inventory Inventory Duplicated Items
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseInventoryInventoryDuplicatedItems`
@@ -14,6 +16,7 @@
 | `Model` | `string` | Required | - |
 | `Serial` | `string` | Required | - |
 | `Type` | `string` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@
   "magic": "DVH4VSNMSZPDXBR",
   "model": "AP41",
   "serial": "FXLH2015150027",
-  "type": "ap"
+  "type": "ap",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -6,8 +6,8 @@ import (
 
 // TicketAttachment represents a TicketAttachment struct.
 type TicketAttachment struct {
-    ContentUrl           *string        `json:"content_url,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ContentUrl           *string                `json:"content_url,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TicketAttachment.
@@ -15,13 +15,17 @@ type TicketAttachment struct {
 func (t TicketAttachment) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "content_url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TicketAttachment object to a map representation for JSON marshaling.
 func (t TicketAttachment) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     if t.ContentUrl != nil {
         structMap["content_url"] = t.ContentUrl
     }
@@ -36,12 +40,12 @@ func (t *TicketAttachment) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "content_url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "content_url")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.ContentUrl = temp.ContentUrl
     return nil
 }

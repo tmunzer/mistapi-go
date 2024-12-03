@@ -1,6 +1,8 @@
 
 # Ui Settings Tile Time Range
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `UiSettingsTileTimeRange`
@@ -16,6 +18,7 @@
 | `ShortName` | `*string` | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `UsePreset` | `*bool` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
   "name": "Past 7 Days",
   "shortName": "7d",
   "start": 1508223600,
-  "usePreset": true
+  "usePreset": true,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

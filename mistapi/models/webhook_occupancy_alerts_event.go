@@ -14,7 +14,7 @@ type WebhookOccupancyAlertsEvent struct {
     ForSite              *bool                                         `json:"for_site,omitempty"`
     SiteId               uuid.UUID                                     `json:"site_id"`
     SiteName             string                                        `json:"site_name"`
-    AdditionalProperties map[string]any                                `json:"_"`
+    AdditionalProperties map[string]interface{}                        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookOccupancyAlertsEvent.
@@ -22,13 +22,17 @@ type WebhookOccupancyAlertsEvent struct {
 func (w WebhookOccupancyAlertsEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "alert_events", "for_site", "site_id", "site_name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookOccupancyAlertsEvent object to a map representation for JSON marshaling.
 func (w WebhookOccupancyAlertsEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.AlertEvents != nil {
         structMap["alert_events"] = w.AlertEvents
     }
@@ -52,12 +56,12 @@ func (w *WebhookOccupancyAlertsEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "alert_events", "for_site", "site_id", "site_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alert_events", "for_site", "site_id", "site_name")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.AlertEvents = temp.AlertEvents
     w.ForSite = temp.ForSite
     w.SiteId = *temp.SiteId

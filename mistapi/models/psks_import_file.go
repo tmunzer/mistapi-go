@@ -6,8 +6,8 @@ import (
 
 // PsksImportFile represents a PsksImportFile struct.
 type PsksImportFile struct {
-    File                 *[]byte        `json:"file,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    File                 *[]byte                `json:"file,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PsksImportFile.
@@ -15,13 +15,17 @@ type PsksImportFile struct {
 func (p PsksImportFile) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "file"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the PsksImportFile object to a map representation for JSON marshaling.
 func (p PsksImportFile) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.File != nil {
         structMap["file"] = p.File
     }
@@ -36,12 +40,12 @@ func (p *PsksImportFile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "file")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "file")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.File = temp.File
     return nil
 }

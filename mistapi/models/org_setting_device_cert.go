@@ -7,9 +7,9 @@ import (
 // OrgSettingDeviceCert represents a OrgSettingDeviceCert struct.
 // common device cert, optional
 type OrgSettingDeviceCert struct {
-    Cert                 *string        `json:"cert,omitempty"`
-    Key                  *string        `json:"key,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Cert                 *string                `json:"cert,omitempty"`
+    Key                  *string                `json:"key,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingDeviceCert.
@@ -17,13 +17,17 @@ type OrgSettingDeviceCert struct {
 func (o OrgSettingDeviceCert) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "cert", "key"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingDeviceCert object to a map representation for JSON marshaling.
 func (o OrgSettingDeviceCert) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Cert != nil {
         structMap["cert"] = o.Cert
     }
@@ -41,12 +45,12 @@ func (o *OrgSettingDeviceCert) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cert", "key")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cert", "key")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Cert = temp.Cert
     o.Key = temp.Key
     return nil

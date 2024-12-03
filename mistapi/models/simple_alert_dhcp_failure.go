@@ -6,11 +6,11 @@ import (
 
 // SimpleAlertDhcpFailure represents a SimpleAlertDhcpFailure struct.
 type SimpleAlertDhcpFailure struct {
-    ClientCount          *int           `json:"client_count,omitempty"`
+    ClientCount          *int                   `json:"client_count,omitempty"`
     // failing within minutes
-    Duration             *int           `json:"duration,omitempty"`
-    IncidentCount        *int           `json:"incident_count,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Duration             *int                   `json:"duration,omitempty"`
+    IncidentCount        *int                   `json:"incident_count,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SimpleAlertDhcpFailure.
@@ -18,13 +18,17 @@ type SimpleAlertDhcpFailure struct {
 func (s SimpleAlertDhcpFailure) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "client_count", "duration", "incident_count"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SimpleAlertDhcpFailure object to a map representation for JSON marshaling.
 func (s SimpleAlertDhcpFailure) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ClientCount != nil {
         structMap["client_count"] = s.ClientCount
     }
@@ -45,12 +49,12 @@ func (s *SimpleAlertDhcpFailure) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "client_count", "duration", "incident_count")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "client_count", "duration", "incident_count")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ClientCount = temp.ClientCount
     s.Duration = temp.Duration
     s.IncidentCount = temp.IncidentCount

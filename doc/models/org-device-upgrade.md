@@ -1,6 +1,8 @@
 
 # Org Device Upgrade
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `OrgDeviceUpgrade`
@@ -11,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `SiteUpgrades` | [`[]models.OrgDeviceUpgradeSiteUpgrade`](../../doc/models/org-device-upgrade-site-upgrade.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -20,13 +23,25 @@
   "site_upgrades": [
     {
       "site_id": "00000ca4-0000-0000-0000-000000000000",
-      "upgrade_id": "000010fe-0000-0000-0000-000000000000"
+      "upgrade_id": "000010fe-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "site_id": "00000ca4-0000-0000-0000-000000000000",
-      "upgrade_id": "000010fe-0000-0000-0000-000000000000"
+      "upgrade_id": "000010fe-0000-0000-0000-000000000000",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

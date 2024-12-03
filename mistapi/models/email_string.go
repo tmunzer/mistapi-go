@@ -8,8 +8,8 @@ import (
 
 // EmailString represents a EmailString struct.
 type EmailString struct {
-    Email                string         `json:"email"`
-    AdditionalProperties map[string]any `json:"_"`
+    Email                string                 `json:"email"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EmailString.
@@ -17,13 +17,17 @@ type EmailString struct {
 func (e EmailString) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "email"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EmailString object to a map representation for JSON marshaling.
 func (e EmailString) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     structMap["email"] = e.Email
     return structMap
 }
@@ -40,12 +44,12 @@ func (e *EmailString) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "email")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "email")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Email = *temp.Email
     return nil
 }

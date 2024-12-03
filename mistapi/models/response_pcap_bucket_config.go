@@ -6,9 +6,9 @@ import (
 
 // ResponsePcapBucketConfig represents a ResponsePcapBucketConfig struct.
 type ResponsePcapBucketConfig struct {
-    Bucket               *string        `json:"bucket,omitempty"`
-    Detail               *string        `json:"detail,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Bucket               *string                `json:"bucket,omitempty"`
+    Detail               *string                `json:"detail,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapBucketConfig.
@@ -16,13 +16,17 @@ type ResponsePcapBucketConfig struct {
 func (r ResponsePcapBucketConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "bucket", "detail"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponsePcapBucketConfig object to a map representation for JSON marshaling.
 func (r ResponsePcapBucketConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Bucket != nil {
         structMap["bucket"] = r.Bucket
     }
@@ -40,12 +44,12 @@ func (r *ResponsePcapBucketConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bucket", "detail")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bucket", "detail")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Bucket = temp.Bucket
     r.Detail = temp.Detail
     return nil

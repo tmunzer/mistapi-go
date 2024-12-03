@@ -16,16 +16,16 @@ import (
 // * `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap)
 type WlanDynamicPsk struct {
     // default PSK to use if cloud WLC is not available, 8-63 characters
-    DefaultPsk           *string               `json:"default_psk,omitempty"`
-    DefaultVlanId        *VlanIdWithVariable   `json:"default_vlan_id,omitempty"`
-    Enabled              *bool                 `json:"enabled,omitempty"`
+    DefaultPsk           *string                `json:"default_psk,omitempty"`
+    DefaultVlanId        *VlanIdWithVariable    `json:"default_vlan_id,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // when 11r is enabled, we'll try to use the cached PMK, this can be disabled
     // `false` means auto
-    ForceLookup          *bool                 `json:"force_lookup,omitempty"`
+    ForceLookup          *bool                  `json:"force_lookup,omitempty"`
     // enum: `cloud_psks`, `radius`
-    Source               *DynamicPskSourceEnum `json:"source,omitempty"`
-    VlanIds              []VlanIdWithVariable  `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    Source               *DynamicPskSourceEnum  `json:"source,omitempty"`
+    VlanIds              []VlanIdWithVariable   `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDynamicPsk.
@@ -33,13 +33,17 @@ type WlanDynamicPsk struct {
 func (w WlanDynamicPsk) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "default_psk", "default_vlan_id", "enabled", "force_lookup", "source", "vlan_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanDynamicPsk object to a map representation for JSON marshaling.
 func (w WlanDynamicPsk) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.DefaultPsk != nil {
         structMap["default_psk"] = w.DefaultPsk
     }
@@ -69,12 +73,12 @@ func (w *WlanDynamicPsk) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "default_psk", "default_vlan_id", "enabled", "force_lookup", "source", "vlan_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default_psk", "default_vlan_id", "enabled", "force_lookup", "source", "vlan_ids")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.DefaultPsk = temp.DefaultPsk
     w.DefaultVlanId = temp.DefaultVlanId
     w.Enabled = temp.Enabled

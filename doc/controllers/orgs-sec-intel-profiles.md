@@ -49,11 +49,11 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SecintelProfile{
-    Name:     models.ToPointer("secintel-custom"),
-    Profiles: []models.SecintelProfileProfile{
+    Name:                 models.ToPointer("secintel-custom"),
+    Profiles:             []models.SecintelProfileProfile{
         models.SecintelProfileProfile{
-            Action:   models.ToPointer(models.SecintelProfileProfileActionEnum("default")),
-            Category: models.ToPointer(models.SecintelProfileProfileCategoryEnum("CC")),
+            Action:               models.ToPointer(models.SecintelProfileProfileActionEnum("default")),
+            Category:             models.ToPointer(models.SecintelProfileProfileCategoryEnum("CC")),
         },
     },
 }
@@ -315,11 +315,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 secintelprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SecintelProfile{
-    Name:     models.ToPointer("secintel-custom"),
-    Profiles: []models.SecintelProfileProfile{
+    Name:                 models.ToPointer("secintel-custom"),
+    Profiles:             []models.SecintelProfileProfile{
         models.SecintelProfileProfile{
-            Action:   models.ToPointer(models.SecintelProfileProfileActionEnum("default")),
-            Category: models.ToPointer(models.SecintelProfileProfileCategoryEnum("CC")),
+            Action:               models.ToPointer(models.SecintelProfileProfileActionEnum("default")),
+            Category:             models.ToPointer(models.SecintelProfileProfileCategoryEnum("CC")),
         },
     },
 }

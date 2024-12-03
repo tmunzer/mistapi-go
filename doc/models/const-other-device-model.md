@@ -1,6 +1,8 @@
 
 # Const Other Device Model
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ConstOtherDeviceModel`
@@ -14,6 +16,7 @@
 | `Model` | `*string` | Optional | - |
 | `Type` | `*string` | Optional | - |
 | `Vendor` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@
   "display": "display4",
   "model": "model0",
   "type": "type8",
-  "vendor": "vendor8"
+  "vendor": "vendor8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

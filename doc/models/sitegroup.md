@@ -3,6 +3,8 @@
 
 Sites Group
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `Sitegroup`
@@ -17,6 +19,7 @@ Sites Group
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteIds` | `[]uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,7 +34,11 @@ Sites Group
     "00000322-0000-0000-0000-000000000000",
     "00000323-0000-0000-0000-000000000000",
     "00000324-0000-0000-0000-000000000000"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

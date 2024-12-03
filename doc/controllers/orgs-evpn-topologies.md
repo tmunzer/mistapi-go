@@ -68,12 +68,12 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.EvpnTopology{
-    Name:        models.ToPointer("CC"),
-    PodNames:    map[string]string{
+    Name:                 models.ToPointer("CC"),
+    PodNames:             map[string]string{
         "1": "default",
         "2": "default",
     },
-    Switches:    []models.EvpnTopologySwitch{
+    Switches:             []models.EvpnTopologySwitch{
         models.EvpnTopologySwitch{
             Mac:                  "5c5b35000003",
             Role:                 models.EvpnTopologySwitchRoleEnum("collapsed-core"),
@@ -425,8 +425,8 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 evpnTopologyId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.EvpnTopology{
-    Overwrite:   models.ToPointer(false),
-    Switches:    []models.EvpnTopologySwitch{
+    Overwrite:            models.ToPointer(false),
+    Switches:             []models.EvpnTopologySwitch{
         models.EvpnTopologySwitch{
             Mac:                  "5c5b35000003",
             Role:                 models.EvpnTopologySwitchRoleEnum("collapsed-core"),

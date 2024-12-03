@@ -46,9 +46,9 @@ Login(
 ctx := context.Background()
 
 body := models.Login{
-    Email:     "test@mistsys.com",
-    Password:  "foryoureyesonly",
-    TwoFactor: models.ToPointer("123456"),
+    Email:                "test@mistsys.com",
+    Password:             "foryoureyesonly",
+    TwoFactor:            models.ToPointer("123456"),
 }
 
 apiResponse, err := adminsLogin.Login(ctx, &body)
@@ -106,7 +106,7 @@ TwoFactor(
 ctx := context.Background()
 
 body := models.TwoFactorString{
-    TwoFactor: "123456",
+    TwoFactor:            "123456",
 }
 
 resp, err := adminsLogin.TwoFactor(ctx, &body)

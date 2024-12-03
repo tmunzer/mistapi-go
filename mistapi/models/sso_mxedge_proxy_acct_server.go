@@ -6,10 +6,10 @@ import (
 
 // SsoMxedgeProxyAcctServer represents a SsoMxedgeProxyAcctServer struct.
 type SsoMxedgeProxyAcctServer struct {
-    Host                 *string        `json:"host,omitempty"`
-    Port                 *int           `json:"port,omitempty"`
-    Secret               *string        `json:"secret,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Host                 *string                `json:"host,omitempty"`
+    Port                 *int                   `json:"port,omitempty"`
+    Secret               *string                `json:"secret,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsoMxedgeProxyAcctServer.
@@ -17,13 +17,17 @@ type SsoMxedgeProxyAcctServer struct {
 func (s SsoMxedgeProxyAcctServer) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "host", "port", "secret"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SsoMxedgeProxyAcctServer object to a map representation for JSON marshaling.
 func (s SsoMxedgeProxyAcctServer) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Host != nil {
         structMap["host"] = s.Host
     }
@@ -44,12 +48,12 @@ func (s *SsoMxedgeProxyAcctServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "host", "port", "secret")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "port", "secret")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Host = temp.Host
     s.Port = temp.Port
     s.Secret = temp.Secret

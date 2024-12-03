@@ -10,29 +10,29 @@ import (
 // StatsWiredClient represents a StatsWiredClient struct.
 type StatsWiredClient struct {
     // client authorization status
-    AuthState            *string        `json:"auth_state,omitempty"`
+    AuthState            *string                `json:"auth_state,omitempty"`
     // Device ID the client is connected to
-    DeviceId             *string        `json:"device_id,omitempty"`
+    DeviceId             *string                `json:"device_id,omitempty"`
     // port on AP where the wired client is connected
-    EthPort              *string        `json:"eth_port,omitempty"`
+    EthPort              *string                `json:"eth_port,omitempty"`
     // time when last Tx/Rx observed
-    LastSeen             *float64       `json:"last_seen,omitempty"`
+    LastSeen             *float64               `json:"last_seen,omitempty"`
     // client mac
-    Mac                  string         `json:"mac"`
+    Mac                  string                 `json:"mac"`
     // amount of traffic sent to client since client connects
-    RxBytes              *float64       `json:"rx_bytes,omitempty"`
+    RxBytes              *float64               `json:"rx_bytes,omitempty"`
     // amount of traffic sent to client since client connects
-    RxPkts               *float64       `json:"rx_pkts,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
+    RxPkts               *float64               `json:"rx_pkts,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // amount of traffic received from client since client connects
-    TxBytes              *float64       `json:"tx_bytes,omitempty"`
+    TxBytes              *float64               `json:"tx_bytes,omitempty"`
     // amount of traffic received from client since client connects
-    TxPkts               *float64       `json:"tx_pkts,omitempty"`
+    TxPkts               *float64               `json:"tx_pkts,omitempty"`
     // how long, in seconds, has the client been connected
-    Uptime               *float64       `json:"uptime,omitempty"`
+    Uptime               *float64               `json:"uptime,omitempty"`
     // vlan id, could be empty
-    VlanId               *float64       `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    VlanId               *float64               `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWiredClient.
@@ -40,13 +40,17 @@ type StatsWiredClient struct {
 func (s StatsWiredClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "auth_state", "device_id", "eth_port", "last_seen", "mac", "rx_bytes", "rx_pkts", "site_id", "tx_bytes", "tx_pkts", "uptime", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsWiredClient object to a map representation for JSON marshaling.
 func (s StatsWiredClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AuthState != nil {
         structMap["auth_state"] = s.AuthState
     }
@@ -96,12 +100,12 @@ func (s *StatsWiredClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "auth_state", "device_id", "eth_port", "last_seen", "mac", "rx_bytes", "rx_pkts", "site_id", "tx_bytes", "tx_pkts", "uptime", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_state", "device_id", "eth_port", "last_seen", "mac", "rx_bytes", "rx_pkts", "site_id", "tx_bytes", "tx_pkts", "uptime", "vlan_id")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AuthState = temp.AuthState
     s.DeviceId = temp.DeviceId
     s.EthPort = temp.EthPort

@@ -18,7 +18,7 @@ type UtilsSendSupportLogs struct {
     Node                 *string                       `json:"node,omitempty"`
     // optional: number of most recent messages files to upload.
     NumMessagesFiles     *int                          `json:"num_messages_files,omitempty"`
-    AdditionalProperties map[string]any                `json:"_"`
+    AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsSendSupportLogs.
@@ -26,13 +26,17 @@ type UtilsSendSupportLogs struct {
 func (u UtilsSendSupportLogs) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "info", "node", "num_messages_files"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsSendSupportLogs object to a map representation for JSON marshaling.
 func (u UtilsSendSupportLogs) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Info != nil {
         structMap["info"] = u.Info
     }
@@ -53,12 +57,12 @@ func (u *UtilsSendSupportLogs) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "info", "node", "num_messages_files")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "info", "node", "num_messages_files")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Info = temp.Info
     u.Node = temp.Node
     u.NumMessagesFiles = temp.NumMessagesFiles

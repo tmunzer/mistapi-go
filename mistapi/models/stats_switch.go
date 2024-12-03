@@ -66,7 +66,7 @@ type StatsSwitch struct {
     VcMac                Optional[string]               `json:"vc_mac"`
     VcSetupInfo          *StatsSwitchVcSetupInfo        `json:"vc_setup_info,omitempty"`
     Version              *string                        `json:"version,omitempty"`
-    AdditionalProperties map[string]any                 `json:"_"`
+    AdditionalProperties map[string]interface{}         `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitch.
@@ -74,13 +74,17 @@ type StatsSwitch struct {
 func (s StatsSwitch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "ap_redundancy", "arp_table_stats", "cert_expiry", "clients", "clients_stats", "config_status", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd_stat", "evpntopo_id", "fw_versions_outofsync", "fwupdate", "has_pcap", "hostname", "hw_rev", "id", "if_stat", "ip", "ip_stat", "last_seen", "last_trouble", "mac", "mac_table_stats", "map_id", "memory_stat", "model", "modified_time", "module_stat", "name", "org_id", "ports", "route_summary_stats", "serial", "service_stat", "site_id", "status", "type", "uptime", "vc_mac", "vc_setup_info", "version"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsSwitch object to a map representation for JSON marshaling.
 func (s StatsSwitch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ApRedundancy != nil {
         structMap["ap_redundancy"] = s.ApRedundancy.toMap()
     }
@@ -236,12 +240,12 @@ func (s *StatsSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_redundancy", "arp_table_stats", "cert_expiry", "clients", "clients_stats", "config_status", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd_stat", "evpntopo_id", "fw_versions_outofsync", "fwupdate", "has_pcap", "hostname", "hw_rev", "id", "if_stat", "ip", "ip_stat", "last_seen", "last_trouble", "mac", "mac_table_stats", "map_id", "memory_stat", "model", "modified_time", "module_stat", "name", "org_id", "ports", "route_summary_stats", "serial", "service_stat", "site_id", "status", "type", "uptime", "vc_mac", "vc_setup_info", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_redundancy", "arp_table_stats", "cert_expiry", "clients", "clients_stats", "config_status", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd_stat", "evpntopo_id", "fw_versions_outofsync", "fwupdate", "has_pcap", "hostname", "hw_rev", "id", "if_stat", "ip", "ip_stat", "last_seen", "last_trouble", "mac", "mac_table_stats", "map_id", "memory_stat", "model", "modified_time", "module_stat", "name", "org_id", "ports", "route_summary_stats", "serial", "service_stat", "site_id", "status", "type", "uptime", "vc_mac", "vc_setup_info", "version")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ApRedundancy = temp.ApRedundancy
     s.ArpTableStats = temp.ArpTableStats
     s.CertExpiry = temp.CertExpiry

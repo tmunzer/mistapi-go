@@ -3,6 +3,8 @@
 
 AP
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `DeviceAp`
@@ -54,6 +56,7 @@ AP
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `X` | `*float64` | Optional | x in pixel |
 | `Y` | `*float64` | Optional | y in pixel |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -83,7 +86,11 @@ AP
   "aeroscout": {
     "enabled": false,
     "host": "host6",
-    "locate_connected": false
+    "locate_connected": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "ble_config": {
     "beacon_enabled": false,
@@ -94,20 +101,40 @@ AP
       114,
       115
     ],
-    "custom_ble_packet_enabled": false
+    "custom_ble_packet_enabled": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "centrak": {
-    "enabled": false
+    "enabled": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "client_bridge": {
     "auth": {
       "psk": "psk4",
-      "type": "open"
+      "type": "open",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "enabled": false,
-    "ssid": "ssid0"
+    "ssid": "ssid0",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "created_time": 87.82
+  "created_time": 87.82,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

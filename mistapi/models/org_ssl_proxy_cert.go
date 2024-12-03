@@ -6,8 +6,8 @@ import (
 
 // OrgSslProxyCert represents a OrgSslProxyCert struct.
 type OrgSslProxyCert struct {
-    Cert                 *string        `json:"cert,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Cert                 *string                `json:"cert,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSslProxyCert.
@@ -15,13 +15,17 @@ type OrgSslProxyCert struct {
 func (o OrgSslProxyCert) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "cert"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSslProxyCert object to a map representation for JSON marshaling.
 func (o OrgSslProxyCert) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Cert != nil {
         structMap["cert"] = o.Cert
     }
@@ -36,12 +40,12 @@ func (o *OrgSslProxyCert) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cert")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cert")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Cert = temp.Cert
     return nil
 }

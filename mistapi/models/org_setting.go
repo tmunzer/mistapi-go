@@ -74,7 +74,7 @@ type OrgSetting struct {
     WanPma                      *OrgSettingWanPma                      `json:"wan_pma,omitempty"`
     WiredPma                    *OrgSettingWiredPma                    `json:"wired_pma,omitempty"`
     WirelessPma                 *OrgSettingWirelessPma                 `json:"wireless_pma,omitempty"`
-    AdditionalProperties        map[string]any                         `json:"_"`
+    AdditionalProperties        map[string]interface{}                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSetting.
@@ -82,13 +82,17 @@ type OrgSetting struct {
 func (o OrgSetting) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSetting object to a map representation for JSON marshaling.
 func (o OrgSetting) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.ApUpdownThreshold.IsValueSet() {
         if o.ApUpdownThreshold.Value() != nil {
             structMap["ap_updown_threshold"] = o.ApUpdownThreshold.Value()
@@ -251,12 +255,12 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.ApUpdownThreshold = temp.ApUpdownThreshold
     o.ApiPolicy = temp.ApiPolicy
     o.AutoDeviceNaming = temp.AutoDeviceNaming

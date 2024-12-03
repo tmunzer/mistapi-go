@@ -8,11 +8,11 @@ import (
 
 // ConstEvent represents a ConstEvent struct.
 type ConstEvent struct {
-    Description          *string        `json:"description,omitempty"`
-    Display              string         `json:"display"`
-    Example              *interface{}   `json:"example,omitempty"`
-    Key                  string         `json:"key"`
-    AdditionalProperties map[string]any `json:"_"`
+    Description          *string                `json:"description,omitempty"`
+    Display              string                 `json:"display"`
+    Example              *interface{}           `json:"example,omitempty"`
+    Key                  string                 `json:"key"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstEvent.
@@ -20,13 +20,17 @@ type ConstEvent struct {
 func (c ConstEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "description", "display", "example", "key"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstEvent object to a map representation for JSON marshaling.
 func (c ConstEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Description != nil {
         structMap["description"] = c.Description
     }
@@ -50,12 +54,12 @@ func (c *ConstEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "description", "display", "example", "key")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "description", "display", "example", "key")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Description = temp.Description
     c.Display = *temp.Display
     c.Example = temp.Example

@@ -19,7 +19,7 @@ type SwitchPortUsageDynamicRule struct {
     Src                  SwitchPortUsageDynamicRuleSrcEnum `json:"src"`
     // `port_usage` name
     Usage                *string                           `json:"usage,omitempty"`
-    AdditionalProperties map[string]any                    `json:"_"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortUsageDynamicRule.
@@ -27,13 +27,17 @@ type SwitchPortUsageDynamicRule struct {
 func (s SwitchPortUsageDynamicRule) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "equals", "equals_any", "expression", "src", "usage"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SwitchPortUsageDynamicRule object to a map representation for JSON marshaling.
 func (s SwitchPortUsageDynamicRule) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.Equals != nil {
         structMap["equals"] = s.Equals
     }
@@ -62,12 +66,12 @@ func (s *SwitchPortUsageDynamicRule) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "equals", "equals_any", "expression", "src", "usage")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "equals", "equals_any", "expression", "src", "usage")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Equals = temp.Equals
     s.EqualsAny = temp.EqualsAny
     s.Expression = temp.Expression

@@ -6,8 +6,8 @@ import (
 
 // StatsMxedgeTuntermStat represents a StatsMxedgeTuntermStat struct.
 type StatsMxedgeTuntermStat struct {
-    MonitoringFailed     *bool          `json:"monitoring_failed,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    MonitoringFailed     *bool                  `json:"monitoring_failed,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeTuntermStat.
@@ -15,13 +15,17 @@ type StatsMxedgeTuntermStat struct {
 func (s StatsMxedgeTuntermStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "monitoring_failed"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the StatsMxedgeTuntermStat object to a map representation for JSON marshaling.
 func (s StatsMxedgeTuntermStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.MonitoringFailed != nil {
         structMap["monitoring_failed"] = s.MonitoringFailed
     }
@@ -36,12 +40,12 @@ func (s *StatsMxedgeTuntermStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "monitoring_failed")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "monitoring_failed")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.MonitoringFailed = temp.MonitoringFailed
     return nil
 }

@@ -53,11 +53,11 @@ body := models.NetworkTemplate{
         "set snmp community public",
     },
     DhcpSnooping:          models.ToPointer(models.DhcpSnooping{
-        AllNetworks:         models.ToPointer(true),
-        EnableArpSpoofCheck: models.ToPointer(true),
-        EnableIpSourceGuard: models.ToPointer(true),
-        Enabled:             models.ToPointer(true),
-        Networks:            []string{
+        AllNetworks:          models.ToPointer(true),
+        EnableArpSpoofCheck:  models.ToPointer(true),
+        EnableIpSourceGuard:  models.ToPointer(true),
+        Enabled:              models.ToPointer(true),
+        Networks:             []string{
             "string",
         },
     }),
@@ -71,18 +71,18 @@ body := models.NetworkTemplate{
         "ap",
     },
     MistNac:               models.ToPointer(models.SwitchMistNac{
-        Enabled: models.ToPointer(true),
-        Network: models.ToPointer("string"),
+        Enabled:              models.ToPointer(true),
+        Network:              models.ToPointer("string"),
     }),
     Name:                  models.ToPointer("string"),
     Networks:              map[string]models.SwitchNetwork{
         "property1": models.SwitchNetwork{
-            Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
+            Subnet:               models.ToPointer("192.168.1.0/24"),
+            VlanId:               models.VlanIdWithVariableContainer.FromNumber(10),
         },
         "property2": models.SwitchNetwork{
-            Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
+            Subnet:               models.ToPointer("192.168.1.0/24"),
+            VlanId:               models.VlanIdWithVariableContainer.FromNumber(10),
         },
     },
     NtpServers:            []string{
@@ -94,13 +94,13 @@ body := models.NetworkTemplate{
             ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum("link_down")),
             Rules:                                    []models.SwitchPortUsageDynamicRule{
                 models.SwitchPortUsageDynamicRule{
-                    Equals:     models.ToPointer("string"),
-                    EqualsAny:  []string{
+                    Equals:               models.ToPointer("string"),
+                    EqualsAny:            []string{
                         "string",
                     },
-                    Expression: models.ToPointer("string"),
-                    Src:        models.SwitchPortUsageDynamicRuleSrcEnum("lldp_chassis_id"),
-                    Usage:      models.ToPointer("string"),
+                    Expression:           models.ToPointer("string"),
+                    Src:                  models.SwitchPortUsageDynamicRuleSrcEnum("lldp_chassis_id"),
+                    Usage:                models.ToPointer("string"),
                 },
             },
         },
@@ -171,58 +171,61 @@ body := models.NetworkTemplate{
         },
     },
     SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
-        ProtectRe:           models.ToPointer(models.ProtectRe{
-            Enabled:         models.ToPointer(false),
+        ProtectRe:            models.ToPointer(models.ProtectRe{
+            Enabled:              models.ToPointer(false),
         }),
-        RootPassword:        models.ToPointer("string"),
-        Tacacs:              models.ToPointer(models.Tacacs{
-            AcctServers:    []models.TacacsAcctServer{
+        RootPassword:         models.ToPointer("string"),
+        Tacacs:               models.ToPointer(models.Tacacs{
+            AcctServers:          []models.TacacsAcctServer{
                 models.TacacsAcctServer{
-                    Host:    models.ToPointer("198.51.100.1"),
-                    Port:    models.ToPointer("49"),
-                    Secret:  models.ToPointer("string"),
-                    Timeout: models.ToPointer(10),
+                    Host:                 models.ToPointer("198.51.100.1"),
+                    Port:                 models.ToPointer("49"),
+                    Secret:               models.ToPointer("string"),
+                    Timeout:              models.ToPointer(10),
                 },
             },
-            Enabled:        models.ToPointer(true),
-            Network:        models.ToPointer("string"),
-            TacplusServers: []models.TacacsAuthServer{
+            Enabled:              models.ToPointer(true),
+            Network:              models.ToPointer("string"),
+            TacplusServers:       []models.TacacsAuthServer{
                 models.TacacsAuthServer{
-                    Host:    models.ToPointer("198.51.100.1"),
-                    Port:    models.ToPointer("49"),
-                    Secret:  models.ToPointer("string"),
-                    Timeout: models.ToPointer(10),
+                    Host:                 models.ToPointer("198.51.100.1"),
+                    Port:                 models.ToPointer("49"),
+                    Secret:               models.ToPointer("string"),
+                    Timeout:              models.ToPointer(10),
                 },
             },
         }),
+        AdditionalProperties: map[string]interface{}{
+            "config_revert": interface{}("10"),
+        },
     }),
     VrfConfig:             models.ToPointer(models.VrfConfig{
-        Enabled: models.ToPointer(false),
+        Enabled:              models.ToPointer(false),
     }),
     VrfInstances:          map[string]models.SwitchVrfInstance{
         "property1": models.SwitchVrfInstance{
-            ExtraRoutes: map[string]models.VrfExtraRoute{
+            ExtraRoutes:          map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
-                    Via: models.ToPointer("192.0.2.10"),
+                    Via:                  models.ToPointer("192.0.2.10"),
                 },
                 "property2": models.VrfExtraRoute{
-                    Via: models.ToPointer("198.51.100.1"),
+                    Via:                  models.ToPointer("198.51.100.1"),
                 },
             },
-            Networks:    []string{
+            Networks:             []string{
                 "string",
             },
         },
         "property2": models.SwitchVrfInstance{
-            ExtraRoutes: map[string]models.VrfExtraRoute{
+            ExtraRoutes:          map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
-                    Via: models.ToPointer("198.51.100.1"),
+                    Via:                  models.ToPointer("198.51.100.1"),
                 },
                 "property2": models.VrfExtraRoute{
-                    Via: models.ToPointer("198.51.100.10"),
+                    Via:                  models.ToPointer("198.51.100.10"),
                 },
             },
-            Networks:    []string{
+            Networks:             []string{
                 "string",
             },
         },
@@ -963,11 +966,11 @@ body := models.NetworkTemplate{
         "set snmp community public",
     },
     DhcpSnooping:          models.ToPointer(models.DhcpSnooping{
-        AllNetworks:         models.ToPointer(true),
-        EnableArpSpoofCheck: models.ToPointer(true),
-        EnableIpSourceGuard: models.ToPointer(true),
-        Enabled:             models.ToPointer(true),
-        Networks:            []string{
+        AllNetworks:          models.ToPointer(true),
+        EnableArpSpoofCheck:  models.ToPointer(true),
+        EnableIpSourceGuard:  models.ToPointer(true),
+        Enabled:              models.ToPointer(true),
+        Networks:             []string{
             "string",
         },
     }),
@@ -979,28 +982,28 @@ body := models.NetworkTemplate{
     },
     ExtraRoutes:           map[string]models.ExtraRoute{
         "property1": models.ExtraRoute{
-            Via:           models.ToPointer("string"),
+            Via:                  models.ToPointer("string"),
         },
         "property2": models.ExtraRoute{
-            Via:           models.ToPointer("string"),
+            Via:                  models.ToPointer("string"),
         },
     },
     ImportOrgNetworks:     []string{
         "ap",
     },
     MistNac:               models.ToPointer(models.SwitchMistNac{
-        Enabled: models.ToPointer(true),
-        Network: models.ToPointer("string"),
+        Enabled:              models.ToPointer(true),
+        Network:              models.ToPointer("string"),
     }),
     Name:                  models.ToPointer("string"),
     Networks:              map[string]models.SwitchNetwork{
         "property1": models.SwitchNetwork{
-            Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
+            Subnet:               models.ToPointer("192.168.1.0/24"),
+            VlanId:               models.VlanIdWithVariableContainer.FromNumber(10),
         },
         "property2": models.SwitchNetwork{
-            Subnet:          models.ToPointer("192.168.1.0/24"),
-            VlanId:          models.VlanIdWithVariableContainer.FromNumber(10),
+            Subnet:               models.ToPointer("192.168.1.0/24"),
+            VlanId:               models.VlanIdWithVariableContainer.FromNumber(10),
         },
     },
     NtpServers:            []string{
@@ -1012,13 +1015,13 @@ body := models.NetworkTemplate{
             ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum("link_down")),
             Rules:                                    []models.SwitchPortUsageDynamicRule{
                 models.SwitchPortUsageDynamicRule{
-                    Equals:     models.ToPointer("string"),
-                    EqualsAny:  []string{
+                    Equals:               models.ToPointer("string"),
+                    EqualsAny:            []string{
                         "string",
                     },
-                    Expression: models.ToPointer("string"),
-                    Src:        models.SwitchPortUsageDynamicRuleSrcEnum("lldp_chassis_id"),
-                    Usage:      models.ToPointer("string"),
+                    Expression:           models.ToPointer("string"),
+                    Src:                  models.SwitchPortUsageDynamicRuleSrcEnum("lldp_chassis_id"),
+                    Usage:                models.ToPointer("string"),
                 },
             },
         },
@@ -1089,61 +1092,67 @@ body := models.NetworkTemplate{
         },
     },
     SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
-        ProtectRe:           models.ToPointer(models.ProtectRe{
-            Enabled:         models.ToPointer(false),
+        ProtectRe:            models.ToPointer(models.ProtectRe{
+            Enabled:              models.ToPointer(false),
         }),
-        RootPassword:        models.ToPointer("string"),
-        Tacacs:              models.ToPointer(models.Tacacs{
-            AcctServers:    []models.TacacsAcctServer{
+        RootPassword:         models.ToPointer("string"),
+        Tacacs:               models.ToPointer(models.Tacacs{
+            AcctServers:          []models.TacacsAcctServer{
                 models.TacacsAcctServer{
-                    Host:    models.ToPointer("198.51.100.1"),
-                    Port:    models.ToPointer("49"),
-                    Secret:  models.ToPointer("string"),
-                    Timeout: models.ToPointer(10),
+                    Host:                 models.ToPointer("198.51.100.1"),
+                    Port:                 models.ToPointer("49"),
+                    Secret:               models.ToPointer("string"),
+                    Timeout:              models.ToPointer(10),
                 },
             },
-            Enabled:        models.ToPointer(true),
-            Network:        models.ToPointer("string"),
-            TacplusServers: []models.TacacsAuthServer{
+            Enabled:              models.ToPointer(true),
+            Network:              models.ToPointer("string"),
+            TacplusServers:       []models.TacacsAuthServer{
                 models.TacacsAuthServer{
-                    Host:    models.ToPointer("198.51.100.1"),
-                    Port:    models.ToPointer("49"),
-                    Secret:  models.ToPointer("string"),
-                    Timeout: models.ToPointer(10),
+                    Host:                 models.ToPointer("198.51.100.1"),
+                    Port:                 models.ToPointer("49"),
+                    Secret:               models.ToPointer("string"),
+                    Timeout:              models.ToPointer(10),
                 },
             },
         }),
+        AdditionalProperties: map[string]interface{}{
+            "config_revert": interface{}("10"),
+        },
     }),
     VrfConfig:             models.ToPointer(models.VrfConfig{
-        Enabled: models.ToPointer(false),
+        Enabled:              models.ToPointer(false),
     }),
     VrfInstances:          map[string]models.SwitchVrfInstance{
         "property1": models.SwitchVrfInstance{
-            ExtraRoutes: map[string]models.VrfExtraRoute{
+            ExtraRoutes:          map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
-                    Via: models.ToPointer("198.51.100.1"),
+                    Via:                  models.ToPointer("198.51.100.1"),
                 },
                 "property2": models.VrfExtraRoute{
-                    Via: models.ToPointer("198.51.100.2"),
+                    Via:                  models.ToPointer("198.51.100.2"),
                 },
             },
-            Networks:    []string{
+            Networks:             []string{
                 "string",
             },
         },
         "property2": models.SwitchVrfInstance{
-            ExtraRoutes: map[string]models.VrfExtraRoute{
+            ExtraRoutes:          map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
-                    Via: models.ToPointer("198.51.100.1"),
+                    Via:                  models.ToPointer("198.51.100.1"),
                 },
                 "property2": models.VrfExtraRoute{
-                    Via: models.ToPointer("198.51.100.2"),
+                    Via:                  models.ToPointer("198.51.100.2"),
                 },
             },
-            Networks:    []string{
+            Networks:             []string{
                 "string",
             },
         },
+    },
+    AdditionalProperties:  map[string]interface{}{
+        "group_tags": interface{}(""),
     },
 }
 

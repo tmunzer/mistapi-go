@@ -6,10 +6,10 @@ import (
 
 // OrgSettingPcap represents a OrgSettingPcap struct.
 type OrgSettingPcap struct {
-    Bucket               *string        `json:"bucket,omitempty"`
+    Bucket               *string                `json:"bucket,omitempty"`
     // max_len of non-management packets to capture
-    MaxPktLen            *int           `json:"max_pkt_len,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    MaxPktLen            *int                   `json:"max_pkt_len,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingPcap.
@@ -17,13 +17,17 @@ type OrgSettingPcap struct {
 func (o OrgSettingPcap) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "bucket", "max_pkt_len"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingPcap object to a map representation for JSON marshaling.
 func (o OrgSettingPcap) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Bucket != nil {
         structMap["bucket"] = o.Bucket
     }
@@ -41,12 +45,12 @@ func (o *OrgSettingPcap) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bucket", "max_pkt_len")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bucket", "max_pkt_len")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Bucket = temp.Bucket
     o.MaxPktLen = temp.MaxPktLen
     return nil

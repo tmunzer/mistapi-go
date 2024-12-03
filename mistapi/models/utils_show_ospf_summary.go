@@ -7,10 +7,10 @@ import (
 // UtilsShowOspfSummary represents a UtilsShowOspfSummary struct.
 type UtilsShowOspfSummary struct {
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // VRF name
-    Vrf                  *string            `json:"vrf,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Vrf                  *string                `json:"vrf,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowOspfSummary.
@@ -18,13 +18,17 @@ type UtilsShowOspfSummary struct {
 func (u UtilsShowOspfSummary) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "node", "vrf"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsShowOspfSummary object to a map representation for JSON marshaling.
 func (u UtilsShowOspfSummary) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Node != nil {
         structMap["node"] = u.Node
     }
@@ -42,12 +46,12 @@ func (u *UtilsShowOspfSummary) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "node", "vrf")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "node", "vrf")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Node = temp.Node
     u.Vrf = temp.Vrf
     return nil

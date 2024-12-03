@@ -49,44 +49,44 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.ApTemplate{
-    ApMatching:   models.ApTemplateMatching{
-        Enabled: models.ToPointer(true),
-        Rules:   []models.ApTemplateMatchingRule{
+    ApMatching:           models.ApTemplateMatching{
+        Enabled:              models.ToPointer(true),
+        Rules:                []models.ApTemplateMatchingRule{
             models.ApTemplateMatchingRule{
-                MatchModel: models.ToPointer("string"),
-                Name:       models.ToPointer("string"),
-                PortConfig: map[string]models.ApPortConfig{
+                MatchModel:           models.ToPointer("string"),
+                Name:                 models.ToPointer("string"),
+                PortConfig:           map[string]models.ApPortConfig{
                     "property1": models.ApPortConfig{
-                        Disabled:         models.ToPointer(true),
-                        DynamicVlan:      models.ToPointer(models.ApPortConfigDynamicVlan{
-                            DefaultVlanId: models.ToPointer(999),
-                            Enabled:       models.ToPointer(true),
-                            Type:          models.ToPointer("string"),
-                            Vlans:         map[string]string{
+                        Disabled:             models.ToPointer(true),
+                        DynamicVlan:          models.ToPointer(models.ApPortConfigDynamicVlan{
+                            DefaultVlanId:        models.ToPointer(999),
+                            Enabled:              models.ToPointer(true),
+                            Type:                 models.ToPointer("string"),
+                            Vlans:                map[string]string{
                                 "1-10": "vlans1",
                                 "user": "vlans2",
                             },
                         }),
-                        EnableMacAuth:    models.ToPointer(false),
-                        Forwarding:       models.ToPointer(models.ApPortConfigForwardingEnum("all")),
-                        MxTunnelId:       models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
-                        MxtunnelName:     models.ToPointer("string"),
-                        PortAuth:         models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
-                        PortVlanId:       models.ToPointer(1),
-                        RadiusConfig:     models.ToPointer(models.RadiusConfig{
-                            AcctInterimInterval: models.ToPointer(0),
-                            AcctServers:         []models.RadiusAcctServer{
+                        EnableMacAuth:        models.ToPointer(false),
+                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum("all")),
+                        MxTunnelId:           models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
+                        MxtunnelName:         models.ToPointer("string"),
+                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
+                        PortVlanId:           models.ToPointer(1),
+                        RadiusConfig:         models.ToPointer(models.RadiusConfig{
+                            AcctInterimInterval:  models.ToPointer(0),
+                            AcctServers:          []models.RadiusAcctServer{
                                 models.RadiusAcctServer{
-                                    Host:           "1.2.3.4",
-                                    KeywrapEnabled: models.ToPointer(true),
-                                    KeywrapFormat:  models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
-                                    KeywrapKek:     models.ToPointer("1122334455"),
-                                    KeywrapMack:    models.ToPointer("1122334455"),
-                                    Port:           models.ToPointer(1813),
-                                    Secret:         "testing123",
+                                    Host:                 "1.2.3.4",
+                                    KeywrapEnabled:       models.ToPointer(true),
+                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapKek:           models.ToPointer("1122334455"),
+                                    KeywrapMack:          models.ToPointer("1122334455"),
+                                    Port:                 models.ToPointer(1813),
+                                    Secret:               "testing123",
                                 },
                             },
-                            AuthServers:         []models.RadiusAuthServer{
+                            AuthServers:          []models.RadiusAuthServer{
                                 models.RadiusAuthServer{
                                     Host:                        "1.2.3.4",
                                     KeywrapEnabled:              models.ToPointer(true),
@@ -97,72 +97,76 @@ body := models.ApTemplate{
                                     Secret:                      "testing123",
                                 },
                             },
-                            AuthServersRetries:  models.ToPointer(3),
-                            AuthServersTimeout:  models.ToPointer(5),
-                            CoaEnabled:          models.ToPointer(false),
-                            CoaPort:             models.ToPointer(3799),
-                            Network:             models.ToPointer("string"),
-                            SourceIp:            models.ToPointer("string"),
+                            AuthServersRetries:   models.ToPointer(3),
+                            AuthServersTimeout:   models.ToPointer(5),
+                            CoaEnabled:           models.ToPointer(false),
+                            CoaPort:              models.ToPointer(3799),
+                            Network:              models.ToPointer("string"),
+                            SourceIp:             models.ToPointer("string"),
                         }),
-                        Radsec:           models.ToPointer(models.Radsec{
-                            Enabled:       models.ToPointer(true),
-                            IdleTimeout:   models.ToPointer(60),
-                            MxclusterIds:  []uuid.UUID{
+                        Radsec:               models.ToPointer(models.Radsec{
+                            Enabled:              models.ToPointer(true),
+                            IdleTimeout:          models.ToPointer(60),
+                            MxclusterIds:         []uuid.UUID{
                                 uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
                             },
-                            ProxyHosts:    []string{
+                            ProxyHosts:           []string{
                                 "mxedge1.local",
                             },
-                            ServerName:    models.ToPointer("radsec.abc.com"),
-                            Servers:       []models.RadsecServer{
+                            ServerName:           models.ToPointer("radsec.abc.com"),
+                            Servers:              []models.RadsecServer{
                                 models.RadsecServer{
-                                    Host: models.ToPointer("1.1.1.1"),
-                                    Port: models.ToPointer(1812),
+                                    Host:                 models.ToPointer("1.1.1.1"),
+                                    Port:                 models.ToPointer(1812),
                                 },
                             },
-                            UseMxedge:     models.ToPointer(true),
-                            UseSiteMxedge: models.ToPointer(false),
+                            UseMxedge:            models.ToPointer(true),
+                            UseSiteMxedge:        models.ToPointer(false),
                         }),
-                        VlanId:           models.ToPointer(9),
-                        VlandIds:         []int{
+                        VlanId:               models.ToPointer(9),
+                        VlandIds:             []int{
                             1,
                             10,
                             50,
                         },
-                        WxtunnelId:       models.ToPointer(uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")),
-                        WxtunnelRemoteId: models.ToPointer("wifiguest"),
+                        WxtunnelId:           models.ToPointer(uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")),
+                        WxtunnelRemoteId:     models.ToPointer("wifiguest"),
+                        AdditionalProperties: map[string]interface{}{
+                            "additional_vlan_ids": interface{}("5566"),
+                            "authentication_protocol": interface{}("pap"),
+                        },
                     },
                     "property2": models.ApPortConfig{
-                        Disabled:         models.ToPointer(true),
-                        DynamicVlan:      models.ToPointer(models.ApPortConfigDynamicVlan{
-                            DefaultVlanId: models.ToPointer(999),
-                            Enabled:       models.ToPointer(true),
-                            Type:          models.ToPointer("string"),
-                            Vlans:         map[string]string{
+                        Disabled:             models.ToPointer(true),
+                        DynamicVlan:          models.ToPointer(models.ApPortConfigDynamicVlan{
+                            DefaultVlanId:        models.ToPointer(999),
+                            Enabled:              models.ToPointer(true),
+                            Type:                 models.ToPointer("string"),
+                            Vlans:                map[string]string{
                                 "1-10": "vlans1",
                                 "user": "vlans2",
                             },
                         }),
-                        EnableMacAuth:    models.ToPointer(false),
-                        Forwarding:       models.ToPointer(models.ApPortConfigForwardingEnum("all")),
-                        MxTunnelId:       models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
-                        MxtunnelName:     models.ToPointer("string"),
-                        PortAuth:         models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
-                        PortVlanId:       models.ToPointer(1),
-                        RadiusConfig:     models.ToPointer(models.RadiusConfig{
-                            AcctInterimInterval: models.ToPointer(0),
-                            AcctServers:         []models.RadiusAcctServer{
+                        EnableMacAuth:        models.ToPointer(false),
+                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum("all")),
+                        MxTunnelId:           models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
+                        MxtunnelName:         models.ToPointer("string"),
+                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
+                        PortVlanId:           models.ToPointer(1),
+                        RadiusConfig:         models.ToPointer(models.RadiusConfig{
+                            AcctInterimInterval:  models.ToPointer(0),
+                            AcctServers:          []models.RadiusAcctServer{
                                 models.RadiusAcctServer{
-                                    Host:           "1.2.3.4",
-                                    KeywrapEnabled: models.ToPointer(true),
-                                    KeywrapFormat:  models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
-                                    KeywrapKek:     models.ToPointer("1122334455"),
-                                    KeywrapMack:    models.ToPointer("1122334455"),
-                                    Port:           models.ToPointer(1813),
-                                    Secret:         "testing123",
+                                    Host:                 "1.2.3.4",
+                                    KeywrapEnabled:       models.ToPointer(true),
+                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapKek:           models.ToPointer("1122334455"),
+                                    KeywrapMack:          models.ToPointer("1122334455"),
+                                    Port:                 models.ToPointer(1813),
+                                    Secret:               "testing123",
                                 },
                             },
-                            AuthServers:         []models.RadiusAuthServer{
+                            AuthServers:          []models.RadiusAuthServer{
                                 models.RadiusAuthServer{
                                     Host:                        "1.2.3.4",
                                     KeywrapEnabled:              models.ToPointer(true),
@@ -173,46 +177,50 @@ body := models.ApTemplate{
                                     Secret:                      "testing123",
                                 },
                             },
-                            AuthServersRetries:  models.ToPointer(3),
-                            AuthServersTimeout:  models.ToPointer(5),
-                            CoaEnabled:          models.ToPointer(false),
-                            CoaPort:             models.ToPointer(3799),
-                            Network:             models.ToPointer("string"),
-                            SourceIp:            models.ToPointer("string"),
+                            AuthServersRetries:   models.ToPointer(3),
+                            AuthServersTimeout:   models.ToPointer(5),
+                            CoaEnabled:           models.ToPointer(false),
+                            CoaPort:              models.ToPointer(3799),
+                            Network:              models.ToPointer("string"),
+                            SourceIp:             models.ToPointer("string"),
                         }),
-                        Radsec:           models.ToPointer(models.Radsec{
-                            Enabled:       models.ToPointer(true),
-                            IdleTimeout:   models.ToPointer(60),
-                            MxclusterIds:  []uuid.UUID{
+                        Radsec:               models.ToPointer(models.Radsec{
+                            Enabled:              models.ToPointer(true),
+                            IdleTimeout:          models.ToPointer(60),
+                            MxclusterIds:         []uuid.UUID{
                                 uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
                             },
-                            ProxyHosts:    []string{
+                            ProxyHosts:           []string{
                                 "mxedge1.local",
                             },
-                            ServerName:    models.ToPointer("radsec.abc.com"),
-                            Servers:       []models.RadsecServer{
+                            ServerName:           models.ToPointer("radsec.abc.com"),
+                            Servers:              []models.RadsecServer{
                                 models.RadsecServer{
-                                    Host: models.ToPointer("1.1.1.1"),
-                                    Port: models.ToPointer(1812),
+                                    Host:                 models.ToPointer("1.1.1.1"),
+                                    Port:                 models.ToPointer(1812),
                                 },
                             },
-                            UseMxedge:     models.ToPointer(true),
-                            UseSiteMxedge: models.ToPointer(false),
+                            UseMxedge:            models.ToPointer(true),
+                            UseSiteMxedge:        models.ToPointer(false),
                         }),
-                        VlanId:           models.ToPointer(9),
-                        VlandIds:         []int{
+                        VlanId:               models.ToPointer(9),
+                        VlandIds:             []int{
                             1,
                             10,
                             50,
                         },
-                        WxtunnelId:       models.ToPointer(uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")),
-                        WxtunnelRemoteId: models.ToPointer("wifiguest"),
+                        WxtunnelId:           models.ToPointer(uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")),
+                        WxtunnelRemoteId:     models.ToPointer("wifiguest"),
+                        AdditionalProperties: map[string]interface{}{
+                            "additional_vlan_ids": interface{}("5566"),
+                            "authentication_protocol": interface{}("pap"),
+                        },
                     },
                 },
             },
         },
     },
-    Wifi:         models.ToPointer(models.ApTemplateWifi{
+    Wifi:                 models.ToPointer(models.ApTemplateWifi{
         CiscoEnabled:                      models.ToPointer(true),
         Disable11k:                        models.ToPointer(false),
         DisableRadiosWhenPowerConstrained: models.ToPointer(true),
@@ -1051,44 +1059,44 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 aptemplateId := uuid.MustParse("00001752-0000-0000-0000-000000000000")
 
 body := models.ApTemplate{
-    ApMatching:   models.ApTemplateMatching{
-        Enabled: models.ToPointer(true),
-        Rules:   []models.ApTemplateMatchingRule{
+    ApMatching:           models.ApTemplateMatching{
+        Enabled:              models.ToPointer(true),
+        Rules:                []models.ApTemplateMatchingRule{
             models.ApTemplateMatchingRule{
-                MatchModel: models.ToPointer("string"),
-                Name:       models.ToPointer("string"),
-                PortConfig: map[string]models.ApPortConfig{
+                MatchModel:           models.ToPointer("string"),
+                Name:                 models.ToPointer("string"),
+                PortConfig:           map[string]models.ApPortConfig{
                     "property1": models.ApPortConfig{
-                        Disabled:         models.ToPointer(true),
-                        DynamicVlan:      models.ToPointer(models.ApPortConfigDynamicVlan{
-                            DefaultVlanId: models.ToPointer(999),
-                            Enabled:       models.ToPointer(true),
-                            Type:          models.ToPointer("string"),
-                            Vlans:         map[string]string{
+                        Disabled:             models.ToPointer(true),
+                        DynamicVlan:          models.ToPointer(models.ApPortConfigDynamicVlan{
+                            DefaultVlanId:        models.ToPointer(999),
+                            Enabled:              models.ToPointer(true),
+                            Type:                 models.ToPointer("string"),
+                            Vlans:                map[string]string{
                                 "1-10": "vlans1",
                                 "user": "vlans2",
                             },
                         }),
-                        EnableMacAuth:    models.ToPointer(false),
-                        Forwarding:       models.ToPointer(models.ApPortConfigForwardingEnum("all")),
-                        MxTunnelId:       models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
-                        MxtunnelName:     models.ToPointer("string"),
-                        PortAuth:         models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
-                        PortVlanId:       models.ToPointer(1),
-                        RadiusConfig:     models.ToPointer(models.RadiusConfig{
-                            AcctInterimInterval: models.ToPointer(0),
-                            AcctServers:         []models.RadiusAcctServer{
+                        EnableMacAuth:        models.ToPointer(false),
+                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum("all")),
+                        MxTunnelId:           models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
+                        MxtunnelName:         models.ToPointer("string"),
+                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
+                        PortVlanId:           models.ToPointer(1),
+                        RadiusConfig:         models.ToPointer(models.RadiusConfig{
+                            AcctInterimInterval:  models.ToPointer(0),
+                            AcctServers:          []models.RadiusAcctServer{
                                 models.RadiusAcctServer{
-                                    Host:           "1.2.3.4",
-                                    KeywrapEnabled: models.ToPointer(true),
-                                    KeywrapFormat:  models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
-                                    KeywrapKek:     models.ToPointer("1122334455"),
-                                    KeywrapMack:    models.ToPointer("1122334455"),
-                                    Port:           models.ToPointer(1813),
-                                    Secret:         "testing123",
+                                    Host:                 "1.2.3.4",
+                                    KeywrapEnabled:       models.ToPointer(true),
+                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapKek:           models.ToPointer("1122334455"),
+                                    KeywrapMack:          models.ToPointer("1122334455"),
+                                    Port:                 models.ToPointer(1813),
+                                    Secret:               "testing123",
                                 },
                             },
-                            AuthServers:         []models.RadiusAuthServer{
+                            AuthServers:          []models.RadiusAuthServer{
                                 models.RadiusAuthServer{
                                     Host:                        "1.2.3.4",
                                     KeywrapEnabled:              models.ToPointer(true),
@@ -1099,72 +1107,76 @@ body := models.ApTemplate{
                                     Secret:                      "testing123",
                                 },
                             },
-                            AuthServersRetries:  models.ToPointer(3),
-                            AuthServersTimeout:  models.ToPointer(5),
-                            CoaEnabled:          models.ToPointer(false),
-                            CoaPort:             models.ToPointer(3799),
-                            Network:             models.ToPointer("string"),
-                            SourceIp:            models.ToPointer("string"),
+                            AuthServersRetries:   models.ToPointer(3),
+                            AuthServersTimeout:   models.ToPointer(5),
+                            CoaEnabled:           models.ToPointer(false),
+                            CoaPort:              models.ToPointer(3799),
+                            Network:              models.ToPointer("string"),
+                            SourceIp:             models.ToPointer("string"),
                         }),
-                        Radsec:           models.ToPointer(models.Radsec{
-                            Enabled:       models.ToPointer(true),
-                            IdleTimeout:   models.ToPointer(60),
-                            MxclusterIds:  []uuid.UUID{
+                        Radsec:               models.ToPointer(models.Radsec{
+                            Enabled:              models.ToPointer(true),
+                            IdleTimeout:          models.ToPointer(60),
+                            MxclusterIds:         []uuid.UUID{
                                 uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
                             },
-                            ProxyHosts:    []string{
+                            ProxyHosts:           []string{
                                 "mxedge1.local",
                             },
-                            ServerName:    models.ToPointer("radsec.abc.com"),
-                            Servers:       []models.RadsecServer{
+                            ServerName:           models.ToPointer("radsec.abc.com"),
+                            Servers:              []models.RadsecServer{
                                 models.RadsecServer{
-                                    Host: models.ToPointer("1.1.1.1"),
-                                    Port: models.ToPointer(1812),
+                                    Host:                 models.ToPointer("1.1.1.1"),
+                                    Port:                 models.ToPointer(1812),
                                 },
                             },
-                            UseMxedge:     models.ToPointer(true),
-                            UseSiteMxedge: models.ToPointer(false),
+                            UseMxedge:            models.ToPointer(true),
+                            UseSiteMxedge:        models.ToPointer(false),
                         }),
-                        VlanId:           models.ToPointer(9),
-                        VlandIds:         []int{
+                        VlanId:               models.ToPointer(9),
+                        VlandIds:             []int{
                             1,
                             10,
                             50,
                         },
-                        WxtunnelId:       models.ToPointer(uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")),
-                        WxtunnelRemoteId: models.ToPointer("wifiguest"),
+                        WxtunnelId:           models.ToPointer(uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")),
+                        WxtunnelRemoteId:     models.ToPointer("wifiguest"),
+                        AdditionalProperties: map[string]interface{}{
+                            "additional_vlan_ids": interface{}("5566"),
+                            "authentication_protocol": interface{}("pap"),
+                        },
                     },
                     "property2": models.ApPortConfig{
-                        Disabled:         models.ToPointer(true),
-                        DynamicVlan:      models.ToPointer(models.ApPortConfigDynamicVlan{
-                            DefaultVlanId: models.ToPointer(999),
-                            Enabled:       models.ToPointer(true),
-                            Type:          models.ToPointer("string"),
-                            Vlans:         map[string]string{
+                        Disabled:             models.ToPointer(true),
+                        DynamicVlan:          models.ToPointer(models.ApPortConfigDynamicVlan{
+                            DefaultVlanId:        models.ToPointer(999),
+                            Enabled:              models.ToPointer(true),
+                            Type:                 models.ToPointer("string"),
+                            Vlans:                map[string]string{
                                 "1-10": "vlans1",
                                 "user": "vlans2",
                             },
                         }),
-                        EnableMacAuth:    models.ToPointer(false),
-                        Forwarding:       models.ToPointer(models.ApPortConfigForwardingEnum("all")),
-                        MxTunnelId:       models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
-                        MxtunnelName:     models.ToPointer("string"),
-                        PortAuth:         models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
-                        PortVlanId:       models.ToPointer(1),
-                        RadiusConfig:     models.ToPointer(models.RadiusConfig{
-                            AcctInterimInterval: models.ToPointer(0),
-                            AcctServers:         []models.RadiusAcctServer{
+                        EnableMacAuth:        models.ToPointer(false),
+                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum("all")),
+                        MxTunnelId:           models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
+                        MxtunnelName:         models.ToPointer("string"),
+                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
+                        PortVlanId:           models.ToPointer(1),
+                        RadiusConfig:         models.ToPointer(models.RadiusConfig{
+                            AcctInterimInterval:  models.ToPointer(0),
+                            AcctServers:          []models.RadiusAcctServer{
                                 models.RadiusAcctServer{
-                                    Host:           "1.2.3.4",
-                                    KeywrapEnabled: models.ToPointer(true),
-                                    KeywrapFormat:  models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
-                                    KeywrapKek:     models.ToPointer("1122334455"),
-                                    KeywrapMack:    models.ToPointer("1122334455"),
-                                    Port:           models.ToPointer(1813),
-                                    Secret:         "testing123",
+                                    Host:                 "1.2.3.4",
+                                    KeywrapEnabled:       models.ToPointer(true),
+                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapKek:           models.ToPointer("1122334455"),
+                                    KeywrapMack:          models.ToPointer("1122334455"),
+                                    Port:                 models.ToPointer(1813),
+                                    Secret:               "testing123",
                                 },
                             },
-                            AuthServers:         []models.RadiusAuthServer{
+                            AuthServers:          []models.RadiusAuthServer{
                                 models.RadiusAuthServer{
                                     Host:                        "1.2.3.4",
                                     KeywrapEnabled:              models.ToPointer(true),
@@ -1175,46 +1187,50 @@ body := models.ApTemplate{
                                     Secret:                      "testing123",
                                 },
                             },
-                            AuthServersRetries:  models.ToPointer(3),
-                            AuthServersTimeout:  models.ToPointer(5),
-                            CoaEnabled:          models.ToPointer(false),
-                            CoaPort:             models.ToPointer(3799),
-                            Network:             models.ToPointer("string"),
-                            SourceIp:            models.ToPointer("string"),
+                            AuthServersRetries:   models.ToPointer(3),
+                            AuthServersTimeout:   models.ToPointer(5),
+                            CoaEnabled:           models.ToPointer(false),
+                            CoaPort:              models.ToPointer(3799),
+                            Network:              models.ToPointer("string"),
+                            SourceIp:             models.ToPointer("string"),
                         }),
-                        Radsec:           models.ToPointer(models.Radsec{
-                            Enabled:       models.ToPointer(true),
-                            IdleTimeout:   models.ToPointer(60),
-                            MxclusterIds:  []uuid.UUID{
+                        Radsec:               models.ToPointer(models.Radsec{
+                            Enabled:              models.ToPointer(true),
+                            IdleTimeout:          models.ToPointer(60),
+                            MxclusterIds:         []uuid.UUID{
                                 uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
                             },
-                            ProxyHosts:    []string{
+                            ProxyHosts:           []string{
                                 "mxedge1.local",
                             },
-                            ServerName:    models.ToPointer("radsec.abc.com"),
-                            Servers:       []models.RadsecServer{
+                            ServerName:           models.ToPointer("radsec.abc.com"),
+                            Servers:              []models.RadsecServer{
                                 models.RadsecServer{
-                                    Host: models.ToPointer("1.1.1.1"),
-                                    Port: models.ToPointer(1812),
+                                    Host:                 models.ToPointer("1.1.1.1"),
+                                    Port:                 models.ToPointer(1812),
                                 },
                             },
-                            UseMxedge:     models.ToPointer(true),
-                            UseSiteMxedge: models.ToPointer(false),
+                            UseMxedge:            models.ToPointer(true),
+                            UseSiteMxedge:        models.ToPointer(false),
                         }),
-                        VlanId:           models.ToPointer(9),
-                        VlandIds:         []int{
+                        VlanId:               models.ToPointer(9),
+                        VlandIds:             []int{
                             1,
                             10,
                             50,
                         },
-                        WxtunnelId:       models.ToPointer(uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")),
-                        WxtunnelRemoteId: models.ToPointer("wifiguest"),
+                        WxtunnelId:           models.ToPointer(uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")),
+                        WxtunnelRemoteId:     models.ToPointer("wifiguest"),
+                        AdditionalProperties: map[string]interface{}{
+                            "additional_vlan_ids": interface{}("5566"),
+                            "authentication_protocol": interface{}("pap"),
+                        },
                     },
                 },
             },
         },
     },
-    Wifi:         models.ToPointer(models.ApTemplateWifi{
+    Wifi:                 models.ToPointer(models.ApTemplateWifi{
         CiscoEnabled:                      models.ToPointer(true),
         Disable11k:                        models.ToPointer(false),
         DisableRadiosWhenPowerConstrained: models.ToPointer(true),

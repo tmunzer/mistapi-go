@@ -8,10 +8,10 @@ import (
 
 // SiteApp represents a SiteApp struct.
 type SiteApp struct {
-    Group                string         `json:"group"`
-    Key                  string         `json:"key"`
-    Name                 string         `json:"name"`
-    AdditionalProperties map[string]any `json:"_"`
+    Group                string                 `json:"group"`
+    Key                  string                 `json:"key"`
+    Name                 string                 `json:"name"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteApp.
@@ -19,13 +19,17 @@ type SiteApp struct {
 func (s SiteApp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "group", "key", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteApp object to a map representation for JSON marshaling.
 func (s SiteApp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["group"] = s.Group
     structMap["key"] = s.Key
     structMap["name"] = s.Name
@@ -44,12 +48,12 @@ func (s *SiteApp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "group", "key", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "group", "key", "name")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Group = *temp.Group
     s.Key = *temp.Key
     s.Name = *temp.Name

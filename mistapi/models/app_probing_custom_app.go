@@ -21,7 +21,7 @@ type AppProbingCustomApp struct {
     // if `protocol`==`http`
     Url                  *string                          `json:"url,omitempty"`
     Vrf                  *string                          `json:"vrf,omitempty"`
-    AdditionalProperties map[string]any                   `json:"_"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AppProbingCustomApp.
@@ -29,13 +29,17 @@ type AppProbingCustomApp struct {
 func (a AppProbingCustomApp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "address", "app_type", "hostnames", "key", "name", "network", "packetSize", "protocol", "url", "vrf"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AppProbingCustomApp object to a map representation for JSON marshaling.
 func (a AppProbingCustomApp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Address != nil {
         structMap["address"] = a.Address
     }
@@ -77,12 +81,12 @@ func (a *AppProbingCustomApp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "address", "app_type", "hostnames", "key", "name", "network", "packetSize", "protocol", "url", "vrf")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "app_type", "hostnames", "key", "name", "network", "packetSize", "protocol", "url", "vrf")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Address = temp.Address
     a.AppType = temp.AppType
     a.Hostnames = temp.Hostnames

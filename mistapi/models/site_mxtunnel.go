@@ -37,7 +37,7 @@ type SiteMxtunnel struct {
     SiteId               *uuid.UUID                                `json:"site_id,omitempty"`
     // list of vlan_ids that will be used
     VlanIds              []int                                     `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any                            `json:"_"`
+    AdditionalProperties map[string]interface{}                    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteMxtunnel.
@@ -45,13 +45,17 @@ type SiteMxtunnel struct {
 func (s SiteMxtunnel) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "additional_mxtunnels", "ap_subnets", "auto_preemption", "clusters", "created_time", "enabled", "for_site", "hello_interval", "hello_retries", "hosts", "id", "modified_time", "mtu", "org_id", "protocol", "radsec", "site_id", "vlan_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteMxtunnel object to a map representation for JSON marshaling.
 func (s SiteMxtunnel) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AdditionalMxtunnels != nil {
         structMap["additional_mxtunnels"] = s.AdditionalMxtunnels
     }
@@ -117,12 +121,12 @@ func (s *SiteMxtunnel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "additional_mxtunnels", "ap_subnets", "auto_preemption", "clusters", "created_time", "enabled", "for_site", "hello_interval", "hello_retries", "hosts", "id", "modified_time", "mtu", "org_id", "protocol", "radsec", "site_id", "vlan_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_mxtunnels", "ap_subnets", "auto_preemption", "clusters", "created_time", "enabled", "for_site", "hello_interval", "hello_retries", "hosts", "id", "modified_time", "mtu", "org_id", "protocol", "radsec", "site_id", "vlan_ids")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AdditionalMxtunnels = temp.AdditionalMxtunnels
     s.ApSubnets = temp.ApSubnets
     s.AutoPreemption = temp.AutoPreemption

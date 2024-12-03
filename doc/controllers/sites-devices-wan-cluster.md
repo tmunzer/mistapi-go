@@ -215,12 +215,12 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.GatewayCluster{
-    Nodes: []models.GatewayClusterNode{
+    Nodes:                []models.GatewayClusterNode{
         models.GatewayClusterNode{
-            Mac: "aff827549235",
+            Mac:                  "aff827549235",
         },
         models.GatewayClusterNode{
-            Mac: "8396cd006c8c",
+            Mac:                  "8396cd006c8c",
         },
     },
 }

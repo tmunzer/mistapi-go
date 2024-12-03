@@ -6,8 +6,8 @@ import (
 
 // VrrpConfigGroup represents a VrrpConfigGroup struct.
 type VrrpConfigGroup struct {
-    Priority             *int           `json:"priority,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Priority             *int                   `json:"priority,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for VrrpConfigGroup.
@@ -15,13 +15,17 @@ type VrrpConfigGroup struct {
 func (v VrrpConfigGroup) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(v.AdditionalProperties,
+        "priority"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(v.toMap())
 }
 
 // toMap converts the VrrpConfigGroup object to a map representation for JSON marshaling.
 func (v VrrpConfigGroup) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, v.AdditionalProperties)
+    MergeAdditionalProperties(structMap, v.AdditionalProperties)
     if v.Priority != nil {
         structMap["priority"] = v.Priority
     }
@@ -36,12 +40,12 @@ func (v *VrrpConfigGroup) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "priority")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "priority")
     if err != nil {
     	return err
     }
-    
     v.AdditionalProperties = additionalProperties
+    
     v.Priority = temp.Priority
     return nil
 }

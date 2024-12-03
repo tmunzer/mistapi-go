@@ -7,13 +7,13 @@ import (
 // EvpnOptionsUnderlay represents a EvpnOptionsUnderlay struct.
 type EvpnOptionsUnderlay struct {
     // Underlay BGP Base AS Number
-    AsBase               *int           `json:"as_base,omitempty"`
-    RoutedIdPrefix       *string        `json:"routed_id_prefix,omitempty"`
+    AsBase               *int                   `json:"as_base,omitempty"`
+    RoutedIdPrefix       *string                `json:"routed_id_prefix,omitempty"`
     // underlay subnet, by default, `10.255.240.0/20`, or `fd31:5700::/64` for ipv6
-    Subnet               *string        `json:"subnet,omitempty"`
+    Subnet               *string                `json:"subnet,omitempty"`
     // if v6 is desired for underlay
-    UseIpv6              *bool          `json:"use_ipv6,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    UseIpv6              *bool                  `json:"use_ipv6,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnOptionsUnderlay.
@@ -21,13 +21,17 @@ type EvpnOptionsUnderlay struct {
 func (e EvpnOptionsUnderlay) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "as_base", "routed_id_prefix", "subnet", "use_ipv6"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EvpnOptionsUnderlay object to a map representation for JSON marshaling.
 func (e EvpnOptionsUnderlay) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.AsBase != nil {
         structMap["as_base"] = e.AsBase
     }
@@ -51,12 +55,12 @@ func (e *EvpnOptionsUnderlay) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "as_base", "routed_id_prefix", "subnet", "use_ipv6")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "as_base", "routed_id_prefix", "subnet", "use_ipv6")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.AsBase = temp.AsBase
     e.RoutedIdPrefix = temp.RoutedIdPrefix
     e.Subnet = temp.Subnet

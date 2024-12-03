@@ -9,32 +9,32 @@ import (
 // MxTunnel
 type Mxtunnel struct {
     // list of anchor mxtunnels used for forming edge to edge tunnels
-    AnchorMxtunnelIds    []uuid.UUID           `json:"anchor_mxtunnel_ids,omitempty"`
+    AnchorMxtunnelIds    []uuid.UUID            `json:"anchor_mxtunnel_ids,omitempty"`
     // schedule to preempt ap’s which are not connected to preferred peer
-    AutoPreemption       *AutoPreemption       `json:"auto_preemption,omitempty"`
+    AutoPreemption       *AutoPreemption        `json:"auto_preemption,omitempty"`
     // when the object has been created, in epoch
-    CreatedTime          *float64              `json:"created_time,omitempty"`
-    ForSite              *bool                 `json:"for_site,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
     // in seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by `hello_retries`.
-    HelloInterval        Optional[int]         `json:"hello_interval"`
-    HelloRetries         Optional[int]         `json:"hello_retries"`
+    HelloInterval        Optional[int]          `json:"hello_interval"`
+    HelloRetries         Optional[int]          `json:"hello_retries"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID            `json:"id,omitempty"`
-    Ipsec                *MxtunnelIpsec        `json:"ipsec,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
+    Ipsec                *MxtunnelIpsec         `json:"ipsec,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64              `json:"modified_time,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU
-    Mtu                  *int                  `json:"mtu,omitempty"`
+    Mtu                  *int                   `json:"mtu,omitempty"`
     // list of mxclusters to deploy this tunnel to
-    MxclusterIds         []uuid.UUID           `json:"mxcluster_ids,omitempty"`
-    Name                 Optional[string]      `json:"name"`
-    OrgId                *uuid.UUID            `json:"org_id,omitempty"`
+    MxclusterIds         []uuid.UUID            `json:"mxcluster_ids,omitempty"`
+    Name                 Optional[string]       `json:"name"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // enum: `ip`, `udp`
-    Protocol             *MxtunnelProtocolEnum `json:"protocol,omitempty"`
-    SiteId               *uuid.UUID            `json:"site_id,omitempty"`
+    Protocol             *MxtunnelProtocolEnum  `json:"protocol,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // list of vlan_ids that will be used
-    VlanIds              []int                 `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    VlanIds              []int                  `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Mxtunnel.
@@ -42,13 +42,17 @@ type Mxtunnel struct {
 func (m Mxtunnel) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "anchor_mxtunnel_ids", "auto_preemption", "created_time", "for_site", "hello_interval", "hello_retries", "id", "ipsec", "modified_time", "mtu", "mxcluster_ids", "name", "org_id", "protocol", "site_id", "vlan_ids"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the Mxtunnel object to a map representation for JSON marshaling.
 func (m Mxtunnel) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.AnchorMxtunnelIds != nil {
         structMap["anchor_mxtunnel_ids"] = m.AnchorMxtunnelIds
     }
@@ -120,12 +124,12 @@ func (m *Mxtunnel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "anchor_mxtunnel_ids", "auto_preemption", "created_time", "for_site", "hello_interval", "hello_retries", "id", "ipsec", "modified_time", "mtu", "mxcluster_ids", "name", "org_id", "protocol", "site_id", "vlan_ids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "anchor_mxtunnel_ids", "auto_preemption", "created_time", "for_site", "hello_interval", "hello_retries", "id", "ipsec", "modified_time", "mtu", "mxcluster_ids", "name", "org_id", "protocol", "site_id", "vlan_ids")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.AnchorMxtunnelIds = temp.AnchorMxtunnelIds
     m.AutoPreemption = temp.AutoPreemption
     m.CreatedTime = temp.CreatedTime

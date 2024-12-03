@@ -7,46 +7,46 @@ import (
 
 // EventNacClient represents a EventNacClient struct.
 type EventNacClient struct {
-    Ap                   *string        `json:"ap,omitempty"`
+    Ap                   *string                `json:"ap,omitempty"`
     // authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth"
-    AuthType             *string        `json:"auth_type,omitempty"`
-    Bssid                *string        `json:"bssid,omitempty"`
-    DeviceMac            *string        `json:"device_mac,omitempty"`
+    AuthType             *string                `json:"auth_type,omitempty"`
+    Bssid                *string                `json:"bssid,omitempty"`
+    DeviceMac            *string                `json:"device_mac,omitempty"`
     // NAC Policy Dry Run Rule ID, if present and matched
-    DryrunNacruleId      *uuid.UUID     `json:"dryrun_nacrule_id,omitempty"`
-    DryrunNacruleMatched *bool          `json:"dryrun_nacrule_matched,omitempty"`
-    IdpId                *uuid.UUID     `json:"idp_id,omitempty"`
-    IdpRole              []string       `json:"idp_role,omitempty"`
+    DryrunNacruleId      *uuid.UUID             `json:"dryrun_nacrule_id,omitempty"`
+    DryrunNacruleMatched *bool                  `json:"dryrun_nacrule_matched,omitempty"`
+    IdpId                *uuid.UUID             `json:"idp_id,omitempty"`
+    IdpRole              []string               `json:"idp_role,omitempty"`
     // Username presented to the Identity Provider
-    IdpUsername          *string        `json:"idp_username,omitempty"`
+    IdpUsername          *string                `json:"idp_username,omitempty"`
     // Client MAC address
-    Mac                  *string        `json:"mac,omitempty"`
+    Mac                  *string                `json:"mac,omitempty"`
     // Mist Edge ID used to connect to cloud
-    MxedgeId             *string        `json:"mxedge_id,omitempty"`
+    MxedgeId             *string                `json:"mxedge_id,omitempty"`
     // NAC Policy Rule ID, if matched
-    NacruleId            *uuid.UUID     `json:"nacrule_id,omitempty"`
-    NacruleMatched       *bool          `json:"nacrule_matched,omitempty"`
-    NasVendor            *string        `json:"nas_vendor,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    PortId               *string        `json:"port_id,omitempty"`
+    NacruleId            *uuid.UUID             `json:"nacrule_id,omitempty"`
+    NacruleMatched       *bool                  `json:"nacrule_matched,omitempty"`
+    NasVendor            *string                `json:"nas_vendor,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
     // Type of client i.e wired, wireless
-    PortType             *string        `json:"port_type,omitempty"`
-    RandomMac            *bool          `json:"random_mac,omitempty"`
-    RespAttrs            []string       `json:"resp_attrs,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    Ssid                 *string        `json:"ssid,omitempty"`
-    Timestamp            *float64       `json:"timestamp,omitempty"`
+    PortType             *string                `json:"port_type,omitempty"`
+    RandomMac            *bool                  `json:"random_mac,omitempty"`
+    RespAttrs            []string               `json:"resp_attrs,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Ssid                 *string                `json:"ssid,omitempty"`
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     // event type, e.g. NAC_CLIENT_PERMIT
-    Type                 *string        `json:"type,omitempty"`
+    Type                 *string                `json:"type,omitempty"`
     // labels derived from usermac entry
-    UsermacLabel         []string       `json:"usermac_label,omitempty"`
+    UsermacLabel         []string               `json:"usermac_label,omitempty"`
     // Username presented by the client
-    Username             *string        `json:"username,omitempty"`
+    Username             *string                `json:"username,omitempty"`
     // Vlan ID
-    Vlan                 *string        `json:"vlan,omitempty"`
+    Vlan                 *string                `json:"vlan,omitempty"`
     // Vlan source, e.g. "nactag", "usermac"
-    VlanSource           *string        `json:"vlan_source,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    VlanSource           *string                `json:"vlan_source,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventNacClient.
@@ -54,13 +54,17 @@ type EventNacClient struct {
 func (e EventNacClient) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(e.AdditionalProperties,
+        "ap", "auth_type", "bssid", "device_mac", "dryrun_nacrule_id", "dryrun_nacrule_matched", "idp_id", "idp_role", "idp_username", "mac", "mxedge_id", "nacrule_id", "nacrule_matched", "nas_vendor", "org_id", "port_id", "port_type", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan", "vlan_source"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(e.toMap())
 }
 
 // toMap converts the EventNacClient object to a map representation for JSON marshaling.
 func (e EventNacClient) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, e.AdditionalProperties)
+    MergeAdditionalProperties(structMap, e.AdditionalProperties)
     if e.Ap != nil {
         structMap["ap"] = e.Ap
     }
@@ -153,12 +157,12 @@ func (e *EventNacClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap", "auth_type", "bssid", "device_mac", "dryrun_nacrule_id", "dryrun_nacrule_matched", "idp_id", "idp_role", "idp_username", "mac", "mxedge_id", "nacrule_id", "nacrule_matched", "nas_vendor", "org_id", "port_id", "port_type", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan", "vlan_source")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "auth_type", "bssid", "device_mac", "dryrun_nacrule_id", "dryrun_nacrule_matched", "idp_id", "idp_role", "idp_username", "mac", "mxedge_id", "nacrule_id", "nacrule_matched", "nas_vendor", "org_id", "port_id", "port_type", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan", "vlan_source")
     if err != nil {
     	return err
     }
-    
     e.AdditionalProperties = additionalProperties
+    
     e.Ap = temp.Ap
     e.AuthType = temp.AuthType
     e.Bssid = temp.Bssid

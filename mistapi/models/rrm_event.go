@@ -30,7 +30,7 @@ type RrmEvent struct {
     // timestamp of the event
     Timestamp            float64                  `json:"timestamp"`
     Usage                string                   `json:"usage"`
-    AdditionalProperties map[string]any           `json:"_"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmEvent.
@@ -38,13 +38,17 @@ type RrmEvent struct {
 func (r RrmEvent) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "ap_id", "band", "bandwidth", "channel", "event", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "timestamp", "usage"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RrmEvent object to a map representation for JSON marshaling.
 func (r RrmEvent) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["ap_id"] = r.ApId
     structMap["band"] = r.Band
     structMap["bandwidth"] = r.Bandwidth
@@ -72,12 +76,12 @@ func (r *RrmEvent) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ap_id", "band", "bandwidth", "channel", "event", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "timestamp", "usage")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_id", "band", "bandwidth", "channel", "event", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "timestamp", "usage")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.ApId = *temp.ApId
     r.Band = *temp.Band
     r.Bandwidth = *temp.Bandwidth

@@ -7,8 +7,8 @@ import (
 // UtilsShowBgpRummary represents a UtilsShowBgpRummary struct.
 type UtilsShowBgpRummary struct {
     // only for HA. enum: `node0`, `node1`
-    Node                 *HaClusterNodeEnum `json:"node,omitempty"`
-    AdditionalProperties map[string]any     `json:"_"`
+    Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowBgpRummary.
@@ -16,13 +16,17 @@ type UtilsShowBgpRummary struct {
 func (u UtilsShowBgpRummary) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "node"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsShowBgpRummary object to a map representation for JSON marshaling.
 func (u UtilsShowBgpRummary) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Node != nil {
         structMap["node"] = u.Node
     }
@@ -37,12 +41,12 @@ func (u *UtilsShowBgpRummary) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "node")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "node")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.Node = temp.Node
     return nil
 }

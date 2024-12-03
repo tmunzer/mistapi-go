@@ -11,7 +11,7 @@ type ResponseAutoZoneZone struct {
     Name                 *string                      `json:"name,omitempty"`
     // A list of of points comprising the zones map location in pixels
     Vertices             []ResponseAutoZoneZoneVertex `json:"vertices,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAutoZoneZone.
@@ -19,13 +19,17 @@ type ResponseAutoZoneZone struct {
 func (r ResponseAutoZoneZone) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "name", "vertices"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseAutoZoneZone object to a map representation for JSON marshaling.
 func (r ResponseAutoZoneZone) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Name != nil {
         structMap["name"] = r.Name
     }
@@ -43,12 +47,12 @@ func (r *ResponseAutoZoneZone) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "name", "vertices")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name", "vertices")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.Name = temp.Name
     r.Vertices = temp.Vertices
     return nil

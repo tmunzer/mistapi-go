@@ -1,6 +1,8 @@
 
 # Events Client Wan
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `EventsClientWan`
@@ -17,6 +19,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Text` | `*string` | Optional | - |
 | `Wcid` | `*uuid.UUID` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,7 +35,11 @@
     "key1": "val1",
     "key2": "val2"
   },
-  "random_mac": false
+  "random_mac": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

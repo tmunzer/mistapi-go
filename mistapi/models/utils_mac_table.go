@@ -6,10 +6,10 @@ import (
 
 // UtilsMacTable represents a UtilsMacTable struct.
 type UtilsMacTable struct {
-    MacAddress           *string        `json:"mac_address,omitempty"`
-    PortId               *string        `json:"port_id,omitempty"`
-    VlanId               *string        `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    MacAddress           *string                `json:"mac_address,omitempty"`
+    PortId               *string                `json:"port_id,omitempty"`
+    VlanId               *string                `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsMacTable.
@@ -17,13 +17,17 @@ type UtilsMacTable struct {
 func (u UtilsMacTable) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(u.AdditionalProperties,
+        "mac_address", "port_id", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(u.toMap())
 }
 
 // toMap converts the UtilsMacTable object to a map representation for JSON marshaling.
 func (u UtilsMacTable) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, u.AdditionalProperties)
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.MacAddress != nil {
         structMap["mac_address"] = u.MacAddress
     }
@@ -44,12 +48,12 @@ func (u *UtilsMacTable) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "mac_address", "port_id", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac_address", "port_id", "vlan_id")
     if err != nil {
     	return err
     }
-    
     u.AdditionalProperties = additionalProperties
+    
     u.MacAddress = temp.MacAddress
     u.PortId = temp.PortId
     u.VlanId = temp.VlanId

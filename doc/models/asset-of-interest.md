@@ -1,6 +1,8 @@
 
 # Asset of Interest
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `AssetOfInterest`
@@ -21,6 +23,7 @@
 | `MapId` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `Name` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `Rssi` | `*float64` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,7 +34,11 @@
   "beam": 115.36,
   "by": "by4",
   "curr_site": "curr_site8",
-  "device_name": "device_name0"
+  "device_name": "device_name0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

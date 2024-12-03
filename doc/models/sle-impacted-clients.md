@@ -1,6 +1,8 @@
 
 # Sle Impacted Clients
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SleImpactedClients`
@@ -18,6 +20,7 @@
 | `Page` | `*int` | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `TotalCount` | `*int` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,23 +39,39 @@
             "interfaces9"
           ],
           "switch_mac": "switch_mac6",
-          "switch_name": "switch_name0"
+          "switch_name": "switch_name0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "interfaces": [
             "interfaces9"
           ],
           "switch_mac": "switch_mac6",
-          "switch_name": "switch_name0"
+          "switch_name": "switch_name0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "interfaces": [
             "interfaces9"
           ],
           "switch_mac": "switch_mac6",
-          "switch_name": "switch_name0"
+          "switch_name": "switch_name0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "degraded": 18,
@@ -65,28 +84,48 @@
             "interfaces9"
           ],
           "switch_mac": "switch_mac6",
-          "switch_name": "switch_name0"
+          "switch_name": "switch_name0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "interfaces": [
             "interfaces9"
           ],
           "switch_mac": "switch_mac6",
-          "switch_name": "switch_name0"
+          "switch_name": "switch_name0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         },
         {
           "interfaces": [
             "interfaces9"
           ],
           "switch_mac": "switch_mac6",
-          "switch_name": "switch_name0"
+          "switch_name": "switch_name0",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
         }
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "end": 136,
   "failure": "failure4",
-  "limit": 222
+  "limit": 222,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

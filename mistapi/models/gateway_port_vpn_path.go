@@ -17,7 +17,7 @@ type GatewayPortVpnPath struct {
     // Only if the VPN `type`==`hub_spoke`. enum: `hub`, `spoke`
     Role                 *GatewayPortVpnPathRoleEnum       `json:"role,omitempty"`
     TrafficShaping       *GatewayTrafficShaping            `json:"traffic_shaping,omitempty"`
-    AdditionalProperties map[string]any                    `json:"_"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortVpnPath.
@@ -25,13 +25,17 @@ type GatewayPortVpnPath struct {
 func (g GatewayPortVpnPath) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "bfd_profile", "bfd_use_tunnel_mode", "link_name", "preference", "role", "traffic_shaping"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayPortVpnPath object to a map representation for JSON marshaling.
 func (g GatewayPortVpnPath) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.BfdProfile != nil {
         structMap["bfd_profile"] = g.BfdProfile
     }
@@ -61,12 +65,12 @@ func (g *GatewayPortVpnPath) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bfd_profile", "bfd_use_tunnel_mode", "link_name", "preference", "role", "traffic_shaping")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bfd_profile", "bfd_use_tunnel_mode", "link_name", "preference", "role", "traffic_shaping")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.BfdProfile = temp.BfdProfile
     g.BfdUseTunnelMode = temp.BfdUseTunnelMode
     g.LinkName = temp.LinkName

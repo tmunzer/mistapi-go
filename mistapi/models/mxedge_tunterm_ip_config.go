@@ -9,14 +9,14 @@ import (
 // MxedgeTuntermIpConfig represents a MxedgeTuntermIpConfig struct.
 // ip configuration of the Mist Tunnel interface
 type MxedgeTuntermIpConfig struct {
-    Gateway              string         `json:"gateway"`
-    Gateway6             *string        `json:"gateway6,omitempty"`
+    Gateway              string                 `json:"gateway"`
+    Gateway6             *string                `json:"gateway6,omitempty"`
     // untagged VLAN
-    Ip                   string         `json:"ip"`
-    Ip6                  *string        `json:"ip6,omitempty"`
-    Netmask              string         `json:"netmask"`
-    Netmask6             *string        `json:"netmask6,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Ip                   string                 `json:"ip"`
+    Ip6                  *string                `json:"ip6,omitempty"`
+    Netmask              string                 `json:"netmask"`
+    Netmask6             *string                `json:"netmask6,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermIpConfig.
@@ -24,13 +24,17 @@ type MxedgeTuntermIpConfig struct {
 func (m MxedgeTuntermIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MxedgeTuntermIpConfig object to a map representation for JSON marshaling.
 func (m MxedgeTuntermIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["gateway"] = m.Gateway
     if m.Gateway6 != nil {
         structMap["gateway6"] = m.Gateway6
@@ -58,12 +62,12 @@ func (m *MxedgeTuntermIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Gateway = *temp.Gateway
     m.Gateway6 = temp.Gateway6
     m.Ip = *temp.Ip

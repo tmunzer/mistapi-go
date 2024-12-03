@@ -1,6 +1,8 @@
 
 # Gateway Cluster
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `GatewayCluster`
@@ -10,6 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Nodes` | [`[]models.GatewayClusterNode`](../../doc/models/gateway-cluster-node.md) | Required | when replacing a node, either mac has to remain the same as existing cluster<br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `2`, *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -17,9 +20,17 @@
 {
   "nodes": [
     {
-      "mac": "mac0"
+      "mac": "mac0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

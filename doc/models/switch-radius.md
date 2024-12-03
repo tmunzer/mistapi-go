@@ -3,6 +3,8 @@
 
 by default, `radius_config` will be used. if a different one has to be used set `use_different_radius
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SwitchRadius`
@@ -14,6 +16,7 @@ by default, `radius_config` will be used. if a different one has to be used set 
 | `Enabled` | `*bool` | Optional | - |
 | `RadiusConfig` | [`*models.SwitchRadiusConfig`](../../doc/models/switch-radius-config.md) | Optional | Junos Radius config |
 | `UseDifferentRadius` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,7 +33,11 @@ by default, `radius_config` will be used. if a different one has to be used set 
         "keywrap_kek": "keywrap_kek0",
         "keywrap_mack": "keywrap_mack2",
         "port": 254,
-        "secret": "secret0"
+        "secret": "secret0",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       {
         "host": "host4",
@@ -39,7 +46,11 @@ by default, `radius_config` will be used. if a different one has to be used set 
         "keywrap_kek": "keywrap_kek0",
         "keywrap_mack": "keywrap_mack2",
         "port": 254,
-        "secret": "secret0"
+        "secret": "secret0",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     ],
     "auth_servers": [
@@ -50,7 +61,11 @@ by default, `radius_config` will be used. if a different one has to be used set 
         "keywrap_kek": "keywrap_kek4",
         "keywrap_mack": "keywrap_mack6",
         "port": 114,
-        "secret": "secret4"
+        "secret": "secret4",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       {
         "host": "host0",
@@ -59,7 +74,11 @@ by default, `radius_config` will be used. if a different one has to be used set 
         "keywrap_kek": "keywrap_kek4",
         "keywrap_mack": "keywrap_mack6",
         "port": 114,
-        "secret": "secret4"
+        "secret": "secret4",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       {
         "host": "host0",
@@ -68,13 +87,25 @@ by default, `radius_config` will be used. if a different one has to be used set 
         "keywrap_kek": "keywrap_kek4",
         "keywrap_mack": "keywrap_mack6",
         "port": 114,
-        "secret": "secret4"
+        "secret": "secret4",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       }
     ],
     "auth_servers_retries": 194,
-    "auth_servers_timeout": 232
+    "auth_servers_timeout": 232,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
-  "use_different_radius": "use_different_radius4"
+  "use_different_radius": "use_different_radius4",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

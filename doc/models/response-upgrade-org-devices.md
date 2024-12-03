@@ -1,6 +1,8 @@
 
 # Response Upgrade Org Devices
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseUpgradeOrgDevices`
@@ -15,6 +17,7 @@
 | `Strategy` | [`*models.DeviceUpgradeStrategyEnum`](../../doc/models/device-upgrade-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)<br>**Default**: `"big_bang"` |
 | `TargetVersion` | `*string` | Optional | version to upgrade to |
 | `Upgrades` | [`[]models.ResponseUpgradeOrgDevice`](../../doc/models/response-upgrade-org-device.md) | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,11 @@
   "strategy": "big_bang",
   "target_version": "0.14.29411",
   "enable_p2p": false,
-  "force": false
+  "force": false,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

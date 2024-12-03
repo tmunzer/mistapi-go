@@ -11,44 +11,44 @@ import (
 // additional information per alarm type
 type Alarm struct {
     // UUID of the admin who acked the alarm
-    AckAdminId           *uuid.UUID     `json:"ack_admin_id,omitempty"`
+    AckAdminId           *uuid.UUID             `json:"ack_admin_id,omitempty"`
     // Name & Email ID of the admin who acked the alarm
-    AckAdminName         *string        `json:"ack_admin_name,omitempty"`
+    AckAdminName         *string                `json:"ack_admin_name,omitempty"`
     // Whether the alarm is acked or not
-    Acked                *bool          `json:"acked,omitempty"`
+    Acked                *bool                  `json:"acked,omitempty"`
     // Epoch (seconds) when the alarm was acked
-    AckedTime            *int           `json:"acked_time,omitempty"`
+    AckedTime            *int                   `json:"acked_time,omitempty"`
     // additional information: List of MACs of the APs
-    Aps                  []string       `json:"aps,omitempty"`
+    Aps                  []string               `json:"aps,omitempty"`
     // List of BSSIDs
-    Bssids               []string       `json:"bssids,omitempty"`
+    Bssids               []string               `json:"bssids,omitempty"`
     // Number of incident within an alarm window
-    Count                int            `json:"count"`
+    Count                int                    `json:"count"`
     // additional information: List of MACs of the gateways
-    Gateways             []string       `json:"gateways,omitempty"`
+    Gateways             []string               `json:"gateways,omitempty"`
     // Group of the alarm
-    Group                string         `json:"group"`
+    Group                string                 `json:"group"`
     // additional information: List of Hostnames of the devices (AP/Switch/Gateway)
-    Hostnames            []string       `json:"hostnames,omitempty"`
+    Hostnames            []string               `json:"hostnames,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID      `json:"id"`
+    Id                   uuid.UUID              `json:"id"`
     // Epoch (seconds) of the last incident/alarm within an alarm window
-    LastSeen             float64        `json:"last_seen"`
+    LastSeen             float64                `json:"last_seen"`
     // Text describing the alarm
-    Note                 *string        `json:"note,omitempty"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
+    Note                 *string                `json:"note,omitempty"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // Severity of the alarm
-    Severity             string         `json:"severity"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
+    Severity             string                 `json:"severity"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // List of SSIDs
-    Ssids                []string       `json:"ssids,omitempty"`
+    Ssids                []string               `json:"ssids,omitempty"`
     // additional information: List of MACs of the switches
-    Switches             []string       `json:"switches,omitempty"`
+    Switches             []string               `json:"switches,omitempty"`
     // Epoch (seconds) of the first incident/alarm
-    Timestamp            int            `json:"timestamp"`
+    Timestamp            int                    `json:"timestamp"`
     // Key-name of the alarm type
-    Type                 string         `json:"type"`
-    AdditionalProperties map[string]any `json:"_"`
+    Type                 string                 `json:"type"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Alarm.
@@ -56,13 +56,17 @@ type Alarm struct {
 func (a Alarm) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "ack_admin_id", "ack_admin_name", "acked", "acked_time", "aps", "bssids", "count", "gateways", "group", "hostnames", "id", "last_seen", "note", "org_id", "severity", "site_id", "ssids", "switches", "timestamp", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the Alarm object to a map representation for JSON marshaling.
 func (a Alarm) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.AckAdminId != nil {
         structMap["ack_admin_id"] = a.AckAdminId
     }
@@ -124,12 +128,12 @@ func (a *Alarm) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ack_admin_id", "ack_admin_name", "acked", "acked_time", "aps", "bssids", "count", "gateways", "group", "hostnames", "id", "last_seen", "note", "org_id", "severity", "site_id", "ssids", "switches", "timestamp", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ack_admin_id", "ack_admin_name", "acked", "acked_time", "aps", "bssids", "count", "gateways", "group", "hostnames", "id", "last_seen", "note", "org_id", "severity", "site_id", "ssids", "switches", "timestamp", "type")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.AckAdminId = temp.AckAdminId
     a.AckAdminName = temp.AckAdminName
     a.Acked = temp.Acked

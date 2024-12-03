@@ -8,8 +8,8 @@ import (
 
 // RootPasswordString represents a RootPasswordString struct.
 type RootPasswordString struct {
-    RootPassword         string         `json:"root_password"`
-    AdditionalProperties map[string]any `json:"_"`
+    RootPassword         string                 `json:"root_password"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for RootPasswordString.
@@ -17,13 +17,17 @@ type RootPasswordString struct {
 func (r RootPasswordString) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "root_password"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the RootPasswordString object to a map representation for JSON marshaling.
 func (r RootPasswordString) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["root_password"] = r.RootPassword
     return structMap
 }
@@ -40,12 +44,12 @@ func (r *RootPasswordString) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "root_password")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "root_password")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.RootPassword = *temp.RootPassword
     return nil
 }

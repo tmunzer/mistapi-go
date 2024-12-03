@@ -8,8 +8,8 @@ import (
 
 // TwoFactorString represents a TwoFactorString struct.
 type TwoFactorString struct {
-    TwoFactor            string         `json:"two_factor"`
-    AdditionalProperties map[string]any `json:"_"`
+    TwoFactor            string                 `json:"two_factor"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for TwoFactorString.
@@ -17,13 +17,17 @@ type TwoFactorString struct {
 func (t TwoFactorString) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(t.AdditionalProperties,
+        "two_factor"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(t.toMap())
 }
 
 // toMap converts the TwoFactorString object to a map representation for JSON marshaling.
 func (t TwoFactorString) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, t.AdditionalProperties)
+    MergeAdditionalProperties(structMap, t.AdditionalProperties)
     structMap["two_factor"] = t.TwoFactor
     return structMap
 }
@@ -40,12 +44,12 @@ func (t *TwoFactorString) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "two_factor")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "two_factor")
     if err != nil {
     	return err
     }
-    
     t.AdditionalProperties = additionalProperties
+    
     t.TwoFactor = *temp.TwoFactor
     return nil
 }

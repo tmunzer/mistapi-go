@@ -8,18 +8,18 @@ import (
 // LicenseAmendment represents a LicenseAmendment struct.
 type LicenseAmendment struct {
     // when the object has been created, in epoch
-    CreatedTime          *float64         `json:"created_time,omitempty"`
-    EndTime              *int             `json:"end_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
+    EndTime              *int                   `json:"end_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID       `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64         `json:"modified_time,omitempty"`
-    Quantity             *int             `json:"quantity,omitempty"`
-    StartTime            *int             `json:"start_time,omitempty"`
-    SubscriptionId       *string          `json:"subscription_id,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    Quantity             *int                   `json:"quantity,omitempty"`
+    StartTime            *int                   `json:"start_time,omitempty"`
+    SubscriptionId       *string                `json:"subscription_id,omitempty"`
     // enum: `SUB-AST`, `SUB-DATA`, `SUB-ENG`, `SUB-EX12`, `SUB-EX24`, `SUB-EX48`, `SUB-MAN`, `SUB-ME`, `SUB-PMA`, `SUB-SRX1`, `SUB-SRX2`, `SUB-SVNA`, `SUB-VNA`, `SUB-WAN1`, `SUB-WAN2`, `SUB-WVNA1`, `SUB-WVNA2`
-    Type                 *LicenseTypeEnum `json:"type,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Type                 *LicenseTypeEnum       `json:"type,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for LicenseAmendment.
@@ -27,13 +27,17 @@ type LicenseAmendment struct {
 func (l LicenseAmendment) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(l.AdditionalProperties,
+        "created_time", "end_time", "id", "modified_time", "quantity", "start_time", "subscription_id", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(l.toMap())
 }
 
 // toMap converts the LicenseAmendment object to a map representation for JSON marshaling.
 func (l LicenseAmendment) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, l.AdditionalProperties)
+    MergeAdditionalProperties(structMap, l.AdditionalProperties)
     if l.CreatedTime != nil {
         structMap["created_time"] = l.CreatedTime
     }
@@ -69,12 +73,12 @@ func (l *LicenseAmendment) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "end_time", "id", "modified_time", "quantity", "start_time", "subscription_id", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "end_time", "id", "modified_time", "quantity", "start_time", "subscription_id", "type")
     if err != nil {
     	return err
     }
-    
     l.AdditionalProperties = additionalProperties
+    
     l.CreatedTime = temp.CreatedTime
     l.EndTime = temp.EndTime
     l.Id = temp.Id

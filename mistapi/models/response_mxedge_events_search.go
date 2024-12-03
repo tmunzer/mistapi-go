@@ -6,12 +6,12 @@ import (
 
 // ResponseMxedgeEventsSearch represents a ResponseMxedgeEventsSearch struct.
 type ResponseMxedgeEventsSearch struct {
-    End                  *int           `json:"end,omitempty"`
-    Limit                *int           `json:"limit,omitempty"`
-    Page                 *int           `json:"page,omitempty"`
-    Results              []MxedgeEvent  `json:"results,omitempty"`
-    Start                *int           `json:"start,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    End                  *int                   `json:"end,omitempty"`
+    Limit                *int                   `json:"limit,omitempty"`
+    Page                 *int                   `json:"page,omitempty"`
+    Results              []MxedgeEvent          `json:"results,omitempty"`
+    Start                *int                   `json:"start,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMxedgeEventsSearch.
@@ -19,13 +19,17 @@ type ResponseMxedgeEventsSearch struct {
 func (r ResponseMxedgeEventsSearch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "end", "limit", "page", "results", "start"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseMxedgeEventsSearch object to a map representation for JSON marshaling.
 func (r ResponseMxedgeEventsSearch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.End != nil {
         structMap["end"] = r.End
     }
@@ -52,12 +56,12 @@ func (r *ResponseMxedgeEventsSearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "end", "limit", "page", "results", "start")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "page", "results", "start")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.End = temp.End
     r.Limit = temp.Limit
     r.Page = temp.Page

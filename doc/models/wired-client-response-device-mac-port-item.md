@@ -1,6 +1,8 @@
 
 # Wired Client Response Device Mac Port Item
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `WiredClientResponseDeviceMacPortItem`
@@ -16,6 +18,7 @@
 | `Start` | `*string` | Optional | - |
 | `Vlan` | `*int` | Optional | - |
 | `When` | `*string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,7 +28,11 @@
   "ip": "ip6",
   "port_id": "port_id2",
   "port_parent": "port_parent6",
-  "start": "start6"
+  "start": "start6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

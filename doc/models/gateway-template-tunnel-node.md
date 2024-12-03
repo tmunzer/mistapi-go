@@ -1,6 +1,8 @@
 
 # Gateway Template Tunnel Node
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `GatewayTemplateTunnelNode`
@@ -14,6 +16,7 @@
 | `ProbeIps` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `RemoteIds` | `[]string` | Optional | Only if `provider`== `custom-ipsec` |
 | `WanNames` | `[]string` | Optional | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,7 +40,11 @@
   ],
   "wan_names": [
     "wan_names4"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

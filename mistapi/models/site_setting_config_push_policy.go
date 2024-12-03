@@ -8,10 +8,10 @@ import (
 // mist also uses some heuristic rules to prevent destructive configs from being pushed
 type SiteSettingConfigPushPolicy struct {
     // stop any new config from being pushed to the device
-    NoPush               *bool                 `json:"no_push,omitempty"`
+    NoPush               *bool                  `json:"no_push,omitempty"`
     // if enabled, new config will only be pushed to device within the specified time window
-    PushWindow           *PushPolicyPushWindow `json:"push_window,omitempty"`
-    AdditionalProperties map[string]any        `json:"_"`
+    PushWindow           *PushPolicyPushWindow  `json:"push_window,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingConfigPushPolicy.
@@ -19,13 +19,17 @@ type SiteSettingConfigPushPolicy struct {
 func (s SiteSettingConfigPushPolicy) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "no_push", "push_window"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingConfigPushPolicy object to a map representation for JSON marshaling.
 func (s SiteSettingConfigPushPolicy) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.NoPush != nil {
         structMap["no_push"] = s.NoPush
     }
@@ -43,12 +47,12 @@ func (s *SiteSettingConfigPushPolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "no_push", "push_window")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "no_push", "push_window")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.NoPush = temp.NoPush
     s.PushWindow = temp.PushWindow
     return nil

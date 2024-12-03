@@ -31,7 +31,7 @@ type ApRadio struct {
     IndoorUse            *bool                   `json:"indoor_use,omitempty"`
     // whether scanning radio is enabled
     ScanningEnabled      *bool                   `json:"scanning_enabled,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadio.
@@ -39,13 +39,17 @@ type ApRadio struct {
 func (a ApRadio) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "indoor_use", "scanning_enabled"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApRadio object to a map representation for JSON marshaling.
 func (a ApRadio) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.AllowRrmDisable != nil {
         structMap["allow_rrm_disable"] = a.AllowRrmDisable
     }
@@ -93,12 +97,12 @@ func (a *ApRadio) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "indoor_use", "scanning_enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "indoor_use", "scanning_enabled")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.AllowRrmDisable = temp.AllowRrmDisable
     a.AntGain24 = temp.AntGain24
     a.AntGain5 = temp.AntGain5

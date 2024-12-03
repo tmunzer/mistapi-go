@@ -19,7 +19,7 @@ type PskPortalSso struct {
     RoleMapping          map[string]string            `json:"role_mapping,omitempty"`
     // if enabled, the `role` above will be ignored
     UseSsoRoleForPskRole *bool                        `json:"use_sso_role_for_psk_role,omitempty"`
-    AdditionalProperties map[string]any               `json:"_"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalSso.
@@ -27,13 +27,17 @@ type PskPortalSso struct {
 func (p PskPortalSso) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(p.AdditionalProperties,
+        "allowed_roles", "idp_cert", "idp_sign_algo", "idp_sso_url", "issuer", "nameid_format", "role_mapping", "use_sso_role_for_psk_role"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(p.toMap())
 }
 
 // toMap converts the PskPortalSso object to a map representation for JSON marshaling.
 func (p PskPortalSso) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, p.AdditionalProperties)
+    MergeAdditionalProperties(structMap, p.AdditionalProperties)
     if p.AllowedRoles != nil {
         structMap["allowed_roles"] = p.AllowedRoles
     }
@@ -69,12 +73,12 @@ func (p *PskPortalSso) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "allowed_roles", "idp_cert", "idp_sign_algo", "idp_sso_url", "issuer", "nameid_format", "role_mapping", "use_sso_role_for_psk_role")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allowed_roles", "idp_cert", "idp_sign_algo", "idp_sso_url", "issuer", "nameid_format", "role_mapping", "use_sso_role_for_psk_role")
     if err != nil {
     	return err
     }
-    
     p.AdditionalProperties = additionalProperties
+    
     p.AllowedRoles = temp.AllowedRoles
     p.IdpCert = temp.IdpCert
     p.IdpSignAlgo = temp.IdpSignAlgo

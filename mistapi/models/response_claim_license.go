@@ -13,7 +13,7 @@ type ResponseClaimLicense struct {
     LicenseAdded         []ResponseClaimLicenseLicenseItem      `json:"license_added"`
     LicenseDuplicated    []ResponseClaimLicenseLicenseItem      `json:"license_duplicated"`
     LicenseError         []ResponseClaimLicenseLicenseErrorItem `json:"license_error"`
-    AdditionalProperties map[string]any                         `json:"_"`
+    AdditionalProperties map[string]interface{}                 `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClaimLicense.
@@ -21,13 +21,17 @@ type ResponseClaimLicense struct {
 func (r ResponseClaimLicense) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(r.AdditionalProperties,
+        "inventory_added", "inventory_duplicated", "license_added", "license_duplicated", "license_error"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseClaimLicense object to a map representation for JSON marshaling.
 func (r ResponseClaimLicense) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, r.AdditionalProperties)
+    MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["inventory_added"] = r.InventoryAdded
     structMap["inventory_duplicated"] = r.InventoryDuplicated
     structMap["license_added"] = r.LicenseAdded
@@ -48,12 +52,12 @@ func (r *ResponseClaimLicense) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "inventory_added", "inventory_duplicated", "license_added", "license_duplicated", "license_error")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "inventory_added", "inventory_duplicated", "license_added", "license_duplicated", "license_error")
     if err != nil {
     	return err
     }
-    
     r.AdditionalProperties = additionalProperties
+    
     r.InventoryAdded = *temp.InventoryAdded
     r.InventoryDuplicated = *temp.InventoryDuplicated
     r.LicenseAdded = *temp.LicenseAdded

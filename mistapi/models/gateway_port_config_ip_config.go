@@ -26,7 +26,7 @@ type GatewayPortConfigIpConfig struct {
     PppoeUsername        *string                 `json:"pppoe_username,omitempty"`
     // enum: `dhcp`, `pppoe`, `static`
     Type                 *GatewayWanTypeEnum     `json:"type,omitempty"`
-    AdditionalProperties map[string]any          `json:"_"`
+    AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortConfigIpConfig.
@@ -34,13 +34,17 @@ type GatewayPortConfigIpConfig struct {
 func (g GatewayPortConfigIpConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(g.AdditionalProperties,
+        "dns", "dns_suffix", "gateway", "ip", "netmask", "network", "poser_password", "pppoe_auth", "pppoe_username", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(g.toMap())
 }
 
 // toMap converts the GatewayPortConfigIpConfig object to a map representation for JSON marshaling.
 func (g GatewayPortConfigIpConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, g.AdditionalProperties)
+    MergeAdditionalProperties(structMap, g.AdditionalProperties)
     if g.Dns != nil {
         structMap["dns"] = g.Dns
     }
@@ -82,12 +86,12 @@ func (g *GatewayPortConfigIpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "dns", "dns_suffix", "gateway", "ip", "netmask", "network", "poser_password", "pppoe_auth", "pppoe_username", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns", "dns_suffix", "gateway", "ip", "netmask", "network", "poser_password", "pppoe_auth", "pppoe_username", "type")
     if err != nil {
     	return err
     }
-    
     g.AdditionalProperties = additionalProperties
+    
     g.Dns = temp.Dns
     g.DnsSuffix = temp.DnsSuffix
     g.Gateway = temp.Gateway

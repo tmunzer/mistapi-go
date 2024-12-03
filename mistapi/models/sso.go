@@ -100,7 +100,7 @@ type Sso struct {
     // if `idp_type`==`oauth`, scim_secret_token (auto-generated when not provided by caller and `scim_enabled`==`true`, empty string when `scim_enabled`==`false`) is used as the Bearer token in the Authorization header of SCIM provisioning requests by the IDP
     ScimSecretToken         *string                      `json:"scim_secret_token,omitempty"`
     SiteId                  *uuid.UUID                   `json:"site_id,omitempty"`
-    AdditionalProperties    map[string]any               `json:"_"`
+    AdditionalProperties    map[string]interface{}       `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Sso.
@@ -108,13 +108,17 @@ type Sso struct {
 func (s Sso) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "created_time", "custom_logout_url", "default_role", "domain", "group_filter", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_cacerts", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "member_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ping_identity_region", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Sso object to a map representation for JSON marshaling.
 func (s Sso) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.CreatedTime != nil {
         structMap["created_time"] = s.CreatedTime
     }
@@ -260,12 +264,12 @@ func (s *Sso) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "created_time", "custom_logout_url", "default_role", "domain", "group_filter", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_cacerts", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "member_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ping_identity_region", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "custom_logout_url", "default_role", "domain", "group_filter", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_cacerts", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "member_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ping_identity_region", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.CreatedTime = temp.CreatedTime
     s.CustomLogoutUrl = temp.CustomLogoutUrl
     s.DefaultRole = temp.DefaultRole

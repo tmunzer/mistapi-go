@@ -3,6 +3,8 @@
 
 when used as import policy
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `RoutingPolicyTermAction`
@@ -20,6 +22,7 @@ when used as import policy
 | `ExportCommunitites` | `[]string` | Optional | when used as export policy, optional |
 | `LocalPreference` | `*string` | Optional | optional, for an import policy, local_preference can be changed |
 | `PrependAsPath` | `[]string` | Optional | when used as export policy, optional. By default, the local AS will be prepended, to change it |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,7 +46,11 @@ when used as import policy
     "exclude_as_path0",
     "exclude_as_path9",
     "exclude_as_path8"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

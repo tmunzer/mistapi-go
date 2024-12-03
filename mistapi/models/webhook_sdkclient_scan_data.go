@@ -11,7 +11,7 @@ type WebhookSdkclientScanData struct {
     Events               []WebhookSdkclientScanDataEvent `json:"events"`
     // enum: `sdkclient_scan_data`
     Topic                string                          `json:"topic"`
-    AdditionalProperties map[string]any                  `json:"_"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookSdkclientScanData.
@@ -19,13 +19,17 @@ type WebhookSdkclientScanData struct {
 func (w WebhookSdkclientScanData) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "events", "topic"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebhookSdkclientScanData object to a map representation for JSON marshaling.
 func (w WebhookSdkclientScanData) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["events"] = w.Events
     structMap["topic"] = w.Topic
     return structMap
@@ -43,12 +47,12 @@ func (w *WebhookSdkclientScanData) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "events", "topic")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "events", "topic")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Events = *temp.Events
     w.Topic = *temp.Topic
     return nil

@@ -1,6 +1,8 @@
 
 # Tunnel Configs
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `TunnelConfigs`
@@ -25,6 +27,7 @@
 | `Psk` | `*string` | Optional | Only if:<br><br>* `provider`== `zscaler-ipsec`<br>* `provider`==`jse-ipsec`<br>* `provider`== `custom-ipsec` |
 | `Secondary` | [`*models.GatewayTemplateTunnelNode`](../../doc/models/gateway-template-tunnel-node.md) | Optional | - |
 | `Version` | [`*models.GatewayTemplateTunnelVersionEnum`](../../doc/models/gateway-template-tunnel-version-enum.md) | Optional | Only if `provider`== `custom-gre` or `provider`== `custom-ipsec`. enum: `1`, `2`<br>**Default**: `"2"` |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,19 +40,35 @@
     "enable": false,
     "latlng": {
       "lat": 144.64,
-      "lng": 22.82
+      "lng": 22.82,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "primary": {
       "num_hosts": "num_hosts6",
       "wan_names": [
         "wan_names8"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     "secondary": {
       "num_hosts": "num_hosts8",
       "wan_names": [
         "wan_names0"
-      ]
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
     }
   },
   "ike_lifetime": 136,
@@ -57,10 +76,18 @@
     {
       "auth_algo": "sha1",
       "dh_group": "19",
-      "enc_algo": "aes_gcm256"
+      "enc_algo": "aes_gcm256",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
-  "ipsec_lifetime": 196
+  "ipsec_lifetime": 196,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

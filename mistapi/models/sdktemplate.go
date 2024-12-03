@@ -10,25 +10,25 @@ import (
 // Sdktemplate represents a Sdktemplate struct.
 // SDK Template
 type Sdktemplate struct {
-    BgImage              *string        `json:"bg_image,omitempty"`
-    BtnFlrBgcolor        *string        `json:"btn_flr_bgcolor,omitempty"`
+    BgImage              *string                `json:"bg_image,omitempty"`
+    BtnFlrBgcolor        *string                `json:"btn_flr_bgcolor,omitempty"`
     // when the object has been created, in epoch
-    CreatedTime          *float64       `json:"created_time,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
     // whether this is the default template when there are multiple templates
-    Default              *bool          `json:"default,omitempty"`
-    ForSite              *bool          `json:"for_site,omitempty"`
-    HeaderTxt            *string        `json:"header_txt,omitempty"`
+    Default              *bool                  `json:"default,omitempty"`
+    ForSite              *bool                  `json:"for_site,omitempty"`
+    HeaderTxt            *string                `json:"header_txt,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID     `json:"id,omitempty"`
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime         *float64       `json:"modified_time,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // name for identification purpose
-    Name                 string         `json:"name"`
-    OrgId                *uuid.UUID     `json:"org_id,omitempty"`
-    SearchTxtcolor       *string        `json:"search_txtcolor,omitempty"`
-    SiteId               *uuid.UUID     `json:"site_id,omitempty"`
-    WelcomeMsg           *string        `json:"welcome_msg,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Name                 string                 `json:"name"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    SearchTxtcolor       *string                `json:"search_txtcolor,omitempty"`
+    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    WelcomeMsg           *string                `json:"welcome_msg,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Sdktemplate.
@@ -36,13 +36,17 @@ type Sdktemplate struct {
 func (s Sdktemplate) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "bg_image", "btn_flr_bgcolor", "created_time", "default", "for_site", "header_txt", "id", "modified_time", "name", "org_id", "search_txtcolor", "site_id", "welcome_msg"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the Sdktemplate object to a map representation for JSON marshaling.
 func (s Sdktemplate) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.BgImage != nil {
         structMap["bg_image"] = s.BgImage
     }
@@ -95,12 +99,12 @@ func (s *Sdktemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "bg_image", "btn_flr_bgcolor", "created_time", "default", "for_site", "header_txt", "id", "modified_time", "name", "org_id", "search_txtcolor", "site_id", "welcome_msg")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bg_image", "btn_flr_bgcolor", "created_time", "default", "for_site", "header_txt", "id", "modified_time", "name", "org_id", "search_txtcolor", "site_id", "welcome_msg")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.BgImage = temp.BgImage
     s.BtnFlrBgcolor = temp.BtnFlrBgcolor
     s.CreatedTime = temp.CreatedTime

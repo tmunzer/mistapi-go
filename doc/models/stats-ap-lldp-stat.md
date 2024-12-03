@@ -3,6 +3,8 @@
 
 LLDP Stat (neighbor information, power negotiations)
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `StatsApLldpStat`
@@ -23,6 +25,7 @@ LLDP Stat (neighbor information, power negotiations)
 | `PowerRequested` | `models.Optional[float64]` | Optional | in mW, the current power requested by PD |
 | `SystemDesc` | `models.Optional[string]` | Optional | description provided by switch |
 | `SystemName` | `models.Optional[string]` | Optional | name of the switch |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,7 +41,11 @@ LLDP Stat (neighbor information, power negotiations)
     "mgmt_addrs9",
     "mgmt_addrs0"
   ],
-  "port_desc": "port_desc0"
+  "port_desc": "port_desc0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

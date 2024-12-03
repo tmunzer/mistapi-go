@@ -1,6 +1,8 @@
 
 # Response Events Rogue Search
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `ResponseEventsRogueSearch`
@@ -15,6 +17,7 @@
 | `Results` | [`[]models.EventsRogue`](../../doc/models/events-rogue.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,12 +32,20 @@
       "channel": 30,
       "rssi": 68,
       "ssid": "ssid6",
-      "timestamp": 2.64
+      "timestamp": 2.64,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "start": 70,
   "total": 152,
-  "next": "next2"
+  "next": "next2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

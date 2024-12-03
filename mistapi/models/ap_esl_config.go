@@ -7,22 +7,22 @@ import (
 // ApEslConfig represents a ApEslConfig struct.
 type ApEslConfig struct {
     // Only if `type`==`imagotag` or `type`==`native`
-    Cacert               *string        `json:"cacert,omitempty"`
+    Cacert               *string                `json:"cacert,omitempty"`
     // Only if `type`==`imagotag` or `type`==`native`
-    Channel              *int           `json:"channel,omitempty"`
+    Channel              *int                   `json:"channel,omitempty"`
     // usb_config is ignored if esl_config enabled
-    Enabled              *bool          `json:"enabled,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
     // Only if `type`==`imagotag` or `type`==`native`
-    Host                 *string        `json:"host,omitempty"`
+    Host                 *string                `json:"host,omitempty"`
     // Only if `type`==`imagotag` or `type`==`native`
-    Port                 *int           `json:"port,omitempty"`
+    Port                 *int                   `json:"port,omitempty"`
     // note: ble_config will be ingored if esl_config is enabled and with native mode. enum: `hanshow`, `imagotag`, `native`, `solum`
-    Type                 *ApEslTypeEnum `json:"type,omitempty"`
+    Type                 *ApEslTypeEnum         `json:"type,omitempty"`
     // Only if `type`==`imagotag` or `type`==`native`
-    VerifyCert           *bool          `json:"verify_cert,omitempty"`
+    VerifyCert           *bool                  `json:"verify_cert,omitempty"`
     // Only if `type`==`solum` or `type`==`hanshow`
-    VlanId               *int           `json:"vlan_id,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    VlanId               *int                   `json:"vlan_id,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApEslConfig.
@@ -30,13 +30,17 @@ type ApEslConfig struct {
 func (a ApEslConfig) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "cacert", "channel", "enabled", "host", "port", "type", "verify_cert", "vlan_id"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the ApEslConfig object to a map representation for JSON marshaling.
 func (a ApEslConfig) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Cacert != nil {
         structMap["cacert"] = a.Cacert
     }
@@ -72,12 +76,12 @@ func (a *ApEslConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cacert", "channel", "enabled", "host", "port", "type", "verify_cert", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cacert", "channel", "enabled", "host", "port", "type", "verify_cert", "vlan_id")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Cacert = temp.Cacert
     a.Channel = temp.Channel
     a.Enabled = temp.Enabled

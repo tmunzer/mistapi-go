@@ -6,8 +6,8 @@ import (
 
 // AccountJuniperInfo represents a AccountJuniperInfo struct.
 type AccountJuniperInfo struct {
-    Accounts             []JuniperAccount `json:"accounts,omitempty"`
-    AdditionalProperties map[string]any   `json:"_"`
+    Accounts             []JuniperAccount       `json:"accounts,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountJuniperInfo.
@@ -15,13 +15,17 @@ type AccountJuniperInfo struct {
 func (a AccountJuniperInfo) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(a.AdditionalProperties,
+        "accounts"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(a.toMap())
 }
 
 // toMap converts the AccountJuniperInfo object to a map representation for JSON marshaling.
 func (a AccountJuniperInfo) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, a.AdditionalProperties)
+    MergeAdditionalProperties(structMap, a.AdditionalProperties)
     if a.Accounts != nil {
         structMap["accounts"] = a.Accounts
     }
@@ -36,12 +40,12 @@ func (a *AccountJuniperInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "accounts")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accounts")
     if err != nil {
     	return err
     }
-    
     a.AdditionalProperties = additionalProperties
+    
     a.Accounts = temp.Accounts
     return nil
 }

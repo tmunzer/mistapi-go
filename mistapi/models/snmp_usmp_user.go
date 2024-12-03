@@ -17,7 +17,7 @@ type SnmpUsmpUser struct {
     // enum: `privacy-3des`, `privacy-aes128`, `privacy-des`, `privacy-none`
     EncryptionType         *SnmpUsmpUserEncryptionTypeEnum     `json:"encryption_type,omitempty"`
     Name                   *string                             `json:"name,omitempty"`
-    AdditionalProperties   map[string]any                      `json:"_"`
+    AdditionalProperties   map[string]interface{}              `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpUsmpUser.
@@ -25,13 +25,17 @@ type SnmpUsmpUser struct {
 func (s SnmpUsmpUser) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "authentication_password", "authentication_type", "encryption_password", "encryption_type", "name"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SnmpUsmpUser object to a map representation for JSON marshaling.
 func (s SnmpUsmpUser) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.AuthenticationPassword != nil {
         structMap["authentication_password"] = s.AuthenticationPassword
     }
@@ -58,12 +62,12 @@ func (s *SnmpUsmpUser) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "authentication_password", "authentication_type", "encryption_password", "encryption_type", "name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "authentication_password", "authentication_type", "encryption_password", "encryption_type", "name")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.AuthenticationPassword = temp.AuthenticationPassword
     s.AuthenticationType = temp.AuthenticationType
     s.EncryptionPassword = temp.EncryptionPassword

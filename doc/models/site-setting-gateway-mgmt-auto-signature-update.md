@@ -1,6 +1,8 @@
 
 # Site Setting Gateway Mgmt Auto Signature Update
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `SiteSettingGatewayMgmtAutoSignatureUpdate`
@@ -12,6 +14,7 @@
 | `DayOfWeek` | [`*models.DayOfWeekEnum`](../../doc/models/day-of-week-enum.md) | Optional | enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed` |
 | `Enable` | `*bool` | Optional | **Default**: `true` |
 | `TimeOfDay` | `*string` | Optional | optional, Mist will decide the timing |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -19,7 +22,11 @@
 {
   "enable": true,
   "day_of_week": "any",
-  "time_of_day": "time_of_day8"
+  "time_of_day": "time_of_day8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

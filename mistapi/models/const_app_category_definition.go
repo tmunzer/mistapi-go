@@ -15,7 +15,7 @@ type ConstAppCategoryDefinition struct {
     Includes             []string                           `json:"includes,omitempty"`
     // Key name of the app category
     Key                  string                             `json:"key"`
-    AdditionalProperties map[string]any                     `json:"_"`
+    AdditionalProperties map[string]interface{}             `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstAppCategoryDefinition.
@@ -23,13 +23,17 @@ type ConstAppCategoryDefinition struct {
 func (c ConstAppCategoryDefinition) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "display", "filters", "includes", "key"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstAppCategoryDefinition object to a map representation for JSON marshaling.
 func (c ConstAppCategoryDefinition) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     structMap["display"] = c.Display
     if c.Filters != nil {
         structMap["filters"] = c.Filters.toMap()
@@ -53,12 +57,12 @@ func (c *ConstAppCategoryDefinition) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "display", "filters", "includes", "key")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "display", "filters", "includes", "key")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Display = *temp.Display
     c.Filters = temp.Filters
     c.Includes = temp.Includes

@@ -32,7 +32,7 @@ type SiteWifi struct {
     MeshSsid                          Optional[string]               `json:"mesh_ssid"`
     // enum: `default`, `disabled`, `enabled`
     ProxyArp                          Optional[SiteWifiProxyArpEnum] `json:"proxy_arp"`
-    AdditionalProperties              map[string]any                 `json:"_"`
+    AdditionalProperties              map[string]interface{}         `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteWifi.
@@ -40,13 +40,17 @@ type SiteWifi struct {
 func (s SiteWifi) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "cisco_enabled", "disable_11k", "disable_radios_when_power_constrained", "enable_arp_spoof_check", "enable_shared_radio_scanning", "enabled", "locate_connected", "locate_unconnected", "mesh_allow_dfs", "mesh_enable_crm", "mesh_enabled", "mesh_psk", "mesh_ssid", "proxy_arp"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteWifi object to a map representation for JSON marshaling.
 func (s SiteWifi) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.CiscoEnabled != nil {
         structMap["cisco_enabled"] = s.CiscoEnabled
     }
@@ -112,12 +116,12 @@ func (s *SiteWifi) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "cisco_enabled", "disable_11k", "disable_radios_when_power_constrained", "enable_arp_spoof_check", "enable_shared_radio_scanning", "enabled", "locate_connected", "locate_unconnected", "mesh_allow_dfs", "mesh_enable_crm", "mesh_enabled", "mesh_psk", "mesh_ssid", "proxy_arp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cisco_enabled", "disable_11k", "disable_radios_when_power_constrained", "enable_arp_spoof_check", "enable_shared_radio_scanning", "enabled", "locate_connected", "locate_unconnected", "mesh_allow_dfs", "mesh_enable_crm", "mesh_enabled", "mesh_psk", "mesh_ssid", "proxy_arp")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.CiscoEnabled = temp.CiscoEnabled
     s.Disable11k = temp.Disable11k
     s.DisableRadiosWhenPowerConstrained = temp.DisableRadiosWhenPowerConstrained

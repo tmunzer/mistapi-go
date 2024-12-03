@@ -8,9 +8,9 @@ import (
 
 // SiteSleMetrics represents a SiteSleMetrics struct.
 type SiteSleMetrics struct {
-    Enabled              []string       `json:"enabled"`
-    Supported            []string       `json:"supported"`
-    AdditionalProperties map[string]any `json:"_"`
+    Enabled              []string               `json:"enabled"`
+    Supported            []string               `json:"supported"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSleMetrics.
@@ -18,13 +18,17 @@ type SiteSleMetrics struct {
 func (s SiteSleMetrics) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "enabled", "supported"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSleMetrics object to a map representation for JSON marshaling.
 func (s SiteSleMetrics) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["enabled"] = s.Enabled
     structMap["supported"] = s.Supported
     return structMap
@@ -42,12 +46,12 @@ func (s *SiteSleMetrics) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "enabled", "supported")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "supported")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.Enabled = *temp.Enabled
     s.Supported = *temp.Supported
     return nil

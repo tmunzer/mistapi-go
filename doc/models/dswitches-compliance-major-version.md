@@ -1,6 +1,8 @@
 
 # Dswitches Compliance Major Version
 
+*This model accepts additional fields of type interface{}.*
+
 ## Structure
 
 `DswitchesComplianceMajorVersion`
@@ -12,6 +14,7 @@
 | `MajorCount` | `float64` | Required | - |
 | `Model` | `string` | Required | - |
 | `SystemNames` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@
     "system_names4",
     "system_names5",
     "system_names6"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

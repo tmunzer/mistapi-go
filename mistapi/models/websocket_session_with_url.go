@@ -8,9 +8,9 @@ import (
 
 // WebsocketSessionWithUrl represents a WebsocketSessionWithUrl struct.
 type WebsocketSessionWithUrl struct {
-    Session              string         `json:"session"`
-    Url                  string         `json:"url"`
-    AdditionalProperties map[string]any `json:"_"`
+    Session              string                 `json:"session"`
+    Url                  string                 `json:"url"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebsocketSessionWithUrl.
@@ -18,13 +18,17 @@ type WebsocketSessionWithUrl struct {
 func (w WebsocketSessionWithUrl) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(w.AdditionalProperties,
+        "session", "url"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(w.toMap())
 }
 
 // toMap converts the WebsocketSessionWithUrl object to a map representation for JSON marshaling.
 func (w WebsocketSessionWithUrl) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, w.AdditionalProperties)
+    MergeAdditionalProperties(structMap, w.AdditionalProperties)
     structMap["session"] = w.Session
     structMap["url"] = w.Url
     return structMap
@@ -42,12 +46,12 @@ func (w *WebsocketSessionWithUrl) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "session", "url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "session", "url")
     if err != nil {
     	return err
     }
-    
     w.AdditionalProperties = additionalProperties
+    
     w.Session = *temp.Session
     w.Url = *temp.Url
     return nil

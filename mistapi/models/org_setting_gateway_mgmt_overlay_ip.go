@@ -7,10 +7,10 @@ import (
 // OrgSettingGatewayMgmtOverlayIp represents a OrgSettingGatewayMgmtOverlayIp struct.
 type OrgSettingGatewayMgmtOverlayIp struct {
     // when it's going overlay, a routable IP to overlay will be required
-    Ip                   *string        `json:"ip,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
     // for SSR HA cluster, another IP for node1 will be required, too
-    Node1Ip              *string        `json:"node1_ip,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Node1Ip              *string                `json:"node1_ip,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingGatewayMgmtOverlayIp.
@@ -18,13 +18,17 @@ type OrgSettingGatewayMgmtOverlayIp struct {
 func (o OrgSettingGatewayMgmtOverlayIp) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(o.AdditionalProperties,
+        "ip", "node1_ip"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(o.toMap())
 }
 
 // toMap converts the OrgSettingGatewayMgmtOverlayIp object to a map representation for JSON marshaling.
 func (o OrgSettingGatewayMgmtOverlayIp) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, o.AdditionalProperties)
+    MergeAdditionalProperties(structMap, o.AdditionalProperties)
     if o.Ip != nil {
         structMap["ip"] = o.Ip
     }
@@ -42,12 +46,12 @@ func (o *OrgSettingGatewayMgmtOverlayIp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "ip", "node1_ip")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ip", "node1_ip")
     if err != nil {
     	return err
     }
-    
     o.AdditionalProperties = additionalProperties
+    
     o.Ip = temp.Ip
     o.Node1Ip = temp.Node1Ip
     return nil

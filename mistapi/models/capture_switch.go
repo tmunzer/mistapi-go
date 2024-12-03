@@ -25,7 +25,7 @@ type CaptureSwitch struct {
     TcpdumpExpression    *string                                        `json:"tcpdump_expression,omitempty"`
     // enum: `switch`
     Type                 string                                         `json:"type"`
-    AdditionalProperties map[string]any                                 `json:"_"`
+    AdditionalProperties map[string]interface{}                         `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureSwitch.
@@ -33,13 +33,17 @@ type CaptureSwitch struct {
 func (c CaptureSwitch) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "duration", "format", "max_pkt_len", "num_packets", "ports", "switches", "tcpdump_expression", "type"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the CaptureSwitch object to a map representation for JSON marshaling.
 func (c CaptureSwitch) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Duration != nil {
         structMap["duration"] = c.Duration
     }
@@ -77,12 +81,12 @@ func (c *CaptureSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "duration", "format", "max_pkt_len", "num_packets", "ports", "switches", "tcpdump_expression", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "format", "max_pkt_len", "num_packets", "ports", "switches", "tcpdump_expression", "type")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Duration = temp.Duration
     c.Format = temp.Format
     c.MaxPktLen = temp.MaxPktLen

@@ -6,9 +6,9 @@ import (
 
 // SiteSettingSsr represents a SiteSettingSsr struct.
 type SiteSettingSsr struct {
-    ConductorHosts       []string       `json:"conductor_hosts,omitempty"`
-    DisableStats         *bool          `json:"disable_stats,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    ConductorHosts       []string               `json:"conductor_hosts,omitempty"`
+    DisableStats         *bool                  `json:"disable_stats,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingSsr.
@@ -16,13 +16,17 @@ type SiteSettingSsr struct {
 func (s SiteSettingSsr) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(s.AdditionalProperties,
+        "conductor_hosts", "disable_stats"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(s.toMap())
 }
 
 // toMap converts the SiteSettingSsr object to a map representation for JSON marshaling.
 func (s SiteSettingSsr) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, s.AdditionalProperties)
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ConductorHosts != nil {
         structMap["conductor_hosts"] = s.ConductorHosts
     }
@@ -40,12 +44,12 @@ func (s *SiteSettingSsr) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "conductor_hosts", "disable_stats")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "conductor_hosts", "disable_stats")
     if err != nil {
     	return err
     }
-    
     s.AdditionalProperties = additionalProperties
+    
     s.ConductorHosts = temp.ConductorHosts
     s.DisableStats = temp.DisableStats
     return nil

@@ -49,12 +49,20 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsoRoleOrg{
-    Name:         "string",
-    Privileges:   []models.PrivilegeOrg{
+    Name:                 "string",
+    Privileges:           []models.PrivilegeOrg{
         models.PrivilegeOrg{
-            Role:        models.PrivilegeOrgRoleEnum("admin"),
-            Scope:       models.PrivilegeOrgScopeEnum("org"),
-            SiteId:      models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+            Role:                 models.PrivilegeOrgRoleEnum("admin"),
+            Scope:                models.PrivilegeOrgScopeEnum("org"),
+            SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+            AdditionalProperties: map[string]interface{}{
+                "msp_id": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
+                "msp_name": interface{}("string"),
+                "name": interface{}("string"),
+                "org_name": interface{}("string"),
+                "orggroup_ids": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
+                "sitegroup_ids": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
+            },
         },
     },
 }
@@ -322,12 +330,20 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 ssoroleId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsoRoleOrg{
-    Name:         "string",
-    Privileges:   []models.PrivilegeOrg{
+    Name:                 "string",
+    Privileges:           []models.PrivilegeOrg{
         models.PrivilegeOrg{
-            Role:        models.PrivilegeOrgRoleEnum("admin"),
-            Scope:       models.PrivilegeOrgScopeEnum("org"),
-            SiteId:      models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+            Role:                 models.PrivilegeOrgRoleEnum("admin"),
+            Scope:                models.PrivilegeOrgScopeEnum("org"),
+            SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
+            AdditionalProperties: map[string]interface{}{
+                "msp_id": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
+                "msp_name": interface{}("string"),
+                "name": interface{}("string"),
+                "org_name": interface{}("string"),
+                "orggroup_ids": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
+                "sitegroup_ids": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
+            },
         },
     },
 }

@@ -6,9 +6,9 @@ import (
 
 // ConstAppCategoryDefinitionFilters represents a ConstAppCategoryDefinitionFilters struct.
 type ConstAppCategoryDefinitionFilters struct {
-    Srx                  []string       `json:"srx,omitempty"`
-    Ssr                  []string       `json:"ssr,omitempty"`
-    AdditionalProperties map[string]any `json:"_"`
+    Srx                  []string               `json:"srx,omitempty"`
+    Ssr                  []string               `json:"ssr,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstAppCategoryDefinitionFilters.
@@ -16,13 +16,17 @@ type ConstAppCategoryDefinitionFilters struct {
 func (c ConstAppCategoryDefinitionFilters) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(c.AdditionalProperties,
+        "srx", "ssr"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(c.toMap())
 }
 
 // toMap converts the ConstAppCategoryDefinitionFilters object to a map representation for JSON marshaling.
 func (c ConstAppCategoryDefinitionFilters) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, c.AdditionalProperties)
+    MergeAdditionalProperties(structMap, c.AdditionalProperties)
     if c.Srx != nil {
         structMap["srx"] = c.Srx
     }
@@ -40,12 +44,12 @@ func (c *ConstAppCategoryDefinitionFilters) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "srx", "ssr")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "srx", "ssr")
     if err != nil {
     	return err
     }
-    
     c.AdditionalProperties = additionalProperties
+    
     c.Srx = temp.Srx
     c.Ssr = temp.Ssr
     return nil

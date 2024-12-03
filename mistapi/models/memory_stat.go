@@ -9,8 +9,8 @@ import (
 // MemoryStat represents a MemoryStat struct.
 // memory usage stat (for virtual chassis, memory usage of master RE)
 type MemoryStat struct {
-    Usage                float64        `json:"usage"`
-    AdditionalProperties map[string]any `json:"_"`
+    Usage                float64                `json:"usage"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for MemoryStat.
@@ -18,13 +18,17 @@ type MemoryStat struct {
 func (m MemoryStat) MarshalJSON() (
     []byte,
     error) {
+    if err := DetectConflictingProperties(m.AdditionalProperties,
+        "usage"); err != nil {
+        return []byte{}, err
+    }
     return json.Marshal(m.toMap())
 }
 
 // toMap converts the MemoryStat object to a map representation for JSON marshaling.
 func (m MemoryStat) toMap() map[string]any {
     structMap := make(map[string]any)
-    MapAdditionalProperties(structMap, m.AdditionalProperties)
+    MergeAdditionalProperties(structMap, m.AdditionalProperties)
     structMap["usage"] = m.Usage
     return structMap
 }
@@ -41,12 +45,12 @@ func (m *MemoryStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := UnmarshalAdditionalProperties(input, "usage")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "usage")
     if err != nil {
     	return err
     }
-    
     m.AdditionalProperties = additionalProperties
+    
     m.Usage = *temp.Usage
     return nil
 }
