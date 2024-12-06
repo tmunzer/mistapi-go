@@ -28,6 +28,8 @@ type DeviceAp struct {
     // whether to disable module port
     DisableModule        *bool                   `json:"disable_module,omitempty"`
     EslConfig            *ApEslConfig            `json:"esl_config,omitempty"`
+    // for some AP models, flow_control can be enabled to address some switch compatibility issue
+    FlowControl          *bool                   `json:"flow_control,omitempty"`
     ForSite              *bool                   `json:"for_site,omitempty"`
     // height, in meters, optional
     Height               *float64                `json:"height,omitempty"`
@@ -94,7 +96,7 @@ func (d DeviceAp) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(d.AdditionalProperties,
-        "aeroscout", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "vars", "x", "y"); err != nil {
+        "aeroscout", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "flow_control", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "vars", "x", "y"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(d.toMap())
@@ -140,6 +142,9 @@ func (d DeviceAp) toMap() map[string]any {
     }
     if d.EslConfig != nil {
         structMap["esl_config"] = d.EslConfig.toMap()
+    }
+    if d.FlowControl != nil {
+        structMap["flow_control"] = d.FlowControl
     }
     if d.ForSite != nil {
         structMap["for_site"] = d.ForSite
@@ -262,7 +267,7 @@ func (d *DeviceAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "vars", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "flow_control", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "vars", "x", "y")
     if err != nil {
     	return err
     }
@@ -279,6 +284,7 @@ func (d *DeviceAp) UnmarshalJSON(input []byte) error {
     d.DisableEth3 = temp.DisableEth3
     d.DisableModule = temp.DisableModule
     d.EslConfig = temp.EslConfig
+    d.FlowControl = temp.FlowControl
     d.ForSite = temp.ForSite
     d.Height = temp.Height
     d.Id = temp.Id
@@ -327,6 +333,7 @@ type tempDeviceAp  struct {
     DisableEth3      *bool                   `json:"disable_eth3,omitempty"`
     DisableModule    *bool                   `json:"disable_module,omitempty"`
     EslConfig        *ApEslConfig            `json:"esl_config,omitempty"`
+    FlowControl      *bool                   `json:"flow_control,omitempty"`
     ForSite          *bool                   `json:"for_site,omitempty"`
     Height           *float64                `json:"height,omitempty"`
     Id               *uuid.UUID              `json:"id,omitempty"`

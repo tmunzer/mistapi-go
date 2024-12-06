@@ -24,6 +24,7 @@ AP
 | `DisableEth3` | `*bool` | Optional | whether to disable eth3 port<br>**Default**: `false` |
 | `DisableModule` | `*bool` | Optional | whether to disable module port<br>**Default**: `false` |
 | `EslConfig` | [`*models.ApEslConfig`](../../doc/models/ap-esl-config.md) | Optional | - |
+| `FlowControl` | `*bool` | Optional | for some AP models, flow_control can be enabled to address some switch compatibility issue<br>**Default**: `false` |
 | `ForSite` | `*bool` | Optional | - |
 | `Height` | `*float64` | Optional | height, in meters, optional |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
@@ -67,6 +68,7 @@ AP
   "disable_eth2": false,
   "disable_eth3": false,
   "disable_module": false,
+  "flow_control": false,
   "height": 2.75,
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "map_id": "63eda950-c6da-11e4-a628-60f81dd250cc",

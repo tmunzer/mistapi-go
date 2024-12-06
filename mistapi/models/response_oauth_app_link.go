@@ -2,15 +2,23 @@ package models
 
 import (
     "encoding/json"
+    "errors"
+    "strings"
 )
 
 // ResponseOauthAppLink represents a ResponseOauthAppLink struct.
 type ResponseOauthAppLink struct {
-    // List of linked account details
-    Accounts             []ResponseOauthAppLinkItem `json:"accounts,omitempty"`
-    // Basic Auth application linked status in mist portal enabled for VMware
-    Linked               *bool                      `json:"linked,omitempty"`
-    AdditionalProperties map[string]interface{}     `json:"_"`
+    value              any
+    isAccountOauthInfo bool
+    isAccountZdxInfo   bool
+}
+
+// String converts the ResponseOauthAppLink object to a string representation.
+func (r ResponseOauthAppLink) String() string {
+    if bytes, err := json.Marshal(r.value); err == nil {
+         return strings.Trim(string(bytes), "\"")
+    }
+    return ""
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOauthAppLink.
@@ -18,47 +26,64 @@ type ResponseOauthAppLink struct {
 func (r ResponseOauthAppLink) MarshalJSON() (
     []byte,
     error) {
-    if err := DetectConflictingProperties(r.AdditionalProperties,
-        "accounts", "linked"); err != nil {
-        return []byte{}, err
+    if r.value == nil {
+        return nil, errors.New("No underlying type is set. Please use any of the `models.ResponseOauthAppLinkContainer.From*` functions to initialize the ResponseOauthAppLink object.")
     }
     return json.Marshal(r.toMap())
 }
 
 // toMap converts the ResponseOauthAppLink object to a map representation for JSON marshaling.
-func (r ResponseOauthAppLink) toMap() map[string]any {
-    structMap := make(map[string]any)
-    MergeAdditionalProperties(structMap, r.AdditionalProperties)
-    if r.Accounts != nil {
-        structMap["accounts"] = r.Accounts
+func (r *ResponseOauthAppLink) toMap() any {
+    switch obj := r.value.(type) {
+    case *AccountOauthInfo:
+        return obj.toMap()
+    case *AccountZdxInfo:
+        return obj.toMap()
     }
-    if r.Linked != nil {
-        structMap["linked"] = r.Linked
-    }
-    return structMap
+    return nil
 }
 
 // UnmarshalJSON implements the json.Unmarshaler interface for ResponseOauthAppLink.
 // It customizes the JSON unmarshaling process for ResponseOauthAppLink objects.
 func (r *ResponseOauthAppLink) UnmarshalJSON(input []byte) error {
-    var temp tempResponseOauthAppLink
-    err := json.Unmarshal(input, &temp)
-    if err != nil {
-    	return err
-    }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accounts", "linked")
-    if err != nil {
-    	return err
-    }
-    r.AdditionalProperties = additionalProperties
+    result, err := UnmarshallOneOf(input,
+        NewTypeHolder(&AccountOauthInfo{}, false, &r.isAccountOauthInfo),
+        NewTypeHolder(&AccountZdxInfo{}, false, &r.isAccountZdxInfo),
+    )
     
-    r.Accounts = temp.Accounts
-    r.Linked = temp.Linked
-    return nil
+    r.value = result
+    return err
 }
 
-// tempResponseOauthAppLink is a temporary struct used for validating the fields of ResponseOauthAppLink.
-type tempResponseOauthAppLink  struct {
-    Accounts []ResponseOauthAppLinkItem `json:"accounts,omitempty"`
-    Linked   *bool                      `json:"linked,omitempty"`
+func (r *ResponseOauthAppLink) AsAccountOauthInfo() (
+    *AccountOauthInfo,
+    bool) {
+    if !r.isAccountOauthInfo {
+        return nil, false
+    }
+    return r.value.(*AccountOauthInfo), true
+}
+
+func (r *ResponseOauthAppLink) AsAccountZdxInfo() (
+    *AccountZdxInfo,
+    bool) {
+    if !r.isAccountZdxInfo {
+        return nil, false
+    }
+    return r.value.(*AccountZdxInfo), true
+}
+
+// internalResponseOauthAppLink represents a responseOauthAppLink struct.
+type internalResponseOauthAppLink struct {}
+
+var ResponseOauthAppLinkContainer internalResponseOauthAppLink
+
+// The internalResponseOauthAppLink instance, wrapping the provided AccountOauthInfo value.
+func (r *internalResponseOauthAppLink) FromAccountOauthInfo(val AccountOauthInfo) ResponseOauthAppLink {
+    return ResponseOauthAppLink{value: &val}
+}
+
+// The internalResponseOauthAppLink instance, wrapping the provided AccountZdxInfo value.
+func (r *internalResponseOauthAppLink) FromAccountZdxInfo(val AccountZdxInfo) ResponseOauthAppLink {
+    return ResponseOauthAppLink{value: &val}
 }

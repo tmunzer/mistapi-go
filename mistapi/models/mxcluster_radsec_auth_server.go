@@ -8,6 +8,10 @@ import (
 type MxclusterRadsecAuthServer struct {
     // ip / hostname of RADIUS server
     Host                 *string                                           `json:"host,omitempty"`
+    // whether to enable inband status check
+    InbandStatusCheck    *bool                                             `json:"inband_status_check,omitempty"`
+    // inband status interval, in seconds
+    InbandStatusInterval *int                                              `json:"inband_status_interval,omitempty"`
     // if used for Mist APs, enable keywrap algorithm. Default is false
     KeywrapEnabled       *bool                                             `json:"keywrap_enabled,omitempty"`
     // if used for Mist APs. enum: `ascii`, `hex`
@@ -31,7 +35,7 @@ func (m MxclusterRadsecAuthServer) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(m.AdditionalProperties,
-        "host", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret", "ssids"); err != nil {
+        "host", "inband_status_check", "inband_status_interval", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret", "ssids"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(m.toMap())
@@ -43,6 +47,12 @@ func (m MxclusterRadsecAuthServer) toMap() map[string]any {
     MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Host != nil {
         structMap["host"] = m.Host
+    }
+    if m.InbandStatusCheck != nil {
+        structMap["inband_status_check"] = m.InbandStatusCheck
+    }
+    if m.InbandStatusInterval != nil {
+        structMap["inband_status_interval"] = m.InbandStatusInterval
     }
     if m.KeywrapEnabled != nil {
         structMap["keywrap_enabled"] = m.KeywrapEnabled
@@ -80,13 +90,15 @@ func (m *MxclusterRadsecAuthServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret", "ssids")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "inband_status_check", "inband_status_interval", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret", "ssids")
     if err != nil {
     	return err
     }
     m.AdditionalProperties = additionalProperties
     
     m.Host = temp.Host
+    m.InbandStatusCheck = temp.InbandStatusCheck
+    m.InbandStatusInterval = temp.InbandStatusInterval
     m.KeywrapEnabled = temp.KeywrapEnabled
     m.KeywrapFormat = temp.KeywrapFormat
     m.KeywrapKek = temp.KeywrapKek
@@ -99,12 +111,14 @@ func (m *MxclusterRadsecAuthServer) UnmarshalJSON(input []byte) error {
 
 // tempMxclusterRadsecAuthServer is a temporary struct used for validating the fields of MxclusterRadsecAuthServer.
 type tempMxclusterRadsecAuthServer  struct {
-    Host           *string                                           `json:"host,omitempty"`
-    KeywrapEnabled *bool                                             `json:"keywrap_enabled,omitempty"`
-    KeywrapFormat  Optional[MxclusterRadAuthServerKeywrapFormatEnum] `json:"keywrap_format"`
-    KeywrapKek     *string                                           `json:"keywrap_kek,omitempty"`
-    KeywrapMack    *string                                           `json:"keywrap_mack,omitempty"`
-    Port           *int                                              `json:"port,omitempty"`
-    Secret         *string                                           `json:"secret,omitempty"`
-    Ssids          []string                                          `json:"ssids,omitempty"`
+    Host                 *string                                           `json:"host,omitempty"`
+    InbandStatusCheck    *bool                                             `json:"inband_status_check,omitempty"`
+    InbandStatusInterval *int                                              `json:"inband_status_interval,omitempty"`
+    KeywrapEnabled       *bool                                             `json:"keywrap_enabled,omitempty"`
+    KeywrapFormat        Optional[MxclusterRadAuthServerKeywrapFormatEnum] `json:"keywrap_format"`
+    KeywrapKek           *string                                           `json:"keywrap_kek,omitempty"`
+    KeywrapMack          *string                                           `json:"keywrap_mack,omitempty"`
+    Port                 *int                                              `json:"port,omitempty"`
+    Secret               *string                                           `json:"secret,omitempty"`
+    Ssids                []string                                          `json:"ssids,omitempty"`
 }

@@ -164,7 +164,7 @@ func (o *OrgsLinkedApplications) GetOrgOauthAppLinkedStatus(
 }
 
 // AddOrgOauthAppAccounts takes context, orgId, appName, body as parameters and
-// returns an *Response and
+// returns an models.ApiResponse with models.ResponseOauthAppLink data and
 // an error if there was an issue with the request or response.
 // Add Jamf, VMware Authorization With Mist Portal
 func (o *OrgsLinkedApplications) AddOrgOauthAppAccounts(
@@ -172,7 +172,7 @@ func (o *OrgsLinkedApplications) AddOrgOauthAppAccounts(
     orgId uuid.UUID,
     appName models.OauthAppNameEnum,
     body *models.AccountOauthAdd) (
-    *http.Response,
+    models.ApiResponse[models.ResponseOauthAppLink],
     error) {
     req := o.prepareRequest(
       ctx,
@@ -202,11 +202,14 @@ func (o *OrgsLinkedApplications) AddOrgOauthAppAccounts(
         req.Json(body)
     }
     
-    httpCtx, err := req.Call()
+    var result models.ResponseOauthAppLink
+    decoder, resp, err := req.CallAsJson()
     if err != nil {
-        return httpCtx.Response, err
+        return models.NewApiResponse(result, resp), err
     }
-    return httpCtx.Response, err
+    
+    result, err = utilities.DecodeResults[models.ResponseOauthAppLink](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // UpdateOrgOauthAppAccounts takes context, orgId, appName, body as parameters and

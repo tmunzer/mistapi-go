@@ -11,6 +11,8 @@ type RoutingPolicyTermAction struct {
     AddCommunity         []string               `json:"add_community,omitempty"`
     // for SSR, hub decides how VRF routes are leaked on spoke
     AddTargetVrfs        []string               `json:"add_target_vrfs,omitempty"`
+    // route aggregation
+    Aggregate            []string               `json:"aggregate,omitempty"`
     // when used as export policy, optional
     Community            []string               `json:"community,omitempty"`
     // when used as export policy, optional. To exclude certain AS
@@ -31,7 +33,7 @@ func (r RoutingPolicyTermAction) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communitites", "local_preference", "prepend_as_path"); err != nil {
+        "accept", "add_community", "add_target_vrfs", "aggregate", "community", "exclude_as_path", "exclude_community", "export_communitites", "local_preference", "prepend_as_path"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -49,6 +51,9 @@ func (r RoutingPolicyTermAction) toMap() map[string]any {
     }
     if r.AddTargetVrfs != nil {
         structMap["add_target_vrfs"] = r.AddTargetVrfs
+    }
+    if r.Aggregate != nil {
+        structMap["aggregate"] = r.Aggregate
     }
     if r.Community != nil {
         structMap["community"] = r.Community
@@ -79,7 +84,7 @@ func (r *RoutingPolicyTermAction) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communitites", "local_preference", "prepend_as_path")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accept", "add_community", "add_target_vrfs", "aggregate", "community", "exclude_as_path", "exclude_community", "export_communitites", "local_preference", "prepend_as_path")
     if err != nil {
     	return err
     }
@@ -88,6 +93,7 @@ func (r *RoutingPolicyTermAction) UnmarshalJSON(input []byte) error {
     r.Accept = temp.Accept
     r.AddCommunity = temp.AddCommunity
     r.AddTargetVrfs = temp.AddTargetVrfs
+    r.Aggregate = temp.Aggregate
     r.Community = temp.Community
     r.ExcludeAsPath = temp.ExcludeAsPath
     r.ExcludeCommunity = temp.ExcludeCommunity
@@ -102,6 +108,7 @@ type tempRoutingPolicyTermAction  struct {
     Accept             *bool    `json:"accept,omitempty"`
     AddCommunity       []string `json:"add_community,omitempty"`
     AddTargetVrfs      []string `json:"add_target_vrfs,omitempty"`
+    Aggregate          []string `json:"aggregate,omitempty"`
     Community          []string `json:"community,omitempty"`
     ExcludeAsPath      []string `json:"exclude_as_path,omitempty"`
     ExcludeCommunity   []string `json:"exclude_community,omitempty"`

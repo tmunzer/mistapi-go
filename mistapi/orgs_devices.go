@@ -284,7 +284,7 @@ func (o *OrgsDevices) SearchOrgDeviceEvents(
     orgId uuid.UUID,
     mac *string,
     model *string,
-    deviceType *models.DeviceTypeEnum,
+    deviceType *models.DeviceTypeWithAllEnum,
     text *string,
     timestamp *string,
     mType *string,
@@ -552,7 +552,7 @@ func (o *OrgsDevices) ListOrgApsMacs(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgDevices takes context, orgId, hostname, siteId, model, mac, version, powerConstrained, ipAddress, mxtunnelStatus, mxedgeId, mxedgeIds, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Bandwidth, band5Bandwidth, band6Bandwidth, band24Channel, band5Channel, band6Channel, eth0PortSpeed, limit, start, end, duration as parameters and
+// SearchOrgDevices takes context, orgId, hostname, siteId, model, mac, version, extIp, powerConstrained, ipAddress, mxtunnelStatus, mxedgeId, mxedgeIds, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, lldpPowerAllocated, lldpPowerDraw, band24Bandwidth, band5Bandwidth, band6Bandwidth, band24Channel, band5Channel, band6Channel, band24Power, band5Power, band6Power, eth0PortSpeed, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Devices
@@ -564,6 +564,7 @@ func (o *OrgsDevices) SearchOrgDevices(
     model *string,
     mac *string,
     version *string,
+    extIp *string,
     powerConstrained *bool,
     ipAddress *string,
     mxtunnelStatus *models.SearchOrgDevicesMxtunnelStatusEnum,
@@ -573,12 +574,17 @@ func (o *OrgsDevices) SearchOrgDevices(
     lldpSystemDesc *string,
     lldpPortId *string,
     lldpMgmtAddr *string,
+    lldpPowerAllocated *int,
+    lldpPowerDraw *int,
     band24Bandwidth *int,
     band5Bandwidth *int,
     band6Bandwidth *int,
     band24Channel *int,
     band5Channel *int,
     band6Channel *int,
+    band24Power *int,
+    band5Power *int,
+    band6Power *int,
     eth0PortSpeed *int,
     limit *int,
     start *int,
@@ -624,6 +630,9 @@ func (o *OrgsDevices) SearchOrgDevices(
     if version != nil {
         req.QueryParam("version", *version)
     }
+    if extIp != nil {
+        req.QueryParam("ext_ip", *extIp)
+    }
     if powerConstrained != nil {
         req.QueryParam("power_constrained", *powerConstrained)
     }
@@ -651,6 +660,12 @@ func (o *OrgsDevices) SearchOrgDevices(
     if lldpMgmtAddr != nil {
         req.QueryParam("lldp_mgmt_addr", *lldpMgmtAddr)
     }
+    if lldpPowerAllocated != nil {
+        req.QueryParam("lldp_power_allocated", *lldpPowerAllocated)
+    }
+    if lldpPowerDraw != nil {
+        req.QueryParam("lldp_power_draw", *lldpPowerDraw)
+    }
     if band24Bandwidth != nil {
         req.QueryParam("band_24_bandwidth", *band24Bandwidth)
     }
@@ -668,6 +683,15 @@ func (o *OrgsDevices) SearchOrgDevices(
     }
     if band6Channel != nil {
         req.QueryParam("band_6_channel", *band6Channel)
+    }
+    if band24Power != nil {
+        req.QueryParam("band_24_power", *band24Power)
+    }
+    if band5Power != nil {
+        req.QueryParam("band_5_power", *band5Power)
+    }
+    if band6Power != nil {
+        req.QueryParam("band_6_power", *band6Power)
     }
     if eth0PortSpeed != nil {
         req.QueryParam("eth0_port_speed", *eth0PortSpeed)

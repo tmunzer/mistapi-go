@@ -15,7 +15,9 @@
 | `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `FipsEnabled` | `*bool` | Optional | alue indicating fips configuration on the device |
 | `ForSite` | `*bool` | Optional | - |
+| `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `IdracVersion` | `*string` | Optional | IDRAC version of the mist edge device |
 | `IpStat` | [`*models.StatsMxedgeIpStat`](../../doc/models/stats-mxedge-ip-stat.md) | Optional | IP stats |
 | `LagStat` | [`map[string]models.StatsMxedgeLagStat`](../../doc/models/stats-mxedge-lag-stat.md) | Optional | Stat for LAG (Link Aggregation Group). Property key is the LAG name |
 | `LastSeen` | `*float64` | Optional | - |
@@ -50,6 +52,7 @@
 {
   "for_site": false,
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
+  "idrac_version": "7.00.00.00",
   "lag_stat": {
     "lacp0": {
       "active_ports": [
@@ -147,6 +150,17 @@
   },
   "created_time": 71.86,
   "fips_enabled": false,
+  "fwupdate": {
+    "progress": 122,
+    "status": "inprogress",
+    "status_id": 70,
+    "timestamp": 147.68,
+    "will_retry": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

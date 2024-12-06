@@ -52,9 +52,9 @@ body := models.Secpolicy{
     Name:                 models.ToPointer("string"),
     Wlans:                []models.Wlan{
         models.Wlan{
-            AcctImmediateUpdate:                models.ToPointer(false),
-            AcctInterimInterval:                models.ToPointer(0),
-            AcctServers:                        []models.RadiusAcctServer{
+            AcctImmediateUpdate:                  models.ToPointer(false),
+            AcctInterimInterval:                  models.ToPointer(0),
+            AcctServers:                          []models.RadiusAcctServer{
                 models.RadiusAcctServer{
                     Host:                 "1.2.3.4",
                     KeywrapEnabled:       models.ToPointer(true),
@@ -65,20 +65,20 @@ body := models.Secpolicy{
                     Secret:               "testing123",
                 },
             },
-            Airwatch:                           models.ToPointer(models.WlanAirwatch{
+            Airwatch:                             models.ToPointer(models.WlanAirwatch{
                 ApiKey:               models.ToPointer("aHhlbGxvYXNkZmFzZGZhc2Rmc2RmCg==\""),
                 ConsoleUrl:           models.ToPointer("https://hs1.airwatchportals.com"),
                 Enabled:              models.ToPointer(true),
                 Password:             models.ToPointer("user1"),
                 Username:             models.ToPointer("test123"),
             }),
-            AllowIpv6Ndp:                       models.ToPointer(true),
-            AllowMdns:                          models.ToPointer(false),
-            AllowSsdp:                          models.ToPointer(false),
-            ApIds:                              models.NewOptional(models.ToPointer([]uuid.UUID{
+            AllowIpv6Ndp:                         models.ToPointer(true),
+            AllowMdns:                            models.ToPointer(false),
+            AllowSsdp:                            models.ToPointer(false),
+            ApIds:                                models.NewOptional(models.ToPointer([]uuid.UUID{
                 uuid.MustParse("497f6eca-6276-4993-bfeb-53e2bbba6f08"),
             })),
-            AppLimit:                           models.ToPointer(models.WlanAppLimit{
+            AppLimit:                             models.ToPointer(models.WlanAppLimit{
                 Apps:                 map[string]int{
                     "dropbox": 300,
                     "netflix": 60,
@@ -88,7 +88,7 @@ body := models.Secpolicy{
                     "f99862d9-2726-931f-7559-3dfdf5d070d3": 30,
                 },
             }),
-            AppQos:                             models.ToPointer(models.WlanAppQos{
+            AppQos:                               models.ToPointer(models.WlanAppQos{
                 Apps:                 map[string]models.WlanAppQosAppsProperties{
                     "skype-business-video": models.WlanAppQosAppsProperties{
                         Dscp:                 models.ToPointer(32),
@@ -107,9 +107,9 @@ body := models.Secpolicy{
                     },
                 },
             }),
-            ApplyTo:                            models.ToPointer(models.WlanApplyToEnum("site")),
-            ArpFilter:                          models.ToPointer(false),
-            Auth:                               models.ToPointer(models.WlanAuth{
+            ApplyTo:                              models.ToPointer(models.WlanApplyToEnum("site")),
+            ArpFilter:                            models.ToPointer(false),
+            Auth:                                 models.ToPointer(models.WlanAuth{
                 AnticlogThreshold:    models.ToPointer(16),
                 EapReauth:            models.ToPointer(false),
                 EnableMacAuth:        models.ToPointer(false),
@@ -126,8 +126,8 @@ body := models.Secpolicy{
                 Type:                 models.WlanAuthTypeEnum("psk"),
                 WepAsSecondaryAuth:   models.ToPointer(true),
             }),
-            AuthServerSelection:                models.ToPointer(models.WlanAuthServerSelectionEnum("ordered")),
-            AuthServers:                        []models.RadiusAuthServer{
+            AuthServerSelection:                  models.ToPointer(models.WlanAuthServerSelectionEnum("ordered")),
+            AuthServers:                          []models.RadiusAuthServer{
                 models.RadiusAuthServer{
                     Host:                        "1.2.3.4",
                     KeywrapEnabled:              models.ToPointer(true),
@@ -138,19 +138,19 @@ body := models.Secpolicy{
                     Secret:                      "testing123",
                 },
             },
-            AuthServersNasId:                   models.NewOptional(models.ToPointer("5c5b350e0101-nas")),
-            AuthServersNasIp:                   models.NewOptional(models.ToPointer("15.3.1.5")),
-            AuthServersRetries:                 models.ToPointer(5),
-            AuthServersTimeout:                 models.ToPointer(5),
-            Band:                               models.ToPointer("string"),
-            BandSteer:                          models.ToPointer(false),
-            BandSteerForceBand5:                models.ToPointer(false),
-            Bands:                              []models.Dot11BandEnum{
+            AuthServersNasId:                     models.NewOptional(models.ToPointer("5c5b350e0101-nas")),
+            AuthServersNasIp:                     models.NewOptional(models.ToPointer("15.3.1.5")),
+            AuthServersRetries:                   models.ToPointer(5),
+            AuthServersTimeout:                   models.ToPointer(5),
+            Band:                                 models.ToPointer("string"),
+            BandSteer:                            models.ToPointer(false),
+            BandSteerForceBand5:                  models.ToPointer(false),
+            Bands:                                []models.Dot11BandEnum{
                 models.Dot11BandEnum("24"),
                 models.Dot11BandEnum("5"),
             },
-            BlockBlacklistClients:              models.ToPointer(false),
-            Bonjour:                            models.ToPointer(models.WlanBonjour{
+            BlockBlacklistClients:                models.ToPointer(false),
+            Bonjour:                              models.ToPointer(models.WlanBonjour{
                 AdditionalVlanIds:    "10,20",
                 Enabled:              models.ToPointer(false),
                 Services:             map[string]models.WlanBonjourServiceProperties{
@@ -162,7 +162,7 @@ body := models.Secpolicy{
                     },
                 },
             }),
-            CiscoCwa:                           models.ToPointer(models.WlanCiscoCwa{
+            CiscoCwa:                             models.ToPointer(models.WlanCiscoCwa{
                 AllowedHostnames:     []string{
                     "snapchat.com",
                 },
@@ -174,11 +174,11 @@ body := models.Secpolicy{
                 },
                 Enabled:              models.ToPointer(false),
             }),
-            ClientLimitDown:                    models.ToPointer(0),
-            ClientLimitDownEnabled:             models.ToPointer(false),
-            ClientLimitUp:                      models.ToPointer(0),
-            ClientLimitUpEnabled:               models.ToPointer(false),
-            CoaServers:                         models.NewOptional(models.ToPointer([]models.CoaServer{
+            ClientLimitDown:                      models.ToPointer(0),
+            ClientLimitDownEnabled:               models.ToPointer(false),
+            ClientLimitUp:                        models.ToPointer(0),
+            ClientLimitUpEnabled:                 models.ToPointer(false),
+            CoaServers:                           models.NewOptional(models.ToPointer([]models.CoaServer{
                 models.CoaServer{
                     DisableEventTimestampCheck: models.ToPointer(false),
                     Enabled:                    models.ToPointer(false),
@@ -187,21 +187,21 @@ body := models.Secpolicy{
                     Secret:                     "testing456",
                 },
             })),
-            Disable11ax:                        models.ToPointer(false),
-            DisableHtVhtRates:                  models.ToPointer(false),
-            DisableUapsd:                       models.ToPointer(false),
-            DisableV1RoamNotify:                models.ToPointer(false),
-            DisableV2RoamNotify:                models.ToPointer(false),
-            DisableWmm:                         models.ToPointer(false),
-            DnsServerRewrite:                   models.NewOptional(models.ToPointer(models.WlanDnsServerRewrite{
+            Disable11ax:                          models.ToPointer(false),
+            DisableHtVhtRates:                    models.ToPointer(false),
+            DisableUapsd:                         models.ToPointer(false),
+            DisableV1RoamNotify:                  models.ToPointer(false),
+            DisableV2RoamNotify:                  models.ToPointer(false),
+            DisableWmm:                           models.ToPointer(false),
+            DnsServerRewrite:                     models.NewOptional(models.ToPointer(models.WlanDnsServerRewrite{
                 Enabled:              models.ToPointer(false),
                 RadiusGroups:         map[string]string{
                     "contractor": "172.1.1.1",
                     "guest": "8.8.8.8",
                 },
             })),
-            Dtim:                               models.ToPointer(2),
-            DynamicPsk:                         models.NewOptional(models.ToPointer(models.WlanDynamicPsk{
+            Dtim:                                 models.ToPointer(2),
+            DynamicPsk:                           models.NewOptional(models.ToPointer(models.WlanDynamicPsk{
                 DefaultPsk:           models.ToPointer("foryoureyesonly"),
                 DefaultVlanId:        models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
                 Enabled:              models.ToPointer(false),
@@ -210,7 +210,7 @@ body := models.Secpolicy{
                     models.VlanIdWithVariableContainer.FromNumber(1),
                 },
             })),
-            DynamicVlan:                        models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
+            DynamicVlan:                          models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
                 DefaultVlanId:        models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
                 Enabled:              models.ToPointer(false),
                 LocalVlanIds:         []models.VlanIdWithVariable{
@@ -222,13 +222,13 @@ body := models.Secpolicy{
                     "322": "fast,video",
                 },
             })),
-            EnableLocalKeycaching:              models.ToPointer(false),
-            EnableWirelessBridging:             models.ToPointer(false),
-            Enabled:                            models.ToPointer(true),
-            FastDot1xTimers:                    models.ToPointer(false),
-            HideSsid:                           models.ToPointer(false),
-            HostnameIe:                         models.ToPointer(false),
-            Hotspot20:                          models.ToPointer(models.WlanHotspot20{
+            EnableLocalKeycaching:                models.ToPointer(false),
+            EnableWirelessBridging:               models.ToPointer(false),
+            Enabled:                              models.ToPointer(true),
+            FastDot1xTimers:                      models.ToPointer(false),
+            HideSsid:                             models.ToPointer(false),
+            HostnameIe:                           models.ToPointer(false),
+            Hotspot20:                            models.ToPointer(models.WlanHotspot20{
                 DomainName:           []string{
                     "mist.com",
                 },
@@ -245,19 +245,19 @@ body := models.Secpolicy{
                 },
                 VenueName:            models.ToPointer("some_name"),
             }),
-            Interface:                          models.ToPointer(models.WlanInterfaceEnum("all")),
-            Isolation:                          models.ToPointer(false),
-            L2Isolation:                        models.ToPointer(false),
-            LegacyOverds:                       models.ToPointer(false),
-            LimitBcast:                         models.ToPointer(false),
-            LimitProbeResponse:                 models.ToPointer(true),
-            MaxIdletime:                        models.ToPointer(1800),
-            MistNac:                            models.ToPointer(models.WlanMistNac{
+            Interface:                            models.ToPointer(models.WlanInterfaceEnum("all")),
+            Isolation:                            models.ToPointer(false),
+            L2Isolation:                          models.ToPointer(false),
+            LegacyOverds:                         models.ToPointer(false),
+            LimitBcast:                           models.ToPointer(false),
+            LimitProbeResponse:                   models.ToPointer(true),
+            MaxIdletime:                          models.ToPointer(1800),
+            MistNac:                              models.ToPointer(models.WlanMistNac{
                 Enabled:              models.ToPointer(false),
             }),
-            NoStaticDns:                        models.ToPointer(false),
-            NoStaticIp:                         models.ToPointer(false),
-            Portal:                             models.ToPointer(models.WlanPortal{
+            NoStaticDns:                          models.ToPointer(false),
+            NoStaticIp:                           models.ToPointer(false),
+            Portal:                               models.ToPointer(models.WlanPortal{
                 AmazonClientId:              models.NewOptional(models.ToPointer("string")),
                 AmazonClientSecret:          models.NewOptional(models.ToPointer("string")),
                 AmazonEmailDomains:          []string{
@@ -343,22 +343,22 @@ body := models.Secpolicy{
                     "thumbnail": interface{}("string"),
                 },
             }),
-            PortalAllowedHostnames:             []string{
+            PortalAllowedHostnames:               []string{
                 "snapchat.com",
                 "ibm.com",
             },
-            PortalAllowedSubnets:               []string{
+            PortalAllowedSubnets:                 []string{
                 "63.5.3.0/24",
             },
-            PortalApiSecret:                    models.NewOptional(models.ToPointer("EIfPMOykI3lMlDdNPub2WcbqT6dNOtWwmYHAd6bY")),
-            PortalDeniedHostnames:              []string{
+            PortalApiSecret:                      models.NewOptional(models.ToPointer("EIfPMOykI3lMlDdNPub2WcbqT6dNOtWwmYHAd6bY")),
+            PortalDeniedHostnames:                []string{
                 "msg.snapchat.com",
             },
-            Qos:                                models.ToPointer(models.WlanQos{
+            Qos:                                  models.ToPointer(models.WlanQos{
                 Class:                models.ToPointer(models.WlanQosClassEnum("best_effort")),
                 Overwrite:            models.ToPointer(false),
             }),
-            Radsec:                             models.ToPointer(models.Radsec{
+            Radsec:                               models.ToPointer(models.Radsec{
                 Enabled:              models.ToPointer(true),
                 IdleTimeout:          models.ToPointer(60),
                 MxclusterIds:         []uuid.UUID{
@@ -377,7 +377,7 @@ body := models.Secpolicy{
                 UseMxedge:            models.ToPointer(true),
                 UseSiteMxedge:        models.ToPointer(false),
             }),
-            Rateset:                            map[string]models.WlanDatarates{
+            Rateset:                              map[string]models.WlanDatarates{
                 "24": models.WlanDatarates{
                     Ht:                   models.NewOptional(models.ToPointer("00ff00ff00ff")),
                     Legacy:               []models.WlanDataratesLegacyItemEnum{
@@ -411,35 +411,35 @@ body := models.Secpolicy{
                     Vht:                  models.NewOptional(models.ToPointer("03ff03ff03ff01ff")),
                 },
             },
-            RoamMode:                           models.ToPointer(models.WlanRoamModeEnum("NONE")),
-            Schedule:                           models.ToPointer(models.WlanSchedule{
+            RoamMode:                             models.ToPointer(models.WlanRoamModeEnum("NONE")),
+            Schedule:                             models.ToPointer(models.WlanSchedule{
                 Enabled:              models.ToPointer(false),
                 Hours:                models.ToPointer(models.Hours{
                     Fri:                  models.ToPointer("09:00-17:00"),
                     Mon:                  models.ToPointer("09:00-17:00"),
                 }),
             }),
-            SleExcluded:                        models.ToPointer(false),
-            Ssid:                               "corporate",
-            TemplateId:                         models.NewOptional(models.ToPointer(uuid.MustParse("c6d67e98-83ea-49f0-8812-e4abae2b68bc"))),
-            UseEapolV1:                         models.ToPointer(false),
-            VlanEnabled:                        models.ToPointer(false),
-            VlanId:                             models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(1)),
-            VlanIds:                            []models.VlanIdWithVariable{
+            SleExcluded:                          models.ToPointer(false),
+            Ssid:                                 "corporate",
+            TemplateId:                           models.NewOptional(models.ToPointer(uuid.MustParse("c6d67e98-83ea-49f0-8812-e4abae2b68bc"))),
+            UseEapolV1:                           models.ToPointer(false),
+            VlanEnabled:                          models.ToPointer(false),
+            VlanId:                               models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(1)),
+            VlanIds:                              []models.VlanIdWithVariable{
                 models.VlanIdWithVariableContainer.FromNumber(3),
                 models.VlanIdWithVariableContainer.FromNumber(4),
                 models.VlanIdWithVariableContainer.FromNumber(5),
             },
-            VlanPooling:                        models.ToPointer(false),
-            WlanLimitDown:                      models.NewOptional(models.ToPointer(0)),
-            WlanLimitDownEnabled:               models.ToPointer(false),
-            WlanLimitUp:                        models.NewOptional(models.ToPointer(0)),
-            WlanLimitUpEnabled:                 models.ToPointer(false),
-            WxtagIds:                           models.NewOptional(models.ToPointer([]uuid.UUID{
+            VlanPooling:                          models.ToPointer(false),
+            WlanLimitDown:                        models.NewOptional(models.ToPointer(0)),
+            WlanLimitDownEnabled:                 models.ToPointer(false),
+            WlanLimitUp:                          models.NewOptional(models.ToPointer(0)),
+            WlanLimitUpEnabled:                   models.ToPointer(false),
+            WxtagIds:                             models.NewOptional(models.ToPointer([]uuid.UUID{
                 uuid.MustParse("497f6eca-6276-4993-bfeb-53e4bbba6f08"),
             })),
-            WxtunnelId:                         models.NewOptional(models.ToPointer("string")),
-            WxtunnelRemoteId:                   models.NewOptional(models.ToPointer("string")),
+            WxtunnelId:                           models.NewOptional(models.ToPointer("string")),
+            WxtunnelRemoteId:                     models.NewOptional(models.ToPointer("string")),
         },
     },
 }

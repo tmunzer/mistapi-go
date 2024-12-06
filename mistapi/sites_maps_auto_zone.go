@@ -26,7 +26,7 @@ func NewSitesMapsAutoZone(baseController baseController) *SitesMapsAutoZone {
 // DeleteSiteMapAutoZone takes context, mapId, siteId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// This API is called to cancel auto zones for a given map and to delete the suggested zones returned by the service. If the service was not it will still delete any suggested zones and clear the auto zones service status.
+// This API starts the auto zones service for a specified map. This map must have an image to parse for the auto zones service. Repeated POST requests to this endpoint while the auto zones service is proccessing the map or awaiting review will be rejected.
 func (s *SitesMapsAutoZone) DeleteSiteMapAutoZone(
     ctx context.Context,
     mapId uuid.UUID,

@@ -6,12 +6,13 @@ import (
 
 // FwupdateStat represents a FwupdateStat struct.
 type FwupdateStat struct {
-    Progress             Optional[int]          `json:"progress"`
-    Status               Optional[string]       `json:"status"`
-    StatusId             Optional[int]          `json:"status_id"`
-    Timestamp            Optional[float64]      `json:"timestamp"`
-    WillRetry            Optional[bool]         `json:"will_retry"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    Progress             Optional[int]                    `json:"progress"`
+    // enum: `inprogress`, `failed`, `upgraded`
+    Status               Optional[FwupdateStatStatusEnum] `json:"status"`
+    StatusId             Optional[int]                    `json:"status_id"`
+    Timestamp            Optional[float64]                `json:"timestamp"`
+    WillRetry            Optional[bool]                   `json:"will_retry"`
+    AdditionalProperties map[string]interface{}           `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for FwupdateStat.
@@ -92,9 +93,9 @@ func (f *FwupdateStat) UnmarshalJSON(input []byte) error {
 
 // tempFwupdateStat is a temporary struct used for validating the fields of FwupdateStat.
 type tempFwupdateStat  struct {
-    Progress  Optional[int]     `json:"progress"`
-    Status    Optional[string]  `json:"status"`
-    StatusId  Optional[int]     `json:"status_id"`
-    Timestamp Optional[float64] `json:"timestamp"`
-    WillRetry Optional[bool]    `json:"will_retry"`
+    Progress  Optional[int]                    `json:"progress"`
+    Status    Optional[FwupdateStatStatusEnum] `json:"status"`
+    StatusId  Optional[int]                    `json:"status_id"`
+    Timestamp Optional[float64]                `json:"timestamp"`
+    WillRetry Optional[bool]                   `json:"will_retry"`
 }

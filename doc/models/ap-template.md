@@ -47,8 +47,8 @@
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"
@@ -69,8 +69,8 @@
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"
@@ -101,8 +101,8 @@
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"
@@ -123,8 +123,8 @@
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"
@@ -155,8 +155,8 @@
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"
@@ -177,8 +177,8 @@
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"

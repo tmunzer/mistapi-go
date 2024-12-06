@@ -34,6 +34,7 @@ Switch port config
 | `Mode` | [`*models.SwitchPortLocalUsageModeEnum`](../../doc/models/switch-port-local-usage-mode-enum.md) | Optional | enum: `access`, `inet`, `trunk` |
 | `Mtu` | `*int` | Optional | media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514. |
 | `Networks` | `[]string` | Optional | Only if `mode`==`trunk`, the list of network/vlans |
+| `Note` | `*string` | Optional | Additional note for the port config override |
 | `PersistMac` | `*bool` | Optional | Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses<br>**Default**: `false` |
 | `PoeDisabled` | `*bool` | Optional | whether PoE capabilities are disabled for a port<br>**Default**: `false` |
 | `PortAuth` | [`models.Optional[models.SwitchPortLocalUsageDot1xEnum]`](../../doc/models/switch-port-local-usage-dot-1-x-enum.md) | Optional | if dot1x is desired, set to dot1x. enum: `dot1x` |
@@ -71,6 +72,7 @@ Switch port config
   "inter_switch_link": false,
   "mac_auth_protocol": "eap-md5",
   "mac_limit": 0,
+  "note": "force 100M for camera",
   "persist_mac": false,
   "poe_disabled": false,
   "reauth_interval": 3600,

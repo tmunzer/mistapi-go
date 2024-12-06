@@ -79,26 +79,6 @@ func TestSitesSyntheticTestsTestTriggerSiteDeviceSyntheticTest(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
-// TestSitesSyntheticTestsTestGetSiteSyntheticTestStatus tests the behavior of the SitesSyntheticTests
-func TestSitesSyntheticTestsTestGetSiteSyntheticTestStatus(t *testing.T) {
-    ctx := context.Background()
-    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-    if errUUID != nil {
-        t.Error(errUUID)
-    }
-    apiResponse, err := sitesSyntheticTests.GetSiteSyntheticTestStatus(ctx, siteId)
-    if err != nil {
-        t.Errorf("Endpoint call failed: %v", err)
-    }
-    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-    expectedHeaders:= []testHelper.TestHeader{
-        testHelper.NewTestHeader(true,"Content-Type","application/json"),
-    }
-    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"device_type":"gateway","mac":"5c5b35584a6f","port_id":"ge-0/0/1.100","start_time":1675718807,"status":"inprogress","type":"speedtest"}`
-    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
 // TestSitesSyntheticTestsTestTriggerSiteSyntheticTest tests the behavior of the SitesSyntheticTests
 func TestSitesSyntheticTestsTestTriggerSiteSyntheticTest(t *testing.T) {
     ctx := context.Background()

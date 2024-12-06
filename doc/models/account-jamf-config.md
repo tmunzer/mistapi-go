@@ -13,7 +13,7 @@ OAuth linked Jamf apps account details
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ClientId` | `string` | Required | customer account api client id |
+| `ClientId` | `string` | Required | customer account api client id. Required if `app_name`==`crowdstrike` |
 | `ClientSecret` | `string` | Required | customer account api client secret |
 | `InstanceUrl` | `string` | Required | customer account Jamf instance URL |
 | `SmartgroupName` | `string` | Required | smart group membership for determining compliance status |

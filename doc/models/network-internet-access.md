@@ -31,6 +31,7 @@ whether this network has direct internet access
       "internal_ip": "internal_ip0",
       "name": "name4",
       "port": 162,
+      "wan_name": "wan_name0",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -40,6 +41,7 @@ whether this network has direct internet access
       "internal_ip": "internal_ip0",
       "name": "name4",
       "port": 162,
+      "wan_name": "wan_name0",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

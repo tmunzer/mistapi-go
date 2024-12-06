@@ -17,7 +17,7 @@ sitesMapsAutoZone := client.SitesMapsAutoZone()
 
 # Delete Site Map Auto Zone
 
-This API is called to cancel auto zones for a given map and to delete the suggested zones returned by the service. If the service was not it will still delete any suggested zones and clear the auto zones service status.
+This API starts the auto zones service for a specified map. This map must have an image to parse for the auto zones service. Repeated POST requests to this endpoint while the auto zones service is proccessing the map or awaiting review will be rejected.
 
 ```go
 DeleteSiteMapAutoZone(
@@ -107,6 +107,58 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "status": "awaiting_review",
+  "zones": [
+    {
+      "name": "zone1",
+      "vertices": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 10
+        },
+        {
+          "x": 10,
+          "y": 10
+        },
+        {
+          "x": 10,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "zone2",
+      "vertices": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 20
+        },
+        {
+          "x": 20,
+          "y": 20
+        },
+        {
+          "x": 20,
+          "y": 0
+        }
+      ]
+    }
+  ]
 }
 ```
 

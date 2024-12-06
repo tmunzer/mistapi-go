@@ -11,7 +11,6 @@ sitesSyntheticTests := client.SitesSyntheticTests()
 ## Methods
 
 * [Get Site Device Synthetic Test](../../doc/controllers/sites-synthetic-tests.md#get-site-device-synthetic-test)
-* [Get Site Synthetic Test Status](../../doc/controllers/sites-synthetic-tests.md#get-site-synthetic-test-status)
 * [Search Site Synthetic Test](../../doc/controllers/sites-synthetic-tests.md#search-site-synthetic-test)
 * [Start Site Switch Radius Synthetic Test](../../doc/controllers/sites-synthetic-tests.md#start-site-switch-radius-synthetic-test)
 * [Trigger Site Device Synthetic Test](../../doc/controllers/sites-synthetic-tests.md#trigger-site-device-synthetic-test)
@@ -79,69 +78,6 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Device not online / Device not supported / Already in progress | `ApiError` |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Synthetic Test Status
-
-Get Synthetic Testing Status
-
-```go
-GetSiteSyntheticTestStatus(
-    ctx context.Context,
-    siteId uuid.UUID) (
-    models.ApiResponse[models.SynthetictestInfo],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-
-## Response Type
-
-[`models.SynthetictestInfo`](../../doc/models/synthetictest-info.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-apiResponse, err := sitesSyntheticTests.GetSiteSyntheticTestStatus(ctx, siteId)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "device_type": "gateway",
-  "mac": "5c5b35584a6f",
-  "port_id": "ge-0/0/1.100",
-  "start_time": 1675718807,
-  "status": "inprogress",
-  "type": "speedtest"
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |

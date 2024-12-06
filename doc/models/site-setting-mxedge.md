@@ -130,10 +130,10 @@ site mist edges form a cluster of radsecproxy servers
     "auth_servers": [
       {
         "host": "host0",
+        "inband_status_check": false,
+        "inband_status_interval": 160,
         "keywrap_enabled": false,
         "keywrap_format": "ascii",
-        "keywrap_kek": "keywrap_kek4",
-        "keywrap_mack": "keywrap_mack6",
         "exampleAdditionalProperty": {
           "key1": "val1",
           "key2": "val2"

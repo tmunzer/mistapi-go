@@ -1170,14 +1170,31 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MxedgeUpgradeMulti{
+    AllowDowngrades:      models.ToPointer(models.MxedgeUpgradeMultiAllowDowngrades{
+        Mxagent:              models.ToPointer(false),
+        Tunterm:              models.ToPointer(true),
+    }),
+    CanaryPhases:         []int{
+        5,
+        25,
+        50,
+        100,
+    },
     Channel:              models.ToPointer(models.MxedgeUpgradeChannelEnum("stable")),
+    MaxFailurePercentage: models.ToPointer(5),
     MxedgeIds:            []uuid.UUID{
         uuid.MustParse("387804a7-3474-85ce-15a2-f9a9684c9c90"),
     },
+    StartTime:            models.ToPointer(float64(1624399840)),
+    Strategy:             models.ToPointer(models.MxedgeUpgradeStrategyEnum("serial")),
     Versions:             models.ToPointer(models.MxedgeUpgradeVersion{
-        Mxagent:              "current",
+        Mxagent:              "latest",
+        Radsecproxy:          models.ToPointer("<version>"),
         Tunterm:              "default",
     }),
+    AdditionalProperties: map[string]interface{}{
+        "max_failures": interface{}("1155"),
+    },
 }
 
 resp, err := utilitiesUpgrade.UpgradeOrgMxEdges(ctx, orgId, &body)

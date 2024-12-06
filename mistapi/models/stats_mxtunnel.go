@@ -10,7 +10,9 @@ import (
 type StatsMxtunnel struct {
     Ap                   *string                 `json:"ap,omitempty"`
     ForSite              *bool                   `json:"for_site,omitempty"`
+    Fwupdate             *FwupdateStat           `json:"fwupdate,omitempty"`
     LastSeen             *float64                `json:"last_seen,omitempty"`
+    Mtu                  *int                    `json:"mtu,omitempty"`
     MxclusterId          *uuid.UUID              `json:"mxcluster_id,omitempty"`
     MxedgeId             *uuid.UUID              `json:"mxedge_id,omitempty"`
     MxtunnelId           *uuid.UUID              `json:"mxtunnel_id,omitempty"`
@@ -36,7 +38,7 @@ func (s StatsMxtunnel) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "ap", "for_site", "last_seen", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "rx_control_pkts", "sessions", "site_id", "state", "tx_control_pkts", "uptime"); err != nil {
+        "ap", "for_site", "fwupdate", "last_seen", "mtu", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "rx_control_pkts", "sessions", "site_id", "state", "tx_control_pkts", "uptime"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -52,8 +54,14 @@ func (s StatsMxtunnel) toMap() map[string]any {
     if s.ForSite != nil {
         structMap["for_site"] = s.ForSite
     }
+    if s.Fwupdate != nil {
+        structMap["fwupdate"] = s.Fwupdate.toMap()
+    }
     if s.LastSeen != nil {
         structMap["last_seen"] = s.LastSeen
+    }
+    if s.Mtu != nil {
+        structMap["mtu"] = s.Mtu
     }
     if s.MxclusterId != nil {
         structMap["mxcluster_id"] = s.MxclusterId
@@ -105,7 +113,7 @@ func (s *StatsMxtunnel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "for_site", "last_seen", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "rx_control_pkts", "sessions", "site_id", "state", "tx_control_pkts", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "for_site", "fwupdate", "last_seen", "mtu", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "rx_control_pkts", "sessions", "site_id", "state", "tx_control_pkts", "uptime")
     if err != nil {
     	return err
     }
@@ -113,7 +121,9 @@ func (s *StatsMxtunnel) UnmarshalJSON(input []byte) error {
     
     s.Ap = temp.Ap
     s.ForSite = temp.ForSite
+    s.Fwupdate = temp.Fwupdate
     s.LastSeen = temp.LastSeen
+    s.Mtu = temp.Mtu
     s.MxclusterId = temp.MxclusterId
     s.MxedgeId = temp.MxedgeId
     s.MxtunnelId = temp.MxtunnelId
@@ -134,7 +144,9 @@ func (s *StatsMxtunnel) UnmarshalJSON(input []byte) error {
 type tempStatsMxtunnel  struct {
     Ap            *string                 `json:"ap,omitempty"`
     ForSite       *bool                   `json:"for_site,omitempty"`
+    Fwupdate      *FwupdateStat           `json:"fwupdate,omitempty"`
     LastSeen      *float64                `json:"last_seen,omitempty"`
+    Mtu           *int                    `json:"mtu,omitempty"`
     MxclusterId   *uuid.UUID              `json:"mxcluster_id,omitempty"`
     MxedgeId      *uuid.UUID              `json:"mxedge_id,omitempty"`
     MxtunnelId    *uuid.UUID              `json:"mxtunnel_id,omitempty"`

@@ -14,8 +14,11 @@ type StatsMxedge struct {
     // alue indicating fips configuration on the device
     FipsEnabled          *bool                             `json:"fips_enabled,omitempty"`
     ForSite              *bool                             `json:"for_site,omitempty"`
+    Fwupdate             *FwupdateStat                     `json:"fwupdate,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                        `json:"id,omitempty"`
+    // IDRAC version of the mist edge device
+    IdracVersion         *string                           `json:"idrac_version,omitempty"`
     // IP stats
     IpStat               *StatsMxedgeIpStat                `json:"ip_stat,omitempty"`
     // Stat for LAG (Link Aggregation Group). Property key is the LAG name
@@ -59,7 +62,7 @@ func (s StatsMxedge) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "cpu_stat", "created_time", "fips_enabled", "for_site", "id", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type"); err != nil {
+        "cpu_stat", "created_time", "fips_enabled", "for_site", "fwupdate", "id", "idrac_version", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -81,8 +84,14 @@ func (s StatsMxedge) toMap() map[string]any {
     if s.ForSite != nil {
         structMap["for_site"] = s.ForSite
     }
+    if s.Fwupdate != nil {
+        structMap["fwupdate"] = s.Fwupdate.toMap()
+    }
     if s.Id != nil {
         structMap["id"] = s.Id
+    }
+    if s.IdracVersion != nil {
+        structMap["idrac_version"] = s.IdracVersion
     }
     if s.IpStat != nil {
         structMap["ip_stat"] = s.IpStat.toMap()
@@ -177,7 +186,7 @@ func (s *StatsMxedge) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cpu_stat", "created_time", "fips_enabled", "for_site", "id", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cpu_stat", "created_time", "fips_enabled", "for_site", "fwupdate", "id", "idrac_version", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type")
     if err != nil {
     	return err
     }
@@ -187,7 +196,9 @@ func (s *StatsMxedge) UnmarshalJSON(input []byte) error {
     s.CreatedTime = temp.CreatedTime
     s.FipsEnabled = temp.FipsEnabled
     s.ForSite = temp.ForSite
+    s.Fwupdate = temp.Fwupdate
     s.Id = temp.Id
+    s.IdracVersion = temp.IdracVersion
     s.IpStat = temp.IpStat
     s.LagStat = temp.LagStat
     s.LastSeen = temp.LastSeen
@@ -223,7 +234,9 @@ type tempStatsMxedge  struct {
     CreatedTime        *float64                          `json:"created_time,omitempty"`
     FipsEnabled        *bool                             `json:"fips_enabled,omitempty"`
     ForSite            *bool                             `json:"for_site,omitempty"`
+    Fwupdate           *FwupdateStat                     `json:"fwupdate,omitempty"`
     Id                 *uuid.UUID                        `json:"id,omitempty"`
+    IdracVersion       *string                           `json:"idrac_version,omitempty"`
     IpStat             *StatsMxedgeIpStat                `json:"ip_stat,omitempty"`
     LagStat            map[string]StatsMxedgeLagStat     `json:"lag_stat,omitempty"`
     LastSeen           *float64                          `json:"last_seen,omitempty"`

@@ -12,6 +12,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Host` | `*string` | Optional | ip / hostname of RADIUS server |
+| `InbandStatusCheck` | `*bool` | Optional | whether to enable inband status check<br>**Default**: `false` |
+| `InbandStatusInterval` | `*int` | Optional | inband status interval, in seconds<br>**Default**: `1800`<br>**Constraints**: `>= 0` |
 | `KeywrapEnabled` | `*bool` | Optional | if used for Mist APs, enable keywrap algorithm. Default is false |
 | `KeywrapFormat` | [`models.Optional[models.MxclusterRadAuthServerKeywrapFormatEnum]`](../../doc/models/mxcluster-rad-auth-server-keywrap-format-enum.md) | Optional | if used for Mist APs. enum: `ascii`, `hex`<br>**Default**: `"ascii"` |
 | `KeywrapKek` | `*string` | Optional | if used for Mist APs, encryption key |
@@ -25,12 +27,12 @@
 
 ```json
 {
+  "inband_status_check": false,
+  "inband_status_interval": 1800,
   "keywrap_format": "ascii",
   "port": 1812,
   "host": "host6",
   "keywrap_enabled": false,
-  "keywrap_kek": "keywrap_kek0",
-  "keywrap_mack": "keywrap_mack2",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

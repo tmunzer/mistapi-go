@@ -9,6 +9,7 @@ import (
 type UpgradeSiteDevices struct {
     // phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100]
     CanaryPhases            []int                               `json:"canary_phases,omitempty"`
+    // id’s of devices which will be selected for upgrade
     DeviceIds               []uuid.UUID                         `json:"device_ids,omitempty"`
     // whether to allow local AP-to-AP FW upgrade
     EnableP2p               *bool                               `json:"enable_p2p,omitempty"`
@@ -18,6 +19,7 @@ type UpgradeSiteDevices struct {
     MaxFailurePercentage    *float64                            `json:"max_failure_percentage,omitempty"`
     // number of failures allowed within each phase(applicable for `canary` or `rrm`). Will be used if provided, else max_failure_percentage will be used
     MaxFailures             []int                               `json:"max_failures,omitempty"`
+    // models which will be selected for upgrade
     Models                  []string                            `json:"models,omitempty"`
     P2pClusterSize          *int                                `json:"p2p_cluster_size,omitempty"`
     // number of parallel p2p download batches to creat
@@ -36,6 +38,8 @@ type UpgradeSiteDevices struct {
     RrmNodeOrder            *UpgradeSiteDevicesRrmNodeOrderEnum `json:"rrm_node_order,omitempty"`
     // true will make rrm batch sizes slowly ramp up
     RrmSlowRamp             *bool                               `json:"rrm_slow_ramp,omitempty"`
+    // rules used to identify devices which will be selected for upgrade. Device will be selected as long as it satisfies any one rule
+    Rules                   []string                            `json:"rules,omitempty"`
     // Perform recovery snapshot after device is rebooted (Available on Junos OS devices)
     Snapshot                *bool                               `json:"snapshot,omitempty"`
     // upgrade start time in epoch seconds, default is now
@@ -53,7 +57,7 @@ func (u UpgradeSiteDevices) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(u.AdditionalProperties,
-        "canary_phases", "device_ids", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "snapshot", "start_time", "strategy", "version"); err != nil {
+        "canary_phases", "device_ids", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "rules", "snapshot", "start_time", "strategy", "version"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(u.toMap())
@@ -111,6 +115,9 @@ func (u UpgradeSiteDevices) toMap() map[string]any {
     if u.RrmSlowRamp != nil {
         structMap["rrm_slow_ramp"] = u.RrmSlowRamp
     }
+    if u.Rules != nil {
+        structMap["rules"] = u.Rules
+    }
     if u.Snapshot != nil {
         structMap["snapshot"] = u.Snapshot
     }
@@ -134,7 +141,7 @@ func (u *UpgradeSiteDevices) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "canary_phases", "device_ids", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "snapshot", "start_time", "strategy", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "canary_phases", "device_ids", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "rules", "snapshot", "start_time", "strategy", "version")
     if err != nil {
     	return err
     }
@@ -156,6 +163,7 @@ func (u *UpgradeSiteDevices) UnmarshalJSON(input []byte) error {
     u.RrmMeshUpgrade = temp.RrmMeshUpgrade
     u.RrmNodeOrder = temp.RrmNodeOrder
     u.RrmSlowRamp = temp.RrmSlowRamp
+    u.Rules = temp.Rules
     u.Snapshot = temp.Snapshot
     u.StartTime = temp.StartTime
     u.Strategy = temp.Strategy
@@ -181,6 +189,7 @@ type tempUpgradeSiteDevices  struct {
     RrmMeshUpgrade          *string                             `json:"rrm_mesh_upgrade,omitempty"`
     RrmNodeOrder            *UpgradeSiteDevicesRrmNodeOrderEnum `json:"rrm_node_order,omitempty"`
     RrmSlowRamp             *bool                               `json:"rrm_slow_ramp,omitempty"`
+    Rules                   []string                            `json:"rules,omitempty"`
     Snapshot                *bool                               `json:"snapshot,omitempty"`
     StartTime               *float64                            `json:"start_time,omitempty"`
     Strategy                *DeviceUpgradeStrategyEnum          `json:"strategy,omitempty"`

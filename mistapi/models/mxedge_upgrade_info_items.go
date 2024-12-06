@@ -9,6 +9,7 @@ import (
 // MxedgeUpgradeInfoItems represents a MxedgeUpgradeInfoItems struct.
 type MxedgeUpgradeInfoItems struct {
     Default              *bool                  `json:"default,omitempty"`
+    Distro               *string                `json:"distro,omitempty"`
     Package              string                 `json:"package"`
     Version              string                 `json:"version"`
     AdditionalProperties map[string]interface{} `json:"_"`
@@ -20,7 +21,7 @@ func (m MxedgeUpgradeInfoItems) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(m.AdditionalProperties,
-        "default", "package", "version"); err != nil {
+        "default", "distro", "package", "version"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(m.toMap())
@@ -32,6 +33,9 @@ func (m MxedgeUpgradeInfoItems) toMap() map[string]any {
     MergeAdditionalProperties(structMap, m.AdditionalProperties)
     if m.Default != nil {
         structMap["default"] = m.Default
+    }
+    if m.Distro != nil {
+        structMap["distro"] = m.Distro
     }
     structMap["package"] = m.Package
     structMap["version"] = m.Version
@@ -50,13 +54,14 @@ func (m *MxedgeUpgradeInfoItems) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default", "package", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default", "distro", "package", "version")
     if err != nil {
     	return err
     }
     m.AdditionalProperties = additionalProperties
     
     m.Default = temp.Default
+    m.Distro = temp.Distro
     m.Package = *temp.Package
     m.Version = *temp.Version
     return nil
@@ -65,6 +70,7 @@ func (m *MxedgeUpgradeInfoItems) UnmarshalJSON(input []byte) error {
 // tempMxedgeUpgradeInfoItems is a temporary struct used for validating the fields of MxedgeUpgradeInfoItems.
 type tempMxedgeUpgradeInfoItems  struct {
     Default *bool   `json:"default,omitempty"`
+    Distro  *string `json:"distro,omitempty"`
     Package *string `json:"package"`
     Version *string `json:"version"`
 }

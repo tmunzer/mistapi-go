@@ -33,7 +33,7 @@ func TestOrgsLogsTestListOrgAuditLogs(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"end":1428954000,"limit":100,"results":[{"admin_id":"72bfa2bd-e58a-4670-9d20-a1468f7a6f58","admin_name":"test@mistsys.com","id":"c6f9347b-b0a4-4a23-b927-fa9249f2ffb2","message":"TEST AUDIT","org_id":"469f6eca-6276-4993-bfeb-53cbbbba6f58","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1431382121}],"start":1428939600,"total":135}`
+    expected := `{"end":1428954000,"limit":100,"results":[{"admin_id":"48f4d7aa-97a0-43e1-81f7-74dbda4a9dae","admin_name":"Chia-Wei Tang tangc@juniper.net","id":"ac4415e5-7aef-4c79-9d17-7a7edd268e16","message":"Accessed Org \"DELETE_ME\"","org_id":"b0d0c697-c4c8-459a-bf61-bfe820aead98","site_id":null,"src_ip":"165.225.242.194","timestamp":1729278563,"user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:130.0) Gecko/20100101 Firefox/130.0"}],"start":1428939600,"total":135}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

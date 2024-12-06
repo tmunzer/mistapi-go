@@ -707,7 +707,7 @@ func (s *SitesSLEs) GetSiteSleImpactedWirelessClients(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted_users", siteId, scope, scopeId, metric),
+      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-users", siteId, scope, scopeId, metric),
     )
     req.Authenticate(
         NewOrAuth(

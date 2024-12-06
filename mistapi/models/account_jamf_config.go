@@ -9,7 +9,7 @@ import (
 // AccountJamfConfig represents a AccountJamfConfig struct.
 // OAuth linked Jamf apps account details
 type AccountJamfConfig struct {
-    // customer account api client id
+    // customer account api client id. Required if `app_name`==`crowdstrike`
     ClientId             string                 `json:"client_id"`
     // customer account api client secret
     ClientSecret         string                 `json:"client_secret"`

@@ -28,7 +28,7 @@ AddOrgOauthAppAccounts(
     orgId uuid.UUID,
     appName models.OauthAppNameEnum,
     body *models.AccountOauthAdd) (
-    http.Response,
+    models.ApiResponse[models.ResponseOauthAppLink],
     error)
 ```
 
@@ -42,7 +42,7 @@ AddOrgOauthAppAccounts(
 
 ## Response Type
 
-``
+[`models.ResponseOauthAppLink`](../../doc/models/containers/response-oauth-app-link.md)
 
 ## Example Usage
 
@@ -51,7 +51,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-appName := models.OauthAppNameEnum("mobicontrol")
+appName := models.OauthAppNameEnum("jamf")
 
 body := models.AccountOauthAddContainer.FromAccountJamfConfig(models.AccountJamfConfig{
     ClientId:             "client_id0",
@@ -60,11 +60,46 @@ body := models.AccountOauthAddContainer.FromAccountJamfConfig(models.AccountJamf
     SmartgroupName:       "CompliantGroup1",
 })
 
-resp, err := orgsLinkedApplications.AddOrgOauthAppAccounts(ctx, orgId, appName, &body)
+apiResponse, err := orgsLinkedApplications.AddOrgOauthAppAccounts(ctx, orgId, appName, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
-    fmt.Println(resp.StatusCode)
+    // Printing the result and response
+    responseBody := apiResponse.Data
+    if r, ok := responseBody.AsAccountOauthInfo(); ok {
+        fmt.Println("Value narrowed down to models.AccountOauthInfo: ", *r)
+    } else if r, ok := responseBody.AsAccountZdxInfo(); ok {
+        fmt.Println("Value narrowed down to models.AccountZdxInfo: ", *r)
+    }
+
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response
+
+```
+{
+  "accounts": [
+    {
+      "account_id": "ae9dee49-69e7-4710-a114-5b827a777738",
+      "last_status": "success",
+      "last_sync": 1665465339000,
+      "linked_by": "Testname1",
+      "linked_timestamp": 1728275689.284758,
+      "name": "Test Company1 Ltd"
+    },
+    {
+      "account_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
+      "error": "Get token failed, please re-link crowdstrike",
+      "last_status": "failed",
+      "last_sync": 1234567890123,
+      "linked_by": "Testname2",
+      "linked_timestamp": 1728275689.284758,
+      "name": "Test Company2 Ltd"
+    }
+  ],
+  "linked": true
 }
 ```
 
@@ -112,7 +147,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-appName := models.OauthAppNameEnum("mobicontrol")
+appName := models.OauthAppNameEnum("jamf")
 
 accountId := "iojzXIJWEuiD73ZvydOfg"
 
@@ -159,7 +194,7 @@ GetOrgOauthAppLinkedStatus(
 
 ## Response Type
 
-[`models.ResponseOauthAppLink`](../../doc/models/response-oauth-app-link.md)
+[`models.ResponseOauthAppLink`](../../doc/models/containers/response-oauth-app-link.md)
 
 ## Example Usage
 
@@ -168,7 +203,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-appName := models.OauthAppNameEnum("mobicontrol")
+appName := models.OauthAppNameEnum("jamf")
 
 forward := "forward6"
 
@@ -177,8 +212,41 @@ if err != nil {
     log.Fatalln(err)
 } else {
     // Printing the result and response
-    fmt.Println(apiResponse.Data)
+    responseBody := apiResponse.Data
+    if r, ok := responseBody.AsAccountOauthInfo(); ok {
+        fmt.Println("Value narrowed down to models.AccountOauthInfo: ", *r)
+    } else if r, ok := responseBody.AsAccountZdxInfo(); ok {
+        fmt.Println("Value narrowed down to models.AccountZdxInfo: ", *r)
+    }
+
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response
+
+```
+{
+  "accounts": [
+    {
+      "account_id": "ae9dee49-69e7-4710-a114-5b827a777738",
+      "last_status": "success",
+      "last_sync": 1665465339000,
+      "linked_by": "Testname1",
+      "linked_timestamp": 1728275689.284758,
+      "name": "Test Company1 Ltd"
+    },
+    {
+      "account_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
+      "error": "Get token failed, please re-link crowdstrike",
+      "last_status": "failed",
+      "last_sync": 1234567890123,
+      "linked_by": "Testname2",
+      "linked_timestamp": 1728275689.284758,
+      "name": "Test Company2 Ltd"
+    }
+  ],
+  "linked": true
 }
 ```
 
@@ -349,7 +417,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-appName := models.OauthAppNameEnum("mobicontrol")
+appName := models.OauthAppNameEnum("jamf")
 
 body := models.AccountOauthConfig{
     AccountId:            "iojzXIJWEuiD73ZvydOfg",

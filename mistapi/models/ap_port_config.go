@@ -11,8 +11,6 @@ type ApPortConfig struct {
     // optional dynamic vlan
     DynamicVlan          *ApPortConfigDynamicVlan         `json:"dynamic_vlan,omitempty"`
     EnableMacAuth        *bool                            `json:"enable_mac_auth,omitempty"`
-    // for some AP models, flow_control can be enabled to address some switch compatibility issue
-    FlowControl          *bool                            `json:"flow_control,omitempty"`
     // enum: `all`, `limited`, `mxtunnel`, `site_mxedge`, `wxtunnel`
     Forwarding           *ApPortConfigForwardingEnum      `json:"forwarding,omitempty"`
     // when `true`, we'll do dot1x then mac_auth. enable this to prefer mac_auth
@@ -51,7 +49,7 @@ func (a ApPortConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "disabled", "dynamic_vlan", "enable_mac_auth", "flow_control", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id"); err != nil {
+        "disabled", "dynamic_vlan", "enable_mac_auth", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -69,9 +67,6 @@ func (a ApPortConfig) toMap() map[string]any {
     }
     if a.EnableMacAuth != nil {
         structMap["enable_mac_auth"] = a.EnableMacAuth
-    }
-    if a.FlowControl != nil {
-        structMap["flow_control"] = a.FlowControl
     }
     if a.Forwarding != nil {
         structMap["forwarding"] = a.Forwarding
@@ -126,7 +121,7 @@ func (a *ApPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "dynamic_vlan", "enable_mac_auth", "flow_control", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "dynamic_vlan", "enable_mac_auth", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id")
     if err != nil {
     	return err
     }
@@ -135,7 +130,6 @@ func (a *ApPortConfig) UnmarshalJSON(input []byte) error {
     a.Disabled = temp.Disabled
     a.DynamicVlan = temp.DynamicVlan
     a.EnableMacAuth = temp.EnableMacAuth
-    a.FlowControl = temp.FlowControl
     a.Forwarding = temp.Forwarding
     a.MacAuthPreferred = temp.MacAuthPreferred
     a.MacAuthProtocol = temp.MacAuthProtocol
@@ -158,7 +152,6 @@ type tempApPortConfig  struct {
     Disabled         *bool                            `json:"disabled,omitempty"`
     DynamicVlan      *ApPortConfigDynamicVlan         `json:"dynamic_vlan,omitempty"`
     EnableMacAuth    *bool                            `json:"enable_mac_auth,omitempty"`
-    FlowControl      *bool                            `json:"flow_control,omitempty"`
     Forwarding       *ApPortConfigForwardingEnum      `json:"forwarding,omitempty"`
     MacAuthPreferred *bool                            `json:"mac_auth_preferred,omitempty"`
     MacAuthProtocol  *ApPortConfigMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`

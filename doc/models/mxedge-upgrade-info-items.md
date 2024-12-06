@@ -12,6 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Default` | `*bool` | Optional | - |
+| `Distro` | `*string` | Optional | - |
 | `Package` | `string` | Required | - |
 | `Version` | `string` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -21,6 +22,7 @@
 ```json
 {
   "default": false,
+  "distro": "distro4",
   "package": "package0",
   "version": "version4",
   "exampleAdditionalProperty": {

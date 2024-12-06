@@ -274,7 +274,7 @@ func TestOrgsMxEdgesTestGetOrgMxEdgeUpgradeInfo(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"default":true,"package":"mxagent","version":"2.4.100"},{"package":"tunterm","version":"1.0.0"}]`
+    expected := `[{"default":true,"distro":"bullseye","package":"mxagent","version":"2.4.100"},{"distro":"bullseye","package":"tunterm","version":"1.0.0"}]`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

@@ -67,6 +67,53 @@ func (o *OrgsLicenses) ClaimOrgLicense(
     return models.NewApiResponse(result, resp), err
 }
 
+// GetOrgLicenseAsyncClaimStatus takes context, orgId, detail as parameters and
+// returns an models.ApiResponse with models.ResponseAsyncLicense data and
+// an error if there was an issue with the request or response.
+// Get Processing Status for Async Claim
+func (o *OrgsLicenses) GetOrgLicenseAsyncClaimStatus(
+    ctx context.Context,
+    orgId uuid.UUID,
+    detail *bool) (
+    models.ApiResponse[models.ResponseAsyncLicense],
+    error) {
+    req := o.prepareRequest(
+      ctx,
+      "GET",
+      fmt.Sprintf("/api/v1/orgs/%v/claim/status", orgId),
+    )
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    if detail != nil {
+        req.QueryParam("detail", *detail)
+    }
+    
+    var result models.ResponseAsyncLicense
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.ResponseAsyncLicense](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
 // GetOrgLicencesSummary takes context, orgId as parameters and
 // returns an models.ApiResponse with models.License data and
 // an error if there was an issue with the request or response.

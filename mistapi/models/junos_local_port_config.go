@@ -51,6 +51,8 @@ type JunosLocalPortConfig struct {
     Mtu                                      *int                                     `json:"mtu,omitempty"`
     // Only if `mode`==`trunk`, the list of network/vlans
     Networks                                 []string                                 `json:"networks,omitempty"`
+    // Additional note for the port config override
+    Note                                     *string                                  `json:"note,omitempty"`
     // Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses
     PersistMac                               *bool                                    `json:"persist_mac,omitempty"`
     // whether PoE capabilities are disabled for a port
@@ -88,7 +90,7 @@ func (j JunosLocalPortConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(j.AdditionalProperties,
-        "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkonwn_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "usage", "use_vstp", "voip_network"); err != nil {
+        "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkonwn_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "note", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "usage", "use_vstp", "voip_network"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(j.toMap())
@@ -165,6 +167,9 @@ func (j JunosLocalPortConfig) toMap() map[string]any {
     if j.Networks != nil {
         structMap["networks"] = j.Networks
     }
+    if j.Note != nil {
+        structMap["note"] = j.Note
+    }
     if j.PersistMac != nil {
         structMap["persist_mac"] = j.PersistMac
     }
@@ -235,7 +240,7 @@ func (j *JunosLocalPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkonwn_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "usage", "use_vstp", "voip_network")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkonwn_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "note", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "usage", "use_vstp", "voip_network")
     if err != nil {
     	return err
     }
@@ -262,6 +267,7 @@ func (j *JunosLocalPortConfig) UnmarshalJSON(input []byte) error {
     j.Mode = temp.Mode
     j.Mtu = temp.Mtu
     j.Networks = temp.Networks
+    j.Note = temp.Note
     j.PersistMac = temp.PersistMac
     j.PoeDisabled = temp.PoeDisabled
     j.PortAuth = temp.PortAuth
@@ -303,6 +309,7 @@ type tempJunosLocalPortConfig  struct {
     Mode                                     *SwitchPortLocalUsageModeEnum            `json:"mode,omitempty"`
     Mtu                                      *int                                     `json:"mtu,omitempty"`
     Networks                                 []string                                 `json:"networks,omitempty"`
+    Note                                     *string                                  `json:"note,omitempty"`
     PersistMac                               *bool                                    `json:"persist_mac,omitempty"`
     PoeDisabled                              *bool                                    `json:"poe_disabled,omitempty"`
     PortAuth                                 Optional[SwitchPortLocalUsageDot1xEnum]  `json:"port_auth"`

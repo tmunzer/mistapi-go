@@ -12,6 +12,8 @@ type AccountOauthAdd struct {
     isAccountJamfConfig        bool
     isAccountVmwareConfig      bool
     isAccountMobicontrolConfig bool
+    isAccountZdxConfig         bool
+    isAccountCrowdstrikeConfig bool
 }
 
 // String converts the AccountOauthAdd object to a string representation.
@@ -42,6 +44,10 @@ func (a *AccountOauthAdd) toMap() any {
         return obj.toMap()
     case *AccountMobicontrolConfig:
         return obj.toMap()
+    case *AccountZdxConfig:
+        return obj.toMap()
+    case *AccountCrowdstrikeConfig:
+        return obj.toMap()
     }
     return nil
 }
@@ -53,6 +59,8 @@ func (a *AccountOauthAdd) UnmarshalJSON(input []byte) error {
         NewTypeHolder(&AccountJamfConfig{}, false, &a.isAccountJamfConfig),
         NewTypeHolder(&AccountVmwareConfig{}, false, &a.isAccountVmwareConfig),
         NewTypeHolder(&AccountMobicontrolConfig{}, false, &a.isAccountMobicontrolConfig),
+        NewTypeHolder(&AccountZdxConfig{}, false, &a.isAccountZdxConfig),
+        NewTypeHolder(&AccountCrowdstrikeConfig{}, false, &a.isAccountCrowdstrikeConfig),
     )
     
     a.value = result
@@ -86,6 +94,24 @@ func (a *AccountOauthAdd) AsAccountMobicontrolConfig() (
     return a.value.(*AccountMobicontrolConfig), true
 }
 
+func (a *AccountOauthAdd) AsAccountZdxConfig() (
+    *AccountZdxConfig,
+    bool) {
+    if !a.isAccountZdxConfig {
+        return nil, false
+    }
+    return a.value.(*AccountZdxConfig), true
+}
+
+func (a *AccountOauthAdd) AsAccountCrowdstrikeConfig() (
+    *AccountCrowdstrikeConfig,
+    bool) {
+    if !a.isAccountCrowdstrikeConfig {
+        return nil, false
+    }
+    return a.value.(*AccountCrowdstrikeConfig), true
+}
+
 // internalAccountOauthAdd represents a accountOauthAdd struct.
 type internalAccountOauthAdd struct {}
 
@@ -103,5 +129,15 @@ func (a *internalAccountOauthAdd) FromAccountVmwareConfig(val AccountVmwareConfi
 
 // The internalAccountOauthAdd instance, wrapping the provided AccountMobicontrolConfig value.
 func (a *internalAccountOauthAdd) FromAccountMobicontrolConfig(val AccountMobicontrolConfig) AccountOauthAdd {
+    return AccountOauthAdd{value: &val}
+}
+
+// The internalAccountOauthAdd instance, wrapping the provided AccountZdxConfig value.
+func (a *internalAccountOauthAdd) FromAccountZdxConfig(val AccountZdxConfig) AccountOauthAdd {
+    return AccountOauthAdd{value: &val}
+}
+
+// The internalAccountOauthAdd instance, wrapping the provided AccountCrowdstrikeConfig value.
+func (a *internalAccountOauthAdd) FromAccountCrowdstrikeConfig(val AccountCrowdstrikeConfig) AccountOauthAdd {
     return AccountOauthAdd{value: &val}
 }

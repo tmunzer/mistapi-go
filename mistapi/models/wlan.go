@@ -12,84 +12,90 @@ import (
 // **Note**: portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template.
 type Wlan struct {
     // enable coa-immediate-update and address-change-immediate-update on the access profile.
-    AcctImmediateUpdate                *bool                          `json:"acct_immediate_update,omitempty"`
+    AcctImmediateUpdate                  *bool                          `json:"acct_immediate_update,omitempty"`
     // how frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled
-    AcctInterimInterval                *int                           `json:"acct_interim_interval,omitempty"`
+    AcctInterimInterval                  *int                           `json:"acct_interim_interval,omitempty"`
     // list of RADIUS accounting servers, optional, order matters where the first one is treated as primary
-    AcctServers                        []RadiusAcctServer             `json:"acct_servers,omitempty"`
+    AcctServers                          []RadiusAcctServer             `json:"acct_servers,omitempty"`
     // airwatch wlan settings
-    Airwatch                           *WlanAirwatch                  `json:"airwatch,omitempty"`
+    Airwatch                             *WlanAirwatch                  `json:"airwatch,omitempty"`
     // only applicable when limit_bcast==true, which allows or disallows ipv6 Neighbor Discovery packets to go through
-    AllowIpv6Ndp                       *bool                          `json:"allow_ipv6_ndp,omitempty"`
+    AllowIpv6Ndp                         *bool                          `json:"allow_ipv6_ndp,omitempty"`
     // only applicable when limit_bcast==true, which allows mDNS / Bonjour packets to go through
-    AllowMdns                          *bool                          `json:"allow_mdns,omitempty"`
+    AllowMdns                            *bool                          `json:"allow_mdns,omitempty"`
     // only applicable when `limit_bcast`==`true`, which allows SSDP
-    AllowSsdp                          *bool                          `json:"allow_ssdp,omitempty"`
+    AllowSsdp                            *bool                          `json:"allow_ssdp,omitempty"`
     // list of device ids
-    ApIds                              Optional[[]uuid.UUID]          `json:"ap_ids"`
+    ApIds                                Optional[[]uuid.UUID]          `json:"ap_ids"`
     // bandwidth limiting for apps (applies to up/down)
-    AppLimit                           *WlanAppLimit                  `json:"app_limit,omitempty"`
+    AppLimit                             *WlanAppLimit                  `json:"app_limit,omitempty"`
     // app qos wlan settings
-    AppQos                             *WlanAppQos                    `json:"app_qos,omitempty"`
+    AppQos                               *WlanAppQos                    `json:"app_qos,omitempty"`
     // enum: `aps`, `site`, `wxtags`
-    ApplyTo                            *WlanApplyToEnum               `json:"apply_to,omitempty"`
+    ApplyTo                              *WlanApplyToEnum               `json:"apply_to,omitempty"`
     // whether to enable smart arp filter
-    ArpFilter                          *bool                          `json:"arp_filter,omitempty"`
+    ArpFilter                            *bool                          `json:"arp_filter,omitempty"`
     // authentication wlan settings
-    Auth                               *WlanAuth                      `json:"auth,omitempty"`
+    Auth                                 *WlanAuth                      `json:"auth,omitempty"`
     // When ordered, AP will prefer and go back to the first server if possible. enum: `ordered`, `unordered`
-    AuthServerSelection                *WlanAuthServerSelectionEnum   `json:"auth_server_selection,omitempty"`
+    AuthServerSelection                  *WlanAuthServerSelectionEnum   `json:"auth_server_selection,omitempty"`
     // list of RADIUS authentication servers, at least one is needed if `auth type`==`eap`, order matters where the first one is treated as primary
-    AuthServers                        []RadiusAuthServer             `json:"auth_servers,omitempty"`
+    AuthServers                          []RadiusAuthServer             `json:"auth_servers,omitempty"`
     // optional, up to 48 bytes, will be dynamically generated if not provided. used only for authentication servers
-    AuthServersNasId                   Optional[string]               `json:"auth_servers_nas_id"`
+    AuthServersNasId                     Optional[string]               `json:"auth_servers_nas_id"`
     // optional, NAS-IP-ADDRESS to use
-    AuthServersNasIp                   Optional[string]               `json:"auth_servers_nas_ip"`
+    AuthServersNasIp                     Optional[string]               `json:"auth_servers_nas_ip"`
     // radius auth session retries. Following fast timers are set if “fast_dot1x_timers” knob is enabled. ‘retries’  are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.
-    AuthServersRetries                 *int                           `json:"auth_servers_retries,omitempty"`
+    AuthServersRetries                   *int                           `json:"auth_servers_retries,omitempty"`
     // radius auth session timeout. Following fast timers are set if “fast_dot1x_timers” knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.
-    AuthServersTimeout                 *int                           `json:"auth_servers_timeout,omitempty"`
+    AuthServersTimeout                   *int                           `json:"auth_servers_timeout,omitempty"`
     // `band` is deprecated and kept for backward compability. Use bands instead
-    Band                               *string                        `json:"band,omitempty"`                                   // Deprecated
+    Band                                 *string                        `json:"band,omitempty"`                                     // Deprecated
     // whether to enable band_steering, this works only when band==both
-    BandSteer                          *bool                          `json:"band_steer,omitempty"`
+    BandSteer                            *bool                          `json:"band_steer,omitempty"`
     // force dual_band capable client to connect to 5G
-    BandSteerForceBand5                *bool                          `json:"band_steer_force_band5,omitempty"`
+    BandSteerForceBand5                  *bool                          `json:"band_steer_force_band5,omitempty"`
     // list of radios that the wlan should apply to.
-    Bands                              []Dot11BandEnum                `json:"bands,omitempty"`
+    Bands                                []Dot11BandEnum                `json:"bands,omitempty"`
     // whether to block the clients in the blacklist (up to first 256 macs)
-    BlockBlacklistClients              *bool                          `json:"block_blacklist_clients,omitempty"`
+    BlockBlacklistClients                *bool                          `json:"block_blacklist_clients,omitempty"`
     // bonjour gateway wlan settings
-    Bonjour                            *WlanBonjour                   `json:"bonjour,omitempty"`
+    Bonjour                              *WlanBonjour                   `json:"bonjour,omitempty"`
     // Cisco CWA (central web authentication) required RADIUS with COA in order to work. See CWA: https://www.cisco.com/c/en/us/support/docs/security/identity-services-engine/115732-central-web-auth-00.html
-    CiscoCwa                           *WlanCiscoCwa                  `json:"cisco_cwa,omitempty"`
+    CiscoCwa                             *WlanCiscoCwa                  `json:"cisco_cwa,omitempty"`
     // kbps
-    ClientLimitDown                    *int                           `json:"client_limit_down,omitempty"`
+    ClientLimitDown                      *int                           `json:"client_limit_down,omitempty"`
     // if downlink limiting per-client is enabled
-    ClientLimitDownEnabled             *bool                          `json:"client_limit_down_enabled,omitempty"`
+    ClientLimitDownEnabled               *bool                          `json:"client_limit_down_enabled,omitempty"`
     // kbps
-    ClientLimitUp                      *int                           `json:"client_limit_up,omitempty"`
+    ClientLimitUp                        *int                           `json:"client_limit_up,omitempty"`
     // if uplink limiting per-client is enabled
-    ClientLimitUpEnabled               *bool                          `json:"client_limit_up_enabled,omitempty"`
+    ClientLimitUpEnabled                 *bool                          `json:"client_limit_up_enabled,omitempty"`
     // list of COA (change of authorization) servers, optional
-    CoaServers                         Optional[[]CoaServer]          `json:"coa_servers"`
+    CoaServers                           Optional[[]CoaServer]          `json:"coa_servers"`
     // when the object has been created, in epoch
-    CreatedTime                        *float64                       `json:"created_time,omitempty"`
+    CreatedTime                          *float64                       `json:"created_time,omitempty"`
     // some old WLAN drivers may not be compatible
-    Disable11ax                        *bool                          `json:"disable_11ax,omitempty"`
+    Disable11ax                          *bool                          `json:"disable_11ax,omitempty"`
     // to disable ht or vht rates
-    DisableHtVhtRates                  *bool                          `json:"disable_ht_vht_rates,omitempty"`
+    DisableHtVhtRates                    *bool                          `json:"disable_ht_vht_rates,omitempty"`
     // whether to disable U-APSD
-    DisableUapsd                       *bool                          `json:"disable_uapsd,omitempty"`
+    DisableUapsd                         *bool                          `json:"disable_uapsd,omitempty"`
     // disable sending v2 roam notification messages
-    DisableV1RoamNotify                *bool                          `json:"disable_v1_roam_notify,omitempty"`
+    DisableV1RoamNotify                  *bool                          `json:"disable_v1_roam_notify,omitempty"`
     // disable sending v2 roam notification messages
-    DisableV2RoamNotify                *bool                          `json:"disable_v2_roam_notify,omitempty"`
+    DisableV2RoamNotify                  *bool                          `json:"disable_v2_roam_notify,omitempty"`
+    // when any of the following is true, this WLAN will be disabled
+    // * cannot get IP
+    // * cannot obtain default gateway
+    // * cannot reach default gateway
+    DisableWhenGatewayUnreachable        *bool                          `json:"disable_when_gateway_unreachable,omitempty"`
+    DisableWhenMxtunnelDown              *bool                          `json:"disable_when_mxtunnel_down,omitempty"`
     // whether to disable WMM
-    DisableWmm                         *bool                          `json:"disable_wmm,omitempty"`
+    DisableWmm                           *bool                          `json:"disable_wmm,omitempty"`
     // for radius_group-based DNS server (rewrite DNS request depending on the Group RADIUS server returns)
-    DnsServerRewrite                   Optional[WlanDnsServerRewrite] `json:"dns_server_rewrite"`
-    Dtim                               *int                           `json:"dtim,omitempty"`
+    DnsServerRewrite                     Optional[WlanDnsServerRewrite] `json:"dns_server_rewrite"`
+    Dtim                                 *int                           `json:"dtim,omitempty"`
     // for dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
     // * PSK will come from RADIUS server
     // * AP sends client MAC as username ans password (i.e. `enable_mac_auth` is assumed)
@@ -99,116 +105,118 @@ type Wlan struct {
     // * default_psk will be used if cloud WLC is not available
     // * `multi_psk_only` and `psk` is ignored
     // * `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap)
-    DynamicPsk                         Optional[WlanDynamicPsk]       `json:"dynamic_psk"`
+    DynamicPsk                           Optional[WlanDynamicPsk]       `json:"dynamic_psk"`
     // for 802.1x
-    DynamicVlan                        Optional[WlanDynamicVlan]      `json:"dynamic_vlan"`
+    DynamicVlan                          Optional[WlanDynamicVlan]      `json:"dynamic_vlan"`
     // enable AP-AP keycaching via multicast
-    EnableLocalKeycaching              *bool                          `json:"enable_local_keycaching,omitempty"`
+    EnableLocalKeycaching                *bool                          `json:"enable_local_keycaching,omitempty"`
     // by default, we'd inspect all DHCP packets and drop those unrelated to the wireless client itself in the case where client is a wireless bridge (DHCP packets for other MACs will need to be orwarded), wireless_bridging can be enabled
-    EnableWirelessBridging             *bool                          `json:"enable_wireless_bridging,omitempty"`
+    EnableWirelessBridging               *bool                          `json:"enable_wireless_bridging,omitempty"`
     // if the client bridge is doing DHCP on behalf of other devices (L2-NAT), enable dhcp_tracking will cut down DHCP response packets to be forwarded to wireless
-    EnableWirelessBridgingDhcpTracking *bool                          `json:"enable_wireless_bridging_dhcp_tracking,omitempty"`
+    EnableWirelessBridgingDhcpTracking   *bool                          `json:"enable_wireless_bridging_dhcp_tracking,omitempty"`
     // if this wlan is enabled
-    Enabled                            *bool                          `json:"enabled,omitempty"`
+    Enabled                              *bool                          `json:"enabled,omitempty"`
     // if set to true, sets default fast-timers with values calculated from ‘auth_servers_timeout’ and ‘auth_server_retries’ .
-    FastDot1xTimers                    *bool                          `json:"fast_dot1x_timers,omitempty"`
-    ForSite                            *bool                          `json:"for_site,omitempty"`
+    FastDot1xTimers                      *bool                          `json:"fast_dot1x_timers,omitempty"`
+    ForSite                              *bool                          `json:"for_site,omitempty"`
     // whether to hide SSID in beacon
-    HideSsid                           *bool                          `json:"hide_ssid,omitempty"`
+    HideSsid                             *bool                          `json:"hide_ssid,omitempty"`
     // include hostname inside IE in AP beacons / probe responses
-    HostnameIe                         *bool                          `json:"hostname_ie,omitempty"`
+    HostnameIe                           *bool                          `json:"hostname_ie,omitempty"`
     // hostspot 2.0 wlan settings
-    Hotspot20                          *WlanHotspot20                 `json:"hotspot20,omitempty"`
+    Hotspot20                            *WlanHotspot20                 `json:"hotspot20,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                                 *uuid.UUID                     `json:"id,omitempty"`
-    InjectDhcpOption82                 *WlanInjectDhcpOption82        `json:"inject_dhcp_option_82,omitempty"`
+    Id                                   *uuid.UUID                     `json:"id,omitempty"`
+    InjectDhcpOption82                   *WlanInjectDhcpOption82        `json:"inject_dhcp_option_82,omitempty"`
     // where this WLAN will be connected to. enum: `all`, `eth0`, `eth1`, `eth2`, `eth3`, `mxtunnel`, `site_mxedge`, `wxtunnel`
-    Interface                          *WlanInterfaceEnum             `json:"interface,omitempty"`
+    Interface                            *WlanInterfaceEnum             `json:"interface,omitempty"`
     // whether to stop clients to talk to each other
-    Isolation                          *bool                          `json:"isolation,omitempty"`
+    Isolation                            *bool                          `json:"isolation,omitempty"`
     // if isolation is enabled, whether to deny clients to talk to L2 on the LAN
-    L2Isolation                        *bool                          `json:"l2_isolation,omitempty"`
+    L2Isolation                          *bool                          `json:"l2_isolation,omitempty"`
     // legacy devices requires the Over-DS (for Fast BSS Transition) bit set (while our chip doesn’t support it). Warning! Enabling this will cause problem for iOS devices.
-    LegacyOverds                       *bool                          `json:"legacy_overds,omitempty"`
+    LegacyOverds                         *bool                          `json:"legacy_overds,omitempty"`
     // whether to limit broadcast packets going to wireless (i.e. only allow certain bcast packets to go through)
-    LimitBcast                         *bool                          `json:"limit_bcast,omitempty"`
+    LimitBcast                           *bool                          `json:"limit_bcast,omitempty"`
     // limit probe response base on some heuristic rules
-    LimitProbeResponse                 *bool                          `json:"limit_probe_response,omitempty"`
+    LimitProbeResponse                   *bool                          `json:"limit_probe_response,omitempty"`
     // max idle time in seconds
-    MaxIdletime                        *int                           `json:"max_idletime,omitempty"`
+    MaxIdletime                          *int                           `json:"max_idletime,omitempty"`
     // maximum number of client connected to the SSID. `0` means unlimited
-    MaxNumClients                      *int                           `json:"max_num_clients,omitempty"`
-    MistNac                            *WlanMistNac                   `json:"mist_nac,omitempty"`
+    MaxNumClients                        *int                           `json:"max_num_clients,omitempty"`
+    MistNac                              *WlanMistNac                   `json:"mist_nac,omitempty"`
     // when the object has been modified for the last time, in epoch
-    ModifiedTime                       *float64                       `json:"modified_time,omitempty"`
-    MspId                              *uuid.UUID                     `json:"msp_id,omitempty"`
+    ModifiedTime                         *float64                       `json:"modified_time,omitempty"`
+    MspId                                *uuid.UUID                     `json:"msp_id,omitempty"`
     // (deprecated, use mxtunnel_ids instead) when `interface`==`mxtunnel`, id of the Mist Tunnel
-    MxtunnelId                         *uuid.UUID                     `json:"mxtunnel_id,omitempty"`                            // Deprecated
+    MxtunnelId                           *uuid.UUID                     `json:"mxtunnel_id,omitempty"`                              // Deprecated
     // when `interface`=`mxtunnel`, id of the Mist Tunnel
-    MxtunnelIds                        []string                       `json:"mxtunnel_ids,omitempty"`
+    MxtunnelIds                          []string                       `json:"mxtunnel_ids,omitempty"`
     // when `interface`=`site_medge`, name of the mxtunnel that in mxtunnels under Site Setting
-    MxtunnelName                       []string                       `json:"mxtunnel_name,omitempty"`
+    MxtunnelName                         []string                       `json:"mxtunnel_name,omitempty"`
     // whether to only allow client to use DNS that we’ve learned from DHCP response
-    NoStaticDns                        *bool                          `json:"no_static_dns,omitempty"`
+    NoStaticDns                          *bool                          `json:"no_static_dns,omitempty"`
     // whether to only allow client that we’ve learned from DHCP exchange to talk
-    NoStaticIp                         *bool                          `json:"no_static_ip,omitempty"`
-    OrgId                              *uuid.UUID                     `json:"org_id,omitempty"`
+    NoStaticIp                           *bool                          `json:"no_static_ip,omitempty"`
+    OrgId                                *uuid.UUID                     `json:"org_id,omitempty"`
     // portal wlan settings
-    Portal                             *WlanPortal                    `json:"portal,omitempty"`
+    Portal                               *WlanPortal                    `json:"portal,omitempty"`
     // list of hostnames without http(s):// (matched by substring)
-    PortalAllowedHostnames             []string                       `json:"portal_allowed_hostnames,omitempty"`
+    PortalAllowedHostnames               []string                       `json:"portal_allowed_hostnames,omitempty"`
     // list of CIDRs
-    PortalAllowedSubnets               []string                       `json:"portal_allowed_subnets,omitempty"`
+    PortalAllowedSubnets                 []string                       `json:"portal_allowed_subnets,omitempty"`
     // api secret (auto-generated) that can be used to sign guest authorization requests
-    PortalApiSecret                    Optional[string]               `json:"portal_api_secret"`
+    PortalApiSecret                      Optional[string]               `json:"portal_api_secret"`
     // list of hostnames without http(s):// (matched by substring), this takes precedence over portal_allowed_hostnames
-    PortalDeniedHostnames              []string                       `json:"portal_denied_hostnames,omitempty"`
+    PortalDeniedHostnames                []string                       `json:"portal_denied_hostnames,omitempty"`
     // Url of portal background image
-    PortalImage                        Optional[string]               `json:"portal_image"`
-    PortalSsoUrl                       Optional[string]               `json:"portal_sso_url"`
+    PortalImage                          Optional[string]               `json:"portal_image"`
+    PortalSsoUrl                         Optional[string]               `json:"portal_sso_url"`
     // N.B portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template.
-    PortalTemplateUrl                  Optional[string]               `json:"portal_template_url"`
-    Qos                                *WlanQos                       `json:"qos,omitempty"`
+    PortalTemplateUrl                    Optional[string]               `json:"portal_template_url"`
+    Qos                                  *WlanQos                       `json:"qos,omitempty"`
     // Radsec settings
-    Radsec                             *Radsec                        `json:"radsec,omitempty"`
+    Radsec                               *Radsec                        `json:"radsec,omitempty"`
     // Property key is the RF band. enum: `24`, `5`, `6`
-    Rateset                            map[string]WlanDatarates       `json:"rateset,omitempty"`
+    Rateset                              map[string]WlanDatarates       `json:"rateset,omitempty"`
+    // when different mxcluster is on different subnet, we'd want to disconnect clients (so they'll reconnect and get new IPs)
+    ReconnectClientsWhenRoamingMxcluster *bool                          `json:"reconnect_clients_when_roaming_mxcluster,omitempty"`
     // enum: `11r`, `OKC`, `NONE`
-    RoamMode                           *WlanRoamModeEnum              `json:"roam_mode,omitempty"`
+    RoamMode                             *WlanRoamModeEnum              `json:"roam_mode,omitempty"`
     // WLAN operating schedule, default is disabled
-    Schedule                           *WlanSchedule                  `json:"schedule,omitempty"`
-    SiteId                             *uuid.UUID                     `json:"site_id,omitempty"`
+    Schedule                             *WlanSchedule                  `json:"schedule,omitempty"`
+    SiteId                               *uuid.UUID                     `json:"site_id,omitempty"`
     // whether to exclude this WLAN from SLE metrics
-    SleExcluded                        *bool                          `json:"sle_excluded,omitempty"`
+    SleExcluded                          *bool                          `json:"sle_excluded,omitempty"`
     // the name of the SSID
-    Ssid                               string                         `json:"ssid"`
-    TemplateId                         Optional[uuid.UUID]            `json:"template_id"`
+    Ssid                                 string                         `json:"ssid"`
+    TemplateId                           Optional[uuid.UUID]            `json:"template_id"`
     // Url of portal background image thumbnail
-    Thumbnail                          Optional[string]               `json:"thumbnail"`
+    Thumbnail                            Optional[string]               `json:"thumbnail"`
     // if `auth.type`==’eap’ or ‘psk’, should only be set for legacy client, such as pre-2004, 802.11b devices
-    UseEapolV1                         *bool                          `json:"use_eapol_v1,omitempty"`
+    UseEapolV1                           *bool                          `json:"use_eapol_v1,omitempty"`
     // if vlan tagging is enabled
-    VlanEnabled                        *bool                          `json:"vlan_enabled,omitempty"`
-    VlanId                             *VlanIdWithVariable            `json:"vlan_id,omitempty"`
+    VlanEnabled                          *bool                          `json:"vlan_enabled,omitempty"`
+    VlanId                               *VlanIdWithVariable            `json:"vlan_id,omitempty"`
     // vlan_ids to use when there’s no match from RA
-    VlanIds                            []VlanIdWithVariable           `json:"vlan_ids,omitempty"`
+    VlanIds                              []VlanIdWithVariable           `json:"vlan_ids,omitempty"`
     // vlan pooling allows AP to place client on different VLAN using a deterministic algorithm
-    VlanPooling                        *bool                          `json:"vlan_pooling,omitempty"`
+    VlanPooling                          *bool                          `json:"vlan_pooling,omitempty"`
     // kbps
-    WlanLimitDown                      Optional[int]                  `json:"wlan_limit_down"`
+    WlanLimitDown                        Optional[int]                  `json:"wlan_limit_down"`
     // if downlink limiting for whole wlan is enabled
-    WlanLimitDownEnabled               *bool                          `json:"wlan_limit_down_enabled,omitempty"`
+    WlanLimitDownEnabled                 *bool                          `json:"wlan_limit_down_enabled,omitempty"`
     // kbps
-    WlanLimitUp                        Optional[int]                  `json:"wlan_limit_up"`
+    WlanLimitUp                          Optional[int]                  `json:"wlan_limit_up"`
     // if uplink limiting for whole wlan is enabled
-    WlanLimitUpEnabled                 *bool                          `json:"wlan_limit_up_enabled,omitempty"`
+    WlanLimitUpEnabled                   *bool                          `json:"wlan_limit_up_enabled,omitempty"`
     // list of wxtag_ids
-    WxtagIds                           Optional[[]uuid.UUID]          `json:"wxtag_ids"`
+    WxtagIds                             Optional[[]uuid.UUID]          `json:"wxtag_ids"`
     // when `interface`=`wxtunnel`, id of the WXLAN Tunnel
-    WxtunnelId                         Optional[string]               `json:"wxtunnel_id"`
+    WxtunnelId                           Optional[string]               `json:"wxtunnel_id"`
     // when `interface`=`wxtunnel`, remote tunnel identifier
-    WxtunnelRemoteId                   Optional[string]               `json:"wxtunnel_remote_id"`
-    AdditionalProperties               map[string]interface{}         `json:"_"`
+    WxtunnelRemoteId                     Optional[string]               `json:"wxtunnel_remote_id"`
+    AdditionalProperties                 map[string]interface{}         `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for Wlan.
@@ -217,7 +225,7 @@ func (w Wlan) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(w.AdditionalProperties,
-        "acct_immediate_update", "acct_interim_interval", "acct_servers", "airwatch", "allow_ipv6_ndp", "allow_mdns", "allow_ssdp", "ap_ids", "app_limit", "app_qos", "apply_to", "arp_filter", "auth", "auth_server_selection", "auth_servers", "auth_servers_nas_id", "auth_servers_nas_ip", "auth_servers_retries", "auth_servers_timeout", "band", "band_steer", "band_steer_force_band5", "bands", "block_blacklist_clients", "bonjour", "cisco_cwa", "client_limit_down", "client_limit_down_enabled", "client_limit_up", "client_limit_up_enabled", "coa_servers", "created_time", "disable_11ax", "disable_ht_vht_rates", "disable_uapsd", "disable_v1_roam_notify", "disable_v2_roam_notify", "disable_wmm", "dns_server_rewrite", "dtim", "dynamic_psk", "dynamic_vlan", "enable_local_keycaching", "enable_wireless_bridging", "enable_wireless_bridging_dhcp_tracking", "enabled", "fast_dot1x_timers", "for_site", "hide_ssid", "hostname_ie", "hotspot20", "id", "inject_dhcp_option_82", "interface", "isolation", "l2_isolation", "legacy_overds", "limit_bcast", "limit_probe_response", "max_idletime", "max_num_clients", "mist_nac", "modified_time", "msp_id", "mxtunnel_id", "mxtunnel_ids", "mxtunnel_name", "no_static_dns", "no_static_ip", "org_id", "portal", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_api_secret", "portal_denied_hostnames", "portal_image", "portal_sso_url", "portal_template_url", "qos", "radsec", "rateset", "roam_mode", "schedule", "site_id", "sle_excluded", "ssid", "template_id", "thumbnail", "use_eapol_v1", "vlan_enabled", "vlan_id", "vlan_ids", "vlan_pooling", "wlan_limit_down", "wlan_limit_down_enabled", "wlan_limit_up", "wlan_limit_up_enabled", "wxtag_ids", "wxtunnel_id", "wxtunnel_remote_id"); err != nil {
+        "acct_immediate_update", "acct_interim_interval", "acct_servers", "airwatch", "allow_ipv6_ndp", "allow_mdns", "allow_ssdp", "ap_ids", "app_limit", "app_qos", "apply_to", "arp_filter", "auth", "auth_server_selection", "auth_servers", "auth_servers_nas_id", "auth_servers_nas_ip", "auth_servers_retries", "auth_servers_timeout", "band", "band_steer", "band_steer_force_band5", "bands", "block_blacklist_clients", "bonjour", "cisco_cwa", "client_limit_down", "client_limit_down_enabled", "client_limit_up", "client_limit_up_enabled", "coa_servers", "created_time", "disable_11ax", "disable_ht_vht_rates", "disable_uapsd", "disable_v1_roam_notify", "disable_v2_roam_notify", "disable_when_gateway_unreachable", "disable_when_mxtunnel_down", "disable_wmm", "dns_server_rewrite", "dtim", "dynamic_psk", "dynamic_vlan", "enable_local_keycaching", "enable_wireless_bridging", "enable_wireless_bridging_dhcp_tracking", "enabled", "fast_dot1x_timers", "for_site", "hide_ssid", "hostname_ie", "hotspot20", "id", "inject_dhcp_option_82", "interface", "isolation", "l2_isolation", "legacy_overds", "limit_bcast", "limit_probe_response", "max_idletime", "max_num_clients", "mist_nac", "modified_time", "msp_id", "mxtunnel_id", "mxtunnel_ids", "mxtunnel_name", "no_static_dns", "no_static_ip", "org_id", "portal", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_api_secret", "portal_denied_hostnames", "portal_image", "portal_sso_url", "portal_template_url", "qos", "radsec", "rateset", "reconnect_clients_when_roaming_mxcluster", "roam_mode", "schedule", "site_id", "sle_excluded", "ssid", "template_id", "thumbnail", "use_eapol_v1", "vlan_enabled", "vlan_id", "vlan_ids", "vlan_pooling", "wlan_limit_down", "wlan_limit_down_enabled", "wlan_limit_up", "wlan_limit_up_enabled", "wxtag_ids", "wxtunnel_id", "wxtunnel_remote_id"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(w.toMap())
@@ -353,6 +361,12 @@ func (w Wlan) toMap() map[string]any {
     }
     if w.DisableV2RoamNotify != nil {
         structMap["disable_v2_roam_notify"] = w.DisableV2RoamNotify
+    }
+    if w.DisableWhenGatewayUnreachable != nil {
+        structMap["disable_when_gateway_unreachable"] = w.DisableWhenGatewayUnreachable
+    }
+    if w.DisableWhenMxtunnelDown != nil {
+        structMap["disable_when_mxtunnel_down"] = w.DisableWhenMxtunnelDown
     }
     if w.DisableWmm != nil {
         structMap["disable_wmm"] = w.DisableWmm
@@ -514,6 +528,9 @@ func (w Wlan) toMap() map[string]any {
     if w.Rateset != nil {
         structMap["rateset"] = w.Rateset
     }
+    if w.ReconnectClientsWhenRoamingMxcluster != nil {
+        structMap["reconnect_clients_when_roaming_mxcluster"] = w.ReconnectClientsWhenRoamingMxcluster
+    }
     if w.RoamMode != nil {
         structMap["roam_mode"] = w.RoamMode
     }
@@ -612,7 +629,7 @@ func (w *Wlan) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acct_immediate_update", "acct_interim_interval", "acct_servers", "airwatch", "allow_ipv6_ndp", "allow_mdns", "allow_ssdp", "ap_ids", "app_limit", "app_qos", "apply_to", "arp_filter", "auth", "auth_server_selection", "auth_servers", "auth_servers_nas_id", "auth_servers_nas_ip", "auth_servers_retries", "auth_servers_timeout", "band", "band_steer", "band_steer_force_band5", "bands", "block_blacklist_clients", "bonjour", "cisco_cwa", "client_limit_down", "client_limit_down_enabled", "client_limit_up", "client_limit_up_enabled", "coa_servers", "created_time", "disable_11ax", "disable_ht_vht_rates", "disable_uapsd", "disable_v1_roam_notify", "disable_v2_roam_notify", "disable_wmm", "dns_server_rewrite", "dtim", "dynamic_psk", "dynamic_vlan", "enable_local_keycaching", "enable_wireless_bridging", "enable_wireless_bridging_dhcp_tracking", "enabled", "fast_dot1x_timers", "for_site", "hide_ssid", "hostname_ie", "hotspot20", "id", "inject_dhcp_option_82", "interface", "isolation", "l2_isolation", "legacy_overds", "limit_bcast", "limit_probe_response", "max_idletime", "max_num_clients", "mist_nac", "modified_time", "msp_id", "mxtunnel_id", "mxtunnel_ids", "mxtunnel_name", "no_static_dns", "no_static_ip", "org_id", "portal", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_api_secret", "portal_denied_hostnames", "portal_image", "portal_sso_url", "portal_template_url", "qos", "radsec", "rateset", "roam_mode", "schedule", "site_id", "sle_excluded", "ssid", "template_id", "thumbnail", "use_eapol_v1", "vlan_enabled", "vlan_id", "vlan_ids", "vlan_pooling", "wlan_limit_down", "wlan_limit_down_enabled", "wlan_limit_up", "wlan_limit_up_enabled", "wxtag_ids", "wxtunnel_id", "wxtunnel_remote_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acct_immediate_update", "acct_interim_interval", "acct_servers", "airwatch", "allow_ipv6_ndp", "allow_mdns", "allow_ssdp", "ap_ids", "app_limit", "app_qos", "apply_to", "arp_filter", "auth", "auth_server_selection", "auth_servers", "auth_servers_nas_id", "auth_servers_nas_ip", "auth_servers_retries", "auth_servers_timeout", "band", "band_steer", "band_steer_force_band5", "bands", "block_blacklist_clients", "bonjour", "cisco_cwa", "client_limit_down", "client_limit_down_enabled", "client_limit_up", "client_limit_up_enabled", "coa_servers", "created_time", "disable_11ax", "disable_ht_vht_rates", "disable_uapsd", "disable_v1_roam_notify", "disable_v2_roam_notify", "disable_when_gateway_unreachable", "disable_when_mxtunnel_down", "disable_wmm", "dns_server_rewrite", "dtim", "dynamic_psk", "dynamic_vlan", "enable_local_keycaching", "enable_wireless_bridging", "enable_wireless_bridging_dhcp_tracking", "enabled", "fast_dot1x_timers", "for_site", "hide_ssid", "hostname_ie", "hotspot20", "id", "inject_dhcp_option_82", "interface", "isolation", "l2_isolation", "legacy_overds", "limit_bcast", "limit_probe_response", "max_idletime", "max_num_clients", "mist_nac", "modified_time", "msp_id", "mxtunnel_id", "mxtunnel_ids", "mxtunnel_name", "no_static_dns", "no_static_ip", "org_id", "portal", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_api_secret", "portal_denied_hostnames", "portal_image", "portal_sso_url", "portal_template_url", "qos", "radsec", "rateset", "reconnect_clients_when_roaming_mxcluster", "roam_mode", "schedule", "site_id", "sle_excluded", "ssid", "template_id", "thumbnail", "use_eapol_v1", "vlan_enabled", "vlan_id", "vlan_ids", "vlan_pooling", "wlan_limit_down", "wlan_limit_down_enabled", "wlan_limit_up", "wlan_limit_up_enabled", "wxtag_ids", "wxtunnel_id", "wxtunnel_remote_id")
     if err != nil {
     	return err
     }
@@ -655,6 +672,8 @@ func (w *Wlan) UnmarshalJSON(input []byte) error {
     w.DisableUapsd = temp.DisableUapsd
     w.DisableV1RoamNotify = temp.DisableV1RoamNotify
     w.DisableV2RoamNotify = temp.DisableV2RoamNotify
+    w.DisableWhenGatewayUnreachable = temp.DisableWhenGatewayUnreachable
+    w.DisableWhenMxtunnelDown = temp.DisableWhenMxtunnelDown
     w.DisableWmm = temp.DisableWmm
     w.DnsServerRewrite = temp.DnsServerRewrite
     w.Dtim = temp.Dtim
@@ -699,6 +718,7 @@ func (w *Wlan) UnmarshalJSON(input []byte) error {
     w.Qos = temp.Qos
     w.Radsec = temp.Radsec
     w.Rateset = temp.Rateset
+    w.ReconnectClientsWhenRoamingMxcluster = temp.ReconnectClientsWhenRoamingMxcluster
     w.RoamMode = temp.RoamMode
     w.Schedule = temp.Schedule
     w.SiteId = temp.SiteId
@@ -723,106 +743,109 @@ func (w *Wlan) UnmarshalJSON(input []byte) error {
 
 // tempWlan is a temporary struct used for validating the fields of Wlan.
 type tempWlan  struct {
-    AcctImmediateUpdate                *bool                          `json:"acct_immediate_update,omitempty"`
-    AcctInterimInterval                *int                           `json:"acct_interim_interval,omitempty"`
-    AcctServers                        []RadiusAcctServer             `json:"acct_servers,omitempty"`
-    Airwatch                           *WlanAirwatch                  `json:"airwatch,omitempty"`
-    AllowIpv6Ndp                       *bool                          `json:"allow_ipv6_ndp,omitempty"`
-    AllowMdns                          *bool                          `json:"allow_mdns,omitempty"`
-    AllowSsdp                          *bool                          `json:"allow_ssdp,omitempty"`
-    ApIds                              Optional[[]uuid.UUID]          `json:"ap_ids"`
-    AppLimit                           *WlanAppLimit                  `json:"app_limit,omitempty"`
-    AppQos                             *WlanAppQos                    `json:"app_qos,omitempty"`
-    ApplyTo                            *WlanApplyToEnum               `json:"apply_to,omitempty"`
-    ArpFilter                          *bool                          `json:"arp_filter,omitempty"`
-    Auth                               *WlanAuth                      `json:"auth,omitempty"`
-    AuthServerSelection                *WlanAuthServerSelectionEnum   `json:"auth_server_selection,omitempty"`
-    AuthServers                        []RadiusAuthServer             `json:"auth_servers,omitempty"`
-    AuthServersNasId                   Optional[string]               `json:"auth_servers_nas_id"`
-    AuthServersNasIp                   Optional[string]               `json:"auth_servers_nas_ip"`
-    AuthServersRetries                 *int                           `json:"auth_servers_retries,omitempty"`
-    AuthServersTimeout                 *int                           `json:"auth_servers_timeout,omitempty"`
-    Band                               *string                        `json:"band,omitempty"`
-    BandSteer                          *bool                          `json:"band_steer,omitempty"`
-    BandSteerForceBand5                *bool                          `json:"band_steer_force_band5,omitempty"`
-    Bands                              []Dot11BandEnum                `json:"bands,omitempty"`
-    BlockBlacklistClients              *bool                          `json:"block_blacklist_clients,omitempty"`
-    Bonjour                            *WlanBonjour                   `json:"bonjour,omitempty"`
-    CiscoCwa                           *WlanCiscoCwa                  `json:"cisco_cwa,omitempty"`
-    ClientLimitDown                    *int                           `json:"client_limit_down,omitempty"`
-    ClientLimitDownEnabled             *bool                          `json:"client_limit_down_enabled,omitempty"`
-    ClientLimitUp                      *int                           `json:"client_limit_up,omitempty"`
-    ClientLimitUpEnabled               *bool                          `json:"client_limit_up_enabled,omitempty"`
-    CoaServers                         Optional[[]CoaServer]          `json:"coa_servers"`
-    CreatedTime                        *float64                       `json:"created_time,omitempty"`
-    Disable11ax                        *bool                          `json:"disable_11ax,omitempty"`
-    DisableHtVhtRates                  *bool                          `json:"disable_ht_vht_rates,omitempty"`
-    DisableUapsd                       *bool                          `json:"disable_uapsd,omitempty"`
-    DisableV1RoamNotify                *bool                          `json:"disable_v1_roam_notify,omitempty"`
-    DisableV2RoamNotify                *bool                          `json:"disable_v2_roam_notify,omitempty"`
-    DisableWmm                         *bool                          `json:"disable_wmm,omitempty"`
-    DnsServerRewrite                   Optional[WlanDnsServerRewrite] `json:"dns_server_rewrite"`
-    Dtim                               *int                           `json:"dtim,omitempty"`
-    DynamicPsk                         Optional[WlanDynamicPsk]       `json:"dynamic_psk"`
-    DynamicVlan                        Optional[WlanDynamicVlan]      `json:"dynamic_vlan"`
-    EnableLocalKeycaching              *bool                          `json:"enable_local_keycaching,omitempty"`
-    EnableWirelessBridging             *bool                          `json:"enable_wireless_bridging,omitempty"`
-    EnableWirelessBridgingDhcpTracking *bool                          `json:"enable_wireless_bridging_dhcp_tracking,omitempty"`
-    Enabled                            *bool                          `json:"enabled,omitempty"`
-    FastDot1xTimers                    *bool                          `json:"fast_dot1x_timers,omitempty"`
-    ForSite                            *bool                          `json:"for_site,omitempty"`
-    HideSsid                           *bool                          `json:"hide_ssid,omitempty"`
-    HostnameIe                         *bool                          `json:"hostname_ie,omitempty"`
-    Hotspot20                          *WlanHotspot20                 `json:"hotspot20,omitempty"`
-    Id                                 *uuid.UUID                     `json:"id,omitempty"`
-    InjectDhcpOption82                 *WlanInjectDhcpOption82        `json:"inject_dhcp_option_82,omitempty"`
-    Interface                          *WlanInterfaceEnum             `json:"interface,omitempty"`
-    Isolation                          *bool                          `json:"isolation,omitempty"`
-    L2Isolation                        *bool                          `json:"l2_isolation,omitempty"`
-    LegacyOverds                       *bool                          `json:"legacy_overds,omitempty"`
-    LimitBcast                         *bool                          `json:"limit_bcast,omitempty"`
-    LimitProbeResponse                 *bool                          `json:"limit_probe_response,omitempty"`
-    MaxIdletime                        *int                           `json:"max_idletime,omitempty"`
-    MaxNumClients                      *int                           `json:"max_num_clients,omitempty"`
-    MistNac                            *WlanMistNac                   `json:"mist_nac,omitempty"`
-    ModifiedTime                       *float64                       `json:"modified_time,omitempty"`
-    MspId                              *uuid.UUID                     `json:"msp_id,omitempty"`
-    MxtunnelId                         *uuid.UUID                     `json:"mxtunnel_id,omitempty"`
-    MxtunnelIds                        []string                       `json:"mxtunnel_ids,omitempty"`
-    MxtunnelName                       []string                       `json:"mxtunnel_name,omitempty"`
-    NoStaticDns                        *bool                          `json:"no_static_dns,omitempty"`
-    NoStaticIp                         *bool                          `json:"no_static_ip,omitempty"`
-    OrgId                              *uuid.UUID                     `json:"org_id,omitempty"`
-    Portal                             *WlanPortal                    `json:"portal,omitempty"`
-    PortalAllowedHostnames             []string                       `json:"portal_allowed_hostnames,omitempty"`
-    PortalAllowedSubnets               []string                       `json:"portal_allowed_subnets,omitempty"`
-    PortalApiSecret                    Optional[string]               `json:"portal_api_secret"`
-    PortalDeniedHostnames              []string                       `json:"portal_denied_hostnames,omitempty"`
-    PortalImage                        Optional[string]               `json:"portal_image"`
-    PortalSsoUrl                       Optional[string]               `json:"portal_sso_url"`
-    PortalTemplateUrl                  Optional[string]               `json:"portal_template_url"`
-    Qos                                *WlanQos                       `json:"qos,omitempty"`
-    Radsec                             *Radsec                        `json:"radsec,omitempty"`
-    Rateset                            map[string]WlanDatarates       `json:"rateset,omitempty"`
-    RoamMode                           *WlanRoamModeEnum              `json:"roam_mode,omitempty"`
-    Schedule                           *WlanSchedule                  `json:"schedule,omitempty"`
-    SiteId                             *uuid.UUID                     `json:"site_id,omitempty"`
-    SleExcluded                        *bool                          `json:"sle_excluded,omitempty"`
-    Ssid                               *string                        `json:"ssid"`
-    TemplateId                         Optional[uuid.UUID]            `json:"template_id"`
-    Thumbnail                          Optional[string]               `json:"thumbnail"`
-    UseEapolV1                         *bool                          `json:"use_eapol_v1,omitempty"`
-    VlanEnabled                        *bool                          `json:"vlan_enabled,omitempty"`
-    VlanId                             *VlanIdWithVariable            `json:"vlan_id,omitempty"`
-    VlanIds                            []VlanIdWithVariable           `json:"vlan_ids,omitempty"`
-    VlanPooling                        *bool                          `json:"vlan_pooling,omitempty"`
-    WlanLimitDown                      Optional[int]                  `json:"wlan_limit_down"`
-    WlanLimitDownEnabled               *bool                          `json:"wlan_limit_down_enabled,omitempty"`
-    WlanLimitUp                        Optional[int]                  `json:"wlan_limit_up"`
-    WlanLimitUpEnabled                 *bool                          `json:"wlan_limit_up_enabled,omitempty"`
-    WxtagIds                           Optional[[]uuid.UUID]          `json:"wxtag_ids"`
-    WxtunnelId                         Optional[string]               `json:"wxtunnel_id"`
-    WxtunnelRemoteId                   Optional[string]               `json:"wxtunnel_remote_id"`
+    AcctImmediateUpdate                  *bool                          `json:"acct_immediate_update,omitempty"`
+    AcctInterimInterval                  *int                           `json:"acct_interim_interval,omitempty"`
+    AcctServers                          []RadiusAcctServer             `json:"acct_servers,omitempty"`
+    Airwatch                             *WlanAirwatch                  `json:"airwatch,omitempty"`
+    AllowIpv6Ndp                         *bool                          `json:"allow_ipv6_ndp,omitempty"`
+    AllowMdns                            *bool                          `json:"allow_mdns,omitempty"`
+    AllowSsdp                            *bool                          `json:"allow_ssdp,omitempty"`
+    ApIds                                Optional[[]uuid.UUID]          `json:"ap_ids"`
+    AppLimit                             *WlanAppLimit                  `json:"app_limit,omitempty"`
+    AppQos                               *WlanAppQos                    `json:"app_qos,omitempty"`
+    ApplyTo                              *WlanApplyToEnum               `json:"apply_to,omitempty"`
+    ArpFilter                            *bool                          `json:"arp_filter,omitempty"`
+    Auth                                 *WlanAuth                      `json:"auth,omitempty"`
+    AuthServerSelection                  *WlanAuthServerSelectionEnum   `json:"auth_server_selection,omitempty"`
+    AuthServers                          []RadiusAuthServer             `json:"auth_servers,omitempty"`
+    AuthServersNasId                     Optional[string]               `json:"auth_servers_nas_id"`
+    AuthServersNasIp                     Optional[string]               `json:"auth_servers_nas_ip"`
+    AuthServersRetries                   *int                           `json:"auth_servers_retries,omitempty"`
+    AuthServersTimeout                   *int                           `json:"auth_servers_timeout,omitempty"`
+    Band                                 *string                        `json:"band,omitempty"`
+    BandSteer                            *bool                          `json:"band_steer,omitempty"`
+    BandSteerForceBand5                  *bool                          `json:"band_steer_force_band5,omitempty"`
+    Bands                                []Dot11BandEnum                `json:"bands,omitempty"`
+    BlockBlacklistClients                *bool                          `json:"block_blacklist_clients,omitempty"`
+    Bonjour                              *WlanBonjour                   `json:"bonjour,omitempty"`
+    CiscoCwa                             *WlanCiscoCwa                  `json:"cisco_cwa,omitempty"`
+    ClientLimitDown                      *int                           `json:"client_limit_down,omitempty"`
+    ClientLimitDownEnabled               *bool                          `json:"client_limit_down_enabled,omitempty"`
+    ClientLimitUp                        *int                           `json:"client_limit_up,omitempty"`
+    ClientLimitUpEnabled                 *bool                          `json:"client_limit_up_enabled,omitempty"`
+    CoaServers                           Optional[[]CoaServer]          `json:"coa_servers"`
+    CreatedTime                          *float64                       `json:"created_time,omitempty"`
+    Disable11ax                          *bool                          `json:"disable_11ax,omitempty"`
+    DisableHtVhtRates                    *bool                          `json:"disable_ht_vht_rates,omitempty"`
+    DisableUapsd                         *bool                          `json:"disable_uapsd,omitempty"`
+    DisableV1RoamNotify                  *bool                          `json:"disable_v1_roam_notify,omitempty"`
+    DisableV2RoamNotify                  *bool                          `json:"disable_v2_roam_notify,omitempty"`
+    DisableWhenGatewayUnreachable        *bool                          `json:"disable_when_gateway_unreachable,omitempty"`
+    DisableWhenMxtunnelDown              *bool                          `json:"disable_when_mxtunnel_down,omitempty"`
+    DisableWmm                           *bool                          `json:"disable_wmm,omitempty"`
+    DnsServerRewrite                     Optional[WlanDnsServerRewrite] `json:"dns_server_rewrite"`
+    Dtim                                 *int                           `json:"dtim,omitempty"`
+    DynamicPsk                           Optional[WlanDynamicPsk]       `json:"dynamic_psk"`
+    DynamicVlan                          Optional[WlanDynamicVlan]      `json:"dynamic_vlan"`
+    EnableLocalKeycaching                *bool                          `json:"enable_local_keycaching,omitempty"`
+    EnableWirelessBridging               *bool                          `json:"enable_wireless_bridging,omitempty"`
+    EnableWirelessBridgingDhcpTracking   *bool                          `json:"enable_wireless_bridging_dhcp_tracking,omitempty"`
+    Enabled                              *bool                          `json:"enabled,omitempty"`
+    FastDot1xTimers                      *bool                          `json:"fast_dot1x_timers,omitempty"`
+    ForSite                              *bool                          `json:"for_site,omitempty"`
+    HideSsid                             *bool                          `json:"hide_ssid,omitempty"`
+    HostnameIe                           *bool                          `json:"hostname_ie,omitempty"`
+    Hotspot20                            *WlanHotspot20                 `json:"hotspot20,omitempty"`
+    Id                                   *uuid.UUID                     `json:"id,omitempty"`
+    InjectDhcpOption82                   *WlanInjectDhcpOption82        `json:"inject_dhcp_option_82,omitempty"`
+    Interface                            *WlanInterfaceEnum             `json:"interface,omitempty"`
+    Isolation                            *bool                          `json:"isolation,omitempty"`
+    L2Isolation                          *bool                          `json:"l2_isolation,omitempty"`
+    LegacyOverds                         *bool                          `json:"legacy_overds,omitempty"`
+    LimitBcast                           *bool                          `json:"limit_bcast,omitempty"`
+    LimitProbeResponse                   *bool                          `json:"limit_probe_response,omitempty"`
+    MaxIdletime                          *int                           `json:"max_idletime,omitempty"`
+    MaxNumClients                        *int                           `json:"max_num_clients,omitempty"`
+    MistNac                              *WlanMistNac                   `json:"mist_nac,omitempty"`
+    ModifiedTime                         *float64                       `json:"modified_time,omitempty"`
+    MspId                                *uuid.UUID                     `json:"msp_id,omitempty"`
+    MxtunnelId                           *uuid.UUID                     `json:"mxtunnel_id,omitempty"`
+    MxtunnelIds                          []string                       `json:"mxtunnel_ids,omitempty"`
+    MxtunnelName                         []string                       `json:"mxtunnel_name,omitempty"`
+    NoStaticDns                          *bool                          `json:"no_static_dns,omitempty"`
+    NoStaticIp                           *bool                          `json:"no_static_ip,omitempty"`
+    OrgId                                *uuid.UUID                     `json:"org_id,omitempty"`
+    Portal                               *WlanPortal                    `json:"portal,omitempty"`
+    PortalAllowedHostnames               []string                       `json:"portal_allowed_hostnames,omitempty"`
+    PortalAllowedSubnets                 []string                       `json:"portal_allowed_subnets,omitempty"`
+    PortalApiSecret                      Optional[string]               `json:"portal_api_secret"`
+    PortalDeniedHostnames                []string                       `json:"portal_denied_hostnames,omitempty"`
+    PortalImage                          Optional[string]               `json:"portal_image"`
+    PortalSsoUrl                         Optional[string]               `json:"portal_sso_url"`
+    PortalTemplateUrl                    Optional[string]               `json:"portal_template_url"`
+    Qos                                  *WlanQos                       `json:"qos,omitempty"`
+    Radsec                               *Radsec                        `json:"radsec,omitempty"`
+    Rateset                              map[string]WlanDatarates       `json:"rateset,omitempty"`
+    ReconnectClientsWhenRoamingMxcluster *bool                          `json:"reconnect_clients_when_roaming_mxcluster,omitempty"`
+    RoamMode                             *WlanRoamModeEnum              `json:"roam_mode,omitempty"`
+    Schedule                             *WlanSchedule                  `json:"schedule,omitempty"`
+    SiteId                               *uuid.UUID                     `json:"site_id,omitempty"`
+    SleExcluded                          *bool                          `json:"sle_excluded,omitempty"`
+    Ssid                                 *string                        `json:"ssid"`
+    TemplateId                           Optional[uuid.UUID]            `json:"template_id"`
+    Thumbnail                            Optional[string]               `json:"thumbnail"`
+    UseEapolV1                           *bool                          `json:"use_eapol_v1,omitempty"`
+    VlanEnabled                          *bool                          `json:"vlan_enabled,omitempty"`
+    VlanId                               *VlanIdWithVariable            `json:"vlan_id,omitempty"`
+    VlanIds                              []VlanIdWithVariable           `json:"vlan_ids,omitempty"`
+    VlanPooling                          *bool                          `json:"vlan_pooling,omitempty"`
+    WlanLimitDown                        Optional[int]                  `json:"wlan_limit_down"`
+    WlanLimitDownEnabled                 *bool                          `json:"wlan_limit_down_enabled,omitempty"`
+    WlanLimitUp                          Optional[int]                  `json:"wlan_limit_up"`
+    WlanLimitUpEnabled                   *bool                          `json:"wlan_limit_up_enabled,omitempty"`
+    WxtagIds                             Optional[[]uuid.UUID]          `json:"wxtag_ids"`
+    WxtunnelId                           Optional[string]               `json:"wxtunnel_id"`
+    WxtunnelRemoteId                     Optional[string]               `json:"wxtunnel_remote_id"`
 }
 
 func (w *tempWlan) validate() error {

@@ -14,7 +14,6 @@
 | `Disabled` | `*bool` | Optional | **Default**: `false` |
 | `DynamicVlan` | [`*models.ApPortConfigDynamicVlan`](../../doc/models/ap-port-config-dynamic-vlan.md) | Optional | optional dynamic vlan |
 | `EnableMacAuth` | `*bool` | Optional | **Default**: `false` |
-| `FlowControl` | `*bool` | Optional | for some AP models, flow_control can be enabled to address some switch compatibility issue<br>**Default**: `false` |
 | `Forwarding` | [`*models.ApPortConfigForwardingEnum`](../../doc/models/ap-port-config-forwarding-enum.md) | Optional | enum: `all`, `limited`, `mxtunnel`, `site_mxedge`, `wxtunnel`<br>**Default**: `"all"` |
 | `MacAuthPreferred` | `*bool` | Optional | when `true`, we'll do dot1x then mac_auth. enable this to prefer mac_auth<br>**Default**: `false` |
 | `MacAuthProtocol` | [`*models.ApPortConfigMacAuthProtocolEnum`](../../doc/models/ap-port-config-mac-auth-protocol-enum.md) | Optional | if `enable_mac_auth`==`true`, allows user to select an authentication protocol. enum: `eap-md5`, `eap-peap`, `pap`<br>**Default**: `"pap"` |
@@ -37,7 +36,6 @@
 {
   "disabled": false,
   "enable_mac_auth": false,
-  "flow_control": false,
   "forwarding": "all",
   "mac_auth_preferred": false,
   "mac_auth_protocol": "pap",

@@ -590,7 +590,7 @@ SearchOrgDeviceEvents(
     orgId uuid.UUID,
     mac *string,
     model *string,
-    deviceType *models.DeviceTypeEnum,
+    deviceType *models.DeviceTypeWithAllEnum,
     text *string,
     timestamp *string,
     mType *string,
@@ -610,7 +610,7 @@ SearchOrgDeviceEvents(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | device mac |
 | `model` | `*string` | Query, Optional | device model |
-| `deviceType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `deviceType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `text` | `*string` | Query, Optional | event message |
 | `timestamp` | `*string` | Query, Optional | event time |
 | `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions]($e/Constants%20Events/listDeviceEventsDefinitions) |
@@ -635,7 +635,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-deviceType := models.DeviceTypeEnum("ap")
+deviceType := models.DeviceTypeWithAllEnum("ap")
 
 
 
@@ -862,6 +862,7 @@ SearchOrgDevices(
     model *string,
     mac *string,
     version *string,
+    extIp *string,
     powerConstrained *bool,
     ipAddress *string,
     mxtunnelStatus *models.SearchOrgDevicesMxtunnelStatusEnum,
@@ -871,12 +872,17 @@ SearchOrgDevices(
     lldpSystemDesc *string,
     lldpPortId *string,
     lldpMgmtAddr *string,
+    lldpPowerAllocated *int,
+    lldpPowerDraw *int,
     band24Bandwidth *int,
     band5Bandwidth *int,
     band6Bandwidth *int,
     band24Channel *int,
     band5Channel *int,
     band6Channel *int,
+    band24Power *int,
+    band5Power *int,
+    band6Power *int,
     eth0PortSpeed *int,
     limit *int,
     start *int,
@@ -896,6 +902,7 @@ SearchOrgDevices(
 | `model` | `*string` | Query, Optional | device model |
 | `mac` | `*string` | Query, Optional | AP mac |
 | `version` | `*string` | Query, Optional | version |
+| `extIp` | `*string` | Query, Optional | External IP Address |
 | `powerConstrained` | `*bool` | Query, Optional | power_constrained |
 | `ipAddress` | `*string` | Query, Optional | - |
 | `mxtunnelStatus` | [`*models.SearchOrgDevicesMxtunnelStatusEnum`](../../doc/models/search-org-devices-mxtunnel-status-enum.md) | Query, Optional | MxTunnel status, up / down |
@@ -905,12 +912,17 @@ SearchOrgDevices(
 | `lldpSystemDesc` | `*string` | Query, Optional | LLDP system description |
 | `lldpPortId` | `*string` | Query, Optional | LLDP port id |
 | `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
+| `lldpPowerAllocated` | `*int` | Query, Optional | LLDP Allocated Powe |
+| `lldpPowerDraw` | `*int` | Query, Optional | LLDP Negotiated Power |
 | `band24Bandwidth` | `*int` | Query, Optional | bandwidth of band_24 |
 | `band5Bandwidth` | `*int` | Query, Optional | bandwidth of band_5 |
 | `band6Bandwidth` | `*int` | Query, Optional | bandwidth of band_6 |
 | `band24Channel` | `*int` | Query, Optional | Channel of band_24 |
 | `band5Channel` | `*int` | Query, Optional | Channel of band_5 |
 | `band6Channel` | `*int` | Query, Optional | Channel of band_6 |
+| `band24Power` | `*int` | Query, Optional | Power of band_24 |
+| `band5Power` | `*int` | Query, Optional | Power of band_5 |
+| `band6Power` | `*int` | Query, Optional | Power of band_6 |
 | `eth0PortSpeed` | `*int` | Query, Optional | Port speed of eth0 |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -927,6 +939,8 @@ SearchOrgDevices(
 ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
 
 
 
@@ -970,6 +984,16 @@ ipAddress := "192.168.1.1"
 
 
 
+
+
+
+
+
+
+
+
+
+
 limit := 100
 
 
@@ -978,7 +1002,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

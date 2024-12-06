@@ -941,6 +941,16 @@ const (
     FastRoamResultEnum_SUCCESS FastRoamResultEnum = "success"
 )
 
+// FwupdateStatStatusEnum is a string enum.
+// enum: `inprogress`, `failed`, `upgraded`
+type FwupdateStatStatusEnum string
+
+const (
+    FwupdateStatStatusEnum_INPROGRESS FwupdateStatStatusEnum = "inprogress"
+    FwupdateStatStatusEnum_FAILED     FwupdateStatStatusEnum = "failed"
+    FwupdateStatStatusEnum_UPGRADED   FwupdateStatStatusEnum = "upgraded"
+)
+
 // GatewayPathStrategyEnum is a string enum.
 // enum: `ecmp`, `ordered`, `weighted`
 type GatewayPathStrategyEnum string
@@ -1805,15 +1815,17 @@ const (
 )
 
 // OauthAppNameEnum is a string enum.
-// enum: `intune`, `jamf`, `mobicontrol`, `teams`, `vmware`, `zoom`
+// enum: `crowdstrike`, `intune`, `jamf`, `mobicontrol`, `teams`, `vmware`, `zdx`, `zoom`
 type OauthAppNameEnum string
 
 const (
+    OauthAppNameEnum_CROWDSTRIKE OauthAppNameEnum = "crowdstrike"
     OauthAppNameEnum_INTUNE      OauthAppNameEnum = "intune"
     OauthAppNameEnum_JAMF        OauthAppNameEnum = "jamf"
     OauthAppNameEnum_MOBICONTROL OauthAppNameEnum = "mobicontrol"
     OauthAppNameEnum_TEAMS       OauthAppNameEnum = "teams"
     OauthAppNameEnum_VMWARE      OauthAppNameEnum = "vmware"
+    OauthAppNameEnum_ZDX         OauthAppNameEnum = "zdx"
     OauthAppNameEnum_ZOOM        OauthAppNameEnum = "zoom"
 )
 
@@ -2098,25 +2110,6 @@ const (
     OrgSitesCountDistinctEnum_RTSAENABLED         OrgSitesCountDistinctEnum = "rtsa_enabled"
     OrgSitesCountDistinctEnum_VNAENABLED          OrgSitesCountDistinctEnum = "vna_enabled"
     OrgSitesCountDistinctEnum_WIFIENABLED         OrgSitesCountDistinctEnum = "wifi_enabled"
-)
-
-// OrgSwitchPortCountDistinctEnum is a string enum.
-// enum: `full_duplex`, `mac`, `neighbor_mac`, `neighbor_port_desc`, `neighbor_system_name`, `poe_disabled`, `poe_mode`, `poe_on`, `port_id`, `port_mac`, `speed`, `up`
-type OrgSwitchPortCountDistinctEnum string
-
-const (
-    OrgSwitchPortCountDistinctEnum_FULLDUPLEX         OrgSwitchPortCountDistinctEnum = "full_duplex"
-    OrgSwitchPortCountDistinctEnum_MAC                OrgSwitchPortCountDistinctEnum = "mac"
-    OrgSwitchPortCountDistinctEnum_NEIGHBORMAC        OrgSwitchPortCountDistinctEnum = "neighbor_mac"
-    OrgSwitchPortCountDistinctEnum_NEIGHBORPORTDESC   OrgSwitchPortCountDistinctEnum = "neighbor_port_desc"
-    OrgSwitchPortCountDistinctEnum_NEIGHBORSYSTEMNAME OrgSwitchPortCountDistinctEnum = "neighbor_system_name"
-    OrgSwitchPortCountDistinctEnum_POEDISABLED        OrgSwitchPortCountDistinctEnum = "poe_disabled"
-    OrgSwitchPortCountDistinctEnum_POEMODE            OrgSwitchPortCountDistinctEnum = "poe_mode"
-    OrgSwitchPortCountDistinctEnum_POEON              OrgSwitchPortCountDistinctEnum = "poe_on"
-    OrgSwitchPortCountDistinctEnum_PORTID             OrgSwitchPortCountDistinctEnum = "port_id"
-    OrgSwitchPortCountDistinctEnum_PORTMAC            OrgSwitchPortCountDistinctEnum = "port_mac"
-    OrgSwitchPortCountDistinctEnum_SPEED              OrgSwitchPortCountDistinctEnum = "speed"
-    OrgSwitchPortCountDistinctEnum_UP                 OrgSwitchPortCountDistinctEnum = "up"
 )
 
 // OrgTicketsCountDistinctEnum is a string enum.
@@ -2486,6 +2479,16 @@ const (
     ResolutionEnum_FINE        ResolutionEnum = "fine"
 )
 
+// ResponseAsyncLicenseStatusEnum is a string enum.
+// processing status of async. enum: `prepared`, `ongoing`, `done`
+type ResponseAsyncLicenseStatusEnum string
+
+const (
+    ResponseAsyncLicenseStatusEnum_PREPARED ResponseAsyncLicenseStatusEnum = "prepared"
+    ResponseAsyncLicenseStatusEnum_ONGOING  ResponseAsyncLicenseStatusEnum = "ongoing"
+    ResponseAsyncLicenseStatusEnum_DONE     ResponseAsyncLicenseStatusEnum = "done"
+)
+
 // ResponseAutoZoneStatusEnum is a string enum.
 // The status for the auto zones service for a given map. enum:
 // * not_started: The auto zones service has not been run on this map or the results were cleared by the user
@@ -2725,41 +2728,6 @@ const (
     SearchSiteSwOrGwPortsStpStateEnum_FORWARDING SearchSiteSwOrGwPortsStpStateEnum = "forwarding"
     SearchSiteSwOrGwPortsStpStateEnum_LEARNING   SearchSiteSwOrGwPortsStpStateEnum = "learning"
     SearchSiteSwOrGwPortsStpStateEnum_LISTENING  SearchSiteSwOrGwPortsStpStateEnum = "listening"
-)
-
-// SearchSiteSwitchPortsAuthStateEnum is a string enum.
-// enum: `authenticated`, `authenticating`, `held`, `init`
-type SearchSiteSwitchPortsAuthStateEnum string
-
-const (
-    SearchSiteSwitchPortsAuthStateEnum_AUTHENTICATED  SearchSiteSwitchPortsAuthStateEnum = "authenticated"
-    SearchSiteSwitchPortsAuthStateEnum_AUTHENTICATING SearchSiteSwitchPortsAuthStateEnum = "authenticating"
-    SearchSiteSwitchPortsAuthStateEnum_HELD           SearchSiteSwitchPortsAuthStateEnum = "held"
-    SearchSiteSwitchPortsAuthStateEnum_INIT           SearchSiteSwitchPortsAuthStateEnum = "init"
-)
-
-// SearchSiteSwitchPortsStpRoleEnum is a string enum.
-// enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
-type SearchSiteSwitchPortsStpRoleEnum string
-
-const (
-    SearchSiteSwitchPortsStpRoleEnum_ALTERNATE     SearchSiteSwitchPortsStpRoleEnum = "alternate"
-    SearchSiteSwitchPortsStpRoleEnum_BACKUP        SearchSiteSwitchPortsStpRoleEnum = "backup"
-    SearchSiteSwitchPortsStpRoleEnum_DESIGNATED    SearchSiteSwitchPortsStpRoleEnum = "designated"
-    SearchSiteSwitchPortsStpRoleEnum_ROOT          SearchSiteSwitchPortsStpRoleEnum = "root"
-    SearchSiteSwitchPortsStpRoleEnum_ROOTPREVENTED SearchSiteSwitchPortsStpRoleEnum = "root-prevented"
-)
-
-// SearchSiteSwitchPortsStpStateEnum is a string enum.
-// enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
-type SearchSiteSwitchPortsStpStateEnum string
-
-const (
-    SearchSiteSwitchPortsStpStateEnum_BLOCKING   SearchSiteSwitchPortsStpStateEnum = "blocking"
-    SearchSiteSwitchPortsStpStateEnum_DISABLED   SearchSiteSwitchPortsStpStateEnum = "disabled"
-    SearchSiteSwitchPortsStpStateEnum_FORWARDING SearchSiteSwitchPortsStpStateEnum = "forwarding"
-    SearchSiteSwitchPortsStpStateEnum_LEARNING   SearchSiteSwitchPortsStpStateEnum = "learning"
-    SearchSiteSwitchPortsStpStateEnum_LISTENING  SearchSiteSwitchPortsStpStateEnum = "listening"
 )
 
 // SecintelProfileProfileActionEnum is a string enum.
@@ -3270,25 +3238,6 @@ const (
     SiteSleThresholdScopeParameterEnum_GATEWAY    SiteSleThresholdScopeParameterEnum = "gateway"
     SiteSleThresholdScopeParameterEnum_SITE       SiteSleThresholdScopeParameterEnum = "site"
     SiteSleThresholdScopeParameterEnum_ENUMSWITCH SiteSleThresholdScopeParameterEnum = "switch"
-)
-
-// SiteSwitchPortsCountDistinctEnum is a string enum.
-// enum: `full_duplex`, `mac`, `neighbor_mac`, `neighbor_port_desc`, `neighbor_system_name`, `poe_disabled`, `poe_mode`, `poe_on`, `port_id`, `port_mac`, `speed`, `up`
-type SiteSwitchPortsCountDistinctEnum string
-
-const (
-    SiteSwitchPortsCountDistinctEnum_FULLDUPLEX         SiteSwitchPortsCountDistinctEnum = "full_duplex"
-    SiteSwitchPortsCountDistinctEnum_MAC                SiteSwitchPortsCountDistinctEnum = "mac"
-    SiteSwitchPortsCountDistinctEnum_NEIGHBORMAC        SiteSwitchPortsCountDistinctEnum = "neighbor_mac"
-    SiteSwitchPortsCountDistinctEnum_NEIGHBORPORTDESC   SiteSwitchPortsCountDistinctEnum = "neighbor_port_desc"
-    SiteSwitchPortsCountDistinctEnum_NEIGHBORSYSTEMNAME SiteSwitchPortsCountDistinctEnum = "neighbor_system_name"
-    SiteSwitchPortsCountDistinctEnum_POEDISABLED        SiteSwitchPortsCountDistinctEnum = "poe_disabled"
-    SiteSwitchPortsCountDistinctEnum_POEMODE            SiteSwitchPortsCountDistinctEnum = "poe_mode"
-    SiteSwitchPortsCountDistinctEnum_POEON              SiteSwitchPortsCountDistinctEnum = "poe_on"
-    SiteSwitchPortsCountDistinctEnum_PORTID             SiteSwitchPortsCountDistinctEnum = "port_id"
-    SiteSwitchPortsCountDistinctEnum_PORTMAC            SiteSwitchPortsCountDistinctEnum = "port_mac"
-    SiteSwitchPortsCountDistinctEnum_SPEED              SiteSwitchPortsCountDistinctEnum = "speed"
-    SiteSwitchPortsCountDistinctEnum_UP                 SiteSwitchPortsCountDistinctEnum = "up"
 )
 
 // SiteSystemEventsCountDistinctEnum is a string enum.

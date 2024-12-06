@@ -44,6 +44,7 @@ Site Settings
 | `GatewayMgmt` | [`*models.SiteSettingGatewayMgmt`](../../doc/models/site-setting-gateway-mgmt.md) | Optional | Gateway Site settings |
 | `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `JuniperSrx` | [`*models.SiteSettingJuniperSrx`](../../doc/models/site-setting-juniper-srx.md) | Optional | - |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | enable mist_nac to use radsec |
 | `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
@@ -269,8 +270,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"
@@ -291,8 +292,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"
@@ -323,8 +324,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"
@@ -345,8 +346,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"
@@ -377,8 +378,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"
@@ -399,8 +400,8 @@ Site Settings
               }
             },
             "enable_mac_auth": false,
-            "flow_control": false,
             "forwarding": "site_mxedge",
+            "mac_auth_preferred": false,
             "exampleAdditionalProperty": {
               "key1": "val1",
               "key2": "val2"

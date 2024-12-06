@@ -23,7 +23,9 @@ type ResponseLogSearchItem struct {
     // log message
     Message              string                 `json:"message"`
     OrgId                uuid.UUID              `json:"org_id"`
-    SiteId               uuid.UUID              `json:"site_id"`
+    SiteId               *uuid.UUID             `json:"site_id"`
+    // sender source ip address
+    SrcIp                *string                `json:"src_ip,omitempty"`
     // start time, in epoch
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
@@ -35,7 +37,7 @@ func (r ResponseLogSearchItem) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "timestamp"); err != nil {
+        "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "src_ip", "timestamp"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -69,7 +71,14 @@ func (r ResponseLogSearchItem) toMap() map[string]any {
     }
     structMap["message"] = r.Message
     structMap["org_id"] = r.OrgId
-    structMap["site_id"] = r.SiteId
+    if r.SiteId != nil {
+        structMap["site_id"] = r.SiteId
+    } else {
+        structMap["site_id"] = nil
+    }
+    if r.SrcIp != nil {
+        structMap["src_ip"] = r.SrcIp
+    }
     structMap["timestamp"] = r.Timestamp
     return structMap
 }
@@ -86,7 +95,7 @@ func (r *ResponseLogSearchItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "src_ip", "timestamp")
     if err != nil {
     	return err
     }
@@ -100,7 +109,8 @@ func (r *ResponseLogSearchItem) UnmarshalJSON(input []byte) error {
     r.Id = temp.Id
     r.Message = *temp.Message
     r.OrgId = *temp.OrgId
-    r.SiteId = *temp.SiteId
+    r.SiteId = temp.SiteId
+    r.SrcIp = temp.SrcIp
     r.Timestamp = *temp.Timestamp
     return nil
 }
@@ -116,6 +126,7 @@ type tempResponseLogSearchItem  struct {
     Message   *string      `json:"message"`
     OrgId     *uuid.UUID   `json:"org_id"`
     SiteId    *uuid.UUID   `json:"site_id"`
+    SrcIp     *string      `json:"src_ip,omitempty"`
     Timestamp *float64     `json:"timestamp"`
 }
 
@@ -126,9 +137,6 @@ func (r *tempResponseLogSearchItem) validate() error {
     }
     if r.OrgId == nil {
         errs = append(errs, "required field `org_id` is missing for type `response_log_search_item`")
-    }
-    if r.SiteId == nil {
-        errs = append(errs, "required field `site_id` is missing for type `response_log_search_item`")
     }
     if r.Timestamp == nil {
         errs = append(errs, "required field `timestamp` is missing for type `response_log_search_item`")

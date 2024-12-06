@@ -1687,6 +1687,7 @@ body := models.MistDeviceContainer.FromDeviceAp(models.DeviceAp{
     DisableEth2:          models.ToPointer(false),
     DisableEth3:          models.ToPointer(false),
     DisableModule:        models.ToPointer(false),
+    FlowControl:          models.ToPointer(false),
     Height:               models.ToPointer(float64(2.75)),
     MapId:                models.ToPointer(uuid.MustParse("63eda950-c6da-11e4-a628-60f81dd250cc")),
     Name:                 models.ToPointer("conference room"),

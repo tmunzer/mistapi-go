@@ -142,7 +142,7 @@ func TestUtilitiesUpgradeTestUpgradeOrgMxEdges(t *testing.T) {
         t.Error(errUUID)
     }
     var body models.MxedgeUpgradeMulti
-    errBody := json.Unmarshal([]byte(`{"channel":"stable","mxedge_ids":["387804a7-3474-85ce-15a2-f9a9684c9c90"],"versions":{"mxagent":"current","tunterm":"default"}}`), &body)
+    errBody := json.Unmarshal([]byte(`{"allow_downgrades":{"mxagent":false,"tunterm":true},"canary_phases":[5,25,50,100],"channel":"stable","max_failure_percentage":5,"max_failures":[1,1,5,5],"mxedge_ids":["387804a7-3474-85ce-15a2-f9a9684c9c90"],"start_time":1624399840,"strategy":"serial","versions":{"mxagent":"latest","radsecproxy":"<version>","tunterm":"default"}}`), &body)
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }

@@ -52,6 +52,8 @@ WLAN
 | `DisableUapsd` | `*bool` | Optional | whether to disable U-APSD<br>**Default**: `false` |
 | `DisableV1RoamNotify` | `*bool` | Optional | disable sending v2 roam notification messages<br>**Default**: `false` |
 | `DisableV2RoamNotify` | `*bool` | Optional | disable sending v2 roam notification messages<br>**Default**: `false` |
+| `DisableWhenGatewayUnreachable` | `*bool` | Optional | when any of the following is true, this WLAN will be disabled<br><br>* cannot get IP<br>* cannot obtain default gateway<br>* cannot reach default gateway<br>**Default**: `false` |
+| `DisableWhenMxtunnelDown` | `*bool` | Optional | **Default**: `false` |
 | `DisableWmm` | `*bool` | Optional | whether to disable WMM<br>**Default**: `false` |
 | `DnsServerRewrite` | [`models.Optional[models.WlanDnsServerRewrite]`](../../doc/models/wlan-dns-server-rewrite.md) | Optional | for radius_group-based DNS server (rewrite DNS request depending on the Group RADIUS server returns) |
 | `Dtim` | `*int` | Optional | **Default**: `2` |
@@ -96,6 +98,7 @@ WLAN
 | `Qos` | [`*models.WlanQos`](../../doc/models/wlan-qos.md) | Optional | - |
 | `Radsec` | [`*models.Radsec`](../../doc/models/radsec.md) | Optional | Radsec settings |
 | `Rateset` | [`map[string]models.WlanDatarates`](../../doc/models/wlan-datarates.md) | Optional | Property key is the RF band. enum: `24`, `5`, `6` |
+| `ReconnectClientsWhenRoamingMxcluster` | `*bool` | Optional | when different mxcluster is on different subnet, we'd want to disconnect clients (so they'll reconnect and get new IPs)<br>**Default**: `false` |
 | `RoamMode` | [`*models.WlanRoamModeEnum`](../../doc/models/wlan-roam-mode-enum.md) | Optional | enum: `11r`, `OKC`, `NONE`<br>**Default**: `"NONE"` |
 | `Schedule` | [`*models.WlanSchedule`](../../doc/models/wlan-schedule.md) | Optional | WLAN operating schedule, default is disabled |
 | `SiteId` | `*uuid.UUID` | Optional | - |
@@ -142,6 +145,8 @@ WLAN
   "disable_uapsd": false,
   "disable_v1_roam_notify": false,
   "disable_v2_roam_notify": false,
+  "disable_when_gateway_unreachable": false,
+  "disable_when_mxtunnel_down": false,
   "disable_wmm": false,
   "dtim": 2,
   "enable_local_keycaching": false,
@@ -176,6 +181,7 @@ WLAN
     "msg.snapchat.com"
   ],
   "portal_image": "https://url/to/image.png",
+  "reconnect_clients_when_roaming_mxcluster": false,
   "roam_mode": "NONE",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "sle_excluded": false,

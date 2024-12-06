@@ -64,6 +64,7 @@ type SiteSetting struct {
     GatewayUpdownThreshold          Optional[int]                          `json:"gateway_updown_threshold"`
     // Unique ID of the object instance in the Mist Organnization
     Id                              *uuid.UUID                             `json:"id,omitempty"`
+    JuniperSrx                      *SiteSettingJuniperSrx                 `json:"juniper_srx,omitempty"`
     // LED AP settings
     Led                             *ApLed                                 `json:"led,omitempty"`
     // enable mist_nac to use radsec
@@ -162,7 +163,7 @@ func (s SiteSetting) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert"); err != nil {
+        "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -276,6 +277,9 @@ func (s SiteSetting) toMap() map[string]any {
     }
     if s.Id != nil {
         structMap["id"] = s.Id
+    }
+    if s.JuniperSrx != nil {
+        structMap["juniper_srx"] = s.JuniperSrx.toMap()
     }
     if s.Led != nil {
         structMap["led"] = s.Led.toMap()
@@ -454,7 +458,7 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
     if err != nil {
     	return err
     }
@@ -491,6 +495,7 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
     s.GatewayMgmt = temp.GatewayMgmt
     s.GatewayUpdownThreshold = temp.GatewayUpdownThreshold
     s.Id = temp.Id
+    s.JuniperSrx = temp.JuniperSrx
     s.Led = temp.Led
     s.MistNac = temp.MistNac
     s.ModifiedTime = temp.ModifiedTime
@@ -581,6 +586,7 @@ type tempSiteSetting  struct {
     GatewayMgmt                     *SiteSettingGatewayMgmt                `json:"gateway_mgmt,omitempty"`
     GatewayUpdownThreshold          Optional[int]                          `json:"gateway_updown_threshold"`
     Id                              *uuid.UUID                             `json:"id,omitempty"`
+    JuniperSrx                      *SiteSettingJuniperSrx                 `json:"juniper_srx,omitempty"`
     Led                             *ApLed                                 `json:"led,omitempty"`
     MistNac                         *SwitchMistNac                         `json:"mist_nac,omitempty"`
     ModifiedTime                    *float64                               `json:"modified_time,omitempty"`

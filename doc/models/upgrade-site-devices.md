@@ -12,12 +12,12 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CanaryPhases` | `[]int` | Optional | phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100] |
-| `DeviceIds` | `[]uuid.UUID` | Optional | - |
+| `DeviceIds` | `[]uuid.UUID` | Optional | id’s of devices which will be selected for upgrade |
 | `EnableP2p` | `*bool` | Optional | whether to allow local AP-to-AP FW upgrade |
 | `Force` | `*bool` | Optional | true will force upgrade when requested version is same as running version<br>**Default**: `false` |
 | `MaxFailurePercentage` | `*float64` | Optional | percentage of failures allowed across the entire upgrade(not applicable for `big_bang`)<br>**Default**: `5`<br>**Constraints**: `>= 0`, `<= 100` |
 | `MaxFailures` | `[]int` | Optional | number of failures allowed within each phase(applicable for `canary` or `rrm`). Will be used if provided, else max_failure_percentage will be used |
-| `Models` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `Models` | `[]string` | Optional | models which will be selected for upgrade |
 | `P2pClusterSize` | `*int` | Optional | **Default**: `10`<br>**Constraints**: `>= 0` |
 | `P2pParallelism` | `*int` | Optional | number of parallel p2p download batches to creat |
 | `Reboot` | `*bool` | Optional | Reboot device immediately after upgrade is completed (Available on Junos OS devices)<br>**Default**: `false` |
@@ -27,6 +27,7 @@
 | `RrmMeshUpgrade` | `*string` | Optional | sequential or parallel (default parallel). Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade |
 | `RrmNodeOrder` | [`*models.UpgradeSiteDevicesRrmNodeOrderEnum`](../../doc/models/upgrade-site-devices-rrm-node-order-enum.md) | Optional | Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`<br>**Default**: `"fringe_to_center"` |
 | `RrmSlowRamp` | `*bool` | Optional | true will make rrm batch sizes slowly ramp up |
+| `Rules` | `[]string` | Optional | rules used to identify devices which will be selected for upgrade. Device will be selected as long as it satisfies any one rule |
 | `Snapshot` | `*bool` | Optional | Perform recovery snapshot after device is rebooted (Available on Junos OS devices)<br>**Default**: `false` |
 | `StartTime` | `*float64` | Optional | upgrade start time in epoch seconds, default is now |
 | `Strategy` | [`*models.DeviceUpgradeStrategyEnum`](../../doc/models/device-upgrade-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)<br>**Default**: `"big_bang"` |

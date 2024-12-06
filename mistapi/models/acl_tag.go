@@ -30,8 +30,7 @@ type AclTag struct {
     // * `type`==`static_gbp`
     // if from matching radius_group
     RadiusGroup          *string                `json:"radius_group,omitempty"`
-    // if `type`==`resource` or `type`==`gbp_resource`
-    // empty means unrestricted, i.e. any
+    // if `type`==`resource` or `type`==`gbp_resource`. Empty means unrestricted, i.e. any
     Specs                []AclTagSpec           `json:"specs,omitempty"`
     // if
     // - `type`==`subnet`

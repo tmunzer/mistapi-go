@@ -42,8 +42,8 @@
         }
       },
       "enable_mac_auth": false,
-      "flow_control": false,
-      "forwarding": "wxtunnel"
+      "forwarding": "wxtunnel",
+      "mac_auth_preferred": false
     }
   },
   "exampleAdditionalProperty": {

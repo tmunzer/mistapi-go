@@ -29,9 +29,19 @@
     {
       "ap": "ap4",
       "for_site": false,
+      "fwupdate": {
+        "progress": 122,
+        "status": "inprogress",
+        "status_id": 70,
+        "timestamp": 147.68,
+        "will_retry": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      },
       "last_seen": 249.6,
-      "mxcluster_id": "00001676-0000-0000-0000-000000000000",
-      "mxedge_id": "000015aa-0000-0000-0000-000000000000",
+      "mtu": 34,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -40,9 +50,19 @@
     {
       "ap": "ap4",
       "for_site": false,
+      "fwupdate": {
+        "progress": 122,
+        "status": "inprogress",
+        "status_id": 70,
+        "timestamp": 147.68,
+        "will_retry": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      },
       "last_seen": 249.6,
-      "mxcluster_id": "00001676-0000-0000-0000-000000000000",
-      "mxedge_id": "000015aa-0000-0000-0000-000000000000",
+      "mtu": 34,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

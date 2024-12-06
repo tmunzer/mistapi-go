@@ -108,7 +108,7 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents(t *testing.T) {
     }
     
     
-    deviceType := models.DeviceTypeEnum("ap")
+    deviceType := models.DeviceTypeWithAllEnum("ap")
     
     
     

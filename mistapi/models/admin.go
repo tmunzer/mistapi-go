@@ -26,8 +26,8 @@ type Admin struct {
     LastName             *string                    `json:"last_name,omitempty"`
     // for Org API Token Only
     Name                 *string                    `json:"name,omitempty"`
-    // when it doesn’t exist, it’s assumed true on EU (i.e. no tracking, the user has to opt-in); otherwise, the user would have to opt-out
-    NoTracking           *bool                      `json:"no_tracking,omitempty"`
+    // optional, whether to store privacy-consent information. When it doesn’t exist, it’s assumed true on EU (i.e. no tracking, the user has to opt-in); otherwise, the user would have to opt-out
+    NoTracking           Optional[bool]             `json:"no_tracking"`
     // if admin account is not an Org API Token
     OauthGoogle          *bool                      `json:"oauth_google,omitempty"`
     // password last modified time, in epoch
@@ -95,8 +95,12 @@ func (a Admin) toMap() map[string]any {
     if a.Name != nil {
         structMap["name"] = a.Name
     }
-    if a.NoTracking != nil {
-        structMap["no_tracking"] = a.NoTracking
+    if a.NoTracking.IsValueSet() {
+        if a.NoTracking.Value() != nil {
+            structMap["no_tracking"] = a.NoTracking.Value()
+        } else {
+            structMap["no_tracking"] = nil
+        }
     }
     if a.OauthGoogle != nil {
         structMap["oauth_google"] = a.OauthGoogle
@@ -175,7 +179,7 @@ type tempAdmin  struct {
     Hours                *int                       `json:"hours,omitempty"`
     LastName             *string                    `json:"last_name,omitempty"`
     Name                 *string                    `json:"name,omitempty"`
-    NoTracking           *bool                      `json:"no_tracking,omitempty"`
+    NoTracking           Optional[bool]             `json:"no_tracking"`
     OauthGoogle          *bool                      `json:"oauth_google,omitempty"`
     PasswordModifiedTime *float64                   `json:"password_modified_time,omitempty"`
     Phone                *string                    `json:"phone,omitempty"`

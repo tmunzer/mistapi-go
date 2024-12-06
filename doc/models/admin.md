@@ -20,7 +20,7 @@
 | `Hours` | `*int` | Optional | if admin account is not an Org API Token, how long the invite should be valid<br>**Default**: `24`<br>**Constraints**: `>= 1`, `<= 168` |
 | `LastName` | `*string` | Optional | if admin account is not an Org API Token<br>for an invite, this is the original last name used |
 | `Name` | `*string` | Optional | for Org API Token Only |
-| `NoTracking` | `*bool` | Optional | when it doesn’t exist, it’s assumed true on EU (i.e. no tracking, the user has to opt-in); otherwise, the user would have to opt-out |
+| `NoTracking` | `models.Optional[bool]` | Optional | optional, whether to store privacy-consent information. When it doesn’t exist, it’s assumed true on EU (i.e. no tracking, the user has to opt-in); otherwise, the user would have to opt-out |
 | `OauthGoogle` | `*bool` | Optional | if admin account is not an Org API Token |
 | `PasswordModifiedTime` | `*float64` | Optional | password last modified time, in epoch |
 | `Phone` | `*string` | Optional | if admin account is not an Org API Token<br>phone number (numbers only, including country code) |

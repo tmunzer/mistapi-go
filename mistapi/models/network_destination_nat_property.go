@@ -9,6 +9,8 @@ type NetworkDestinationNatProperty struct {
     InternalIp           *string                `json:"internal_ip,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     Port                 *int                   `json:"port,omitempty"`
+    // If not set, we configure the nat policies against all WAN ports for simplicity
+    WanName              *string                `json:"wan_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,7 +20,7 @@ func (n NetworkDestinationNatProperty) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(n.AdditionalProperties,
-        "internal_ip", "name", "port"); err != nil {
+        "internal_ip", "name", "port", "wan_name"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(n.toMap())
@@ -37,6 +39,9 @@ func (n NetworkDestinationNatProperty) toMap() map[string]any {
     if n.Port != nil {
         structMap["port"] = n.Port
     }
+    if n.WanName != nil {
+        structMap["wan_name"] = n.WanName
+    }
     return structMap
 }
 
@@ -48,7 +53,7 @@ func (n *NetworkDestinationNatProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "internal_ip", "name", "port")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "internal_ip", "name", "port", "wan_name")
     if err != nil {
     	return err
     }
@@ -57,6 +62,7 @@ func (n *NetworkDestinationNatProperty) UnmarshalJSON(input []byte) error {
     n.InternalIp = temp.InternalIp
     n.Name = temp.Name
     n.Port = temp.Port
+    n.WanName = temp.WanName
     return nil
 }
 
@@ -65,4 +71,5 @@ type tempNetworkDestinationNatProperty  struct {
     InternalIp *string `json:"internal_ip,omitempty"`
     Name       *string `json:"name,omitempty"`
     Port       *int    `json:"port,omitempty"`
+    WanName    *string `json:"wan_name,omitempty"`
 }

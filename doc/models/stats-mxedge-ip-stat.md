@@ -17,6 +17,8 @@ IP stats
 | `Ip6` | `*string` | Optional | - |
 | `Ips` | `map[string]string` | Optional | Property key is the interface name. IPs for each net interface |
 | `Macs` | `map[string]string` | Optional | Property key is the interface name. MAC for each net interface |
+| `Netmask` | `*string` | Optional | - |
+| `Netmask6` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -31,6 +33,8 @@ IP stats
   "macs": {
     "ens18": "e4434b217044"
   },
+  "netmask": "255.255.255.0",
+  "netmask6": "/128",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

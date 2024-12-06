@@ -12,8 +12,7 @@ type ResponseAutoZone struct {
     // * awaiting_review: The auto zones service has completed and suggested location zones to be added to the map
     // * error: There was an error with the auto zones service
     Status               *ResponseAutoZoneStatusEnum `json:"status,omitempty"`
-    // A list of suggested zones to review and accept for a given map
-    Zones                *ResponseAutoZoneZone       `json:"zones,omitempty"`
+    Zones                []ResponseAutoZoneZone      `json:"zones,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
@@ -37,7 +36,7 @@ func (r ResponseAutoZone) toMap() map[string]any {
         structMap["status"] = r.Status
     }
     if r.Zones != nil {
-        structMap["zones"] = r.Zones.toMap()
+        structMap["zones"] = r.Zones
     }
     return structMap
 }
@@ -64,5 +63,5 @@ func (r *ResponseAutoZone) UnmarshalJSON(input []byte) error {
 // tempResponseAutoZone is a temporary struct used for validating the fields of ResponseAutoZone.
 type tempResponseAutoZone  struct {
     Status *ResponseAutoZoneStatusEnum `json:"status,omitempty"`
-    Zones  *ResponseAutoZoneZone       `json:"zones,omitempty"`
+    Zones  []ResponseAutoZoneZone      `json:"zones,omitempty"`
 }

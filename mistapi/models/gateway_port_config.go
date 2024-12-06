@@ -83,6 +83,8 @@ type GatewayPortConfig struct {
     WanExtIp             *string                       `json:"wan_ext_ip,omitempty"`
     // Property Key is the destianation CIDR (e.g "100.100.100.0/24")
     WanExtraRoutes       map[string]WanExtraRoutes     `json:"wan_extra_routes,omitempty"`
+    // if some networks are connected to this WAN port, it can be added here so policies can be defined
+    WanNetworks          []string                      `json:"wan_networks,omitempty"`
     // if `usage`==`wan`
     WanProbeOverride     *GatewayWanProbeOverride      `json:"wan_probe_override,omitempty"`
     // optional, by default, source-NAT is performed on all WAN Ports using the interface-ip
@@ -98,7 +100,7 @@ func (g GatewayPortConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(g.AdditionalProperties,
-        "ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "aggregated", "critical", "description", "disable_autoneg", "disabled", "dsl_type", "dsl_vci", "dsl_vpi", "duplex", "ip_config", "lte_apn", "lte_auth", "lte_backup", "lte_password", "lte_username", "mtu", "name", "networks", "outer_vlan_id", "poe_disabled", "port_network", "preserve_dscp", "redundant", "reth_idx", "reth_node", "reth_nodes", "speed", "ssr_no_virtual_mac", "svr_port_range", "traffic_shaping", "usage", "vlan_id", "vpn_paths", "wan_arp_policer", "wan_ext_ip", "wan_extra_routes", "wan_probe_override", "wan_source_nat", "wan_type"); err != nil {
+        "ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "aggregated", "critical", "description", "disable_autoneg", "disabled", "dsl_type", "dsl_vci", "dsl_vpi", "duplex", "ip_config", "lte_apn", "lte_auth", "lte_backup", "lte_password", "lte_username", "mtu", "name", "networks", "outer_vlan_id", "poe_disabled", "port_network", "preserve_dscp", "redundant", "reth_idx", "reth_node", "reth_nodes", "speed", "ssr_no_virtual_mac", "svr_port_range", "traffic_shaping", "usage", "vlan_id", "vpn_paths", "wan_arp_policer", "wan_ext_ip", "wan_extra_routes", "wan_networks", "wan_probe_override", "wan_source_nat", "wan_type"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(g.toMap())
@@ -227,6 +229,9 @@ func (g GatewayPortConfig) toMap() map[string]any {
     if g.WanExtraRoutes != nil {
         structMap["wan_extra_routes"] = g.WanExtraRoutes
     }
+    if g.WanNetworks != nil {
+        structMap["wan_networks"] = g.WanNetworks
+    }
     if g.WanProbeOverride != nil {
         structMap["wan_probe_override"] = g.WanProbeOverride.toMap()
     }
@@ -251,7 +256,7 @@ func (g *GatewayPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "aggregated", "critical", "description", "disable_autoneg", "disabled", "dsl_type", "dsl_vci", "dsl_vpi", "duplex", "ip_config", "lte_apn", "lte_auth", "lte_backup", "lte_password", "lte_username", "mtu", "name", "networks", "outer_vlan_id", "poe_disabled", "port_network", "preserve_dscp", "redundant", "reth_idx", "reth_node", "reth_nodes", "speed", "ssr_no_virtual_mac", "svr_port_range", "traffic_shaping", "usage", "vlan_id", "vpn_paths", "wan_arp_policer", "wan_ext_ip", "wan_extra_routes", "wan_probe_override", "wan_source_nat", "wan_type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "aggregated", "critical", "description", "disable_autoneg", "disabled", "dsl_type", "dsl_vci", "dsl_vpi", "duplex", "ip_config", "lte_apn", "lte_auth", "lte_backup", "lte_password", "lte_username", "mtu", "name", "networks", "outer_vlan_id", "poe_disabled", "port_network", "preserve_dscp", "redundant", "reth_idx", "reth_node", "reth_nodes", "speed", "ssr_no_virtual_mac", "svr_port_range", "traffic_shaping", "usage", "vlan_id", "vpn_paths", "wan_arp_policer", "wan_ext_ip", "wan_extra_routes", "wan_networks", "wan_probe_override", "wan_source_nat", "wan_type")
     if err != nil {
     	return err
     }
@@ -296,6 +301,7 @@ func (g *GatewayPortConfig) UnmarshalJSON(input []byte) error {
     g.WanArpPolicer = temp.WanArpPolicer
     g.WanExtIp = temp.WanExtIp
     g.WanExtraRoutes = temp.WanExtraRoutes
+    g.WanNetworks = temp.WanNetworks
     g.WanProbeOverride = temp.WanProbeOverride
     g.WanSourceNat = temp.WanSourceNat
     g.WanType = temp.WanType
@@ -343,6 +349,7 @@ type tempGatewayPortConfig  struct {
     WanArpPolicer    *GatewayPortWanArpPolicerEnum `json:"wan_arp_policer,omitempty"`
     WanExtIp         *string                       `json:"wan_ext_ip,omitempty"`
     WanExtraRoutes   map[string]WanExtraRoutes     `json:"wan_extra_routes,omitempty"`
+    WanNetworks      []string                      `json:"wan_networks,omitempty"`
     WanProbeOverride *GatewayWanProbeOverride      `json:"wan_probe_override,omitempty"`
     WanSourceNat     *GatewayPortWanSourceNat      `json:"wan_source_nat,omitempty"`
     WanType          *GatewayPortWanTypeEnum       `json:"wan_type,omitempty"`

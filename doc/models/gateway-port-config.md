@@ -52,6 +52,7 @@ Gateway port config
 | `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`<br>**Default**: `"default"` |
 | `WanExtIp` | `*string` | Optional | optional, if spoke should reach this port by a different IP |
 | `WanExtraRoutes` | [`map[string]models.WanExtraRoutes`](../../doc/models/wan-extra-routes.md) | Optional | Property Key is the destianation CIDR (e.g "100.100.100.0/24") |
+| `WanNetworks` | `[]string` | Optional | if some networks are connected to this WAN port, it can be added here so policies can be defined |
 | `WanProbeOverride` | [`*models.GatewayWanProbeOverride`](../../doc/models/gateway-wan-probe-override.md) | Optional | if `usage`==`wan` |
 | `WanSourceNat` | [`*models.GatewayPortWanSourceNat`](../../doc/models/gateway-port-wan-source-nat.md) | Optional | optional, by default, source-NAT is performed on all WAN Ports using the interface-ip |
 | `WanType` | [`*models.GatewayPortWanTypeEnum`](../../doc/models/gateway-port-wan-type-enum.md) | Optional | if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`<br>**Default**: `"broadband"` |

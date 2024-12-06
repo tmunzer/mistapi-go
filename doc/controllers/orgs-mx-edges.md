@@ -999,10 +999,12 @@ if err != nil {
 [
   {
     "default": true,
+    "distro": "bullseye",
     "package": "mxagent",
     "version": "2.4.100"
   },
   {
+    "distro": "bullseye",
     "package": "tunterm",
     "version": "1.0.0"
   }

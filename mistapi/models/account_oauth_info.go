@@ -2,27 +2,17 @@ package models
 
 import (
     "encoding/json"
+    "errors"
+    "strings"
 )
 
 // AccountOauthInfo represents a AccountOauthInfo struct.
-// OAuth linked apps (zoom/teams/intune) account details
 type AccountOauthInfo struct {
-    // Linked app(zoom/teams/intune) account id
-    AccountId            *string                `json:"account_id,omitempty"`
-    // Name of the company whose account mist has subscribed to
-    Company              *string                `json:"company,omitempty"`
-    // This error is provided when the account fails to fetch token/data
-    Error                *string                `json:"error,omitempty"`
-    Errors               []string               `json:"errors,omitempty"`
-    // Is the last data pull for account is successful or not
-    LastStatus           *string                `json:"last_status,omitempty"`
-    // Last data pull timestamp, background jobs that pull account data
-    LastSync             *int64                 `json:"last_sync,omitempty"`
-    // First name of the user who linked the account
-    LinkedBy             *string                `json:"linked_by,omitempty"`
-    // Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/
-    MaxDailyApiRequests  *int                   `json:"max_daily_api_requests,omitempty"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    // List of linked account details
+    Accounts             []AccountOauthInfoAccount `json:"accounts"`
+    AuthorizationUrl     *string                   `json:"authorization_url,omitempty"`
+    Linked               bool                      `json:"linked"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthInfo.
@@ -31,7 +21,7 @@ func (a AccountOauthInfo) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "account_id", "company", "error", "errors", "last_status", "last_sync", "linked_by", "max_daily_api_requests"); err != nil {
+        "accounts", "authorization_url", "linked"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -41,30 +31,11 @@ func (a AccountOauthInfo) MarshalJSON() (
 func (a AccountOauthInfo) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, a.AdditionalProperties)
-    if a.AccountId != nil {
-        structMap["account_id"] = a.AccountId
+    structMap["accounts"] = a.Accounts
+    if a.AuthorizationUrl != nil {
+        structMap["authorization_url"] = a.AuthorizationUrl
     }
-    if a.Company != nil {
-        structMap["company"] = a.Company
-    }
-    if a.Error != nil {
-        structMap["error"] = a.Error
-    }
-    if a.Errors != nil {
-        structMap["errors"] = a.Errors
-    }
-    if a.LastStatus != nil {
-        structMap["last_status"] = a.LastStatus
-    }
-    if a.LastSync != nil {
-        structMap["last_sync"] = a.LastSync
-    }
-    if a.LinkedBy != nil {
-        structMap["linked_by"] = a.LinkedBy
-    }
-    if a.MaxDailyApiRequests != nil {
-        structMap["max_daily_api_requests"] = a.MaxDailyApiRequests
-    }
+    structMap["linked"] = a.Linked
     return structMap
 }
 
@@ -76,31 +47,39 @@ func (a *AccountOauthInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "company", "error", "errors", "last_status", "last_sync", "linked_by", "max_daily_api_requests")
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accounts", "authorization_url", "linked")
     if err != nil {
     	return err
     }
     a.AdditionalProperties = additionalProperties
     
-    a.AccountId = temp.AccountId
-    a.Company = temp.Company
-    a.Error = temp.Error
-    a.Errors = temp.Errors
-    a.LastStatus = temp.LastStatus
-    a.LastSync = temp.LastSync
-    a.LinkedBy = temp.LinkedBy
-    a.MaxDailyApiRequests = temp.MaxDailyApiRequests
+    a.Accounts = *temp.Accounts
+    a.AuthorizationUrl = temp.AuthorizationUrl
+    a.Linked = *temp.Linked
     return nil
 }
 
 // tempAccountOauthInfo is a temporary struct used for validating the fields of AccountOauthInfo.
 type tempAccountOauthInfo  struct {
-    AccountId           *string  `json:"account_id,omitempty"`
-    Company             *string  `json:"company,omitempty"`
-    Error               *string  `json:"error,omitempty"`
-    Errors              []string `json:"errors,omitempty"`
-    LastStatus          *string  `json:"last_status,omitempty"`
-    LastSync            *int64   `json:"last_sync,omitempty"`
-    LinkedBy            *string  `json:"linked_by,omitempty"`
-    MaxDailyApiRequests *int     `json:"max_daily_api_requests,omitempty"`
+    Accounts         *[]AccountOauthInfoAccount `json:"accounts"`
+    AuthorizationUrl *string                    `json:"authorization_url,omitempty"`
+    Linked           *bool                      `json:"linked"`
+}
+
+func (a *tempAccountOauthInfo) validate() error {
+    var errs []string
+    if a.Accounts == nil {
+        errs = append(errs, "required field `accounts` is missing for type `account_oauth_info`")
+    }
+    if a.Linked == nil {
+        errs = append(errs, "required field `linked` is missing for type `account_oauth_info`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

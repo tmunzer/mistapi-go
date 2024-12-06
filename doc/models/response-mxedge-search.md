@@ -56,7 +56,17 @@
       "created_time": 73.76,
       "fips_enabled": false,
       "for_site": false,
-      "id": "000023ba-0000-0000-0000-000000000000",
+      "fwupdate": {
+        "progress": 122,
+        "status": "inprogress",
+        "status_id": 70,
+        "timestamp": 147.68,
+        "will_retry": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      },
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -91,7 +101,17 @@
       "created_time": 73.76,
       "fips_enabled": false,
       "for_site": false,
-      "id": "000023ba-0000-0000-0000-000000000000",
+      "fwupdate": {
+        "progress": 122,
+        "status": "inprogress",
+        "status_id": 70,
+        "timestamp": 147.68,
+        "will_retry": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      },
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -126,7 +146,17 @@
       "created_time": 73.76,
       "fips_enabled": false,
       "for_site": false,
-      "id": "000023ba-0000-0000-0000-000000000000",
+      "fwupdate": {
+        "progress": 122,
+        "status": "inprogress",
+        "status_id": 70,
+        "timestamp": 147.68,
+        "will_retry": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      },
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
