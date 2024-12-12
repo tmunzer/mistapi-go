@@ -11,7 +11,7 @@ type WlanDynamicVlan struct {
     DefaultVlanId        *WlanDynamicVlanDefaultVlanIdDeprecated `json:"default_vlan_id,omitempty"`  // Deprecated
     // Default VLAN ID(s) can be a number, a range of VLAN IDs, a variable or multiple numbers, ranges or variables as a VLAN pool. Default VLAN as a pool of VLANS requires 0.14.x or newer firmware
     DefaultVlanIds       []WlanDynamicVlanDefaultVlanId          `json:"default_vlan_ids,omitempty"`
-    // whether to enable dynamic vlan
+    // Requires `vlan_enabled`==`true` to be set to `true`. Whether to enable dynamic vlan
     Enabled              *bool                                   `json:"enabled,omitempty"`
     // vlan_ids to be locally bridged
     LocalVlanIds         []VlanIdWithVariable                    `json:"local_vlan_ids,omitempty"`

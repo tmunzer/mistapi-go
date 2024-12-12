@@ -425,11 +425,11 @@ body := models.Secpolicy{
             UseEapolV1:                           models.ToPointer(false),
             VlanEnabled:                          models.ToPointer(false),
             VlanId:                               models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(1)),
-            VlanIds:                              []models.VlanIdWithVariable{
+            VlanIds:                              models.ToPointer(models.WlanVlanIdsContainer.FromArrayOfVlanIdWithVariable2([]models.VlanIdWithVariable{
                 models.VlanIdWithVariableContainer.FromNumber(3),
                 models.VlanIdWithVariableContainer.FromNumber(4),
                 models.VlanIdWithVariableContainer.FromNumber(5),
-            },
+            })),
             VlanPooling:                          models.ToPointer(false),
             WlanLimitDown:                        models.NewOptional(models.ToPointer(0)),
             WlanLimitDownEnabled:                 models.ToPointer(false),

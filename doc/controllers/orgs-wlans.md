@@ -111,11 +111,6 @@ body := models.Wlan{
     Ssid:                                 "corporate",
     UseEapolV1:                           models.ToPointer(false),
     VlanEnabled:                          models.ToPointer(false),
-    VlanIds:                              []models.VlanIdWithVariable{
-        models.VlanIdWithVariableContainer.FromNumber(3),
-        models.VlanIdWithVariableContainer.FromNumber(4),
-        models.VlanIdWithVariableContainer.FromNumber(5),
-    },
     VlanPooling:                          models.ToPointer(false),
     WlanLimitDownEnabled:                 models.ToPointer(false),
     WlanLimitUpEnabled:                   models.ToPointer(false),

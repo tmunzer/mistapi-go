@@ -198,9 +198,8 @@ type Wlan struct {
     // if vlan tagging is enabled
     VlanEnabled                          *bool                          `json:"vlan_enabled,omitempty"`
     VlanId                               *VlanIdWithVariable            `json:"vlan_id,omitempty"`
-    // vlan_ids to use when there’s no match from RA
-    VlanIds                              []VlanIdWithVariable           `json:"vlan_ids,omitempty"`
-    // vlan pooling allows AP to place client on different VLAN using a deterministic algorithm
+    VlanIds                              *WlanVlanIds                   `json:"vlan_ids,omitempty"`
+    // Requires `vlan_enabled`==`true` to be set to `true`. Vlan pooling allows AP to place client on different VLAN using a deterministic algorithm
     VlanPooling                          *bool                          `json:"vlan_pooling,omitempty"`
     // kbps
     WlanLimitDown                        Optional[int]                  `json:"wlan_limit_down"`
@@ -568,7 +567,7 @@ func (w Wlan) toMap() map[string]any {
         structMap["vlan_id"] = w.VlanId.toMap()
     }
     if w.VlanIds != nil {
-        structMap["vlan_ids"] = w.VlanIds
+        structMap["vlan_ids"] = w.VlanIds.toMap()
     }
     if w.VlanPooling != nil {
         structMap["vlan_pooling"] = w.VlanPooling
@@ -837,7 +836,7 @@ type tempWlan  struct {
     UseEapolV1                           *bool                          `json:"use_eapol_v1,omitempty"`
     VlanEnabled                          *bool                          `json:"vlan_enabled,omitempty"`
     VlanId                               *VlanIdWithVariable            `json:"vlan_id,omitempty"`
-    VlanIds                              []VlanIdWithVariable           `json:"vlan_ids,omitempty"`
+    VlanIds                              *WlanVlanIds                   `json:"vlan_ids,omitempty"`
     VlanPooling                          *bool                          `json:"vlan_pooling,omitempty"`
     WlanLimitDown                        Optional[int]                  `json:"wlan_limit_down"`
     WlanLimitDownEnabled                 *bool                          `json:"wlan_limit_down_enabled,omitempty"`

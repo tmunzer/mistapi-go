@@ -109,8 +109,8 @@ WLAN
 | `UseEapolV1` | `*bool` | Optional | if `auth.type`==’eap’ or ‘psk’, should only be set for legacy client, such as pre-2004, 802.11b devices<br>**Default**: `false` |
 | `VlanEnabled` | `*bool` | Optional | if vlan tagging is enabled<br>**Default**: `false` |
 | `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
-| `VlanIds` | [`[]models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | vlan_ids to use when there’s no match from RA |
-| `VlanPooling` | `*bool` | Optional | vlan pooling allows AP to place client on different VLAN using a deterministic algorithm<br>**Default**: `false` |
+| `VlanIds` | [`*models.WlanVlanIds`](../../doc/models/containers/wlan-vlan-ids.md) | Optional | - |
+| `VlanPooling` | `*bool` | Optional | Requires `vlan_enabled`==`true` to be set to `true`. Vlan pooling allows AP to place client on different VLAN using a deterministic algorithm<br>**Default**: `false` |
 | `WlanLimitDown` | `models.Optional[int]` | Optional | kbps |
 | `WlanLimitDownEnabled` | `*bool` | Optional | if downlink limiting for whole wlan is enabled<br>**Default**: `false` |
 | `WlanLimitUp` | `models.Optional[int]` | Optional | kbps |
@@ -188,11 +188,6 @@ WLAN
   "ssid": "corporate",
   "use_eapol_v1": false,
   "vlan_enabled": false,
-  "vlan_ids": [
-    3,
-    4,
-    5
-  ],
   "vlan_pooling": false,
   "wlan_limit_down_enabled": false,
   "wlan_limit_up_enabled": false,
