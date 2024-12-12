@@ -178,6 +178,8 @@ var orgsSites OrgsSites
 
 var orgsSiteTemplates OrgsSiteTemplates
 
+var orgsSlEs OrgsSLEs
+
 var orgsSsoRoles OrgsSSORoles
 
 var orgsSso OrgsSSO
@@ -237,6 +239,8 @@ var sitesDevicesWired SitesDevicesWired
 var sitesDevicesWiredVirtualChassis SitesDevicesWiredVirtualChassis
 
 var sitesDevicesWanCluster SitesDevicesWANCluster
+
+var sitesDeviceProfiles SitesDeviceProfiles
 
 var sitesEvents SitesEvents
 
@@ -474,6 +478,7 @@ func init() {
     orgsSitegroups = *client.OrgsSitegroups()
     orgsSites = *client.OrgsSites()
     orgsSiteTemplates = *client.OrgsSiteTemplates()
+    orgsSlEs = *client.OrgsSLEs()
     orgsSsoRoles = *client.OrgsSSORoles()
     orgsSso = *client.OrgsSSO()
     orgsSubscriptions = *client.OrgsSubscriptions()
@@ -504,6 +509,7 @@ func init() {
     sitesDevicesWired = *client.SitesDevicesWired()
     sitesDevicesWiredVirtualChassis = *client.SitesDevicesWiredVirtualChassis()
     sitesDevicesWanCluster = *client.SitesDevicesWANCluster()
+    sitesDeviceProfiles = *client.SitesDeviceProfiles()
     sitesEvents = *client.SitesEvents()
     sitesEvpnTopologies = *client.SitesEVPNTopologies()
     sitesGatewayTemplates = *client.SitesGatewayTemplates()

@@ -359,7 +359,7 @@ if err != nil {
 
 Initiate a Packet Capture
 
-**NOTE**: For packet captures of org level Mist Edges only. Use [Start Site Packet Capture]($e/Utilities%20PCAPs/startSitePacketCapture) for site level Mist Edges.
+**NOTE**: For packet captures of org level Mist Edges only. Use [Start Site Packet Capture](../../doc/controllers/utilities-pca-ps.md#start-site-packet-capture) for site level Mist Edges.
 
 The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 

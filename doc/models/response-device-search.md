@@ -32,6 +32,35 @@
       "band_24_power": 154,
       "band_5_bandwidth": "band_5_bandwidth0",
       "band_5_channel": 132,
+      "mxtunnel_status": "mxtunnel_status4",
+      "power_constrained": false,
+      "power_opmode": "power_opmode0",
+      "wlans": [
+        {
+          "id": "00001c56-0000-0000-0000-000000000000",
+          "ssid": "ssid8",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        },
+        {
+          "id": "00001c56-0000-0000-0000-000000000000",
+          "ssid": "ssid8",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        },
+        {
+          "id": "00001c56-0000-0000-0000-000000000000",
+          "ssid": "ssid8",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        }
+      ],
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -43,6 +72,35 @@
       "band_24_power": 154,
       "band_5_bandwidth": "band_5_bandwidth0",
       "band_5_channel": 132,
+      "mxtunnel_status": "mxtunnel_status4",
+      "power_constrained": false,
+      "power_opmode": "power_opmode0",
+      "wlans": [
+        {
+          "id": "00001c56-0000-0000-0000-000000000000",
+          "ssid": "ssid8",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        },
+        {
+          "id": "00001c56-0000-0000-0000-000000000000",
+          "ssid": "ssid8",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        },
+        {
+          "id": "00001c56-0000-0000-0000-000000000000",
+          "ssid": "ssid8",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        }
+      ],
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

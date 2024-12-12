@@ -500,7 +500,7 @@ CountOrgSiteMxEdgeEvents(
 | `distinct` | [`*models.OrgMxedgeEventsCountDistinctEnum`](../../doc/models/org-mxedge-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mxedge_id"` |
 | `mxedgeId` | `*string` | Query, Optional | mist edge id |
 | `mxclusterId` | `*string` | Query, Optional | mist edge cluster id |
-| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions]($e/Constants%20Events/listDeviceEventsDefinitions) |
+| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `service` | `*string` | Query, Optional | service running on mist edge(mxagent, tunterm etc) |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -1265,7 +1265,7 @@ SearchOrgMistEdgeEvents(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `*string` | Query, Optional | mist edge id |
 | `mxclusterId` | `*string` | Query, Optional | mist edge cluster id |
-| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions]($e/Constants%20Events/listDeviceEventsDefinitions) |
+| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `service` | `*string` | Query, Optional | service running on mist edge(mxagent, tunterm etc) |
 | `component` | `*string` | Query, Optional | component like PS1, PS2 |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |

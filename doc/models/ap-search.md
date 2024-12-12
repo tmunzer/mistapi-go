@@ -23,7 +23,9 @@
 | `Eth0PortSpeed` | `*int` | Optional | Port speed of eth0 |
 | `ExtIp` | `*string` | Optional | - |
 | `Hostname` | `[]string` | Optional | partial / full hostname |
+| `InactiveWiredVlans` | `[]int` | Optional | - |
 | `Ip` | `*string` | Optional | ip address |
+| `LastHostname` | `*string` | Optional | - |
 | `LldpMgmtAddr` | `*string` | Optional | LLDP management ip address |
 | `LldpPortDesc` | `*string` | Optional | - |
 | `LldpPortId` | `*string` | Optional | LLDP port id |
@@ -35,22 +37,37 @@
 | `Model` | `*string` | Optional | - |
 | `MxedgeId` | `*string` | Optional | Mist Edge id, if AP is connecting to a Mist Edge |
 | `MxedgeIds` | `*string` | Optional | Comma separated list of Mist Edge ids, if AP is connecting to a Mist Edge |
-| `MxtunnelStatus` | `*string` | Optional | MxTunnel status |
+| `MxtunnelStatus` | `string` | Required | MxTunnel status |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `PowerConstrained` | `*bool` | Optional | - |
+| `PowerConstrained` | `bool` | Required | - |
+| `PowerOpmode` | `string` | Required | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Sku` | `*string` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
 | `Version` | `*string` | Optional | version |
+| `Wlans` | [`[]models.ApSearchWlan`](../../doc/models/ap-search-wlan.md) | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
+  "mxtunnel_status": "mxtunnel_status4",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+  "power_constrained": false,
+  "power_opmode": "power_opmode0",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
+  "wlans": [
+    {
+      "id": "00001c56-0000-0000-0000-000000000000",
+      "ssid": "ssid8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  ],
   "band_24_bandwidth": "band_24_bandwidth2",
   "band_24_channel": 200,
   "band_24_power": 154,

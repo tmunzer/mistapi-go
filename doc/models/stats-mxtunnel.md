@@ -23,12 +23,12 @@ MxTunnels statistics
 | `MxtunnelId` | `*uuid.UUID` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PeerMxedgeId` | `*uuid.UUID` | Optional | MxEdge ID of the peer(mist edge to mist edge tunnel) |
-| `RemoteIp` | `*string` | Optional | - |
+| `RemoteIp` | `string` | Required | - |
 | `RemotePort` | `*int` | Optional | - |
 | `RxControlPkts` | `*int` | Optional | - |
 | `Sessions` | [`[]models.StatsMxtunnelSession`](../../doc/models/stats-mxtunnel-session.md) | Optional | list of sessions<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `State` | [`*models.StatsMxtunnelStateEnum`](../../doc/models/stats-mxtunnel-state-enum.md) | Optional | enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
+| `State` | [`*models.StatsMxtunnelStateEnum`](../../doc/models/stats-mxtunnel-state-enum.md) | Optional | enum: `established`, `established_with_sessions`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
 | `TxControlPkts` | `*int` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -38,6 +38,7 @@ MxTunnels statistics
 ```json
 {
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+  "remote_ip": "remote_ip4",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "ap": "ap4",
   "for_site": false,

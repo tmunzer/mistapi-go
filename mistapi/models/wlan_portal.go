@@ -18,7 +18,7 @@ type WlanPortal struct {
     // whether amazon is enabled as a login method
     AmazonEnabled               *bool                          `json:"amazon_enabled,omitempty"`
     // interval for which guest remains authorized using amazon auth (in minutes), if not provided, uses expire`
-    AmazonExpire                Optional[float64]              `json:"amazon_expire"`
+    AmazonExpire                Optional[int]                  `json:"amazon_expire"`
     // authentication scheme. enum: `external`, `none`, `sso`
     Auth                        *WlanPortalAuthEnum            `json:"auth,omitempty"`
     // Required if `azure_enabled`==`true`.
@@ -30,7 +30,7 @@ type WlanPortal struct {
     // whether Azure Active Directory is enabled as a login method
     AzureEnabled                *bool                          `json:"azure_enabled,omitempty"`
     // interval for which guest remains authorized using azure auth (in minutes), if not provided, uses expire`
-    AzureExpire                 Optional[float64]              `json:"azure_expire"`
+    AzureExpire                 Optional[int]                  `json:"azure_expire"`
     // Required if `azure_enabled`==`true`.
     // Azure active directory tenant id.
     AzureTenantId               Optional[string]               `json:"azure_tenant_id"`
@@ -65,7 +65,7 @@ type WlanPortal struct {
     // whether facebook is enabled as a login method
     FacebookEnabled             *bool                          `json:"facebook_enabled,omitempty"`
     // interval for which guest remains authorized using facebook auth (in minutes), if not provided, uses expire`
-    FacebookExpire              Optional[float64]              `json:"facebook_expire"`
+    FacebookExpire              Optional[int]                  `json:"facebook_expire"`
     // whether to forward the user to another URL after authorized
     Forward                     *bool                          `json:"forward,omitempty"`
     // the URL to forward the user to
@@ -79,7 +79,7 @@ type WlanPortal struct {
     // whether google is enabled as login method
     GoogleEnabled               *bool                          `json:"google_enabled,omitempty"`
     // interval for which guest remains authorized using google auth (in minutes), if not provided, uses expire`
-    GoogleExpire                Optional[float64]              `json:"google_expire"`
+    GoogleExpire                Optional[int]                  `json:"google_expire"`
     // when `sms_provider`==`gupshup`
     GupshupPassword             *string                        `json:"gupshup_password,omitempty"`
     // when `sms_provider`==`gupshup`
@@ -93,11 +93,11 @@ type WlanPortal struct {
     // whether microsoft 365 is enabled as a login method
     MicrosoftEnabled            *bool                          `json:"microsoft_enabled,omitempty"`
     // interval for which guest remains authorized using microsoft auth (in minutes), if not provided, uses expire`
-    MicrosoftExpire             Optional[float64]              `json:"microsoft_expire"`
+    MicrosoftExpire             Optional[int]                  `json:"microsoft_expire"`
     // whether password is enabled
     PassphraseEnabled           *bool                          `json:"passphrase_enabled,omitempty"`
     // interval for which guest remains authorized using passphrase auth (in minutes), if not provided, uses `expire`
-    PassphraseExpire            Optional[float64]              `json:"passphrase_expire"`
+    PassphraseExpire            Optional[int]                  `json:"passphrase_expire"`
     // passphrase
     Password                    Optional[string]               `json:"password"`
     // whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`
@@ -115,7 +115,7 @@ type WlanPortal struct {
     // whether sms is enabled as a login method
     SmsEnabled                  *bool                          `json:"sms_enabled,omitempty"`
     // interval for which guest remains authorized using sms auth (in minutes), if not provided, uses expire`
-    SmsExpire                   Optional[float64]              `json:"sms_expire"`
+    SmsExpire                   Optional[int]                  `json:"sms_expire"`
     // enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`
     SmsProvider                 *WlanPortalSmsProviderEnum     `json:"sms_provider,omitempty"`
     // whether to automatically approve guest and allow sponsor to revoke guest access, needs predefined_sponsors_enabled enabled and sponsor_notify_all disabled
@@ -125,7 +125,7 @@ type WlanPortal struct {
     // whether sponsor is enabled
     SponsorEnabled              *bool                          `json:"sponsor_enabled,omitempty"`
     // interval for which guest remains authorized using sponsor auth (in minutes), if not provided, uses expire`
-    SponsorExpire               Optional[float64]              `json:"sponsor_expire"`
+    SponsorExpire               Optional[int]                  `json:"sponsor_expire"`
     // how long to remain valid sponsored guest request approve/deny link received in email, in minutes.
     SponsorLinkValidityDuration *string                        `json:"sponsor_link_validity_duration,omitempty"`
     // whether to notify all sponsors that are mentioned in `sponsors` object. Both `sponsor_notify_all` and `predefined_sponsors_enabled` should be true in order to notify sponsors. If true, email sent to 10 sponsors in no particular order.
@@ -598,12 +598,12 @@ type tempWlanPortal  struct {
     AmazonClientSecret          Optional[string]               `json:"amazon_client_secret"`
     AmazonEmailDomains          []string                       `json:"amazon_email_domains,omitempty"`
     AmazonEnabled               *bool                          `json:"amazon_enabled,omitempty"`
-    AmazonExpire                Optional[float64]              `json:"amazon_expire"`
+    AmazonExpire                Optional[int]                  `json:"amazon_expire"`
     Auth                        *WlanPortalAuthEnum            `json:"auth,omitempty"`
     AzureClientId               Optional[string]               `json:"azure_client_id"`
     AzureClientSecret           Optional[string]               `json:"azure_client_secret"`
     AzureEnabled                *bool                          `json:"azure_enabled,omitempty"`
-    AzureExpire                 Optional[float64]              `json:"azure_expire"`
+    AzureExpire                 Optional[int]                  `json:"azure_expire"`
     AzureTenantId               Optional[string]               `json:"azure_tenant_id"`
     BroadnetPassword            *string                        `json:"broadnet_password,omitempty"`
     BroadnetSid                 *string                        `json:"broadnet_sid,omitempty"`
@@ -619,23 +619,23 @@ type tempWlanPortal  struct {
     FacebookClientSecret        Optional[string]               `json:"facebook_client_secret"`
     FacebookEmailDomains        []string                       `json:"facebook_email_domains,omitempty"`
     FacebookEnabled             *bool                          `json:"facebook_enabled,omitempty"`
-    FacebookExpire              Optional[float64]              `json:"facebook_expire"`
+    FacebookExpire              Optional[int]                  `json:"facebook_expire"`
     Forward                     *bool                          `json:"forward,omitempty"`
     ForwardUrl                  Optional[string]               `json:"forward_url"`
     GoogleClientId              Optional[string]               `json:"google_client_id"`
     GoogleClientSecret          Optional[string]               `json:"google_client_secret"`
     GoogleEmailDomains          []string                       `json:"google_email_domains,omitempty"`
     GoogleEnabled               *bool                          `json:"google_enabled,omitempty"`
-    GoogleExpire                Optional[float64]              `json:"google_expire"`
+    GoogleExpire                Optional[int]                  `json:"google_expire"`
     GupshupPassword             *string                        `json:"gupshup_password,omitempty"`
     GupshupUserid               *string                        `json:"gupshup_userid,omitempty"`
     MicrosoftClientId           Optional[string]               `json:"microsoft_client_id"`
     MicrosoftClientSecret       Optional[string]               `json:"microsoft_client_secret"`
     MicrosoftEmailDomains       []string                       `json:"microsoft_email_domains,omitempty"`
     MicrosoftEnabled            *bool                          `json:"microsoft_enabled,omitempty"`
-    MicrosoftExpire             Optional[float64]              `json:"microsoft_expire"`
+    MicrosoftExpire             Optional[int]                  `json:"microsoft_expire"`
     PassphraseEnabled           *bool                          `json:"passphrase_enabled,omitempty"`
-    PassphraseExpire            Optional[float64]              `json:"passphrase_expire"`
+    PassphraseExpire            Optional[int]                  `json:"passphrase_expire"`
     Password                    Optional[string]               `json:"password"`
     PredefinedSponsorsEnabled   *bool                          `json:"predefined_sponsors_enabled,omitempty"`
     PredefinedSponsorsHideEmail *bool                          `json:"predefined_sponsors_hide_email,omitempty"`
@@ -645,12 +645,12 @@ type tempWlanPortal  struct {
     PuzzelUsername              *string                        `json:"puzzel_username,omitempty"`
     SmsMessageFormat            *string                        `json:"smsMessageFormat,omitempty"`
     SmsEnabled                  *bool                          `json:"sms_enabled,omitempty"`
-    SmsExpire                   Optional[float64]              `json:"sms_expire"`
+    SmsExpire                   Optional[int]                  `json:"sms_expire"`
     SmsProvider                 *WlanPortalSmsProviderEnum     `json:"sms_provider,omitempty"`
     SponsorAutoApprove          *bool                          `json:"sponsor_auto_approve,omitempty"`
     SponsorEmailDomains         []string                       `json:"sponsor_email_domains,omitempty"`
     SponsorEnabled              *bool                          `json:"sponsor_enabled,omitempty"`
-    SponsorExpire               Optional[float64]              `json:"sponsor_expire"`
+    SponsorExpire               Optional[int]                  `json:"sponsor_expire"`
     SponsorLinkValidityDuration *string                        `json:"sponsor_link_validity_duration,omitempty"`
     SponsorNotifyAll            *bool                          `json:"sponsor_notify_all,omitempty"`
     SponsorStatusNotify         *bool                          `json:"sponsor_status_notify,omitempty"`

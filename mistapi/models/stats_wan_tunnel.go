@@ -2,7 +2,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
 // StatsWanTunnel represents a StatsWanTunnel struct.
@@ -25,7 +27,7 @@ type StatsWanTunnel struct {
     // peer host
     PeerHost             *string                     `json:"peer_host,omitempty"`
     // peer ip address
-    PeerIp               *string                     `json:"peer_ip,omitempty"`
+    PeerIp               string                      `json:"peer_ip"`
     // enum: `primary`, `secondary`
     Priority             *StatsWanTunnelPriorityEnum `json:"priority,omitempty"`
     // enum: `gre`, `ipsec`
@@ -88,9 +90,7 @@ func (s StatsWanTunnel) toMap() map[string]any {
     if s.PeerHost != nil {
         structMap["peer_host"] = s.PeerHost
     }
-    if s.PeerIp != nil {
-        structMap["peer_ip"] = s.PeerIp
-    }
+    structMap["peer_ip"] = s.PeerIp
     if s.Priority != nil {
         structMap["priority"] = s.Priority
     }
@@ -135,6 +135,10 @@ func (s *StatsWanTunnel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
     additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_algo", "encrypt_algo", "ike_version", "ip", "last_event", "mac", "node", "org_id", "peer_host", "peer_ip", "priority", "protocol", "rx_bytes", "rx_pkts", "site_id", "tunnel_name", "tx_bytes", "tx_pkts", "up", "uptime", "wan_name")
     if err != nil {
     	return err
@@ -150,7 +154,7 @@ func (s *StatsWanTunnel) UnmarshalJSON(input []byte) error {
     s.Node = temp.Node
     s.OrgId = temp.OrgId
     s.PeerHost = temp.PeerHost
-    s.PeerIp = temp.PeerIp
+    s.PeerIp = *temp.PeerIp
     s.Priority = temp.Priority
     s.Protocol = temp.Protocol
     s.RxBytes = temp.RxBytes
@@ -176,7 +180,7 @@ type tempStatsWanTunnel  struct {
     Node        *string                     `json:"node,omitempty"`
     OrgId       *uuid.UUID                  `json:"org_id,omitempty"`
     PeerHost    *string                     `json:"peer_host,omitempty"`
-    PeerIp      *string                     `json:"peer_ip,omitempty"`
+    PeerIp      *string                     `json:"peer_ip"`
     Priority    *StatsWanTunnelPriorityEnum `json:"priority,omitempty"`
     Protocol    *WanTunnelProtocolEnum      `json:"protocol,omitempty"`
     RxBytes     *int                        `json:"rx_bytes,omitempty"`
@@ -188,4 +192,15 @@ type tempStatsWanTunnel  struct {
     Up          *bool                       `json:"up,omitempty"`
     Uptime      *int                        `json:"uptime,omitempty"`
     WanName     *string                     `json:"wan_name,omitempty"`
+}
+
+func (s *tempStatsWanTunnel) validate() error {
+    var errs []string
+    if s.PeerIp == nil {
+        errs = append(errs, "required field `peer_ip` is missing for type `stats_wan_tunnel`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

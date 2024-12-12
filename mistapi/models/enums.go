@@ -538,6 +538,16 @@ const (
     ConfigSwitchLocalAccountsUserRoleEnum_READ     ConfigSwitchLocalAccountsUserRoleEnum = "read"
 )
 
+// ConstDeviceApBand24UsageEnum is a string enum.
+// enum: `24`, `5`, `6`
+type ConstDeviceApBand24UsageEnum string
+
+const (
+    ConstDeviceApBand24UsageEnum_ENUM24 ConstDeviceApBand24UsageEnum = "24"
+    ConstDeviceApBand24UsageEnum_ENUM5  ConstDeviceApBand24UsageEnum = "5"
+    ConstDeviceApBand24UsageEnum_ENUM6  ConstDeviceApBand24UsageEnum = "6"
+)
+
 // ConstDeviceApExtiosDefaultDirEnum is a string enum.
 // enum: `IN`, `OUT`
 type ConstDeviceApExtiosDefaultDirEnum string
@@ -3556,15 +3566,15 @@ const (
 )
 
 // StatsMxtunnelStateEnum is a string enum.
-// enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
+// enum: `established`, `established_with_sessions`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
 type StatsMxtunnelStateEnum string
 
 const (
-    StatsMxtunnelStateEnum_ESTABLISHED            StatsMxtunnelStateEnum = "established"
-    StatsMxtunnelStateEnum_ESTABLISHEDWITHSESSION StatsMxtunnelStateEnum = "established_with_session"
-    StatsMxtunnelStateEnum_IDLE                   StatsMxtunnelStateEnum = "idle"
-    StatsMxtunnelStateEnum_WAITCTRLCONN           StatsMxtunnelStateEnum = "wait-ctrl-conn"
-    StatsMxtunnelStateEnum_WAITCTRLREPLY          StatsMxtunnelStateEnum = "wait-ctrl-reply"
+    StatsMxtunnelStateEnum_ESTABLISHED             StatsMxtunnelStateEnum = "established"
+    StatsMxtunnelStateEnum_ESTABLISHEDWITHSESSIONS StatsMxtunnelStateEnum = "established_with_sessions"
+    StatsMxtunnelStateEnum_IDLE                    StatsMxtunnelStateEnum = "idle"
+    StatsMxtunnelStateEnum_WAITCTRLCONN            StatsMxtunnelStateEnum = "wait-ctrl-conn"
+    StatsMxtunnelStateEnum_WAITCTRLREPLY           StatsMxtunnelStateEnum = "wait-ctrl-reply"
 )
 
 // StatsSwitchPortAuthStateEnum is a string enum.

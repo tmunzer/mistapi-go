@@ -20,7 +20,7 @@
 | `Node` | `*string` | Optional | node0/node1 |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PeerHost` | `*string` | Optional | peer host |
-| `PeerIp` | `*string` | Optional | peer ip address |
+| `PeerIp` | `string` | Required | peer ip address |
 | `Priority` | [`*models.StatsWanTunnelPriorityEnum`](../../doc/models/stats-wan-tunnel-priority-enum.md) | Optional | enum: `primary`, `secondary` |
 | `Protocol` | [`*models.WanTunnelProtocolEnum`](../../doc/models/wan-tunnel-protocol-enum.md) | Optional | enum: `gre`, `ipsec` |
 | `RxBytes` | `*int` | Optional | - |
@@ -39,6 +39,7 @@
 ```json
 {
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+  "peer_ip": "peer_ip6",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "wan_name": "wan",
   "auth_algo": "auth_algo4",

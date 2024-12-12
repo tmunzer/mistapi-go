@@ -2,7 +2,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "github.com/google/uuid"
+    "strings"
 )
 
 // StatsMxtunnel represents a StatsMxtunnel struct.
@@ -19,13 +21,13 @@ type StatsMxtunnel struct {
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
     // MxEdge ID of the peer(mist edge to mist edge tunnel)
     PeerMxedgeId         *uuid.UUID              `json:"peer_mxedge_id,omitempty"`
-    RemoteIp             *string                 `json:"remote_ip,omitempty"`
+    RemoteIp             string                  `json:"remote_ip"`
     RemotePort           *int                    `json:"remote_port,omitempty"`
     RxControlPkts        *int                    `json:"rx_control_pkts,omitempty"`
     // list of sessions
     Sessions             []StatsMxtunnelSession  `json:"sessions,omitempty"`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
-    // enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
+    // enum: `established`, `established_with_sessions`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
     State                *StatsMxtunnelStateEnum `json:"state,omitempty"`
     TxControlPkts        *int                    `json:"tx_control_pkts,omitempty"`
     Uptime               *int                    `json:"uptime,omitempty"`
@@ -78,9 +80,7 @@ func (s StatsMxtunnel) toMap() map[string]any {
     if s.PeerMxedgeId != nil {
         structMap["peer_mxedge_id"] = s.PeerMxedgeId
     }
-    if s.RemoteIp != nil {
-        structMap["remote_ip"] = s.RemoteIp
-    }
+    structMap["remote_ip"] = s.RemoteIp
     if s.RemotePort != nil {
         structMap["remote_port"] = s.RemotePort
     }
@@ -113,6 +113,10 @@ func (s *StatsMxtunnel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
     additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "for_site", "fwupdate", "last_seen", "mtu", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "rx_control_pkts", "sessions", "site_id", "state", "tx_control_pkts", "uptime")
     if err != nil {
     	return err
@@ -129,7 +133,7 @@ func (s *StatsMxtunnel) UnmarshalJSON(input []byte) error {
     s.MxtunnelId = temp.MxtunnelId
     s.OrgId = temp.OrgId
     s.PeerMxedgeId = temp.PeerMxedgeId
-    s.RemoteIp = temp.RemoteIp
+    s.RemoteIp = *temp.RemoteIp
     s.RemotePort = temp.RemotePort
     s.RxControlPkts = temp.RxControlPkts
     s.Sessions = temp.Sessions
@@ -152,7 +156,7 @@ type tempStatsMxtunnel  struct {
     MxtunnelId    *uuid.UUID              `json:"mxtunnel_id,omitempty"`
     OrgId         *uuid.UUID              `json:"org_id,omitempty"`
     PeerMxedgeId  *uuid.UUID              `json:"peer_mxedge_id,omitempty"`
-    RemoteIp      *string                 `json:"remote_ip,omitempty"`
+    RemoteIp      *string                 `json:"remote_ip"`
     RemotePort    *int                    `json:"remote_port,omitempty"`
     RxControlPkts *int                    `json:"rx_control_pkts,omitempty"`
     Sessions      []StatsMxtunnelSession  `json:"sessions,omitempty"`
@@ -160,4 +164,15 @@ type tempStatsMxtunnel  struct {
     State         *StatsMxtunnelStateEnum `json:"state,omitempty"`
     TxControlPkts *int                    `json:"tx_control_pkts,omitempty"`
     Uptime        *int                    `json:"uptime,omitempty"`
+}
+
+func (s *tempStatsMxtunnel) validate() error {
+    var errs []string
+    if s.RemoteIp == nil {
+        errs = append(errs, "required field `remote_ip` is missing for type `stats_mxtunnel`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

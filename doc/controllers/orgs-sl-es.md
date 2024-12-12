@@ -89,6 +89,29 @@ if err != nil {
 }
 ```
 
+## Example Response
+
+```
+{
+  "end": 1651323600,
+  "interval": 3600,
+  "limit": 1,
+  "page": 2,
+  "results": [
+    {
+      "application_health": 0.8250000047942866,
+      "gateway-health": 1,
+      "num_clients": 65,
+      "num_gateways": 1,
+      "site_id": "f5fcbee5-1234-5678-9101-1619ede87879",
+      "wan-link-health": 0.9988471089272484
+    }
+  ],
+  "start": 1651269600,
+  "total": 4
+}
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -124,7 +147,7 @@ GetOrgSle(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | see /api/v1/const/insight_metrics for available metrics |
-| `sle` | `*string` | Query, Optional | see [listInsightMetrics]($e/Constants%20Definitions/listInsightMetrics) for more details |
+| `sle` | `*string` | Query, Optional | see [listInsightMetrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for more details |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |

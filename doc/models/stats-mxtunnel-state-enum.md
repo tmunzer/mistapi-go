@@ -1,7 +1,7 @@
 
 # Stats Mxtunnel State Enum
 
-enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
+enum: `established`, `established_with_sessions`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
 
 ## Enumeration
 
@@ -12,7 +12,7 @@ enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait
 | Name |
 |  --- |
 | `established` |
-| `established_with_session` |
+| `established_with_sessions` |
 | `idle` |
 | `wait-ctrl-conn` |
 | `wait-ctrl-reply` |

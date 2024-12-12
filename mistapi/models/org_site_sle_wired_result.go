@@ -12,9 +12,9 @@ type OrgSiteSleWiredResult struct {
     NumClients           *float64               `json:"num_clients,omitempty"`
     NumSwitches          *float64               `json:"num_switches,omitempty"`
     SiteId               uuid.UUID              `json:"site_id"`
-    SwitchHealth         *float64               `json:"switch_health,omitempty"`
-    SwitchStc            *float64               `json:"switch_stc,omitempty"`
-    SwitchThroughput     *float64               `json:"switch_throughput,omitempty"`
+    SwitchBandwidth      *float64               `json:"switch-bandwidth,omitempty"`
+    SwitchHealth         float64                `json:"switch-health"`
+    SwitchThroughput     *float64               `json:"switch-throughput,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -24,7 +24,7 @@ func (o OrgSiteSleWiredResult) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(o.AdditionalProperties,
-        "num_clients", "num_switches", "site_id", "switch_health", "switch_stc", "switch_throughput"); err != nil {
+        "num_clients", "num_switches", "site_id", "switch-bandwidth", "switch-health", "switch-throughput"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(o.toMap())
@@ -41,14 +41,12 @@ func (o OrgSiteSleWiredResult) toMap() map[string]any {
         structMap["num_switches"] = o.NumSwitches
     }
     structMap["site_id"] = o.SiteId
-    if o.SwitchHealth != nil {
-        structMap["switch_health"] = o.SwitchHealth
+    if o.SwitchBandwidth != nil {
+        structMap["switch-bandwidth"] = o.SwitchBandwidth
     }
-    if o.SwitchStc != nil {
-        structMap["switch_stc"] = o.SwitchStc
-    }
+    structMap["switch-health"] = o.SwitchHealth
     if o.SwitchThroughput != nil {
-        structMap["switch_throughput"] = o.SwitchThroughput
+        structMap["switch-throughput"] = o.SwitchThroughput
     }
     return structMap
 }
@@ -65,7 +63,7 @@ func (o *OrgSiteSleWiredResult) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "num_clients", "num_switches", "site_id", "switch_health", "switch_stc", "switch_throughput")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "num_clients", "num_switches", "site_id", "switch-bandwidth", "switch-health", "switch-throughput")
     if err != nil {
     	return err
     }
@@ -74,8 +72,8 @@ func (o *OrgSiteSleWiredResult) UnmarshalJSON(input []byte) error {
     o.NumClients = temp.NumClients
     o.NumSwitches = temp.NumSwitches
     o.SiteId = *temp.SiteId
-    o.SwitchHealth = temp.SwitchHealth
-    o.SwitchStc = temp.SwitchStc
+    o.SwitchBandwidth = temp.SwitchBandwidth
+    o.SwitchHealth = *temp.SwitchHealth
     o.SwitchThroughput = temp.SwitchThroughput
     return nil
 }
@@ -85,15 +83,18 @@ type tempOrgSiteSleWiredResult  struct {
     NumClients       *float64   `json:"num_clients,omitempty"`
     NumSwitches      *float64   `json:"num_switches,omitempty"`
     SiteId           *uuid.UUID `json:"site_id"`
-    SwitchHealth     *float64   `json:"switch_health,omitempty"`
-    SwitchStc        *float64   `json:"switch_stc,omitempty"`
-    SwitchThroughput *float64   `json:"switch_throughput,omitempty"`
+    SwitchBandwidth  *float64   `json:"switch-bandwidth,omitempty"`
+    SwitchHealth     *float64   `json:"switch-health"`
+    SwitchThroughput *float64   `json:"switch-throughput,omitempty"`
 }
 
 func (o *tempOrgSiteSleWiredResult) validate() error {
     var errs []string
     if o.SiteId == nil {
         errs = append(errs, "required field `site_id` is missing for type `org_site_sle_wired_result`")
+    }
+    if o.SwitchHealth == nil {
+        errs = append(errs, "required field `switch-health` is missing for type `org_site_sle_wired_result`")
     }
     if len(errs) == 0 {
         return nil

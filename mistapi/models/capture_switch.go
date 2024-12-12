@@ -20,7 +20,7 @@ type CaptureSwitch struct {
     // Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request
     Ports                map[string]CaptureSwitchPortsTcpdumpExpression `json:"ports,omitempty"`
     // Property key is the switch mac
-    Switches             map[string]CaptureSwitchSwitches               `json:"switches,omitempty"`
+    Switches             map[string]CaptureSwitchSwitches               `json:"switches"`
     // tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist.
     TcpdumpExpression    *string                                        `json:"tcpdump_expression,omitempty"`
     // enum: `switch`
@@ -59,9 +59,7 @@ func (c CaptureSwitch) toMap() map[string]any {
     if c.Ports != nil {
         structMap["ports"] = c.Ports
     }
-    if c.Switches != nil {
-        structMap["switches"] = c.Switches
-    }
+    structMap["switches"] = c.Switches
     if c.TcpdumpExpression != nil {
         structMap["tcpdump_expression"] = c.TcpdumpExpression
     }
@@ -92,7 +90,7 @@ func (c *CaptureSwitch) UnmarshalJSON(input []byte) error {
     c.MaxPktLen = temp.MaxPktLen
     c.NumPackets = temp.NumPackets
     c.Ports = temp.Ports
-    c.Switches = temp.Switches
+    c.Switches = *temp.Switches
     c.TcpdumpExpression = temp.TcpdumpExpression
     c.Type = *temp.Type
     return nil
@@ -105,13 +103,16 @@ type tempCaptureSwitch  struct {
     MaxPktLen         *int                                           `json:"max_pkt_len,omitempty"`
     NumPackets        *int                                           `json:"num_packets,omitempty"`
     Ports             map[string]CaptureSwitchPortsTcpdumpExpression `json:"ports,omitempty"`
-    Switches          map[string]CaptureSwitchSwitches               `json:"switches,omitempty"`
+    Switches          *map[string]CaptureSwitchSwitches              `json:"switches"`
     TcpdumpExpression *string                                        `json:"tcpdump_expression,omitempty"`
     Type              *string                                        `json:"type"`
 }
 
 func (c *tempCaptureSwitch) validate() error {
     var errs []string
+    if c.Switches == nil {
+        errs = append(errs, "required field `switches` is missing for type `capture_switch`")
+    }
     if c.Type == nil {
         errs = append(errs, "required field `type` is missing for type `capture_switch`")
     }

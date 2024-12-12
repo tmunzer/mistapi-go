@@ -15,7 +15,7 @@
 | `Band24` | [`*models.ConstDeviceApBand24`](../../doc/models/const-device-ap-band-24.md) | Optional | - |
 | `Band5` | [`*models.ConstDeviceApBand5`](../../doc/models/const-device-ap-band-5.md) | Optional | - |
 | `Band6` | [`*models.ConstDeviceApBand5`](../../doc/models/const-device-ap-band-5.md) | Optional | - |
-| `Band24Usages` | [`*models.RadioBand24UsageEnum`](../../doc/models/radio-band-24-usage-enum.md) | Optional | enum: `24`, `5`, `6`, `auto` |
+| `Band24Usages` | [`[]models.ConstDeviceApBand24UsageEnum`](../../doc/models/const-device-ap-band-24-usage-enum.md) | Optional | - |
 | `CeDfsOk` | `*bool` | Optional | - |
 | `CiscoPace` | `*bool` | Optional | - |
 | `Description` | `*string` | Optional | - |
@@ -105,7 +105,9 @@
       "key2": "val2"
     }
   },
-  "band_24_usages": "6",
+  "band_24_usages": [
+    "6"
+  ],
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

@@ -30,12 +30,13 @@
   "page": 154,
   "results": [
     {
-      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "ap-availability": 204.4,
+      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "ap-health": 236.64,
       "capacity": 106.72,
       "coverage": 128.26,
       "num_aps": 247.16,
+      "num_clients": 68.96,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

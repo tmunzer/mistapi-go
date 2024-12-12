@@ -10,7 +10,7 @@ import (
 // OrgSiteSleWanResult represents a OrgSiteSleWanResult struct.
 type OrgSiteSleWanResult struct {
     ApplicationHealth    *float64               `json:"application_health,omitempty"`
-    GatewayHealth        *float64               `json:"gateway-health,omitempty"`
+    GatewayHealth        float64                `json:"gateway-health"`
     NumClients           *float64               `json:"num_clients,omitempty"`
     NumGateways          *float64               `json:"num_gateways,omitempty"`
     SiteId               uuid.UUID              `json:"site_id"`
@@ -37,9 +37,7 @@ func (o OrgSiteSleWanResult) toMap() map[string]any {
     if o.ApplicationHealth != nil {
         structMap["application_health"] = o.ApplicationHealth
     }
-    if o.GatewayHealth != nil {
-        structMap["gateway-health"] = o.GatewayHealth
-    }
+    structMap["gateway-health"] = o.GatewayHealth
     if o.NumClients != nil {
         structMap["num_clients"] = o.NumClients
     }
@@ -72,7 +70,7 @@ func (o *OrgSiteSleWanResult) UnmarshalJSON(input []byte) error {
     o.AdditionalProperties = additionalProperties
     
     o.ApplicationHealth = temp.ApplicationHealth
-    o.GatewayHealth = temp.GatewayHealth
+    o.GatewayHealth = *temp.GatewayHealth
     o.NumClients = temp.NumClients
     o.NumGateways = temp.NumGateways
     o.SiteId = *temp.SiteId
@@ -83,7 +81,7 @@ func (o *OrgSiteSleWanResult) UnmarshalJSON(input []byte) error {
 // tempOrgSiteSleWanResult is a temporary struct used for validating the fields of OrgSiteSleWanResult.
 type tempOrgSiteSleWanResult  struct {
     ApplicationHealth *float64   `json:"application_health,omitempty"`
-    GatewayHealth     *float64   `json:"gateway-health,omitempty"`
+    GatewayHealth     *float64   `json:"gateway-health"`
     NumClients        *float64   `json:"num_clients,omitempty"`
     NumGateways       *float64   `json:"num_gateways,omitempty"`
     SiteId            *uuid.UUID `json:"site_id"`
@@ -92,6 +90,9 @@ type tempOrgSiteSleWanResult  struct {
 
 func (o *tempOrgSiteSleWanResult) validate() error {
     var errs []string
+    if o.GatewayHealth == nil {
+        errs = append(errs, "required field `gateway-health` is missing for type `org_site_sle_wan_result`")
+    }
     if o.SiteId == nil {
         errs = append(errs, "required field `site_id` is missing for type `org_site_sle_wan_result`")
     }

@@ -12,8 +12,7 @@ type ConstDeviceAp struct {
     Band24               *ConstDeviceApBand24           `json:"band24,omitempty"`
     Band5                *ConstDeviceApBand5            `json:"band5,omitempty"`
     Band6                *ConstDeviceApBand5            `json:"band6,omitempty"`
-    // enum: `24`, `5`, `6`, `auto`
-    Band24Usages         *RadioBand24UsageEnum          `json:"band_24_usages,omitempty"`
+    Band24Usages         []ConstDeviceApBand24UsageEnum `json:"band_24_usages,omitempty"`
     CeDfsOk              *bool                          `json:"ce_dfs_ok,omitempty"`
     CiscoPace            *bool                          `json:"cisco_pace,omitempty"`
     Description          *string                        `json:"description,omitempty"`
@@ -238,7 +237,7 @@ type tempConstDeviceAp  struct {
     Band24              *ConstDeviceApBand24           `json:"band24,omitempty"`
     Band5               *ConstDeviceApBand5            `json:"band5,omitempty"`
     Band6               *ConstDeviceApBand5            `json:"band6,omitempty"`
-    Band24Usages        *RadioBand24UsageEnum          `json:"band_24_usages,omitempty"`
+    Band24Usages        []ConstDeviceApBand24UsageEnum `json:"band_24_usages,omitempty"`
     CeDfsOk             *bool                          `json:"ce_dfs_ok,omitempty"`
     CiscoPace           *bool                          `json:"cisco_pace,omitempty"`
     Description         *string                        `json:"description,omitempty"`

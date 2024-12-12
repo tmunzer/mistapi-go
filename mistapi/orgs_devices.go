@@ -552,7 +552,7 @@ func (o *OrgsDevices) ListOrgApsMacs(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgDevices takes context, orgId, hostname, siteId, model, mac, version, extIp, powerConstrained, ipAddress, mxtunnelStatus, mxedgeId, mxedgeIds, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, lldpPowerAllocated, lldpPowerDraw, band24Bandwidth, band5Bandwidth, band6Bandwidth, band24Channel, band5Channel, band6Channel, band24Power, band5Power, band6Power, eth0PortSpeed, limit, start, end, duration as parameters and
+// SearchOrgDevices takes context, orgId, hostname, siteId, model, mac, version, extIp, powerConstrained, ipAddress, mxtunnelStatus, mxedgeId, mxedgeIds, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, lldpPowerAllocated, lldpPowerDraw, band24Bandwidth, band5Bandwidth, band6Bandwidth, band24Channel, band5Channel, band6Channel, band24Power, band5Power, band6Power, eth0PortSpeed, mType, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Devices
@@ -586,6 +586,7 @@ func (o *OrgsDevices) SearchOrgDevices(
     band5Power *int,
     band6Power *int,
     eth0PortSpeed *int,
+    mType *models.DeviceTypeEnum,
     limit *int,
     start *int,
     end *int,
@@ -695,6 +696,9 @@ func (o *OrgsDevices) SearchOrgDevices(
     }
     if eth0PortSpeed != nil {
         req.QueryParam("eth0_port_speed", *eth0PortSpeed)
+    }
+    if mType != nil {
+        req.QueryParam("type", *mType)
     }
     if limit != nil {
         req.QueryParam("limit", *limit)

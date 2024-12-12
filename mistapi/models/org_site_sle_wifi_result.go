@@ -9,7 +9,7 @@ import (
 
 // OrgSiteSleWifiResult represents a OrgSiteSleWifiResult struct.
 type OrgSiteSleWifiResult struct {
-    ApAvailability       *float64               `json:"ap-availability,omitempty"`
+    ApAvailability       float64                `json:"ap-availability"`
     ApHealth             *float64               `json:"ap-health,omitempty"`
     Capacity             *float64               `json:"capacity,omitempty"`
     Coverage             *float64               `json:"coverage,omitempty"`
@@ -39,9 +39,7 @@ func (o OrgSiteSleWifiResult) MarshalJSON() (
 func (o OrgSiteSleWifiResult) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, o.AdditionalProperties)
-    if o.ApAvailability != nil {
-        structMap["ap-availability"] = o.ApAvailability
-    }
+    structMap["ap-availability"] = o.ApAvailability
     if o.ApHealth != nil {
         structMap["ap-health"] = o.ApHealth
     }
@@ -91,7 +89,7 @@ func (o *OrgSiteSleWifiResult) UnmarshalJSON(input []byte) error {
     }
     o.AdditionalProperties = additionalProperties
     
-    o.ApAvailability = temp.ApAvailability
+    o.ApAvailability = *temp.ApAvailability
     o.ApHealth = temp.ApHealth
     o.Capacity = temp.Capacity
     o.Coverage = temp.Coverage
@@ -107,7 +105,7 @@ func (o *OrgSiteSleWifiResult) UnmarshalJSON(input []byte) error {
 
 // tempOrgSiteSleWifiResult is a temporary struct used for validating the fields of OrgSiteSleWifiResult.
 type tempOrgSiteSleWifiResult  struct {
-    ApAvailability    *float64   `json:"ap-availability,omitempty"`
+    ApAvailability    *float64   `json:"ap-availability"`
     ApHealth          *float64   `json:"ap-health,omitempty"`
     Capacity          *float64   `json:"capacity,omitempty"`
     Coverage          *float64   `json:"coverage,omitempty"`
@@ -122,6 +120,9 @@ type tempOrgSiteSleWifiResult  struct {
 
 func (o *tempOrgSiteSleWifiResult) validate() error {
     var errs []string
+    if o.ApAvailability == nil {
+        errs = append(errs, "required field `ap-availability` is missing for type `org_site_sle_wifi_result`")
+    }
     if o.SiteId == nil {
         errs = append(errs, "required field `site_id` is missing for type `org_site_sle_wifi_result`")
     }

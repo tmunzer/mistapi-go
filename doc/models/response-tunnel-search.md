@@ -42,6 +42,7 @@
       },
       "last_seen": 249.6,
       "mtu": 34,
+      "remote_ip": "remote_ip4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -63,6 +64,7 @@
       },
       "last_seen": 249.6,
       "mtu": 34,
+      "remote_ip": "remote_ip4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

@@ -1265,7 +1265,7 @@ ListStates(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `countryCode` | `string` | Query, Required | country code, in [two-character]($e/Constants%20Definitions/listCountryCodes) |
+| `countryCode` | `string` | Query, Required | country code, in [two-character](../../doc/controllers/constants-definitions.md#list-country-codes) |
 
 ## Response Type
 

@@ -18,12 +18,12 @@ portal wlan settings
 | `AmazonClientSecret` | `models.Optional[string]` | Optional | amazon OAuth2 client secret. If amazon_client_id was provided, provide a correspoinding value. Else leave blank. |
 | `AmazonEmailDomains` | `[]string` | Optional | Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `AmazonEnabled` | `*bool` | Optional | whether amazon is enabled as a login method<br>**Default**: `false` |
-| `AmazonExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using amazon auth (in minutes), if not provided, uses expire` |
+| `AmazonExpire` | `models.Optional[int]` | Optional | interval for which guest remains authorized using amazon auth (in minutes), if not provided, uses expire` |
 | `Auth` | [`*models.WlanPortalAuthEnum`](../../doc/models/wlan-portal-auth-enum.md) | Optional | authentication scheme. enum: `external`, `none`, `sso`<br>**Default**: `"none"` |
 | `AzureClientId` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`.<br>Azure active directory app client id |
 | `AzureClientSecret` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`.<br>Azure active directory app client secret |
 | `AzureEnabled` | `*bool` | Optional | whether Azure Active Directory is enabled as a login method<br>**Default**: `false` |
-| `AzureExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using azure auth (in minutes), if not provided, uses expire` |
+| `AzureExpire` | `models.Optional[int]` | Optional | interval for which guest remains authorized using azure auth (in minutes), if not provided, uses expire` |
 | `AzureTenantId` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`.<br>Azure active directory tenant id. |
 | `BroadnetPassword` | `*string` | Optional | when `sms_provider`==`broadnet` |
 | `BroadnetSid` | `*string` | Optional | when `sms_provider`==`broadnet`<br>**Default**: `"MIST"` |
@@ -39,23 +39,23 @@ portal wlan settings
 | `FacebookClientSecret` | `models.Optional[string]` | Optional | Required if `facebook_enabled`==`true`.<br>Facebook OAuth2 app secret. If facebook_client_id was provided, provide a correspoinding value. Else leave blank. |
 | `FacebookEmailDomains` | `[]string` | Optional | Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `FacebookEnabled` | `*bool` | Optional | whether facebook is enabled as a login method<br>**Default**: `false` |
-| `FacebookExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using facebook auth (in minutes), if not provided, uses expire` |
+| `FacebookExpire` | `models.Optional[int]` | Optional | interval for which guest remains authorized using facebook auth (in minutes), if not provided, uses expire` |
 | `Forward` | `*bool` | Optional | whether to forward the user to another URL after authorized<br>**Default**: `false` |
 | `ForwardUrl` | `models.Optional[string]` | Optional | the URL to forward the user to |
 | `GoogleClientId` | `models.Optional[string]` | Optional | Google OAuth2 app id. This is optional. If not provided, it will use a default one. |
 | `GoogleClientSecret` | `models.Optional[string]` | Optional | Google OAuth2 app secret. If google_client_id was provided, provide a correspoinding value. Else leave blank. |
 | `GoogleEmailDomains` | `[]string` | Optional | Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `GoogleEnabled` | `*bool` | Optional | whether google is enabled as login method<br>**Default**: `false` |
-| `GoogleExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using google auth (in minutes), if not provided, uses expire` |
+| `GoogleExpire` | `models.Optional[int]` | Optional | interval for which guest remains authorized using google auth (in minutes), if not provided, uses expire` |
 | `GupshupPassword` | `*string` | Optional | when `sms_provider`==`gupshup` |
 | `GupshupUserid` | `*string` | Optional | when `sms_provider`==`gupshup` |
 | `MicrosoftClientId` | `models.Optional[string]` | Optional | microsoft 365 OAuth2 client id. This is optional. If not provided, it will use a default one. |
 | `MicrosoftClientSecret` | `models.Optional[string]` | Optional | microsoft 365 OAuth2 client secret. If microsoft_client_id was provided, provide a correspoinding value. Else leave blank. |
 | `MicrosoftEmailDomains` | `[]string` | Optional | Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `MicrosoftEnabled` | `*bool` | Optional | whether microsoft 365 is enabled as a login method<br>**Default**: `false` |
-| `MicrosoftExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using microsoft auth (in minutes), if not provided, uses expire` |
+| `MicrosoftExpire` | `models.Optional[int]` | Optional | interval for which guest remains authorized using microsoft auth (in minutes), if not provided, uses expire` |
 | `PassphraseEnabled` | `*bool` | Optional | whether password is enabled<br>**Default**: `false` |
-| `PassphraseExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using passphrase auth (in minutes), if not provided, uses `expire` |
+| `PassphraseExpire` | `models.Optional[int]` | Optional | interval for which guest remains authorized using passphrase auth (in minutes), if not provided, uses `expire` |
 | `Password` | `models.Optional[string]` | Optional | passphrase |
 | `PredefinedSponsorsEnabled` | `*bool` | Optional | whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`<br>**Default**: `true` |
 | `PredefinedSponsorsHideEmail` | `*bool` | Optional | whether to hide sponsor’s email from list of sponsors<br>**Default**: `false` |
@@ -65,12 +65,12 @@ portal wlan settings
 | `PuzzelUsername` | `*string` | Optional | when `sms_provider`==`puzzel` |
 | `SmsMessageFormat` | `*string` | Optional | **Default**: `"Code {{code}} expires in {{duration}} minutes."` |
 | `SmsEnabled` | `*bool` | Optional | whether sms is enabled as a login method<br>**Default**: `false` |
-| `SmsExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using sms auth (in minutes), if not provided, uses expire` |
+| `SmsExpire` | `models.Optional[int]` | Optional | interval for which guest remains authorized using sms auth (in minutes), if not provided, uses expire` |
 | `SmsProvider` | [`*models.WlanPortalSmsProviderEnum`](../../doc/models/wlan-portal-sms-provider-enum.md) | Optional | enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`<br>**Default**: `"manual"` |
 | `SponsorAutoApprove` | `*bool` | Optional | whether to automatically approve guest and allow sponsor to revoke guest access, needs predefined_sponsors_enabled enabled and sponsor_notify_all disabled<br>**Default**: `false` |
 | `SponsorEmailDomains` | `[]string` | Optional | list of domain allowed for sponsor email. Required if `sponsor_enabled` is `true` and `sponsors` is empty. |
 | `SponsorEnabled` | `*bool` | Optional | whether sponsor is enabled<br>**Default**: `false` |
-| `SponsorExpire` | `models.Optional[float64]` | Optional | interval for which guest remains authorized using sponsor auth (in minutes), if not provided, uses expire` |
+| `SponsorExpire` | `models.Optional[int]` | Optional | interval for which guest remains authorized using sponsor auth (in minutes), if not provided, uses expire` |
 | `SponsorLinkValidityDuration` | `*string` | Optional | how long to remain valid sponsored guest request approve/deny link received in email, in minutes.<br>**Default**: `"60"` |
 | `SponsorNotifyAll` | `*bool` | Optional | whether to notify all sponsors that are mentioned in `sponsors` object. Both `sponsor_notify_all` and `predefined_sponsors_enabled` should be true in order to notify sponsors. If true, email sent to 10 sponsors in no particular order.<br>**Default**: `false` |
 | `SponsorStatusNotify` | `*bool` | Optional | if enabled, guest will get email about sponsor's action (approve/deny)<br>**Default**: `false` |

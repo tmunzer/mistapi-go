@@ -31,11 +31,11 @@
   "results": [
     {
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
+      "switch-health": 218.74,
       "num_clients": 68.96,
       "num_switches": 67.86,
-      "switch_health": 68.36,
-      "switch_stc": 162.54,
-      "switch_throughput": 20.2,
+      "switch-bandwidth": 71.16,
+      "switch-throughput": 157.64,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

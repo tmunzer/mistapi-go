@@ -14,7 +14,7 @@ type CaptureGateway struct {
     // enum: `stream`
     Format               *CaptureGatewayFormatEnum             `json:"format,omitempty"`
     // List of SSRs. Property key is the SSR MAC
-    Gateways             map[string]CaptureGatewayGateways     `json:"gateways,omitempty"`
+    Gateways             map[string]CaptureGatewayGateways     `json:"gateways"`
     // max_len of each packet to capture
     MaxPktLen            *int                                  `json:"max_pkt_len,omitempty"`
     // number of packets to capture, 0 for unlimited
@@ -48,9 +48,7 @@ func (c CaptureGateway) toMap() map[string]any {
     if c.Format != nil {
         structMap["format"] = c.Format
     }
-    if c.Gateways != nil {
-        structMap["gateways"] = c.Gateways
-    }
+    structMap["gateways"] = c.Gateways
     if c.MaxPktLen != nil {
         structMap["max_pkt_len"] = c.MaxPktLen
     }
@@ -84,7 +82,7 @@ func (c *CaptureGateway) UnmarshalJSON(input []byte) error {
     
     c.Duration = temp.Duration
     c.Format = temp.Format
-    c.Gateways = temp.Gateways
+    c.Gateways = *temp.Gateways
     c.MaxPktLen = temp.MaxPktLen
     c.NumPackets = temp.NumPackets
     c.Ports = temp.Ports
@@ -96,7 +94,7 @@ func (c *CaptureGateway) UnmarshalJSON(input []byte) error {
 type tempCaptureGateway  struct {
     Duration   *int                                  `json:"duration,omitempty"`
     Format     *CaptureGatewayFormatEnum             `json:"format,omitempty"`
-    Gateways   map[string]CaptureGatewayGateways     `json:"gateways,omitempty"`
+    Gateways   *map[string]CaptureGatewayGateways    `json:"gateways"`
     MaxPktLen  *int                                  `json:"max_pkt_len,omitempty"`
     NumPackets *int                                  `json:"num_packets,omitempty"`
     Ports      map[string]CaptureGatewayGatewaysPort `json:"ports,omitempty"`
@@ -105,6 +103,9 @@ type tempCaptureGateway  struct {
 
 func (c *tempCaptureGateway) validate() error {
     var errs []string
+    if c.Gateways == nil {
+        errs = append(errs, "required field `gateways` is missing for type `capture_gateway`")
+    }
     if c.Type == nil {
         errs = append(errs, "required field `type` is missing for type `capture_gateway`")
     }
