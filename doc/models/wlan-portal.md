@@ -33,7 +33,7 @@ portal wlan settings
 | `CrossSite` | `*bool` | Optional | whether to allow guest to roam between WLANs (with same `WLAN.ssid`, regardless of variables) of different sites of same org without reauthentication (disable random_mac for seamless roaming)<br>**Default**: `false` |
 | `EmailEnabled` | `*bool` | Optional | whether email (access code verification) is enabled as a login method<br>**Default**: `false` |
 | `Enabled` | `*bool` | Optional | whether guest portal is enabled<br>**Default**: `false` |
-| `Expire` | `*float64` | Optional | how long to remain authorized, in minutes<br>**Default**: `1440` |
+| `Expire` | `*int` | Optional | how long to remain authorized, in minutes<br>**Default**: `1440` |
 | `ExternalPortalUrl` | `*string` | Optional | external portal URL (e.g. https://host/url) where we can append our query parameters to |
 | `FacebookClientId` | `models.Optional[string]` | Optional | Required if `facebook_enabled`==`true`.<br>Facebook OAuth2 app id. This is optional. If not provided, it will use a default one. |
 | `FacebookClientSecret` | `models.Optional[string]` | Optional | Required if `facebook_enabled`==`true`.<br>Facebook OAuth2 app secret. If facebook_client_id was provided, provide a correspoinding value. Else leave blank. |

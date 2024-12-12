@@ -277,7 +277,7 @@ body := models.Secpolicy{
                 CrossSite:                   models.ToPointer(false),
                 EmailEnabled:                models.ToPointer(true),
                 Enabled:                     models.ToPointer(false),
-                Expire:                      models.ToPointer(float64(1440)),
+                Expire:                      models.ToPointer(1440),
                 ExternalPortalUrl:           models.ToPointer("string"),
                 FacebookClientId:            models.NewOptional(models.ToPointer("string")),
                 FacebookClientSecret:        models.NewOptional(models.ToPointer("string")),

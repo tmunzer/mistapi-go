@@ -51,7 +51,7 @@ type WlanPortal struct {
     // whether guest portal is enabled
     Enabled                     *bool                          `json:"enabled,omitempty"`
     // how long to remain authorized, in minutes
-    Expire                      *float64                       `json:"expire,omitempty"`
+    Expire                      *int                           `json:"expire,omitempty"`
     // external portal URL (e.g. https://host/url) where we can append our query parameters to
     ExternalPortalUrl           *string                        `json:"external_portal_url,omitempty"`
     // Required if `facebook_enabled`==`true`.
@@ -613,7 +613,7 @@ type tempWlanPortal  struct {
     CrossSite                   *bool                          `json:"cross_site,omitempty"`
     EmailEnabled                *bool                          `json:"email_enabled,omitempty"`
     Enabled                     *bool                          `json:"enabled,omitempty"`
-    Expire                      *float64                       `json:"expire,omitempty"`
+    Expire                      *int                           `json:"expire,omitempty"`
     ExternalPortalUrl           *string                        `json:"external_portal_url,omitempty"`
     FacebookClientId            Optional[string]               `json:"facebook_client_id"`
     FacebookClientSecret        Optional[string]               `json:"facebook_client_secret"`
