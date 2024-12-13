@@ -19,7 +19,7 @@ portal wlan settings
 | `AmazonEmailDomains` | `[]string` | Optional | Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `AmazonEnabled` | `*bool` | Optional | whether amazon is enabled as a login method<br>**Default**: `false` |
 | `AmazonExpire` | `models.Optional[int]` | Optional | interval for which guest remains authorized using amazon auth (in minutes), if not provided, uses expire` |
-| `Auth` | [`*models.WlanPortalAuthEnum`](../../doc/models/wlan-portal-auth-enum.md) | Optional | authentication scheme. enum: `external`, `none`, `sso`<br>**Default**: `"none"` |
+| `Auth` | [`*models.WlanPortalAuthEnum`](../../doc/models/wlan-portal-auth-enum.md) | Optional | authentication scheme. enum: `amazon`, `azure`, `email`, `external`, `facebook`, `google`, `microsoft`, `multi`, `none`, `password`, `sponsor`, `sso`<br>**Default**: `"none"` |
 | `AzureClientId` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`.<br>Azure active directory app client id |
 | `AzureClientSecret` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`.<br>Azure active directory app client secret |
 | `AzureEnabled` | `*bool` | Optional | whether Azure Active Directory is enabled as a login method<br>**Default**: `false` |

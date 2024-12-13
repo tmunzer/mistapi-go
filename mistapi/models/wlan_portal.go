@@ -19,7 +19,7 @@ type WlanPortal struct {
     AmazonEnabled               *bool                          `json:"amazon_enabled,omitempty"`
     // interval for which guest remains authorized using amazon auth (in minutes), if not provided, uses expire`
     AmazonExpire                Optional[int]                  `json:"amazon_expire"`
-    // authentication scheme. enum: `external`, `none`, `sso`
+    // authentication scheme. enum: `amazon`, `azure`, `email`, `external`, `facebook`, `google`, `microsoft`, `multi`, `none`, `password`, `sponsor`, `sso`
     Auth                        *WlanPortalAuthEnum            `json:"auth,omitempty"`
     // Required if `azure_enabled`==`true`.
     // Azure active directory app client id

@@ -1,7 +1,7 @@
 
 # Wlan Portal Auth Enum
 
-authentication scheme. enum: `external`, `none`, `sso`
+authentication scheme. enum: `amazon`, `azure`, `email`, `external`, `facebook`, `google`, `microsoft`, `multi`, `none`, `password`, `sponsor`, `sso`
 
 ## Enumeration
 
@@ -11,8 +11,17 @@ authentication scheme. enum: `external`, `none`, `sso`
 
 | Name |
 |  --- |
+| `amazon` |
+| `azure` |
+| `email` |
 | `external` |
+| `facebook` |
+| `google` |
+| `microsoft` |
+| `multi` |
 | `none` |
+| `password` |
+| `sponsor` |
 | `sso` |
 
 ## Example

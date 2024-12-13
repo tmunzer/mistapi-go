@@ -4462,13 +4462,22 @@ const (
 )
 
 // WlanPortalAuthEnum is a string enum.
-// authentication scheme. enum: `external`, `none`, `sso`
+// authentication scheme. enum: `amazon`, `azure`, `email`, `external`, `facebook`, `google`, `microsoft`, `multi`, `none`, `password`, `sponsor`, `sso`
 type WlanPortalAuthEnum string
 
 const (
-    WlanPortalAuthEnum_EXTERNAL WlanPortalAuthEnum = "external"
-    WlanPortalAuthEnum_NONE     WlanPortalAuthEnum = "none"
-    WlanPortalAuthEnum_SSO      WlanPortalAuthEnum = "sso"
+    WlanPortalAuthEnum_AMAZON    WlanPortalAuthEnum = "amazon"
+    WlanPortalAuthEnum_AZURE     WlanPortalAuthEnum = "azure"
+    WlanPortalAuthEnum_EMAIL     WlanPortalAuthEnum = "email"
+    WlanPortalAuthEnum_EXTERNAL  WlanPortalAuthEnum = "external"
+    WlanPortalAuthEnum_FACEBOOK  WlanPortalAuthEnum = "facebook"
+    WlanPortalAuthEnum_GOOGLE    WlanPortalAuthEnum = "google"
+    WlanPortalAuthEnum_MICROSOFT WlanPortalAuthEnum = "microsoft"
+    WlanPortalAuthEnum_MULTI     WlanPortalAuthEnum = "multi"
+    WlanPortalAuthEnum_NONE      WlanPortalAuthEnum = "none"
+    WlanPortalAuthEnum_PASSWORD  WlanPortalAuthEnum = "password"
+    WlanPortalAuthEnum_SPONSOR   WlanPortalAuthEnum = "sponsor"
+    WlanPortalAuthEnum_SSO       WlanPortalAuthEnum = "sso"
 )
 
 // WlanPortalIdpSignAlgoEnum is a string enum.
