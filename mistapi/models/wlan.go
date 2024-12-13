@@ -72,7 +72,7 @@ type Wlan struct {
     // if uplink limiting per-client is enabled
     ClientLimitUpEnabled                 *bool                          `json:"client_limit_up_enabled,omitempty"`
     // list of COA (change of authorization) servers, optional
-    CoaServers                           Optional[[]CoaServer]          `json:"coa_servers"`
+    CoaServers                           []CoaServer                    `json:"coa_servers,omitempty"`
     // when the object has been created, in epoch
     CreatedTime                          *float64                       `json:"created_time,omitempty"`
     // some old WLAN drivers may not be compatible
@@ -336,12 +336,8 @@ func (w Wlan) toMap() map[string]any {
     if w.ClientLimitUpEnabled != nil {
         structMap["client_limit_up_enabled"] = w.ClientLimitUpEnabled
     }
-    if w.CoaServers.IsValueSet() {
-        if w.CoaServers.Value() != nil {
-            structMap["coa_servers"] = w.CoaServers.Value()
-        } else {
-            structMap["coa_servers"] = nil
-        }
+    if w.CoaServers != nil {
+        structMap["coa_servers"] = w.CoaServers
     }
     if w.CreatedTime != nil {
         structMap["created_time"] = w.CreatedTime
@@ -772,7 +768,7 @@ type tempWlan  struct {
     ClientLimitDownEnabled               *bool                          `json:"client_limit_down_enabled,omitempty"`
     ClientLimitUp                        *int                           `json:"client_limit_up,omitempty"`
     ClientLimitUpEnabled                 *bool                          `json:"client_limit_up_enabled,omitempty"`
-    CoaServers                           Optional[[]CoaServer]          `json:"coa_servers"`
+    CoaServers                           []CoaServer                    `json:"coa_servers,omitempty"`
     CreatedTime                          *float64                       `json:"created_time,omitempty"`
     Disable11ax                          *bool                          `json:"disable_11ax,omitempty"`
     DisableHtVhtRates                    *bool                          `json:"disable_ht_vht_rates,omitempty"`

@@ -1,7 +1,7 @@
 
 # Wlan Portal Sso Nameid Format Enum
 
-if `wlan_portal_auth`==`sso`. enum: `email`, `unspecified`
+Optional if `wlan_portal_auth`==`sso`. enum: `email`, `unspecified`
 
 ## Enumeration
 

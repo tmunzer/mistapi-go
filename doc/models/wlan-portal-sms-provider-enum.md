@@ -1,7 +1,7 @@
 
 # Wlan Portal Sms Provider Enum
 
-enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`
+Optioanl if `sms_enabled`==`true`. enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`
 
 ## Enumeration
 

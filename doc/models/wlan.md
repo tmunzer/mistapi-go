@@ -45,7 +45,7 @@ WLAN
 | `ClientLimitDownEnabled` | `*bool` | Optional | if downlink limiting per-client is enabled<br>**Default**: `false` |
 | `ClientLimitUp` | `*int` | Optional | kbps |
 | `ClientLimitUpEnabled` | `*bool` | Optional | if uplink limiting per-client is enabled<br>**Default**: `false` |
-| `CoaServers` | [`models.Optional[[]models.CoaServer]`](../../doc/models/coa-server.md) | Optional | list of COA (change of authorization) servers, optional |
+| `CoaServers` | [`[]models.CoaServer`](../../doc/models/coa-server.md) | Optional | list of COA (change of authorization) servers, optional |
 | `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `Disable11ax` | `*bool` | Optional | some old WLAN drivers may not be compatible<br>**Default**: `false` |
 | `DisableHtVhtRates` | `*bool` | Optional | to disable ht or vht rates<br>**Default**: `false` |

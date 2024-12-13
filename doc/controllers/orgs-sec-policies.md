@@ -178,7 +178,7 @@ body := models.Secpolicy{
             ClientLimitDownEnabled:               models.ToPointer(false),
             ClientLimitUp:                        models.ToPointer(0),
             ClientLimitUpEnabled:                 models.ToPointer(false),
-            CoaServers:                           models.NewOptional(models.ToPointer([]models.CoaServer{
+            CoaServers:                           []models.CoaServer{
                 models.CoaServer{
                     DisableEventTimestampCheck: models.ToPointer(false),
                     Enabled:                    models.ToPointer(false),
@@ -186,7 +186,7 @@ body := models.Secpolicy{
                     Port:                       models.ToPointer(3799),
                     Secret:                     "testing456",
                 },
-            })),
+            },
             Disable11ax:                          models.ToPointer(false),
             DisableHtVhtRates:                    models.ToPointer(false),
             DisableUapsd:                         models.ToPointer(false),

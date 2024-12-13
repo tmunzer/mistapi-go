@@ -7,9 +7,7 @@ import (
 )
 
 // WlanPortalSponsors represents a WlanPortalSponsors struct.
-// object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty.
-// Property key is the sponsor email, Property value is the sponsor name
-// List of email allowed for backward compatibility
+// object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty. Property key is the sponsor email, Property value is the sponsor name. List of email allowed for backward compatibility
 type WlanPortalSponsors struct {
     value           any
     isArrayOfString bool
@@ -77,9 +75,7 @@ func (w *WlanPortalSponsors) AsMapOfString() (
 }
 
 // internalWlanPortalSponsors represents a wlanPortalSponsors struct.
-// object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty.
-// Property key is the sponsor email, Property value is the sponsor name
-// List of email allowed for backward compatibility
+// object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty. Property key is the sponsor email, Property value is the sponsor name. List of email allowed for backward compatibility
 type internalWlanPortalSponsors struct {}
 
 var WlanPortalSponsorsContainer internalWlanPortalSponsors

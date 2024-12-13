@@ -4481,7 +4481,7 @@ const (
 )
 
 // WlanPortalIdpSignAlgoEnum is a string enum.
-// if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
+// Optioanl if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
 type WlanPortalIdpSignAlgoEnum string
 
 const (
@@ -4492,7 +4492,7 @@ const (
 )
 
 // WlanPortalSmsProviderEnum is a string enum.
-// enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`
+// Optioanl if `sms_enabled`==`true`. enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `telstra`, `twilio`
 type WlanPortalSmsProviderEnum string
 
 const (
@@ -4506,7 +4506,7 @@ const (
 )
 
 // WlanPortalSsoNameidFormatEnum is a string enum.
-// if `wlan_portal_auth`==`sso`. enum: `email`, `unspecified`
+// Optional if `wlan_portal_auth`==`sso`. enum: `email`, `unspecified`
 type WlanPortalSsoNameidFormatEnum string
 
 const (
