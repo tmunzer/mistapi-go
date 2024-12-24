@@ -18,7 +18,7 @@ type TunnelConfig struct {
     IpsecLifetime        *int                        `json:"ipsec_lifetime,omitempty"`
     // Only if  `provider`==`custom-ipsec`
     IpsecProposals       []TunnelConfigIpsecProposal `json:"ipsec_proposals,omitempty"`
-    // Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
+    // Required if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
     LocalId              *string                     `json:"local_id,omitempty"`
     // Required if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`. enum: `active-active`, `active-standby`
     Mode                 *TunnelConfigTunnelModeEnum `json:"mode,omitempty"`
@@ -32,7 +32,7 @@ type TunnelConfig struct {
     Protocol             *TunnelConfigProtocolEnum   `json:"protocol,omitempty"`
     // Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `customer-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec`
     Provider             *TunnelConfigProviderEnum   `json:"provider,omitempty"`
-    // Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
+    // Required if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
     Psk                  *string                     `json:"psk,omitempty"`
     // Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
     Secondary            *TunnelConfigNode           `json:"secondary,omitempty"`
