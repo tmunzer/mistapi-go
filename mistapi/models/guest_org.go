@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -48,6 +49,14 @@ type GuestOrg struct {
     // ID of the WLAN
     WlanId                 uuid.UUID              `json:"wlan_id"`
     AdditionalProperties   map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GuestOrg,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GuestOrg) String() string {
+    return fmt.Sprintf(
+    	"GuestOrg[AccessCodeEmail=%v, AllowWlanIdRoam=%v, ApMac=%v, AuthMethod=%v, Authorized=%v, AuthorizedExpiringTime=%v, AuthorizedTime=%v, Company=%v, CrossSite=%v, Email=%v, Field1=%v, Field2=%v, Field3=%v, Field4=%v, Mac=%v, Minutes=%v, Name=%v, RandomMac=%v, Ssid=%v, WlanId=%v, AdditionalProperties=%v]",
+    	g.AccessCodeEmail, g.AllowWlanIdRoam, g.ApMac, g.AuthMethod, g.Authorized, g.AuthorizedExpiringTime, g.AuthorizedTime, g.Company, g.CrossSite, g.Email, g.Field1, g.Field2, g.Field3, g.Field4, g.Mac, g.Minutes, g.Name, g.RandomMac, g.Ssid, g.WlanId, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GuestOrg.

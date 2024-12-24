@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // DhcpdConfigVendorOption represents a DhcpdConfigVendorOption struct.
@@ -10,6 +11,14 @@ type DhcpdConfigVendorOption struct {
     Type                 *DhcpdConfigVendorOptionTypeEnum `json:"type,omitempty"`
     Value                *string                          `json:"value,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DhcpdConfigVendorOption,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DhcpdConfigVendorOption) String() string {
+    return fmt.Sprintf(
+    	"DhcpdConfigVendorOption[Type=%v, Value=%v, AdditionalProperties=%v]",
+    	d.Type, d.Value, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpdConfigVendorOption.

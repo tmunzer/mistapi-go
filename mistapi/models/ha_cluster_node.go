@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // HaClusterNode represents a HaClusterNode struct.
@@ -9,6 +10,14 @@ type HaClusterNode struct {
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for HaClusterNode,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (h HaClusterNode) String() string {
+    return fmt.Sprintf(
+    	"HaClusterNode[Node=%v, AdditionalProperties=%v]",
+    	h.Node, h.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for HaClusterNode.

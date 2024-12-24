@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -33,11 +32,8 @@ func (s *SitesAnomaly) GetSiteAnomalyEventsForClient(
     metric string) (
     models.ApiResponse[models.ResponseAnomalySearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/anomaly/client/%v/%v", siteId, clientMac, metric),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/anomaly/client/%v/%v")
+    req.AppendTemplateParams(siteId, clientMac, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -78,11 +74,8 @@ func (s *SitesAnomaly) GetSiteAnomalyEventsforDevice(
     deviceMac string) (
     models.ApiResponse[models.ResponseAnomalySearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/anomaly/device/%v/%v", siteId, deviceMac, metric),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/anomaly/device/%v/%v")
+    req.AppendTemplateParams(siteId, deviceMac, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -122,11 +115,8 @@ func (s *SitesAnomaly) GetSiteAnomalyEvents(
     metric string) (
     models.ApiResponse[models.ResponseAnomalySearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/anomaly/%v", siteId, metric),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/anomaly/%v")
+    req.AppendTemplateParams(siteId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (s *SitesDevicesWireless) GetSiteDeviceRadioChannels(
     countryCode *string) (
     models.ApiResponse[models.ResponseDeviceRadioChannels],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/ap_channels", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/ap_channels")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -79,11 +75,8 @@ func (s *SitesDevicesWireless) GetSiteDeviceIotPort(
     deviceId uuid.UUID) (
     models.ApiResponse[map[string]int],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/iot", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/%v/iot")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -126,11 +119,8 @@ func (s *SitesDevicesWireless) SetSiteDeviceIotPort(
     body map[string]int) (
     models.ApiResponse[map[string]int],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/iot", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/devices/%v/iot")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

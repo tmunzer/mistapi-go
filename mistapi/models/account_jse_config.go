@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type AccountJseConfig struct {
     Password             string                 `json:"password"`
     Username             string                 `json:"username"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountJseConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountJseConfig) String() string {
+    return fmt.Sprintf(
+    	"AccountJseConfig[CloudName=%v, Password=%v, Username=%v, AdditionalProperties=%v]",
+    	a.CloudName, a.Password, a.Username, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountJseConfig.

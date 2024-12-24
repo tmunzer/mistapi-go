@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsClusterConfigFabricLinkInfo represents a StatsClusterConfigFabricLinkInfo struct.
@@ -12,6 +13,14 @@ type StatsClusterConfigFabricLinkInfo struct {
     State                   *string                `json:"State,omitempty"`
     Status                  *string                `json:"Status,omitempty"`
     AdditionalProperties    map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsClusterConfigFabricLinkInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsClusterConfigFabricLinkInfo) String() string {
+    return fmt.Sprintf(
+    	"StatsClusterConfigFabricLinkInfo[DataPlaneNotifiedStatus=%v, Interface=%v, InternalStatus=%v, State=%v, Status=%v, AdditionalProperties=%v]",
+    	s.DataPlaneNotifiedStatus, s.Interface, s.InternalStatus, s.State, s.Status, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsClusterConfigFabricLinkInfo.

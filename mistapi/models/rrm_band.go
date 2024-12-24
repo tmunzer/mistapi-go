@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RrmBand represents a RrmBand struct.
@@ -23,6 +24,14 @@ type RrmBand struct {
     // proposed radio band
     Usage                *string                `json:"usage,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RrmBand,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RrmBand) String() string {
+    return fmt.Sprintf(
+    	"RrmBand[Bandwidth=%v, Channel=%v, CurrBandwidht=%v, CurrChannel=%v, CurrPower=%v, CurrUsage=%v, Power=%v, Usage=%v, AdditionalProperties=%v]",
+    	r.Bandwidth, r.Channel, r.CurrBandwidht, r.CurrChannel, r.CurrPower, r.CurrUsage, r.Power, r.Usage, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmBand.

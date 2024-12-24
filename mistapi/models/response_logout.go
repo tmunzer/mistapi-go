@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseLogout represents a ResponseLogout struct.
@@ -9,6 +10,14 @@ type ResponseLogout struct {
     // if configured in SSO as custom_logout_url
     ForwardUrl           *string                `json:"forward_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseLogout,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseLogout) String() string {
+    return fmt.Sprintf(
+    	"ResponseLogout[ForwardUrl=%v, AdditionalProperties=%v]",
+    	r.ForwardUrl, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseLogout.

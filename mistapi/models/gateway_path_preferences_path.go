@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayPathPreferencesPath represents a GatewayPathPreferencesPath struct.
@@ -26,6 +27,14 @@ type GatewayPathPreferencesPath struct {
     // optional if `type`==`vpn`
     WanName              *string                `json:"wan_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayPathPreferencesPath,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayPathPreferencesPath) String() string {
+    return fmt.Sprintf(
+    	"GatewayPathPreferencesPath[Cost=%v, Disabled=%v, GatewayIp=%v, InternetAccess=%v, Name=%v, Networks=%v, TargetIps=%v, Type=%v, WanName=%v, AdditionalProperties=%v]",
+    	g.Cost, g.Disabled, g.GatewayIp, g.InternetAccess, g.Name, g.Networks, g.TargetIps, g.Type, g.WanName, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPathPreferencesPath.

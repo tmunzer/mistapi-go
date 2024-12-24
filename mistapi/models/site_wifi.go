@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteWifi represents a SiteWifi struct.
@@ -33,6 +34,14 @@ type SiteWifi struct {
     // enum: `default`, `disabled`, `enabled`
     ProxyArp                          Optional[SiteWifiProxyArpEnum] `json:"proxy_arp"`
     AdditionalProperties              map[string]interface{}         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteWifi,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteWifi) String() string {
+    return fmt.Sprintf(
+    	"SiteWifi[CiscoEnabled=%v, Disable11k=%v, DisableRadiosWhenPowerConstrained=%v, EnableArpSpoofCheck=%v, EnableSharedRadioScanning=%v, Enabled=%v, LocateConnected=%v, LocateUnconnected=%v, MeshAllowDfs=%v, MeshEnableCrm=%v, MeshEnabled=%v, MeshPsk=%v, MeshSsid=%v, ProxyArp=%v, AdditionalProperties=%v]",
+    	s.CiscoEnabled, s.Disable11k, s.DisableRadiosWhenPowerConstrained, s.EnableArpSpoofCheck, s.EnableSharedRadioScanning, s.Enabled, s.LocateConnected, s.LocateUnconnected, s.MeshAllowDfs, s.MeshEnableCrm, s.MeshEnabled, s.MeshPsk, s.MeshSsid, s.ProxyArp, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteWifi.

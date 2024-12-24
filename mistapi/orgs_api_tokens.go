@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (o *OrgsAPITokens) ListOrgApiTokens(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.OrgApitoken],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/apitokens", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/apitokens")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -77,11 +73,8 @@ func (o *OrgsAPITokens) CreateOrgApiToken(
     body *models.OrgApitoken) (
     models.ApiResponse[models.OrgApitoken],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/apitokens", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/apitokens")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -125,11 +118,8 @@ func (o *OrgsAPITokens) DeleteOrgApiToken(
     apitokenId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/apitokens/%v", orgId, apitokenId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/apitokens/%v")
+    req.AppendTemplateParams(orgId, apitokenId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -166,11 +156,8 @@ func (o *OrgsAPITokens) GetOrgApiToken(
     apitokenId uuid.UUID) (
     models.ApiResponse[models.OrgApitoken],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/apitokens/%v", orgId, apitokenId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/apitokens/%v")
+    req.AppendTemplateParams(orgId, apitokenId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -211,11 +198,8 @@ func (o *OrgsAPITokens) UpdateOrgApiToken(
     body *models.OrgApitoken) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/apitokens/%v", orgId, apitokenId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/apitokens/%v")
+    req.AppendTemplateParams(orgId, apitokenId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApIotInput represents a ApIotInput struct.
@@ -14,6 +15,14 @@ type ApIotInput struct {
     // the type of pull-up the pin uses. enum: `external`, `internal`, `none`
     Pullup               *ApIotPullupEnum       `json:"pullup,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApIotInput,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApIotInput) String() string {
+    return fmt.Sprintf(
+    	"ApIotInput[Enabled=%v, Name=%v, Pullup=%v, AdditionalProperties=%v]",
+    	a.Enabled, a.Name, a.Pullup, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApIotInput.

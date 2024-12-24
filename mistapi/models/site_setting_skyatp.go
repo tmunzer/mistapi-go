@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingSkyatp represents a SiteSettingSkyatp struct.
@@ -10,6 +11,14 @@ type SiteSettingSkyatp struct {
     // whether to send IP-MAC mapping to SkyATP
     SendIpMacMapping     *bool                  `json:"send_ip_mac_mapping,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingSkyatp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingSkyatp) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingSkyatp[Enabled=%v, SendIpMacMapping=%v, AdditionalProperties=%v]",
+    	s.Enabled, s.SendIpMacMapping, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingSkyatp.

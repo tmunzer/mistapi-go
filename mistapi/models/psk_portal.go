@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -50,6 +51,14 @@ type PskPortal struct {
     Type                         *PskPortalTypeEnum        `json:"type,omitempty"`
     VlanId                       *VlanIdWithVariable       `json:"vlan_id,omitempty"`
     AdditionalProperties         map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PskPortal,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PskPortal) String() string {
+    return fmt.Sprintf(
+    	"PskPortal[Auth=%v, BgImageUrl=%v, CleanupPsk=%v, CreatedTime=%v, ExpireTime=%v, ExpiryNotificationTime=%v, HidePsksCreatedByOtherAdmins=%v, Id=%v, MaxUsage=%v, ModifiedTime=%v, Name=%v, NotificationRenewUrl=%v, NotifyExpiry=%v, NotifyOnCreateOrEdit=%v, OrgId=%v, PassphraseRules=%v, RequiredFields=%v, Role=%v, Ssid=%v, Sso=%v, TemplateUrl=%v, ThumbnailUrl=%v, Type=%v, VlanId=%v, AdditionalProperties=%v]",
+    	p.Auth, p.BgImageUrl, p.CleanupPsk, p.CreatedTime, p.ExpireTime, p.ExpiryNotificationTime, p.HidePsksCreatedByOtherAdmins, p.Id, p.MaxUsage, p.ModifiedTime, p.Name, p.NotificationRenewUrl, p.NotifyExpiry, p.NotifyOnCreateOrEdit, p.OrgId, p.PassphraseRules, p.RequiredFields, p.Role, p.Ssid, p.Sso, p.TemplateUrl, p.ThumbnailUrl, p.Type, p.VlanId, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortal.

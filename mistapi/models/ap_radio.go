@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApRadio represents a ApRadio struct.
@@ -32,6 +33,14 @@ type ApRadio struct {
     // whether scanning radio is enabled
     ScanningEnabled      *bool                   `json:"scanning_enabled,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApRadio,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApRadio) String() string {
+    return fmt.Sprintf(
+    	"ApRadio[AllowRrmDisable=%v, AntGain24=%v, AntGain5=%v, AntGain6=%v, AntennaMode=%v, Band24=%v, Band24Usage=%v, Band5=%v, Band5On24Radio=%v, Band6=%v, IndoorUse=%v, ScanningEnabled=%v, AdditionalProperties=%v]",
+    	a.AllowRrmDisable, a.AntGain24, a.AntGain5, a.AntGain6, a.AntennaMode, a.Band24, a.Band24Usage, a.Band5, a.Band5On24Radio, a.Band6, a.IndoorUse, a.ScanningEnabled, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadio.

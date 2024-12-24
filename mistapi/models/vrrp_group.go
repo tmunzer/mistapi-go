@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VrrpGroup represents a VrrpGroup struct.
@@ -16,6 +17,14 @@ type VrrpGroup struct {
     // Property key is the network name
     Networks             map[string]VrrpGroupNetwork `json:"networks,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VrrpGroup,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VrrpGroup) String() string {
+    return fmt.Sprintf(
+    	"VrrpGroup[AuthKey=%v, AuthPassword=%v, AuthType=%v, Networks=%v, AdditionalProperties=%v]",
+    	v.AuthKey, v.AuthPassword, v.AuthType, v.Networks, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VrrpGroup.

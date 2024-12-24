@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -33,11 +32,8 @@ func (s *SitesGuests) ListSiteAllGuestAuthorizations(
     wlanId *string) (
     models.ApiResponse[[]models.Guest],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/guests", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/guests")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -85,11 +81,8 @@ func (s *SitesGuests) CountSiteGuestAuthorizations(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/guests/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/guests/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -148,11 +141,8 @@ func (s *SitesGuests) ListSiteAllGuestAuthorizationsDerived(
     crossSite *bool) (
     models.ApiResponse[[]models.Guest],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/guests/derived", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/guests/derived")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -204,11 +194,8 @@ func (s *SitesGuests) SearchSiteGuestAuthorization(
     duration *string) (
     models.ApiResponse[models.ResponseGuestSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/guests/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/guests/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -269,11 +256,8 @@ func (s *SitesGuests) DeleteSiteGuestAuthorization(
     guestMac string) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/guests/%v", siteId, guestMac),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/guests/%v")
+    req.AppendTemplateParams(siteId, guestMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -310,11 +294,8 @@ func (s *SitesGuests) GetSiteGuestAuthorization(
     guestMac string) (
     models.ApiResponse[models.Guest],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/guests/%v", siteId, guestMac),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/guests/%v")
+    req.AppendTemplateParams(siteId, guestMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -355,11 +336,8 @@ func (s *SitesGuests) UpdateSiteGuestAuthorization(
     body *models.Guest) (
     models.ApiResponse[models.Guest],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/guests/%v", siteId, guestMac),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/guests/%v")
+    req.AppendTemplateParams(siteId, guestMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

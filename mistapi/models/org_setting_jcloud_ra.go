@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingJcloudRa represents a OrgSettingJcloudRa struct.
@@ -14,6 +15,14 @@ type OrgSettingJcloudRa struct {
     // JCloud Routing Assurance Org ID
     OrgId                *string                `json:"org_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingJcloudRa,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingJcloudRa) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingJcloudRa[OrgApitoken=%v, OrgApitokenName=%v, OrgId=%v, AdditionalProperties=%v]",
+    	o.OrgApitoken, o.OrgApitokenName, o.OrgId, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingJcloudRa.

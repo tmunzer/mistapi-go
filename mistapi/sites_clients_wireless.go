@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -45,11 +44,8 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/clients/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -142,11 +138,8 @@ func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
     duration *string) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/clients/events/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/events/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -233,11 +226,8 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientEvents(
     duration *string) (
     models.ApiResponse[models.ResponseEventsSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/clients/events/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/events/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -327,11 +317,8 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
     duration *string) (
     models.ApiResponse[models.ResponseClientSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/clients/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -426,11 +413,8 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/clients/sessions/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/sessions/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -526,11 +510,8 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientSessions(
     duration *string) (
     models.ApiResponse[models.ResponseClientSessionsSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/clients/sessions/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/sessions/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -626,11 +607,8 @@ func (s *SitesClientsWireless) GetSiteEventsForClient(
     page *int) (
     models.ApiResponse[models.ResponseClientEventsSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/clients/%v/events", siteId, clientMac),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/%v/events")
+    req.AppendTemplateParams(siteId, clientMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WanUsages represents a WanUsages struct.
@@ -15,6 +16,14 @@ type WanUsages struct {
     PortId               *string                `json:"port_id,omitempty"`
     Tenant               *string                `json:"tenant,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WanUsages,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WanUsages) String() string {
+    return fmt.Sprintf(
+    	"WanUsages[Mac=%v, PathType=%v, PathWeight=%v, PeerMac=%v, PeerPortId=%v, Policy=%v, PortId=%v, Tenant=%v, AdditionalProperties=%v]",
+    	w.Mac, w.PathType, w.PathWeight, w.PeerMac, w.PeerPortId, w.Policy, w.PortId, w.Tenant, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WanUsages.

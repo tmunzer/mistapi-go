@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsGatewaySpuItem represents a StatsGatewaySpuItem struct.
@@ -13,6 +14,14 @@ type StatsGatewaySpuItem struct {
     SpuPendingSession    *int                   `json:"spu_pending_session,omitempty"`
     SpuValidSession      *int                   `json:"spu_valid_session,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsGatewaySpuItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsGatewaySpuItem) String() string {
+    return fmt.Sprintf(
+    	"StatsGatewaySpuItem[SpuCpu=%v, SpuCurrentSession=%v, SpuMaxSession=%v, SpuMemory=%v, SpuPendingSession=%v, SpuValidSession=%v, AdditionalProperties=%v]",
+    	s.SpuCpu, s.SpuCurrentSession, s.SpuMaxSession, s.SpuMemory, s.SpuPendingSession, s.SpuValidSession, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGatewaySpuItem.

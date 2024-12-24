@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ServicePacket represents a ServicePacket struct.
@@ -11,6 +12,14 @@ type ServicePacket struct {
     // UUID from service data
     ServiceUuid          *string                `json:"service_uuid,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ServicePacket,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s ServicePacket) String() string {
+    return fmt.Sprintf(
+    	"ServicePacket[ServiceData=%v, ServiceUuid=%v, AdditionalProperties=%v]",
+    	s.ServiceData, s.ServiceUuid, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServicePacket.

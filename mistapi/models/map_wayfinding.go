@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MapWayfinding represents a MapWayfinding struct.
@@ -10,6 +11,14 @@ type MapWayfinding struct {
     Micello              *MapWayfindingMicello  `json:"micello,omitempty"`
     SnapToPath           *bool                  `json:"snap_to_path,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapWayfinding,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapWayfinding) String() string {
+    return fmt.Sprintf(
+    	"MapWayfinding[Micello=%v, SnapToPath=%v, AdditionalProperties=%v]",
+    	m.Micello, m.SnapToPath, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapWayfinding.

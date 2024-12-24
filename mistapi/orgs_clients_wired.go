@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -38,11 +37,8 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/wired_clients/count", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wired_clients/count")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -118,11 +114,8 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
     duration *string) (
     models.ApiResponse[models.SearchWiredClient],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/wired_clients/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wired_clients/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

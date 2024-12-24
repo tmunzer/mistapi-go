@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -58,6 +59,14 @@ type NetworkTemplate struct {
     // Property key is the network name
     VrfInstances          map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     AdditionalProperties  map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NetworkTemplate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NetworkTemplate) String() string {
+    return fmt.Sprintf(
+    	"NetworkTemplate[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, CreatedTime=%v, DhcpSnooping=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, ImportOrgNetworks=%v, MistNac=%v, ModifiedTime=%v, Name=%v, Networks=%v, NtpServers=%v, OrgId=%v, OspfAreas=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, SnmpConfig=%v, SwitchMatching=%v, SwitchMgmt=%v, VrfConfig=%v, VrfInstances=%v, AdditionalProperties=%v]",
+    	n.AclPolicies, n.AclTags, n.AdditionalConfigCmds, n.CreatedTime, n.DhcpSnooping, n.DnsServers, n.DnsSuffix, n.ExtraRoutes, n.ExtraRoutes6, n.Id, n.ImportOrgNetworks, n.MistNac, n.ModifiedTime, n.Name, n.Networks, n.NtpServers, n.OrgId, n.OspfAreas, n.PortMirroring, n.PortUsages, n.RadiusConfig, n.RemoteSyslog, n.RemoveExistingConfigs, n.SnmpConfig, n.SwitchMatching, n.SwitchMgmt, n.VrfConfig, n.VrfInstances, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkTemplate.

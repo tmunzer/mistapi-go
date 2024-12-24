@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -37,7 +36,8 @@ func (s *SitesPsks) ListSitePsks(
     page *int) (
     models.ApiResponse[[]models.Psk],
     error) {
-    req := s.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/sites/%v/psks", siteId))
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/psks")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -93,11 +93,8 @@ func (s *SitesPsks) CreateSitePsk(
     body *models.Psk) (
     models.ApiResponse[models.Psk],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/psks", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/psks")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -141,7 +138,8 @@ func (s *SitesPsks) UpdateSiteMultiplePsks(
     body []models.Psk) (
     models.ApiResponse[[]models.Psk],
     error) {
-    req := s.prepareRequest(ctx, "PUT", fmt.Sprintf("/api/v1/sites/%v/psks", siteId))
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/psks")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -192,11 +190,8 @@ func (s *SitesPsks) ImportSitePsks(
     file *models.FileWrapper) (
     models.ApiResponse[[]models.Psk],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/psks/import", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/psks/import")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -242,11 +237,8 @@ func (s *SitesPsks) DeleteSitePsk(
     pskId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/psks/%v", siteId, pskId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/psks/%v")
+    req.AppendTemplateParams(siteId, pskId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -283,11 +275,8 @@ func (s *SitesPsks) GetSitePsk(
     pskId uuid.UUID) (
     models.ApiResponse[models.Psk],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/psks/%v", siteId, pskId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/psks/%v")
+    req.AppendTemplateParams(siteId, pskId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -328,11 +317,8 @@ func (s *SitesPsks) UpdateSitePsk(
     body *models.Psk) (
     models.ApiResponse[models.Psk],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/psks/%v", siteId, pskId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/psks/%v")
+    req.AppendTemplateParams(siteId, pskId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

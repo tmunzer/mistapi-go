@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // FwupdateStat represents a FwupdateStat struct.
@@ -13,6 +14,14 @@ type FwupdateStat struct {
     Timestamp            Optional[float64]                `json:"timestamp"`
     WillRetry            Optional[bool]                   `json:"will_retry"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for FwupdateStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (f FwupdateStat) String() string {
+    return fmt.Sprintf(
+    	"FwupdateStat[Progress=%v, Status=%v, StatusId=%v, Timestamp=%v, WillRetry=%v, AdditionalProperties=%v]",
+    	f.Progress, f.Status, f.StatusId, f.Timestamp, f.WillRetry, f.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for FwupdateStat.

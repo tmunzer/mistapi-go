@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -29,6 +30,14 @@ type Sdktemplate struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     WelcomeMsg           *string                `json:"welcome_msg,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Sdktemplate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s Sdktemplate) String() string {
+    return fmt.Sprintf(
+    	"Sdktemplate[BgImage=%v, BtnFlrBgcolor=%v, CreatedTime=%v, Default=%v, ForSite=%v, HeaderTxt=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, SearchTxtcolor=%v, SiteId=%v, WelcomeMsg=%v, AdditionalProperties=%v]",
+    	s.BgImage, s.BtnFlrBgcolor, s.CreatedTime, s.Default, s.ForSite, s.HeaderTxt, s.Id, s.ModifiedTime, s.Name, s.OrgId, s.SearchTxtcolor, s.SiteId, s.WelcomeMsg, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Sdktemplate.

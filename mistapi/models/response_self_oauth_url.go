@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type ResponseSelfOauthUrl struct {
     AuthorizationUrl     string                 `json:"authorization_url"`
     Linked               bool                   `json:"linked"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSelfOauthUrl,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSelfOauthUrl) String() string {
+    return fmt.Sprintf(
+    	"ResponseSelfOauthUrl[AuthorizationUrl=%v, Linked=%v, AdditionalProperties=%v]",
+    	r.AuthorizationUrl, r.Linked, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSelfOauthUrl.

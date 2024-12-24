@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type SearchWiredClient struct {
     Start                float64                `json:"start"`
     Total                int                    `json:"total"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SearchWiredClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SearchWiredClient) String() string {
+    return fmt.Sprintf(
+    	"SearchWiredClient[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	s.End, s.Limit, s.Next, s.Results, s.Start, s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SearchWiredClient.

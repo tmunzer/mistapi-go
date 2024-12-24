@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NetworkInternetAccess represents a NetworkInternetAccess struct.
@@ -16,6 +17,14 @@ type NetworkInternetAccess struct {
     // Property key may be an IP Address (i.e. "172.16.0.1"), and IP Address and Port (i.e. "172.16.0.1:8443") or a CIDR (i.e. "172.16.0.12/20")
     StaticNat                 map[string]NetworkStaticNatProperty      `json:"static_nat,omitempty"`
     AdditionalProperties      map[string]interface{}                   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NetworkInternetAccess,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NetworkInternetAccess) String() string {
+    return fmt.Sprintf(
+    	"NetworkInternetAccess[CreateSimpleServicePolicy=%v, DestinationNat=%v, Enabled=%v, Restricted=%v, StaticNat=%v, AdditionalProperties=%v]",
+    	n.CreateSimpleServicePolicy, n.DestinationNat, n.Enabled, n.Restricted, n.StaticNat, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkInternetAccess.

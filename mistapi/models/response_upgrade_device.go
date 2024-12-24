@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type ResponseUpgradeDevice struct {
     // timestamp
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseUpgradeDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseUpgradeDevice) String() string {
+    return fmt.Sprintf(
+    	"ResponseUpgradeDevice[Status=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	r.Status, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseUpgradeDevice.

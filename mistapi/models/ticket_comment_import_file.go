@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // TicketCommentImportFile represents a TicketCommentImportFile struct.
@@ -9,6 +10,14 @@ type TicketCommentImportFile struct {
     Comment              *string                `json:"comment,omitempty"`
     File                 *[]byte                `json:"file,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TicketCommentImportFile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TicketCommentImportFile) String() string {
+    return fmt.Sprintf(
+    	"TicketCommentImportFile[Comment=%v, File=%v, AdditionalProperties=%v]",
+    	t.Comment, t.File, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TicketCommentImportFile.

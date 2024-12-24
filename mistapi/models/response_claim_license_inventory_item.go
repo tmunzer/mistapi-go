@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type ResponseClaimLicenseInventoryItem struct {
     Serial               string                 `json:"serial"`
     Type                 string                 `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseClaimLicenseInventoryItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseClaimLicenseInventoryItem) String() string {
+    return fmt.Sprintf(
+    	"ResponseClaimLicenseInventoryItem[Mac=%v, Magic=%v, Model=%v, Serial=%v, Type=%v, AdditionalProperties=%v]",
+    	r.Mac, r.Magic, r.Model, r.Serial, r.Type, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClaimLicenseInventoryItem.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanMistNac represents a WlanMistNac struct.
@@ -15,6 +16,14 @@ type WlanMistNac struct {
     // * `coa_enabled` is assumed'
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanMistNac,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanMistNac) String() string {
+    return fmt.Sprintf(
+    	"WlanMistNac[Enabled=%v, AdditionalProperties=%v]",
+    	w.Enabled, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanMistNac.

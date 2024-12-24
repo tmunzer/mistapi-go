@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // Snmpv3ConfigNotifyFilterItem represents a Snmpv3ConfigNotifyFilterItem struct.
@@ -9,6 +10,14 @@ type Snmpv3ConfigNotifyFilterItem struct {
     Contents             []Snmpv3ConfigNotifyFilterItemContent `json:"contents,omitempty"`
     ProfileName          *string                               `json:"profile_name,omitempty"`
     AdditionalProperties map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Snmpv3ConfigNotifyFilterItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s Snmpv3ConfigNotifyFilterItem) String() string {
+    return fmt.Sprintf(
+    	"Snmpv3ConfigNotifyFilterItem[Contents=%v, ProfileName=%v, AdditionalProperties=%v]",
+    	s.Contents, s.ProfileName, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Snmpv3ConfigNotifyFilterItem.

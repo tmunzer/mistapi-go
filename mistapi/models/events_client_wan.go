@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -16,6 +17,14 @@ type EventsClientWan struct {
     Text                 *string                `json:"text,omitempty"`
     Wcid                 *uuid.UUID             `json:"wcid,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EventsClientWan,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EventsClientWan) String() string {
+    return fmt.Sprintf(
+    	"EventsClientWan[When=%v, EvType=%v, Metadata=%v, OrgId=%v, RandomMac=%v, SiteId=%v, Text=%v, Wcid=%v, AdditionalProperties=%v]",
+    	e.When, e.EvType, e.Metadata, e.OrgId, e.RandomMac, e.SiteId, e.Text, e.Wcid, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventsClientWan.

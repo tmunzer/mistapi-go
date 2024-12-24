@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseCountMarvisActionsResult represents a ResponseCountMarvisActionsResult struct.
 type ResponseCountMarvisActionsResult struct {
     Count                *int              `json:"count,omitempty"`
     AdditionalProperties map[string]string `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseCountMarvisActionsResult,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseCountMarvisActionsResult) String() string {
+    return fmt.Sprintf(
+    	"ResponseCountMarvisActionsResult[Count=%v, AdditionalProperties=%v]",
+    	r.Count, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseCountMarvisActionsResult.

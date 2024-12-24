@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -28,6 +29,14 @@ type MapJibestream struct {
     // the venue or organization id
     VenueId              int                    `json:"venue_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapJibestream,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapJibestream) String() string {
+    return fmt.Sprintf(
+    	"MapJibestream[ClientId=%v, ClientSecret=%v, CustomerId=%v, EndpointUrl=%v, MapId=%v, Mmpp=%v, Ppm=%v, VendorName=%v, VenueId=%v, AdditionalProperties=%v]",
+    	m.ClientId, m.ClientSecret, m.CustomerId, m.EndpointUrl, m.MapId, m.Mmpp, m.Ppm, m.VendorName, m.VenueId, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapJibestream.

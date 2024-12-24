@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -50,11 +49,8 @@ func (o *OrgsInventory) GetOrgInventory(
     page *int) (
     models.ApiResponse[[]models.Inventory],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/inventory", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/inventory")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -124,11 +120,8 @@ func (o *OrgsInventory) AddOrgInventory(
     body []string) (
     models.ApiResponse[models.ResponseInventory],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/inventory", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/inventory")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -172,11 +165,8 @@ func (o *OrgsInventory) UpdateOrgInventoryAssignment(
     body *models.InventoryUpdate) (
     models.ApiResponse[models.ResponseOrgInventoryChange],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/inventory", orgId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/inventory")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -223,11 +213,8 @@ func (o *OrgsInventory) CountOrgInventory(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/inventory/count", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/inventory/count")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -282,8 +269,9 @@ func (o *OrgsInventory) CreateOrgGatewayHaCluster(
     req := o.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/inventory/create_ha_cluster", orgId),
+      "/api/v1/orgs/%v/inventory/create_ha_cluster",
     )
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -328,8 +316,9 @@ func (o *OrgsInventory) DeleteOrgGatewayHaCluster(
     req := o.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/inventory/delete_ha_cluster", orgId),
+      "/api/v1/orgs/%v/inventory/delete_ha_cluster",
     )
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -372,8 +361,9 @@ func (o *OrgsInventory) ReevaluateOrgAutoAssignment(
     req := o.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/inventory/reevaluate_auto_assignment", orgId),
+      "/api/v1/orgs/%v/inventory/reevaluate_auto_assignment",
     )
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -414,11 +404,8 @@ func (o *OrgsInventory) ReplaceOrgDevices(
     body *models.ReplaceDevice) (
     models.ApiResponse[models.ResponseOrgInventoryChange],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/inventory/replace", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/inventory/replace")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -474,11 +461,8 @@ func (o *OrgsInventory) SearchOrgInventory(
     page *int) (
     models.ApiResponse[models.InventorySearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/inventory/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/inventory/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

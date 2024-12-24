@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -21,6 +22,14 @@ type ApTemplate struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     Wifi                 *ApTemplateWifi        `json:"wifi,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApTemplate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApTemplate) String() string {
+    return fmt.Sprintf(
+    	"ApTemplate[ApMatching=%v, CreatedTime=%v, ForSite=%v, Id=%v, ModifiedTime=%v, OrgId=%v, SiteId=%v, Wifi=%v, AdditionalProperties=%v]",
+    	a.ApMatching, a.CreatedTime, a.ForSite, a.Id, a.ModifiedTime, a.OrgId, a.SiteId, a.Wifi, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApTemplate.

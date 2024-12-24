@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayVrfInstance represents a GatewayVrfInstance struct.
 type GatewayVrfInstance struct {
     Networks             []string               `json:"networks,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayVrfInstance,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayVrfInstance) String() string {
+    return fmt.Sprintf(
+    	"GatewayVrfInstance[Networks=%v, AdditionalProperties=%v]",
+    	g.Networks, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayVrfInstance.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstInsightMetricsPropertyInterval represents a ConstInsightMetricsPropertyInterval struct.
@@ -9,6 +10,14 @@ type ConstInsightMetricsPropertyInterval struct {
     Interval             *int                   `json:"interval,omitempty"`
     MaxAge               *int                   `json:"max_age,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstInsightMetricsPropertyInterval,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstInsightMetricsPropertyInterval) String() string {
+    return fmt.Sprintf(
+    	"ConstInsightMetricsPropertyInterval[Interval=%v, MaxAge=%v, AdditionalProperties=%v]",
+    	c.Interval, c.MaxAge, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstInsightMetricsPropertyInterval.

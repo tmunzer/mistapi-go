@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (s *SitesDeviceProfiles) ListSiteDeviceProfilesDerived(
     resolve *bool) (
     models.ApiResponse[[]models.Deviceprofile],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/deviceprofiles/derived", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/deviceprofiles/derived")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

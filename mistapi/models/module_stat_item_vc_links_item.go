@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ModuleStatItemVcLinksItem represents a ModuleStatItemVcLinksItem struct.
@@ -10,6 +11,14 @@ type ModuleStatItemVcLinksItem struct {
     NeighborPortId       *string                `json:"neighbor_port_id,omitempty"`
     PortId               *string                `json:"port_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ModuleStatItemVcLinksItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m ModuleStatItemVcLinksItem) String() string {
+    return fmt.Sprintf(
+    	"ModuleStatItemVcLinksItem[NeighborModuleIdx=%v, NeighborPortId=%v, PortId=%v, AdditionalProperties=%v]",
+    	m.NeighborModuleIdx, m.NeighborPortId, m.PortId, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemVcLinksItem.

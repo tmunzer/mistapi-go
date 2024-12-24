@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AccountCradlepointConfig represents a AccountCradlepointConfig struct.
@@ -12,6 +13,14 @@ type AccountCradlepointConfig struct {
     EcmApiKey            *string                `json:"ecm_api_key,omitempty"`
     EnableLldp           *bool                  `json:"enable_lldp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountCradlepointConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountCradlepointConfig) String() string {
+    return fmt.Sprintf(
+    	"AccountCradlepointConfig[CpApiId=%v, CpApiKey=%v, EcmApiId=%v, EcmApiKey=%v, EnableLldp=%v, AdditionalProperties=%v]",
+    	a.CpApiId, a.CpApiKey, a.EcmApiId, a.EcmApiKey, a.EnableLldp, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountCradlepointConfig.

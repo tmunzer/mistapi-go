@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteEngagementDwellTags represents a SiteEngagementDwellTags struct.
@@ -12,6 +13,14 @@ type SiteEngagementDwellTags struct {
     Passerby             Optional[string]       `json:"passerby"`
     Stationed            Optional[string]       `json:"stationed"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteEngagementDwellTags,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteEngagementDwellTags) String() string {
+    return fmt.Sprintf(
+    	"SiteEngagementDwellTags[Bounce=%v, Engaged=%v, Passerby=%v, Stationed=%v, AdditionalProperties=%v]",
+    	s.Bounce, s.Engaged, s.Passerby, s.Stationed, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteEngagementDwellTags.

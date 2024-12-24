@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchMatchingRule represents a SwitchMatchingRule struct.
@@ -26,6 +27,14 @@ type SwitchMatchingRule struct {
     // Switch settings
     SwitchMgmt           *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
     AdditionalProperties map[string]string                      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchMatchingRule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchMatchingRule) String() string {
+    return fmt.Sprintf(
+    	"SwitchMatchingRule[AdditionalConfigCmds=%v, IpConfig=%v, Name=%v, OobIpConfig=%v, PortConfig=%v, PortMirroring=%v, SwitchMgmt=%v, AdditionalProperties=%v]",
+    	s.AdditionalConfigCmds, s.IpConfig, s.Name, s.OobIpConfig, s.PortConfig, s.PortMirroring, s.SwitchMgmt, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMatchingRule.

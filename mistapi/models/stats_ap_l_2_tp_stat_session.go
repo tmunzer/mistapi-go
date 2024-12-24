@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApL2tpStatSession represents a StatsApL2tpStatSession struct.
@@ -15,6 +16,14 @@ type StatsApL2tpStatSession struct {
     // enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
     State                *L2tpStateEnum         `json:"state,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApL2tpStatSession,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApL2tpStatSession) String() string {
+    return fmt.Sprintf(
+    	"StatsApL2tpStatSession[LocalSid=%v, RemoteId=%v, RemoteSid=%v, State=%v, AdditionalProperties=%v]",
+    	s.LocalSid, s.RemoteId, s.RemoteSid, s.State, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApL2tpStatSession.

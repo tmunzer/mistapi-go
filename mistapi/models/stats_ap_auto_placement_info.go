@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApAutoPlacementInfo represents a StatsApAutoPlacementInfo struct.
@@ -14,6 +15,14 @@ type StatsApAutoPlacementInfo struct {
     // Coordinates representing a circle where the AP is most likely exists in the event of an inaccurate placement result
     ProbabilitySurface   *StatsApAutoPlacementInfoProbabilitySurface `json:"probability_surface,omitempty"`
     AdditionalProperties map[string]interface{}                      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApAutoPlacementInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApAutoPlacementInfo) String() string {
+    return fmt.Sprintf(
+    	"StatsApAutoPlacementInfo[ClusterNumber=%v, OrientationStats=%v, ProbabilitySurface=%v, AdditionalProperties=%v]",
+    	s.ClusterNumber, s.OrientationStats, s.ProbabilitySurface, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApAutoPlacementInfo.

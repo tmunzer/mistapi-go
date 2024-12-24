@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // DhcpdConfigFixedBinding represents a DhcpdConfigFixedBinding struct.
@@ -9,6 +10,14 @@ type DhcpdConfigFixedBinding struct {
     Ip                   *string                `json:"ip,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DhcpdConfigFixedBinding,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DhcpdConfigFixedBinding) String() string {
+    return fmt.Sprintf(
+    	"DhcpdConfigFixedBinding[Ip=%v, Name=%v, AdditionalProperties=%v]",
+    	d.Ip, d.Name, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpdConfigFixedBinding.

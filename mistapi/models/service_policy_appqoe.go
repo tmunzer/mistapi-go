@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ServicePolicyAppqoe represents a ServicePolicyAppqoe struct.
@@ -9,6 +10,14 @@ import (
 type ServicePolicyAppqoe struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ServicePolicyAppqoe,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s ServicePolicyAppqoe) String() string {
+    return fmt.Sprintf(
+    	"ServicePolicyAppqoe[Enabled=%v, AdditionalProperties=%v]",
+    	s.Enabled, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServicePolicyAppqoe.

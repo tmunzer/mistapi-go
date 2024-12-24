@@ -49,7 +49,7 @@ device gateway
 | `Serial` | `*string` | Optional | device Serial |
 | `ServicePolicies` | [`[]models.ServicePolicy`](../../doc/models/service-policy.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `TunnelConfigs` | [`map[string]models.TunnelConfigs`](../../doc/models/tunnel-configs.md) | Optional | Property key is the tunnel name |
+| `TunnelConfigs` | [`map[string]models.TunnelConfig`](../../doc/models/tunnel-config.md) | Optional | Property key is the tunnel name |
 | `TunnelProviderOptions` | [`*models.TunnelProviderOptions`](../../doc/models/tunnel-provider-options.md) | Optional | - |
 | `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Default**: `"gateway"` |
 | `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |

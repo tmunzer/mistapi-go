@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -18,6 +19,14 @@ type AccountJamfConfig struct {
     // smart group membership for determining compliance status
     SmartgroupName       string                 `json:"smartgroup_name"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountJamfConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountJamfConfig) String() string {
+    return fmt.Sprintf(
+    	"AccountJamfConfig[ClientId=%v, ClientSecret=%v, InstanceUrl=%v, SmartgroupName=%v, AdditionalProperties=%v]",
+    	a.ClientId, a.ClientSecret, a.InstanceUrl, a.SmartgroupName, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountJamfConfig.

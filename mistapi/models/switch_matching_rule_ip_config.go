@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchMatchingRuleIpConfig represents a SwitchMatchingRuleIpConfig struct.
@@ -12,6 +13,14 @@ type SwitchMatchingRuleIpConfig struct {
     // enum: `dhcp`, `static`
     Type                 *IpTypeEnum            `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchMatchingRuleIpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchMatchingRuleIpConfig) String() string {
+    return fmt.Sprintf(
+    	"SwitchMatchingRuleIpConfig[Network=%v, Type=%v, AdditionalProperties=%v]",
+    	s.Network, s.Type, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMatchingRuleIpConfig.

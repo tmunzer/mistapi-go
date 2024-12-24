@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // DhcpdStatLan represents a DhcpdStatLan struct.
@@ -9,6 +10,14 @@ type DhcpdStatLan struct {
     NumIps               *int                   `json:"num_ips,omitempty"`
     NumLeased            *int                   `json:"num_leased,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DhcpdStatLan,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DhcpdStatLan) String() string {
+    return fmt.Sprintf(
+    	"DhcpdStatLan[NumIps=%v, NumLeased=%v, AdditionalProperties=%v]",
+    	d.NumIps, d.NumLeased, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpdStatLan.

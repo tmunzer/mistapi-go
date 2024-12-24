@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstLicenseType represents a ConstLicenseType struct.
@@ -11,6 +12,14 @@ type ConstLicenseType struct {
     Key                  *string                `json:"key,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstLicenseType,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstLicenseType) String() string {
+    return fmt.Sprintf(
+    	"ConstLicenseType[Description=%v, Includes=%v, Key=%v, Name=%v, AdditionalProperties=%v]",
+    	c.Description, c.Includes, c.Key, c.Name, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstLicenseType.

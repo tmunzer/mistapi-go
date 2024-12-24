@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingCelona represents a OrgSettingCelona struct.
@@ -9,6 +10,14 @@ type OrgSettingCelona struct {
     ApiKey               *string                `json:"api_key,omitempty"`
     ApiPrefix            *string                `json:"api_prefix,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingCelona,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingCelona) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingCelona[ApiKey=%v, ApiPrefix=%v, AdditionalProperties=%v]",
+    	o.ApiKey, o.ApiPrefix, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingCelona.

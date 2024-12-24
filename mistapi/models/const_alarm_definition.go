@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -22,6 +23,14 @@ type ConstAlarmDefinition struct {
     // Severity of the alarm
     Severity                 string                 `json:"severity"`
     AdditionalProperties     map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstAlarmDefinition,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstAlarmDefinition) String() string {
+    return fmt.Sprintf(
+    	"ConstAlarmDefinition[Display=%v, Example=%v, Fields=%v, Group=%v, Key=%v, MarvisSuggestionCategory=%v, Severity=%v, AdditionalProperties=%v]",
+    	c.Display, c.Example, c.Fields, c.Group, c.Key, c.MarvisSuggestionCategory, c.Severity, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstAlarmDefinition.

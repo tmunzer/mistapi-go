@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -14,6 +15,14 @@ type OrgServicePolicyAntivirus struct {
     // default / noftp / httponly / or keys from av_profiles
     Profile              *string                `json:"profile,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgServicePolicyAntivirus,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgServicePolicyAntivirus) String() string {
+    return fmt.Sprintf(
+    	"OrgServicePolicyAntivirus[AvprofileId=%v, Enabled=%v, Profile=%v, AdditionalProperties=%v]",
+    	o.AvprofileId, o.Enabled, o.Profile, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgServicePolicyAntivirus.

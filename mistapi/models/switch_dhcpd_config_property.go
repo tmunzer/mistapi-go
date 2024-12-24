@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchDhcpdConfigProperty represents a SwitchDhcpdConfigProperty struct.
@@ -42,6 +43,14 @@ type SwitchDhcpdConfigProperty struct {
     // * sub option code: 1-255, sub-option code'
     VendorEncapsulated   map[string]DhcpdConfigVendorOption `json:"vendor_encapsulated,omitempty"`
     AdditionalProperties map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchDhcpdConfigProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchDhcpdConfigProperty) String() string {
+    return fmt.Sprintf(
+    	"SwitchDhcpdConfigProperty[DnsServers=%v, DnsSuffix=%v, FixedBindings=%v, Gateway=%v, IpEnd=%v, IpEnd6=%v, IpStart=%v, IpStart6=%v, LeaseTime=%v, Options=%v, ServerIdOverride=%v, Servers=%v, Servers6=%v, Type=%v, Type6=%v, VendorEncapsulated=%v, AdditionalProperties=%v]",
+    	s.DnsServers, s.DnsSuffix, s.FixedBindings, s.Gateway, s.IpEnd, s.IpEnd6, s.IpStart, s.IpStart6, s.LeaseTime, s.Options, s.ServerIdOverride, s.Servers, s.Servers6, s.Type, s.Type6, s.VendorEncapsulated, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchDhcpdConfigProperty.

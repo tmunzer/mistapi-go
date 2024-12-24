@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // PushPolicyPushWindow represents a PushPolicyPushWindow struct.
@@ -12,6 +13,14 @@ type PushPolicyPushWindow struct {
     // **Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59.
     Hours                *Hours                 `json:"hours,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PushPolicyPushWindow,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PushPolicyPushWindow) String() string {
+    return fmt.Sprintf(
+    	"PushPolicyPushWindow[Enabled=%v, Hours=%v, AdditionalProperties=%v]",
+    	p.Enabled, p.Hours, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PushPolicyPushWindow.

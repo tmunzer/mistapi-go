@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // CaptureSwitchPortsTcpdumpExpression represents a CaptureSwitchPortsTcpdumpExpression struct.
@@ -9,6 +10,14 @@ type CaptureSwitchPortsTcpdumpExpression struct {
     // tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist.
     TcpdumpExpression    *string                `json:"tcpdump_expression,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureSwitchPortsTcpdumpExpression,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureSwitchPortsTcpdumpExpression) String() string {
+    return fmt.Sprintf(
+    	"CaptureSwitchPortsTcpdumpExpression[TcpdumpExpression=%v, AdditionalProperties=%v]",
+    	c.TcpdumpExpression, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureSwitchPortsTcpdumpExpression.

@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // AccountOauthAdd represents a AccountOauthAdd struct.
@@ -16,12 +16,10 @@ type AccountOauthAdd struct {
     isAccountCrowdstrikeConfig bool
 }
 
-// String converts the AccountOauthAdd object to a string representation.
+// String implements the fmt.Stringer interface for AccountOauthAdd,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AccountOauthAdd) String() string {
-    if bytes, err := json.Marshal(a.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", a.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthAdd.

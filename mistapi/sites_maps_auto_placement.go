@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -33,11 +32,8 @@ func (s *SitesMapsAutoPlacement) DeleteSiteApAutoOrientation(
     siteId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/auto_orient", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/maps/%v/auto_orient")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -76,11 +72,8 @@ func (s *SitesMapsAutoPlacement) StartSiteApAutoOrientation(
     body *models.AutoOrient) (
     models.ApiResponse[models.ResponseAutoOrientation],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/auto_orient", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/maps/%v/auto_orient")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -124,11 +117,8 @@ func (s *SitesMapsAutoPlacement) DeleteSiteApAutoplacement(
     mapId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/auto_placement", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/maps/%v/auto_placement")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -175,11 +165,8 @@ func (s *SitesMapsAutoPlacement) GetSiteApAutoPlacement(
     mapId uuid.UUID) (
     models.ApiResponse[models.ResponseAutoPlacementInfo],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/auto_placement", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/maps/%v/auto_placement")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -221,11 +208,8 @@ func (s *SitesMapsAutoPlacement) RunSiteApAutoplacement(
     body *models.AutoPlacement) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/auto_placement", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/maps/%v/auto_placement")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -270,8 +254,9 @@ func (s *SitesMapsAutoPlacement) ClearSiteApAutoOrient(
     req := s.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/clear_auto_orient", siteId, mapId),
+      "/api/v1/sites/%v/maps/%v/clear_auto_orient",
     )
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -316,8 +301,9 @@ func (s *SitesMapsAutoPlacement) ClearSiteApAutoplacement(
     req := s.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/clear_autoplacement", siteId, mapId),
+      "/api/v1/sites/%v/maps/%v/clear_autoplacement",
     )
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -362,8 +348,9 @@ func (s *SitesMapsAutoPlacement) ConfirmSiteApLocalizationData(
     req := s.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/use_auto_ap_values", siteId, mapId),
+      "/api/v1/sites/%v/maps/%v/use_auto_ap_values",
     )
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

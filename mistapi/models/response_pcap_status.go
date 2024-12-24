@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -56,6 +57,14 @@ type ResponsePcapStatus struct {
     // when `type`==`‘wireless’`, wireless_tcpdump_expression provided by the user
     WirelessTcpdumpExpression *string                   `json:"wireless_tcpdump_expression,omitempty"`
     AdditionalProperties      map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponsePcapStatus,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponsePcapStatus) String() string {
+    return fmt.Sprintf(
+    	"ResponsePcapStatus[ApMac=%v, Aps=%v, ClientMac=%v, Duration=%v, Failed=%v, Format=%v, Gateways=%v, Id=%v, IncludesMcast=%v, MaxNumPackets=%v, MaxPktLen=%v, Mxedges=%v, NumPackets=%v, Ok=%v, PcapAps=%v, RadiotapTcpdumpExpression=%v, ScanTcpdumpExpression=%v, Ssid=%v, StartedTime=%v, Switches=%v, TcpdumpExpression=%v, Type=%v, TzspHost=%v, TzspPort=%v, WiredTcpdumpExpression=%v, WirelessTcpdumpExpression=%v, AdditionalProperties=%v]",
+    	r.ApMac, r.Aps, r.ClientMac, r.Duration, r.Failed, r.Format, r.Gateways, r.Id, r.IncludesMcast, r.MaxNumPackets, r.MaxPktLen, r.Mxedges, r.NumPackets, r.Ok, r.PcapAps, r.RadiotapTcpdumpExpression, r.ScanTcpdumpExpression, r.Ssid, r.StartedTime, r.Switches, r.TcpdumpExpression, r.Type, r.TzspHost, r.TzspPort, r.WiredTcpdumpExpression, r.WirelessTcpdumpExpression, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapStatus.

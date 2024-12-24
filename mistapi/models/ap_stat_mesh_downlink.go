@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -26,6 +27,14 @@ type ApStatMeshDownlink struct {
     TxRate               *int                   `json:"tx_rate,omitempty"`
     TxRetries            *int                   `json:"tx_retries,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApStatMeshDownlink,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApStatMeshDownlink) String() string {
+    return fmt.Sprintf(
+    	"ApStatMeshDownlink[Band=%v, Channel=%v, IdleTime=%v, LastSeen=%v, Proto=%v, Rssi=%v, RxBps=%v, RxBytes=%v, RxPackets=%v, RxRate=%v, RxRetries=%v, SiteId=%v, Snr=%v, TxBps=%v, TxBytes=%v, TxPackets=%v, TxRate=%v, TxRetries=%v, AdditionalProperties=%v]",
+    	a.Band, a.Channel, a.IdleTime, a.LastSeen, a.Proto, a.Rssi, a.RxBps, a.RxBytes, a.RxPackets, a.RxRate, a.RxRetries, a.SiteId, a.Snr, a.TxBps, a.TxBytes, a.TxPackets, a.TxRate, a.TxRetries, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApStatMeshDownlink.

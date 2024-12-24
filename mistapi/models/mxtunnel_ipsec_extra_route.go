@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxtunnelIpsecExtraRoute represents a MxtunnelIpsecExtraRoute struct.
@@ -9,6 +10,14 @@ type MxtunnelIpsecExtraRoute struct {
     Dest                 *string                `json:"dest,omitempty"`
     NextHop              *string                `json:"next_hop,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxtunnelIpsecExtraRoute,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxtunnelIpsecExtraRoute) String() string {
+    return fmt.Sprintf(
+    	"MxtunnelIpsecExtraRoute[Dest=%v, NextHop=%v, AdditionalProperties=%v]",
+    	m.Dest, m.NextHop, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxtunnelIpsecExtraRoute.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NacPortalSso represents a NacPortalSso struct.
@@ -16,6 +17,14 @@ type NacPortalSso struct {
     // if it's desired to inject a role into Cert's Subject (so it can be used later on in policy)
     UseSsoRoleForCert    *bool                        `json:"use_sso_role_for_cert,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NacPortalSso,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NacPortalSso) String() string {
+    return fmt.Sprintf(
+    	"NacPortalSso[IdpCert=%v, IdpSignAlgo=%v, IdpSsoUrl=%v, Issuer=%v, NameidFormat=%v, SsoRoleMatching=%v, UseSsoRoleForCert=%v, AdditionalProperties=%v]",
+    	n.IdpCert, n.IdpSignAlgo, n.IdpSsoUrl, n.Issuer, n.NameidFormat, n.SsoRoleMatching, n.UseSsoRoleForCert, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortalSso.

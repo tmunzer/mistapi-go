@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type CodeString struct {
     Code                 string                 `json:"code"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CodeString,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CodeString) String() string {
+    return fmt.Sprintf(
+    	"CodeString[Code=%v, AdditionalProperties=%v]",
+    	c.Code, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CodeString.

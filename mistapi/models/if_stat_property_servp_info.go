@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // IfStatPropertyServpInfo represents a IfStatPropertyServpInfo struct.
@@ -14,6 +15,14 @@ type IfStatPropertyServpInfo struct {
     Org                  *string                `json:"org,omitempty"`
     RegionCode           *string                `json:"region_code,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for IfStatPropertyServpInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i IfStatPropertyServpInfo) String() string {
+    return fmt.Sprintf(
+    	"IfStatPropertyServpInfo[Asn=%v, City=%v, CountryCode=%v, Latitude=%v, Longitude=%v, Org=%v, RegionCode=%v, AdditionalProperties=%v]",
+    	i.Asn, i.City, i.CountryCode, i.Latitude, i.Longitude, i.Org, i.RegionCode, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IfStatPropertyServpInfo.

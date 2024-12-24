@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -38,6 +39,14 @@ type WebhookLocationEvent struct {
     // y, in meter
     Y                      float64                       `json:"y"`
     AdditionalProperties   map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookLocationEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookLocationEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookLocationEvent[BatteryVoltage=%v, EddystoneUidInstance=%v, EddystoneUidNamespace=%v, EddystoneUrlUrl=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, Id=%v, Mac=%v, MapId=%v, MfgCompanyId=%v, MfgData=%v, Name=%v, SiteId=%v, Timestamp=%v, Type=%v, WifiBeaconExtendedInfo=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	w.BatteryVoltage, w.EddystoneUidInstance, w.EddystoneUidNamespace, w.EddystoneUrlUrl, w.IbeaconMajor, w.IbeaconMinor, w.IbeaconUuid, w.Id, w.Mac, w.MapId, w.MfgCompanyId, w.MfgData, w.Name, w.SiteId, w.Timestamp, w.Type, w.WifiBeaconExtendedInfo, w.X, w.Y, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookLocationEvent.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SynthetictestProperties represents a SynthetictestProperties struct.
@@ -11,6 +12,14 @@ type SynthetictestProperties struct {
     Disabled             *bool                  `json:"disabled,omitempty"`
     VlanIds              []VlanIdWithVariable   `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SynthetictestProperties,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SynthetictestProperties) String() string {
+    return fmt.Sprintf(
+    	"SynthetictestProperties[CustomTestUrls=%v, Disabled=%v, VlanIds=%v, AdditionalProperties=%v]",
+    	s.CustomTestUrls, s.Disabled, s.VlanIds, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestProperties.

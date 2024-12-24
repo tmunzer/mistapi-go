@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -25,6 +26,14 @@ type ResponseDeviceRadioChannels struct {
     Name                 string                 `json:"name"`
     Uses                 string                 `json:"uses"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseDeviceRadioChannels,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseDeviceRadioChannels) String() string {
+    return fmt.Sprintf(
+    	"ResponseDeviceRadioChannels[Band2440mhzAllowed=%v, Band24Channels=%v, Band24Enabled=%v, Band5Channels=%v, Band5Enabled=%v, Band6Channels=%v, Band6Enabled=%v, Certified=%v, Code=%v, DfsOk=%v, Key=%v, Name=%v, Uses=%v, AdditionalProperties=%v]",
+    	r.Band2440mhzAllowed, r.Band24Channels, r.Band24Enabled, r.Band5Channels, r.Band5Enabled, r.Band6Channels, r.Band6Enabled, r.Certified, r.Code, r.DfsOk, r.Key, r.Name, r.Uses, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceRadioChannels.

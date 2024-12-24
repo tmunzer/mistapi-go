@@ -1,11 +1,11 @@
 
-# Search Wirelss Client Session
+# Search Wireless Client Session
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`SearchWirelssClientSession`
+`SearchWirelessClientSession`
 
 ## Fields
 
@@ -14,7 +14,7 @@
 | `End` | `float64` | Required | - |
 | `Limit` | `int` | Required | - |
 | `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.WirelssClientSession`](../../doc/models/wirelss-client-session.md) | Required | **Constraints**: *Unique Items Required* |
+| `Results` | [`[]models.WirelessClientSession`](../../doc/models/wireless-client-session.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -23,8 +23,8 @@
 
 ```json
 {
-  "end": 51.28,
-  "limit": 162,
+  "end": 21.38,
+  "limit": 176,
   "results": [
     {
       "ap": "ap8",
@@ -50,9 +50,9 @@
       }
     }
   ],
-  "start": 7.34,
-  "total": 0,
-  "next": "next2",
+  "start": 233.44,
+  "total": 82,
+  "next": "next8",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

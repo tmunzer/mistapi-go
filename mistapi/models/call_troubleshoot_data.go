@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // CallTroubleshootData represents a CallTroubleshootData struct.
@@ -34,6 +35,14 @@ type CallTroubleshootData struct {
     WanMaxUploadMbps      *float64               `json:"wan_max_upload_mbps,omitempty"`
     WanRtt                *float64               `json:"wan_rtt,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CallTroubleshootData,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CallTroubleshootData) String() string {
+    return fmt.Sprintf(
+    	"CallTroubleshootData[ApNumClients=%v, ApRtt=%v, ClientCpu=%v, ClientNStreams=%v, ClientRadioBand=%v, ClientRssi=%v, ClientRxBytes=%v, ClientRxRates=%v, ClientRxRetries=%v, ClientTxBytes=%v, ClientTxRates=%v, ClientTxRetries=%v, ClientVpnDistaince=%v, ClientWifiVersion=%v, Expected=%v, RadioBandwidth=%v, RadioChannel=%v, RadioTxPower=%v, RadioUtil=%v, RadioUtilInterference=%v, SiteNumClients=%v, WanAvgDownloadMbps=%v, WanAvgUploadMbps=%v, WanJitter=%v, WanMaxDownloadMbps=%v, WanMaxUploadMbps=%v, WanRtt=%v, AdditionalProperties=%v]",
+    	c.ApNumClients, c.ApRtt, c.ClientCpu, c.ClientNStreams, c.ClientRadioBand, c.ClientRssi, c.ClientRxBytes, c.ClientRxRates, c.ClientRxRetries, c.ClientTxBytes, c.ClientTxRates, c.ClientTxRetries, c.ClientVpnDistaince, c.ClientWifiVersion, c.Expected, c.RadioBandwidth, c.RadioChannel, c.RadioTxPower, c.RadioUtil, c.RadioUtilInterference, c.SiteNumClients, c.WanAvgDownloadMbps, c.WanAvgUploadMbps, c.WanJitter, c.WanMaxDownloadMbps, c.WanMaxUploadMbps, c.WanRtt, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CallTroubleshootData.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (o *OrgsEVPNTopologies) ListOrgEvpnTopologies(
     page *int) (
     models.ApiResponse[[]models.EvpnTopology],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/evpn_topologies", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/evpn_topologies")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -95,11 +91,8 @@ func (o *OrgsEVPNTopologies) CreateOrgEvpnTopology(
     body *models.EvpnTopology) (
     models.ApiResponse[models.EvpnTopology],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/evpn_topologies", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/evpn_topologies")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -143,11 +136,8 @@ func (o *OrgsEVPNTopologies) DeleteOrgEvpnTopology(
     evpnTopologyId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/evpn_topologies/%v", orgId, evpnTopologyId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/evpn_topologies/%v")
+    req.AppendTemplateParams(orgId, evpnTopologyId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -184,11 +174,8 @@ func (o *OrgsEVPNTopologies) GetOrgEvpnTopology(
     evpnTopologyId uuid.UUID) (
     models.ApiResponse[models.EvpnTopology],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/evpn_topologies/%v", orgId, evpnTopologyId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/evpn_topologies/%v")
+    req.AppendTemplateParams(orgId, evpnTopologyId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -229,11 +216,8 @@ func (o *OrgsEVPNTopologies) UpdateOrgEvpnTopology(
     body *models.EvpnTopology) (
     models.ApiResponse[models.EvpnTopology],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/evpn_topologies/%v", orgId, evpnTopologyId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/evpn_topologies/%v")
+    req.AppendTemplateParams(orgId, evpnTopologyId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

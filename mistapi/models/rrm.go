@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -28,6 +29,14 @@ type Rrm struct {
     // time where the status was updated
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Rrm,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r Rrm) String() string {
+    return fmt.Sprintf(
+    	"Rrm[Band24=%v, Band24Metric=%v, Band5=%v, Band5Metric=%v, Band6=%v, Band6Metric=%v, Rftemplate=%v, RftemplateId=%v, RftemplateName=%v, Status=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	r.Band24, r.Band24Metric, r.Band5, r.Band5Metric, r.Band6, r.Band6Metric, r.Rftemplate, r.RftemplateId, r.RftemplateName, r.Status, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Rrm.

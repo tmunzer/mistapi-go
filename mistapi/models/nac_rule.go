@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -28,6 +29,14 @@ type NacRule struct {
     Order                *int                   `json:"order,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NacRule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NacRule) String() string {
+    return fmt.Sprintf(
+    	"NacRule[Action=%v, ApplyTags=%v, CreatedTime=%v, Enabled=%v, Id=%v, Matching=%v, ModifiedTime=%v, Name=%v, NotMatching=%v, Order=%v, OrgId=%v, AdditionalProperties=%v]",
+    	n.Action, n.ApplyTags, n.CreatedTime, n.Enabled, n.Id, n.Matching, n.ModifiedTime, n.Name, n.NotMatching, n.Order, n.OrgId, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacRule.

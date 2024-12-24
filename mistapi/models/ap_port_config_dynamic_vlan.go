@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApPortConfigDynamicVlan represents a ApPortConfigDynamicVlan struct.
@@ -12,6 +13,14 @@ type ApPortConfigDynamicVlan struct {
     Type                 *string                `json:"type,omitempty"`
     Vlans                map[string]string      `json:"vlans,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApPortConfigDynamicVlan,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApPortConfigDynamicVlan) String() string {
+    return fmt.Sprintf(
+    	"ApPortConfigDynamicVlan[DefaultVlanId=%v, Enabled=%v, Type=%v, Vlans=%v, AdditionalProperties=%v]",
+    	a.DefaultVlanId, a.Enabled, a.Type, a.Vlans, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApPortConfigDynamicVlan.

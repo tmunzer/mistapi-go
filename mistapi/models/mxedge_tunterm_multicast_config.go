@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeTuntermMulticastConfig represents a MxedgeTuntermMulticastConfig struct.
@@ -9,6 +10,14 @@ type MxedgeTuntermMulticastConfig struct {
     Mdns                 *MxedgeTuntermMulticastMdns `json:"mdns,omitempty"`
     Ssdp                 *MxedgeTuntermMulticastSsdp `json:"ssdp,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeTuntermMulticastConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeTuntermMulticastConfig) String() string {
+    return fmt.Sprintf(
+    	"MxedgeTuntermMulticastConfig[Mdns=%v, Ssdp=%v, AdditionalProperties=%v]",
+    	m.Mdns, m.Ssdp, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermMulticastConfig.

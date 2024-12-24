@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -45,6 +46,14 @@ type StatsWanTunnel struct {
     // wan interface name
     WanName              *string                     `json:"wan_name,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsWanTunnel,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsWanTunnel) String() string {
+    return fmt.Sprintf(
+    	"StatsWanTunnel[AuthAlgo=%v, EncryptAlgo=%v, IkeVersion=%v, Ip=%v, LastEvent=%v, Mac=%v, Node=%v, OrgId=%v, PeerHost=%v, PeerIp=%v, Priority=%v, Protocol=%v, RxBytes=%v, RxPkts=%v, SiteId=%v, TunnelName=%v, TxBytes=%v, TxPkts=%v, Up=%v, Uptime=%v, WanName=%v, AdditionalProperties=%v]",
+    	s.AuthAlgo, s.EncryptAlgo, s.IkeVersion, s.Ip, s.LastEvent, s.Mac, s.Node, s.OrgId, s.PeerHost, s.PeerIp, s.Priority, s.Protocol, s.RxBytes, s.RxPkts, s.SiteId, s.TunnelName, s.TxBytes, s.TxPkts, s.Up, s.Uptime, s.WanName, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWanTunnel.

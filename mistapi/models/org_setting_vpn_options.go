@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingVpnOptions represents a OrgSettingVpnOptions struct.
@@ -10,6 +11,14 @@ type OrgSettingVpnOptions struct {
     // equiring /12 or bigger to support 16 private IPs for 65535 gateways
     StSubnet             *string                `json:"st_subnet,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingVpnOptions,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingVpnOptions) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingVpnOptions[AsBase=%v, StSubnet=%v, AdditionalProperties=%v]",
+    	o.AsBase, o.StSubnet, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingVpnOptions.

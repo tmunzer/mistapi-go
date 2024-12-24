@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WebhookSiteSle represents a WebhookSiteSle struct.
@@ -9,6 +10,14 @@ type WebhookSiteSle struct {
     Events               []WebhookSiteSleEvent  `json:"events,omitempty"`
     Topic                *string                `json:"topic,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookSiteSle,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookSiteSle) String() string {
+    return fmt.Sprintf(
+    	"WebhookSiteSle[Events=%v, Topic=%v, AdditionalProperties=%v]",
+    	w.Events, w.Topic, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookSiteSle.

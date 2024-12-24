@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -52,6 +53,14 @@ type Mxedge struct {
     TuntermSwitchConfig       *MxedgeTuntermSwitchConfigs           `json:"tunterm_switch_config,omitempty"`
     Versions                  *MxedgeVersions                       `json:"versions,omitempty"`
     AdditionalProperties      map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Mxedge,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m Mxedge) String() string {
+    return fmt.Sprintf(
+    	"Mxedge[CreatedTime=%v, ForSite=%v, Id=%v, Magic=%v, Model=%v, ModifiedTime=%v, MxagentRegistered=%v, MxclusterId=%v, MxedgeMgmt=%v, Name=%v, Note=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, Proxy=%v, Services=%v, SiteId=%v, TuntermDhcpdConfig=%v, TuntermExtraRoutes=%v, TuntermIgmpSnoopingConfig=%v, TuntermIpConfig=%v, TuntermMonitoring=%v, TuntermMulticastConfig=%v, TuntermOtherIpConfigs=%v, TuntermPortConfig=%v, TuntermRegistered=%v, TuntermSwitchConfig=%v, Versions=%v, AdditionalProperties=%v]",
+    	m.CreatedTime, m.ForSite, m.Id, m.Magic, m.Model, m.ModifiedTime, m.MxagentRegistered, m.MxclusterId, m.MxedgeMgmt, m.Name, m.Note, m.NtpServers, m.OobIpConfig, m.OrgId, m.Proxy, m.Services, m.SiteId, m.TuntermDhcpdConfig, m.TuntermExtraRoutes, m.TuntermIgmpSnoopingConfig, m.TuntermIpConfig, m.TuntermMonitoring, m.TuntermMulticastConfig, m.TuntermOtherIpConfigs, m.TuntermPortConfig, m.TuntermRegistered, m.TuntermSwitchConfig, m.Versions, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Mxedge.

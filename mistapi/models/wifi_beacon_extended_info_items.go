@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WifiBeaconExtendedInfoItems represents a WifiBeaconExtendedInfoItems struct.
@@ -13,6 +14,14 @@ type WifiBeaconExtendedInfoItems struct {
     // sequence control field of 802.11 header
     SeqCtrl              *int                   `json:"seq_ctrl,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WifiBeaconExtendedInfoItems,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WifiBeaconExtendedInfoItems) String() string {
+    return fmt.Sprintf(
+    	"WifiBeaconExtendedInfoItems[FrameCtrl=%v, Payload=%v, SeqCtrl=%v, AdditionalProperties=%v]",
+    	w.FrameCtrl, w.Payload, w.SeqCtrl, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WifiBeaconExtendedInfoItems.

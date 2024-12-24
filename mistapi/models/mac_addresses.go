@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type MacAddresses struct {
     Macs                 []string               `json:"macs"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MacAddresses,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MacAddresses) String() string {
+    return fmt.Sprintf(
+    	"MacAddresses[Macs=%v, AdditionalProperties=%v]",
+    	m.Macs, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MacAddresses.

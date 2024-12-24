@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -24,6 +25,14 @@ type Zone struct {
     // vertices used to define an area. It’s assumed that the last point connects to the first point and forms an closed area
     Vertices             []ZoneVertex           `json:"vertices,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Zone,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (z Zone) String() string {
+    return fmt.Sprintf(
+    	"Zone[CreatedTime=%v, ForSite=%v, Id=%v, MapId=%v, ModifiedTime=%v, Name=%v, OrgId=%v, SiteId=%v, Vertices=%v, AdditionalProperties=%v]",
+    	z.CreatedTime, z.ForSite, z.Id, z.MapId, z.ModifiedTime, z.Name, z.OrgId, z.SiteId, z.Vertices, z.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Zone.

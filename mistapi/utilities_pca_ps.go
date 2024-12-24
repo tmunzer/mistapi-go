@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -37,7 +36,8 @@ func (u *UtilitiesPCAPs) ListOrgPacketCaptures(
     page *int) (
     models.ApiResponse[models.ResponsePcapSearch],
     error) {
-    req := u.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/pcaps", orgId))
+    req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/pcaps")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -91,11 +91,8 @@ func (u *UtilitiesPCAPs) StopOrgPacketCapture(
     orgId uuid.UUID) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/pcaps/capture", orgId),
-    )
+    req := u.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/pcaps/capture")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -131,11 +128,8 @@ func (u *UtilitiesPCAPs) GetOrgCapturingStatus(
     orgId uuid.UUID) (
     models.ApiResponse[models.ResponsePcapStatus],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/pcaps/capture", orgId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/pcaps/capture")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -212,11 +206,8 @@ func (u *UtilitiesPCAPs) StartOrgPacketCapture(
     body *models.CaptureOrg) (
     models.ApiResponse[models.ResponsePcapStart],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/pcaps/capture", orgId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/pcaps/capture")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -265,11 +256,8 @@ func (u *UtilitiesPCAPs) ListSitePacketCaptures(
     page *int) (
     models.ApiResponse[models.ResponsePcapSearch],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/pcaps", siteId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/sites/%v/pcaps")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -326,11 +314,8 @@ func (u *UtilitiesPCAPs) StopSitePacketCapture(
     siteId uuid.UUID) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/pcaps/capture", siteId),
-    )
+    req := u.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/pcaps/capture")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -366,11 +351,8 @@ func (u *UtilitiesPCAPs) GetSiteCapturingStatus(
     siteId uuid.UUID) (
     models.ApiResponse[models.ResponsePcapStatus],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/pcaps/capture", siteId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/sites/%v/pcaps/capture")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -486,11 +468,8 @@ func (u *UtilitiesPCAPs) StartSitePacketCapture(
     body *models.CaptureSite) (
     models.ApiResponse[models.ResponsePcapStart],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/pcaps/capture", siteId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/pcaps/capture")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -535,11 +514,8 @@ func (u *UtilitiesPCAPs) UpdateSitePacketCapture(
     body *models.NotesString) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/pcaps/%v", siteId, pcapId),
-    )
+    req := u.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/pcaps/%v")
+    req.AppendTemplateParams(siteId, pcapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

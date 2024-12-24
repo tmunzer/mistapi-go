@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RoutingPolicyTermMatchingVpnPathSla represents a RoutingPolicyTermMatchingVpnPathSla struct.
@@ -10,6 +11,14 @@ type RoutingPolicyTermMatchingVpnPathSla struct {
     MaxLatency           Optional[int]          `json:"max_latency"`
     MaxLoss              Optional[int]          `json:"max_loss"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RoutingPolicyTermMatchingVpnPathSla,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RoutingPolicyTermMatchingVpnPathSla) String() string {
+    return fmt.Sprintf(
+    	"RoutingPolicyTermMatchingVpnPathSla[MaxJitter=%v, MaxLatency=%v, MaxLoss=%v, AdditionalProperties=%v]",
+    	r.MaxJitter, r.MaxLatency, r.MaxLoss, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTermMatchingVpnPathSla.

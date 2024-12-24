@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayPortVpnPath represents a GatewayPortVpnPath struct.
@@ -18,6 +19,14 @@ type GatewayPortVpnPath struct {
     Role                 *GatewayPortVpnPathRoleEnum       `json:"role,omitempty"`
     TrafficShaping       *GatewayTrafficShaping            `json:"traffic_shaping,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayPortVpnPath,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayPortVpnPath) String() string {
+    return fmt.Sprintf(
+    	"GatewayPortVpnPath[BfdProfile=%v, BfdUseTunnelMode=%v, LinkName=%v, Preference=%v, Role=%v, TrafficShaping=%v, AdditionalProperties=%v]",
+    	g.BfdProfile, g.BfdUseTunnelMode, g.LinkName, g.Preference, g.Role, g.TrafficShaping, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortVpnPath.

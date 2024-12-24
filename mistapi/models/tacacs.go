@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // Tacacs represents a Tacacs struct.
@@ -14,6 +15,14 @@ type Tacacs struct {
     Network              *string                `json:"network,omitempty"`
     TacplusServers       []TacacsAuthServer     `json:"tacplus_servers,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Tacacs,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t Tacacs) String() string {
+    return fmt.Sprintf(
+    	"Tacacs[AcctServers=%v, DefaultRole=%v, Enabled=%v, Network=%v, TacplusServers=%v, AdditionalProperties=%v]",
+    	t.AcctServers, t.DefaultRole, t.Enabled, t.Network, t.TacplusServers, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Tacacs.

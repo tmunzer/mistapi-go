@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -36,8 +35,9 @@ func (s *SitesDevicesWired) DeleteSiteLocalSwitchPortConfig(
     req := s.prepareRequest(
       ctx,
       "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/local_port_config", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/local_port_config",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -85,8 +85,9 @@ func (s *SitesDevicesWired) UpdateSiteLocalSwitchPortConfig(
     req := s.prepareRequest(
       ctx,
       "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/local_port_config", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/local_port_config",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseNacCrlFiles represents a ResponseNacCrlFiles struct.
 type ResponseNacCrlFiles struct {
     Results              []NacCrlFile           `json:"results,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseNacCrlFiles,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseNacCrlFiles) String() string {
+    return fmt.Sprintf(
+    	"ResponseNacCrlFiles[Results=%v, AdditionalProperties=%v]",
+    	r.Results, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseNacCrlFiles.

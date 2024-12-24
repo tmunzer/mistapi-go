@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // CaptureScanAps represents a CaptureScanAps struct.
@@ -16,6 +17,14 @@ type CaptureScanAps struct {
     // specify the bandwidth value with respect to the channel.
     Width                *string                 `json:"width,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureScanAps,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureScanAps) String() string {
+    return fmt.Sprintf(
+    	"CaptureScanAps[Band=%v, Channel=%v, TcpdumpExpression=%v, Width=%v, AdditionalProperties=%v]",
+    	c.Band, c.Channel, c.TcpdumpExpression, c.Width, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureScanAps.

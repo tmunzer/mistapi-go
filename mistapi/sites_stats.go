@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -31,11 +30,8 @@ func (s *SitesStats) GetSiteStats(
     siteId uuid.UUID) (
     models.ApiResponse[models.StatsSite],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

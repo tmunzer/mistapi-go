@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxtunnelIpsec represents a MxtunnelIpsec struct.
@@ -13,6 +14,14 @@ type MxtunnelIpsec struct {
     SplitTunnel          *bool                     `json:"split_tunnel,omitempty"`
     UseMxedge            *bool                     `json:"use_mxedge,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxtunnelIpsec,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxtunnelIpsec) String() string {
+    return fmt.Sprintf(
+    	"MxtunnelIpsec[DnsServers=%v, DnsSuffix=%v, Enabled=%v, ExtraRoutes=%v, SplitTunnel=%v, UseMxedge=%v, AdditionalProperties=%v]",
+    	m.DnsServers, m.DnsSuffix, m.Enabled, m.ExtraRoutes, m.SplitTunnel, m.UseMxedge, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxtunnelIpsec.

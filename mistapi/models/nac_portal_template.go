@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NacPortalTemplate represents a NacPortalTemplate struct.
@@ -14,6 +15,14 @@ type NacPortalTemplate struct {
     // whether to hide “Powered by Juniper Mist” and email footers
     PoweredBy            *bool                        `json:"poweredBy,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NacPortalTemplate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NacPortalTemplate) String() string {
+    return fmt.Sprintf(
+    	"NacPortalTemplate[Alignment=%v, Color=%v, Logo=%v, PoweredBy=%v, AdditionalProperties=%v]",
+    	n.Alignment, n.Color, n.Logo, n.PoweredBy, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortalTemplate.

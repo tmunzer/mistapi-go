@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AccountOauthInfoAccount represents a AccountOauthInfoAccount struct.
@@ -36,6 +37,14 @@ type AccountOauthInfoAccount struct {
     // customer account username
     Username             *string                `json:"username,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountOauthInfoAccount,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountOauthInfoAccount) String() string {
+    return fmt.Sprintf(
+    	"AccountOauthInfoAccount[AccountId=%v, ClientId=%v, Company=%v, Error=%v, Errors=%v, InstanceUrl=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, SmartgroupName=%v, Username=%v, AdditionalProperties=%v]",
+    	a.AccountId, a.ClientId, a.Company, a.Error, a.Errors, a.InstanceUrl, a.LastStatus, a.LastSync, a.LinkedBy, a.LinkedTimestamp, a.MaxDailyApiRequests, a.Name, a.Password, a.SmartgroupName, a.Username, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthInfoAccount.

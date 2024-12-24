@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsGatewayCluster represents a StatsGatewayCluster struct.
 type StatsGatewayCluster struct {
     State                Optional[string]       `json:"state"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsGatewayCluster,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsGatewayCluster) String() string {
+    return fmt.Sprintf(
+    	"StatsGatewayCluster[State=%v, AdditionalProperties=%v]",
+    	s.State, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGatewayCluster.

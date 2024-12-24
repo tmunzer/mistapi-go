@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -38,11 +37,8 @@ func (s *SitesDevicesOthers) ListSiteOtherDevices(
     page *int) (
     models.ApiResponse[[]models.DeviceOther],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/otherdevices", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/otherdevices")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -108,11 +104,8 @@ func (s *SitesDevicesOthers) CountSiteOtherDeviceEvents(
     limit *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/otherdevices/events/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/otherdevices/events/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -180,8 +173,9 @@ func (s *SitesDevicesOthers) SearchSiteOtherDeviceEvents(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/otherdevices/events/search", siteId),
+      "/api/v1/sites/%v/otherdevices/events/search",
     )
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

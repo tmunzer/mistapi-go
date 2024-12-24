@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseLoginSuccess represents a ResponseLoginSuccess struct.
@@ -10,6 +11,14 @@ type ResponseLoginSuccess struct {
     TwoFactorPassed      *bool                  `json:"two_factor_passed,omitempty"`
     TwoFactorRequired    *bool                  `json:"two_factor_required,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseLoginSuccess,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseLoginSuccess) String() string {
+    return fmt.Sprintf(
+    	"ResponseLoginSuccess[Email=%v, TwoFactorPassed=%v, TwoFactorRequired=%v, AdditionalProperties=%v]",
+    	r.Email, r.TwoFactorPassed, r.TwoFactorRequired, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseLoginSuccess.

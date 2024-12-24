@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -31,6 +32,14 @@ type VpnPeerStat struct {
     Up                   *bool                  `json:"up,omitempty"`
     Uptime               *int                   `json:"uptime,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VpnPeerStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VpnPeerStat) String() string {
+    return fmt.Sprintf(
+    	"VpnPeerStat[IsActive=%v, LastSeen=%v, Latency=%v, Mac=%v, Mos=%v, Mtu=%v, OrgId=%v, PeerMac=%v, PeerPortId=%v, PeerRouterName=%v, PeerSiteId=%v, PortId=%v, RouterName=%v, SiteId=%v, Type=%v, Up=%v, Uptime=%v, AdditionalProperties=%v]",
+    	v.IsActive, v.LastSeen, v.Latency, v.Mac, v.Mos, v.Mtu, v.OrgId, v.PeerMac, v.PeerPortId, v.PeerRouterName, v.PeerSiteId, v.PortId, v.RouterName, v.SiteId, v.Type, v.Up, v.Uptime, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VpnPeerStat.

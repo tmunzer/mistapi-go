@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MlOverwriteAdditionalProperties represents a MlOverwriteAdditionalProperties struct.
@@ -9,6 +10,14 @@ type MlOverwriteAdditionalProperties struct {
     Int                  *int                   `json:"int,omitempty"`
     Ple                  *int                   `json:"ple,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MlOverwriteAdditionalProperties,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MlOverwriteAdditionalProperties) String() string {
+    return fmt.Sprintf(
+    	"MlOverwriteAdditionalProperties[Int=%v, Ple=%v, AdditionalProperties=%v]",
+    	m.Int, m.Ple, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MlOverwriteAdditionalProperties.

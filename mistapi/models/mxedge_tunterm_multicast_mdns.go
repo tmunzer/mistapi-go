@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeTuntermMulticastMdns represents a MxedgeTuntermMulticastMdns struct.
@@ -9,6 +10,14 @@ type MxedgeTuntermMulticastMdns struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     VlanIds              []string               `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeTuntermMulticastMdns,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeTuntermMulticastMdns) String() string {
+    return fmt.Sprintf(
+    	"MxedgeTuntermMulticastMdns[Enabled=%v, VlanIds=%v, AdditionalProperties=%v]",
+    	m.Enabled, m.VlanIds, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermMulticastMdns.

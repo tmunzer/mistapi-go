@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsShowBgpRummary represents a UtilsShowBgpRummary struct.
@@ -9,6 +10,14 @@ type UtilsShowBgpRummary struct {
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsShowBgpRummary,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsShowBgpRummary) String() string {
+    return fmt.Sprintf(
+    	"UtilsShowBgpRummary[Node=%v, AdditionalProperties=%v]",
+    	u.Node, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowBgpRummary.

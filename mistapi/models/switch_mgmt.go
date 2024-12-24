@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchMgmt represents a SwitchMgmt struct.
@@ -33,6 +34,14 @@ type SwitchMgmt struct {
     // to use mxedge as proxy
     UseMxedgeProxy       *bool                                    `json:"use_mxedge_proxy,omitempty"`
     AdditionalProperties map[string]interface{}                   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchMgmt,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchMgmt) String() string {
+    return fmt.Sprintf(
+    	"SwitchMgmt[ApAffinityThreshold=%v, CliBanner=%v, CliIdleTimeout=%v, ConfigRevertTimer=%v, DhcpOptionFqdn=%v, DisableOobDownAlarm=%v, LocalAccounts=%v, MxedgeProxyHost=%v, MxedgeProxyPort=%v, ProtectRe=%v, Radius=%v, RootPassword=%v, Tacacs=%v, UseMxedgeProxy=%v, AdditionalProperties=%v]",
+    	s.ApAffinityThreshold, s.CliBanner, s.CliIdleTimeout, s.ConfigRevertTimer, s.DhcpOptionFqdn, s.DisableOobDownAlarm, s.LocalAccounts, s.MxedgeProxyHost, s.MxedgeProxyPort, s.ProtectRe, s.Radius, s.RootPassword, s.Tacacs, s.UseMxedgeProxy, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMgmt.

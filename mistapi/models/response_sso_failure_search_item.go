@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type ResponseSsoFailureSearchItem struct {
     SamlAssertionXml     string                 `json:"saml_assertion_xml"`
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSsoFailureSearchItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSsoFailureSearchItem) String() string {
+    return fmt.Sprintf(
+    	"ResponseSsoFailureSearchItem[Detail=%v, SamlAssertionXml=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	r.Detail, r.SamlAssertionXml, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSsoFailureSearchItem.

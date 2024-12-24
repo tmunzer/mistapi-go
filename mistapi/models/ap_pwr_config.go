@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApPwrConfig represents a ApPwrConfig struct.
@@ -12,6 +13,14 @@ type ApPwrConfig struct {
     // whether to enable power out to peripheral, meanwhile will reduce power to wifi (only for AP45 at power mode)
     PreferUsbOverWifi    *bool                  `json:"prefer_usb_over_wifi,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApPwrConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApPwrConfig) String() string {
+    return fmt.Sprintf(
+    	"ApPwrConfig[Base=%v, PreferUsbOverWifi=%v, AdditionalProperties=%v]",
+    	a.Base, a.PreferUsbOverWifi, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApPwrConfig.

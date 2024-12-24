@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (o *OrgsServicePolicies) ListOrgServicePolicies(
     page *int) (
     models.ApiResponse[[]models.OrgServicePolicy],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/servicepolicies", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/servicepolicies")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -84,11 +80,8 @@ func (o *OrgsServicePolicies) CreateOrgServicePolicy(
     body *models.OrgServicePolicy) (
     models.ApiResponse[models.OrgServicePolicy],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/servicepolicies", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/servicepolicies")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -132,11 +125,8 @@ func (o *OrgsServicePolicies) DeleteOrgServicePolicy(
     servicepolicyId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/servicepolicies/%v", orgId, servicepolicyId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/servicepolicies/%v")
+    req.AppendTemplateParams(orgId, servicepolicyId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -173,11 +163,8 @@ func (o *OrgsServicePolicies) GetOrgServicePolicy(
     servicepolicyId uuid.UUID) (
     models.ApiResponse[models.OrgServicePolicy],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/servicepolicies/%v", orgId, servicepolicyId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/servicepolicies/%v")
+    req.AppendTemplateParams(orgId, servicepolicyId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -218,11 +205,8 @@ func (o *OrgsServicePolicies) UpdateOrgServicePolicy(
     body *models.OrgServicePolicy) (
     models.ApiResponse[models.OrgServicePolicy],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/servicepolicies/%v", orgId, servicepolicyId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/servicepolicies/%v")
+    req.AppendTemplateParams(orgId, servicepolicyId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -32,11 +31,8 @@ func (u *UtilitiesWiFi) ReauthOrgDot1xWirelessClient(
     clientMac string) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/clients/%v/coa", orgId, clientMac),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/clients/%v/coa")
+    req.AppendTemplateParams(orgId, clientMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -73,11 +69,8 @@ func (u *UtilitiesWiFi) DisconnectSiteMultipleClients(
     body *models.MacAddresses) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/clients/disconnect", siteId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/clients/disconnect")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -118,11 +111,8 @@ func (u *UtilitiesWiFi) UnauthorizeSiteMultipleClients(
     body *models.MacAddresses) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/clients/unauthorize", siteId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/clients/unauthorize")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -163,11 +153,8 @@ func (u *UtilitiesWiFi) ReauthSiteDot1xWirelessClient(
     clientMac string) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/clients/%v/coa", siteId, clientMac),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/clients/%v/coa")
+    req.AppendTemplateParams(siteId, clientMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -204,11 +191,8 @@ func (u *UtilitiesWiFi) DisconnectSiteWirelessClient(
     clientMac string) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/clients/%v/disconnect", siteId, clientMac),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/clients/%v/disconnect")
+    req.AppendTemplateParams(siteId, clientMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -245,11 +229,8 @@ func (u *UtilitiesWiFi) UnauthorizeSiteWirelessClient(
     clientMac string) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/clients/%v/unauthorize", siteId, clientMac),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/clients/%v/unauthorize")
+    req.AppendTemplateParams(siteId, clientMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -285,11 +266,8 @@ func (u *UtilitiesWiFi) ReprovisionSiteAllAps(
     siteId uuid.UUID) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/reprovision", siteId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/reprovision")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -329,8 +307,9 @@ func (u *UtilitiesWiFi) ResetSiteAllApsToUseRrm(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/reset_radio_config", siteId),
+      "/api/v1/sites/%v/devices/reset_radio_config",
     )
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -371,11 +350,8 @@ func (u *UtilitiesWiFi) ZeroizeSiteFipsAllAps(
     body *models.UtilsZeroiseFips) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/zeroize", siteId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/zeroize")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -416,11 +392,8 @@ func (u *UtilitiesWiFi) DeauthSiteWirelessClientsConnectedToARogue(
     rogueBssid string) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/rogues/%v/deauth_clients", siteId, rogueBssid),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/rogues/%v/deauth_clients")
+    req.AppendTemplateParams(siteId, rogueBssid)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -457,11 +430,8 @@ func (u *UtilitiesWiFi) OptimizeSiteRrm(
     body *models.UtilsRrmOptimize) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/rrm/optimize", siteId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/rrm/optimize")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -503,6 +473,7 @@ func (u *UtilitiesWiFi) TestSiteWlanTelstraSetup(
     *http.Response,
     error) {
     req := u.prepareRequest(ctx, "POST", "/api/v1/utils/test_telstra")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -543,6 +514,7 @@ func (u *UtilitiesWiFi) TestSiteWlanTwilioSetup(
     *http.Response,
     error) {
     req := u.prepareRequest(ctx, "POST", "/api/v1/utils/test_twilio")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

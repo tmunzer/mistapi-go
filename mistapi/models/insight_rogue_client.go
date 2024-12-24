@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -16,6 +17,14 @@ type InsightRogueClient struct {
     ClientMac            string                 `json:"client_mac"`
     NumAps               int                    `json:"num_aps"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for InsightRogueClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i InsightRogueClient) String() string {
+    return fmt.Sprintf(
+    	"InsightRogueClient[Annotation=%v, ApMac=%v, AvgRssi=%v, Band=%v, Bssid=%v, ClientMac=%v, NumAps=%v, AdditionalProperties=%v]",
+    	i.Annotation, i.ApMac, i.AvgRssi, i.Band, i.Bssid, i.ClientMac, i.NumAps, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InsightRogueClient.

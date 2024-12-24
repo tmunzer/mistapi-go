@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -41,11 +40,8 @@ func (s *SitesSkyatp) CountSiteSkyatpEvents(
     duration *string) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/skyatp/events/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/skyatp/events/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -123,11 +119,8 @@ func (s *SitesSkyatp) SearchSiteSkyatpEvents(
     duration *string) (
     models.ApiResponse[models.ResponseEventsSkyAtpSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/skyatp/events/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/skyatp/events/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

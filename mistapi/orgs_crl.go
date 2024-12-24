@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -30,7 +29,8 @@ func (o *OrgsCRL) GetOrgCrlFile(
     orgId uuid.UUID) (
     models.ApiResponse[[]byte],
     error) {
-    req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/crl", orgId))
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/crl")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

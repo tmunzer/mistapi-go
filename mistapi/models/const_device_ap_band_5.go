@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstDeviceApBand5 represents a ConstDeviceApBand5 struct.
@@ -10,6 +11,14 @@ type ConstDeviceApBand5 struct {
     MaxPower             *int                   `json:"max_power,omitempty"`
     MinPower             *int                   `json:"min_power,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstDeviceApBand5,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstDeviceApBand5) String() string {
+    return fmt.Sprintf(
+    	"ConstDeviceApBand5[MaxClients=%v, MaxPower=%v, MinPower=%v, AdditionalProperties=%v]",
+    	c.MaxClients, c.MaxPower, c.MinPower, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceApBand5.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -24,6 +25,14 @@ type RssiZone struct {
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RssiZone,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RssiZone) String() string {
+    return fmt.Sprintf(
+    	"RssiZone[CreatedTime=%v, Devices=%v, ForSite=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, SiteId=%v, AdditionalProperties=%v]",
+    	r.CreatedTime, r.Devices, r.ForSite, r.Id, r.ModifiedTime, r.Name, r.OrgId, r.SiteId, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RssiZone.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingVna represents a SiteSettingVna struct.
@@ -9,6 +10,14 @@ type SiteSettingVna struct {
     // enable Virtual Network Assistant (using SUB-VNA license). This applied to AP / Switch / Gateway
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingVna,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingVna) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingVna[Enabled=%v, AdditionalProperties=%v]",
+    	s.Enabled, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingVna.

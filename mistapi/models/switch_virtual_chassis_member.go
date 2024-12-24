@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchVirtualChassisMember represents a SwitchVirtualChassisMember struct.
@@ -12,6 +13,14 @@ type SwitchVirtualChassisMember struct {
     // Both vc_role master and backup will be matched to routing-engine role in Junos preprovisioned VC config. enum: `backup`, `linecard`, `master`
     VcRole               *SwitchVirtualChassisMemberVcRoleEnum `json:"vc_role,omitempty"`
     AdditionalProperties map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchVirtualChassisMember,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchVirtualChassisMember) String() string {
+    return fmt.Sprintf(
+    	"SwitchVirtualChassisMember[Mac=%v, MemberId=%v, VcRole=%v, AdditionalProperties=%v]",
+    	s.Mac, s.MemberId, s.VcRole, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchVirtualChassisMember.

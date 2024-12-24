@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -13,15 +14,23 @@ type MspLicenseAction struct {
     AmendmentId          *string                       `json:"amendment_id,omitempty"`
     // required if `op`==`amend`, destination org id
     DstOrgId             *uuid.UUID                    `json:"dst_org_id,omitempty"`
-    // required if `op`== `annotate`
+    // required if `op`==`annotate`
     Notes                *string                       `json:"notes,omitempty"`
     // enum: `amend`, `annotate`, `delete`, `unamend`
     Op                   MspLicenseActionOperationEnum `json:"op"`
     // required if `op`==`amend`
     Quantity             *float64                      `json:"quantity,omitempty"`
-    // required if `op`== `annotate`
+    // required if `op`==`annotate`
     SubscriptionId       *string                       `json:"subscription_id,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MspLicenseAction,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MspLicenseAction) String() string {
+    return fmt.Sprintf(
+    	"MspLicenseAction[AmendmentId=%v, DstOrgId=%v, Notes=%v, Op=%v, Quantity=%v, SubscriptionId=%v, AdditionalProperties=%v]",
+    	m.AmendmentId, m.DstOrgId, m.Notes, m.Op, m.Quantity, m.SubscriptionId, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MspLicenseAction.

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstInsightMetricsPropertyParam represents a ConstInsightMetricsPropertyParam struct.
 type ConstInsightMetricsPropertyParam struct {
     Required             *bool                  `json:"required,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstInsightMetricsPropertyParam,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstInsightMetricsPropertyParam) String() string {
+    return fmt.Sprintf(
+    	"ConstInsightMetricsPropertyParam[Required=%v, AdditionalProperties=%v]",
+    	c.Required, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstInsightMetricsPropertyParam.

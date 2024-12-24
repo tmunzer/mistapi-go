@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingSwitchMgmt represents a OrgSettingSwitchMgmt struct.
@@ -9,6 +10,14 @@ type OrgSettingSwitchMgmt struct {
     // If the field is set in both site/setting and org/setting, the value from site/setting will be used.
     ApAffinityThreshold  *int                   `json:"ap_affinity_threshold,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingSwitchMgmt,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingSwitchMgmt) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingSwitchMgmt[ApAffinityThreshold=%v, AdditionalProperties=%v]",
+    	o.ApAffinityThreshold, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingSwitchMgmt.

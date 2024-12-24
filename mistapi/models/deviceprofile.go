@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // Deviceprofile represents a Deviceprofile struct.
@@ -13,12 +13,10 @@ type Deviceprofile struct {
     isDeviceprofileGateway bool
 }
 
-// String converts the Deviceprofile object to a string representation.
+// String implements the fmt.Stringer interface for Deviceprofile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d Deviceprofile) String() string {
-    if bytes, err := json.Marshal(d.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", d.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Deviceprofile.

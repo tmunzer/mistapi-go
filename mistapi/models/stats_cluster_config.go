@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsClusterConfig represents a StatsClusterConfig struct.
@@ -17,6 +18,14 @@ type StatsClusterConfig struct {
     SecondaryNodeHealth        *string                                     `json:"secondary_node_health,omitempty"`
     Status                     *string                                     `json:"status,omitempty"`
     AdditionalProperties       map[string]interface{}                      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsClusterConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsClusterConfig) String() string {
+    return fmt.Sprintf(
+    	"StatsClusterConfig[Configuration=%v, ControlLinkInfo=%v, EthernetConnection=%v, FabricLinkInfo=%v, LastStatusChangeReason=%v, Operational=%v, PrimaryNodeHealth=%v, RedundancyGroupInformation=%v, SecondaryNodeHealth=%v, Status=%v, AdditionalProperties=%v]",
+    	s.Configuration, s.ControlLinkInfo, s.EthernetConnection, s.FabricLinkInfo, s.LastStatusChangeReason, s.Operational, s.PrimaryNodeHealth, s.RedundancyGroupInformation, s.SecondaryNodeHealth, s.Status, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsClusterConfig.

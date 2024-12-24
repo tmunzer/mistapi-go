@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsZoneSdkclientsWaits represents a StatsZoneSdkclientsWaits struct.
@@ -16,6 +17,14 @@ type StatsZoneSdkclientsWaits struct {
     // 95th percentile of all the wait time(s)
     P95                  *float64               `json:"p95,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsZoneSdkclientsWaits,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsZoneSdkclientsWaits) String() string {
+    return fmt.Sprintf(
+    	"StatsZoneSdkclientsWaits[Avg=%v, Max=%v, Min=%v, P95=%v, AdditionalProperties=%v]",
+    	s.Avg, s.Max, s.Min, s.P95, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsZoneSdkclientsWaits.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsShowServicePath represents a UtilsShowServicePath struct.
@@ -11,6 +12,14 @@ type UtilsShowServicePath struct {
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     ServiceName          *string                `json:"service_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsShowServicePath,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsShowServicePath) String() string {
+    return fmt.Sprintf(
+    	"UtilsShowServicePath[Node=%v, ServiceName=%v, AdditionalProperties=%v]",
+    	u.Node, u.ServiceName, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowServicePath.

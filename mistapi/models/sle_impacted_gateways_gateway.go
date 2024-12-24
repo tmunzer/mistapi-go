@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SleImpactedGatewaysGateway represents a SleImpactedGatewaysGateway struct.
@@ -14,6 +15,14 @@ type SleImpactedGatewaysGateway struct {
     Name                 *string                `json:"name,omitempty"`
     Total                *int                   `json:"total,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleImpactedGatewaysGateway,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleImpactedGatewaysGateway) String() string {
+    return fmt.Sprintf(
+    	"SleImpactedGatewaysGateway[Degraded=%v, Duration=%v, GatewayMac=%v, GatewayModel=%v, GatewayVersion=%v, Name=%v, Total=%v, AdditionalProperties=%v]",
+    	s.Degraded, s.Duration, s.GatewayMac, s.GatewayModel, s.GatewayVersion, s.Name, s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedGatewaysGateway.

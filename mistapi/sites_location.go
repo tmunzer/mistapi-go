@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -39,11 +38,8 @@ func (s *SitesLocation) GetSiteBeamCoverageOverview(
     end *int) (
     models.ApiResponse[models.ResponseLocationCoverage],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/location/coverage", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/location/coverage")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -105,11 +101,8 @@ func (s *SitesLocation) GetSiteMachineLearningCurrentStat(
     mapId *string) (
     models.ApiResponse[[]interface{}],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/location/ml/current", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/location/ml/current")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -151,11 +144,8 @@ func (s *SitesLocation) GetSiteDefaultPlfForModels(
     siteId uuid.UUID) (
     models.ApiResponse[[]interface{}],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/location/ml/defaults", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/location/ml/defaults")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -195,11 +185,8 @@ func (s *SitesLocation) ClearSiteMlOverwriteForDevice(
     deviceId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/location/ml/device/%v", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/location/ml/device/%v")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -237,11 +224,8 @@ func (s *SitesLocation) OverwriteSiteMlForDevice(
     body map[string]models.MlOverwriteAdditionalProperties) (
     models.ApiResponse[[]interface{}],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/location/ml/device/%v", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/location/ml/device/%v")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -285,11 +269,8 @@ func (s *SitesLocation) ClearSiteMlOverwriteForMap(
     mapId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/location/ml/map/%v", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/location/ml/map/%v")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -327,11 +308,8 @@ func (s *SitesLocation) OverwriteSiteMlForMap(
     body map[string]models.MlOverwriteAdditionalProperties) (
     models.ApiResponse[[]interface{}],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/location/ml/map/%v", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/location/ml/map/%v")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -375,11 +353,8 @@ func (s *SitesLocation) ResetSiteMlStatsByMap(
     mapId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/location/ml/reset/map/%v", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/location/ml/reset/map/%v")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

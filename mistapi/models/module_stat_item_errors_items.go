@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type ModuleStatItemErrorsItems struct {
     Since                int                    `json:"since"`
     Type                 string                 `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ModuleStatItemErrorsItems,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m ModuleStatItemErrorsItems) String() string {
+    return fmt.Sprintf(
+    	"ModuleStatItemErrorsItems[Feature=%v, MinimumVersion=%v, Reason=%v, Since=%v, Type=%v, AdditionalProperties=%v]",
+    	m.Feature, m.MinimumVersion, m.Reason, m.Since, m.Type, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemErrorsItems.

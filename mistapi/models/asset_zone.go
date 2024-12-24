@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -11,6 +12,14 @@ type AssetZone struct {
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Since                *float64               `json:"since,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AssetZone,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AssetZone) String() string {
+    return fmt.Sprintf(
+    	"AssetZone[Id=%v, Since=%v, AdditionalProperties=%v]",
+    	a.Id, a.Since, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetZone.

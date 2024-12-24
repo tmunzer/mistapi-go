@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -37,7 +36,8 @@ func (o *OrgsPsks) ListOrgPsks(
     page *int) (
     models.ApiResponse[[]models.Psk],
     error) {
-    req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/psks", orgId))
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/psks")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -94,7 +94,8 @@ func (o *OrgsPsks) CreateOrgPsk(
     body *models.Psk) (
     models.ApiResponse[models.Psk],
     error) {
-    req := o.prepareRequest(ctx, "POST", fmt.Sprintf("/api/v1/orgs/%v/psks", orgId))
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/psks")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -141,7 +142,8 @@ func (o *OrgsPsks) UpdateOrgMultiplePsks(
     body []models.Psk) (
     models.ApiResponse[[]models.Psk],
     error) {
-    req := o.prepareRequest(ctx, "PUT", fmt.Sprintf("/api/v1/orgs/%v/psks", orgId))
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/psks")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -186,11 +188,8 @@ func (o *OrgsPsks) DeleteOrgPskList(
     body *models.PskIdList) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/psks/delete", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/psks/delete")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -239,11 +238,8 @@ func (o *OrgsPsks) ImportOrgPsks(
     file *models.FileWrapper) (
     models.ApiResponse[[]models.Psk],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/psks/import", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/psks/import")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -289,11 +285,8 @@ func (o *OrgsPsks) DeleteOrgPsk(
     pskId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/psks/%v", orgId, pskId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/psks/%v")
+    req.AppendTemplateParams(orgId, pskId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -330,11 +323,8 @@ func (o *OrgsPsks) GetOrgPsk(
     pskId uuid.UUID) (
     models.ApiResponse[models.Psk],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/psks/%v", orgId, pskId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/psks/%v")
+    req.AppendTemplateParams(orgId, pskId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -375,11 +365,8 @@ func (o *OrgsPsks) UpdateOrgPsk(
     body *models.Psk) (
     models.ApiResponse[models.Psk],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/psks/%v", orgId, pskId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/psks/%v")
+    req.AppendTemplateParams(orgId, pskId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -427,8 +414,9 @@ func (o *OrgsPsks) DeleteOrgPskOldPassphrase(
     req := o.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/psks/%v/delete_old_passphrase", orgId, pskId),
+      "/api/v1/orgs/%v/psks/%v/delete_old_passphrase",
     )
+    req.AppendTemplateParams(orgId, pskId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

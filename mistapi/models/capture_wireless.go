@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -27,6 +28,14 @@ type CaptureWireless struct {
     // WLAN ID
     WlanId               *uuid.UUID                 `json:"wlan_id,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureWireless,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureWireless) String() string {
+    return fmt.Sprintf(
+    	"CaptureWireless[ApMac=%v, Band=%v, Duration=%v, Format=%v, MaxPktLen=%v, NumPackets=%v, Ssid=%v, Type=%v, WlanId=%v, AdditionalProperties=%v]",
+    	c.ApMac, c.Band, c.Duration, c.Format, c.MaxPktLen, c.NumPackets, c.Ssid, c.Type, c.WlanId, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureWireless.

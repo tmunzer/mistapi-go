@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -31,11 +30,8 @@ func (a *Admins) VerifyAdminInvite(
     token string) (
     *http.Response,
     error) {
-    req := a.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/invite/verify/%v", token),
-    )
+    req := a.prepareRequest(ctx, "POST", "/api/v1/invite/verify/%v")
+    req.AppendTemplateParams(token)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -107,6 +103,7 @@ func (a *Admins) RegisterNewAdmin(
     *http.Response,
     error) {
     req := a.prepareRequest(ctx, "POST", "/api/v1/register")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -146,6 +143,7 @@ func (a *Admins) GetAdminRegistrationInfo(
     models.ApiResponse[models.Recaptcha],
     error) {
     req := a.prepareRequest(ctx, "GET", "/api/v1/register/recaptcha")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -186,11 +184,8 @@ func (a *Admins) VerifyRegistration(
     token string) (
     models.ApiResponse[models.ResponseVerifyTokenSuccess],
     error) {
-    req := a.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/register/verify/%v", token),
-    )
+    req := a.prepareRequest(ctx, "POST", "/api/v1/register/verify/%v")
+    req.AppendTemplateParams(token)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

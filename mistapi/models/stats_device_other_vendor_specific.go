@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsDeviceOtherVendorSpecific represents a StatsDeviceOtherVendorSpecific struct.
@@ -10,6 +11,14 @@ type StatsDeviceOtherVendorSpecific struct {
     Ports                map[string]StatsDeviceOtherVendorSpecificPort `json:"ports,omitempty"`
     TargetVersion        *string                                       `json:"target_version,omitempty"`
     AdditionalProperties map[string]interface{}                        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsDeviceOtherVendorSpecific,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsDeviceOtherVendorSpecific) String() string {
+    return fmt.Sprintf(
+    	"StatsDeviceOtherVendorSpecific[Ports=%v, TargetVersion=%v, AdditionalProperties=%v]",
+    	s.Ports, s.TargetVersion, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsDeviceOtherVendorSpecific.

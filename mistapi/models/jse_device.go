@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // JseDevice represents a JseDevice struct.
@@ -13,6 +14,14 @@ type JseDevice struct {
     Model                *string                `json:"model,omitempty"`
     Serial               *string                `json:"serial,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for JseDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (j JseDevice) String() string {
+    return fmt.Sprintf(
+    	"JseDevice[ExtIp=%v, LastSeen=%v, Mac=%v, Model=%v, Serial=%v, AdditionalProperties=%v]",
+    	j.ExtIp, j.LastSeen, j.Mac, j.Model, j.Serial, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JseDevice.

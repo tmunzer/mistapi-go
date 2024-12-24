@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -53,7 +54,7 @@ type DeviceprofileGateway struct {
     RoutingPolicies       map[string]RoutingPolicy           `json:"routing_policies,omitempty"`
     ServicePolicies       []ServicePolicy                    `json:"service_policies,omitempty"`
     // Property key is the tunnel name
-    TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
+    TunnelConfigs         map[string]TunnelConfig            `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     // Device Type. enum: `gateway`
     Type                  string                             `json:"type"`
@@ -61,6 +62,14 @@ type DeviceprofileGateway struct {
     // Property key is the network name
     VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
     AdditionalProperties  map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DeviceprofileGateway,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DeviceprofileGateway) String() string {
+    return fmt.Sprintf(
+    	"DeviceprofileGateway[AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DhcpdConfig=%v, DnsOverride=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, GatewayMatching=%v, Id=%v, IdpProfiles=%v, IpConfigs=%v, ModifiedTime=%v, Name=%v, Networks=%v, NtpOverride=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, PathPreferences=%v, PortConfig=%v, RouterId=%v, RoutingPolicies=%v, ServicePolicies=%v, TunnelConfigs=%v, TunnelProviderOptions=%v, Type=%v, VrfConfig=%v, VrfInstances=%v, AdditionalProperties=%v]",
+    	d.AdditionalConfigCmds, d.BgpConfig, d.CreatedTime, d.DhcpdConfig, d.DnsOverride, d.DnsServers, d.DnsSuffix, d.ExtraRoutes, d.ExtraRoutes6, d.GatewayMatching, d.Id, d.IdpProfiles, d.IpConfigs, d.ModifiedTime, d.Name, d.Networks, d.NtpOverride, d.NtpServers, d.OobIpConfig, d.OrgId, d.PathPreferences, d.PortConfig, d.RouterId, d.RoutingPolicies, d.ServicePolicies, d.TunnelConfigs, d.TunnelProviderOptions, d.Type, d.VrfConfig, d.VrfInstances, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceprofileGateway.
@@ -246,7 +255,7 @@ type tempDeviceprofileGateway  struct {
     RouterId              *string                            `json:"router_id,omitempty"`
     RoutingPolicies       map[string]RoutingPolicy           `json:"routing_policies,omitempty"`
     ServicePolicies       []ServicePolicy                    `json:"service_policies,omitempty"`
-    TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
+    TunnelConfigs         map[string]TunnelConfig            `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     Type                  *string                            `json:"type"`
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AutoPlacement represents a AutoPlacement struct.
@@ -12,6 +13,14 @@ type AutoPlacement struct {
     // list of device macs
     Macs                 []string               `json:"macs,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AutoPlacement,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AutoPlacement) String() string {
+    return fmt.Sprintf(
+    	"AutoPlacement[ForceCollection=%v, Macs=%v, AdditionalProperties=%v]",
+    	a.ForceCollection, a.Macs, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AutoPlacement.

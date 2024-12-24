@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UpgradeFpga represents a UpgradeFpga struct.
@@ -11,6 +12,14 @@ type UpgradeFpga struct {
     // specific fpga version
     Version              *string                `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UpgradeFpga,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UpgradeFpga) String() string {
+    return fmt.Sprintf(
+    	"UpgradeFpga[Reboot=%v, Version=%v, AdditionalProperties=%v]",
+    	u.Reboot, u.Version, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UpgradeFpga.

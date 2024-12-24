@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseAutoZone represents a ResponseAutoZone struct.
@@ -14,6 +15,14 @@ type ResponseAutoZone struct {
     Status               *ResponseAutoZoneStatusEnum `json:"status,omitempty"`
     Zones                []ResponseAutoZoneZone      `json:"zones,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseAutoZone,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseAutoZone) String() string {
+    return fmt.Sprintf(
+    	"ResponseAutoZone[Status=%v, Zones=%v, AdditionalProperties=%v]",
+    	r.Status, r.Zones, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAutoZone.

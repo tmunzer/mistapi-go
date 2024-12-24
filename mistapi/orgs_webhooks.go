@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (o *OrgsWebhooks) ListOrgWebhooks(
     page *int) (
     models.ApiResponse[[]models.Webhook],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/webhooks", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/webhooks")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -85,11 +81,8 @@ func (o *OrgsWebhooks) CreateOrgWebhook(
     body *models.Webhook) (
     models.ApiResponse[models.Webhook],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/webhooks", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/webhooks")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -133,11 +126,8 @@ func (o *OrgsWebhooks) DeleteOrgWebhook(
     webhookId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/webhooks/%v", orgId, webhookId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/webhooks/%v")
+    req.AppendTemplateParams(orgId, webhookId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -174,11 +164,8 @@ func (o *OrgsWebhooks) GetOrgWebhook(
     webhookId uuid.UUID) (
     models.ApiResponse[models.Webhook],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/webhooks/%v", orgId, webhookId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/webhooks/%v")
+    req.AppendTemplateParams(orgId, webhookId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -219,11 +206,8 @@ func (o *OrgsWebhooks) UpdateOrgWebhook(
     body *models.Webhook) (
     models.ApiResponse[models.Webhook],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/webhooks/%v", orgId, webhookId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/webhooks/%v")
+    req.AppendTemplateParams(orgId, webhookId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -282,11 +266,8 @@ func (o *OrgsWebhooks) CountOrgWebhooksDeliveries(
     limit *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/webhooks/%v/events/count", orgId, webhookId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/webhooks/%v/events/count")
+    req.AppendTemplateParams(orgId, webhookId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -367,11 +348,8 @@ func (o *OrgsWebhooks) SearchOrgWebhooksDeliveries(
     limit *int) (
     models.ApiResponse[models.SearchWebhookDelivery],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/webhooks/%v/events/search", orgId, webhookId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/webhooks/%v/events/search")
+    req.AppendTemplateParams(orgId, webhookId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -435,11 +413,8 @@ func (o *OrgsWebhooks) PingOrgWebhook(
     webhookId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/webhooks/%v/ping", orgId, webhookId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/webhooks/%v/ping")
+    req.AppendTemplateParams(orgId, webhookId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

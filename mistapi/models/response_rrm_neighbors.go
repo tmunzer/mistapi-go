@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type ResponseRrmNeighbors struct {
     Results              []RrmNeighbors         `json:"results"`
     Start                int                    `json:"start"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseRrmNeighbors,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseRrmNeighbors) String() string {
+    return fmt.Sprintf(
+    	"ResponseRrmNeighbors[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, AdditionalProperties=%v]",
+    	r.End, r.Limit, r.Next, r.Results, r.Start, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseRrmNeighbors.

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsWxruleUsageProperties represents a StatsWxruleUsageProperties struct.
 type StatsWxruleUsageProperties struct {
     NumFlows             *int                   `json:"num_flows,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsWxruleUsageProperties,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsWxruleUsageProperties) String() string {
+    return fmt.Sprintf(
+    	"StatsWxruleUsageProperties[NumFlows=%v, AdditionalProperties=%v]",
+    	s.NumFlows, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWxruleUsageProperties.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -29,6 +30,14 @@ type ResponseLogSearchItem struct {
     // start time, in epoch
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseLogSearchItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseLogSearchItem) String() string {
+    return fmt.Sprintf(
+    	"ResponseLogSearchItem[AdminId=%v, AdminName=%v, After=%v, Before=%v, ForSite=%v, Id=%v, Message=%v, OrgId=%v, SiteId=%v, SrcIp=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	r.AdminId, r.AdminName, r.After, r.Before, r.ForSite, r.Id, r.Message, r.OrgId, r.SiteId, r.SrcIp, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseLogSearchItem.

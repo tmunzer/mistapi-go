@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayOobIpConfig represents a GatewayOobIpConfig struct.
@@ -23,6 +24,14 @@ type GatewayOobIpConfig struct {
     UseMgmtVrfForHostOut *bool                    `json:"use_mgmt_vrf_for_host_out,omitempty"`
     VlanId               *string                  `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayOobIpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayOobIpConfig) String() string {
+    return fmt.Sprintf(
+    	"GatewayOobIpConfig[Gateway=%v, Ip=%v, Netmask=%v, Node1=%v, Type=%v, UseMgmtVrf=%v, UseMgmtVrfForHostOut=%v, VlanId=%v, AdditionalProperties=%v]",
+    	g.Gateway, g.Ip, g.Netmask, g.Node1, g.Type, g.UseMgmtVrf, g.UseMgmtVrfForHostOut, g.VlanId, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayOobIpConfig.

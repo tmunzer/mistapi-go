@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -37,11 +36,8 @@ func (s *SitesRfdiags) GetSiteSiteRfdiagRecording(
     page *int) (
     models.ApiResponse[[][]models.RfDiagInfoItem],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/rfdiags", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rfdiags")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -96,11 +92,8 @@ func (s *SitesRfdiags) StartSiteRecording(
     body *models.RfDiag) (
     models.ApiResponse[[]models.RfDiagInfoItem],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/rfdiags", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/rfdiags")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -144,11 +137,8 @@ func (s *SitesRfdiags) DeleteSiteRfdiagRecording(
     rfdiagId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/rfdiags/%v", siteId, rfdiagId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/rfdiags/%v")
+    req.AppendTemplateParams(siteId, rfdiagId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -185,11 +175,8 @@ func (s *SitesRfdiags) GetSiteRfdiagRecording(
     rfdiagId uuid.UUID) (
     models.ApiResponse[[]models.RfDiagInfoItem],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/rfdiags/%v", siteId, rfdiagId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rfdiags/%v")
+    req.AppendTemplateParams(siteId, rfdiagId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -230,11 +217,8 @@ func (s *SitesRfdiags) UpdateSiteRfdiagRecording(
     body *models.RfDiag) (
     models.ApiResponse[[]models.RfDiagInfoItem],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/rfdiags/%v", siteId, rfdiagId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/rfdiags/%v")
+    req.AppendTemplateParams(siteId, rfdiagId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -279,11 +263,8 @@ func (s *SitesRfdiags) DownloadSiteRfdiagRecording(
     rfdiagId uuid.UUID) (
     models.ApiResponse[[]byte],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/rfdiags/%v/download", siteId, rfdiagId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rfdiags/%v/download")
+    req.AppendTemplateParams(siteId, rfdiagId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -320,11 +301,8 @@ func (s *SitesRfdiags) StopSiteRfdiagRecording(
     rfdiagId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/rfdiags/%v/stop", siteId, rfdiagId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/rfdiags/%v/stop")
+    req.AppendTemplateParams(siteId, rfdiagId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

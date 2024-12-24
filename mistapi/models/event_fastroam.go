@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -19,6 +20,14 @@ type EventFastroam struct {
     // enum: `fail`, `none`, `pingpong`, `poor`, `slow`, `success`
     Type                 *EventFastroamTypeEnum `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EventFastroam,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EventFastroam) String() string {
+    return fmt.Sprintf(
+    	"EventFastroam[ApMac=%v, ClientMac=%v, Fromap=%v, Latency=%v, Ssid=%v, Subtype=%v, Timestamp=%v, Type=%v, AdditionalProperties=%v]",
+    	e.ApMac, e.ClientMac, e.Fromap, e.Latency, e.Ssid, e.Subtype, e.Timestamp, e.Type, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventFastroam.

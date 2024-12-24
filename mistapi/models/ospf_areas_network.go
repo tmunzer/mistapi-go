@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OspfAreasNetwork represents a OspfAreasNetwork struct.
@@ -26,6 +27,14 @@ type OspfAreasNetwork struct {
     // whether to send OSPF-Hello
     Passive                *bool                             `json:"passive,omitempty"`
     AdditionalProperties   map[string]interface{}            `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OspfAreasNetwork,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OspfAreasNetwork) String() string {
+    return fmt.Sprintf(
+    	"OspfAreasNetwork[AuthKeys=%v, AuthPassword=%v, AuthType=%v, BfdMinimumInterval=%v, DeadInterval=%v, ExportPolicy=%v, HelloInterval=%v, ImportPolicy=%v, InterfaceType=%v, Metric=%v, NoReadvertiseToOverlay=%v, Passive=%v, AdditionalProperties=%v]",
+    	o.AuthKeys, o.AuthPassword, o.AuthType, o.BfdMinimumInterval, o.DeadInterval, o.ExportPolicy, o.HelloInterval, o.ImportPolicy, o.InterfaceType, o.Metric, o.NoReadvertiseToOverlay, o.Passive, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OspfAreasNetwork.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -17,6 +18,14 @@ type LicenseUsageOrg struct {
     // subscriptions and their quantities. Property key is the service name (e.g. "SUB-MAN")
     Usages               map[string]int         `json:"usages"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for LicenseUsageOrg,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (l LicenseUsageOrg) String() string {
+    return fmt.Sprintf(
+    	"LicenseUsageOrg[ForSite=%v, FullyLoaded=%v, NumDevices=%v, SiteId=%v, Usages=%v, AdditionalProperties=%v]",
+    	l.ForSite, l.FullyLoaded, l.NumDevices, l.SiteId, l.Usages, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for LicenseUsageOrg.

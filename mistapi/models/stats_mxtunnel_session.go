@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -16,6 +17,14 @@ type StatsMxtunnelSession struct {
     RemoteSid            int                    `json:"remote_sid"`
     State                string                 `json:"state"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxtunnelSession,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxtunnelSession) String() string {
+    return fmt.Sprintf(
+    	"StatsMxtunnelSession[LocalSid=%v, RemoteId=%v, RemoteSid=%v, State=%v, AdditionalProperties=%v]",
+    	s.LocalSid, s.RemoteId, s.RemoteSid, s.State, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxtunnelSession.

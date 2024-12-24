@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // CaptureGatewayGatewaysPort represents a CaptureGatewayGatewaysPort struct.
@@ -9,6 +10,14 @@ type CaptureGatewayGatewaysPort struct {
     // tcpdump expression per port
     TcpdumpExpression    *string                `json:"tcpdump_expression,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureGatewayGatewaysPort,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureGatewayGatewaysPort) String() string {
+    return fmt.Sprintf(
+    	"CaptureGatewayGatewaysPort[TcpdumpExpression=%v, AdditionalProperties=%v]",
+    	c.TcpdumpExpression, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureGatewayGatewaysPort.

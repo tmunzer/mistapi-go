@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -75,6 +76,14 @@ type OrgSetting struct {
     WiredPma                    *OrgSettingWiredPma                    `json:"wired_pma,omitempty"`
     WirelessPma                 *OrgSettingWirelessPma                 `json:"wireless_pma,omitempty"`
     AdditionalProperties        map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSetting,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSetting) String() string {
+    return fmt.Sprintf(
+    	"OrgSetting[ApUpdownThreshold=%v, ApiPolicy=%v, AutoDeviceNaming=%v, AutoDeviceprofileAssignment=%v, AutoSiteAssignment=%v, BlacklistUrl=%v, Cacerts=%v, Celona=%v, Cloudshark=%v, Cradlepoint=%v, CreatedTime=%v, DeviceCert=%v, DeviceUpdownThreshold=%v, DisablePcap=%v, DisableRemoteShell=%v, ForSite=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, Installer=%v, Jcloud=%v, JcloudRa=%v, Juniper=%v, Mgmt=%v, MistNac=%v, ModifiedTime=%v, MspId=%v, MxedgeFipsEnabled=%v, MxedgeMgmt=%v, OpticPortConfig=%v, OrgId=%v, PasswordPolicy=%v, Pcap=%v, PcapBucketVerified=%v, Security=%v, SimpleAlert=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, Tags=%v, UiIdleTimeout=%v, VpnOptions=%v, WanPma=%v, WiredPma=%v, WirelessPma=%v, AdditionalProperties=%v]",
+    	o.ApUpdownThreshold, o.ApiPolicy, o.AutoDeviceNaming, o.AutoDeviceprofileAssignment, o.AutoSiteAssignment, o.BlacklistUrl, o.Cacerts, o.Celona, o.Cloudshark, o.Cradlepoint, o.CreatedTime, o.DeviceCert, o.DeviceUpdownThreshold, o.DisablePcap, o.DisableRemoteShell, o.ForSite, o.GatewayMgmt, o.GatewayUpdownThreshold, o.Id, o.Installer, o.Jcloud, o.JcloudRa, o.Juniper, o.Mgmt, o.MistNac, o.ModifiedTime, o.MspId, o.MxedgeFipsEnabled, o.MxedgeMgmt, o.OpticPortConfig, o.OrgId, o.PasswordPolicy, o.Pcap, o.PcapBucketVerified, o.Security, o.SimpleAlert, o.SwitchMgmt, o.SwitchUpdownThreshold, o.SyntheticTest, o.Tags, o.UiIdleTimeout, o.VpnOptions, o.WanPma, o.WiredPma, o.WirelessPma, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSetting.

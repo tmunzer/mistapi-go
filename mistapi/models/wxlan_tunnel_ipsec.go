@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type WxlanTunnelIpsec struct {
     // ipsec pre-shared key
     Psk                  string                 `json:"psk"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WxlanTunnelIpsec,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WxlanTunnelIpsec) String() string {
+    return fmt.Sprintf(
+    	"WxlanTunnelIpsec[Enabled=%v, Psk=%v, AdditionalProperties=%v]",
+    	w.Enabled, w.Psk, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanTunnelIpsec.

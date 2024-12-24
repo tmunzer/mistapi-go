@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ModuleStatItem represents a ModuleStatItem struct.
@@ -39,6 +40,14 @@ type ModuleStatItem struct {
     VcState              Optional[string]                 `json:"vc_state"`
     Version              Optional[string]                 `json:"version"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ModuleStatItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m ModuleStatItem) String() string {
+    return fmt.Sprintf(
+    	"ModuleStatItem[BackupVersion=%v, BiosVersion=%v, CpldVersion=%v, Errors=%v, Fans=%v, FpcIdx=%v, FpgaVersion=%v, LastSeen=%v, Model=%v, OpticsCpldVersion=%v, PendingVersion=%v, Pics=%v, Poe=%v, PoeVersion=%v, PowerCpldVersion=%v, Psus=%v, ReFpgaVersion=%v, RecoveryVersion=%v, Serial=%v, Status=%v, Temperatures=%v, TmcFpgaVersion=%v, UbootVersion=%v, Uptime=%v, VcLinks=%v, VcMode=%v, VcRole=%v, VcState=%v, Version=%v, AdditionalProperties=%v]",
+    	m.BackupVersion, m.BiosVersion, m.CpldVersion, m.Errors, m.Fans, m.FpcIdx, m.FpgaVersion, m.LastSeen, m.Model, m.OpticsCpldVersion, m.PendingVersion, m.Pics, m.Poe, m.PoeVersion, m.PowerCpldVersion, m.Psus, m.ReFpgaVersion, m.RecoveryVersion, m.Serial, m.Status, m.Temperatures, m.TmcFpgaVersion, m.UbootVersion, m.Uptime, m.VcLinks, m.VcMode, m.VcRole, m.VcState, m.Version, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItem.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -33,11 +32,8 @@ func (s *SitesAlarms) AckSiteMultipleAlarms(
     body *models.AlarmAck) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/alarms/ack", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/alarms/ack")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -79,11 +75,8 @@ func (s *SitesAlarms) AckSiteAllAlarms(
     body *models.NoteString) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/alarms/ack_all", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/alarms/ack_all")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -134,11 +127,8 @@ func (s *SitesAlarms) CountSiteAlarms(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/alarms/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/alarms/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -219,11 +209,8 @@ func (s *SitesAlarms) SearchSiteAlarms(
     duration *string) (
     models.ApiResponse[models.AlarmSearchResult],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/alarms/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/alarms/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -290,11 +277,8 @@ func (s *SitesAlarms) UnackSiteMultipleAlarms(
     body *models.AlarmAck) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/alarms/unack", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/alarms/unack")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -336,11 +320,8 @@ func (s *SitesAlarms) UnackSiteAllArlarms(
     body *models.NoteString) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/alarms/unack_all", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/alarms/unack_all")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -382,11 +363,8 @@ func (s *SitesAlarms) AckSiteAlarm(
     body *models.NoteString) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/alarms/%v/ack", siteId, alarmId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/alarms/%v/ack")
+    req.AppendTemplateParams(siteId, alarmId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -428,11 +406,8 @@ func (s *SitesAlarms) UnackSiteAlarm(
     body *models.NoteString) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/alarms/%v/unack", siteId, alarmId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/alarms/%v/unack")
+    req.AppendTemplateParams(siteId, alarmId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -472,11 +447,8 @@ func (s *SitesAlarms) UnsubscribeSiteAlarms(
     siteId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/subscriptions", siteId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/subscriptions")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -512,11 +484,8 @@ func (s *SitesAlarms) SubscribeSiteAlarms(
     siteId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/subscriptions", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/subscriptions")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

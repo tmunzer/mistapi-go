@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AccountJseInfo represents a AccountJseInfo struct.
@@ -9,6 +10,14 @@ type AccountJseInfo struct {
     CloudName            *string                `json:"cloud_name,omitempty"`
     Username             *string                `json:"username,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountJseInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountJseInfo) String() string {
+    return fmt.Sprintf(
+    	"AccountJseInfo[CloudName=%v, Username=%v, AdditionalProperties=%v]",
+    	a.CloudName, a.Username, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountJseInfo.

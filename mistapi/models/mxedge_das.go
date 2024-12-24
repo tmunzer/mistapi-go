@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeDas represents a MxedgeDas struct.
@@ -11,6 +12,14 @@ type MxedgeDas struct {
     CoaServers           []MxedgeDasCoaServer   `json:"coa_servers,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeDas,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeDas) String() string {
+    return fmt.Sprintf(
+    	"MxedgeDas[CoaServers=%v, Enabled=%v, AdditionalProperties=%v]",
+    	m.CoaServers, m.Enabled, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeDas.

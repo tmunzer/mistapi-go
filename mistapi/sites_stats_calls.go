@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -43,8 +42,9 @@ func (s *SitesStatsCalls) TroubleshootSiteCall(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/calls/client/%v/troubleshoot", siteId, clientMac),
+      "/api/v1/sites/%v/stats/calls/client/%v/troubleshoot",
     )
+    req.AppendTemplateParams(siteId, clientMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -110,11 +110,8 @@ func (s *SitesStatsCalls) CountSiteCalls(
     end *string) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/calls/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/calls/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -174,11 +171,8 @@ func (s *SitesStatsCalls) SearchSiteCalls(
     duration *string) (
     models.ApiResponse[models.ResponseStatsCalls],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/calls/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/calls/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -239,11 +233,8 @@ func (s *SitesStatsCalls) GetSiteCallsSummary(
     end *int) (
     models.ApiResponse[models.ResponseStatsCallsSummary],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/calls/summary", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/calls/summary")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -303,11 +294,8 @@ func (s *SitesStatsCalls) ListSiteTroubleshootCalls(
     page *int) (
     models.ApiResponse[models.CallTroubleshootSummary],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/calls/troubleshoot", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/calls/troubleshoot")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

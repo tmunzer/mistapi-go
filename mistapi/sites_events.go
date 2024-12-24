@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -36,11 +35,8 @@ func (s *SitesEvents) GetSiteRoamingEvents(
     duration *string) (
     models.ApiResponse[models.ResponseEventsFastroam],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/events/fast_roam", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/events/fast_roam")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -100,11 +96,8 @@ func (s *SitesEvents) CountSiteSystemEvents(
     duration *string) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/events/system/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/events/system/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -166,11 +159,8 @@ func (s *SitesEvents) SearchSiteSystemEvents(
     duration *string) (
     models.ApiResponse[models.ResponseDeviceEventsSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/events/system/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/events/system/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

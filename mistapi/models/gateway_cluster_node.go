@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type GatewayClusterNode struct {
     // Gateway MAC Address. Format is `[0-9a-f]{12}` (e.g "5684dae9ac8b")
     Mac                  string                 `json:"mac"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayClusterNode,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayClusterNode) String() string {
+    return fmt.Sprintf(
+    	"GatewayClusterNode[Mac=%v, AdditionalProperties=%v]",
+    	g.Mac, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayClusterNode.

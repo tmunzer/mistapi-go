@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -17,6 +18,14 @@ type ResponseMspInventoryDevice struct {
     SiteId               uuid.UUID              `json:"site_id"`
     Type                 string                 `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseMspInventoryDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseMspInventoryDevice) String() string {
+    return fmt.Sprintf(
+    	"ResponseMspInventoryDevice[ForSite=%v, Mac=%v, Model=%v, OrgId=%v, Serial=%v, SiteId=%v, Type=%v, AdditionalProperties=%v]",
+    	r.ForSite, r.Mac, r.Model, r.OrgId, r.Serial, r.SiteId, r.Type, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMspInventoryDevice.

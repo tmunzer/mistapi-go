@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -13,6 +14,14 @@ type ResponseMobileVerifySecret struct {
     OrgId                uuid.UUID              `json:"org_id"`
     Secret               string                 `json:"secret"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseMobileVerifySecret,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseMobileVerifySecret) String() string {
+    return fmt.Sprintf(
+    	"ResponseMobileVerifySecret[Name=%v, OrgId=%v, Secret=%v, AdditionalProperties=%v]",
+    	r.Name, r.OrgId, r.Secret, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMobileVerifySecret.

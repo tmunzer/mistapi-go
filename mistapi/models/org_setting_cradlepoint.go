@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingCradlepoint represents a OrgSettingCradlepoint struct.
@@ -12,6 +13,14 @@ type OrgSettingCradlepoint struct {
     EcmApiKey            *string                `json:"ecm_api_key,omitempty"`
     EnableLldp           *bool                  `json:"enable_lldp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingCradlepoint,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingCradlepoint) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingCradlepoint[CpApiId=%v, CpApiKey=%v, EcmApiId=%v, EcmApiKey=%v, EnableLldp=%v, AdditionalProperties=%v]",
+    	o.CpApiId, o.CpApiKey, o.EcmApiId, o.EcmApiKey, o.EnableLldp, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingCradlepoint.

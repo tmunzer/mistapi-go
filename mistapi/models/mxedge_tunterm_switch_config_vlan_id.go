@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // MxedgeTuntermSwitchConfigVlanId represents a MxedgeTuntermSwitchConfigVlanId struct.
@@ -13,12 +13,10 @@ type MxedgeTuntermSwitchConfigVlanId struct {
     isString bool
 }
 
-// String converts the MxedgeTuntermSwitchConfigVlanId object to a string representation.
+// String implements the fmt.Stringer interface for MxedgeTuntermSwitchConfigVlanId,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m MxedgeTuntermSwitchConfigVlanId) String() string {
-    if bytes, err := json.Marshal(m.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", m.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermSwitchConfigVlanId.

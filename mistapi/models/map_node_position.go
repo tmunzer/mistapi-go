@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type MapNodePosition struct {
     X                    float64                `json:"x"`
     Y                    float64                `json:"y"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapNodePosition,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapNodePosition) String() string {
+    return fmt.Sprintf(
+    	"MapNodePosition[X=%v, Y=%v, AdditionalProperties=%v]",
+    	m.X, m.Y, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapNodePosition.

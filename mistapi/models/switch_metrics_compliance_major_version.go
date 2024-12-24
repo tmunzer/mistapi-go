@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchMetricsComplianceMajorVersion represents a SwitchMetricsComplianceMajorVersion struct.
@@ -11,6 +12,14 @@ type SwitchMetricsComplianceMajorVersion struct {
     Model                *string                `json:"model,omitempty"`
     SystemNames          []string               `json:"system_names,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchMetricsComplianceMajorVersion,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchMetricsComplianceMajorVersion) String() string {
+    return fmt.Sprintf(
+    	"SwitchMetricsComplianceMajorVersion[MajorCount=%v, MajorVersion=%v, Model=%v, SystemNames=%v, AdditionalProperties=%v]",
+    	s.MajorCount, s.MajorVersion, s.Model, s.SystemNames, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMetricsComplianceMajorVersion.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (o *OrgsSCEP) DisableOrgMistScep(
     orgId uuid.UUID) (
     models.ApiResponse[models.OrgSettingScep],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/mist_scep", orgId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/setting/mist_scep")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -75,11 +71,8 @@ func (o *OrgsSCEP) GetOrgMistScep(
     orgId uuid.UUID) (
     models.ApiResponse[models.OrgSettingScep],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/mist_scep", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/setting/mist_scep")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -119,11 +112,8 @@ func (o *OrgsSCEP) UpdateOrgMistScep(
     body *models.OrgSettingScep) (
     models.ApiResponse[models.OrgSettingScep],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/mist_scep", orgId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/setting/mist_scep")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -172,8 +162,9 @@ func (o *OrgsSCEP) GetOrgIssuedClientCertificates(
     req := o.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/mist_scep/client_certs", orgId),
+      "/api/v1/orgs/%v/setting/mist_scep/client_certs",
     )
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -225,8 +216,9 @@ func (o *OrgsSCEP) RevokeOrgIssuedClientCertificates(
     req := o.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/mist_scep/client_certs/revoke", orgId),
+      "/api/v1/orgs/%v/setting/mist_scep/client_certs/revoke",
     )
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -36,7 +35,8 @@ func (o *OrgsStats) GetOrgStats(
     page *int) (
     models.ApiResponse[models.StatsOrg],
     error) {
-    req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/stats", orgId))
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

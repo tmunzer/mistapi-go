@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -60,6 +61,14 @@ type BleConfig struct {
     // enum: `custom`, `default`
     PowerMode               *BleConfigPowerModeEnum      `json:"power_mode,omitempty"`
     AdditionalProperties    map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for BleConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (b BleConfig) String() string {
+    return fmt.Sprintf(
+    	"BleConfig[BeaconEnabled=%v, BeaconRate=%v, BeaconRateMode=%v, BeamDisabled=%v, CustomBlePacketEnabled=%v, CustomBlePacketFrame=%v, CustomBlePacketFreqMsec=%v, EddystoneUidAdvPower=%v, EddystoneUidBeams=%v, EddystoneUidEnabled=%v, EddystoneUidFreqMsec=%v, EddystoneUidInstance=%v, EddystoneUidNamespace=%v, EddystoneUrlAdvPower=%v, EddystoneUrlBeams=%v, EddystoneUrlEnabled=%v, EddystoneUrlFreqMsec=%v, EddystoneUrlUrl=%v, IbeaconAdvPower=%v, IbeaconBeams=%v, IbeaconEnabled=%v, IbeaconFreqMsec=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, Power=%v, PowerMode=%v, AdditionalProperties=%v]",
+    	b.BeaconEnabled, b.BeaconRate, b.BeaconRateMode, b.BeamDisabled, b.CustomBlePacketEnabled, b.CustomBlePacketFrame, b.CustomBlePacketFreqMsec, b.EddystoneUidAdvPower, b.EddystoneUidBeams, b.EddystoneUidEnabled, b.EddystoneUidFreqMsec, b.EddystoneUidInstance, b.EddystoneUidNamespace, b.EddystoneUrlAdvPower, b.EddystoneUrlBeams, b.EddystoneUrlEnabled, b.EddystoneUrlFreqMsec, b.EddystoneUrlUrl, b.IbeaconAdvPower, b.IbeaconBeams, b.IbeaconEnabled, b.IbeaconFreqMsec, b.IbeaconMajor, b.IbeaconMinor, b.IbeaconUuid, b.Power, b.PowerMode, b.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for BleConfig.

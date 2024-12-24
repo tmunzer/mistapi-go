@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -26,6 +27,14 @@ type CaptureSwitch struct {
     // enum: `switch`
     Type                 string                                         `json:"type"`
     AdditionalProperties map[string]interface{}                         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureSwitch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureSwitch) String() string {
+    return fmt.Sprintf(
+    	"CaptureSwitch[Duration=%v, Format=%v, MaxPktLen=%v, NumPackets=%v, Ports=%v, Switches=%v, TcpdumpExpression=%v, Type=%v, AdditionalProperties=%v]",
+    	c.Duration, c.Format, c.MaxPktLen, c.NumPackets, c.Ports, c.Switches, c.TcpdumpExpression, c.Type, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureSwitch.

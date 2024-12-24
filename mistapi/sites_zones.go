@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (s *SitesZones) ListSiteZones(
     page *int) (
     models.ApiResponse[[]models.Zone],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/zones", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/zones")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -84,11 +80,8 @@ func (s *SitesZones) CreateSiteZone(
     body *models.Zone) (
     models.ApiResponse[models.Zone],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/zones", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/zones")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -132,11 +125,8 @@ func (s *SitesZones) DeleteSiteZone(
     zoneId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/zones/%v", siteId, zoneId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/zones/%v")
+    req.AppendTemplateParams(siteId, zoneId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -173,11 +163,8 @@ func (s *SitesZones) GetSiteZone(
     zoneId uuid.UUID) (
     models.ApiResponse[models.Zone],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/zones/%v", siteId, zoneId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/zones/%v")
+    req.AppendTemplateParams(siteId, zoneId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -218,11 +205,8 @@ func (s *SitesZones) UpdateSiteZone(
     body *models.Zone) (
     models.ApiResponse[models.Zone],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/zones/%v", siteId, zoneId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/zones/%v")
+    req.AppendTemplateParams(siteId, zoneId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -276,11 +260,8 @@ func (s *SitesZones) CountSiteZoneSessions(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/%v/count", siteId, zoneType),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/%v/count")
+    req.AppendTemplateParams(siteId, zoneType)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -359,11 +340,8 @@ func (s *SitesZones) SearchSiteZoneSessions(
     page *int) (
     models.ApiResponse[models.ResponseZoneSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/%v/visits/search", siteId, zoneType),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/%v/visits/search")
+    req.AppendTemplateParams(siteId, zoneType)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

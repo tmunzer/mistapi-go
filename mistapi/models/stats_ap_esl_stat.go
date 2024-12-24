@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApEslStat represents a StatsApEslStat struct.
@@ -11,6 +12,14 @@ type StatsApEslStat struct {
     Type                 Optional[string]       `json:"type"`
     Up                   Optional[bool]         `json:"up"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApEslStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApEslStat) String() string {
+    return fmt.Sprintf(
+    	"StatsApEslStat[Channel=%v, Connected=%v, Type=%v, Up=%v, AdditionalProperties=%v]",
+    	s.Channel, s.Connected, s.Type, s.Up, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApEslStat.

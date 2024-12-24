@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -216,6 +217,14 @@ type Wlan struct {
     // when `interface`=`wxtunnel`, remote tunnel identifier
     WxtunnelRemoteId                     Optional[string]               `json:"wxtunnel_remote_id"`
     AdditionalProperties                 map[string]interface{}         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Wlan,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w Wlan) String() string {
+    return fmt.Sprintf(
+    	"Wlan[AcctImmediateUpdate=%v, AcctInterimInterval=%v, AcctServers=%v, Airwatch=%v, AllowIpv6Ndp=%v, AllowMdns=%v, AllowSsdp=%v, ApIds=%v, AppLimit=%v, AppQos=%v, ApplyTo=%v, ArpFilter=%v, Auth=%v, AuthServerSelection=%v, AuthServers=%v, AuthServersNasId=%v, AuthServersNasIp=%v, AuthServersRetries=%v, AuthServersTimeout=%v, Band=%v, BandSteer=%v, BandSteerForceBand5=%v, Bands=%v, BlockBlacklistClients=%v, Bonjour=%v, CiscoCwa=%v, ClientLimitDown=%v, ClientLimitDownEnabled=%v, ClientLimitUp=%v, ClientLimitUpEnabled=%v, CoaServers=%v, CreatedTime=%v, Disable11ax=%v, DisableHtVhtRates=%v, DisableUapsd=%v, DisableV1RoamNotify=%v, DisableV2RoamNotify=%v, DisableWhenGatewayUnreachable=%v, DisableWhenMxtunnelDown=%v, DisableWmm=%v, DnsServerRewrite=%v, Dtim=%v, DynamicPsk=%v, DynamicVlan=%v, EnableLocalKeycaching=%v, EnableWirelessBridging=%v, EnableWirelessBridgingDhcpTracking=%v, Enabled=%v, FastDot1xTimers=%v, ForSite=%v, HideSsid=%v, HostnameIe=%v, Hotspot20=%v, Id=%v, InjectDhcpOption82=%v, Interface=%v, Isolation=%v, L2Isolation=%v, LegacyOverds=%v, LimitBcast=%v, LimitProbeResponse=%v, MaxIdletime=%v, MaxNumClients=%v, MistNac=%v, ModifiedTime=%v, MspId=%v, MxtunnelId=%v, MxtunnelIds=%v, MxtunnelName=%v, NoStaticDns=%v, NoStaticIp=%v, OrgId=%v, Portal=%v, PortalAllowedHostnames=%v, PortalAllowedSubnets=%v, PortalApiSecret=%v, PortalDeniedHostnames=%v, PortalImage=%v, PortalSsoUrl=%v, PortalTemplateUrl=%v, Qos=%v, Radsec=%v, Rateset=%v, ReconnectClientsWhenRoamingMxcluster=%v, RoamMode=%v, Schedule=%v, SiteId=%v, SleExcluded=%v, Ssid=%v, TemplateId=%v, Thumbnail=%v, UseEapolV1=%v, VlanEnabled=%v, VlanId=%v, VlanIds=%v, VlanPooling=%v, WlanLimitDown=%v, WlanLimitDownEnabled=%v, WlanLimitUp=%v, WlanLimitUpEnabled=%v, WxtagIds=%v, WxtunnelId=%v, WxtunnelRemoteId=%v, AdditionalProperties=%v]",
+    	w.AcctImmediateUpdate, w.AcctInterimInterval, w.AcctServers, w.Airwatch, w.AllowIpv6Ndp, w.AllowMdns, w.AllowSsdp, w.ApIds, w.AppLimit, w.AppQos, w.ApplyTo, w.ArpFilter, w.Auth, w.AuthServerSelection, w.AuthServers, w.AuthServersNasId, w.AuthServersNasIp, w.AuthServersRetries, w.AuthServersTimeout, w.Band, w.BandSteer, w.BandSteerForceBand5, w.Bands, w.BlockBlacklistClients, w.Bonjour, w.CiscoCwa, w.ClientLimitDown, w.ClientLimitDownEnabled, w.ClientLimitUp, w.ClientLimitUpEnabled, w.CoaServers, w.CreatedTime, w.Disable11ax, w.DisableHtVhtRates, w.DisableUapsd, w.DisableV1RoamNotify, w.DisableV2RoamNotify, w.DisableWhenGatewayUnreachable, w.DisableWhenMxtunnelDown, w.DisableWmm, w.DnsServerRewrite, w.Dtim, w.DynamicPsk, w.DynamicVlan, w.EnableLocalKeycaching, w.EnableWirelessBridging, w.EnableWirelessBridgingDhcpTracking, w.Enabled, w.FastDot1xTimers, w.ForSite, w.HideSsid, w.HostnameIe, w.Hotspot20, w.Id, w.InjectDhcpOption82, w.Interface, w.Isolation, w.L2Isolation, w.LegacyOverds, w.LimitBcast, w.LimitProbeResponse, w.MaxIdletime, w.MaxNumClients, w.MistNac, w.ModifiedTime, w.MspId, w.MxtunnelId, w.MxtunnelIds, w.MxtunnelName, w.NoStaticDns, w.NoStaticIp, w.OrgId, w.Portal, w.PortalAllowedHostnames, w.PortalAllowedSubnets, w.PortalApiSecret, w.PortalDeniedHostnames, w.PortalImage, w.PortalSsoUrl, w.PortalTemplateUrl, w.Qos, w.Radsec, w.Rateset, w.ReconnectClientsWhenRoamingMxcluster, w.RoamMode, w.Schedule, w.SiteId, w.SleExcluded, w.Ssid, w.TemplateId, w.Thumbnail, w.UseEapolV1, w.VlanEnabled, w.VlanId, w.VlanIds, w.VlanPooling, w.WlanLimitDown, w.WlanLimitDownEnabled, w.WlanLimitUp, w.WlanLimitUpEnabled, w.WxtagIds, w.WxtunnelId, w.WxtunnelRemoteId, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Wlan.

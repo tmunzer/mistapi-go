@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -16,6 +17,14 @@ type OrgSiteWanWifi struct {
     Start                float64                `json:"start"`
     Total                int                    `json:"total"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSiteWanWifi,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSiteWanWifi) String() string {
+    return fmt.Sprintf(
+    	"OrgSiteWanWifi[End=%v, Interval=%v, Limit=%v, Page=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	o.End, o.Interval, o.Limit, o.Page, o.Results, o.Start, o.Total, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSiteWanWifi.

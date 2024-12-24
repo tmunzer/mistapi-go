@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -18,6 +19,14 @@ type WebhookDeviceUpdownsEvent struct {
     Timestamp            float64                `json:"timestamp"`
     Type                 string                 `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookDeviceUpdownsEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookDeviceUpdownsEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookDeviceUpdownsEvent[Ap=%v, ApName=%v, ForSite=%v, OrgId=%v, SiteId=%v, SiteName=%v, Timestamp=%v, Type=%v, AdditionalProperties=%v]",
+    	w.Ap, w.ApName, w.ForSite, w.OrgId, w.SiteId, w.SiteName, w.Timestamp, w.Type, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookDeviceUpdownsEvent.

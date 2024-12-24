@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteEngagement represents a SiteEngagement struct.
@@ -20,6 +21,14 @@ type SiteEngagement struct {
     // min time
     MinDwell             *int                         `json:"min_dwell,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteEngagement,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteEngagement) String() string {
+    return fmt.Sprintf(
+    	"SiteEngagement[DwellTagNames=%v, DwellTags=%v, Hours=%v, MaxDwell=%v, MinDwell=%v, AdditionalProperties=%v]",
+    	s.DwellTagNames, s.DwellTags, s.Hours, s.MaxDwell, s.MinDwell, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteEngagement.

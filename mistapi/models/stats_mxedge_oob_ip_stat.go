@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsMxedgeOobIpStat represents a StatsMxedgeOobIpStat struct.
@@ -18,6 +19,14 @@ type StatsMxedgeOobIpStat struct {
     // enum: `autoconf`, `dhcp`, `disabled`, `static`
     Type8                *MxedgeMgmtOobIpType6Enum `json:"type8,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxedgeOobIpStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxedgeOobIpStat) String() string {
+    return fmt.Sprintf(
+    	"StatsMxedgeOobIpStat[Dns=%v, Gateway=%v, Gateway6=%v, Ip=%v, Ip6=%v, Netmask=%v, Netmask6=%v, Type=%v, Type8=%v, AdditionalProperties=%v]",
+    	s.Dns, s.Gateway, s.Gateway6, s.Ip, s.Ip6, s.Netmask, s.Netmask6, s.Type, s.Type8, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeOobIpStat.

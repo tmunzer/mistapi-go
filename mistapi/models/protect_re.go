@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ProtectRe represents a ProtectRe struct.
@@ -19,6 +20,14 @@ type ProtectRe struct {
     // host/subnets we'll allow traffic to/from
     TrustedHosts         []string                      `json:"trusted_hosts,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ProtectRe,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p ProtectRe) String() string {
+    return fmt.Sprintf(
+    	"ProtectRe[AllowedServices=%v, Custom=%v, Enabled=%v, TrustedHosts=%v, AdditionalProperties=%v]",
+    	p.AllowedServices, p.Custom, p.Enabled, p.TrustedHosts, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ProtectRe.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchOobIpConfig represents a SwitchOobIpConfig struct.
@@ -21,6 +22,14 @@ type SwitchOobIpConfig struct {
     // for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
     UseMgmtVrfForHostOut *bool                  `json:"use_mgmt_vrf_for_host_out,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchOobIpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchOobIpConfig) String() string {
+    return fmt.Sprintf(
+    	"SwitchOobIpConfig[Gateway=%v, Ip=%v, Netmask=%v, Network=%v, Type=%v, UseMgmtVrf=%v, UseMgmtVrfForHostOut=%v, AdditionalProperties=%v]",
+    	s.Gateway, s.Ip, s.Netmask, s.Network, s.Type, s.UseMgmtVrf, s.UseMgmtVrfForHostOut, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchOobIpConfig.

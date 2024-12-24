@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -44,6 +45,14 @@ type Inventory struct {
     // if `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Clust, MAC Address of the Cluster
     VcMac                *string                `json:"vc_mac,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Inventory,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i Inventory) String() string {
+    return fmt.Sprintf(
+    	"Inventory[Adopted=%v, Connected=%v, CreatedTime=%v, DeviceprofileId=%v, Hostname=%v, HwRev=%v, Id=%v, Jsi=%v, Mac=%v, Magic=%v, Model=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Serial=%v, SiteId=%v, Sku=%v, Type=%v, VcMac=%v, AdditionalProperties=%v]",
+    	i.Adopted, i.Connected, i.CreatedTime, i.DeviceprofileId, i.Hostname, i.HwRev, i.Id, i.Jsi, i.Mac, i.Magic, i.Model, i.ModifiedTime, i.Name, i.OrgId, i.Serial, i.SiteId, i.Sku, i.Type, i.VcMac, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Inventory.

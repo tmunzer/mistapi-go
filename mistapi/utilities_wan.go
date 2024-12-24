@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -36,11 +35,8 @@ func (u *UtilitiesWAN) ClearSiteSsrArpCache(
     body *models.UtilsClearArp) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_arp", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/clear_arp")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -85,11 +81,8 @@ func (u *UtilitiesWAN) ClearSiteSsrBgpRoutes(
     body *models.UtilsClearBgp) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_bgp", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/clear_bgp")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -134,11 +127,8 @@ func (u *UtilitiesWAN) ClearSiteDeviceSession(
     body *models.UtilsClearSession) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_session", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/clear_session")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -199,11 +189,8 @@ func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
     body *models.UtilsReleaseDhcp) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/release_dhcp", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/release_dhcp")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -261,11 +248,8 @@ func (u *UtilitiesWAN) TestSiteSsrDnsResolution(
     deviceId uuid.UUID) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/resolve_dns", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/resolve_dns")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -313,11 +297,8 @@ func (u *UtilitiesWAN) RunSiteSrxTopCommand(
     deviceId uuid.UUID) (
     models.ApiResponse[models.WebsocketSessionWithUrl],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/run_top", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/run_top")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -377,11 +358,8 @@ func (u *UtilitiesWAN) ServicePingFromSsr(
     body *models.UtilsServicePing) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/service_ping", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/service_ping")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -447,8 +425,9 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfDatabase(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_ospf_database", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/show_ospf_database",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -513,8 +492,9 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfInterfaces(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_ospf_interfaces", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/show_ospf_interfaces",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -580,8 +560,9 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfNeighbors(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_ospf_neighbors", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/show_ospf_neighbors",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -646,8 +627,9 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfSummary(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_ospf_summary", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/show_ospf_summary",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -719,11 +701,8 @@ func (u *UtilitiesWAN) ShowSiteSsrAndSrxRoutes(
     body *models.UtilsShowRoute) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_route", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/show_route")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -777,8 +756,9 @@ func (u *UtilitiesWAN) ShowSiteSsrServicePath(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_service_path", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/show_service_path",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -829,11 +809,8 @@ func (u *UtilitiesWAN) ShowSiteSsrAndSrxSessions(
     body *models.UtilsShowSession) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_session", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/show_session")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

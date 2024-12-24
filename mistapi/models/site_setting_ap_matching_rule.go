@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingApMatchingRule represents a SiteSettingApMatchingRule struct.
@@ -11,6 +12,14 @@ type SiteSettingApMatchingRule struct {
     // Property key is the interface(s) (e.g. "eth1,eth2")
     PortConfig           map[string]ApPortConfig `json:"port_config,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingApMatchingRule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingApMatchingRule) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingApMatchingRule[MatchModel=%v, Name=%v, PortConfig=%v, AdditionalProperties=%v]",
+    	s.MatchModel, s.Name, s.PortConfig, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingApMatchingRule.

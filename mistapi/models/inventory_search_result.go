@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -22,6 +23,14 @@ type InventorySearchResult struct {
     VcMac                *string                       `json:"vc_mac,omitempty"`
     Version              *string                       `json:"version,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for InventorySearchResult,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i InventorySearchResult) String() string {
+    return fmt.Sprintf(
+    	"InventorySearchResult[Mac=%v, Master=%v, Members=%v, Model=%v, Name=%v, OrgId=%v, Serial=%v, SiteId=%v, Sku=%v, Status=%v, Type=%v, VcMac=%v, Version=%v, AdditionalProperties=%v]",
+    	i.Mac, i.Master, i.Members, i.Model, i.Name, i.OrgId, i.Serial, i.SiteId, i.Sku, i.Status, i.Type, i.VcMac, i.Version, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InventorySearchResult.

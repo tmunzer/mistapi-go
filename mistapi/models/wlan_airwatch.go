@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanAirwatch represents a WlanAirwatch struct.
@@ -17,6 +18,14 @@ type WlanAirwatch struct {
     // username
     Username             *string                `json:"username,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanAirwatch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanAirwatch) String() string {
+    return fmt.Sprintf(
+    	"WlanAirwatch[ApiKey=%v, ConsoleUrl=%v, Enabled=%v, Password=%v, Username=%v, AdditionalProperties=%v]",
+    	w.ApiKey, w.ConsoleUrl, w.Enabled, w.Password, w.Username, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAirwatch.

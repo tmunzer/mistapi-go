@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -36,11 +35,8 @@ func (o *OrgsJSI) ListOrgJsiDevices(
     mac *string) (
     models.ApiResponse[[]models.JseDevice],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/jsi/devices", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/devices")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -97,8 +93,9 @@ func (o *OrgsJSI) AdoptOrgJsiDevice(
     req := o.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/jsi/devices/outbound_ssh_cmd", orgId),
+      "/api/v1/orgs/%v/jsi/devices/outbound_ssh_cmd",
     )
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -138,11 +135,8 @@ func (o *OrgsJSI) CreateOrgJsiDeviceShellSession(
     deviceMac string) (
     models.ApiResponse[models.WebsocketSessionWithUrl],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/jsi/devices/%v/shell", orgId, deviceMac),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/jsi/devices/%v/shell")
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -185,11 +179,8 @@ func (o *OrgsJSI) ListOrgJsiPastPurchases(
     serial *string) (
     models.ApiResponse[[]models.JseInventoryItem],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/jsi/inventory", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/inventory")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -24,6 +25,14 @@ type ServicePolicy struct {
     Services             []string               `json:"services,omitempty"`
     Tenants              []string               `json:"tenants,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ServicePolicy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s ServicePolicy) String() string {
+    return fmt.Sprintf(
+    	"ServicePolicy[Action=%v, Appqoe=%v, Ewf=%v, Idp=%v, LocalRouting=%v, Name=%v, PathPreference=%v, ServicepolicyId=%v, Services=%v, Tenants=%v, AdditionalProperties=%v]",
+    	s.Action, s.Appqoe, s.Ewf, s.Idp, s.LocalRouting, s.Name, s.PathPreference, s.ServicepolicyId, s.Services, s.Tenants, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServicePolicy.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstMxedgeModelPort represents a ConstMxedgeModelPort struct.
@@ -9,6 +10,14 @@ type ConstMxedgeModelPort struct {
     Display              *string                `json:"display,omitempty"`
     Speed                *int                   `json:"speed,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstMxedgeModelPort,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstMxedgeModelPort) String() string {
+    return fmt.Sprintf(
+    	"ConstMxedgeModelPort[Display=%v, Speed=%v, AdditionalProperties=%v]",
+    	c.Display, c.Speed, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstMxedgeModelPort.

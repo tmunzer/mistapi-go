@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -35,11 +34,8 @@ func (o *OrgsMxEdges) ListOrgMxEdges(
     page *int) (
     models.ApiResponse[[]models.Mxedge],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -88,11 +84,8 @@ func (o *OrgsMxEdges) CreateOrgMxEdge(
     body *models.Mxedge) (
     models.ApiResponse[models.Mxedge],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -136,11 +129,8 @@ func (o *OrgsMxEdges) AssignOrgMxEdgeToSite(
     body *models.MxedgesAssign) (
     models.ApiResponse[models.ResponseAssignSuccess],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/assign", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/assign")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -184,11 +174,8 @@ func (o *OrgsMxEdges) ClaimOrgMxEdge(
     body *models.CodeString) (
     models.ApiResponse[models.ResponseClaimMxEdge],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/claim", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/claim")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -245,11 +232,8 @@ func (o *OrgsMxEdges) CountOrgMxEdges(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/count", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/count")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -339,11 +323,8 @@ func (o *OrgsMxEdges) CountOrgSiteMxEdgeEvents(
     limit *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/events/count", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/events/count")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -418,11 +399,8 @@ func (o *OrgsMxEdges) SearchOrgMistEdgeEvents(
     limit *int) (
     models.ApiResponse[models.ResponseMxedgeEventsSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/events/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/events/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -501,11 +479,8 @@ func (o *OrgsMxEdges) SearchOrgMxEdges(
     page *int) (
     models.ApiResponse[models.ResponseMxedgeSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -584,11 +559,8 @@ func (o *OrgsMxEdges) UnassignOrgMxEdgeFromSite(
     body *models.MxedgesUnassign) (
     models.ApiResponse[models.ResponseAssignSuccess],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/unassign", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/unassign")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -632,11 +604,8 @@ func (o *OrgsMxEdges) GetOrgMxEdgeUpgradeInfo(
     channel *models.GetOrgMxedgeUpgradeInfoChannelEnum) (
     models.ApiResponse[[]models.MxedgeUpgradeInfoItems],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/version", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/version")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -679,11 +648,8 @@ func (o *OrgsMxEdges) DeleteOrgMxEdge(
     mxedgeId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/%v", orgId, mxedgeId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/mxedges/%v")
+    req.AppendTemplateParams(orgId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -720,11 +686,8 @@ func (o *OrgsMxEdges) GetOrgMxEdge(
     mxedgeId uuid.UUID) (
     models.ApiResponse[models.Mxedge],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/%v", orgId, mxedgeId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/%v")
+    req.AppendTemplateParams(orgId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -765,11 +728,8 @@ func (o *OrgsMxEdges) UpdateOrgMxEdge(
     body *models.Mxedge) (
     models.ApiResponse[models.Mxedge],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/%v", orgId, mxedgeId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/mxedges/%v")
+    req.AppendTemplateParams(orgId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -814,11 +774,8 @@ func (o *OrgsMxEdges) DeleteOrgMxEdgeImage(
     imageNumber int) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/%v/image/%v", orgId, mxedgeId, imageNumber),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/mxedges/%v/image/%v")
+    req.AppendTemplateParams(orgId, mxedgeId, imageNumber)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -857,11 +814,8 @@ func (o *OrgsMxEdges) AddOrgMxEdgeImage(
     body *models.ImageImport) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/%v/image/%v", orgId, mxedgeId, imageNumber),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/%v/image/%v")
+    req.AppendTemplateParams(orgId, mxedgeId, imageNumber)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -902,11 +856,8 @@ func (o *OrgsMxEdges) RestartOrgMxEdge(
     mxedgeId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/%v/restart", orgId, mxedgeId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/%v/restart")
+    req.AppendTemplateParams(orgId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -947,8 +898,9 @@ func (o *OrgsMxEdges) BounceOrgMxEdgeDataPorts(
     req := o.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/%v/services/tunterm/bounce_port", orgId, mxedgeId),
+      "/api/v1/orgs/%v/mxedges/%v/services/tunterm/bounce_port",
     )
+    req.AppendTemplateParams(orgId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -991,11 +943,8 @@ func (o *OrgsMxEdges) ControlOrgMxEdgeServices(
     action models.MxedgeServiceActionEnum) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/%v/services/%v/%v", orgId, mxedgeId, name, action),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/%v/services/%v/%v")
+    req.AppendTemplateParams(orgId, mxedgeId, name, action)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1032,11 +981,8 @@ func (o *OrgsMxEdges) UploadOrgMxEdgeSupportFiles(
     mxedgeId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/%v/support", orgId, mxedgeId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/%v/support")
+    req.AppendTemplateParams(orgId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1073,11 +1019,8 @@ func (o *OrgsMxEdges) UnregisterOrgMxEdge(
     mxedgeId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/%v/unregister", orgId, mxedgeId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/%v/unregister")
+    req.AppendTemplateParams(orgId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

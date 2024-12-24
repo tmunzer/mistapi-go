@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayComplianceMajorVersionProperties represents a GatewayComplianceMajorVersionProperties struct.
@@ -9,6 +10,14 @@ type GatewayComplianceMajorVersionProperties struct {
     MajorCount           *int                   `json:"major_count,omitempty"`
     MajorVersion         *string                `json:"major_version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayComplianceMajorVersionProperties,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayComplianceMajorVersionProperties) String() string {
+    return fmt.Sprintf(
+    	"GatewayComplianceMajorVersionProperties[MajorCount=%v, MajorVersion=%v, AdditionalProperties=%v]",
+    	g.MajorCount, g.MajorVersion, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayComplianceMajorVersionProperties.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -26,8 +27,8 @@ type StatsWirelessClient struct {
     DualBand             bool                             `json:"dual_band"`
     // device family, through fingerprinting. iPod / Nexus Galaxy / Windows Mobile or CE …
     Family               string                           `json:"family"`
-    // information about this portal
-    Guest                *StatsWirelessClientGuest        `json:"guest,omitempty"`
+    // Guest
+    Guest                *Guest                           `json:"guest,omitempty"`
     // hostname that we learned from sniffing DHCP
     Hostname             string                           `json:"hostname"`
     // how long, in seconds, has the client been idle (since the last RX packet)
@@ -112,6 +113,14 @@ type StatsWirelessClient struct {
     // list of zone_id’s where client is in and since when (if known)
     Zones                []StatsWirelessClientZone        `json:"zones,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsWirelessClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsWirelessClient) String() string {
+    return fmt.Sprintf(
+    	"StatsWirelessClient[Accuracy=%v, AirespaceIfname=%v, Airwatch=%v, ApId=%v, ApMac=%v, Band=%v, Channel=%v, DualBand=%v, Family=%v, Guest=%v, Hostname=%v, IdleTime=%v, Ip=%v, IsGuest=%v, KeyMgmt=%v, LastSeen=%v, Mac=%v, Manufacture=%v, MapId=%v, Model=%v, NumLocatingAps=%v, Os=%v, PowerSaving=%v, Proto=%v, PskId=%v, Rssi=%v, Rssizones=%v, RxBps=%v, RxBytes=%v, RxPackets=%v, RxRate=%v, RxRetries=%v, Snr=%v, Ssid=%v, TxBps=%v, TxBytes=%v, TxPackets=%v, TxRate=%v, TxRetries=%v, Type=%v, Uptime=%v, Username=%v, Vbeacons=%v, VlanId=%v, WlanId=%v, WxruleId=%v, WxruleUsage=%v, X=%v, XM=%v, Y=%v, YM=%v, Zones=%v, AdditionalProperties=%v]",
+    	s.Accuracy, s.AirespaceIfname, s.Airwatch, s.ApId, s.ApMac, s.Band, s.Channel, s.DualBand, s.Family, s.Guest, s.Hostname, s.IdleTime, s.Ip, s.IsGuest, s.KeyMgmt, s.LastSeen, s.Mac, s.Manufacture, s.MapId, s.Model, s.NumLocatingAps, s.Os, s.PowerSaving, s.Proto, s.PskId, s.Rssi, s.Rssizones, s.RxBps, s.RxBytes, s.RxPackets, s.RxRate, s.RxRetries, s.Snr, s.Ssid, s.TxBps, s.TxBytes, s.TxPackets, s.TxRate, s.TxRetries, s.Type, s.Uptime, s.Username, s.Vbeacons, s.VlanId, s.WlanId, s.WxruleId, s.WxruleUsage, s.X, s.XM, s.Y, s.YM, s.Zones, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWirelessClient.
@@ -305,7 +314,7 @@ type tempStatsWirelessClient  struct {
     Channel         *int                             `json:"channel"`
     DualBand        *bool                            `json:"dual_band"`
     Family          *string                          `json:"family"`
-    Guest           *StatsWirelessClientGuest        `json:"guest,omitempty"`
+    Guest           *Guest                           `json:"guest,omitempty"`
     Hostname        *string                          `json:"hostname"`
     IdleTime        *float64                         `json:"idle_time"`
     Ip              *string                          `json:"ip"`

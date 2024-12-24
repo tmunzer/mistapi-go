@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -35,11 +34,8 @@ func (o *OrgsDeviceProfiles) ListOrgDeviceProfiles(
     page *int) (
     models.ApiResponse[[]models.Deviceprofile],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/deviceprofiles", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/deviceprofiles")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -88,11 +84,8 @@ func (o *OrgsDeviceProfiles) CreateOrgDeviceProfiles(
     body *models.Deviceprofile) (
     models.ApiResponse[models.Deviceprofile],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/deviceprofiles", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/deviceprofiles")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -136,11 +129,8 @@ func (o *OrgsDeviceProfiles) DeleteOrgDeviceProfile(
     deviceprofileId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/deviceprofiles/%v", orgId, deviceprofileId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/deviceprofiles/%v")
+    req.AppendTemplateParams(orgId, deviceprofileId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -177,11 +167,8 @@ func (o *OrgsDeviceProfiles) GetOrgDeviceProfile(
     deviceprofileId uuid.UUID) (
     models.ApiResponse[models.Deviceprofile],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/deviceprofiles/%v", orgId, deviceprofileId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/deviceprofiles/%v")
+    req.AppendTemplateParams(orgId, deviceprofileId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -222,11 +209,8 @@ func (o *OrgsDeviceProfiles) UpdateOrgDeviceProfile(
     body *models.Deviceprofile) (
     models.ApiResponse[models.Deviceprofile],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/deviceprofiles/%v", orgId, deviceprofileId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/deviceprofiles/%v")
+    req.AppendTemplateParams(orgId, deviceprofileId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -271,11 +255,8 @@ func (o *OrgsDeviceProfiles) AssignOrgDeviceProfile(
     body *models.MacAddresses) (
     models.ApiResponse[models.ResponseAssignSuccess],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/deviceprofiles/%v/assign", orgId, deviceprofileId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/deviceprofiles/%v/assign")
+    req.AppendTemplateParams(orgId, deviceprofileId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -323,8 +304,9 @@ func (o *OrgsDeviceProfiles) UnassignOrgDeviceProfile(
     req := o.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/deviceprofiles/%v/unassign", orgId, deviceprofileId),
+      "/api/v1/orgs/%v/deviceprofiles/%v/unassign",
     )
+    req.AppendTemplateParams(orgId, deviceprofileId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

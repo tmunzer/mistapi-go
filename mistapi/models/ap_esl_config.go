@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApEslConfig represents a ApEslConfig struct.
@@ -23,6 +24,14 @@ type ApEslConfig struct {
     // Only if `type`==`solum` or `type`==`hanshow`
     VlanId               *int                   `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApEslConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApEslConfig) String() string {
+    return fmt.Sprintf(
+    	"ApEslConfig[Cacert=%v, Channel=%v, Enabled=%v, Host=%v, Port=%v, Type=%v, VerifyCert=%v, VlanId=%v, AdditionalProperties=%v]",
+    	a.Cacert, a.Channel, a.Enabled, a.Host, a.Port, a.Type, a.VerifyCert, a.VlanId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApEslConfig.

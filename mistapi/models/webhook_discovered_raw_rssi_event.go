@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -34,6 +35,14 @@ type WebhookDiscoveredRawRssiEvent struct {
     SiteId               uuid.UUID              `json:"site_id"`
     Timestamp            *int                   `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookDiscoveredRawRssiEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookDiscoveredRawRssiEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookDiscoveredRawRssiEvent[ApLoc=%v, Beam=%v, DeviceId=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, IsAsset=%v, Mac=%v, MapId=%v, MfgCompanyId=%v, MfgData=%v, OrgId=%v, Rssi=%v, ServicePackets=%v, SiteId=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	w.ApLoc, w.Beam, w.DeviceId, w.IbeaconMajor, w.IbeaconMinor, w.IbeaconUuid, w.IsAsset, w.Mac, w.MapId, w.MfgCompanyId, w.MfgData, w.OrgId, w.Rssi, w.ServicePackets, w.SiteId, w.Timestamp, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookDiscoveredRawRssiEvent.

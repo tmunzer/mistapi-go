@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -13,6 +14,14 @@ type ResponseClaimMxEdge struct {
     Id                   uuid.UUID              `json:"id"`
     Magic                string                 `json:"magic"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseClaimMxEdge,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseClaimMxEdge) String() string {
+    return fmt.Sprintf(
+    	"ResponseClaimMxEdge[Id=%v, Magic=%v, AdditionalProperties=%v]",
+    	r.Id, r.Magic, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClaimMxEdge.

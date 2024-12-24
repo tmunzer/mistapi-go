@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type Recover struct {
     // flavor of the captcha. enum: `google`, `hcaptcha`
     RecaptchaFlavor      *RecaptchaFlavorEnum   `json:"recaptcha_flavor,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Recover,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r Recover) String() string {
+    return fmt.Sprintf(
+    	"Recover[Email=%v, Recaptcha=%v, RecaptchaFlavor=%v, AdditionalProperties=%v]",
+    	r.Email, r.Recaptcha, r.RecaptchaFlavor, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Recover.

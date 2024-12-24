@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -38,6 +39,14 @@ type AssetFilter struct {
     ServiceUuid           *uuid.UUID             `json:"service_uuid,omitempty"`
     SiteId                *uuid.UUID             `json:"site_id,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AssetFilter,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AssetFilter) String() string {
+    return fmt.Sprintf(
+    	"AssetFilter[ApMac=%v, Beam=%v, CreatedTime=%v, Disabled=%v, Disasbled=%v, EddystoneUidNamespace=%v, EddystoneUrl=%v, ForSite=%v, IbeaconMajor=%v, IbeaconUuid=%v, Id=%v, MfgCompanyId=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Rssi=%v, ServiceUuid=%v, SiteId=%v, AdditionalProperties=%v]",
+    	a.ApMac, a.Beam, a.CreatedTime, a.Disabled, a.Disasbled, a.EddystoneUidNamespace, a.EddystoneUrl, a.ForSite, a.IbeaconMajor, a.IbeaconUuid, a.Id, a.MfgCompanyId, a.ModifiedTime, a.Name, a.OrgId, a.Rssi, a.ServiceUuid, a.SiteId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetFilter.

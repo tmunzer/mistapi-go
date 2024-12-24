@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponsePcapSearchItemPcapApsItem represents a ResponsePcapSearchItemPcapApsItem struct.
@@ -11,6 +12,14 @@ type ResponsePcapSearchItemPcapApsItem struct {
     Channel              *int                   `json:"channel,omitempty"`
     TcpdumpExpression    Optional[string]       `json:"tcpdump_expression"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponsePcapSearchItemPcapApsItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponsePcapSearchItemPcapApsItem) String() string {
+    return fmt.Sprintf(
+    	"ResponsePcapSearchItemPcapApsItem[Band=%v, Bandwidth=%v, Channel=%v, TcpdumpExpression=%v, AdditionalProperties=%v]",
+    	r.Band, r.Bandwidth, r.Channel, r.TcpdumpExpression, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapSearchItemPcapApsItem.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -23,6 +24,14 @@ type WebhookSdkclientScanDataEventScanDataItem struct {
     // time the scan of the particular BSSID occurred
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookSdkclientScanDataEventScanDataItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookSdkclientScanDataEventScanDataItem) String() string {
+    return fmt.Sprintf(
+    	"WebhookSdkclientScanDataEventScanDataItem[Ap=%v, Band=%v, Bssid=%v, Channel=%v, Rssi=%v, Ssid=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	w.Ap, w.Band, w.Bssid, w.Channel, w.Rssi, w.Ssid, w.Timestamp, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookSdkclientScanDataEventScanDataItem.

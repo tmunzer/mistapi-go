@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -16,6 +17,14 @@ type MapOrgImportFileJson struct {
     // enum: `ekahau`, `ibwave`
     VendorName           MapOrgImportFileJsonVendorNameEnum `json:"vendor_name"`
     AdditionalProperties map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapOrgImportFileJson,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapOrgImportFileJson) String() string {
+    return fmt.Sprintf(
+    	"MapOrgImportFileJson[ImportAllFloorplans=%v, ImportHeight=%v, ImportOrientation=%v, SiteId=%v, VendorName=%v, AdditionalProperties=%v]",
+    	m.ImportAllFloorplans, m.ImportHeight, m.ImportOrientation, m.SiteId, m.VendorName, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapOrgImportFileJson.

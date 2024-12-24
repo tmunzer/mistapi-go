@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ExtraRoute represents a ExtraRoute struct.
@@ -15,6 +16,14 @@ type ExtraRoute struct {
     // next-hop IP Address
     Via                  *string                                      `json:"via,omitempty"`
     AdditionalProperties map[string]interface{}                       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ExtraRoute,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e ExtraRoute) String() string {
+    return fmt.Sprintf(
+    	"ExtraRoute[Discard=%v, Metric=%v, NextQualified=%v, NoResolve=%v, Preference=%v, Via=%v, AdditionalProperties=%v]",
+    	e.Discard, e.Metric, e.NextQualified, e.NoResolve, e.Preference, e.Via, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ExtraRoute.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -100,6 +101,14 @@ type StatsSwitchPort struct {
     // Optic Slot SerialNumber, Check for null/empty
     XcvrSerial           *string                       `json:"xcvr_serial,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsSwitchPort,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsSwitchPort) String() string {
+    return fmt.Sprintf(
+    	"StatsSwitchPort[Active=%v, AuthState=%v, ForSite=%v, FullDuplex=%v, Jitter=%v, LastFlapped=%v, Latency=%v, Loss=%v, LteIccid=%v, LteImei=%v, LteImsi=%v, Mac=%v, MacCount=%v, MacLimit=%v, NeighborMac=%v, NeighborPortDesc=%v, NeighborSystemName=%v, OrgId=%v, PoeDisabled=%v, PoeMode=%v, PoeOn=%v, PortId=%v, PortMac=%v, PortUsage=%v, PowerDraw=%v, RxBcastPkts=%v, RxBps=%v, RxBytes=%v, RxErrors=%v, RxMcastPkts=%v, RxPkts=%v, SiteId=%v, Speed=%v, StpRole=%v, StpState=%v, TxBcastPkts=%v, TxBps=%v, TxBytes=%v, TxErrors=%v, TxMcastPkts=%v, TxPkts=%v, Type=%v, Unconfigured=%v, Up=%v, XcvrModel=%v, XcvrPartNumber=%v, XcvrSerial=%v, AdditionalProperties=%v]",
+    	s.Active, s.AuthState, s.ForSite, s.FullDuplex, s.Jitter, s.LastFlapped, s.Latency, s.Loss, s.LteIccid, s.LteImei, s.LteImsi, s.Mac, s.MacCount, s.MacLimit, s.NeighborMac, s.NeighborPortDesc, s.NeighborSystemName, s.OrgId, s.PoeDisabled, s.PoeMode, s.PoeOn, s.PortId, s.PortMac, s.PortUsage, s.PowerDraw, s.RxBcastPkts, s.RxBps, s.RxBytes, s.RxErrors, s.RxMcastPkts, s.RxPkts, s.SiteId, s.Speed, s.StpRole, s.StpState, s.TxBcastPkts, s.TxBps, s.TxBytes, s.TxErrors, s.TxMcastPkts, s.TxPkts, s.Type, s.Unconfigured, s.Up, s.XcvrModel, s.XcvrPartNumber, s.XcvrSerial, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchPort.

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VpnLinksSteering represents a VpnLinksSteering struct.
 type VpnLinksSteering struct {
     Preference           *int                   `json:"preference,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VpnLinksSteering,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VpnLinksSteering) String() string {
+    return fmt.Sprintf(
+    	"VpnLinksSteering[Preference=%v, AdditionalProperties=%v]",
+    	v.Preference, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VpnLinksSteering.

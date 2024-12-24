@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxclusterNac represents a MxclusterNac struct.
@@ -13,6 +14,14 @@ type MxclusterNac struct {
     Enabled              *bool                           `json:"enabled,omitempty"`
     Secret               *string                         `json:"secret,omitempty"`
     AdditionalProperties map[string]interface{}          `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxclusterNac,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxclusterNac) String() string {
+    return fmt.Sprintf(
+    	"MxclusterNac[AcctServerPort=%v, AuthServerPort=%v, ClientIps=%v, Enabled=%v, Secret=%v, AdditionalProperties=%v]",
+    	m.AcctServerPort, m.AuthServerPort, m.ClientIps, m.Enabled, m.Secret, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterNac.

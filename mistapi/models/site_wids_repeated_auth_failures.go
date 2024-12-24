@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteWidsRepeatedAuthFailures represents a SiteWidsRepeatedAuthFailures struct.
@@ -11,6 +12,14 @@ type SiteWidsRepeatedAuthFailures struct {
     // count of events to trigger
     Threshold            *int                   `json:"threshold,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteWidsRepeatedAuthFailures,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteWidsRepeatedAuthFailures) String() string {
+    return fmt.Sprintf(
+    	"SiteWidsRepeatedAuthFailures[Duration=%v, Threshold=%v, AdditionalProperties=%v]",
+    	s.Duration, s.Threshold, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteWidsRepeatedAuthFailures.

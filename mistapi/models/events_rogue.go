@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -16,6 +17,14 @@ type EventsRogue struct {
     Ssid                 string                 `json:"ssid"`
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EventsRogue,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EventsRogue) String() string {
+    return fmt.Sprintf(
+    	"EventsRogue[Ap=%v, Bssid=%v, Channel=%v, Rssi=%v, Ssid=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	e.Ap, e.Bssid, e.Channel, e.Rssi, e.Ssid, e.Timestamp, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventsRogue.

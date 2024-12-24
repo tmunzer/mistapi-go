@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -36,6 +37,14 @@ type ConstDeviceSwitch struct {
     // Device Type. enum: `switch`
     Type                 string                    `json:"type"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstDeviceSwitch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstDeviceSwitch) String() string {
+    return fmt.Sprintf(
+    	"ConstDeviceSwitch[Alias=%v, Defaults=%v, Description=%v, Display=%v, EvolvedOs=%v, EvpnRiType=%v, Experimental=%v, FansPluggable=%v, HasBgp=%v, HasEts=%v, HasEvpn=%v, HasIrb=%v, HasPoeOut=%v, HasSnapshot=%v, HasVc=%v, Model=%v, Modular=%v, NoShapingRate=%v, NumberFans=%v, OcDevice=%v, OobInterface=%v, PacketActionDropOnly=%v, Pic=%v, SubRequired=%v, Type=%v, AdditionalProperties=%v]",
+    	c.Alias, c.Defaults, c.Description, c.Display, c.EvolvedOs, c.EvpnRiType, c.Experimental, c.FansPluggable, c.HasBgp, c.HasEts, c.HasEvpn, c.HasIrb, c.HasPoeOut, c.HasSnapshot, c.HasVc, c.Model, c.Modular, c.NoShapingRate, c.NumberFans, c.OcDevice, c.OobInterface, c.PacketActionDropOnly, c.Pic, c.SubRequired, c.Type, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceSwitch.

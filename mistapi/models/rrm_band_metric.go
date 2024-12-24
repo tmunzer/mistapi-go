@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -19,6 +20,14 @@ type RrmBandMetric struct {
     // average noise in dBm
     Noise                float64                              `json:"noise"`
     AdditionalProperties map[string]interface{}               `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RrmBandMetric,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RrmBandMetric) String() string {
+    return fmt.Sprintf(
+    	"RrmBandMetric[CochannelNeighbors=%v, Density=%v, Interferences=%v, Neighbors=%v, Noise=%v, AdditionalProperties=%v]",
+    	r.CochannelNeighbors, r.Density, r.Interferences, r.Neighbors, r.Noise, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmBandMetric.

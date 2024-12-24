@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type ResponseOrgInventoryChange struct {
     Reason               []string                         `json:"reason"`
     Success              []string                         `json:"success"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseOrgInventoryChange,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseOrgInventoryChange) String() string {
+    return fmt.Sprintf(
+    	"ResponseOrgInventoryChange[Error=%v, Op=%v, Reason=%v, Success=%v, AdditionalProperties=%v]",
+    	r.Error, r.Op, r.Reason, r.Success, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOrgInventoryChange.

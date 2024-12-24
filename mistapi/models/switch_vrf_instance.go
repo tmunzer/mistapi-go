@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchVrfInstance represents a SwitchVrfInstance struct.
@@ -10,6 +11,14 @@ type SwitchVrfInstance struct {
     ExtraRoutes          map[string]VrfExtraRoute `json:"extra_routes,omitempty"`
     Networks             []string                 `json:"networks,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchVrfInstance,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchVrfInstance) String() string {
+    return fmt.Sprintf(
+    	"SwitchVrfInstance[ExtraRoutes=%v, Networks=%v, AdditionalProperties=%v]",
+    	s.ExtraRoutes, s.Networks, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchVrfInstance.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,7 +33,8 @@ func (o *OrgsWxTags) ListOrgWxTags(
     page *int) (
     models.ApiResponse[[]models.WxlanTag],
     error) {
-    req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/wxtags", orgId))
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wxtags")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -80,11 +80,8 @@ func (o *OrgsWxTags) CreateOrgWxTag(
     body *models.WxlanTag) (
     models.ApiResponse[models.WxlanTag],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/wxtags", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/wxtags")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -127,11 +124,8 @@ func (o *OrgsWxTags) GetOrgApplicationList(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.SearchWxtagAppsItem],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/wxtags/apps", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wxtags/apps")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -171,11 +165,8 @@ func (o *OrgsWxTags) DeleteOrgWxTag(
     wxtagId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/wxtags/%v", orgId, wxtagId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/wxtags/%v")
+    req.AppendTemplateParams(orgId, wxtagId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -212,11 +203,8 @@ func (o *OrgsWxTags) GetOrgWxTag(
     wxtagId uuid.UUID) (
     models.ApiResponse[models.WxlanTag],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/wxtags/%v", orgId, wxtagId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wxtags/%v")
+    req.AppendTemplateParams(orgId, wxtagId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -257,11 +245,8 @@ func (o *OrgsWxTags) UpdateOrgWxTag(
     body *models.WxlanTag) (
     models.ApiResponse[models.WxlanTag],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/wxtags/%v", orgId, wxtagId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/wxtags/%v")
+    req.AppendTemplateParams(orgId, wxtagId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -305,11 +290,8 @@ func (o *OrgsWxTags) GetOrgCurrentMatchingClientsOfAWxTag(
     wxtagId uuid.UUID) (
     models.ApiResponse[[]models.WxtagClient],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/wxtags/%v/clients", orgId, wxtagId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wxtags/%v/clients")
+    req.AppendTemplateParams(orgId, wxtagId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApSwitchRedundancy represents a StatsApSwitchRedundancy struct.
 type StatsApSwitchRedundancy struct {
     NumRedundantAps      Optional[int]          `json:"num_redundant_aps"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApSwitchRedundancy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApSwitchRedundancy) String() string {
+    return fmt.Sprintf(
+    	"StatsApSwitchRedundancy[NumRedundantAps=%v, AdditionalProperties=%v]",
+    	s.NumRedundantAps, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApSwitchRedundancy.

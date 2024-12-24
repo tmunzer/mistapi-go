@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstAppCategoryDefinitionFilters represents a ConstAppCategoryDefinitionFilters struct.
@@ -9,6 +10,14 @@ type ConstAppCategoryDefinitionFilters struct {
     Srx                  []string               `json:"srx,omitempty"`
     Ssr                  []string               `json:"ssr,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstAppCategoryDefinitionFilters,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstAppCategoryDefinitionFilters) String() string {
+    return fmt.Sprintf(
+    	"ConstAppCategoryDefinitionFilters[Srx=%v, Ssr=%v, AdditionalProperties=%v]",
+    	c.Srx, c.Ssr, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstAppCategoryDefinitionFilters.

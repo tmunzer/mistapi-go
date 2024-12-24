@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NetworkVpnAccessConfig represents a NetworkVpnAccessConfig struct.
@@ -38,6 +39,14 @@ type NetworkVpnAccessConfig struct {
     // toward LAN-side OSPF peers
     SummarizedSubnetToLanOspf *string                                  `json:"summarized_subnet_to_lan_ospf,omitempty"`
     AdditionalProperties      map[string]interface{}                   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NetworkVpnAccessConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NetworkVpnAccessConfig) String() string {
+    return fmt.Sprintf(
+    	"NetworkVpnAccessConfig[AdvertisedSubnet=%v, AllowPing=%v, DestinationNat=%v, NatPool=%v, NoReadvertiseToLanBgp=%v, NoReadvertiseToLanOspf=%v, NoReadvertiseToOverlay=%v, OtherVrfs=%v, Routed=%v, SourceNat=%v, StaticNat=%v, SummarizedSubnet=%v, SummarizedSubnetToLanBgp=%v, SummarizedSubnetToLanOspf=%v, AdditionalProperties=%v]",
+    	n.AdvertisedSubnet, n.AllowPing, n.DestinationNat, n.NatPool, n.NoReadvertiseToLanBgp, n.NoReadvertiseToLanOspf, n.NoReadvertiseToOverlay, n.OtherVrfs, n.Routed, n.SourceNat, n.StaticNat, n.SummarizedSubnet, n.SummarizedSubnetToLanBgp, n.SummarizedSubnetToLanOspf, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkVpnAccessConfig.

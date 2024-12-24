@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VirtualChassisConfigMember represents a VirtualChassisConfigMember struct.
@@ -15,6 +16,14 @@ type VirtualChassisConfigMember struct {
     // enum: `backup`, `linecard`, `master`
     VcRole               *VirtualChassisConfigMemberVcRoleEnum `json:"vc_role,omitempty"`
     AdditionalProperties map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VirtualChassisConfigMember,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VirtualChassisConfigMember) String() string {
+    return fmt.Sprintf(
+    	"VirtualChassisConfigMember[Locating=%v, Mac=%v, Member=%v, VcPorts=%v, VcRole=%v, AdditionalProperties=%v]",
+    	v.Locating, v.Mac, v.Member, v.VcPorts, v.VcRole, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VirtualChassisConfigMember.

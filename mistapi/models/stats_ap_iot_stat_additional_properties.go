@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApIotStatAdditionalProperties represents a StatsApIotStatAdditionalProperties struct.
 type StatsApIotStatAdditionalProperties struct {
     Value                Optional[int]          `json:"value"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApIotStatAdditionalProperties,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApIotStatAdditionalProperties) String() string {
+    return fmt.Sprintf(
+    	"StatsApIotStatAdditionalProperties[Value=%v, AdditionalProperties=%v]",
+    	s.Value, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApIotStatAdditionalProperties.

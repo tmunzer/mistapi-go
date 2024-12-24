@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -11,6 +12,14 @@ type ResponseWiredCoa struct {
     PortId               *string                `json:"port_id,omitempty"`
     Session              *uuid.UUID             `json:"session,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseWiredCoa,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseWiredCoa) String() string {
+    return fmt.Sprintf(
+    	"ResponseWiredCoa[DeviceMac=%v, PortId=%v, Session=%v, AdditionalProperties=%v]",
+    	r.DeviceMac, r.PortId, r.Session, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseWiredCoa.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsClearArp represents a UtilsClearArp struct.
@@ -17,6 +18,14 @@ type UtilsClearArp struct {
     // The vrf for which to clear an ARP entry. applicable for switch.
     Vrf                  *string                `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsClearArp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsClearArp) String() string {
+    return fmt.Sprintf(
+    	"UtilsClearArp[Ip=%v, Node=%v, PortId=%v, Vlan=%v, Vrf=%v, AdditionalProperties=%v]",
+    	u.Ip, u.Node, u.PortId, u.Vlan, u.Vrf, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsClearArp.

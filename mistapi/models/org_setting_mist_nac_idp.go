@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -16,6 +17,14 @@ type OrgSettingMistNacIdp struct {
     // * Cert CN
     UserRealms           []string               `json:"user_realms,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingMistNacIdp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingMistNacIdp) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingMistNacIdp[ExcludeRealms=%v, Id=%v, UserRealms=%v, AdditionalProperties=%v]",
+    	o.ExcludeRealms, o.Id, o.UserRealms, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingMistNacIdp.

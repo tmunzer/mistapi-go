@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // PskPortalTemplate represents a PskPortalTemplate struct.
@@ -14,6 +15,14 @@ type PskPortalTemplate struct {
     // whether to hide "Powered by Juniper Mist" and email footers
     PoweredBy            *bool                        `json:"poweredBy,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PskPortalTemplate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PskPortalTemplate) String() string {
+    return fmt.Sprintf(
+    	"PskPortalTemplate[Alignment=%v, Color=%v, Logo=%v, PoweredBy=%v, AdditionalProperties=%v]",
+    	p.Alignment, p.Color, p.Logo, p.PoweredBy, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalTemplate.

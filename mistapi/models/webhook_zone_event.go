@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -28,6 +29,14 @@ type WebhookZoneEvent struct {
     // zone id
     ZoneId               uuid.UUID                   `json:"zone_id"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookZoneEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookZoneEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookZoneEvent[AssetId=%v, Id=%v, Mac=%v, MapId=%v, Name=%v, SiteId=%v, Timestamp=%v, Trigger=%v, Type=%v, ZoneId=%v, AdditionalProperties=%v]",
+    	w.AssetId, w.Id, w.Mac, w.MapId, w.Name, w.SiteId, w.Timestamp, w.Trigger, w.Type, w.ZoneId, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookZoneEvent.

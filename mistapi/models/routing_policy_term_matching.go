@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RoutingPolicyTermMatching represents a RoutingPolicyTermMatching struct.
@@ -23,6 +24,14 @@ type RoutingPolicyTermMatching struct {
     VpnPath              []string                              `json:"vpn_path,omitempty"`
     VpnPathSla           *RoutingPolicyTermMatchingVpnPathSla  `json:"vpn_path_sla,omitempty"`
     AdditionalProperties map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RoutingPolicyTermMatching,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RoutingPolicyTermMatching) String() string {
+    return fmt.Sprintf(
+    	"RoutingPolicyTermMatching[AsPath=%v, Community=%v, Network=%v, Prefix=%v, Protocol=%v, RouteExists=%v, VpnNeighborMac=%v, VpnPath=%v, VpnPathSla=%v, AdditionalProperties=%v]",
+    	r.AsPath, r.Community, r.Network, r.Prefix, r.Protocol, r.RouteExists, r.VpnNeighborMac, r.VpnPath, r.VpnPathSla, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTermMatching.

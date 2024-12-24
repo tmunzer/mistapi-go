@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApCentrak represents a ApCentrak struct.
 type ApCentrak struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApCentrak,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApCentrak) String() string {
+    return fmt.Sprintf(
+    	"ApCentrak[Enabled=%v, AdditionalProperties=%v]",
+    	a.Enabled, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApCentrak.

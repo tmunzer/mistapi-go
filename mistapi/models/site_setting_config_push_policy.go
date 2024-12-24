@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingConfigPushPolicy represents a SiteSettingConfigPushPolicy struct.
@@ -12,6 +13,14 @@ type SiteSettingConfigPushPolicy struct {
     // if enabled, new config will only be pushed to device within the specified time window
     PushWindow           *PushPolicyPushWindow  `json:"push_window,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingConfigPushPolicy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingConfigPushPolicy) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingConfigPushPolicy[NoPush=%v, PushWindow=%v, AdditionalProperties=%v]",
+    	s.NoPush, s.PushWindow, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingConfigPushPolicy.

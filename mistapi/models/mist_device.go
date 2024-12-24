@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // MistDevice represents a MistDevice struct.
@@ -14,12 +14,10 @@ type MistDevice struct {
     isDeviceGateway bool
 }
 
-// String converts the MistDevice object to a string representation.
+// String implements the fmt.Stringer interface for MistDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m MistDevice) String() string {
-    if bytes, err := json.Marshal(m.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", m.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MistDevice.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -36,11 +35,8 @@ func (s *SitesDevices) ListSiteDevices(
     page *int) (
     models.ApiResponse[[]models.ConfigDevice],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -101,8 +97,9 @@ func (s *SitesDevices) CountSiteDeviceConfigHistory(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/config_history/count", siteId),
+      "/api/v1/sites/%v/devices/config_history/count",
     )
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -171,8 +168,9 @@ func (s *SitesDevices) SearchSiteDeviceConfigHistory(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/config_history/search", siteId),
+      "/api/v1/sites/%v/devices/config_history/search",
     )
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -246,11 +244,8 @@ func (s *SitesDevices) CountSiteDevices(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -348,11 +343,8 @@ func (s *SitesDevices) CountSiteDeviceEvents(
     duration *string) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/events/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/events/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -425,11 +417,8 @@ func (s *SitesDevices) SearchSiteDeviceEvents(
     duration *string) (
     models.ApiResponse[models.ResponseEventsDevices],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/events/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/events/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -498,11 +487,8 @@ func (s *SitesDevices) ExportSiteDevices(
     siteId uuid.UUID) (
     models.ApiResponse[[]byte],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/export", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/export")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -544,11 +530,8 @@ func (s *SitesDevices) ImportSiteDevices(
     file models.FileWrapper) (
     models.ApiResponse[[]models.ConfigDevice],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/import", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/import")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -597,11 +580,8 @@ func (s *SitesDevices) CountSiteDeviceLastConfig(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/last_config/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/last_config/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -669,8 +649,9 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/last_config/search", siteId),
+      "/api/v1/sites/%v/devices/last_config/search",
     )
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -734,11 +715,8 @@ func (s *SitesDevices) RestartSiteMultipleDevices(
     body *models.UtilsDevicesRestartMulti) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/restart", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/restart")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -805,11 +783,8 @@ func (s *SitesDevices) SearchSiteDevices(
     duration *string) (
     models.ApiResponse[models.ResponseDeviceSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -930,11 +905,8 @@ func (s *SitesDevices) GetSiteDevice(
     deviceId uuid.UUID) (
     models.ApiResponse[models.MistDevice],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/%v")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -975,11 +947,8 @@ func (s *SitesDevices) UpdateSiteDevice(
     body *models.MistDevice) (
     models.ApiResponse[models.MistDevice],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/devices/%v")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1024,11 +993,8 @@ func (s *SitesDevices) DeleteSiteDeviceImage(
     imageNumber int) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/image%v", siteId, deviceId, imageNumber),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/devices/%v/image%v")
+    req.AppendTemplateParams(siteId, deviceId, imageNumber)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1068,11 +1034,8 @@ func (s *SitesDevices) AddSiteDeviceImage(
     json *string) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/image%v", siteId, deviceId, imageNumber),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/image%v")
+    req.AppendTemplateParams(siteId, deviceId, imageNumber)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

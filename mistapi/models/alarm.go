@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -49,6 +50,14 @@ type Alarm struct {
     // Key-name of the alarm type
     Type                 string                 `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Alarm,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a Alarm) String() string {
+    return fmt.Sprintf(
+    	"Alarm[AckAdminId=%v, AckAdminName=%v, Acked=%v, AckedTime=%v, Aps=%v, Bssids=%v, Count=%v, Gateways=%v, Group=%v, Hostnames=%v, Id=%v, LastSeen=%v, Note=%v, OrgId=%v, Severity=%v, SiteId=%v, Ssids=%v, Switches=%v, Timestamp=%v, Type=%v, AdditionalProperties=%v]",
+    	a.AckAdminId, a.AckAdminName, a.Acked, a.AckedTime, a.Aps, a.Bssids, a.Count, a.Gateways, a.Group, a.Hostnames, a.Id, a.LastSeen, a.Note, a.OrgId, a.Severity, a.SiteId, a.Ssids, a.Switches, a.Timestamp, a.Type, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Alarm.

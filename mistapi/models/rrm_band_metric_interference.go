@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RrmBandMetricInterference represents a RrmBandMetricInterference struct.
 type RrmBandMetricInterference struct {
     Radar                *float64               `json:"radar,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RrmBandMetricInterference,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RrmBandMetricInterference) String() string {
+    return fmt.Sprintf(
+    	"RrmBandMetricInterference[Radar=%v, AdditionalProperties=%v]",
+    	r.Radar, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmBandMetricInterference.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeTuntermDhcpdConfig represents a MxedgeTuntermDhcpdConfig struct.
@@ -13,6 +14,14 @@ type MxedgeTuntermDhcpdConfig struct {
     // enum: `relay`
     Type                 *MxedgeTuntermDhcpdTypeEnum                 `json:"type,omitempty"`
     AdditionalProperties map[string]MxedgeTuntermDhcpdConfigProperty `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeTuntermDhcpdConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeTuntermDhcpdConfig) String() string {
+    return fmt.Sprintf(
+    	"MxedgeTuntermDhcpdConfig[Enabled=%v, Servers=%v, Type=%v, AdditionalProperties=%v]",
+    	m.Enabled, m.Servers, m.Type, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermDhcpdConfig.

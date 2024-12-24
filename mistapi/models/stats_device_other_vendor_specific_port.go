@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -19,6 +20,14 @@ type StatsDeviceOtherVendorSpecificPort struct {
     Type                 *string                `json:"type,omitempty"`
     Uptime               *float64               `json:"uptime,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsDeviceOtherVendorSpecificPort,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsDeviceOtherVendorSpecificPort) String() string {
+    return fmt.Sprintf(
+    	"StatsDeviceOtherVendorSpecificPort[BytesIn=%v, BytesOut=%v, HealthCategory=%v, HealthScore=%v, Id=%v, Mode=%v, Model=%v, State=%v, Type=%v, Uptime=%v, AdditionalProperties=%v]",
+    	s.BytesIn, s.BytesOut, s.HealthCategory, s.HealthScore, s.Id, s.Mode, s.Model, s.State, s.Type, s.Uptime, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsDeviceOtherVendorSpecificPort.

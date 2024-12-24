@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RemoteSyslogUser represents a RemoteSyslogUser struct.
@@ -10,6 +11,14 @@ type RemoteSyslogUser struct {
     Match                *string                `json:"match,omitempty"`
     User                 *string                `json:"user,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RemoteSyslogUser,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RemoteSyslogUser) String() string {
+    return fmt.Sprintf(
+    	"RemoteSyslogUser[Contents=%v, Match=%v, User=%v, AdditionalProperties=%v]",
+    	r.Contents, r.Match, r.User, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogUser.

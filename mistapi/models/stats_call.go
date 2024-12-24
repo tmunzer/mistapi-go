@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -19,6 +20,14 @@ type StatsCall struct {
     StartTime            *int                   `json:"start_time,omitempty"`
     VideoQuality         *int                   `json:"video_quality,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsCall,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsCall) String() string {
+    return fmt.Sprintf(
+    	"StatsCall[App=%v, AudioQuality=%v, EndTime=%v, Mac=%v, MeetingId=%v, OrgId=%v, Rating=%v, ScreenShareQuality=%v, SiteId=%v, StartTime=%v, VideoQuality=%v, AdditionalProperties=%v]",
+    	s.App, s.AudioQuality, s.EndTime, s.Mac, s.MeetingId, s.OrgId, s.Rating, s.ScreenShareQuality, s.SiteId, s.StartTime, s.VideoQuality, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsCall.

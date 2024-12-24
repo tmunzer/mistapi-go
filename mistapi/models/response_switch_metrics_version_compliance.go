@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseSwitchMetricsVersionCompliance represents a ResponseSwitchMetricsVersionCompliance struct.
@@ -10,6 +11,14 @@ type ResponseSwitchMetricsVersionCompliance struct {
     Score                *int                                           `json:"score,omitempty"`
     TotalSwitchCount     *int                                           `json:"total_switch_count,omitempty"`
     AdditionalProperties map[string]interface{}                         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSwitchMetricsVersionCompliance,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSwitchMetricsVersionCompliance) String() string {
+    return fmt.Sprintf(
+    	"ResponseSwitchMetricsVersionCompliance[Details=%v, Score=%v, TotalSwitchCount=%v, AdditionalProperties=%v]",
+    	r.Details, r.Score, r.TotalSwitchCount, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSwitchMetricsVersionCompliance.

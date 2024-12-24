@@ -5,6 +5,7 @@ import (
     "github.com/apimatic/go-core-runtime/https"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/models"
+    "strings"
 )
 
 // ErrorDeleteFailed is a custom error.
@@ -28,6 +29,17 @@ func (e ErrorDeleteFailed) Error() string {
     return fmt.Sprintf("ErrorDeleteFailed occured: %v", e.Message)
 }
 
+// String implements the fmt.Stringer interface for ErrorDeleteFailed,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e ErrorDeleteFailed) String() string {
+    suffixTrimmed := strings.TrimSuffix(e.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ErrorDeleteFailed[%v, Detail=%v, OrgId=%v]",
+    	prefixTrimmed, e.Detail, e.OrgId)
+}
+
 // ResponseDetailString is a custom error.
 type ResponseDetailString struct {
     https.ApiError
@@ -46,6 +58,17 @@ func NewResponseDetailString(apiError https.ApiError) error {
 // It returns a formatted error message for ResponseDetailString.
 func (r ResponseDetailString) Error() string {
     return fmt.Sprintf("ResponseDetailString occured: %v", r.Message)
+}
+
+// String implements the fmt.Stringer interface for ResponseDetailString,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseDetailString) String() string {
+    suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ResponseDetailString[%v, Detail=%v]",
+    	prefixTrimmed, r.Detail)
 }
 
 // ResponseHttp400 is a custom error.
@@ -68,6 +91,17 @@ func (r ResponseHttp400) Error() string {
     return fmt.Sprintf("ResponseHttp400 occured: %v", r.Message)
 }
 
+// String implements the fmt.Stringer interface for ResponseHttp400,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseHttp400) String() string {
+    suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ResponseHttp400[%v, Detail=%v]",
+    	prefixTrimmed, r.Detail)
+}
+
 // ResponseHttp404 is a custom error.
 type ResponseHttp404 struct {
     https.ApiError
@@ -86,6 +120,17 @@ func NewResponseHttp404(apiError https.ApiError) error {
 // It returns a formatted error message for ResponseHttp404.
 func (r ResponseHttp404) Error() string {
     return fmt.Sprintf("ResponseHttp404 occured: %v", r.Message)
+}
+
+// String implements the fmt.Stringer interface for ResponseHttp404,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseHttp404) String() string {
+    suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ResponseHttp404[%v, Id=%v]",
+    	prefixTrimmed, r.Id)
 }
 
 // ResponseLoginFailure is a custom error.
@@ -109,6 +154,17 @@ func (r ResponseLoginFailure) Error() string {
     return fmt.Sprintf("ResponseLoginFailure occured: %v", r.Message)
 }
 
+// String implements the fmt.Stringer interface for ResponseLoginFailure,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseLoginFailure) String() string {
+    suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ResponseLoginFailure[%v, Detail=%v, ForwardUrl=%v]",
+    	prefixTrimmed, r.Detail, r.ForwardUrl)
+}
+
 // ResponseSelfOauthLinkFailure is a custom error.
 type ResponseSelfOauthLinkFailure struct {
     https.ApiError
@@ -128,6 +184,17 @@ func NewResponseSelfOauthLinkFailure(apiError https.ApiError) error {
 // It returns a formatted error message for ResponseSelfOauthLinkFailure.
 func (r ResponseSelfOauthLinkFailure) Error() string {
     return fmt.Sprintf("ResponseSelfOauthLinkFailure occured: %v", r.Message)
+}
+
+// String implements the fmt.Stringer interface for ResponseSelfOauthLinkFailure,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSelfOauthLinkFailure) String() string {
+    suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ResponseSelfOauthLinkFailure[%v, MError=%v, ErrorDescription=%v]",
+    	prefixTrimmed, r.MError, r.ErrorDescription)
 }
 
 // ResponseHttp401Error is a custom error.
@@ -150,6 +217,17 @@ func (r ResponseHttp401Error) Error() string {
     return fmt.Sprintf("ResponseHttp401Error occured: %v", r.Message)
 }
 
+// String implements the fmt.Stringer interface for ResponseHttp401Error,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseHttp401Error) String() string {
+    suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ResponseHttp401Error[%v, Detail=%v]",
+    	prefixTrimmed, r.Detail)
+}
+
 // ResponseHttp403Error is a custom error.
 type ResponseHttp403Error struct {
     https.ApiError
@@ -170,6 +248,17 @@ func (r ResponseHttp403Error) Error() string {
     return fmt.Sprintf("ResponseHttp403Error occured: %v", r.Message)
 }
 
+// String implements the fmt.Stringer interface for ResponseHttp403Error,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseHttp403Error) String() string {
+    suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ResponseHttp403Error[%v, Detail=%v]",
+    	prefixTrimmed, r.Detail)
+}
+
 // ResponseHttp429Error is a custom error.
 type ResponseHttp429Error struct {
     https.ApiError
@@ -188,6 +277,17 @@ func NewResponseHttp429Error(apiError https.ApiError) error {
 // It returns a formatted error message for ResponseHttp429Error.
 func (r ResponseHttp429Error) Error() string {
     return fmt.Sprintf("ResponseHttp429Error occured: %v", r.Message)
+}
+
+// String implements the fmt.Stringer interface for ResponseHttp429Error,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseHttp429Error) String() string {
+    suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ResponseHttp429Error[%v, Detail=%v]",
+    	prefixTrimmed, r.Detail)
 }
 
 // ResponseInventoryError is a custom error.
@@ -213,4 +313,15 @@ func NewResponseInventoryError(apiError https.ApiError) error {
 // It returns a formatted error message for ResponseInventoryError.
 func (r ResponseInventoryError) Error() string {
     return fmt.Sprintf("ResponseInventoryError occured: %v", r.Message)
+}
+
+// String implements the fmt.Stringer interface for ResponseInventoryError,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseInventoryError) String() string {
+    suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ResponseInventoryError[%v, Added=%v, Duplicated=%v, MError=%v, InventoryAdded=%v, InventoryDuplicated=%v, Reason=%v]",
+    	prefixTrimmed, r.Added, r.Duplicated, r.MError, r.InventoryAdded, r.InventoryDuplicated, r.Reason)
 }

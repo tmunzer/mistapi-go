@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeDasCoaServer represents a MxedgeDasCoaServer struct.
@@ -17,6 +18,14 @@ type MxedgeDasCoaServer struct {
     RequireMessageAuthenticator *bool                  `json:"require_message_authenticator,omitempty"`
     Secret                      *string                `json:"secret,omitempty"`
     AdditionalProperties        map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeDasCoaServer,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeDasCoaServer) String() string {
+    return fmt.Sprintf(
+    	"MxedgeDasCoaServer[DisableEventTimestampCheck=%v, Enabled=%v, Host=%v, Port=%v, RequireMessageAuthenticator=%v, Secret=%v, AdditionalProperties=%v]",
+    	m.DisableEventTimestampCheck, m.Enabled, m.Host, m.Port, m.RequireMessageAuthenticator, m.Secret, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeDasCoaServer.

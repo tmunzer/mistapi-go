@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgServicePoliciesSecintel represents a OrgServicePoliciesSecintel struct.
@@ -13,6 +14,14 @@ type OrgServicePoliciesSecintel struct {
     // org-level secintel Profile can be used, this takes precendence over 'profile'
     SecintelprofileId    *string                           `json:"secintelprofile_id,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgServicePoliciesSecintel,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgServicePoliciesSecintel) String() string {
+    return fmt.Sprintf(
+    	"OrgServicePoliciesSecintel[Enabled=%v, Profile=%v, SecintelprofileId=%v, AdditionalProperties=%v]",
+    	o.Enabled, o.Profile, o.SecintelprofileId, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgServicePoliciesSecintel.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type AssetImport struct {
     Mac                  string                 `json:"mac"`
     Name                 string                 `json:"name"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AssetImport,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AssetImport) String() string {
+    return fmt.Sprintf(
+    	"AssetImport[Mac=%v, Name=%v, AdditionalProperties=%v]",
+    	a.Mac, a.Name, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetImport.

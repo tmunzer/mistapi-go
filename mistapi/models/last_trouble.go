@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // LastTrouble represents a LastTrouble struct.
@@ -11,6 +12,14 @@ type LastTrouble struct {
     Code                 *string                `json:"code,omitempty"`
     Timestamp            *int                   `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for LastTrouble,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (l LastTrouble) String() string {
+    return fmt.Sprintf(
+    	"LastTrouble[Code=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	l.Code, l.Timestamp, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for LastTrouble.

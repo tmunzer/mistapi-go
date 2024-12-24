@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // PmaDashboard represents a PmaDashboard struct.
@@ -15,6 +16,14 @@ type PmaDashboard struct {
     // url to access dashboard. Url will redirect the user to the dashboard
     Url                  *string                `json:"url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PmaDashboard,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PmaDashboard) String() string {
+    return fmt.Sprintf(
+    	"PmaDashboard[Description=%v, Label=%v, Name=%v, Url=%v, AdditionalProperties=%v]",
+    	p.Description, p.Label, p.Name, p.Url, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PmaDashboard.

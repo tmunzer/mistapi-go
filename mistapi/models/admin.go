@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -50,6 +51,14 @@ type Admin struct {
     // cannot be changed)
     ViaSso               *bool                      `json:"via_sso,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Admin,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a Admin) String() string {
+    return fmt.Sprintf(
+    	"Admin[AdminId=%v, ComplianceStatus=%v, Email=%v, EnableTwoFactor=%v, ExpireTime=%v, FirstName=%v, Hours=%v, LastName=%v, Name=%v, NoTracking=%v, OauthGoogle=%v, PasswordModifiedTime=%v, Phone=%v, Phone2=%v, Privileges=%v, SessionExpiry=%v, Tags=%v, TwoFactorVerified=%v, ViaSso=%v, AdditionalProperties=%v]",
+    	a.AdminId, a.ComplianceStatus, a.Email, a.EnableTwoFactor, a.ExpireTime, a.FirstName, a.Hours, a.LastName, a.Name, a.NoTracking, a.OauthGoogle, a.PasswordModifiedTime, a.Phone, a.Phone2, a.Privileges, a.SessionExpiry, a.Tags, a.TwoFactorVerified, a.ViaSso, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Admin.

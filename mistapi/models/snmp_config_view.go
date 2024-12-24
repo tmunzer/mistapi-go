@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SnmpConfigView represents a SnmpConfigView struct.
@@ -11,6 +12,14 @@ type SnmpConfigView struct {
     Oid                  *string                `json:"oid,omitempty"`
     ViewName             *string                `json:"view_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SnmpConfigView,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SnmpConfigView) String() string {
+    return fmt.Sprintf(
+    	"SnmpConfigView[Include=%v, Oid=%v, ViewName=%v, AdditionalProperties=%v]",
+    	s.Include, s.Oid, s.ViewName, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpConfigView.

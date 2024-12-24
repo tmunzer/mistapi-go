@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -50,6 +51,14 @@ type Psk struct {
     // VLAN for this PSK key
     VlanId                 *PskVlanId             `json:"vlan_id,omitempty"`
     AdditionalProperties   map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Psk,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p Psk) String() string {
+    return fmt.Sprintf(
+    	"Psk[AdminSsoId=%v, CreatedTime=%v, Email=%v, ExpireTime=%v, ExpiryNotificationTime=%v, Id=%v, Mac=%v, Macs=%v, MaxUsage=%v, ModifiedTime=%v, Name=%v, Note=%v, NotifyExpiry=%v, NotifyOnCreateOrEdit=%v, OldPassphrase=%v, OrgId=%v, Passphrase=%v, Role=%v, SiteId=%v, Ssid=%v, Usage=%v, VlanId=%v, AdditionalProperties=%v]",
+    	p.AdminSsoId, p.CreatedTime, p.Email, p.ExpireTime, p.ExpiryNotificationTime, p.Id, p.Mac, p.Macs, p.MaxUsage, p.ModifiedTime, p.Name, p.Note, p.NotifyExpiry, p.NotifyOnCreateOrEdit, p.OldPassphrase, p.OrgId, p.Passphrase, p.Role, p.SiteId, p.Ssid, p.Usage, p.VlanId, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Psk.

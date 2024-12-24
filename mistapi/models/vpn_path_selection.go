@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VpnPathSelection represents a VpnPathSelection struct.
@@ -10,6 +11,14 @@ type VpnPathSelection struct {
     // enum: `disabled`, `simple`, `manual`
     Strategy             *VpnPathSelectionStrategyEnum `json:"strategy,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VpnPathSelection,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VpnPathSelection) String() string {
+    return fmt.Sprintf(
+    	"VpnPathSelection[Strategy=%v, AdditionalProperties=%v]",
+    	v.Strategy, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VpnPathSelection.

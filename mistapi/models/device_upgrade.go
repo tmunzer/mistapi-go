@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -19,6 +20,14 @@ type DeviceUpgrade struct {
     // specific version / `stable`, default is to use the latest
     Version              string                 `json:"version"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DeviceUpgrade,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DeviceUpgrade) String() string {
+    return fmt.Sprintf(
+    	"DeviceUpgrade[Reboot=%v, RebootAt=%v, Snapshot=%v, StartTime=%v, Version=%v, AdditionalProperties=%v]",
+    	d.Reboot, d.RebootAt, d.Snapshot, d.StartTime, d.Version, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceUpgrade.

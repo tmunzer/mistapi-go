@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type BinaryStream struct {
     // file to updload
     File                 []byte                 `json:"file"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for BinaryStream,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (b BinaryStream) String() string {
+    return fmt.Sprintf(
+    	"BinaryStream[File=%v, AdditionalProperties=%v]",
+    	b.File, b.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for BinaryStream.

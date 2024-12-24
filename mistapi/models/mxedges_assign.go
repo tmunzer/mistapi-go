@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -12,6 +13,14 @@ type MxedgesAssign struct {
     MxedgeIds            []uuid.UUID            `json:"mxedge_ids"`
     SiteId               uuid.UUID              `json:"site_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgesAssign,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgesAssign) String() string {
+    return fmt.Sprintf(
+    	"MxedgesAssign[MxedgeIds=%v, SiteId=%v, AdditionalProperties=%v]",
+    	m.MxedgeIds, m.SiteId, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgesAssign.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteMxtunnelCluster represents a SiteMxtunnelCluster struct.
@@ -9,6 +10,14 @@ type SiteMxtunnelCluster struct {
     Name                 *string                `json:"name,omitempty"`
     TuntermHosts         []string               `json:"tunterm_hosts,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteMxtunnelCluster,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteMxtunnelCluster) String() string {
+    return fmt.Sprintf(
+    	"SiteMxtunnelCluster[Name=%v, TuntermHosts=%v, AdditionalProperties=%v]",
+    	s.Name, s.TuntermHosts, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteMxtunnelCluster.

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstDeviceSwitchDefault represents a ConstDeviceSwitchDefault struct.
 type ConstDeviceSwitchDefault struct {
     Ports                *string                `json:"_ports,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstDeviceSwitchDefault,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstDeviceSwitchDefault) String() string {
+    return fmt.Sprintf(
+    	"ConstDeviceSwitchDefault[Ports=%v, AdditionalProperties=%v]",
+    	c.Ports, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceSwitchDefault.

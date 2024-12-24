@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SsoMxedgeProxyAcctServer represents a SsoMxedgeProxyAcctServer struct.
@@ -10,6 +11,14 @@ type SsoMxedgeProxyAcctServer struct {
     Port                 *int                   `json:"port,omitempty"`
     Secret               *string                `json:"secret,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SsoMxedgeProxyAcctServer,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SsoMxedgeProxyAcctServer) String() string {
+    return fmt.Sprintf(
+    	"SsoMxedgeProxyAcctServer[Host=%v, Port=%v, Secret=%v, AdditionalProperties=%v]",
+    	s.Host, s.Port, s.Secret, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsoMxedgeProxyAcctServer.

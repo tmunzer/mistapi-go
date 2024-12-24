@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type SiteSleMetrics struct {
     Enabled              []string               `json:"enabled"`
     Supported            []string               `json:"supported"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSleMetrics,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSleMetrics) String() string {
+    return fmt.Sprintf(
+    	"SiteSleMetrics[Enabled=%v, Supported=%v, AdditionalProperties=%v]",
+    	s.Enabled, s.Supported, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSleMetrics.

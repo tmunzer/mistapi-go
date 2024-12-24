@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingGatewayMgmtOverlayIp represents a OrgSettingGatewayMgmtOverlayIp struct.
@@ -11,6 +12,14 @@ type OrgSettingGatewayMgmtOverlayIp struct {
     // for SSR HA cluster, another IP for node1 will be required, too
     Node1Ip              *string                `json:"node1_ip,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingGatewayMgmtOverlayIp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingGatewayMgmtOverlayIp) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingGatewayMgmtOverlayIp[Ip=%v, Node1Ip=%v, AdditionalProperties=%v]",
+    	o.Ip, o.Node1Ip, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingGatewayMgmtOverlayIp.

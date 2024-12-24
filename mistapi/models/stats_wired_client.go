@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -33,6 +34,14 @@ type StatsWiredClient struct {
     // vlan id, could be empty
     VlanId               *float64               `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsWiredClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsWiredClient) String() string {
+    return fmt.Sprintf(
+    	"StatsWiredClient[AuthState=%v, DeviceId=%v, EthPort=%v, LastSeen=%v, Mac=%v, RxBytes=%v, RxPkts=%v, SiteId=%v, TxBytes=%v, TxPkts=%v, Uptime=%v, VlanId=%v, AdditionalProperties=%v]",
+    	s.AuthState, s.DeviceId, s.EthPort, s.LastSeen, s.Mac, s.RxBytes, s.RxPkts, s.SiteId, s.TxBytes, s.TxPkts, s.Uptime, s.VlanId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWiredClient.

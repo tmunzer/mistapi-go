@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponsePcapAp represents a ResponsePcapAp struct.
@@ -11,6 +12,14 @@ type ResponsePcapAp struct {
     Channel              *int                   `json:"channel,omitempty"`
     TcpdumpExpresssion   Optional[string]       `json:"tcpdump_expresssion"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponsePcapAp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponsePcapAp) String() string {
+    return fmt.Sprintf(
+    	"ResponsePcapAp[Band=%v, Bandwidth=%v, Channel=%v, TcpdumpExpresssion=%v, AdditionalProperties=%v]",
+    	r.Band, r.Bandwidth, r.Channel, r.TcpdumpExpresssion, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapAp.

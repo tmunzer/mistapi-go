@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MapWallPath represents a MapWallPath struct.
@@ -10,6 +11,14 @@ type MapWallPath struct {
     Coordinate           *string                `json:"coordinate,omitempty"`
     Nodes                []MapNode              `json:"nodes,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapWallPath,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapWallPath) String() string {
+    return fmt.Sprintf(
+    	"MapWallPath[Coordinate=%v, Nodes=%v, AdditionalProperties=%v]",
+    	m.Coordinate, m.Nodes, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapWallPath.

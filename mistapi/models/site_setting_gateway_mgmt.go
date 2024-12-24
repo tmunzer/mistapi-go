@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingGatewayMgmt represents a SiteSettingGatewayMgmt struct.
@@ -29,6 +30,14 @@ type SiteSettingGatewayMgmt struct {
     SecurityLogSourceAddress   *string                                    `json:"security_log_source_address,omitempty"`
     SecurityLogSourceInterface *string                                    `json:"security_log_source_interface,omitempty"`
     AdditionalProperties       map[string]interface{}                     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingGatewayMgmt,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingGatewayMgmt) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingGatewayMgmt[AdminSshkeys=%v, AppProbing=%v, AppUsage=%v, AutoSignatureUpdate=%v, ConfigRevertTimer=%v, DisableConsole=%v, DisableOob=%v, ProbeHosts=%v, ProtectRe=%v, RootPassword=%v, SecurityLogSourceAddress=%v, SecurityLogSourceInterface=%v, AdditionalProperties=%v]",
+    	s.AdminSshkeys, s.AppProbing, s.AppUsage, s.AutoSignatureUpdate, s.ConfigRevertTimer, s.DisableConsole, s.DisableOob, s.ProbeHosts, s.ProtectRe, s.RootPassword, s.SecurityLogSourceAddress, s.SecurityLogSourceInterface, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingGatewayMgmt.

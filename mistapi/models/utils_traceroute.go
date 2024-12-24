@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsTraceroute represents a UtilsTraceroute struct.
@@ -21,6 +22,14 @@ type UtilsTraceroute struct {
     // for SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed
     Vrf                  *string                      `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsTraceroute,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsTraceroute) String() string {
+    return fmt.Sprintf(
+    	"UtilsTraceroute[Host=%v, Network=%v, Node=%v, Port=%v, Protocol=%v, Timeout=%v, Vrf=%v, AdditionalProperties=%v]",
+    	u.Host, u.Network, u.Node, u.Port, u.Protocol, u.Timeout, u.Vrf, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsTraceroute.

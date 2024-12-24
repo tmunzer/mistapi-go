@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -37,11 +36,8 @@ func (s *SitesRogues) ListSiteRogueAPs(
     interval *string) (
     models.ApiResponse[models.ResponseInsightRogue],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/insights/rogues", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/insights/rogues")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -103,11 +99,8 @@ func (s *SitesRogues) ListSiteRogueClients(
     interval *string) (
     models.ApiResponse[models.ResponseInsightRogueClient],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/insights/rogues/clients", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/insights/rogues/clients")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -172,11 +165,8 @@ func (s *SitesRogues) CountSiteRogueEvents(
     duration *string) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/rogues/events/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rogues/events/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -258,11 +248,8 @@ func (s *SitesRogues) SearchSiteRogueEvents(
     duration *string) (
     models.ApiResponse[models.ResponseEventsRogueSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/rogues/events/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rogues/events/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -332,11 +319,8 @@ func (s *SitesRogues) GetSiteRogueAP(
     rogueBssid string) (
     models.ApiResponse[models.RogueDetails],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/rogues/%v", siteId, rogueBssid),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rogues/%v")
+    req.AppendTemplateParams(siteId, rogueBssid)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

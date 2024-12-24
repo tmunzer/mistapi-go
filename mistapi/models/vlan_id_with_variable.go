@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // VlanIdWithVariable represents a VlanIdWithVariable struct.
@@ -13,12 +13,10 @@ type VlanIdWithVariable struct {
     isNumber bool
 }
 
-// String converts the VlanIdWithVariable object to a string representation.
+// String implements the fmt.Stringer interface for VlanIdWithVariable,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (v VlanIdWithVariable) String() string {
-    if bytes, err := json.Marshal(v.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", v.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VlanIdWithVariable.

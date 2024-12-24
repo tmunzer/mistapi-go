@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -49,6 +50,14 @@ type AclTag struct {
     // * `subnet`'
     Type                 AclTagTypeEnum         `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AclTag,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AclTag) String() string {
+    return fmt.Sprintf(
+    	"AclTag[GbpTag=%v, Macs=%v, Network=%v, RadiusGroup=%v, Specs=%v, Subnets=%v, Type=%v, AdditionalProperties=%v]",
+    	a.GbpTag, a.Macs, a.Network, a.RadiusGroup, a.Specs, a.Subnets, a.Type, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AclTag.

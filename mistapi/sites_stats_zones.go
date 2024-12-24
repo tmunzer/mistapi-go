@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -31,11 +30,8 @@ func (s *SitesStatsZones) ListSiteRssiZonesStats(
     siteId uuid.UUID) (
     models.ApiResponse[[]models.StatsRssiZone],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/rssizones", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/rssizones")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -75,11 +71,8 @@ func (s *SitesStatsZones) GetSiteRssiZoneStats(
     zoneId uuid.UUID) (
     models.ApiResponse[models.StatsZoneDetails],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/rssizones/%v", siteId, zoneId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/rssizones/%v")
+    req.AppendTemplateParams(siteId, zoneId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -119,11 +112,8 @@ func (s *SitesStatsZones) ListSiteZonesStats(
     mapId *string) (
     models.ApiResponse[[]models.StatsZone],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/zones", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/zones")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -166,11 +156,8 @@ func (s *SitesStatsZones) GetSiteZoneStats(
     zoneId uuid.UUID) (
     models.ApiResponse[models.StatsZoneDetails],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/zones/%v", siteId, zoneId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/zones/%v")
+    req.AppendTemplateParams(siteId, zoneId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

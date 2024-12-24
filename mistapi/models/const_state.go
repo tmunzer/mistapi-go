@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstState represents a ConstState struct.
@@ -9,6 +10,14 @@ type ConstState struct {
     IsoCode              *string                `json:"iso_code,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstState,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstState) String() string {
+    return fmt.Sprintf(
+    	"ConstState[IsoCode=%v, Name=%v, AdditionalProperties=%v]",
+    	c.IsoCode, c.Name, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstState.

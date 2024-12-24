@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -39,11 +38,8 @@ func (o *OrgsDevicesOthers) ListOrgOtherDevices(
     page *int) (
     models.ApiResponse[[]models.DeviceOther],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/otherdevices", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/otherdevices")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -104,11 +100,8 @@ func (o *OrgsDevicesOthers) UpdateOrgOtherDevices(
     body *models.OtherDeviceUpdateMulti) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/otherdevices", orgId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/otherdevices")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -154,11 +147,8 @@ func (o *OrgsDevicesOthers) CountOrgOtherDeviceEvents(
     limit *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/otherdevices/events/count", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/otherdevices/events/count")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -225,11 +215,8 @@ func (o *OrgsDevicesOthers) SearchOrgOtherDeviceEvents(
     limit *int) (
     models.ApiResponse[models.ResponseEventsOtherDevicesSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/otherdevices/events/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/otherdevices/events/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -299,11 +286,8 @@ func (o *OrgsDevicesOthers) DeleteOrgOtherDevice(
     deviceMac string) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/otherdevices/%v", orgId, deviceMac),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/otherdevices/%v")
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -340,11 +324,8 @@ func (o *OrgsDevicesOthers) GetOrgOtherDevice(
     deviceMac string) (
     models.ApiResponse[models.DeviceOther],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/otherdevices/%v", orgId, deviceMac),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/otherdevices/%v")
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -385,11 +366,8 @@ func (o *OrgsDevicesOthers) UpdateOrgOtherDevice(
     body *models.OtherDeviceUpdate) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/otherdevices/%v", orgId, deviceMac),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/otherdevices/%v")
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -430,11 +408,8 @@ func (o *OrgsDevicesOthers) RebootOrgOtherDevice(
     deviceMac string) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/otherdevices/%v/reboot", orgId, deviceMac),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/otherdevices/%v/reboot")
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

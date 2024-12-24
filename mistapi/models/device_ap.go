@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -88,6 +89,14 @@ type DeviceAp struct {
     // y in pixel
     Y                    *float64                `json:"y,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DeviceAp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DeviceAp) String() string {
+    return fmt.Sprintf(
+    	"DeviceAp[Aeroscout=%v, BleConfig=%v, Centrak=%v, ClientBridge=%v, CreatedTime=%v, DeviceprofileId=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, FlowControl=%v, ForSite=%v, Height=%v, Id=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IotConfig=%v, IpConfig=%v, Led=%v, Locked=%v, Mac=%v, MapId=%v, Mesh=%v, Model=%v, ModifiedTime=%v, Name=%v, Notes=%v, NtpServers=%v, OrgId=%v, Orientation=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, Serial=%v, SiteId=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	d.Aeroscout, d.BleConfig, d.Centrak, d.ClientBridge, d.CreatedTime, d.DeviceprofileId, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.FlowControl, d.ForSite, d.Height, d.Id, d.Image1Url, d.Image2Url, d.Image3Url, d.IotConfig, d.IpConfig, d.Led, d.Locked, d.Mac, d.MapId, d.Mesh, d.Model, d.ModifiedTime, d.Name, d.Notes, d.NtpServers, d.OrgId, d.Orientation, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.Serial, d.SiteId, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.X, d.Y, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceAp.

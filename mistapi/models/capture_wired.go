@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -23,6 +24,14 @@ type CaptureWired struct {
     // enum: `wired`
     Type                 string                  `json:"type"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureWired,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureWired) String() string {
+    return fmt.Sprintf(
+    	"CaptureWired[ApMac=%v, Duration=%v, Format=%v, MaxPktLen=%v, NumPackets=%v, TcpdumpExpression=%v, Type=%v, AdditionalProperties=%v]",
+    	c.ApMac, c.Duration, c.Format, c.MaxPktLen, c.NumPackets, c.TcpdumpExpression, c.Type, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureWired.

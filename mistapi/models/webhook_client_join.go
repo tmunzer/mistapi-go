@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type WebhookClientJoin struct {
     Events               []WebhookClientJoinEvent `json:"events"`
     Topic                string                   `json:"topic"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookClientJoin,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookClientJoin) String() string {
+    return fmt.Sprintf(
+    	"WebhookClientJoin[Events=%v, Topic=%v, AdditionalProperties=%v]",
+    	w.Events, w.Topic, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookClientJoin.

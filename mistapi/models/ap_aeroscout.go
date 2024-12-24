@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApAeroscout represents a ApAeroscout struct.
@@ -14,6 +15,14 @@ type ApAeroscout struct {
     // whether to enable the feature to allow wireless clients data received and sent to AES server for location calculation
     LocateConnected      *bool                  `json:"locate_connected,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApAeroscout,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApAeroscout) String() string {
+    return fmt.Sprintf(
+    	"ApAeroscout[Enabled=%v, Host=%v, LocateConnected=%v, AdditionalProperties=%v]",
+    	a.Enabled, a.Host, a.LocateConnected, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApAeroscout.

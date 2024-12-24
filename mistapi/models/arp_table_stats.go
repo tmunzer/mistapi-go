@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ArpTableStats represents a ArpTableStats struct.
@@ -9,6 +10,14 @@ type ArpTableStats struct {
     ArpTableCount        *int                   `json:"arp_table_count,omitempty"`
     MaxEntriesSupported  *int                   `json:"max_entries_supported,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ArpTableStats,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ArpTableStats) String() string {
+    return fmt.Sprintf(
+    	"ArpTableStats[ArpTableCount=%v, MaxEntriesSupported=%v, AdditionalProperties=%v]",
+    	a.ArpTableCount, a.MaxEntriesSupported, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ArpTableStats.

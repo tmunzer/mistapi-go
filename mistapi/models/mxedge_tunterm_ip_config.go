@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -17,6 +18,14 @@ type MxedgeTuntermIpConfig struct {
     Netmask              string                 `json:"netmask"`
     Netmask6             *string                `json:"netmask6,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeTuntermIpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeTuntermIpConfig) String() string {
+    return fmt.Sprintf(
+    	"MxedgeTuntermIpConfig[Gateway=%v, Gateway6=%v, Ip=%v, Ip6=%v, Netmask=%v, Netmask6=%v, AdditionalProperties=%v]",
+    	m.Gateway, m.Gateway6, m.Ip, m.Ip6, m.Netmask, m.Netmask6, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermIpConfig.

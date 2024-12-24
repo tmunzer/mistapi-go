@@ -1060,78 +1060,6 @@ const (
     GatewayPortWanTypeEnum_LTE       GatewayPortWanTypeEnum = "lte"
 )
 
-// GatewayTemplateProbeTypeEnum is a string enum.
-// enum: `http`, `icmp`
-type GatewayTemplateProbeTypeEnum string
-
-const (
-    GatewayTemplateProbeTypeEnum_HTTP GatewayTemplateProbeTypeEnum = "http"
-    GatewayTemplateProbeTypeEnum_ICMP GatewayTemplateProbeTypeEnum = "icmp"
-)
-
-// GatewayTemplateTunnelIkeDhGroupEnum is a string enum.
-// enum:
-// * 1
-// * 2 (1024-bit)
-// * 5
-// * 14 (default, 2048-bit)
-// * 15 (3072-bit)
-// * 16 (4096-bit)
-// * 19 (256-bit ECP)
-// * 20 (384-bit ECP)
-// * 21 (521-bit ECP)
-// * 24 (2048-bit ECP)
-type GatewayTemplateTunnelIkeDhGroupEnum string
-
-const (
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM1  GatewayTemplateTunnelIkeDhGroupEnum = "1"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM14 GatewayTemplateTunnelIkeDhGroupEnum = "14"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM15 GatewayTemplateTunnelIkeDhGroupEnum = "15"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM16 GatewayTemplateTunnelIkeDhGroupEnum = "16"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM19 GatewayTemplateTunnelIkeDhGroupEnum = "19"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM2  GatewayTemplateTunnelIkeDhGroupEnum = "2"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM20 GatewayTemplateTunnelIkeDhGroupEnum = "20"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM21 GatewayTemplateTunnelIkeDhGroupEnum = "21"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM24 GatewayTemplateTunnelIkeDhGroupEnum = "24"
-    GatewayTemplateTunnelIkeDhGroupEnum_ENUM5  GatewayTemplateTunnelIkeDhGroupEnum = "5"
-)
-
-// GatewayTemplateTunnelIkeModeEnum is a string enum.
-// Only if `provider`== `custom-ipsec`. enum: `aggressive`, `main`
-type GatewayTemplateTunnelIkeModeEnum string
-
-const (
-    GatewayTemplateTunnelIkeModeEnum_AGGRESSIVE GatewayTemplateTunnelIkeModeEnum = "aggressive"
-    GatewayTemplateTunnelIkeModeEnum_MAIN       GatewayTemplateTunnelIkeModeEnum = "main"
-)
-
-// GatewayTemplateTunnelModeEnum is a string enum.
-// enum: `active-active`, `active-standby`
-type GatewayTemplateTunnelModeEnum string
-
-const (
-    GatewayTemplateTunnelModeEnum_ACTIVEACTIVE  GatewayTemplateTunnelModeEnum = "active-active"
-    GatewayTemplateTunnelModeEnum_ACTIVESTANDBY GatewayTemplateTunnelModeEnum = "active-standby"
-)
-
-// GatewayTemplateTunnelProtocolEnum is a string enum.
-// Only if `provider`== `custom-ipsec`. enum: `gre`, `ipsec`
-type GatewayTemplateTunnelProtocolEnum string
-
-const (
-    GatewayTemplateTunnelProtocolEnum_GRE   GatewayTemplateTunnelProtocolEnum = "gre"
-    GatewayTemplateTunnelProtocolEnum_IPSEC GatewayTemplateTunnelProtocolEnum = "ipsec"
-)
-
-// GatewayTemplateTunnelVersionEnum is a string enum.
-// Only if `provider`== `custom-gre` or `provider`== `custom-ipsec`. enum: `1`, `2`
-type GatewayTemplateTunnelVersionEnum string
-
-const (
-    GatewayTemplateTunnelVersionEnum_ENUM1 GatewayTemplateTunnelVersionEnum = "1"
-    GatewayTemplateTunnelVersionEnum_ENUM2 GatewayTemplateTunnelVersionEnum = "2"
-)
-
 // GatewayTemplateTypeEnum is a string enum.
 // enum: `spoke`, `standalone`
 type GatewayTemplateTypeEnum string
@@ -3907,18 +3835,27 @@ const (
     TroubleshootTypeEnum_WIRELESS TroubleshootTypeEnum = "wireless"
 )
 
-// TunnelConfigsAuthAlgoEnum is a string enum.
+// TunnelConfigAuthAlgoEnum is a string enum.
 // enum: `md5`, `sha1`, `sha2`
-type TunnelConfigsAuthAlgoEnum string
+type TunnelConfigAuthAlgoEnum string
 
 const (
-    TunnelConfigsAuthAlgoEnum_MD5  TunnelConfigsAuthAlgoEnum = "md5"
-    TunnelConfigsAuthAlgoEnum_SHA1 TunnelConfigsAuthAlgoEnum = "sha1"
-    TunnelConfigsAuthAlgoEnum_SHA2 TunnelConfigsAuthAlgoEnum = "sha2"
+    TunnelConfigAuthAlgoEnum_MD5  TunnelConfigAuthAlgoEnum = "md5"
+    TunnelConfigAuthAlgoEnum_SHA1 TunnelConfigAuthAlgoEnum = "sha1"
+    TunnelConfigAuthAlgoEnum_SHA2 TunnelConfigAuthAlgoEnum = "sha2"
 )
 
-// TunnelConfigsDhGroupEnum is a string enum.
-// Only if `provider`== `custom-ipsec`. enum:
+// TunnelConfigAutoProvisionProviderEnum is a string enum.
+// enum: `jse-ipsec`, `zscaler-ipsec`
+type TunnelConfigAutoProvisionProviderEnum string
+
+const (
+    TunnelConfigAutoProvisionProviderEnum_JSEIPSEC     TunnelConfigAutoProvisionProviderEnum = "jse-ipsec"
+    TunnelConfigAutoProvisionProviderEnum_ZSCALERIPSEC TunnelConfigAutoProvisionProviderEnum = "zscaler-ipsec"
+)
+
+// TunnelConfigDhGroupEnum is a string enum.
+// Only if `provider`==`custom-ipsec`. enum:
 // * 1
 // * 2 (1024-bit)
 // * 5
@@ -3929,43 +3866,115 @@ const (
 // * 20 (384-bit ECP)
 // * 21 (521-bit ECP)
 // * 24 (2048-bit ECP)
-type TunnelConfigsDhGroupEnum string
+type TunnelConfigDhGroupEnum string
 
 const (
-    TunnelConfigsDhGroupEnum_ENUM1  TunnelConfigsDhGroupEnum = "1"
-    TunnelConfigsDhGroupEnum_ENUM14 TunnelConfigsDhGroupEnum = "14"
-    TunnelConfigsDhGroupEnum_ENUM15 TunnelConfigsDhGroupEnum = "15"
-    TunnelConfigsDhGroupEnum_ENUM16 TunnelConfigsDhGroupEnum = "16"
-    TunnelConfigsDhGroupEnum_ENUM19 TunnelConfigsDhGroupEnum = "19"
-    TunnelConfigsDhGroupEnum_ENUM2  TunnelConfigsDhGroupEnum = "2"
-    TunnelConfigsDhGroupEnum_ENUM20 TunnelConfigsDhGroupEnum = "20"
-    TunnelConfigsDhGroupEnum_ENUM21 TunnelConfigsDhGroupEnum = "21"
-    TunnelConfigsDhGroupEnum_ENUM24 TunnelConfigsDhGroupEnum = "24"
-    TunnelConfigsDhGroupEnum_ENUM5  TunnelConfigsDhGroupEnum = "5"
+    TunnelConfigDhGroupEnum_ENUM1  TunnelConfigDhGroupEnum = "1"
+    TunnelConfigDhGroupEnum_ENUM14 TunnelConfigDhGroupEnum = "14"
+    TunnelConfigDhGroupEnum_ENUM15 TunnelConfigDhGroupEnum = "15"
+    TunnelConfigDhGroupEnum_ENUM16 TunnelConfigDhGroupEnum = "16"
+    TunnelConfigDhGroupEnum_ENUM19 TunnelConfigDhGroupEnum = "19"
+    TunnelConfigDhGroupEnum_ENUM2  TunnelConfigDhGroupEnum = "2"
+    TunnelConfigDhGroupEnum_ENUM20 TunnelConfigDhGroupEnum = "20"
+    TunnelConfigDhGroupEnum_ENUM21 TunnelConfigDhGroupEnum = "21"
+    TunnelConfigDhGroupEnum_ENUM24 TunnelConfigDhGroupEnum = "24"
+    TunnelConfigDhGroupEnum_ENUM5  TunnelConfigDhGroupEnum = "5"
 )
 
-// TunnelConfigsEncAlgoEnum is a string enum.
+// TunnelConfigEncAlgoEnum is a string enum.
 // enum: `3des`, `aes128`, `aes256`, `aes_gcm128`, `aes_gcm256`
-type TunnelConfigsEncAlgoEnum string
+type TunnelConfigEncAlgoEnum string
 
 const (
-    TunnelConfigsEncAlgoEnum_ENUM3DES  TunnelConfigsEncAlgoEnum = "3des"
-    TunnelConfigsEncAlgoEnum_AES128    TunnelConfigsEncAlgoEnum = "aes128"
-    TunnelConfigsEncAlgoEnum_AES256    TunnelConfigsEncAlgoEnum = "aes256"
-    TunnelConfigsEncAlgoEnum_AESGCM128 TunnelConfigsEncAlgoEnum = "aes_gcm128"
-    TunnelConfigsEncAlgoEnum_AESGCM256 TunnelConfigsEncAlgoEnum = "aes_gcm256"
+    TunnelConfigEncAlgoEnum_ENUM3DES  TunnelConfigEncAlgoEnum = "3des"
+    TunnelConfigEncAlgoEnum_AES128    TunnelConfigEncAlgoEnum = "aes128"
+    TunnelConfigEncAlgoEnum_AES256    TunnelConfigEncAlgoEnum = "aes256"
+    TunnelConfigEncAlgoEnum_AESGCM128 TunnelConfigEncAlgoEnum = "aes_gcm128"
+    TunnelConfigEncAlgoEnum_AESGCM256 TunnelConfigEncAlgoEnum = "aes_gcm256"
 )
 
-// TunnelProviderOptionsNameEnum is a string enum.
-// enum: `custom-ipsec`, `customer-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec`
-type TunnelProviderOptionsNameEnum string
+// TunnelConfigIkeDhGroupEnum is a string enum.
+// enum:
+// * 1
+// * 2 (1024-bit)
+// * 5
+// * 14 (default, 2048-bit)
+// * 15 (3072-bit)
+// * 16 (4096-bit)
+// * 19 (256-bit ECP)
+// * 20 (384-bit ECP)
+// * 21 (521-bit ECP)
+// * 24 (2048-bit ECP)
+type TunnelConfigIkeDhGroupEnum string
 
 const (
-    TunnelProviderOptionsNameEnum_CUSTOMIPSEC  TunnelProviderOptionsNameEnum = "custom-ipsec"
-    TunnelProviderOptionsNameEnum_CUSTOMERGRE  TunnelProviderOptionsNameEnum = "customer-gre"
-    TunnelProviderOptionsNameEnum_JSEIPSEC     TunnelProviderOptionsNameEnum = "jse-ipsec"
-    TunnelProviderOptionsNameEnum_ZSCALERGRE   TunnelProviderOptionsNameEnum = "zscaler-gre"
-    TunnelProviderOptionsNameEnum_ZSCALERIPSEC TunnelProviderOptionsNameEnum = "zscaler-ipsec"
+    TunnelConfigIkeDhGroupEnum_ENUM1  TunnelConfigIkeDhGroupEnum = "1"
+    TunnelConfigIkeDhGroupEnum_ENUM14 TunnelConfigIkeDhGroupEnum = "14"
+    TunnelConfigIkeDhGroupEnum_ENUM15 TunnelConfigIkeDhGroupEnum = "15"
+    TunnelConfigIkeDhGroupEnum_ENUM16 TunnelConfigIkeDhGroupEnum = "16"
+    TunnelConfigIkeDhGroupEnum_ENUM19 TunnelConfigIkeDhGroupEnum = "19"
+    TunnelConfigIkeDhGroupEnum_ENUM2  TunnelConfigIkeDhGroupEnum = "2"
+    TunnelConfigIkeDhGroupEnum_ENUM20 TunnelConfigIkeDhGroupEnum = "20"
+    TunnelConfigIkeDhGroupEnum_ENUM21 TunnelConfigIkeDhGroupEnum = "21"
+    TunnelConfigIkeDhGroupEnum_ENUM24 TunnelConfigIkeDhGroupEnum = "24"
+    TunnelConfigIkeDhGroupEnum_ENUM5  TunnelConfigIkeDhGroupEnum = "5"
+)
+
+// TunnelConfigIkeModeEnum is a string enum.
+// Only if `provider`==`custom-ipsec`. enum: `aggressive`, `main`
+type TunnelConfigIkeModeEnum string
+
+const (
+    TunnelConfigIkeModeEnum_AGGRESSIVE TunnelConfigIkeModeEnum = "aggressive"
+    TunnelConfigIkeModeEnum_MAIN       TunnelConfigIkeModeEnum = "main"
+)
+
+// TunnelConfigProbeTypeEnum is a string enum.
+// enum: `http`, `icmp`
+type TunnelConfigProbeTypeEnum string
+
+const (
+    TunnelConfigProbeTypeEnum_HTTP TunnelConfigProbeTypeEnum = "http"
+    TunnelConfigProbeTypeEnum_ICMP TunnelConfigProbeTypeEnum = "icmp"
+)
+
+// TunnelConfigProtocolEnum is a string enum.
+// Only if `provider`==`custom-ipsec`. enum: `gre`, `ipsec`
+type TunnelConfigProtocolEnum string
+
+const (
+    TunnelConfigProtocolEnum_GRE   TunnelConfigProtocolEnum = "gre"
+    TunnelConfigProtocolEnum_IPSEC TunnelConfigProtocolEnum = "ipsec"
+)
+
+// TunnelConfigProviderEnum is a string enum.
+// Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `customer-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec`
+type TunnelConfigProviderEnum string
+
+const (
+    TunnelConfigProviderEnum_CUSTOMIPSEC  TunnelConfigProviderEnum = "custom-ipsec"
+    TunnelConfigProviderEnum_CUSTOMERGRE  TunnelConfigProviderEnum = "customer-gre"
+    TunnelConfigProviderEnum_JSEIPSEC     TunnelConfigProviderEnum = "jse-ipsec"
+    TunnelConfigProviderEnum_ZSCALERGRE   TunnelConfigProviderEnum = "zscaler-gre"
+    TunnelConfigProviderEnum_ZSCALERIPSEC TunnelConfigProviderEnum = "zscaler-ipsec"
+)
+
+// TunnelConfigTunnelModeEnum is a string enum.
+// Required if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`. enum: `active-active`, `active-standby`
+type TunnelConfigTunnelModeEnum string
+
+const (
+    TunnelConfigTunnelModeEnum_ACTIVEACTIVE  TunnelConfigTunnelModeEnum = "active-active"
+    TunnelConfigTunnelModeEnum_ACTIVESTANDBY TunnelConfigTunnelModeEnum = "active-standby"
+)
+
+// TunnelConfigVersionEnum is a string enum.
+// Only if `provider`==`custom-gre` or `provider`==`custom-ipsec`. enum: `1`, `2`
+type TunnelConfigVersionEnum string
+
+const (
+    TunnelConfigVersionEnum_ENUM1 TunnelConfigVersionEnum = "1"
+    TunnelConfigVersionEnum_ENUM2 TunnelConfigVersionEnum = "2"
 )
 
 // TunnelTypeEnum is a string enum.

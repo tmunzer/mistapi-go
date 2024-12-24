@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SamlMetadata represents a SamlMetadata struct.
@@ -17,6 +18,14 @@ type SamlMetadata struct {
     // if `idp_type`==`oauth` and `scim_enabled`==`true`
     ScimBaseUrl          *string                `json:"scim_base_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SamlMetadata,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SamlMetadata) String() string {
+    return fmt.Sprintf(
+    	"SamlMetadata[AcsUrl=%v, EntityId=%v, LogoutUrl=%v, Metadata=%v, ScimBaseUrl=%v, AdditionalProperties=%v]",
+    	s.AcsUrl, s.EntityId, s.LogoutUrl, s.Metadata, s.ScimBaseUrl, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SamlMetadata.

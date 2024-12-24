@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NetworkMulticastGroup represents a NetworkMulticastGroup struct.
@@ -9,6 +10,14 @@ type NetworkMulticastGroup struct {
     // RP (rendezvous point) IP Address
     RpIp                 *string                `json:"rp_ip,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NetworkMulticastGroup,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NetworkMulticastGroup) String() string {
+    return fmt.Sprintf(
+    	"NetworkMulticastGroup[RpIp=%v, AdditionalProperties=%v]",
+    	n.RpIp, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkMulticastGroup.

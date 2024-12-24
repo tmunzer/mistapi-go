@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApRadioBand6 represents a ApRadioBand6 struct.
@@ -30,6 +31,14 @@ type ApRadioBand6 struct {
     // for 6GHz Only, standard-power operation, AFC (Automatic Frequency Coordination) will be performed and we'll fallback to Low Power Indoor if AFC failed
     StandardPower        *bool                     `json:"standard_power,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApRadioBand6,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApRadioBand6) String() string {
+    return fmt.Sprintf(
+    	"ApRadioBand6[AllowRrmDisable=%v, AntGain=%v, AntennaMode=%v, Bandwidth=%v, Channel=%v, Channels=%v, Disabled=%v, Power=%v, PowerMax=%v, PowerMin=%v, Preamble=%v, StandardPower=%v, AdditionalProperties=%v]",
+    	a.AllowRrmDisable, a.AntGain, a.AntennaMode, a.Bandwidth, a.Channel, a.Channels, a.Disabled, a.Power, a.PowerMax, a.PowerMin, a.Preamble, a.StandardPower, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadioBand6.

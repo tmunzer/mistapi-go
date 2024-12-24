@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -13,6 +14,14 @@ type SdkstatsWirelessClientZone struct {
     Id                   uuid.UUID              `json:"id"`
     Since                float64                `json:"since"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SdkstatsWirelessClientZone,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SdkstatsWirelessClientZone) String() string {
+    return fmt.Sprintf(
+    	"SdkstatsWirelessClientZone[Id=%v, Since=%v, AdditionalProperties=%v]",
+    	s.Id, s.Since, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SdkstatsWirelessClientZone.

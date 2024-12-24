@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -12,6 +13,14 @@ type OrgSettingInstaller struct {
     ExtraSiteIds         []uuid.UUID            `json:"extra_site_ids,omitempty"`
     GracePeriod          *int                   `json:"grace_period,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingInstaller,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingInstaller) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingInstaller[AllowAllDevices=%v, AllowAllSites=%v, ExtraSiteIds=%v, GracePeriod=%v, AdditionalProperties=%v]",
+    	o.AllowAllDevices, o.AllowAllSites, o.ExtraSiteIds, o.GracePeriod, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingInstaller.

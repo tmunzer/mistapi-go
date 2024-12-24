@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApLed represents a ApLed struct.
@@ -10,6 +11,14 @@ type ApLed struct {
     Brightness           *int                   `json:"brightness,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApLed,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApLed) String() string {
+    return fmt.Sprintf(
+    	"ApLed[Brightness=%v, Enabled=%v, AdditionalProperties=%v]",
+    	a.Brightness, a.Enabled, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApLed.

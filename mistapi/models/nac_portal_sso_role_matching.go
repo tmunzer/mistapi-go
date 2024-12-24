@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NacPortalSsoRoleMatching represents a NacPortalSsoRoleMatching struct.
@@ -9,6 +10,14 @@ type NacPortalSsoRoleMatching struct {
     Assigned             *string                `json:"assigned,omitempty"`
     Match                *string                `json:"match,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NacPortalSsoRoleMatching,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NacPortalSsoRoleMatching) String() string {
+    return fmt.Sprintf(
+    	"NacPortalSsoRoleMatching[Assigned=%v, Match=%v, AdditionalProperties=%v]",
+    	n.Assigned, n.Match, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortalSsoRoleMatching.

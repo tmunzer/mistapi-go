@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -29,6 +30,14 @@ type ResponsePcapStart struct {
     Timestamp               float64                `json:"timestamp"`
     Type                    string                 `json:"type"`
     AdditionalProperties    map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponsePcapStart,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponsePcapStart) String() string {
+    return fmt.Sprintf(
+    	"ResponsePcapStart[ApCount=%v, Aps=%v, ClientMac=%v, Duration=%v, Enabled=%v, Expiry=%v, Format=%v, Id=%v, IncludeMcast=%v, MaxPktLen=%v, NumPackets=%v, OrgId=%v, Raw=%v, SiteId=%v, Ssid=%v, TcpdumpParserExpression=%v, Timestamp=%v, Type=%v, AdditionalProperties=%v]",
+    	r.ApCount, r.Aps, r.ClientMac, r.Duration, r.Enabled, r.Expiry, r.Format, r.Id, r.IncludeMcast, r.MaxPktLen, r.NumPackets, r.OrgId, r.Raw, r.SiteId, r.Ssid, r.TcpdumpParserExpression, r.Timestamp, r.Type, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapStart.

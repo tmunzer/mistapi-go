@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -35,6 +36,14 @@ type ConstDeviceGateway struct {
     // Device Type. enum: `gateway`
     Type                 string                   `json:"type"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstDeviceGateway,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstDeviceGateway) String() string {
+    return fmt.Sprintf(
+    	"ConstDeviceGateway[Defaults=%v, Description=%v, Experimental=%v, FansPluggable=%v, HaNode0Fpc=%v, HaNode1Fpc=%v, HasBgp=%v, HasFxp0=%v, HasHaControl=%v, HasHaData=%v, HasIrb=%v, HasPoeOut=%v, HasSnapshot=%v, IrbDisabledByDefault=%v, Model=%v, NumberFans=%v, OcDevice=%v, Pic=%v, Ports=%v, SubRequired=%v, T128Device=%v, Type=%v, AdditionalProperties=%v]",
+    	c.Defaults, c.Description, c.Experimental, c.FansPluggable, c.HaNode0Fpc, c.HaNode1Fpc, c.HasBgp, c.HasFxp0, c.HasHaControl, c.HasHaData, c.HasIrb, c.HasPoeOut, c.HasSnapshot, c.IrbDisabledByDefault, c.Model, c.NumberFans, c.OcDevice, c.Pic, c.Ports, c.SubRequired, c.T128Device, c.Type, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceGateway.

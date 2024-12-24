@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApTemplateWifi represents a ApTemplateWifi struct.
@@ -19,6 +20,14 @@ type ApTemplateWifi struct {
     MeshEnabled                       *bool                  `json:"mesh_enabled,omitempty"`
     ProxyArp                          *bool                  `json:"proxy_arp,omitempty"`
     AdditionalProperties              map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApTemplateWifi,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApTemplateWifi) String() string {
+    return fmt.Sprintf(
+    	"ApTemplateWifi[CiscoEnabled=%v, Disable11k=%v, DisableRadiosWhenPowerConstrained=%v, EnableArpSpoof=%v, EnableSharedRadioScanning=%v, Enabled=%v, LocateConnected=%v, LocateUnconnected=%v, MeshAllowDfs=%v, MeshEnableCrm=%v, MeshEnabled=%v, ProxyArp=%v, AdditionalProperties=%v]",
+    	a.CiscoEnabled, a.Disable11k, a.DisableRadiosWhenPowerConstrained, a.EnableArpSpoof, a.EnableSharedRadioScanning, a.Enabled, a.LocateConnected, a.LocateUnconnected, a.MeshAllowDfs, a.MeshEnableCrm, a.MeshEnabled, a.ProxyArp, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApTemplateWifi.

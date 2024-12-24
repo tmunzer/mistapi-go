@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type WebhookLocation struct {
     // topic subscribed to
     Topic                string                 `json:"topic"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookLocation,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookLocation) String() string {
+    return fmt.Sprintf(
+    	"WebhookLocation[Events=%v, Topic=%v, AdditionalProperties=%v]",
+    	w.Events, w.Topic, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookLocation.

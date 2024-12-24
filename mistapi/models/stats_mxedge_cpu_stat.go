@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsMxedgeCpuStat represents a StatsMxedgeCpuStat struct.
@@ -19,6 +20,14 @@ type StatsMxedgeCpuStat struct {
     // percentage of User, User/(Idle + Busy) since last sampling
     User                 *int                   `json:"user,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxedgeCpuStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxedgeCpuStat) String() string {
+    return fmt.Sprintf(
+    	"StatsMxedgeCpuStat[Cpus=%v, Idle=%v, Interrupt=%v, System=%v, Usage=%v, User=%v, AdditionalProperties=%v]",
+    	s.Cpus, s.Idle, s.Interrupt, s.System, s.Usage, s.User, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeCpuStat.

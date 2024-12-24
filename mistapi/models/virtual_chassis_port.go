@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type VirtualChassisPort struct {
     // enum: `delete`, `set`
     Op                   VirtualChassisPortOperationEnum `json:"op"`
     AdditionalProperties map[string]interface{}          `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VirtualChassisPort,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VirtualChassisPort) String() string {
+    return fmt.Sprintf(
+    	"VirtualChassisPort[Members=%v, Op=%v, AdditionalProperties=%v]",
+    	v.Members, v.Op, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VirtualChassisPort.

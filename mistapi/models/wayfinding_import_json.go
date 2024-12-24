@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // WayfindingImportJson represents a WayfindingImportJson struct.
@@ -13,12 +13,10 @@ type WayfindingImportJson struct {
     isMapMicello    bool
 }
 
-// String converts the WayfindingImportJson object to a string representation.
+// String implements the fmt.Stringer interface for WayfindingImportJson,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WayfindingImportJson) String() string {
-    if bytes, err := json.Marshal(w.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", w.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WayfindingImportJson.

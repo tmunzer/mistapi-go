@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -19,6 +20,14 @@ type ResponseLocationCoverage struct {
     Results              [][]float64            `json:"results"`
     Start                int                    `json:"start"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseLocationCoverage,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseLocationCoverage) String() string {
+    return fmt.Sprintf(
+    	"ResponseLocationCoverage[BeamsMeans=%v, End=%v, Gridsize=%v, ResultDef=%v, Results=%v, Start=%v, AdditionalProperties=%v]",
+    	r.BeamsMeans, r.End, r.Gridsize, r.ResultDef, r.Results, r.Start, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseLocationCoverage.

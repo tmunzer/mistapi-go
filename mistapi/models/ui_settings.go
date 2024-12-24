@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -30,6 +31,14 @@ type UiSettings struct {
     SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
     Tiles                []UiSettingsTile            `json:"tiles,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UiSettings,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UiSettings) String() string {
+    return fmt.Sprintf(
+    	"UiSettings[CreatedTime=%v, DefaultScopeId=%v, DefaultScopeType=%v, DefaultTimeRange=%v, Description=%v, ForSite=%v, Id=%v, IsCustomDataboard=%v, IsScopeLinked=%v, IsTimeRangeLinked=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Purpose=%v, SiteId=%v, Tiles=%v, AdditionalProperties=%v]",
+    	u.CreatedTime, u.DefaultScopeId, u.DefaultScopeType, u.DefaultTimeRange, u.Description, u.ForSite, u.Id, u.IsCustomDataboard, u.IsScopeLinked, u.IsTimeRangeLinked, u.ModifiedTime, u.Name, u.OrgId, u.Purpose, u.SiteId, u.Tiles, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UiSettings.

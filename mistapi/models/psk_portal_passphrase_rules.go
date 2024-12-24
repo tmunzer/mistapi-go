@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // PskPortalPassphraseRules represents a PskPortalPassphraseRules struct.
@@ -22,6 +23,14 @@ type PskPortalPassphraseRules struct {
     Symbols              *string                `json:"symbols,omitempty"`
     SymbolsEnabled       *bool                  `json:"symbols_enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PskPortalPassphraseRules,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PskPortalPassphraseRules) String() string {
+    return fmt.Sprintf(
+    	"PskPortalPassphraseRules[AlphabertsEnabled=%v, Length=%v, MaxLength=%v, MinLength=%v, NumericsEnabled=%v, Symbols=%v, SymbolsEnabled=%v, AdditionalProperties=%v]",
+    	p.AlphabertsEnabled, p.Length, p.MaxLength, p.MinLength, p.NumericsEnabled, p.Symbols, p.SymbolsEnabled, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalPassphraseRules.

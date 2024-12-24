@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NacPortal represents a NacPortal struct.
@@ -31,6 +32,14 @@ type NacPortal struct {
     // enum: `guest`, `marvis_client`
     Type                   *NacPortalTypeEnum       `json:"type,omitempty"`
     AdditionalProperties   map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NacPortal,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NacPortal) String() string {
+    return fmt.Sprintf(
+    	"NacPortal[AccessType=%v, BgImageUrl=%v, CertExpireTime=%v, EapType=%v, EnableTelemetry=%v, ExpiryNotificationTime=%v, GuestPortalConfig=%v, Name=%v, NotifyExpiry=%v, Ssid=%v, Sso=%v, TemplateUrl=%v, ThumbnailUrl=%v, Tos=%v, Type=%v, AdditionalProperties=%v]",
+    	n.AccessType, n.BgImageUrl, n.CertExpireTime, n.EapType, n.EnableTelemetry, n.ExpiryNotificationTime, n.GuestPortalConfig, n.Name, n.NotifyExpiry, n.Ssid, n.Sso, n.TemplateUrl, n.ThumbnailUrl, n.Tos, n.Type, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortal.

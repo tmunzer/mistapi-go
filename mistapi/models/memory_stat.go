@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ import (
 type MemoryStat struct {
     Usage                float64                `json:"usage"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MemoryStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MemoryStat) String() string {
+    return fmt.Sprintf(
+    	"MemoryStat[Usage=%v, AdditionalProperties=%v]",
+    	m.Usage, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MemoryStat.

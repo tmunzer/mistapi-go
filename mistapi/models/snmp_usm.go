@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SnmpUsm represents a SnmpUsm struct.
@@ -12,6 +13,14 @@ type SnmpUsm struct {
     EngineType           *SnmpUsmEngineTypeEnum `json:"engine_type,omitempty"`
     Users                []SnmpUsmpUser         `json:"users,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SnmpUsm,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SnmpUsm) String() string {
+    return fmt.Sprintf(
+    	"SnmpUsm[EngineId=%v, EngineType=%v, Users=%v, AdditionalProperties=%v]",
+    	s.EngineId, s.EngineType, s.Users, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpUsm.

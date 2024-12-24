@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstTrafficType represents a ConstTrafficType struct.
@@ -15,6 +16,14 @@ type ConstTrafficType struct {
     Name                 *string                `json:"name,omitempty"`
     TrafficClass         *string                `json:"traffic_class,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstTrafficType,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstTrafficType) String() string {
+    return fmt.Sprintf(
+    	"ConstTrafficType[Display=%v, Dscp=%v, FailoverPolicy=%v, MaxJitter=%v, MaxLatency=%v, MaxLoss=%v, Name=%v, TrafficClass=%v, AdditionalProperties=%v]",
+    	c.Display, c.Dscp, c.FailoverPolicy, c.MaxJitter, c.MaxLatency, c.MaxLoss, c.Name, c.TrafficClass, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstTrafficType.

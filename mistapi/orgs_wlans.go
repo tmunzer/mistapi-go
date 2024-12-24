@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,7 +33,8 @@ func (o *OrgsWlans) ListOrgWlans(
     page *int) (
     models.ApiResponse[[]models.Wlan],
     error) {
-    req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/wlans", orgId))
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wlans")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -80,7 +80,8 @@ func (o *OrgsWlans) CreateOrgWlan(
     body *models.Wlan) (
     models.ApiResponse[models.Wlan],
     error) {
-    req := o.prepareRequest(ctx, "POST", fmt.Sprintf("/api/v1/orgs/%v/wlans", orgId))
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/wlans")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -124,11 +125,8 @@ func (o *OrgsWlans) DeleteOrgWlan(
     wlanId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/wlans/%v", orgId, wlanId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/wlans/%v")
+    req.AppendTemplateParams(orgId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -165,11 +163,8 @@ func (o *OrgsWlans) GetOrgWLAN(
     wlanId uuid.UUID) (
     models.ApiResponse[models.Wlan],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/wlans/%v", orgId, wlanId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wlans/%v")
+    req.AppendTemplateParams(orgId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -210,11 +205,8 @@ func (o *OrgsWlans) UpdateOrgWlan(
     body *models.Wlan) (
     models.ApiResponse[models.Wlan],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/wlans/%v", orgId, wlanId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/wlans/%v")
+    req.AppendTemplateParams(orgId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -258,11 +250,8 @@ func (o *OrgsWlans) DeleteOrgWlanPortalImage(
     wlanId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/wlans/%v/portal_image", orgId, wlanId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/wlans/%v/portal_image")
+    req.AppendTemplateParams(orgId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -301,11 +290,8 @@ func (o *OrgsWlans) UploadOrgWlanPortalImage(
     json *string) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/wlans/%v/portal_image", orgId, wlanId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/wlans/%v/portal_image")
+    req.AppendTemplateParams(orgId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -364,11 +350,8 @@ func (o *OrgsWlans) UpdateOrgWlanPortalTemplate(
     body *models.WlanPortalTemplate) (
     models.ApiResponse[models.WlanPortalTemplate],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/wlans/%v/portal_template", orgId, wlanId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/wlans/%v/portal_template")
+    req.AppendTemplateParams(orgId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

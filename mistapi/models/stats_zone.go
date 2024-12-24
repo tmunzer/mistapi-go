@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -39,6 +40,14 @@ type StatsZone struct {
     Vertices             []ZoneVertex              `json:"vertices,omitempty"`
     VerticesM            []ZoneVertexM             `json:"vertices_m,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsZone,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsZone) String() string {
+    return fmt.Sprintf(
+    	"StatsZone[AssetsWaits=%v, ClientsWaits=%v, CreatedTime=%v, Id=%v, MapId=%v, ModifiedTime=%v, Name=%v, NumAssets=%v, NumClients=%v, NumSdkclients=%v, OccupancyLimit=%v, OrgId=%v, SdkclientsWaits=%v, SiteId=%v, Vertices=%v, VerticesM=%v, AdditionalProperties=%v]",
+    	s.AssetsWaits, s.ClientsWaits, s.CreatedTime, s.Id, s.MapId, s.ModifiedTime, s.Name, s.NumAssets, s.NumClients, s.NumSdkclients, s.OccupancyLimit, s.OrgId, s.SdkclientsWaits, s.SiteId, s.Vertices, s.VerticesM, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsZone.

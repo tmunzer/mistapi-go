@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type ResponseDiscoveredSwitchMetrics struct {
     Start                float64                  `json:"start"`
     Total                int                      `json:"total"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseDiscoveredSwitchMetrics,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseDiscoveredSwitchMetrics) String() string {
+    return fmt.Sprintf(
+    	"ResponseDiscoveredSwitchMetrics[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	r.End, r.Limit, r.Next, r.Results, r.Start, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDiscoveredSwitchMetrics.

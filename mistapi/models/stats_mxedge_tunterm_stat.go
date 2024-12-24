@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsMxedgeTuntermStat represents a StatsMxedgeTuntermStat struct.
 type StatsMxedgeTuntermStat struct {
     MonitoringFailed     *bool                  `json:"monitoring_failed,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxedgeTuntermStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxedgeTuntermStat) String() string {
+    return fmt.Sprintf(
+    	"StatsMxedgeTuntermStat[MonitoringFailed=%v, AdditionalProperties=%v]",
+    	s.MonitoringFailed, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeTuntermStat.

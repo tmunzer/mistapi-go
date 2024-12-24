@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -26,6 +27,14 @@ type Radsec struct {
     // To use Site mxedges when this WLAN does not use mxtunnel
     UseSiteMxedge        *bool                  `json:"use_site_mxedge,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Radsec,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r Radsec) String() string {
+    return fmt.Sprintf(
+    	"Radsec[CoaEnabled=%v, Enabled=%v, IdleTimeout=%v, MxclusterIds=%v, ProxyHosts=%v, ServerName=%v, Servers=%v, UseMxedge=%v, UseSiteMxedge=%v, AdditionalProperties=%v]",
+    	r.CoaEnabled, r.Enabled, r.IdleTimeout, r.MxclusterIds, r.ProxyHosts, r.ServerName, r.Servers, r.UseMxedge, r.UseSiteMxedge, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Radsec.

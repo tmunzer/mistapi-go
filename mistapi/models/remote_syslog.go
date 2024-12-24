@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RemoteSyslog represents a RemoteSyslog struct.
@@ -18,6 +19,14 @@ type RemoteSyslog struct {
     TimeFormat           *RemoteSyslogTimeFormatEnum `json:"time_format,omitempty"`
     Users                []RemoteSyslogUser          `json:"users,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RemoteSyslog,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RemoteSyslog) String() string {
+    return fmt.Sprintf(
+    	"RemoteSyslog[Archive=%v, Console=%v, Enabled=%v, Files=%v, Network=%v, SendToAllServers=%v, Servers=%v, TimeFormat=%v, Users=%v, AdditionalProperties=%v]",
+    	r.Archive, r.Console, r.Enabled, r.Files, r.Network, r.SendToAllServers, r.Servers, r.TimeFormat, r.Users, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslog.

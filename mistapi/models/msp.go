@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -22,6 +23,14 @@ type Msp struct {
     // For advanced tier (uMSPs) only
     Url                  *string                `json:"url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Msp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m Msp) String() string {
+    return fmt.Sprintf(
+    	"Msp[AllowMist=%v, CreatedTime=%v, Id=%v, LogoUrl=%v, ModifiedTime=%v, Name=%v, Tier=%v, Url=%v, AdditionalProperties=%v]",
+    	m.AllowMist, m.CreatedTime, m.Id, m.LogoUrl, m.ModifiedTime, m.Name, m.Tier, m.Url, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Msp.

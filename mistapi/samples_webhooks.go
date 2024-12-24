@@ -31,6 +31,7 @@ func (s *SamplesWebhooks) Alarms(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_alarm_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -65,6 +66,7 @@ func (s *SamplesWebhooks) AssetRaw(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_asset_raw_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -98,6 +100,7 @@ func (s *SamplesWebhooks) Audits(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_audit_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -131,6 +134,7 @@ func (s *SamplesWebhooks) ClientInfo(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_client_info_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -164,6 +168,7 @@ func (s *SamplesWebhooks) ClientJoin(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_client_join_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -197,6 +202,7 @@ func (s *SamplesWebhooks) ClientLatency(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_client_latency_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -230,6 +236,7 @@ func (s *SamplesWebhooks) ClientSessions(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_client_sessions_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -266,6 +273,7 @@ func (s *SamplesWebhooks) DeviceEvents(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_device_events_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -299,6 +307,7 @@ func (s *SamplesWebhooks) DeviceUpDown(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_device_updowns_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -332,6 +341,7 @@ func (s *SamplesWebhooks) DiscoveredRawRssi(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_discovered_raw_rssi_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -365,6 +375,7 @@ func (s *SamplesWebhooks) Location(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_location_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -398,6 +409,7 @@ func (s *SamplesWebhooks) LocationAsset(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_location_asset_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -431,6 +443,7 @@ func (s *SamplesWebhooks) LocationCentrak(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_location_centrak_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -464,6 +477,7 @@ func (s *SamplesWebhooks) LocationClient(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_location_client_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -497,6 +511,7 @@ func (s *SamplesWebhooks) LocationSdk(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_location_sdk_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -530,6 +545,7 @@ func (s *SamplesWebhooks) LocationUnclient(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_location_unclient_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -563,6 +579,7 @@ func (s *SamplesWebhooks) NacAccounting(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_nac_accounting_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -595,6 +612,7 @@ func (s *SamplesWebhooks) NacEvents(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_nac_events_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -628,6 +646,7 @@ func (s *SamplesWebhooks) OccupancyAlerts(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_occupancy_alerts_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -661,6 +680,7 @@ func (s *SamplesWebhooks) Ping(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_ping_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -694,6 +714,7 @@ func (s *SamplesWebhooks) SdkclientScanData(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_sdkclient_scan_data")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -727,6 +748,7 @@ func (s *SamplesWebhooks) SiteSle(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_site_sle_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -760,6 +782,7 @@ func (s *SamplesWebhooks) Zone(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/webhook_example/_zone_")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // IdpProfileMatching represents a IdpProfileMatching struct.
@@ -10,6 +11,14 @@ type IdpProfileMatching struct {
     DstSubnet            []string                              `json:"dst_subnet,omitempty"`
     Severity             []IdpProfileMatchingSeverityValueEnum `json:"severity,omitempty"`
     AdditionalProperties map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for IdpProfileMatching,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i IdpProfileMatching) String() string {
+    return fmt.Sprintf(
+    	"IdpProfileMatching[AttackName=%v, DstSubnet=%v, Severity=%v, AdditionalProperties=%v]",
+    	i.AttackName, i.DstSubnet, i.Severity, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IdpProfileMatching.

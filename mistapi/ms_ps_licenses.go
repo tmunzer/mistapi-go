@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -33,7 +32,8 @@ func (m *MSPsLicenses) ClaimMspLicence(
     body *models.CodeString) (
     models.ApiResponse[models.ResponseClaimLicense],
     error) {
-    req := m.prepareRequest(ctx, "POST", fmt.Sprintf("/api/v1/msps/%v/claim", mspId))
+    req := m.prepareRequest(ctx, "POST", "/api/v1/msps/%v/claim")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -76,11 +76,8 @@ func (m *MSPsLicenses) ListMspLicenses(
     mspId uuid.UUID) (
     models.ApiResponse[models.License],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/licenses", mspId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/licenses")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -120,11 +117,8 @@ func (m *MSPsLicenses) MoveOrDeleteMspLicenseToAnotherOrg(
     body *models.MspLicenseAction) (
     *http.Response,
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/msps/%v/licenses", mspId),
-    )
+    req := m.prepareRequest(ctx, "PUT", "/api/v1/msps/%v/licenses")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -164,11 +158,8 @@ func (m *MSPsLicenses) ListMspOrgLicenses(
     mspId uuid.UUID) (
     models.ApiResponse[models.License],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/stats/licenses", mspId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/stats/licenses")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

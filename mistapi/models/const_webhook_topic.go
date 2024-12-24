@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstWebhookTopic represents a ConstWebhookTopic struct.
@@ -15,6 +16,14 @@ type ConstWebhookTopic struct {
     // webhook topic name
     Key                  *string                `json:"key,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstWebhookTopic,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstWebhookTopic) String() string {
+    return fmt.Sprintf(
+    	"ConstWebhookTopic[ForOrg=%v, HasDeliveryResults=%v, Internal=%v, Key=%v, AdditionalProperties=%v]",
+    	c.ForOrg, c.HasDeliveryResults, c.Internal, c.Key, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstWebhookTopic.

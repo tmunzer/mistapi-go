@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type ResponseDswitchesMetrics struct {
     SwitchApAffinity     DswitchesMetricsSwitchApAffinity   `json:"switch_ap_affinity"`
     VersionCompliance    DswitchesMetricsVersionCompliance  `json:"version_compliance"`
     AdditionalProperties map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseDswitchesMetrics,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseDswitchesMetrics) String() string {
+    return fmt.Sprintf(
+    	"ResponseDswitchesMetrics[InactiveWiredVlans=%v, PoeCompliance=%v, SwitchApAffinity=%v, VersionCompliance=%v, AdditionalProperties=%v]",
+    	r.InactiveWiredVlans, r.PoeCompliance, r.SwitchApAffinity, r.VersionCompliance, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDswitchesMetrics.

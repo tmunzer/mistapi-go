@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // CaptureGatewayGateways represents a CaptureGatewayGateways struct.
@@ -9,6 +10,14 @@ type CaptureGatewayGateways struct {
     // Property key is the port ID
     Ports                map[string]CaptureGatewayGatewaysPort `json:"ports,omitempty"`
     AdditionalProperties map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureGatewayGateways,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureGatewayGateways) String() string {
+    return fmt.Sprintf(
+    	"CaptureGatewayGateways[Ports=%v, AdditionalProperties=%v]",
+    	c.Ports, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureGatewayGateways.

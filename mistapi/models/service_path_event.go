@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -20,6 +21,14 @@ type ServicePathEvent struct {
     VpnName              *string                `json:"vpn_name,omitempty"`
     VpnPath              *string                `json:"vpn_path,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ServicePathEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s ServicePathEvent) String() string {
+    return fmt.Sprintf(
+    	"ServicePathEvent[Mac=%v, Model=%v, OrgId=%v, Policy=%v, PortId=%v, SiteId=%v, Text=%v, Timestamp=%v, Type=%v, Version=%v, VpnName=%v, VpnPath=%v, AdditionalProperties=%v]",
+    	s.Mac, s.Model, s.OrgId, s.Policy, s.PortId, s.SiteId, s.Text, s.Timestamp, s.Type, s.Version, s.VpnName, s.VpnPath, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServicePathEvent.

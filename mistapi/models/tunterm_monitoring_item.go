@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // TuntermMonitoringItem represents a TuntermMonitoringItem struct.
@@ -16,6 +17,14 @@ type TuntermMonitoringItem struct {
     SrcVlanId            *int                           `json:"src_vlan_id,omitempty"`
     Timeout              *int                           `json:"timeout,omitempty"`
     AdditionalProperties map[string]interface{}         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TuntermMonitoringItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TuntermMonitoringItem) String() string {
+    return fmt.Sprintf(
+    	"TuntermMonitoringItem[Host=%v, Port=%v, Protocol=%v, SrcVlanId=%v, Timeout=%v, AdditionalProperties=%v]",
+    	t.Host, t.Port, t.Protocol, t.SrcVlanId, t.Timeout, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TuntermMonitoringItem.

@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // CaptureSite represents a CaptureSite struct.
@@ -20,12 +20,10 @@ type CaptureSite struct {
     isCaptureWireless      bool
 }
 
-// String converts the CaptureSite object to a string representation.
+// String implements the fmt.Stringer interface for CaptureSite,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c CaptureSite) String() string {
-    if bytes, err := json.Marshal(c.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", c.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureSite.

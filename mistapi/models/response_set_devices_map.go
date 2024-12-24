@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseSetDevicesMap represents a ResponseSetDevicesMap struct.
@@ -9,6 +10,14 @@ type ResponseSetDevicesMap struct {
     Locked               []string               `json:"locked,omitempty"`
     Moved                []string               `json:"moved,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSetDevicesMap,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSetDevicesMap) String() string {
+    return fmt.Sprintf(
+    	"ResponseSetDevicesMap[Locked=%v, Moved=%v, AdditionalProperties=%v]",
+    	r.Locked, r.Moved, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSetDevicesMap.

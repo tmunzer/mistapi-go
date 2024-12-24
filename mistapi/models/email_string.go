@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type EmailString struct {
     Email                string                 `json:"email"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EmailString,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EmailString) String() string {
+    return fmt.Sprintf(
+    	"EmailString[Email=%v, AdditionalProperties=%v]",
+    	e.Email, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EmailString.

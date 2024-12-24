@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,7 +31,8 @@ func (m *MSPsSSO) ListMspSsos(
     mspId uuid.UUID) (
     models.ApiResponse[[]models.Sso],
     error) {
-    req := m.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/msps/%v/ssos", mspId))
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -72,7 +72,8 @@ func (m *MSPsSSO) CreateMspSso(
     body *models.Sso) (
     models.ApiResponse[models.Sso],
     error) {
-    req := m.prepareRequest(ctx, "POST", fmt.Sprintf("/api/v1/msps/%v/ssos", mspId))
+    req := m.prepareRequest(ctx, "POST", "/api/v1/msps/%v/ssos")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -116,11 +117,8 @@ func (m *MSPsSSO) DeleteMspSso(
     ssoId uuid.UUID) (
     *http.Response,
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/msps/%v/ssos/%v", mspId, ssoId),
-    )
+    req := m.prepareRequest(ctx, "DELETE", "/api/v1/msps/%v/ssos/%v")
+    req.AppendTemplateParams(mspId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -157,11 +155,8 @@ func (m *MSPsSSO) GetMspSso(
     ssoId uuid.UUID) (
     models.ApiResponse[models.Sso],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/ssos/%v", mspId, ssoId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v")
+    req.AppendTemplateParams(mspId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -202,11 +197,8 @@ func (m *MSPsSSO) UpdateMspSso(
     body *models.Sso) (
     models.ApiResponse[models.Sso],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/msps/%v/ssos/%v", mspId, ssoId),
-    )
+    req := m.prepareRequest(ctx, "PUT", "/api/v1/msps/%v/ssos/%v")
+    req.AppendTemplateParams(mspId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -250,11 +242,8 @@ func (m *MSPsSSO) ListMspSsoLatestFailures(
     ssoId uuid.UUID) (
     models.ApiResponse[models.ResponseSsoFailureSearch],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/ssos/%v/failures", mspId, ssoId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v/failures")
+    req.AppendTemplateParams(mspId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -294,11 +283,8 @@ func (m *MSPsSSO) GetMspSamlMetadata(
     ssoId uuid.UUID) (
     models.ApiResponse[models.SamlMetadata],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/ssos/%v/metadata", mspId, ssoId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v/metadata")
+    req.AppendTemplateParams(mspId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -354,11 +340,8 @@ func (m *MSPsSSO) DownloadMspSamlMetadata(
     ssoId uuid.UUID) (
     models.ApiResponse[[]byte],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/ssos/%v/metadata.xml", mspId, ssoId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v/metadata.xml")
+    req.AppendTemplateParams(mspId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

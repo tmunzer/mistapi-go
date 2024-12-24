@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgCrlImportFile represents a OrgCrlImportFile struct.
@@ -11,6 +12,14 @@ type OrgCrlImportFile struct {
     // a JSON string with "name" field for CRL file issuer (optional)
     Json                 *string                `json:"json,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgCrlImportFile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgCrlImportFile) String() string {
+    return fmt.Sprintf(
+    	"OrgCrlImportFile[File=%v, Json=%v, AdditionalProperties=%v]",
+    	o.File, o.Json, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgCrlImportFile.

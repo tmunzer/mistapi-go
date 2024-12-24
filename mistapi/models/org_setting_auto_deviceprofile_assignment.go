@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingAutoDeviceprofileAssignment represents a OrgSettingAutoDeviceprofileAssignment struct.
@@ -9,6 +10,14 @@ type OrgSettingAutoDeviceprofileAssignment struct {
     Enable               *bool                    `json:"enable,omitempty"`
     Rules                Optional[[]OrgAutoRules] `json:"rules"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingAutoDeviceprofileAssignment,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingAutoDeviceprofileAssignment) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingAutoDeviceprofileAssignment[Enable=%v, Rules=%v, AdditionalProperties=%v]",
+    	o.Enable, o.Rules, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingAutoDeviceprofileAssignment.

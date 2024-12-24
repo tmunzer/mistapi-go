@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -19,6 +20,14 @@ type MxclusterNacClientIp struct {
     // enum: `aruba`, `cisco-aironet`, `cisco-ios`, `cisco-meraki`, `generic`, `juniper`, `paloalto`
     Vendor                      *MxclusterNacClientVendorEnum `json:"vendor,omitempty"`
     AdditionalProperties        map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxclusterNacClientIp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxclusterNacClientIp) String() string {
+    return fmt.Sprintf(
+    	"MxclusterNacClientIp[RequireMessageAuthenticator=%v, Secret=%v, SiteId=%v, Vendor=%v, AdditionalProperties=%v]",
+    	m.RequireMessageAuthenticator, m.Secret, m.SiteId, m.Vendor, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterNacClientIp.

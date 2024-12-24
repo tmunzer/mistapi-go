@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type CountResult struct {
     Count                int               `json:"count"`
     AdditionalProperties map[string]string `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CountResult,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CountResult) String() string {
+    return fmt.Sprintf(
+    	"CountResult[Count=%v, AdditionalProperties=%v]",
+    	c.Count, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CountResult.

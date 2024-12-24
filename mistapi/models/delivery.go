@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -18,6 +19,14 @@ type Delivery struct {
     // Whether to deliver the alarms via emails to Site admins or not
     ToSiteAdmins         *bool                  `json:"to_site_admins,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Delivery,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d Delivery) String() string {
+    return fmt.Sprintf(
+    	"Delivery[AdditionalEmails=%v, Enabled=%v, ToOrgAdmins=%v, ToSiteAdmins=%v, AdditionalProperties=%v]",
+    	d.AdditionalEmails, d.Enabled, d.ToOrgAdmins, d.ToSiteAdmins, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Delivery.

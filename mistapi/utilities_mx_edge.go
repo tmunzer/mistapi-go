@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (u *UtilitiesMxEdge) PreemptSitesMxTunnel(
     mxtunnelId uuid.UUID) (
     models.ApiResponse[models.ResponseMxtunnelsPreemptAps],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/mxtunnels/%v/preempt_aps", siteId, mxtunnelId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/mxtunnels/%v/preempt_aps")
+    req.AppendTemplateParams(siteId, mxtunnelId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

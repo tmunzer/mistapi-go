@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AppProbing represents a AppProbing struct.
@@ -11,6 +12,14 @@ type AppProbing struct {
     CustomApps           []AppProbingCustomApp  `json:"custom_apps,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AppProbing,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AppProbing) String() string {
+    return fmt.Sprintf(
+    	"AppProbing[Apps=%v, CustomApps=%v, Enabled=%v, AdditionalProperties=%v]",
+    	a.Apps, a.CustomApps, a.Enabled, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AppProbing.

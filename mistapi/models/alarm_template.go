@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -24,6 +25,14 @@ type AlarmTemplate struct {
     // Alarm Rules object to configure the individual alarm keys/types. Property key is the alarm name.
     Rules                map[string]AlarmTemplateRule `json:"rules"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AlarmTemplate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AlarmTemplate) String() string {
+    return fmt.Sprintf(
+    	"AlarmTemplate[CreatedTime=%v, Delivery=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Rules=%v, AdditionalProperties=%v]",
+    	a.CreatedTime, a.Delivery, a.Id, a.ModifiedTime, a.Name, a.OrgId, a.Rules, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AlarmTemplate.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RrmNeighborsNeighbor represents a RrmNeighborsNeighbor struct.
@@ -9,6 +10,14 @@ type RrmNeighborsNeighbor struct {
     Mac                  *string                `json:"mac,omitempty"`
     Rssi                 *int                   `json:"rssi,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RrmNeighborsNeighbor,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RrmNeighborsNeighbor) String() string {
+    return fmt.Sprintf(
+    	"RrmNeighborsNeighbor[Mac=%v, Rssi=%v, AdditionalProperties=%v]",
+    	r.Mac, r.Rssi, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmNeighborsNeighbor.

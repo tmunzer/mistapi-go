@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type DswitchesMetricsSwitchApAffinityDetails struct {
     SystemName           []string               `json:"system_name"`
     Threshold            float64                `json:"threshold"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DswitchesMetricsSwitchApAffinityDetails,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DswitchesMetricsSwitchApAffinityDetails) String() string {
+    return fmt.Sprintf(
+    	"DswitchesMetricsSwitchApAffinityDetails[SystemName=%v, Threshold=%v, AdditionalProperties=%v]",
+    	d.SystemName, d.Threshold, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DswitchesMetricsSwitchApAffinityDetails.

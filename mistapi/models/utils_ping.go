@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -16,6 +17,14 @@ type UtilsPing struct {
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     Size                 *int                   `json:"size,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsPing,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsPing) String() string {
+    return fmt.Sprintf(
+    	"UtilsPing[Count=%v, EgressInterface=%v, Host=%v, Node=%v, Size=%v, AdditionalProperties=%v]",
+    	u.Count, u.EgressInterface, u.Host, u.Node, u.Size, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsPing.

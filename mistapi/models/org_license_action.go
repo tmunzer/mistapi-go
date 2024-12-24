@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -22,6 +23,14 @@ type OrgLicenseAction struct {
     // if `op`==`amend` or `op`==`delete`, the ID of the subscription to use
     SubscriptionId       *string                       `json:"subscription_id,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgLicenseAction,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgLicenseAction) String() string {
+    return fmt.Sprintf(
+    	"OrgLicenseAction[AmendmentId=%v, DstOrgId=%v, Notes=%v, Op=%v, Quantity=%v, SubscriptionId=%v, AdditionalProperties=%v]",
+    	o.AmendmentId, o.DstOrgId, o.Notes, o.Op, o.Quantity, o.SubscriptionId, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgLicenseAction.

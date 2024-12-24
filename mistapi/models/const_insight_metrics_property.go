@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstInsightMetricsProperty represents a ConstInsightMetricsProperty struct.
@@ -24,6 +25,14 @@ type ConstInsightMetricsProperty struct {
     Unit                 *string                                              `json:"unit,omitempty"`
     Values               *interface{}                                         `json:"values,omitempty"`
     AdditionalProperties map[string]interface{}                               `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstInsightMetricsProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstInsightMetricsProperty) String() string {
+    return fmt.Sprintf(
+    	"ConstInsightMetricsProperty[Ctype=%v, Description=%v, Example=%v, Intervals=%v, Keys=%v, Params=%v, ReportDuration=%v, ReportScopes=%v, Scopes=%v, SleBaselined=%v, SleClassifiers=%v, Type=%v, Unit=%v, Values=%v, AdditionalProperties=%v]",
+    	c.Ctype, c.Description, c.Example, c.Intervals, c.Keys, c.Params, c.ReportDuration, c.ReportScopes, c.Scopes, c.SleBaselined, c.SleClassifiers, c.Type, c.Unit, c.Values, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstInsightMetricsProperty.

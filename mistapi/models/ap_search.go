@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -63,6 +64,14 @@ type ApSearch struct {
     Version              *string                `json:"version,omitempty"`
     Wlans                []ApSearchWlan         `json:"wlans"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApSearch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApSearch) String() string {
+    return fmt.Sprintf(
+    	"ApSearch[Band24Bandwidth=%v, Band24Channel=%v, Band24Power=%v, Band5Bandwidth=%v, Band5Channel=%v, Band5Power=%v, Band6Bandwidth=%v, Band6Channel=%v, Band6Power=%v, Eth0PortSpeed=%v, ExtIp=%v, Hostname=%v, InactiveWiredVlans=%v, Ip=%v, LastHostname=%v, LldpMgmtAddr=%v, LldpPortDesc=%v, LldpPortId=%v, LldpPowerAllocated=%v, LldpPowerDraw=%v, LldpSystemDesc=%v, LldpSystemName=%v, Mac=%v, Model=%v, MxedgeId=%v, MxedgeIds=%v, MxtunnelStatus=%v, OrgId=%v, PowerConstrained=%v, PowerOpmode=%v, SiteId=%v, Sku=%v, Timestamp=%v, Uptime=%v, Version=%v, Wlans=%v, AdditionalProperties=%v]",
+    	a.Band24Bandwidth, a.Band24Channel, a.Band24Power, a.Band5Bandwidth, a.Band5Channel, a.Band5Power, a.Band6Bandwidth, a.Band6Channel, a.Band6Power, a.Eth0PortSpeed, a.ExtIp, a.Hostname, a.InactiveWiredVlans, a.Ip, a.LastHostname, a.LldpMgmtAddr, a.LldpPortDesc, a.LldpPortId, a.LldpPowerAllocated, a.LldpPowerDraw, a.LldpSystemDesc, a.LldpSystemName, a.Mac, a.Model, a.MxedgeId, a.MxedgeIds, a.MxtunnelStatus, a.OrgId, a.PowerConstrained, a.PowerOpmode, a.SiteId, a.Sku, a.Timestamp, a.Uptime, a.Version, a.Wlans, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApSearch.

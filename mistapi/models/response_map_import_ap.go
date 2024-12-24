@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -18,6 +19,14 @@ type ResponseMapImportAp struct {
     Orientation          int                           `json:"orientation"`
     Reason               *string                       `json:"reason,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseMapImportAp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseMapImportAp) String() string {
+    return fmt.Sprintf(
+    	"ResponseMapImportAp[Action=%v, FloorplanId=%v, Height=%v, Mac=%v, MapId=%v, Orientation=%v, Reason=%v, AdditionalProperties=%v]",
+    	r.Action, r.FloorplanId, r.Height, r.Mac, r.MapId, r.Orientation, r.Reason, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMapImportAp.

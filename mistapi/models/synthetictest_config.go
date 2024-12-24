@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SynthetictestConfig represents a SynthetictestConfig struct.
@@ -10,6 +11,14 @@ type SynthetictestConfig struct {
     Vlans                []SynthetictestProperties        `json:"vlans,omitempty"`
     WanSpeedtest         *SynthetictestConfigWanSpeedtest `json:"wan_speedtest,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SynthetictestConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SynthetictestConfig) String() string {
+    return fmt.Sprintf(
+    	"SynthetictestConfig[Disabled=%v, Vlans=%v, WanSpeedtest=%v, AdditionalProperties=%v]",
+    	s.Disabled, s.Vlans, s.WanSpeedtest, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestConfig.

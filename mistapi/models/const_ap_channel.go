@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstApChannel represents a ConstApChannel struct.
@@ -25,6 +26,14 @@ type ConstApChannel struct {
     Name                 *string                `json:"name,omitempty"`
     Uses                 *string                `json:"uses,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstApChannel,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstApChannel) String() string {
+    return fmt.Sprintf(
+    	"ConstApChannel[Band2440mhzAllowed=%v, Band24Channels=%v, Band24Enabled=%v, Band5Channels=%v, Band5Enabled=%v, Band6Channels=%v, Band6Enabled=%v, Certified=%v, Code=%v, DfsOk=%v, Key=%v, Name=%v, Uses=%v, AdditionalProperties=%v]",
+    	c.Band2440mhzAllowed, c.Band24Channels, c.Band24Enabled, c.Band5Channels, c.Band5Enabled, c.Band6Channels, c.Band6Enabled, c.Certified, c.Code, c.DfsOk, c.Key, c.Name, c.Uses, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstApChannel.

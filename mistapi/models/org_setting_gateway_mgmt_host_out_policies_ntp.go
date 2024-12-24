@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingGatewayMgmtHostOutPoliciesNtp represents a OrgSettingGatewayMgmtHostOutPoliciesNtp struct.
 type OrgSettingGatewayMgmtHostOutPoliciesNtp struct {
     PathPreference       *string                `json:"path_preference,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingGatewayMgmtHostOutPoliciesNtp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingGatewayMgmtHostOutPoliciesNtp) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingGatewayMgmtHostOutPoliciesNtp[PathPreference=%v, AdditionalProperties=%v]",
+    	o.PathPreference, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingGatewayMgmtHostOutPoliciesNtp.

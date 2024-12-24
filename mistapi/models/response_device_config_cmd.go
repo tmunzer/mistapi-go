@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type ResponseDeviceConfigCmd struct {
     Cmd                  string                 `json:"cmd"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseDeviceConfigCmd,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseDeviceConfigCmd) String() string {
+    return fmt.Sprintf(
+    	"ResponseDeviceConfigCmd[Cmd=%v, AdditionalProperties=%v]",
+    	r.Cmd, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceConfigCmd.

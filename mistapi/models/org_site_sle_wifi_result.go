@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -21,6 +22,14 @@ type OrgSiteSleWifiResult struct {
     Throughput           *float64               `json:"throughput,omitempty"`
     TimeToConnect        *float64               `json:"time-to-connect,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSiteSleWifiResult,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSiteSleWifiResult) String() string {
+    return fmt.Sprintf(
+    	"OrgSiteSleWifiResult[ApAvailability=%v, ApHealth=%v, Capacity=%v, Coverage=%v, NumAps=%v, NumClients=%v, Roaming=%v, SiteId=%v, SuccessfulConnect=%v, Throughput=%v, TimeToConnect=%v, AdditionalProperties=%v]",
+    	o.ApAvailability, o.ApHealth, o.Capacity, o.Coverage, o.NumAps, o.NumClients, o.Roaming, o.SiteId, o.SuccessfulConnect, o.Throughput, o.TimeToConnect, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSiteSleWifiResult.

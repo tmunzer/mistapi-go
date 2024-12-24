@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (o *OrgsPskPortals) ListOrgPskPortals(
     page *int) (
     models.ApiResponse[[]models.PskPortal],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/pskportals")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -84,11 +80,8 @@ func (o *OrgsPskPortals) CreateOrgPskPortal(
     body *models.PskPortal) (
     models.ApiResponse[models.PskPortal],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/pskportals")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -136,11 +129,8 @@ func (o *OrgsPskPortals) ListOrgPskPortalLogs(
     page *int) (
     models.ApiResponse[models.ResponsePskPortalLogsSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals/logs", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/pskportals/logs")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -200,11 +190,8 @@ func (o *OrgsPskPortals) CountOrgPskPortalLogs(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals/logs/count", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/pskportals/logs/count")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -273,11 +260,8 @@ func (o *OrgsPskPortals) SearchOrgPskPortalLogs(
     nameId *uuid.UUID) (
     models.ApiResponse[models.ResponsePskPortalLogsSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals/logs/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/pskportals/logs/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -353,11 +337,8 @@ func (o *OrgsPskPortals) DeleteOrgPskPortal(
     pskportalId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals/%v", orgId, pskportalId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/pskportals/%v")
+    req.AppendTemplateParams(orgId, pskportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -394,11 +375,8 @@ func (o *OrgsPskPortals) GetOrgPskPortal(
     pskportalId uuid.UUID) (
     models.ApiResponse[models.PskPortal],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals/%v", orgId, pskportalId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/pskportals/%v")
+    req.AppendTemplateParams(orgId, pskportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -439,11 +417,8 @@ func (o *OrgsPskPortals) UpdateOrgPskPortal(
     body *models.PskPortal) (
     models.ApiResponse[models.PskPortal],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals/%v", orgId, pskportalId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/pskportals/%v")
+    req.AppendTemplateParams(orgId, pskportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -491,8 +466,9 @@ func (o *OrgsPskPortals) DeleteOrgPskPortalImage(
     req := o.prepareRequest(
       ctx,
       "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals/%v/portal_image", orgId, pskportalId),
+      "/api/v1/orgs/%v/pskportals/%v/portal_image",
     )
+    req.AppendTemplateParams(orgId, pskportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -534,8 +510,9 @@ func (o *OrgsPskPortals) UploadOrgPskPortalImage(
     req := o.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals/%v/portal_image", orgId, pskportalId),
+      "/api/v1/orgs/%v/pskportals/%v/portal_image",
     )
+    req.AppendTemplateParams(orgId, pskportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -586,8 +563,9 @@ func (o *OrgsPskPortals) UpdateOrgPskPortalTemplate(
     req := o.prepareRequest(
       ctx,
       "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/pskportals/%v/portal_template", orgId, pskportalId),
+      "/api/v1/orgs/%v/pskportals/%v/portal_template",
     )
+    req.AppendTemplateParams(orgId, pskportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

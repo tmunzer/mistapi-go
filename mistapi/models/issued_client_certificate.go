@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -15,6 +16,14 @@ type IssuedClientCertificate struct {
     SerialNumber         *string                `json:"serial_number,omitempty"`
     SsoNameId            *string                `json:"sso_name_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for IssuedClientCertificate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i IssuedClientCertificate) String() string {
+    return fmt.Sprintf(
+    	"IssuedClientCertificate[CreatedTime=%v, DeviceId=%v, ModifiedTime=%v, SerialNumber=%v, SsoNameId=%v, AdditionalProperties=%v]",
+    	i.CreatedTime, i.DeviceId, i.ModifiedTime, i.SerialNumber, i.SsoNameId, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IssuedClientCertificate.

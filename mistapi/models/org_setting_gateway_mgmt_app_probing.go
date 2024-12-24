@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingGatewayMgmtAppProbing represents a OrgSettingGatewayMgmtAppProbing struct.
@@ -9,6 +10,14 @@ type OrgSettingGatewayMgmtAppProbing struct {
     // app-keys from /api/v1/const/applications
     Apps                 []string               `json:"apps,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingGatewayMgmtAppProbing,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingGatewayMgmtAppProbing) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingGatewayMgmtAppProbing[Apps=%v, AdditionalProperties=%v]",
+    	o.Apps, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingGatewayMgmtAppProbing.

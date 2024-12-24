@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type UtilsShowDhcpLeases struct {
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsShowDhcpLeases,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsShowDhcpLeases) String() string {
+    return fmt.Sprintf(
+    	"UtilsShowDhcpLeases[Network=%v, Node=%v, AdditionalProperties=%v]",
+    	u.Network, u.Node, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowDhcpLeases.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -18,6 +19,14 @@ type SleImpactedUsers struct {
     TotalCount           float64                `json:"total_count"`
     Users                []SleImpactedUsersUser `json:"users"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleImpactedUsers,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleImpactedUsers) String() string {
+    return fmt.Sprintf(
+    	"SleImpactedUsers[Classifier=%v, End=%v, Failure=%v, Limit=%v, Metric=%v, Page=%v, Start=%v, TotalCount=%v, Users=%v, AdditionalProperties=%v]",
+    	s.Classifier, s.End, s.Failure, s.Limit, s.Metric, s.Page, s.Start, s.TotalCount, s.Users, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedUsers.

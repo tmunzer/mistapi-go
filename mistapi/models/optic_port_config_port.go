@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OpticPortConfigPort represents a OpticPortConfigPort struct.
@@ -11,6 +12,14 @@ type OpticPortConfigPort struct {
     // interface speed (e.g. `25g`, `50g`), use the chassis speed by default
     Speed                *string                `json:"speed,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OpticPortConfigPort,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OpticPortConfigPort) String() string {
+    return fmt.Sprintf(
+    	"OpticPortConfigPort[Channelized=%v, Speed=%v, AdditionalProperties=%v]",
+    	o.Channelized, o.Speed, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OpticPortConfigPort.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -16,6 +17,14 @@ type MxedgeEvent struct {
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Type                 *string                `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeEvent) String() string {
+    return fmt.Sprintf(
+    	"MxedgeEvent[Component=%v, MxclusterId=%v, MxedgeId=%v, OrgId=%v, Service=%v, Timestamp=%v, Type=%v, AdditionalProperties=%v]",
+    	m.Component, m.MxclusterId, m.MxedgeId, m.OrgId, m.Service, m.Timestamp, m.Type, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeEvent.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // InventorySearch represents a InventorySearch struct.
@@ -10,6 +11,14 @@ type InventorySearch struct {
     Page                 *int                    `json:"page,omitempty"`
     Results              []InventorySearchResult `json:"results,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for InventorySearch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i InventorySearch) String() string {
+    return fmt.Sprintf(
+    	"InventorySearch[Limit=%v, Page=%v, Results=%v, AdditionalProperties=%v]",
+    	i.Limit, i.Page, i.Results, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InventorySearch.

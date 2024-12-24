@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (o *OrgsSitegroups) ListOrgSiteGroups(
     page *int) (
     models.ApiResponse[[]models.Sitegroup],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/sitegroups", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/sitegroups")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -84,11 +80,8 @@ func (o *OrgsSitegroups) CreateOrgSiteGroup(
     body *models.Sitegroup) (
     models.ApiResponse[models.Sitegroup],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/sitegroups", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/sitegroups")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -132,11 +125,8 @@ func (o *OrgsSitegroups) DeleteOrgSiteGroup(
     sitegroupId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/sitegroups/%v", orgId, sitegroupId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/sitegroups/%v")
+    req.AppendTemplateParams(orgId, sitegroupId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -173,11 +163,8 @@ func (o *OrgsSitegroups) GetOrgSiteGroup(
     sitegroupId uuid.UUID) (
     models.ApiResponse[models.Sitegroup],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/sitegroups/%v", orgId, sitegroupId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/sitegroups/%v")
+    req.AppendTemplateParams(orgId, sitegroupId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -218,11 +205,8 @@ func (o *OrgsSitegroups) UpdateOrgSiteGroup(
     body *models.NameString) (
     models.ApiResponse[models.Sitegroup],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/sitegroups/%v", orgId, sitegroupId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/sitegroups/%v")
+    req.AppendTemplateParams(orgId, sitegroupId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -18,6 +19,14 @@ type MapMicello struct {
     // the vendor ‘micello’. enum: `micello`
     VendorName           string                 `json:"vendor_name"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapMicello,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapMicello) String() string {
+    return fmt.Sprintf(
+    	"MapMicello[AccountKey=%v, DefaultLevelId=%v, MapId=%v, VendorName=%v, AdditionalProperties=%v]",
+    	m.AccountKey, m.DefaultLevelId, m.MapId, m.VendorName, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapMicello.

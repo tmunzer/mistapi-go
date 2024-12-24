@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -100,6 +101,14 @@ type StatsAp struct {
     X                    Optional[float64]                             `json:"x"`
     Y                    Optional[float64]                             `json:"y"`
     AdditionalProperties map[string]interface{}                        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsAp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsAp) String() string {
+    return fmt.Sprintf(
+    	"StatsAp[AutoPlacement=%v, AutoUpgradeStat=%v, BleStat=%v, CertExpiry=%v, ConfigReverted=%v, CpuSystem=%v, CpuUtil=%v, CreatedTime=%v, DeviceprofileId=%v, EnvStat=%v, EslStat=%v, EvpntopoId=%v, ExtIp=%v, Fwupdate=%v, Gps=%v, HwRev=%v, Id=%v, InactiveWiredVlans=%v, IotStat=%v, Ip=%v, IpConfig=%v, IpStat=%v, L2tpStat=%v, LastSeen=%v, LastTrouble=%v, Led=%v, LldpStat=%v, Locating=%v, Locked=%v, Mac=%v, MapId=%v, MemUsedKb=%v, MeshDownlinks=%v, MeshUplink=%v, Model=%v, ModifiedTime=%v, Mount=%v, Name=%v, Notes=%v, NumClients=%v, NumWlans=%v, OrgId=%v, PortStat=%v, PowerBudget=%v, PowerConstrained=%v, PowerOpmode=%v, PowerSrc=%v, RadioConfig=%v, RadioStat=%v, RxBps=%v, RxBytes=%v, RxPkts=%v, Serial=%v, SiteId=%v, Status=%v, SwitchRedundancy=%v, TxBps=%v, TxBytes=%v, TxPkts=%v, Type=%v, Uptime=%v, UsbStat=%v, Version=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	s.AutoPlacement, s.AutoUpgradeStat, s.BleStat, s.CertExpiry, s.ConfigReverted, s.CpuSystem, s.CpuUtil, s.CreatedTime, s.DeviceprofileId, s.EnvStat, s.EslStat, s.EvpntopoId, s.ExtIp, s.Fwupdate, s.Gps, s.HwRev, s.Id, s.InactiveWiredVlans, s.IotStat, s.Ip, s.IpConfig, s.IpStat, s.L2tpStat, s.LastSeen, s.LastTrouble, s.Led, s.LldpStat, s.Locating, s.Locked, s.Mac, s.MapId, s.MemUsedKb, s.MeshDownlinks, s.MeshUplink, s.Model, s.ModifiedTime, s.Mount, s.Name, s.Notes, s.NumClients, s.NumWlans, s.OrgId, s.PortStat, s.PowerBudget, s.PowerConstrained, s.PowerOpmode, s.PowerSrc, s.RadioConfig, s.RadioStat, s.RxBps, s.RxBytes, s.RxPkts, s.Serial, s.SiteId, s.Status, s.SwitchRedundancy, s.TxBps, s.TxBytes, s.TxPkts, s.Type, s.Uptime, s.UsbStat, s.Version, s.X, s.Y, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsAp.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // DiscoveredSwitchMetricAp represents a DiscoveredSwitchMetricAp struct.
@@ -14,6 +15,14 @@ type DiscoveredSwitchMetricAp struct {
     PowerDraw            *int                   `json:"power_draw,omitempty"`
     When                 *string                `json:"when,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DiscoveredSwitchMetricAp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DiscoveredSwitchMetricAp) String() string {
+    return fmt.Sprintf(
+    	"DiscoveredSwitchMetricAp[Hostname=%v, Mac=%v, PoeStatus=%v, Port=%v, PortId=%v, PowerDraw=%v, When=%v, AdditionalProperties=%v]",
+    	d.Hostname, d.Mac, d.PoeStatus, d.Port, d.PortId, d.PowerDraw, d.When, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DiscoveredSwitchMetricAp.

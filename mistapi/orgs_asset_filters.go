@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -35,11 +34,8 @@ func (o *OrgsAssetFilters) ListOrgAssetFilters(
     page *int) (
     models.ApiResponse[[]models.AssetFilter],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/assetfilters", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/assetfilters")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -86,11 +82,8 @@ func (o *OrgsAssetFilters) CreateOrgAssetFilters(
     body *models.AssetFilter) (
     models.ApiResponse[models.AssetFilter],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/assetfilters", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/assetfilters")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -134,11 +127,8 @@ func (o *OrgsAssetFilters) DeleteOrgAssetFilter(
     assetfilterId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/assetfilters/%v", orgId, assetfilterId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/assetfilters/%v")
+    req.AppendTemplateParams(orgId, assetfilterId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -175,11 +165,8 @@ func (o *OrgsAssetFilters) GetOrgAssetFilter(
     assetfilterId uuid.UUID) (
     models.ApiResponse[models.AssetFilter],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/assetfilters/%v", orgId, assetfilterId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/assetfilters/%v")
+    req.AppendTemplateParams(orgId, assetfilterId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -220,11 +207,8 @@ func (o *OrgsAssetFilters) UpdateOrgAssetFilters(
     body *models.AssetFilter) (
     models.ApiResponse[models.AssetFilter],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/assetfilters/%v", orgId, assetfilterId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/assetfilters/%v")
+    req.AppendTemplateParams(orgId, assetfilterId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

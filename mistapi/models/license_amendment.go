@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -20,6 +21,14 @@ type LicenseAmendment struct {
     // enum: `SUB-AST`, `SUB-DATA`, `SUB-ENG`, `SUB-EX12`, `SUB-EX24`, `SUB-EX48`, `SUB-MAN`, `SUB-ME`, `SUB-PMA`, `SUB-SRX1`, `SUB-SRX2`, `SUB-SVNA`, `SUB-VNA`, `SUB-WAN1`, `SUB-WAN2`, `SUB-WVNA1`, `SUB-WVNA2`
     Type                 *LicenseTypeEnum       `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for LicenseAmendment,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (l LicenseAmendment) String() string {
+    return fmt.Sprintf(
+    	"LicenseAmendment[CreatedTime=%v, EndTime=%v, Id=%v, ModifiedTime=%v, Quantity=%v, StartTime=%v, SubscriptionId=%v, Type=%v, AdditionalProperties=%v]",
+    	l.CreatedTime, l.EndTime, l.Id, l.ModifiedTime, l.Quantity, l.StartTime, l.SubscriptionId, l.Type, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for LicenseAmendment.

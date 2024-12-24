@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ReponseRouter128tRegisterCmd represents a ReponseRouter128tRegisterCmd struct.
@@ -10,6 +11,14 @@ type ReponseRouter128tRegisterCmd struct {
     RegistrationCode     *string                `json:"registration_code,omitempty"`
     RouterShellCmd       *string                `json:"router_shell_cmd,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ReponseRouter128tRegisterCmd,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ReponseRouter128tRegisterCmd) String() string {
+    return fmt.Sprintf(
+    	"ReponseRouter128tRegisterCmd[ConductorCmd=%v, RegistrationCode=%v, RouterShellCmd=%v, AdditionalProperties=%v]",
+    	r.ConductorCmd, r.RegistrationCode, r.RouterShellCmd, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ReponseRouter128tRegisterCmd.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type AccountVmwareConfig struct {
     // customer account VMware instance URL
     InstanceUrl          string                 `json:"instance_url"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountVmwareConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountVmwareConfig) String() string {
+    return fmt.Sprintf(
+    	"AccountVmwareConfig[ClientId=%v, ClientSecret=%v, InstanceUrl=%v, AdditionalProperties=%v]",
+    	a.ClientId, a.ClientSecret, a.InstanceUrl, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountVmwareConfig.

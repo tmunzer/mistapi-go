@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VersionString represents a VersionString struct.
 type VersionString struct {
     Version              *string                `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VersionString,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VersionString) String() string {
+    return fmt.Sprintf(
+    	"VersionString[Version=%v, AdditionalProperties=%v]",
+    	v.Version, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VersionString.

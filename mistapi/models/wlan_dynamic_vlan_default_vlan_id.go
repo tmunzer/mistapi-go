@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // WlanDynamicVlanDefaultVlanId represents a WlanDynamicVlanDefaultVlanId struct.
@@ -14,12 +14,10 @@ type WlanDynamicVlanDefaultVlanId struct {
     isNumber bool
 }
 
-// String converts the WlanDynamicVlanDefaultVlanId object to a string representation.
+// String implements the fmt.Stringer interface for WlanDynamicVlanDefaultVlanId,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WlanDynamicVlanDefaultVlanId) String() string {
-    if bytes, err := json.Marshal(w.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", w.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDynamicVlanDefaultVlanId.

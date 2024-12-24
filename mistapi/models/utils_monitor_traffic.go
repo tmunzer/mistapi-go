@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsMonitorTraffic represents a UtilsMonitorTraffic struct.
@@ -9,6 +10,14 @@ type UtilsMonitorTraffic struct {
     // port name, if no port input is provided then all ports will be monitored
     Port                 *string                `json:"port,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsMonitorTraffic,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsMonitorTraffic) String() string {
+    return fmt.Sprintf(
+    	"UtilsMonitorTraffic[Port=%v, AdditionalProperties=%v]",
+    	u.Port, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsMonitorTraffic.

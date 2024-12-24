@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -24,6 +25,14 @@ type CaptureGateway struct {
     // enum: `gateway`
     Type                 string                                `json:"type"`
     AdditionalProperties map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureGateway,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureGateway) String() string {
+    return fmt.Sprintf(
+    	"CaptureGateway[Duration=%v, Format=%v, Gateways=%v, MaxPktLen=%v, NumPackets=%v, Ports=%v, Type=%v, AdditionalProperties=%v]",
+    	c.Duration, c.Format, c.Gateways, c.MaxPktLen, c.NumPackets, c.Ports, c.Type, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureGateway.

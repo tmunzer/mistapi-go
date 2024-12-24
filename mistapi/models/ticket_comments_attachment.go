@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -15,6 +16,14 @@ type TicketCommentsAttachment struct {
     Id                   *uuid.UUID             `json:"id,omitempty"`
     SizeInBytes          *int                   `json:"size_in_bytes,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TicketCommentsAttachment,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TicketCommentsAttachment) String() string {
+    return fmt.Sprintf(
+    	"TicketCommentsAttachment[ContentType=%v, ContentUrl=%v, CreatedAt=%v, FileName=%v, Id=%v, SizeInBytes=%v, AdditionalProperties=%v]",
+    	t.ContentType, t.ContentUrl, t.CreatedAt, t.FileName, t.Id, t.SizeInBytes, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TicketCommentsAttachment.

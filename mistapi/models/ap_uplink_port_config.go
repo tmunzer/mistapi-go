@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApUplinkPortConfig represents a ApUplinkPortConfig struct.
@@ -11,6 +12,14 @@ type ApUplinkPortConfig struct {
     // by default, WLANs are disabled when uplink is down. In some scenario, like SiteSurvey, one would want the AP to keep sending beacons.
     KeepWlansUpIfDown    *bool                  `json:"keep_wlans_up_if_down,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApUplinkPortConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApUplinkPortConfig) String() string {
+    return fmt.Sprintf(
+    	"ApUplinkPortConfig[Dot1x=%v, KeepWlansUpIfDown=%v, AdditionalProperties=%v]",
+    	a.Dot1x, a.KeepWlansUpIfDown, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApUplinkPortConfig.

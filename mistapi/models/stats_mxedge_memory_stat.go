@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsMxedgeMemoryStat represents a StatsMxedgeMemoryStat struct.
@@ -29,6 +30,14 @@ type StatsMxedgeMemoryStat struct {
     Total                *int64                 `json:"total,omitempty"`
     Usage                *int                   `json:"usage,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxedgeMemoryStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxedgeMemoryStat) String() string {
+    return fmt.Sprintf(
+    	"StatsMxedgeMemoryStat[Active=%v, Available=%v, Buffers=%v, Cached=%v, Free=%v, Inactive=%v, SwapCached=%v, SwapFree=%v, SwapTotal=%v, Total=%v, Usage=%v, AdditionalProperties=%v]",
+    	s.Active, s.Available, s.Buffers, s.Cached, s.Free, s.Inactive, s.SwapCached, s.SwapFree, s.SwapTotal, s.Total, s.Usage, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeMemoryStat.

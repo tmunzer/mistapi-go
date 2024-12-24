@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchMetricsActivePortsSummaryDetails represents a SwitchMetricsActivePortsSummaryDetails struct.
@@ -9,6 +10,14 @@ type SwitchMetricsActivePortsSummaryDetails struct {
     ActivePortCount      *int                   `json:"active_port_count,omitempty"`
     TotalPortCount       *int                   `json:"total_port_count,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchMetricsActivePortsSummaryDetails,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchMetricsActivePortsSummaryDetails) String() string {
+    return fmt.Sprintf(
+    	"SwitchMetricsActivePortsSummaryDetails[ActivePortCount=%v, TotalPortCount=%v, AdditionalProperties=%v]",
+    	s.ActivePortCount, s.TotalPortCount, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMetricsActivePortsSummaryDetails.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanSchedule represents a WlanSchedule struct.
@@ -12,6 +13,14 @@ type WlanSchedule struct {
     // **Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59.
     Hours                *Hours                 `json:"hours,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanSchedule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanSchedule) String() string {
+    return fmt.Sprintf(
+    	"WlanSchedule[Enabled=%v, Hours=%v, AdditionalProperties=%v]",
+    	w.Enabled, w.Hours, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanSchedule.

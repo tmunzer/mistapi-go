@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -14,6 +15,14 @@ type IdpConfig struct {
     // enum: `Custom`, `strict` (default), `standard` or keys from from idp_profiles
     Profile              *string                `json:"profile,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for IdpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i IdpConfig) String() string {
+    return fmt.Sprintf(
+    	"IdpConfig[AlertOnly=%v, Enabled=%v, IdpprofileId=%v, Profile=%v, AdditionalProperties=%v]",
+    	i.AlertOnly, i.Enabled, i.IdpprofileId, i.Profile, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IdpConfig.

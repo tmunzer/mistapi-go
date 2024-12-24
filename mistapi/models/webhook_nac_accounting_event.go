@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -36,6 +37,14 @@ type WebhookNacAccountingEvent struct {
     // username authenticated with
     Username             *string                `json:"username,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookNacAccountingEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookNacAccountingEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookNacAccountingEvent[Ap=%v, AuthType=%v, Bssid=%v, ClientIp=%v, ClientType=%v, Mac=%v, NasVendor=%v, OrgId=%v, RxPkts=%v, SiteId=%v, Ssid=%v, Timestamp=%v, TxPkts=%v, Type=%v, Username=%v, AdditionalProperties=%v]",
+    	w.Ap, w.AuthType, w.Bssid, w.ClientIp, w.ClientType, w.Mac, w.NasVendor, w.OrgId, w.RxPkts, w.SiteId, w.Ssid, w.Timestamp, w.TxPkts, w.Type, w.Username, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookNacAccountingEvent.

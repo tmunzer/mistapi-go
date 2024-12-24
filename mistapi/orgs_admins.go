@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,7 +31,8 @@ func (o *OrgsAdmins) ListOrgAdmins(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.Admin],
     error) {
-    req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/admins", orgId))
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/admins")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -72,11 +72,8 @@ func (o *OrgsAdmins) RevokeOrgAdmin(
     adminId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/admins/%v", orgId, adminId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/admins/%v")
+    req.AppendTemplateParams(orgId, adminId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -114,11 +111,8 @@ func (o *OrgsAdmins) UpdateOrgAdmin(
     body *models.Admin) (
     models.ApiResponse[models.Admin],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/admins/%v", orgId, adminId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/admins/%v")
+    req.AppendTemplateParams(orgId, adminId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -162,11 +156,8 @@ func (o *OrgsAdmins) InviteOrgAdmin(
     body *models.Admin) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/invites", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/invites")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -207,11 +198,8 @@ func (o *OrgsAdmins) UninviteOrgAdmin(
     inviteId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/invites/%v", orgId, inviteId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/invites/%v")
+    req.AppendTemplateParams(orgId, inviteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -249,11 +237,8 @@ func (o *OrgsAdmins) UpdateOrgAdminInvite(
     body *models.Admin) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/invites/%v", orgId, inviteId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/invites/%v")
+    req.AppendTemplateParams(orgId, inviteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

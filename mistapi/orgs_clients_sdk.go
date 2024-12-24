@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -33,11 +32,8 @@ func (o *OrgsClientsSDK) UpdateSdkClient(
     body *models.NameString) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/sdkclients/%v", orgId, sdkclientId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/sdkclients/%v")
+    req.AppendTemplateParams(orgId, sdkclientId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

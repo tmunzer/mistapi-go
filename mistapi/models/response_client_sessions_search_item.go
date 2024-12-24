@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -23,6 +24,14 @@ type ResponseClientSessionsSearchItem struct {
     Timestamp            float64                `json:"timestamp"`
     WlanId               uuid.UUID              `json:"wlan_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseClientSessionsSearchItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseClientSessionsSearchItem) String() string {
+    return fmt.Sprintf(
+    	"ResponseClientSessionsSearchItem[Ap=%v, Band=%v, ClientManufacture=%v, Connect=%v, Disconnect=%v, Duration=%v, Mac=%v, OrgId=%v, SiteId=%v, Ssid=%v, Tags=%v, Timestamp=%v, WlanId=%v, AdditionalProperties=%v]",
+    	r.Ap, r.Band, r.ClientManufacture, r.Connect, r.Disconnect, r.Duration, r.Mac, r.OrgId, r.SiteId, r.Ssid, r.Tags, r.Timestamp, r.WlanId, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClientSessionsSearchItem.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // HaClusterDelete represents a HaClusterDelete struct.
@@ -9,6 +10,14 @@ type HaClusterDelete struct {
     // node0 mac address
     Mac                  *string                `json:"mac,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for HaClusterDelete,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (h HaClusterDelete) String() string {
+    return fmt.Sprintf(
+    	"HaClusterDelete[Mac=%v, AdditionalProperties=%v]",
+    	h.Mac, h.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for HaClusterDelete.

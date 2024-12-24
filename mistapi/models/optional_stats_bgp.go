@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OptionalStatsBgp represents a OptionalStatsBgp struct.
@@ -31,6 +32,14 @@ type OptionalStatsBgp struct {
     Uptime               *int                   `json:"uptime,omitempty"`
     VrfName              *string                `json:"vrf_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OptionalStatsBgp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OptionalStatsBgp) String() string {
+    return fmt.Sprintf(
+    	"OptionalStatsBgp[EvpnOverlay=%v, ForOverlay=%v, LocalAs=%v, Neighbor=%v, NeighborAs=%v, NeighborMac=%v, Node=%v, RxPkts=%v, RxRoutes=%v, State=%v, Timestamp=%v, TxPkts=%v, TxRoutes=%v, Up=%v, Uptime=%v, VrfName=%v, AdditionalProperties=%v]",
+    	o.EvpnOverlay, o.ForOverlay, o.LocalAs, o.Neighbor, o.NeighborAs, o.NeighborMac, o.Node, o.RxPkts, o.RxRoutes, o.State, o.Timestamp, o.TxPkts, o.TxRoutes, o.Up, o.Uptime, o.VrfName, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OptionalStatsBgp.

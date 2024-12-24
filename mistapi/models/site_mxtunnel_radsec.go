@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteMxtunnelRadsec represents a SiteMxtunnelRadsec struct.
@@ -11,6 +12,14 @@ type SiteMxtunnelRadsec struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     UseMxedge            *bool                  `json:"use_mxedge,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteMxtunnelRadsec,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteMxtunnelRadsec) String() string {
+    return fmt.Sprintf(
+    	"SiteMxtunnelRadsec[AcctServers=%v, AuthServers=%v, Enabled=%v, UseMxedge=%v, AdditionalProperties=%v]",
+    	s.AcctServers, s.AuthServers, s.Enabled, s.UseMxedge, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteMxtunnelRadsec.

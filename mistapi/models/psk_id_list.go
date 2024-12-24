@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -9,6 +10,14 @@ import (
 type PskIdList struct {
     PskIds               []uuid.UUID            `json:"psk_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PskIdList,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PskIdList) String() string {
+    return fmt.Sprintf(
+    	"PskIdList[PskIds=%v, AdditionalProperties=%v]",
+    	p.PskIds, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskIdList.

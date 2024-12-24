@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -29,6 +30,14 @@ type OrgApitoken struct {
     // list of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified, cannot be changed once the API Token is created.
     SrcIps               []string               `json:"src_ips,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgApitoken,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgApitoken) String() string {
+    return fmt.Sprintf(
+    	"OrgApitoken[CreatedBy=%v, CreatedTime=%v, Id=%v, Key=%v, LastUsed=%v, Name=%v, OrgId=%v, Privileges=%v, SrcIps=%v, AdditionalProperties=%v]",
+    	o.CreatedBy, o.CreatedTime, o.Id, o.Key, o.LastUsed, o.Name, o.OrgId, o.Privileges, o.SrcIps, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgApitoken.

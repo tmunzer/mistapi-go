@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -35,11 +34,8 @@ func (s *SitesStatsDevices) ListSiteDevicesStats(
     page *int) (
     models.ApiResponse[[]models.StatsDevice],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/devices", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/devices")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -92,11 +88,8 @@ func (s *SitesStatsDevices) GetSiteDeviceStats(
     fields *string) (
     models.ApiResponse[models.StatsDevice],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/devices/%v", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/devices/%v")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -139,11 +132,8 @@ func (s *SitesStatsDevices) GetSiteAllClientsStatsByDevice(
     deviceId uuid.UUID) (
     models.ApiResponse[[]models.StatsWirelessClient],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/devices/%v/clients", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/devices/%v/clients")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -182,11 +172,8 @@ func (s *SitesStatsDevices) GetSiteGatewayMetrics(
     siteId uuid.UUID) (
     models.ApiResponse[models.GatewayMetrics],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/gateways/metrics", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/gateways/metrics")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -228,11 +215,8 @@ func (s *SitesStatsDevices) GetSiteSwitchesMetrics(
     switchMac *string) (
     models.ApiResponse[models.ResponseSwitchMetrics],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/switches/metrics", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/switches/metrics")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type SynthetictestRadiusServer struct {
     // Specify the subscriber username to test
     User                 string                 `json:"user"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SynthetictestRadiusServer,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SynthetictestRadiusServer) String() string {
+    return fmt.Sprintf(
+    	"SynthetictestRadiusServer[Password=%v, Profile=%v, User=%v, AdditionalProperties=%v]",
+    	s.Password, s.Profile, s.User, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestRadiusServer.

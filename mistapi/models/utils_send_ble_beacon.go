@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsSendBleBeacon represents a UtilsSendBleBeacon struct.
@@ -12,6 +13,14 @@ type UtilsSendBleBeacon struct {
     Macs                 []string               `json:"macs,omitempty"`
     MapIds               []string               `json:"map_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsSendBleBeacon,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsSendBleBeacon) String() string {
+    return fmt.Sprintf(
+    	"UtilsSendBleBeacon[BeaconFrame=%v, BeaconFreq=%v, Duration=%v, Macs=%v, MapIds=%v, AdditionalProperties=%v]",
+    	u.BeaconFrame, u.BeaconFreq, u.Duration, u.Macs, u.MapIds, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsSendBleBeacon.

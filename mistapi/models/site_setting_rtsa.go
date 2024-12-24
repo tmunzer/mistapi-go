@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingRtsa represents a SiteSettingRtsa struct.
@@ -14,6 +15,14 @@ type SiteSettingRtsa struct {
     // asset tracking related
     TrackAsset            *bool                  `json:"track_asset,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingRtsa,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingRtsa) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingRtsa[AppWaking=%v, DisableDeadReckoning=%v, DisablePressureSensor=%v, Enabled=%v, TrackAsset=%v, AdditionalProperties=%v]",
+    	s.AppWaking, s.DisableDeadReckoning, s.DisablePressureSensor, s.Enabled, s.TrackAsset, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingRtsa.

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // Synthetictest represents a Synthetictest struct.
 type Synthetictest struct {
     Email                *string                `json:"email,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Synthetictest,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s Synthetictest) String() string {
+    return fmt.Sprintf(
+    	"Synthetictest[Email=%v, AdditionalProperties=%v]",
+    	s.Email, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Synthetictest.

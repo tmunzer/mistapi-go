@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type GatewayCluster struct {
     // when replacing a node, either mac has to remain the same as existing cluster
     Nodes                []GatewayClusterNode   `json:"nodes"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayCluster,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayCluster) String() string {
+    return fmt.Sprintf(
+    	"GatewayCluster[Nodes=%v, AdditionalProperties=%v]",
+    	g.Nodes, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayCluster.

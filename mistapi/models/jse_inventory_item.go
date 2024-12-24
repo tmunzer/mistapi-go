@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // JseInventoryItem represents a JseInventoryItem struct.
@@ -40,6 +41,14 @@ type JseInventoryItem struct {
     WarrantyStartTime    *int                      `json:"warranty_start_time,omitempty"`
     WarrantyType         *string                   `json:"warranty_type,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for JseInventoryItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (j JseInventoryItem) String() string {
+    return fmt.Sprintf(
+    	"JseInventoryItem[ContractEndTime=%v, ContractId=%v, ContractSku=%v, ContractStartTime=%v, ContractType=%v, CustomerPo=%v, Distributor=%v, EolTime=%v, EosTime=%v, InstalledAddress=%v, Model=%v, OrderId=%v, Reseller=%v, Serial=%v, ShippedTime=%v, Sku=%v, Type=%v, WarrantyEndTime=%v, WarrantyStartTime=%v, WarrantyType=%v, AdditionalProperties=%v]",
+    	j.ContractEndTime, j.ContractId, j.ContractSku, j.ContractStartTime, j.ContractType, j.CustomerPo, j.Distributor, j.EolTime, j.EosTime, j.InstalledAddress, j.Model, j.OrderId, j.Reseller, j.Serial, j.ShippedTime, j.Sku, j.Type, j.WarrantyEndTime, j.WarrantyStartTime, j.WarrantyType, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JseInventoryItem.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseDeviceSnapshot represents a ResponseDeviceSnapshot struct.
@@ -12,6 +13,14 @@ type ResponseDeviceSnapshot struct {
     Staus                *ResponseDeviceSnapshotStatusEnum `json:"staus,omitempty"`
     Timestamp            *float64                          `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseDeviceSnapshot,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseDeviceSnapshot) String() string {
+    return fmt.Sprintf(
+    	"ResponseDeviceSnapshot[StatusId=%v, Staus=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	r.StatusId, r.Staus, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceSnapshot.

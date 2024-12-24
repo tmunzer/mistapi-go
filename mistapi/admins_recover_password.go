@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
     "github.com/tmunzer/mistapi-go/mistapi/models"
@@ -32,6 +31,7 @@ func (a *AdminsRecoverPassword) RecoverPassword(
     *http.Response,
     error) {
     req := a.prepareRequest(ctx, "POST", "/api/v1/recover")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -71,11 +71,8 @@ func (a *AdminsRecoverPassword) VerifyRecoverPasssword(
     token string) (
     *http.Response,
     error) {
-    req := a.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/recover/verify/%v", token),
-    )
+    req := a.prepareRequest(ctx, "POST", "/api/v1/recover/verify/%v")
+    req.AppendTemplateParams(token)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

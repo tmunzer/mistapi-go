@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -51,6 +52,14 @@ type AdminPrivilege struct {
     // | `lobby_admin` | `admin` | full access to Org and Site Pre-shared keys |
     Views                *AdminPrivilegeViewEnum `json:"views,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AdminPrivilege,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AdminPrivilege) String() string {
+    return fmt.Sprintf(
+    	"AdminPrivilege[MspId=%v, MspLogoUrl=%v, MspName=%v, MspUrl=%v, Name=%v, OrgId=%v, OrgName=%v, OrggroupIds=%v, Role=%v, Scope=%v, SiteId=%v, SitegroupIds=%v, Views=%v, AdditionalProperties=%v]",
+    	a.MspId, a.MspLogoUrl, a.MspName, a.MspUrl, a.Name, a.OrgId, a.OrgName, a.OrggroupIds, a.Role, a.Scope, a.SiteId, a.SitegroupIds, a.Views, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AdminPrivilege.

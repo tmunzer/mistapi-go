@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // CallTroubleshootSummar represents a CallTroubleshootSummar struct.
@@ -12,6 +13,14 @@ type CallTroubleshootSummar struct {
     VideoIn              *CallTroubleshootSummaryData `json:"video_in,omitempty"`
     VideoOut             *CallTroubleshootSummaryData `json:"video_out,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CallTroubleshootSummar,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CallTroubleshootSummar) String() string {
+    return fmt.Sprintf(
+    	"CallTroubleshootSummar[AudioIn=%v, AudioOut=%v, Timestamp=%v, VideoIn=%v, VideoOut=%v, AdditionalProperties=%v]",
+    	c.AudioIn, c.AudioOut, c.Timestamp, c.VideoIn, c.VideoOut, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CallTroubleshootSummar.

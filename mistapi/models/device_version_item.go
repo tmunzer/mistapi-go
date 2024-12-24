@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type DeviceVersionItem struct {
     // firmware version
     Version              string                 `json:"version"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DeviceVersionItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DeviceVersionItem) String() string {
+    return fmt.Sprintf(
+    	"DeviceVersionItem[Model=%v, Tag=%v, Version=%v, AdditionalProperties=%v]",
+    	d.Model, d.Tag, d.Version, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceVersionItem.

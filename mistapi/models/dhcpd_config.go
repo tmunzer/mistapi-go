@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // DhcpdConfig represents a DhcpdConfig struct.
@@ -9,6 +10,14 @@ type DhcpdConfig struct {
     // if set to `false`, disable the DHCP server
     Enabled              *bool                          `json:"enabled,omitempty"`
     AdditionalProperties map[string]DhcpdConfigProperty `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DhcpdConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DhcpdConfig) String() string {
+    return fmt.Sprintf(
+    	"DhcpdConfig[Enabled=%v, AdditionalProperties=%v]",
+    	d.Enabled, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpdConfig.

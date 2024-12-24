@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SleImpactedSwitchesSwitch represents a SleImpactedSwitchesSwitch struct.
@@ -15,6 +16,14 @@ type SleImpactedSwitchesSwitch struct {
     SwitchVersion        *string                `json:"switch_version,omitempty"`
     Total                *float64               `json:"total,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleImpactedSwitchesSwitch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleImpactedSwitchesSwitch) String() string {
+    return fmt.Sprintf(
+    	"SleImpactedSwitchesSwitch[Degraded=%v, Duration=%v, Interface=%v, Name=%v, SwitchMac=%v, SwitchModel=%v, SwitchVersion=%v, Total=%v, AdditionalProperties=%v]",
+    	s.Degraded, s.Duration, s.Interface, s.Name, s.SwitchMac, s.SwitchModel, s.SwitchVersion, s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedSwitchesSwitch.

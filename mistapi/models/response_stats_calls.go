@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseStatsCalls represents a ResponseStatsCalls struct.
@@ -13,6 +14,14 @@ type ResponseStatsCalls struct {
     Start                *float64               `json:"start,omitempty"`
     Total                *int                   `json:"total,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseStatsCalls,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseStatsCalls) String() string {
+    return fmt.Sprintf(
+    	"ResponseStatsCalls[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	r.End, r.Limit, r.Next, r.Results, r.Start, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseStatsCalls.

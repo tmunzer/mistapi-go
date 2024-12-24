@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingPaloaltoNetworkGateway represents a SiteSettingPaloaltoNetworkGateway struct.
@@ -9,6 +10,14 @@ type SiteSettingPaloaltoNetworkGateway struct {
     ApiKey               *string                `json:"api_key,omitempty"`
     ApiUrl               *string                `json:"api_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingPaloaltoNetworkGateway,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingPaloaltoNetworkGateway) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingPaloaltoNetworkGateway[ApiKey=%v, ApiUrl=%v, AdditionalProperties=%v]",
+    	s.ApiKey, s.ApiUrl, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingPaloaltoNetworkGateway.

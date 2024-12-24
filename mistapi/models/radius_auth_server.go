@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -23,6 +24,14 @@ type RadiusAuthServer struct {
     // secret of RADIUS server
     Secret                      string                   `json:"secret"`
     AdditionalProperties        map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RadiusAuthServer,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RadiusAuthServer) String() string {
+    return fmt.Sprintf(
+    	"RadiusAuthServer[Host=%v, KeywrapEnabled=%v, KeywrapFormat=%v, KeywrapKek=%v, KeywrapMack=%v, Port=%v, RequireMessageAuthenticator=%v, Secret=%v, AdditionalProperties=%v]",
+    	r.Host, r.KeywrapEnabled, r.KeywrapFormat, r.KeywrapKek, r.KeywrapMack, r.Port, r.RequireMessageAuthenticator, r.Secret, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RadiusAuthServer.

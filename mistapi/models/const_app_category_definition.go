@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -16,6 +17,14 @@ type ConstAppCategoryDefinition struct {
     // Key name of the app category
     Key                  string                             `json:"key"`
     AdditionalProperties map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstAppCategoryDefinition,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstAppCategoryDefinition) String() string {
+    return fmt.Sprintf(
+    	"ConstAppCategoryDefinition[Display=%v, Filters=%v, Includes=%v, Key=%v, AdditionalProperties=%v]",
+    	c.Display, c.Filters, c.Includes, c.Key, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstAppCategoryDefinition.

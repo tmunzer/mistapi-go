@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // EvpnOptionsOverlay represents a EvpnOptionsOverlay struct.
@@ -9,6 +10,14 @@ type EvpnOptionsOverlay struct {
     // Overlay BGP Local AS Number
     As                   *int                   `json:"as,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EvpnOptionsOverlay,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EvpnOptionsOverlay) String() string {
+    return fmt.Sprintf(
+    	"EvpnOptionsOverlay[As=%v, AdditionalProperties=%v]",
+    	e.As, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnOptionsOverlay.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -40,11 +39,8 @@ func (o *OrgsUserMACs) CreateOrgUserMacs(
     body *models.UserMac) (
     models.ApiResponse[models.UserMacImport],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/usermacs", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/usermacs")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -97,11 +93,8 @@ func (o *OrgsUserMACs) ImportOrgUserMacs(
     file models.FileWrapper) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/usermacs/import", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/usermacs/import")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -145,11 +138,8 @@ func (o *OrgsUserMACs) SearchOrgUserMacs(
     page *int) (
     models.ApiResponse[models.UserMacsSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/usermacs/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/usermacs/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -201,11 +191,8 @@ func (o *OrgsUserMACs) DeleteOrgUserMac(
     usermacId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/usermacs/%v", orgId, usermacId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/usermacs/%v")
+    req.AppendTemplateParams(orgId, usermacId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -242,11 +229,8 @@ func (o *OrgsUserMACs) GetOrgUserMac(
     usermacId uuid.UUID) (
     models.ApiResponse[models.UserMac],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/usermacs/%v", orgId, usermacId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/usermacs/%v")
+    req.AppendTemplateParams(orgId, usermacId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -287,11 +271,8 @@ func (o *OrgsUserMACs) UpdateOrgUserMac(
     body *models.UserMac) (
     models.ApiResponse[models.UserMac],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/usermacs/%v", orgId, usermacId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/usermacs/%v")
+    req.AppendTemplateParams(orgId, usermacId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (o *OrgsSDKTemplates) ListSdkTemplates(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.Sdktemplate],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/sdktemplates", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/sdktemplates")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -76,11 +72,8 @@ func (o *OrgsSDKTemplates) CreateSdkTemplate(
     body *models.Sdktemplate) (
     models.ApiResponse[models.Sdktemplate],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/sdktemplates", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/sdktemplates")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -124,11 +117,8 @@ func (o *OrgsSDKTemplates) DeleteSdkTemplate(
     sdktemplateId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/sdktemplates/%v", orgId, sdktemplateId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/sdktemplates/%v")
+    req.AppendTemplateParams(orgId, sdktemplateId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -165,11 +155,8 @@ func (o *OrgsSDKTemplates) GetSdkTemplate(
     sdktemplateId uuid.UUID) (
     models.ApiResponse[models.Sdktemplate],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/sdktemplates/%v", orgId, sdktemplateId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/sdktemplates/%v")
+    req.AppendTemplateParams(orgId, sdktemplateId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -210,11 +197,8 @@ func (o *OrgsSDKTemplates) UpdateSdkTemplate(
     body *models.Sdktemplate) (
     models.ApiResponse[models.Sdktemplate],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/sdktemplates/%v", orgId, sdktemplateId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/sdktemplates/%v")
+    req.AppendTemplateParams(orgId, sdktemplateId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

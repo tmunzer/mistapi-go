@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VirtualChassisMemberUpdate represents a VirtualChassisMemberUpdate struct.
@@ -15,6 +16,14 @@ type VirtualChassisMemberUpdate struct {
     // Required if `op`==`add` or `op`==`preprovision`. enum: `backup`, `linecard`, `master`
     VcRole               *VirtualChassisMemberUpdateVcRoleEnum `json:"vc_role,omitempty"`
     AdditionalProperties map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VirtualChassisMemberUpdate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VirtualChassisMemberUpdate) String() string {
+    return fmt.Sprintf(
+    	"VirtualChassisMemberUpdate[Mac=%v, Member=%v, VcPorts=%v, VcRole=%v, AdditionalProperties=%v]",
+    	v.Mac, v.Member, v.VcPorts, v.VcRole, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VirtualChassisMemberUpdate.

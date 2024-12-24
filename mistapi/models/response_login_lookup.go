@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseLoginLookup represents a ResponseLoginLookup struct.
 type ResponseLoginLookup struct {
     SsoUrl               *string                `json:"sso_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseLoginLookup,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseLoginLookup) String() string {
+    return fmt.Sprintf(
+    	"ResponseLoginLookup[SsoUrl=%v, AdditionalProperties=%v]",
+    	r.SsoUrl, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseLoginLookup.

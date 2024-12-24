@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type Login struct {
     Password             string                 `json:"password"`
     TwoFactor            *string                `json:"two_factor,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Login,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (l Login) String() string {
+    return fmt.Sprintf(
+    	"Login[Email=%v, Password=%v, TwoFactor=%v, AdditionalProperties=%v]",
+    	l.Email, l.Password, l.TwoFactor, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Login.

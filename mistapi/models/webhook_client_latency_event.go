@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -20,6 +21,14 @@ type WebhookClientLatencyEvent struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     Timestamp            *int                   `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookClientLatencyEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookClientLatencyEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookClientLatencyEvent[AvgAuth=%v, AvgDhcp=%v, AvgDns=%v, MaxAuth=%v, MaxDhcp=%v, MaxDns=%v, MinAuth=%v, MinDhcp=%v, MinDns=%v, OrgId=%v, SiteId=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	w.AvgAuth, w.AvgDhcp, w.AvgDns, w.MaxAuth, w.MaxDhcp, w.MaxDns, w.MinAuth, w.MinDhcp, w.MinDns, w.OrgId, w.SiteId, w.Timestamp, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookClientLatencyEvent.

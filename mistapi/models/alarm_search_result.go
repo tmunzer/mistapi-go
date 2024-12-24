@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -18,6 +19,14 @@ type AlarmSearchResult struct {
     Start                int                    `json:"start"`
     Total                int                    `json:"total"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AlarmSearchResult,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AlarmSearchResult) String() string {
+    return fmt.Sprintf(
+    	"AlarmSearchResult[Component=%v, End=%v, Limit=%v, Next=%v, Page=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	a.Component, a.End, a.Limit, a.Next, a.Page, a.Results, a.Start, a.Total, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AlarmSearchResult.

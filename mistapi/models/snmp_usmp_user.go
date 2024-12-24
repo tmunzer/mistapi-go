@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SnmpUsmpUser represents a SnmpUsmpUser struct.
@@ -18,6 +19,14 @@ type SnmpUsmpUser struct {
     EncryptionType         *SnmpUsmpUserEncryptionTypeEnum     `json:"encryption_type,omitempty"`
     Name                   *string                             `json:"name,omitempty"`
     AdditionalProperties   map[string]interface{}              `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SnmpUsmpUser,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SnmpUsmpUser) String() string {
+    return fmt.Sprintf(
+    	"SnmpUsmpUser[AuthenticationPassword=%v, AuthenticationType=%v, EncryptionPassword=%v, EncryptionType=%v, Name=%v, AdditionalProperties=%v]",
+    	s.AuthenticationPassword, s.AuthenticationType, s.EncryptionPassword, s.EncryptionType, s.Name, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpUsmpUser.

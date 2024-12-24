@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type UtilsRrmOptimize struct {
     // only changng TX Power (will not disconnect clients)
     TxpowerOnly          *bool                  `json:"txpower_only,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsRrmOptimize,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsRrmOptimize) String() string {
+    return fmt.Sprintf(
+    	"UtilsRrmOptimize[Bands=%v, Macs=%v, TxpowerOnly=%v, AdditionalProperties=%v]",
+    	u.Bands, u.Macs, u.TxpowerOnly, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsRrmOptimize.

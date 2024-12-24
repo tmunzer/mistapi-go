@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingJuniperSrxGateway represents a SiteSettingJuniperSrxGateway struct.
@@ -9,6 +10,14 @@ type SiteSettingJuniperSrxGateway struct {
     ApiKey               *string                `json:"api_key,omitempty"`
     ApiUrl               *string                `json:"api_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingJuniperSrxGateway,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingJuniperSrxGateway) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingJuniperSrxGateway[ApiKey=%v, ApiUrl=%v, AdditionalProperties=%v]",
+    	s.ApiKey, s.ApiUrl, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingJuniperSrxGateway.

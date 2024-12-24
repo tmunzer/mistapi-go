@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -48,7 +49,7 @@ type GatewayPortConfig struct {
     Mtu                  *int                          `json:"mtu,omitempty"`
     // name that we'll use to derive config
     Name                 *string                       `json:"name,omitempty"`
-    // if `usage`==`lan`
+    // if `usage`==`lan`, name of the [networks]($h/Orgs%20Networks/_overview) to attach to the interface
     Networks             []string                      `json:"networks,omitempty"`
     // for Q-in-Q
     OuterVlanId          *int                          `json:"outer_vlan_id,omitempty"`
@@ -92,6 +93,14 @@ type GatewayPortConfig struct {
     // if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`
     WanType              *GatewayPortWanTypeEnum       `json:"wan_type,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayPortConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayPortConfig) String() string {
+    return fmt.Sprintf(
+    	"GatewayPortConfig[AeDisableLacp=%v, AeIdx=%v, AeLacpForceUp=%v, Aggregated=%v, Critical=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, DslType=%v, DslVci=%v, DslVpi=%v, Duplex=%v, IpConfig=%v, LteApn=%v, LteAuth=%v, LteBackup=%v, LtePassword=%v, LteUsername=%v, Mtu=%v, Name=%v, Networks=%v, OuterVlanId=%v, PoeDisabled=%v, PortNetwork=%v, PreserveDscp=%v, Redundant=%v, RethIdx=%v, RethNode=%v, RethNodes=%v, Speed=%v, SsrNoVirtualMac=%v, SvrPortRange=%v, TrafficShaping=%v, Usage=%v, VlanId=%v, VpnPaths=%v, WanArpPolicer=%v, WanExtIp=%v, WanExtraRoutes=%v, WanNetworks=%v, WanProbeOverride=%v, WanSourceNat=%v, WanType=%v, AdditionalProperties=%v]",
+    	g.AeDisableLacp, g.AeIdx, g.AeLacpForceUp, g.Aggregated, g.Critical, g.Description, g.DisableAutoneg, g.Disabled, g.DslType, g.DslVci, g.DslVpi, g.Duplex, g.IpConfig, g.LteApn, g.LteAuth, g.LteBackup, g.LtePassword, g.LteUsername, g.Mtu, g.Name, g.Networks, g.OuterVlanId, g.PoeDisabled, g.PortNetwork, g.PreserveDscp, g.Redundant, g.RethIdx, g.RethNode, g.RethNodes, g.Speed, g.SsrNoVirtualMac, g.SvrPortRange, g.TrafficShaping, g.Usage, g.VlanId, g.VpnPaths, g.WanArpPolicer, g.WanExtIp, g.WanExtraRoutes, g.WanNetworks, g.WanProbeOverride, g.WanSourceNat, g.WanType, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortConfig.

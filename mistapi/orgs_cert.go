@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,7 +31,8 @@ func (o *OrgsCert) GetOrgCertificates(
     orgId uuid.UUID) (
     models.ApiResponse[models.ResponseCertificate],
     error) {
-    req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/cert", orgId))
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/cert")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -71,11 +71,8 @@ func (o *OrgsCert) ClearOrgCertificates(
     orgId uuid.UUID) (
     models.ApiResponse[models.ResponseCertificate],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/cert/regenerate", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/cert/regenerate")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -115,11 +112,8 @@ func (o *OrgsCert) TruncateOrgCrlFile(
     body *models.DaysNumber) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/crl/truncate", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/crl/truncate")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -159,11 +153,8 @@ func (o *OrgsCert) GetOrgSslProxyCert(
     orgId uuid.UUID) (
     models.ApiResponse[models.OrgSslProxyCert],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/ssl_proxy_cert", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssl_proxy_cert")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

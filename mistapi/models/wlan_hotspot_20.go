@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanHotspot20 represents a WlanHotspot20 struct.
@@ -17,6 +18,14 @@ type WlanHotspot20 struct {
     // venue name, default is site name
     VenueName            *string                          `json:"venue_name,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanHotspot20,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanHotspot20) String() string {
+    return fmt.Sprintf(
+    	"WlanHotspot20[DomainName=%v, Enabled=%v, NaiRealms=%v, Operators=%v, Rcoi=%v, VenueName=%v, AdditionalProperties=%v]",
+    	w.DomainName, w.Enabled, w.NaiRealms, w.Operators, w.Rcoi, w.VenueName, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanHotspot20.

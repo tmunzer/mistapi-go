@@ -1,5 +1,5 @@
 
-# Gateway Template Tunnel Ike Dh Group Enum
+# Tunnel Config Ike Dh Group Enum
 
 enum:
 
@@ -16,7 +16,7 @@ enum:
 
 ## Enumeration
 
-`GatewayTemplateTunnelIkeDhGroupEnum`
+`TunnelConfigIkeDhGroupEnum`
 
 ## Fields
 

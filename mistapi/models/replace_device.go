@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ReplaceDevice represents a ReplaceDevice struct.
@@ -17,6 +18,14 @@ type ReplaceDevice struct {
     // ethernet port configurations
     TuntermPortConfig    *TuntermPortConfig     `json:"tunterm_port_config,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ReplaceDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ReplaceDevice) String() string {
+    return fmt.Sprintf(
+    	"ReplaceDevice[Discard=%v, InventoryMac=%v, Mac=%v, SiteId=%v, TuntermPortConfig=%v, AdditionalProperties=%v]",
+    	r.Discard, r.InventoryMac, r.Mac, r.SiteId, r.TuntermPortConfig, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ReplaceDevice.

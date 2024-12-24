@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type PcapBucketVerify struct {
     Bucket               string                 `json:"bucket"`
     VerifyToken          string                 `json:"verify_token"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PcapBucketVerify,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PcapBucketVerify) String() string {
+    return fmt.Sprintf(
+    	"PcapBucketVerify[Bucket=%v, VerifyToken=%v, AdditionalProperties=%v]",
+    	p.Bucket, p.VerifyToken, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PcapBucketVerify.

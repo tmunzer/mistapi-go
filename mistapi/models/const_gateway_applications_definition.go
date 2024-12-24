@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstGatewayApplicationsDefinition represents a ConstGatewayApplicationsDefinition struct.
@@ -11,6 +12,14 @@ type ConstGatewayApplicationsDefinition struct {
     Name                 *string                `json:"name,omitempty"`
     SsrAppId             *bool                  `json:"ssr_app_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstGatewayApplicationsDefinition,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstGatewayApplicationsDefinition) String() string {
+    return fmt.Sprintf(
+    	"ConstGatewayApplicationsDefinition[AppId=%v, Key=%v, Name=%v, SsrAppId=%v, AdditionalProperties=%v]",
+    	c.AppId, c.Key, c.Name, c.SsrAppId, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstGatewayApplicationsDefinition.

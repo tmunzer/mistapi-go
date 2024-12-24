@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -93,6 +94,14 @@ type StatsGateway struct {
     // Each port object is same as `GET /api/v1/sites/:site_id/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed
     VpnPeers             []OptionalStatVpnPeer          `json:"vpn_peers,omitempty"`
     AdditionalProperties map[string]interface{}         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsGateway,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsGateway) String() string {
+    return fmt.Sprintf(
+    	"StatsGateway[ApRedundancy=%v, ArpTableStats=%v, BgpPeers=%v, CertExpiry=%v, ClusterConfig=%v, ClusterStat=%v, ConductorName=%v, ConfigStatus=%v, Cpu2Stat=%v, CpuStat=%v, CreatedTime=%v, DeviceprofileId=%v, Dhcpd2Stat=%v, DhcpdStat=%v, EvpntopoId=%v, ExtIp=%v, Fwupdate=%v, HasPcap=%v, Hostname=%v, Id=%v, If2Stat=%v, IfStat=%v, Ip=%v, Ip2Stat=%v, IpStat=%v, IsHa=%v, LastSeen=%v, Mac=%v, MapId=%v, Memory2Stat=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, Module2Stat=%v, ModuleStat=%v, Name=%v, NodeName=%v, OrgId=%v, Ports=%v, RouteSummaryStats=%v, RouterName=%v, Serial=%v, Service2Stat=%v, ServiceStat=%v, ServiceStatus=%v, SiteId=%v, Spu2Stat=%v, SpuStat=%v, Status=%v, Tunnels=%v, Type=%v, Uptime=%v, Version=%v, VpnPeers=%v, AdditionalProperties=%v]",
+    	s.ApRedundancy, s.ArpTableStats, s.BgpPeers, s.CertExpiry, s.ClusterConfig, s.ClusterStat, s.ConductorName, s.ConfigStatus, s.Cpu2Stat, s.CpuStat, s.CreatedTime, s.DeviceprofileId, s.Dhcpd2Stat, s.DhcpdStat, s.EvpntopoId, s.ExtIp, s.Fwupdate, s.HasPcap, s.Hostname, s.Id, s.If2Stat, s.IfStat, s.Ip, s.Ip2Stat, s.IpStat, s.IsHa, s.LastSeen, s.Mac, s.MapId, s.Memory2Stat, s.MemoryStat, s.Model, s.ModifiedTime, s.Module2Stat, s.ModuleStat, s.Name, s.NodeName, s.OrgId, s.Ports, s.RouteSummaryStats, s.RouterName, s.Serial, s.Service2Stat, s.ServiceStat, s.ServiceStatus, s.SiteId, s.Spu2Stat, s.SpuStat, s.Status, s.Tunnels, s.Type, s.Uptime, s.Version, s.VpnPeers, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGateway.

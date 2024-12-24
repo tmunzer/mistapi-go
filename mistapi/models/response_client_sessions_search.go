@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type ResponseClientSessionsSearch struct {
     Start                int                                `json:"start"`
     Total                int                                `json:"total"`
     AdditionalProperties map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseClientSessionsSearch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseClientSessionsSearch) String() string {
+    return fmt.Sprintf(
+    	"ResponseClientSessionsSearch[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	r.End, r.Limit, r.Next, r.Results, r.Start, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClientSessionsSearch.

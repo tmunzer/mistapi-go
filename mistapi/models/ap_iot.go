@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApIot represents a ApIot struct.
@@ -22,6 +23,14 @@ type ApIot struct {
     // IoT output AP settings
     DO                   *ApIotOutput           `json:"DO,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApIot,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApIot) String() string {
+    return fmt.Sprintf(
+    	"ApIot[A1=%v, A2=%v, A3=%v, A4=%v, DI1=%v, DI2=%v, DO=%v, AdditionalProperties=%v]",
+    	a.A1, a.A2, a.A3, a.A4, a.DI1, a.DI2, a.DO, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApIot.

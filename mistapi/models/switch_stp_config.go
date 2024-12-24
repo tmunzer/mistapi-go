@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchStpConfig represents a SwitchStpConfig struct.
@@ -9,6 +10,14 @@ type SwitchStpConfig struct {
     // Switch STP priority: from `0k` to `15k`
     BridgePriority       *string                `json:"bridge_priority,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchStpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchStpConfig) String() string {
+    return fmt.Sprintf(
+    	"SwitchStpConfig[BridgePriority=%v, AdditionalProperties=%v]",
+    	s.BridgePriority, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchStpConfig.

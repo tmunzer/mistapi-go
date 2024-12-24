@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // IpStat represents a IpStat struct.
@@ -17,6 +18,14 @@ type IpStat struct {
     Netmask              Optional[string]       `json:"netmask"`
     Netmask6             Optional[string]       `json:"netmask6"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for IpStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i IpStat) String() string {
+    return fmt.Sprintf(
+    	"IpStat[DhcpServer=%v, Dns=%v, DnsSuffix=%v, Gateway=%v, Gateway6=%v, Ip=%v, Ip6=%v, Ips=%v, Netmask=%v, Netmask6=%v, AdditionalProperties=%v]",
+    	i.DhcpServer, i.Dns, i.DnsSuffix, i.Gateway, i.Gateway6, i.Ip, i.Ip6, i.Ips, i.Netmask, i.Netmask6, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IpStat.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type MapNode struct {
     Name                 string                 `json:"name"`
     Position             *MapNodePosition       `json:"position,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapNode,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapNode) String() string {
+    return fmt.Sprintf(
+    	"MapNode[Edges=%v, Name=%v, Position=%v, AdditionalProperties=%v]",
+    	m.Edges, m.Name, m.Position, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapNode.

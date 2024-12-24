@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (u *UtilitiesUpgrade) ListOrgDeviceUpgrades(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.OrgDeviceUpgrade],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/devices/upgrade", orgId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/devices/upgrade")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -76,11 +72,8 @@ func (u *UtilitiesUpgrade) UpgradeOrgDevices(
     body *models.UpgradeOrgDevices) (
     models.ApiResponse[models.ResponseUpgradeOrgDevices],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/devices/upgrade", orgId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/devices/upgrade")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -124,11 +117,8 @@ func (u *UtilitiesUpgrade) GetOrgDeviceUpgrade(
     upgradeId uuid.UUID) (
     models.ApiResponse[models.ResponseUpgradeOrgDevices],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/devices/upgrade/%v", orgId, upgradeId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/devices/upgrade/%v")
+    req.AppendTemplateParams(orgId, upgradeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -169,11 +159,8 @@ func (u *UtilitiesUpgrade) ListOrgAvailableDeviceVersions(
     model *string) (
     models.ApiResponse[[]models.DeviceVersionItem],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/devices/versions", orgId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/devices/versions")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -220,11 +207,8 @@ func (u *UtilitiesUpgrade) UpgradeOrgJsiDevice(
     body *models.VersionString) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/jsi/devices/%v/upgrade", orgId, deviceMac),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/jsi/devices/%v/upgrade")
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -264,11 +248,8 @@ func (u *UtilitiesUpgrade) ListOrgMxEdgeUpgrades(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.ResponseMxedgeUpgrade],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/upgrade", orgId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/upgrade")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -308,11 +289,8 @@ func (u *UtilitiesUpgrade) UpgradeOrgMxEdges(
     body *models.MxedgeUpgradeMulti) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/upgrade", orgId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/upgrade")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -353,11 +331,8 @@ func (u *UtilitiesUpgrade) GetOrgMxEdgeUpgrade(
     upgradeId uuid.UUID) (
     models.ApiResponse[models.ResponseMxedgeUpgrade],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/mxedges/upgrade/%v", orgId, upgradeId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/upgrade/%v")
+    req.AppendTemplateParams(orgId, upgradeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -396,11 +371,8 @@ func (u *UtilitiesUpgrade) ListOrgSsrUpgrades(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.SsrUpgradeResponse],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/ssr/upgrade", orgId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssr/upgrade")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -440,11 +412,8 @@ func (u *UtilitiesUpgrade) UpgradeOrgSsrs(
     body *models.SsrUpgradeMulti) (
     models.ApiResponse[models.SsrUpgradeResponse],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/ssr/upgrade", orgId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/ssr/upgrade")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -488,11 +457,8 @@ func (u *UtilitiesUpgrade) CancelOrgSsrUpgrade(
     upgradeId uuid.UUID) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/ssr/upgrade/%v/cancel", orgId, upgradeId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/ssr/upgrade/%v/cancel")
+    req.AppendTemplateParams(orgId, upgradeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -529,11 +495,8 @@ func (u *UtilitiesUpgrade) ListOrgAvailableSsrVersions(
     channel *string) (
     models.ApiResponse[[]models.SsrVersion],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/ssr/versions", orgId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssr/versions")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -576,11 +539,8 @@ func (u *UtilitiesUpgrade) ListSiteDeviceUpgrades(
     status *models.DeviceUpgradeStatusEnum) (
     models.ApiResponse[[]models.ResponseSiteDeviceUpgrade],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/upgrade", siteId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/upgrade")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -624,11 +584,8 @@ func (u *UtilitiesUpgrade) UpgradeSiteDevices(
     body *models.UpgradeSiteDevices) (
     models.ApiResponse[models.ResponseUpgradeSiteDevices],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/upgrade", siteId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/upgrade")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -672,11 +629,8 @@ func (u *UtilitiesUpgrade) GetSiteDeviceUpgrade(
     upgradeId uuid.UUID) (
     models.ApiResponse[models.ResponseDeviceUpgrade],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/upgrade/%v", siteId, upgradeId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/upgrade/%v")
+    req.AppendTemplateParams(siteId, upgradeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -719,8 +673,9 @@ func (u *UtilitiesUpgrade) CancelSiteDeviceUpgrade(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/upgrade/%v/cancel", siteId, upgradeId),
+      "/api/v1/sites/%v/devices/upgrade/%v/cancel",
     )
+    req.AppendTemplateParams(siteId, upgradeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -758,11 +713,8 @@ func (u *UtilitiesUpgrade) ListSiteAvailableDeviceVersions(
     model *string) (
     models.ApiResponse[[]models.DeviceVersionItem],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/versions", siteId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/versions")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -809,11 +761,8 @@ func (u *UtilitiesUpgrade) UpgradeDevice(
     body *models.DeviceUpgrade) (
     models.ApiResponse[models.ResponseUpgradeDevice],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/upgrade", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/upgrade")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -857,11 +806,8 @@ func (u *UtilitiesUpgrade) GetSiteSsrUpgrade(
     upgradeId uuid.UUID) (
     models.ApiResponse[models.ResponseSsrUpgradeStatus],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/ssr/upgrade/%v", siteId, upgradeId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/sites/%v/ssr/upgrade/%v")
+    req.AppendTemplateParams(siteId, upgradeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -902,11 +848,8 @@ func (u *UtilitiesUpgrade) UpgradeSsr(
     body *models.SsrUpgrade) (
     models.ApiResponse[models.SsrUpgradeResponse],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/ssr/%v/upgrade", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/ssr/%v/upgrade")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

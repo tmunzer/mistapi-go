@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UseAutoApValues represents a UseAutoApValues struct.
@@ -13,6 +14,14 @@ type UseAutoApValues struct {
     // A list of macs to accept/reject. If a list is not provided the API will accept/reject for the full map.
     Macs                 []string                `json:"macs,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UseAutoApValues,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UseAutoApValues) String() string {
+    return fmt.Sprintf(
+    	"UseAutoApValues[Accept=%v, For=%v, Macs=%v, AdditionalProperties=%v]",
+    	u.Accept, u.For, u.Macs, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UseAutoApValues.

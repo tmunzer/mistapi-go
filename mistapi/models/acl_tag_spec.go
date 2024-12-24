@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AclTagSpec represents a AclTagSpec struct.
@@ -11,6 +12,14 @@ type AclTagSpec struct {
     // `tcp` / `udp` / `icmp` / `icmp6` / `gre` / `any` / `:protocol_number`, `protocol_number` is between 1-254, default is `any` `protocol_number` is between 1-254
     Protocol             *string                `json:"protocol,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AclTagSpec,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AclTagSpec) String() string {
+    return fmt.Sprintf(
+    	"AclTagSpec[PortRange=%v, Protocol=%v, AdditionalProperties=%v]",
+    	a.PortRange, a.Protocol, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AclTagSpec.

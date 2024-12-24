@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (s *SitesUISettings) ListSiteUiSettings(
     siteId uuid.UUID) (
     models.ApiResponse[[]models.UiSettings],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/uisettings", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/uisettings")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -76,11 +72,8 @@ func (s *SitesUISettings) CreateSiteUiSettings(
     body *models.UiSettings) (
     models.ApiResponse[models.UiSettings],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/uisettings", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/uisettings")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -123,11 +116,8 @@ func (s *SitesUISettings) ListSiteUiSettingDerived(
     siteId uuid.UUID) (
     models.ApiResponse[models.UiSettings],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/uisettings/derived", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/uisettings/derived")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -167,11 +157,8 @@ func (s *SitesUISettings) DeleteSiteUiSetting(
     uisettingId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/uisettings/%v", siteId, uisettingId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/uisettings/%v")
+    req.AppendTemplateParams(siteId, uisettingId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -208,11 +195,8 @@ func (s *SitesUISettings) GetSiteUiSetting(
     uisettingId uuid.UUID) (
     models.ApiResponse[[]models.UiSettings],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/uisettings/%v", siteId, uisettingId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/uisettings/%v")
+    req.AppendTemplateParams(siteId, uisettingId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -253,11 +237,8 @@ func (s *SitesUISettings) UpdateSiteUiSetting(
     body *models.UiSettings) (
     models.ApiResponse[models.UiSettings],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/uisettings/%v", siteId, uisettingId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/uisettings/%v")
+    req.AppendTemplateParams(siteId, uisettingId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

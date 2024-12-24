@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsMacTable represents a UtilsMacTable struct.
@@ -10,6 +11,14 @@ type UtilsMacTable struct {
     PortId               *string                `json:"port_id,omitempty"`
     VlanId               *string                `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsMacTable,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsMacTable) String() string {
+    return fmt.Sprintf(
+    	"UtilsMacTable[MacAddress=%v, PortId=%v, VlanId=%v, AdditionalProperties=%v]",
+    	u.MacAddress, u.PortId, u.VlanId, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsMacTable.

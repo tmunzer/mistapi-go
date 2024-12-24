@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingPcap represents a OrgSettingPcap struct.
@@ -10,6 +11,14 @@ type OrgSettingPcap struct {
     // max_len of non-management packets to capture
     MaxPktLen            *int                   `json:"max_pkt_len,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingPcap,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingPcap) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingPcap[Bucket=%v, MaxPktLen=%v, AdditionalProperties=%v]",
+    	o.Bucket, o.MaxPktLen, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingPcap.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -31,11 +30,8 @@ func (m *MSPsLogo) DeleteMspLogo(
     mspId uuid.UUID) (
     *http.Response,
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/msps/%v/logo", mspId),
-    )
+    req := m.prepareRequest(ctx, "DELETE", "/api/v1/msps/%v/logo")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -72,7 +68,8 @@ func (m *MSPsLogo) PostMspLogo(
     body *models.MspLogo) (
     *http.Response,
     error) {
-    req := m.prepareRequest(ctx, "POST", fmt.Sprintf("/api/v1/msps/%v/logo", mspId))
+    req := m.prepareRequest(ctx, "POST", "/api/v1/msps/%v/logo")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

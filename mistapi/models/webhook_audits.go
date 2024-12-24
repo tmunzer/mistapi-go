@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type WebhookAudits struct {
     Events               []WebhookAuditEvent    `json:"events"`
     Topic                string                 `json:"topic"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookAudits,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookAudits) String() string {
+    return fmt.Sprintf(
+    	"WebhookAudits[Events=%v, Topic=%v, AdditionalProperties=%v]",
+    	w.Events, w.Topic, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookAudits.

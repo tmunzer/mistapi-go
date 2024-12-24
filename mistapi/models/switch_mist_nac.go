@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchMistNac represents a SwitchMistNac struct.
@@ -10,6 +11,14 @@ type SwitchMistNac struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     Network              *string                `json:"network,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchMistNac,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchMistNac) String() string {
+    return fmt.Sprintf(
+    	"SwitchMistNac[Enabled=%v, Network=%v, AdditionalProperties=%v]",
+    	s.Enabled, s.Network, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMistNac.

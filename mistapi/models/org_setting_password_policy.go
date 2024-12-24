@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingPasswordPolicy represents a OrgSettingPasswordPolicy struct.
@@ -18,6 +19,14 @@ type OrgSettingPasswordPolicy struct {
     // whether to require two-factor auth
     RequiresTwoFactorAuth *bool                  `json:"requires_two_factor_auth,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingPasswordPolicy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingPasswordPolicy) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingPasswordPolicy[Enabled=%v, ExpiryInDays=%v, MinLength=%v, RequiresSpecialChar=%v, RequiresTwoFactorAuth=%v, AdditionalProperties=%v]",
+    	o.Enabled, o.ExpiryInDays, o.MinLength, o.RequiresSpecialChar, o.RequiresTwoFactorAuth, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingPasswordPolicy.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // License represents a License struct.
@@ -14,6 +15,14 @@ type License struct {
     // Property key is license type (e.g. SUB-MAN) and Property value is the number of licenses consumed.
     Summary              map[string]int         `json:"summary,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for License,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (l License) String() string {
+    return fmt.Sprintf(
+    	"License[Amendments=%v, Entitled=%v, Licenses=%v, Summary=%v, AdditionalProperties=%v]",
+    	l.Amendments, l.Entitled, l.Licenses, l.Summary, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for License.

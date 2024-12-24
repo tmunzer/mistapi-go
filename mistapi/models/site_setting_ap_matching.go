@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingApMatching represents a SiteSettingApMatching struct.
@@ -9,6 +10,14 @@ type SiteSettingApMatching struct {
     Enabled              *bool                       `json:"enabled,omitempty"`
     Rules                []SiteSettingApMatchingRule `json:"rules,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingApMatching,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingApMatching) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingApMatching[Enabled=%v, Rules=%v, AdditionalProperties=%v]",
+    	s.Enabled, s.Rules, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingApMatching.

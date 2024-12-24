@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApRadioBand24 represents a ApRadioBand24 struct.
@@ -28,6 +29,14 @@ type ApRadioBand24 struct {
     // enum: `auto`, `long`, `short`
     Preamble             *RadioBandPreambleEnum    `json:"preamble,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApRadioBand24,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApRadioBand24) String() string {
+    return fmt.Sprintf(
+    	"ApRadioBand24[AllowRrmDisable=%v, AntGain=%v, AntennaMode=%v, Bandwidth=%v, Channel=%v, Channels=%v, Disabled=%v, Power=%v, PowerMax=%v, PowerMin=%v, Preamble=%v, AdditionalProperties=%v]",
+    	a.AllowRrmDisable, a.AntGain, a.AntennaMode, a.Bandwidth, a.Channel, a.Channels, a.Disabled, a.Power, a.PowerMax, a.PowerMin, a.Preamble, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadioBand24.

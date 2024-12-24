@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstApplicationDefinition represents a ConstApplicationDefinition struct.
@@ -16,6 +17,14 @@ type ConstApplicationDefinition struct {
     SignatureBased       *bool                  `json:"signature_based,omitempty"`
     SsrAppId             *bool                  `json:"ssr_app_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstApplicationDefinition,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstApplicationDefinition) String() string {
+    return fmt.Sprintf(
+    	"ConstApplicationDefinition[AppId=%v, AppImageUrl=%v, AppProbe=%v, Category=%v, Group=%v, Key=%v, Name=%v, SignatureBased=%v, SsrAppId=%v, AdditionalProperties=%v]",
+    	c.AppId, c.AppImageUrl, c.AppProbe, c.Category, c.Group, c.Key, c.Name, c.SignatureBased, c.SsrAppId, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstApplicationDefinition.

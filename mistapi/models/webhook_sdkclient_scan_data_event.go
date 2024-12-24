@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -26,6 +27,14 @@ type WebhookSdkclientScanDataEvent struct {
     ScanData             []WebhookSdkclientScanDataEventScanDataItem `json:"scan_data,omitempty"`
     SiteId               uuid.UUID                                   `json:"site_id"`
     AdditionalProperties map[string]interface{}                      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookSdkclientScanDataEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookSdkclientScanDataEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookSdkclientScanDataEvent[ConnectionAp=%v, ConnectionBand=%v, ConnectionBssid=%v, ConnectionChannel=%v, ConnectionRssi=%v, LastSeen=%v, Mac=%v, ScanData=%v, SiteId=%v, AdditionalProperties=%v]",
+    	w.ConnectionAp, w.ConnectionBand, w.ConnectionBssid, w.ConnectionChannel, w.ConnectionRssi, w.LastSeen, w.Mac, w.ScanData, w.SiteId, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookSdkclientScanDataEvent.

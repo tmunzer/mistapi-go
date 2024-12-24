@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -28,6 +29,14 @@ type Vpn struct {
     // enum: `hub_spoke`, `mesh`
     Type                 *VpnTypeEnum                `json:"type,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Vpn,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v Vpn) String() string {
+    return fmt.Sprintf(
+    	"Vpn[CreatedTime=%v, Id=%v, Links=%v, ModifiedTime=%v, Name=%v, OrgId=%v, PathSelection=%v, Paths=%v, Type=%v, AdditionalProperties=%v]",
+    	v.CreatedTime, v.Id, v.Links, v.ModifiedTime, v.Name, v.OrgId, v.PathSelection, v.Paths, v.Type, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Vpn.

@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // PskVlanId represents a PskVlanId struct.
@@ -14,12 +14,10 @@ type PskVlanId struct {
     isNumber bool
 }
 
-// String converts the PskVlanId object to a string representation.
+// String implements the fmt.Stringer interface for PskVlanId,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (p PskVlanId) String() string {
-    if bytes, err := json.Marshal(p.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", p.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskVlanId.

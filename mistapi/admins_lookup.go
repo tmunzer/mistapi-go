@@ -30,6 +30,7 @@ func (a *AdminsLookup) Lookup(
     models.ApiResponse[models.ResponseLoginLookup],
     error) {
     req := a.prepareRequest(ctx, "POST", "/api/v1/login/lookup")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

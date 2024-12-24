@@ -1,11 +1,11 @@
 
-# Gateway Template Probe Type Enum
+# Tunnel Config Probe Type Enum
 
 enum: `http`, `icmp`
 
 ## Enumeration
 
-`GatewayTemplateProbeTypeEnum`
+`TunnelConfigProbeTypeEnum`
 
 ## Fields
 

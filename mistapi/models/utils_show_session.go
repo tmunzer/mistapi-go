@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsShowSession represents a UtilsShowSession struct.
@@ -13,6 +14,14 @@ type UtilsShowSession struct {
     // Show session details by session_id
     SessionId            *string                `json:"session_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsShowSession,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsShowSession) String() string {
+    return fmt.Sprintf(
+    	"UtilsShowSession[Node=%v, ServiceName=%v, SessionId=%v, AdditionalProperties=%v]",
+    	u.Node, u.ServiceName, u.SessionId, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowSession.

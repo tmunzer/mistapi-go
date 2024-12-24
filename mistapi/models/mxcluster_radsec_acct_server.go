@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxclusterRadsecAcctServer represents a MxclusterRadsecAcctServer struct.
@@ -15,6 +16,14 @@ type MxclusterRadsecAcctServer struct {
     // list of ssids that will use this server if match_ssid is true and match is found
     Ssids                []string               `json:"ssids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxclusterRadsecAcctServer,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxclusterRadsecAcctServer) String() string {
+    return fmt.Sprintf(
+    	"MxclusterRadsecAcctServer[Host=%v, Port=%v, Secret=%v, Ssids=%v, AdditionalProperties=%v]",
+    	m.Host, m.Port, m.Secret, m.Ssids, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterRadsecAcctServer.

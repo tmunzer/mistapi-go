@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseOrgSuppressAlarm represents a ResponseOrgSuppressAlarm struct.
 type ResponseOrgSuppressAlarm struct {
     Results              []ResponseOrgSuppressAlarmItem `json:"results,omitempty"`
     AdditionalProperties map[string]interface{}         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseOrgSuppressAlarm,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseOrgSuppressAlarm) String() string {
+    return fmt.Sprintf(
+    	"ResponseOrgSuppressAlarm[Results=%v, AdditionalProperties=%v]",
+    	r.Results, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOrgSuppressAlarm.

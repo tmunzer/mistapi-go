@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanAppQosAppsProperties represents a WlanAppQosAppsProperties struct.
@@ -12,6 +13,14 @@ type WlanAppQosAppsProperties struct {
     // subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load)
     SrcSubnet            *string                `json:"src_subnet,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanAppQosAppsProperties,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanAppQosAppsProperties) String() string {
+    return fmt.Sprintf(
+    	"WlanAppQosAppsProperties[Dscp=%v, DstSubnet=%v, SrcSubnet=%v, AdditionalProperties=%v]",
+    	w.Dscp, w.DstSubnet, w.SrcSubnet, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAppQosAppsProperties.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SnmpVacmSecurityToGroup represents a SnmpVacmSecurityToGroup struct.
@@ -10,6 +11,14 @@ type SnmpVacmSecurityToGroup struct {
     // enum: `usm`, `v1`, `v2c`
     SecurityModel        *SnmpVacmSecurityModelEnum           `json:"security_model,omitempty"`
     AdditionalProperties map[string]interface{}               `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SnmpVacmSecurityToGroup,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SnmpVacmSecurityToGroup) String() string {
+    return fmt.Sprintf(
+    	"SnmpVacmSecurityToGroup[Content=%v, SecurityModel=%v, AdditionalProperties=%v]",
+    	s.Content, s.SecurityModel, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpVacmSecurityToGroup.

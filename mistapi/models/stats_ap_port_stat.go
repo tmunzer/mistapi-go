@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApPortStat represents a StatsApPortStat struct.
@@ -15,6 +16,14 @@ type StatsApPortStat struct {
     TxPkts               Optional[float64]      `json:"tx_pkts"`
     Up                   Optional[bool]         `json:"up"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApPortStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApPortStat) String() string {
+    return fmt.Sprintf(
+    	"StatsApPortStat[FullDuplex=%v, RxBytes=%v, RxErrors=%v, RxPkts=%v, Speed=%v, TxBytes=%v, TxPkts=%v, Up=%v, AdditionalProperties=%v]",
+    	s.FullDuplex, s.RxBytes, s.RxErrors, s.RxPkts, s.Speed, s.TxBytes, s.TxPkts, s.Up, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApPortStat.

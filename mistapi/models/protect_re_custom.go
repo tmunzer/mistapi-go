@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ProtectReCustom represents a ProtectReCustom struct.
@@ -13,6 +14,14 @@ type ProtectReCustom struct {
     Protocol             *ProtectReCustomProtocolEnum `json:"protocol,omitempty"`
     Subnets              []string                     `json:"subnets,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ProtectReCustom,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p ProtectReCustom) String() string {
+    return fmt.Sprintf(
+    	"ProtectReCustom[PortRange=%v, Protocol=%v, Subnets=%v, AdditionalProperties=%v]",
+    	p.PortRange, p.Protocol, p.Subnets, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ProtectReCustom.

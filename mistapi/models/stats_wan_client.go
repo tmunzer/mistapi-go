@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -21,6 +22,14 @@ type StatsWanClient struct {
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Wcid                 *string                `json:"wcid,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsWanClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsWanClient) String() string {
+    return fmt.Sprintf(
+    	"StatsWanClient[DhcpExpireTime=%v, DhcpStartTime=%v, Hostname=%v, Ip=%v, IpSrc=%v, LastHostname=%v, LastIp=%v, Mfg=%v, Network=%v, OrgId=%v, SiteId=%v, Timestamp=%v, Wcid=%v, AdditionalProperties=%v]",
+    	s.DhcpExpireTime, s.DhcpStartTime, s.Hostname, s.Ip, s.IpSrc, s.LastHostname, s.LastIp, s.Mfg, s.Network, s.OrgId, s.SiteId, s.Timestamp, s.Wcid, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWanClient.

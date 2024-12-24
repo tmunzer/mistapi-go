@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type ResponseSearch struct {
     Results              []ResponseSearchItem   `json:"results"`
     Total                int                    `json:"total"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSearch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSearch) String() string {
+    return fmt.Sprintf(
+    	"ResponseSearch[Limit=%v, Next=%v, Page=%v, Results=%v, Total=%v, AdditionalProperties=%v]",
+    	r.Limit, r.Next, r.Page, r.Results, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSearch.

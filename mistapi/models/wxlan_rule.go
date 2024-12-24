@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -38,6 +39,14 @@ type WxlanRule struct {
     // Only for Org Level WxRule
     TemplateId           *uuid.UUID             `json:"template_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WxlanRule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WxlanRule) String() string {
+    return fmt.Sprintf(
+    	"WxlanRule[Action=%v, ApplyTags=%v, BlockedApps=%v, CreatedTime=%v, DstAllowWxtags=%v, DstDenyWxtags=%v, DstWxtags=%v, Enabled=%v, ForSite=%v, Id=%v, ModifiedTime=%v, Order=%v, OrgId=%v, SiteId=%v, SrcWxtags=%v, TemplateId=%v, AdditionalProperties=%v]",
+    	w.Action, w.ApplyTags, w.BlockedApps, w.CreatedTime, w.DstAllowWxtags, w.DstDenyWxtags, w.DstWxtags, w.Enabled, w.ForSite, w.Id, w.ModifiedTime, w.Order, w.OrgId, w.SiteId, w.SrcWxtags, w.TemplateId, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanRule.

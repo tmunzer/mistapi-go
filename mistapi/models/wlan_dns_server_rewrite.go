@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanDnsServerRewrite represents a WlanDnsServerRewrite struct.
@@ -12,6 +13,14 @@ type WlanDnsServerRewrite struct {
     // Property key is the RADIUS group, property value is the desired DNS Server
     RadiusGroups         map[string]string      `json:"radius_groups,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanDnsServerRewrite,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanDnsServerRewrite) String() string {
+    return fmt.Sprintf(
+    	"WlanDnsServerRewrite[Enabled=%v, RadiusGroups=%v, AdditionalProperties=%v]",
+    	w.Enabled, w.RadiusGroups, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDnsServerRewrite.

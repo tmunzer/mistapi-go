@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WxlanTunnelSession represents a WxlanTunnelSession struct.
@@ -24,6 +25,14 @@ type WxlanTunnelSession struct {
     // whether to use AP (last 4 bytes of MAC currently) as session ids
     UseApAsSessionIds    *bool                            `json:"use_ap_as_session_ids,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WxlanTunnelSession,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WxlanTunnelSession) String() string {
+    return fmt.Sprintf(
+    	"WxlanTunnelSession[ApAsSessionId=%v, Comment=%v, EnableCookie=%v, Ethertype=%v, LocalSessionId=%v, Pseudo8021adEnabled=%v, RemoteId=%v, RemoteSessionId=%v, UseApAsSessionIds=%v, AdditionalProperties=%v]",
+    	w.ApAsSessionId, w.Comment, w.EnableCookie, w.Ethertype, w.LocalSessionId, w.Pseudo8021adEnabled, w.RemoteId, w.RemoteSessionId, w.UseApAsSessionIds, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanTunnelSession.

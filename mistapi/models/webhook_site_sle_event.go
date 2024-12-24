@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -12,6 +13,14 @@ type WebhookSiteSleEvent struct {
     Sle                  *WebhookSiteSleEventSle `json:"sle,omitempty"`
     Timestamp            *int                    `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookSiteSleEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookSiteSleEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookSiteSleEvent[OrgId=%v, SiteId=%v, Sle=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	w.OrgId, w.SiteId, w.Sle, w.Timestamp, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookSiteSleEvent.

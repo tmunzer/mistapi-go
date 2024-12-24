@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type MapSiteReplaceFile struct {
     File                 []byte                  `json:"file"`
     Json                 *MapSiteReplaceFileJson `json:"json,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapSiteReplaceFile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapSiteReplaceFile) String() string {
+    return fmt.Sprintf(
+    	"MapSiteReplaceFile[File=%v, Json=%v, AdditionalProperties=%v]",
+    	m.File, m.Json, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapSiteReplaceFile.

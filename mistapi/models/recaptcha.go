@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // Recaptcha represents a Recaptcha struct.
@@ -11,6 +12,14 @@ type Recaptcha struct {
     Required             *bool                  `json:"required,omitempty"`
     Sitekey              *string                `json:"sitekey,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Recaptcha,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r Recaptcha) String() string {
+    return fmt.Sprintf(
+    	"Recaptcha[Flavor=%v, Required=%v, Sitekey=%v, AdditionalProperties=%v]",
+    	r.Flavor, r.Required, r.Sitekey, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Recaptcha.

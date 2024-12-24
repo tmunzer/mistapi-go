@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -53,6 +54,14 @@ type Webhook struct {
     // when url uses HTTPS, whether to verify the certificate
     VerifyCert           *bool                       `json:"verify_cert,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Webhook,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w Webhook) String() string {
+    return fmt.Sprintf(
+    	"Webhook[CreatedTime=%v, Enabled=%v, ForSite=%v, Headers=%v, Id=%v, ModifiedTime=%v, Name=%v, Oauth2ClientId=%v, Oauth2ClientSecret=%v, Oauth2GrantType=%v, Oauth2Password=%v, Oauth2Scopes=%v, Oauth2TokenUrl=%v, Oauth2Username=%v, OrgId=%v, Secret=%v, SiteId=%v, SplunkToken=%v, Topics=%v, Type=%v, Url=%v, VerifyCert=%v, AdditionalProperties=%v]",
+    	w.CreatedTime, w.Enabled, w.ForSite, w.Headers, w.Id, w.ModifiedTime, w.Name, w.Oauth2ClientId, w.Oauth2ClientSecret, w.Oauth2GrantType, w.Oauth2Password, w.Oauth2Scopes, w.Oauth2TokenUrl, w.Oauth2Username, w.OrgId, w.Secret, w.SiteId, w.SplunkToken, w.Topics, w.Type, w.Url, w.VerifyCert, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Webhook.

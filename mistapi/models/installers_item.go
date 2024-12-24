@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -11,6 +12,14 @@ type InstallersItem struct {
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for InstallersItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i InstallersItem) String() string {
+    return fmt.Sprintf(
+    	"InstallersItem[Id=%v, Name=%v, AdditionalProperties=%v]",
+    	i.Id, i.Name, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InstallersItem.

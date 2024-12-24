@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -62,6 +63,14 @@ type Service struct {
     // when `type`==`urls`, no need for spec as URL can encode the ports being used
     Urls                          []string                   `json:"urls,omitempty"`
     AdditionalProperties          map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Service,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s Service) String() string {
+    return fmt.Sprintf(
+    	"Service[Addresses=%v, AppCategories=%v, AppSubcategories=%v, Apps=%v, ClientLimitDown=%v, ClientLimitUp=%v, CreatedTime=%v, Description=%v, Dscp=%v, FailoverPolicy=%v, Hostnames=%v, Id=%v, MaxJitter=%v, MaxLatency=%v, MaxLoss=%v, ModifiedTime=%v, Name=%v, OrgId=%v, ServiceLimitDown=%v, ServiceLimitUp=%v, SleEnabled=%v, Specs=%v, SsrRelaxedTcpStateEnforcement=%v, TrafficClass=%v, TrafficType=%v, Type=%v, Urls=%v, AdditionalProperties=%v]",
+    	s.Addresses, s.AppCategories, s.AppSubcategories, s.Apps, s.ClientLimitDown, s.ClientLimitUp, s.CreatedTime, s.Description, s.Dscp, s.FailoverPolicy, s.Hostnames, s.Id, s.MaxJitter, s.MaxLatency, s.MaxLoss, s.ModifiedTime, s.Name, s.OrgId, s.ServiceLimitDown, s.ServiceLimitUp, s.SleEnabled, s.Specs, s.SsrRelaxedTcpStateEnforcement, s.TrafficClass, s.TrafficType, s.Type, s.Urls, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Service.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UiSettingsTileTimeRange represents a UiSettingsTileTimeRange struct.
@@ -14,6 +15,14 @@ type UiSettingsTileTimeRange struct {
     Start                *int                   `json:"start,omitempty"`
     UsePreset            *bool                  `json:"usePreset,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UiSettingsTileTimeRange,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UiSettingsTileTimeRange) String() string {
+    return fmt.Sprintf(
+    	"UiSettingsTileTimeRange[End=%v, EndDate=%v, Interval=%v, Name=%v, ShortName=%v, Start=%v, UsePreset=%v, AdditionalProperties=%v]",
+    	u.End, u.EndDate, u.Interval, u.Name, u.ShortName, u.Start, u.UsePreset, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UiSettingsTileTimeRange.

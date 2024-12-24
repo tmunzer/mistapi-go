@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // Hours represents a Hours struct.
@@ -16,6 +17,14 @@ type Hours struct {
     Tue                  *string                `json:"tue,omitempty"`
     Wed                  *string                `json:"wed,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Hours,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (h Hours) String() string {
+    return fmt.Sprintf(
+    	"Hours[Fri=%v, Mon=%v, Sat=%v, Sun=%v, Thu=%v, Tue=%v, Wed=%v, AdditionalProperties=%v]",
+    	h.Fri, h.Mon, h.Sat, h.Sun, h.Thu, h.Tue, h.Wed, h.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Hours.

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RemoteSyslogConsole represents a RemoteSyslogConsole struct.
 type RemoteSyslogConsole struct {
     Contents             []RemoteSyslogContent  `json:"contents,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RemoteSyslogConsole,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RemoteSyslogConsole) String() string {
+    return fmt.Sprintf(
+    	"RemoteSyslogConsole[Contents=%v, AdditionalProperties=%v]",
+    	r.Contents, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogConsole.

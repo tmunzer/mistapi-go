@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxclusterRadsecTls represents a MxclusterRadsecTls struct.
 type MxclusterRadsecTls struct {
     Keypair              *string                `json:"keypair,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxclusterRadsecTls,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxclusterRadsecTls) String() string {
+    return fmt.Sprintf(
+    	"MxclusterRadsecTls[Keypair=%v, AdditionalProperties=%v]",
+    	m.Keypair, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterRadsecTls.

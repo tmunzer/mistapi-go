@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RoutingPolicyTermMatchingRouteExists represents a RoutingPolicyTermMatchingRouteExists struct.
@@ -11,6 +12,14 @@ type RoutingPolicyTermMatchingRouteExists struct {
     // it can also be the name of the VPN or wan if they
     VrfName              *string                `json:"vrf_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RoutingPolicyTermMatchingRouteExists,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RoutingPolicyTermMatchingRouteExists) String() string {
+    return fmt.Sprintf(
+    	"RoutingPolicyTermMatchingRouteExists[Route=%v, VrfName=%v, AdditionalProperties=%v]",
+    	r.Route, r.VrfName, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTermMatchingRouteExists.

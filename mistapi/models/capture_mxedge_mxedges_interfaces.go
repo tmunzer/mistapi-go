@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // CaptureMxedgeMxedgesInterfaces represents a CaptureMxedgeMxedgesInterfaces struct.
@@ -10,6 +11,14 @@ type CaptureMxedgeMxedgesInterfaces struct {
     // tcpdump expression common for wired,radiotap
     TcpdumpExpression    *string                `json:"tcpdump_expression,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureMxedgeMxedgesInterfaces,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureMxedgeMxedgesInterfaces) String() string {
+    return fmt.Sprintf(
+    	"CaptureMxedgeMxedgesInterfaces[TcpdumpExpression=%v, AdditionalProperties=%v]",
+    	c.TcpdumpExpression, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureMxedgeMxedgesInterfaces.

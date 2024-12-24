@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -18,6 +19,14 @@ type NacRuleMatching struct {
     // list of vendors to match
     Vendor               []string                      `json:"vendor,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NacRuleMatching,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NacRuleMatching) String() string {
+    return fmt.Sprintf(
+    	"NacRuleMatching[AuthType=%v, Nactags=%v, PortTypes=%v, SiteIds=%v, SitegroupIds=%v, Vendor=%v, AdditionalProperties=%v]",
+    	n.AuthType, n.Nactags, n.PortTypes, n.SiteIds, n.SitegroupIds, n.Vendor, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacRuleMatching.

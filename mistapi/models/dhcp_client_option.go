@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // DhcpClientOption represents a DhcpClientOption struct.
@@ -9,6 +10,14 @@ type DhcpClientOption struct {
     Code                 *string                `json:"code,omitempty"`
     Data                 *string                `json:"data,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DhcpClientOption,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DhcpClientOption) String() string {
+    return fmt.Sprintf(
+    	"DhcpClientOption[Code=%v, Data=%v, AdditionalProperties=%v]",
+    	d.Code, d.Data, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpClientOption.

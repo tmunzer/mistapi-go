@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -40,11 +39,8 @@ func (s *SitesInsights) GetSiteInsightMetricsForClient(
     page *int) (
     models.ApiResponse[models.InsightMetrics],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/insights/client/%v/%v", siteId, clientMac, metric),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/insights/client/%v/%v")
+    req.AppendTemplateParams(siteId, clientMac, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -110,11 +106,8 @@ func (s *SitesInsights) GetSiteInsightMetricsForDevice(
     page *int) (
     models.ApiResponse[models.ResponseDeviceMetrics],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/insights/device/%v/%v", siteId, deviceMac, metric),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/insights/device/%v/%v")
+    req.AppendTemplateParams(siteId, deviceMac, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -179,11 +172,8 @@ func (s *SitesInsights) GetSiteInsightMetrics(
     page *int) (
     models.ApiResponse[models.InsightMetrics],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/insights/%v", siteId, metric),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/insights/%v")
+    req.AppendTemplateParams(siteId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

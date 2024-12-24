@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ModuleStatItemPicsItem represents a ModuleStatItemPicsItem struct.
@@ -10,6 +11,14 @@ type ModuleStatItemPicsItem struct {
     ModelNumber          *string                                `json:"model_number,omitempty"`
     PortGroups           []ModuleStatItemPicsItemPortGroupsItem `json:"port_groups,omitempty"`
     AdditionalProperties map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ModuleStatItemPicsItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m ModuleStatItemPicsItem) String() string {
+    return fmt.Sprintf(
+    	"ModuleStatItemPicsItem[Index=%v, ModelNumber=%v, PortGroups=%v, AdditionalProperties=%v]",
+    	m.Index, m.ModelNumber, m.PortGroups, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemPicsItem.

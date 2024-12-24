@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NacCrlFile represents a NacCrlFile struct.
@@ -17,6 +18,14 @@ type NacCrlFile struct {
     // URL to download the uploaded CRL file
     Url                  *string                `json:"url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NacCrlFile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NacCrlFile) String() string {
+    return fmt.Sprintf(
+    	"NacCrlFile[CreatedTime=%v, Id=%v, ModifiedTime=%v, Name=%v, Url=%v, AdditionalProperties=%v]",
+    	n.CreatedTime, n.Id, n.ModifiedTime, n.Name, n.Url, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacCrlFile.

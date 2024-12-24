@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -41,8 +40,9 @@ func (s *SitesSLEs) GetSiteSleClassifierDetails(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/classifier/%v/summary", siteId, scope, scopeId, metric, classifier),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/classifier/%v/summary",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric, classifier)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -96,8 +96,9 @@ func (s *SitesSLEs) GetSiteSleMetricClassifiers(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/classifiers", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/classifiers",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -145,8 +146,9 @@ func (s *SitesSLEs) GetSiteSleHistogram(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/histogram", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/histogram",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -208,8 +210,9 @@ func (s *SitesSLEs) GetSiteSleImpactSummary(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impact-summary", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/impact-summary",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -273,8 +276,9 @@ func (s *SitesSLEs) GetSiteSleImpactedApplications(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-applications", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-applications",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -335,8 +339,9 @@ func (s *SitesSLEs) GetSiteSleImpactedAps(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-aps", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-aps",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -397,8 +402,9 @@ func (s *SitesSLEs) GetSiteSleImpactedChassis(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-chassis", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-chassis",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -459,8 +465,9 @@ func (s *SitesSLEs) GetSiteSleImpactedWiredClients(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-clients", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-clients",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -521,8 +528,9 @@ func (s *SitesSLEs) GetSiteSleImpactedGateways(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-gateways", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-gateways",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -583,8 +591,9 @@ func (s *SitesSLEs) GetSiteSleImpactedInterfaces(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-interfaces", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-interfaces",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -645,8 +654,9 @@ func (s *SitesSLEs) GetSiteSleImpactedSwitches(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-switches", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-switches",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -707,8 +717,9 @@ func (s *SitesSLEs) GetSiteSleImpactedWirelessClients(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-users", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/impacted-users",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -768,8 +779,9 @@ func (s *SitesSLEs) GetSiteSleSummary(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/summary", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/summary",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -823,8 +835,9 @@ func (s *SitesSLEs) GetSiteSleThreshold(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/threshold", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/threshold",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -870,8 +883,9 @@ func (s *SitesSLEs) ReplaceSiteSleThreshold(
     req := s.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/threshold", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/threshold",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -921,8 +935,9 @@ func (s *SitesSLEs) UpdateSiteSleThreshold(
     req := s.prepareRequest(
       ctx,
       "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metric/%v/threshold", siteId, scope, scopeId, metric),
+      "/api/v1/sites/%v/sle/%v/%v/metric/%v/threshold",
     )
+    req.AppendTemplateParams(siteId, scope, scopeId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -967,11 +982,8 @@ func (s *SitesSLEs) GetSiteSlesMetrics(
     scopeId string) (
     models.ApiResponse[models.SiteSleMetrics],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/sle/%v/%v/metrics", siteId, scope, scopeId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/sle/%v/%v/metrics")
+    req.AppendTemplateParams(siteId, scope, scopeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingMxedge represents a SiteSettingMxedge struct.
@@ -14,6 +15,14 @@ type SiteSettingMxedge struct {
     // MxEdge Radsec Configuration
     Radsec               *MxclusterRadsec       `json:"radsec,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingMxedge,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingMxedge) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingMxedge[MistDas=%v, MistNac=%v, MistNacedge=%v, Radsec=%v, AdditionalProperties=%v]",
+    	s.MistDas, s.MistNac, s.MistNacedge, s.Radsec, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingMxedge.

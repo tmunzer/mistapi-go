@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type SleClassifier struct {
     XLabel               string                 `json:"x_label"`
     YLabel               string                 `json:"y_label"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleClassifier,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleClassifier) String() string {
+    return fmt.Sprintf(
+    	"SleClassifier[Impact=%v, Interval=%v, Name=%v, Samples=%v, XLabel=%v, YLabel=%v, AdditionalProperties=%v]",
+    	s.Impact, s.Interval, s.Name, s.Samples, s.XLabel, s.YLabel, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleClassifier.

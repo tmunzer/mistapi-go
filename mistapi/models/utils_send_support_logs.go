@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsSendSupportLogs represents a UtilsSendSupportLogs struct.
@@ -19,6 +20,14 @@ type UtilsSendSupportLogs struct {
     // optional: number of most recent messages files to upload.
     NumMessagesFiles     *int                          `json:"num_messages_files,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsSendSupportLogs,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsSendSupportLogs) String() string {
+    return fmt.Sprintf(
+    	"UtilsSendSupportLogs[Info=%v, Node=%v, NumMessagesFiles=%v, AdditionalProperties=%v]",
+    	u.Info, u.Node, u.NumMessagesFiles, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsSendSupportLogs.

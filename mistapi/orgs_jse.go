@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (o *OrgsJSE) GetOrgJseInfo(
     orgId uuid.UUID) (
     models.ApiResponse[models.AccountJseInfo],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/jse/info", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/setting/jse/info")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -75,11 +71,8 @@ func (o *OrgsJSE) DeleteOrgJsecCredential(
     orgId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/jse/setup", orgId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/setting/jse/setup")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -115,11 +108,8 @@ func (o *OrgsJSE) GetOrgJsecCredential(
     orgId uuid.UUID) (
     models.ApiResponse[models.AccountJseInfo],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/jse/setup", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/setting/jse/setup")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -163,11 +153,8 @@ func (o *OrgsJSE) SetupOrgJsecCredential(
     body *models.AccountJseConfig) (
     models.ApiResponse[models.AccountJseInfo],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/jse/setup", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/setting/jse/setup")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

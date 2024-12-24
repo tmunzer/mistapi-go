@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MapOrgImportFile represents a MapOrgImportFile struct.
@@ -14,6 +15,14 @@ type MapOrgImportFile struct {
     File                        *[]byte                `json:"file,omitempty"`
     Json                        *MapOrgImportFileJson  `json:"json,omitempty"`
     AdditionalProperties        map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapOrgImportFile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapOrgImportFile) String() string {
+    return fmt.Sprintf(
+    	"MapOrgImportFile[AutoDeviceprofileAssignment=%v, Csv=%v, File=%v, Json=%v, AdditionalProperties=%v]",
+    	m.AutoDeviceprofileAssignment, m.Csv, m.File, m.Json, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapOrgImportFile.

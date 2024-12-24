@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -13,6 +14,14 @@ type MapSitesurveyPathItems struct {
     Name                 *string                `json:"name,omitempty"`
     Nodes                []MapNode              `json:"nodes,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapSitesurveyPathItems,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapSitesurveyPathItems) String() string {
+    return fmt.Sprintf(
+    	"MapSitesurveyPathItems[Coordinate=%v, Id=%v, Name=%v, Nodes=%v, AdditionalProperties=%v]",
+    	m.Coordinate, m.Id, m.Name, m.Nodes, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapSitesurveyPathItems.

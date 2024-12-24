@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SuppressedAlarm represents a SuppressedAlarm struct.
@@ -16,6 +17,14 @@ type SuppressedAlarm struct {
     // level of scope. enum: `org`, `site`
     Scope                *SuppressedAlarmScopeEnum `json:"scope,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SuppressedAlarm,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SuppressedAlarm) String() string {
+    return fmt.Sprintf(
+    	"SuppressedAlarm[Applies=%v, Duration=%v, ScheduledTime=%v, Scope=%v, AdditionalProperties=%v]",
+    	s.Applies, s.Duration, s.ScheduledTime, s.Scope, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SuppressedAlarm.

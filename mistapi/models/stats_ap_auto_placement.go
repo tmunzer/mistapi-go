@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApAutoPlacement represents a StatsApAutoPlacement struct.
@@ -25,6 +26,14 @@ type StatsApAutoPlacement struct {
     // X Autoplaced Position in meters
     YM                   *float64                  `json:"y_m,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApAutoPlacement,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApAutoPlacement) String() string {
+    return fmt.Sprintf(
+    	"StatsApAutoPlacement[Info=%v, RecommendedAnchor=%v, Status=%v, StatusDetail=%v, UseAutoPlacement=%v, X=%v, XM=%v, Y=%v, YM=%v, AdditionalProperties=%v]",
+    	s.Info, s.RecommendedAnchor, s.Status, s.StatusDetail, s.UseAutoPlacement, s.X, s.XM, s.Y, s.YM, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApAutoPlacement.

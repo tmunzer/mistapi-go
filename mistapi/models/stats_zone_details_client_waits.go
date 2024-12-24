@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -18,6 +19,14 @@ type StatsZoneDetailsClientWaits struct {
     // 95th percentile of all the wait time(s)
     P95                  int                    `json:"p95"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsZoneDetailsClientWaits,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsZoneDetailsClientWaits) String() string {
+    return fmt.Sprintf(
+    	"StatsZoneDetailsClientWaits[Avg=%v, Max=%v, Min=%v, P95=%v, AdditionalProperties=%v]",
+    	s.Avg, s.Max, s.Min, s.P95, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsZoneDetailsClientWaits.

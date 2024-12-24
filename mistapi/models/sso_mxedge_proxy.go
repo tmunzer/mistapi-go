@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -18,6 +19,14 @@ type SsoMxedgeProxy struct {
     // SSIDs that support eduroam
     Ssids                []string                   `json:"ssids,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SsoMxedgeProxy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SsoMxedgeProxy) String() string {
+    return fmt.Sprintf(
+    	"SsoMxedgeProxy[AcctServers=%v, AuthServers=%v, MxclusterId=%v, OperatorName=%v, ProxyHosts=%v, Ssids=%v, AdditionalProperties=%v]",
+    	s.AcctServers, s.AuthServers, s.MxclusterId, s.OperatorName, s.ProxyHosts, s.Ssids, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsoMxedgeProxy.

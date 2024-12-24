@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -28,6 +29,14 @@ type WebhookLocationAssetEvent struct {
     // y, in meter
     Y                     *float64               `json:"y,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookLocationAssetEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookLocationAssetEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookLocationAssetEvent[BatteryVoltage=%v, EddystoneUidInstance=%v, EddystoneUidNamespace=%v, EddystoneUrlUrl=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, Mac=%v, MapId=%v, MfgCompanyId=%v, MfgData=%v, SiteId=%v, Timestamp=%v, Type=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	w.BatteryVoltage, w.EddystoneUidInstance, w.EddystoneUidNamespace, w.EddystoneUrlUrl, w.IbeaconMajor, w.IbeaconMinor, w.IbeaconUuid, w.Mac, w.MapId, w.MfgCompanyId, w.MfgData, w.SiteId, w.Timestamp, w.Type, w.X, w.Y, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookLocationAssetEvent.

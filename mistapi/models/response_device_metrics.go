@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type ResponseDeviceMetrics struct {
     Rt                   []string                            `json:"rt,omitempty"`
     Start                int                                 `json:"start"`
     AdditionalProperties map[string]interface{}              `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseDeviceMetrics,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseDeviceMetrics) String() string {
+    return fmt.Sprintf(
+    	"ResponseDeviceMetrics[End=%v, Interval=%v, Results=%v, Rt=%v, Start=%v, AdditionalProperties=%v]",
+    	r.End, r.Interval, r.Results, r.Rt, r.Start, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceMetrics.

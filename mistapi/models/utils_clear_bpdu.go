@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsClearBpdu represents a UtilsClearBpdu struct.
@@ -9,6 +10,14 @@ type UtilsClearBpdu struct {
     // the port on which to clear the detected BPDU error, or `all` for all ports
     Port                 *string                `json:"port,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsClearBpdu,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsClearBpdu) String() string {
+    return fmt.Sprintf(
+    	"UtilsClearBpdu[Port=%v, AdditionalProperties=%v]",
+    	u.Port, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsClearBpdu.

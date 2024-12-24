@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -31,11 +30,8 @@ func (s *SelfOAuth2) GetOauth2UrlForLinking(
     forward *string) (
     models.ApiResponse[models.ResponseSelfOauthUrl],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/self/oauth/%v", provider),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/self/oauth/%v")
+    req.AppendTemplateParams(provider)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -78,11 +74,8 @@ func (s *SelfOAuth2) LinkOauth2MistAccount(
     body *models.CodeString) (
     models.ApiResponse[models.ResponseSelfOauthLinkSuccess],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/self/oauth/%v", provider),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/self/oauth/%v")
+    req.AppendTemplateParams(provider)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

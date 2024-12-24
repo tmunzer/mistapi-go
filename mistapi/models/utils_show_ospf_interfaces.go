@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsShowOspfInterfaces represents a UtilsShowOspfInterfaces struct.
@@ -13,6 +14,14 @@ type UtilsShowOspfInterfaces struct {
     // VRF name
     Vrf                  *string                `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsShowOspfInterfaces,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsShowOspfInterfaces) String() string {
+    return fmt.Sprintf(
+    	"UtilsShowOspfInterfaces[Node=%v, PortId=%v, Vrf=%v, AdditionalProperties=%v]",
+    	u.Node, u.PortId, u.Vrf, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowOspfInterfaces.

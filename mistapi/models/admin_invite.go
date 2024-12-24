@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -40,6 +41,14 @@ type AdminInvite struct {
     // zipcode of registering user
     Zipcode              *string                `json:"zipcode,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AdminInvite,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AdminInvite) String() string {
+    return fmt.Sprintf(
+    	"AdminInvite[AccountOnly=%v, AllowMist=%v, City=%v, Country=%v, Email=%v, FirstName=%v, InviteCode=%v, LastName=%v, OrgName=%v, Password=%v, Recaptcha=%v, RecaptchaFlavor=%v, RefererInviteToken=%v, ReturnTo=%v, State=%v, StreetAddress=%v, StreetAddress2=%v, Zipcode=%v, AdditionalProperties=%v]",
+    	a.AccountOnly, a.AllowMist, a.City, a.Country, a.Email, a.FirstName, a.InviteCode, a.LastName, a.OrgName, a.Password, a.Recaptcha, a.RecaptchaFlavor, a.RefererInviteToken, a.ReturnTo, a.State, a.StreetAddress, a.StreetAddress2, a.Zipcode, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AdminInvite.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -21,6 +22,14 @@ type RfDiag struct {
     // enum: `asset`, `client`, `sdkclient`
     Type                 RfClientTypeEnum       `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RfDiag,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RfDiag) String() string {
+    return fmt.Sprintf(
+    	"RfDiag[Duration=%v, Mac=%v, Name=%v, SdkclientId=%v, Type=%v, AdditionalProperties=%v]",
+    	r.Duration, r.Mac, r.Name, r.SdkclientId, r.Type, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RfDiag.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type ConstAppSubcategoryDefinition struct {
     // Type of traffic (QoS) of the app subcategory
     TrafficType          string                 `json:"traffic_type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstAppSubcategoryDefinition,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstAppSubcategoryDefinition) String() string {
+    return fmt.Sprintf(
+    	"ConstAppSubcategoryDefinition[Display=%v, Key=%v, TrafficType=%v, AdditionalProperties=%v]",
+    	c.Display, c.Key, c.TrafficType, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstAppSubcategoryDefinition.

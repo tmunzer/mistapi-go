@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -35,6 +36,14 @@ type Mxtunnel struct {
     // list of vlan_ids that will be used
     VlanIds              []int                  `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Mxtunnel,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m Mxtunnel) String() string {
+    return fmt.Sprintf(
+    	"Mxtunnel[AnchorMxtunnelIds=%v, AutoPreemption=%v, CreatedTime=%v, ForSite=%v, HelloInterval=%v, HelloRetries=%v, Id=%v, Ipsec=%v, ModifiedTime=%v, Mtu=%v, MxclusterIds=%v, Name=%v, OrgId=%v, Protocol=%v, SiteId=%v, VlanIds=%v, AdditionalProperties=%v]",
+    	m.AnchorMxtunnelIds, m.AutoPreemption, m.CreatedTime, m.ForSite, m.HelloInterval, m.HelloRetries, m.Id, m.Ipsec, m.ModifiedTime, m.Mtu, m.MxclusterIds, m.Name, m.OrgId, m.Protocol, m.SiteId, m.VlanIds, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Mxtunnel.

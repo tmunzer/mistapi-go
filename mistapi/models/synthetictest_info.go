@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SynthetictestInfo represents a SynthetictestInfo struct.
@@ -23,6 +24,14 @@ type SynthetictestInfo struct {
     Type                 *SynthetictestTypeEnum           `json:"type,omitempty"`
     VlanId               *int                             `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SynthetictestInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SynthetictestInfo) String() string {
+    return fmt.Sprintf(
+    	"SynthetictestInfo[By=%v, DeviceType=%v, Failed=%v, Latency=%v, Mac=%v, PortId=%v, Reason=%v, RxMbps=%v, StartTime=%v, Status=%v, Timestamp=%v, TxMbps=%v, Type=%v, VlanId=%v, AdditionalProperties=%v]",
+    	s.By, s.DeviceType, s.Failed, s.Latency, s.Mac, s.PortId, s.Reason, s.RxMbps, s.StartTime, s.Status, s.Timestamp, s.TxMbps, s.Type, s.VlanId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestInfo.

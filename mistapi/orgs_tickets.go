@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -35,11 +34,8 @@ func (o *OrgsTickets) ListOrgTickets(
     duration *string) (
     models.ApiResponse[[]models.Ticket],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/tickets", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/tickets")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -88,11 +84,8 @@ func (o *OrgsTickets) CreateOrgTicket(
     body *models.Ticket) (
     models.ApiResponse[models.Ticket],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/tickets", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/tickets")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -136,11 +129,8 @@ func (o *OrgsTickets) CountOrgTickets(
     distinct *models.OrgTicketsCountDistinctEnum) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/tickets/count", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/tickets/count")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -186,11 +176,8 @@ func (o *OrgsTickets) GetOrgTicket(
     duration *string) (
     models.ApiResponse[models.Ticket],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/tickets/%v", orgId, ticketId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/tickets/%v")
+    req.AppendTemplateParams(orgId, ticketId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -240,11 +227,8 @@ func (o *OrgsTickets) UpdateOrgTicket(
     body *models.Ticket) (
     models.ApiResponse[models.Ticket],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/tickets/%v", orgId, ticketId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/tickets/%v")
+    req.AppendTemplateParams(orgId, ticketId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -289,11 +273,8 @@ func (o *OrgsTickets) UploadrgTicketAttachment(
     file *models.FileWrapper) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/tickets/%v/attachments", orgId, ticketId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/tickets/%v/attachments")
+    req.AppendTemplateParams(orgId, ticketId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -340,11 +321,8 @@ func (o *OrgsTickets) GetOrgTicketAttachment(
     duration *string) (
     models.ApiResponse[models.TicketAttachment],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/tickets/%v/attachments/%v", orgId, ticketId, attachmentId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/tickets/%v/attachments/%v")
+    req.AppendTemplateParams(orgId, ticketId, attachmentId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -395,11 +373,8 @@ func (o *OrgsTickets) AddOrgTicketComment(
     file *models.FileWrapper) (
     models.ApiResponse[models.Ticket],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/tickets/%v/comments", orgId, ticketId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/tickets/%v/comments")
+    req.AppendTemplateParams(orgId, ticketId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

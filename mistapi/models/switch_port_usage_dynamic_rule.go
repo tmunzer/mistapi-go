@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -20,6 +21,14 @@ type SwitchPortUsageDynamicRule struct {
     // `port_usage` name
     Usage                *string                           `json:"usage,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchPortUsageDynamicRule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchPortUsageDynamicRule) String() string {
+    return fmt.Sprintf(
+    	"SwitchPortUsageDynamicRule[Equals=%v, EqualsAny=%v, Expression=%v, Src=%v, Usage=%v, AdditionalProperties=%v]",
+    	s.Equals, s.EqualsAny, s.Expression, s.Src, s.Usage, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortUsageDynamicRule.

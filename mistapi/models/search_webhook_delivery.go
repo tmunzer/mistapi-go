@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SearchWebhookDelivery represents a SearchWebhookDelivery struct.
@@ -12,6 +13,14 @@ type SearchWebhookDelivery struct {
     Start                *int                   `json:"start,omitempty"`
     Total                *int                   `json:"total,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SearchWebhookDelivery,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SearchWebhookDelivery) String() string {
+    return fmt.Sprintf(
+    	"SearchWebhookDelivery[End=%v, Limit=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	s.End, s.Limit, s.Results, s.Start, s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SearchWebhookDelivery.

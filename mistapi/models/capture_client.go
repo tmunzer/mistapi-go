@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -23,6 +24,14 @@ type CaptureClient struct {
     // enum: `client`
     Type                 string                 `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureClient) String() string {
+    return fmt.Sprintf(
+    	"CaptureClient[ApMac=%v, ClientMac=%v, Duration=%v, IncludesMcast=%v, MaxPktLen=%v, NumPackets=%v, Ssid=%v, Type=%v, AdditionalProperties=%v]",
+    	c.ApMac, c.ClientMac, c.Duration, c.IncludesMcast, c.MaxPktLen, c.NumPackets, c.Ssid, c.Type, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureClient.

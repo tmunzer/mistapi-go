@@ -416,7 +416,7 @@ SearchOrgWirelessClientSessions(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.SearchWirelssClientSession],
+    models.ApiResponse[models.SearchWirelessClientSession],
     error)
 ```
 
@@ -443,7 +443,7 @@ SearchOrgWirelessClientSessions(
 
 ## Response Type
 
-[`models.SearchWirelssClientSession`](../../doc/models/search-wirelss-client-session.md)
+[`models.SearchWirelessClientSession`](../../doc/models/search-wireless-client-session.md)
 
 ## Example Usage
 

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -16,6 +17,14 @@ type UpgradeFpgaMulti struct {
     // specific FPGA version
     Version              *string                `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UpgradeFpgaMulti,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UpgradeFpgaMulti) String() string {
+    return fmt.Sprintf(
+    	"UpgradeFpgaMulti[DeviceIds=%v, Models=%v, Reboot=%v, Version=%v, AdditionalProperties=%v]",
+    	u.DeviceIds, u.Models, u.Reboot, u.Version, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UpgradeFpgaMulti.

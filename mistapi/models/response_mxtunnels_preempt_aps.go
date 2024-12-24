@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type ResponseMxtunnelsPreemptAps struct {
     PreemptedAps         []string               `json:"preempted_aps"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseMxtunnelsPreemptAps,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseMxtunnelsPreemptAps) String() string {
+    return fmt.Sprintf(
+    	"ResponseMxtunnelsPreemptAps[PreemptedAps=%v, AdditionalProperties=%v]",
+    	r.PreemptedAps, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMxtunnelsPreemptAps.

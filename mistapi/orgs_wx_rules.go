@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (o *OrgsWxRules) ListOrgWxRules(
     page *int) (
     models.ApiResponse[[]models.WxlanRule],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/wxrules", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wxrules")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -84,11 +80,8 @@ func (o *OrgsWxRules) CreateOrgWxRule(
     body *models.WxlanRule) (
     models.ApiResponse[models.WxlanRule],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/wxrules", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/wxrules")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -132,11 +125,8 @@ func (o *OrgsWxRules) DeleteOrgWxRule(
     wxruleId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/wxrules/%v", orgId, wxruleId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/wxrules/%v")
+    req.AppendTemplateParams(orgId, wxruleId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -173,11 +163,8 @@ func (o *OrgsWxRules) GetOrgWxRule(
     wxruleId uuid.UUID) (
     models.ApiResponse[models.WxlanRule],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/wxrules/%v", orgId, wxruleId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wxrules/%v")
+    req.AppendTemplateParams(orgId, wxruleId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -218,11 +205,8 @@ func (o *OrgsWxRules) UpdateOrgWxRule(
     body *models.WxlanRule) (
     models.ApiResponse[models.WxlanRule],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/wxrules/%v", orgId, wxruleId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/wxrules/%v")
+    req.AppendTemplateParams(orgId, wxruleId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

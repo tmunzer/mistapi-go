@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -31,6 +32,14 @@ type SdkstatsWirelessClient struct {
     // list of zone_id’s of the sdk client is in and since when (if known)
     Zones                []SdkstatsWirelessClientZone     `json:"zones,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SdkstatsWirelessClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SdkstatsWirelessClient) String() string {
+    return fmt.Sprintf(
+    	"SdkstatsWirelessClient[Id=%v, LastSeen=%v, MapId=%v, Name=%v, NetworkConnection=%v, Uuid=%v, Vbeacons=%v, X=%v, Y=%v, Zones=%v, AdditionalProperties=%v]",
+    	s.Id, s.LastSeen, s.MapId, s.Name, s.NetworkConnection, s.Uuid, s.Vbeacons, s.X, s.Y, s.Zones, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SdkstatsWirelessClient.

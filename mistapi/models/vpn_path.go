@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VpnPath represents a VpnPath struct.
@@ -12,6 +13,14 @@ type VpnPath struct {
     Ip                   *string                `json:"ip,omitempty"`
     Pod                  *int                   `json:"pod,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VpnPath,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VpnPath) String() string {
+    return fmt.Sprintf(
+    	"VpnPath[BfdProfile=%v, Ip=%v, Pod=%v, AdditionalProperties=%v]",
+    	v.BfdProfile, v.Ip, v.Pod, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VpnPath.

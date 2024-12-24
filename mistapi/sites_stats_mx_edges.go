@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -36,11 +35,8 @@ func (s *SitesStatsMxEdges) ListSiteMxEdgesStats(
     page *int) (
     models.ApiResponse[[]models.StatsMxedge],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/mxedges", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/mxedges")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -98,11 +94,8 @@ func (s *SitesStatsMxEdges) GetSiteMxEdgeStats(
     duration *string) (
     models.ApiResponse[models.StatsMxedge],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/mxedges/%v", siteId, mxedgeId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/mxedges/%v")
+    req.AppendTemplateParams(siteId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

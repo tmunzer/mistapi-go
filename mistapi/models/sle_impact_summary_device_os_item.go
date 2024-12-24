@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type SleImpactSummaryDeviceOsItem struct {
     Name                 string                 `json:"name"`
     Total                float64                `json:"total"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleImpactSummaryDeviceOsItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleImpactSummaryDeviceOsItem) String() string {
+    return fmt.Sprintf(
+    	"SleImpactSummaryDeviceOsItem[Degraded=%v, DeviceOs=%v, Duration=%v, Name=%v, Total=%v, AdditionalProperties=%v]",
+    	s.Degraded, s.DeviceOs, s.Duration, s.Name, s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactSummaryDeviceOsItem.

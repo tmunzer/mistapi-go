@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayComplianceVersion represents a GatewayComplianceVersion struct.
@@ -11,6 +12,14 @@ type GatewayComplianceVersion struct {
     Score                *float64                                           `json:"score,omitempty"`
     Type                 *string                                            `json:"type,omitempty"`
     AdditionalProperties map[string]interface{}                             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayComplianceVersion,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayComplianceVersion) String() string {
+    return fmt.Sprintf(
+    	"GatewayComplianceVersion[MajorVersion=%v, Score=%v, Type=%v, AdditionalProperties=%v]",
+    	g.MajorVersion, g.Score, g.Type, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayComplianceVersion.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type SleHistogram struct {
     XLabel               string                 `json:"x_label"`
     YLabel               string                 `json:"y_label"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleHistogram,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleHistogram) String() string {
+    return fmt.Sprintf(
+    	"SleHistogram[Data=%v, End=%v, Metric=%v, Start=%v, XLabel=%v, YLabel=%v, AdditionalProperties=%v]",
+    	s.Data, s.End, s.Metric, s.Start, s.XLabel, s.YLabel, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleHistogram.

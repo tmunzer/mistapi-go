@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VsInstanceProperty represents a VsInstanceProperty struct.
 type VsInstanceProperty struct {
     Networks             []string               `json:"networks,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VsInstanceProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VsInstanceProperty) String() string {
+    return fmt.Sprintf(
+    	"VsInstanceProperty[Networks=%v, AdditionalProperties=%v]",
+    	v.Networks, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VsInstanceProperty.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type UtilsResetRadioConfig struct {
     // whether to reset those with radio disabled. default is false (i.e. if user intentionally disables a radio, honor it)
     Force                *bool                  `json:"force,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsResetRadioConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsResetRadioConfig) String() string {
+    return fmt.Sprintf(
+    	"UtilsResetRadioConfig[Bands=%v, Force=%v, AdditionalProperties=%v]",
+    	u.Bands, u.Force, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsResetRadioConfig.

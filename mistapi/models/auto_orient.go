@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AutoOrient represents a AutoOrient struct.
@@ -12,6 +13,14 @@ type AutoOrient struct {
     // list of device macs
     Macs                 []string               `json:"macs,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AutoOrient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AutoOrient) String() string {
+    return fmt.Sprintf(
+    	"AutoOrient[ForceCollection=%v, Macs=%v, AdditionalProperties=%v]",
+    	a.ForceCollection, a.Macs, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AutoOrient.

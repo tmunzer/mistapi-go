@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // CaptureMxedgeMxedges represents a CaptureMxedgeMxedges struct.
@@ -9,6 +10,14 @@ import (
 type CaptureMxedgeMxedges struct {
     Interfaces           map[string]CaptureMxedgeMxedgesInterfaces `json:"interfaces,omitempty"`
     AdditionalProperties map[string]interface{}                    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureMxedgeMxedges,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureMxedgeMxedges) String() string {
+    return fmt.Sprintf(
+    	"CaptureMxedgeMxedges[Interfaces=%v, AdditionalProperties=%v]",
+    	c.Interfaces, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureMxedgeMxedges.

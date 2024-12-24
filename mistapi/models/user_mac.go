@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -19,6 +20,14 @@ type UserMac struct {
     RadiusGroup          *string                `json:"radius_group,omitempty"`
     Vlan                 *string                `json:"vlan,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UserMac,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UserMac) String() string {
+    return fmt.Sprintf(
+    	"UserMac[Id=%v, Labels=%v, Mac=%v, Name=%v, Notes=%v, RadiusGroup=%v, Vlan=%v, AdditionalProperties=%v]",
+    	u.Id, u.Labels, u.Mac, u.Name, u.Notes, u.RadiusGroup, u.Vlan, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UserMac.

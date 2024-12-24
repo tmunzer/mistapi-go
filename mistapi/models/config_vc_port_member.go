@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type ConfigVcPortMember struct {
     Member               float64                `json:"member"`
     VcPorts              []string               `json:"vc_ports,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConfigVcPortMember,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConfigVcPortMember) String() string {
+    return fmt.Sprintf(
+    	"ConfigVcPortMember[Member=%v, VcPorts=%v, AdditionalProperties=%v]",
+    	c.Member, c.VcPorts, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConfigVcPortMember.

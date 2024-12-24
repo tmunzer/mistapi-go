@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MapSiteReplaceFileJsonTransform represents a MapSiteReplaceFileJsonTransform struct.
@@ -16,6 +17,14 @@ type MapSiteReplaceFileJsonTransform struct {
     // where the (0, 0) of the new image is relative to the original map
     Y                    *float64               `json:"y,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapSiteReplaceFileJsonTransform,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapSiteReplaceFileJsonTransform) String() string {
+    return fmt.Sprintf(
+    	"MapSiteReplaceFileJsonTransform[Rotation=%v, Scale=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	m.Rotation, m.Scale, m.X, m.Y, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapSiteReplaceFileJsonTransform.

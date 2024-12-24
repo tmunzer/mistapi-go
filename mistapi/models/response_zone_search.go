@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseZoneSearch represents a ResponseZoneSearch struct.
@@ -13,6 +14,14 @@ type ResponseZoneSearch struct {
     Start                *float64                 `json:"start,omitempty"`
     Total                *int                     `json:"total,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseZoneSearch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseZoneSearch) String() string {
+    return fmt.Sprintf(
+    	"ResponseZoneSearch[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	r.End, r.Limit, r.Next, r.Results, r.Start, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseZoneSearch.

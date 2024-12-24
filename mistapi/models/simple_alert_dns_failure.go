@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SimpleAlertDnsFailure represents a SimpleAlertDnsFailure struct.
@@ -11,6 +12,14 @@ type SimpleAlertDnsFailure struct {
     Duration             *int                   `json:"duration,omitempty"`
     IncidentCount        *int                   `json:"incident_count,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SimpleAlertDnsFailure,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SimpleAlertDnsFailure) String() string {
+    return fmt.Sprintf(
+    	"SimpleAlertDnsFailure[ClientCount=%v, Duration=%v, IncidentCount=%v, AdditionalProperties=%v]",
+    	s.ClientCount, s.Duration, s.IncidentCount, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SimpleAlertDnsFailure.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VrrpConfig represents a VrrpConfig struct.
@@ -11,6 +12,14 @@ type VrrpConfig struct {
     // Property key is the VRRP name
     Groups               map[string]VrrpConfigGroup `json:"groups,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VrrpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VrrpConfig) String() string {
+    return fmt.Sprintf(
+    	"VrrpConfig[Enabled=%v, Groups=%v, AdditionalProperties=%v]",
+    	v.Enabled, v.Groups, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VrrpConfig.

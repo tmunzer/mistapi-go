@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -33,6 +32,7 @@ func (m *MSPs) CreateMsp(
     models.ApiResponse[models.Msp],
     error) {
     req := m.prepareRequest(ctx, "POST", "/api/v1/msps")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -74,7 +74,8 @@ func (m *MSPs) DeleteMsp(
     mspId uuid.UUID) (
     *http.Response,
     error) {
-    req := m.prepareRequest(ctx, "DELETE", fmt.Sprintf("/api/v1/msps/%v", mspId))
+    req := m.prepareRequest(ctx, "DELETE", "/api/v1/msps/%v")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -110,7 +111,8 @@ func (m *MSPs) GetMspDetails(
     mspId uuid.UUID) (
     models.ApiResponse[models.Msp],
     error) {
-    req := m.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/msps/%v", mspId))
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -150,7 +152,8 @@ func (m *MSPs) UpdateMsp(
     body *models.Msp) (
     models.ApiResponse[models.Msp],
     error) {
-    req := m.prepareRequest(ctx, "PUT", fmt.Sprintf("/api/v1/msps/%v", mspId))
+    req := m.prepareRequest(ctx, "PUT", "/api/v1/msps/%v")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -199,7 +202,8 @@ func (m *MSPs) SearchMspOrgGroup(
     duration *string) (
     models.ApiResponse[models.ResponseSearch],
     error) {
-    req := m.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/msps/%v/search", mspId))
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/search")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

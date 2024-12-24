@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (m *MSPsInventory) GetMspInventoryByMac(
     deviceMac string) (
     models.ApiResponse[models.ResponseMspInventoryDevice],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/inventory/%v", mspId, deviceMac),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/inventory/%v")
+    req.AppendTemplateParams(mspId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

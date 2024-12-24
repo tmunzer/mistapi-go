@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApSwitchSetting represents a ApSwitchSetting struct.
@@ -12,6 +13,14 @@ type ApSwitchSetting struct {
     // list of VLAN ids this
     VlanIds              []int                  `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApSwitchSetting,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApSwitchSetting) String() string {
+    return fmt.Sprintf(
+    	"ApSwitchSetting[EnableVlan=%v, PortVlanId=%v, VlanIds=%v, AdditionalProperties=%v]",
+    	a.EnableVlan, a.PortVlanId, a.VlanIds, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApSwitchSetting.

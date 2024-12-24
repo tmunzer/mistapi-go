@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type ResponseInsightRogue struct {
     Results              []InsightRogueAp       `json:"results"`
     Start                int                    `json:"start"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseInsightRogue,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseInsightRogue) String() string {
+    return fmt.Sprintf(
+    	"ResponseInsightRogue[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, AdditionalProperties=%v]",
+    	r.End, r.Limit, r.Next, r.Results, r.Start, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseInsightRogue.

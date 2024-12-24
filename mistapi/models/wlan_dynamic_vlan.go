@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanDynamicVlan represents a WlanDynamicVlan struct.
@@ -22,6 +23,14 @@ type WlanDynamicVlan struct {
     // * if `dynamic_vlan.type`==`airespace-interface-name`, property key is the Vlan ID and property value is the Airespace Interface Name
     Vlans                map[string]string                       `json:"vlans,omitempty"`
     AdditionalProperties map[string]interface{}                  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanDynamicVlan,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanDynamicVlan) String() string {
+    return fmt.Sprintf(
+    	"WlanDynamicVlan[DefaultVlanId=%v, DefaultVlanIds=%v, Enabled=%v, LocalVlanIds=%v, Type=%v, Vlans=%v, AdditionalProperties=%v]",
+    	w.DefaultVlanId, w.DefaultVlanIds, w.Enabled, w.LocalVlanIds, w.Type, w.Vlans, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDynamicVlan.

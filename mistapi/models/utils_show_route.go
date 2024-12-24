@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsShowRoute represents a UtilsShowRoute struct.
@@ -24,6 +25,14 @@ type UtilsShowRoute struct {
     // VRF name
     Vrf                  *string                     `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsShowRoute,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsShowRoute) String() string {
+    return fmt.Sprintf(
+    	"UtilsShowRoute[Duration=%v, Interval=%v, Neighbor=%v, Node=%v, Prefix=%v, Protocol=%v, Route=%v, Vrf=%v, AdditionalProperties=%v]",
+    	u.Duration, u.Interval, u.Neighbor, u.Node, u.Prefix, u.Protocol, u.Route, u.Vrf, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowRoute.

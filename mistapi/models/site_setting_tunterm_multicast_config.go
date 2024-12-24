@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingTuntermMulticastConfig represents a SiteSettingTuntermMulticastConfig struct.
@@ -10,6 +11,14 @@ type SiteSettingTuntermMulticastConfig struct {
     MulticastAll         *bool                                  `json:"multicast_all,omitempty"`
     Ssdp                 *SiteSettingTuntermMulticastConfigSsdp `json:"ssdp,omitempty"`
     AdditionalProperties map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingTuntermMulticastConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingTuntermMulticastConfig) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingTuntermMulticastConfig[Mdns=%v, MulticastAll=%v, Ssdp=%v, AdditionalProperties=%v]",
+    	s.Mdns, s.MulticastAll, s.Ssdp, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingTuntermMulticastConfig.

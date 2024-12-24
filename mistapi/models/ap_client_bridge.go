@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApClientBridge represents a ApClientBridge struct.
@@ -13,6 +14,14 @@ type ApClientBridge struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     Ssid                 *string                `json:"ssid,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApClientBridge,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApClientBridge) String() string {
+    return fmt.Sprintf(
+    	"ApClientBridge[Auth=%v, Enabled=%v, Ssid=%v, AdditionalProperties=%v]",
+    	a.Auth, a.Enabled, a.Ssid, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApClientBridge.

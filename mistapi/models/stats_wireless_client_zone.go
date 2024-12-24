@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -11,6 +12,14 @@ type StatsWirelessClientZone struct {
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Since                *int                   `json:"since,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsWirelessClientZone,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsWirelessClientZone) String() string {
+    return fmt.Sprintf(
+    	"StatsWirelessClientZone[Id=%v, Since=%v, AdditionalProperties=%v]",
+    	s.Id, s.Since, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWirelessClientZone.

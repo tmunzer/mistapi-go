@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeUpgradeMultiAllowDowngrades represents a MxedgeUpgradeMultiAllowDowngrades struct.
@@ -13,6 +14,14 @@ type MxedgeUpgradeMultiAllowDowngrades struct {
     Radsecproxy          *bool                  `json:"radsecproxy,omitempty"`
     Tunterm              *bool                  `json:"tunterm,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeUpgradeMultiAllowDowngrades,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeUpgradeMultiAllowDowngrades) String() string {
+    return fmt.Sprintf(
+    	"MxedgeUpgradeMultiAllowDowngrades[Mxagent=%v, Mxdas=%v, Mxocproxy=%v, Radsecproxy=%v, Tunterm=%v, AdditionalProperties=%v]",
+    	m.Mxagent, m.Mxdas, m.Mxocproxy, m.Radsecproxy, m.Tunterm, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeUpgradeMultiAllowDowngrades.

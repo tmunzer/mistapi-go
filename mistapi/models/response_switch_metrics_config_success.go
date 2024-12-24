@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseSwitchMetricsConfigSuccess represents a ResponseSwitchMetricsConfigSuccess struct.
@@ -10,6 +11,14 @@ type ResponseSwitchMetricsConfigSuccess struct {
     Score                *int                                       `json:"score,omitempty"`
     TotalSwitchCount     *int                                       `json:"total_switch_count,omitempty"`
     AdditionalProperties map[string]interface{}                     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSwitchMetricsConfigSuccess,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSwitchMetricsConfigSuccess) String() string {
+    return fmt.Sprintf(
+    	"ResponseSwitchMetricsConfigSuccess[Details=%v, Score=%v, TotalSwitchCount=%v, AdditionalProperties=%v]",
+    	r.Details, r.Score, r.TotalSwitchCount, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSwitchMetricsConfigSuccess.

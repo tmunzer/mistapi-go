@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -40,8 +39,9 @@ func (s *SitesStatsDiscoveredSwitches) SearchSiteDiscoveredSwitchesMetrics(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/discovered_switch_metrics/search", siteId),
+      "/api/v1/sites/%v/stats/discovered_switch_metrics/search",
     )
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -107,8 +107,9 @@ func (s *SitesStatsDiscoveredSwitches) CountSiteDiscoveredSwitches(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/discovered_switches/count", siteId),
+      "/api/v1/sites/%v/stats/discovered_switches/count",
     )
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -170,8 +171,9 @@ func (s *SitesStatsDiscoveredSwitches) GetSiteDiscoveredSwitchesMetrics(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/discovered_switches/metrics", siteId),
+      "/api/v1/sites/%v/stats/discovered_switches/metrics",
     )
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -229,8 +231,9 @@ func (s *SitesStatsDiscoveredSwitches) SearchSiteDiscoveredSwitches(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/discovered_switches/search", siteId),
+      "/api/v1/sites/%v/stats/discovered_switches/search",
     )
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

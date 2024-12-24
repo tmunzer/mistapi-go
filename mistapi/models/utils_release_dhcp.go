@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type UtilsReleaseDhcp struct {
     // The nework interface on which to release the current DHCP release
     PortId               string                 `json:"port_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsReleaseDhcp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsReleaseDhcp) String() string {
+    return fmt.Sprintf(
+    	"UtilsReleaseDhcp[Node=%v, PortId=%v, AdditionalProperties=%v]",
+    	u.Node, u.PortId, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsReleaseDhcp.

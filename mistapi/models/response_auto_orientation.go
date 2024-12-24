@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseAutoOrientation represents a ResponseAutoOrientation struct.
@@ -11,6 +12,14 @@ type ResponseAutoOrientation struct {
     // Time when auto orient process was last queued for this map
     TimeQueued           *float64                  `json:"time_queued,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseAutoOrientation,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseAutoOrientation) String() string {
+    return fmt.Sprintf(
+    	"ResponseAutoOrientation[State=%v, TimeQueued=%v, AdditionalProperties=%v]",
+    	r.State, r.TimeQueued, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAutoOrientation.

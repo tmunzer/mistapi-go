@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchVirtualChassis represents a SwitchVirtualChassis struct.
@@ -12,6 +13,14 @@ type SwitchVirtualChassis struct {
     // to configure whether the VC is preprovisioned or nonprovisioned
     Preprovisioned       *bool                        `json:"preprovisioned,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchVirtualChassis,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchVirtualChassis) String() string {
+    return fmt.Sprintf(
+    	"SwitchVirtualChassis[Members=%v, Preprovisioned=%v, AdditionalProperties=%v]",
+    	s.Members, s.Preprovisioned, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchVirtualChassis.

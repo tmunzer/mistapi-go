@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -31,6 +32,14 @@ type WebhookDelivery struct {
     Topic                *WebhookDeliveryTopicEnum  `json:"topic,omitempty"`
     WebhookId            *uuid.UUID                 `json:"webhook_id,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookDelivery,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookDelivery) String() string {
+    return fmt.Sprintf(
+    	"WebhookDelivery[Error=%v, Id=%v, OrgId=%v, ReqHeaders=%v, ReqPayload=%v, ReqUrl=%v, RespBody=%v, RespHeaders=%v, SiteId=%v, Status=%v, StatusCode=%v, Timestamp=%v, Topic=%v, WebhookId=%v, AdditionalProperties=%v]",
+    	w.Error, w.Id, w.OrgId, w.ReqHeaders, w.ReqPayload, w.ReqUrl, w.RespBody, w.RespHeaders, w.SiteId, w.Status, w.StatusCode, w.Timestamp, w.Topic, w.WebhookId, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookDelivery.

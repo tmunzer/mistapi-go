@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -36,6 +37,14 @@ type ResponseOrgSearchItem struct {
     // a list of types that enabled by usage
     UsageTypes           []string               `json:"usage_types,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseOrgSearchItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseOrgSearchItem) String() string {
+    return fmt.Sprintf(
+    	"ResponseOrgSearchItem[MspId=%v, Name=%v, NumAps=%v, NumGateways=%v, NumSites=%v, NumSwitches=%v, NumUnassignedAps=%v, OrgId=%v, SubAnaEntitled=%v, SubAnaRequired=%v, SubAstEntitled=%v, SubAstRequired=%v, SubEngEntitled=%v, SubEngRequired=%v, SubEx12Required=%v, SubInsufficient=%v, SubManEntitled=%v, SubManRequired=%v, SubMeEntitled=%v, SubVnaEntitled=%v, SubVnaRequired=%v, Timestamp=%v, TrialEnabled=%v, UsageTypes=%v, AdditionalProperties=%v]",
+    	r.MspId, r.Name, r.NumAps, r.NumGateways, r.NumSites, r.NumSwitches, r.NumUnassignedAps, r.OrgId, r.SubAnaEntitled, r.SubAnaRequired, r.SubAstEntitled, r.SubAstRequired, r.SubEngEntitled, r.SubEngRequired, r.SubEx12Required, r.SubInsufficient, r.SubManEntitled, r.SubManRequired, r.SubMeEntitled, r.SubVnaEntitled, r.SubVnaRequired, r.Timestamp, r.TrialEnabled, r.UsageTypes, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOrgSearchItem.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -30,6 +31,14 @@ type WebhookAlarmEvent struct {
     // If presents, represents that this is an update to event with given id sent earlier. default=false
     Update               *bool                  `json:"update,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookAlarmEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookAlarmEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookAlarmEvent[Aps=%v, Bssids=%v, Count=%v, EventId=%v, ForSite=%v, Id=%v, LastSeen=%v, Node=%v, OrgId=%v, SiteId=%v, Ssids=%v, Timestamp=%v, Type=%v, Update=%v, AdditionalProperties=%v]",
+    	w.Aps, w.Bssids, w.Count, w.EventId, w.ForSite, w.Id, w.LastSeen, w.Node, w.OrgId, w.SiteId, w.Ssids, w.Timestamp, w.Type, w.Update, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookAlarmEvent.

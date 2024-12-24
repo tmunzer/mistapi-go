@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -16,6 +17,14 @@ type AccountZscalerConfig struct {
     // customer account user name
     Username             string                 `json:"username"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountZscalerConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountZscalerConfig) String() string {
+    return fmt.Sprintf(
+    	"AccountZscalerConfig[CloudName=%v, PartnerKey=%v, Password=%v, Username=%v, AdditionalProperties=%v]",
+    	a.CloudName, a.PartnerKey, a.Password, a.Username, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountZscalerConfig.

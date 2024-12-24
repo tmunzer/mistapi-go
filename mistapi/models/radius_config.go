@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RadiusConfig represents a RadiusConfig struct.
@@ -23,6 +24,14 @@ type RadiusConfig struct {
     // use `network`or `source_ip`
     SourceIp             *string                `json:"source_ip,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RadiusConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RadiusConfig) String() string {
+    return fmt.Sprintf(
+    	"RadiusConfig[AcctInterimInterval=%v, AcctServers=%v, AuthServers=%v, AuthServersRetries=%v, AuthServersTimeout=%v, CoaEnabled=%v, CoaPort=%v, Network=%v, SourceIp=%v, AdditionalProperties=%v]",
+    	r.AcctInterimInterval, r.AcctServers, r.AuthServers, r.AuthServersRetries, r.AuthServersTimeout, r.CoaEnabled, r.CoaPort, r.Network, r.SourceIp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RadiusConfig.

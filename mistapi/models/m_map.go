@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -63,6 +64,14 @@ type Map struct {
     Width                *int                     `json:"width,omitempty"`
     WidthM               *float64                 `json:"width_m,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Map,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m Map) String() string {
+    return fmt.Sprintf(
+    	"Map[CreatedTime=%v, Flags=%v, ForSite=%v, Height=%v, HeightM=%v, Id=%v, LatlngBr=%v, LatlngTl=%v, Locked=%v, ModifiedTime=%v, Name=%v, OccupancyLimit=%v, OrgId=%v, Orientation=%v, OriginX=%v, OriginY=%v, Ppm=%v, SiteId=%v, SitesurveyPath=%v, ThumbnailUrl=%v, Type=%v, Url=%v, UseAutoOrientation=%v, UseAutoPlacement=%v, View=%v, WallPath=%v, Wayfinding=%v, WayfindingPath=%v, Width=%v, WidthM=%v, AdditionalProperties=%v]",
+    	m.CreatedTime, m.Flags, m.ForSite, m.Height, m.HeightM, m.Id, m.LatlngBr, m.LatlngTl, m.Locked, m.ModifiedTime, m.Name, m.OccupancyLimit, m.OrgId, m.Orientation, m.OriginX, m.OriginY, m.Ppm, m.SiteId, m.SitesurveyPath, m.ThumbnailUrl, m.Type, m.Url, m.UseAutoOrientation, m.UseAutoPlacement, m.View, m.WallPath, m.Wayfinding, m.WayfindingPath, m.Width, m.WidthM, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Map.

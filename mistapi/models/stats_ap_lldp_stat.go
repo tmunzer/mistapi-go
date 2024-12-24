@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApLldpStat represents a StatsApLldpStat struct.
@@ -29,6 +30,14 @@ type StatsApLldpStat struct {
     // name of the switch
     SystemName           Optional[string]       `json:"system_name"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApLldpStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApLldpStat) String() string {
+    return fmt.Sprintf(
+    	"StatsApLldpStat[ChassisId=%v, LldpMedSupported=%v, MgmtAddr=%v, MgmtAddrs=%v, PortDesc=%v, PortId=%v, PowerAllocated=%v, PowerDraw=%v, PowerRequestCount=%v, PowerRequested=%v, SystemDesc=%v, SystemName=%v, AdditionalProperties=%v]",
+    	s.ChassisId, s.LldpMedSupported, s.MgmtAddr, s.MgmtAddrs, s.PortDesc, s.PortId, s.PowerAllocated, s.PowerDraw, s.PowerRequestCount, s.PowerRequested, s.SystemDesc, s.SystemName, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApLldpStat.

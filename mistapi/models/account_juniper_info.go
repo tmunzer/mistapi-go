@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AccountJuniperInfo represents a AccountJuniperInfo struct.
 type AccountJuniperInfo struct {
     Accounts             []JuniperAccount       `json:"accounts,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountJuniperInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountJuniperInfo) String() string {
+    return fmt.Sprintf(
+    	"AccountJuniperInfo[Accounts=%v, AdditionalProperties=%v]",
+    	a.Accounts, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountJuniperInfo.

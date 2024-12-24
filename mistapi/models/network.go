@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -38,6 +39,14 @@ type Network struct {
     // Property key is the VPN name. Whether this network can be accessed from vpn
     VpnAccess            map[string]NetworkVpnAccessConfig `json:"vpn_access,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Network,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n Network) String() string {
+    return fmt.Sprintf(
+    	"Network[CreatedTime=%v, DisallowMistServices=%v, Gateway=%v, Gateway6=%v, Id=%v, InternalAccess=%v, InternetAccess=%v, Isolation=%v, ModifiedTime=%v, Multicast=%v, Name=%v, OrgId=%v, RoutedForNetworks=%v, Subnet=%v, Subnet6=%v, Tenants=%v, VlanId=%v, VpnAccess=%v, AdditionalProperties=%v]",
+    	n.CreatedTime, n.DisallowMistServices, n.Gateway, n.Gateway6, n.Id, n.InternalAccess, n.InternetAccess, n.Isolation, n.ModifiedTime, n.Multicast, n.Name, n.OrgId, n.RoutedForNetworks, n.Subnet, n.Subnet6, n.Tenants, n.VlanId, n.VpnAccess, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Network.

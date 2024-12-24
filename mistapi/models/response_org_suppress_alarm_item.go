@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -15,6 +16,14 @@ type ResponseOrgSuppressAlarmItem struct {
     Scope                *SuppressedAlarmScopeEnum `json:"scope,omitempty"`
     SiteId               *uuid.UUID                `json:"site_id,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseOrgSuppressAlarmItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseOrgSuppressAlarmItem) String() string {
+    return fmt.Sprintf(
+    	"ResponseOrgSuppressAlarmItem[Duration=%v, ExpireTime=%v, ScheduledTime=%v, Scope=%v, SiteId=%v, AdditionalProperties=%v]",
+    	r.Duration, r.ExpireTime, r.ScheduledTime, r.Scope, r.SiteId, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOrgSuppressAlarmItem.

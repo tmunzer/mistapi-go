@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstDeviceApVble represents a ConstDeviceApVble struct.
@@ -10,6 +11,14 @@ type ConstDeviceApVble struct {
     Beams                *int                   `json:"beams,omitempty"`
     Power                *int                   `json:"power,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstDeviceApVble,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstDeviceApVble) String() string {
+    return fmt.Sprintf(
+    	"ConstDeviceApVble[BeaconRate=%v, Beams=%v, Power=%v, AdditionalProperties=%v]",
+    	c.BeaconRate, c.Beams, c.Power, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceApVble.

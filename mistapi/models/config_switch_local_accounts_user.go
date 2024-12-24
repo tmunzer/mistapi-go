@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConfigSwitchLocalAccountsUser represents a ConfigSwitchLocalAccountsUser struct.
@@ -10,6 +11,14 @@ type ConfigSwitchLocalAccountsUser struct {
     // enum: `admin`, `helpdesk`, `none`, `read`
     Role                 *ConfigSwitchLocalAccountsUserRoleEnum `json:"role,omitempty"`
     AdditionalProperties map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConfigSwitchLocalAccountsUser,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConfigSwitchLocalAccountsUser) String() string {
+    return fmt.Sprintf(
+    	"ConfigSwitchLocalAccountsUser[Password=%v, Role=%v, AdditionalProperties=%v]",
+    	c.Password, c.Role, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConfigSwitchLocalAccountsUser.

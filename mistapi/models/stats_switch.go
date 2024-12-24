@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -67,6 +68,14 @@ type StatsSwitch struct {
     VcSetupInfo          *StatsSwitchVcSetupInfo        `json:"vc_setup_info,omitempty"`
     Version              *string                        `json:"version,omitempty"`
     AdditionalProperties map[string]interface{}         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsSwitch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsSwitch) String() string {
+    return fmt.Sprintf(
+    	"StatsSwitch[ApRedundancy=%v, ArpTableStats=%v, CertExpiry=%v, Clients=%v, ClientsStats=%v, ConfigStatus=%v, CpuStat=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpdStat=%v, EvpntopoId=%v, FwVersionsOutofsync=%v, Fwupdate=%v, HasPcap=%v, Hostname=%v, HwRev=%v, Id=%v, IfStat=%v, Ip=%v, IpStat=%v, LastSeen=%v, LastTrouble=%v, Mac=%v, MacTableStats=%v, MapId=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, ModuleStat=%v, Name=%v, OrgId=%v, Ports=%v, RouteSummaryStats=%v, Serial=%v, ServiceStat=%v, SiteId=%v, Status=%v, Type=%v, Uptime=%v, VcMac=%v, VcSetupInfo=%v, Version=%v, AdditionalProperties=%v]",
+    	s.ApRedundancy, s.ArpTableStats, s.CertExpiry, s.Clients, s.ClientsStats, s.ConfigStatus, s.CpuStat, s.CreatedTime, s.DeviceprofileId, s.DhcpdStat, s.EvpntopoId, s.FwVersionsOutofsync, s.Fwupdate, s.HasPcap, s.Hostname, s.HwRev, s.Id, s.IfStat, s.Ip, s.IpStat, s.LastSeen, s.LastTrouble, s.Mac, s.MacTableStats, s.MapId, s.MemoryStat, s.Model, s.ModifiedTime, s.ModuleStat, s.Name, s.OrgId, s.Ports, s.RouteSummaryStats, s.Serial, s.ServiceStat, s.SiteId, s.Status, s.Type, s.Uptime, s.VcMac, s.VcSetupInfo, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitch.

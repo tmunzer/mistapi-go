@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // HaClusterConfigNode represents a HaClusterConfigNode struct.
@@ -9,6 +10,14 @@ type HaClusterConfigNode struct {
     // node mac, should be unassigned
     Mac                  *string                `json:"mac,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for HaClusterConfigNode,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (h HaClusterConfigNode) String() string {
+    return fmt.Sprintf(
+    	"HaClusterConfigNode[Mac=%v, AdditionalProperties=%v]",
+    	h.Mac, h.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for HaClusterConfigNode.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -53,11 +52,8 @@ func (u *UtilitiesCommon) ArpFromDevice(
     body *models.HaClusterNode) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/arp", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/arp")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -122,11 +118,8 @@ func (u *UtilitiesCommon) BounceDevicePort(
     body *models.UtilsBouncePort) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/bounce_port", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/bounce_port")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -179,8 +172,9 @@ func (u *UtilitiesCommon) ClearSiteDeviceMacTable(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_mac_table", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/clear_mac_table",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -227,8 +221,9 @@ func (u *UtilitiesCommon) ClearSiteDevicePolicyHitCount(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_policy_hit_count", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/clear_policy_hit_count",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -271,11 +266,8 @@ func (u *UtilitiesCommon) GetSiteDeviceConfigCmd(
     sort *bool) (
     models.ApiResponse[models.ResponseDeviceConfigCli],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/config_cmd", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/%v/config_cmd")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -329,11 +321,8 @@ func (u *UtilitiesCommon) StartSiteLocateDevice(
     body *models.LocateSwitch) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/locate", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/locate")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -380,8 +369,9 @@ func (u *UtilitiesCommon) MonitorSiteDeviceTraffic(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/monitor_traffic", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/monitor_traffic",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -445,11 +435,8 @@ func (u *UtilitiesCommon) PingFromDevice(
     body *models.UtilsPing) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/ping", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/ping")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -493,11 +480,8 @@ func (u *UtilitiesCommon) ReadoptSiteOctermDevice(
     deviceId uuid.UUID) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/readopt", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/readopt")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -538,8 +522,9 @@ func (u *UtilitiesCommon) ReleaseSiteDeviceDhcpLease(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/release_dhcp_leases", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/release_dhcp_leases",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -580,11 +565,8 @@ func (u *UtilitiesCommon) ReprovisionSiteOctermDevice(
     deviceId uuid.UUID) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/reprovision", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/reprovision")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -624,8 +606,9 @@ func (u *UtilitiesCommon) GetSiteDeviceZtpPassword(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/request_ztp_password", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/request_ztp_password",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -666,11 +649,8 @@ func (u *UtilitiesCommon) RestartSiteDevice(
     body *models.UtilsDevicesRestart) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/restart", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/restart")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -711,11 +691,8 @@ func (u *UtilitiesCommon) CreateSiteDeviceShellSession(
     deviceId uuid.UUID) (
     models.ApiResponse[models.WebsocketSessionWithUrl],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/shell", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/shell")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -764,11 +741,8 @@ func (u *UtilitiesCommon) ShowSiteDeviceArpTable(
     body *models.UtilsShowArp) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_arp", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/show_arp")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -838,8 +812,9 @@ func (u *UtilitiesCommon) ShowSiteDeviceBgpSummary(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_bgp_rummary", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/show_bgp_rummary",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -887,8 +862,9 @@ func (u *UtilitiesCommon) ShowSiteDeviceDhcpLeases(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_dhcp_leases", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/show_dhcp_leases",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -936,8 +912,9 @@ func (u *UtilitiesCommon) ShowSiteDeviceEvpnDatabase(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_evpn_database", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/show_evpn_database",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -996,8 +973,9 @@ func (u *UtilitiesCommon) ShowSiteDeviceForwardingTable(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_forwarding_table", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/show_forwarding_table",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1053,8 +1031,9 @@ func (u *UtilitiesCommon) ShowSiteDeviceMacTable(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/show_mac_table", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/show_mac_table",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1110,11 +1089,8 @@ func (u *UtilitiesCommon) UploadSiteDeviceSupportFile(
     body *models.UtilsSendSupportLogs) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/support", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/support")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1175,11 +1151,8 @@ func (u *UtilitiesCommon) TracerouteFromDevice(
     body *models.UtilsTraceroute) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/traceroute", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/traceroute")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1223,11 +1196,8 @@ func (u *UtilitiesCommon) StopSiteLocateDevice(
     deviceId uuid.UUID) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/unlocate", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/unlocate")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

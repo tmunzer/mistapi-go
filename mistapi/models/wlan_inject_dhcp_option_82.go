@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanInjectDhcpOption82 represents a WlanInjectDhcpOption82 struct.
@@ -17,6 +18,14 @@ type WlanInjectDhcpOption82 struct {
     // whether to inject option 82 when forwarding DHCP packets
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanInjectDhcpOption82,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanInjectDhcpOption82) String() string {
+    return fmt.Sprintf(
+    	"WlanInjectDhcpOption82[CircuitId=%v, Enabled=%v, AdditionalProperties=%v]",
+    	w.CircuitId, w.Enabled, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanInjectDhcpOption82.

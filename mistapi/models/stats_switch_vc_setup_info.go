@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsSwitchVcSetupInfo represents a StatsSwitchVcSetupInfo struct.
@@ -9,6 +10,14 @@ type StatsSwitchVcSetupInfo struct {
     ConfigType           *string                `json:"config_type,omitempty"`
     ErrMissingDevIdFpc   *bool                  `json:"err_missing_dev_id_fpc,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsSwitchVcSetupInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsSwitchVcSetupInfo) String() string {
+    return fmt.Sprintf(
+    	"StatsSwitchVcSetupInfo[ConfigType=%v, ErrMissingDevIdFpc=%v, AdditionalProperties=%v]",
+    	s.ConfigType, s.ErrMissingDevIdFpc, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchVcSetupInfo.

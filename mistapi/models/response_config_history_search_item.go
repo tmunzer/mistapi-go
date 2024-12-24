@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -20,6 +21,14 @@ type ResponseConfigHistorySearchItem struct {
     Version              string                                 `json:"version"`
     Wlans                []ResponseConfigHistorySearchItemWlan  `json:"wlans,omitempty"`
     AdditionalProperties map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseConfigHistorySearchItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseConfigHistorySearchItem) String() string {
+    return fmt.Sprintf(
+    	"ResponseConfigHistorySearchItem[Channel24=%v, Channel5=%v, RadioMacs=%v, Radios=%v, SecpolicyViolated=%v, Ssids=%v, Ssids24=%v, Ssids5=%v, Timestamp=%v, Version=%v, Wlans=%v, AdditionalProperties=%v]",
+    	r.Channel24, r.Channel5, r.RadioMacs, r.Radios, r.SecpolicyViolated, r.Ssids, r.Ssids24, r.Ssids5, r.Timestamp, r.Version, r.Wlans, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseConfigHistorySearchItem.

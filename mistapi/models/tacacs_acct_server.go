@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // TacacsAcctServer represents a TacacsAcctServer struct.
@@ -11,6 +12,14 @@ type TacacsAcctServer struct {
     Secret               *string                `json:"secret,omitempty"`
     Timeout              *int                   `json:"timeout,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TacacsAcctServer,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TacacsAcctServer) String() string {
+    return fmt.Sprintf(
+    	"TacacsAcctServer[Host=%v, Port=%v, Secret=%v, Timeout=%v, AdditionalProperties=%v]",
+    	t.Host, t.Port, t.Secret, t.Timeout, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TacacsAcctServer.

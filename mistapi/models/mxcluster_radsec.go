@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxclusterRadsec represents a MxclusterRadsec struct.
@@ -24,6 +25,14 @@ type MxclusterRadsec struct {
     // Specify IP address to connect to auth_servers and acct_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
     SrcIpSource          *MxclusterRadsecSrcIpSourceEnum     `json:"src_ip_source,omitempty"`
     AdditionalProperties map[string]interface{}              `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxclusterRadsec,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxclusterRadsec) String() string {
+    return fmt.Sprintf(
+    	"MxclusterRadsec[AcctServers=%v, AuthServers=%v, Enabled=%v, MatchSsid=%v, NasIpSource=%v, ProxyHosts=%v, ServerSelection=%v, SrcIpSource=%v, AdditionalProperties=%v]",
+    	m.AcctServers, m.AuthServers, m.Enabled, m.MatchSsid, m.NasIpSource, m.ProxyHosts, m.ServerSelection, m.SrcIpSource, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterRadsec.

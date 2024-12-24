@@ -31,6 +31,7 @@ func (c *ConstantsModels) GetGatewayDefaultConfig(
     models.ApiResponse[interface{}],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/default_gateway_config")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -71,6 +72,7 @@ func (c *ConstantsModels) ListDeviceModels(ctx context.Context) (
     models.ApiResponse[[]models.ConstDeviceModel],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/device_models")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -107,6 +109,7 @@ func (c *ConstantsModels) ListMxEdgeModels(ctx context.Context) (
     models.ApiResponse[[]models.ConstMxedgeModel],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/mxedge_models")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -143,6 +146,7 @@ func (c *ConstantsModels) ListSupportedOtherDeviceModels(ctx context.Context) (
     models.ApiResponse[[]models.ConstOtherDeviceModel],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/otherdevice_models")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

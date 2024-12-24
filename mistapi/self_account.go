@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -33,6 +32,7 @@ func (s *SelfAccount) DeleteSelf(ctx context.Context) (
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "DELETE", "/api/v1/self")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -66,6 +66,7 @@ func (s *SelfAccount) GetSelf(ctx context.Context) (
     models.ApiResponse[models.Admin],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/self")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -104,6 +105,7 @@ func (s *SelfAccount) UpdateSelf(
     models.ApiResponse[models.Admin],
     error) {
     req := s.prepareRequest(ctx, "PUT", "/api/v1/self")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -150,6 +152,7 @@ func (s *SelfAccount) UpdateSelfEmail(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/api/v1/self/update")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -188,11 +191,8 @@ func (s *SelfAccount) VerifySelfEmail(
     token string) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/self/update/verify/%v", token),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/self/update/verify/%v")
+    req.AppendTemplateParams(token)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,7 +33,8 @@ func (o *OrgsSSO) ListOrgSsos(
     page *int) (
     models.ApiResponse[[]models.Sso],
     error) {
-    req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/ssos", orgId))
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssos")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -80,7 +80,8 @@ func (o *OrgsSSO) CreateOrgSso(
     body *models.Sso) (
     models.ApiResponse[models.Sso],
     error) {
-    req := o.prepareRequest(ctx, "POST", fmt.Sprintf("/api/v1/orgs/%v/ssos", orgId))
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/ssos")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -124,11 +125,8 @@ func (o *OrgsSSO) DeleteOrgSso(
     ssoId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/ssos/%v", orgId, ssoId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/ssos/%v")
+    req.AppendTemplateParams(orgId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -165,11 +163,8 @@ func (o *OrgsSSO) GetOrgSso(
     ssoId uuid.UUID) (
     models.ApiResponse[models.Sso],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/ssos/%v", orgId, ssoId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssos/%v")
+    req.AppendTemplateParams(orgId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -210,11 +205,8 @@ func (o *OrgsSSO) UpdateOrgSso(
     body *models.Sso) (
     models.ApiResponse[models.Sso],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/ssos/%v", orgId, ssoId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/ssos/%v")
+    req.AppendTemplateParams(orgId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -263,11 +255,8 @@ func (o *OrgsSSO) ListOrgSsoLatestFailures(
     page *int) (
     models.ApiResponse[models.ResponseSsoFailureSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/ssos/%v/failures", orgId, ssoId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssos/%v/failures")
+    req.AppendTemplateParams(orgId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -322,11 +311,8 @@ func (o *OrgsSSO) GetOrgSamlMetadata(
     ssoId uuid.UUID) (
     models.ApiResponse[models.SamlMetadata],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/ssos/%v/metadata", orgId, ssoId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssos/%v/metadata")
+    req.AppendTemplateParams(orgId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -382,11 +368,8 @@ func (o *OrgsSSO) DownloadOrgSamlMetadata(
     ssoId uuid.UUID) (
     models.ApiResponse[[]byte],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/ssos/%v/metadata.xml", orgId, ssoId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssos/%v/metadata.xml")
+    req.AppendTemplateParams(orgId, ssoId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

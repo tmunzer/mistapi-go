@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -19,6 +20,14 @@ type AccountMobicontrolConfig struct {
     // customer account username
     Username             string                 `json:"username"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountMobicontrolConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountMobicontrolConfig) String() string {
+    return fmt.Sprintf(
+    	"AccountMobicontrolConfig[ClientId=%v, ClientSecret=%v, InstanceUrl=%v, Password=%v, Username=%v, AdditionalProperties=%v]",
+    	a.ClientId, a.ClientSecret, a.InstanceUrl, a.Password, a.Username, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountMobicontrolConfig.

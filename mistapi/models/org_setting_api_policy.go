@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingApiPolicy represents a OrgSettingApiPolicy struct.
@@ -11,6 +12,14 @@ type OrgSettingApiPolicy struct {
     // * `false`: API will hide passwords/secrets for read-only users
     NoReveal             *bool                  `json:"no_reveal,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingApiPolicy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingApiPolicy) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingApiPolicy[NoReveal=%v, AdditionalProperties=%v]",
+    	o.NoReveal, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingApiPolicy.

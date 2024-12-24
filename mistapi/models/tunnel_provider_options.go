@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // TunnelProviderOptions represents a TunnelProviderOptions struct.
@@ -11,6 +12,14 @@ type TunnelProviderOptions struct {
     // for zscaler-ipsec and zscaler-gre
     Zscaler              *TunnelProviderOptionsZscaler `json:"zscaler,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TunnelProviderOptions,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TunnelProviderOptions) String() string {
+    return fmt.Sprintf(
+    	"TunnelProviderOptions[Jse=%v, Zscaler=%v, AdditionalProperties=%v]",
+    	t.Jse, t.Zscaler, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelProviderOptions.

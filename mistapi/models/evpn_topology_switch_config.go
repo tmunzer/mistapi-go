@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // EvpnTopologySwitchConfig represents a EvpnTopologySwitchConfig struct.
@@ -19,6 +20,14 @@ type EvpnTopologySwitchConfig struct {
     RouterId             *string                              `json:"router_id,omitempty"`
     VrfConfig            *EvpnTopologySwitchConfigVrfConfig   `json:"vrf_config,omitempty"`
     AdditionalProperties map[string]interface{}               `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EvpnTopologySwitchConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EvpnTopologySwitchConfig) String() string {
+    return fmt.Sprintf(
+    	"EvpnTopologySwitchConfig[DhcpdConfig=%v, Networks=%v, OtherIpConfigs=%v, PortConfig=%v, PortUsages=%v, RouterId=%v, VrfConfig=%v, AdditionalProperties=%v]",
+    	e.DhcpdConfig, e.Networks, e.OtherIpConfigs, e.PortConfig, e.PortUsages, e.RouterId, e.VrfConfig, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopologySwitchConfig.

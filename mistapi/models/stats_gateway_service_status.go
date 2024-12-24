@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsGatewayServiceStatus represents a StatsGatewayServiceStatus struct.
@@ -17,6 +18,14 @@ type StatsGatewayServiceStatus struct {
     IdpStatus             *string                `json:"idp_status,omitempty"`
     IdpUpdateTimestamp    *string                `json:"idp_update_timestamp,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsGatewayServiceStatus,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsGatewayServiceStatus) String() string {
+    return fmt.Sprintf(
+    	"StatsGatewayServiceStatus[AppidInstallResult=%v, AppidInstallTimestamp=%v, AppidStatus=%v, AppidVersion=%v, EwfStatus=%v, IdpInstallResult=%v, IdpInstallTimestamp=%v, IdpPolicy=%v, IdpStatus=%v, IdpUpdateTimestamp=%v, AdditionalProperties=%v]",
+    	s.AppidInstallResult, s.AppidInstallTimestamp, s.AppidStatus, s.AppidVersion, s.EwfStatus, s.IdpInstallResult, s.IdpInstallTimestamp, s.IdpPolicy, s.IdpStatus, s.IdpUpdateTimestamp, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGatewayServiceStatus.

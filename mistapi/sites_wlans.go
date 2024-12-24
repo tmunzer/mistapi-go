@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (s *SitesWlans) ListSiteWlans(
     page *int) (
     models.ApiResponse[[]models.Wlan],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/wlans", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/wlans")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -84,11 +80,8 @@ func (s *SitesWlans) CreateSiteWlan(
     body *models.Wlan) (
     models.ApiResponse[models.Wlan],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/wlans", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/wlans")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -133,11 +126,8 @@ func (s *SitesWlans) ListSiteWlanDerived(
     wlanId *string) (
     models.ApiResponse[[]models.Wlan],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/wlans/derived", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/wlans/derived")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -183,11 +173,8 @@ func (s *SitesWlans) DeleteSiteWlan(
     wlanId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/wlans/%v", siteId, wlanId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/wlans/%v")
+    req.AppendTemplateParams(siteId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -224,11 +211,8 @@ func (s *SitesWlans) GetSiteWlan(
     wlanId uuid.UUID) (
     models.ApiResponse[models.Wlan],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/wlans/%v", siteId, wlanId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/wlans/%v")
+    req.AppendTemplateParams(siteId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -269,11 +253,8 @@ func (s *SitesWlans) UpdateSiteWlan(
     body *models.Wlan) (
     models.ApiResponse[models.Wlan],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/wlans/%v", siteId, wlanId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/wlans/%v")
+    req.AppendTemplateParams(siteId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -317,11 +298,8 @@ func (s *SitesWlans) DeleteSiteWlanPortalImage(
     wlanId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/wlans/%v/portal_image", siteId, wlanId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/wlans/%v/portal_image")
+    req.AppendTemplateParams(siteId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -360,11 +338,8 @@ func (s *SitesWlans) UploadSiteWlanPortalImage(
     json *string) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/wlans/%v/portal_image", siteId, wlanId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/wlans/%v/portal_image")
+    req.AppendTemplateParams(siteId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -423,11 +398,8 @@ func (s *SitesWlans) UpdateSiteWlanPortalTemplate(
     body *models.WlanPortalTemplate) (
     models.ApiResponse[models.WlanPortalTemplate],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/wlans/%v/portal_template", siteId, wlanId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/wlans/%v/portal_template")
+    req.AppendTemplateParams(siteId, wlanId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

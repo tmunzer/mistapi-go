@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -36,6 +37,14 @@ type CaptureScan struct {
     // specify the bandwidth value with respect to the channel.
     Width                *string                       `json:"width,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureScan,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureScan) String() string {
+    return fmt.Sprintf(
+    	"CaptureScan[ApMac=%v, Aps=%v, Band=%v, Bandwidth=%v, Channel=%v, ClientMac=%v, Duration=%v, Format=%v, MaxPktLen=%v, NumPackets=%v, TcpdumpExpression=%v, Type=%v, Width=%v, AdditionalProperties=%v]",
+    	c.ApMac, c.Aps, c.Band, c.Bandwidth, c.Channel, c.ClientMac, c.Duration, c.Format, c.MaxPktLen, c.NumPackets, c.TcpdumpExpression, c.Type, c.Width, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureScan.

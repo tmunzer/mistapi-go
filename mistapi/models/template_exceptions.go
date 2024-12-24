@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -13,6 +14,14 @@ type TemplateExceptions struct {
     // list of sitegroup ids
     SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TemplateExceptions,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TemplateExceptions) String() string {
+    return fmt.Sprintf(
+    	"TemplateExceptions[SiteIds=%v, SitegroupIds=%v, AdditionalProperties=%v]",
+    	t.SiteIds, t.SitegroupIds, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TemplateExceptions.

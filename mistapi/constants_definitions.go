@@ -30,6 +30,7 @@ func (c *ConstantsDefinitions) ListAlarmDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstAlarmDefinition],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/alarm_defs")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -68,6 +69,7 @@ func (c *ConstantsDefinitions) ListApChannels(
     models.ApiResponse[models.ConstApChannel],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/ap_channels")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -107,6 +109,7 @@ func (c *ConstantsDefinitions) ListApLedDefinition(ctx context.Context) (
     models.ApiResponse[[]models.ConstApLed],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/ap_led_status")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -143,6 +146,7 @@ func (c *ConstantsDefinitions) ListAppCategoryDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstAppCategoryDefinition],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/app_categories")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -179,6 +183,7 @@ func (c *ConstantsDefinitions) ListAppSubCategoryDefinitions(ctx context.Context
     models.ApiResponse[[]models.ConstAppSubcategoryDefinition],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/app_subcategories")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -215,6 +220,7 @@ func (c *ConstantsDefinitions) ListApplications(ctx context.Context) (
     models.ApiResponse[[]models.ConstApplicationDefinition],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/applications")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -253,6 +259,7 @@ func (c *ConstantsDefinitions) ListCountryCodes(
     models.ApiResponse[[]models.ConstCountry],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/countries")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -292,6 +299,7 @@ func (c *ConstantsDefinitions) ListGatewayApplications(ctx context.Context) (
     models.ApiResponse[[]models.ConstGatewayApplicationsDefinition],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/gateway_applications")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -328,6 +336,7 @@ func (c *ConstantsDefinitions) ListInsightMetrics(ctx context.Context) (
     models.ApiResponse[map[string]models.ConstInsightMetricsProperty],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/insight_metrics")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -364,6 +373,7 @@ func (c *ConstantsDefinitions) ListSiteLanguages(ctx context.Context) (
     models.ApiResponse[[]models.ConstLanguage],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/languages")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -400,6 +410,7 @@ func (c *ConstantsDefinitions) GetLicenseTypes(ctx context.Context) (
     models.ApiResponse[[]models.ConstLicenseType],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/license_types")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -436,6 +447,7 @@ func (c *ConstantsDefinitions) ListMarvisClientVersions(ctx context.Context) (
     models.ApiResponse[[]models.ConstMarvisClientVersion],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/marvisclient_versions")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -474,6 +486,7 @@ func (c *ConstantsDefinitions) ListStates(
     models.ApiResponse[[]models.ConstState],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/states")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -511,6 +524,7 @@ func (c *ConstantsDefinitions) ListTrafficTypes(ctx context.Context) (
     models.ApiResponse[[]models.ConstTrafficType],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/traffic_types")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -547,6 +561,7 @@ func (c *ConstantsDefinitions) ListWebhookTopics(ctx context.Context) (
     models.ApiResponse[[]models.ConstWebhookTopic],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/webhook_topics")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

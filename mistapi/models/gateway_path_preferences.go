@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayPathPreferences represents a GatewayPathPreferences struct.
@@ -10,6 +11,14 @@ type GatewayPathPreferences struct {
     // enum: `ecmp`, `ordered`, `weighted`
     Strategy             *GatewayPathStrategyEnum     `json:"strategy,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayPathPreferences,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayPathPreferences) String() string {
+    return fmt.Sprintf(
+    	"GatewayPathPreferences[Paths=%v, Strategy=%v, AdditionalProperties=%v]",
+    	g.Paths, g.Strategy, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPathPreferences.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RftemplateRadioBand6 represents a RftemplateRadioBand6 struct.
@@ -28,6 +29,14 @@ type RftemplateRadioBand6 struct {
     // for 6GHz Only, standard-power operation, AFC (Automatic Frequency Coordination) will be performed and we'll fallback to Low Power Indoor if AFC failed
     StandardPower        *bool                     `json:"standard_power,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RftemplateRadioBand6,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RftemplateRadioBand6) String() string {
+    return fmt.Sprintf(
+    	"RftemplateRadioBand6[AllowRrmDisable=%v, AntGain=%v, AntennaMode=%v, Bandwidth=%v, Channels=%v, Disabled=%v, Power=%v, PowerMax=%v, PowerMin=%v, Preamble=%v, StandardPower=%v, AdditionalProperties=%v]",
+    	r.AllowRrmDisable, r.AntGain, r.AntennaMode, r.Bandwidth, r.Channels, r.Disabled, r.Power, r.PowerMax, r.PowerMin, r.Preamble, r.StandardPower, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RftemplateRadioBand6.

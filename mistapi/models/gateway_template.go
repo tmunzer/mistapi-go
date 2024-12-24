@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -53,7 +54,7 @@ type GatewayTemplate struct {
     RoutingPolicies       map[string]RoutingPolicy           `json:"routing_policies,omitempty"`
     ServicePolicies       []ServicePolicy                    `json:"service_policies,omitempty"`
     // Property key is the tunnel name
-    TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
+    TunnelConfigs         map[string]TunnelConfig            `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     // enum: `spoke`, `standalone`
     Type                  *GatewayTemplateTypeEnum           `json:"type,omitempty"`
@@ -61,6 +62,14 @@ type GatewayTemplate struct {
     // Property key is the network name
     VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
     AdditionalProperties  map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayTemplate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayTemplate) String() string {
+    return fmt.Sprintf(
+    	"GatewayTemplate[AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DhcpdConfig=%v, DnsOverride=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, GatewayMatching=%v, Id=%v, IdpProfiles=%v, IpConfigs=%v, ModifiedTime=%v, Name=%v, Networks=%v, NtpOverride=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, PathPreferences=%v, PortConfig=%v, RouterId=%v, RoutingPolicies=%v, ServicePolicies=%v, TunnelConfigs=%v, TunnelProviderOptions=%v, Type=%v, VrfConfig=%v, VrfInstances=%v, AdditionalProperties=%v]",
+    	g.AdditionalConfigCmds, g.BgpConfig, g.CreatedTime, g.DhcpdConfig, g.DnsOverride, g.DnsServers, g.DnsSuffix, g.ExtraRoutes, g.ExtraRoutes6, g.GatewayMatching, g.Id, g.IdpProfiles, g.IpConfigs, g.ModifiedTime, g.Name, g.Networks, g.NtpOverride, g.NtpServers, g.OobIpConfig, g.OrgId, g.PathPreferences, g.PortConfig, g.RouterId, g.RoutingPolicies, g.ServicePolicies, g.TunnelConfigs, g.TunnelProviderOptions, g.Type, g.VrfConfig, g.VrfInstances, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayTemplate.
@@ -248,7 +257,7 @@ type tempGatewayTemplate  struct {
     RouterId              *string                            `json:"router_id,omitempty"`
     RoutingPolicies       map[string]RoutingPolicy           `json:"routing_policies,omitempty"`
     ServicePolicies       []ServicePolicy                    `json:"service_policies,omitempty"`
-    TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
+    TunnelConfigs         map[string]TunnelConfig            `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     Type                  *GatewayTemplateTypeEnum           `json:"type,omitempty"`
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`

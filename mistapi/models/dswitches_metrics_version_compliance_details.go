@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type DswitchesMetricsVersionComplianceDetails struct {
     MajorVersions        []DswitchesComplianceMajorVersion `json:"major_versions"`
     TotalSwitchCount     int                               `json:"total_switch_count"`
     AdditionalProperties map[string]interface{}            `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DswitchesMetricsVersionComplianceDetails,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DswitchesMetricsVersionComplianceDetails) String() string {
+    return fmt.Sprintf(
+    	"DswitchesMetricsVersionComplianceDetails[MajorVersions=%v, TotalSwitchCount=%v, AdditionalProperties=%v]",
+    	d.MajorVersions, d.TotalSwitchCount, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DswitchesMetricsVersionComplianceDetails.

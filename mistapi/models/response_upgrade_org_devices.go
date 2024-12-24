@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -19,6 +20,14 @@ type ResponseUpgradeOrgDevices struct {
     TargetVersion        *string                    `json:"target_version,omitempty"`
     Upgrades             []ResponseUpgradeOrgDevice `json:"upgrades,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseUpgradeOrgDevices,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseUpgradeOrgDevices) String() string {
+    return fmt.Sprintf(
+    	"ResponseUpgradeOrgDevices[EnableP2p=%v, Force=%v, Id=%v, Strategy=%v, TargetVersion=%v, Upgrades=%v, AdditionalProperties=%v]",
+    	r.EnableP2p, r.Force, r.Id, r.Strategy, r.TargetVersion, r.Upgrades, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseUpgradeOrgDevices.

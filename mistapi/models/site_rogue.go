@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteRogue represents a SiteRogue struct.
@@ -20,6 +21,14 @@ type SiteRogue struct {
     // list of SSIDs to whitelist
     WhitelistedSsids     []string               `json:"whitelisted_ssids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteRogue,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteRogue) String() string {
+    return fmt.Sprintf(
+    	"SiteRogue[Enabled=%v, HoneypotEnabled=%v, MinDuration=%v, MinRssi=%v, WhitelistedBssids=%v, WhitelistedSsids=%v, AdditionalProperties=%v]",
+    	s.Enabled, s.HoneypotEnabled, s.MinDuration, s.MinRssi, s.WhitelistedBssids, s.WhitelistedSsids, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteRogue.

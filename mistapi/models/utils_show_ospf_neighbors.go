@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsShowOspfNeighbors represents a UtilsShowOspfNeighbors struct.
@@ -15,6 +16,14 @@ type UtilsShowOspfNeighbors struct {
     // VRF name
     Vrf                  *string                `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsShowOspfNeighbors,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsShowOspfNeighbors) String() string {
+    return fmt.Sprintf(
+    	"UtilsShowOspfNeighbors[Neighbor=%v, Node=%v, PortId=%v, Vrf=%v, AdditionalProperties=%v]",
+    	u.Neighbor, u.Node, u.PortId, u.Vrf, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowOspfNeighbors.

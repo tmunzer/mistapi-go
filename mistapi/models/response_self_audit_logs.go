@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type ResponseSelfAuditLogs struct {
     Start                int                    `json:"start"`
     Total                int                    `json:"total"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSelfAuditLogs,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSelfAuditLogs) String() string {
+    return fmt.Sprintf(
+    	"ResponseSelfAuditLogs[End=%v, Limit=%v, Page=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	r.End, r.Limit, r.Page, r.Results, r.Start, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSelfAuditLogs.

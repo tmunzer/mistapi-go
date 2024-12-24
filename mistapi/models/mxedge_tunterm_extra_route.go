@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeTuntermExtraRoute represents a MxedgeTuntermExtraRoute struct.
 type MxedgeTuntermExtraRoute struct {
     Via                  *string                `json:"via,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeTuntermExtraRoute,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeTuntermExtraRoute) String() string {
+    return fmt.Sprintf(
+    	"MxedgeTuntermExtraRoute[Via=%v, AdditionalProperties=%v]",
+    	m.Via, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermExtraRoute.

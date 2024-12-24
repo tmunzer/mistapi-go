@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -35,6 +36,14 @@ type CaptureRadiotapwired struct {
     // wlan id associated with the respective ssid.
     WlanId                    Optional[string]                `json:"wlan_id"`
     AdditionalProperties      map[string]interface{}          `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureRadiotapwired,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureRadiotapwired) String() string {
+    return fmt.Sprintf(
+    	"CaptureRadiotapwired[ApMac=%v, Band=%v, ClientMac=%v, Duration=%v, Format=%v, MaxPktLen=%v, NumPackets=%v, RadiotapTcpdumpExpression=%v, Ssid=%v, TcpdumpExpression=%v, Type=%v, WiredTcpdumpExpression=%v, WirelessTcpdumpExpression=%v, WlanId=%v, AdditionalProperties=%v]",
+    	c.ApMac, c.Band, c.ClientMac, c.Duration, c.Format, c.MaxPktLen, c.NumPackets, c.RadiotapTcpdumpExpression, c.Ssid, c.TcpdumpExpression, c.Type, c.WiredTcpdumpExpression, c.WirelessTcpdumpExpression, c.WlanId, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureRadiotapwired.

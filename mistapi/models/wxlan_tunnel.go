@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -51,6 +52,14 @@ type WxlanTunnel struct {
     // whether to use UDP instead of IP (proto=115, which is default of L2TPv3)
     UseUdp               *bool                  `json:"use_udp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WxlanTunnel,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WxlanTunnel) String() string {
+    return fmt.Sprintf(
+    	"WxlanTunnel[CreatedTime=%v, Dmvpn=%v, ForMgmt=%v, ForSite=%v, HelloInterval=%v, HelloRetries=%v, Hostname=%v, Id=%v, Ipsec=%v, IsStatic=%v, ModifiedTime=%v, Mtu=%v, Name=%v, OrgId=%v, Peers=%v, RouterId=%v, Secret=%v, Sessions=%v, SiteId=%v, UdpPort=%v, UseUdp=%v, AdditionalProperties=%v]",
+    	w.CreatedTime, w.Dmvpn, w.ForMgmt, w.ForSite, w.HelloInterval, w.HelloRetries, w.Hostname, w.Id, w.Ipsec, w.IsStatic, w.ModifiedTime, w.Mtu, w.Name, w.OrgId, w.Peers, w.RouterId, w.Secret, w.Sessions, w.SiteId, w.UdpPort, w.UseUdp, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanTunnel.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingDeviceCert represents a OrgSettingDeviceCert struct.
@@ -10,6 +11,14 @@ type OrgSettingDeviceCert struct {
     Cert                 *string                `json:"cert,omitempty"`
     Key                  *string                `json:"key,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingDeviceCert,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingDeviceCert) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingDeviceCert[Cert=%v, Key=%v, AdditionalProperties=%v]",
+    	o.Cert, o.Key, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingDeviceCert.

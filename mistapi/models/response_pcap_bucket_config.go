@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponsePcapBucketConfig represents a ResponsePcapBucketConfig struct.
@@ -9,6 +10,14 @@ type ResponsePcapBucketConfig struct {
     Bucket               *string                `json:"bucket,omitempty"`
     Detail               *string                `json:"detail,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponsePcapBucketConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponsePcapBucketConfig) String() string {
+    return fmt.Sprintf(
+    	"ResponsePcapBucketConfig[Bucket=%v, Detail=%v, AdditionalProperties=%v]",
+    	r.Bucket, r.Detail, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapBucketConfig.

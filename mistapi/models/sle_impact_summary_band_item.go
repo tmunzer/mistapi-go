@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type SleImpactSummaryBandItem struct {
     Name                 string                 `json:"name"`
     Total                float64                `json:"total"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleImpactSummaryBandItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleImpactSummaryBandItem) String() string {
+    return fmt.Sprintf(
+    	"SleImpactSummaryBandItem[Band=%v, Degraded=%v, Duration=%v, Name=%v, Total=%v, AdditionalProperties=%v]",
+    	s.Band, s.Degraded, s.Duration, s.Name, s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactSummaryBandItem.

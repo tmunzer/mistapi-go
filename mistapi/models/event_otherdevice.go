@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -16,6 +17,14 @@ type EventOtherdevice struct {
     Type                 *string                `json:"type,omitempty"`
     Vendor               *string                `json:"vendor,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EventOtherdevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EventOtherdevice) String() string {
+    return fmt.Sprintf(
+    	"EventOtherdevice[DeviceMac=%v, Mac=%v, OrgId=%v, SiteId=%v, Text=%v, Timestamp=%v, Type=%v, Vendor=%v, AdditionalProperties=%v]",
+    	e.DeviceMac, e.Mac, e.OrgId, e.SiteId, e.Text, e.Timestamp, e.Type, e.Vendor, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventOtherdevice.

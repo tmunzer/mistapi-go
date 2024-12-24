@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -14,6 +15,14 @@ type HaClusterConfig struct {
     Nodes                []HaClusterConfigNode  `json:"nodes,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for HaClusterConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (h HaClusterConfig) String() string {
+    return fmt.Sprintf(
+    	"HaClusterConfig[DisableAutoConfig=%v, Managed=%v, Nodes=%v, SiteId=%v, AdditionalProperties=%v]",
+    	h.DisableAutoConfig, h.Managed, h.Nodes, h.SiteId, h.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for HaClusterConfig.

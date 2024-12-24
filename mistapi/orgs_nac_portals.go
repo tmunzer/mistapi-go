@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (o *OrgsNACPortals) ListOrgNacPortals(
     page *int) (
     models.ApiResponse[[]models.NacPortal],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/nacportals")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -84,11 +80,8 @@ func (o *OrgsNACPortals) CreateOrgNacPortal(
     body *models.NacPortal) (
     models.ApiResponse[models.NacPortal],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/nacportals")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -132,11 +125,8 @@ func (o *OrgsNACPortals) DeleteOrgNacPortal(
     nacportalId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v", orgId, nacportalId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/nacportals/%v")
+    req.AppendTemplateParams(orgId, nacportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -173,11 +163,8 @@ func (o *OrgsNACPortals) GetOrgNacPortal(
     nacportalId uuid.UUID) (
     models.ApiResponse[models.NacPortal],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v", orgId, nacportalId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/nacportals/%v")
+    req.AppendTemplateParams(orgId, nacportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -218,11 +205,8 @@ func (o *OrgsNACPortals) UpdateOrgNacPortal(
     body *models.NacPortal) (
     models.ApiResponse[models.NacPortal],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v", orgId, nacportalId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/nacportals/%v")
+    req.AppendTemplateParams(orgId, nacportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -271,11 +255,8 @@ func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
     page *int) (
     models.ApiResponse[models.ResponseSsoFailureSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/failures", orgId, nacportalId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/nacportals/%v/failures")
+    req.AppendTemplateParams(orgId, nacportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -334,8 +315,9 @@ func (o *OrgsNACPortals) DeleteOrgNacPortalImage(
     req := o.prepareRequest(
       ctx,
       "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/portal_image", orgId, nacportalId),
+      "/api/v1/orgs/%v/nacportals/%v/portal_image",
     )
+    req.AppendTemplateParams(orgId, nacportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -377,8 +359,9 @@ func (o *OrgsNACPortals) UploadOrgNacPortalImage(
     req := o.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/portal_image", orgId, nacportalId),
+      "/api/v1/orgs/%v/nacportals/%v/portal_image",
     )
+    req.AppendTemplateParams(orgId, nacportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -429,8 +412,9 @@ func (o *OrgsNACPortals) UpdateOrgNacPortalTempalte(
     req := o.prepareRequest(
       ctx,
       "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/portal_template", orgId, nacportalId),
+      "/api/v1/orgs/%v/nacportals/%v/portal_template",
     )
+    req.AppendTemplateParams(orgId, nacportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -474,8 +458,9 @@ func (o *OrgsNACPortals) GetOrgNacPortalSamlMetadata(
     req := o.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/saml_metadata", orgId, nacportalId),
+      "/api/v1/orgs/%v/nacportals/%v/saml_metadata",
     )
+    req.AppendTemplateParams(orgId, nacportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -534,8 +519,9 @@ func (o *OrgsNACPortals) DownloadOrgNacPortalSamlMetadata(
     req := o.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/nacportals/%v/saml_metadata.xml", orgId, nacportalId),
+      "/api/v1/orgs/%v/nacportals/%v/saml_metadata.xml",
     )
+    req.AppendTemplateParams(orgId, nacportalId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

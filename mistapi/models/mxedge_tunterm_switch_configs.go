@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeTuntermSwitchConfigs represents a MxedgeTuntermSwitchConfigs struct.
@@ -9,6 +10,14 @@ import (
 type MxedgeTuntermSwitchConfigs struct {
     Enabled              *bool                                `json:"enabled,omitempty"`
     AdditionalProperties map[string]MxedgeTuntermSwitchConfig `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeTuntermSwitchConfigs,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeTuntermSwitchConfigs) String() string {
+    return fmt.Sprintf(
+    	"MxedgeTuntermSwitchConfigs[Enabled=%v, AdditionalProperties=%v]",
+    	m.Enabled, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermSwitchConfigs.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // TroubleshootCallItem represents a TroubleshootCallItem struct.
@@ -12,6 +13,14 @@ type TroubleshootCallItem struct {
     VideoIn              *CallTroubleshootData  `json:"video_in,omitempty"`
     VideoOut             *CallTroubleshootData  `json:"video_out,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TroubleshootCallItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TroubleshootCallItem) String() string {
+    return fmt.Sprintf(
+    	"TroubleshootCallItem[AudioIn=%v, AudioOut=%v, Timestamp=%v, VideoIn=%v, VideoOut=%v, AdditionalProperties=%v]",
+    	t.AudioIn, t.AudioOut, t.Timestamp, t.VideoIn, t.VideoOut, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TroubleshootCallItem.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanPortalTemplateSettingLocale represents a WlanPortalTemplateSettingLocale struct.
@@ -162,6 +163,14 @@ type WlanPortalTemplateSettingLocale struct {
     // text of the Terms of Service
     TosText                  *string                `json:"tosText,omitempty"`
     AdditionalProperties     map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanPortalTemplateSettingLocale,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanPortalTemplateSettingLocale) String() string {
+    return fmt.Sprintf(
+    	"WlanPortalTemplateSettingLocale[AuthButtonAmazon=%v, AuthButtonAzure=%v, AuthButtonEmail=%v, AuthButtonFacebook=%v, AuthButtonGoogle=%v, AuthButtonMicrosoft=%v, AuthButtonPassphrase=%v, AuthButtonSms=%v, AuthButtonSponsor=%v, AuthLabel=%v, BackLink=%v, CompanyError=%v, CompanyLabel=%v, EmailAccessDomainError=%v, EmailCancel=%v, EmailCodeCancel=%v, EmailCodeError=%v, EmailCodeFieldLabel=%v, EmailCodeMessage=%v, EmailCodeSubmit=%v, EmailCodeTitle=%v, EmailError=%v, EmailFieldLabel=%v, EmailLabel=%v, EmailMessage=%v, EmailSubmit=%v, EmailTitle=%v, Field1Error=%v, Field1Label=%v, Field2Error=%v, Field2Label=%v, Field3Error=%v, Field3Label=%v, Field4Error=%v, Field4Label=%v, Message=%v, NameError=%v, NameLabel=%v, OptoutLabel=%v, PageTitle=%v, PassphraseCancel=%v, PassphraseError=%v, PassphraseLabel=%v, PassphraseMessage=%v, PassphraseSubmit=%v, PassphraseTitle=%v, PrivacyPolicyAcceptLabel=%v, PrivacyPolicyError=%v, PrivacyPolicyLink=%v, PrivacyPolicyText=%v, RequiredFieldLabel=%v, SignInLabel=%v, SmsCarrierDefault=%v, SmsCarrierError=%v, SmsCarrierFieldLabel=%v, SmsCodeCancel=%v, SmsCodeError=%v, SmsCodeFieldLabel=%v, SmsCodeMessage=%v, SmsCodeSubmit=%v, SmsCodeTitle=%v, SmsCountryFieldLabel=%v, SmsCountryFormat=%v, SmsHaveAccessCode=%v, SmsMessageFormat=%v, SmsNumberCancel=%v, SmsNumberError=%v, SmsNumberFieldLabel=%v, SmsNumberFormat=%v, SmsNumberMessage=%v, SmsNumberSubmit=%v, SmsNumberTitle=%v, SmsUsernameFormat=%v, SponsorBackLink=%v, SponsorCancel=%v, SponsorEmail=%v, SponsorEmailError=%v, SponsorInfoApproved=%v, SponsorInfoDenied=%v, SponsorInfoPending=%v, SponsorName=%v, SponsorNameError=%v, SponsorNotePending=%v, SponsorRequestAccess=%v, SponsorStatusApproved=%v, SponsorStatusDenied=%v, SponsorStatusPending=%v, SponsorSubmit=%v, SponsorsError=%v, SponsorsFieldLabel=%v, TosAcceptLabel=%v, TosError=%v, TosLink=%v, TosText=%v, AdditionalProperties=%v]",
+    	w.AuthButtonAmazon, w.AuthButtonAzure, w.AuthButtonEmail, w.AuthButtonFacebook, w.AuthButtonGoogle, w.AuthButtonMicrosoft, w.AuthButtonPassphrase, w.AuthButtonSms, w.AuthButtonSponsor, w.AuthLabel, w.BackLink, w.CompanyError, w.CompanyLabel, w.EmailAccessDomainError, w.EmailCancel, w.EmailCodeCancel, w.EmailCodeError, w.EmailCodeFieldLabel, w.EmailCodeMessage, w.EmailCodeSubmit, w.EmailCodeTitle, w.EmailError, w.EmailFieldLabel, w.EmailLabel, w.EmailMessage, w.EmailSubmit, w.EmailTitle, w.Field1Error, w.Field1Label, w.Field2Error, w.Field2Label, w.Field3Error, w.Field3Label, w.Field4Error, w.Field4Label, w.Message, w.NameError, w.NameLabel, w.OptoutLabel, w.PageTitle, w.PassphraseCancel, w.PassphraseError, w.PassphraseLabel, w.PassphraseMessage, w.PassphraseSubmit, w.PassphraseTitle, w.PrivacyPolicyAcceptLabel, w.PrivacyPolicyError, w.PrivacyPolicyLink, w.PrivacyPolicyText, w.RequiredFieldLabel, w.SignInLabel, w.SmsCarrierDefault, w.SmsCarrierError, w.SmsCarrierFieldLabel, w.SmsCodeCancel, w.SmsCodeError, w.SmsCodeFieldLabel, w.SmsCodeMessage, w.SmsCodeSubmit, w.SmsCodeTitle, w.SmsCountryFieldLabel, w.SmsCountryFormat, w.SmsHaveAccessCode, w.SmsMessageFormat, w.SmsNumberCancel, w.SmsNumberError, w.SmsNumberFieldLabel, w.SmsNumberFormat, w.SmsNumberMessage, w.SmsNumberSubmit, w.SmsNumberTitle, w.SmsUsernameFormat, w.SponsorBackLink, w.SponsorCancel, w.SponsorEmail, w.SponsorEmailError, w.SponsorInfoApproved, w.SponsorInfoDenied, w.SponsorInfoPending, w.SponsorName, w.SponsorNameError, w.SponsorNotePending, w.SponsorRequestAccess, w.SponsorStatusApproved, w.SponsorStatusDenied, w.SponsorStatusPending, w.SponsorSubmit, w.SponsorsError, w.SponsorsFieldLabel, w.TosAcceptLabel, w.TosError, w.TosLink, w.TosText, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanPortalTemplateSettingLocale.

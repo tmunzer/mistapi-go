@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type ResponseRrmConsideration struct {
     Results              []RrmConsideration     `json:"results"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseRrmConsideration,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseRrmConsideration) String() string {
+    return fmt.Sprintf(
+    	"ResponseRrmConsideration[Results=%v, AdditionalProperties=%v]",
+    	r.Results, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseRrmConsideration.

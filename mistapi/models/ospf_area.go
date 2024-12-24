@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OspfArea represents a OspfArea struct.
@@ -12,6 +13,14 @@ type OspfArea struct {
     // OSPF type. enum: `default`, `nssa`, `stub`
     Type                 *OspfAreaTypeEnum           `json:"type,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OspfArea,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OspfArea) String() string {
+    return fmt.Sprintf(
+    	"OspfArea[IncludeLoopback=%v, Networks=%v, Type=%v, AdditionalProperties=%v]",
+    	o.IncludeLoopback, o.Networks, o.Type, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OspfArea.

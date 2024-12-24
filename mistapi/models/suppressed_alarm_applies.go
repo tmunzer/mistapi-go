@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -16,6 +17,14 @@ type SuppressedAlarmApplies struct {
     // List of UUID of the site groups within the org (if provided, the alarms will be suppressed for all the sites under those site groups)
     SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SuppressedAlarmApplies,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SuppressedAlarmApplies) String() string {
+    return fmt.Sprintf(
+    	"SuppressedAlarmApplies[OrgId=%v, SiteIds=%v, SitegroupIds=%v, AdditionalProperties=%v]",
+    	s.OrgId, s.SiteIds, s.SitegroupIds, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SuppressedAlarmApplies.

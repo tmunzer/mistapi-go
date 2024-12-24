@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeMgmt represents a MxedgeMgmt struct.
@@ -14,6 +15,14 @@ type MxedgeMgmt struct {
     OobIpType6           *MxedgeMgmtOobIpType6Enum `json:"oob_ip_type6,omitempty"`
     RootPassword         *string                   `json:"root_password,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeMgmt,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeMgmt) String() string {
+    return fmt.Sprintf(
+    	"MxedgeMgmt[FipsEnabled=%v, MistPassword=%v, OobIpType=%v, OobIpType6=%v, RootPassword=%v, AdditionalProperties=%v]",
+    	m.FipsEnabled, m.MistPassword, m.OobIpType, m.OobIpType6, m.RootPassword, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeMgmt.

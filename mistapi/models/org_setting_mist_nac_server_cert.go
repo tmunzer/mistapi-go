@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingMistNacServerCert represents a OrgSettingMistNacServerCert struct.
@@ -12,6 +13,14 @@ type OrgSettingMistNacServerCert struct {
     // private key password (optional)
     Password             *string                `json:"password,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingMistNacServerCert,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingMistNacServerCert) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingMistNacServerCert[Cert=%v, Key=%v, Password=%v, AdditionalProperties=%v]",
+    	o.Cert, o.Key, o.Password, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingMistNacServerCert.

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayExtraRoute represents a GatewayExtraRoute struct.
 type GatewayExtraRoute struct {
     Via                  *string                `json:"via,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayExtraRoute,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayExtraRoute) String() string {
+    return fmt.Sprintf(
+    	"GatewayExtraRoute[Via=%v, AdditionalProperties=%v]",
+    	g.Via, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayExtraRoute.

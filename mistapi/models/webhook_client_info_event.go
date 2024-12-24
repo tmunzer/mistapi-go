@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -18,6 +19,14 @@ type WebhookClientInfoEvent struct {
     // time at which IP address was assigned E.g. 1703003956
     Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookClientInfoEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookClientInfoEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookClientInfoEvent[Hostname=%v, Ip=%v, Mac=%v, OrgId=%v, SiteId=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	w.Hostname, w.Ip, w.Mac, w.OrgId, w.SiteId, w.Timestamp, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookClientInfoEvent.

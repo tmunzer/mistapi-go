@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UsernamePassword represents a UsernamePassword struct.
@@ -9,6 +10,14 @@ type UsernamePassword struct {
     Password             *string                `json:"password,omitempty"`
     Username             *string                `json:"username,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UsernamePassword,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UsernamePassword) String() string {
+    return fmt.Sprintf(
+    	"UsernamePassword[Password=%v, Username=%v, AdditionalProperties=%v]",
+    	u.Password, u.Username, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UsernamePassword.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingCloudshark represents a OrgSettingCloudshark struct.
@@ -10,6 +11,14 @@ type OrgSettingCloudshark struct {
     // if using CS Enteprise
     Url                  *string                `json:"url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingCloudshark,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingCloudshark) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingCloudshark[Apitoken=%v, Url=%v, AdditionalProperties=%v]",
+    	o.Apitoken, o.Url, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingCloudshark.

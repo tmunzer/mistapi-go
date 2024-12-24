@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (o *OrgsSetting) GetOrgSettings(
     orgId uuid.UUID) (
     models.ApiResponse[models.OrgSetting],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/setting", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/setting")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -76,11 +72,8 @@ func (o *OrgsSetting) UpdateOrgSettings(
     body *models.OrgSetting) (
     models.ApiResponse[models.OrgSetting],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/setting", orgId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/setting")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -123,11 +116,8 @@ func (o *OrgsSetting) DeleteOrgWirelessClientsBlocklist(
     orgId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/blacklist", orgId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/setting/blacklist")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -167,11 +157,8 @@ func (o *OrgsSetting) CreateOrgWirelessClientsBlocklist(
     body *models.MacAddresses) (
     models.ApiResponse[models.MacAddresses],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/blacklist", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/setting/blacklist")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -219,11 +206,8 @@ func (o *OrgsSetting) SetOrgCustomBucket(
     body *models.PcapBucket) (
     models.ApiResponse[models.ResponsePcapBucketConfig],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/pcap_bucket/setup", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/setting/pcap_bucket/setup")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -271,8 +255,9 @@ func (o *OrgsSetting) VerifyOrgCustomBucket(
     req := o.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/pcap_bucket/verify", orgId),
+      "/api/v1/orgs/%v/setting/pcap_bucket/verify",
     )
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AutoPreemption represents a AutoPreemption struct.
@@ -14,6 +15,14 @@ type AutoPreemption struct {
     // any / HH:MM (24-hour format)
     TimeOfDay            *string                `json:"time_of_day,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AutoPreemption,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AutoPreemption) String() string {
+    return fmt.Sprintf(
+    	"AutoPreemption[DayOfWeek=%v, Enabled=%v, TimeOfDay=%v, AdditionalProperties=%v]",
+    	a.DayOfWeek, a.Enabled, a.TimeOfDay, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AutoPreemption.

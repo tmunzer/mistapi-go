@@ -34,6 +34,7 @@ func (a *AdminsLogin) Login(
     models.ApiResponse[models.ResponseLoginSuccess],
     error) {
     req := a.prepareRequest(ctx, "POST", "/api/v1/login")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -72,6 +73,7 @@ func (a *AdminsLogin) TwoFactor(
     *http.Response,
     error) {
     req := a.prepareRequest(ctx, "POST", "/api/v1/login/two_factor")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

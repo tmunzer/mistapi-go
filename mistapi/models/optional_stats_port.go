@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -94,6 +95,14 @@ type OptionalStatsPort struct {
     // Optic Slot SerialNumber, Check for null/empty
     XcvrSerial           *string                       `json:"xcvr_serial,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OptionalStatsPort,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OptionalStatsPort) String() string {
+    return fmt.Sprintf(
+    	"OptionalStatsPort[Active=%v, AuthState=%v, ForSite=%v, FullDuplex=%v, Jitter=%v, Latency=%v, Loss=%v, LteIccid=%v, LteImei=%v, LteImsi=%v, MacCount=%v, MacLimit=%v, NeighborMac=%v, NeighborPortDesc=%v, NeighborSystemName=%v, PoeDisabled=%v, PoeMode=%v, PoeOn=%v, PortId=%v, PortMac=%v, PortUsage=%v, PowerDraw=%v, RxBcastPkts=%v, RxBps=%v, RxBytes=%v, RxErrors=%v, RxMcastPkts=%v, RxPkts=%v, Speed=%v, StpRole=%v, StpState=%v, TxBcastPkts=%v, TxBps=%v, TxBytes=%v, TxErrors=%v, TxMcastPkts=%v, TxPkts=%v, Type=%v, Unconfigured=%v, Up=%v, XcvrModel=%v, XcvrPartNumber=%v, XcvrSerial=%v, AdditionalProperties=%v]",
+    	o.Active, o.AuthState, o.ForSite, o.FullDuplex, o.Jitter, o.Latency, o.Loss, o.LteIccid, o.LteImei, o.LteImsi, o.MacCount, o.MacLimit, o.NeighborMac, o.NeighborPortDesc, o.NeighborSystemName, o.PoeDisabled, o.PoeMode, o.PoeOn, o.PortId, o.PortMac, o.PortUsage, o.PowerDraw, o.RxBcastPkts, o.RxBps, o.RxBytes, o.RxErrors, o.RxMcastPkts, o.RxPkts, o.Speed, o.StpRole, o.StpState, o.TxBcastPkts, o.TxBps, o.TxBytes, o.TxErrors, o.TxMcastPkts, o.TxPkts, o.Type, o.Unconfigured, o.Up, o.XcvrModel, o.XcvrPartNumber, o.XcvrSerial, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OptionalStatsPort.

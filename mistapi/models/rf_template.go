@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -40,6 +41,14 @@ type RfTemplate struct {
     // whether scanning radio is enabled
     ScanningEnabled      *bool                                      `json:"scanning_enabled,omitempty"`
     AdditionalProperties map[string]interface{}                     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RfTemplate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RfTemplate) String() string {
+    return fmt.Sprintf(
+    	"RfTemplate[AntGain24=%v, AntGain5=%v, AntGain6=%v, Band24=%v, Band24Usage=%v, Band5=%v, Band5On24Radio=%v, Band6=%v, CountryCode=%v, CreatedTime=%v, ForSite=%v, Id=%v, ModelSpecific=%v, ModifiedTime=%v, Name=%v, OrgId=%v, ScanningEnabled=%v, AdditionalProperties=%v]",
+    	r.AntGain24, r.AntGain5, r.AntGain6, r.Band24, r.Band24Usage, r.Band5, r.Band5On24Radio, r.Band6, r.CountryCode, r.CreatedTime, r.ForSite, r.Id, r.ModelSpecific, r.ModifiedTime, r.Name, r.OrgId, r.ScanningEnabled, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RfTemplate.

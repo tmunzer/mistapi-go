@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type ResponseDeviceConfigCli struct {
     Cli                  []string               `json:"cli"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseDeviceConfigCli,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseDeviceConfigCli) String() string {
+    return fmt.Sprintf(
+    	"ResponseDeviceConfigCli[Cli=%v, AdditionalProperties=%v]",
+    	r.Cli, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceConfigCli.

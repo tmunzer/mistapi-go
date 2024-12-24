@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type ResponseOrgDevices struct {
     Results              []OrgDevice            `json:"results"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseOrgDevices,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseOrgDevices) String() string {
+    return fmt.Sprintf(
+    	"ResponseOrgDevices[Results=%v, AdditionalProperties=%v]",
+    	r.Results, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOrgDevices.

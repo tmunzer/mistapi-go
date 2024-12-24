@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -24,6 +25,14 @@ type SsrUpgradeMulti struct {
     // 128T firmware version to upgrade (e.g. 5.3.0-93)
     Version              *string                 `json:"version,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SsrUpgradeMulti,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SsrUpgradeMulti) String() string {
+    return fmt.Sprintf(
+    	"SsrUpgradeMulti[Channel=%v, DeviceIds=%v, RebootAt=%v, StartTime=%v, Strategy=%v, Version=%v, AdditionalProperties=%v]",
+    	s.Channel, s.DeviceIds, s.RebootAt, s.StartTime, s.Strategy, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrUpgradeMulti.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -23,6 +24,14 @@ type SwitchNetwork struct {
     Subnet6              *string                `json:"subnet6,omitempty"`
     VlanId               VlanIdWithVariable     `json:"vlan_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchNetwork,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchNetwork) String() string {
+    return fmt.Sprintf(
+    	"SwitchNetwork[Gateway=%v, Gateway6=%v, Isolation=%v, IsolationVlanId=%v, Subnet=%v, Subnet6=%v, VlanId=%v, AdditionalProperties=%v]",
+    	s.Gateway, s.Gateway6, s.Isolation, s.IsolationVlanId, s.Subnet, s.Subnet6, s.VlanId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchNetwork.

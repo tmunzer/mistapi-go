@@ -13,16 +13,16 @@ for jse-ipsec, this allow provisioning of adequate resource on JSE. Make sure ad
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Name` | `*string` | Optional | - |
 | `NumUsers` | `*int` | Optional | - |
+| `OrgName` | `*string` | Optional | JSE Organization name. The list of available organizations can be retrieved with the [Get Org JSE Info](../../doc/controllers/orgs-jse.md#get-org-jse-info) API Call |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "name": "JSE_ORG1",
   "num_users": 5,
+  "org_name": "JSE_ORG1",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

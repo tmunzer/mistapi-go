@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // TicketAttachment represents a TicketAttachment struct.
 type TicketAttachment struct {
     ContentUrl           *string                `json:"content_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TicketAttachment,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TicketAttachment) String() string {
+    return fmt.Sprintf(
+    	"TicketAttachment[ContentUrl=%v, AdditionalProperties=%v]",
+    	t.ContentUrl, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TicketAttachment.

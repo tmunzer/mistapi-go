@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type ResponseClaimLicense struct {
     LicenseDuplicated    []ResponseClaimLicenseLicenseItem      `json:"license_duplicated"`
     LicenseError         []ResponseClaimLicenseLicenseErrorItem `json:"license_error"`
     AdditionalProperties map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseClaimLicense,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseClaimLicense) String() string {
+    return fmt.Sprintf(
+    	"ResponseClaimLicense[InventoryAdded=%v, InventoryDuplicated=%v, LicenseAdded=%v, LicenseDuplicated=%v, LicenseError=%v, AdditionalProperties=%v]",
+    	r.InventoryAdded, r.InventoryDuplicated, r.LicenseAdded, r.LicenseDuplicated, r.LicenseError, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseClaimLicense.

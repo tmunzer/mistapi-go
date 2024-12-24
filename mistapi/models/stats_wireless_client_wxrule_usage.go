@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -10,6 +11,14 @@ type StatsWirelessClientWxruleUsage struct {
     TagId                *uuid.UUID             `json:"tag_id,omitempty"`
     Usage                *int                   `json:"usage,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsWirelessClientWxruleUsage,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsWirelessClientWxruleUsage) String() string {
+    return fmt.Sprintf(
+    	"StatsWirelessClientWxruleUsage[TagId=%v, Usage=%v, AdditionalProperties=%v]",
+    	s.TagId, s.Usage, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWirelessClientWxruleUsage.

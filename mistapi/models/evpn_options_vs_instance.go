@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // EvpnOptionsVsInstance represents a EvpnOptionsVsInstance struct.
 type EvpnOptionsVsInstance struct {
     Networks             []string               `json:"networks,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EvpnOptionsVsInstance,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EvpnOptionsVsInstance) String() string {
+    return fmt.Sprintf(
+    	"EvpnOptionsVsInstance[Networks=%v, AdditionalProperties=%v]",
+    	e.Networks, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnOptionsVsInstance.

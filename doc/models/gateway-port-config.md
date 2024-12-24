@@ -33,7 +33,7 @@ Gateway port config
 | `LteUsername` | `*string` | Optional | if `wan_type`==`lte` |
 | `Mtu` | `*int` | Optional | - |
 | `Name` | `*string` | Optional | name that we'll use to derive config |
-| `Networks` | `[]string` | Optional | if `usage`==`lan` |
+| `Networks` | `[]string` | Optional | if `usage`==`lan`, name of the [networks]($h/Orgs%20Networks/_overview) to attach to the interface |
 | `OuterVlanId` | `*int` | Optional | for Q-in-Q |
 | `PoeDisabled` | `*bool` | Optional | **Default**: `false` |
 | `PortNetwork` | `*string` | Optional | if `usage`==`lan` |

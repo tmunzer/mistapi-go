@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -40,7 +39,8 @@ func (m *MSPsLogs) ListMspAuditLogs(
     page *int) (
     models.ApiResponse[models.ResponseLogSearch],
     error) {
-    req := m.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/msps/%v/logs", mspId))
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/logs")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -107,11 +107,8 @@ func (m *MSPsLogs) CountMspAuditLogs(
     distinct *models.MspLogsCountDistinctEnum) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/logs/count", mspId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/logs/count")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

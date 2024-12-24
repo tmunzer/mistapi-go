@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -29,6 +30,14 @@ type InsightRogueAp struct {
     // represents number of times the pair was heard in the interval. Each count roughly corresponds to a minute.
     TimesHeard           *int                   `json:"times_heard,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for InsightRogueAp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i InsightRogueAp) String() string {
+    return fmt.Sprintf(
+    	"InsightRogueAp[ApMac=%v, AvgRssi=%v, Bssid=%v, Channel=%v, DeltaX=%v, DeltaY=%v, NumAps=%v, SeenOnLan=%v, Ssid=%v, TimesHeard=%v, AdditionalProperties=%v]",
+    	i.ApMac, i.AvgRssi, i.Bssid, i.Channel, i.DeltaX, i.DeltaY, i.NumAps, i.SeenOnLan, i.Ssid, i.TimesHeard, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InsightRogueAp.

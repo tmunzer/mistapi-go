@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type LatLng struct {
     Lat                  float64                `json:"lat"`
     Lng                  float64                `json:"lng"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for LatLng,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (l LatLng) String() string {
+    return fmt.Sprintf(
+    	"LatLng[Lat=%v, Lng=%v, AdditionalProperties=%v]",
+    	l.Lat, l.Lng, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for LatLng.

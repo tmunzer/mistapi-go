@@ -31,6 +31,7 @@ Site
 | `SitegroupIds` | `[]uuid.UUID` | Optional | sitegroups this site belongs to |
 | `SitetemplateId` | `models.Optional[uuid.UUID]` | Optional | Site Template ID |
 | `Timezone` | `*string` | Optional | Timezone the site is at<br>**Default**: `"UTC"` |
+| `Tzoffset` | `*int` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

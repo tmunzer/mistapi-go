@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RoutingPolicy represents a RoutingPolicy struct.
@@ -9,6 +10,14 @@ type RoutingPolicy struct {
     // zero or more criteria/filter can be specified to match the term, all criteria have to be met
     Terms                []RoutingPolicyTerm    `json:"terms,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RoutingPolicy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RoutingPolicy) String() string {
+    return fmt.Sprintf(
+    	"RoutingPolicy[Terms=%v, AdditionalProperties=%v]",
+    	r.Terms, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicy.

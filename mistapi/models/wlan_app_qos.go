@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanAppQos represents a WlanAppQos struct.
@@ -11,6 +12,14 @@ type WlanAppQos struct {
     Enabled              *bool                               `json:"enabled,omitempty"`
     Others               []WlanAppQosOthersItem              `json:"others,omitempty"`
     AdditionalProperties map[string]interface{}              `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanAppQos,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanAppQos) String() string {
+    return fmt.Sprintf(
+    	"WlanAppQos[Apps=%v, Enabled=%v, Others=%v, AdditionalProperties=%v]",
+    	w.Apps, w.Enabled, w.Others, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAppQos.

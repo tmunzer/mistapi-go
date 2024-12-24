@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -17,6 +18,14 @@ type ResponsePskPortalLogsSearchItem struct {
     PskportalId          *uuid.UUID             `json:"pskportal_id,omitempty"`
     Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponsePskPortalLogsSearchItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponsePskPortalLogsSearchItem) String() string {
+    return fmt.Sprintf(
+    	"ResponsePskPortalLogsSearchItem[Id=%v, Message=%v, NameId=%v, OrgId=%v, PskId=%v, PskName=%v, PskportalId=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	r.Id, r.Message, r.NameId, r.OrgId, r.PskId, r.PskName, r.PskportalId, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePskPortalLogsSearchItem.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -31,11 +30,8 @@ func (s *SitesRRM) GetSiteCurrentChannelPlanning(
     siteId uuid.UUID) (
     models.ApiResponse[models.Rrm],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/rrm/current", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rrm/current")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -79,8 +75,9 @@ func (s *SitesRRM) GetSiteCurrentRrmConsiderations(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/rrm/current/devices/%v/band/%v", siteId, deviceId, band),
+      "/api/v1/sites/%v/rrm/current/devices/%v/band/%v",
     )
+    req.AppendTemplateParams(siteId, deviceId, band)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -125,11 +122,8 @@ func (s *SitesRRM) GetSiteRrmEvents(
     page *int) (
     models.ApiResponse[models.ResponseEventsRrm],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/rrm/events", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rrm/events")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -189,11 +183,8 @@ func (s *SitesRRM) GetSiteCurrentRrmNeighbors(
     page *int) (
     models.ApiResponse[models.ResponseRrmNeighbors],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/rrm/neighbors/band/%v", siteId, band),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rrm/neighbors/band/%v")
+    req.AppendTemplateParams(siteId, band)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

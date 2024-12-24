@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // EvpnOptionsUnderlay represents a EvpnOptionsUnderlay struct.
@@ -14,6 +15,14 @@ type EvpnOptionsUnderlay struct {
     // if v6 is desired for underlay
     UseIpv6              *bool                  `json:"use_ipv6,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EvpnOptionsUnderlay,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EvpnOptionsUnderlay) String() string {
+    return fmt.Sprintf(
+    	"EvpnOptionsUnderlay[AsBase=%v, RoutedIdPrefix=%v, Subnet=%v, UseIpv6=%v, AdditionalProperties=%v]",
+    	e.AsBase, e.RoutedIdPrefix, e.Subnet, e.UseIpv6, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnOptionsUnderlay.

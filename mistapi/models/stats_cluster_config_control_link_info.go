@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsClusterConfigControlLinkInfo represents a StatsClusterConfigControlLinkInfo struct.
@@ -9,6 +10,14 @@ type StatsClusterConfigControlLinkInfo struct {
     Name                 *string                `json:"name,omitempty"`
     Status               *string                `json:"status,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsClusterConfigControlLinkInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsClusterConfigControlLinkInfo) String() string {
+    return fmt.Sprintf(
+    	"StatsClusterConfigControlLinkInfo[Name=%v, Status=%v, AdditionalProperties=%v]",
+    	s.Name, s.Status, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsClusterConfigControlLinkInfo.

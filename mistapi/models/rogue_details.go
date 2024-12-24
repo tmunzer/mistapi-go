@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type RogueDetails struct {
     Manufacture          string                 `json:"manufacture"`
     SeenAsClient         bool                   `json:"seen_as_client"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RogueDetails,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RogueDetails) String() string {
+    return fmt.Sprintf(
+    	"RogueDetails[Manufacture=%v, SeenAsClient=%v, AdditionalProperties=%v]",
+    	r.Manufacture, r.SeenAsClient, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RogueDetails.

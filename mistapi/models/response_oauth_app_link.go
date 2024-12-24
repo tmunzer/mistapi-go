@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // ResponseOauthAppLink represents a ResponseOauthAppLink struct.
@@ -13,12 +13,10 @@ type ResponseOauthAppLink struct {
     isAccountZdxInfo   bool
 }
 
-// String converts the ResponseOauthAppLink object to a string representation.
+// String implements the fmt.Stringer interface for ResponseOauthAppLink,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseOauthAppLink) String() string {
-    if bytes, err := json.Marshal(r.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", r.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOauthAppLink.

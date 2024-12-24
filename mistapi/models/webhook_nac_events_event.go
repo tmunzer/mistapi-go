@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -47,6 +48,14 @@ type WebhookNacEventsEvent struct {
     // Vlan ID
     Vlan                 *string                `json:"vlan,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookNacEventsEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookNacEventsEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookNacEventsEvent[Ap=%v, AuthType=%v, Bssid=%v, DryrunNacruleId=%v, DryrunNacruleMatched=%v, IdpId=%v, IdpRole=%v, Mac=%v, NacruleId=%v, NacruleMatched=%v, NasVendor=%v, OrgId=%v, RandomMac=%v, RespAttrs=%v, SiteId=%v, Ssid=%v, Timestamp=%v, Type=%v, Username=%v, Vlan=%v, AdditionalProperties=%v]",
+    	w.Ap, w.AuthType, w.Bssid, w.DryrunNacruleId, w.DryrunNacruleMatched, w.IdpId, w.IdpRole, w.Mac, w.NacruleId, w.NacruleMatched, w.NasVendor, w.OrgId, w.RandomMac, w.RespAttrs, w.SiteId, w.Ssid, w.Timestamp, w.Type, w.Username, w.Vlan, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookNacEventsEvent.

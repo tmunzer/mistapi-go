@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RemoteSyslogFileConfig represents a RemoteSyslogFileConfig struct.
@@ -13,6 +14,14 @@ type RemoteSyslogFileConfig struct {
     Match                *string                `json:"match,omitempty"`
     StructuredData       *bool                  `json:"structured_data,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RemoteSyslogFileConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RemoteSyslogFileConfig) String() string {
+    return fmt.Sprintf(
+    	"RemoteSyslogFileConfig[Archive=%v, Contents=%v, ExplicitPriority=%v, File=%v, Match=%v, StructuredData=%v, AdditionalProperties=%v]",
+    	r.Archive, r.Contents, r.ExplicitPriority, r.File, r.Match, r.StructuredData, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogFileConfig.

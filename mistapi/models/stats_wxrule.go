@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -21,6 +22,14 @@ type StatsWxrule struct {
     SrcWxtags            []uuid.UUID                           `json:"src_wxtags"`
     Usage                map[string]StatsWxruleUsageProperties `json:"usage"`
     AdditionalProperties map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsWxrule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsWxrule) String() string {
+    return fmt.Sprintf(
+    	"StatsWxrule[Action=%v, ClientMac=%v, DstAllowWxtags=%v, DstDenyWxtags=%v, DstWxtags=%v, Name=%v, Order=%v, SrcWxtags=%v, Usage=%v, AdditionalProperties=%v]",
+    	s.Action, s.ClientMac, s.DstAllowWxtags, s.DstDenyWxtags, s.DstWxtags, s.Name, s.Order, s.SrcWxtags, s.Usage, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWxrule.

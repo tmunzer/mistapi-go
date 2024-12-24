@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (s *SitesAssets) ListSiteAssets(
     page *int) (
     models.ApiResponse[[]models.Asset],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/assets", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/assets")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -84,11 +80,8 @@ func (s *SitesAssets) CreateSiteAsset(
     body *models.Asset) (
     models.ApiResponse[models.Asset],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/assets", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/assets")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -139,11 +132,8 @@ func (s *SitesAssets) ImportSiteAssets(
     file *models.FileWrapper) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/assets/import", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/assets/import")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -189,11 +179,8 @@ func (s *SitesAssets) DeleteSiteAsset(
     assetId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/assets/%v", siteId, assetId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/assets/%v")
+    req.AppendTemplateParams(siteId, assetId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -230,11 +217,8 @@ func (s *SitesAssets) GetSiteAsset(
     assetId uuid.UUID) (
     models.ApiResponse[models.Asset],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/assets/%v", siteId, assetId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/assets/%v")
+    req.AppendTemplateParams(siteId, assetId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -275,11 +259,8 @@ func (s *SitesAssets) UpdateSiteAsset(
     body *models.Asset) (
     models.ApiResponse[models.Asset],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/assets/%v", siteId, assetId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/assets/%v")
+    req.AppendTemplateParams(siteId, assetId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

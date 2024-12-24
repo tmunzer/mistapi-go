@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -27,6 +28,14 @@ type StatsSdkclient struct {
     // y (in pixels) of user location on the map (if known)
     Y                    *float64                        `json:"y,omitempty"`
     AdditionalProperties map[string]interface{}          `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsSdkclient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsSdkclient) String() string {
+    return fmt.Sprintf(
+    	"StatsSdkclient[Id=%v, LastSeen=%v, MapId=%v, Name=%v, NetworkConnection=%v, Uuid=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	s.Id, s.LastSeen, s.MapId, s.Name, s.NetworkConnection, s.Uuid, s.X, s.Y, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSdkclient.

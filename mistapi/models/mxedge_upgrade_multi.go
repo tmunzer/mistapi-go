@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -31,6 +32,14 @@ type MxedgeUpgradeMulti struct {
     // version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nIgnored if distro upgrade, `tunterm`, `radsecproxy`, `mxagent`, `mxocproxy`, `mxdas` or `mxnacedge`
     Versions             *MxedgeUpgradeVersion              `json:"versions,omitempty"`
     AdditionalProperties map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeUpgradeMulti,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeUpgradeMulti) String() string {
+    return fmt.Sprintf(
+    	"MxedgeUpgradeMulti[AllowDowngrades=%v, CanaryPhases=%v, Channel=%v, Distro=%v, MaxFailurePercentage=%v, MxedgeIds=%v, StartTime=%v, Strategy=%v, Versions=%v, AdditionalProperties=%v]",
+    	m.AllowDowngrades, m.CanaryPhases, m.Channel, m.Distro, m.MaxFailurePercentage, m.MxedgeIds, m.StartTime, m.Strategy, m.Versions, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeUpgradeMulti.

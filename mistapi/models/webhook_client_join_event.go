@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -34,6 +35,14 @@ type WebhookClientJoinEvent struct {
     Version              float64                `json:"version"`
     WlanId               uuid.UUID              `json:"wlan_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookClientJoinEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookClientJoinEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookClientJoinEvent[Ap=%v, ApName=%v, Band=%v, Bssid=%v, Connect=%v, ConnectFloat=%v, Mac=%v, OrgId=%v, Rssi=%v, SiteId=%v, SiteName=%v, Ssid=%v, Timestamp=%v, Version=%v, WlanId=%v, AdditionalProperties=%v]",
+    	w.Ap, w.ApName, w.Band, w.Bssid, w.Connect, w.ConnectFloat, w.Mac, w.OrgId, w.Rssi, w.SiteId, w.SiteName, w.Ssid, w.Timestamp, w.Version, w.WlanId, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookClientJoinEvent.

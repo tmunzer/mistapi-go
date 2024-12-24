@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UpgradeOrgDeviceTargets represents a UpgradeOrgDeviceTargets struct.
@@ -25,6 +26,14 @@ type UpgradeOrgDeviceTargets struct {
     // count of devices which have upgraded successfully
     Upgraded             []string               `json:"upgraded,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UpgradeOrgDeviceTargets,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UpgradeOrgDeviceTargets) String() string {
+    return fmt.Sprintf(
+    	"UpgradeOrgDeviceTargets[DownloadRequested=%v, Downloaded=%v, Failed=%v, RebootInProgress=%v, Rebooted=%v, Scheduled=%v, Skipped=%v, Total=%v, Upgraded=%v, AdditionalProperties=%v]",
+    	u.DownloadRequested, u.Downloaded, u.Failed, u.RebootInProgress, u.Rebooted, u.Scheduled, u.Skipped, u.Total, u.Upgraded, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UpgradeOrgDeviceTargets.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WebhookLocationCentrakEvent represents a WebhookLocationCentrakEvent struct.
@@ -21,6 +22,14 @@ type WebhookLocationCentrakEvent struct {
     // y, in meter
     Y                      *float64                      `json:"y,omitempty"`
     AdditionalProperties   map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookLocationCentrakEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookLocationCentrakEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookLocationCentrakEvent[MapId=%v, MfgCompanyId=%v, MfgData=%v, Timestamp=%v, WifiBeaconExtendedInfo=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	w.MapId, w.MfgCompanyId, w.MfgData, w.Timestamp, w.WifiBeaconExtendedInfo, w.X, w.Y, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookLocationCentrakEvent.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -19,6 +20,14 @@ type Secpolicy struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     Wlans                []Wlan                 `json:"wlans,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Secpolicy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s Secpolicy) String() string {
+    return fmt.Sprintf(
+    	"Secpolicy[CreatedTime=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, SiteId=%v, Wlans=%v, AdditionalProperties=%v]",
+    	s.CreatedTime, s.Id, s.ModifiedTime, s.Name, s.OrgId, s.SiteId, s.Wlans, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Secpolicy.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SynthetictestConfigWanSpeedtest represents a SynthetictestConfigWanSpeedtest struct.
@@ -10,6 +11,14 @@ type SynthetictestConfigWanSpeedtest struct {
     // any / HH:MM (24-hour format)
     TimeOfDay            *string                `json:"time_of_day,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SynthetictestConfigWanSpeedtest,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SynthetictestConfigWanSpeedtest) String() string {
+    return fmt.Sprintf(
+    	"SynthetictestConfigWanSpeedtest[Enabled=%v, TimeOfDay=%v, AdditionalProperties=%v]",
+    	s.Enabled, s.TimeOfDay, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestConfigWanSpeedtest.

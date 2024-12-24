@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -37,11 +36,8 @@ func (m *MSPsSLEs) GetMspSle(
     end *int) (
     models.ApiResponse[models.InsightMetrics],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/insights/%v", mspId, metric),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/insights/%v")
+    req.AppendTemplateParams(mspId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

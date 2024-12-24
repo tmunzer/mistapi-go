@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingSecurity represents a OrgSettingSecurity struct.
@@ -13,6 +14,14 @@ type OrgSettingSecurity struct {
     // whether to allow certain SSH keys to SSH into the AP (see Site:Setting)
     LimitSshAccess       *bool                  `json:"limit_ssh_access,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingSecurity,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingSecurity) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingSecurity[DisableLocalSsh=%v, FipsZeroizePassword=%v, LimitSshAccess=%v, AdditionalProperties=%v]",
+    	o.DisableLocalSsh, o.FipsZeroizePassword, o.LimitSshAccess, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingSecurity.

@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // ConfigDevice represents a ConfigDevice struct.
@@ -14,12 +14,10 @@ type ConfigDevice struct {
     isDeviceGateway bool
 }
 
-// String converts the ConfigDevice object to a string representation.
+// String implements the fmt.Stringer interface for ConfigDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c ConfigDevice) String() string {
-    if bytes, err := json.Marshal(c.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", c.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConfigDevice.

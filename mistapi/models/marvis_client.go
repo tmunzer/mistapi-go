@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -14,6 +15,14 @@ type MarvisClient struct {
     // in MDM, add `--provision_url <provision_url>` to the instlal command
     ProvisionUrl         *string                `json:"provision_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MarvisClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MarvisClient) String() string {
+    return fmt.Sprintf(
+    	"MarvisClient[Diabled=%v, Id=%v, Name=%v, ProvisionUrl=%v, AdditionalProperties=%v]",
+    	m.Diabled, m.Id, m.Name, m.ProvisionUrl, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MarvisClient.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type ResponseMapImportSummary struct {
     NumInvAssigned       int                    `json:"num_inv_assigned"`
     NumMapAssigned       int                    `json:"num_map_assigned"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseMapImportSummary,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseMapImportSummary) String() string {
+    return fmt.Sprintf(
+    	"ResponseMapImportSummary[NumApAssigned=%v, NumInvAssigned=%v, NumMapAssigned=%v, AdditionalProperties=%v]",
+    	r.NumApAssigned, r.NumInvAssigned, r.NumMapAssigned, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMapImportSummary.

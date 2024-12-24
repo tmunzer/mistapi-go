@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -33,11 +32,8 @@ func (u *UtilitiesLocation) SendSiteDevicesArbitratryBleBeacon(
     body *models.UtilsSendBleBeacon) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/send_ble_beacon", siteId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/send_ble_beacon")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // TuntermPortConfig represents a TuntermPortConfig struct.
@@ -16,6 +17,14 @@ type TuntermPortConfig struct {
     // list of ports to be used for upstrea purpose (to LAN)
     UpstreamPorts              []string               `json:"upstream_ports,omitempty"`
     AdditionalProperties       map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TuntermPortConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TuntermPortConfig) String() string {
+    return fmt.Sprintf(
+    	"TuntermPortConfig[DownstreamPorts=%v, SeparateUpstreamDownstream=%v, UpstreamPortVlanId=%v, UpstreamPorts=%v, AdditionalProperties=%v]",
+    	t.DownstreamPorts, t.SeparateUpstreamDownstream, t.UpstreamPortVlanId, t.UpstreamPorts, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TuntermPortConfig.

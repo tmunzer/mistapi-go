@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // PskPortalImage represents a PskPortalImage struct.
@@ -11,6 +12,14 @@ type PskPortalImage struct {
     // JSON string describing the upload
     Json                 *string                `json:"json,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PskPortalImage,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PskPortalImage) String() string {
+    return fmt.Sprintf(
+    	"PskPortalImage[File=%v, Json=%v, AdditionalProperties=%v]",
+    	p.File, p.Json, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalImage.

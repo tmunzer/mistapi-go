@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type MxedgeUpgradeInfoItems struct {
     Package              string                 `json:"package"`
     Version              string                 `json:"version"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeUpgradeInfoItems,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeUpgradeInfoItems) String() string {
+    return fmt.Sprintf(
+    	"MxedgeUpgradeInfoItems[Default=%v, Distro=%v, Package=%v, Version=%v, AdditionalProperties=%v]",
+    	m.Default, m.Distro, m.Package, m.Version, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeUpgradeInfoItems.

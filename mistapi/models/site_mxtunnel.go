@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -38,6 +39,14 @@ type SiteMxtunnel struct {
     // list of vlan_ids that will be used
     VlanIds              []int                                     `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{}                    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteMxtunnel,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteMxtunnel) String() string {
+    return fmt.Sprintf(
+    	"SiteMxtunnel[AdditionalMxtunnels=%v, ApSubnets=%v, AutoPreemption=%v, Clusters=%v, CreatedTime=%v, Enabled=%v, ForSite=%v, HelloInterval=%v, HelloRetries=%v, Hosts=%v, Id=%v, ModifiedTime=%v, Mtu=%v, OrgId=%v, Protocol=%v, Radsec=%v, SiteId=%v, VlanIds=%v, AdditionalProperties=%v]",
+    	s.AdditionalMxtunnels, s.ApSubnets, s.AutoPreemption, s.Clusters, s.CreatedTime, s.Enabled, s.ForSite, s.HelloInterval, s.HelloRetries, s.Hosts, s.Id, s.ModifiedTime, s.Mtu, s.OrgId, s.Protocol, s.Radsec, s.SiteId, s.VlanIds, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteMxtunnel.

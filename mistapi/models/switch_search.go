@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -32,6 +33,14 @@ type SwitchSearch struct {
     Uptime               *int                   `json:"uptime,omitempty"`
     Version              *string                `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchSearch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchSearch) String() string {
+    return fmt.Sprintf(
+    	"SwitchSearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, Model=%v, NumMembers=%v, OrgId=%v, Role=%v, SiteId=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
+    	s.Clustered, s.EvpnMissingLinks, s.EvpntopoId, s.ExtIp, s.Hostname, s.Ip, s.LastHostname, s.LastTroubleCode, s.LastTroubleTimestamp, s.Mac, s.Managed, s.Model, s.NumMembers, s.OrgId, s.Role, s.SiteId, s.TimeDrifted, s.Timestamp, s.Type, s.Uptime, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchSearch.

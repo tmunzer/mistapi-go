@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WiredClientResponseDeviceMacPortItem represents a WiredClientResponseDeviceMacPortItem struct.
@@ -14,6 +15,14 @@ type WiredClientResponseDeviceMacPortItem struct {
     Vlan                 *int                   `json:"vlan,omitempty"`
     When                 *string                `json:"when,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WiredClientResponseDeviceMacPortItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WiredClientResponseDeviceMacPortItem) String() string {
+    return fmt.Sprintf(
+    	"WiredClientResponseDeviceMacPortItem[DeviceMac=%v, Ip=%v, PortId=%v, PortParent=%v, Start=%v, Vlan=%v, When=%v, AdditionalProperties=%v]",
+    	w.DeviceMac, w.Ip, w.PortId, w.PortParent, w.Start, w.Vlan, w.When, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WiredClientResponseDeviceMacPortItem.

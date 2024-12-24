@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (s *SitesDevicesWiredVirtualChassis) DeleteSiteVirtualChassis(
     deviceId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/vc", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/devices/%v/vc")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -76,11 +72,8 @@ func (s *SitesDevicesWiredVirtualChassis) GetSiteDeviceVirtualChassis(
     deviceId uuid.UUID) (
     models.ApiResponse[models.ResponseVirtualChassisConfig],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/vc", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/%v/vc")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -128,11 +121,8 @@ func (s *SitesDevicesWiredVirtualChassis) CreateSiteVirtualChassis(
     body *models.VirtualChassisConfig) (
     models.ApiResponse[models.ResponseVirtualChassisConfig],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/vc", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/vc")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -213,11 +203,8 @@ func (s *SitesDevicesWiredVirtualChassis) UpdateSiteVirtualChassisMember(
     body *models.VirtualChassisUpdate) (
     models.ApiResponse[models.ResponseVirtualChassisConfig],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/vc", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/devices/%v/vc")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -262,11 +249,8 @@ func (s *SitesDevicesWiredVirtualChassis) SetSiteVcPort(
     body *models.VirtualChassisPort) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/vc/vc_port", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/vc/vc_port")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

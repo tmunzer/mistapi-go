@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeTuntermIgmpSnoopingConfig represents a MxedgeTuntermIgmpSnoopingConfig struct.
@@ -11,6 +12,14 @@ type MxedgeTuntermIgmpSnoopingConfig struct {
     // the list of vlans on which tunterm performs IGMP snooping
     VlanIds              []int                             `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeTuntermIgmpSnoopingConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeTuntermIgmpSnoopingConfig) String() string {
+    return fmt.Sprintf(
+    	"MxedgeTuntermIgmpSnoopingConfig[Enabled=%v, Querier=%v, VlanIds=%v, AdditionalProperties=%v]",
+    	m.Enabled, m.Querier, m.VlanIds, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermIgmpSnoopingConfig.

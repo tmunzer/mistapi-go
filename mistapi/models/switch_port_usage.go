@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -87,6 +88,14 @@ type SwitchPortUsage struct {
     // Only if `mode`!=`dynamic` network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth
     VoipNetwork                              *string                                     `json:"voip_network,omitempty"`
     AdditionalProperties                     map[string]interface{}                      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchPortUsage,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchPortUsage) String() string {
+    return fmt.Sprintf(
+    	"SwitchPortUsage[AllNetworks=%v, AllowDhcpd=%v, AllowMultipleSupplicants=%v, BypassAuthWhenServerDown=%v, BypassAuthWhenServerDownForUnkonwnClient=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, Duplex=%v, DynamicVlanNetworks=%v, EnableMacAuth=%v, EnableQos=%v, GuestNetwork=%v, InterSwitchLink=%v, MacAuthOnly=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MacLimit=%v, Mode=%v, Mtu=%v, Networks=%v, PersistMac=%v, PoeDisabled=%v, PortAuth=%v, PortNetwork=%v, ReauthInterval=%v, ResetDefaultWhen=%v, Rules=%v, ServerFailNetwork=%v, ServerRejectNetwork=%v, Speed=%v, StormControl=%v, StpEdge=%v, StpNoRootPort=%v, StpP2p=%v, UiEvpntopoId=%v, UseVstp=%v, VoipNetwork=%v, AdditionalProperties=%v]",
+    	s.AllNetworks, s.AllowDhcpd, s.AllowMultipleSupplicants, s.BypassAuthWhenServerDown, s.BypassAuthWhenServerDownForUnkonwnClient, s.Description, s.DisableAutoneg, s.Disabled, s.Duplex, s.DynamicVlanNetworks, s.EnableMacAuth, s.EnableQos, s.GuestNetwork, s.InterSwitchLink, s.MacAuthOnly, s.MacAuthPreferred, s.MacAuthProtocol, s.MacLimit, s.Mode, s.Mtu, s.Networks, s.PersistMac, s.PoeDisabled, s.PortAuth, s.PortNetwork, s.ReauthInterval, s.ResetDefaultWhen, s.Rules, s.ServerFailNetwork, s.ServerRejectNetwork, s.Speed, s.StormControl, s.StpEdge, s.StpNoRootPort, s.StpP2p, s.UiEvpntopoId, s.UseVstp, s.VoipNetwork, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortUsage.

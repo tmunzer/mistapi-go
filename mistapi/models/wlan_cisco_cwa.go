@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanCiscoCwa represents a WlanCiscoCwa struct.
@@ -15,6 +16,14 @@ type WlanCiscoCwa struct {
     BlockedSubnets       []string               `json:"blocked_subnets,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanCiscoCwa,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanCiscoCwa) String() string {
+    return fmt.Sprintf(
+    	"WlanCiscoCwa[AllowedHostnames=%v, AllowedSubnets=%v, BlockedSubnets=%v, Enabled=%v, AdditionalProperties=%v]",
+    	w.AllowedHostnames, w.AllowedSubnets, w.BlockedSubnets, w.Enabled, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanCiscoCwa.

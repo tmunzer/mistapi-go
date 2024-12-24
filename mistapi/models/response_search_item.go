@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -14,6 +15,14 @@ type ResponseSearchItem struct {
     Text                 string                 `json:"text"`
     Type                 string                 `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSearchItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSearchItem) String() string {
+    return fmt.Sprintf(
+    	"ResponseSearchItem[Id=%v, Text=%v, Type=%v, AdditionalProperties=%v]",
+    	r.Id, r.Text, r.Type, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSearchItem.

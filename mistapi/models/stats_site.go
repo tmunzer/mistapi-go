@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -41,6 +42,14 @@ type StatsSite struct {
     Timezone             string                 `json:"timezone"`
     Tzoffset             int                    `json:"tzoffset"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsSite,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsSite) String() string {
+    return fmt.Sprintf(
+    	"StatsSite[Address=%v, AlarmtemplateId=%v, CountryCode=%v, CreatedTime=%v, Id=%v, Lat=%v, Latlng=%v, Lng=%v, ModifiedTime=%v, MspId=%v, Name=%v, NetworktemplateId=%v, NumAp=%v, NumApConnected=%v, NumClients=%v, NumDevices=%v, NumDevicesConnected=%v, NumGateway=%v, NumGatewayConnected=%v, NumSwitch=%v, NumSwitchConnected=%v, OrgId=%v, RftemplateId=%v, SecpolicyId=%v, SitegroupIds=%v, Timezone=%v, Tzoffset=%v, AdditionalProperties=%v]",
+    	s.Address, s.AlarmtemplateId, s.CountryCode, s.CreatedTime, s.Id, s.Lat, s.Latlng, s.Lng, s.ModifiedTime, s.MspId, s.Name, s.NetworktemplateId, s.NumAp, s.NumApConnected, s.NumClients, s.NumDevices, s.NumDevicesConnected, s.NumGateway, s.NumGatewayConnected, s.NumSwitch, s.NumSwitchConnected, s.OrgId, s.RftemplateId, s.SecpolicyId, s.SitegroupIds, s.Timezone, s.Tzoffset, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSite.

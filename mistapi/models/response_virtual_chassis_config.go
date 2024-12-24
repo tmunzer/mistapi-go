@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseVirtualChassisConfig represents a ResponseVirtualChassisConfig struct.
@@ -9,6 +10,14 @@ type ResponseVirtualChassisConfig struct {
     // Virtual Chassis
     Id                   *VirtualChassisConfig  `json:"id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseVirtualChassisConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseVirtualChassisConfig) String() string {
+    return fmt.Sprintf(
+    	"ResponseVirtualChassisConfig[Id=%v, AdditionalProperties=%v]",
+    	r.Id, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseVirtualChassisConfig.

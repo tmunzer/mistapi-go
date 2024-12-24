@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -21,6 +22,14 @@ type AccountZdxInfo struct {
     // ZDX organization id
     ZdxOrgId             string                 `json:"zdx_org_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountZdxInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountZdxInfo) String() string {
+    return fmt.Sprintf(
+    	"AccountZdxInfo[AccountId=%v, CloudName=%v, KeyId=%v, WebhookToken=%v, WebhookUrl=%v, ZdxOrgId=%v, AdditionalProperties=%v]",
+    	a.AccountId, a.CloudName, a.KeyId, a.WebhookToken, a.WebhookUrl, a.ZdxOrgId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountZdxInfo.

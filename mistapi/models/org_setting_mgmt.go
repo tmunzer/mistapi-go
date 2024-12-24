@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -15,6 +16,14 @@ type OrgSettingMgmt struct {
     // whether to use wxtunnel for mgmt connectivity
     UseWxtunnel          *bool                  `json:"use_wxtunnel,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingMgmt,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingMgmt) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingMgmt[MxtunnelIds=%v, UseMxtunnel=%v, UseWxtunnel=%v, AdditionalProperties=%v]",
+    	o.MxtunnelIds, o.UseMxtunnel, o.UseWxtunnel, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingMgmt.

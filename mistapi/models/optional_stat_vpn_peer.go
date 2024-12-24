@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -27,6 +28,14 @@ type OptionalStatVpnPeer struct {
     Up                   *bool                  `json:"up,omitempty"`
     Uptime               *int                   `json:"uptime,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OptionalStatVpnPeer,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OptionalStatVpnPeer) String() string {
+    return fmt.Sprintf(
+    	"OptionalStatVpnPeer[IsActive=%v, LastSeen=%v, Latency=%v, Mos=%v, Mtu=%v, PeerMac=%v, PeerPortId=%v, PeerRouterName=%v, PeerSiteId=%v, PortId=%v, RouterName=%v, Type=%v, Up=%v, Uptime=%v, AdditionalProperties=%v]",
+    	o.IsActive, o.LastSeen, o.Latency, o.Mos, o.Mtu, o.PeerMac, o.PeerPortId, o.PeerRouterName, o.PeerSiteId, o.PortId, o.RouterName, o.Type, o.Up, o.Uptime, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OptionalStatVpnPeer.

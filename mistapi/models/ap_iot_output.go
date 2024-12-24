@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApIotOutput represents a ApIotOutput struct.
@@ -18,6 +19,14 @@ type ApIotOutput struct {
     // output pin signal level, default 0
     Value                *int                   `json:"value,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApIotOutput,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApIotOutput) String() string {
+    return fmt.Sprintf(
+    	"ApIotOutput[Enabled=%v, Name=%v, Output=%v, Pullup=%v, Value=%v, AdditionalProperties=%v]",
+    	a.Enabled, a.Name, a.Output, a.Pullup, a.Value, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApIotOutput.

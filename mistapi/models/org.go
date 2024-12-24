@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -26,6 +27,14 @@ type Org struct {
     OrggroupIds          []uuid.UUID            `json:"orggroup_ids,omitempty"`
     SessionExpiry        *int                   `json:"session_expiry,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Org,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o Org) String() string {
+    return fmt.Sprintf(
+    	"Org[AlarmtemplateId=%v, AllowMist=%v, CreatedTime=%v, Id=%v, ModifiedTime=%v, MspId=%v, MspLogoUrl=%v, MspName=%v, Name=%v, OrggroupIds=%v, SessionExpiry=%v, AdditionalProperties=%v]",
+    	o.AlarmtemplateId, o.AllowMist, o.CreatedTime, o.Id, o.ModifiedTime, o.MspId, o.MspLogoUrl, o.MspName, o.Name, o.OrggroupIds, o.SessionExpiry, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Org.

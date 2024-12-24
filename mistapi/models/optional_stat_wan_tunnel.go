@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OptionalStatWanTunnel represents a OptionalStatWanTunnel struct.
@@ -40,6 +41,14 @@ type OptionalStatWanTunnel struct {
     // wan interface name
     WanName              *string                     `json:"wan_name,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OptionalStatWanTunnel,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OptionalStatWanTunnel) String() string {
+    return fmt.Sprintf(
+    	"OptionalStatWanTunnel[AuthAlgo=%v, EncryptAlgo=%v, IkeVersion=%v, Ip=%v, LastEvent=%v, LastFlapped=%v, Node=%v, PeerHost=%v, PeerIp=%v, Priority=%v, Protocol=%v, RxBytes=%v, RxPkts=%v, TunnelName=%v, TxBytes=%v, TxPkts=%v, Up=%v, Uptime=%v, WanName=%v, AdditionalProperties=%v]",
+    	o.AuthAlgo, o.EncryptAlgo, o.IkeVersion, o.Ip, o.LastEvent, o.LastFlapped, o.Node, o.PeerHost, o.PeerIp, o.Priority, o.Protocol, o.RxBytes, o.RxPkts, o.TunnelName, o.TxBytes, o.TxPkts, o.Up, o.Uptime, o.WanName, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OptionalStatWanTunnel.

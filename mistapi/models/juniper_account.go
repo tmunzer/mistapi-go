@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // JuniperAccount represents a JuniperAccount struct.
@@ -9,6 +10,14 @@ type JuniperAccount struct {
     LinkedBy             *string                `json:"linked_by,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for JuniperAccount,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (j JuniperAccount) String() string {
+    return fmt.Sprintf(
+    	"JuniperAccount[LinkedBy=%v, Name=%v, AdditionalProperties=%v]",
+    	j.LinkedBy, j.Name, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JuniperAccount.

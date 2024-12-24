@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApRadioStat represents a StatsApRadioStat struct.
@@ -13,6 +14,14 @@ type StatsApRadioStat struct {
     // radio stat
     Band6                *ApRadioStat           `json:"band_6,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApRadioStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApRadioStat) String() string {
+    return fmt.Sprintf(
+    	"StatsApRadioStat[Band24=%v, Band5=%v, Band6=%v, AdditionalProperties=%v]",
+    	s.Band24, s.Band5, s.Band6, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApRadioStat.

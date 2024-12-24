@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type ImageImport struct {
     File                 []byte                 `json:"file"`
     Json                 *string                `json:"json,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ImageImport,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i ImageImport) String() string {
+    return fmt.Sprintf(
+    	"ImageImport[File=%v, Json=%v, AdditionalProperties=%v]",
+    	i.File, i.Json, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ImageImport.

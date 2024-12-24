@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanPortalTemplate represents a WlanPortalTemplate struct.
@@ -9,6 +10,14 @@ type WlanPortalTemplate struct {
     // portal template wlan settings
     PortalTemplate       *WlanPortalTemplateSetting `json:"portal_template,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanPortalTemplate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanPortalTemplate) String() string {
+    return fmt.Sprintf(
+    	"WlanPortalTemplate[PortalTemplate=%v, AdditionalProperties=%v]",
+    	w.PortalTemplate, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanPortalTemplate.

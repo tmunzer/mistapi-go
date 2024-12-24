@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApSwitch represents a ApSwitch struct.
@@ -15,6 +16,14 @@ type ApSwitch struct {
     Module               *ApSwitchSetting       `json:"module,omitempty"`
     Wds                  *ApSwitchSetting       `json:"wds,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApSwitch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApSwitch) String() string {
+    return fmt.Sprintf(
+    	"ApSwitch[Enabled=%v, Eth0=%v, Eth1=%v, Eth2=%v, Eth3=%v, Module=%v, Wds=%v, AdditionalProperties=%v]",
+    	a.Enabled, a.Eth0, a.Eth1, a.Eth2, a.Eth3, a.Module, a.Wds, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApSwitch.

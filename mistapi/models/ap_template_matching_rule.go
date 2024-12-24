@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApTemplateMatchingRule represents a ApTemplateMatchingRule struct.
@@ -11,6 +12,14 @@ type ApTemplateMatchingRule struct {
     // Property key is the interface(s) name (e.g. "eth1,eth2")
     PortConfig           map[string]ApPortConfig `json:"port_config,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApTemplateMatchingRule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApTemplateMatchingRule) String() string {
+    return fmt.Sprintf(
+    	"ApTemplateMatchingRule[MatchModel=%v, Name=%v, PortConfig=%v, AdditionalProperties=%v]",
+    	a.MatchModel, a.Name, a.PortConfig, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApTemplateMatchingRule.

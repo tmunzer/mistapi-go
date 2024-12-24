@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (m *MSPsTickets) ListMspTickets(
     duration *string) (
     models.ApiResponse[[]models.Ticket],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/tickets", mspId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/tickets")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -87,11 +83,8 @@ func (m *MSPsTickets) CountMspTickets(
     distinct *models.MspTicketsCountDistinctEnum) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/tickets/count", mspId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/tickets/count")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

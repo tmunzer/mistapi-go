@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SleImpactedClients represents a SleImpactedClients struct.
@@ -16,6 +17,14 @@ type SleImpactedClients struct {
     Start                *int                       `json:"start,omitempty"`
     TotalCount           *int                       `json:"total_count,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleImpactedClients,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleImpactedClients) String() string {
+    return fmt.Sprintf(
+    	"SleImpactedClients[Classifier=%v, Clients=%v, End=%v, Failure=%v, Limit=%v, Metric=%v, Page=%v, Start=%v, TotalCount=%v, AdditionalProperties=%v]",
+    	s.Classifier, s.Clients, s.End, s.Failure, s.Limit, s.Metric, s.Page, s.Start, s.TotalCount, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedClients.

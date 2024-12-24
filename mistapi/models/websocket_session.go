@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type WebsocketSession struct {
     Session              string                 `json:"session"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebsocketSession,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebsocketSession) String() string {
+    return fmt.Sprintf(
+    	"WebsocketSession[Session=%v, AdditionalProperties=%v]",
+    	w.Session, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebsocketSession.

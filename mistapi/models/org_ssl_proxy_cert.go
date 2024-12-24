@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSslProxyCert represents a OrgSslProxyCert struct.
 type OrgSslProxyCert struct {
     Cert                 *string                `json:"cert,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSslProxyCert,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSslProxyCert) String() string {
+    return fmt.Sprintf(
+    	"OrgSslProxyCert[Cert=%v, AdditionalProperties=%v]",
+    	o.Cert, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSslProxyCert.

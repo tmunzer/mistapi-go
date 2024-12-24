@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApIpConfig represents a ApIpConfig struct.
@@ -28,6 +29,14 @@ type ApIpConfig struct {
     // management vlan id, default is 1 (untagged)
     VlanId               *int                   `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApIpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApIpConfig) String() string {
+    return fmt.Sprintf(
+    	"ApIpConfig[Dns=%v, DnsSuffix=%v, Gateway=%v, Gateway6=%v, Ip=%v, Ip6=%v, Mtu=%v, Netmask=%v, Netmask6=%v, Type=%v, Type6=%v, VlanId=%v, AdditionalProperties=%v]",
+    	a.Dns, a.DnsSuffix, a.Gateway, a.Gateway6, a.Ip, a.Ip6, a.Mtu, a.Netmask, a.Netmask6, a.Type, a.Type6, a.VlanId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApIpConfig.

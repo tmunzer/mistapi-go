@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ModuleStatItemPoe represents a ModuleStatItemPoe struct.
@@ -9,6 +10,14 @@ type ModuleStatItemPoe struct {
     MaxPower             *float64               `json:"max_power,omitempty"`
     PowerDraw            *float64               `json:"power_draw,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ModuleStatItemPoe,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m ModuleStatItemPoe) String() string {
+    return fmt.Sprintf(
+    	"ModuleStatItemPoe[MaxPower=%v, PowerDraw=%v, AdditionalProperties=%v]",
+    	m.MaxPower, m.PowerDraw, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemPoe.

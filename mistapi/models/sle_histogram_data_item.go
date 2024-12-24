@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type SleHistogramDataItem struct {
     Range                []float64              `json:"range,omitempty"`
     Value                float64                `json:"value"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleHistogramDataItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleHistogramDataItem) String() string {
+    return fmt.Sprintf(
+    	"SleHistogramDataItem[Range=%v, Value=%v, AdditionalProperties=%v]",
+    	s.Range, s.Value, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleHistogramDataItem.

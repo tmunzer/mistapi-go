@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -41,6 +42,14 @@ type ApPortConfig struct {
     // if `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session
     WxtunnelRemoteId     *string                          `json:"wxtunnel_remote_id,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApPortConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApPortConfig) String() string {
+    return fmt.Sprintf(
+    	"ApPortConfig[Disabled=%v, DynamicVlan=%v, EnableMacAuth=%v, Forwarding=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MistNac=%v, MxTunnelId=%v, MxtunnelName=%v, PortAuth=%v, PortVlanId=%v, RadiusConfig=%v, Radsec=%v, VlanId=%v, VlandIds=%v, WxtunnelId=%v, WxtunnelRemoteId=%v, AdditionalProperties=%v]",
+    	a.Disabled, a.DynamicVlan, a.EnableMacAuth, a.Forwarding, a.MacAuthPreferred, a.MacAuthProtocol, a.MistNac, a.MxTunnelId, a.MxtunnelName, a.PortAuth, a.PortVlanId, a.RadiusConfig, a.Radsec, a.VlanId, a.VlandIds, a.WxtunnelId, a.WxtunnelRemoteId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApPortConfig.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsShowEvpnDatabase represents a UtilsShowEvpnDatabase struct.
@@ -15,6 +16,14 @@ type UtilsShowEvpnDatabase struct {
     // interface name
     PortId               *string                `json:"port_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsShowEvpnDatabase,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsShowEvpnDatabase) String() string {
+    return fmt.Sprintf(
+    	"UtilsShowEvpnDatabase[Duration=%v, Interval=%v, Mac=%v, PortId=%v, AdditionalProperties=%v]",
+    	u.Duration, u.Interval, u.Mac, u.PortId, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowEvpnDatabase.

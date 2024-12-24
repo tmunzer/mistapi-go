@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,7 +31,8 @@ func (o *OrgsGuests) ListOrgGuestAuthorizations(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.Guest],
     error) {
-    req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/guests", orgId))
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/guests")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -77,11 +77,8 @@ func (o *OrgsGuests) CountOrgGuestAuthorizations(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/guests/count", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/guests/count")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -145,11 +142,8 @@ func (o *OrgsGuests) SearchOrgGuestAuthorization(
     duration *string) (
     models.ApiResponse[models.ResponseGuestSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/guests/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/guests/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -210,11 +204,8 @@ func (o *OrgsGuests) DeleteOrgGuestAuthorization(
     guestMac string) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/guests/%v", orgId, guestMac),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/guests/%v")
+    req.AppendTemplateParams(orgId, guestMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -251,11 +242,8 @@ func (o *OrgsGuests) GetOrgGuestAuthorization(
     guestMac string) (
     models.ApiResponse[models.Guest],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/guests/%v", orgId, guestMac),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/guests/%v")
+    req.AppendTemplateParams(orgId, guestMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -296,11 +284,8 @@ func (o *OrgsGuests) UpdateOrgGuestAuthorization(
     body *models.GuestOrg) (
     models.ApiResponse[models.Guest],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/guests/%v", orgId, guestMac),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/guests/%v")
+    req.AppendTemplateParams(orgId, guestMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

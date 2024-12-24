@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -28,6 +29,14 @@ type UiSettingsTile struct {
     TrendType            *string                  `json:"trendType,omitempty"`
     VizType              *string                  `json:"vizType,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UiSettingsTile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UiSettingsTile) String() string {
+    return fmt.Sprintf(
+    	"UiSettingsTile[ChartBand=%v, ChartColor=%v, ChartDirection=%v, ChartRankBy=%v, ChartType=%v, Colspan=%v, Column=%v, HideEmptyRows=%v, Id=%v, Metric=%v, Name=%v, Row=%v, Rowspan=%v, ScopeId=%v, ScopeType=%v, SortedColumnIds=%v, TimeRange=%v, TrendType=%v, VizType=%v, AdditionalProperties=%v]",
+    	u.ChartBand, u.ChartColor, u.ChartDirection, u.ChartRankBy, u.ChartType, u.Colspan, u.Column, u.HideEmptyRows, u.Id, u.Metric, u.Name, u.Row, u.Rowspan, u.ScopeId, u.ScopeType, u.SortedColumnIds, u.TimeRange, u.TrendType, u.VizType, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UiSettingsTile.

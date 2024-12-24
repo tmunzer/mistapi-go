@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstDeviceGatewayPorts represents a ConstDeviceGatewayPorts struct.
@@ -11,6 +12,14 @@ type ConstDeviceGatewayPorts struct {
     PciAddress           *string                `json:"pci_address,omitempty"`
     Speed                *int                   `json:"speed,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstDeviceGatewayPorts,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstDeviceGatewayPorts) String() string {
+    return fmt.Sprintf(
+    	"ConstDeviceGatewayPorts[Display=%v, PciAddress=%v, Speed=%v, AdditionalProperties=%v]",
+    	c.Display, c.PciAddress, c.Speed, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceGatewayPorts.

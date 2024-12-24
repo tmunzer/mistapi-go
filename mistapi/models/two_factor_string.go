@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type TwoFactorString struct {
     TwoFactor            string                 `json:"two_factor"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TwoFactorString,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TwoFactorString) String() string {
+    return fmt.Sprintf(
+    	"TwoFactorString[TwoFactor=%v, AdditionalProperties=%v]",
+    	t.TwoFactor, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TwoFactorString.

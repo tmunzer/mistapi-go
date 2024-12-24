@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // ServiceMaxLoss represents a ServiceMaxLoss struct.
@@ -14,12 +14,10 @@ type ServiceMaxLoss struct {
     isNumber bool
 }
 
-// String converts the ServiceMaxLoss object to a string representation.
+// String implements the fmt.Stringer interface for ServiceMaxLoss,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s ServiceMaxLoss) String() string {
-    if bytes, err := json.Marshal(s.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", s.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServiceMaxLoss.

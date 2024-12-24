@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -54,6 +55,14 @@ type ClientNac struct {
     // List of vlans that have been assigned to the client
     Vlan                 []string               `json:"vlan,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ClientNac,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ClientNac) String() string {
+    return fmt.Sprintf(
+    	"ClientNac[Ap=%v, AuthType=%v, CertCn=%v, CertIssuer=%v, CertSerial=%v, CertSubject=%v, ClientIp=%v, DeviceMac=%v, Group=%v, IdpId=%v, IdpRole=%v, LastAp=%v, LastCertCn=%v, LastCertExpiry=%v, LastCertIssuer=%v, LastCertSerial=%v, LastCertSubject=%v, LastClientIp=%v, LastNacruleId=%v, LastNacruleName=%v, LastNasVendor=%v, LastPortId=%v, LastSsid=%v, LastStatus=%v, LastUsername=%v, LastVlan=%v, Mac=%v, NacruleId=%v, NacruleMatched=%v, NacruleName=%v, NasVendor=%v, OrgId=%v, PortId=%v, RandomMac=%v, RespAttr=%v, SiteId=%v, Ssid=%v, Timestamp=%v, Type=%v, Username=%v, Vlan=%v, AdditionalProperties=%v]",
+    	c.Ap, c.AuthType, c.CertCn, c.CertIssuer, c.CertSerial, c.CertSubject, c.ClientIp, c.DeviceMac, c.Group, c.IdpId, c.IdpRole, c.LastAp, c.LastCertCn, c.LastCertExpiry, c.LastCertIssuer, c.LastCertSerial, c.LastCertSubject, c.LastClientIp, c.LastNacruleId, c.LastNacruleName, c.LastNasVendor, c.LastPortId, c.LastSsid, c.LastStatus, c.LastUsername, c.LastVlan, c.Mac, c.NacruleId, c.NacruleMatched, c.NacruleName, c.NasVendor, c.OrgId, c.PortId, c.RandomMac, c.RespAttr, c.SiteId, c.Ssid, c.Timestamp, c.Type, c.Username, c.Vlan, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClientNac.

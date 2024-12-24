@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstOtherDeviceModel represents a ConstOtherDeviceModel struct.
@@ -12,6 +13,14 @@ type ConstOtherDeviceModel struct {
     Type                 *string                `json:"type,omitempty"`
     Vendor               *string                `json:"vendor,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstOtherDeviceModel,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstOtherDeviceModel) String() string {
+    return fmt.Sprintf(
+    	"ConstOtherDeviceModel[VendorModelId=%v, Display=%v, Model=%v, Type=%v, Vendor=%v, AdditionalProperties=%v]",
+    	c.VendorModelId, c.Display, c.Model, c.Type, c.Vendor, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstOtherDeviceModel.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type MxedgeUpgradeResponseCounts struct {
     Success              int                    `json:"success"`
     Upgrading            int                    `json:"upgrading"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeUpgradeResponseCounts,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeUpgradeResponseCounts) String() string {
+    return fmt.Sprintf(
+    	"MxedgeUpgradeResponseCounts[Failed=%v, Queued=%v, Success=%v, Upgrading=%v, AdditionalProperties=%v]",
+    	m.Failed, m.Queued, m.Success, m.Upgrading, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeUpgradeResponseCounts.

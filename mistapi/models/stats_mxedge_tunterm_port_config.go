@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsMxedgeTuntermPortConfig represents a StatsMxedgeTuntermPortConfig struct.
@@ -10,6 +11,14 @@ type StatsMxedgeTuntermPortConfig struct {
     SeparateUpstreamDownstream *bool                  `json:"separate_upstream_downstream,omitempty"`
     UpstreamPorts              []string               `json:"upstream_ports,omitempty"`
     AdditionalProperties       map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxedgeTuntermPortConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxedgeTuntermPortConfig) String() string {
+    return fmt.Sprintf(
+    	"StatsMxedgeTuntermPortConfig[DownstreamPorts=%v, SeparateUpstreamDownstream=%v, UpstreamPorts=%v, AdditionalProperties=%v]",
+    	s.DownstreamPorts, s.SeparateUpstreamDownstream, s.UpstreamPorts, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeTuntermPortConfig.

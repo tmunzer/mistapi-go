@@ -27,7 +27,6 @@ for dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `ForceLookup` | `*bool` | Optional | when 11r is enabled, we'll try to use the cached PMK, this can be disabled<br>`false` means auto<br>**Default**: `false` |
 | `Source` | [`*models.DynamicPskSourceEnum`](../../doc/models/dynamic-psk-source-enum.md) | Optional | enum: `cloud_psks`, `radius`<br>**Default**: `"radius"` |
-| `VlanIds` | [`[]models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

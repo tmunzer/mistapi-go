@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ClientCertSerialNumbers represents a ClientCertSerialNumbers struct.
 type ClientCertSerialNumbers struct {
     SerialNumbers        []string               `json:"serial_numbers,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ClientCertSerialNumbers,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ClientCertSerialNumbers) String() string {
+    return fmt.Sprintf(
+    	"ClientCertSerialNumbers[SerialNumbers=%v, AdditionalProperties=%v]",
+    	c.SerialNumbers, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClientCertSerialNumbers.

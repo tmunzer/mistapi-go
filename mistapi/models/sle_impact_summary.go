@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -19,6 +20,14 @@ type SleImpactSummary struct {
     Start                float64                          `json:"start"`
     Wlan                 []SleImpactSummaryWlanItem       `json:"wlan"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleImpactSummary,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleImpactSummary) String() string {
+    return fmt.Sprintf(
+    	"SleImpactSummary[Ap=%v, Band=%v, Classifier=%v, DeviceOs=%v, DeviceType=%v, End=%v, Failure=%v, Metric=%v, Start=%v, Wlan=%v, AdditionalProperties=%v]",
+    	s.Ap, s.Band, s.Classifier, s.DeviceOs, s.DeviceType, s.End, s.Failure, s.Metric, s.Start, s.Wlan, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactSummary.

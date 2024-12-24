@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -38,11 +37,8 @@ func (o *OrgsSLEs) GetOrgSitesSle(
     page *int) (
     models.ApiResponse[models.ResponseOrgSiteSle],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/insights/sites-sle", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/insights/sites-sle")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -108,11 +104,8 @@ func (o *OrgsSLEs) GetOrgSle(
     end *int) (
     models.ApiResponse[models.InsightMetrics],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/insights/%v", orgId, metric),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/insights/%v")
+    req.AppendTemplateParams(orgId, metric)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

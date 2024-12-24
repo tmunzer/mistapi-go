@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -15,6 +16,14 @@ type WebhookOccupancyAlertsEvent struct {
     SiteId               uuid.UUID                                     `json:"site_id"`
     SiteName             string                                        `json:"site_name"`
     AdditionalProperties map[string]interface{}                        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookOccupancyAlertsEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookOccupancyAlertsEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookOccupancyAlertsEvent[AlertEvents=%v, ForSite=%v, SiteId=%v, SiteName=%v, AdditionalProperties=%v]",
+    	w.AlertEvents, w.ForSite, w.SiteId, w.SiteName, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookOccupancyAlertsEvent.

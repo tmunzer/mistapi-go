@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type TestTelstra struct {
     // Phone number of the recipient of SMS with country code
     To                   string                 `json:"to"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TestTelstra,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TestTelstra) String() string {
+    return fmt.Sprintf(
+    	"TestTelstra[TelstraClientId=%v, TelstraClientSecret=%v, To=%v, AdditionalProperties=%v]",
+    	t.TelstraClientId, t.TelstraClientSecret, t.To, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TestTelstra.

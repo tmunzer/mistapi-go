@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -16,6 +17,14 @@ type OrgSiteSleWanResult struct {
     SiteId               uuid.UUID              `json:"site_id"`
     WanLinkHealth        *float64               `json:"wan-link-health,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSiteSleWanResult,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSiteSleWanResult) String() string {
+    return fmt.Sprintf(
+    	"OrgSiteSleWanResult[ApplicationHealth=%v, GatewayHealth=%v, NumClients=%v, NumGateways=%v, SiteId=%v, WanLinkHealth=%v, AdditionalProperties=%v]",
+    	o.ApplicationHealth, o.GatewayHealth, o.NumClients, o.NumGateways, o.SiteId, o.WanLinkHealth, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSiteSleWanResult.

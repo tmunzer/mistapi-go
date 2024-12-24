@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // EvpnConfig represents a EvpnConfig struct.
@@ -11,6 +12,14 @@ type EvpnConfig struct {
     // enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
     Role                 *EvpnConfigRoleEnum    `json:"role,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EvpnConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EvpnConfig) String() string {
+    return fmt.Sprintf(
+    	"EvpnConfig[Enabled=%v, Role=%v, AdditionalProperties=%v]",
+    	e.Enabled, e.Role, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnConfig.

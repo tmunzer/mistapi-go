@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -21,6 +22,14 @@ type RrmConsideration struct {
     // other utilization score, 0-1, lower means less utilization (cleaner RF)
     UtilScoreOther       float64                `json:"util_score_other"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RrmConsideration,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RrmConsideration) String() string {
+    return fmt.Sprintf(
+    	"RrmConsideration[Channel=%v, Noise=%v, OtherRssi=%v, OtherSsid=%v, UtilScore=%v, UtilScoreNonWifi=%v, UtilScoreOther=%v, AdditionalProperties=%v]",
+    	r.Channel, r.Noise, r.OtherRssi, r.OtherSsid, r.UtilScore, r.UtilScoreNonWifi, r.UtilScoreOther, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmConsideration.

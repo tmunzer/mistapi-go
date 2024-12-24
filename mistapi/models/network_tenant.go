@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NetworkTenant represents a NetworkTenant struct.
 type NetworkTenant struct {
     Addresses            []string               `json:"addresses,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NetworkTenant,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NetworkTenant) String() string {
+    return fmt.Sprintf(
+    	"NetworkTenant[Addresses=%v, AdditionalProperties=%v]",
+    	n.Addresses, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkTenant.

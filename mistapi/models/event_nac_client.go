@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -47,6 +48,14 @@ type EventNacClient struct {
     // Vlan source, e.g. "nactag", "usermac"
     VlanSource           *string                `json:"vlan_source,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EventNacClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EventNacClient) String() string {
+    return fmt.Sprintf(
+    	"EventNacClient[Ap=%v, AuthType=%v, Bssid=%v, DeviceMac=%v, DryrunNacruleId=%v, DryrunNacruleMatched=%v, IdpId=%v, IdpRole=%v, IdpUsername=%v, Mac=%v, MxedgeId=%v, NacruleId=%v, NacruleMatched=%v, NasVendor=%v, OrgId=%v, PortId=%v, PortType=%v, RandomMac=%v, RespAttrs=%v, SiteId=%v, Ssid=%v, Timestamp=%v, Type=%v, UsermacLabel=%v, Username=%v, Vlan=%v, VlanSource=%v, AdditionalProperties=%v]",
+    	e.Ap, e.AuthType, e.Bssid, e.DeviceMac, e.DryrunNacruleId, e.DryrunNacruleMatched, e.IdpId, e.IdpRole, e.IdpUsername, e.Mac, e.MxedgeId, e.NacruleId, e.NacruleMatched, e.NasVendor, e.OrgId, e.PortId, e.PortType, e.RandomMac, e.RespAttrs, e.SiteId, e.Ssid, e.Timestamp, e.Type, e.UsermacLabel, e.Username, e.Vlan, e.VlanSource, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventNacClient.

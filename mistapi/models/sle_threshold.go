@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SleThreshold represents a SleThreshold struct.
@@ -14,6 +15,14 @@ type SleThreshold struct {
     Threshold            *string                `json:"threshold,omitempty"`
     Units                *string                `json:"units,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleThreshold,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleThreshold) String() string {
+    return fmt.Sprintf(
+    	"SleThreshold[Default=%v, Direction=%v, Maximum=%v, Metric=%v, Minimum=%v, Threshold=%v, Units=%v, AdditionalProperties=%v]",
+    	s.Default, s.Direction, s.Maximum, s.Metric, s.Minimum, s.Threshold, s.Units, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleThreshold.

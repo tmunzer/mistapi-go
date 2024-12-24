@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingGatewayMgmtAutoSignatureUpdate represents a SiteSettingGatewayMgmtAutoSignatureUpdate struct.
@@ -12,6 +13,14 @@ type SiteSettingGatewayMgmtAutoSignatureUpdate struct {
     // optional, Mist will decide the timing
     TimeOfDay            *string                `json:"time_of_day,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingGatewayMgmtAutoSignatureUpdate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingGatewayMgmtAutoSignatureUpdate) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingGatewayMgmtAutoSignatureUpdate[DayOfWeek=%v, Enable=%v, TimeOfDay=%v, AdditionalProperties=%v]",
+    	s.DayOfWeek, s.Enable, s.TimeOfDay, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingGatewayMgmtAutoSignatureUpdate.

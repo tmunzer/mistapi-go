@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -32,6 +33,14 @@ type StatsMxtunnel struct {
     TxControlPkts        *int                    `json:"tx_control_pkts,omitempty"`
     Uptime               *int                    `json:"uptime,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxtunnel,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxtunnel) String() string {
+    return fmt.Sprintf(
+    	"StatsMxtunnel[Ap=%v, ForSite=%v, Fwupdate=%v, LastSeen=%v, Mtu=%v, MxclusterId=%v, MxedgeId=%v, MxtunnelId=%v, OrgId=%v, PeerMxedgeId=%v, RemoteIp=%v, RemotePort=%v, RxControlPkts=%v, Sessions=%v, SiteId=%v, State=%v, TxControlPkts=%v, Uptime=%v, AdditionalProperties=%v]",
+    	s.Ap, s.ForSite, s.Fwupdate, s.LastSeen, s.Mtu, s.MxclusterId, s.MxedgeId, s.MxtunnelId, s.OrgId, s.PeerMxedgeId, s.RemoteIp, s.RemotePort, s.RxControlPkts, s.Sessions, s.SiteId, s.State, s.TxControlPkts, s.Uptime, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxtunnel.

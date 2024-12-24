@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApAutoUpgrade represents a StatsApAutoUpgrade struct.
 type StatsApAutoUpgrade struct {
     Lastcheck            Optional[int64]        `json:"lastcheck"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApAutoUpgrade,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApAutoUpgrade) String() string {
+    return fmt.Sprintf(
+    	"StatsApAutoUpgrade[Lastcheck=%v, AdditionalProperties=%v]",
+    	s.Lastcheck, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApAutoUpgrade.

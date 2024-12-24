@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // CaptureSwitchSwitches represents a CaptureSwitchSwitches struct.
@@ -9,6 +10,14 @@ type CaptureSwitchSwitches struct {
     // Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request
     Ports                map[string]CaptureSwitchPortsTcpdumpExpression `json:"ports,omitempty"`
     AdditionalProperties map[string]interface{}                         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureSwitchSwitches,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureSwitchSwitches) String() string {
+    return fmt.Sprintf(
+    	"CaptureSwitchSwitches[Ports=%v, AdditionalProperties=%v]",
+    	c.Ports, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureSwitchSwitches.

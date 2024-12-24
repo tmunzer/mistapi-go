@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // LocateSwitch represents a LocateSwitch struct.
@@ -11,6 +12,14 @@ type LocateSwitch struct {
     // for virtual chassis, the MAC of the member
     Mac                  *string                `json:"mac,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for LocateSwitch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (l LocateSwitch) String() string {
+    return fmt.Sprintf(
+    	"LocateSwitch[Duration=%v, Mac=%v, AdditionalProperties=%v]",
+    	l.Duration, l.Mac, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for LocateSwitch.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (i *Installer) ListInstallerAlarmTemplates(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.InstallersItem],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/alarmtemplates", orgId),
-    )
+    req := i.prepareRequest(ctx, "GET", "/api/v1/installer/orgs/%v/alarmtemplates")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -76,11 +72,8 @@ func (i *Installer) ListInstallerDeviceProfiles(
     mType *models.DeviceTypeEnum) (
     models.ApiResponse[[]models.InstallersItem],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/deviceprofiles", orgId),
-    )
+    req := i.prepareRequest(ctx, "GET", "/api/v1/installer/orgs/%v/deviceprofiles")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -127,11 +120,8 @@ func (i *Installer) ListInstallerListOfRenctlyClaimedDevices(
     page *int) (
     models.ApiResponse[[]models.InstallerDevice],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices", orgId),
-    )
+    req := i.prepareRequest(ctx, "GET", "/api/v1/installer/orgs/%v/devices")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -186,11 +176,8 @@ func (i *Installer) ClaimInstallerDevices(
     body []string) (
     models.ApiResponse[models.ResponseInventory],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices", orgId),
-    )
+    req := i.prepareRequest(ctx, "POST", "/api/v1/installer/orgs/%v/devices")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -234,11 +221,8 @@ func (i *Installer) UnassignInstallerRecentlyClaimedDevice(
     deviceMac string) (
     *http.Response,
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices/%v", orgId, deviceMac),
-    )
+    req := i.prepareRequest(ctx, "DELETE", "/api/v1/installer/orgs/%v/devices/%v")
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -277,11 +261,8 @@ func (i *Installer) ProvisionInstallerDevices(
     body *models.InstallerProvisionDevice) (
     *http.Response,
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices/%v", orgId, deviceMac),
-    )
+    req := i.prepareRequest(ctx, "PUT", "/api/v1/installer/orgs/%v/devices/%v")
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -325,8 +306,9 @@ func (i *Installer) StartInstallerLocateDevice(
     req := i.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices/%v/locate", orgId, deviceMac),
+      "/api/v1/installer/orgs/%v/devices/%v/locate",
     )
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -366,8 +348,9 @@ func (i *Installer) StopInstallerLocateDevice(
     req := i.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices/%v/unlocate", orgId, deviceMac),
+      "/api/v1/installer/orgs/%v/devices/%v/unlocate",
     )
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -405,11 +388,8 @@ func (i *Installer) DeleteInstallerDeviceImage(
     deviceMac string) (
     *http.Response,
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices/%v/%v", orgId, deviceMac, imageName),
-    )
+    req := i.prepareRequest(ctx, "DELETE", "/api/v1/installer/orgs/%v/devices/%v/%v")
+    req.AppendTemplateParams(orgId, deviceMac, imageName)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -451,11 +431,8 @@ func (i *Installer) AddInstallerDeviceImage(
     json *models.MapImportJson) (
     *http.Response,
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices/%v/%v", orgId, deviceMac, imageName),
-    )
+    req := i.prepareRequest(ctx, "POST", "/api/v1/installer/orgs/%v/devices/%v/%v")
+    req.AppendTemplateParams(orgId, deviceMac, imageName)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -511,11 +488,8 @@ func (i *Installer) GetInstallerDeviceVirtualChassis(
     fpc0Mac string) (
     models.ApiResponse[models.ResponseVirtualChassisConfig],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices/%v/vc", orgId, fpc0Mac),
-    )
+    req := i.prepareRequest(ctx, "GET", "/api/v1/installer/orgs/%v/devices/%v/vc")
+    req.AppendTemplateParams(orgId, fpc0Mac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -563,11 +537,8 @@ func (i *Installer) CreateInstallerVirtualChassis(
     body *models.VirtualChassisConfig) (
     models.ApiResponse[models.ResponseVirtualChassisConfig],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices/%v/vc", orgId, fpc0Mac),
-    )
+    req := i.prepareRequest(ctx, "POST", "/api/v1/installer/orgs/%v/devices/%v/vc")
+    req.AppendTemplateParams(orgId, fpc0Mac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -648,11 +619,8 @@ func (i *Installer) UpdateInstallerVirtualChassisMember(
     body *models.VirtualChassisUpdate) (
     models.ApiResponse[models.ResponseVirtualChassisConfig],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/devices/%v/vc", orgId, fpc0Mac),
-    )
+    req := i.prepareRequest(ctx, "PUT", "/api/v1/installer/orgs/%v/devices/%v/vc")
+    req.AppendTemplateParams(orgId, fpc0Mac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -695,11 +663,8 @@ func (i *Installer) ListInstallerRfTemplatesNames(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.InstallersItem],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/rftemplates", orgId),
-    )
+    req := i.prepareRequest(ctx, "GET", "/api/v1/installer/orgs/%v/rftemplates")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -738,11 +703,8 @@ func (i *Installer) ListInstallerSiteGroups(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.InstallersItem],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/sitegroups", orgId),
-    )
+    req := i.prepareRequest(ctx, "GET", "/api/v1/installer/orgs/%v/sitegroups")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -781,11 +743,8 @@ func (i *Installer) ListInstallerSites(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.InstallerSite],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/sites", orgId),
-    )
+    req := i.prepareRequest(ctx, "GET", "/api/v1/installer/orgs/%v/sites")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -826,11 +785,8 @@ func (i *Installer) CreateOrUpdateInstallerSites(
     body *models.InstallerSite) (
     *http.Response,
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/sites/%v", orgId, siteName),
-    )
+    req := i.prepareRequest(ctx, "PUT", "/api/v1/installer/orgs/%v/sites/%v")
+    req.AppendTemplateParams(orgId, siteName)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -871,11 +827,8 @@ func (i *Installer) ListInstallerMaps(
     siteName string) (
     models.ApiResponse[[]models.Map],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/sites/%v/maps", orgId, siteName),
-    )
+    req := i.prepareRequest(ctx, "GET", "/api/v1/installer/orgs/%v/sites/%v/maps")
+    req.AppendTemplateParams(orgId, siteName)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -922,8 +875,9 @@ func (i *Installer) ImportInstallerMap(
     req := i.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/sites/%v/maps/import", orgId, siteName),
+      "/api/v1/installer/orgs/%v/sites/%v/maps/import",
     )
+    req.AppendTemplateParams(orgId, siteName)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -985,8 +939,9 @@ func (i *Installer) DeleteInstallerMap(
     req := i.prepareRequest(
       ctx,
       "DELETE",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/sites/%v/maps/%v", orgId, siteName, mapId),
+      "/api/v1/installer/orgs/%v/sites/%v/maps/%v",
     )
+    req.AppendTemplateParams(orgId, siteName, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1028,8 +983,9 @@ func (i *Installer) CreateInstallerMap(
     req := i.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/sites/%v/maps/%v", orgId, siteName, mapId),
+      "/api/v1/installer/orgs/%v/sites/%v/maps/%v",
     )
+    req.AppendTemplateParams(orgId, siteName, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1075,11 +1031,8 @@ func (i *Installer) UpdateInstallerMap(
     body *models.Map) (
     models.ApiResponse[models.Map],
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/installer/orgs/%v/sites/%v/maps/%v", orgId, siteName, mapId),
-    )
+    req := i.prepareRequest(ctx, "PUT", "/api/v1/installer/orgs/%v/sites/%v/maps/%v")
+    req.AppendTemplateParams(orgId, siteName, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -1122,11 +1075,8 @@ func (i *Installer) OptimizeInstallerRrm(
     siteName string) (
     *http.Response,
     error) {
-    req := i.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/installer/sites/%v/optimize", siteName),
-    )
+    req := i.prepareRequest(ctx, "GET", "/api/v1/installer/sites/%v/optimize")
+    req.AppendTemplateParams(siteName)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

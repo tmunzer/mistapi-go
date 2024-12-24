@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsShowArp represents a UtilsShowArp struct.
@@ -17,6 +18,14 @@ type UtilsShowArp struct {
     // VRF Name
     Vrf                  *string                `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsShowArp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsShowArp) String() string {
+    return fmt.Sprintf(
+    	"UtilsShowArp[Duration=%v, Interval=%v, Ip=%v, PortId=%v, Vrf=%v, AdditionalProperties=%v]",
+    	u.Duration, u.Interval, u.Ip, u.PortId, u.Vrf, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowArp.

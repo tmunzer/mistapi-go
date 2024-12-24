@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanBonjourServiceProperties represents a WlanBonjourServiceProperties struct.
@@ -13,6 +14,14 @@ type WlanBonjourServiceProperties struct {
     // how bonjour services should be discovered for the same WLAN. enum: `same_ap`, `same_map`, `same_site`
     Scope                *WlanBonjourServicePropertiesScopeEnum `json:"scope,omitempty"`
     AdditionalProperties map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanBonjourServiceProperties,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanBonjourServiceProperties) String() string {
+    return fmt.Sprintf(
+    	"WlanBonjourServiceProperties[DisableLocal=%v, RadiusGroups=%v, Scope=%v, AdditionalProperties=%v]",
+    	w.DisableLocal, w.RadiusGroups, w.Scope, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanBonjourServiceProperties.

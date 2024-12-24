@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanPortal represents a WlanPortal struct.
@@ -155,6 +156,14 @@ type WlanPortal struct {
     // Required if `sms_provider`==`twilio`, Account SID provided by Twilio
     TwilioSid                   Optional[string]               `json:"twilio_sid"`
     AdditionalProperties        map[string]interface{}         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanPortal,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanPortal) String() string {
+    return fmt.Sprintf(
+    	"WlanPortal[AllowWlanIdRoam=%v, AmazonClientId=%v, AmazonClientSecret=%v, AmazonEmailDomains=%v, AmazonEnabled=%v, AmazonExpire=%v, Auth=%v, AzureClientId=%v, AzureClientSecret=%v, AzureEnabled=%v, AzureExpire=%v, AzureTenantId=%v, BroadnetPassword=%v, BroadnetSid=%v, BroadnetUserId=%v, BypassWhenCloudDown=%v, ClickatellApiKey=%v, CrossSite=%v, EmailEnabled=%v, Enabled=%v, Expire=%v, ExternalPortalUrl=%v, FacebookClientId=%v, FacebookClientSecret=%v, FacebookEmailDomains=%v, FacebookEnabled=%v, FacebookExpire=%v, Forward=%v, ForwardUrl=%v, GoogleClientId=%v, GoogleClientSecret=%v, GoogleEmailDomains=%v, GoogleEnabled=%v, GoogleExpire=%v, GupshupPassword=%v, GupshupUserid=%v, MicrosoftClientId=%v, MicrosoftClientSecret=%v, MicrosoftEmailDomains=%v, MicrosoftEnabled=%v, MicrosoftExpire=%v, PassphraseEnabled=%v, PassphraseExpire=%v, Password=%v, PredefinedSponsorsEnabled=%v, PredefinedSponsorsHideEmail=%v, Privacy=%v, PuzzelPassword=%v, PuzzelServiceId=%v, PuzzelUsername=%v, SmsMessageFormat=%v, SmsEnabled=%v, SmsExpire=%v, SmsProvider=%v, SponsorAutoApprove=%v, SponsorEmailDomains=%v, SponsorEnabled=%v, SponsorExpire=%v, SponsorLinkValidityDuration=%v, SponsorNotifyAll=%v, SponsorStatusNotify=%v, Sponsors=%v, SsoDefaultRole=%v, SsoForcedRole=%v, SsoIdpCert=%v, SsoIdpSignAlgo=%v, SsoIdpSsoUrl=%v, SsoIssuer=%v, SsoNameidFormat=%v, TelstraClientId=%v, TelstraClientSecret=%v, TwilioAuthToken=%v, TwilioPhoneNumber=%v, TwilioSid=%v, AdditionalProperties=%v]",
+    	w.AllowWlanIdRoam, w.AmazonClientId, w.AmazonClientSecret, w.AmazonEmailDomains, w.AmazonEnabled, w.AmazonExpire, w.Auth, w.AzureClientId, w.AzureClientSecret, w.AzureEnabled, w.AzureExpire, w.AzureTenantId, w.BroadnetPassword, w.BroadnetSid, w.BroadnetUserId, w.BypassWhenCloudDown, w.ClickatellApiKey, w.CrossSite, w.EmailEnabled, w.Enabled, w.Expire, w.ExternalPortalUrl, w.FacebookClientId, w.FacebookClientSecret, w.FacebookEmailDomains, w.FacebookEnabled, w.FacebookExpire, w.Forward, w.ForwardUrl, w.GoogleClientId, w.GoogleClientSecret, w.GoogleEmailDomains, w.GoogleEnabled, w.GoogleExpire, w.GupshupPassword, w.GupshupUserid, w.MicrosoftClientId, w.MicrosoftClientSecret, w.MicrosoftEmailDomains, w.MicrosoftEnabled, w.MicrosoftExpire, w.PassphraseEnabled, w.PassphraseExpire, w.Password, w.PredefinedSponsorsEnabled, w.PredefinedSponsorsHideEmail, w.Privacy, w.PuzzelPassword, w.PuzzelServiceId, w.PuzzelUsername, w.SmsMessageFormat, w.SmsEnabled, w.SmsExpire, w.SmsProvider, w.SponsorAutoApprove, w.SponsorEmailDomains, w.SponsorEnabled, w.SponsorExpire, w.SponsorLinkValidityDuration, w.SponsorNotifyAll, w.SponsorStatusNotify, w.Sponsors, w.SsoDefaultRole, w.SsoForcedRole, w.SsoIdpCert, w.SsoIdpSignAlgo, w.SsoIdpSsoUrl, w.SsoIssuer, w.SsoNameidFormat, w.TelstraClientId, w.TelstraClientSecret, w.TwilioAuthToken, w.TwilioPhoneNumber, w.TwilioSid, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanPortal.

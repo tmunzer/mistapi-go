@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApRadioStat represents a ApRadioStat struct.
@@ -41,6 +42,14 @@ type ApRadioStat struct {
     // reception of “No Category” utilization in percentage, all 802.11 frames that are corrupted at the receiver
     UtilUnknownWifi        Optional[int]          `json:"util_unknown_wifi"`
     AdditionalProperties   map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApRadioStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApRadioStat) String() string {
+    return fmt.Sprintf(
+    	"ApRadioStat[Bandwidth=%v, Channel=%v, DynamicChainingEnalbed=%v, Mac=%v, NoiseFloor=%v, NumClients=%v, NumWlans=%v, Power=%v, RxBytes=%v, RxPkts=%v, TxBytes=%v, TxPkts=%v, Usage=%v, UtilAll=%v, UtilNonWifi=%v, UtilRxInBss=%v, UtilRxOtherBss=%v, UtilTx=%v, UtilUndecodableWifi=%v, UtilUnknownWifi=%v, AdditionalProperties=%v]",
+    	a.Bandwidth, a.Channel, a.DynamicChainingEnalbed, a.Mac, a.NoiseFloor, a.NumClients, a.NumWlans, a.Power, a.RxBytes, a.RxPkts, a.TxBytes, a.TxPkts, a.Usage, a.UtilAll, a.UtilNonWifi, a.UtilRxInBss, a.UtilRxOtherBss, a.UtilTx, a.UtilUndecodableWifi, a.UtilUnknownWifi, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadioStat.

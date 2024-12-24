@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,11 +31,8 @@ func (o *OrgsStatsOtherDevices) GetOrgOtherDeviceStats(
     deviceMac string) (
     models.ApiResponse[models.StatsDeviceOther],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/stats/otherdevices/%v", orgId, deviceMac),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/otherdevices/%v")
+    req.AppendTemplateParams(orgId, deviceMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

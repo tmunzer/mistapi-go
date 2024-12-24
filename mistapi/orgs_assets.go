@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,7 +33,8 @@ func (o *OrgsAssets) ListOrgAssets(
     page *int) (
     models.ApiResponse[[]models.Asset],
     error) {
-    req := o.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/orgs/%v/assets", orgId))
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/assets")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -80,11 +80,8 @@ func (o *OrgsAssets) CreateOrgAsset(
     body *models.Asset) (
     models.ApiResponse[models.Asset],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/assets", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/assets")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -134,11 +131,8 @@ func (o *OrgsAssets) ImportOrgAssets(
     file *models.FileWrapper) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/assets/import", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/assets/import")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -181,11 +175,8 @@ func (o *OrgsAssets) DeleteOrgAsset(
     assetId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/assets/%v", orgId, assetId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/assets/%v")
+    req.AppendTemplateParams(orgId, assetId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -222,11 +213,8 @@ func (o *OrgsAssets) GetOrgAsset(
     assetId uuid.UUID) (
     models.ApiResponse[models.Asset],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/assets/%v", orgId, assetId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/assets/%v")
+    req.AppendTemplateParams(orgId, assetId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -267,11 +255,8 @@ func (o *OrgsAssets) UpdateOrgAsset(
     body *models.Asset) (
     models.ApiResponse[models.Asset],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/assets/%v", orgId, assetId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/assets/%v")
+    req.AppendTemplateParams(orgId, assetId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

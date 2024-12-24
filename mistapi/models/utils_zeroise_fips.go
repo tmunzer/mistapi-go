@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type UtilsZeroiseFips struct {
     // FIPS zeroize password
     Password             string                 `json:"password"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsZeroiseFips,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsZeroiseFips) String() string {
+    return fmt.Sprintf(
+    	"UtilsZeroiseFips[Password=%v, AdditionalProperties=%v]",
+    	u.Password, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsZeroiseFips.

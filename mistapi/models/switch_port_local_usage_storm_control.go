@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchPortLocalUsageStormControl represents a SwitchPortLocalUsageStormControl struct.
@@ -18,6 +19,14 @@ type SwitchPortLocalUsageStormControl struct {
     // bandwidth-percentage, configures the storm control level as a percentage of the available bandwidth
     Percentage            *int                   `json:"percentage,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchPortLocalUsageStormControl,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchPortLocalUsageStormControl) String() string {
+    return fmt.Sprintf(
+    	"SwitchPortLocalUsageStormControl[NoBroadcast=%v, NoMulticast=%v, NoRegisteredMulticast=%v, NoUnknownUnicast=%v, Percentage=%v, AdditionalProperties=%v]",
+    	s.NoBroadcast, s.NoMulticast, s.NoRegisteredMulticast, s.NoUnknownUnicast, s.Percentage, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortLocalUsageStormControl.

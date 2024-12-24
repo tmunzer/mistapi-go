@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -19,6 +20,14 @@ type InstallerSite struct {
     SitegroupNames       []string               `json:"sitegroup_names,omitempty"`
     Timezone             *string                `json:"timezone,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for InstallerSite,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i InstallerSite) String() string {
+    return fmt.Sprintf(
+    	"InstallerSite[Address=%v, CountryCode=%v, Id=%v, Latlng=%v, Name=%v, RftemplateName=%v, SitegroupNames=%v, Timezone=%v, AdditionalProperties=%v]",
+    	i.Address, i.CountryCode, i.Id, i.Latlng, i.Name, i.RftemplateName, i.SitegroupNames, i.Timezone, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InstallerSite.

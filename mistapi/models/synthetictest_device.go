@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -39,6 +40,14 @@ type SynthetictestDevice struct {
     // required for AP
     VlanId               *SynthetictestDeviceVlanId       `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SynthetictestDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SynthetictestDevice) String() string {
+    return fmt.Sprintf(
+    	"SynthetictestDevice[Host=%v, Hostname=%v, Ip=%v, Password=%v, PingCount=%v, PingDetails=%v, PingSize=%v, PortId=%v, Protocol=%v, Tenant=%v, TracerouteUdpPort=%v, Type=%v, Url=%v, Username=%v, VlanId=%v, AdditionalProperties=%v]",
+    	s.Host, s.Hostname, s.Ip, s.Password, s.PingCount, s.PingDetails, s.PingSize, s.PortId, s.Protocol, s.Tenant, s.TracerouteUdpPort, s.Type, s.Url, s.Username, s.VlanId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestDevice.

@@ -35,6 +35,7 @@ func (s *SelfAuditLogs) ListSelfAuditLogs(
     models.ApiResponse[models.ResponseSelfAuditLogs],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/self/logs")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

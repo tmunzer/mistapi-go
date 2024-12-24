@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteTemplate represents a SiteTemplate struct.
@@ -11,6 +12,14 @@ type SiteTemplate struct {
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                 map[string]string        `json:"vars,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteTemplate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteTemplate) String() string {
+    return fmt.Sprintf(
+    	"SiteTemplate[AutoUpgrade=%v, Name=%v, Vars=%v, AdditionalProperties=%v]",
+    	s.AutoUpgrade, s.Name, s.Vars, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteTemplate.

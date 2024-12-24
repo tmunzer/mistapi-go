@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WanExtraRoutes represents a WanExtraRoutes struct.
 type WanExtraRoutes struct {
     Via                  *string                `json:"via,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WanExtraRoutes,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WanExtraRoutes) String() string {
+    return fmt.Sprintf(
+    	"WanExtraRoutes[Via=%v, AdditionalProperties=%v]",
+    	w.Via, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WanExtraRoutes.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseInventory represents a ResponseInventory struct.
@@ -13,6 +14,14 @@ type ResponseInventory struct {
     InventoryDuplicated  []ResponseInventoryInventoryDuplicatedItems `json:"inventory_duplicated,omitempty"`
     Reason               []string                                    `json:"reason,omitempty"`
     AdditionalProperties map[string]interface{}                      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseInventory,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseInventory) String() string {
+    return fmt.Sprintf(
+    	"ResponseInventory[Added=%v, Duplicated=%v, Error=%v, InventoryAdded=%v, InventoryDuplicated=%v, Reason=%v, AdditionalProperties=%v]",
+    	r.Added, r.Duplicated, r.Error, r.InventoryAdded, r.InventoryDuplicated, r.Reason, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseInventory.

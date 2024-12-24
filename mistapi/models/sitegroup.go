@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -20,6 +21,14 @@ type Sitegroup struct {
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     SiteIds              []uuid.UUID            `json:"site_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Sitegroup,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s Sitegroup) String() string {
+    return fmt.Sprintf(
+    	"Sitegroup[CreatedTime=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, SiteIds=%v, AdditionalProperties=%v]",
+    	s.CreatedTime, s.Id, s.ModifiedTime, s.Name, s.OrgId, s.SiteIds, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Sitegroup.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingAutoUpgrade represents a SiteSettingAutoUpgrade struct.
@@ -18,6 +19,14 @@ type SiteSettingAutoUpgrade struct {
     // desired version. enum: `beta`, `custom`, `stable`
     Version              *SiteAutoUpgradeVersionEnum `json:"version,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingAutoUpgrade,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingAutoUpgrade) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingAutoUpgrade[CustomVersions=%v, DayOfWeek=%v, Enabled=%v, TimeOfDay=%v, Version=%v, AdditionalProperties=%v]",
+    	s.CustomVersions, s.DayOfWeek, s.Enabled, s.TimeOfDay, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingAutoUpgrade.

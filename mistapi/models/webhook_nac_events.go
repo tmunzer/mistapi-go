@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WebhookNacEvents represents a WebhookNacEvents struct.
@@ -9,6 +10,14 @@ type WebhookNacEvents struct {
     Events               []WebhookNacEventsEvent `json:"events,omitempty"`
     Topic                *string                 `json:"topic,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookNacEvents,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookNacEvents) String() string {
+    return fmt.Sprintf(
+    	"WebhookNacEvents[Events=%v, Topic=%v, AdditionalProperties=%v]",
+    	w.Events, w.Topic, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookNacEvents.

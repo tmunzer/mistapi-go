@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -62,6 +63,14 @@ type DeviceprofileAp struct {
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                 map[string]string       `json:"vars,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DeviceprofileAp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DeviceprofileAp) String() string {
+    return fmt.Sprintf(
+    	"DeviceprofileAp[Aeroscout=%v, BleConfig=%v, CreatedTime=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, ForSite=%v, Id=%v, IotConfig=%v, IpConfig=%v, Led=%v, Mesh=%v, ModifiedTime=%v, Name=%v, NtpServers=%v, OrgId=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, SiteId=%v, SwitchConfig=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, AdditionalProperties=%v]",
+    	d.Aeroscout, d.BleConfig, d.CreatedTime, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.ForSite, d.Id, d.IotConfig, d.IpConfig, d.Led, d.Mesh, d.ModifiedTime, d.Name, d.NtpServers, d.OrgId, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.SiteId, d.SwitchConfig, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceprofileAp.

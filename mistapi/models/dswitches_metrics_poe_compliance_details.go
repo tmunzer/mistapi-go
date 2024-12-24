@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type DswitchesMetricsPoeComplianceDetails struct {
     TotalAps             int                    `json:"total_aps"`
     TotalPower           float64                `json:"total_power"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DswitchesMetricsPoeComplianceDetails,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DswitchesMetricsPoeComplianceDetails) String() string {
+    return fmt.Sprintf(
+    	"DswitchesMetricsPoeComplianceDetails[TotalAps=%v, TotalPower=%v, AdditionalProperties=%v]",
+    	d.TotalAps, d.TotalPower, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DswitchesMetricsPoeComplianceDetails.

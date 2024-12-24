@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SsoMxedgeProxyAuthServer represents a SsoMxedgeProxyAuthServer struct.
@@ -12,6 +13,14 @@ type SsoMxedgeProxyAuthServer struct {
     RequireMessageAuthenticator *bool                  `json:"require_message_authenticator,omitempty"`
     Secret                      *string                `json:"secret,omitempty"`
     AdditionalProperties        map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SsoMxedgeProxyAuthServer,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SsoMxedgeProxyAuthServer) String() string {
+    return fmt.Sprintf(
+    	"SsoMxedgeProxyAuthServer[Host=%v, Port=%v, RequireMessageAuthenticator=%v, Secret=%v, AdditionalProperties=%v]",
+    	s.Host, s.Port, s.RequireMessageAuthenticator, s.Secret, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsoMxedgeProxyAuthServer.

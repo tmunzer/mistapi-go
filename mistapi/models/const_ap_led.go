@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type ConstApLed struct {
     Key                  string                 `json:"key"`
     Name                 string                 `json:"name"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstApLed,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstApLed) String() string {
+    return fmt.Sprintf(
+    	"ConstApLed[Code=%v, Description=%v, Key=%v, Name=%v, AdditionalProperties=%v]",
+    	c.Code, c.Description, c.Key, c.Name, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstApLed.

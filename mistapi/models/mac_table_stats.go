@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MacTableStats represents a MacTableStats struct.
@@ -9,6 +10,14 @@ type MacTableStats struct {
     MacTableCount          *int                   `json:"mac_table_count,omitempty"`
     MaxMacEntriesSupported *int                   `json:"max_mac_entries_supported,omitempty"`
     AdditionalProperties   map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MacTableStats,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MacTableStats) String() string {
+    return fmt.Sprintf(
+    	"MacTableStats[MacTableCount=%v, MaxMacEntriesSupported=%v, AdditionalProperties=%v]",
+    	m.MacTableCount, m.MaxMacEntriesSupported, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MacTableStats.

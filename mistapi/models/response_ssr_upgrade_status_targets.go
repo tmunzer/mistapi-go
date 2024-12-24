@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type ResponseSsrUpgradeStatusTargets struct {
     Success              []string               `json:"success"`
     Upgrading            []string               `json:"upgrading"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSsrUpgradeStatusTargets,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSsrUpgradeStatusTargets) String() string {
+    return fmt.Sprintf(
+    	"ResponseSsrUpgradeStatusTargets[Failed=%v, Queued=%v, Success=%v, Upgrading=%v, AdditionalProperties=%v]",
+    	r.Failed, r.Queued, r.Success, r.Upgrading, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSsrUpgradeStatusTargets.

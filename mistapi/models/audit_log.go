@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -24,6 +25,14 @@ type AuditLog struct {
     SiteId               uuid.UUID              `json:"site_id"`
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AuditLog,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AuditLog) String() string {
+    return fmt.Sprintf(
+    	"AuditLog[AdminId=%v, AdminName=%v, After=%v, Before=%v, ForSite=%v, Id=%v, Message=%v, OrgId=%v, SiteId=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	a.AdminId, a.AdminName, a.After, a.Before, a.ForSite, a.Id, a.Message, a.OrgId, a.SiteId, a.Timestamp, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AuditLog.

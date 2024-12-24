@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -29,6 +30,14 @@ type InventoryUpdate struct {
     // if `op`==`assign`, target site id
     SiteId               *uuid.UUID                   `json:"site_id,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for InventoryUpdate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i InventoryUpdate) String() string {
+    return fmt.Sprintf(
+    	"InventoryUpdate[DisableAutoConfig=%v, Macs=%v, Managed=%v, NoReassign=%v, Op=%v, Serials=%v, SiteId=%v, AdditionalProperties=%v]",
+    	i.DisableAutoConfig, i.Macs, i.Managed, i.NoReassign, i.Op, i.Serials, i.SiteId, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InventoryUpdate.

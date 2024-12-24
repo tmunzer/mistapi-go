@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // IdpProfileOverwrite represents a IdpProfileOverwrite struct.
@@ -14,6 +15,14 @@ type IdpProfileOverwrite struct {
     Matching             *IdpProfileMatching    `json:"matching,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for IdpProfileOverwrite,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i IdpProfileOverwrite) String() string {
+    return fmt.Sprintf(
+    	"IdpProfileOverwrite[Action=%v, Matching=%v, Name=%v, AdditionalProperties=%v]",
+    	i.Action, i.Matching, i.Name, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IdpProfileOverwrite.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -20,6 +21,14 @@ type Orggroup struct {
     Name                 string                 `json:"name"`
     OrgIds               []uuid.UUID            `json:"org_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Orggroup,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o Orggroup) String() string {
+    return fmt.Sprintf(
+    	"Orggroup[CreatedTime=%v, Id=%v, ModifiedTime=%v, MspId=%v, Name=%v, OrgIds=%v, AdditionalProperties=%v]",
+    	o.CreatedTime, o.Id, o.ModifiedTime, o.MspId, o.Name, o.OrgIds, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Orggroup.

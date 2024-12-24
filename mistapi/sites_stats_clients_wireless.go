@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -36,11 +35,8 @@ func (s *SitesStatsClientsWireless) ListSiteWirelessClientsStats(
     duration *string) (
     models.ApiResponse[[]models.StatsClient],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/clients", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/clients")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -96,11 +92,8 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
     wired *bool) (
     models.ApiResponse[[]models.StatsClient],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/clients/%v", siteId, clientMac),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/clients/%v")
+    req.AppendTemplateParams(siteId, clientMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -148,11 +141,8 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientsStatsByMap(
     page *int) (
     models.ApiResponse[[]models.StatsWirelessClient],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/maps/%v/clients", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/maps/%v/clients")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -210,8 +200,9 @@ func (s *SitesStatsClientsWireless) ListSiteUnconnectedClientStats(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/maps/%v/unconnected_clients", siteId, mapId),
+      "/api/v1/sites/%v/stats/maps/%v/unconnected_clients",
     )
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

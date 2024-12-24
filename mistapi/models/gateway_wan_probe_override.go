@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayWanProbeOverride represents a GatewayWanProbeOverride struct.
@@ -11,6 +12,14 @@ type GatewayWanProbeOverride struct {
     // enum: `broadband`, `lte`
     ProbeProfile         *GatewayWanProbeOverrideProbeProfileEnum `json:"probe_profile,omitempty"`
     AdditionalProperties map[string]interface{}                   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayWanProbeOverride,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayWanProbeOverride) String() string {
+    return fmt.Sprintf(
+    	"GatewayWanProbeOverride[Ips=%v, ProbeProfile=%v, AdditionalProperties=%v]",
+    	g.Ips, g.ProbeProfile, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayWanProbeOverride.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsMxedgeIpStat represents a StatsMxedgeIpStat struct.
@@ -16,6 +17,14 @@ type StatsMxedgeIpStat struct {
     Netmask              *string                `json:"netmask,omitempty"`
     Netmask6             *string                `json:"netmask6,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxedgeIpStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxedgeIpStat) String() string {
+    return fmt.Sprintf(
+    	"StatsMxedgeIpStat[Ip=%v, Ip6=%v, Ips=%v, Macs=%v, Netmask=%v, Netmask6=%v, AdditionalProperties=%v]",
+    	s.Ip, s.Ip6, s.Ips, s.Macs, s.Netmask, s.Netmask6, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeIpStat.

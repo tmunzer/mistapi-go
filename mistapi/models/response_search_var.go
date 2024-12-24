@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseSearchVar represents a ResponseSearchVar struct.
@@ -12,6 +13,14 @@ type ResponseSearchVar struct {
     Start                *int                    `json:"start,omitempty"`
     Total                *int                    `json:"total,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSearchVar,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSearchVar) String() string {
+    return fmt.Sprintf(
+    	"ResponseSearchVar[End=%v, Limit=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	r.End, r.Limit, r.Results, r.Start, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSearchVar.

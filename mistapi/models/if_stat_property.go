@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // IfStatProperty represents a IfStatProperty struct.
@@ -23,6 +24,14 @@ type IfStatProperty struct {
     WanName              *string                  `json:"wan_name,omitempty"`
     WanType              *string                  `json:"wan_type,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for IfStatProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i IfStatProperty) String() string {
+    return fmt.Sprintf(
+    	"IfStatProperty[AddressMode=%v, Ips=%v, NatAddresses=%v, NetworkName=%v, PortId=%v, PortUsage=%v, RedundancyState=%v, RxBytes=%v, RxPkts=%v, ServpInfo=%v, TxBytes=%v, TxPkts=%v, Up=%v, Vlan=%v, WanName=%v, WanType=%v, AdditionalProperties=%v]",
+    	i.AddressMode, i.Ips, i.NatAddresses, i.NetworkName, i.PortId, i.PortUsage, i.RedundancyState, i.RxBytes, i.RxPkts, i.ServpInfo, i.TxBytes, i.TxPkts, i.Up, i.Vlan, i.WanName, i.WanType, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IfStatProperty.

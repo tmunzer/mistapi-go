@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -36,6 +37,14 @@ type BgpStats struct {
     Uptime               *int                   `json:"uptime,omitempty"`
     VrfName              *string                `json:"vrf_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for BgpStats,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (b BgpStats) String() string {
+    return fmt.Sprintf(
+    	"BgpStats[EvpnOverlay=%v, ForOverlay=%v, LocalAs=%v, Mac=%v, Model=%v, Neighbor=%v, NeighborAs=%v, NeighborMac=%v, Node=%v, OrgId=%v, RxPkts=%v, RxRoutes=%v, SiteId=%v, State=%v, Timestamp=%v, TxPkts=%v, TxRoutes=%v, Up=%v, Uptime=%v, VrfName=%v, AdditionalProperties=%v]",
+    	b.EvpnOverlay, b.ForOverlay, b.LocalAs, b.Mac, b.Model, b.Neighbor, b.NeighborAs, b.NeighborMac, b.Node, b.OrgId, b.RxPkts, b.RxRoutes, b.SiteId, b.State, b.Timestamp, b.TxPkts, b.TxRoutes, b.Up, b.Uptime, b.VrfName, b.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for BgpStats.

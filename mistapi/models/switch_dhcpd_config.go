@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchDhcpdConfig represents a SwitchDhcpdConfig struct.
@@ -9,6 +10,14 @@ type SwitchDhcpdConfig struct {
     // if set to `true`, enable the DHCP server
     Enabled              *bool                                `json:"enabled,omitempty"`
     AdditionalProperties map[string]SwitchDhcpdConfigProperty `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchDhcpdConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchDhcpdConfig) String() string {
+    return fmt.Sprintf(
+    	"SwitchDhcpdConfig[Enabled=%v, AdditionalProperties=%v]",
+    	s.Enabled, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchDhcpdConfig.

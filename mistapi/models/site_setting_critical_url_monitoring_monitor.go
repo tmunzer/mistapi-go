@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingCriticalUrlMonitoringMonitor represents a SiteSettingCriticalUrlMonitoringMonitor struct.
@@ -9,6 +10,14 @@ type SiteSettingCriticalUrlMonitoringMonitor struct {
     Url                  *string                `json:"url,omitempty"`
     VlanId               *VlanIdWithVariable    `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingCriticalUrlMonitoringMonitor,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingCriticalUrlMonitoringMonitor) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingCriticalUrlMonitoringMonitor[Url=%v, VlanId=%v, AdditionalProperties=%v]",
+    	s.Url, s.VlanId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingCriticalUrlMonitoringMonitor.

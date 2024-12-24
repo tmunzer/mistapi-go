@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -23,6 +24,14 @@ type WiredClientResponse struct {
     Timestamp                 *float64                               `json:"timestamp,omitempty"`
     Vlan                      []int                                  `json:"vlan,omitempty"`
     AdditionalProperties      map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WiredClientResponse,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WiredClientResponse) String() string {
+    return fmt.Sprintf(
+    	"WiredClientResponse[DeviceMac=%v, DeviceMacPort=%v, DhcpClientIdentifier=%v, DhcpClientOptions=%v, DhcpFqdn=%v, DhcpHostname=%v, DhcpRequestParams=%v, DhcpVendorClassIdentifier=%v, Ip=%v, Mac=%v, OrgId=%v, PortId=%v, SiteId=%v, Timestamp=%v, Vlan=%v, AdditionalProperties=%v]",
+    	w.DeviceMac, w.DeviceMacPort, w.DhcpClientIdentifier, w.DhcpClientOptions, w.DhcpFqdn, w.DhcpHostname, w.DhcpRequestParams, w.DhcpVendorClassIdentifier, w.Ip, w.Mac, w.OrgId, w.PortId, w.SiteId, w.Timestamp, w.Vlan, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WiredClientResponse.

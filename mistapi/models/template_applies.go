@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -14,6 +15,14 @@ type TemplateApplies struct {
     // list of sitegroup ids
     SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TemplateApplies,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TemplateApplies) String() string {
+    return fmt.Sprintf(
+    	"TemplateApplies[OrgId=%v, SiteIds=%v, SitegroupIds=%v, AdditionalProperties=%v]",
+    	t.OrgId, t.SiteIds, t.SitegroupIds, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TemplateApplies.

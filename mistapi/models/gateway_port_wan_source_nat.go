@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayPortWanSourceNat represents a GatewayPortWanSourceNat struct.
@@ -12,6 +13,14 @@ type GatewayPortWanSourceNat struct {
     // if alternative nat_pool is desired
     NatPool              *string                `json:"nat_pool,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayPortWanSourceNat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayPortWanSourceNat) String() string {
+    return fmt.Sprintf(
+    	"GatewayPortWanSourceNat[Disabled=%v, NatPool=%v, AdditionalProperties=%v]",
+    	g.Disabled, g.NatPool, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortWanSourceNat.

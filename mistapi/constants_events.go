@@ -28,6 +28,7 @@ func (c *ConstantsEvents) ListClientEventsDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstEvent],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/client_events")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -64,6 +65,7 @@ func (c *ConstantsEvents) ListDeviceEventsDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstEvent],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/device_events")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -100,6 +102,7 @@ func (c *ConstantsEvents) ListMxEdgeEventsDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstEvent],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/mxedge_events")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -136,6 +139,7 @@ func (c *ConstantsEvents) ListNacEventsDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstNacEvent],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/nac_events")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -172,6 +176,7 @@ func (c *ConstantsEvents) ListOtherDeviceEventsDefinitions(ctx context.Context) 
     models.ApiResponse[[]models.ConstEvent],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/otherdevice_events")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -208,6 +213,7 @@ func (c *ConstantsEvents) ListSystemEventsDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstEvent],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/system_events")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

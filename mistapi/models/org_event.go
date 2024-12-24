@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -12,6 +13,14 @@ type OrgEvent struct {
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Type                 *string                `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgEvent) String() string {
+    return fmt.Sprintf(
+    	"OrgEvent[OrgId=%v, Text=%v, Timestamp=%v, Type=%v, AdditionalProperties=%v]",
+    	o.OrgId, o.Text, o.Timestamp, o.Type, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgEvent.

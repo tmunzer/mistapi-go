@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // ResponseDeviceSearchResultsItems represents a ResponseDeviceSearchResultsItems struct.
@@ -14,12 +14,10 @@ type ResponseDeviceSearchResultsItems struct {
     isGatewaySearch bool
 }
 
-// String converts the ResponseDeviceSearchResultsItems object to a string representation.
+// String implements the fmt.Stringer interface for ResponseDeviceSearchResultsItems,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseDeviceSearchResultsItems) String() string {
-    if bytes, err := json.Marshal(r.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", r.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceSearchResultsItems.

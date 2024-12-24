@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApTemplateMatching represents a ApTemplateMatching struct.
@@ -9,6 +10,14 @@ type ApTemplateMatching struct {
     Enabled              *bool                    `json:"enabled,omitempty"`
     Rules                []ApTemplateMatchingRule `json:"rules,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApTemplateMatching,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApTemplateMatching) String() string {
+    return fmt.Sprintf(
+    	"ApTemplateMatching[Enabled=%v, Rules=%v, AdditionalProperties=%v]",
+    	a.Enabled, a.Rules, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApTemplateMatching.

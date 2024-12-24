@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeVersions represents a MxedgeVersions struct.
@@ -9,6 +10,14 @@ type MxedgeVersions struct {
     Mxagent              *string                `json:"mxagent,omitempty"`
     Tuntnerm             *string                `json:"tuntnerm,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeVersions,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeVersions) String() string {
+    return fmt.Sprintf(
+    	"MxedgeVersions[Mxagent=%v, Tuntnerm=%v, AdditionalProperties=%v]",
+    	m.Mxagent, m.Tuntnerm, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeVersions.

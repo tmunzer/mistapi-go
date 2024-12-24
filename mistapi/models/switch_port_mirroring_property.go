@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchPortMirroringProperty represents a SwitchPortMirroringProperty struct.
@@ -17,6 +18,14 @@ type SwitchPortMirroringProperty struct {
     // exaclty one of the `output_port_id` or `output_network` should be provided
     OutputPortId         *string                `json:"output_port_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchPortMirroringProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchPortMirroringProperty) String() string {
+    return fmt.Sprintf(
+    	"SwitchPortMirroringProperty[InputNetworksIngress=%v, InputPortIdsEgress=%v, InputPortIdsIngress=%v, OutputNetwork=%v, OutputPortId=%v, AdditionalProperties=%v]",
+    	s.InputNetworksIngress, s.InputPortIdsEgress, s.InputPortIdsIngress, s.OutputNetwork, s.OutputPortId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortMirroringProperty.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayIpConfigProperty represents a GatewayIpConfigProperty struct.
@@ -13,6 +14,14 @@ type GatewayIpConfigProperty struct {
     // enum: `dhcp`, `static`
     Type                 *IpTypeEnum            `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayIpConfigProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayIpConfigProperty) String() string {
+    return fmt.Sprintf(
+    	"GatewayIpConfigProperty[Ip=%v, Netmask=%v, SecondaryIps=%v, Type=%v, AdditionalProperties=%v]",
+    	g.Ip, g.Netmask, g.SecondaryIps, g.Type, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayIpConfigProperty.

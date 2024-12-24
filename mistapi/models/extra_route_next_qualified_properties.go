@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ExtraRouteNextQualifiedProperties represents a ExtraRouteNextQualifiedProperties struct.
@@ -9,6 +10,14 @@ type ExtraRouteNextQualifiedProperties struct {
     Metric               Optional[int]          `json:"metric"`
     Preference           Optional[int]          `json:"preference"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ExtraRouteNextQualifiedProperties,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e ExtraRouteNextQualifiedProperties) String() string {
+    return fmt.Sprintf(
+    	"ExtraRouteNextQualifiedProperties[Metric=%v, Preference=%v, AdditionalProperties=%v]",
+    	e.Metric, e.Preference, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ExtraRouteNextQualifiedProperties.

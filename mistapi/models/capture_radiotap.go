@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -30,6 +31,14 @@ type CaptureRadiotap struct {
     // wlan id associated with the respective ssid.
     WlanId               *uuid.UUID                 `json:"wlan_id,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureRadiotap,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureRadiotap) String() string {
+    return fmt.Sprintf(
+    	"CaptureRadiotap[ApMac=%v, Band=%v, ClientMac=%v, Duration=%v, Format=%v, MaxPktLen=%v, NumPackets=%v, Ssid=%v, TcpdumpExpression=%v, Type=%v, WlanId=%v, AdditionalProperties=%v]",
+    	c.ApMac, c.Band, c.ClientMac, c.Duration, c.Format, c.MaxPktLen, c.NumPackets, c.Ssid, c.TcpdumpExpression, c.Type, c.WlanId, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureRadiotap.

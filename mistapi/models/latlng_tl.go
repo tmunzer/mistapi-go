@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // LatlngTl represents a LatlngTl struct.
@@ -10,6 +11,14 @@ type LatlngTl struct {
     Lat                  *string                `json:"lat,omitempty"`
     Lng                  *string                `json:"lng,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for LatlngTl,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (l LatlngTl) String() string {
+    return fmt.Sprintf(
+    	"LatlngTl[Lat=%v, Lng=%v, AdditionalProperties=%v]",
+    	l.Lat, l.Lng, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for LatlngTl.

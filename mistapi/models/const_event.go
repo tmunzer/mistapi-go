@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type ConstEvent struct {
     Example              *interface{}           `json:"example,omitempty"`
     Key                  string                 `json:"key"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstEvent) String() string {
+    return fmt.Sprintf(
+    	"ConstEvent[Description=%v, Display=%v, Example=%v, Key=%v, AdditionalProperties=%v]",
+    	c.Description, c.Display, c.Example, c.Key, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstEvent.

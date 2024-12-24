@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -69,6 +70,14 @@ type WxlanTag struct {
     // if `type`==`vlan_id`, VLAN ID or variable
     VlanId               *WxlanTagVlanId        `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WxlanTag,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WxlanTag) String() string {
+    return fmt.Sprintf(
+    	"WxlanTag[CreatedTime=%v, ForSite=%v, Id=%v, LastIps=%v, Mac=%v, Match=%v, ModifiedTime=%v, Name=%v, Op=%v, OrgId=%v, ResourceMac=%v, Services=%v, SiteId=%v, Specs=%v, Subnet=%v, Type=%v, Values=%v, VlanId=%v, AdditionalProperties=%v]",
+    	w.CreatedTime, w.ForSite, w.Id, w.LastIps, w.Mac, w.Match, w.ModifiedTime, w.Name, w.Op, w.OrgId, w.ResourceMac, w.Services, w.SiteId, w.Specs, w.Subnet, w.Type, w.Values, w.VlanId, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanTag.

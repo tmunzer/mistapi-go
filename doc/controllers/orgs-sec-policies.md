@@ -206,9 +206,6 @@ body := models.Secpolicy{
                 DefaultVlanId:        models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
                 Enabled:              models.ToPointer(false),
                 Source:               models.ToPointer(models.DynamicPskSourceEnum("cloud_psks")),
-                VlanIds:              []models.VlanIdWithVariable{
-                    models.VlanIdWithVariableContainer.FromNumber(1),
-                },
             })),
             DynamicVlan:                          models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
                 DefaultVlanId:        models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),

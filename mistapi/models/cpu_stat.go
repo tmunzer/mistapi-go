@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // CpuStat represents a CpuStat struct.
@@ -17,6 +18,14 @@ type CpuStat struct {
     // Percentage of CPU time being used by user processe
     User                 Optional[float64]      `json:"user"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CpuStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CpuStat) String() string {
+    return fmt.Sprintf(
+    	"CpuStat[Idle=%v, Interrupt=%v, LoadAvg=%v, System=%v, User=%v, AdditionalProperties=%v]",
+    	c.Idle, c.Interrupt, c.LoadAvg, c.System, c.User, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CpuStat.

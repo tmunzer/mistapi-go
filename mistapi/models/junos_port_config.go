@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -36,6 +37,14 @@ type JunosPortConfig struct {
     // port usage name. If EVPN is used, use `evpn_uplink`or `evpn_downlink`
     Usage                string                     `json:"usage"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for JunosPortConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (j JunosPortConfig) String() string {
+    return fmt.Sprintf(
+    	"JunosPortConfig[AeDisableLacp=%v, AeIdx=%v, AeLacpSlow=%v, Aggregated=%v, Critical=%v, Description=%v, DisableAutoneg=%v, Duplex=%v, DynamicUsage=%v, Esilag=%v, Mtu=%v, NoLocalOverwrite=%v, PoeDisabled=%v, Speed=%v, Usage=%v, AdditionalProperties=%v]",
+    	j.AeDisableLacp, j.AeIdx, j.AeLacpSlow, j.Aggregated, j.Critical, j.Description, j.DisableAutoneg, j.Duplex, j.DynamicUsage, j.Esilag, j.Mtu, j.NoLocalOverwrite, j.PoeDisabled, j.Speed, j.Usage, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JunosPortConfig.

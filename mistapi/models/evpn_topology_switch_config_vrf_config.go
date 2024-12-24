@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // EvpnTopologySwitchConfigVrfConfig represents a EvpnTopologySwitchConfigVrfConfig struct.
@@ -9,6 +10,14 @@ type EvpnTopologySwitchConfigVrfConfig struct {
     // whether to enable VRF (when supported on the device)
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EvpnTopologySwitchConfigVrfConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EvpnTopologySwitchConfigVrfConfig) String() string {
+    return fmt.Sprintf(
+    	"EvpnTopologySwitchConfigVrfConfig[Enabled=%v, AdditionalProperties=%v]",
+    	e.Enabled, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopologySwitchConfigVrfConfig.

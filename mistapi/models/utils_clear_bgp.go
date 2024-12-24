@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -17,6 +18,14 @@ type UtilsClearBgp struct {
     // vrf name
     Vrf                  *string                `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsClearBgp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsClearBgp) String() string {
+    return fmt.Sprintf(
+    	"UtilsClearBgp[Neighbor=%v, Node=%v, Type=%v, Vrf=%v, AdditionalProperties=%v]",
+    	u.Neighbor, u.Node, u.Type, u.Vrf, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsClearBgp.

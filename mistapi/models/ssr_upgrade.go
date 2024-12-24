@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -17,6 +18,14 @@ type SsrUpgrade struct {
     // 128T firmware version to upgrade (e.g. 5.3.0-93)
     Version              string                 `json:"version"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SsrUpgrade,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SsrUpgrade) String() string {
+    return fmt.Sprintf(
+    	"SsrUpgrade[Channel=%v, RebootAt=%v, StartTime=%v, Version=%v, AdditionalProperties=%v]",
+    	s.Channel, s.RebootAt, s.StartTime, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrUpgrade.

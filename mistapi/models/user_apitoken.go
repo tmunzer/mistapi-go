@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -17,6 +18,14 @@ type UserApitoken struct {
     // name of the token
     Name                 *string                `json:"name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UserApitoken,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UserApitoken) String() string {
+    return fmt.Sprintf(
+    	"UserApitoken[CreatedTime=%v, Id=%v, Key=%v, LastUsed=%v, Name=%v, AdditionalProperties=%v]",
+    	u.CreatedTime, u.Id, u.Key, u.LastUsed, u.Name, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UserApitoken.

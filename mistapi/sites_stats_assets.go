@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -36,11 +35,8 @@ func (s *SitesStatsAssets) ListSiteAssetsStats(
     page *int) (
     models.ApiResponse[[]models.StatsAsset],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/assets", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/assets")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -97,11 +93,8 @@ func (s *SitesStatsAssets) GetSiteAssetStats(
     duration *string) (
     models.ApiResponse[models.StatsAsset],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/assets/asset_id", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/assets/asset_id")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -150,11 +143,8 @@ func (s *SitesStatsAssets) CountSiteAssets(
     distinct *models.SiteAssetsCountDistinctEnum) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/assets/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/assets/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -214,11 +204,8 @@ func (s *SitesStatsAssets) SearchSiteAssets(
     duration *string) (
     models.ApiResponse[models.ResponseStatsAssets],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/assets/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/assets/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -316,11 +303,8 @@ func (s *SitesStatsAssets) ListSiteDiscoveredAssets(
     page *int) (
     models.ApiResponse[[]models.Asset],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/discovered_assets", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/discovered_assets")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -379,11 +363,8 @@ func (s *SitesStatsAssets) GetSiteAssetsOfInterest(
     page *int) (
     models.ApiResponse[[]models.AssetOfInterest],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/filtered_assets", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/filtered_assets")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -441,8 +422,9 @@ func (s *SitesStatsAssets) GetSiteDiscoveredAssetByMap(
     req := s.prepareRequest(
       ctx,
       "GET",
-      fmt.Sprintf("/api/v1/sites/%v/stats/maps/%v/discovered_assets", siteId, mapId),
+      "/api/v1/sites/%v/stats/maps/%v/discovered_assets",
     )
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

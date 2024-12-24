@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ModuleStatItemFansItems represents a ModuleStatItemFansItems struct.
@@ -10,6 +11,14 @@ type ModuleStatItemFansItems struct {
     Name                 *string                `json:"name,omitempty"`
     Status               *string                `json:"status,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ModuleStatItemFansItems,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m ModuleStatItemFansItems) String() string {
+    return fmt.Sprintf(
+    	"ModuleStatItemFansItems[Airflow=%v, Name=%v, Status=%v, AdditionalProperties=%v]",
+    	m.Airflow, m.Name, m.Status, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemFansItems.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -16,6 +17,14 @@ type AccountCrowdstrikeConfig struct {
     // customer id of an admin
     CustomerId           string                 `json:"customer_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountCrowdstrikeConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountCrowdstrikeConfig) String() string {
+    return fmt.Sprintf(
+    	"AccountCrowdstrikeConfig[ClientId=%v, ClientSecret=%v, CustomerId=%v, AdditionalProperties=%v]",
+    	a.ClientId, a.ClientSecret, a.CustomerId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountCrowdstrikeConfig.

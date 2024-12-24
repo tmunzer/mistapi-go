@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -29,6 +30,14 @@ type StatsOrg struct {
     SessionExpiry          int64                  `json:"session_expiry"`
     Sle                    []StatsOrgSle          `json:"sle"`
     AdditionalProperties   map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsOrg,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsOrg) String() string {
+    return fmt.Sprintf(
+    	"StatsOrg[AlarmtemplateId=%v, AllowMist=%v, CreatedTime=%v, Id=%v, ModifiedTime=%v, MspId=%v, Name=%v, NumDevices=%v, NumDevicesConnected=%v, NumDevicesDisconnected=%v, NumInventory=%v, NumSites=%v, OrggroupIds=%v, SessionExpiry=%v, Sle=%v, AdditionalProperties=%v]",
+    	s.AlarmtemplateId, s.AllowMist, s.CreatedTime, s.Id, s.ModifiedTime, s.MspId, s.Name, s.NumDevices, s.NumDevicesConnected, s.NumDevicesDisconnected, s.NumInventory, s.NumSites, s.OrggroupIds, s.SessionExpiry, s.Sle, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsOrg.

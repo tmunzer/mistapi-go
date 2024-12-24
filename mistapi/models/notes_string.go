@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NotesString represents a NotesString struct.
 type NotesString struct {
     Notes                *string                `json:"notes,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NotesString,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NotesString) String() string {
+    return fmt.Sprintf(
+    	"NotesString[Notes=%v, AdditionalProperties=%v]",
+    	n.Notes, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NotesString.

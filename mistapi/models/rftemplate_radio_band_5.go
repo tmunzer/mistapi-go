@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RftemplateRadioBand5 represents a RftemplateRadioBand5 struct.
@@ -26,6 +27,14 @@ type RftemplateRadioBand5 struct {
     // enum: `auto`, `long`, `short`
     Preamble             *RadioBandPreambleEnum    `json:"preamble,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RftemplateRadioBand5,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RftemplateRadioBand5) String() string {
+    return fmt.Sprintf(
+    	"RftemplateRadioBand5[AllowRrmDisable=%v, AntGain=%v, AntennaMode=%v, Bandwidth=%v, Channels=%v, Disabled=%v, Power=%v, PowerMax=%v, PowerMin=%v, Preamble=%v, AdditionalProperties=%v]",
+    	r.AllowRrmDisable, r.AntGain, r.AntennaMode, r.Bandwidth, r.Channels, r.Disabled, r.Power, r.PowerMax, r.PowerMin, r.Preamble, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RftemplateRadioBand5.

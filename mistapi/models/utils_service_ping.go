@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -18,6 +19,14 @@ type UtilsServicePing struct {
     // tenant context in which the packet is sent
     Tenant               *string                `json:"tenant,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsServicePing,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsServicePing) String() string {
+    return fmt.Sprintf(
+    	"UtilsServicePing[Count=%v, Host=%v, Node=%v, Service=%v, Size=%v, Tenant=%v, AdditionalProperties=%v]",
+    	u.Count, u.Host, u.Node, u.Service, u.Size, u.Tenant, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsServicePing.

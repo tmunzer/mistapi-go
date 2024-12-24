@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -20,6 +21,14 @@ type EventsSkyatp struct {
     Timestamp            float64                `json:"timestamp"`
     Type                 string                 `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EventsSkyatp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EventsSkyatp) String() string {
+    return fmt.Sprintf(
+    	"EventsSkyatp[DeviceMac=%v, ForSite=%v, Ip=%v, Mac=%v, OrgId=%v, SiteId=%v, ThreatLevel=%v, Timestamp=%v, Type=%v, AdditionalProperties=%v]",
+    	e.DeviceMac, e.ForSite, e.Ip, e.Mac, e.OrgId, e.SiteId, e.ThreatLevel, e.Timestamp, e.Type, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventsSkyatp.

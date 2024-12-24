@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseVerifyTokenSuccess represents a ResponseVerifyTokenSuccess struct.
@@ -11,6 +12,14 @@ type ResponseVerifyTokenSuccess struct {
     MinLength            *int                   `json:"min_length,omitempty"`
     ReturnTo             *string                `json:"return_to,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseVerifyTokenSuccess,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseVerifyTokenSuccess) String() string {
+    return fmt.Sprintf(
+    	"ResponseVerifyTokenSuccess[Detail=%v, InviteNotApplied=%v, MinLength=%v, ReturnTo=%v, AdditionalProperties=%v]",
+    	r.Detail, r.InviteNotApplied, r.MinLength, r.ReturnTo, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseVerifyTokenSuccess.

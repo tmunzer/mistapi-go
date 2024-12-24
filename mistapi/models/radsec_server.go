@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RadsecServer represents a RadsecServer struct.
@@ -9,6 +10,14 @@ type RadsecServer struct {
     Host                 *string                `json:"host,omitempty"`
     Port                 *int                   `json:"port,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RadsecServer,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RadsecServer) String() string {
+    return fmt.Sprintf(
+    	"RadsecServer[Host=%v, Port=%v, AdditionalProperties=%v]",
+    	r.Host, r.Port, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RadsecServer.

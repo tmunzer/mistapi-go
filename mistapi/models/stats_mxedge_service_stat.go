@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsMxedgeServiceStat represents a StatsMxedgeServiceStat struct.
@@ -19,6 +20,14 @@ type StatsMxedgeServiceStat struct {
     // service uptime.
     Uptime               *int                   `json:"uptime,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxedgeServiceStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxedgeServiceStat) String() string {
+    return fmt.Sprintf(
+    	"StatsMxedgeServiceStat[ExtIp=%v, LastSeen=%v, PackageState=%v, PackageVersion=%v, RunningState=%v, Uptime=%v, AdditionalProperties=%v]",
+    	s.ExtIp, s.LastSeen, s.PackageState, s.PackageVersion, s.RunningState, s.Uptime, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeServiceStat.

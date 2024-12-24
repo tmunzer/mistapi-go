@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NetworkStaticNatProperty represents a NetworkStaticNatProperty struct.
@@ -11,6 +12,14 @@ type NetworkStaticNatProperty struct {
     // If not set, we configure the nat policies against all WAN ports for simplicity
     WanName              *string                `json:"wan_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NetworkStaticNatProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NetworkStaticNatProperty) String() string {
+    return fmt.Sprintf(
+    	"NetworkStaticNatProperty[InternalIp=%v, Name=%v, WanName=%v, AdditionalProperties=%v]",
+    	n.InternalIp, n.Name, n.WanName, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkStaticNatProperty.

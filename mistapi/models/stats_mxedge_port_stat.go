@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsMxedgePortStat represents a StatsMxedgePortStat struct.
@@ -18,6 +19,14 @@ type StatsMxedgePortStat struct {
     TxPkts               *int                   `json:"tx_pkts,omitempty"`
     Up                   *bool                  `json:"up,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxedgePortStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxedgePortStat) String() string {
+    return fmt.Sprintf(
+    	"StatsMxedgePortStat[FullDuplex=%v, Mac=%v, RxBytes=%v, RxErrors=%v, RxPkts=%v, Speed=%v, State=%v, TxBytes=%v, TxErrors=%v, TxPkts=%v, Up=%v, AdditionalProperties=%v]",
+    	s.FullDuplex, s.Mac, s.RxBytes, s.RxErrors, s.RxPkts, s.Speed, s.State, s.TxBytes, s.TxErrors, s.TxPkts, s.Up, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgePortStat.

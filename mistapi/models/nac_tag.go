@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -51,6 +52,14 @@ type NacTag struct {
     // if `type`==`vlan`
     Vlan                 *string                 `json:"vlan,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NacTag,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NacTag) String() string {
+    return fmt.Sprintf(
+    	"NacTag[AllowUsermacOverride=%v, CreatedTime=%v, EgressVlanNames=%v, GbpTag=%v, Id=%v, Match=%v, MatchAll=%v, ModifiedTime=%v, Name=%v, OrgId=%v, RadiusAttrs=%v, RadiusGroup=%v, RadiusVendorAttrs=%v, SessionTimeout=%v, Type=%v, UsernameAttr=%v, Values=%v, Vlan=%v, AdditionalProperties=%v]",
+    	n.AllowUsermacOverride, n.CreatedTime, n.EgressVlanNames, n.GbpTag, n.Id, n.Match, n.MatchAll, n.ModifiedTime, n.Name, n.OrgId, n.RadiusAttrs, n.RadiusGroup, n.RadiusVendorAttrs, n.SessionTimeout, n.Type, n.UsernameAttr, n.Values, n.Vlan, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacTag.

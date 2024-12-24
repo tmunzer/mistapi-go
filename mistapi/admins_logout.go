@@ -28,6 +28,7 @@ func (a *AdminsLogout) Logout(ctx context.Context) (
     models.ApiResponse[models.ResponseLogout],
     error) {
     req := a.prepareRequest(ctx, "POST", "/api/v1/logout")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

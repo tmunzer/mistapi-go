@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -10,6 +11,14 @@ type OtherDeviceUpdate struct {
     DeviceMac            *string                `json:"device_mac,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OtherDeviceUpdate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OtherDeviceUpdate) String() string {
+    return fmt.Sprintf(
+    	"OtherDeviceUpdate[DeviceMac=%v, SiteId=%v, AdditionalProperties=%v]",
+    	o.DeviceMac, o.SiteId, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OtherDeviceUpdate.

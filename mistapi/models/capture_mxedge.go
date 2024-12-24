@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -27,6 +28,14 @@ type CaptureMxedge struct {
     // if `format`==`tzsp`. Port on remote host for receiving the captured packets
     TzspPort             *int                            `json:"tzsp_port,omitempty"`
     AdditionalProperties map[string]interface{}          `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CaptureMxedge,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CaptureMxedge) String() string {
+    return fmt.Sprintf(
+    	"CaptureMxedge[Duration=%v, Format=%v, MaxPktLen=%v, Mxedges=%v, NumPackets=%v, Type=%v, TzspHost=%v, TzspPort=%v, AdditionalProperties=%v]",
+    	c.Duration, c.Format, c.MaxPktLen, c.Mxedges, c.NumPackets, c.Type, c.TzspHost, c.TzspPort, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureMxedge.

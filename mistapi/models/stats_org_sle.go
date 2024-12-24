@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type StatsOrgSle struct {
     Path                 string                  `json:"path"`
     UserMinutes          *StatsOrgSleUserMinutes `json:"user_minutes,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsOrgSle,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsOrgSle) String() string {
+    return fmt.Sprintf(
+    	"StatsOrgSle[Path=%v, UserMinutes=%v, AdditionalProperties=%v]",
+    	s.Path, s.UserMinutes, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsOrgSle.

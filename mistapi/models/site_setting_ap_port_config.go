@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingApPortConfig represents a SiteSettingApPortConfig struct.
@@ -9,6 +10,14 @@ type SiteSettingApPortConfig struct {
     // Property key is the AP model (e.g "AP32")
     ModelSpecific        map[string]ApPortConfig `json:"model_specific,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingApPortConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingApPortConfig) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingApPortConfig[ModelSpecific=%v, AdditionalProperties=%v]",
+    	s.ModelSpecific, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingApPortConfig.

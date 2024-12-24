@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -16,6 +17,14 @@ type StatsApL2tpStat struct {
     // WxlanTunnel ID
     WxtunnelId           Optional[uuid.UUID]      `json:"wxtunnel_id"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApL2tpStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApL2tpStat) String() string {
+    return fmt.Sprintf(
+    	"StatsApL2tpStat[Sessions=%v, State=%v, Uptime=%v, WxtunnelId=%v, AdditionalProperties=%v]",
+    	s.Sessions, s.State, s.Uptime, s.WxtunnelId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApL2tpStat.

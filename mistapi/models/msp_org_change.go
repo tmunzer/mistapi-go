@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type MspOrgChange struct {
     // list of org_id
     OrgIds               []string                  `json:"org_ids"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MspOrgChange,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MspOrgChange) String() string {
+    return fmt.Sprintf(
+    	"MspOrgChange[Op=%v, OrgIds=%v, AdditionalProperties=%v]",
+    	m.Op, m.OrgIds, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MspOrgChange.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingPaloaltoNetworks represents a SiteSettingPaloaltoNetworks struct.
@@ -9,6 +10,14 @@ type SiteSettingPaloaltoNetworks struct {
     Gateways             []SiteSettingPaloaltoNetworkGateway `json:"gateways,omitempty"`
     SendMistNacUserInfo  *bool                               `json:"send_mist_nac_user_info,omitempty"`
     AdditionalProperties map[string]interface{}              `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingPaloaltoNetworks,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingPaloaltoNetworks) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingPaloaltoNetworks[Gateways=%v, SendMistNacUserInfo=%v, AdditionalProperties=%v]",
+    	s.Gateways, s.SendMistNacUserInfo, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingPaloaltoNetworks.

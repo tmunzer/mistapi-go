@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -22,6 +23,14 @@ type LicenseUsageSite struct {
     // eligibility for the WAN SLE
     WvnaEligible         bool                   `json:"wvna_eligible"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for LicenseUsageSite,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (l LicenseUsageSite) String() string {
+    return fmt.Sprintf(
+    	"LicenseUsageSite[OrgEntitled=%v, SvnaEnabled=%v, TrialEnabled=%v, Usages=%v, VnaEligible=%v, VnaUi=%v, WvnaEligible=%v, AdditionalProperties=%v]",
+    	l.OrgEntitled, l.SvnaEnabled, l.TrialEnabled, l.Usages, l.VnaEligible, l.VnaUi, l.WvnaEligible, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for LicenseUsageSite.

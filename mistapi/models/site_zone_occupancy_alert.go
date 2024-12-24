@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteZoneOccupancyAlert represents a SiteZoneOccupancyAlert struct.
@@ -14,6 +15,14 @@ type SiteZoneOccupancyAlert struct {
     // sending zone-occupancy-alert webhook message only if a zone stays non-compliant (i.e. actual occupancy > occupancy_limit) for a minimum duration specified in the threshold, in minutes
     Threshold            *int                   `json:"threshold,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteZoneOccupancyAlert,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteZoneOccupancyAlert) String() string {
+    return fmt.Sprintf(
+    	"SiteZoneOccupancyAlert[EmailNotifiers=%v, Enabled=%v, Threshold=%v, AdditionalProperties=%v]",
+    	s.EmailNotifiers, s.Enabled, s.Threshold, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteZoneOccupancyAlert.

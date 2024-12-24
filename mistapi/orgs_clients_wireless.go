@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -46,11 +45,8 @@ func (o *OrgsClientsWireless) CountOrgWirelessClients(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/clients/count", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/count")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -146,11 +142,8 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
     duration *string) (
     models.ApiResponse[models.ResponseEventsSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/clients/events/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/events/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -244,11 +237,8 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
     duration *string) (
     models.ApiResponse[models.ResponseClientSearch],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/clients/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -358,11 +348,8 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
     page *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/clients/sessions/count", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/sessions/count")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -435,7 +422,7 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
 }
 
 // SearchOrgWirelessClientSessions takes context, orgId, ap, band, clientFamily, clientManufacture, clientModel, clientUsername, clientOs, ssid, wlanId, pskId, pskName, limit, start, end, duration as parameters and
-// returns an models.ApiResponse with models.SearchWirelssClientSession data and
+// returns an models.ApiResponse with models.SearchWirelessClientSession data and
 // an error if there was an issue with the request or response.
 // Search Org Wireless Clients Sessions
 func (o *OrgsClientsWireless) SearchOrgWirelessClientSessions(
@@ -456,13 +443,10 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientSessions(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.SearchWirelssClientSession],
+    models.ApiResponse[models.SearchWirelessClientSession],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/clients/sessions/search", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/sessions/search")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -527,12 +511,12 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientSessions(
         req.QueryParam("duration", *duration)
     }
     
-    var result models.SearchWirelssClientSession
+    var result models.SearchWirelessClientSession
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.SearchWirelssClientSession](decoder)
+    result, err = utilities.DecodeResults[models.SearchWirelessClientSession](decoder)
     return models.NewApiResponse(result, resp), err
 }

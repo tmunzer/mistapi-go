@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type PcapBucket struct {
     Bucket               string                 `json:"bucket"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PcapBucket,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PcapBucket) String() string {
+    return fmt.Sprintf(
+    	"PcapBucket[Bucket=%v, AdditionalProperties=%v]",
+    	p.Bucket, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PcapBucket.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -33,11 +32,8 @@ func (s *SitesMapsAutoZone) DeleteSiteMapAutoZone(
     siteId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/auto_zones", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/maps/%v/auto_zones")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -74,11 +70,8 @@ func (s *SitesMapsAutoZone) GetSiteMapAutoZoneStatus(
     siteId uuid.UUID) (
     models.ApiResponse[models.ResponseAutoZone],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/auto_zones", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/maps/%v/auto_zones")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -118,11 +111,8 @@ func (s *SitesMapsAutoZone) StartSiteMapAutoZone(
     siteId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/auto_zones", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/maps/%v/auto_zones")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

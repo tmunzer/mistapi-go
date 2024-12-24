@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // WlanVlanIds represents a WlanVlanIds struct.
@@ -13,12 +13,10 @@ type WlanVlanIds struct {
     isArrayOfVlanIdWithVariable2 bool
 }
 
-// String converts the WlanVlanIds object to a string representation.
+// String implements the fmt.Stringer interface for WlanVlanIds,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WlanVlanIds) String() string {
-    if bytes, err := json.Marshal(w.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", w.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanVlanIds.

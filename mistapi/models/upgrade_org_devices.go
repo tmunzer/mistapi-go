@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -45,6 +46,14 @@ type UpgradeOrgDevices struct {
     // specific version / stable
     Version                 *string                          `json:"version,omitempty"`
     AdditionalProperties    map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UpgradeOrgDevices,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UpgradeOrgDevices) String() string {
+    return fmt.Sprintf(
+    	"UpgradeOrgDevices[CanaryPhases=%v, EnableP2p=%v, Force=%v, MaxFailurePercentage=%v, MaxFailures=%v, Models=%v, P2pClusterSize=%v, P2pParallelism=%v, Reboot=%v, RebootAt=%v, RrmFirstBatchPercentage=%v, RrmMaxBatchPercentage=%v, RrmMeshUpgrade=%v, RrmNodeOrder=%v, RrmSlowRamp=%v, SiteIds=%v, Snapshot=%v, StartTime=%v, Strategy=%v, Version=%v, AdditionalProperties=%v]",
+    	u.CanaryPhases, u.EnableP2p, u.Force, u.MaxFailurePercentage, u.MaxFailures, u.Models, u.P2pClusterSize, u.P2pParallelism, u.Reboot, u.RebootAt, u.RrmFirstBatchPercentage, u.RrmMaxBatchPercentage, u.RrmMeshUpgrade, u.RrmNodeOrder, u.RrmSlowRamp, u.SiteIds, u.Snapshot, u.StartTime, u.Strategy, u.Version, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UpgradeOrgDevices.

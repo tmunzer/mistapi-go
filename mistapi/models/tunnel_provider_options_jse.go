@@ -2,14 +2,24 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // TunnelProviderOptionsJse represents a TunnelProviderOptionsJse struct.
 // for jse-ipsec, this allow provisioning of adequate resource on JSE. Make sure adequate licenses are added
 type TunnelProviderOptionsJse struct {
-    Name                 *string                `json:"name,omitempty"`
     NumUsers             *int                   `json:"num_users,omitempty"`
+    // JSE Organization name. The list of available organizations can be retrieved with the [Get Org JSE Info]($e/Orgs%20JSE/getOrgJseInfo) API Call
+    OrgName              *string                `json:"org_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TunnelProviderOptionsJse,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TunnelProviderOptionsJse) String() string {
+    return fmt.Sprintf(
+    	"TunnelProviderOptionsJse[NumUsers=%v, OrgName=%v, AdditionalProperties=%v]",
+    	t.NumUsers, t.OrgName, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelProviderOptionsJse.
@@ -18,7 +28,7 @@ func (t TunnelProviderOptionsJse) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(t.AdditionalProperties,
-        "name", "num_users"); err != nil {
+        "num_users", "org_name"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(t.toMap())
@@ -28,11 +38,11 @@ func (t TunnelProviderOptionsJse) MarshalJSON() (
 func (t TunnelProviderOptionsJse) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, t.AdditionalProperties)
-    if t.Name != nil {
-        structMap["name"] = t.Name
-    }
     if t.NumUsers != nil {
         structMap["num_users"] = t.NumUsers
+    }
+    if t.OrgName != nil {
+        structMap["org_name"] = t.OrgName
     }
     return structMap
 }
@@ -45,19 +55,19 @@ func (t *TunnelProviderOptionsJse) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name", "num_users")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "num_users", "org_name")
     if err != nil {
     	return err
     }
     t.AdditionalProperties = additionalProperties
     
-    t.Name = temp.Name
     t.NumUsers = temp.NumUsers
+    t.OrgName = temp.OrgName
     return nil
 }
 
 // tempTunnelProviderOptionsJse is a temporary struct used for validating the fields of TunnelProviderOptionsJse.
 type tempTunnelProviderOptionsJse  struct {
-    Name     *string `json:"name,omitempty"`
     NumUsers *int    `json:"num_users,omitempty"`
+    OrgName  *string `json:"org_name,omitempty"`
 }

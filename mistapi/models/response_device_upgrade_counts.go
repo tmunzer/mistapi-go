@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseDeviceUpgradeCounts represents a ResponseDeviceUpgradeCounts struct.
@@ -25,6 +26,14 @@ type ResponseDeviceUpgradeCounts struct {
     // count of devices which have upgraded successfully
     Upgraded             []string               `json:"upgraded,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseDeviceUpgradeCounts,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseDeviceUpgradeCounts) String() string {
+    return fmt.Sprintf(
+    	"ResponseDeviceUpgradeCounts[DownloadRequested=%v, Downloaded=%v, Failed=%v, RebootInProgress=%v, Rebooted=%v, Scheduled=%v, Skipped=%v, Total=%v, Upgraded=%v, AdditionalProperties=%v]",
+    	r.DownloadRequested, r.Downloaded, r.Failed, r.RebootInProgress, r.Rebooted, r.Scheduled, r.Skipped, r.Total, r.Upgraded, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceUpgradeCounts.

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseSwitchMetricsVersionComplianceDetails represents a ResponseSwitchMetricsVersionComplianceDetails struct.
 type ResponseSwitchMetricsVersionComplianceDetails struct {
     MajorVersions        []SwitchMetricsComplianceMajorVersion `json:"major_versions,omitempty"`
     AdditionalProperties map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSwitchMetricsVersionComplianceDetails,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSwitchMetricsVersionComplianceDetails) String() string {
+    return fmt.Sprintf(
+    	"ResponseSwitchMetricsVersionComplianceDetails[MajorVersions=%v, AdditionalProperties=%v]",
+    	r.MajorVersions, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSwitchMetricsVersionComplianceDetails.

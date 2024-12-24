@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApMesh represents a ApMesh struct.
@@ -14,6 +15,14 @@ type ApMesh struct {
     // enum: `base`, `remote`
     Role                 *ApMeshRoleEnum        `json:"role,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApMesh,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApMesh) String() string {
+    return fmt.Sprintf(
+    	"ApMesh[Enabled=%v, Group=%v, Role=%v, AdditionalProperties=%v]",
+    	a.Enabled, a.Group, a.Role, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApMesh.

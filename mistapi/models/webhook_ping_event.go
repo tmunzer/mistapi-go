@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -15,6 +16,14 @@ type WebhookPingEvent struct {
     SiteId               uuid.UUID              `json:"site_id"`
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookPingEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookPingEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookPingEvent[Id=%v, Name=%v, SiteId=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	w.Id, w.Name, w.SiteId, w.Timestamp, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookPingEvent.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ApClientBridgeAuth represents a ApClientBridgeAuth struct.
@@ -10,6 +11,14 @@ type ApClientBridgeAuth struct {
     // wpa2-AES/CCMPp is assumed when `type`==`psk`. enum: `open`, `psk`
     Type                 *ApClientBridgeAuthTypeEnum `json:"type,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApClientBridgeAuth,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApClientBridgeAuth) String() string {
+    return fmt.Sprintf(
+    	"ApClientBridgeAuth[Psk=%v, Type=%v, AdditionalProperties=%v]",
+    	a.Psk, a.Type, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApClientBridgeAuth.

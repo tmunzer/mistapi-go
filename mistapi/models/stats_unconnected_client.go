@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -27,6 +28,14 @@ type StatsUnconnectedClient struct {
     // y (in pixels) of user location on the map (if known)
     Y                    float64                `json:"y"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsUnconnectedClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsUnconnectedClient) String() string {
+    return fmt.Sprintf(
+    	"StatsUnconnectedClient[ApMac=%v, LastSeen=%v, Mac=%v, Manufacture=%v, MapId=%v, Rssi=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	s.ApMac, s.LastSeen, s.Mac, s.Manufacture, s.MapId, s.Rssi, s.X, s.Y, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsUnconnectedClient.

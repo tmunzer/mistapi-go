@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApEnvStat represents a StatsApEnvStat struct.
@@ -20,6 +21,14 @@ type StatsApEnvStat struct {
     Pressure             Optional[float64]      `json:"pressure"`
     VcoreVoltage         Optional[int]          `json:"vcore_voltage"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApEnvStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApEnvStat) String() string {
+    return fmt.Sprintf(
+    	"StatsApEnvStat[AccelX=%v, AccelY=%v, AccelZ=%v, AmbientTemp=%v, Attitude=%v, CpuTemp=%v, Humidity=%v, MagneX=%v, MagneY=%v, MagneZ=%v, Pressure=%v, VcoreVoltage=%v, AdditionalProperties=%v]",
+    	s.AccelX, s.AccelY, s.AccelZ, s.AmbientTemp, s.Attitude, s.CpuTemp, s.Humidity, s.MagneX, s.MagneY, s.MagneZ, s.Pressure, s.VcoreVoltage, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApEnvStat.

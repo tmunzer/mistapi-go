@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanQos represents a WlanQos struct.
@@ -11,6 +12,14 @@ type WlanQos struct {
     // whether to overwrite QoS
     Overwrite            *bool                  `json:"overwrite,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanQos,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanQos) String() string {
+    return fmt.Sprintf(
+    	"WlanQos[Class=%v, Overwrite=%v, AdditionalProperties=%v]",
+    	w.Class, w.Overwrite, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanQos.

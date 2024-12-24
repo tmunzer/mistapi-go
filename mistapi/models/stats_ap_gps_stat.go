@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApGpsStat represents a StatsApGpsStat struct.
@@ -21,6 +22,14 @@ type StatsApGpsStat struct {
     // The unix timestamp when the GPS data was recorded.
     Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApGpsStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApGpsStat) String() string {
+    return fmt.Sprintf(
+    	"StatsApGpsStat[Accuracy=%v, Altitude=%v, Latitude=%v, Longitude=%v, Src=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	s.Accuracy, s.Altitude, s.Latitude, s.Longitude, s.Src, s.Timestamp, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApGpsStat.

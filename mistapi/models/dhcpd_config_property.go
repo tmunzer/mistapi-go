@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // DhcpdConfigProperty represents a DhcpdConfigProperty struct.
@@ -42,6 +43,14 @@ type DhcpdConfigProperty struct {
     // * sub option code: 1-255, sub-option code'
     VendorEncapsulated   map[string]DhcpdConfigVendorOption `json:"vendor_encapsulated,omitempty"`
     AdditionalProperties map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DhcpdConfigProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DhcpdConfigProperty) String() string {
+    return fmt.Sprintf(
+    	"DhcpdConfigProperty[DnsServers=%v, DnsSuffix=%v, FixedBindings=%v, Gateway=%v, IpEnd=%v, IpEnd6=%v, IpStart=%v, IpStart6=%v, LeaseTime=%v, Options=%v, ServerIdOverride=%v, Servers=%v, Servers6=%v, Type=%v, Type6=%v, VendorEncapsulated=%v, AdditionalProperties=%v]",
+    	d.DnsServers, d.DnsSuffix, d.FixedBindings, d.Gateway, d.IpEnd, d.IpEnd6, d.IpStart, d.IpStart6, d.LeaseTime, d.Options, d.ServerIdOverride, d.Servers, d.Servers6, d.Type, d.Type6, d.VendorEncapsulated, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpdConfigProperty.

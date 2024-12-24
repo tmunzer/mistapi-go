@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -40,6 +41,14 @@ type StatsAsset struct {
     // only send this for individual asset stat
     Zones                 []AssetZone            `json:"zones,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsAsset,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsAsset) String() string {
+    return fmt.Sprintf(
+    	"StatsAsset[BatteryVoltage=%v, Beam=%v, DeviceName=%v, Duration=%v, EddystoneUidInstance=%v, EddystoneUidNamespace=%v, EddystoneUrlUrl=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, LastSeen=%v, Mac=%v, MapId=%v, Name=%v, Rssi=%v, Rssizones=%v, Temperatur=%v, X=%v, Y=%v, Zones=%v, AdditionalProperties=%v]",
+    	s.BatteryVoltage, s.Beam, s.DeviceName, s.Duration, s.EddystoneUidInstance, s.EddystoneUidNamespace, s.EddystoneUrlUrl, s.IbeaconMajor, s.IbeaconMinor, s.IbeaconUuid, s.LastSeen, s.Mac, s.MapId, s.Name, s.Rssi, s.Rssizones, s.Temperatur, s.X, s.Y, s.Zones, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsAsset.

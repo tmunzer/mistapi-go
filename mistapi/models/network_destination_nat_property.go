@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NetworkDestinationNatProperty represents a NetworkDestinationNatProperty struct.
@@ -12,6 +13,14 @@ type NetworkDestinationNatProperty struct {
     // If not set, we configure the nat policies against all WAN ports for simplicity
     WanName              *string                `json:"wan_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NetworkDestinationNatProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NetworkDestinationNatProperty) String() string {
+    return fmt.Sprintf(
+    	"NetworkDestinationNatProperty[InternalIp=%v, Name=%v, Port=%v, WanName=%v, AdditionalProperties=%v]",
+    	n.InternalIp, n.Name, n.Port, n.WanName, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkDestinationNatProperty.

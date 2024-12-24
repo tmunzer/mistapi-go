@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchRadius represents a SwitchRadius struct.
@@ -12,6 +13,14 @@ type SwitchRadius struct {
     RadiusConfig         *SwitchRadiusConfig    `json:"radius_config,omitempty"`
     UseDifferentRadius   *string                `json:"use_different_radius,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchRadius,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchRadius) String() string {
+    return fmt.Sprintf(
+    	"SwitchRadius[Enabled=%v, RadiusConfig=%v, UseDifferentRadius=%v, AdditionalProperties=%v]",
+    	s.Enabled, s.RadiusConfig, s.UseDifferentRadius, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchRadius.

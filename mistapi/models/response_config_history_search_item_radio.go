@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type ResponseConfigHistorySearchItemRadio struct {
     Band                 string                 `json:"band"`
     Channel              int                    `json:"channel"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseConfigHistorySearchItemRadio,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseConfigHistorySearchItemRadio) String() string {
+    return fmt.Sprintf(
+    	"ResponseConfigHistorySearchItemRadio[Band=%v, Channel=%v, AdditionalProperties=%v]",
+    	r.Band, r.Channel, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseConfigHistorySearchItemRadio.

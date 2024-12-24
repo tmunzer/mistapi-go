@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -25,6 +26,14 @@ type ResponsePcapSearchItem struct {
     Type                 string                                       `json:"type"`
     Url                  string                                       `json:"url"`
     AdditionalProperties map[string]interface{}                       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponsePcapSearchItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponsePcapSearchItem) String() string {
+    return fmt.Sprintf(
+    	"ResponsePcapSearchItem[ApMacs=%v, Aps=%v, Duration=%v, Format=%v, Id=%v, MaxNumPackets=%v, OrgId=%v, PcapAps=%v, PcapUrl=%v, SiteId=%v, TerminationReason=%v, Timestamp=%v, Type=%v, Url=%v, AdditionalProperties=%v]",
+    	r.ApMacs, r.Aps, r.Duration, r.Format, r.Id, r.MaxNumPackets, r.OrgId, r.PcapAps, r.PcapUrl, r.SiteId, r.TerminationReason, r.Timestamp, r.Type, r.Url, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapSearchItem.

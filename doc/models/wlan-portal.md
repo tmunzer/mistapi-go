@@ -26,7 +26,7 @@ portal wlan settings
 | `AzureExpire` | `models.Optional[int]` | Optional | interval for which guest remains authorized using azure auth (in minutes), if not provided, uses expire` |
 | `AzureTenantId` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`. Azure active directory tenant id. |
 | `BroadnetPassword` | `*string` | Optional | Required if `sms_provider`==`broadnet` |
-| `BroadnetSid` | `*string` | Optional | Required if `sms_provider`==`broadnet`<br>**Default**: `"MIST"` |
+| `BroadnetSid` | `*string` | Optional | Required if `sms_provider`==`broadnet` |
 | `BroadnetUserId` | `*string` | Optional | Required if `sms_provider`==`broadnet` |
 | `BypassWhenCloudDown` | `*bool` | Optional | whether to bypass the guest portal when cloud not reachable (and apply the default policies)<br>**Default**: `false` |
 | `ClickatellApiKey` | `*string` | Optional | Required if `sms_provider`==`clickatell` |

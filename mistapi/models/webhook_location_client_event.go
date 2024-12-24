@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -19,6 +20,14 @@ type WebhookLocationClientEvent struct {
     // y, in meter
     Y                      *float64                      `json:"y,omitempty"`
     AdditionalProperties   map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookLocationClientEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookLocationClientEvent) String() string {
+    return fmt.Sprintf(
+    	"WebhookLocationClientEvent[Mac=%v, MapId=%v, SiteId=%v, Timestamp=%v, Type=%v, WifiBeaconExtendedInfo=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	w.Mac, w.MapId, w.SiteId, w.Timestamp, w.Type, w.WifiBeaconExtendedInfo, w.X, w.Y, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookLocationClientEvent.

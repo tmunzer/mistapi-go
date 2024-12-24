@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayTrafficShaping represents a GatewayTrafficShaping struct.
@@ -11,6 +12,14 @@ type GatewayTrafficShaping struct {
     ClassPercentages     []int                  `json:"class_percentages,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayTrafficShaping,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayTrafficShaping) String() string {
+    return fmt.Sprintf(
+    	"GatewayTrafficShaping[ClassPercentages=%v, Enabled=%v, AdditionalProperties=%v]",
+    	g.ClassPercentages, g.Enabled, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayTrafficShaping.

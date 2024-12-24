@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -25,6 +26,14 @@ type Avprofile struct {
     SiteId               *uuid.UUID                   `json:"site_id,omitempty"`
     UrlWhitelist         []string                     `json:"url_whitelist,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Avprofile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a Avprofile) String() string {
+    return fmt.Sprintf(
+    	"Avprofile[CreatedTime=%v, FallbackAction=%v, Id=%v, MexFilesize=%v, MimeWhitelist=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Protocols=%v, SiteId=%v, UrlWhitelist=%v, AdditionalProperties=%v]",
+    	a.CreatedTime, a.FallbackAction, a.Id, a.MexFilesize, a.MimeWhitelist, a.ModifiedTime, a.Name, a.OrgId, a.Protocols, a.SiteId, a.UrlWhitelist, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Avprofile.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SecintelProfileProfile represents a SecintelProfileProfile struct.
@@ -11,6 +12,14 @@ type SecintelProfileProfile struct {
     // enum: `CC`, `IH` (Infected Host), `DNS`
     Category             *SecintelProfileProfileCategoryEnum `json:"category,omitempty"`
     AdditionalProperties map[string]interface{}              `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SecintelProfileProfile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SecintelProfileProfile) String() string {
+    return fmt.Sprintf(
+    	"SecintelProfileProfile[Action=%v, Category=%v, AdditionalProperties=%v]",
+    	s.Action, s.Category, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SecintelProfileProfile.

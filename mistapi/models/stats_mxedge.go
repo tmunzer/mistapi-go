@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -54,6 +55,14 @@ type StatsMxedge struct {
     // Virtualization environment
     VirtualizationType   *string                           `json:"virtualization_type,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxedge,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxedge) String() string {
+    return fmt.Sprintf(
+    	"StatsMxedge[CpuStat=%v, CreatedTime=%v, FipsEnabled=%v, ForSite=%v, Fwupdate=%v, Id=%v, IdracVersion=%v, IpStat=%v, LagStat=%v, LastSeen=%v, Mac=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, MxagentRegistered=%v, MxclusterId=%v, Name=%v, NumTunnels=%v, OobIpConfig=%v, OobIpStat=%v, OrgId=%v, PortStat=%v, Serial=%v, ServiceStat=%v, Services=%v, SiteId=%v, Status=%v, TuntermIpConfig=%v, TuntermPortConfig=%v, TuntermRegistered=%v, TuntermStat=%v, Uptime=%v, VirtualizationType=%v, AdditionalProperties=%v]",
+    	s.CpuStat, s.CreatedTime, s.FipsEnabled, s.ForSite, s.Fwupdate, s.Id, s.IdracVersion, s.IpStat, s.LagStat, s.LastSeen, s.Mac, s.MemoryStat, s.Model, s.ModifiedTime, s.MxagentRegistered, s.MxclusterId, s.Name, s.NumTunnels, s.OobIpConfig, s.OobIpStat, s.OrgId, s.PortStat, s.Serial, s.ServiceStat, s.Services, s.SiteId, s.Status, s.TuntermIpConfig, s.TuntermPortConfig, s.TuntermRegistered, s.TuntermStat, s.Uptime, s.VirtualizationType, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedge.

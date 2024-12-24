@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // ResponseOrgSiteSle represents a ResponseOrgSiteSle struct.
@@ -14,12 +14,10 @@ type ResponseOrgSiteSle struct {
     isOrgSiteWanWifi   bool
 }
 
-// String converts the ResponseOrgSiteSle object to a string representation.
+// String implements the fmt.Stringer interface for ResponseOrgSiteSle,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseOrgSiteSle) String() string {
-    if bytes, err := json.Marshal(r.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", r.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseOrgSiteSle.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -26,6 +27,14 @@ type Asset struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     TagId                *uuid.UUID             `json:"tag_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Asset,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a Asset) String() string {
+    return fmt.Sprintf(
+    	"Asset[CreatedTime=%v, ForSite=%v, Id=%v, Mac=%v, MapId=%v, ModifiedTime=%v, Name=%v, OrgId=%v, SiteId=%v, TagId=%v, AdditionalProperties=%v]",
+    	a.CreatedTime, a.ForSite, a.Id, a.Mac, a.MapId, a.ModifiedTime, a.Name, a.OrgId, a.SiteId, a.TagId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Asset.

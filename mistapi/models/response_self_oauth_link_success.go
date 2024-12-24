@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -13,6 +14,14 @@ type ResponseSelfOauthLinkSuccess struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   uuid.UUID              `json:"id"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSelfOauthLinkSuccess,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSelfOauthLinkSuccess) String() string {
+    return fmt.Sprintf(
+    	"ResponseSelfOauthLinkSuccess[Action=%v, Id=%v, AdditionalProperties=%v]",
+    	r.Action, r.Id, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSelfOauthLinkSuccess.

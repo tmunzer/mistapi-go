@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingAutoPlacement represents a SiteSettingAutoPlacement struct.
@@ -11,6 +12,14 @@ type SiteSettingAutoPlacement struct {
     X                    *float64               `json:"x,omitempty"`
     Y                    *float64               `json:"y,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingAutoPlacement,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingAutoPlacement) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingAutoPlacement[Orientation=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	s.Orientation, s.X, s.Y, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingAutoPlacement.

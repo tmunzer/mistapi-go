@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VrfExtraRoute represents a VrfExtraRoute struct.
@@ -9,6 +10,14 @@ type VrfExtraRoute struct {
     // Next-hop address
     Via                  *string                `json:"via,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VrfExtraRoute,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VrfExtraRoute) String() string {
+    return fmt.Sprintf(
+    	"VrfExtraRoute[Via=%v, AdditionalProperties=%v]",
+    	v.Via, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VrfExtraRoute.

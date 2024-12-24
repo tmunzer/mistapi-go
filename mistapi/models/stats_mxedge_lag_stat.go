@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsMxedgeLagStat represents a StatsMxedgeLagStat struct.
@@ -9,6 +10,14 @@ type StatsMxedgeLagStat struct {
     // list of ports active on the LAG defined by the LACP
     ActivePorts          []string               `json:"active_ports,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsMxedgeLagStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsMxedgeLagStat) String() string {
+    return fmt.Sprintf(
+    	"StatsMxedgeLagStat[ActivePorts=%v, AdditionalProperties=%v]",
+    	s.ActivePorts, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgeLagStat.

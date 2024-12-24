@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -33,6 +34,14 @@ type EvpnTopologySwitch struct {
     SuggestedUplinks     []string                   `json:"suggested_uplinks,omitempty"`
     Uplinks              []string                   `json:"uplinks,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EvpnTopologySwitch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EvpnTopologySwitch) String() string {
+    return fmt.Sprintf(
+    	"EvpnTopologySwitch[Config=%v, DeviceprofileId=%v, DownlinkIps=%v, Downlinks=%v, Esilaglinks=%v, EvpnId=%v, Mac=%v, Model=%v, Pod=%v, Pods=%v, Role=%v, RouterId=%v, SiteId=%v, SuggestedDownlinks=%v, SuggestedEsilaglinks=%v, SuggestedUplinks=%v, Uplinks=%v, AdditionalProperties=%v]",
+    	e.Config, e.DeviceprofileId, e.DownlinkIps, e.Downlinks, e.Esilaglinks, e.EvpnId, e.Mac, e.Model, e.Pod, e.Pods, e.Role, e.RouterId, e.SiteId, e.SuggestedDownlinks, e.SuggestedEsilaglinks, e.SuggestedUplinks, e.Uplinks, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopologySwitch.

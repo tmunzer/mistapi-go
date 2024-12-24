@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (s *SitesMxEdges) ListSiteMxEdges(
     page *int) (
     models.ApiResponse[[]models.Mxedge],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/mxedges", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/mxedges")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -92,11 +88,8 @@ func (s *SitesMxEdges) CountSiteMxEdgeEvents(
     limit *int) (
     models.ApiResponse[models.RepsonseCount],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/mxedges/events/count", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/mxedges/events/count")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -171,11 +164,8 @@ func (s *SitesMxEdges) SearchSiteMistEdgeEvents(
     limit *int) (
     models.ApiResponse[models.ResponseMxedgeEventsSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/mxedges/events/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/mxedges/events/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -242,11 +232,8 @@ func (s *SitesMxEdges) DeleteSiteMxEdge(
     mxedgeId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/mxedges/%v", siteId, mxedgeId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/mxedges/%v")
+    req.AppendTemplateParams(siteId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -283,11 +270,8 @@ func (s *SitesMxEdges) GetSiteMxEdge(
     mxedgeId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/mxedges/%v", siteId, mxedgeId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/mxedges/%v")
+    req.AppendTemplateParams(siteId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -325,11 +309,8 @@ func (s *SitesMxEdges) UpdateSiteMxEdge(
     body *models.Mxedge) (
     models.ApiResponse[models.Mxedge],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/mxedges/%v", siteId, mxedgeId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/mxedges/%v")
+    req.AppendTemplateParams(siteId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -373,11 +354,8 @@ func (s *SitesMxEdges) UploadSiteMxEdgeSupportFiles(
     mxedgeId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/mxedges/%v/support", siteId, mxedgeId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/mxedges/%v/support")
+    req.AppendTemplateParams(siteId, mxedgeId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

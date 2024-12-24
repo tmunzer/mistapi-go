@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsApUsbStat represents a StatsApUsbStat struct.
@@ -12,6 +13,14 @@ type StatsApUsbStat struct {
     Type                 Optional[string]       `json:"type"`
     Up                   Optional[bool]         `json:"up"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApUsbStat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApUsbStat) String() string {
+    return fmt.Sprintf(
+    	"StatsApUsbStat[Channel=%v, Connected=%v, LastActivity=%v, Type=%v, Up=%v, AdditionalProperties=%v]",
+    	s.Channel, s.Connected, s.LastActivity, s.Type, s.Up, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApUsbStat.

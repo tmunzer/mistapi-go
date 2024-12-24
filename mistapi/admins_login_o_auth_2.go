@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -31,11 +30,8 @@ func (a *AdminsLoginOAuth2) UnlinkOauth2Provider(
     provider string) (
     *http.Response,
     error) {
-    req := a.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/login/oauth/%v", provider),
-    )
+    req := a.prepareRequest(ctx, "DELETE", "/api/v1/login/oauth/%v")
+    req.AppendTemplateParams(provider)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -72,11 +68,8 @@ func (a *AdminsLoginOAuth2) GetOauth2AuthorizationUrlForLogin(
     forward *string) (
     models.ApiResponse[models.ResponseLoginOauthUrl],
     error) {
-    req := a.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/login/oauth/%v", provider),
-    )
+    req := a.prepareRequest(ctx, "GET", "/api/v1/login/oauth/%v")
+    req.AppendTemplateParams(provider)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -119,11 +112,8 @@ func (a *AdminsLoginOAuth2) LoginOauth2(
     body *models.CodeString) (
     *http.Response,
     error) {
-    req := a.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/login/oauth/%v", provider),
-    )
+    req := a.prepareRequest(ctx, "POST", "/api/v1/login/oauth/%v")
+    req.AppendTemplateParams(provider)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

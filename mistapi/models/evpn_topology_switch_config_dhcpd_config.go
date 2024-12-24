@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // EvpnTopologySwitchConfigDhcpdConfig represents a EvpnTopologySwitchConfigDhcpdConfig struct.
@@ -9,6 +10,14 @@ type EvpnTopologySwitchConfigDhcpdConfig struct {
     // If DHCPD is enabled on the switch
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EvpnTopologySwitchConfigDhcpdConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EvpnTopologySwitchConfigDhcpdConfig) String() string {
+    return fmt.Sprintf(
+    	"EvpnTopologySwitchConfigDhcpdConfig[Enabled=%v, AdditionalProperties=%v]",
+    	e.Enabled, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopologySwitchConfigDhcpdConfig.

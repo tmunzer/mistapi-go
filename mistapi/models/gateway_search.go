@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -36,6 +37,14 @@ type GatewaySearch struct {
     Uptime               *int                   `json:"uptime,omitempty"`
     Version              *string                `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewaySearch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewaySearch) String() string {
+    return fmt.Sprintf(
+    	"GatewaySearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, Model=%v, Node=%v, Node0Mac=%v, Node1Mac=%v, NumMembers=%v, OrgId=%v, Role=%v, SiteId=%v, T128agentVersion=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
+    	g.Clustered, g.EvpnMissingLinks, g.EvpntopoId, g.ExtIp, g.Hostname, g.Ip, g.LastHostname, g.LastTroubleCode, g.LastTroubleTimestamp, g.Mac, g.Managed, g.Model, g.Node, g.Node0Mac, g.Node1Mac, g.NumMembers, g.OrgId, g.Role, g.SiteId, g.T128agentVersion, g.TimeDrifted, g.Timestamp, g.Type, g.Uptime, g.Version, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewaySearch.

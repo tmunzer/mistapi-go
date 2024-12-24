@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WebhookClientInfo represents a WebhookClientInfo struct.
@@ -10,6 +11,14 @@ type WebhookClientInfo struct {
     // enum: `client-info`
     Topic                *WebhookClientInfoTopicEnum `json:"topic,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookClientInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookClientInfo) String() string {
+    return fmt.Sprintf(
+    	"WebhookClientInfo[Events=%v, Topic=%v, AdditionalProperties=%v]",
+    	w.Events, w.Topic, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookClientInfo.

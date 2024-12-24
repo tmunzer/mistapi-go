@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseMxedgeEventsSearch represents a ResponseMxedgeEventsSearch struct.
@@ -12,6 +13,14 @@ type ResponseMxedgeEventsSearch struct {
     Results              []MxedgeEvent          `json:"results,omitempty"`
     Start                *int                   `json:"start,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseMxedgeEventsSearch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseMxedgeEventsSearch) String() string {
+    return fmt.Sprintf(
+    	"ResponseMxedgeEventsSearch[End=%v, Limit=%v, Page=%v, Results=%v, Start=%v, AdditionalProperties=%v]",
+    	r.End, r.Limit, r.Page, r.Results, r.Start, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMxedgeEventsSearch.

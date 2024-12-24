@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsBouncePort represents a UtilsBouncePort struct.
@@ -9,6 +10,14 @@ type UtilsBouncePort struct {
     // list of ports to bounce
     Ports                []string               `json:"ports,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsBouncePort,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsBouncePort) String() string {
+    return fmt.Sprintf(
+    	"UtilsBouncePort[Ports=%v, AdditionalProperties=%v]",
+    	u.Ports, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsBouncePort.

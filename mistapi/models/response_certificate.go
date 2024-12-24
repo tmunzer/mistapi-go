@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type ResponseCertificate struct {
     Cert                 string                 `json:"cert"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseCertificate,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseCertificate) String() string {
+    return fmt.Sprintf(
+    	"ResponseCertificate[Cert=%v, AdditionalProperties=%v]",
+    	r.Cert, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseCertificate.

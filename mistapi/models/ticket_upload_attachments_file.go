@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // TicketUploadAttachmentsFile represents a TicketUploadAttachmentsFile struct.
@@ -9,6 +10,14 @@ type TicketUploadAttachmentsFile struct {
     // ekahau or ibwave file
     File                 *[]byte                `json:"file,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TicketUploadAttachmentsFile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TicketUploadAttachmentsFile) String() string {
+    return fmt.Sprintf(
+    	"TicketUploadAttachmentsFile[File=%v, AdditionalProperties=%v]",
+    	t.File, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TicketUploadAttachmentsFile.

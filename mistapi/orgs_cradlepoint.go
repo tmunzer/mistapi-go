@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/errors"
@@ -34,8 +33,9 @@ func (o *OrgsCradlepoint) DeleteOrgCradlepointConnection(
     req := o.prepareRequest(
       ctx,
       "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/cradlepoint/setup", orgId),
+      "/api/v1/orgs/%v/setting/cradlepoint/setup",
     )
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -72,11 +72,8 @@ func (o *OrgsCradlepoint) SetupOrgCradlepointConnectionToMist(
     body *models.AccountCradlepointConfig) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/cradlepoint/setup", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/setting/cradlepoint/setup")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -117,11 +114,8 @@ func (o *OrgsCradlepoint) UpdateOrgCradlepointConnectionToMist(
     body *models.AccountCradlepointConfig) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/cradlepoint/setup", orgId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/setting/cradlepoint/setup")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -161,11 +155,8 @@ func (o *OrgsCradlepoint) SyncOrgCradlepointRouters(
     orgId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/setting/cradlepoint/sync", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/setting/cradlepoint/sync")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseAutoPlacementInfo represents a ResponseAutoPlacementInfo struct.
@@ -15,6 +16,14 @@ type ResponseAutoPlacementInfo struct {
     // the status of autoplacement for a given map. enum: `done`, `error`, `inprogress`, `pending`
     Status               *AutoPlacementInfoStatusEnum `json:"status,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseAutoPlacementInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseAutoPlacementInfo) String() string {
+    return fmt.Sprintf(
+    	"ResponseAutoPlacementInfo[EndTime=%v, EstTimeLeft=%v, StartTime=%v, Status=%v, AdditionalProperties=%v]",
+    	r.EndTime, r.EstTimeLeft, r.StartTime, r.Status, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAutoPlacementInfo.

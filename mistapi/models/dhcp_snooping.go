@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // DhcpSnooping represents a DhcpSnooping struct.
@@ -15,6 +16,14 @@ type DhcpSnooping struct {
     // if `all_networks`==`false`, list of network with DHCP snooping enabled
     Networks             []string               `json:"networks,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DhcpSnooping,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DhcpSnooping) String() string {
+    return fmt.Sprintf(
+    	"DhcpSnooping[AllNetworks=%v, EnableArpSpoofCheck=%v, EnableIpSourceGuard=%v, Enabled=%v, Networks=%v, AdditionalProperties=%v]",
+    	d.AllNetworks, d.EnableArpSpoofCheck, d.EnableIpSourceGuard, d.Enabled, d.Networks, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DhcpSnooping.

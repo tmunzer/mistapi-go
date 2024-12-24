@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteOccupancyAnalytics represents a SiteOccupancyAnalytics struct.
@@ -18,6 +19,14 @@ type SiteOccupancyAnalytics struct {
     // indicate whether unconnected WiFi clients should be included in the zone occupancy calculation
     UnconnectedClientsEnabled *bool                  `json:"unconnected_clients_enabled,omitempty"`
     AdditionalProperties      map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteOccupancyAnalytics,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteOccupancyAnalytics) String() string {
+    return fmt.Sprintf(
+    	"SiteOccupancyAnalytics[AssetsEnabled=%v, ClientsEnabled=%v, MinDuration=%v, SdkclientsEnabled=%v, UnconnectedClientsEnabled=%v, AdditionalProperties=%v]",
+    	s.AssetsEnabled, s.ClientsEnabled, s.MinDuration, s.SdkclientsEnabled, s.UnconnectedClientsEnabled, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteOccupancyAnalytics.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseAsyncLicenseDetail represents a ResponseAsyncLicenseDetail struct.
@@ -12,6 +13,14 @@ type ResponseAsyncLicenseDetail struct {
     Status               *string                `json:"status,omitempty"`
     Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseAsyncLicenseDetail,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseAsyncLicenseDetail) String() string {
+    return fmt.Sprintf(
+    	"ResponseAsyncLicenseDetail[Mac=%v, Status=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	r.Mac, r.Status, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAsyncLicenseDetail.

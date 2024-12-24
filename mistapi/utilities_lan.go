@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -33,11 +32,8 @@ func (u *UtilitiesLAN) ReauthOrgDot1xWiredClient(
     clientMac string) (
     models.ApiResponse[models.ResponseWiredCoa],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/wired_clients/%v/coa", orgId, clientMac),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/wired_clients/%v/coa")
+    req.AppendTemplateParams(orgId, clientMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -77,11 +73,8 @@ func (u *UtilitiesLAN) UpgradeSiteDevicesBios(
     body *models.UpgradeBiosMulti) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/upgrade_bios", siteId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/upgrade_bios")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -122,11 +115,8 @@ func (u *UtilitiesLAN) UpgradeSiteDevicesFpga(
     body *models.UpgradeFpgaMulti) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/upgrade_fpga", siteId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/upgrade_fpga")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -186,11 +176,8 @@ func (u *UtilitiesLAN) CableTestFromSwitch(
     body *models.UtilsCableTests) (
     models.ApiResponse[models.WebsocketSession],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/cable_test", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/cable_test")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -238,8 +225,9 @@ func (u *UtilitiesLAN) ClearBpduErrosFromPortsOnSwitch(
     req := u.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_bpdu_error", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/clear_bpdu_error",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -281,11 +269,8 @@ func (u *UtilitiesLAN) ClearAllLearnedMacsFromPortOnSwitch(
     body *models.UtilsClearMacs) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/clear_macs", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/clear_macs")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -326,11 +311,8 @@ func (u *UtilitiesLAN) PollSiteSwitchStats(
     deviceId uuid.UUID) (
     *http.Response,
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/poll_stats", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/poll_stats")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -367,11 +349,8 @@ func (u *UtilitiesLAN) CreateSiteDeviceSnapshot(
     deviceId uuid.UUID) (
     models.ApiResponse[models.ResponseDeviceSnapshot],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/snapshot", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/snapshot")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -412,11 +391,8 @@ func (u *UtilitiesLAN) UpgradeDeviceBios(
     body *models.UpgradeBios) (
     models.ApiResponse[models.ResponseDeviceBiosUpgrade],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/upgrade_bios", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/upgrade_bios")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -461,11 +437,8 @@ func (u *UtilitiesLAN) UpgradeDeviceFPGA(
     body *models.UpgradeFpga) (
     models.ApiResponse[models.ResponseDeviceBiosUpgrade],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/upgrade_fpga", siteId, deviceId),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/upgrade_fpga")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -509,11 +482,8 @@ func (u *UtilitiesLAN) ReauthSiteDot1xWiredClient(
     clientMac string) (
     models.ApiResponse[models.ResponseWiredCoa],
     error) {
-    req := u.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/wired_clients/%v/coa", siteId, clientMac),
-    )
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/wired_clients/%v/coa")
+    req.AppendTemplateParams(siteId, clientMac)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SearchWanUsage represents a SearchWanUsage struct.
 type SearchWanUsage struct {
     Results              []WanUsages            `json:"results,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SearchWanUsage,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SearchWanUsage) String() string {
+    return fmt.Sprintf(
+    	"SearchWanUsage[Results=%v, AdditionalProperties=%v]",
+    	s.Results, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SearchWanUsage.

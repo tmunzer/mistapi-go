@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type AccountOauthConfig struct {
     // Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/
     MaxDailyApiRequests  *int                   `json:"max_daily_api_requests,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountOauthConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountOauthConfig) String() string {
+    return fmt.Sprintf(
+    	"AccountOauthConfig[AccountId=%v, MaxDailyApiRequests=%v, AdditionalProperties=%v]",
+    	a.AccountId, a.MaxDailyApiRequests, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthConfig.

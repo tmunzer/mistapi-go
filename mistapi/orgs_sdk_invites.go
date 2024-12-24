@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -33,11 +32,8 @@ func (o *OrgsSDKInvites) ActivateSdkInvite(
     body *models.DeviceIdString) (
     models.ApiResponse[models.ResponseMobileVerifySecret],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/mobile/verify/%v", secret),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/mobile/verify/%v")
+    req.AppendTemplateParams(secret)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -80,11 +76,8 @@ func (o *OrgsSDKInvites) ListSdkInvites(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.Sdkinvite],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/sdkinvites", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/sdkinvites")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -124,11 +117,8 @@ func (o *OrgsSDKInvites) CreateSdkInvite(
     body *models.Sdkinvite) (
     models.ApiResponse[models.Sdkinvite],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/sdkinvites", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/sdkinvites")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -172,11 +162,8 @@ func (o *OrgsSDKInvites) RevokeSdkInvite(
     sdkinviteId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/sdkinvites/%v", orgId, sdkinviteId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/sdkinvites/%v")
+    req.AppendTemplateParams(orgId, sdkinviteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -213,11 +200,8 @@ func (o *OrgsSDKInvites) GetSdkInvite(
     sdkinviteId uuid.UUID) (
     models.ApiResponse[models.Sdkinvite],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/sdkinvites/%v", orgId, sdkinviteId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/sdkinvites/%v")
+    req.AppendTemplateParams(orgId, sdkinviteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -258,11 +242,8 @@ func (o *OrgsSDKInvites) UpdateSdkInvite(
     body *models.Sdkinvite) (
     models.ApiResponse[models.Sdkinvite],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/sdkinvites/%v", orgId, sdkinviteId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/sdkinvites/%v")
+    req.AppendTemplateParams(orgId, sdkinviteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -307,11 +288,8 @@ func (o *OrgsSDKInvites) SendSdkInviteEmail(
     body *models.EmailString) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/sdkinvites/%v/email", orgId, sdkinviteId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/sdkinvites/%v/email")
+    req.AppendTemplateParams(orgId, sdkinviteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -352,11 +330,8 @@ func (o *OrgsSDKInvites) GetSdkInviteQrCode(
     sdkinviteId uuid.UUID) (
     models.ApiResponse[[]byte],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/sdkinvites/%v/qrcode", orgId, sdkinviteId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/sdkinvites/%v/qrcode")
+    req.AppendTemplateParams(orgId, sdkinviteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -394,11 +369,8 @@ func (o *OrgsSDKInvites) SendSdkInviteSms(
     body *models.SdkInviteSms) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/sdkinvites/%v/sms", orgId, sdkinviteId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/sdkinvites/%v/sms")
+    req.AppendTemplateParams(orgId, sdkinviteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

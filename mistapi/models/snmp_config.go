@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SnmpConfig represents a SnmpConfig struct.
@@ -20,6 +21,14 @@ type SnmpConfig struct {
     V3Config             *Snmpv3Config           `json:"v3_config,omitempty"`
     Views                []SnmpConfigView        `json:"views,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SnmpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SnmpConfig) String() string {
+    return fmt.Sprintf(
+    	"SnmpConfig[ClientList=%v, Contact=%v, Description=%v, Enabled=%v, EngineId=%v, Location=%v, Name=%v, Network=%v, TrapGroups=%v, V2cConfig=%v, V3Config=%v, Views=%v, AdditionalProperties=%v]",
+    	s.ClientList, s.Contact, s.Description, s.Enabled, s.EngineId, s.Location, s.Name, s.Network, s.TrapGroups, s.V2cConfig, s.V3Config, s.Views, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpConfig.

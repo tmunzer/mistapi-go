@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VirtualChassisConfig represents a VirtualChassisConfig struct.
@@ -12,6 +13,14 @@ type VirtualChassisConfig struct {
     // To create the Virtual Chassis in Pre-Provisioned mode
     Preprovisioned       *bool                        `json:"preprovisioned,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VirtualChassisConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VirtualChassisConfig) String() string {
+    return fmt.Sprintf(
+    	"VirtualChassisConfig[Locating=%v, Members=%v, Preprovisioned=%v, AdditionalProperties=%v]",
+    	v.Locating, v.Members, v.Preprovisioned, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VirtualChassisConfig.

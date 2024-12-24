@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AlarmTemplateRule represents a AlarmTemplateRule struct.
@@ -10,6 +11,14 @@ type AlarmTemplateRule struct {
     Delivery             *Delivery              `json:"delivery,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AlarmTemplateRule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AlarmTemplateRule) String() string {
+    return fmt.Sprintf(
+    	"AlarmTemplateRule[Delivery=%v, Enabled=%v, AdditionalProperties=%v]",
+    	a.Delivery, a.Enabled, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AlarmTemplateRule.

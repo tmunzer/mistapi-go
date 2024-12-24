@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -33,6 +34,14 @@ type StatsApBle struct {
     TxResets              Optional[int]          `json:"tx_resets"`
     Uuid                  Optional[uuid.UUID]    `json:"uuid"`
     AdditionalProperties  map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsApBle,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsApBle) String() string {
+    return fmt.Sprintf(
+    	"StatsApBle[BeaconEnabled=%v, BeaconRate=%v, EddystoneUidEnabled=%v, EddystoneUidFreqMsec=%v, EddystoneUidInstance=%v, EddystoneUidNamespace=%v, EddystoneUrlEnabled=%v, EddystoneUrlFreqMsec=%v, EddystoneUrlUrl=%v, IbeaconEnabled=%v, IbeaconFreqMsec=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, Major=%v, Minors=%v, Power=%v, RxBytes=%v, RxPkts=%v, TxBytes=%v, TxPkts=%v, TxResets=%v, Uuid=%v, AdditionalProperties=%v]",
+    	s.BeaconEnabled, s.BeaconRate, s.EddystoneUidEnabled, s.EddystoneUidFreqMsec, s.EddystoneUidInstance, s.EddystoneUidNamespace, s.EddystoneUrlEnabled, s.EddystoneUrlFreqMsec, s.EddystoneUrlUrl, s.IbeaconEnabled, s.IbeaconFreqMsec, s.IbeaconMajor, s.IbeaconMinor, s.IbeaconUuid, s.Major, s.Minors, s.Power, s.RxBytes, s.RxPkts, s.TxBytes, s.TxPkts, s.TxResets, s.Uuid, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApBle.

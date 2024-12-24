@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AclPolicy represents a AclPolicy struct.
@@ -16,6 +17,14 @@ type AclPolicy struct {
     // - for ACL-based policy, `network` is required in either the source or destination so that we know where to attach the policy to
     SrcTags              []string               `json:"src_tags,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AclPolicy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AclPolicy) String() string {
+    return fmt.Sprintf(
+    	"AclPolicy[Actions=%v, Name=%v, SrcTags=%v, AdditionalProperties=%v]",
+    	a.Actions, a.Name, a.SrcTags, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AclPolicy.

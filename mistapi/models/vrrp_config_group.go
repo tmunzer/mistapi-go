@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // VrrpConfigGroup represents a VrrpConfigGroup struct.
 type VrrpConfigGroup struct {
     Priority             *int                   `json:"priority,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for VrrpConfigGroup,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v VrrpConfigGroup) String() string {
+    return fmt.Sprintf(
+    	"VrrpConfigGroup[Priority=%v, AdditionalProperties=%v]",
+    	v.Priority, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VrrpConfigGroup.

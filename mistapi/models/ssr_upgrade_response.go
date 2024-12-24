@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -18,6 +19,14 @@ type SsrUpgradeResponse struct {
     Strategy             string                   `json:"strategy"`
     Versions             map[string]string        `json:"versions"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SsrUpgradeResponse,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SsrUpgradeResponse) String() string {
+    return fmt.Sprintf(
+    	"SsrUpgradeResponse[Channel=%v, Counts=%v, DeviceType=%v, Id=%v, Status=%v, Strategy=%v, Versions=%v, AdditionalProperties=%v]",
+    	s.Channel, s.Counts, s.DeviceType, s.Id, s.Status, s.Strategy, s.Versions, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrUpgradeResponse.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ServiceSpec represents a ServiceSpec struct.
@@ -12,6 +13,14 @@ type ServiceSpec struct {
     // `protocol_number` is between 1-254
     Protocol             *string                `json:"protocol,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ServiceSpec,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s ServiceSpec) String() string {
+    return fmt.Sprintf(
+    	"ServiceSpec[PortRange=%v, Protocol=%v, AdditionalProperties=%v]",
+    	s.PortRange, s.Protocol, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServiceSpec.

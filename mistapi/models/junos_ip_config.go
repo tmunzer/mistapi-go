@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // JunosIpConfig represents a JunosIpConfig struct.
@@ -18,6 +19,14 @@ type JunosIpConfig struct {
     // enum: `dhcp`, `static`
     Type                 *IpTypeEnum            `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for JunosIpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (j JunosIpConfig) String() string {
+    return fmt.Sprintf(
+    	"JunosIpConfig[Dns=%v, DnsSuffix=%v, Gateway=%v, Ip=%v, Netmask=%v, Network=%v, Type=%v, AdditionalProperties=%v]",
+    	j.Dns, j.DnsSuffix, j.Gateway, j.Ip, j.Netmask, j.Network, j.Type, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JunosIpConfig.

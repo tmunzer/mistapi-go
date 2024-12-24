@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // PskPortalSso represents a PskPortalSso struct.
@@ -20,6 +21,14 @@ type PskPortalSso struct {
     // if enabled, the `role` above will be ignored
     UseSsoRoleForPskRole *bool                        `json:"use_sso_role_for_psk_role,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PskPortalSso,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PskPortalSso) String() string {
+    return fmt.Sprintf(
+    	"PskPortalSso[AllowedRoles=%v, IdpCert=%v, IdpSignAlgo=%v, IdpSsoUrl=%v, Issuer=%v, NameidFormat=%v, RoleMapping=%v, UseSsoRoleForPskRole=%v, AdditionalProperties=%v]",
+    	p.AllowedRoles, p.IdpCert, p.IdpSignAlgo, p.IdpSsoUrl, p.Issuer, p.NameidFormat, p.RoleMapping, p.UseSsoRoleForPskRole, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalSso.

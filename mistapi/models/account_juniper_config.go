@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type AccountJuniperConfig struct {
     // customer account user name
     Username             string                 `json:"username"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountJuniperConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountJuniperConfig) String() string {
+    return fmt.Sprintf(
+    	"AccountJuniperConfig[Password=%v, Username=%v, AdditionalProperties=%v]",
+    	a.Password, a.Username, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountJuniperConfig.

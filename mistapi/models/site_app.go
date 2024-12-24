@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type SiteApp struct {
     Key                  string                 `json:"key"`
     Name                 string                 `json:"name"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteApp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteApp) String() string {
+    return fmt.Sprintf(
+    	"SiteApp[Group=%v, Key=%v, Name=%v, AdditionalProperties=%v]",
+    	s.Group, s.Key, s.Name, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteApp.

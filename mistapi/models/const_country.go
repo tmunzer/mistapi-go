@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type ConstCountry struct {
     // country code, ISO 3166-1 numeric
     Numeric              float64                `json:"numeric"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstCountry,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstCountry) String() string {
+    return fmt.Sprintf(
+    	"ConstCountry[Alpha2=%v, Certified=%v, Name=%v, Numeric=%v, AdditionalProperties=%v]",
+    	c.Alpha2, c.Certified, c.Name, c.Numeric, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstCountry.

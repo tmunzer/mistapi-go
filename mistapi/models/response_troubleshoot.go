@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseTroubleshoot represents a ResponseTroubleshoot struct.
@@ -10,6 +11,14 @@ type ResponseTroubleshoot struct {
     Results              []ResponseTroubleshootItem `json:"results,omitempty"`
     Start                *int                       `json:"start,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseTroubleshoot,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseTroubleshoot) String() string {
+    return fmt.Sprintf(
+    	"ResponseTroubleshoot[End=%v, Results=%v, Start=%v, AdditionalProperties=%v]",
+    	r.End, r.Results, r.Start, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseTroubleshoot.

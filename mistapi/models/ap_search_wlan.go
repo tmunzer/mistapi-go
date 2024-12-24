@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -10,6 +11,14 @@ type ApSearchWlan struct {
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Ssid                 *string                `json:"ssid,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApSearchWlan,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApSearchWlan) String() string {
+    return fmt.Sprintf(
+    	"ApSearchWlan[Id=%v, Ssid=%v, AdditionalProperties=%v]",
+    	a.Id, a.Ssid, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApSearchWlan.

@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UiSettingsTileMetric represents a UiSettingsTileMetric struct.
 type UiSettingsTileMetric struct {
     ApiName              *string                `json:"apiName,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UiSettingsTileMetric,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UiSettingsTileMetric) String() string {
+    return fmt.Sprintf(
+    	"UiSettingsTileMetric[ApiName=%v, AdditionalProperties=%v]",
+    	u.ApiName, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UiSettingsTileMetric.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SnmpConfigTrapGroup represents a SnmpConfigTrapGroup struct.
@@ -13,6 +14,14 @@ type SnmpConfigTrapGroup struct {
     // enum: `all`, `v1`, `v2`
     Version              *SnmpConfigTrapVerionEnum `json:"version,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SnmpConfigTrapGroup,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SnmpConfigTrapGroup) String() string {
+    return fmt.Sprintf(
+    	"SnmpConfigTrapGroup[Categories=%v, GroupName=%v, Targets=%v, Version=%v, AdditionalProperties=%v]",
+    	s.Categories, s.GroupName, s.Targets, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpConfigTrapGroup.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -17,6 +18,14 @@ type WlanBonjour struct {
     // Property key is the service name
     Services             map[string]WlanBonjourServiceProperties `json:"services"`
     AdditionalProperties map[string]interface{}                  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanBonjour,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanBonjour) String() string {
+    return fmt.Sprintf(
+    	"WlanBonjour[AdditionalVlanIds=%v, Enabled=%v, Services=%v, AdditionalProperties=%v]",
+    	w.AdditionalVlanIds, w.Enabled, w.Services, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanBonjour.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsDevicesRestart represents a UtilsDevicesRestart struct.
@@ -12,6 +13,14 @@ type UtilsDevicesRestart struct {
     // for other devices: node should not be present
     Node                 *string                `json:"node,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsDevicesRestart,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsDevicesRestart) String() string {
+    return fmt.Sprintf(
+    	"UtilsDevicesRestart[Member=%v, Node=%v, AdditionalProperties=%v]",
+    	u.Member, u.Node, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsDevicesRestart.

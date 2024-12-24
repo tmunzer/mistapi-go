@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -11,6 +12,14 @@ import (
 type ResponseSelfSubscription struct {
     OrgId                uuid.UUID              `json:"org_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSelfSubscription,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSelfSubscription) String() string {
+    return fmt.Sprintf(
+    	"ResponseSelfSubscription[OrgId=%v, AdditionalProperties=%v]",
+    	r.OrgId, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSelfSubscription.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RouteSummaryStats represents a RouteSummaryStats struct.
@@ -11,6 +12,14 @@ type RouteSummaryStats struct {
     RibRoutes                 *int                   `json:"rib_routes,omitempty"`
     TotalRoutes               *int                   `json:"total_routes,omitempty"`
     AdditionalProperties      map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RouteSummaryStats,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RouteSummaryStats) String() string {
+    return fmt.Sprintf(
+    	"RouteSummaryStats[FibRoutes=%v, MaxUnicastRoutesSupported=%v, RibRoutes=%v, TotalRoutes=%v, AdditionalProperties=%v]",
+    	r.FibRoutes, r.MaxUnicastRoutesSupported, r.RibRoutes, r.TotalRoutes, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RouteSummaryStats.

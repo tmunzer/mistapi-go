@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type AclPolicyAction struct {
     Action               *AllowDenyEnum         `json:"action,omitempty"`
     DstTag               string                 `json:"dst_tag"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AclPolicyAction,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AclPolicyAction) String() string {
+    return fmt.Sprintf(
+    	"AclPolicyAction[Action=%v, DstTag=%v, AdditionalProperties=%v]",
+    	a.Action, a.DstTag, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AclPolicyAction.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -23,6 +24,14 @@ type SsoRoleMsp struct {
     Privileges           []PrivilegeMsp         `json:"privileges"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SsoRoleMsp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SsoRoleMsp) String() string {
+    return fmt.Sprintf(
+    	"SsoRoleMsp[CreatedTime=%v, ForSite=%v, Id=%v, ModifiedTime=%v, MspId=%v, Name=%v, OrgId=%v, Privileges=%v, SiteId=%v, AdditionalProperties=%v]",
+    	s.CreatedTime, s.ForSite, s.Id, s.ModifiedTime, s.MspId, s.Name, s.OrgId, s.Privileges, s.SiteId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsoRoleMsp.

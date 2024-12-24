@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingScep represents a OrgSettingScep struct.
 type OrgSettingScep struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingScep,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingScep) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingScep[Enabled=%v, AdditionalProperties=%v]",
+    	o.Enabled, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingScep.

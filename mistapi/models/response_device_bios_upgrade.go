@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseDeviceBiosUpgrade represents a ResponseDeviceBiosUpgrade struct.
@@ -9,6 +10,14 @@ type ResponseDeviceBiosUpgrade struct {
     Status               *string                `json:"status,omitempty"`
     Timestamp            *int                   `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseDeviceBiosUpgrade,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseDeviceBiosUpgrade) String() string {
+    return fmt.Sprintf(
+    	"ResponseDeviceBiosUpgrade[Status=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	r.Status, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceBiosUpgrade.

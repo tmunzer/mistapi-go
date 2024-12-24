@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -155,6 +156,14 @@ type SiteSetting struct {
     // Zone Occupancy alert site settings
     ZoneOccupancyAlert              *SiteZoneOccupancyAlert                `json:"zone_occupancy_alert,omitempty"`
     AdditionalProperties            map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSetting,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSetting) String() string {
+    return fmt.Sprintf(
+    	"SiteSetting[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, Analytic=%v, ApMatching=%v, ApPortConfig=%v, ApUpdownThreshold=%v, AutoPlacement=%v, AutoUpgrade=%v, BlacklistUrl=%v, BleConfig=%v, ConfigAutoRevert=%v, ConfigPushPolicy=%v, CreatedTime=%v, CriticalUrlMonitoring=%v, DeviceUpdownThreshold=%v, DhcpSnooping=%v, DisabledSystemDefinedPortUsages=%v, DnsServers=%v, DnsSuffix=%v, Engagement=%v, EvpnOptions=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Flags=%v, ForSite=%v, Gateway=%v, GatewayAdditionalConfigCmds=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, JuniperSrx=%v, Led=%v, MistNac=%v, ModifiedTime=%v, Mxedge=%v, MxedgeMgmt=%v, Mxtunnels=%v, Networks=%v, NtpServers=%v, Occupancy=%v, OrgId=%v, OspfAreas=%v, PaloaltoNetworks=%v, PersistConfigOnDevice=%v, PortMirroring=%v, PortUsages=%v, Proxy=%v, RadioConfig=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, ReportGatt=%v, Rogue=%v, Rtsa=%v, SimpleAlert=%v, SiteId=%v, Skyatp=%v, SnmpConfig=%v, SrxApp=%v, SshKeys=%v, Ssr=%v, StatusPortal=%v, Switch=%v, SwitchMatching=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, TrackAnonymousDevices=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, TuntermMulticastConfig=%v, UplinkPortConfig=%v, Vars=%v, Vna=%v, VrfConfig=%v, VrfInstances=%v, VrrpGroups=%v, VsInstance=%v, WanVna=%v, WatchedStationUrl=%v, WhitelistUrl=%v, Wids=%v, Wifi=%v, WiredVna=%v, ZoneOccupancyAlert=%v, AdditionalProperties=%v]",
+    	s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.Analytic, s.ApMatching, s.ApPortConfig, s.ApUpdownThreshold, s.AutoPlacement, s.AutoUpgrade, s.BlacklistUrl, s.BleConfig, s.ConfigAutoRevert, s.ConfigPushPolicy, s.CreatedTime, s.CriticalUrlMonitoring, s.DeviceUpdownThreshold, s.DhcpSnooping, s.DisabledSystemDefinedPortUsages, s.DnsServers, s.DnsSuffix, s.Engagement, s.EvpnOptions, s.ExtraRoutes, s.ExtraRoutes6, s.Flags, s.ForSite, s.Gateway, s.GatewayAdditionalConfigCmds, s.GatewayMgmt, s.GatewayUpdownThreshold, s.Id, s.JuniperSrx, s.Led, s.MistNac, s.ModifiedTime, s.Mxedge, s.MxedgeMgmt, s.Mxtunnels, s.Networks, s.NtpServers, s.Occupancy, s.OrgId, s.OspfAreas, s.PaloaltoNetworks, s.PersistConfigOnDevice, s.PortMirroring, s.PortUsages, s.Proxy, s.RadioConfig, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.ReportGatt, s.Rogue, s.Rtsa, s.SimpleAlert, s.SiteId, s.Skyatp, s.SnmpConfig, s.SrxApp, s.SshKeys, s.Ssr, s.StatusPortal, s.Switch, s.SwitchMatching, s.SwitchMgmt, s.SwitchUpdownThreshold, s.SyntheticTest, s.TrackAnonymousDevices, s.TuntermMonitoring, s.TuntermMonitoringDisabled, s.TuntermMulticastConfig, s.UplinkPortConfig, s.Vars, s.Vna, s.VrfConfig, s.VrfInstances, s.VrrpGroups, s.VsInstance, s.WanVna, s.WatchedStationUrl, s.WhitelistUrl, s.Wids, s.Wifi, s.WiredVna, s.ZoneOccupancyAlert, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSetting.

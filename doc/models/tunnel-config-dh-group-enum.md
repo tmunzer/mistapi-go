@@ -1,7 +1,7 @@
 
-# Tunnel Configs Dh Group Enum
+# Tunnel Config Dh Group Enum
 
-Only if `provider`== `custom-ipsec`. enum:
+Only if `provider`==`custom-ipsec`. enum:
 
 * 1
 * 2 (1024-bit)
@@ -16,7 +16,7 @@ Only if `provider`== `custom-ipsec`. enum:
 
 ## Enumeration
 
-`TunnelConfigsDhGroupEnum`
+`TunnelConfigDhGroupEnum`
 
 ## Fields
 

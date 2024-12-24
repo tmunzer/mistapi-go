@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -37,8 +36,9 @@ func (s *SitesSyntheticTests) StartSiteSwitchRadiusSyntheticTest(
     req := s.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/check_radius_server", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/check_radius_server",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -82,11 +82,8 @@ func (s *SitesSyntheticTests) GetSiteDeviceSyntheticTest(
     deviceId uuid.UUID) (
     models.ApiResponse[models.SynthetictestInfo],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/synthetic_test", siteId, deviceId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/%v/synthetic_test")
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -130,8 +127,9 @@ func (s *SitesSyntheticTests) TriggerSiteDeviceSyntheticTest(
     req := s.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/devices/%v/synthetic_test", siteId, deviceId),
+      "/api/v1/sites/%v/devices/%v/synthetic_test",
     )
+    req.AppendTemplateParams(siteId, deviceId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -172,11 +170,8 @@ func (s *SitesSyntheticTests) TriggerSiteSyntheticTest(
     body *models.Synthetictest) (
     models.ApiResponse[models.ReponseSynthetictest],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/synthetic_test", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/synthetic_test")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -227,11 +222,8 @@ func (s *SitesSyntheticTests) SearchSiteSyntheticTest(
     tenant *string) (
     models.ApiResponse[models.ReponseSynthetictestSearch],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/synthetic_test/search", siteId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/synthetic_test/search")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

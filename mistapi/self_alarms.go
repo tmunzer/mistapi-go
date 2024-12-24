@@ -28,6 +28,7 @@ func (s *SelfAlarms) ListAlarmSubscriptions(ctx context.Context) (
     models.ApiResponse[[]models.ResponseSelfSubscription],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/self/subscriptions")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

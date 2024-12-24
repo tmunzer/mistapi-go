@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RemoteSyslogContent represents a RemoteSyslogContent struct.
@@ -11,6 +12,14 @@ type RemoteSyslogContent struct {
     // enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`
     Severity             *RemoteSyslogSeverityEnum `json:"severity,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RemoteSyslogContent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RemoteSyslogContent) String() string {
+    return fmt.Sprintf(
+    	"RemoteSyslogContent[Facility=%v, Severity=%v, AdditionalProperties=%v]",
+    	r.Facility, r.Severity, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogContent.

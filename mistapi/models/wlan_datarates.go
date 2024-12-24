@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanDatarates represents a WlanDatarates struct.
@@ -23,6 +24,14 @@ type WlanDatarates struct {
     // if `template`==`custom`. MCS bitmasks for 4 streams (16-bit for each stream, MCS0 is least significant bit), e.g. 03ff 01ff 00ff limits VHT rates to MCS 0-9 for 1 stream, MCS 0-8 for 2 streams, and MCS 0-7 for 3 streams.
     Vht                  Optional[string]                    `json:"vht"`
     AdditionalProperties map[string]interface{}              `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanDatarates,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanDatarates) String() string {
+    return fmt.Sprintf(
+    	"WlanDatarates[Ht=%v, Legacy=%v, MinRssi=%v, Template=%v, Vht=%v, AdditionalProperties=%v]",
+    	w.Ht, w.Legacy, w.MinRssi, w.Template, w.Vht, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDatarates.

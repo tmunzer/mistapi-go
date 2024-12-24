@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type SleClassifierSamples struct {
     Duration             []float64              `json:"duration"`
     Total                []float64              `json:"total"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleClassifierSamples,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleClassifierSamples) String() string {
+    return fmt.Sprintf(
+    	"SleClassifierSamples[Degraded=%v, Duration=%v, Total=%v, AdditionalProperties=%v]",
+    	s.Degraded, s.Duration, s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleClassifierSamples.

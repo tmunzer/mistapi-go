@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UtilsClearMacs represents a UtilsClearMacs struct.
@@ -9,6 +10,14 @@ type UtilsClearMacs struct {
     // a list of ports on which to clear mac addresses. must include logical unit number
     Ports                []string               `json:"ports,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsClearMacs,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsClearMacs) String() string {
+    return fmt.Sprintf(
+    	"UtilsClearMacs[Ports=%v, AdditionalProperties=%v]",
+    	u.Ports, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsClearMacs.

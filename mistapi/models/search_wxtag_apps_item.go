@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type SearchWxtagAppsItem struct {
     Key                  string                 `json:"key"`
     Name                 string                 `json:"name"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SearchWxtagAppsItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SearchWxtagAppsItem) String() string {
+    return fmt.Sprintf(
+    	"SearchWxtagAppsItem[Group=%v, Key=%v, Name=%v, AdditionalProperties=%v]",
+    	s.Group, s.Key, s.Name, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SearchWxtagAppsItem.

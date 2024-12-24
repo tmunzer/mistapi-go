@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // TuntermDhcpdConfigProperty represents a TuntermDhcpdConfigProperty struct.
@@ -11,6 +12,14 @@ type TuntermDhcpdConfigProperty struct {
     // enum: `relay`
     Type                 *TuntermDhcpdTypeEnum  `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TuntermDhcpdConfigProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TuntermDhcpdConfigProperty) String() string {
+    return fmt.Sprintf(
+    	"TuntermDhcpdConfigProperty[Enabled=%v, Servers=%v, Type=%v, AdditionalProperties=%v]",
+    	t.Enabled, t.Servers, t.Type, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TuntermDhcpdConfigProperty.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type UtilsCableTests struct {
     // the port to run the cable test
     Port                 string                 `json:"port"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UtilsCableTests,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UtilsCableTests) String() string {
+    return fmt.Sprintf(
+    	"UtilsCableTests[Port=%v, AdditionalProperties=%v]",
+    	u.Port, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsCableTests.

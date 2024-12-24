@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -43,7 +44,16 @@ type Site struct {
     SitetemplateId       Optional[uuid.UUID]    `json:"sitetemplate_id"`
     // Timezone the site is at
     Timezone             *string                `json:"timezone,omitempty"`
+    Tzoffset             *int                   `json:"tzoffset,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Site,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s Site) String() string {
+    return fmt.Sprintf(
+    	"Site[Address=%v, AlarmtemplateId=%v, AptemplateId=%v, CountryCode=%v, CreatedTime=%v, GatewaytemplateId=%v, Id=%v, Latlng=%v, ModifiedTime=%v, Name=%v, NetworktemplateId=%v, Notes=%v, OrgId=%v, RftemplateId=%v, SecpolicyId=%v, SitegroupIds=%v, SitetemplateId=%v, Timezone=%v, Tzoffset=%v, AdditionalProperties=%v]",
+    	s.Address, s.AlarmtemplateId, s.AptemplateId, s.CountryCode, s.CreatedTime, s.GatewaytemplateId, s.Id, s.Latlng, s.ModifiedTime, s.Name, s.NetworktemplateId, s.Notes, s.OrgId, s.RftemplateId, s.SecpolicyId, s.SitegroupIds, s.SitetemplateId, s.Timezone, s.Tzoffset, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Site.
@@ -52,7 +62,7 @@ func (s Site) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone"); err != nil {
+        "address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone", "tzoffset"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -142,6 +152,9 @@ func (s Site) toMap() map[string]any {
     if s.Timezone != nil {
         structMap["timezone"] = s.Timezone
     }
+    if s.Tzoffset != nil {
+        structMap["tzoffset"] = s.Tzoffset
+    }
     return structMap
 }
 
@@ -157,7 +170,7 @@ func (s *Site) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone", "tzoffset")
     if err != nil {
     	return err
     }
@@ -181,6 +194,7 @@ func (s *Site) UnmarshalJSON(input []byte) error {
     s.SitegroupIds = temp.SitegroupIds
     s.SitetemplateId = temp.SitetemplateId
     s.Timezone = temp.Timezone
+    s.Tzoffset = temp.Tzoffset
     return nil
 }
 
@@ -204,6 +218,7 @@ type tempSite  struct {
     SitegroupIds      []uuid.UUID         `json:"sitegroup_ids,omitempty"`
     SitetemplateId    Optional[uuid.UUID] `json:"sitetemplate_id"`
     Timezone          *string             `json:"timezone,omitempty"`
+    Tzoffset          *int                `json:"tzoffset,omitempty"`
 }
 
 func (s *tempSite) validate() error {

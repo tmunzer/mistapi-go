@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SnmpVacmAccessItem represents a SnmpVacmAccessItem struct.
@@ -9,6 +10,14 @@ type SnmpVacmAccessItem struct {
     GroupName            *string                            `json:"group_name,omitempty"`
     PrefixList           []SnmpVacmAccessItemPrefixListItem `json:"prefix_list,omitempty"`
     AdditionalProperties map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SnmpVacmAccessItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SnmpVacmAccessItem) String() string {
+    return fmt.Sprintf(
+    	"SnmpVacmAccessItem[GroupName=%v, PrefixList=%v, AdditionalProperties=%v]",
+    	s.GroupName, s.PrefixList, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpVacmAccessItem.

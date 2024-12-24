@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanAppLimit represents a WlanAppLimit struct.
@@ -15,6 +16,14 @@ type WlanAppLimit struct {
     // Property key is the wxtag id
     WxtagIds             map[string]int         `json:"wxtag_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanAppLimit,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanAppLimit) String() string {
+    return fmt.Sprintf(
+    	"WlanAppLimit[Apps=%v, Enabled=%v, WxtagIds=%v, AdditionalProperties=%v]",
+    	w.Apps, w.Enabled, w.WxtagIds, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAppLimit.

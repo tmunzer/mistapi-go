@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // Snmpv3ConfigTargetAddressItem represents a Snmpv3ConfigTargetAddressItem struct.
@@ -15,6 +16,14 @@ type Snmpv3ConfigTargetAddressItem struct {
     // refer to notify target parameters name
     TargetParameters     *string                `json:"target_parameters,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Snmpv3ConfigTargetAddressItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s Snmpv3ConfigTargetAddressItem) String() string {
+    return fmt.Sprintf(
+    	"Snmpv3ConfigTargetAddressItem[Address=%v, AddressMask=%v, Port=%v, TagList=%v, TargetAddressName=%v, TargetParameters=%v, AdditionalProperties=%v]",
+    	s.Address, s.AddressMask, s.Port, s.TagList, s.TargetAddressName, s.TargetParameters, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Snmpv3ConfigTargetAddressItem.

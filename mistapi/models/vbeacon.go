@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -42,6 +43,14 @@ type Vbeacon struct {
     // y in pixel
     Y                    *float64                `json:"y,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Vbeacon,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (v Vbeacon) String() string {
+    return fmt.Sprintf(
+    	"Vbeacon[CreatedTime=%v, ForSite=%v, Id=%v, Major=%v, MapId=%v, Message=%v, Minor=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Power=%v, PowerMode=%v, SiteId=%v, Url=%v, Uuid=%v, WayfindingNodename=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	v.CreatedTime, v.ForSite, v.Id, v.Major, v.MapId, v.Message, v.Minor, v.ModifiedTime, v.Name, v.OrgId, v.Power, v.PowerMode, v.SiteId, v.Url, v.Uuid, v.WayfindingNodename, v.X, v.Y, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Vbeacon.

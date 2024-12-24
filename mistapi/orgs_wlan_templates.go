@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (o *OrgsWLANTemplates) ListOrgTemplates(
     page *int) (
     models.ApiResponse[[]models.Template],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/templates", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/templates")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -84,11 +80,8 @@ func (o *OrgsWLANTemplates) CreateOrgTemplate(
     body *models.Template) (
     models.ApiResponse[models.Template],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/templates", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/templates")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -132,11 +125,8 @@ func (o *OrgsWLANTemplates) DeleteOrgTemplate(
     templateId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/templates/%v", orgId, templateId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/templates/%v")
+    req.AppendTemplateParams(orgId, templateId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -173,11 +163,8 @@ func (o *OrgsWLANTemplates) GetOrgTemplate(
     templateId uuid.UUID) (
     models.ApiResponse[models.Template],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/templates/%v", orgId, templateId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/templates/%v")
+    req.AppendTemplateParams(orgId, templateId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -218,11 +205,8 @@ func (o *OrgsWLANTemplates) UpdateOrgTemplate(
     body *models.Template) (
     models.ApiResponse[models.Template],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/templates/%v", orgId, templateId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/templates/%v")
+    req.AppendTemplateParams(orgId, templateId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -267,11 +251,8 @@ func (o *OrgsWLANTemplates) CloneOrgTemplate(
     body *models.NameString) (
     models.ApiResponse[models.Template],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/templates/%v/clone", orgId, templateId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/templates/%v/clone")
+    req.AppendTemplateParams(orgId, templateId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

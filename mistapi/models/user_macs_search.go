@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UserMacsSearch represents a UserMacsSearch struct.
@@ -11,6 +12,14 @@ type UserMacsSearch struct {
     Results              []UserMac              `json:"results,omitempty"`
     Total                *int                   `json:"total,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UserMacsSearch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UserMacsSearch) String() string {
+    return fmt.Sprintf(
+    	"UserMacsSearch[Limit=%v, Page=%v, Results=%v, Total=%v, AdditionalProperties=%v]",
+    	u.Limit, u.Page, u.Results, u.Total, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UserMacsSearch.

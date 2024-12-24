@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsSwitchClientItem represents a StatsSwitchClientItem struct.
@@ -11,6 +12,14 @@ type StatsSwitchClientItem struct {
     Mac                  *string                `json:"mac,omitempty"`
     PortId               *string                `json:"port_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsSwitchClientItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsSwitchClientItem) String() string {
+    return fmt.Sprintf(
+    	"StatsSwitchClientItem[DeviceMac=%v, Hostname=%v, Mac=%v, PortId=%v, AdditionalProperties=%v]",
+    	s.DeviceMac, s.Hostname, s.Mac, s.PortId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchClientItem.

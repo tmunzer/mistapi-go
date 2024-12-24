@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstMarvisClientVersion represents a ConstMarvisClientVersion struct.
@@ -15,6 +16,14 @@ type ConstMarvisClientVersion struct {
     // Client version
     Version              *string                `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstMarvisClientVersion,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstMarvisClientVersion) String() string {
+    return fmt.Sprintf(
+    	"ConstMarvisClientVersion[Label=%v, Notes=%v, Os=%v, Url=%v, Version=%v, AdditionalProperties=%v]",
+    	c.Label, c.Notes, c.Os, c.Url, c.Version, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstMarvisClientVersion.

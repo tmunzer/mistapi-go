@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // IssuedClientCertificatesResults represents a IssuedClientCertificatesResults struct.
 type IssuedClientCertificatesResults struct {
     Results              []IssuedClientCertificate `json:"results,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for IssuedClientCertificatesResults,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i IssuedClientCertificatesResults) String() string {
+    return fmt.Sprintf(
+    	"IssuedClientCertificatesResults[Results=%v, AdditionalProperties=%v]",
+    	i.Results, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IssuedClientCertificatesResults.

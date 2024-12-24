@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -34,6 +35,14 @@ type WlanAuth struct {
     // enable WEP as secondary auth
     WepAsSecondaryAuth   *bool                      `json:"wep_as_secondary_auth,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanAuth,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanAuth) String() string {
+    return fmt.Sprintf(
+    	"WlanAuth[AnticlogThreshold=%v, EapReauth=%v, EnableMacAuth=%v, KeyIdx=%v, Keys=%v, MultiPskOnly=%v, Owe=%v, Pairwise=%v, PrivateWlan=%v, Psk=%v, Type=%v, WepAsSecondaryAuth=%v, AdditionalProperties=%v]",
+    	w.AnticlogThreshold, w.EapReauth, w.EnableMacAuth, w.KeyIdx, w.Keys, w.MultiPskOnly, w.Owe, w.Pairwise, w.PrivateWlan, w.Psk, w.Type, w.WepAsSecondaryAuth, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAuth.

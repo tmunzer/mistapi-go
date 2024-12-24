@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NetworkInternalAccess represents a NetworkInternalAccess struct.
 type NetworkInternalAccess struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NetworkInternalAccess,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NetworkInternalAccess) String() string {
+    return fmt.Sprintf(
+    	"NetworkInternalAccess[Enabled=%v, AdditionalProperties=%v]",
+    	n.Enabled, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkInternalAccess.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -26,6 +27,14 @@ type InstallerDevice struct {
     X                    *float64               `json:"x,omitempty"`
     Y                    *float64               `json:"y,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for InstallerDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i InstallerDevice) String() string {
+    return fmt.Sprintf(
+    	"InstallerDevice[Connected=%v, DeviceprofileName=%v, ExtIp=%v, Height=%v, Ip=%v, LastSeen=%v, Mac=%v, MapId=%v, Model=%v, Name=%v, Orientation=%v, Serial=%v, SiteName=%v, Uptime=%v, VcMac=%v, Version=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	i.Connected, i.DeviceprofileName, i.ExtIp, i.Height, i.Ip, i.LastSeen, i.Mac, i.MapId, i.Model, i.Name, i.Orientation, i.Serial, i.SiteName, i.Uptime, i.VcMac, i.Version, i.X, i.Y, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InstallerDevice.

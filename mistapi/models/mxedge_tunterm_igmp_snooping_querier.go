@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeTuntermIgmpSnoopingQuerier represents a MxedgeTuntermIgmpSnoopingQuerier struct.
@@ -17,6 +18,14 @@ type MxedgeTuntermIgmpSnoopingQuerier struct {
     // querier’s maximum protocol version
     Version              *int                   `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeTuntermIgmpSnoopingQuerier,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeTuntermIgmpSnoopingQuerier) String() string {
+    return fmt.Sprintf(
+    	"MxedgeTuntermIgmpSnoopingQuerier[MaxResponseTime=%v, Mtu=%v, QueryInterval=%v, Robustness=%v, Version=%v, AdditionalProperties=%v]",
+    	m.MaxResponseTime, m.Mtu, m.QueryInterval, m.Robustness, m.Version, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeTuntermIgmpSnoopingQuerier.

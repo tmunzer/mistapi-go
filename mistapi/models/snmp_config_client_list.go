@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SnmpConfigClientList represents a SnmpConfigClientList struct.
@@ -9,6 +10,14 @@ type SnmpConfigClientList struct {
     ClientListName       *string                `json:"client_list_name,omitempty"`
     Clients              []string               `json:"clients,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SnmpConfigClientList,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SnmpConfigClientList) String() string {
+    return fmt.Sprintf(
+    	"SnmpConfigClientList[ClientListName=%v, Clients=%v, AdditionalProperties=%v]",
+    	s.ClientListName, s.Clients, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpConfigClientList.

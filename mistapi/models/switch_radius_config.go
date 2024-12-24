@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SwitchRadiusConfig represents a SwitchRadiusConfig struct.
@@ -21,6 +22,14 @@ type SwitchRadiusConfig struct {
     // use `network`or `source_ip`
     SourceIp             *string                `json:"source_ip,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SwitchRadiusConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SwitchRadiusConfig) String() string {
+    return fmt.Sprintf(
+    	"SwitchRadiusConfig[AcctInterimInterval=%v, AcctServers=%v, AuthServers=%v, AuthServersRetries=%v, AuthServersTimeout=%v, Network=%v, SourceIp=%v, AdditionalProperties=%v]",
+    	s.AcctInterimInterval, s.AcctServers, s.AuthServers, s.AuthServersRetries, s.AuthServersTimeout, s.Network, s.SourceIp, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchRadiusConfig.

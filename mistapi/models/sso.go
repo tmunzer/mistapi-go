@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -101,6 +102,14 @@ type Sso struct {
     ScimSecretToken         *string                      `json:"scim_secret_token,omitempty"`
     SiteId                  *uuid.UUID                   `json:"site_id,omitempty"`
     AdditionalProperties    map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Sso,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s Sso) String() string {
+    return fmt.Sprintf(
+    	"Sso[CreatedTime=%v, CustomLogoutUrl=%v, DefaultRole=%v, Domain=%v, GroupFilter=%v, Id=%v, IdpCert=%v, IdpSignAlgo=%v, IdpSsoUrl=%v, IdpType=%v, IgnoreUnmatchedRoles=%v, Issuer=%v, LdapBaseDn=%v, LdapBindDn=%v, LdapBindPassword=%v, LdapCacerts=%v, LdapClientCert=%v, LdapClientKey=%v, LdapGroupAttr=%v, LdapGroupDn=%v, LdapResolveGroups=%v, LdapServerHosts=%v, LdapType=%v, LdapUserFilter=%v, MemberFilter=%v, ModifiedTime=%v, MspId=%v, MxedgeProxy=%v, Name=%v, NameidFormat=%v, OauthCcClientId=%v, OauthCcClientSecret=%v, OauthDiscoveryUrl=%v, OauthPingIdentityRegion=%v, OauthRopcClientId=%v, OauthRopcClientSecret=%v, OauthTenantId=%v, OauthType=%v, OrgId=%v, RoleAttrExtraction=%v, RoleAttrFrom=%v, ScimEnabled=%v, ScimSecretToken=%v, SiteId=%v, AdditionalProperties=%v]",
+    	s.CreatedTime, s.CustomLogoutUrl, s.DefaultRole, s.Domain, s.GroupFilter, s.Id, s.IdpCert, s.IdpSignAlgo, s.IdpSsoUrl, s.IdpType, s.IgnoreUnmatchedRoles, s.Issuer, s.LdapBaseDn, s.LdapBindDn, s.LdapBindPassword, s.LdapCacerts, s.LdapClientCert, s.LdapClientKey, s.LdapGroupAttr, s.LdapGroupDn, s.LdapResolveGroups, s.LdapServerHosts, s.LdapType, s.LdapUserFilter, s.MemberFilter, s.ModifiedTime, s.MspId, s.MxedgeProxy, s.Name, s.NameidFormat, s.OauthCcClientId, s.OauthCcClientSecret, s.OauthDiscoveryUrl, s.OauthPingIdentityRegion, s.OauthRopcClientId, s.OauthRopcClientSecret, s.OauthTenantId, s.OauthType, s.OrgId, s.RoleAttrExtraction, s.RoleAttrFrom, s.ScimEnabled, s.ScimSecretToken, s.SiteId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Sso.

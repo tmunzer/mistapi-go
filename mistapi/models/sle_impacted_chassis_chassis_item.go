@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SleImpactedChassisChassisItem represents a SleImpactedChassisChassisItem struct.
@@ -14,6 +15,14 @@ type SleImpactedChassisChassisItem struct {
     SwitchName           *string                `json:"switch_name,omitempty"`
     Total                *float64               `json:"total,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleImpactedChassisChassisItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleImpactedChassisChassisItem) String() string {
+    return fmt.Sprintf(
+    	"SleImpactedChassisChassisItem[Chassis=%v, Degraded=%v, Duration=%v, Role=%v, SwitchMac=%v, SwitchName=%v, Total=%v, AdditionalProperties=%v]",
+    	s.Chassis, s.Degraded, s.Duration, s.Role, s.SwitchMac, s.SwitchName, s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedChassisChassisItem.

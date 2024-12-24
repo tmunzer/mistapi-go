@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -82,6 +83,14 @@ type JunosLocalPortConfig struct {
     // network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth
     VoipNetwork                              *string                                  `json:"voip_network,omitempty"`
     AdditionalProperties                     map[string]interface{}                   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for JunosLocalPortConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (j JunosLocalPortConfig) String() string {
+    return fmt.Sprintf(
+    	"JunosLocalPortConfig[AllNetworks=%v, AllowDhcpd=%v, AllowMultipleSupplicants=%v, BypassAuthWhenServerDown=%v, BypassAuthWhenServerDownForUnkonwnClient=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, Duplex=%v, DynamicVlanNetworks=%v, EnableMacAuth=%v, EnableQos=%v, GuestNetwork=%v, InterSwitchLink=%v, MacAuthOnly=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MacLimit=%v, Mode=%v, Mtu=%v, Networks=%v, Note=%v, PersistMac=%v, PoeDisabled=%v, PortAuth=%v, PortNetwork=%v, ReauthInterval=%v, ServerFailNetwork=%v, ServerRejectNetwork=%v, Speed=%v, StormControl=%v, StpEdge=%v, StpNoRootPort=%v, StpP2p=%v, Usage=%v, UseVstp=%v, VoipNetwork=%v, AdditionalProperties=%v]",
+    	j.AllNetworks, j.AllowDhcpd, j.AllowMultipleSupplicants, j.BypassAuthWhenServerDown, j.BypassAuthWhenServerDownForUnkonwnClient, j.Description, j.DisableAutoneg, j.Disabled, j.Duplex, j.DynamicVlanNetworks, j.EnableMacAuth, j.EnableQos, j.GuestNetwork, j.InterSwitchLink, j.MacAuthOnly, j.MacAuthPreferred, j.MacAuthProtocol, j.MacLimit, j.Mode, j.Mtu, j.Networks, j.Note, j.PersistMac, j.PoeDisabled, j.PortAuth, j.PortNetwork, j.ReauthInterval, j.ServerFailNetwork, j.ServerRejectNetwork, j.Speed, j.StormControl, j.StpEdge, j.StpNoRootPort, j.StpP2p, j.Usage, j.UseVstp, j.VoipNetwork, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JunosLocalPortConfig.

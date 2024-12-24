@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,7 +31,8 @@ func (m *MSPsOrgs) ListMspOrgs(
     mspId uuid.UUID) (
     models.ApiResponse[[]models.Org],
     error) {
-    req := m.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/msps/%v/orgs", mspId))
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/orgs")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -72,7 +72,8 @@ func (m *MSPsOrgs) CreateMspOrg(
     body *models.Org) (
     models.ApiResponse[models.Org],
     error) {
-    req := m.prepareRequest(ctx, "POST", fmt.Sprintf("/api/v1/msps/%v/orgs", mspId))
+    req := m.prepareRequest(ctx, "POST", "/api/v1/msps/%v/orgs")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -116,7 +117,8 @@ func (m *MSPsOrgs) ManageMspOrgs(
     body *models.MspOrgChange) (
     *http.Response,
     error) {
-    req := m.prepareRequest(ctx, "PUT", fmt.Sprintf("/api/v1/msps/%v/orgs", mspId))
+    req := m.prepareRequest(ctx, "PUT", "/api/v1/msps/%v/orgs")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -162,11 +164,8 @@ func (m *MSPsOrgs) SearchMspOrgs(
     limit *int) (
     models.ApiResponse[models.ResponseOrgSearch],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/orgs/search", mspId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/orgs/search")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -224,11 +223,8 @@ func (m *MSPsOrgs) DeleteMspOrg(
     orgId uuid.UUID) (
     *http.Response,
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/msps/%v/orgs/%v", mspId, orgId),
-    )
+    req := m.prepareRequest(ctx, "DELETE", "/api/v1/msps/%v/orgs/%v")
+    req.AppendTemplateParams(mspId, orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -265,11 +261,8 @@ func (m *MSPsOrgs) GetMspOrg(
     orgId uuid.UUID) (
     models.ApiResponse[models.Org],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/orgs/%v", mspId, orgId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/orgs/%v")
+    req.AppendTemplateParams(mspId, orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -310,11 +303,8 @@ func (m *MSPsOrgs) UpdateMspOrg(
     body *models.Org) (
     models.ApiResponse[models.Org],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/msps/%v/orgs/%v", mspId, orgId),
-    )
+    req := m.prepareRequest(ctx, "PUT", "/api/v1/msps/%v/orgs/%v")
+    req.AppendTemplateParams(mspId, orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -359,11 +349,8 @@ func (m *MSPsOrgs) ListMspOrgStats(
     page *int) (
     models.ApiResponse[[]models.StatsOrg],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/stats/orgs", mspId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/stats/orgs")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

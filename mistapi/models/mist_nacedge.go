@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MistNacedge represents a MistNacedge struct.
@@ -16,6 +17,14 @@ type MistNacedge struct {
     // list of NAC Edges in this site
     MxedgeHosts          []string               `json:"mxedge_hosts,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MistNacedge,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MistNacedge) String() string {
+    return fmt.Sprintf(
+    	"MistNacedge[AuthTtl=%v, DefaultDot1xVlan=%v, DefaultVlan=%v, Enabled=%v, MxedgeHosts=%v, AdditionalProperties=%v]",
+    	m.AuthTtl, m.DefaultDot1xVlan, m.DefaultVlan, m.Enabled, m.MxedgeHosts, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MistNacedge.

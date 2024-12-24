@@ -20,19 +20,19 @@
 ```json
 {
   "jse": {
-    "name": "name6",
     "num_users": 186,
+    "org_name": "org_name6",
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"
     }
   },
   "zscaler": {
-    "aup_acceptance_required": false,
-    "aup_expire": 210,
-    "aup_ssl_proxy": false,
-    "download_mbps": 94,
-    "enable_aup": false,
+    "aup_block_internet_until_accepted": false,
+    "aup_enabled": false,
+    "aup_force_ssl_inspection": false,
+    "aup_timeout_in_days": 104,
+    "auth_required": false,
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"

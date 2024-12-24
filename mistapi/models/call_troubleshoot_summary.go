@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -11,6 +12,14 @@ type CallTroubleshootSummary struct {
     MeetingId            *uuid.UUID               `json:"meeting_id,omitempty"`
     Results              []CallTroubleshootSummar `json:"results,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CallTroubleshootSummary,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CallTroubleshootSummary) String() string {
+    return fmt.Sprintf(
+    	"CallTroubleshootSummary[Mac=%v, MeetingId=%v, Results=%v, AdditionalProperties=%v]",
+    	c.Mac, c.MeetingId, c.Results, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CallTroubleshootSummary.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -22,6 +23,14 @@ type StatsBeacon struct {
     X                    float64                `json:"x"`
     Y                    float64                `json:"y"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsBeacon,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsBeacon) String() string {
+    return fmt.Sprintf(
+    	"StatsBeacon[BatteryVoltage=%v, EddystoneInstance=%v, EddystoneNamespace=%v, LastSeen=%v, Mac=%v, MapId=%v, Name=%v, Power=%v, Type=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	s.BatteryVoltage, s.EddystoneInstance, s.EddystoneNamespace, s.LastSeen, s.Mac, s.MapId, s.Name, s.Power, s.Type, s.X, s.Y, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsBeacon.

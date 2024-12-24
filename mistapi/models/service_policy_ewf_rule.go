@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ServicePolicyEwfRule represents a ServicePolicyEwfRule struct.
@@ -12,6 +13,14 @@ type ServicePolicyEwfRule struct {
     // enum: `critical`, `standard`, `strict`
     Profile              *ServicePolicyEwfRuleProfileEnum `json:"profile,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ServicePolicyEwfRule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s ServicePolicyEwfRule) String() string {
+    return fmt.Sprintf(
+    	"ServicePolicyEwfRule[AlertOnly=%v, BlockMessage=%v, Enabled=%v, Profile=%v, AdditionalProperties=%v]",
+    	s.AlertOnly, s.BlockMessage, s.Enabled, s.Profile, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServicePolicyEwfRule.

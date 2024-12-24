@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteSettingSsr represents a SiteSettingSsr struct.
@@ -9,6 +10,14 @@ type SiteSettingSsr struct {
     ConductorHosts       []string               `json:"conductor_hosts,omitempty"`
     DisableStats         *bool                  `json:"disable_stats,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteSettingSsr,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteSettingSsr) String() string {
+    return fmt.Sprintf(
+    	"SiteSettingSsr[ConductorHosts=%v, DisableStats=%v, AdditionalProperties=%v]",
+    	s.ConductorHosts, s.DisableStats, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingSsr.

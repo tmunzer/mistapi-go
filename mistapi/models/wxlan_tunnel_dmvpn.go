@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WxlanTunnelDmvpn represents a WxlanTunnelDmvpn struct.
@@ -14,6 +15,14 @@ type WxlanTunnelDmvpn struct {
     // optional; list of IPv4 DMVPN peer host ip-addresses to which traffic is forwarded
     HostRoutes           []string               `json:"host_routes,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WxlanTunnelDmvpn,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WxlanTunnelDmvpn) String() string {
+    return fmt.Sprintf(
+    	"WxlanTunnelDmvpn[Enabled=%v, HoldingTime=%v, HostRoutes=%v, AdditionalProperties=%v]",
+    	w.Enabled, w.HoldingTime, w.HostRoutes, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanTunnelDmvpn.

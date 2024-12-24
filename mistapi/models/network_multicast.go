@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NetworkMulticast represents a NetworkMulticast struct.
@@ -13,6 +14,14 @@ type NetworkMulticast struct {
     // Group address to RP (rendezvous point) mapping. Property Key is the CIDR (example "225.1.0.3/32")
     Groups               map[string]NetworkMulticastGroup `json:"groups,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NetworkMulticast,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NetworkMulticast) String() string {
+    return fmt.Sprintf(
+    	"NetworkMulticast[DisableIgmp=%v, Enabled=%v, Groups=%v, AdditionalProperties=%v]",
+    	n.DisableIgmp, n.Enabled, n.Groups, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkMulticast.

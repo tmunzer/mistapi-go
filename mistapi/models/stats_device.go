@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // StatsDevice represents a StatsDevice struct.
@@ -14,12 +14,10 @@ type StatsDevice struct {
     isStatsGateway bool
 }
 
-// String converts the StatsDevice object to a string representation.
+// String implements the fmt.Stringer interface for StatsDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsDevice) String() string {
-    if bytes, err := json.Marshal(s.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", s.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsDevice.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -27,6 +28,14 @@ type Sdkinvite struct {
     QuotaLimited         *bool                  `json:"quota_limited,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Sdkinvite,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s Sdkinvite) String() string {
+    return fmt.Sprintf(
+    	"Sdkinvite[CreatedTime=%v, Enabled=%v, ExpireTime=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Quota=%v, QuotaLimited=%v, SiteId=%v, AdditionalProperties=%v]",
+    	s.CreatedTime, s.Enabled, s.ExpireTime, s.Id, s.ModifiedTime, s.Name, s.OrgId, s.Quota, s.QuotaLimited, s.SiteId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Sdkinvite.

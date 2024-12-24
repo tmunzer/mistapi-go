@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -33,7 +32,8 @@ func (o *OrgsLicenses) ClaimOrgLicense(
     body *models.ClaimActivation) (
     models.ApiResponse[models.ResponseClaimLicense],
     error) {
-    req := o.prepareRequest(ctx, "POST", fmt.Sprintf("/api/v1/orgs/%v/claim", orgId))
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/claim")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -77,11 +77,8 @@ func (o *OrgsLicenses) GetOrgLicenseAsyncClaimStatus(
     detail *bool) (
     models.ApiResponse[models.ResponseAsyncLicense],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/claim/status", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/claim/status")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -123,11 +120,8 @@ func (o *OrgsLicenses) GetOrgLicencesSummary(
     orgId uuid.UUID) (
     models.ApiResponse[models.License],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/licenses", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/licenses")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -171,11 +165,8 @@ func (o *OrgsLicenses) MoveOrDeleteOrgLicenseToAnotherOrg(
     body *models.OrgLicenseAction) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/licenses", orgId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/licenses")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -216,11 +207,8 @@ func (o *OrgsLicenses) GetOrgLicencesBySite(
     orgId uuid.UUID) (
     models.ApiResponse[[]models.LicenseUsageOrg],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/licenses/usages", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/licenses/usages")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

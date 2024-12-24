@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MxedgeOobIpConfig represents a MxedgeOobIpConfig struct.
@@ -26,6 +27,14 @@ type MxedgeOobIpConfig struct {
     // enum: `dhcp`, `static`
     Type6                *IpTypeEnum            `json:"type6,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MxedgeOobIpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MxedgeOobIpConfig) String() string {
+    return fmt.Sprintf(
+    	"MxedgeOobIpConfig[Autoconf6=%v, Dhcp6=%v, Dns=%v, Gateway=%v, Gateway6=%v, Ip=%v, Ip6=%v, Netmask=%v, Netmask6=%v, Type=%v, Type6=%v, AdditionalProperties=%v]",
+    	m.Autoconf6, m.Dhcp6, m.Dns, m.Gateway, m.Gateway6, m.Ip, m.Ip6, m.Netmask, m.Netmask6, m.Type, m.Type6, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeOobIpConfig.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // BgpConfigNeighbors represents a BgpConfigNeighbors struct.
@@ -15,6 +16,14 @@ type BgpConfigNeighbors struct {
     MultihopTtl          *int                   `json:"multihop_ttl,omitempty"`
     NeighborAs           *int                   `json:"neighbor_as,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for BgpConfigNeighbors,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (b BgpConfigNeighbors) String() string {
+    return fmt.Sprintf(
+    	"BgpConfigNeighbors[Disabled=%v, ExportPolicy=%v, HoldTime=%v, ImportPolicy=%v, MultihopTtl=%v, NeighborAs=%v, AdditionalProperties=%v]",
+    	b.Disabled, b.ExportPolicy, b.HoldTime, b.ImportPolicy, b.MultihopTtl, b.NeighborAs, b.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for BgpConfigNeighbors.

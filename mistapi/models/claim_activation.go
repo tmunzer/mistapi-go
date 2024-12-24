@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -17,6 +18,14 @@ type ClaimActivation struct {
     // what to claim. enum: `all`, `inventory`, `license`
     Type                 ClaimTypeEnum          `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ClaimActivation,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ClaimActivation) String() string {
+    return fmt.Sprintf(
+    	"ClaimActivation[Async=%v, Code=%v, DeviceType=%v, Type=%v, AdditionalProperties=%v]",
+    	c.Async, c.Code, c.DeviceType, c.Type, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClaimActivation.

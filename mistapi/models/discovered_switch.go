@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -21,6 +22,14 @@ type DiscoveredSwitch struct {
     Vendor               *string                `json:"vendor,omitempty"`
     Version              *string                `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DiscoveredSwitch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DiscoveredSwitch) String() string {
+    return fmt.Sprintf(
+    	"DiscoveredSwitch[Adopted=%v, ApRedundancy=%v, Aps=%v, ChassisId=%v, ForSite=%v, Model=%v, OrgId=%v, SiteId=%v, SystemDesc=%v, SystemName=%v, Timestamp=%v, Vendor=%v, Version=%v, AdditionalProperties=%v]",
+    	d.Adopted, d.ApRedundancy, d.Aps, d.ChassisId, d.ForSite, d.Model, d.OrgId, d.SiteId, d.SystemDesc, d.SystemName, d.Timestamp, d.Vendor, d.Version, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DiscoveredSwitch.

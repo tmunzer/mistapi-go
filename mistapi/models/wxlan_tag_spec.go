@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WxlanTagSpec represents a WxlanTagSpec struct.
@@ -13,6 +14,14 @@ type WxlanTagSpec struct {
     // matched destination subnets and/or IP Addresses
     Subnets              []string               `json:"subnets,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WxlanTagSpec,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WxlanTagSpec) String() string {
+    return fmt.Sprintf(
+    	"WxlanTagSpec[PortRange=%v, Protocol=%v, Subnets=%v, AdditionalProperties=%v]",
+    	w.PortRange, w.Protocol, w.Subnets, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxlanTagSpec.

@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayMatchingRule represents a GatewayMatchingRule struct.
@@ -11,6 +12,14 @@ type GatewayMatchingRule struct {
     Name                 *string                    `json:"name,omitempty"`
     PortConfig           map[string]JunosPortConfig `json:"port_config,omitempty"`
     AdditionalProperties map[string]string          `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayMatchingRule,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayMatchingRule) String() string {
+    return fmt.Sprintf(
+    	"GatewayMatchingRule[AdditionalConfigCmds=%v, Name=%v, PortConfig=%v, AdditionalProperties=%v]",
+    	g.AdditionalConfigCmds, g.Name, g.PortConfig, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayMatchingRule.

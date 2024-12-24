@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayPortMirroring represents a GatewayPortMirroring struct.
 type GatewayPortMirroring struct {
     PortMirror           *GatewayPortMirroringPortMirror `json:"port_mirror,omitempty"`
     AdditionalProperties map[string]interface{}          `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayPortMirroring,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayPortMirroring) String() string {
+    return fmt.Sprintf(
+    	"GatewayPortMirroring[PortMirror=%v, AdditionalProperties=%v]",
+    	g.PortMirror, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortMirroring.

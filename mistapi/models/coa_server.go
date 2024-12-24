@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -16,6 +17,14 @@ type CoaServer struct {
     Port                       *int                   `json:"port,omitempty"`
     Secret                     string                 `json:"secret"`
     AdditionalProperties       map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for CoaServer,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c CoaServer) String() string {
+    return fmt.Sprintf(
+    	"CoaServer[DisableEventTimestampCheck=%v, Enabled=%v, Ip=%v, Port=%v, Secret=%v, AdditionalProperties=%v]",
+    	c.DisableEventTimestampCheck, c.Enabled, c.Ip, c.Port, c.Secret, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CoaServer.

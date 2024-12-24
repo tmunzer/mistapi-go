@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // NetworkSourceNat represents a NetworkSourceNat struct.
@@ -9,6 +10,14 @@ import (
 type NetworkSourceNat struct {
     ExternalIp           *string                `json:"external_ip,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for NetworkSourceNat,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (n NetworkSourceNat) String() string {
+    return fmt.Sprintf(
+    	"NetworkSourceNat[ExternalIp=%v, AdditionalProperties=%v]",
+    	n.ExternalIp, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkSourceNat.

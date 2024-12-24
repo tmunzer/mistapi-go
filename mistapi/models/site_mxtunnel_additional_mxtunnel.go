@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteMxtunnelAdditionalMxtunnel represents a SiteMxtunnelAdditionalMxtunnel struct.
@@ -15,6 +16,14 @@ type SiteMxtunnelAdditionalMxtunnel struct {
     Protocol             *SiteMxtunnelProtocolEnum `json:"protocol,omitempty"`
     VlanIds              []int                     `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteMxtunnelAdditionalMxtunnel,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteMxtunnelAdditionalMxtunnel) String() string {
+    return fmt.Sprintf(
+    	"SiteMxtunnelAdditionalMxtunnel[Clusters=%v, HelloInterval=%v, HelloRetries=%v, Protocol=%v, VlanIds=%v, AdditionalProperties=%v]",
+    	s.Clusters, s.HelloInterval, s.HelloRetries, s.Protocol, s.VlanIds, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteMxtunnelAdditionalMxtunnel.

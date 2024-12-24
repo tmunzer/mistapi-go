@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // EvpnOptions represents a EvpnOptions struct.
@@ -28,6 +29,14 @@ type EvpnOptions struct {
     // optional, for EX9200 only to seggregate virtual-switches
     VsInstances          map[string]EvpnOptionsVsInstance `json:"vs_instances,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EvpnOptions,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EvpnOptions) String() string {
+    return fmt.Sprintf(
+    	"EvpnOptions[AutoLoopbackSubnet=%v, AutoLoopbackSubnet6=%v, AutoRouterIdSubnet=%v, AutoRouterIdSubnet6=%v, CoreAsBorder=%v, Overlay=%v, PerVlanVgaV4Mac=%v, RoutedAt=%v, Underlay=%v, VsInstances=%v, AdditionalProperties=%v]",
+    	e.AutoLoopbackSubnet, e.AutoLoopbackSubnet6, e.AutoRouterIdSubnet, e.AutoRouterIdSubnet6, e.CoreAsBorder, e.Overlay, e.PerVlanVgaV4Mac, e.RoutedAt, e.Underlay, e.VsInstances, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnOptions.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -13,6 +14,14 @@ type RssiZoneDevice struct {
     // RSSI threshold
     Rssi                 int                    `json:"rssi"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RssiZoneDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RssiZoneDevice) String() string {
+    return fmt.Sprintf(
+    	"RssiZoneDevice[DeviceId=%v, Rssi=%v, AdditionalProperties=%v]",
+    	r.DeviceId, r.Rssi, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RssiZoneDevice.

@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -10,6 +11,14 @@ import (
 type ResponseAssignSuccess struct {
     Success              []string               `json:"success"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseAssignSuccess,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseAssignSuccess) String() string {
+    return fmt.Sprintf(
+    	"ResponseAssignSuccess[Success=%v, AdditionalProperties=%v]",
+    	r.Success, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAssignSuccess.

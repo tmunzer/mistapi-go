@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -27,6 +28,14 @@ type Template struct {
     Name                  string                 `json:"name"`
     OrgId                 *uuid.UUID             `json:"org_id,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Template,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t Template) String() string {
+    return fmt.Sprintf(
+    	"Template[Applies=%v, CreatedTime=%v, DeviceprofileIds=%v, Exceptions=%v, FilterByDeviceprofile=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, AdditionalProperties=%v]",
+    	t.Applies, t.CreatedTime, t.DeviceprofileIds, t.Exceptions, t.FilterByDeviceprofile, t.Id, t.ModifiedTime, t.Name, t.OrgId, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Template.

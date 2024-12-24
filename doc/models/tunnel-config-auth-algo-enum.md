@@ -1,11 +1,11 @@
 
-# Tunnel Configs Auth Algo Enum
+# Tunnel Config Auth Algo Enum
 
 enum: `md5`, `sha1`, `sha2`
 
 ## Enumeration
 
-`TunnelConfigsAuthAlgoEnum`
+`TunnelConfigAuthAlgoEnum`
 
 ## Fields
 

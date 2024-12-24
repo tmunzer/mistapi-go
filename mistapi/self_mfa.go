@@ -31,6 +31,7 @@ func (s *SelfMFA) GenerateSecretFor2faVerification(
     models.ApiResponse[models.ResponseTwoFactorJson],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/self/two_factor/token")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -73,6 +74,7 @@ func (s *SelfMFA) VerifyTwoFactor(
     *http.Response,
     error) {
     req := s.prepareRequest(ctx, "POST", "/api/v1/self/two_factor/verify")
+    
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

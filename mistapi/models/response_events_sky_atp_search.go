@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type ResponseEventsSkyAtpSearch struct {
     Start                int                    `json:"start"`
     Total                int                    `json:"total"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseEventsSkyAtpSearch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseEventsSkyAtpSearch) String() string {
+    return fmt.Sprintf(
+    	"ResponseEventsSkyAtpSearch[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	r.End, r.Limit, r.Next, r.Results, r.Start, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseEventsSkyAtpSearch.

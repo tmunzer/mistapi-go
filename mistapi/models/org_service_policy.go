@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -35,6 +36,14 @@ type OrgServicePolicy struct {
     SslProxy             *OrgServicePolicySslProxy   `json:"ssl_proxy,omitempty"`
     Tenants              []string                    `json:"tenants,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgServicePolicy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgServicePolicy) String() string {
+    return fmt.Sprintf(
+    	"OrgServicePolicy[Action=%v, Antivirus=%v, Appqoe=%v, CreatedTime=%v, Ewf=%v, Id=%v, Idp=%v, LocalRouting=%v, ModifiedTime=%v, Name=%v, OrgId=%v, PathPreference=%v, Secintel=%v, Services=%v, SslProxy=%v, Tenants=%v, AdditionalProperties=%v]",
+    	o.Action, o.Antivirus, o.Appqoe, o.CreatedTime, o.Ewf, o.Id, o.Idp, o.LocalRouting, o.ModifiedTime, o.Name, o.OrgId, o.PathPreference, o.Secintel, o.Services, o.SslProxy, o.Tenants, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgServicePolicy.

@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,11 +33,8 @@ func (o *OrgsRFTemplates) ListOrgRfTemplates(
     page *int) (
     models.ApiResponse[[]models.RfTemplate],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/rftemplates", orgId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/rftemplates")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -84,11 +80,8 @@ func (o *OrgsRFTemplates) CreateOrgRfTemplate(
     body *models.RfTemplate) (
     models.ApiResponse[models.RfTemplate],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/rftemplates", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/rftemplates")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -132,11 +125,8 @@ func (o *OrgsRFTemplates) DeleteOrgRfTemplate(
     rftemplateId uuid.UUID) (
     *http.Response,
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/orgs/%v/rftemplates/%v", orgId, rftemplateId),
-    )
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/rftemplates/%v")
+    req.AppendTemplateParams(orgId, rftemplateId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -173,11 +163,8 @@ func (o *OrgsRFTemplates) GetOrgRfTemplate(
     rftemplateId uuid.UUID) (
     models.ApiResponse[models.RfTemplate],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/orgs/%v/rftemplates/%v", orgId, rftemplateId),
-    )
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/rftemplates/%v")
+    req.AppendTemplateParams(orgId, rftemplateId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -218,11 +205,8 @@ func (o *OrgsRFTemplates) UpdateOrgRfTemplate(
     body *models.RfTemplate) (
     models.ApiResponse[models.RfTemplate],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/orgs/%v/rftemplates/%v", orgId, rftemplateId),
-    )
+    req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/rftemplates/%v")
+    req.AppendTemplateParams(orgId, rftemplateId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

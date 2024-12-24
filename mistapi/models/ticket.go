@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -29,6 +30,14 @@ type Ticket struct {
     Type                 string                 `json:"type"`
     UpdatedAt            *int                   `json:"updated_at,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Ticket,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t Ticket) String() string {
+    return fmt.Sprintf(
+    	"Ticket[CaseNumber=%v, Comments=%v, CreatedAt=%v, Id=%v, Requester=%v, RequesterEmail=%v, Status=%v, Subject=%v, Type=%v, UpdatedAt=%v, AdditionalProperties=%v]",
+    	t.CaseNumber, t.Comments, t.CreatedAt, t.Id, t.Requester, t.RequesterEmail, t.Status, t.Subject, t.Type, t.UpdatedAt, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Ticket.

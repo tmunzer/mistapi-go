@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsClusterConfigRedundancyGroupInfoItem represents a StatsClusterConfigRedundancyGroupInfoItem struct.
@@ -10,6 +11,14 @@ type StatsClusterConfigRedundancyGroupInfoItem struct {
     MonitoringFailure    *string                `json:"MonitoringFailure,omitempty"`
     Threshold            *int                   `json:"Threshold,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsClusterConfigRedundancyGroupInfoItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsClusterConfigRedundancyGroupInfoItem) String() string {
+    return fmt.Sprintf(
+    	"StatsClusterConfigRedundancyGroupInfoItem[Id=%v, MonitoringFailure=%v, Threshold=%v, AdditionalProperties=%v]",
+    	s.Id, s.MonitoringFailure, s.Threshold, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsClusterConfigRedundancyGroupInfoItem.

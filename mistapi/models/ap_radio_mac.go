@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type ApRadioMac struct {
     Mac                  string                 `json:"mac"`
     RadioMacs            []string               `json:"radio_macs"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ApRadioMac,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a ApRadioMac) String() string {
+    return fmt.Sprintf(
+    	"ApRadioMac[Mac=%v, RadioMacs=%v, AdditionalProperties=%v]",
+    	a.Mac, a.RadioMacs, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadioMac.

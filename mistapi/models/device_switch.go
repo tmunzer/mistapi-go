@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -105,6 +106,14 @@ type DeviceSwitch struct {
     // y in pixel
     Y                     *float64                               `json:"y,omitempty"`
     AdditionalProperties  map[string]interface{}                 `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DeviceSwitch,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DeviceSwitch) String() string {
+    return fmt.Sprintf(
+    	"DeviceSwitch[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpSnooping=%v, DhcpdConfig=%v, DisableAutoConfig=%v, DnsServers=%v, DnsSuffix=%v, EvpnConfig=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IpConfig=%v, LocalPortConfig=%v, Mac=%v, Managed=%v, MapId=%v, MistNac=%v, Model=%v, ModifiedTime=%v, Name=%v, Networks=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, OspfAreas=%v, OtherIpConfigs=%v, PortConfig=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, Role=%v, RouterId=%v, Serial=%v, SiteId=%v, SnmpConfig=%v, StpConfig=%v, SwitchMgmt=%v, Type=%v, UseRouterIdAsSourceIp=%v, Vars=%v, VirtualChassis=%v, VrfConfig=%v, VrfInstances=%v, VrrpConfig=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	d.AclPolicies, d.AclTags, d.AdditionalConfigCmds, d.CreatedTime, d.DeviceprofileId, d.DhcpSnooping, d.DhcpdConfig, d.DisableAutoConfig, d.DnsServers, d.DnsSuffix, d.EvpnConfig, d.ExtraRoutes, d.ExtraRoutes6, d.Id, d.Image1Url, d.Image2Url, d.Image3Url, d.IpConfig, d.LocalPortConfig, d.Mac, d.Managed, d.MapId, d.MistNac, d.Model, d.ModifiedTime, d.Name, d.Networks, d.Notes, d.NtpServers, d.OobIpConfig, d.OrgId, d.OspfAreas, d.OtherIpConfigs, d.PortConfig, d.PortMirroring, d.PortUsages, d.RadiusConfig, d.RemoteSyslog, d.Role, d.RouterId, d.Serial, d.SiteId, d.SnmpConfig, d.StpConfig, d.SwitchMgmt, d.Type, d.UseRouterIdAsSourceIp, d.Vars, d.VirtualChassis, d.VrfConfig, d.VrfInstances, d.VrrpConfig, d.X, d.Y, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceSwitch.

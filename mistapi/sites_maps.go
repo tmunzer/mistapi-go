@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -34,7 +33,8 @@ func (s *SitesMaps) ListSiteMaps(
     page *int) (
     models.ApiResponse[[]models.Map],
     error) {
-    req := s.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/sites/%v/maps", siteId))
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/maps")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -80,11 +80,8 @@ func (s *SitesMaps) CreateSiteMap(
     body *models.Map) (
     models.ApiResponse[models.Map],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/maps")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -139,11 +136,8 @@ func (s *SitesMaps) ImportSiteMaps(
     json *models.MapImportJson) (
     models.ApiResponse[models.ResponseMapImport],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/import", siteId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/maps/import")
+    req.AppendTemplateParams(siteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -201,11 +195,8 @@ func (s *SitesMaps) DeleteSiteMap(
     mapId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/maps/%v")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -242,11 +233,8 @@ func (s *SitesMaps) GetSiteMap(
     mapId uuid.UUID) (
     models.ApiResponse[models.Map],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/maps/%v")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -287,11 +275,8 @@ func (s *SitesMaps) UpdateSiteMap(
     body *models.Map) (
     models.ApiResponse[models.Map],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/maps/%v")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -335,11 +320,8 @@ func (s *SitesMaps) DeleteSiteMapImage(
     mapId uuid.UUID) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/image", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/maps/%v/image")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -378,11 +360,8 @@ func (s *SitesMaps) AddSiteMapImage(
     json *string) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/image", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/maps/%v/image")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -430,11 +409,8 @@ func (s *SitesMaps) ReplaceSiteMapImage(
     json *models.MapSiteReplaceFileJson) (
     *http.Response,
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/replace", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/maps/%v/replace")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -483,11 +459,8 @@ func (s *SitesMaps) BulkAssignSiteApsToMap(
     body *models.MacAddresses) (
     models.ApiResponse[models.ResponseSetDevicesMap],
     error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/set_map", siteId, mapId),
-    )
+    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/maps/%v/set_map")
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -535,8 +508,9 @@ func (s *SitesMaps) ImportSiteWayfindings(
     req := s.prepareRequest(
       ctx,
       "POST",
-      fmt.Sprintf("/api/v1/sites/%v/maps/%v/wayfinding/import", siteId, mapId),
+      "/api/v1/sites/%v/maps/%v/wayfinding/import",
     )
+    req.AppendTemplateParams(siteId, mapId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

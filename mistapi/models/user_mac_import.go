@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // UserMacImport represents a UserMacImport struct.
@@ -10,6 +11,14 @@ type UserMacImport struct {
     Errors               []string               `json:"errors,omitempty"`
     Updated              []string               `json:"updated,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for UserMacImport,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (u UserMacImport) String() string {
+    return fmt.Sprintf(
+    	"UserMacImport[Added=%v, Errors=%v, Updated=%v, AdditionalProperties=%v]",
+    	u.Added, u.Errors, u.Updated, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UserMacImport.

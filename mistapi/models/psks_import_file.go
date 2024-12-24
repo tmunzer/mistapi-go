@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // PsksImportFile represents a PsksImportFile struct.
 type PsksImportFile struct {
     File                 *[]byte                `json:"file,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PsksImportFile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PsksImportFile) String() string {
+    return fmt.Sprintf(
+    	"PsksImportFile[File=%v, AdditionalProperties=%v]",
+    	p.File, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PsksImportFile.

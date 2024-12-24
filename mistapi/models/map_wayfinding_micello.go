@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MapWayfindingMicello represents a MapWayfindingMicello struct.
@@ -10,6 +11,14 @@ type MapWayfindingMicello struct {
     DefaultLevelId       *int                   `json:"default_level_id,omitempty"`
     MapId                *string                `json:"map_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapWayfindingMicello,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapWayfindingMicello) String() string {
+    return fmt.Sprintf(
+    	"MapWayfindingMicello[AccountKey=%v, DefaultLevelId=%v, MapId=%v, AdditionalProperties=%v]",
+    	m.AccountKey, m.DefaultLevelId, m.MapId, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapWayfindingMicello.

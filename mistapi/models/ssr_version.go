@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type SsrVersion struct {
     Package              string                 `json:"package"`
     Version              string                 `json:"version"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SsrVersion,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SsrVersion) String() string {
+    return fmt.Sprintf(
+    	"SsrVersion[Default=%v, Package=%v, Version=%v, AdditionalProperties=%v]",
+    	s.Default, s.Package, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrVersion.

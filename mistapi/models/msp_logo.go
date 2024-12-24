@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // MspLogo represents a MspLogo struct.
 type MspLogo struct {
     LogoUrl              *string                `json:"logo_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MspLogo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MspLogo) String() string {
+    return fmt.Sprintf(
+    	"MspLogo[LogoUrl=%v, AdditionalProperties=%v]",
+    	m.LogoUrl, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MspLogo.

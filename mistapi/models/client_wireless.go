@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -86,6 +87,14 @@ type ClientWireless struct {
     // list of IDs of WLANs the client was connected to
     WlanId               []uuid.UUID            `json:"wlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ClientWireless,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ClientWireless) String() string {
+    return fmt.Sprintf(
+    	"ClientWireless[Ap=%v, AppVersion=%v, Band=%v, Device=%v, Ftc=%v, Hardware=%v, Hostname=%v, Ip=%v, LastAp=%v, LastDevice=%v, LastFirmware=%v, LastHostname=%v, LastIp=%v, LastModel=%v, LastOs=%v, LastOsVersion=%v, LastPskId=%v, LastPskName=%v, LastSsid=%v, LastUsername=%v, LastVlan=%v, LastWlanId=%v, Mac=%v, Mfg=%v, Model=%v, OrgId=%v, Os=%v, OsVersion=%v, Protocol=%v, PskId=%v, PskName=%v, RandomMac=%v, SdkVersion=%v, SiteId=%v, SiteIds=%v, Ssid=%v, Timestamp=%v, Username=%v, Vlan=%v, WlanId=%v, AdditionalProperties=%v]",
+    	c.Ap, c.AppVersion, c.Band, c.Device, c.Ftc, c.Hardware, c.Hostname, c.Ip, c.LastAp, c.LastDevice, c.LastFirmware, c.LastHostname, c.LastIp, c.LastModel, c.LastOs, c.LastOsVersion, c.LastPskId, c.LastPskName, c.LastSsid, c.LastUsername, c.LastVlan, c.LastWlanId, c.Mac, c.Mfg, c.Model, c.OrgId, c.Os, c.OsVersion, c.Protocol, c.PskId, c.PskName, c.RandomMac, c.SdkVersion, c.SiteId, c.SiteIds, c.Ssid, c.Timestamp, c.Username, c.Vlan, c.WlanId, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClientWireless.

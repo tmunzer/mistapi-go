@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayMetrics represents a GatewayMetrics struct.
@@ -11,6 +12,14 @@ type GatewayMetrics struct {
     // version compliance score, major version for gateway, type
     VersionCompliance    *GatewayComplianceVersion `json:"version_compliance,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayMetrics,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayMetrics) String() string {
+    return fmt.Sprintf(
+    	"GatewayMetrics[ConfigSuccess=%v, VersionCompliance=%v, AdditionalProperties=%v]",
+    	g.ConfigSuccess, g.VersionCompliance, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayMetrics.

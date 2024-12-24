@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // DaysNumber represents a DaysNumber struct.
 type DaysNumber struct {
     Days                 *int                   `json:"days,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DaysNumber,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DaysNumber) String() string {
+    return fmt.Sprintf(
+    	"DaysNumber[Days=%v, AdditionalProperties=%v]",
+    	d.Days, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DaysNumber.

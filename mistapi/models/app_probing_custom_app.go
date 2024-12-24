@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AppProbingCustomApp represents a AppProbingCustomApp struct.
@@ -22,6 +23,14 @@ type AppProbingCustomApp struct {
     Url                  *string                          `json:"url,omitempty"`
     Vrf                  *string                          `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AppProbingCustomApp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AppProbingCustomApp) String() string {
+    return fmt.Sprintf(
+    	"AppProbingCustomApp[Address=%v, AppType=%v, Hostnames=%v, Key=%v, Name=%v, Network=%v, PacketSize=%v, Protocol=%v, Url=%v, Vrf=%v, AdditionalProperties=%v]",
+    	a.Address, a.AppType, a.Hostnames, a.Key, a.Name, a.Network, a.PacketSize, a.Protocol, a.Url, a.Vrf, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AppProbingCustomApp.

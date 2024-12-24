@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SearchWanClient represents a SearchWanClient struct.
@@ -12,6 +13,14 @@ type SearchWanClient struct {
     Start                *int                   `json:"start,omitempty"`
     Total                *int                   `json:"total,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SearchWanClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SearchWanClient) String() string {
+    return fmt.Sprintf(
+    	"SearchWanClient[End=%v, Limit=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+    	s.End, s.Limit, s.Results, s.Start, s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SearchWanClient.

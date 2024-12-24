@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -12,6 +13,14 @@ type ConstLanguage struct {
     DisplayNative        string                 `json:"display_native"`
     Key                  string                 `json:"key"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstLanguage,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstLanguage) String() string {
+    return fmt.Sprintf(
+    	"ConstLanguage[Display=%v, DisplayNative=%v, Key=%v, AdditionalProperties=%v]",
+    	c.Display, c.DisplayNative, c.Key, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstLanguage.

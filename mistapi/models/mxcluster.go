@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -45,6 +46,14 @@ type Mxcluster struct {
     TuntermMonitoring         [][]TuntermMonitoringItem             `json:"tunterm_monitoring,omitempty"`
     TuntermMonitoringDisabled *bool                                 `json:"tunterm_monitoring_disabled,omitempty"`
     AdditionalProperties      map[string]interface{}                `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Mxcluster,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m Mxcluster) String() string {
+    return fmt.Sprintf(
+    	"Mxcluster[CreatedTime=%v, ForSite=%v, Id=%v, MistDas=%v, MistNac=%v, ModifiedTime=%v, MxedgeMgmt=%v, Name=%v, OrgId=%v, Proxy=%v, Radsec=%v, RadsecTls=%v, SiteId=%v, TuntermApSubnets=%v, TuntermDhcpdConfig=%v, TuntermExtraRoutes=%v, TuntermHosts=%v, TuntermHostsOrder=%v, TuntermHostsSelection=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, AdditionalProperties=%v]",
+    	m.CreatedTime, m.ForSite, m.Id, m.MistDas, m.MistNac, m.ModifiedTime, m.MxedgeMgmt, m.Name, m.OrgId, m.Proxy, m.Radsec, m.RadsecTls, m.SiteId, m.TuntermApSubnets, m.TuntermDhcpdConfig, m.TuntermExtraRoutes, m.TuntermHosts, m.TuntermHostsOrder, m.TuntermHostsSelection, m.TuntermMonitoring, m.TuntermMonitoringDisabled, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Mxcluster.

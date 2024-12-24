@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -28,6 +29,14 @@ type StatsZoneDetails struct {
     // list of sdkclients currently in the zone and when they entered
     Sdkclients           []string                    `json:"sdkclients,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsZoneDetails,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsZoneDetails) String() string {
+    return fmt.Sprintf(
+    	"StatsZoneDetails[Assets=%v, ClientWaits=%v, Clients=%v, Id=%v, MapId=%v, Name=%v, NumClients=%v, NumSdkclients=%v, Sdkclients=%v, AdditionalProperties=%v]",
+    	s.Assets, s.ClientWaits, s.Clients, s.Id, s.MapId, s.Name, s.NumClients, s.NumSdkclients, s.Sdkclients, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsZoneDetails.

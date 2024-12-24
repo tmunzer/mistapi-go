@@ -20,7 +20,7 @@
 | `Channel` | `int` | Required | current channel |
 | `DualBand` | `bool` | Required | whether the client is dual_band capable (determined by whether we’ve seen probe requests from both bands) |
 | `Family` | `string` | Required | device family, through fingerprinting. iPod / Nexus Galaxy / Windows Mobile or CE … |
-| `Guest` | [`*models.StatsWirelessClientGuest`](../../doc/models/stats-wireless-client-guest.md) | Optional | information about this portal |
+| `Guest` | [`*models.Guest`](../../doc/models/guest.md) | Optional | Guest |
 | `Hostname` | `string` | Required | hostname that we learned from sniffing DHCP |
 | `IdleTime` | `float64` | Required | how long, in seconds, has the client been idle (since the last RX packet) |
 | `Ip` | `string` | Required | - |
@@ -113,13 +113,11 @@
     }
   },
   "guest": {
+    "access_code_email": "access_code_email4",
+    "ap_mac": "ap_mac4",
+    "auth_method": "auth_method6",
     "authorized": false,
     "authorized_expiring_time": 236.54,
-    "authorized_time": 42.96,
-    "company": "company2",
-    "email": "email4",
-    "field1": "field16",
-    "name": "name2",
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"

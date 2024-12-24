@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -12,6 +13,14 @@ type ReponseSynthetictest struct {
     Message              *string                `json:"message,omitempty"`
     Status               *string                `json:"status,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ReponseSynthetictest,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ReponseSynthetictest) String() string {
+    return fmt.Sprintf(
+    	"ReponseSynthetictest[Id=%v, Message=%v, Status=%v, AdditionalProperties=%v]",
+    	r.Id, r.Message, r.Status, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ReponseSynthetictest.

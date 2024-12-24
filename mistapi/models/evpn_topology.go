@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -21,6 +22,14 @@ type EvpnTopology struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     Switches             []EvpnTopologySwitch   `json:"switches"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EvpnTopology,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EvpnTopology) String() string {
+    return fmt.Sprintf(
+    	"EvpnTopology[EvpnOptions=%v, Id=%v, Name=%v, OrgId=%v, Overwrite=%v, PodNames=%v, SiteId=%v, Switches=%v, AdditionalProperties=%v]",
+    	e.EvpnOptions, e.Id, e.Name, e.OrgId, e.Overwrite, e.PodNames, e.SiteId, e.Switches, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopology.

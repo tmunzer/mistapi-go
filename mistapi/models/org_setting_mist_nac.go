@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingMistNac represents a OrgSettingMistNac struct.
@@ -33,6 +34,14 @@ type OrgSettingMistNac struct {
     // This is a org level setting that is applicable to wlans, switch_templates, and mxedge_clusters that have mist-nac enabled
     UseSslPort                *bool                           `json:"use_ssl_port,omitempty"`
     AdditionalProperties      map[string]interface{}          `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingMistNac,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingMistNac) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingMistNac[Cacerts=%v, DefaultIdpId=%v, DisableRsaeAlgorithms=%v, EapSslSecurityLevel=%v, EuOnly=%v, IdpMachineCertLookupField=%v, IdpUserCertLookupField=%v, Idps=%v, ServerCert=%v, UseIpVersion=%v, UseSslPort=%v, AdditionalProperties=%v]",
+    	o.Cacerts, o.DefaultIdpId, o.DisableRsaeAlgorithms, o.EapSslSecurityLevel, o.EuOnly, o.IdpMachineCertLookupField, o.IdpUserCertLookupField, o.Idps, o.ServerCert, o.UseIpVersion, o.UseSslPort, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingMistNac.

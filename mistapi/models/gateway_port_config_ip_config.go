@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // GatewayPortConfigIpConfig represents a GatewayPortConfigIpConfig struct.
@@ -27,6 +28,14 @@ type GatewayPortConfigIpConfig struct {
     // enum: `dhcp`, `pppoe`, `static`
     Type                 *GatewayWanTypeEnum     `json:"type,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for GatewayPortConfigIpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (g GatewayPortConfigIpConfig) String() string {
+    return fmt.Sprintf(
+    	"GatewayPortConfigIpConfig[Dns=%v, DnsSuffix=%v, Gateway=%v, Ip=%v, Netmask=%v, Network=%v, PoserPassword=%v, PppoeAuth=%v, PppoeUsername=%v, Type=%v, AdditionalProperties=%v]",
+    	g.Dns, g.DnsSuffix, g.Gateway, g.Ip, g.Netmask, g.Network, g.PoserPassword, g.PppoeAuth, g.PppoeUsername, g.Type, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortConfigIpConfig.

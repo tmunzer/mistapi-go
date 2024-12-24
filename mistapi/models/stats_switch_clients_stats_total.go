@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsSwitchClientsStatsTotal represents a StatsSwitchClientsStatsTotal struct.
@@ -9,6 +10,14 @@ type StatsSwitchClientsStatsTotal struct {
     NumAps               []int                  `json:"num_aps,omitempty"`
     NumWiredClients      *int                   `json:"num_wired_clients,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsSwitchClientsStatsTotal,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsSwitchClientsStatsTotal) String() string {
+    return fmt.Sprintf(
+    	"StatsSwitchClientsStatsTotal[NumAps=%v, NumWiredClients=%v, AdditionalProperties=%v]",
+    	s.NumAps, s.NumWiredClients, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchClientsStatsTotal.

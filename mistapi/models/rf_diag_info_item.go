@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -46,6 +47,14 @@ type RfDiagInfoItem struct {
     // URL to a JSON file that contains an array of frames, each frame is the same format
     Url                  string                 `json:"url"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RfDiagInfoItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RfDiagInfoItem) String() string {
+    return fmt.Sprintf(
+    	"RfDiagInfoItem[AssetId=%v, AssetName=%v, ClientName=%v, Duration=%v, EndTime=%v, FrameCount=%v, Id=%v, Mac=%v, MapId=%v, Name=%v, Next=%v, RawEvents=%v, Ready=%v, SdkclientId=%v, SdkclientName=%v, SdkclientUuid=%v, StartTime=%v, Type=%v, Url=%v, AdditionalProperties=%v]",
+    	r.AssetId, r.AssetName, r.ClientName, r.Duration, r.EndTime, r.FrameCount, r.Id, r.Mac, r.MapId, r.Name, r.Next, r.RawEvents, r.Ready, r.SdkclientId, r.SdkclientName, r.SdkclientUuid, r.StartTime, r.Type, r.Url, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RfDiagInfoItem.

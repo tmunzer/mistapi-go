@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type WxtagClient struct {
     Mac                  string                 `json:"mac"`
     Since                float64                `json:"since"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WxtagClient,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WxtagClient) String() string {
+    return fmt.Sprintf(
+    	"WxtagClient[Mac=%v, Since=%v, AdditionalProperties=%v]",
+    	w.Mac, w.Since, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WxtagClient.

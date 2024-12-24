@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // WlanDynamicVlanDefaultVlanIdDeprecated represents a WlanDynamicVlanDefaultVlanIdDeprecated struct.
@@ -14,12 +14,10 @@ type WlanDynamicVlanDefaultVlanIdDeprecated struct {
     isNumber bool
 }
 
-// String converts the WlanDynamicVlanDefaultVlanIdDeprecated object to a string representation.
+// String implements the fmt.Stringer interface for WlanDynamicVlanDefaultVlanIdDeprecated,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WlanDynamicVlanDefaultVlanIdDeprecated) String() string {
-    if bytes, err := json.Marshal(w.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", w.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDynamicVlanDefaultVlanIdDeprecated.

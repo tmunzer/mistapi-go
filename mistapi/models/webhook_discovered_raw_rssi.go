@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type WebhookDiscoveredRawRssi struct {
     Events               []WebhookDiscoveredRawRssiEvent `json:"events,omitempty"`
     Topic                string                          `json:"topic"`
     AdditionalProperties map[string]interface{}          `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WebhookDiscoveredRawRssi,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WebhookDiscoveredRawRssi) String() string {
+    return fmt.Sprintf(
+    	"WebhookDiscoveredRawRssi[Events=%v, Topic=%v, AdditionalProperties=%v]",
+    	w.Events, w.Topic, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WebhookDiscoveredRawRssi.

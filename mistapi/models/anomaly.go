@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -15,6 +16,14 @@ type Anomaly struct {
     SleDeviation         float64                `json:"sle_deviation"`
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Anomaly,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a Anomaly) String() string {
+    return fmt.Sprintf(
+    	"Anomaly[Events=%v, Since=%v, SleBaseline=%v, SleDeviation=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	a.Events, a.Since, a.SleBaseline, a.SleDeviation, a.Timestamp, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Anomaly.

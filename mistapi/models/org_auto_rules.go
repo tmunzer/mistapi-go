@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -39,6 +40,14 @@ type OrgAutoRules struct {
     // *  `src`==`geoip: site name for the device to be assigned to ("city" / "city+country" / ...)
     Value                 *string                          `json:"value,omitempty"`
     AdditionalProperties  map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgAutoRules,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgAutoRules) String() string {
+    return fmt.Sprintf(
+    	"OrgAutoRules[CreateNewSiteIfNeeded=%v, Expression=%v, GatewaytemplateId=%v, MatchCountry=%v, MatchDeviceType=%v, MatchModel=%v, Model=%v, Prefix=%v, Src=%v, Subnet=%v, Suffix=%v, Value=%v, AdditionalProperties=%v]",
+    	o.CreateNewSiteIfNeeded, o.Expression, o.GatewaytemplateId, o.MatchCountry, o.MatchDeviceType, o.MatchModel, o.Model, o.Prefix, o.Src, o.Subnet, o.Suffix, o.Value, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgAutoRules.

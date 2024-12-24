@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type ZoneVertex struct {
     // y in pixel
     Y                    float64                `json:"y"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ZoneVertex,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (z ZoneVertex) String() string {
+    return fmt.Sprintf(
+    	"ZoneVertex[X=%v, Y=%v, AdditionalProperties=%v]",
+    	z.X, z.Y, z.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ZoneVertex.

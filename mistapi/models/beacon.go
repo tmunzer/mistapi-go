@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -43,6 +44,14 @@ type Beacon struct {
     // y in pixel
     Y                    *float64               `json:"y,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Beacon,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (b Beacon) String() string {
+    return fmt.Sprintf(
+    	"Beacon[CreatedTime=%v, EddystoneInstance=%v, EddystoneNamespace=%v, EddystoneUrl=%v, ForSite=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, Id=%v, Mac=%v, MapId=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Power=%v, SiteId=%v, Type=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	b.CreatedTime, b.EddystoneInstance, b.EddystoneNamespace, b.EddystoneUrl, b.ForSite, b.IbeaconMajor, b.IbeaconMinor, b.IbeaconUuid, b.Id, b.Mac, b.MapId, b.ModifiedTime, b.Name, b.OrgId, b.Power, b.SiteId, b.Type, b.X, b.Y, b.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Beacon.

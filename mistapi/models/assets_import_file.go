@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // AssetsImportFile represents a AssetsImportFile struct.
@@ -9,6 +10,14 @@ type AssetsImportFile struct {
     // CSV file
     File                 *[]byte                `json:"file,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AssetsImportFile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AssetsImportFile) String() string {
+    return fmt.Sprintf(
+    	"AssetsImportFile[File=%v, AdditionalProperties=%v]",
+    	a.File, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetsImportFile.

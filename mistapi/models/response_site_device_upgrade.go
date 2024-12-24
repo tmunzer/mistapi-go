@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -35,6 +36,14 @@ type ResponseSiteDeviceUpgrade struct {
     // a dictionary of rrm phase number to devices part of that phase
     UpgradePlan          *interface{}                     `json:"upgrade_plan,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSiteDeviceUpgrade,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSiteDeviceUpgrade) String() string {
+    return fmt.Sprintf(
+    	"ResponseSiteDeviceUpgrade[Counts=%v, CurrentPhase=%v, EnableP2p=%v, Force=%v, Id=%v, MaxFailurePercentage=%v, MaxFailures=%v, RebootAt=%v, StartTime=%v, Status=%v, Strategy=%v, TargetVersion=%v, UpgradePlan=%v, AdditionalProperties=%v]",
+    	r.Counts, r.CurrentPhase, r.EnableP2p, r.Force, r.Id, r.MaxFailurePercentage, r.MaxFailures, r.RebootAt, r.StartTime, r.Status, r.Strategy, r.TargetVersion, r.UpgradePlan, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSiteDeviceUpgrade.

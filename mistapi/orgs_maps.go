@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -41,11 +40,8 @@ func (o *OrgsMaps) ImportOrgMaps(
     json *models.MapOrgImportFileJson) (
     models.ApiResponse[models.ResponseMapImport],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/maps/import", orgId),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/maps/import")
+    req.AppendTemplateParams(orgId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -112,11 +108,8 @@ func (o *OrgsMaps) ImportOrgMapToSite(
     json *models.MapImportJson) (
     models.ApiResponse[models.ResponseMapImport],
     error) {
-    req := o.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/orgs/%v/sites/%v/maps/import", orgId, siteName),
-    )
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/sites/%v/maps/import")
+    req.AppendTemplateParams(orgId, siteName)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

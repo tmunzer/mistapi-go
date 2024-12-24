@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -38,6 +39,14 @@ type PrivilegeMsp struct {
     // | `lobby_admin` | `admin` | full access to Org and Site Pre-shared keys |
     Views                *AdminPrivilegeViewEnum `json:"views,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PrivilegeMsp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PrivilegeMsp) String() string {
+    return fmt.Sprintf(
+    	"PrivilegeMsp[OrgId=%v, OrgName=%v, OrggroupId=%v, Role=%v, Scope=%v, Views=%v, AdditionalProperties=%v]",
+    	p.OrgId, p.OrgName, p.OrggroupId, p.Role, p.Scope, p.Views, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PrivilegeMsp.

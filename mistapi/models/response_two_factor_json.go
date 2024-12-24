@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseTwoFactorJson represents a ResponseTwoFactorJson struct.
 type ResponseTwoFactorJson struct {
     TwoFactorSecret      *string                `json:"two_factor_secret,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseTwoFactorJson,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseTwoFactorJson) String() string {
+    return fmt.Sprintf(
+    	"ResponseTwoFactorJson[TwoFactorSecret=%v, AdditionalProperties=%v]",
+    	r.TwoFactorSecret, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseTwoFactorJson.

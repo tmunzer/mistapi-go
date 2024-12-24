@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // BgpConfig represents a BgpConfig struct.
@@ -46,6 +47,14 @@ type BgpConfig struct {
     // if `via`==`wan`
     WanName                *string                       `json:"wan_name,omitempty"`
     AdditionalProperties   map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for BgpConfig,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (b BgpConfig) String() string {
+    return fmt.Sprintf(
+    	"BgpConfig[AuthKey=%v, BfdMinimumInterval=%v, BfdMultiplier=%v, DisableBfd=%v, Export=%v, ExportPolicy=%v, ExtendedV4Nexthop=%v, GracefulRestartTime=%v, HoldTime=%v, Import=%v, ImportPolicy=%v, LocalAs=%v, NeighborAs=%v, Neighbors=%v, Networks=%v, NoReadvertiseToOverlay=%v, TunnelName=%v, Type=%v, Via=%v, VpnName=%v, WanName=%v, AdditionalProperties=%v]",
+    	b.AuthKey, b.BfdMinimumInterval, b.BfdMultiplier, b.DisableBfd, b.Export, b.ExportPolicy, b.ExtendedV4Nexthop, b.GracefulRestartTime, b.HoldTime, b.Import, b.ImportPolicy, b.LocalAs, b.NeighborAs, b.Neighbors, b.Networks, b.NoReadvertiseToOverlay, b.TunnelName, b.Type, b.Via, b.VpnName, b.WanName, b.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for BgpConfig.

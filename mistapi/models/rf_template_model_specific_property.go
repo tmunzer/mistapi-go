@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RfTemplateModelSpecificProperty represents a RfTemplateModelSpecificProperty struct.
@@ -20,6 +21,14 @@ type RfTemplateModelSpecificProperty struct {
     // Radio Band AP settings
     Band6                *RftemplateRadioBand6  `json:"band_6,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RfTemplateModelSpecificProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RfTemplateModelSpecificProperty) String() string {
+    return fmt.Sprintf(
+    	"RfTemplateModelSpecificProperty[AntGain24=%v, AntGain5=%v, AntGain6=%v, Band24=%v, Band24Usage=%v, Band5=%v, Band5On24Radio=%v, Band6=%v, AdditionalProperties=%v]",
+    	r.AntGain24, r.AntGain5, r.AntGain6, r.Band24, r.Band24Usage, r.Band5, r.Band5On24Radio, r.Band6, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RfTemplateModelSpecificProperty.

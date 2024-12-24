@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgSettingWiredPma represents a OrgSettingWiredPma struct.
 type OrgSettingWiredPma struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgSettingWiredPma,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgSettingWiredPma) String() string {
+    return fmt.Sprintf(
+    	"OrgSettingWiredPma[Enabled=%v, AdditionalProperties=%v]",
+    	o.Enabled, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingWiredPma.

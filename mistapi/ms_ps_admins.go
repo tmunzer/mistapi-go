@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "fmt"
     "github.com/apimatic/go-core-runtime/https"
     "github.com/apimatic/go-core-runtime/utilities"
     "github.com/google/uuid"
@@ -32,7 +31,8 @@ func (m *MSPsAdmins) ListMspAdmins(
     mspId uuid.UUID) (
     models.ApiResponse[[]models.Admin],
     error) {
-    req := m.prepareRequest(ctx, "GET", fmt.Sprintf("/api/v1/msps/%v/admins", mspId))
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/admins")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -72,11 +72,8 @@ func (m *MSPsAdmins) RevokeMspAdmin(
     adminId uuid.UUID) (
     *http.Response,
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/msps/%v/admins/%v", mspId, adminId),
-    )
+    req := m.prepareRequest(ctx, "DELETE", "/api/v1/msps/%v/admins/%v")
+    req.AppendTemplateParams(mspId, adminId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -113,11 +110,8 @@ func (m *MSPsAdmins) GetMspAdmin(
     adminId uuid.UUID) (
     models.ApiResponse[models.Admin],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "GET",
-      fmt.Sprintf("/api/v1/msps/%v/admins/%v", mspId, adminId),
-    )
+    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/admins/%v")
+    req.AppendTemplateParams(mspId, adminId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -158,11 +152,8 @@ func (m *MSPsAdmins) UpdateMspAdmin(
     body *models.Admin) (
     models.ApiResponse[models.Admin],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/msps/%v/admins/%v", mspId, adminId),
-    )
+    req := m.prepareRequest(ctx, "PUT", "/api/v1/msps/%v/admins/%v")
+    req.AppendTemplateParams(mspId, adminId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -207,11 +198,8 @@ func (m *MSPsAdmins) InviteMspAdmin(
     body *models.Admin) (
     models.ApiResponse[models.Admin],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "POST",
-      fmt.Sprintf("/api/v1/msps/%v/invites", mspId),
-    )
+    req := m.prepareRequest(ctx, "POST", "/api/v1/msps/%v/invites")
+    req.AppendTemplateParams(mspId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -255,11 +243,8 @@ func (m *MSPsAdmins) UninviteMspAdmin(
     inviteId uuid.UUID) (
     *http.Response,
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "DELETE",
-      fmt.Sprintf("/api/v1/msps/%v/invites/%v", mspId, inviteId),
-    )
+    req := m.prepareRequest(ctx, "DELETE", "/api/v1/msps/%v/invites/%v")
+    req.AppendTemplateParams(mspId, inviteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -297,11 +282,8 @@ func (m *MSPsAdmins) UpdateMspAdminInvite(
     body *models.Admin) (
     models.ApiResponse[models.Admin],
     error) {
-    req := m.prepareRequest(
-      ctx,
-      "PUT",
-      fmt.Sprintf("/api/v1/msps/%v/invites/%v", mspId, inviteId),
-    )
+    req := m.prepareRequest(ctx, "PUT", "/api/v1/msps/%v/invites/%v")
+    req.AppendTemplateParams(mspId, inviteId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

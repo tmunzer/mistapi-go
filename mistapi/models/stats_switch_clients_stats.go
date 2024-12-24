@@ -2,12 +2,21 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // StatsSwitchClientsStats represents a StatsSwitchClientsStats struct.
 type StatsSwitchClientsStats struct {
     Total                *StatsSwitchClientsStatsTotal `json:"total,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for StatsSwitchClientsStats,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s StatsSwitchClientsStats) String() string {
+    return fmt.Sprintf(
+    	"StatsSwitchClientsStats[Total=%v, AdditionalProperties=%v]",
+    	s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchClientsStats.

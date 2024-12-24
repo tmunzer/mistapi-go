@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -16,6 +17,14 @@ type ResponseConfigHistorySearchItemWlan struct {
     Ssid                 string                 `json:"ssid"`
     VlanIds              []string               `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseConfigHistorySearchItemWlan,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseConfigHistorySearchItemWlan) String() string {
+    return fmt.Sprintf(
+    	"ResponseConfigHistorySearchItemWlan[Auth=%v, Bands=%v, Id=%v, Ssid=%v, VlanIds=%v, AdditionalProperties=%v]",
+    	r.Auth, r.Bands, r.Id, r.Ssid, r.VlanIds, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseConfigHistorySearchItemWlan.

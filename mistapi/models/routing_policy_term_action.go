@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // RoutingPolicyTermAction represents a RoutingPolicyTermAction struct.
@@ -25,6 +26,14 @@ type RoutingPolicyTermAction struct {
     // when used as export policy, optional. By default, the local AS will be prepended, to change it
     PrependAsPath        []string               `json:"prepend_as_path,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for RoutingPolicyTermAction,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r RoutingPolicyTermAction) String() string {
+    return fmt.Sprintf(
+    	"RoutingPolicyTermAction[Accept=%v, AddCommunity=%v, AddTargetVrfs=%v, Aggregate=%v, Community=%v, ExcludeAsPath=%v, ExcludeCommunity=%v, ExportCommunitites=%v, LocalPreference=%v, PrependAsPath=%v, AdditionalProperties=%v]",
+    	r.Accept, r.AddCommunity, r.AddTargetVrfs, r.Aggregate, r.Community, r.ExcludeAsPath, r.ExcludeCommunity, r.ExportCommunitites, r.LocalPreference, r.PrependAsPath, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTermAction.

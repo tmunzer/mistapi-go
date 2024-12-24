@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -23,6 +24,14 @@ type ResponseSiteSearchItem struct {
     VnaEnabled           bool                   `json:"vna_enabled"`
     WifiEnabled          bool                   `json:"wifi_enabled"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseSiteSearchItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseSiteSearchItem) String() string {
+    return fmt.Sprintf(
+    	"ResponseSiteSearchItem[AutoUpgradeEnabled=%v, AutoUpgradeVersion=%v, CountryCode=%v, HoneypotEnabled=%v, Id=%v, Name=%v, OrgId=%v, SiteId=%v, Timestamp=%v, Timezone=%v, VnaEnabled=%v, WifiEnabled=%v, AdditionalProperties=%v]",
+    	r.AutoUpgradeEnabled, r.AutoUpgradeVersion, r.CountryCode, r.HoneypotEnabled, r.Id, r.Name, r.OrgId, r.SiteId, r.Timestamp, r.Timezone, r.VnaEnabled, r.WifiEnabled, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSiteSearchItem.

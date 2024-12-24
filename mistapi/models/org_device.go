@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -11,6 +12,14 @@ type OrgDevice struct {
     Mac                  string                 `json:"mac"`
     Name                 string                 `json:"name"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgDevice,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgDevice) String() string {
+    return fmt.Sprintf(
+    	"OrgDevice[Mac=%v, Name=%v, AdditionalProperties=%v]",
+    	o.Mac, o.Name, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgDevice.

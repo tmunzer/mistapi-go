@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type SleSummaryImpact struct {
     TotalAps             float64                `json:"total_aps"`
     TotalUsers           float64                `json:"total_users"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SleSummaryImpact,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SleSummaryImpact) String() string {
+    return fmt.Sprintf(
+    	"SleSummaryImpact[NumAps=%v, NumUsers=%v, TotalAps=%v, TotalUsers=%v, AdditionalProperties=%v]",
+    	s.NumAps, s.NumUsers, s.TotalAps, s.TotalUsers, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleSummaryImpact.

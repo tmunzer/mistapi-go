@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type InsightMetrics struct {
     Results              []interface{}          `json:"results"`
     Start                int                    `json:"start"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for InsightMetrics,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i InsightMetrics) String() string {
+    return fmt.Sprintf(
+    	"InsightMetrics[End=%v, Interval=%v, Results=%v, Start=%v, AdditionalProperties=%v]",
+    	i.End, i.Interval, i.Results, i.Start, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InsightMetrics.

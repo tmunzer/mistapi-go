@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -14,6 +15,14 @@ type MapImportJson struct {
     // enum: `ekahau`, `ibwave`
     VendorName           MapImportJsonVendorNameEnum `json:"vendor_name"`
     AdditionalProperties map[string]interface{}      `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for MapImportJson,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (m MapImportJson) String() string {
+    return fmt.Sprintf(
+    	"MapImportJson[ImportAllFloorplans=%v, ImportHeight=%v, ImportOrientation=%v, VendorName=%v, AdditionalProperties=%v]",
+    	m.ImportAllFloorplans, m.ImportHeight, m.ImportOrientation, m.VendorName, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MapImportJson.

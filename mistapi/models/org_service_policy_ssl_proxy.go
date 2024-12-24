@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // OrgServicePolicySslProxy represents a OrgServicePolicySslProxy struct.
@@ -11,6 +12,14 @@ type OrgServicePolicySslProxy struct {
     CiphersCatagory      *SslProxyCiphersCatagoryEnum `json:"ciphers_catagory,omitempty"`
     Enabled              *bool                        `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for OrgServicePolicySslProxy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (o OrgServicePolicySslProxy) String() string {
+    return fmt.Sprintf(
+    	"OrgServicePolicySslProxy[CiphersCatagory=%v, Enabled=%v, AdditionalProperties=%v]",
+    	o.CiphersCatagory, o.Enabled, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgServicePolicySslProxy.

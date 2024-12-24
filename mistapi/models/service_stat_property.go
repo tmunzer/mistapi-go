@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ServiceStatProperty represents a ServiceStatProperty struct.
@@ -15,6 +16,14 @@ type ServiceStatProperty struct {
     TestingToolsVersion  *string                `json:"testing_tools_version,omitempty"`
     WheeljackVersion     *string                `json:"wheeljack_version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ServiceStatProperty,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s ServiceStatProperty) String() string {
+    return fmt.Sprintf(
+    	"ServiceStatProperty[AshVersion=%v, CiaVersion=%v, EmberVersion=%v, IpsecClientVersion=%v, MistAgentVersion=%v, PackageVersion=%v, TestingToolsVersion=%v, WheeljackVersion=%v, AdditionalProperties=%v]",
+    	s.AshVersion, s.CiaVersion, s.EmberVersion, s.IpsecClientVersion, s.MistAgentVersion, s.PackageVersion, s.TestingToolsVersion, s.WheeljackVersion, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServiceStatProperty.

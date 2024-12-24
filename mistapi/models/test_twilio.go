@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -17,6 +18,14 @@ type TestTwilio struct {
     // Twilio Account SID
     TwilioSid            string                 `json:"twilio_sid"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for TestTwilio,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (t TestTwilio) String() string {
+    return fmt.Sprintf(
+    	"TestTwilio[From=%v, To=%v, TwilioAuthToken=%v, TwilioSid=%v, AdditionalProperties=%v]",
+    	t.From, t.To, t.TwilioAuthToken, t.TwilioSid, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TestTwilio.

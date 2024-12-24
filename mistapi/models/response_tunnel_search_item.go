@@ -3,7 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
-    "strings"
+    "fmt"
 )
 
 // ResponseTunnelSearchItem represents a ResponseTunnelSearchItem struct.
@@ -13,12 +13,10 @@ type ResponseTunnelSearchItem struct {
     isStatsWanTunnel bool
 }
 
-// String converts the ResponseTunnelSearchItem object to a string representation.
+// String implements the fmt.Stringer interface for ResponseTunnelSearchItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseTunnelSearchItem) String() string {
-    if bytes, err := json.Marshal(r.value); err == nil {
-         return strings.Trim(string(bytes), "\"")
-    }
-    return ""
+    return fmt.Sprintf("%v", r.value)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseTunnelSearchItem.

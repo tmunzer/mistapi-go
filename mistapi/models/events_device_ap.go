@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -22,6 +23,14 @@ type EventsDeviceAp struct {
     Timestamp            float64                `json:"timestamp"`
     Type                 *string                `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for EventsDeviceAp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (e EventsDeviceAp) String() string {
+    return fmt.Sprintf(
+    	"EventsDeviceAp[Ap=%v, Apfw=%v, Count=%v, DeviceType=%v, Mac=%v, OrgId=%v, PortId=%v, SiteId=%v, Text=%v, Timestamp=%v, Type=%v, AdditionalProperties=%v]",
+    	e.Ap, e.Apfw, e.Count, e.DeviceType, e.Mac, e.OrgId, e.PortId, e.SiteId, e.Text, e.Timestamp, e.Type, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventsDeviceAp.

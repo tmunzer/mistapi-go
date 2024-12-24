@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -26,6 +27,14 @@ type ConstNacEvent struct {
     Username             *string                `json:"username,omitempty"`
     Wcid                 *uuid.UUID             `json:"wcid,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstNacEvent,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstNacEvent) String() string {
+    return fmt.Sprintf(
+    	"ConstNacEvent[Ap=%v, Bssid=%v, CertCn=%v, CertExpiry=%v, CertIssuer=%v, CertSanUpn=%v, CertSerial=%v, CertSubject=%v, EapType=%v, NasVendor=%v, OrgId=%v, RandomMac=%v, SiteId=%v, Ssid=%v, Timestamp=%v, Type=%v, Username=%v, Wcid=%v, AdditionalProperties=%v]",
+    	c.Ap, c.Bssid, c.CertCn, c.CertExpiry, c.CertIssuer, c.CertSanUpn, c.CertSerial, c.CertSubject, c.EapType, c.NasVendor, c.OrgId, c.RandomMac, c.SiteId, c.Ssid, c.Timestamp, c.Type, c.Username, c.Wcid, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstNacEvent.

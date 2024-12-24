@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ConstDeviceApExtios represents a ConstDeviceApExtios struct.
@@ -11,6 +12,14 @@ type ConstDeviceApExtios struct {
     Input                *bool                              `json:"input,omitempty"`
     Output               *bool                              `json:"output,omitempty"`
     AdditionalProperties map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstDeviceApExtios,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstDeviceApExtios) String() string {
+    return fmt.Sprintf(
+    	"ConstDeviceApExtios[DefaultDir=%v, Input=%v, Output=%v, AdditionalProperties=%v]",
+    	c.DefaultDir, c.Input, c.Output, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceApExtios.

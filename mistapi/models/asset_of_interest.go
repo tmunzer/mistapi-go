@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -21,6 +22,14 @@ type AssetOfInterest struct {
     Name                 *string                `json:"name,omitempty"`
     Rssi                 *float64               `json:"rssi,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AssetOfInterest,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AssetOfInterest) String() string {
+    return fmt.Sprintf(
+    	"AssetOfInterest[ApMac=%v, Beam=%v, By=%v, CurrSite=%v, DeviceName=%v, Id=%v, LastSeen=%v, Mac=%v, Manufacture=%v, MapId=%v, Name=%v, Rssi=%v, AdditionalProperties=%v]",
+    	a.ApMac, a.Beam, a.By, a.CurrSite, a.DeviceName, a.Id, a.LastSeen, a.Mac, a.Manufacture, a.MapId, a.Name, a.Rssi, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetOfInterest.

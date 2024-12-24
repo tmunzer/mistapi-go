@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // ResponseAutoZoneZone represents a ResponseAutoZoneZone struct.
@@ -12,6 +13,14 @@ type ResponseAutoZoneZone struct {
     // A list of of points comprising the zones map location in pixels
     Vertices             []ResponseAutoZoneZoneVertex `json:"vertices,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ResponseAutoZoneZone,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseAutoZoneZone) String() string {
+    return fmt.Sprintf(
+    	"ResponseAutoZoneZone[Name=%v, Vertices=%v, AdditionalProperties=%v]",
+    	r.Name, r.Vertices, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAutoZoneZone.

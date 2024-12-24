@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -66,7 +67,7 @@ type DeviceGateway struct {
     ServicePolicies       []ServicePolicy                    `json:"service_policies,omitempty"`
     SiteId                *uuid.UUID                         `json:"site_id,omitempty"`
     // Property key is the tunnel name
-    TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
+    TunnelConfigs         map[string]TunnelConfig            `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     // Device Type. enum: `gateway`
     Type                  string                             `json:"type"`
@@ -80,6 +81,14 @@ type DeviceGateway struct {
     // y in pixel
     Y                     *float64                           `json:"y,omitempty"`
     AdditionalProperties  map[string]interface{}             `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for DeviceGateway,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (d DeviceGateway) String() string {
+    return fmt.Sprintf(
+    	"DeviceGateway[AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpdConfig=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, ForSite=%v, Id=%v, IdpProfiles=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IpConfigs=%v, Mac=%v, Managed=%v, MapId=%v, Model=%v, ModifiedTime=%v, MspId=%v, Name=%v, Networks=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, PathPreferences=%v, PortConfig=%v, PortMirroring=%v, RouterId=%v, RoutingPolicies=%v, Serial=%v, ServicePolicies=%v, SiteId=%v, TunnelConfigs=%v, TunnelProviderOptions=%v, Type=%v, Vars=%v, VrfConfig=%v, VrfInstances=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	d.AdditionalConfigCmds, d.BgpConfig, d.CreatedTime, d.DeviceprofileId, d.DhcpdConfig, d.DnsServers, d.DnsSuffix, d.ExtraRoutes, d.ExtraRoutes6, d.ForSite, d.Id, d.IdpProfiles, d.Image1Url, d.Image2Url, d.Image3Url, d.IpConfigs, d.Mac, d.Managed, d.MapId, d.Model, d.ModifiedTime, d.MspId, d.Name, d.Networks, d.Notes, d.NtpServers, d.OobIpConfig, d.OrgId, d.PathPreferences, d.PortConfig, d.PortMirroring, d.RouterId, d.RoutingPolicies, d.Serial, d.ServicePolicies, d.SiteId, d.TunnelConfigs, d.TunnelProviderOptions, d.Type, d.Vars, d.VrfConfig, d.VrfInstances, d.X, d.Y, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceGateway.
@@ -346,7 +355,7 @@ type tempDeviceGateway  struct {
     Serial                *string                            `json:"serial,omitempty"`
     ServicePolicies       []ServicePolicy                    `json:"service_policies,omitempty"`
     SiteId                *uuid.UUID                         `json:"site_id,omitempty"`
-    TunnelConfigs         map[string]TunnelConfigs           `json:"tunnel_configs,omitempty"`
+    TunnelConfigs         map[string]TunnelConfig            `json:"tunnel_configs,omitempty"`
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     Type                  *string                            `json:"type"`
     Vars                  map[string]string                  `json:"vars,omitempty"`

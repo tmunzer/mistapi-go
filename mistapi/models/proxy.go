@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // Proxy represents a Proxy struct.
@@ -9,6 +10,14 @@ import (
 type Proxy struct {
     Url                  *string                `json:"url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for Proxy,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p Proxy) String() string {
+    return fmt.Sprintf(
+    	"Proxy[Url=%v, AdditionalProperties=%v]",
+    	p.Url, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Proxy.

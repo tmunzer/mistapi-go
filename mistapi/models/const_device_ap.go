@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -49,6 +50,14 @@ type ConstDeviceAp struct {
     Unmanaged            *bool                          `json:"unmanaged,omitempty"`
     Vble                 *ConstDeviceApVble             `json:"vble,omitempty"`
     AdditionalProperties map[string]interface{}         `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for ConstDeviceAp,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (c ConstDeviceAp) String() string {
+    return fmt.Sprintf(
+    	"ConstDeviceAp[ApType=%v, Band24=%v, Band5=%v, Band6=%v, Band24Usages=%v, CeDfsOk=%v, CiscoPace=%v, Description=%v, DisallowedChannels=%v, Display=%v, Extio=%v, FccDfsOk=%v, Has11ax=%v, HasCompass=%v, HasExtAnt=%v, HasExtio=%v, HasHeight=%v, HasModulePort=%v, HasPoeOut=%v, HasScanningRadio=%v, HasSelectableRadio=%v, HasUsb=%v, HasVble=%v, HasWifiBand24=%v, HasWifiBand5=%v, HasWifiBand6=%v, MaxPoeOut=%v, MaxWlans=%v, Model=%v, OtherDfsOk=%v, Outdoor=%v, Radios=%v, SharedScanningRadio=%v, Type=%v, Unmanaged=%v, Vble=%v, AdditionalProperties=%v]",
+    	c.ApType, c.Band24, c.Band5, c.Band6, c.Band24Usages, c.CeDfsOk, c.CiscoPace, c.Description, c.DisallowedChannels, c.Display, c.Extio, c.FccDfsOk, c.Has11ax, c.HasCompass, c.HasExtAnt, c.HasExtio, c.HasHeight, c.HasModulePort, c.HasPoeOut, c.HasScanningRadio, c.HasSelectableRadio, c.HasUsb, c.HasVble, c.HasWifiBand24, c.HasWifiBand5, c.HasWifiBand6, c.MaxPoeOut, c.MaxWlans, c.Model, c.OtherDfsOk, c.Outdoor, c.Radios, c.SharedScanningRadio, c.Type, c.Unmanaged, c.Vble, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstDeviceAp.

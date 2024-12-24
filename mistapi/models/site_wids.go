@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // SiteWids represents a SiteWids struct.
@@ -9,6 +10,14 @@ import (
 type SiteWids struct {
     RepeatedAuthFailures *SiteWidsRepeatedAuthFailures `json:"repeated_auth_failures,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for SiteWids,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (s SiteWids) String() string {
+    return fmt.Sprintf(
+    	"SiteWids[RepeatedAuthFailures=%v, AdditionalProperties=%v]",
+    	s.RepeatedAuthFailures, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteWids.

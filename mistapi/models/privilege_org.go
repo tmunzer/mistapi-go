@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "github.com/google/uuid"
     "strings"
 )
@@ -21,6 +22,14 @@ type PrivilegeOrg struct {
     // if `scope`==`sitegroup`
     SitegroupId          *uuid.UUID             `json:"sitegroup_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for PrivilegeOrg,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (p PrivilegeOrg) String() string {
+    return fmt.Sprintf(
+    	"PrivilegeOrg[OrgId=%v, Role=%v, Scope=%v, SiteId=%v, SitegroupId=%v, AdditionalProperties=%v]",
+    	p.OrgId, p.Role, p.Scope, p.SiteId, p.SitegroupId, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PrivilegeOrg.

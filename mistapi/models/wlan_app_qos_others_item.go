@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
 )
 
 // WlanAppQosOthersItem represents a WlanAppQosOthersItem struct.
@@ -12,6 +13,14 @@ type WlanAppQosOthersItem struct {
     Protocol             *string                `json:"protocol,omitempty"`
     SrcSubnet            *string                `json:"src_subnet,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for WlanAppQosOthersItem,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (w WlanAppQosOthersItem) String() string {
+    return fmt.Sprintf(
+    	"WlanAppQosOthersItem[Dscp=%v, DstSubnet=%v, PortRanges=%v, Protocol=%v, SrcSubnet=%v, AdditionalProperties=%v]",
+    	w.Dscp, w.DstSubnet, w.PortRanges, w.Protocol, w.SrcSubnet, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAppQosOthersItem.

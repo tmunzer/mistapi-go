@@ -3,6 +3,7 @@ package models
 import (
     "encoding/json"
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -13,6 +14,14 @@ type AccountOauthInfo struct {
     AuthorizationUrl     *string                   `json:"authorization_url,omitempty"`
     Linked               bool                      `json:"linked"`
     AdditionalProperties map[string]interface{}    `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for AccountOauthInfo,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (a AccountOauthInfo) String() string {
+    return fmt.Sprintf(
+    	"AccountOauthInfo[Accounts=%v, AuthorizationUrl=%v, Linked=%v, AdditionalProperties=%v]",
+    	a.Accounts, a.AuthorizationUrl, a.Linked, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthInfo.

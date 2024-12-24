@@ -2,6 +2,7 @@ package models
 
 import (
     "encoding/json"
+    "fmt"
     "github.com/google/uuid"
 )
 
@@ -19,6 +20,14 @@ type IdpProfile struct {
     OrgId                *uuid.UUID                 `json:"org_id,omitempty"`
     Overwrites           []IdpProfileOverwrite      `json:"overwrites,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
+}
+
+// String implements the fmt.Stringer interface for IdpProfile,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (i IdpProfile) String() string {
+    return fmt.Sprintf(
+    	"IdpProfile[BaseProfile=%v, CreatedTime=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Overwrites=%v, AdditionalProperties=%v]",
+    	i.BaseProfile, i.CreatedTime, i.Id, i.ModifiedTime, i.Name, i.OrgId, i.Overwrites, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IdpProfile.
