@@ -6,7 +6,7 @@ import (
 )
 
 // GatewayWanProbeOverride represents a GatewayWanProbeOverride struct.
-// if `usage`==`wan`
+// Only if `usage`==`wan`
 type GatewayWanProbeOverride struct {
     Ips                  []string                                 `json:"ips,omitempty"`
     // enum: `broadband`, `lte`

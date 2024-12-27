@@ -6,7 +6,7 @@ import (
 )
 
 // GatewayPortWanSourceNat represents a GatewayPortWanSourceNat struct.
-// optional, by default, source-NAT is performed on all WAN Ports using the interface-ip
+// Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN Ports using the interface-ip
 type GatewayPortWanSourceNat struct {
     // or to disable the source-nat
     Disabled             *bool                  `json:"disabled,omitempty"`

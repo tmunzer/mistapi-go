@@ -1041,7 +1041,7 @@ const (
 )
 
 // GatewayPortWanArpPolicerEnum is a string enum.
-// when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`
+// Only when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`
 type GatewayPortWanArpPolicerEnum string
 
 const (
@@ -1051,7 +1051,7 @@ const (
 )
 
 // GatewayPortWanTypeEnum is a string enum.
-// if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`
+// Only if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`
 type GatewayPortWanTypeEnum string
 
 const (

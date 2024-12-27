@@ -28,7 +28,7 @@ Networks are usually subnets that have cross-site significance. `networks`in Org
 | `RoutedForNetworks` | `[]string` | Optional | for a Network (usually LAN), it can be routable to other networks (e.g. OSPF) |
 | `Subnet` | `*string` | Optional | - |
 | `Subnet6` | `*string` | Optional | - |
-| `Tenants` | [`map[string]models.NetworkTenant`](../../doc/models/network-tenant.md) | Optional | - |
+| `Tenants` | [`map[string]models.NetworkTenant`](../../doc/models/network-tenant.md) | Optional | Property key must be the user/tenant name (i.e. "printer-1") or a Variable (i.e. "{{myvar}}") |
 | `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 | `VpnAccess` | [`map[string]models.NetworkVpnAccessConfig`](../../doc/models/network-vpn-access-config.md) | Optional | Property key is the VPN name. Whether this network can be accessed from vpn |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

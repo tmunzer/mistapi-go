@@ -17,7 +17,7 @@ for zscaler-ipsec and zscaler-gre
 | `AupEnabled` | `*bool` | Optional | Can only be `true` when `auth_required`==`false`, display Acceptable Use Policy (AUP)<br>**Default**: `false` |
 | `AupForceSslInspection` | `*bool` | Optional | proxy HTTPs traffic, requiring Zscaler cert to be installed in browser<br>**Default**: `false` |
 | `AupTimeoutInDays` | `*int` | Optional | Required if `aup_enabled`==`true`. Days before AUP is requested again<br>**Constraints**: `>= 1`, `<= 180` |
-| `AuthRequired` | `*bool` | Optional | Enable this option to authenticate users<br>**Default**: `false` |
+| `AuthRequired` | `*bool` | Optional | Enable this option to enforce user authentication<br>**Default**: `false` |
 | `CautionEnabled` | `*bool` | Optional | Can only be `true` when `auth_required`==`false`, display caution notification for non-authenticated users<br>**Default**: `false` |
 | `DnBandwidth` | `models.Optional[float64]` | Optional | the download bandwidth cap of the link, in Mbps. Disabled if not set<br>**Constraints**: `>= 0.1`, `<= 99999` |
 | `IdleTimeInMinutes` | `*int` | Optional | Required if `surrogate_IP`==`true`, idle Time to Disassociation<br>**Constraints**: `>= 0`, `<= 43200` |

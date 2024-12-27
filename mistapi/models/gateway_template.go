@@ -46,7 +46,7 @@ type GatewayTemplate struct {
     OrgId                 *uuid.UUID                         `json:"org_id,omitempty"`
     // Property key is the path name
     PathPreferences       map[string]GatewayPathPreferences  `json:"path_preferences,omitempty"`
-    // Property key is the port(s) name or range (e.g. "ge-0/0/0-10")
+    // Property key is the Port Name (i.e. "ge-0/0/0"), the Ports Range (i.e. "ge-0/0/0-10"), the List of Ports (i.e. "ge-0/0/0,ge-1/0/0", only allowed for Aggregated or Redundant interfaces) or a Variable (i.e. "{{myvar}}").
     PortConfig            map[string]GatewayPortConfig       `json:"port_config,omitempty"`
     // auto assigned if not set
     RouterId              *string                            `json:"router_id,omitempty"`

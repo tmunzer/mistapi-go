@@ -14,13 +14,12 @@ type GatewayPortConfig struct {
     AeDisableLacp        *bool                         `json:"ae_disable_lacp,omitempty"`
     // if `aggregated`==`true`. Users could force to use the designated AE name (must be an integer between 0 and 127)
     AeIdx                Optional[string]              `json:"ae_idx"`
-    // For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability.\n
-    // Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end\n
-    // Note: Turning this on will enable force-up on one of the interfaces in the bundle only
+    // For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only
     AeLacpForceUp        *bool                         `json:"ae_lacp_force_up,omitempty"`
     Aggregated           *bool                         `json:"aggregated,omitempty"`
     // if want to generate port up/down alarm, set it to true
     Critical             *bool                         `json:"critical,omitempty"`
+    // Interface Description. Can be a variable (i.e. "{{myvar}}")
     Description          *string                       `json:"description,omitempty"`
     DisableAutoneg       *bool                         `json:"disable_autoneg,omitempty"`
     // port admin up (true) / down (false)
@@ -74,23 +73,23 @@ type GatewayPortConfig struct {
     TrafficShaping       *GatewayTrafficShaping        `json:"traffic_shaping,omitempty"`
     // port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan`
     Usage                GatewayPortUsageEnum          `json:"usage"`
-    // if WAN interface is on a VLAN
-    VlanId               *int                          `json:"vlan_id,omitempty"`
+    // if WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}")
+    VlanId               *string                       `json:"vlan_id,omitempty"`
     // Property key is the VPN name
     VpnPaths             map[string]GatewayPortVpnPath `json:"vpn_paths,omitempty"`
-    // when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`
+    // Only when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`
     WanArpPolicer        *GatewayPortWanArpPolicerEnum `json:"wan_arp_policer,omitempty"`
-    // optional, if spoke should reach this port by a different IP
+    // Only if `usage`==`wan`, optional. If spoke should reach this port by a different IP
     WanExtIp             *string                       `json:"wan_ext_ip,omitempty"`
-    // Property Key is the destianation CIDR (e.g "100.100.100.0/24")
+    // Only if `usage`==`wan`. Property Key is the destianation CIDR (e.g "100.100.100.0/24")
     WanExtraRoutes       map[string]WanExtraRoutes     `json:"wan_extra_routes,omitempty"`
-    // if some networks are connected to this WAN port, it can be added here so policies can be defined
+    // Only if `usage`==`wan`. If some networks are connected to this WAN port, it can be added here so policies can be defined
     WanNetworks          []string                      `json:"wan_networks,omitempty"`
-    // if `usage`==`wan`
+    // Only if `usage`==`wan`
     WanProbeOverride     *GatewayWanProbeOverride      `json:"wan_probe_override,omitempty"`
-    // optional, by default, source-NAT is performed on all WAN Ports using the interface-ip
+    // Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN Ports using the interface-ip
     WanSourceNat         *GatewayPortWanSourceNat      `json:"wan_source_nat,omitempty"`
-    // if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`
+    // Only if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`
     WanType              *GatewayPortWanTypeEnum       `json:"wan_type,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
 }
@@ -353,7 +352,7 @@ type tempGatewayPortConfig  struct {
     SvrPortRange     *string                       `json:"svr_port_range,omitempty"`
     TrafficShaping   *GatewayTrafficShaping        `json:"traffic_shaping,omitempty"`
     Usage            *GatewayPortUsageEnum         `json:"usage"`
-    VlanId           *int                          `json:"vlan_id,omitempty"`
+    VlanId           *string                       `json:"vlan_id,omitempty"`
     VpnPaths         map[string]GatewayPortVpnPath `json:"vpn_paths,omitempty"`
     WanArpPolicer    *GatewayPortWanArpPolicerEnum `json:"wan_arp_policer,omitempty"`
     WanExtIp         *string                       `json:"wan_ext_ip,omitempty"`

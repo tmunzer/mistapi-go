@@ -8,15 +8,15 @@ import (
 // NetworkInternetAccess represents a NetworkInternetAccess struct.
 // whether this network has direct internet access
 type NetworkInternetAccess struct {
-    CreateSimpleServicePolicy *bool                                    `json:"create_simple_service_policy,omitempty"`
-    // Property key may be an IP/Port (i.e. "63.16.0.3:443"), or a port (i.e. ":2222")
-    DestinationNat            map[string]NetworkDestinationNatProperty `json:"destination_nat,omitempty"`
-    Enabled                   *bool                                    `json:"enabled,omitempty"`
+    CreateSimpleServicePolicy *bool                                                  `json:"create_simple_service_policy,omitempty"`
+    // Property key must be an External IP (i.e. "63.16.0.3"), an External IP/Port (i.e. "63.16.0.3:443"), an External Port (i.e. ":443") or a Variable (i.e. "{{myvar}}")
+    DestinationNat            map[string]NetworkInternetAccessDestinationNatProperty `json:"destination_nat,omitempty"`
+    Enabled                   *bool                                                  `json:"enabled,omitempty"`
     // by default, all access is allowed, to only allow certain traffic, make `restricted`=`true` and define service_policies
-    Restricted                *bool                                    `json:"restricted,omitempty"`
-    // Property key may be an IP Address (i.e. "172.16.0.1"), and IP Address and Port (i.e. "172.16.0.1:8443") or a CIDR (i.e. "172.16.0.12/20")
-    StaticNat                 map[string]NetworkStaticNatProperty      `json:"static_nat,omitempty"`
-    AdditionalProperties      map[string]interface{}                   `json:"_"`
+    Restricted                *bool                                                  `json:"restricted,omitempty"`
+    // Property key may be an External IP Address (i.e. "63.16.0.3"), a CIDR (i.e. "63.16.0.12/20") or a Variable (i.e. "{{myvar}}")
+    StaticNat                 map[string]NetworkInternetAccessStaticNatProperty      `json:"static_nat,omitempty"`
+    AdditionalProperties      map[string]interface{}                                 `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for NetworkInternetAccess,
@@ -85,9 +85,9 @@ func (n *NetworkInternetAccess) UnmarshalJSON(input []byte) error {
 
 // tempNetworkInternetAccess is a temporary struct used for validating the fields of NetworkInternetAccess.
 type tempNetworkInternetAccess  struct {
-    CreateSimpleServicePolicy *bool                                    `json:"create_simple_service_policy,omitempty"`
-    DestinationNat            map[string]NetworkDestinationNatProperty `json:"destination_nat,omitempty"`
-    Enabled                   *bool                                    `json:"enabled,omitempty"`
-    Restricted                *bool                                    `json:"restricted,omitempty"`
-    StaticNat                 map[string]NetworkStaticNatProperty      `json:"static_nat,omitempty"`
+    CreateSimpleServicePolicy *bool                                                  `json:"create_simple_service_policy,omitempty"`
+    DestinationNat            map[string]NetworkInternetAccessDestinationNatProperty `json:"destination_nat,omitempty"`
+    Enabled                   *bool                                                  `json:"enabled,omitempty"`
+    Restricted                *bool                                                  `json:"restricted,omitempty"`
+    StaticNat                 map[string]NetworkInternetAccessStaticNatProperty      `json:"static_nat,omitempty"`
 }

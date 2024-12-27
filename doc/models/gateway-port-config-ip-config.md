@@ -15,9 +15,9 @@ Junos IP Config
 |  --- | --- | --- | --- |
 | `Dns` | `[]string` | Optional | except for out-of_band interface (vme/em0/fxp0) |
 | `DnsSuffix` | `[]string` | Optional | except for out-of_band interface (vme/em0/fxp0) |
-| `Gateway` | `*string` | Optional | except for out-of_band interface (vme/em0/fxp0) |
-| `Ip` | `*string` | Optional | - |
-| `Netmask` | `*string` | Optional | used only if `subnet` is not specified in `networks` |
+| `Gateway` | `*string` | Optional | except for out-of_band interface (vme/em0/fxp0). Interface Default Gateway IP Address (i.e. "192.168.1.1") or a Variable (i.e. "{{myvar}}") |
+| `Ip` | `*string` | Optional | Interface IP Address (i.e. "192.168.1.8") or a Variable (i.e. "{{myvar}}") |
+| `Netmask` | `*string` | Optional | used only if `subnet` is not specified in `networks`. Interface Netmask (i.e. "/24") or a Variable (i.e. "{{myvar}}") |
 | `Network` | `*string` | Optional | optional, the network to be used for mgmt |
 | `PoserPassword` | `*string` | Optional | if `type`==`pppoe` |
 | `PppoeAuth` | [`*models.GatewayWanPpoeAuthEnum`](../../doc/models/gateway-wan-ppoe-auth-enum.md) | Optional | if `type`==`pppoe`. enum: `chap`, `none`, `pap`<br>**Default**: `"none"` |
@@ -29,6 +29,9 @@ Junos IP Config
 
 ```json
 {
+  "gateway": "192.168.1.1",
+  "ip": "192.168.1.8",
+  "netmask": "/24",
   "pppoe_auth": "none",
   "type": "dhcp",
   "dns": [
@@ -39,9 +42,6 @@ Junos IP Config
     "dns_suffix9",
     "dns_suffix0"
   ],
-  "gateway": "gateway0",
-  "ip": "ip4",
-  "netmask": "netmask0",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

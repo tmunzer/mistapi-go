@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `AdvertisedSubnet` | `*string` | Optional | if `routed`==`true`, whether to advertise an aggregated subnet toward HUB this is useful when there are multiple networks on SPOKE's side |
 | `AllowPing` | `*bool` | Optional | whether to allow ping from vpn into this routed network |
-| `DestinationNat` | [`map[string]models.NetworkDestinationNatProperty`](../../doc/models/network-destination-nat-property.md) | Optional | Property key may be an IP/Port (i.e. "63.16.0.3:443"), or a port (i.e. ":2222") |
+| `DestinationNat` | [`map[string]models.NetworkVpnAccessDestinationNatProperty`](../../doc/models/network-vpn-access-destination-nat-property.md) | Optional | Property key must be an External IP (i.e. "63.16.0.3"), an External IP/Port (i.e. "63.16.0.3:443"), an External Port (i.e. ":443") or a Variable (i.e. "{{myvar}}") |
 | `NatPool` | `*string` | Optional | if `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub, a subnet is required to create and advertise the route to Hub |
 | `NoReadvertiseToLanBgp` | `*bool` | Optional | toward LAN-side BGP peers<br>**Default**: `false` |
 | `NoReadvertiseToLanOspf` | `*bool` | Optional | toward LAN-side OSPF peers<br>**Default**: `false` |
@@ -21,7 +21,7 @@
 | `OtherVrfs` | `[]string` | Optional | by default, the routes are only readvertised toward the same vrf on spoke<br>to allow it to be leaked to other vrfs |
 | `Routed` | `*bool` | Optional | whether this network is routable |
 | `SourceNat` | [`*models.NetworkSourceNat`](../../doc/models/network-source-nat.md) | Optional | if `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub |
-| `StaticNat` | [`map[string]models.NetworkStaticNatProperty`](../../doc/models/network-static-nat-property.md) | Optional | Property key may be an IP Address (i.e. "172.16.0.1"), and IP Address and Port (i.e. "172.16.0.1:8443") or a CIDR (i.e. "172.16.0.12/20") |
+| `StaticNat` | [`map[string]models.NetworkVpnAccessStaticNatProperty`](../../doc/models/network-vpn-access-static-nat-property.md) | Optional | Property key may be an External IP Address (i.e. "63.16.0.3"), a CIDR (i.e. "63.16.0.12/20") or a Variable (i.e. "{{myvar}}") |
 | `SummarizedSubnet` | `*string` | Optional | toward overlay<br>how HUB should deal with routes it received from Spokes |
 | `SummarizedSubnetToLanBgp` | `*string` | Optional | toward LAN-side BGP peers |
 | `SummarizedSubnetToLanOspf` | `*string` | Optional | toward LAN-side OSPF peers |
@@ -43,8 +43,7 @@
     "key0": {
       "internal_ip": "internal_ip0",
       "name": "name4",
-      "port": 162,
-      "wan_name": "wan_name0",
+      "port": "port4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -53,8 +52,7 @@
     "key1": {
       "internal_ip": "internal_ip0",
       "name": "name4",
-      "port": 162,
-      "wan_name": "wan_name0",
+      "port": "port4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

@@ -15,10 +15,10 @@ Gateway port config
 |  --- | --- | --- | --- |
 | `AeDisableLacp` | `*bool` | Optional | if `aggregated`==`true`. To disable LCP support for the AE interface<br>**Default**: `false` |
 | `AeIdx` | `models.Optional[string]` | Optional | if `aggregated`==`true`. Users could force to use the designated AE name (must be an integer between 0 and 127) |
-| `AeLacpForceUp` | `*bool` | Optional | For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability.\n<br>Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end\n<br>Note: Turning this on will enable force-up on one of the interfaces in the bundle only<br>**Default**: `false` |
+| `AeLacpForceUp` | `*bool` | Optional | For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only<br>**Default**: `false` |
 | `Aggregated` | `*bool` | Optional | **Default**: `false` |
 | `Critical` | `*bool` | Optional | if want to generate port up/down alarm, set it to true<br>**Default**: `false` |
-| `Description` | `*string` | Optional | - |
+| `Description` | `*string` | Optional | Interface Description. Can be a variable (i.e. "{{myvar}}") |
 | `DisableAutoneg` | `*bool` | Optional | **Default**: `false` |
 | `Disabled` | `*bool` | Optional | port admin up (true) / down (false)<br>**Default**: `false` |
 | `DslType` | [`*models.GatewayPortDslTypeEnum`](../../doc/models/gateway-port-dsl-type-enum.md) | Optional | if `wan_type`==`dsl`. enum: `adsl`, `vdsl`<br>**Default**: `"vdsl"` |
@@ -47,15 +47,15 @@ Gateway port config
 | `SvrPortRange` | `*string` | Optional | for SSR only<br>**Default**: `"none"` |
 | `TrafficShaping` | [`*models.GatewayTrafficShaping`](../../doc/models/gateway-traffic-shaping.md) | Optional | - |
 | `Usage` | [`models.GatewayPortUsageEnum`](../../doc/models/gateway-port-usage-enum.md) | Required | port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan` |
-| `VlanId` | `*int` | Optional | if WAN interface is on a VLAN |
+| `VlanId` | `*string` | Optional | if WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}") |
 | `VpnPaths` | [`map[string]models.GatewayPortVpnPath`](../../doc/models/gateway-port-vpn-path.md) | Optional | Property key is the VPN name |
-| `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`<br>**Default**: `"default"` |
-| `WanExtIp` | `*string` | Optional | optional, if spoke should reach this port by a different IP |
-| `WanExtraRoutes` | [`map[string]models.WanExtraRoutes`](../../doc/models/wan-extra-routes.md) | Optional | Property Key is the destianation CIDR (e.g "100.100.100.0/24") |
-| `WanNetworks` | `[]string` | Optional | if some networks are connected to this WAN port, it can be added here so policies can be defined |
-| `WanProbeOverride` | [`*models.GatewayWanProbeOverride`](../../doc/models/gateway-wan-probe-override.md) | Optional | if `usage`==`wan` |
-| `WanSourceNat` | [`*models.GatewayPortWanSourceNat`](../../doc/models/gateway-port-wan-source-nat.md) | Optional | optional, by default, source-NAT is performed on all WAN Ports using the interface-ip |
-| `WanType` | [`*models.GatewayPortWanTypeEnum`](../../doc/models/gateway-port-wan-type-enum.md) | Optional | if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`<br>**Default**: `"broadband"` |
+| `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | Only when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`<br>**Default**: `"default"` |
+| `WanExtIp` | `*string` | Optional | Only if `usage`==`wan`, optional. If spoke should reach this port by a different IP |
+| `WanExtraRoutes` | [`map[string]models.WanExtraRoutes`](../../doc/models/wan-extra-routes.md) | Optional | Only if `usage`==`wan`. Property Key is the destianation CIDR (e.g "100.100.100.0/24") |
+| `WanNetworks` | `[]string` | Optional | Only if `usage`==`wan`. If some networks are connected to this WAN port, it can be added here so policies can be defined |
+| `WanProbeOverride` | [`*models.GatewayWanProbeOverride`](../../doc/models/gateway-wan-probe-override.md) | Optional | Only if `usage`==`wan` |
+| `WanSourceNat` | [`*models.GatewayPortWanSourceNat`](../../doc/models/gateway-port-wan-source-nat.md) | Optional | Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN Ports using the interface-ip |
+| `WanType` | [`*models.GatewayPortWanTypeEnum`](../../doc/models/gateway-port-wan-type-enum.md) | Optional | Only if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`<br>**Default**: `"broadband"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

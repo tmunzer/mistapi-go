@@ -5,26 +5,27 @@ import (
     "fmt"
 )
 
-// NetworkStaticNatProperty represents a NetworkStaticNatProperty struct.
-type NetworkStaticNatProperty struct {
+// NetworkInternetAccessStaticNatProperty represents a NetworkInternetAccessStaticNatProperty struct.
+type NetworkInternetAccessStaticNatProperty struct {
+    // The Static NAT destination IP Address. Must be an IP Address (i.e. "192.168.70.3") or a Variable (i.e. "{{myvar}}")
     InternalIp           *string                `json:"internal_ip,omitempty"`
     Name                 *string                `json:"name,omitempty"`
-    // If not set, we configure the nat policies against all WAN ports for simplicity
+    // SRX Only. If not set, we configure the nat policies against all WAN ports for simplicity. Can be a Variable (i.e. "{{myvar}}")
     WanName              *string                `json:"wan_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
-// String implements the fmt.Stringer interface for NetworkStaticNatProperty,
+// String implements the fmt.Stringer interface for NetworkInternetAccessStaticNatProperty,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
-func (n NetworkStaticNatProperty) String() string {
+func (n NetworkInternetAccessStaticNatProperty) String() string {
     return fmt.Sprintf(
-    	"NetworkStaticNatProperty[InternalIp=%v, Name=%v, WanName=%v, AdditionalProperties=%v]",
+    	"NetworkInternetAccessStaticNatProperty[InternalIp=%v, Name=%v, WanName=%v, AdditionalProperties=%v]",
     	n.InternalIp, n.Name, n.WanName, n.AdditionalProperties)
 }
 
-// MarshalJSON implements the json.Marshaler interface for NetworkStaticNatProperty.
-// It customizes the JSON marshaling process for NetworkStaticNatProperty objects.
-func (n NetworkStaticNatProperty) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for NetworkInternetAccessStaticNatProperty.
+// It customizes the JSON marshaling process for NetworkInternetAccessStaticNatProperty objects.
+func (n NetworkInternetAccessStaticNatProperty) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(n.AdditionalProperties,
@@ -34,8 +35,8 @@ func (n NetworkStaticNatProperty) MarshalJSON() (
     return json.Marshal(n.toMap())
 }
 
-// toMap converts the NetworkStaticNatProperty object to a map representation for JSON marshaling.
-func (n NetworkStaticNatProperty) toMap() map[string]any {
+// toMap converts the NetworkInternetAccessStaticNatProperty object to a map representation for JSON marshaling.
+func (n NetworkInternetAccessStaticNatProperty) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, n.AdditionalProperties)
     if n.InternalIp != nil {
@@ -50,10 +51,10 @@ func (n NetworkStaticNatProperty) toMap() map[string]any {
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for NetworkStaticNatProperty.
-// It customizes the JSON unmarshaling process for NetworkStaticNatProperty objects.
-func (n *NetworkStaticNatProperty) UnmarshalJSON(input []byte) error {
-    var temp tempNetworkStaticNatProperty
+// UnmarshalJSON implements the json.Unmarshaler interface for NetworkInternetAccessStaticNatProperty.
+// It customizes the JSON unmarshaling process for NetworkInternetAccessStaticNatProperty objects.
+func (n *NetworkInternetAccessStaticNatProperty) UnmarshalJSON(input []byte) error {
+    var temp tempNetworkInternetAccessStaticNatProperty
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -70,8 +71,8 @@ func (n *NetworkStaticNatProperty) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tempNetworkStaticNatProperty is a temporary struct used for validating the fields of NetworkStaticNatProperty.
-type tempNetworkStaticNatProperty  struct {
+// tempNetworkInternetAccessStaticNatProperty is a temporary struct used for validating the fields of NetworkInternetAccessStaticNatProperty.
+type tempNetworkInternetAccessStaticNatProperty  struct {
     InternalIp *string `json:"internal_ip,omitempty"`
     Name       *string `json:"name,omitempty"`
     WanName    *string `json:"wan_name,omitempty"`

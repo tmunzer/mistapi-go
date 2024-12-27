@@ -34,6 +34,7 @@ type Network struct {
     RoutedForNetworks    []string                          `json:"routed_for_networks,omitempty"`
     Subnet               *string                           `json:"subnet,omitempty"`
     Subnet6              *string                           `json:"subnet6,omitempty"`
+    // Property key must be the user/tenant name (i.e. "printer-1") or a Variable (i.e. "{{myvar}}")
     Tenants              map[string]NetworkTenant          `json:"tenants,omitempty"`
     VlanId               *VlanIdWithVariable               `json:"vlan_id,omitempty"`
     // Property key is the VPN name. Whether this network can be accessed from vpn

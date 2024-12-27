@@ -15,7 +15,7 @@ type TunnelProviderOptionsZscaler struct {
     AupForceSslInspection               *bool                                     `json:"aup_force_ssl_inspection,omitempty"`
     // Required if `aup_enabled`==`true`. Days before AUP is requested again
     AupTimeoutInDays                    *int                                      `json:"aup_timeout_in_days,omitempty"`
-    // Enable this option to authenticate users
+    // Enable this option to enforce user authentication
     AuthRequired                        *bool                                     `json:"auth_required,omitempty"`
     // Can only be `true` when `auth_required`==`false`, display caution notification for non-authenticated users
     CautionEnabled                      *bool                                     `json:"caution_enabled,omitempty"`

@@ -1,7 +1,7 @@
 
 # Gateway Wan Probe Override
 
-if `usage`==`wan`
+Only if `usage`==`wan`
 
 *This model accepts additional fields of type interface{}.*
 

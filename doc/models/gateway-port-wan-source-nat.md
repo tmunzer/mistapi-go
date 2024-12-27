@@ -1,7 +1,7 @@
 
 # Gateway Port Wan Source Nat
 
-optional, by default, source-NAT is performed on all WAN Ports using the interface-ip
+Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN Ports using the interface-ip
 
 *This model accepts additional fields of type interface{}.*
 

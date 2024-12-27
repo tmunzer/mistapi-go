@@ -7,10 +7,11 @@ import (
 
 // GatewayTrafficShaping represents a GatewayTrafficShaping struct.
 type GatewayTrafficShaping struct {
-    // percentages for differet class of traffic: high / medium / low / best-effort
-    // sum must be equal to 100
+    // percentages for differet class of traffic: high / medium / low / best-effort. Sum must be equal to 100
     ClassPercentages     []int                  `json:"class_percentages,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
+    // Interface Transmit Cap in kbps
+    MaxTxKbps            *int                   `json:"max_tx_kbps,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +19,8 @@ type GatewayTrafficShaping struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewayTrafficShaping) String() string {
     return fmt.Sprintf(
-    	"GatewayTrafficShaping[ClassPercentages=%v, Enabled=%v, AdditionalProperties=%v]",
-    	g.ClassPercentages, g.Enabled, g.AdditionalProperties)
+    	"GatewayTrafficShaping[ClassPercentages=%v, Enabled=%v, MaxTxKbps=%v, AdditionalProperties=%v]",
+    	g.ClassPercentages, g.Enabled, g.MaxTxKbps, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayTrafficShaping.
@@ -28,7 +29,7 @@ func (g GatewayTrafficShaping) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(g.AdditionalProperties,
-        "class_percentages", "enabled"); err != nil {
+        "class_percentages", "enabled", "max_tx_kbps"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(g.toMap())
@@ -44,6 +45,9 @@ func (g GatewayTrafficShaping) toMap() map[string]any {
     if g.Enabled != nil {
         structMap["enabled"] = g.Enabled
     }
+    if g.MaxTxKbps != nil {
+        structMap["max_tx_kbps"] = g.MaxTxKbps
+    }
     return structMap
 }
 
@@ -55,7 +59,7 @@ func (g *GatewayTrafficShaping) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "class_percentages", "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "class_percentages", "enabled", "max_tx_kbps")
     if err != nil {
     	return err
     }
@@ -63,6 +67,7 @@ func (g *GatewayTrafficShaping) UnmarshalJSON(input []byte) error {
     
     g.ClassPercentages = temp.ClassPercentages
     g.Enabled = temp.Enabled
+    g.MaxTxKbps = temp.MaxTxKbps
     return nil
 }
 
@@ -70,4 +75,5 @@ func (g *GatewayTrafficShaping) UnmarshalJSON(input []byte) error {
 type tempGatewayTrafficShaping  struct {
     ClassPercentages []int `json:"class_percentages,omitempty"`
     Enabled          *bool `json:"enabled,omitempty"`
+    MaxTxKbps        *int  `json:"max_tx_kbps,omitempty"`
 }

@@ -56,26 +56,26 @@ body := models.Network{
     }),
     InternetAccess:       models.ToPointer(models.NetworkInternetAccess{
         CreateSimpleServicePolicy: models.ToPointer(false),
-        DestinationNat:            map[string]models.NetworkDestinationNatProperty{
-            "property1": models.NetworkDestinationNatProperty{
+        DestinationNat:            map[string]models.NetworkInternetAccessDestinationNatProperty{
+            "property1": models.NetworkInternetAccessDestinationNatProperty{
                 InternalIp:           models.ToPointer("192.168.70.30"),
                 Name:                 models.ToPointer("web server"),
-                Port:                 models.ToPointer(443),
+                Port:                 models.ToPointer("443"),
             },
-            "property2": models.NetworkDestinationNatProperty{
+            "property2": models.NetworkInternetAccessDestinationNatProperty{
                 InternalIp:           models.ToPointer("192.168.70.30"),
                 Name:                 models.ToPointer("web server"),
-                Port:                 models.ToPointer(443),
+                Port:                 models.ToPointer("443"),
             },
         },
         Enabled:                   models.ToPointer(true),
         Restricted:                models.ToPointer(false),
-        StaticNat:                 map[string]models.NetworkStaticNatProperty{
-            "property1": models.NetworkStaticNatProperty{
+        StaticNat:                 map[string]models.NetworkInternetAccessStaticNatProperty{
+            "property1": models.NetworkInternetAccessStaticNatProperty{
                 InternalIp:           models.ToPointer("192.168.70.3"),
                 Name:                 models.ToPointer("printer-1"),
             },
-            "property2": models.NetworkStaticNatProperty{
+            "property2": models.NetworkInternetAccessStaticNatProperty{
                 InternalIp:           models.ToPointer("192.168.70.3"),
                 Name:                 models.ToPointer("printer-1"),
             },
@@ -100,17 +100,17 @@ body := models.Network{
     VpnAccess:            map[string]models.NetworkVpnAccessConfig{
         "property1": models.NetworkVpnAccessConfig{
             AllowPing:                 models.ToPointer(true),
-            DestinationNat:            map[string]models.NetworkDestinationNatProperty{
-                "property1": models.NetworkDestinationNatProperty{
+            DestinationNat:            map[string]models.NetworkVpnAccessDestinationNatProperty{
+                "property1": models.NetworkVpnAccessDestinationNatProperty{
                     Name:                 models.ToPointer("web server"),
-                    Port:                 models.ToPointer(443),
+                    Port:                 models.ToPointer("443"),
                     AdditionalProperties: map[string]interface{}{
                         "to": interface{}("192.168.70.5/30"),
                     },
                 },
-                "property2": models.NetworkDestinationNatProperty{
+                "property2": models.NetworkVpnAccessDestinationNatProperty{
                     Name:                 models.ToPointer("web server"),
-                    Port:                 models.ToPointer(443),
+                    Port:                 models.ToPointer("443"),
                     AdditionalProperties: map[string]interface{}{
                         "to": interface{}("192.168.70.5/30"),
                     },
@@ -121,12 +121,12 @@ body := models.Network{
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
                 ExternalIp:           models.ToPointer("172.16.0.8/30"),
             }),
-            StaticNat:                 map[string]models.NetworkStaticNatProperty{
-                "property1": models.NetworkStaticNatProperty{
+            StaticNat:                 map[string]models.NetworkVpnAccessStaticNatProperty{
+                "property1": models.NetworkVpnAccessStaticNatProperty{
                     InternalIp:           models.ToPointer("192.168.70.3"),
                     Name:                 models.ToPointer("pos_station-1"),
                 },
-                "property2": models.NetworkStaticNatProperty{
+                "property2": models.NetworkVpnAccessStaticNatProperty{
                     InternalIp:           models.ToPointer("192.168.70.3"),
                     Name:                 models.ToPointer("pos_station-1"),
                 },
@@ -135,17 +135,17 @@ body := models.Network{
         },
         "property2": models.NetworkVpnAccessConfig{
             AllowPing:                 models.ToPointer(true),
-            DestinationNat:            map[string]models.NetworkDestinationNatProperty{
-                "property1": models.NetworkDestinationNatProperty{
+            DestinationNat:            map[string]models.NetworkVpnAccessDestinationNatProperty{
+                "property1": models.NetworkVpnAccessDestinationNatProperty{
                     Name:                 models.ToPointer("web server"),
-                    Port:                 models.ToPointer(443),
+                    Port:                 models.ToPointer("443"),
                     AdditionalProperties: map[string]interface{}{
                         "to": interface{}("192.168.70.5/30"),
                     },
                 },
-                "property2": models.NetworkDestinationNatProperty{
+                "property2": models.NetworkVpnAccessDestinationNatProperty{
                     Name:                 models.ToPointer("web server"),
-                    Port:                 models.ToPointer(443),
+                    Port:                 models.ToPointer("443"),
                     AdditionalProperties: map[string]interface{}{
                         "to": interface{}("192.168.70.5/30"),
                     },
@@ -156,12 +156,12 @@ body := models.Network{
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
                 ExternalIp:           models.ToPointer("172.16.0.8/30"),
             }),
-            StaticNat:                 map[string]models.NetworkStaticNatProperty{
-                "property1": models.NetworkStaticNatProperty{
+            StaticNat:                 map[string]models.NetworkVpnAccessStaticNatProperty{
+                "property1": models.NetworkVpnAccessStaticNatProperty{
                     InternalIp:           models.ToPointer("192.168.70.3"),
                     Name:                 models.ToPointer("pos_station-1"),
                 },
-                "property2": models.NetworkStaticNatProperty{
+                "property2": models.NetworkVpnAccessStaticNatProperty{
                     InternalIp:           models.ToPointer("192.168.70.3"),
                     Name:                 models.ToPointer("pos_station-1"),
                 },
@@ -211,12 +211,12 @@ if err != nil {
       "property1": {
         "internal_ip": "192.168.70.30",
         "name": "web server",
-        "port": 443
+        "port": "443"
       },
       "property2": {
         "internal_ip": "192.168.70.30",
         "name": "web server",
-        "port": 443
+        "port": "443"
       }
     },
     "enabled": true,
@@ -256,12 +256,12 @@ if err != nil {
       "destination_nat": {
         "property1": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         },
         "property2": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         }
       },
@@ -287,12 +287,12 @@ if err != nil {
       "destination_nat": {
         "property1": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         },
         "property2": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         }
       },
@@ -450,12 +450,12 @@ if err != nil {
       "property1": {
         "internal_ip": "192.168.70.30",
         "name": "web server",
-        "port": 443
+        "port": "443"
       },
       "property2": {
         "internal_ip": "192.168.70.30",
         "name": "web server",
-        "port": 443
+        "port": "443"
       }
     },
     "enabled": true,
@@ -495,12 +495,12 @@ if err != nil {
       "destination_nat": {
         "property1": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         },
         "property2": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         }
       },
@@ -526,12 +526,12 @@ if err != nil {
       "destination_nat": {
         "property1": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         },
         "property2": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         }
       },
@@ -642,12 +642,12 @@ if err != nil {
         "property1": {
           "internal_ip": "192.168.70.30",
           "name": "web server",
-          "port": 443
+          "port": "443"
         },
         "property2": {
           "internal_ip": "192.168.70.30",
           "name": "web server",
-          "port": 443
+          "port": "443"
         }
       },
       "enabled": true,
@@ -687,12 +687,12 @@ if err != nil {
         "destination_nat": {
           "property1": {
             "name": "web server",
-            "port": 443,
+            "port": "443",
             "to": "192.168.70.5/30"
           },
           "property2": {
             "name": "web server",
-            "port": 443,
+            "port": "443",
             "to": "192.168.70.5/30"
           }
         },
@@ -718,12 +718,12 @@ if err != nil {
         "destination_nat": {
           "property1": {
             "name": "web server",
-            "port": 443,
+            "port": "443",
             "to": "192.168.70.5/30"
           },
           "property2": {
             "name": "web server",
-            "port": 443,
+            "port": "443",
             "to": "192.168.70.5/30"
           }
         },
@@ -803,26 +803,26 @@ body := models.Network{
     }),
     InternetAccess:       models.ToPointer(models.NetworkInternetAccess{
         CreateSimpleServicePolicy: models.ToPointer(false),
-        DestinationNat:            map[string]models.NetworkDestinationNatProperty{
-            "property1": models.NetworkDestinationNatProperty{
+        DestinationNat:            map[string]models.NetworkInternetAccessDestinationNatProperty{
+            "property1": models.NetworkInternetAccessDestinationNatProperty{
                 InternalIp:           models.ToPointer("192.168.70.30"),
                 Name:                 models.ToPointer("web server"),
-                Port:                 models.ToPointer(443),
+                Port:                 models.ToPointer("443"),
             },
-            "property2": models.NetworkDestinationNatProperty{
+            "property2": models.NetworkInternetAccessDestinationNatProperty{
                 InternalIp:           models.ToPointer("192.168.70.30"),
                 Name:                 models.ToPointer("web server"),
-                Port:                 models.ToPointer(443),
+                Port:                 models.ToPointer("443"),
             },
         },
         Enabled:                   models.ToPointer(true),
         Restricted:                models.ToPointer(false),
-        StaticNat:                 map[string]models.NetworkStaticNatProperty{
-            "property1": models.NetworkStaticNatProperty{
+        StaticNat:                 map[string]models.NetworkInternetAccessStaticNatProperty{
+            "property1": models.NetworkInternetAccessStaticNatProperty{
                 InternalIp:           models.ToPointer("192.168.70.3"),
                 Name:                 models.ToPointer("printer-1"),
             },
-            "property2": models.NetworkStaticNatProperty{
+            "property2": models.NetworkInternetAccessStaticNatProperty{
                 InternalIp:           models.ToPointer("192.168.70.3"),
                 Name:                 models.ToPointer("printer-1"),
             },
@@ -847,17 +847,17 @@ body := models.Network{
     VpnAccess:            map[string]models.NetworkVpnAccessConfig{
         "property1": models.NetworkVpnAccessConfig{
             AllowPing:                 models.ToPointer(true),
-            DestinationNat:            map[string]models.NetworkDestinationNatProperty{
-                "property1": models.NetworkDestinationNatProperty{
+            DestinationNat:            map[string]models.NetworkVpnAccessDestinationNatProperty{
+                "property1": models.NetworkVpnAccessDestinationNatProperty{
                     Name:                 models.ToPointer("web server"),
-                    Port:                 models.ToPointer(443),
+                    Port:                 models.ToPointer("443"),
                     AdditionalProperties: map[string]interface{}{
                         "to": interface{}("192.168.70.5/30"),
                     },
                 },
-                "property2": models.NetworkDestinationNatProperty{
+                "property2": models.NetworkVpnAccessDestinationNatProperty{
                     Name:                 models.ToPointer("web server"),
-                    Port:                 models.ToPointer(443),
+                    Port:                 models.ToPointer("443"),
                     AdditionalProperties: map[string]interface{}{
                         "to": interface{}("192.168.70.5/30"),
                     },
@@ -868,12 +868,12 @@ body := models.Network{
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
                 ExternalIp:           models.ToPointer("172.16.0.8/30"),
             }),
-            StaticNat:                 map[string]models.NetworkStaticNatProperty{
-                "property1": models.NetworkStaticNatProperty{
+            StaticNat:                 map[string]models.NetworkVpnAccessStaticNatProperty{
+                "property1": models.NetworkVpnAccessStaticNatProperty{
                     InternalIp:           models.ToPointer("192.168.70.3"),
                     Name:                 models.ToPointer("pos_station-1"),
                 },
-                "property2": models.NetworkStaticNatProperty{
+                "property2": models.NetworkVpnAccessStaticNatProperty{
                     InternalIp:           models.ToPointer("192.168.70.3"),
                     Name:                 models.ToPointer("pos_station-1"),
                 },
@@ -882,17 +882,17 @@ body := models.Network{
         },
         "property2": models.NetworkVpnAccessConfig{
             AllowPing:                 models.ToPointer(true),
-            DestinationNat:            map[string]models.NetworkDestinationNatProperty{
-                "property1": models.NetworkDestinationNatProperty{
+            DestinationNat:            map[string]models.NetworkVpnAccessDestinationNatProperty{
+                "property1": models.NetworkVpnAccessDestinationNatProperty{
                     Name:                 models.ToPointer("web server"),
-                    Port:                 models.ToPointer(443),
+                    Port:                 models.ToPointer("443"),
                     AdditionalProperties: map[string]interface{}{
                         "to": interface{}("192.168.70.5/30"),
                     },
                 },
-                "property2": models.NetworkDestinationNatProperty{
+                "property2": models.NetworkVpnAccessDestinationNatProperty{
                     Name:                 models.ToPointer("web server"),
-                    Port:                 models.ToPointer(443),
+                    Port:                 models.ToPointer("443"),
                     AdditionalProperties: map[string]interface{}{
                         "to": interface{}("192.168.70.5/30"),
                     },
@@ -903,12 +903,12 @@ body := models.Network{
             SourceNat:                 models.ToPointer(models.NetworkSourceNat{
                 ExternalIp:           models.ToPointer("172.16.0.8/30"),
             }),
-            StaticNat:                 map[string]models.NetworkStaticNatProperty{
-                "property1": models.NetworkStaticNatProperty{
+            StaticNat:                 map[string]models.NetworkVpnAccessStaticNatProperty{
+                "property1": models.NetworkVpnAccessStaticNatProperty{
                     InternalIp:           models.ToPointer("192.168.70.3"),
                     Name:                 models.ToPointer("pos_station-1"),
                 },
-                "property2": models.NetworkStaticNatProperty{
+                "property2": models.NetworkVpnAccessStaticNatProperty{
                     InternalIp:           models.ToPointer("192.168.70.3"),
                     Name:                 models.ToPointer("pos_station-1"),
                 },
@@ -958,12 +958,12 @@ if err != nil {
       "property1": {
         "internal_ip": "192.168.70.30",
         "name": "web server",
-        "port": 443
+        "port": "443"
       },
       "property2": {
         "internal_ip": "192.168.70.30",
         "name": "web server",
-        "port": 443
+        "port": "443"
       }
     },
     "enabled": true,
@@ -1003,12 +1003,12 @@ if err != nil {
       "destination_nat": {
         "property1": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         },
         "property2": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         }
       },
@@ -1034,12 +1034,12 @@ if err != nil {
       "destination_nat": {
         "property1": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         },
         "property2": {
           "name": "web server",
-          "port": 443,
+          "port": "443",
           "to": "192.168.70.5/30"
         }
       },

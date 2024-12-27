@@ -80,12 +80,12 @@ if err != nil {
         "property1": {
           "internal_ip": "192.168.70.30",
           "name": "web server",
-          "port": 443
+          "port": "443"
         },
         "property2": {
           "internal_ip": "192.168.70.30",
           "name": "web server",
-          "port": 443
+          "port": "443"
         }
       },
       "enabled": true,
@@ -125,12 +125,12 @@ if err != nil {
         "destination_nat": {
           "property1": {
             "name": "web server",
-            "port": 443,
+            "port": "443",
             "to": "192.168.70.5/30"
           },
           "property2": {
             "name": "web server",
-            "port": 443,
+            "port": "443",
             "to": "192.168.70.5/30"
           }
         },
@@ -156,12 +156,12 @@ if err != nil {
         "destination_nat": {
           "property1": {
             "name": "web server",
-            "port": 443,
+            "port": "443",
             "to": "192.168.70.5/30"
           },
           "property2": {
             "name": "web server",
-            "port": 443,
+            "port": "443",
             "to": "192.168.70.5/30"
           }
         },
