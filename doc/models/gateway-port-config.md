@@ -36,7 +36,7 @@ Gateway port config
 | `Networks` | `[]string` | Optional | if `usage`==`lan`, name of the [networks]($h/Orgs%20Networks/_overview) to attach to the interface |
 | `OuterVlanId` | `*int` | Optional | for Q-in-Q |
 | `PoeDisabled` | `*bool` | Optional | **Default**: `false` |
-| `PortNetwork` | `*string` | Optional | if `usage`==`lan` |
+| `PortNetwork` | `*string` | Optional | Only for SRX and if `usage`==`lan`, the Untagged VLAN Network |
 | `PreserveDscp` | `*bool` | Optional | whether to preserve dscp when sending traffic over VPN (SSR-only)<br>**Default**: `true` |
 | `Redundant` | `*bool` | Optional | if HA mode |
 | `RethIdx` | `*int` | Optional | if HA mode |
@@ -47,7 +47,7 @@ Gateway port config
 | `SvrPortRange` | `*string` | Optional | for SSR only<br>**Default**: `"none"` |
 | `TrafficShaping` | [`*models.GatewayTrafficShaping`](../../doc/models/gateway-traffic-shaping.md) | Optional | - |
 | `Usage` | [`models.GatewayPortUsageEnum`](../../doc/models/gateway-port-usage-enum.md) | Required | port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan` |
-| `VlanId` | `*string` | Optional | if WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}") |
+| `VlanId` | [`*models.GatewayPortVlanIdWithVariable`](../../doc/models/containers/gateway-port-vlan-id-with-variable.md) | Optional | if WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}") |
 | `VpnPaths` | [`map[string]models.GatewayPortVpnPath`](../../doc/models/gateway-port-vpn-path.md) | Optional | Property key is the VPN name |
 | `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | Only when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`<br>**Default**: `"default"` |
 | `WanExtIp` | `*string` | Optional | Only if `usage`==`wan`, optional. If spoke should reach this port by a different IP |

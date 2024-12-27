@@ -11,7 +11,7 @@ type NetworkVpnAccessConfig struct {
     AdvertisedSubnet          *string                                           `json:"advertised_subnet,omitempty"`
     // whether to allow ping from vpn into this routed network
     AllowPing                 *bool                                             `json:"allow_ping,omitempty"`
-    // Property key must be an External IP (i.e. "63.16.0.3"), an External IP/Port (i.e. "63.16.0.3:443"), an External Port (i.e. ":443") or a Variable (i.e. "{{myvar}}")
+    // Property key can be an External IP (i.e. "63.16.0.3"), an External IP:Port (i.e. "63.16.0.3:443"), an External Port (i.e. ":443"), an External CIDR (i.e. "63.16.0.0/30"), an External CIDR:Port (i.e. "63.16.0.0/30:443") or a Variable (i.e. "{{myvar}}"). At least one of the `internal_ip` or `port` must be defined
     DestinationNat            map[string]NetworkVpnAccessDestinationNatProperty `json:"destination_nat,omitempty"`
     // if `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub, a subnet is required to create and advertise the route to Hub
     NatPool                   *string                                           `json:"nat_pool,omitempty"`
