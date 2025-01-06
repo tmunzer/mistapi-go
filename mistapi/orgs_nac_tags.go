@@ -29,9 +29,9 @@ func NewOrgsNACTags(baseController baseController) *OrgsNACTags {
 func (o *OrgsNACTags) ListOrgNacTags(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *string,
+    mType *models.NacTagTypeEnum,
     name *string,
-    match *string,
+    match *models.NacTagMatchEnum,
     limit *int,
     page *int) (
     models.ApiResponse[[]models.NacTag],

@@ -23,13 +23,13 @@ func NewMSPsSSORoles(baseController baseController) *MSPsSSORoles {
 }
 
 // ListMspSsoRoles takes context, mspId as parameters and
-// returns an models.ApiResponse with []models.SsoRoleOrg data and
+// returns an models.ApiResponse with []models.SsoRoleMsp data and
 // an error if there was an issue with the request or response.
 // Get List of MSP SSO Roles
 func (m *MSPsSSORoles) ListMspSsoRoles(
     ctx context.Context,
     mspId uuid.UUID) (
-    models.ApiResponse[[]models.SsoRoleOrg],
+    models.ApiResponse[[]models.SsoRoleMsp],
     error) {
     req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssoroles")
     req.AppendTemplateParams(mspId)
@@ -52,13 +52,13 @@ func (m *MSPsSSORoles) ListMspSsoRoles(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result []models.SsoRoleOrg
+    var result []models.SsoRoleMsp
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.SsoRoleOrg](decoder)
+    result, err = utilities.DecodeResults[[]models.SsoRoleMsp](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

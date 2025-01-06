@@ -159,7 +159,7 @@ Get List of MSP SSO Roles
 ListMspSsoRoles(
     ctx context.Context,
     mspId uuid.UUID) (
-    models.ApiResponse[[]models.SsoRoleOrg],
+    models.ApiResponse[[]models.SsoRoleMsp],
     error)
 ```
 
@@ -171,7 +171,7 @@ ListMspSsoRoles(
 
 ## Response Type
 
-[`[]models.SsoRoleOrg`](../../doc/models/sso-role-org.md)
+[`[]models.SsoRoleMsp`](../../doc/models/sso-role-msp.md)
 
 ## Example Usage
 

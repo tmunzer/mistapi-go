@@ -23,7 +23,7 @@ func NewOrgsSSORoles(baseController baseController) *OrgsSSORoles {
 }
 
 // ListOrgSsoRoles takes context, orgId, limit, page as parameters and
-// returns an models.ApiResponse with []models.SsoRoleMsp data and
+// returns an models.ApiResponse with []models.SsoRoleOrg data and
 // an error if there was an issue with the request or response.
 // Get List of Org SSO Roles
 func (o *OrgsSSORoles) ListOrgSsoRoles(
@@ -31,7 +31,7 @@ func (o *OrgsSSORoles) ListOrgSsoRoles(
     orgId uuid.UUID,
     limit *int,
     page *int) (
-    models.ApiResponse[[]models.SsoRoleMsp],
+    models.ApiResponse[[]models.SsoRoleOrg],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssoroles")
     req.AppendTemplateParams(orgId)
@@ -60,13 +60,13 @@ func (o *OrgsSSORoles) ListOrgSsoRoles(
         req.QueryParam("page", *page)
     }
     
-    var result []models.SsoRoleMsp
+    var result []models.SsoRoleOrg
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.SsoRoleMsp](decoder)
+    result, err = utilities.DecodeResults[[]models.SsoRoleOrg](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

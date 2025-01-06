@@ -246,7 +246,7 @@ ListOrgSsoRoles(
     orgId uuid.UUID,
     limit *int,
     page *int) (
-    models.ApiResponse[[]models.SsoRoleMsp],
+    models.ApiResponse[[]models.SsoRoleOrg],
     error)
 ```
 
@@ -260,7 +260,7 @@ ListOrgSsoRoles(
 
 ## Response Type
 
-[`[]models.SsoRoleMsp`](../../doc/models/sso-role-msp.md)
+[`[]models.SsoRoleOrg`](../../doc/models/sso-role-org.md)
 
 ## Example Usage
 
